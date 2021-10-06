@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Peer to Peer system
+# 2.2 Peer to Peer system
 
 
 ![chia-architecture](/img/chia-network-architecture.png)

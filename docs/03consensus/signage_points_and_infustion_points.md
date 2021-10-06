@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Signage Points and Infusion Points
+# 3.5 Signage Points and Infusion Points
 
 Each sub-slot in the challenge and reward chains is divided into 64, smaller, VDFs, and between each of these small VDFs is a point called a **signage point**. Timelords publish the VDF output and proof when they reach each signage point. Note that both the challenge chain and the reward chains have signage points (but not the infused challenge chain). The number of iterations between each signage point is **sp interval iterations**, which is equal to sub slot iterations / 64.
  
@@ -50,7 +50,7 @@ For the b1 block to be valid/finished, two VDF proofs must be included: one from
 <figure>
 <img src="/img/signage_points.png" alt="drawing"/>
 <figcaption>
-Figure 5: timelords create proofs for both the signage point and the infusion point. But they only infuse (change the VDF classgroup)  for the latter. Squared symbolize infusions, where a new VDF is started. Sp_iterval_iterrs = 3.125M. UPDATE TO 64 SP
+Figure 5: timelords create proofs for both the signage point and the infusion point. But they only infuse (change the VDF classgroup)  for the latter. Squares symbolize infusions, where a new VDF is started.
 </figcaption>
 </figure>
 
@@ -72,6 +72,8 @@ infusion iterations = signage point iterations + 3 * sp interval iterations + re
 After realizing they have won (at the 20th infusion point), the farmer fetches the whole proof of space, makes a block, optionally including transactions, and broadcasts this to the network.
 They have a few seconds (up to the infusion iterations), to reach timelords, who will infuse the block, creating the infusion point VDFs.
 With these VDFs, the block can be finished and added to the blockchain by full nodes.
+
+## Defitions
 
 **Quality string**: A small part of the proof of space, 2 *x values* out of the total 64 *x values*, which can be retrieved
 efficiently from disk, and which values to fetch is determined by the signage point.

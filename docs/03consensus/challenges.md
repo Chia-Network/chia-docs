@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Challenges
+# 3.4 Challenges
 
 The Chia consensus algorithm relies on timelords running VDFs for periods of time called sub-slots, which are adjusted periodically to add up to take around 10 minutes. 
 Every sub-slot, challenges are released by timelords, and a sort of mini lottery starts, where farmers check their plots for proofs of space.
@@ -22,4 +22,6 @@ In figure 4, we can see three challenge points, c1, c2, and c3. At the points c1
 
 **Challenge**: sha256 output string which is used as proof of space challenges for farmers’ plots, as well as for the challenge chain VDF. This is also referred to as challenge hash.
 
-As you can see in Figure 4, there are three VDFs being executed concurrently, each which serve a different purpose. They are explained in the following sections.
+As you can see in Figure 4, there are three VDFs being executed concurrently, each which serve a different purpose. 
+They are explained in the following sections.
+In the networking protocol, the three VDF proofs are usually passed around together, in what is called a **end of sub slot bundle**.

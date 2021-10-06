@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# What is Chia?
+# 1.1 What is Chia?
 
 Chia is a new cryptocurrency and blockchain smart transaction platform that is designed to be easier to use,
 more efficient, and more secure. Chia was released in 2021, after years of development led by Bram Cohen, with the support

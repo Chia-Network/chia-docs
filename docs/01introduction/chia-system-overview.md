@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Chia System Overview
+# 1.3 Chia System Overview
 
 TODO: add links here
 

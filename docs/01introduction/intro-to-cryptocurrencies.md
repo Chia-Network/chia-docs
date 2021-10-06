@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Intro to Cryptocurrencies
+# 1.2 Intro to Cryptocurrencies
 
 What is a cryptocurrency? A cryptocurrency system can be thought of as a payments and financial
 infrastructure that is not controlled by any one entity, like a bank, company, or government. This is fundamentally
@@ -17,10 +17,10 @@ This brings many benefits, some of which are:
 - **No requirements to participate**, like ID, bank account, or nationality. Anyone can participate in the new 
  crypto economy.
 - **Censorship resistance**: censorship is difficult or impossible, anyone is allowed to transact, and to send
-any amount or run any program at any time, for very low fees.
-- **Independent monetary policy**: new currencies can be created, that do not depend on the decisions by one group or one 
+any amount or run any program at any time.
+- **Independent monetary policy**: new currencies can be created that do not depend on the decisions by one group or one 
  country, and instead can be based on algorithms or have fixed supply.
-- **Unstoppable applications**: an application developed on a secure blockchain can never be changed or stopped. The program
+- **Unstoppable applications**: an program developed for and run on a secure blockchain can never be changed or stopped. The program
  itself can own funds and perform financial transactions. Code itself can run autonomously, without depending on
 a human operator. Some of these include: tokenization of other assets, NFTs, loans, remittances, identity wallets, etc.
 - **Global standards**: through crypto, different countries and regions can interact and transact on one shared
@@ -32,12 +32,12 @@ hacks, bribery, network issues, etc.
 
 ## How do cryptocurrencies work?
 
-To understand the basics of how a cryptocurrency like Bitcoin works, we first need to look at how one would design a cryptocurrency
+To understand the basics of how a cryptocurrency like Bitcoin or Chia works, we first need to look at how one would design a cryptocurrency
 from scratch. This section is targeted toward those new to the blockchain industry; others can skip it.
 
 Of course, we could just rely on a central server which has a public API to send transactions 
 (which takes in a username and password) and a public API for reading data. 
-However, this is not decentralized, and does not bring most of the benefits above. This is how all systems worked
+However, this is not decentralized, and does not bring most of the benefits above. This is many financial systems worked
 before Bitcoin. So how would we design a transaction system which does not depend on any one party?
 
 <div style={{textAlign: 'center'}}>
@@ -47,7 +47,8 @@ before Bitcoin. So how would we design a transaction system which does not depen
 ### Authentication
 
 First, we need a way to send transactions to many servers instead of one, in a secure way. Let's assume that there are 1000
-servers across the world, instead of just one, and these servers send transaction information of users to each other.
+servers across the world, instead of just one, and these servers send transaction information of users to each other. 
+These servers are assumed to be run by different entities (companies, people, etc).
 Username and passwords would not work in a decentralized model, because every server would need to know the password in order to verify that
  the transaction is valid, and this is extremely insecure. 
 
@@ -71,7 +72,7 @@ However, signatures are not enough, because of an issue called the "double spend
 500 are in Asia and 500 are in America. An attacker, Bob, sends two transactions that spend the same coin, to two servers,
 at the same time: one in Asia and one in America. However, those transactions send the money to different recipients. 
 In this case, the two servers need to come to agreement on which transaction came first, otherwise they will have
-diverging state, and the system will not hve global consensus. To solve this issue, we need a consensus algorithm, or a way for
+diverging state, and the system will not have global consensus. To solve this issue, we need a consensus algorithm, or a way for
 all computers in the system to quickly come to unambiguous agreement on the ordering and content of transactions.
 
 Since we are trying to create a globally decentralized and secure system, why not allow each person one vote, and add up
@@ -86,7 +87,7 @@ The key issue that makes solving double spend difficult, is the Sybil Attack. A 
 creates a large amount of fake identities at a low cost, and therefore takes control of the system. This is why most
 "Proof of X" blockchains are not secure; at the root of the system, there is a cheap way to create new identities.
 
-The genius of Satoshi Nakamoto was to solve the double spend issue by requiring real life work in order to obtain "votes",
+The genius of Satoshi Nakamoto was to solve the double spend issue by requiring (verifiable by a computer) real life work in order to obtain "votes",
 and to decide consensus.  This is known as proof of work. All computers try over and over to generate cryptographic hashes
 with some random input, until they get a lucky number, which requires a certain number of zeroes at the beginning of the
 hash. This happens once every 10 minutes globally in Bitcoin, and the number of zeroes required is automatically

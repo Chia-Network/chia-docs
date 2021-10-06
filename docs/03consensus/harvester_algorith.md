@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Harvester Algorithm
+# 3.6 Harvester Algorithm
 Approximately every 9.375 seconds, the full node sends a new signage point to the farmer, who sends it to each harvester.
 The exact protocol message sent for each signage point is the following:
 

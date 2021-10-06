@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Verifiable Delay Functions
+# 3.3 Verifiable Delay Functions
 
 A Verifiable Delay Function, also referred to as a proof of time or VDF, is a proof that a sequential function was executed a certain number of times. 
 

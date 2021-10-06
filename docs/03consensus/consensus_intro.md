@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Chia Consensus Introduction
+# 3.1 Chia Consensus Introduction
 
 Decentralized consensus algorithms require Sybil resistance with a resource that is cryptographically verifiable and scarce (not infinite).
 In previous blockchain systems the scarce resources have been computing power and stake.

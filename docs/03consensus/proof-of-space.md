@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Proof of Space
+# 3.2 Proof of Space
 
 A proof of space protocol is one in which:
 a Verifier can send a challenge to a Prover, and 
