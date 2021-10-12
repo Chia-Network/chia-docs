@@ -5,7 +5,8 @@ sidebar_position: 2
 # 4.2 Conditions
 
 Puzzles in chia must be valid clvm programs. These programs are executed by the clvm interpreter, and they must 
-either fail, or return a list of **conditions**.
+either fail, or return a list of **conditions**.  Recall that every spend of a coin must run exactly one puzzle,
+the puzzle associated with that coin. 
 
 CLVM programs have no access to the outside world, or even to blockchain parameters like block height. Therefore, to
 interact with the outside environment, they return a list of conditions, which must be valid in order for the spend

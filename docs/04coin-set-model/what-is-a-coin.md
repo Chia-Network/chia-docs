@@ -9,9 +9,12 @@ can be unlocked by providing a puzzle and solution.
 
 The 3 properties in a coin are:
 
-* **parent ID**: The coin ID of the parent coin. 
-* **amount**: The amount of XCH in this coin, in the mojos unit: 1 XCH = 1 trillion mojos.
-* **puzzle_hash**: The hash of the puzzle that locks this coin.
+```python
+class Coin:
+    parent_coin_info: bytes32  # The coin ID of the parent coin.
+    puzzle_hash: bytes32  # The hash of the puzzle that locks this coin.
+    amount: uint64  # The amount of XCH in this coin, in the mojos unit: 1 XCH = 1 trillion mojos.
+```
 
 The coin ID of this coin is computed by hashing together the concatenation of the three fields, where amount is encoded
 in CLVM format. Therefore, coins can never be changed, they can only created and then spent once.
@@ -27,7 +30,7 @@ how to unlock. For example, Bob can create a coin of value 5 XCH to Alice, with 
 When Alice wants to spend her coin, she creates a transaction that spends her coin, and reveals the original puzzle, and the solution
 to that puzzle. The solution usually involves things like signatures, conditions, and recipients of the coin. Alice
 is the only one that knows the solution to her puzzles, and thus she controls that coin. A basic example is that the
-puzzle checks a digital signature, and the solution provides the signature. 
+puzzle requires a digital signature from alice's public key. 
 
 
 The network has no concept of coin ownership, anybody can attempt to spend any coin on the network. It's up to the puzzles to prevent coins from being stolen or spent in unintended ways.
@@ -53,4 +56,5 @@ account model and the coin set model (also called UTXO model).
 * Very parallelizable since each coin spend is independent.
 * Coin value is split between many coins, increasing sandboxing and security. One program cannot call or affect another.
 * Deterministic operation of every spend.
-* More efficient storage of state  (although this depends on implementation)
+* More efficient storage of state  (although this depends on implementation).
+* Increased privacy, since one user usually has many coins.

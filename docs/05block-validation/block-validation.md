@@ -8,6 +8,10 @@ performs consensus algorithm related checks like proof of space and time, signag
 prev block hashes, foliage hashes, and timestamps. Notably, it does not validate any CLVM, coin spends, or signatures.
 Usually, light clients will want to validate headers but not the body for efficiency.
 
+
+Body validation entails running all puzzles for spent coins, reading the coin database, verifying signatures, checking
+for duplicate or invalid removals and additions, etc.
+
 Validating a block in Chia will require access to some blocks in the past, up to a maximum theoretical value
 of three times the max number of blocks in a slot 3x128=384, but usually only a few are needed. Also, information 
 regarding previous sub epochs and epochs is needed to validate, as well as the current system timestamp. Implementations
@@ -20,24 +24,24 @@ protocol and specification are defined by the `chia-blockchain`
 
 ## Header Validation
 1. Check that the previous block exists in the blockchain, or that it is genesis.
-2. Check finished slots that have been crossed since prev_b
-   * check sub-slot challenge hash for genesis block
-   * check sub-slot challenge hash for non-genesis block
-   * check sub-slot challenge hash for empty slot
-   * Validate that genesis block has no ICC
-   * Validate that there is not icc iff icc_challenge hash is None
-   * Check infused challenge chain sub-slot VDF
-   * Check infused challenge sub-slot hash in challenge chain, deficit 16
-   * Check infused challenge sub-slot hash not included for other deficits
-   * Check infused challenge sub-slot hash in reward sub-slot
-   * If no icc, check that the cc doesn't include it
-   * If no icc, check that the cc doesn't include it
-   * check sub-epoch summary hash is None for empty slots
-   * Check new difficulty and ssi
-   * Check new difficulty and ssi are None if we don't finish epoch
-   * Check challenge sub-slot hash in reward sub-slot
-   * Check end of reward slot VDF
-   * Check challenge chain sub-slot VDF
+2. Check finished slots that have been crossed since `prev_b`= the previous block in the chain.
+   * Check sub-slot challenge hash for genesis block.
+   * Check sub-slot challenge hash for non-genesis block.
+   * Check sub-slot challenge hash for empty slot.
+   * Validate that genesis block has no ICC=Infused challenge chain.
+   * Validate that there is not icc iff icc_challenge hash is None.
+   * Check infused challenge chain sub-slot VDF.
+   * Check infused challenge sub-slot hash in challenge chain, deficit 16.
+   * Check infused challenge sub-slot hash not included for other deficits.
+   * Check infused challenge sub-slot hash in reward sub-slot.
+   * If no icc, check that the cc=challenge chain doesn't include it.
+   * If no icc, check that the rc=reward chain doesn't include it.
+   * Check sub-epoch summary hash is None for empty slots.
+   * Check new difficulty and ssi if applicable.
+   * Check new difficulty and ssi are None if we don't finish epoch.
+   * Check challenge sub-slot hash in reward sub-slot.
+   * Check end of reward slot VDF.
+   * Check challenge chain sub-slot VDF.
    * Check deficit (MIN_SUB.. deficit edge case for genesis block)
    * If prev sb had deficit 0, resets deficit to MIN_BLOCK_PER_CHALLENGE_BLOCK
    * Otherwise, deficit stays the same at the slot ends, cannot reset until 0

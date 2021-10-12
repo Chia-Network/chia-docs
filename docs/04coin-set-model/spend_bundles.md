@@ -9,11 +9,6 @@ blockchain. In Bitcoin, the relevant data structure would be the transaction.
 
 
 ```python
-class Coin:
-    parent_coin_info: bytes32
-    puzzle_hash: bytes32
-    amount: uint64
-
 class CoinSpend:
     coin: Coin
     puzzle_reveal: SerializedProgram
@@ -64,3 +59,43 @@ spent in that block, and additions are the coins added in that block.
 Let's say a farmer wants to include 1000 spend bundles into a block. First, they can combine all spend bundles into one,
 and then they can make the block. Each block will have exactly one signature for all spends. Full nodes that verify and store this block, do not need to know the original
 information of which spends were bundled with which other spends. 
+
+## Additions and Removals
+
+In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are 
+coins A, B, and C, and the additions are coins C and D. This is very similar to how the standard transaction script
+works in `chia-blockchain`.
+
+<figure>
+<img src="/img/spend_bundle.png" alt="drawing"/>
+</figure>
+
+Let's go through the different components in the image. First, let's say the user Alice wants to send 13 XCH to a 
+recipient Bob. Alice looks at her coin database, and selects 3 unspent coins (A, B, and C) that add up to at least 
+13 XCH. Each one of these coins has an associated clvm puzzle, which has a public key encoded inside of it. Let's 
+denote these public keys as `pkA`, `pkB`, and `pkC`.  Alice needs to generate the puzzle and solution for each of the
+spends, in order to create the spend bundle.
+
+Each puzzle, when ran with the solutions, returns an `AGG_SIG` condition, which means that a
+signature is required from the respective public key, in order for this spend to be valid. 
+Instead of providing 3 signatures, we can use BLS signature arithmetic to combine all three into one signature.
+This means that the resulting spend bundle will be smaller in bytes, and that the spend bundle can not be unbundled,
+because the signature cannot be de-aggregated. That is, an attacker that obtains Alice's spend bundle, cannot choose to
+spend coin B but not coin A. When Alice sends this spend bundle to the Chia network, other full nodes will run the CLVM
+programs, collect all the `AGG_SIG` conditions, and then verify them using the aggregate signature provided in the spend bundle.
+
+The first puzzle here for coin A also returns two `CREATE_COIN` conditions. This means that two coins must be added
+to the coin database in order for spend A to be valid. Coin D is for Bob (puzzle hash 0x1b54f and 13 XCH). Coin E is a 
+change coin for Alice. Since each coin's value must be spent entirely, Alice needs to send 1 XCH to herself since she
+spent 14XCH, but only wanted to send 13 XCH. Note that the puzzle hash for coin E is the same as coin A. Puzzle hashes
+can be reused. When spending coin E, Alice would sign with the same key as before, but most likely a different message
+that spends to another recipient.
+
+Note that only the first spend is creating the coins. This is the normal way to combine spends, since each coin must 
+have exactly one parent. Although spend A alone would not be valid, since it creates 14 XCH out of only 5 XCH, combined
+with spends B and C, it is valid.
+
+Full nodes receieve, validate, and store the spend bundle in memory. However, when creating a new block, farming nodes
+will combine many spend bundles from different users together, to create 1 very large spend bundle, with one signature.
+When looking at just the block, it is not always clear which spends were bundled together initially. However, we can 
+see the net additions and removals in the whole block.
