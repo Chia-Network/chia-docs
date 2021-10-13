@@ -18,11 +18,47 @@ regarding previous sub epochs and epochs is needed to validate, as well as the c
 can cache only some recent blocks instead of storing all blocks in memory. `chia-blockchain` maintains a DB of BlockRecords,
 which contain only the important pieces of block information required for validating future blocks.
 
+
+## Full Sync vs Normal Operation
+
+There are two cases when a node might verify blocks. The first is full sync, which means the node is trying to catch
+up from an old block height, to a new one, and downloads many blocks at one. The other is normal operation, where the
+node is caught up to the most recent block, and is only downloading one block every few seconds.
+
+### Full Sync
+Full sync is the process by which a full nodes downloads and validates all the blocks in the blockchain and catches
+up to the most recent blocks. Full sync is important, because it allows new nodes to validate that a blockchain is
+the heaviest and thus the currently valid chain. It allows everyone to come to consensus on the current state, 
+regardless of when they come online, and regardless of how long they go offline. 
+
+The method of full sync can vary between implementations, but the high level algorithm is the following:
+1. Connect to other peers on the network, by querying the introducer DNS, and crawling the network
+2. Check the current weight of the peak of the peers, and select a few peers to sync from
+3. Download and validate a weight proof, to ensure that the given peak has real work behind it
+4. Download and validate all blocks in the blockchain, in batches
+
+Weight proofs are important, because they prevent other peers from lying to us about what the heaviest peak is,
+and prevents us from downloading potentially useless data. Once the full node is caught up to the blockchain, it can 
+properly farm, access the coin state, etc.
+
+### Normal Operation
+Normal operation is the process by which a full node continuously gossips and receives blocks with other peers, 
+always following the heaviest peak. If our node is at weight 2000, and we see that a peer has a peak at weight 2100,
+then we fetch that block from the peer. Usually, this is done in two phases: first the unfinished block is sent around,
+which includes all the information up to the signage point, transactions, etc. Finally, the finished block which 
+includes infusion point VDFs is sent as well,  usually without the transactions, which have already been sent.
+
+Normal operation is much less CPU intensive than full sync, since there is only one block every 18 seconds, and one transaction block
+every 47 seconds on average. Low power machines like the RPI4 should be able to easily continue normal operation.
+
+
+## Block Validation Steps
+
 The following sections list all of the required checks to ensure validity of a block. Please note that the official
 protocol and specification are defined by the `chia-blockchain` 
 [python implementation](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/consensus), and NOT by this documentation page.
 
-## Header Validation
+### Header Validation
 1. Check that the previous block exists in the blockchain, or that it is genesis.
 2. Check finished slots that have been crossed since `prev_b`= the previous block in the chain.
    * Check sub-slot challenge hash for genesis block.
@@ -51,44 +87,39 @@ protocol and specification are defined by the `chia-blockchain`
    * Check the actual sub-epoch is correct
    * Check that we don't have to include a sub-epoch summary
 4. Check if the number of blocks is less than the max
-5a. Check proof of space
-5b. Check proof of space
-5. check signage point index
-6. check required iters
-8a. check signage point index 0 has no cc sp
-8b. check signage point index 0 has no rc sp
-7. Check no overflows in the first sub-slot of a new epoch
-8. Check total iters
-9. Check reward chain sp proof
-10. Check reward chain sp signature
-11. Check cc sp vdf
-12. Check cc sp sig
-13. Check is_transaction_block
-14. Check foliage block signature by plot key
-15. Check foliage block signature by plot key
-16. Check unfinished reward chain block hash
-17. Check pool target max height
-20a. Check pre-farm puzzle hashes for genesis block.
-20b. If pospace has a pool pk, heck pool target signature. Should not check this for genesis block.
-20c. Otherwise, the plot is associated with a contract puzzle hash, not a public key
-18. Check extension data if applicable. None for mainnet.
-19. Check if foliage block is present
-20. Check foliage block hash
-24a. Check prev block hash for genesis
-24b. Check prev block hash for non-genesis
-21. The filter hash in the Foliage Block must be the hash of the filter
-26a. The timestamp in Foliage Block must not be over 5 minutes in the future
-26b. The timestamp must be greater than the previous transaction block timestamp
-22. Check block height
-23. Check weight
-27b. Check genesis block height, weight, and prev block hash
-24. Check challenge chain infusion point VDF
-25. Check reward chain infusion point VDF
-26. Check infused challenge chain infusion point VDF
-27. Check reward block hash
-28. Check reward block is_transaction_block
+5. Check proof of space
+6. Check signage point index
+7. Check required iters
+8. check signage point index 0 has no cc sp and no rc sp
+9. Check no overflows in the first sub-slot of a new epoch
+10. Check total iters
+11. Check reward chain sp proof
+12. Check reward chain sp signature
+13. Check cc sp vdf
+14. Check cc sp sig
+15. Check is_transaction_block
+16. Check foliage block signature by plot key
+17. Check foliage block signature by plot key
+18. Check unfinished reward chain block hash
+19. Check pool target max height
+20. Check pre-farm puzzle hashes for genesis block.
+    * If pospace has a pool pk, check pool target signature. Should not check this for genesis block.
+    * Otherwise, the plot is associated with a contract puzzle hash, not a public key, so check pool contract ph
+21. Check extension data if applicable. None for mainnet.
+22. Check if foliage block is present
+23. Check foliage block hash
+24. Check prev block hash for genesis and non-genesis 
+25. The filter hash in the Foliage Block must be the hash of the filter
+26. The timestamp in Foliage Block must not be over 5 minutes in the future, and the timestamp must be greater than the previous transaction block timestamp
+27. Check block height for genesis and non-genesis
+28. Check block weight for genesis and non-genesis
+29. Check challenge chain infusion point VDF
+30. Check reward chain infusion point VDF
+31. Check infused challenge chain infusion point VDF
+32. Check reward block hash
+33. Check reward block is_transaction_block
 
-## Body Validation
+### Body Validation
 
 1. For non transaction-blocs: foliage block, transaction filter, transactions info, and generator must
 be empty. If it is a block but not a transaction block, there is no body to validate. Check that all fields are
@@ -100,26 +131,25 @@ None, and return.
 6. No transactions before INITIAL_TRANSACTION_FREEZE timestamp (this check has been removed).
 7. The generator root must be the hash of the serialized bytes of the generator for this block (or zeroes if no generator)
 8. Check the transactions generator reference list:
-- The generator_ref_list must be the hash of the serialized bytes of
-- the generator ref list for this block (or 'one' bytes [0x01] if no generator)
-- The generator ref list length must be less than or equal to MAX_GENERATOR_REF_LIST_SIZE entries
-- The generator ref list must not point to a height >= this block's height
-- If we have a generator reference list, we must have a generator
-- Check that cost <= MAX_BLOCK_COST_CLVM
-- The CLVM program must not return any errors 
-- Check that the correct cost is in the transactions info
-9. Check additions for max coin amount
-Be careful to check for 64 bit overflows in other languages. This is the max 64 bit unsigned integer.
-10. Validate addition and removal merkle set roots.
-11. The additions and removals must result in the correct filter.
-12. Check for duplicate outputs in additions.
-13. Check for duplicate spends inside block.
-14. Check if removals exist and were not previously spent. (coin_db up to the fork point + fork block + this_block).
+   * The generator_ref_list must be the hash of the serialized bytes of 
+   * the generator ref list for this block (or 'one' bytes [0x01] if no generator)
+   * The generator ref list length must be less than or equal to MAX_GENERATOR_REF_LIST_SIZE entries 
+   * The generator ref list must not point to a height >= this block's height 
+   * If we have a generator reference list, we must have a generator 
+   * Check that cost <= MAX_BLOCK_COST_CLVM 
+   * The CLVM program must not return any errors 
+9. Check that the correct cost is in the transactions info
+10. Check additions for max coin amount (be careful to check for 64 bit overflows in other languages. This is the max 64 bit unsigned integer)
+11. Validate addition and removal merkle set roots.
+12. The additions and removals must result in the correct filter.
+13. Check for duplicate outputs in additions.
+14. Check for duplicate spends inside block.
+15. Check if removals exist and were not previously spent. (coin_db up to the fork point + fork block + this_block).
 Be careful with forks and with ephemeral coins (added and removed in same block).
-16a. Check that the total coin amount for added is <= removed.
-15. Check that the assert fee sum <= fees, and that each reserved fee is non-negative.
-16. Check that the fee amount + farmer reward < maximum coin amount.
-17. Check that the computed fees are equal to the fees in the block header.
-18. Verify that removed coin puzzle_hashes match with calculated puzzle_hashes.
-19. Verify CLVM conditions.
-20. Verify aggregated signature.
+16. Check that the total coin amount for added is <= removed. 
+17. Check that the assert fee sum <= fees, and that each reserved fee is non-negative.
+18. Check that the fee amount + farmer reward < maximum coin amount.
+19. Check that the computed fees are equal to the fees in the block header.
+20. Verify that removed coin puzzle_hashes match with calculated puzzle_hashes.
+21. Verify CLVM conditions.
+22. Verify aggregated signature.
