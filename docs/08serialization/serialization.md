@@ -23,24 +23,25 @@ The primitives are:
 * str serialized as a 4 byte size prefix and then the utf-8 representation in bytes.
 
 An item is one of:
-* streamable
 * primitive
+* Tuple[item1, .. itemx]
 * List[item1, .. itemx]
 * Optional[item]
-* Tuple[item1, .. itemx]
 * Custom item
 
 
-A streamable is an ordered group of items.
+A streamable must be a Tuple at the root level. Iters are serialized in the following way:
 
-1. A streamable with fields 1..n is serialized by appending the serialization of each field.
+1. A tuple of x items is serialized by appending the serialization of each item.
 2. A List is serialized into a 4 byte size prefix (number of items) and the serialization of each item.
 3. An Optional is serialized into a 1 byte prefix of 0x00 or 0x01, and if it's one, it's followed by the serialization of the item.
-4. A tuple of x items is serialized by appending the serialization of each item.
-6. A Custom item is serialized by calling the .parse method, passing in the stream of bytes into it. And example is a CLVM program.
+4. A Custom item is serialized by calling the .parse method, passing in the stream of bytes into it. And example is a CLVM program.
 
 This format can be implemented very easily, and allows us to hash objects like headers and proofs of space,
 without complex serialization logic.
+
+Note that in the python implemnetation, we don't use a Tuple at the root level, but instead just use a dataclass with
+ordered typed fields for ease of use. However, it is streamed as a Tuple.
 
 ## Examples
 
@@ -48,6 +49,7 @@ The streamable specification has been designed to work well with python using th
 `chia-blockchain`, but it can work just as well with other programming languages. A class with the @streamable
 decorator becomes immutable, and has the `__bytes__()` and `.from_bytes(b)` methods.
 
+### ProofOfSpace type definition
 ```python
 @streamable
 class ProofOfSpace(Streamable):
@@ -59,3 +61,20 @@ class ProofOfSpace(Streamable):
     proof: bytes
 ```
 
+
+### Creating and serializing a proof of space
+```python
+from chia.types.blockchain_format.proof_of_space import ProofOfSpace
+from blspy import G1Element
+from chia.types.sized_bytes import bytes32
+from chia.util.ints import uint8, uint32
+pospace = ProofOfSpace(bytes([0xaa]*32), None, bytes32([0xbb]*32), G1Element.generator(), uint8(33), bytes([0xcc]*264))
+print(bytes(pospace))
+```
+
+### Output
+As you can see, each one of the fields is serialized in order, according to the above specification. The G1 Generator value
+is serialized in BLS format as: `<G1Element 97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb>`.
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0001bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb2100000108cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+```
