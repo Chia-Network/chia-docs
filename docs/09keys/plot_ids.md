@@ -31,5 +31,6 @@ be able to change the pool that they belong to in the future. Instead of requiri
    re-route all new rewards to the new pool (not implemented yet). The drawback of this approach is that it requires
    creating a blockchain transaction before farming. Therefore a user must have chia before starting to farm.
 
-Therefore, compromising the harvester does not allow an attack to redirect rewards.
+Therefore, compromising the harvester does not allow an attack to redirect rewards. The plot public key is explained
+in the next section.
 

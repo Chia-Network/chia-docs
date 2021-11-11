@@ -49,8 +49,9 @@ permanent data structures which do not get destroyed when they send funds. There
 account model and the coin set model (also called UTXO model).
 
 ### Benefits of account model
-* Users and wallets only have to keep track of 1 account for all of their balance.
 * All logic and state can be in one program and one account, simplifying development.
+* Combining multiple transactions that affect the same dapp in one block is simple.
+* Users and wallets only have to keep track of 1 account for all of their balance (although UTXO model can support this).
 
 ### Benefits of coin set model
 * Very parallelizable since each coin spend is independent.
@@ -58,3 +59,4 @@ account model and the coin set model (also called UTXO model).
 * Deterministic operation of every spend.
 * More efficient storage of state  (although this depends on implementation).
 * Increased privacy, since one user usually has many coins.
+* Re-applying mempool transactions after a new block is not necessary due to deterministic results.

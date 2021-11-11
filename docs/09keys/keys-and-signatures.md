@@ -16,7 +16,7 @@ The master private key can be used to derive child keys, which can further be us
 BLS public keys can be combined to form a new public key, which can be used to validate aggregate signatures.
 
 
-Each time the wallet generates a new address to receive funds, it makes a new bls private key.
+Each time the wallet generates a new address to receive funds, it creates a new bls private key.
 The farmer and pool only use the first key in the current codebase, but they can be updated to generate a new key every time a block is won, for additional privacy.
 pk stands for public key, and sk stands for private (secret) key.
 When it comes to getting paid, a chialisp program is created that uses one of the wallet BLS public keys, and this program, called a puzzle, is hashed to generate a puzzle hash. 
@@ -35,4 +35,19 @@ but Chia keys were created in 2020 and thus the older version of the specificati
 
 ## Hardened vs Unhardened Keys
 
-There are two ways in which 
+There are two ways in which child keys can be derived from parent keys: hardened and unhardened.
+
+Hardened keys are the default and only supported method in the EIP-2333 spec. They are secure, since each key
+is cryptographically separated, and revealing one key has no impact on the security of it's acenstors or siblings.
+However, hardened keys are limited in functionality, because they can only be derived through private derivation. That
+is, a parent private key can be used to derive a child private key, but you cannot do it in the public side: a parent
+public key cannot be used to derive children public keys.
+
+Unhardened keys do allow public derivation, which enables view only wallets that support viewing all of your keys,
+using the root (master) public key. This is what is usually done for Bitcoin HD view only wallets. It enables more privacy
+when compared to systems like Ethereum, which reuse the same address for all transactions. The main security drawback
+of HD keys is that revealing one child private key along with the parent public key, the parent private key and all
+sibling keys can be calculated as well.
+
+The Chia wallet at launch only created hardened keys, but now unhardened keys are being used as well, and preferred, for
+the view only wallet support.
