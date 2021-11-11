@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Full Node API
+# 12.2 Full Node API
 The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for
 security concerns.
 
