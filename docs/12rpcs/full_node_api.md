@@ -182,7 +182,8 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 
 ## get_blocks
-Gets a list of full blocks by height.
+Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. To find out which
+one is in the blockchain, use `get_block_record_by_height`.
 
 * **start**: The start height.
 * **end**: The end height (non-inclusive).
@@ -346,6 +347,8 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## get_unfinished_block_headers
 Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon.
+The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the
+blocks after it.
 
 ```json
 // Request
@@ -354,7 +357,80 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 -d '{}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_unfinished_block_headers | python -m json.tool
 
 // Response
-TODO
+{
+    "headers": [
+        {
+            "challenge_chain_sp_proof": {
+                "normalized_to_identity": false,
+                "witness": "0x0100a2d202a8582166f41a5478a2bebadaaa623224419820f88901c1f3df56ac7371a8b662fe4c8a9dba45c2de82f7bc4d2348dfc55b0ef08f5531e3d0607be127197f3e550e7bf044850f2711486cc775c9d3ae3e254f737a286de4c9ac54019e420100000000000000f230942683fcf5cd4aea65c1e1f3b34fdd0966ef2a52b80c912adae7820e5306cb24e10300ffe0d2a2cf9b93db55b719542b883f835c1398363d37c287241398e6fc7292265557e095b809f9aaab154e74355f3d2f8460438586a7c5fbf340a62cbecd4f0e9b1f775d923f609c603d8ed807b2af50c19e5ca4ed1f60f8ffac3cde4117e7120100000000000002d758b6f095a90eb49eadeb1f3ea24df7270e06e7d627735aacb3306d3a8f120f4b4afd0200cdcbe3ab1cbb123c85c58a7916954e1f0c8148da72d1d3f72f1a6d4c423039e9f0320d7a93da8c2f737a3aeba0c38e938f05addc5d16ffd74ffca3d812dfe8522a307efdcb6392ede54afec7dc5176ef439d5288717eca375f64818e543ff24d0100",
+                "witness_type": 2
+            },
+            "finished_sub_slots": [],
+            "foliage": {
+                "foliage_block_data": {
+                    "extension_data": "0x0000000000000000000000000000000000000000000000000000000003a2c7c9",
+                    "farmer_reward_puzzle_hash": "0x77c08f1ae7c6ae4808c8c07f7d99363b0c00f0ad416c4a292b5341282e38dc35",
+                    "pool_signature": "0xb39237cb5db187f1a3f210f5fff1bee0f7b66e466eb1bd393204768d982335f3ee5c7faec138e334110d80ce47e46704067db26f8a2c5267bbaefb74ea9ef144bd51a8fe388ba68727f3e246b8aefef427b2e2e299ed976d27ba2789bcf7cb7c",
+                    "pool_target": {
+                        "max_height": 0,
+                        "puzzle_hash": "0x77c08f1ae7c6ae4808c8c07f7d99363b0c00f0ad416c4a292b5341282e38dc35"
+                    },
+                    "unfinished_reward_block_hash": "0xcc705bd601b6c9e3081bde85db2a917d312716136e077c37e7f5090c2685733f"
+                },
+                "foliage_block_data_signature": "0x838f98f281429094df95adbd023f7ac285ffe08d7e584e0e1c9d6def26b215f86753f52d781116eab02ac949beea9b9c009b6242ba97568f226aeafc2bf4fc83b791fffb2d636a8b0473727b5bee6a560b09df3dabf9d2b4ca707a35f22e5f38",
+                "foliage_transaction_block_hash": "0x813540921a72fdfcbe47858e087b9e848df5fe2d8213288a6df71acf22214cf2",
+                "foliage_transaction_block_signature": "0xb0db31ae6d773b3b27009cfdd9a232b54f840e00caf24a5a87e8c27e96933acd03d8e553ea62e9179ed4078ed86b9e471987e8803ff4311c9d0727d876490012af403094e3baa4f627785d846c60f770494c253ea7a09e7bc24a53ad683e4704",
+                "prev_block_hash": "0x0b08b0ceca65b371729ad3731ba5982c0c63d487cd526874fb907c3e683eb185",
+                "reward_block_hash": "0xcc705bd601b6c9e3081bde85db2a917d312716136e077c37e7f5090c2685733f"
+            },
+            "foliage_transaction_block": {
+                "additions_root": "0x2c04ae163cf5916b774e2591b075560b6dface2b242d10cbb9f40b134cdf2080",
+                "filter_hash": "0xea0d50f296d1bdaccc00be16e48a310dd4fa1fcf575065761add6366498b3fbf",
+                "prev_transaction_block_hash": "0xf88a87d79c8e65ca559b7e74a9aca3a6f9fc90e6bb9dc6cb4602ed599610876e",
+                "removals_root": "0x409433654e3b7a530da6cf55c93abde2c7a71a2ea9814883ceef956f8fed61ea",
+                "timestamp": 1636577488,
+                "transactions_info_hash": "0x9f3d9cb990c560fb66d4e09a9da79844ce933a809bc754eb151775f3600b73ed"
+            },
+            "reward_chain_block": {
+                "challenge_chain_sp_signature": "0xa6058eaa6e9cf8469e152e80b4ac4c3cfdca8660cbe44ca50d3771ab1bbf1d040cba842d1b9bf633756159859ecb2ebc05b5f994cef91d5915d4763284e340095a59fb87f2e50fc3f0b6658d1663aeb9d6732373203d7e45df56eb19baeff64c",
+                "challenge_chain_sp_vdf": {
+                    "challenge": "0x04b130f89a8fc37519eab0d835a43ef5547552b2b67c5129fa00f79a57ba8d7f",
+                    "number_of_iterations": 78200832,
+                    "output": {
+                        "data": "0x0200dd868820cb2fd82a8a234872a133e5660d55d43c79d10e1cf2258890820acce29d16831fd75f8c70e47bcdb67a264cceef982b151139741812a7aa477a647b1f0c5dd60eebfae9bd41a51911a54324c84c705d8169c7058d27d987fd8c22c0430100"
+                    }
+                },
+                "pos_ss_cc_challenge_hash": "0x04b130f89a8fc37519eab0d835a43ef5547552b2b67c5129fa00f79a57ba8d7f",
+                "proof_of_space": {
+                    "challenge": "0xbe68fc3a34f3d2a6bfe329a3c27f390f5ef63ed9fd3373c3fe12e2c6729a98b4",
+                    "plot_public_key": "0x90ca70c963f984d138fe4b97b3bade582513b8ddc115c8fd92033c7f3407df91e5d22313e83e80ea6f02c094636197be",
+                    "pool_contract_puzzle_hash": null,
+                    "pool_public_key": "0x8ab8f0eb56216b3f7376fb0462b5000b26f38461dc48f455a98581cec09f889b7c0b38eb42b9e2e2d7edd47d61da13d6",
+                    "proof": "0xd1d823b917e7d493ae7bf14ad5fd045ca836bd2b3e97a34efcdc87c2aa4d335b9693c635997f559a2b17ddb7fd87cf352cc8a4a000ecfaaec516a52d7af17a775fff055b7f0f9018f2f6a27d36844f5381197fca792c668207bf7e3927c3f7a8d5854173e134dae95f51ab65f052fbf05b7f6fb046f3309589d6213c713a46a263dc3c2fdda2c7fc7236621e2a6b1164e4b6440aaa6ed403645753e1fb96629d0b7fd80236caad7be571aa1a6fbbfbee9380535e44bc8fac3ef5717e4ad93e3db5e60c617950d966b045ac20401f563a00069ec0052d9145f2f7d16311899d43abbb8b1eb60bcbb33fe82f7ec3c881afd47b16b1a3a34ac23e6a26c013c4e858",
+                    "size": 32
+                },
+                "reward_chain_sp_signature": "0xa4fb8eb7afc74b945efe1f6b28453a708df7de1f0b56239c5fed50974b896b9bb1f559b49b5a6cf7f4351f1545918b5017e28e81f974bc7bdba88b61f2f9ca8492ab9b7d23371e579b30da9a1a5c7dc0a8fe5605a86165d34c3c552f509fdd7b",
+                "reward_chain_sp_vdf": {
+                    "challenge": "0x05a4bb9d88aa10cf90d6d1b20f85bb2a8ddb9ae7aa0ff5d071d9d9730f6466fc",
+                    "number_of_iterations": 279309,
+                    "output": {
+                        "data": "0x020045ba80630612d81da719618b13dbbafc23f569d290b691a64cb2ae9ceb8533fd91f4b4be709dae0c2ac5bf980536afdf6c7bc9d94340bd211221fc863874c00968fc7c0030982ff329a887e498c907b6e002427d30c6f79dad947013dd5681240100"
+                    }
+                },
+                "signage_point_index": 37,
+                "total_iters": 4212156346430
+            },
+            "reward_chain_sp_proof": {
+                "normalized_to_identity": false,
+                "witness": "0x0100fd954fa240aa1684b66b89b9758a65f15ad90974315d730d26936f2a85266cfbc62f9a19fdf51dd8478063cc446adb4b1f54d52361a332825bf9abba1836470c0cf1894e901f541d025e26b986f6c49cb831af15c5bc96c79491da7f44a53a100201000000000000f23084d7fd81dc24c094a18d117901f47b0488fb3e5b807e1e48d0fd63c58cfffc710b0300698065626064242f57e8bc0d281b52387e1c851659c84c61b5ab8994d63798558863582f58d39abb15aa1742f4cd2715b88b7ec18f2709c7e1606360ef90803b0f2e41fa35879a24a02d9ca6812d72f0fc3a1cf62491e88cfdc2fc371a1d22420201000000000002d758c780237a30a9542ffe2f11c935fae0efe53180a9477a9e37466f9563a60250f5a7020065a8d6450b4c4b3fe3fd7eb047eea915d0addf140615a746616515ad73673b583c74dcfa3cd03f62e99c984fd5c6e1aaf254199a0c7464b18d40dc42c6928d351d7daa81209d5e10501f475b8a3bb5952a2754d8e728c3445ff58b66f590ca020200",
+                "witness_type": 2
+            },
+            "transactions_filter": "0x"
+        }
+    ],
+    "success": true
+}
+
 ```
 
 ## get_network_space
@@ -624,8 +700,80 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 -d '{}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_all_mempool_items  | python -m json.tool
 
-// Reponse
-TODO
+// Response
+{"mempool_items": {
+ "ed1f8d6bf3be8b4ed07c201b463ce03c3ea2b886f833749562d426d6d905c5d3": {
+        "additions": [
+            {
+                "amount": 3968760041,
+                "parent_coin_info": "0xbf71e1d17630e3793321944b5825b5b573ac28c03113498baae997e0781f0278",
+                "puzzle_hash": "0x3be9de8637a998987687d6e3f1df95b6bcde6a2cbc7ed96b40fbc9d76bb5033d"
+            },
+        ],
+        "cost": 10940866,
+        "fee": 0,
+        "npc_result": {
+            "clvm_cost": 416866,
+            "error": null,
+            "npc_list": [
+                {
+                    "coin_name": "0xbf71e1d17630e3793321944b5825b5b573ac28c03113498baae997e0781f0278",
+                    "conditions": [
+                        [
+                            "0x33",
+                            [
+                                {
+                                    "opcode": "CREATE_COIN",
+                                    "vars": [
+                                        "0x3be9de8637a998987687d6e3f1df95b6bcde6a2cbc7ed96b40fbc9d76bb5033d",
+                                        "0x00ec8e78e9",
+                                        "0x"
+                                    ]
+                                },
+                            ]
+                        ],
+                        [
+                            "0x32",
+                            [
+                                {
+                                    "opcode": "AGG_SIG_ME",
+                                    "vars": [
+                                        "0xb44f24f7dae4af24334870c3f291c8a8e4d370fb935f0c30b6d1fee734c229d351fed2a5a87c059049d205a8ec3c8124",
+                                        "0xcae8db944550d51ef9eb4bdc297ac7a2ddb759f2e202c13df629abb41cc69290"
+                                    ]
+                                }
+                            ]
+                        ]
+                    ],
+                    "puzzle_hash": "0xdd259fada9e1fbfb1499df0755462222f31ec512404842b5c7dac26b9a5cb29a"
+                }
+            ]
+        },
+        "program": "0xff01ffffffa00252418f0ad7a0009dc055a48a2aaff897f4ea6289b57f1ed9c0d8c7a5b5e6a8ffff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b44f24f7dae4af24334870c3f291c8a8e4d370fb935f0c30b6d1fee734c229d351fed2a5a87c059049d205a8ec3c8124ff018080ff8500ed4e7564ffff80ffff01ffff33ffa057b09fa466e876fed06a697b0b82e237ad81424fa809df8c7f41fbcfcc7fcc25ff8400bffc7b80ffff33ffa03be9de8637a998987687d6e3f1df95b6bcde6a2cbc7ed96b40fbc9d76bb5033dff8500ec8e78e980ffff3cffa029505509405ab0d47b986bb2456c288dc272b7fecad9a54943db25c26dc03de48080ff8080808080",
+        "removals": [
+            {
+                "amount": 3981342052,
+                "parent_coin_info": "0x0252418f0ad7a0009dc055a48a2aaff897f4ea6289b57f1ed9c0d8c7a5b5e6a8",
+                "puzzle_hash": "0xdd259fada9e1fbfb1499df0755462222f31ec512404842b5c7dac26b9a5cb29a"
+            }
+        ],
+        "spend_bundle": {
+            "aggregated_signature": "0xb693565c3ef3491f3fc374cbc0f58d3a02ba4f3df57d4da8a4d0c1856e4d36785dfb0f87aab75a2dd521065eb4b3030b17f63f84201d00ffb3bc4c1c9278c63e2bda5eaf6a6d8d96446dc79032a73a2ec0d16ed80227275213c55b2ca544bb60",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 3981342052,
+                        "parent_coin_info": "0x0252418f0ad7a0009dc055a48a2aaff897f4ea6289b57f1ed9c0d8c7a5b5e6a8",
+                        "puzzle_hash": "0xdd259fada9e1fbfb1499df0755462222f31ec512404842b5c7dac26b9a5cb29a"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b44f24f7dae4af24334870c3f291c8a8e4d370fb935f0c30b6d1fee734c229d351fed2a5a87c059049d205a8ec3c8124ff018080",
+                    "solution": "0xff80ffff01ffff33ffa057b09fa466e876fed06a697b0b82e237ad81424fa809df8c7f41fbcfcc7fcc25ff8400bffc7b80ffff33ffa03be9de8637a998987687d6e3f1df95b6bcde6a2cbc7ed96b40fbc9d76bb5033dff8500ec8e78e980ffff3cffa029505509405ab0d47b986bb2456c288dc272b7fecad9a54943db25c26dc03de48080ff8080"
+                }
+            ]
+        },
+        "spend_bundle_name": "0xed1f8d6bf3be8b4ed07c201b463ce03c3ea2b886f833749562d426d6d905c5d3"
+    },
+}
 ```
 
 ## get_mempool_item_by_tx_id
@@ -635,6 +783,101 @@ Gets a mempool item by tx id.
 
 
 ```json
-// TODO
+// Request
+curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
+--key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
+-d '{"tx_id":"0x85ad9dbb26a72028f5d5810b24b6a59e58be48ee4e0aefb846a83606fcb671b3"}' \
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_mempool_item_by_tx_id  | python -m json.tool
+
+// Response
+
+{
+    "mempool_item": {
+        "additions": [
+            {
+                "amount": 12575944,
+                "parent_coin_info": "0x9f8f27a7289850d48617d729a13269a120f86be267f4f3f4596d19ee1b23d36e",
+                "puzzle_hash": "0x57b09fa466e876fed06a697b0b82e237ad81424fa809df8c7f41fbcfcc7fcc25"
+            },
+            {
+                "amount": 1533495108,
+                "parent_coin_info": "0x9f8f27a7289850d48617d729a13269a120f86be267f4f3f4596d19ee1b23d36e",
+                "puzzle_hash": "0xc9b8fd4e5090d6ad8c77daabbaae6de4df3ff90eee71b8bcdec88bbab7c0f5d4"
+            }
+        ],
+        "cost": 10916864,
+        "fee": 0,
+        "npc_result": {
+            "clvm_cost": 416864,
+            "error": null,
+            "npc_list": [
+                {
+                    "coin_name": "0x9f8f27a7289850d48617d729a13269a120f86be267f4f3f4596d19ee1b23d36e",
+                    "conditions": [
+                        [
+                            "0x33",
+                            [
+                                {
+                                    "opcode": "CREATE_COIN",
+                                    "vars": [
+                                        "0x57b09fa466e876fed06a697b0b82e237ad81424fa809df8c7f41fbcfcc7fcc25",
+                                        "0x00bfe4c8",
+                                        "0x"
+                                    ]
+                                },
+                                {
+                                    "opcode": "CREATE_COIN",
+                                    "vars": [
+                                        "0xc9b8fd4e5090d6ad8c77daabbaae6de4df3ff90eee71b8bcdec88bbab7c0f5d4",
+                                        "0x5b674744",
+                                        "0x"
+                                    ]
+                                }
+                            ]
+                        ],
+                        [
+                            "0x32",
+                            [
+                                {
+                                    "opcode": "AGG_SIG_ME",
+                                    "vars": [
+                                        "0x8aff7a77252f575fc56309ea9a6585eb1d8dd84e13b52a71d2474eef5a2f894c3bf1820063bc8c5bdd9e2f837d3a1156",
+                                        "0x07037719d4c9273ee1a6e824098434e48b0b177a695a43f91360a4d90d1475ac"
+                                    ]
+                                }
+                            ]
+                        ]
+                    ],
+                    "puzzle_hash": "0x524d517cc746beaa0cc4c39e756a3bb8224806e56b54f068c11b9012374506db"
+                }
+            ]
+        },
+        "program": "0xff01ffffffa046fa86a4b2ba9cf949ef815071c9edf750d8548f11efdca0d253f579a62a5da9ffff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08aff7a77252f575fc56309ea9a6585eb1d8dd84e13b52a71d2474eef5a2f894c3bf1820063bc8c5bdd9e2f837d3a1156ff018080ff845c272c0cffff80ffff01ffff33ffa057b09fa466e876fed06a697b0b82e237ad81424fa809df8c7f41fbcfcc7fcc25ff8400bfe4c880ffff33ffa0c9b8fd4e5090d6ad8c77daabbaae6de4df3ff90eee71b8bcdec88bbab7c0f5d4ff845b67474480ffff3cffa07b5792ad39b97d08565fa14797462c3096a69bfdd4c4746e72cb130f993d0d7b8080ff8080808080",
+        "removals": [
+            {
+                "amount": 1546071052,
+                "parent_coin_info": "0x46fa86a4b2ba9cf949ef815071c9edf750d8548f11efdca0d253f579a62a5da9",
+                "puzzle_hash": "0x524d517cc746beaa0cc4c39e756a3bb8224806e56b54f068c11b9012374506db"
+            }
+        ],
+        "spend_bundle": {
+            "aggregated_signature": "0x96adbe87e0a0778f5d929bf51c915caee75906969a55588930e51cd9dd97aedb6d17e521ca203e7fb99cf91c8f1c20f80e19cbbb8ce1c888e92f2de9f66a4395b67cce0fa94623c6126d6f5f7e9a3c7feb6cee2ab4cf36c329cadda3018ff635",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 1546071052,
+                        "parent_coin_info": "0x46fa86a4b2ba9cf949ef815071c9edf750d8548f11efdca0d253f579a62a5da9",
+                        "puzzle_hash": "0x524d517cc746beaa0cc4c39e756a3bb8224806e56b54f068c11b9012374506db"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08aff7a77252f575fc56309ea9a6585eb1d8dd84e13b52a71d2474eef5a2f894c3bf1820063bc8c5bdd9e2f837d3a1156ff018080",
+                    "solution": "0xff80ffff01ffff33ffa057b09fa466e876fed06a697b0b82e237ad81424fa809df8c7f41fbcfcc7fcc25ff8400bfe4c880ffff33ffa0c9b8fd4e5090d6ad8c77daabbaae6de4df3ff90eee71b8bcdec88bbab7c0f5d4ff845b67474480ffff3cffa07b5792ad39b97d08565fa14797462c3096a69bfdd4c4746e72cb130f993d0d7b8080ff8080"
+                }
+            ]
+        },
+        "spend_bundle_name": "0x85ad9dbb26a72028f5d5810b24b6a59e58be48ee4e0aefb846a83606fcb671b3"
+    },
+    "success": true
+}
+
 ```
 

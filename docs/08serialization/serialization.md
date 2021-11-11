@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 ---
-# Serialization
+# 8.1 Serialization
 Serialization in Chia refers to how objects are converted into bytes for uses like: transmitting to other nodes,
 storing on disk, or hashing objects. For example, a header_hash refers to the sha256 hash of the header of a block, but
 sha256 takes in bytes, so we need a consistent way to convert objects into bytes. 

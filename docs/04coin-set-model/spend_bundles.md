@@ -99,3 +99,9 @@ Full nodes receieve, validate, and store the spend bundle in memory. However, wh
 will combine many spend bundles from different users together, to create 1 very large spend bundle, with one signature.
 When looking at just the block, it is not always clear which spends were bundled together initially. However, we can 
 see the net additions and removals in the whole block.
+
+## What is stored in the blockchain, by full nodes?
+Full nodes store the history of the blockchain, which includes all revealed puzzles and solutions for all spent coins.
+They also include a list of unspent coins in the coin store, which does **not** contain puzzles, only puzzles hashes.
+User's are responsible for remembering and storing their own puzzles in order to spend their coins. Usually these are
+regenerated on the fly by wallet software, based on some templates.
