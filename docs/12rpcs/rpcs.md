@@ -22,6 +22,7 @@ All endpoints are made with POST with JSON data. The response is a JSON dictiona
 
 ### WebSockets
 If you are using the Websockets API, you can go directly through the daemon, which routes requests. Each WebSocket message contains the following fields:
+TODO: Explain how to call a Websocket RPC, examples can be found here: https://github.com/Chia-Mine/chia-agent.
 
 ```json
 {
@@ -44,9 +45,10 @@ There is also another client here: https://github.com/freddiecoleman/chia-client
 
 ## Services
 The service RPC Apis are documented in the following sections:
+TODO: add links here and create the other sections
 * Shared: RPCs that all services share
 * Full Node
 * Farmer
 * Harvester
 * Timelord
-* Wallet
+* Wallet (This API is still a WIP and likely to change soon)

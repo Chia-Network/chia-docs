@@ -4,7 +4,8 @@ sidebar_position: 3
 
 # 1.3 Chia System Overview
 
-TODO: add links here
+TODO: add links here to other sections for relevant keywords
+TODO: add image
 
 Chia is a peer to peer (P2P) system just like Bitcoin or Bittorrent, which processes payments, transactions, and
 programs created by the use's of the system. The network is composed of hundreds of thousands of nodes, which
