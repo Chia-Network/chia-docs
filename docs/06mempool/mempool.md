@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Mempool
+# 6.1 Mempool
 
 The mempool (or memory pool) is a collection of transactions stored by full nodes, usually in memory, before they
 are confirmed on the blockchain. The mempool is not dictated by the consensus rules; a farmer can change how their
