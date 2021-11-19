@@ -13,6 +13,9 @@ win a block, so transactions must be broadcast to the whole network and kept aro
 it is normal for there to be more transactions happening that can fit in a block, so the mempool also acts as a queue
 for inclusion into the blockchain.
 
+When a user makes a transaction, it gets sent to a full node, the full node verifies it, adds it to the mempool, ands
+broadcasts it to all of its peers. Therefore, transactions get sent to the whole network in a very short period of time.
+
 ##  Validation
 For a transaction to enter the mempool, it must be valid, and it goes through similar checks that are performed in
 block validation. This includes running CLVM, checking conditions, validating signatures, and checking that the spent
