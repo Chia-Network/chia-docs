@@ -8,7 +8,7 @@ TODO: add links here to other sections for relevant keywords
 TODO: add image
 
 Chia is a peer to peer (P2P) system just like Bitcoin or Bittorrent, which processes payments, transactions, and
-programs created by the use's of the system. The network is composed of hundreds of thousands of nodes, which
+programs created by the use of the system. The network is composed of hundreds of thousands of nodes, which
 store the history of the blockchain, and propagate transactions to each other. Each transaction spends at least one coin.
 A coin in Chia is an object which has an ID (coin ID), a parent coin ID, an associated amount, and a chialisp program called a puzzle.
 The puzzle must be provided with an appropriate solution in order to be spent.
