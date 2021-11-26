@@ -6,55 +6,67 @@ sidebar_position: 1
 
 ## What is Chia?
 
-TODO: add image and link to other sections / resources for keywords
-https://www.chia.net/whitepaper/
+Chia is a cryptocurrency and blockchain smart transaction platform. Chia was designed from the ground up to make cryptocurrency easier to use -- and harder to lose -- than cash. Chia's blockchain maintains the same level of security as Bitcoin's, while using a fraction of the energy.
 
-Chia is a cryptocurrency and blockchain smart transaction platform. It was designed from the ground up to be easier to use and harder to lose than cash, as well as more secure and efficient than other blockchain platforms.
-
-Bram Cohen founded the Chia company and incorporated it in the state of Delaware on August 1, 2017. Bram led the development of Chia, along with of many engineers, researchers, and open source contributors. Along the way, Chia created three new inventions in applied cryptography, and advanced the interest and adoption in a fourth.
+On August 1, 2017, [Bram Cohen](https://www.chia.net/profiles/bram-cohen "Bram Cohen's Chia profile") founded the Chia company and incorporated it in the state of Delaware. Bram led the development of Chia, along with many engineers, researchers, and open source contributors. Along the way, Chia created three new inventions in applied cryptography, and advanced the interest and adoption in a fourth:
   * The first production use of [BLS Signatures](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub").
   * The first production use of a [Verifiable Delay Function (VDF)](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub").
-  * [Proofs of Space](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub") and [Time](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub"), the first (and only) Nakamodo concensus since Proof of Work.
-  * The first production use of [class groups of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms whitepaper, by Lipa Long").
+  * [Proofs of Space](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub") and [Time](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub") (PoST), the first (and only) Nakamodo consensus since Proof of Work.
+  * The first production use of [class groups of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long").
 
 Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing.
 
+For more information on the company's strategies, see [Chia's business white paper](https://www.chia.net/whitepaper "Chia's business white paper").
+
 ## Chia's key features
 
-Bitcoin was a pioneer in the fields of cryptography and digital currencies. Chia aims to improve upon Bitcoin's many excellent ideas, while maintaining the same overall purpose and philosophy.
+Chia aims to improve upon Bitcoin's many pioneering ideas in the fields of cryptography and digital currencies, while maintaining the same overall purpose and philosophy. Some of Chia's new features and improvements include:
 
-### Decentralization
+### Smart transactions
 
-Chia uses a consensus algorithm called [Proof of Space and Time](https://www.chia.net/assets/ChiaGreenPaper.pdf "Chia's Green Paper"), which uses modern cryptography like Verifiable Delay Functions and Proofs of Space. This algorithm allows anyone with an internet connection and some free disk space to participate in securing the network. Because this process of farming (analogous to mining), Chia has become the most decentralized blockchain on the planet, with hundreds of thousands of full nodes securing the system.
+Chia has a new smart transaction model, which uses a powerful (yet simple) higher-level language called [chialisp](https://chialisp.com "Chialisp.com"), and an accompanying lower-level language called CLVM (chialisp VM).
+
+Chia uses the coin set model (similar to Bitcoin's UTXO) to track the blockchain's state. The simple nature of this model facilitates the writing of high value and secure contracts. Unlike in systems that use the account model such as Ethereum, the code that creates Chia's coins is kept compartmentalized. This increases security, reduces Maximum Extractable Value (MEV), and makes the code fully auditable.
+
+### Secure
+
+[Chia's coins](https://chialisp.com/docs/coins_spends_and_wallets "Tutorial on Chia's coins") are created in a simple, yet highly secure manner:
+
+coinID = sha256(parent_ID + puzzlehash + amount)
+
+The coin's ID (a sha256 hash) is the main aspect that's stored on the blockchain. Hashes are not reversible, so it's very difficult for a hacker analyzing the blockchain to even determine what a coin's type is, let alone to view the code that created it. Contrast that with Ethereum, where it's trivial to view a smart contract's source code by using a decompiler.
+
+Also due to hashing, a hacker cannot change a coin's parent_ID, puzzlehash, or amount without changing the ID as well. The only aspect of a coin that a hacker can attempt to change is its solution, and it's trivial to ensure that any such changes will result in a failure to spend the coin.
+
+### Energy efficient
+
+The PoST consensus has a much [lower energy consumption](https://chiapower.org "Chia's energy consumption statistics") compared to Proof of Work (PoW), and part of Chia's
+vision involves improving the carbon footprint of the blockchain industry.
+
+### Decentralized
+
+Chia uses a consensus algorithm called [Proofs of Space and Time](https://www.chia.net/assets/ChiaGreenPaper.pdf "Chia's Green Paper"). This algorithm allows anyone with an internet connection and some free disk space to participate in securing the network. Because of this process of farming (analogous to mining), Chia has become the most decentralized blockchain on the planet, with hundreds of thousands of full nodes securing the system.
 
 ### Improved Pooling
 
-Like many other blockchains, Chia allows pooling to smooth out the rewards structure for smaller farmers. However, Chia three unique features regarding its pooling protocol.
+Like many other blockchains, Chia allows pooling to smooth out the rewards structure for smaller farmers. However, Chia's pooling protocol has three unique features.
 
-  * Farmers create new blocks, whether they're farming solo or as a member of a pool. This design decision was made in conjunction with Chia's goal of decentralization. In other blockchains such as Bitcoin, four or five pools control over 51% of the hashrate on any given day. (Sources: [blockchain.com](https://www.blockchain.com/pools "blockchain.com pie chart of Bitcoin's hashrate distribution"), [blockchair.com](https://blockchair.com/bitcoin/charts/hashrate-distribution "blockchair.com pie chart of Bitcoin's hashrate distribution")) Arguably, the easiest way to attack Bitcoin would be to bribe each of these pools' operators.
+  * Farmers create new blocks, whether they're farming solo or as a member of a pool.
+  
+  This design decision was made in conjunction with Chia's goal of decentralization. In other blockchains such as Bitcoin, four or five pools control over 51% of the hashrate on any given day. (Sources: [blockchain.com](https://www.blockchain.com/pools "blockchain.com pie chart of Bitcoin's hashrate distribution"), [blockchair.com](https://blockchair.com/bitcoin/charts/hashrate-distribution "blockchair.com pie chart of Bitcoin's hashrate distribution")) Arguably, the easiest way to attack Bitcoin would be to bribe each of these pools' operators.
 
-  In Chia, the pool operators are responsible for distributing rewards, but they cannot modify the blockchain. Therefore, pooling doesn't increase centralization like it does in other blockchains.
+  In Chia, the pool operators are only responsible for distributing rewards. They cannot modify the blockchain. Therefore, Chia's pooling protocol doesn't lead to increased centralization.
 
   * Joining a pool is permissionless. Farmers don't need to sign up for anything in order to join.
 
   * When a block is won, the farmer gets 1/8 of the rewards, and the pool operator gets the other 7/8. This was done to discourage pool operators from harming their competition by farming on a competing pool and neglecting to create a block when they find a proof. (Solo farmers collect the entire reward when they create a block.)
 
-### Energy efficient
+### Other key features
 
-This new consensus has a much lower energy consumption compared to proof of work, and part of Chia's
-vision involves improving the carbon footprint of the blockchain industry.
+There are other innovations in Chia, some of which include:
+* BLS signatures, which allow aggregating all of a block's signatures together.
+* Scalability and performance improvements, which allow running a Chia node on a Raspberry Pi.
+* Weight proofs and light clients, which enable fast syncing from any mobile device.
 
-Chia also has a new smart transaction model, with powerful (yet simple) language called chialisp, and CLVM (chialisp VM).
-The smart transaction platform was designed to facilitate the writing of high value and secure contracts, due to the 
-simple nature of the coin set (UTXO) based model, and the VM itself. Smart transactions enable the same functionality provided 
-by Ethereum contracts, but with a slightly different implementation due to the coin set model, which keeps code separated,
-enables predictability, and reduces MEV.
-
-There are other innovations in Chia. Some include BLS signatures, which allow aggregating all signatures in one block
-into one; scalability and performance improvements, which allow running a Chia node on a raspberry pi, weight proofs
-and light clients, which enable fast syncing from any mobile device, and a secure pooling protocol that allows farmers
-to have control of their node.
-
-This documentation will explain the motivation and implementation of the different components of the Chia system to a 
-technical audience, and provide in depth explanations of how everything works. If you would like to skip to how to make dapps (decentralized
-apps) on Chia, please visit chialisp.org.
+This documentation will explain the motivation and implementation of the different components of the Chia system to a technical audience, and provide in-depth explanations of how everything works. If you would like to skip to how to make dapps (decentralized
+apps) on Chia, please visit [chialisp.com](https://chialisp.com).
