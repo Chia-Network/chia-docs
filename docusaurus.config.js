@@ -53,6 +53,18 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           },
           {to: 'https://www.chia.net/', label: 'Chia.net', position: 'left'},
           {to: 'https://github.com/Chia-Network/', label: 'Chia Github', position: 'left'}
+          {href: 'https://chialisp.com/', label: 'Chialisp', position: 'left'},
+          {href: 'https://www.chia.net/blog/', label: 'Blog', position: 'left'},
+          {href: 'https://www.chia.net/assets/Chia-Business-Whitepaper-2021-02-09-v1.0.pdf', label: 'Business Whitepaper', position: 'left'},
+          {
+            type: 'localeDropdown',
+            position: 'left',
+          },
+          {
+            href: 'https://github.com/Chia-Network/chia-docs',
+            label: 'Edit Docs on GitHub',
+            position: 'right',
+          },
         ],
       },
       footer: {

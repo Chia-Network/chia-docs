@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": " Docs",
+    "description": "The title in the navbar"
+  },
+  "item.label.Chialisp": {
+    "message": "Chialisp",
+    "description": "Navbar item with label Chialisp"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Business Whitepaper": {
+    "message": "Business Whitepaper",
+    "description": "Navbar item with label Business Whitepaper"
+  },
+  "item.label.Edit Docs on GitHub": {
+    "message": "Edit Docs on GitHub",
+    "description": "Navbar item with label Edit Docs on GitHub"
+  }
+}
