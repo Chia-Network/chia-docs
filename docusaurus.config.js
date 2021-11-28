@@ -13,7 +13,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
   favicon: 'img/chia_leaf_green.svg',
   organizationName: 'Chia-Network', // Usually your GitHub org/user name.
   projectName: 'chia-docs', // Usually your repo name.
-  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'cn'],
+  },
+
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -48,7 +52,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
             position: 'left',
           },
           {to: 'https://www.chia.net/', label: 'Chia.net', position: 'left'},
-          {to: 'https://github.com/Chia-Network/', label: 'Chia Github', position: 'left'}
+          {to: 'https://github.com/Chia-Network/', label: 'Chia Github', position: 'left'},
+          {to: 'https://www.chia.net/approach/', label: 'Approach', position: 'right'},
+          {to: 'https://www.chia.net/technology/', label: 'Technology', position: 'right'},
+          {to: 'https://www.chia.net/developers/', label: 'Developers', position: 'right'},
+          {to: 'https://www.chia.net/blog/', label: 'Blog', position: 'right'},
+          {to: 'https://www.chia.net/news/', label: 'News', position: 'right'},
+          {to: 'https://www.chia.net/about/', label: 'About', position: 'right'},
         ],
       },
       footer: {

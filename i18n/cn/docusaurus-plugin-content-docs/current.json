@@ -1,0 +1,62 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.1 - Introduction": {
+    "message": "1 - Introduction",
+    "description": "The label for category 1 - Introduction in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.2 - Architecture": {
+    "message": "2 - Architecture",
+    "description": "The label for category 2 - Architecture in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.3 - Consensus Algorithm": {
+    "message": "3 - Consensus Algorithm",
+    "description": "The label for category 3 - Consensus Algorithm in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.4 - Coin Set Model": {
+    "message": "4 - Coin Set Model",
+    "description": "The label for category 4 - Coin Set Model in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.5 - Block Validation": {
+    "message": "5 - Block Validation",
+    "description": "The label for category 5 - Block Validation in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.6 - Mempool": {
+    "message": "6 - Mempool",
+    "description": "The label for category 6 - Mempool in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.7 - Networking": {
+    "message": "7 - Networking",
+    "description": "The label for category 7 - Networking in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.8 - Serialization": {
+    "message": "8 - Serialization",
+    "description": "The label for category 8 - Serialization in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.9 - Keys and Signatures": {
+    "message": "9 - Keys and Signatures",
+    "description": "The label for category 9 - Keys and Signatures in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.10 - Protocol": {
+    "message": "10 - Protocol",
+    "description": "The label for category 10 - Protocol in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.10 - Pool Protocol": {
+    "message": "10 - Pool Protocol",
+    "description": "The label for category 10 - Pool Protocol in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.12 - RPC APIs": {
+    "message": "12 - RPC APIs",
+    "description": "The label for category 12 - RPC APIs in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.13 - Command Line Interface": {
+    "message": "13 - Command Line Interface",
+    "description": "The label for category 13 - Command Line Interface in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.14 - Python Implementation": {
+    "message": "14 - Python Implementation",
+    "description": "The label for category 14 - Python Implementation in sidebar tutorialSidebar"
+  }
+}
