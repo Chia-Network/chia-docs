@@ -5,7 +5,9 @@ sidebar_position: 7
 # 3.7 Multiple Blocks
 
 <figure>
-<img src="/img/multiple_blocks.png" alt="drawing"/>
+
+![](/img/multiple_blocks.png)
+
 <figcaption>
 Figure 7: multiple blocks. Sp1 = signage points 1
 </figcaption>
