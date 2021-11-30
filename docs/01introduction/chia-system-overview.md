@@ -7,26 +7,32 @@ sidebar_position: 3
 TODO: add links here to other sections for relevant keywords
 TODO: add image
 
-Chia is a peer to peer (P2P) system just like Bitcoin or Bittorrent, which processes payments, transactions, and
-programs created by the use of the system. The network is composed of hundreds of thousands of nodes, which
-store the history of the blockchain, and propagate transactions to each other. Each transaction spends at least one coin.
-A coin in Chia is an object which has an ID (coin ID), a parent coin ID, an associated amount, and a chialisp program called a puzzle.
-The puzzle must be provided with an appropriate solution in order to be spent.
+This section will provide a basic overview of Chia's network. We'll go into much more detail in later sections.
 
-Chia nodes connect to a random subset of other Chia nodes, called peers, and store information about other nodes in the
-peer DB. This information is shared periodically between nodes. Nodes broadcast new transactions and blocks that they 
-see to all other nodes. When first starting up, nodes have to synchronize to the blockchain, by downloading the entire
-history of blocks and transactions.
+### Chia's network
+There are different types of peer-to-peer (P2P) networks, such as BitTorrent, Bitcoin, and Chia. The Chia network is a blockchain that performs several major functions, including processing financial transactions, running programs written in Chialisp, and minting tokens from XCH (Chia's base currency). The network is composed of hundreds of thousands of nodes, each of which stores a copy of the blockchain's history, while also propagating new transactions across the network.
 
-Timelord nodes periodically broadcast proofs of time (explained in the consensus section) around ever 9 seconds.
-Farmers maintain hard drives with plots (very large files full of random numbers) which periodically check for winning
-proofs of space, based on the "lottery" that happens every 9 seconds. 
-When a farmer wins the lottery, they create a block with the transactions in the memory pool, and 
-submit it to the rest of the network for inclusion as the latest block. Not all blocks contain transactions: around 1 in 3 do.
-When a farmer wins a block, they obtain some XCH (Chia coin) as reward, initially 2XCH, but decreases with the halving schedule.
-Each Chia coin can be subdivided into trillionths, the smallest unit (1 trillionth) is called a mojo.
+### Coins and transactions
+Chia uses the coin set (UTXO) model to keep track of the network's state. In this model, a coin is a first-class object. Each coin is locked with a Chialisp program called a _puzzle_, which is then hashed to create a _puzzlehash_. The coin's ID is a hash of its parent coin's ID, its puzzlehash, and its amount.
 
-Wallets are programs that users can use to interact with the blockchain, by signing and submitting transactions to
-full nodes. Pools are servers that farmers can connect to, to smooth out their rewards, and win less chia, more often.
+Each transaction in Chia must spend at least one coin. In order to spend a coin, one must provide the original puzzle, as well as a valid solution, and an optional aggregated signature. Multiple coins can communicate with each other in the same transaction by using _announcements_.
+
+### Nodes
+Chia nodes connect to a random subset of other Chia nodes, called peers. The nodes periodically send and receive information from peers, which is then stored locally in a peer database. Each node broadcasts all new transactions and blocks that they see to their peers, which in turn relay this information to their peers, resulting in the information quickly being propagated throughout the network. When first starting up, nodes have to synchronize to the blockchain, by downloading the entire history of blocks and transactions.
+
+Additionally, nodes have the option of _farming_ to help secure the network. They do this by storing large files called _plots_, which mostly consist of random data called _proofs of space_. These proofs of space function as tickets in an ongoing lottery. The more plots a farmer stores, the higher the probability of winning the lottery.
+
+The prize for winning the lottery is called the _block reward_. Initially, this reward is 2 XCH. However, the reward amount is cut in half approximately every three years for the first 12 years of Chia's existence. From that point forward, the reward will always be 1/8 of an XCH.
+
+While "XCH" is a convenient way to denominate Chia coins, the blockchain only knows about _mojos_. These are the smallest denomination of Chia's coins. Each mojo is worth one trillionth (1/1,000,000,000,000) of an XCH.
+
+### Timelord nodes
+Timelord nodes broadcast _proofs of time_ (explained in the consensus section) around every 9 seconds. This is equivalent to drawing and broadcasting the winning numbers in an ongoing lottery. When a farmer has a valid proof of space, they win the current lottery drawing. This allows them to process the highest-paying transactions in the mempool into a new block. They then broadcast this block to the rest of the network. Around one out of every three blocks contain transactions. The rest of the blocks are empty, but do pay a reward. (See [todo] for more details.)
+
+### Wallets
+Wallets are programs that allow users to interact with the blockchain, by signing and submitting transactions to full nodes. The Chia company includes its official wallet with a typical installation. However, third-party wallets also exist.
+
+### Pools
+Pools allow farmers to smooth out their rewards. They pay out small rewards frequently, often daily. They tend to charge a small fee for their services. The Chia company doesn't run its own pools. Many popular Chia pools also offer services for farming or mining other cryptocurrencies.
 
 The rest of the documentation will go into depth into all of the above topics.
