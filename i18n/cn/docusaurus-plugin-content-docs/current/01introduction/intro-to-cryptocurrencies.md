@@ -2,8 +2,25 @@
 sidebar_position: 2
 ---
 
-# 1.2 Intro to Cryptocurrencies
+# 1.2 加密货币简介
 
+> Intro to Cryptocurrencies
+
+什么是加密货币？可以将加密货币系统视为不受任何实体（如银行、公司或政府）控制的支付和金融基础设施。这与比特币之前金融系统的运作方式有着根本的不同，在比特币之前，总是有一个运营商控制交易包容性、货币政策，并且是一个集中的故障点。
+
+加密货币使用巧妙的密码学、数学和货币激励来创建一个系统，在该系统中，称为农民或矿工的人可以获得报酬来运行该系统，并且没有可以被恶意行为者取消的中央控制点。
+
+这带来了许多好处，其中一些是：
+- **无参与要求**，如身份证、银行账户或国籍。任何人都可以参与新的加密经济。
+- **抗审查**：审查是困难的或不可能的，任何人都可以随时进行交易、发送任何金额或运行任何程序。
+- **独立的货币政策**：可以创建不依赖于一个集团或一个国家的决定的新货币，而是可以基于算法或固定供应。
+- **不可阻挡的应用程序**：为安全区块链开发并在其上运行的程序永远无法更改或停止。该程序本身可以拥有资金并进行金融交易。代码本身可以自主运行，不依赖于人工操作。其中一些包括：其他资产的代币化、NFT、贷款、汇款、身份钱包等。
+- **全球标准**：通过加密，不同国家和地区可以在一个共享标准上进行交互和交易，该标准明确记录、完全开源且免费提供。不同的各方可以聚集在一起使用一个中立的平台，这降低了建立在加密货币之上的人的成本。
+- **安全**：拥有一百万个节点的系统更难被攻击者攻破，包括虚拟和物理黑客、贿赂、网络问题等。
+
+<details>
+<summary>原文参考</summary>
+ 
 What is a cryptocurrency? A cryptocurrency system can be thought of as a payments and financial
 infrastructure that is not controlled by any one entity, like a bank, company, or government. This is fundamentally
 different to how financial systems worked before Bitcoin, where there was always an operator that had control of 
@@ -29,20 +46,42 @@ standard, that is clearly documented, fully open source, and available for free.
 - **Security**: a system with a million nodes is much more difficult to take down by attackers, including virtual and physical
 hacks, bribery, network issues, etc.
 
+</details>
 
-## How do cryptocurrencies work?
+## 加密货币如何运作？
+
+要了解像比特币或 Chia 这样的加密货币如何工作的基础知识，我们首先需要了解如何从头开始设计加密货币。 本节针对区块链行业的新手； 其他人可以跳过它。
+ 
+当然，我们可以只依赖一个中央服务器，它有一个公共 API 来发送交易（接受用户名和密码）和一个公共 API 来读取数据。
+但是，这不是去中心化的，并且不会带来上述大部分好处。 这是在比特币之前运作的许多金融系统。 那么我们如何设计一个不依赖任何一方的交易系统呢？
+
+<div style={{textAlign: 'center'}}>
+ 
+![](/img/crypto01.png)
+ 
+</div>
+
+
+<details>
+<summary>原文参考</summary>
+ 
+- ## How do cryptocurrencies work?
 
 To understand the basics of how a cryptocurrency like Bitcoin or Chia works, we first need to look at how one would design a cryptocurrency
 from scratch. This section is targeted toward those new to the blockchain industry; others can skip it.
-
+ 
 Of course, we could just rely on a central server which has a public API to send transactions 
 (which takes in a username and password) and a public API for reading data. 
 However, this is not decentralized, and does not bring most of the benefits above. This is many financial systems worked
 before Bitcoin. So how would we design a transaction system which does not depend on any one party?
 
 <div style={{textAlign: 'center'}}>
- <img src="/img/crypto01.png" alt="drawing" width="400"/>
+ 
+![](/img/crypto01.png)
+ 
 </div>
+
+</details>
 
 ### Authentication
 
