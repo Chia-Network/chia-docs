@@ -55,11 +55,8 @@ hacks, bribery, network issues, etc.
 当然，我们可以只依赖一个中央服务器，它有一个公共 API 来发送交易（接受用户名和密码）和一个公共 API 来读取数据。
 但是，这不是去中心化的，并且不会带来上述大部分好处。 这是在比特币之前运作的许多金融系统。 那么我们如何设计一个不依赖任何一方的交易系统呢？
 
-<div style={{textAlign: 'center'}}>
  
 ![](/img/crypto01.png)
- 
-</div>
 
 
 <details>
