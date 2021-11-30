@@ -20,7 +20,8 @@ sidebar_position: 2
 
 <details>
 <summary>原文参考</summary>
- 
+
+<br>
 What is a cryptocurrency? A cryptocurrency system can be thought of as a payments and financial
 infrastructure that is not controlled by any one entity, like a bank, company, or government. This is fundamentally
 different to how financial systems worked before Bitcoin, where there was always an operator that had control of 
