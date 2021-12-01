@@ -59,19 +59,19 @@ hacks, bribery, network issues, etc.
 
 <details>
 <summary>原文参考</summary>
- 
+
 - ## How do cryptocurrencies work?
 
 To understand the basics of how a cryptocurrency like Bitcoin or Chia works, we first need to look at how one would design a cryptocurrency
 from scratch. This section is targeted toward those new to the blockchain industry; others can skip it.
- 
+
 Of course, we could just rely on a central server which has a public API to send transactions 
 (which takes in a username and password) and a public API for reading data. 
 However, this is not decentralized, and does not bring most of the benefits above. This is many financial systems worked
 before Bitcoin. So how would we design a transaction system which does not depend on any one party?
- 
+
 ![](/img/crypto01.png)
- 
+
 </details>
 
 ### 验证
@@ -89,7 +89,7 @@ before Bitcoin. So how would we design a transaction system which does not depen
 
 <details>
 <summary>原文参考</summary>
- 
+
 - ### Authentication
 
 First, we need a way to send transactions to many servers instead of one, in a secure way. Let's assume that there are 1000
@@ -111,7 +111,7 @@ coin that is being sent, the recipient information, and the signature. Digital s
 
 </details>
 
- 
+
 ### 双花
 
 然而，签名是不够的，因为有一个叫做“双花问题”的问题。在 1000 台服务器中，假设 500 台在亚洲，500 台在美国。攻击者 Bob 将花费相同硬币的两笔交易同时发送到两台服务器：一台在亚洲，另一台在美国。但是，这些交易会将钱发送给不同的收件人。
@@ -128,9 +128,10 @@ coin that is being sent, the recipient information, and the signature. Digital s
 ![](/img/crypto04.png)
 
 <details>
- <summary>原文参考</summary>
- 
+<summary>原文参考</summary>
+
 - ### Double Spending
+
 However, signatures are not enough, because of an issue called the "double spend problem". Of the 1000 servers, let's say 
 500 are in Asia and 500 are in America. An attacker, Bob, sends two transactions that spend the same coin, to two servers,
 at the same time: one in Asia and one in America. However, those transactions send the money to different recipients. 
@@ -175,11 +176,11 @@ real world investment.
 
 ![](/img/crypto05.png)
 
-
 <details>
- <summary>原文参考</summary>
- 
+<summary>原文参考</summary>
+
 - ### Blockchain
+
 Each block in the blockchain contains a list of transactions. A transaction is said to be "confirmed" once it is inside 
 a block which has the required proof of work. Each node in the network, called a full node, maintains active connections
 with a few other random nodes, and broadcasts transactions to all of its peers. If a user wants to make a transaction,
@@ -209,9 +210,10 @@ finish those 10 blocks, the rest of the nodes will have added more blocks.
 股权证明（用区块链资产投票）是最流行的方法之一，在这一类别中有许多类型的算法。 Chia 采取了另一种方法，我们认为这种方法可能比股权证明（即空间证明）更加分散和易于访问。 在这个模型中，Sybil 抵抗机制将大文件存储在硬盘驱动器中，并将“彩票”存储在这些文件中。 这已被证明可供普通用户访问，无需任何特殊硬件，同时保持中本聪工作量证明的大部分安全属性。
 
 <details>
- <summary>原文参考</summary>
- 
+<summary>原文参考</summary>
+
 - ### Beyond Proof of Work
+
 Over a decade has passed since the creation of Bitcoin and Proof of Work blockchains. The energy expenditure of the top
 two blockchains, and the degree of centralization of the top miners/pools have caused people to research new alternatives.
 Many sybil-resistant consensus models have now been developed, some which compromise decentralization to different levels.
@@ -222,6 +224,6 @@ which is Proof of Space. In this model, the Sybil resistant mechanism is storing
 the "lottery tickets" within those files. This has been shown to be accessible to normal users without any special hardware,
 while maintaining most of the security properties of Nakamoto's Proof of Work.
 
- </details>
- 
+</details>
+
 [1] https://cs.stanford.edu/people/eroberts/courses/soco/projects/public-key-cryptography/history.html#:~:text=The%20idea%20of%20public%20key,known%20as%20the%20knapsack%20problem.
