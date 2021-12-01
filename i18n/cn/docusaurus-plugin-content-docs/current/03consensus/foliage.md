@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# 3.10 树叶
+# 3.10 Foliage
 
 > Foliage
 
