@@ -2,7 +2,36 @@
 sidebar_position: 6
 ---
 
-# 3.6 Harvester Algorithm
+# 3.6 收割机算法
+
+> Harvester Algorithm
+
+大约每 9.375 秒，全节点向农民发送一个新的标志点，农民将其发送给每个收割机。为每个标牌点发送的确切协议消息如下：
+
+```python
+class PoolDifficulty:
+    difficulty: uint64
+    sub_slot_iters: uint64
+    pool_contract_puzzle_hash: bytes32
+    
+class NewSignagePointHarvester:
+    challenge_hash: bytes32
+    difficulty: uint64
+    sub_slot_iters: uint64
+    signage_point_index: uint8
+    sp_hash: bytes32
+    pool_difficulties: List[PoolDifficulty]
+```
+
+1. 收割机接收一个标志点，并计算绘图过滤器`plot filter bits = sha256(plot_id + challenge_hash + sp_hash)`。如果结果位以 9 个零开头，则绘图通过过滤器。这不需要磁盘访问，因为 plot_ids 可以存储在内存中。
+2. 对于通过过滤器的每个图，都会启动一个执行质量查找的新线程。回想一下，这需要对绘图进行大约 7 次随机读取，每个表一个。这是大部分磁盘活动所在的位置。大约 1/512 绘图将执行此步骤。
+3. 所需iters计算，为解释[在这里](/docs/03consensus/signage_points_and_infustion_points)。如果该地块当前正在朝着水池耕种，则使用自定义难度和 SSI；这使得更有可能找到证明，这对于证明存储到池中很有用。如果所需的迭代次数小于间隔迭代次数，则这种空间证明是好的（它赢得了池部分或一个区块）。大多数证明都不会通过这一步。
+4. 为获奖证明。整个证明是在磁盘上获取的（图中大约有 64 个随机读取）。
+5. 证明被送回给农民。
+
+<details>
+<summary>原文翻译</summary>
+
 Approximately every 9.375 seconds, the full node sends a new signage point to the farmer, who sends it to each harvester.
 The exact protocol message sent for each signage point is the following:
 
@@ -31,3 +60,5 @@ If the required iters is less than the interval iters, this proof of space is go
 Most proofs will not pass this step.
 5. For winning proofs. the whole proof is fetched on disk (approximately 64 random reads in the plot).
 6. The proof is sent back to the farmer.
+
+</details>
