@@ -16,7 +16,7 @@ sidebar_position: 3
 
 这里的关键词是“顺序”，就像对一个数字进行多次散列：hash(hash(hash(a))) 等。这意味着证明者不能仅仅购买更多机器来加快速度，这与比特币/工作量证明不同。因此，我们可以假设计算 VDF 需要真实（挂钟）时间。我们使用的构造是重复平方。证明者必须将挑战平方 x T 次。这需要时间 ϴ(T)。证明者还必须创建一个证明，证明这是正确执行的。
 
-[](/img/vdf.png)
+![](/img/vdf.png)
 
 图 3：验证者（区块链）向证明者（时间领主）发送挑战，证明者计算输出和证明。
 
@@ -37,7 +37,7 @@ A Verifiable Delay Function, also referred to as a proof of time or VDF, is a pr
 
 The key word here is “sequential”, like hashing a number many times: hash(hash(hash(a))), etc. This means the prover cannot just buy more machines to go faster, unlike Bitcoin/proof of work. Therefore we can assume that computing a VDF requires real (wall-clock) time. The construction that we use is repeated squaring. The prover must square a challenge x T times. This requires time ϴ(T). The prover also must create a proof that this was performed properly.
 
-[](/img/vdf.png)
+![](/img/vdf.png)
 
 Figure 3: Verifier (blockchain) sends a challenge to a prover (timelord) and prover computes output and proof. 
 
