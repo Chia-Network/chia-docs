@@ -5,36 +5,28 @@ sidebar_position: 14
 # 3.14 Relevant Attacks and Countermeasures
 
 ## 51% (46%) attack:
-A 51% attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to reorg.
-The classic long range attack which is also present in proof of work systems is the 51% attack.
-In the 51% attack, the attacker with 51% of the network space creates an alternate chain and eventually catches up.
-There are two main differences between Chia consensus and Proof of work: the first is that the attacker can extend and farm on many chains simultaneously.
-The second is that if the attacker has the fastest VDF, they can get an additional space advantage/boost.
+A 51% attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to reorg. The classic long range attack, which is also present in proof-of-work systems, is the 51% attack.
+
+In the 51% attack, the attacker with at least 51% of the network space creates an alternate chain and eventually catches up. There are two main differences between Chia's Proof of Space and Time consensus and Proof of Work.
+1. In Chia, the attacker can extend and farm on many chains simultaneously.
+2. In Chia, if the attacker has the fastest VDF, they can get an additional space advantage/boost.
 
 ## Extending many chains
-If an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions such that they get the best possible chain.
-Due to the average of 32 blocks with the same challenge, the attacker can only try about 32 different combinations (which block to include in the challenge chain),
-and exponentially branching of trying each of these would give a small boost in space for the attacker 
-(Having 5 PiB they can pretend to have 6 or 7, etc).
-This is because the alternative chains being tried are inferior and less likely to overtake the longest one.
-This has been analyzed in [1].
+If an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions, such that they get the best possible chain.
 
-The actual amount of space required to perform this attack (for the attacker to get a heavier chain than the rest of the network combined) is 46.3%,
-due to the ability for an attacker to "try" different combinations of blocks, for example omitting or not omitting the first block.
-If there was a new proof of space challenge for every single block,
-the attacker can multiply their space by a factor of e=2.718, where only 27% is required to overtake the network.
-Setting the expected number of blocks per slot to 32, increases the attacker's required space to 46%. 
+Due to the average of 32 blocks with the same challenge, the attacker can only try about 32 different combinations (figuring out which block to include in the challenge chain). The exponential branching that results from trying each of these would give a small boost in space for the attacker. For example, someone with 5 PiB pretend to have 6 or 7 PiB.
 
-The reason for not increasing this further than 32 is the following:
-if we increased the number of blocks per 10 minute slot to something like 200,
-then the ability for someone with a slightly faster VDF to orphan others would increase.
-This is because the time between blocks would get very small.
-With 32 blocks, the time between blocks is around 15-25 seconds, and a much faster VDF is required to orphan.
+The reason for receiving just a minor boost is because the alternative chains being tried are inferior and less likely to overtake the longest one. This has been analyzed in [1].
 
-Furthermore, the Stanford paper [Tse et. al, 1] shows that increasing the number of blocks per challenge increases security at a very slow rate,
-so increasing this number slightly does not provide much benefit.
+The actual amount of space required to perform this attack (for the attacker to get a heavier chain than the rest of the network combined) is 46.3%, due to the ability for an attacker to "try" different combinations of blocks, for example omitting or not omitting the first block.
 
-If the attacker were to manipulate the difficulty, they can change it so that they get less reward blocks per slot. Then they can either include or exclude each block, and exponentially extend all chains simultaneously, and they would be able to multiply their space by a small factor [1]. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the required attacker space in the worst case scenario from 27% up to 42%.
+If there was a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% is required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per slot to 32. This increases the attacker's required space to 46%. 
+
+However, Chia also chose not to increase the number of blocks per slot to a number greater than 32. The reason was because increasing the number of blocks per sub-slot even further would decrease the time between blocks. This would allow a VDF that is only slightly faster than all others to orphan blocks more easily. As it stands, with 32 blocks per slot, an attacker would need to have a significantly faster VDF than everyone else in order to successfully orphan any blocks.
+
+Furthermore, the Stanford paper [Tse et. al, 1] shows that increasing the number of blocks per challenge increases security at a very slow rate, so increasing this number slightly does not provide much benefit.
+
+If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attackers to multiply their space by a small factor [1]. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the required attacker space in the worst case scenario from 27% up to 42%.
 
 ## Faster VDF and 46% of space
 The 46% attack gets worse if the attacker’s VDF is faster. Let’s assume the attacker’s VDF is 2x faster. Then their chain will be able to create challenges and blocks at 2x the rate of the rest of the network, which means they can create a "heavier" chain with the same amount of space.
