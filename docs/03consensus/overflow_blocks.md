@@ -6,13 +6,11 @@ sidebar_position: 9
 
 ## Overflow Blocks
 
-For a farmer to create a block, their required_iterations must be less than the sub-slot iterations / 64, as described above. 
-This means that infusion iterations might be greater than the sub-slot iterations, and therefore 
-the infusion must happen in the next sub-slot. 
+For a farmer to create a block, their required_iterations must be less than sub-slot_iterations / 64, as described in [Section 3.5](/docs/03consensus/signage_point_and_infusion_points "Section 3.5: Signage Points and Infusion Points"). This means that infusion_iterations might be greater than the sub-slot_iterations, and therefore the infusion must happen in the next sub-slot. 
 
 **Overflow block**: a block whose infusion point is in a different sub-slot than its signage point.
 
-**Current-slot challenge**: With respect to a certain block B, B’s current-slot challenges include all 
+**Current-slot challenge**: Any given block's current-slot challenges include all 
 challenges starting at the first challenge in the slot, and ending at the end of the slot (non-inclusive). 
 This is relevant because sometimes a slot spans multiple sub-slots, and thus multiple challenges.
 
@@ -33,21 +31,18 @@ Also, overflow blocks do not change the deficit unless they are based on a curre
 
 A minimum of 16 current-slot challenge blocks must be infused into the rewards chain in order for a slot to be finished.
 
-The deficit is a number between 0 and 16 that is present at the start of a sub-slot, and is present for each finished block.
-This is defined as the number of reward chain blocks that we need to infuse in order to finish a slot.
-It is reset to 16 whenever we start a slot (so there must be at least 16 total blocks per challenge chain infusion). 
-The deficit goes down for each reward chain infusion that is based on a current-slot challenge. 
+The deficit is a number between 0 and 16 that is present at the start of a sub-slot, and is present for each finished block. This is defined as the number of reward chain blocks that we need to infuse in order to finish a slot. It is reset to 16 whenever we start a slot (so there must be at least 16 total blocks per challenge chain infusion). The deficit goes down for each reward chain infusion that is based on a current-slot challenge. 
 
 The block with deficit 15 is a challenge block.
 
 The normal case is where the deficit starts at 16, and goes down to zero within the sub-slot, and resets back to 16 as we finish the slot and start a new one. In the case that we don't manage to reduce it to 0 within the end of the slot, the challenge chain and infused challenge chain (if present) continue, and the deficit does not reset to 16. Blocks (including overflow blocks now), keep subtracting from the deficit until we reach 0. When we finish a sub-slot with a zero deficit, the infused challenge chain is included into the challenge chain, and the deficit is reset to 16.
 
-This requirement is added to prevent long range attacks, and is described in detail in the Countermeasures section below. The vast majority of sub-slots will have >=16 blocks, therefore it does not affect normal operation very much. 
+This requirement is added to prevent long-range attacks, and is described in detail in the Countermeasures section below. The vast majority of sub-slots will have >=16 blocks, therefore it does not affect normal operation very much. 
 
 <figure>
 <img src="/img/deficit.png" alt="drawing"/>
 <figcaption>
-Figure 10: c2 is the end of the sub-slot but not the end of the slot. c2 does NOT point to ic2, since the slot did not end at this sub-slot.
+Figure 10: c2 is the end of the sub-slot but not the end of the slot (we have yet to reach 0 deficit). c2 does NOT point to ic2, since the slot did not end at this sub-slot.
 Deficit is 3 instead of resetting to 16, and the infused challenge chain continues.
 </figcaption>
 </figure>
@@ -62,6 +57,4 @@ Both VDF speed and total amount of space are important for weight, and changes i
 
 A farmer with exclusive access to a slightly faster VDF, however, cannot easily get more rewards than a farmer with the normal speed VDF. If an attacker tries to orphan one of the blocks on the chain, having a faster VDF will not help, since the attacker’s chain will have less blocks (and thus a lower weight). Farmers must sign the block which they are building on top of, and they will only build on top of the highest weight chain. 
 
-The VDF speed comes into play when the attacker wishes to launch a 51% attack, however. In this case, an attacking farmer can use the VDF to create a completely alternate chain with no honest blocks, and overtake the honest chain.
-This requires slightly less than 51% of the space, since the faster VDF chain can obtain weight at a faster rate
-than the honest chain.
+The VDF speed comes into play when the attacker wishes to launch a 51% attack, however. In this case, an attacking farmer can use the VDF to create a completely alternate chain with no honest blocks, and overtake the honest chain. This requires slightly less than 51% of the space, since the faster VDF chain can obtain weight at a faster rate than the honest chain.
