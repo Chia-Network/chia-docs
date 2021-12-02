@@ -2,7 +2,26 @@
 sidebar_position: 1
 ---
 
-# 9.1 BLS Keys
+# 9.1 BLS 密钥
+
+> BLS Keys
+
+本节将解释 Chia 网络中不同类型的密钥，它们是如何生成、存储和使用的。这些系统设计得足够灵活，可以支持许多不同的配置和池设置，并且能够抵御各种攻击。
+
+所有 Chia 密钥都是 BLS-12-381 私钥，遵循 [IETF 规范](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/) 、 用于密钥派生 的 [EIP-2333](https://eips.ethereum.org/EIPS/eip-2333) 规范和 [BIP 44 注册](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) 。 私钥是 32 字节，公钥是 48 字节，签名是 96 字节（公钥是 G1 中的点，签名是 G2 中的点。）BLS 签名允许许多功能和优化，如非交互式 m/n 阈值、所有的聚合块中的签名和 [chialisp](https://chialisp.com) 将两个硬币合并到同一笔交易中的技巧。 可以使用 24 个单词的助记词来生成私钥。 用户可以只备份这 24 个单词，并随心所欲地使用它们。 Chia 的实现与 EIP-2333 之间存在细微差别，在本页底部进行了描述。 如您所见，这 24 个字可以与 BLS 私钥相互转换。 BLS 主私钥存储在 OS 钥匙串中，通常需要密码验证并进行加密。
+
+主私钥可用于派生子密钥，其还可用于派生子密钥等。级别数可以是无限的。BLS 公钥可以组合成一个新的公钥，用于验证聚合签名。
+
+每次钱包生成一个新地址来接收资金时，它都会创建一个新的 bls 私钥。农场主和矿池仅使用当前代码库中的第一个密钥，但可以更新它们以在每次赢得区块时生成新密钥，以增加隐私。pk 代表公钥，sk 代表私钥（秘密）。当谈到获得报酬时，会创建一个使用钱包 BLS 公钥的 chialisp 程序，这个程序被称为拼图，经过哈希处理以生成拼图哈希。然后将拼图哈希转换为 bech32m 格式的地址，以方便纠错和可用性。因此地址类似于钱包子 BLS 公钥，私钥可以从主种子派生。
+
+<figure>
+
+![](/img/keys/hd_keys.png)
+
+</figure>
+
+<details>
+<summary>原文参考</summary>
 
 This section will explain the different types of keys in the Chia network, how they are generated, stored, and used.
 These systems are designed to be flexible enough to support many different configurations and pooling setups and to be resilient to various attacks.
@@ -24,16 +43,41 @@ The puzzle hash is then converted to an address in bech32m format, for easy erro
 So an address is analogous to a wallet child BLS public key, the private key which can be derived from the master seed.
 
 <figure>
-<img src="/img/keys/hd_keys.png" alt="drawing"/>
+
+![](/img/keys/hd_keys.png)
+
 </figure>
 
-## Difference between Chia and EIP-2333
+</details>
+
+## Chia 和 EIP-2333 的区别
+
+Chia 中遵循的规范是 [https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/) 版本 1 中 描述的规范 。版本 2 中进行了更改，这使得密钥生成不兼容. 两个版本都是安全的，但 Chia 密钥是在 2020 年创建的，因此使用了旧版本的规范。
+
+<details>
+<summary>原文参考</summary>
+
+- ## Difference between Chia and EIP-2333
+
 The specification followed in Chia is the one described in https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/
 in version 1. There was a change made in version 2 which makes the key generation incompatible. Both versions are secure,
 but Chia keys were created in 2020 and thus the older version of the specification is used.
+</details>
 
+## 硬化与未硬化的密钥
 
-## Hardened vs Unhardened Keys
+可以通过两种方式从父密钥派生子密钥：强化和未强化。
+
+强化密钥是 EIP-2333 规范中默认且唯一支持的方法。它们是安全的，因为每个密钥都是加密分离的，并且泄露一个密钥不会影响其父节点或兄弟节点的安全。然而，强化密钥在功能上是有限的，因为它们只能通过私有派生来派生。也就是说，可以使用父私钥导出子私钥，但不能在公共端进行：不能使用父公钥导出子公钥。
+
+未强化的密钥确实允许公开派生，这使得仅查看支持查看所有密钥的钱包，使用根（主）公钥。这是通常为比特币高清查看钱包所做的。与像以太坊这样的系统相比，它可以实现更多的隐私，它为所有交易重用相同的地址。HD 密钥的主要安全缺陷是，可以同时计算出一个子私钥以及父公钥、父私钥和所有兄弟密钥。
+
+Chia 钱包在发布时只创建了强化密钥，但现在也使用了非强化密钥，并且首选用于仅查看钱包支持。
+
+<details>
+<summary>原文参考</summary>
+
+- ## Hardened vs Unhardened Keys
 
 There are two ways in which child keys can be derived from parent keys: hardened and unhardened.
 
@@ -51,3 +95,5 @@ sibling keys can be calculated as well.
 
 The Chia wallet at launch only created hardened keys, but now unhardened keys are being used as well, and preferred, for
 the view only wallet support.
+
+</details>
