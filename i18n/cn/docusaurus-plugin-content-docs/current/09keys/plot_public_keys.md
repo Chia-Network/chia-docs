@@ -26,7 +26,7 @@ The plot public key is usually generated in one of two ways, the first for OG Pl
 
 ## OG Plots
 
-地块公钥为2/2 BLS聚合公钥，由农民公钥与本地公钥结合生成。本地公钥是为每个地块创建的完全随机的密钥，并放入该地块中。它们不是任何 BLS 密钥的子项，因此在情节之间完全独立。农夫钥匙是农夫机器存储的钥匙。
+地块公钥为 2/2 BLS聚合公钥，由农民公钥与本地公钥结合生成。本地公钥是为每个地块创建的完全随机的密钥，并放入该地块中。它们不是任何 BLS 密钥的子项，因此在情节之间完全独立。农夫钥匙是农夫机器存储的钥匙。
 
 <details>
 <summary>原文参考</summary>
