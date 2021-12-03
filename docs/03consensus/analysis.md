@@ -5,50 +5,59 @@ sidebar_position: 15
 # 3.15 Analysis
 
 ## Safety
-The safety is similar to other Nakamoto consensus algorithms like Bitcoin. There is no guaranteed finality, but the more confirmations a transaction has, the safer it is. A transaction needs a certain number of confirmations for a receiver to assume that it cannot be reorged, under the <46%(* vdf advantage) colluding assumption. Since farmers can theoretically sign multiple blocks at the same height, more confirmations should be used in Chia than in Bitcoin. However with a rate of 32 blocks per 10 min, 6 confirmations in Bitcoin is equivalent to 192 in Chia, which is more than enough to be considered safe. As long as one of those 192 farmers is well behaving (not double signing), that transaction will not be reversed.
+The safety of Chia's consensus is similar to that of other Nakamoto consensus algorithms like Bitcoin. There is no guaranteed finality, but the more confirmations a transaction has, the safer it is. A transaction needs a certain number of confirmations for a receiver to assume that it cannot be reorged, under the <46%(* vdf advantage) colluding assumption. Since farmers can theoretically sign multiple blocks at the same height, more confirmations should be used in Chia than in Bitcoin. However with a rate of 32 blocks per 10 min, 6 confirmations in Bitcoin is equivalent to 192 in Chia, which is more than enough to be considered safe. As long as one of those 192 farmers is well behaving (not double signing), that transaction will not be reversed.
 
-It's worth noting that there is no requirement of 54% honest farming space, but 54% non colluding. Profit seeking farmers gain very little by deviating from the protocol.
+It's worth noting that the 54% requirement only pertains to _non-colluding_ space, rather than _honest_ farming space. Profit-seeking farmers gain very little by deviating from the protocol.
 
-There is the added assumption that at least one fast timelord must be connected to the non-colluding portion of the network, and that the attacker's timelord is not significantly faster.
+There is the added assumption that at least one fast timelord must be connected to the non-colluding portion of the network, and that the attacker's timelord is not significantly faster. Chia eventually plans to release an ASIC timelord, which should ensure that nobody can obtain a signicantly faster timelord.
 
 ## Liveness
-The liveness of the Chia consensus system is one of its greatest strengths. Like Bitcoin, the Chia system continues advancing even when a majority of the space goes offline. Unlike bitcoin though, the system does not slow down significantly when this happens, since not all blocks are transaction blocks. Therefore transactions throughput does not drop by too much if many participants go offline. It will continue even if only 1 farmer is online, although there will be many empty slots, since a transaction block can only be created if it’s below the sub-slot iterations threshold. 
+The liveness of the Chia consensus system is one of its greatest strengths. Like Bitcoin, the Chia system continues advancing even when a majority of the space goes offline. Unlike bitcoin, though, the system does not slow down significantly when this happens, since not all blocks are transaction blocks. Therefore transactions throughput does not drop significantly if many participants go offline.
 
-Of course, in the event of a long term network split the effects are that one chain must be chosen, so there can be large reorgs in this case. Still, the network chooses the heavier chain, similar to PoW. 
+The network will continue to advance even if only 1 farmer is online, although there will be many empty slots, since a transaction block can only be created if it’s below the sub-slot iterations threshold. 
+
+Of course, in the event of a long-term network split the effects are that one chain must be chosen, so there can be large re-orgs in this case. The network will automatically choose the heavier chain, similar to PoW.
 
 ## Comparison to Nakamoto PoW
-+ Different resources. PoSpace is ASIC resistant and therefore anyone can participate in farming. Hopefully more decentralized. 
-+ Easy merge farming. Other cryptocurrencies can use the same format, and everyone can share the space. Probably the top one will be the only secure one, since the farmers can attack smaller ones. 
+("+" means a pro for Chia)
+
++ Different resources. PoSpace is ASIC-resistant and therefore anyone can participate in farming. Hopefully more decentralized. (Analysis in mainnet's first year shows this to be the case.)
++ Easy merge farming. Other cryptocurrencies can use the same format, and everyone can share the space (assuming their farming computers have sufficient disk space and memory).
+
+The blockchain with the largest netspace will probably be the only secure one, since the farmers can attack smaller ones. This is especially true of blockchains with less than 50% of the top chain's netspace -- the remaining farmers who have not joined the smaller chain could collude to join, and attack, that chain.
 + Minimum energy used, since only a few nodes run VDFs, and these are not parallelized. Very low marginal cost to mine. 
-+ More consistent transaction block times (one per ~1 min).
-+ Less susceptible to selfish mining attacks
++ More consistent transaction block times (one per ~1 min).[TODO: actually 45 seconds? find]
++ Less susceptible to selfish mining attacks.
 + Smaller orphan rates and forks, since blocks can be included in parallel.
-+ Still advances at the same rate when space decreases, since only 1/16 blocks include transactions. PoW nakamoto consensus slows down. 
++ Continues to advances at nearly the same rate when space decreases, since only 1/3 [TODO verify] of blocks include transactions. PoW Nakamoto Consensus slows down linearly when hashrate drops. 
 - Drawback of more potential attackers (large companies). Hardware is general purpose, and therefore attackers could switch between farming, attacking, and using for data storage.
-- Speeding up VDF could give a space advantage for someone attacking the network.
-- More complexity due to sub slots and VDFs, potentially more cryptographic assumptions
+- If an attacker acquires a significantly faster VDF, they could gain a space advantage.
+- More complexity due to sub slots and VDFs, potentially more cryptographic assumptions.
 
 ## Comparison to Proof of Stake
-This consensus algorithm can also be used for proof of stake, where the space farmers are replaced by stakers who own coins in the system. The benefit would be the ability to slash (delete people’s stake), and farmers would have “skin in the game”, but there are some concerns if proof of stake is used. (+ means benefit for using space vs stake).
-+ An attacker can transfer their stake to someone else, but fork the chain right before their stake is transferred. In this alternate chain, the attacker still has all of their stake, and can therefore advance the chain. The "nothing at stake" issue is different in PoStake than in PoSpace since creating a PoSpace requires a physical resource (hard drive space), while creating a PoS only requires a key.
-+ An attacker can guarantee their share of the whole pie, by staking their rewards (the rich get richer), since the total number of coins is limited. 
+Chia's consensus algorithm could also be used for Proof of Stake, where the space farmers are replaced by stakers who own coins in the system. The benefit would be the ability to slash (delete people’s stake), and farmers would have “skin in the game”, but there are some concerns if Proof of Stake is used. ("+" means benefit for using space vs stake).
+
++ An attacker can transfer their stake to someone else, but fork the chain right before their stake is transferred. In this alternate chain, the attacker still has all of their stake, and can therefore advance the chain. The "nothing at stake" issue is different in PoS than in PoSpace since creating a PoSpace requires a physical resource (hard drive space), while creating a PoS only requires a key.
++ An attacker can guarantee their share of the whole monetary supply, by staking their rewards (the rich get richer), since the total number of coins is limited. 
 + There might be situations where the attacker can grind on many different ways to transfer stake. Perhaps this can be mitigated by requiring a long period before stake becomes active.
 + Registration is required, you cannot participate in proof of stake until you sign up. This reduces privacy and scalability (how many people can stake).
 + Higher barrier to entry: security deposits and slashing make it difficult for small users to participate. Slashing can be a huge risk for participants in the network. Centralized custodians lead to a less distributed set of participants. 
-+ Some assumptions [11] are required to perform light client syncs in proof of stake.
-- Skin in the game: with PoStake, the consensus can slash people’s stake, and also requires some investment into the system (exposure to price). In Proof of space hard drives can be used for other purposes and there is no ability to “slash” peoples hardware. 
++ Some assumptions [11] are required to perform light client syncs in Proof of Stake.
+- Skin in the game: with PoS, the consensus can slash people’s stake, and also requires some investment into the system (exposure to price). In Proof of Space, hard drives can be used for other purposes and there is no ability to “slash” people's hardware. 
 
 
 ## Comparison to BFT consensus algorithms
-Proof of space could also be used as a Sybil-resistant mechanism in order to bootstrap a Byzantine consensus (k-agreement) system. Filecoin, and many proof of stake systems use aspects of byzantine consensus.
-The pros and cons of using Chia Nakamoto Consensus vs Byzantine consensus, which vary from algorithm to algorithm:
-+ Much simpler
-+ No registration requirement
-+ No scalability requirement (scales to millions of farmers)
+Proof of Space could also be used as a Sybil-resistant mechanism in order to bootstrap a Byzantine consensus (k-agreement) system. Filecoin, and many Proof of Stake systems use aspects of byzantine consensus.
+
+The pros and cons of using Chia Nakamoto Consensus vs Byzantine consensus, which vary from algorithm to algorithm ("+" means a pro for Chia):
+
++ Much simpler.
++ No registration requirement.
++ No scalability requirement (scales to millions of farmers).
 + More censorship resistant. As long as a small portion of the farming space does not censor, eventually you can get into the blockchain. 
-+ No liveness requirements, potentially less network assumptions
++ No liveness requirements, potentially fewer network assumptions.
 + Fully objective (A node can compare chain 1 and chain 2, and immediately know which one is heavier). No need for checkpoints with ⅔ consensus.
-+ Better light client support [11]
++ Better light client support. [11]
 - No finality, only probabilistic. 
 - Need to wait longer for transaction confirmations (related to no finality).
-- Less consistent block times and transaction throughput
+- Less consistent block times and transaction throughput.
