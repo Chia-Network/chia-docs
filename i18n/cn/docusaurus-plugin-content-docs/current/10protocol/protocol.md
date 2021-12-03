@@ -116,7 +116,7 @@ class RequestTransaction(Streamable):
 
 ## 响应交易
 
-对 `request_transaction` 消息的 响应 。 将支出包发送给对等方。 要查看 a 的内容 `SpendBundle` ，请参阅 [本节](http://10.177.0.168:3000/cn/docs/04coin-set-model/spend_bundles) 。
+对 `request_transaction` 消息的响应 。 将支出包发送给对等方。 要查看 a 的内容 `SpendBundle` ，请参阅 [本节](http://10.177.0.168:3000/cn/docs/04coin-set-model/spend_bundles) 。
 
 ```python
 class RespondTransaction(Streamable):
@@ -139,7 +139,7 @@ class RespondTransaction(Streamable):
 
 ## 请求权重证明 
 
-向对等方请求重量证明。 这是在开始长同步之前完成的。 权重证明允许我们的节点验证 `new_peak` 我们从对等方收到的 a 是否 对应于实际有效的区块链。 这证明在该区块链上使用了一定数量的“权重”或空间和时间。
+向对等方请求重量证明。 这是在开始长同步之前完成的。 权重证明允许我们的节点验证 `new_peak` 我们从对等方收到的 a 是否对应于实际有效的区块链。 这证明在该区块链上使用了一定数量的“权重”或空间和时间。
 
 ```python
 class RequestProofOfWeight(Streamable):
@@ -166,7 +166,7 @@ class RequestProofOfWeight(Streamable):
 
 ## 响应权重证明
 
-对 `request_proof_of_weight` 消息的 响应 。 请注意，权重证明可能非常大，在数十 MB 范围内。 如果链 VDF 被压缩（又名 blueboxed），那么它们的权重证明会更小。 这是权重证明的V1版本，以后可能会加入更高效的版本。
+对 `request_proof_of_weight` 消息的响应 。请注意，权重证明可能非常大，在数十 MB 范围内。 如果链 VDF 被压缩（又名 blueboxed），那么它们的权重证明会更小。 这是权重证明的V1版本，以后可能会加入更高效的版本。
 
 ```python
 class RespondProofOfWeight(Streamable):
@@ -193,7 +193,7 @@ class RespondProofOfWeight(Streamable):
 
 ## 请求块
 
-从对等点请求某个高度的块。 收到 `new_peak` 消息 后调用 。
+从对等点请求某个高度的块。 收到 `new_peak` 消息后调用 。
 
 ```python
 class RequestBlock(Streamable):
@@ -294,7 +294,7 @@ class RequestBlocks(Streamable):
 
 ## 响应块
 
-对 `request_blocks` 消息的 响应 。
+对 `request_blocks` 消息的响应 。
 
 ```python
 class RespondBlocks(Streamable):
@@ -393,7 +393,7 @@ class RequestUnfinishedBlock(Streamable):
 
 ## 响应未完成块
 
-对 `request_unfinished_block` 消息的 响应 。
+对 `request_unfinished_block` 消息的响应 。
 
 ```python
 class RespondUnfinishedBlock(Streamable):
@@ -506,7 +506,7 @@ class RespondSignagePoint(Streamable):
 
 ## 响应子槽末端
 
-`request_signage_point_or_end_of_sub_slot` 在 where `index_from_challenge` 为零 的情况下的 另一个响应 。 这也由全节点验证和转发，类似于标牌点。
+`request_signage_point_or_end_of_sub_slot` 在 where `index_from_challenge` 为零的情况下的另一个响应 。 这也由全节点验证和转发，类似于标牌点。
 
 ```python
 class RespondEndOfSubSlot(Streamable):
