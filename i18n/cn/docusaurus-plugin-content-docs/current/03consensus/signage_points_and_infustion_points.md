@@ -47,13 +47,13 @@ required_iterations = (difficulty
     // pow(2, 256) * expected_plot_size(size))
 ```
 
-难度常数因子基于区块链的初始常数，对于 chia 它是`2^67`。难度因时代而异。如您所见，**sp_quality_string**被转换为 0 到 1 之间的随机数，方法是将其除以`2^256`，然后乘以绘图大小。
+难度常数因子基于区块链的初始常数，对于 chia 它是`2^67`。难度因时代而异。如您所见，**sp_quality_string** 被转换为 0 到 1 之间的随机数，方法是将其除以`2^256`，然后乘以绘图大小。
 
 出于共识的目的，`expected_plot_size`是`((2 * k) + 1) * (2 ** (k - 1)).`，其中 k>=32<50。实际绘图大小是该值乘以一个常数因子，以字节为单位。
 
 这是因为图中的每个条目都围绕`k+0.5`位，并且有围绕`2^(k)`条目。
 
-所述**输注迭代**是从在其与上述质量块可以被包括在blockchain子时隙的开始的迭代次数。这计算如下：
+所述**输注迭代**是从在其与上述质量块可以被包括在 blockchain 子时隙的开始的迭代次数。这计算如下：
 
 `
 infusion iterations =( signage point iterations + 3 * sp interval iterations + required iterations)  %  sub slot iterations
@@ -157,7 +157,7 @@ With these VDFs, the block can be finished and added to the blockchain by full n
 
 ## 定义
 
-**质量串**：空间的证据的一小部分，2 x值出总64个的x值，可以有效地从磁盘中检索，并且该值来获取由所述标志点来确定。
+**质量串**：空间的证据的一小部分，2 x 值出总 64 个的 x 值，可以有效地从磁盘中检索，并且该值来获取由所述标志点来确定。
 
 **sp quality string**：与质询链标牌点连接的质量字符串的散列。这个哈希最终决定了某个证明的“运气”，以及它的 required_iters 是低还是高。
 
