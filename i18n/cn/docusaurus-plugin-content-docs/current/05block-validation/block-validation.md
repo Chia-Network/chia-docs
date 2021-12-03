@@ -41,8 +41,8 @@ which contain only the important pieces of block information required for valida
 
 完全同步的方法可能因实现而异，但高级算法如下：
 
-1. 连接到网络上的其他对等点，通过查询介绍人DNS，并爬取网络
-2. 查看当前peer的峰值权重，选择几个peer进行同步
+1. 连接到网络上的其他对等点，通过查询介绍人 DNS，并爬取网络
+2. 查看当前peer的峰值权重，选择几个 peer 进行同步
 3. 下载并验证重量证明，以确保给定的峰值背后有实际工作
 4. 批量下载并验证区块链中的所有区块
 
@@ -121,7 +121,7 @@ every 47 seconds on average. Low power machines like the RPI4 should be able to 
    * 检查赤字（MIN_SUB .. 创世块的赤字边缘情况）
    * 如果 prev sb 的赤字为 0，则将赤字重置为 MIN_BLOCK_PER_CHALLENGE_BLOCK
    * 否则，槽尾赤字保持不变，不能重置，直到 0
-3. 查看sub-epoch摘要
+3. 查看 sub-epoch 摘要
    * 检查创世区块是否没有子纪元摘要
    * 检查我们是否完成了一个 slot 以及我们是否完成了一个 sub-epoch
    * 检查实际的 sub-epoch 是否正确
@@ -133,11 +133,11 @@ every 47 seconds on average. Low power machines like the RPI4 should be able to 
 8. 检查标牌点索引 0 没有 cc sp 和 rc sp
 9. 检查新纪元的第一个子槽没有溢出
 10. 检查总迭代次数
-11. 检查奖励链sp证明
-12. 检查奖励链sp签名
-13. 检查cc sp vdf
-14. 检查cc sp sig
-15. 检查is_transaction_block
+11. 检查奖励链 sp 证明
+12. 检查奖励链 sp 签名
+13. 检查 cc sp vdf
+14. 检查 cc sp sig
+15. 检查 is_transaction_block
 16. 通过绘图键检查树叶块签名
 17. 通过绘图键检查树叶块签名
 18. 查看未完成的奖励链区块哈希
@@ -149,13 +149,13 @@ every 47 seconds on average. Low power machines like the RPI4 should be able to 
 22. 检查树叶块是否存在
 23. 检查树叶块哈希
 24. 检查上一个区块哈希的创世和非创世
-25. Foliage Block中的filter hash必须是filter的hash
-26. Foliage Block中的时间戳以后不能超过5分钟，并且时间戳必须大于上一个交易块时间戳
+25. Foliage Block 中的 filter hash 必须是 filter 的 hash
+26. Foliage Block 中的时间戳以后不能超过 5 分钟，并且时间戳必须大于上一个交易块时间戳
 27. 检查创世和非创世的区块高度
 28. 检查创世和非创世的区块权重
-29. 检查挑战链注入点VDF
-30. 查看奖励链注入点VDF
-31. 检查注入的挑战链注入点VDF
+29. 检查挑战链注入点 VDF
+30. 查看奖励链注入点 VDF
+31. 检查注入的挑战链注入点 VDF
 32. 检查奖励区块哈希
 33. 检查奖励区块 is_transaction_block 
 
