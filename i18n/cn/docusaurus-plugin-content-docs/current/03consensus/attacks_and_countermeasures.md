@@ -15,6 +15,7 @@ sidebar_position: 14
 <summary>原文参考</summary>
 
 - ## 51% (46%) attack:
+
 A 51% attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to reorg.
 The classic long range attack which is also present in proof of work systems is the 51% attack.
 In the 51% attack, the attacker with 51% of the network space creates an alternate chain and eventually catches up.
@@ -39,6 +40,7 @@ The second is that if the attacker has the fastest VDF, they can get an addition
 <summary>原文参考</summary>
 
 - ## Extending many chains
+
 If an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions such that they get the best possible chain.
 Due to the average of 32 blocks with the same challenge, the attacker can only try about 32 different combinations (which block to include in the challenge chain),
 and exponentially branching of trying each of these would give a small boost in space for the attacker 
@@ -75,6 +77,7 @@ If the attacker were to manipulate the difficulty, they can change it so that th
 <summary>原文参考</summary>
 
 - ## Faster VDF and 46% of space
+
 The 46% attack gets worse if the attacker’s VDF is faster. Let’s assume the attacker’s VDF is 2x faster. Then their chain will be able to create challenges and blocks at 2x the rate of the rest of the network, which means they can create a "heavier" chain with the same amount of space.
 
 This required space drops from 46% to approximately 30% of the total network space. 0.46/0.54 = 2x/(1-x). x=0.30. If the attacker does not have access to the fastest VDF, they will not be able to get a space advantage.
@@ -91,6 +94,7 @@ There is a concern that if the Chia system does not have a significant amount of
 <summary>原文参考</summary>
 
 - ## 100% attack
+
 If difficulty adjustment was triggered every X VDF slots, as opposed to every X blocks, this would allow for a 100% attack, where all farmers collude to constantly decrease or increase the difficulty. In normal operation, there are 32 blocks per slot. Under a 100% attack, the difficulty is manipulated such that difficulty goes down by 2, so there are 64 blocks per slot, and then goes up by 4, so there are 16 blocks per slot, alternating forever. This would allow farmers to earn on average 64+16/2 = 36 block rewards per slot. This is the reason for making difficulty adjustment based on the number of blocks.
 
 </details>
@@ -108,6 +112,7 @@ If difficulty adjustment was triggered every X VDF slots, as opposed to every X 
 <summary>原文参考</summary>
 
 - ## Short range replotting attack
+
 Plotting usually takes a few minutes to a few hours even on fast hardware, but it is parallelizable and getting faster.
 Attackers might find ways to create plots after a signage point is released, but before the infusion point and then delete the plot, in effect being able to farm without storing the space continuously.
 This will likely require expensive specialized hardware with fast memory, since the plot must be created in time for the infusion (less than 28 seconds).
@@ -141,6 +146,7 @@ Setting it to 512 provides a 512x multiplier, etc.
 <summary>原文参考</summary>
 
 - ## Faster VDF (but not 51% attack)
+
 With the fastest VDF in the system, an attacker can more effectively perform a 51% attack: i.e expand their space,
 when farming in a private chain. If the attacker does not reach a total of 51% of space (with the VDF boosting and extending many chains as above), the usefulness of the faster VDF decreases substantially. This is because inclusion and exclusion of blocks does not depend on how fast you can perform the VDF, but instead depends on whether it’s less than the sub-slot iterations. Furthermore, an attacker needs the space of the rest of the network in order to advance, and therefore must release the challenges to the network.
 
@@ -171,6 +177,7 @@ An interesting attack explored by [10] is the bribing attack which takes advanta
 <summary>原文参考</summary>
 
 - ## Farmer bribe trunk attack
+
 An interesting attack explored by [10] is the bribing attack which takes advantage of the predictability of the elected “leaders” in each slot. The authors analyze a proof of stake chain, and argue that when participants know that they are going to win in advance, there is a potential bribing attack. If participants knew in advance which plots would win, each user can notify an attacker that they are willing to participate in the attack, and if they reach a certain threshold, they can completely reorg the chain (or orphan those who do not participate, censor transactions, etc). This attack does NOT require the majority of the space in the network to participate; only the winners in that short time period. Furthermore, it is undetectable, since the attacker can make a normal looking chain. 
 
 This problem is not present in this revision of the Chia consensus algorithm. This problem is solved by reducing the predictability: each farmer does not know for sure if their proof of space is fully eligible until the signage point. Therefore an attacker must bribe a large majority of the space to pull off this attack. 
@@ -189,6 +196,7 @@ This problem is not present in this revision of the Chia consensus algorithm. Th
 <summary>原文参考</summary>
 
 - ## Farmer bribe foliage reorg attack
+
 Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. If the attacker can convince every single farmer in N blocks to sign, they can revert or reorder any transaction in those N blocks. Potentially fraud proofs could be used, but these were not chosen since they enable other attacks and complicate behaviour. 
 
 Instead, the solution is simply to wait longer. After 32 blocks (approximately 10 minutes), the assumption that at least one farmer is following the protocol and not double signing is a reasonable one. If 54% is non-colluding (the assumption for 46% attack resilience), the probability of a reversal after 32 blocks is1.8*10-13=0.00000000000018. Furthermore, this attack is detectable so it is not easy to pull off.
@@ -207,6 +215,7 @@ Each user can choose their own threshold for which they accept a transaction/blo
 <summary>原文参考</summary>
 
 - ## Orphaning transaction blocks for transaction fees
+
 Transaction blocks are different from non-transaction blocks, since they contain transaction fees. These may surpass block rewards. At the time of writing (November 2020), in peak defi hype we are seeing 2 eth block rewards with 8 eth fees per block. In Chia this will be more extreme, since not every block contains transactions. This leads to attacks where the 2nd place farmer ignores the 1st place in an attempt to win the transaction block. If the 2nd block comes less than 30 seconds after the 1st, they do not specify the previous block, and thus the 2nd place cannot orphan the 1st. The 3rd place could orphan both, but nobody would follow this chain since it is shorter. 
 
 However, if there are no blocks within 30 seconds of the 1st block, the 2nd could orphan the 1st, but they would have to convince the next block to farm on their alternate chain. An easier attack would be if the attacker controlled both the 2nd and 3rd, in which case they could ignore the first and still be longer. These orphaning attacks do not allow the attacker to steal rewards, but rather allow the attacker to slightly lower the difficulty. Since they are very situational and require a lot of space, attempting this attack will likely harm the network more than the potential gain to the attacker.
@@ -221,6 +230,7 @@ However, if there are no blocks within 30 seconds of the 1st block, the 2nd coul
 <summary>原文参考</summary>
 
 - ## Orphan Rate
+
 In Chia consensus, two competing blocks around the same time can both be included into the blockchain in parallel, without knowing about each other. (Although at most one can be a block). Since all transaction blocks are also blocks, they are both included into the chain, resulting in a chain with higher weight. This means that the orphan rate in Chia will be essentially zero, assuming low network latency. If network latency exceeds the infusion delay (30-40 seconds), then orphaning of a block is almost guaranteed, so it is more of a step-function. This is in contrast with Nakamoto-PoW in which the orphan rate is high if there is network delay, and decreases smoothly as network condition improves, but never reaches zero.
 
 </details>
