@@ -88,7 +88,7 @@ pool.
 authentication_token = current_utc_minutes / authentication_token_timeout
 ```
 
-哪里 `authentication_token_timeout` 是池的配置参数，该参数也包含在 [GET /pool\_info](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) 响应中，农民必须遵守该参数。 而 在签名 `current_utc_minutes` 时以 **分钟** 为单位的本地 UTC 时间戳 。 理想情况下，本地时钟应与时间同步协议（例如 NTP）同步。 身份验证令牌通常包含在签名的有效负载中。
+哪里 `authentication_token_timeout` 是池的配置参数，该参数也包含在 [GET /pool\_info](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) 响应中，农民必须遵守该参数。 而在签名 `current_utc_minutes` 时以**分钟**为单位的本地 UTC 时间戳 。 理想情况下，本地时钟应与时间同步协议（例如 NTP）同步。 身份验证令牌通常包含在签名的有效负载中。
 
 
 <details>
@@ -304,7 +304,7 @@ https://subdomain.domain.tld:port/path
 
 #### authentication_token_timeout
 
-有效的时间（以 **分钟** 为单位） `authentication_token` ，请参阅 [Farmer 身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 。
+有效的时间（以**分钟**为单位） `authentication_token` ，请参阅 [Farmer 身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 。
 
 <details>
 <summary>原文参考</summary>
@@ -422,7 +422,7 @@ https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&
 
 其中 `method_name` 必须是序列化字符串 `"get_farmer"` ，参数必须根据 [签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列， 签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案 的私钥签名 。
 
-其中参数必须根据 [签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列， 签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案 的私钥签名 。
+其中参数必须根据 [签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列， 签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
 注意：池必须返回当前的积分余额，这是自该用户上次付款以来找到的积分总数。
 
@@ -527,15 +527,15 @@ payout for that user.
 
 请参阅 [Farmer 身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
 
-#### payload.authentication\_public\_key
+#### payload.authentication_public_key
 
 身份验证密钥的公钥，这是 Farmer 用来签署对池的请求的临时密钥。 它由 授权 `owner_key` ，因此可以更安全地保存所有者密钥。 池应该拒绝使用过时的请求 `authentication_keys` 。 可以使用使用 `PUT /farmer` 所有者密钥签名的 来更改这些 密钥。
 
-#### payload.payout\_instructions
+#### payload.payout_instructions
 
 这些是关于农民希望如何获得报酬的说明。 默认情况下，这将是一个 XCH 地址，但它可以设置为小于 1024 个字符的任何字符串，因此它可以代表另一个区块链或支付系统标识符。
 
-#### payload.suggested\_difficulty
+#### payload.suggested_difficulty
 
 农民要求更新难度。 可以被池忽略或尊重。 但是，只有当认证公钥是该农民看到的最新公钥时，才应遵守这一点。
 
@@ -662,7 +662,7 @@ and [Farmer authentication](#farmer-authentication) for the specification of `au
 }
 ```
 
-对于请求正文中提供的每个条目，成功的响应必须始终包含一个键/值对。 `true` 如果条目已更新或 `false` 该值与当前值相同，则 该值必须为 。
+对于请求正文中提供的每个条目，成功的响应必须始终包含一个键/值对。 `true` 如果条目已更新或 `false` 该值与当前值相同，则该值必须为 。
 
 请参阅下面的示例正文以仅更新身份验证密钥：
 
@@ -803,11 +803,11 @@ K 大小，必须至少为 32。
 
 #### payload.proof_of_space.proof
 
-64 x 值编码空间的实际证明，必须有效对应于 `sp_hash` .
+64 x 值编码空间的实际证明，必须有效对应于 `sp_hash` 。
 
 #### 有效载荷.sp_hash
 
-这是标牌点输出的哈希值，或者子槽的challenge\_hash，如果它是子槽挑战的结束。 这必须是区块链上尚未恢复的有效标志点。 池必须在处理部分后几分钟检查它没有在区块链上恢复。
+这是标牌点输出的哈希值，或者子槽的challenge_hash，如果它是子槽挑战的结束。 这必须是区块链上尚未恢复的有效标志点。 池必须在处理部分后几分钟检查它没有在区块链上恢复。
 
 #### payload.end_of_sub_slot
 
@@ -1036,7 +1036,7 @@ IETF spec.
 
 ## 难度
 
-难度允许池操作员控制他们每天从每个农民那里收到多少部分。 可以为每个农民单独调整难度。 一个合理的目标是每天 300 个部分，以确保对农民的频繁反馈和低可变性。 难度为 1 会导致每个 k32 图每天大约有 10 个部分。 这是协议的V1支持的最小难度为1。但是，为了效率，矿池可以设置更高的最小难度。 在计算证明质量是否足以获得积分时，池应使用 `sub_slot_iters=37600000000` . 如果农户提交的证明对当前难度不够好，则池应通过 `current_difficulty` 在响应中设置来响应。
+难度允许池操作员控制他们每天从每个农民那里收到多少部分。 可以为每个农民单独调整难度。 一个合理的目标是每天 300 个部分，以确保对农民的频繁反馈和低可变性。 难度为 1 会导致每个 k32 图每天大约有 10 个部分。 这是协议的 V1 支持的最小难度为1。但是，为了效率，矿池可以设置更高的最小难度。 在计算证明质量是否足以获得积分时，池应使用 `sub_slot_iters=37600000000` 。 如果农户提交的证明对当前难度不够好，则池应通过 `current_difficulty` 在响应中设置来响应。
 
 <details>
 <summary>原文参考</summary>
