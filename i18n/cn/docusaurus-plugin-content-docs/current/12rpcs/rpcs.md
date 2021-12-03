@@ -6,7 +6,7 @@ sidebar_position: 1
 
 > Chia RPC API
 
-chia 节点和服务带有一个 JSON rpc api 服务器，允许您访问信息和控制服务。 这些可以通过 HTTP、WebSockets 或通过客户端 SDK 访问。 端口可以​​在 `~/.chia/mainnet/config/config.yaml` . rpc 端口不应暴露于 Internet。 TLS 证书用于保护通信。
+chia 节点和服务带有一个 JSON rpc api 服务器，允许您访问信息和控制服务。 这些可以通过 HTTP、WebSockets 或通过客户端 SDK 访问。 端口可以​​在 `~/.chia/mainnet/config/config.yaml` 。 rpc 端口不应暴露于 Internet。 TLS 证书用于保护通信。
 
 <details>
 <summary>原文参考</summary>
