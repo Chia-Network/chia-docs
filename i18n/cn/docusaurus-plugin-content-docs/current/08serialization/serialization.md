@@ -43,7 +43,7 @@ sha256 takes in bytes, so we need a consistent way to convert objects into bytes
 
 1. 通过附加每个项目的序列化来序列化 x 个项目的元组。
 2. 一个 List 被序列化为一个 4 字节大小的前缀（项目数）和每个项目的序列化。
-3. 一个Optional被序列化为0x00或0x01的1字节前缀，如果是1，则后面是item的序列化。
+3. 一个 Optional 被序列化为 0x00 或 0x01 的 1 字节前缀，如果是 1，则后面是 item 的序列化。
 4. 自定义项通过调用 .parse 方法进行序列化，将字节流传入其中。示例是 CLVM 程序。
 
 这种格式可以很容易地实现，并允许我们散列对象，如标题和空间证明，而无需复杂的序列化逻辑。
