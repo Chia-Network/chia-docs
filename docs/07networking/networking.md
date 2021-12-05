@@ -57,7 +57,7 @@ DNS introducers are also available at different names, which return random relia
 
 For example: `dig dns-introducer.chia.net`.
 
-More DNS introducers will be recruited in the future; check the [chia-blockchain GitHub repository](https://github.com/Chia-Network/chia-blockchain "chia-block chain on GitHub") for updates. The introducer is only contacted at initial launch of the application, or if the peer database has no good peers.
+More DNS introducers will be recruited in the future; check the [chia-blockchain GitHub repository](https://github.com/Chia-Network/chia-blockchain "chia-blockchain on GitHub") for updates. The introducer is only contacted at initial launch of the application, or if the peer database has no good peers.
 
 ## RPC
 Aside from the Chia protocols described in the next page, there is also a local RPC protocol to allow simple control over a node or wallet through HTTP. All requests and responses for the RPC protocol are in JSON, to simplify the interface. This allows doing things like getting the tips of the chain, getting a specific block, adding connections, stopping the node, etc. The full node UI connects to the full node using the RPC.
@@ -69,7 +69,7 @@ The Chia software has multiple rules and checks to make sure a node is connected
 
 For example, outgoing connections (connections which our node makes to external nodes) are ranked higher than incoming ones. This is because we cannot verify whether incoming peers are part of an attack or not.
 
-Each node will try to connect to 8 (implementation-dependant) external peers. As long as a node is connected to at least one fast and non-malicious peer, the node should be able to keep up with, and maintain, consensus with the heaviest blockchain.
+Each node will try to connect to 8 (implementation-dependent) external peers. As long as a node is connected to at least one fast and non-malicious peer, the node should be able to keep up with, and maintain, consensus with the heaviest blockchain.
 
 ## Bans
 If a peer appears to be acting dishonestly, it can be disconnected and temporarily banned from reconnecting. Reasons for banning include (but are not limited to) exceeding the limits provided for each type of protocol message, sending invalid information, and making the node throw an exception when handling a message.

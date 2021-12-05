@@ -16,14 +16,13 @@ The core of Chia's peer-to-peer system is composed of full nodes. Full nodes hav
 1. Maintain a copy of the blockchain
 2. Validate the blockchain
 3. Propagate new blocks, transactions, and proofs through the network, using the peer protocol
-4. (Optional) Servec light lients (wallets) through the wallet protocol
+4. (Optional) Serve light clients (wallets) through the wallet protocol
 5. (Optional) Communicate with farmers
 6. (Optional) Communicate with timelords
 
 Usually, farmers run a full node process alongside their farmer process. Full nodes earn no rewards or fees, but they are important to maintain the consensus rules and the security of the system. Running a full node allows a user to be confident about the full state of the blockchain, and avoid trusting others.
 
-Full nodes are always connected to random set of full nodes in the network. Full nodes broadcast their own
-information (IP address and port) to their peers periodically, so that the entire network is aware that they are still running. Full nodes also broadcast all new blocks and transactions to their peers, allowing all nodes in the network to keep a complete copy of the blockchain.
+Full nodes are always connected to random set of full nodes in the network. Full nodes broadcast their own information (IP address and port) to their peers periodically, so that the entire network is aware that they are still running. Full nodes also broadcast all new blocks and transactions to their peers, allowing all nodes in the network to keep a complete copy of the blockchain.
 
 
 ## Farmers
@@ -65,7 +64,7 @@ A timelord is required to connect to exactly one full node, typically on the sam
 
 Timelords do not directly earn rewards. Furthermore, only the fastest timelord on the network will broadcast signage points at any given time. Therefore, only one timelord is required to keep the network running, and most farmers will not feel compelled to run one. However, professional farmers with multi-PiB farms may want to run a timelord, both for redundancy and for protection against temporary local latency issues.
 
->NOTE: Chia network is currently developing an ASIC timelord. This will add redundancy to the network, while reducing the possibility of an attacker creating their own timelord that is significanly faster than anyone else's. It should be available for purchase sometime in 2022.
+>NOTE: Chia network is currently developing an ASIC timelord. This will add redundancy to the network, while reducing the possibility of an attacker creating their own timelord that is significantly faster than anyone else's. It should be available for purchase sometime in 2022.
 
 If someone controls the fastest timelord in the world, it doesn't give them much of an advantage at winning rewards. However, they could potentially orphan or censor other farmers, depending on how much faster their timelord is.
 
@@ -79,7 +78,7 @@ Pools require the use of portable plots. These plots are tied a plot NFT that th
 
 Pools create and spend **coinbase transactions**, but in Chia's pool protocol they do not actually choose the contents of blocks. This gives more power to farmers and thus decreases the influence of centralized pools.
 
-Farmers periodically send partials, which contain a proof of space and a signature, to pools. The pools use these partial proofs to determine how much space the famers have dedicated, which in turn determines the farmer's portion of the reward when the pool wins a block.
+Farmers periodically send partials, which contain a proof of space and a signature, to pools. The pools use these partial proofs to determine how much space the farmers have dedicated, which in turn determines the farmer's portion of the reward when the pool wins a block.
 
 When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to the pool, which is later distributed to the participants. The farmer keeps the other 1/8 of the reward. This was an intentional design decision. If a farmer didn't receive a direct reward for creating a block, the operator of a competing pool might have had a financial incentive to join a competing pool with a large number of plots, and neglect to create a block when they found a valid proof, thereby spoiling the competing pool.
 

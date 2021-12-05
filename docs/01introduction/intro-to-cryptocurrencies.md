@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## What is a cryptocurrency?
 
-A cryptocurrency system can be thought of as a payments and financial infrastructure that is not controlled by any single entity, such as a bank, company, or government. Prior to the introduction of cryptocurrencies, there had always been an operator that had control of transaction inclusion and monetary policy. This operator respresented a centralized point of both power and failure.
+A cryptocurrency system can be thought of as a payments and financial infrastructure that is not controlled by any single entity, such as a bank, company, or government. Prior to the introduction of cryptocurrencies, there had always been an operator that had control of transaction inclusion and monetary policy. This operator represented a centralized point of both power and failure.
 
 The financial world was fundamentally changed with the introduction of Bitcoin on January 3, 2009. In the years that followed, many other cryptocurrencies were been created to solve various problems in the legacy financial realm.
 
@@ -18,8 +18,7 @@ This brings many benefits, some of which are:
 any amount or run any program at any time.
 - **Independent monetary policy**: new currencies can be created that do not depend on decisions made by one group or one country, and instead can be based on algorithms or have fixed supply.
 - **Unstoppable applications**: a program developed for and run on a secure blockchain can never be changed or stopped. The program itself can own funds and perform financial transactions. Code can run autonomously, without depending on a human operator. Some blockchain applications include: tokenization of other assets, non-fungible tokens (NFTs), loans, remittances, identity wallets, etc.
-- **Global standards**: through crypto, different countries and regions can interact and transact on one shared
-standard that is clearly documented, fully open source, and available for free. Different parties can come together to use a neutral platform, which reduces costs for those who build on top of the cryptocurrency.
+- **Global standards**: through crypto, different countries and regions can interact and transact on one shared standard that is clearly documented, fully open source, and available for free. Different parties can come together to use a neutral platform, which reduces costs for those who build on top of the cryptocurrency.
 - **Security**: There are many forms of potential attacks on any financial infrastructure, including virtual and physical hacks, bribery, network issues, etc. A system with a million nodes is much more difficult to attack than the aforementioned single point of failure.
 
 
@@ -75,7 +74,7 @@ In Proof of Work networks, each computer that is participating repeatedly genera
 
 When a winning proof is found, the computer that discovered earns the right to generate a new "block" in the blockchain. This block contains a pointer to the previous block, a list of valid transactions, as well as the winning hash. All nodes are required to accept the heaviest chain (the one which required the most work). Therefore, all nodes will accept the new block, and the proof-of-work lottery begins anew. 
 
-Each proof takes an average of 10 minutes to generate. As more computers join the network, the average amount of time to generate a proof will decrease. This brings us to another of Satoshi's simple and elegant ideas: the difficulty adjustment. Every 2016 blocks (two weeks, on average) the proof-of-work algorithm automatically adjusts how difficult it is to find a proof. It accomplishes this by increasing or decreasing the required number of leading zeros in a generated hash. The result is that the average time required to find a proof will always be 10 minutes, no matter how many computers decide to start or stop partipating in the proof-of-work lottery.
+Each proof takes an average of 10 minutes to generate. As more computers join the network, the average amount of time to generate a proof will decrease. This brings us to another of Satoshi's simple and elegant ideas: the difficulty adjustment. Every 2016 blocks (two weeks, on average) the proof-of-work algorithm automatically adjusts how difficult it is to find a proof. It accomplishes this by increasing or decreasing the required number of leading zeros in a generated hash. The result is that the average time required to find a proof will always be 10 minutes, no matter how many computers decide to start or stop participating in the proof-of-work lottery.
 
 With this consensus mechanism in place, attacking the network becomes very difficult. If an attacker wants to "rewrite history" by creating an alternative blockchain, they'll need to create new blocks faster than the honest actors in the system. Because of the proof of work that is required to create each block, the attacker will need to generate hashes faster than all other computers in the network, combined. This is known as a "51% attack" and is discussed in greater detail later in section [TODO].
 
@@ -107,7 +106,7 @@ The Bitcoin network performs around 170 quintillion (170,000,000,000,000,000,000
 
 
 ### Beyond Proof of Work
-Over a decade has passed since the creation of Bitcoin and Proof of Work blockchains. While Proof of Work is quite secure, that security comes at a cost: a tremendous expenditure of energy is required to generate those 170 quintillion hashes per second. On top of that, specialized hardward is required to run nodes on these systems, which has led to a high degree of centralization among the top miners.
+Over a decade has passed since the creation of Bitcoin and Proof of Work blockchains. While Proof of Work is quite secure, that security comes at a cost: a tremendous expenditure of energy is required to generate those 170 quintillion hashes per second. On top of that, specialized hardware is required to run nodes on these systems, which has led to a high degree of centralization among the top miners.
 
 Perhaps most troubling of all are the pools. On a given day, the hashrate of the top four or five Bitcoin pools constitutes over half of the overall hashrate. Arguably, the easiest attack against the Bitcoin network would be for the pool operators to collude (either willingly or under threat), putting a 51% attack well within reach.
 

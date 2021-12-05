@@ -10,7 +10,7 @@ For light clients that want to sync up quickly to the chain (for example, mobile
 
 This is called a proof of weight.
 
-Naively, the light client coudl download every single block and all the required proofs and verify them. But, with a large number of blocks, this would require a lot of bandwidth and CPU.
+Naively, the light client could download every single block and all the required proofs and verify them. But, with a large number of blocks, this would require a lot of bandwidth and CPU.
 
 A more efficient method relies on a protocol similar to Flyclient[4][TODO]. The node (Prover) sends all the sub-epoch summaries from the fork point, including difficulty resets, to the light client.
 

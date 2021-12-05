@@ -33,7 +33,7 @@ Weight proofs are important, because they prevent other peers from lying to us a
 
 ### Normal Operation
 Normal operation is the process by which a full node continuously gossips and receives blocks with other peers, always following the heaviest peak. If our node is at weight 2000, and we see that a peer has a peak at weight 2100, then we fetch that block from the peer. Usually, this is done in two phases:
-1. The unfinished block is propagated across the nework, along with all information up to the signage point, transactions, etc.
+1. The unfinished block is propagated across the network, along with all information up to the signage point, transactions, etc.
 2. The finished block, which includes infusion point VDFs, is also propagated. This typically excludes the transactions, which were already sent in step 1.
 
 Normal operation is much less CPU-intensive than full sync, since there is only one block every 18 seconds, and one transaction block every 47 seconds, on average. Low-power machines like the Raspberry PI 4 should be able to easily continue normal operation.

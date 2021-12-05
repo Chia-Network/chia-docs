@@ -28,7 +28,7 @@ iterations per second = floor(num iterations in last epoch / duration of last ep
 That is, the delta in total iterations from the start to the end of the epoch, divided by the delta in timestamps.
 
 Sub-slot iterations is the total number of iterations per ten-minute sub-slot.
-Signage point interval iterations is sub-slot iterations divided by 64 (the number of signage poings per sub-slot).
+Signage point interval iterations is sub-slot iterations divided by 64 (the number of signage points per sub-slot).
 
 ```python
 sub slot iterations = iterations per second * 300

@@ -38,7 +38,7 @@ but Chia keys were created in 2020 and thus the older version of the specificati
 
 There are two ways in which child keys can be derived from parent keys: hardened and unhardened.
 
-Hardened keys are the default, and only supported, method in the EIP-2333 spec. They are secure, since each key is cryptographically separated -- revealing one key has no impact on the security of its acenstors or siblings. However, hardened keys are limited in functionality, because they can only be derived through private derivation. That
+Hardened keys are the default, and only supported, method in the EIP-2333 spec. They are secure, since each key is cryptographically separated -- revealing one key has no impact on the security of its ancestors or siblings. However, hardened keys are limited in functionality, because they can only be derived through private derivation. That
 is, a parent _private_ key can be used to derive a child _private_ key, a parent
 _public_ key cannot be used to derive a child _public_ key.
 

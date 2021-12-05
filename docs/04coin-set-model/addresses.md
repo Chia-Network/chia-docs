@@ -4,8 +4,7 @@ sidebar_position: 4
 
 # 4.4 Addresses
 
-Puzzle hashes in chia are 32 byte values. These can be displayed in hex, but this can lead to errors due to typos, and a
-poor user experience. Therefore, Chia displays puzzle hashes in a custom format called an address.
+Puzzle hashes in chia are 32 byte values. These can be displayed in hex, but this can lead to errors due to typos, and a poor user experience. Therefore, Chia displays puzzle hashes in a custom format called an address.
 The encoding scheme used is [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki).
 
 Address: `xch1pwrzyy35qxk0rz76jl0648fvt6ql905vwd7zs0scjqant5sf25lql4hz3z`

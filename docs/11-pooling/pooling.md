@@ -70,8 +70,7 @@ A few minutes later, the pool pulls from the queue, and checks that the signage 
 
 TODO: add image here
 
-The pool periodically searches the blockchain for new pool rewards (according to the [rewards schedule](/docs/05block-validation/block_rewards "Section 5.3: Block rewards")) that go to the various `p2_singleton_puzzle_hashes` of each of the farmers. These coins are locked, and can only be spent along with the singleton that they correspond to. The singleton is also locked to a `target_puzzle_hash`, which in this diagram is the red pool address. Anyone can spend the singleton and the `p2_singleton_puzzle_hash` coin, as 
-long as it's a block reward, and all conditions are met. Some of these conditions require that the singleton always create exactly 1 new child singleton with the same launcher ID, and that the coinbase funds are sent to the `target_puzzle_hash`.
+The pool periodically searches the blockchain for new pool rewards (according to the [rewards schedule](/docs/05block-validation/block_rewards "Section 5.3: Block rewards")) that go to the various `p2_singleton_puzzle_hashes` of each of the farmers. These coins are locked, and can only be spent along with the singleton that they correspond to. The singleton is also locked to a `target_puzzle_hash`, which in this diagram is the red pool address. Anyone can spend the singleton and the `p2_singleton_puzzle_hash` coin, as long as it's a block reward, and all conditions are met. Some of these conditions require that the singleton always create exactly 1 new child singleton with the same launcher ID, and that the coinbase funds are sent to the `target_puzzle_hash`.
 
 ### Calculating farmer rewards
 

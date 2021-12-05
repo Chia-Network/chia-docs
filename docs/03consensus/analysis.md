@@ -9,7 +9,7 @@ The safety of Chia's consensus is similar to that of other Nakamoto consensus al
 
 It's worth noting that the 54% requirement only pertains to _non-colluding_ space, rather than _honest_ farming space. Profit-seeking farmers gain very little by deviating from the protocol.
 
-There is the added assumption that at least one fast timelord must be connected to the non-colluding portion of the network, and that the attacker's timelord is not significantly faster. Chia eventually plans to release an ASIC timelord, which should ensure that nobody can obtain a signicantly faster timelord.
+There is the added assumption that at least one fast timelord must be connected to the non-colluding portion of the network, and that the attacker's timelord is not significantly faster. Chia eventually plans to release an ASIC timelord, which should ensure that nobody can obtain a significantly faster timelord.
 
 ## Liveness
 The liveness of the Chia consensus system is one of its greatest strengths. Like Bitcoin, the Chia system continues advancing even when a majority of the space goes offline. Unlike bitcoin, though, the system does not slow down significantly when this happens, since not all blocks are transaction blocks. Therefore transactions throughput does not drop significantly if many participants go offline.

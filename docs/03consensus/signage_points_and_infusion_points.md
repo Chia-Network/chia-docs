@@ -64,7 +64,7 @@ Figure 5: timelords create proofs for both the signage point and the infusion po
 
 Figure 5 shows the infusion point as a green square marked `b1`. The first and last blocks of the sub-slot are marked `r1` and `r2`, respectively. For this example, the farmer will create the block at the time of the signage point marked with a red arrow, which we'll call `b1'`.
 
-At `b1`, the farmer's block gets combined with the VDF output for that point. This creates a new input for the VDF from that point on, i.e. we infuse the farmer’s block into the VDF. `b1` is only fully valid after two events have ocurred: 
+At `b1`, the farmer's block gets combined with the VDF output for that point. This creates a new input for the VDF from that point on, i.e. we infuse the farmer’s block into the VDF. `b1` is only fully valid after two events have occurred: 
 1. infusion_iterations has been reached, and
 2. Two VDF proofs have been included: one from `r1` to the signage point and one from `r1` to `b1`. (Actually it’s more since there are three VDF chains, explained later).
 
@@ -89,7 +89,7 @@ infusion_iterations = signage_point_iterations + (3 * sp_interval_iterations) + 
 
 After realizing they have won (at the 20th infusion point), the farmer fetches the whole proof of space, makes a block (optionally including transactions), and broadcasts this to the network. The block has until infusion_iterations (typically a few seconds) to reach timelords, who will infuse the block, creating the infusion point VDFs. With these VDFs, the block can be finished and added to the blockchain by full nodes.
 
-## Defitions
+## Definitions
 
 **Quality string**: A small part of the proof of space, 2 *x values* out of the total 64 *x values*, which can be retrieved efficiently from disk, and which values_to_fetch is determined by the signage point.
 

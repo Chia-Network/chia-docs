@@ -39,7 +39,7 @@ With BLS signatures, farmers combine all three signatures `s1, s2, and s3` into 
 This allows the farmer to combine all three spend bundles into one spend bundle, with only one signature. When creating the block, all spend bundles that go into the block are combined into exactly 1 spend bundle with 1 signature, which means less
 data is transmitted and stored on disk.
 
-Another benefit of these aggregate signatures, is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found [Secion 9: Keys and Signatures](/docs/09keys/keys-and-signatures). You can also read the [code for BLS signatures]](https://github.com/Chia-Network/bls-signatures).
+Another benefit of these aggregate signatures, is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found [Section 9: Keys and Signatures](/docs/09keys/keys-and-signatures). You can also read the [code for BLS signatures]](https://github.com/Chia-Network/bls-signatures).
 
 
 ## Coins vs Spend Bundles
@@ -70,7 +70,7 @@ Note that the puzzle hash of coin E is the same as that of coin A. Puzzle hashes
 
 Also note that only the first spend is creating the coins. This is the normal way to combine spends, since each coin must have exactly one parent. Spend A, by itself, would not be valid, since it creates more value (14 XCH) than it spends (5 XCH). However, the spend becomes valid when combined with spends B and C.
 
-Full nodes receieve, validate, and store the spend bundle in memory. However, when creating a new block, farming nodes will combine many spend bundles from different users. This creates one large spend bundle with one signature. When looking at just the block, it is not always clear which spends were bundled together initially. However, we can see the net additions and removals in the whole block.
+Full nodes receive, validate, and store the spend bundle in memory. However, when creating a new block, farming nodes will combine many spend bundles from different users. This creates one large spend bundle with one signature. When looking at just the block, it is not always clear which spends were bundled together initially. However, we can see the net additions and removals in the whole block.
 
 ## What do full nodes store on-chain?
 Puzzles are only revealed when coins are spent; the puzzles are saved on-chain afterward for record-keeping purposes.

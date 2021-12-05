@@ -4,7 +4,7 @@ sidebar_position: 13
 
 # 3.13 Timelord Algorithm
 
-A timelord keeps track of the current peak, which includes an infused block at a certain height, and signage points from the peak onwards. A timelord might receive new blocks to infuse, new peaks (blocks which are already infused), or new signage points. 
+A timelord keeps track of the current peak, which includes an infused block at a certain height, and signage points from the peak onward. A timelord might receive new blocks to infuse, new peaks (blocks which are already infused), or new signage points. 
 
 For more info, see [Section 3.4](/docs/03consensus/challenges "Section 3.4: Challenges"
 
@@ -16,7 +16,7 @@ Timelords also run the [three VDF chains](/docs/03consensus/signage_points_and_i
 
 If the timelord receives a challenge with less weight than their current peak, they ignore it. If the timelord receives a challenge point later in the current chain, they do the safe thing: ignore it. The reason is that by switching to a point further in the future, the timelord might be skipping the infusion of blocks, and thus orphaning valid blocks. 
 
-If the timelord receives a block for infusion which is late (we have already reached the challenge point at which the block should have been infused), the timelorad ignore the block, since infusing to it would allow attackers to withhold blocks [TODO expand]. 
+If the timelord receives a block for infusion which is late (we have already reached the challenge point at which the block should have been infused), the timelord ignore the block, since infusing to it would allow attackers to withhold blocks [TODO expand]. 
 
 Therefore, the main operation of the timelord involves keeping a cache of future blocks to infuse, broadcasting challenge points when they are reached, and infusing blocks when they reach their challenge points.
 

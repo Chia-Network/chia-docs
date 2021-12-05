@@ -37,7 +37,7 @@ A streamable must be a Tuple at the root level. Iters are serialized in the foll
 
 This format can be implemented very easily, and allows us to hash objects like headers and proofs of space, without complex serialization logic.
 
-Note that in the python implemnetation, we don't use a Tuple at the root level, but instead just use a dataclass with ordered type fields for ease of use. However, it is streamed as a Tuple.
+Note that in the python implementation, we don't use a Tuple at the root level, but instead just use a dataclass with ordered type fields for ease of use. However, it is streamed as a Tuple.
 
 ## Examples
 

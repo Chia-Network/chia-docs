@@ -199,7 +199,7 @@ class RespondEndOfSubSlot(Streamable):
 
 
 ## request_mempool_transactions
-This is a request for transactions in the mempool. The filter corresponds to a BIP158 Compact Block Filter, which allows the recipient to see what transactions the sender already has (with some small chance for false positives), without sending all transaction IDs. The recipient can then respond using `respond_transction` directly, but should not send a very large number of transactions, to avoid overwhelming the original sending peer.
+This is a request for transactions in the mempool. The filter corresponds to a BIP158 Compact Block Filter, which allows the recipient to see what transactions the sender already has (with some small chance for false positives), without sending all transaction IDs. The recipient can then respond using `respond_transaction` directly, but should not send a very large number of transactions, to avoid overwhelming the original sending peer.
 
 ```python
 class RequestMempoolTransactions(Streamable):
