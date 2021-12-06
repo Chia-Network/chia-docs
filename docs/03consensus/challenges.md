@@ -23,7 +23,7 @@ In figure 4, we can see three challenge points, c1, c2, and c3. At the these poi
 
 **Sub-slot iterations**: determines how many VDF iterations each sub-slot must have. This number is periodically adjusted.
 
-**Challenge**: a sha256 output string. It is used as a proof-of-space challenge for farmers’ plots. It is also used for the challenge chain VDF. This is also referred to as challenge hash.
+**Challenge**: a sha256 output string. It is used as a proof-of-space challenge for farmers’ plots. It is also used for the challenge chain VDF, and is sometimes referred to as a _challenge hash_.
 
 As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in detail in [Section 3.8](/docs/03consensus/three_vdf_chains "Section 3.8: Three VDF Chains").
 

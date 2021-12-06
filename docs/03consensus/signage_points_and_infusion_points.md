@@ -20,7 +20,7 @@ The proof of space challenge is computed as the hash of the plot filter bits:
 
 `PoSpace challenge = sha256(plot filter bits)`
 
-Using this challenge, the farmers fetch quality strings for each plot that made it past the filter. Recall that this process requires around 8 random disk seeks, which takes around 80 ms on a slow HDD. The quality string is a hash derived from part of the proof of space (but the whole proof of space has yet to be retrieved).
+Using this challenge, the farmers fetch quality strings for each plot that made it past the filter. Recall that this process requires around seven random disk seeks, which takes around 70 ms on a slow HDD. The quality string is a hash derived from part of the proof of space (but the whole proof of space has yet to be retrieved).
 
   >For both our [previous example](/docs/03consensus/challenges "Section 3.4: Challenges"), as well as the next example, we'll use the following values:
   * sub-slot_iterations = 100,000,000
@@ -64,7 +64,7 @@ Figure 5 shows the infusion point as a green square marked `b1`. The first and l
 
 At `b1`, the farmer's block gets combined with the VDF output for that point. This creates a new input for the VDF from that point on, i.e. we infuse the farmer’s block into the VDF. `b1` is only fully valid after two events have occurred: 
 1. infusion_iterations has been reached, and
-2. Two VDF proofs have been included: one from `r1` to the signage point and one from `r1` to `b1`. (Actually it’s more since there are three VDF chains, explained later).
+2. Two VDF proofs have been included: one from `r1` to the signage point and one from `r1` to `b1`. (Actually it’s more since there are three VDF chains, explained in [Section 3.8](/docs/03consensus/three_vdf_chains "Section 3.8: Three VDF Chains")).
 
 In Figure 5, the farmer creates the block at the time of the signage point, `b1’`. However, `b1’` is not finished yet, since it needs the infusion point VDF. Once the infusion_iterations VDF has been released, it is added to `b1’` to form the finished block at `b1`.
 
@@ -80,10 +80,12 @@ Let's say the farmer calculates required_iterations < 1.5625M once in the sub-sl
 infusion_iterations is then computed as:
 
 infusion_iterations = signage_point_iterations + (3 * sp_interval_iterations) + required_iterations
-    = (signage_point * sp_interval_iterations) + (3 * sp_interval_iterations) + required_iterations
-    = (20*1.5625M) + (3 * 1.5626M) + 0.7827M
-    = 36.7223M
-`
+
+= (signage_point * sp_interval_iterations) + (3 * sp_interval_iterations) + required_iterations
+
+= (20*1.5625M) + (3 * 1.5626M) + 0.7827M
+
+= 36.7223M
 
 After realizing they have won (at the 20th infusion point), the farmer fetches the whole proof of space, makes a block (optionally including transactions), and broadcasts this to the network. The block has until infusion_iterations (typically a few seconds) to reach timelords, who will infuse the block, creating the infusion point VDFs. With these VDFs, the block can be finished and added to the blockchain by full nodes.
 

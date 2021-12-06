@@ -47,7 +47,7 @@ Also due to hashing, a hacker cannot change a coin's parent_ID, puzzlehash, or a
 The PoST consensus has a much [lower energy consumption](https://chiapower.org "Chia's energy consumption statistics") compared to Proof of Work (PoW), and part of Chia's
 vision involves improving the carbon footprint of the blockchain industry.
 
-Chia's consensus algorithm is discussed in detail in [Section 3](/docs/03consensus/consensus_intro "Section 3.1: Chia Consensus").
+>Chia's consensus algorithm is discussed in detail in [Section 3](/docs/03consensus/consensus_intro "Section 3.1: Chia Consensus").
 
 ### Decentralized
 
@@ -67,7 +67,7 @@ Like many other blockchains, Chia allows pooling to smooth out the rewards struc
 
   * When a block is won, the farmer gets 1/8 of the rewards, and the pool operator gets the other 7/8. This was done to discourage pool operators from harming their competition by farming on a competing pool and neglecting to create a block when they find a proof. (Solo farmers collect the entire reward when they create a block.)
 
-  For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling "Section 11: Pooling").
+>For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling "Section 11: Pooling").
 
 ### Other key features
 

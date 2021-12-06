@@ -17,7 +17,7 @@ The key word here is “sequential”, like hashing a number many times: hash(ha
 <figure>
 <img src="/img/vdf.png" alt="drawing"/>
 <figcaption>
-Figure 3: The Verifier (blockchain) sends a challenge to a Prover (timelord) and the Prover computes the output and proof.
+Figure 3: The Verifier (blockchain) sends a challenge to the Prover (timelord) and the Prover computes the output and proof.
 </figcaption>
 </figure>
 

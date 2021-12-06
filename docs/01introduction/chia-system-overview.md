@@ -32,7 +32,7 @@ The prize for winning the lottery is called the _block reward_. Initially, this 
 While "XCH" is a convenient way to denominate Chia coins, the blockchain only knows about _mojos_. These are the smallest denomination of Chia's coins. Each mojo is worth one trillionth (1/1,000,000,000,000) of an XCH.
 
 ### Timelord nodes
-Timelord nodes broadcast _proofs of time_ (explained in [Section 3.3](/docs/03consensus/vdfs "Section 3.3: VDFs")) around every 9 seconds. This is equivalent to drawing and broadcasting the winning numbers in an ongoing lottery. When a farmer has a valid proof of space, they win the current lottery drawing. This allows them to process the highest-paying transactions in the mempool into a new block. They then broadcast this block to the rest of the network. Around one out of every three blocks contain transactions. The rest of the blocks are empty, but do pay a reward. (See [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage") for more details.)
+Timelord nodes broadcast _proofs of time_ (explained in [Section 3.3](/docs/03consensus/vdfs "Section 3.3: VDFs")) around every nine seconds. This is equivalent to selecting and broadcasting the winning numbers in an ongoing lottery. When a farmer has a valid proof of space, they win the current lottery drawing. This allows them to process the highest-paying transactions from the mempool into a new block. They then broadcast this block to the rest of the network. Around one out of every three blocks contains transactions. The rest of the blocks are empty, but do pay a reward. (See [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage") for more details.)
 
   >The timelord algorithm is explained in [Section 3.13](/docs/03consensus/timelords "Section 3.13: Timelord Algorithm").
 
@@ -46,4 +46,4 @@ Pools allow farmers to smooth out their rewards. They pay out small rewards freq
 
   >For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling "Section 11: Pooling").
 
-The rest of the documentation will go into depth into all of the above topics.
+The rest of the documentation will go in-depth for each of the above topics.

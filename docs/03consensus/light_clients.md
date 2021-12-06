@@ -6,9 +6,7 @@ sidebar_position: 12
 
 Light client support is another benefit of Proof of Space (PoSpace) when compared with Proof of Stake (PoS). In PoSpace, all proofs can be verified objectively and cryptographically, while maintaining the requirement to control an actual resource at a certain point in time. With Chia's consensus, a candidate chain can be compared to an alternate chain objectively for weight, even after being online for a long time, without relying on a central authority.
 
-For light clients that want to sync up quickly to the chain (for example, mobile wallets), a full node can create a small-sized proof that can convince the light client that the weight of a chain is close to some value.
-
-This is called a proof of weight.
+For light clients that want to sync up quickly to the chain (for example, mobile wallets), a full node can create a small-sized proof that can convince the light client that the weight of a chain is close to some value. This is called a proof of weight.
 
 Naively, the light client could download every single block and all the required proofs and verify them. But, with a large number of blocks, this would require a lot of bandwidth and CPU.
 
@@ -29,4 +27,4 @@ The main difference between this protocol and Flyclient is that blocks are not c
 More analysis needs to be done on how many sub-epochs should be downloaded and what the bounds are for what the proof of weight implies.
 
 ## Obtaining Transactions
-Light clients can fetch the transactions that they are interested in, without having to download every single block or block header. Two wallet protocols are available for this, a less efficient one that maintains better privacy, and a super efficient one that has a privacy tradeoff, namely that the wallet musk ask a node for payments made to certain addresses.
+Light clients can fetch the transactions that they are interested in, without having to download every single block or block header. Two wallet protocols are available for this, a less efficient one that maintains better privacy, and a super efficient one that has a privacy tradeoff, namely that the wallet must ask a node for payments made to certain addresses.

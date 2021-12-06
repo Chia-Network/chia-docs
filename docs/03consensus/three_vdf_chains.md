@@ -15,7 +15,9 @@ To mitigate this, the challenges will be based only on the first block to be inf
 Figure 8: The three VDF chains for 1+ challenges.
 
 cc = challenge chain, ic = infused challenge chain, rc = reward chain,
+
 sp = signage point, B = block, c = challenge, r = reward
+
 An attacker can manipulate the reward chain results but this has no effect on c2, and therefore has no effect on the PoSpace lottery.
 </figcaption>
 </figure>
@@ -59,7 +61,7 @@ This increases security by preventing VDF lookahead attacks.
 
 **Slot**: the list of sub-slots which contain at least 16 reward-chain blocks based on the challenge of the first sub-slot, or later sub-slots. At the end of the slot, the infused challenge chain stops, the challenge chain pulls in the result of the infused challenge chain, and the deficit is reset to 16.
 
-**Block**: a block is a collection of data infused into the rewards chain which contains: a proof of space for a challenge hash with less iterations than the slot iterations, sp and ip VDFs for both chains, optional ip VDF for the infused challenge chain, and a rewards address. Some blocks are also transaction blocks. There is a maximum of 128 blocks per slot.
+**Block**: a block is a collection of data infused into the rewards chain which contains: a proof of space for a challenge hash with fewer iterations than the slot iterations, sp and ip VDFs for both chains, optional ip VDF for the infused challenge chain, and a rewards address. Some blocks are also transaction blocks. There is a maximum of 128 blocks per slot.
 
 **Transaction Block**: A block that is eligible to create transactions, along with an associated list of transactions.
 

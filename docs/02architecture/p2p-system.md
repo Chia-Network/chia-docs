@@ -7,7 +7,7 @@ sidebar_position: 1
 
 ![chia-architecture](/img/chia-network-architecture.png)
 
-The above diagram shows Chia's network architecture. A single machine can run more than one of these processes. In fact, the default configuration is to run four processes together: farmer, full Node, harvester, and wallet. Many farmers will also choose to run the Electron GUI and pool processes. Additionally, a few farmers, especially those with multi-PiB farms, will choose to run a timelord.
+The above diagram shows Chia's network architecture. A single machine can run more than one of these processes. In fact, the default configuration is to run four processes together: Farmer, Full Node, Harvester, and Wallet. Many farmers will also choose to run the Electron GUI and Pool processes. Additionally, a few farmers, especially those with multi-PiB farms, will choose to run a Timelord.
 
 Let's discuss each of these processes, and the protocols that connect them, separately.
 
@@ -30,8 +30,8 @@ Chia's farmers are analogous to Bitcoin's miners. They earn block rewards and fe
 
 Farmers communicate with harvesters (individual machines, including the farmer machine, that actually store the plots) through the harvester protocol.
 
-Farmers operate by waiting for updates from a full node, which gives them new signage points (equivalent to a lottery's winning numbers) approximately every 9 seconds. Farmers then send the signage point to each harvester, to check whether any winning proofs of space exist. If the harvester finds any valid proofs, it sends them to the farmer, which separates them into two categories:
-* Full proofs must match or surpass the quality required by the network's difficulty level. These proofs are send to the full node, which then creates a new block.
+Farmers operate by waiting for updates from a full node, which gives them new signage points (equivalent to a lottery's winning numbers) approximately every nine seconds. Farmers then send the signage point to each harvester, to check whether any winning proofs of space exist. If the harvester finds any valid proofs, it sends them to the farmer, which separates them into two categories:
+* Full proofs must match or surpass the quality required by the network's difficulty level. These proofs are sent to the full node, which then creates a new block.
 * Partial proofs are used by pools to approximate a node's total storage.
 
 Farmers also have a private key, which is used for both signing blocks when a winning proof is found, as well as for signing partial proofs, which are then sent to pools.
@@ -42,11 +42,11 @@ Harvesters are individual machines controlled by a farmer. In a large farming op
 
 Harvesters control the actual plot files by retrieving qualities or proofs from disk. The minimum plot size (and by far the most common) is k32, which corresponds to around 100 GiB. With each increment of a k-value, the plot size roughly doubles, so a k33 plot is around 200 GiB, k34 is around 400 GiB, etc.
 
-Given the network's difficulty level at a given time, for each two signage points (a random 32-byte number), the network is expected to contain one proof of space. This is an average value -- there can also be zero or multiple proofs.
+The difficulty level automatically adjusts every 4608 blocks to target one proof of space -- across the entire network -- for every two signage points. This is the targeted average value -- there can also be zero or multiple proofs per signage point.
 
 Given a plot, the harvester must perform two tasks to find a valid proof:
 1. Fetch the initial quality -- this requires around seven random disk seeks, or 70 milliseconds on a slow HDD.
-2. (Only performed if the initial quality is sufficiently high) Fetch the full proof -- this requires around 64 disk seeks, or up to 640 milliseconds on a slow HDD.
+2. (Only performed if the initial quality is sufficiently high) Fetch the full proof -- this requires around 64 disk seeks, or 640 milliseconds on a slow HDD.
 
 For most challenges, the quality (step 1) will be very low, so fetching the entire proof (step 2) will not be necessary. A node has around 30 seconds to return a proof, so disk I/O will not be a limiting factor, even when proofs are stored on slow HDDs.
 
@@ -58,7 +58,7 @@ Finally, harvesters also maintain a private key for each plot. The blocks are si
 
 ## Timelords
 
-Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/docs/03consensus/vdfs "Section 3.3: VDFs")) and broadcasting them every ~9 seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
+Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/docs/03consensus/vdfs "Section 3.3: VDFs")) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
 
 Since this computation is sequential, very little energy is consumed, as opposed to proof-of-work systems, where computation is parallelizable. For example, if 100 timelords are doing the same computation on a proof of time, they will all create the exact same output.
 
@@ -80,13 +80,13 @@ Furthermore, an attacker with a significantly faster timelord than anyone else c
 
 Pools allow farmers to smooth out their rewards by earning based on proof of space partials, as opposed to winning blocks.
 
-Pools require the use of portable plots. These plots are tied a plot NFT that the farmer must create. This NFT sits on Chia's blockchain, and it allows users to switch between pools.
+Pools require the use of portable plots. These plots are tied to a plot NFT that the farmer must create. This NFT sits on Chia's blockchain, and it allows users to switch between pools.
 
 Pools create and spend **coinbase transactions**, but in Chia's pool protocol they do not actually choose the contents of blocks. This gives more power to farmers and thus decreases the influence of centralized pools.
 
 Farmers periodically send partials, which contain a proof of space and a signature, to pools. The pools use these partial proofs to determine how much space the farmers have dedicated, which in turn determines the farmer's portion of the reward when the pool wins a block.
 
-When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to the pool, which is later distributed to the participants. The farmer keeps the other 1/8 of the reward. This was an intentional design decision. If a farmer didn't receive a direct reward for creating a block, the operator of a competing pool might have had a financial incentive to join a competing pool with a large number of plots, and neglect to create a block when they found a valid proof, thereby spoiling the competing pool.
+When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to the pool, which is later distributed to the participants. The farmer keeps the other 1/8 of the reward. This was an intentional design decision. If a farmer didn't receive a direct reward for creating a block, the operator of a competing pool might have had a financial incentive to join a pool (that they didn't run) with a large number of plots, and neglect to create a block when they found a valid proof, thereby spoiling the competing pool.
 
   >For more info, see our [pooling FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ "Chia Pooling FAQ"), as well as this site's [Pool Protocol](/docs/11pooling/pooling) page.
 

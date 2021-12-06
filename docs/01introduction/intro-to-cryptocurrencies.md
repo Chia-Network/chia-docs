@@ -58,7 +58,7 @@ Digital signatures are fundamental building blocks for cryptocurrencies.
 ### Double Spending
 However, signatures are not enough, because of an issue called the "double spend problem." Of the 1000 servers, let's say 500 are in Asia and 500 are in America. An attacker, Bob, sends two transactions that spend the same coin, to two servers, at the same time: one in Asia and one in America. Those transactions send the money to different recipients, which should not be allowed.
 
-In this case, the two servers need to come to agreement on which transaction came first, otherwise they will have diverging state, and the system will not have global consensus. To solve this issue, we need a consensus algorithm, or a way for all computers in the system to quickly come to unambiguous agreement on the ordering and content of transactions.
+In this case, the two servers need to come to agreement as to which transaction came first. Otherwise, they will have diverging state, and the system will not have global consensus. To solve this issue, we need a consensus algorithm, or a way for all computers in the system to quickly come to unambiguous agreement on the ordering and content of transactions.
 
 Since we are trying to create a globally decentralized and secure system, why not allow each person one vote, and add up votes for deciding transaction ordering? This would be great if it were possible, but it unfortunately requires some type of central party, first to decide who is a "person," and then to create these identities. This would make the system centralized.
 
@@ -68,7 +68,7 @@ The key issue that makes it difficult to solve the double-spend problem is the S
 
 The genius of Satoshi Nakamoto was to solve the double-spend problem by requiring real-world work in order to obtain "votes," and to decide consensus. This "Proof of Work" is cryptographically verifiable. The only requirements for participation are a computer and an internet connection.
 
-In Proof of Work networks, each computer that is participating repeatedly generates cryptographic hashes using random input. This functions as a global lottery, where hashes are generated until one computer generates a winner -- a hash with a certain number of leading zeros. This is known as a proof of work because there are no shortcuts. Computers must put in the required amount of computational "work" by generating hashes.
+In Proof of Work networks, each computer that is participating repeatedly generates cryptographic hashes using random input. This functions as a global lottery, where hashes are generated until one computer generates a winner -- a hash with a certain number of leading zeros. This is known as a _proof of work_ because there are no shortcuts. Computers must put in the required amount of computational "work" by generating hashes.
 
 When a winning proof is found, the computer that discovered it earns the right to generate a new "block" in the blockchain. This block contains a pointer to the previous block, a list of valid transactions, and the winning hash. All nodes are required to accept the heaviest chain (the one which required the most work). Therefore, all nodes will accept the new block, and the proof-of-work lottery begins anew. 
 
@@ -76,7 +76,7 @@ In Bitcoin's consensus algorithm, each proof takes an average of 10 minutes to g
 
 With this consensus mechanism in place, attacking the network becomes very difficult. If an attacker wants to "rewrite history" by creating an alternative blockchain, they'll need to create new blocks faster than the honest actors in the system. Because of the proof of work that is required to create each block, the attacker will need to generate hashes faster than all other computers in the network, combined. This is known as a "51% attack" and is discussed in greater detail later [Section 3.14](/docs/03consensus/attacks-and-countermeasures "Section 3.14: Attacks and Countermeasures").
 
-Proof of Work solves the double-spend problem -- only one computer can create a block at any one time. It also solves the Sybil problem -- not only does creating a block require a real-world investment in hardware, but it also gives no advantage to someone who creates multiple identities. This person has the same probability of winning whether they're using one identity or a million.
+Proof of Work solves the double-spend problem -- only one computer can create a block at any one time. It also solves the Sybil problem -- not only does creating a block require a real-world investment in hardware, but it also gives no advantage to someone who creates multiple identities. This person has the same probability of winning, whether they're using one identity or a million.
 
 
 <div style={{textAlign: 'center'}}>
@@ -96,7 +96,7 @@ Blockchain transactions can also include scripts or programs, which allow contro
 
 >Keep in mind that blockchain programs are expensive to run, since every node in the system must download and run the program. Just because it _can_ be run on a blockchain, doesn't mean that is _should_ be run on one.
 
-Each block also has a hash pointer to the previous block. This means that the hash of the contents of the previous block are included in the current block. If an attacker could find an alternative valid proof for a historical block, the proof would then change that block's hash, which would invalidate the next block. If the attacker wanted to change a block that occurred 10 blocks in the past, they would therefore need to re-do the proof of work for at least 10 blocks. The rest of the network would continue to create legitimate blocks, however, so in reality, the attacker would likely have to create many more than 10 blocks. In fact, as long as the rest of the network, combined, could create blocks at the same rate or faster, the attacker would _never_ be able to create a chain longer than the legitimate chain.
+Each block also has a hash pointer to the previous block. This means that the hash of the contents of the previous block are included in the current block. If an attacker could find an alternative valid proof for a historical block, the proof would then change that block's hash, which would invalidate the next block. If the attacker wanted to change a block that occurred 10 blocks in the past, they would therefore need to re-do the proof of work for at least 10 blocks. The rest of the network would continue to create legitimate blocks, however, so in reality, the attacker would likely have to create many more than just 10 blocks. In fact, as long as the rest of the network, combined, could create blocks at the same rate or faster, the attacker would _never_ be able to create a chain longer than the legitimate chain.
 
 The Bitcoin network performs around 170 quintillion (170,000,000,000,000,000,000) hashes per second; the attacker would have to control at least that much hashpower to make a 51% attack feasible.
 
