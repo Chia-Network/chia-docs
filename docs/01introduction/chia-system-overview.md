@@ -27,7 +27,7 @@ Additionally, nodes have the option of _farming_ to help secure the network. The
 
 The prize for winning the lottery is called the _block reward_. Initially, this reward is 2 XCH. However, the reward amount is cut in half approximately every three years for the first 12 years of Chia's existence. From that point forward, the reward will always be 1/8 of an XCH.
 
-  >More info on the block reward structure can be found in [Section 5.3](/docs/05block-validation/block-rewards "Section 5.3: Block Rewards").
+  >More info on the block reward structure can be found in [Section 5.3](/docs/05block-validation/block_rewards "Section 5.3: Block Rewards").
 
 While "XCH" is a convenient way to denominate Chia coins, the blockchain only knows about _mojos_. These are the smallest denomination of Chia's coins. Each mojo is worth one trillionth (1/1,000,000,000,000) of an XCH.
 
@@ -44,6 +44,6 @@ Wallets are programs that allow users to interact with the blockchain, by signin
 ### Pools
 Pools allow farmers to smooth out their rewards. They pay out small rewards frequently, often daily. They tend to charge a small fee for their services. The Chia company doesn't run its own pools. Many popular Chia pools also offer services for farming or mining other cryptocurrencies.
 
-  >For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling "Section 11: Pooling").
+  >For more info on Chia's pooling protocol, see [Section 11](/docs/pooling/pooling "Section 11: Pooling").
 
 The rest of the documentation will go into depth into all of the above topics.

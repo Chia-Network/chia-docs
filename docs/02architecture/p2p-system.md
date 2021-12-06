@@ -54,7 +54,7 @@ For most challenges, the quality (step 1) will be very low, so fetching the enti
 
 Finally, harvesters also maintain a private key for each plot. The blocks are signed with these keys, which is an important concept in Chia. It means that even when a farmer is a member of a pool, the farmer still controls the contents of a block. This is quite different from other blockchains' pooling protocols, where the pool operators are the ones signing the blocks.
 
-  >The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/03consensus/harvester-algorith "Section 3.6: Harvester Algorithm").
+  >The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/03consensus/harvester_algorith "Section 3.6: Harvester Algorithm").
 
 ## Timelords
 
