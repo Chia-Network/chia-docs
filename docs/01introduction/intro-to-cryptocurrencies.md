@@ -88,13 +88,13 @@ Proof of Work solves the double-spend problem -- only one computer can create a 
 
 Each node in the network maintains active connections with a few other random nodes. If a user wants to make a transaction, they send it to any node in the network, which automatically broadcasts it to their peers. Because each node is connected to a unique set of peers, the transaction quickly gets propagated to every node in the network. The nodes then save the transaction, including all other pending transactions, locally in memory. This is called the _mempool_.
 
-  For more info on Chia's mempool, see [Section 6](/docs/06mempool "Section 6: Chia's Mempool").
+>For more info on Chia's mempool, see [Section 6](/docs/06mempool/mempool "Section 6: Chia's Mempool").
 
 In order for each node to search for a proof, it must assemble a block to hash against. It does this by including transactions from the mempool, and it will most likely choose the pending transactions that pay the highest fee. A transaction fee market is thus created, where the supply is the total transactions per second (TPS) that the system supports, and the demand is based on the number of transactions in the mempool. A transaction is said to be "confirmed" once it is included inside a block which has the required proof of work. 
 
 Blockchain transactions can also include scripts or programs, which allow controlling funds directly with code. This code can require a certain number of signatures to release the funds, or have any arbitrary logic.
 
-  Keep in mind that blockchain programs are expensive to run, since every node in the system must download and run the program. Just because it _can_ be run on a blockchain, doesn't mean that is _should_ be run on one.
+>Keep in mind that blockchain programs are expensive to run, since every node in the system must download and run the program. Just because it _can_ be run on a blockchain, doesn't mean that is _should_ be run on one.
 
 Each block also has a hash pointer to the previous block. This means that the hash of the contents of the previous block are included in the current block. If an attacker could find an alternative valid proof for a historical block, the proof would then change that block's hash, which would invalidate the next block. If the attacker wanted to change a block that occurred 10 blocks in the past, they would therefore need to re-do the proof of work for at least 10 blocks. The rest of the network would continue to create legitimate blocks, however, so in reality, the attacker would likely have to create many more than 10 blocks. In fact, as long as the rest of the network, combined, could create blocks at the same rate or faster, the attacker would _never_ be able to create a chain longer than the legitimate chain.
 
