@@ -23,9 +23,7 @@ Of course, in the event of a long-term network split, the effects are that one c
 
 + (+) Different resources. PoSpace is ASIC-resistant and therefore anyone can participate in farming.
 + (+) Hopefully more decentralized. (Analysis in mainnet's first year shows this to be the case.)
-+ (+) Easy merge farming. Other cryptocurrencies can use the same format, and everyone can share the space (assuming their farming computers have sufficient disk space and memory).
-
->The blockchain with the largest netspace will probably be the only secure one, since the farmers can attack smaller ones. This is especially true of blockchains with less than 50% of the top chain's netspace -- the remaining farmers who have not joined the smaller chain could collude to join, and attack, that chain.
++ (+) Easy merge farming. Other cryptocurrencies can use the same format, and everyone can share the space (assuming their farming computers have sufficient disk space and memory). (Note that the blockchain with the largest netspace will probably be the only secure one, since the farmers can attack smaller ones. This is especially true of blockchains with less than 50% of the top chain's netspace -- the remaining farmers who have not joined the smaller chain could collude to join, and attack, that chain.)
 + (+) Minimum energy used, since only a few nodes run VDFs, and these are not parallelized. Very low marginal cost to farm. 
 + (+) More consistent transaction block times (targeted average is one per 46.875 seconds, as discussed in [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage")).
 + (+) Less susceptible to selfish mining attacks.

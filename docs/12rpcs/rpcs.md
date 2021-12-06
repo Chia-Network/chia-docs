@@ -3,10 +3,10 @@ sidebar_position: 1
 ---
 
 # 12.1 Chia RPC API
-The chia node and services come with a JSON rpc api server that allows you to access information and control the services.
+The Chia node and services come with a JSON RPC API server that allows you to access information and control the services.
 These are accessible via HTTP, WebSockets, or via client SDKs.
 The ports can be configured in `~/.chia/mainnet/config/config.yaml`. 
-The rpc ports should not be exposed to the internet. 
+The RPC ports should not be exposed to the internet. 
 TLS certificates are used to secure the communication.
 
 ### Default Ports:
@@ -44,7 +44,7 @@ A javascript client can be found here: https://github.com/Chia-Mine/chia-agent.
 There is also another client here: https://github.com/freddiecoleman/chia-client.
 
 ## Services
-The service RPC Apis are documented in the following sections:
+The service RPC APIs are documented in the following sections:
 TODO: add links here and create the other sections
 * Shared: RPCs that all services share
 * Full Node

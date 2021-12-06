@@ -5,7 +5,7 @@ sidebar_position: 1
 # 5.1 Block Validation
 Block validation in Chia is composed of two parts: header validation and body validation.
 
-The header validation performs consensus algorithm-related checks, such as proof of space and time, signage points and infusion points, previous block hashes, foliage hashes, and timestamps. Notably, it does not validate any CLVM, coin spends, or signatures. Usually, light clients will want to validate headers but not the body for efficiency.
+The header validation performs consensus algorithm-related checks, such as proof of space and time, signage points and infusion points, previous block hashes, foliage hashes, and timestamps. Notably, it does not validate any CLVM, coin spends, or signatures. Usually, for efficiency, light clients will want to validate headers but not the body.
 
 Body validation entails running all puzzles for spent coins, reading the coin database, verifying signatures, checking for duplicate or invalid removals and additions, etc.
 
@@ -21,7 +21,7 @@ There are two cases when a node might verify blocks.
 We'll cover both of these cases below.
 
 ### Full Sync
-Full sync is the process by which a full nodes downloads and validates all of the blocks in the blockchain and catches up to the most recent block. Full sync is important, because it allows new nodes to validate that a blockchain is the heaviest -- and thus, the currently valid -- chain. It allows everyone to come to consensus on the current state, regardless of when they come online, and regardless of how long they go offline. 
+Full sync is the process by which a full node downloads and validates all of the blocks in the blockchain and catches up to the most recent block. Full sync is important, because it allows new nodes to validate that a blockchain is the heaviest -- and thus, the currently valid -- chain. It allows everyone to come to consensus on the current state, regardless of when they come online, or for how long they go offline. 
 
 The method of full sync can vary between implementations, but the high level algorithm is the following:
 1. Connect to other peers on the network, by querying the introducer DNS, and crawling the network.

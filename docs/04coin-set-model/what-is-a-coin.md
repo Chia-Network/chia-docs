@@ -23,9 +23,9 @@ The coinID of each coin is computed by hashing together the concatenation of the
 
 Because the coinID is a sha256 hash, coins can never be changed. They can only be created and then spent once.
 
-So what is a **puzzle**? Each coin has a CLVM (ChiaLisp Virtual Machine) program that is associated with it, which determines how, who, and when this coin can be spent. This program is called the puzzle, and must be chosen at the time that the coin gets created. 
+So what is a **puzzle**? Each coin has a CLVM (ChiaLisp Virtual Machine) program associated with it, which determines how, when, and by whom this coin can be spent. This program is called the puzzle, and it must be chosen at the time of the coin's creation.
 
-For example, if Bob wants to pay Alice, Bob would create a coin with a puzzle (and thus a puzzle hash) which Alice knows how to unlock. Bob can create a coin worth 5 XCH using Alice's puzzle hash, so that only Alice can unlock it.
+For example, if Bob wanted to pay Alice, Bob would create a coin with a puzzle (and thus a puzzle hash) which Alice knows how to unlock. Bob can create a coin worth 5 XCH using Alice's puzzle hash, so that only Alice can unlock it.
 
 ## Spends
 
@@ -35,16 +35,17 @@ The network has no concept of accounts, or of coin ownership. Anybody can attemp
 
 The data required to spend a coin is:
 * The coin ID
-* The puzzle (full clvm source code)
+* The puzzle (full CLVM source code)
 * The solution to the puzzle
-Most coins also require an aggregate signature, though this is an optional feature that can be added to the puzzle at the time of the coin's creation.
+
+A coin also has the option of requiring an aggregate signature in order to spend it.
 
 ## Account Model vs Coin Set Model
 In the account model, which is used by Ethereum and many other systems, balances are kept in accounts. These are permanent data structures which do not get destroyed when they send funds. There are some tradeoffs between the account model and the coin set model (similar to Bitcoin's UTXO model).
 
 ### Benefits of the account model
-* All logic and state can be in one program and one account, simplifying development.
-* Combining multiple transactions that affect the same dapp in one block is simple.
+* All logic and state can be stored in one program and one account, simplifying development.
+* It is simple to combining multiple transactions that affect the same dapp in one block.
 * Users and wallets only have to keep track of one account for all of their balance (although the UTXO model can support this).
 
 ### Benefits of the coin set model

@@ -5,7 +5,7 @@ sidebar_position: 4
 # 9.4 Architecture
 
 The following image assumes an architecture where the farmer decides to keep all keys separate.
-* a wallet key that can potentially be cold storage, 
+* a wallet key that can potentially be cold storage
 * local keys within the harvester machine, which are separated from the farmer
 * a separate pool key
 

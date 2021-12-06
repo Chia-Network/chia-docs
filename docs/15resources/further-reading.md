@@ -26,3 +26,10 @@ sidebar_position: 1
 * [Chia's power consumption](https://chiapower.org "Chia's energy consumption statistics")
 * [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space") -- the basis for Chia's Proofs of Space construction
 * [Flyclient white paper](https://eprint.iacr.org/2019/226.pdf) -- a light client protocol
+* [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki) -- the address encoding scheme used by Chia
+* [x.509](https://en.wikipedia.org/wiki/X.509) -- the public key certificate used in Chia peer nodes
+* [DER](https://wiki.openssl.org/index.php/DER) -- a data structure used with x.509 certificates
+* [BLS-12-381](https://github.com/zkcrypto/bls12_381) -- they type of keys Chia uses
+* [IETF](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/) -- the BLS signature specification
+* [EIP-2333](https://eips.ethereum.org/EIPS/eip-2333) -- a tree structure for deriving BLS keys
+* [SLIP-0044](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) -- registered coin types for BIP-0044

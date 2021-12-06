@@ -30,8 +30,8 @@ After the start of year 12, 0.125 XCH is created in perpetuity.
 ## Reward claims
 In most cryptocurrencies, the creator of a block pays themselves based on the _current_ block reward. In Chia, there is a slight difference -- block rewards are paid in a _future_ block, depending on whether the farmer's block is a transaction block or not.
 
-Option 1: If the farmer's block is a transaction block, the farmer will get paid on the next transaction block
-Option 2: If the farmer's block is not a transaction block, the farmer will get paid on the next transaction block after the next transaction block (next next).
+* Option 1: If the farmer's block is a transaction block, the farmer will get paid on the next transaction block.
+* Option 2: If the farmer's block is not a transaction block, the farmer will get paid on the next transaction block after the next transaction block (next next).
 
 Fees are also paid at the same time. Let's say a farmer creates a transaction block with 4.9 XCH of outputs, but 5 XCH of inputs (excluding reward claims). In this case, they will receive the remaining 0.1 XCH as a fee, plus their block reward, for a total of 2.1 XCH, in the next transaction block.
 
