@@ -13,32 +13,37 @@ The Proof of Space protocol has three components: plotting, proving/farming, and
 ![chia-architecture](/img/pospace.png)
 
 ## Plotting 
-Plotting is the process by which a Prover, who we refer to as a farmer, initializes a certain amount of space. To become a farmer, one must have at least 101.4 GiB available to reserve on their computer (the minimum spec is a [Raspberry Pi 4](https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi "Running Chia on a Raspberry Pi 4")). There is no upper limit to the size of a Chia farm. Several farmers have multi-PiB farms.
+Plotting is the process by which a Prover, who we refer to as a _farmer_, initializes a certain amount of space. To become a farmer, one must have at least 101.4 GiB available to reserve on their computer (the minimum spec is a [Raspberry Pi 4](https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi "Running Chia on a Raspberry Pi 4")). There is no upper limit to the size of a Chia farm. Several farmers have multi-PiB farms.
 
-As of Chia 1.2.7, a k32 plot can be created in around 5 minutes if you have 400 GiB of ram, six hours with a normal commodity machine, and 12 hours with a slow machine using one CPU core and a few GB of memory. There are opportunities for huge speedups. Furthermore, each plot only needs to be created once; a farmer can farm with the same plots for many years.
+As of Chia 1.2.7, a k32 plot can be created in around five minutes with a high-end machine with 400 GiB of RAM, six hours with a normal commodity machine, and 12 hours with a slow machine using one CPU core and a few GB of RAM. Opportunities still remain for huge speedups. Furthermore, each plot only needs to be created once; a farmer can farm with the same plots for many years.
 
-Plot sizes are determined by a k parameter, where `space = 780 * k * pow(2, k - 10)`, with a minimum k of 32 (101.4 GiB). The Proof of Space construction is based on Beyond Hellman [8], but it is nested six times (thereby creating seven tables), and it contains other heuristics to make it practical.
+Plot sizes are determined by a k parameter, where `space = 780 * k * pow(2, k - 10)`, with a minimum k of 32 (101.4 GiB). The Proof of Space construction is based on [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space"), but it is nested six times (thereby creating seven tables), and it contains other heuristics to make it practical.
 
-Each of the seven tables in a plot are filled with random-looking data that cannot be compressed. Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table). Finally, each table-1 entry contains a pair of integers between 0 and 2^k, called “x-values.” A proof of space is a collection of 64 x-values that have a certain mathematical relationship. The actual on-disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
+Each of the seven tables in a plot is filled with random-looking data that cannot be compressed. Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table). Finally, each table-1 entry contains a pair of integers between 0 and 2^k, called “x-values.” A proof of space is a collection of 64 x-values that have a certain mathematical relationship. The actual on-disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
 
-![chia-architecture](/img/plot.png)
+<figure>
+<img src="/img/plot.png" alt="drawing"/>
+<figcaption>
+Figure 2: Structure of a plot file. The 64 red x-values represent the proof, the 2 green x-values represent the quality.
+</figcaption>
+</figure>
 
-In the diagram above, once the Prover has initialized 101.4 GiB, they are ready to receive a challenge and create a proof. One attractive property of this scheme is that it is non-interactive: no registration or online connection is required to create a plot. Nothing hits the blockchain until a reward is won, similar to PoW.
+Once the Prover has initialized 101.4 GiB, they are ready to receive a challenge and create a proof. One attractive property of this scheme is that it is non-interactive: no registration or online connection is required to create a plot. Nothing hits the blockchain until a reward is won, similar to PoW.
 
 See our [plotting FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#plotting "Chia plotting FAQ") for more info.
 
 ## Farming
 Farming is the process by which a farmer receives a sequence of 256-bit challenges to prove that they have legitimately put aside a defined amount of storage. In response to each challenge, the farmer checks their plots, generates a proof, and submits any winning proofs to the network for verification. 
 
-The process of inputting a challenge and outputting a proof involves multiple table lookups. First, the farmer responds to a challenge by reading a pair of values in table 7. These point to two entries in table 6, etc. Finally, the farmer fetches the whole tree of x-values. This requires one read for table 7, two for table 6, four for table 5, etc. The whole process thus requires 64 disk reads, which would takes approximately 640 ms on a slow HDD with a 10 ms seek time. The amount of data read is small and is independent of plot size.
+The process of inputting a challenge and outputting a proof involves multiple table lookups. First, the farmer responds to a challenge by reading a pair of values in table 7. These point to two entries in table 6, four entries in table 5, etc.
 
-Since most proofs generated by this process are not good enough (as discussed later) to be submitted to the network for verification, we can optimize this process by only checking one branch of the tree. This results in two x-values, depending on the challenge. We then hash these x-values to produce a random 256-bit "quality string." This is combined with the difficulty and the plot size to generate the required_iterations. If the required_iterations is less than a certain number (we can get into the blockchain), then we look up the whole PoSpace.
+Finally, the farmer fetches the whole tree of x-values. This requires one disk read for table 7, two for table 6, four for table 5, etc. The whole process thus requires 64 disk reads, which would takes approximately 640 ms on a slow HDD with a 10 ms seek time. The amount of data read is small and is independent of plot size.
+
+Since most proofs generated by this process are not good enough (as discussed in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")) to be submitted to the network for verification, we can optimize this process by only checking one branch of the tree. This results in two x-values, depending on the challenge. We then hash these x-values to produce a random 256-bit "quality string." This is combined with the difficulty and the plot size to generate the required_iterations. If the required_iterations is less than a certain number, the proof can be included in the blockchain. At this point, we look up the whole proof of space.
 
 By only looking up one branch to determine the quality string, we can rule out most proofs. This optimization requires only around 7 disk seeks and reads, or about 70 ms on a slow hard drive. 
 
-Figure 2: Structure of a plot file. The 64 red x- values represent the proof, the 2 green x- values represent the quality. 
-
-Chia also uses a further optimization to disqualify a certain proportion of plots from eligibility for each challenge. This is referred to as the _plot filter_. The current requirement is that the hash of the plot ID, challenge, and signage point starts with 9 zeros. This excludes 511 out of every 512 plots. This hurts everyone equally (except for replotting attackers), and is therefore fair. The plot filter is discussed in greater detail in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points").
+Chia also uses a further optimization to disqualify a certain proportion of plots from eligibility for each challenge. This is referred to as the _plot filter_. The current requirement is that the hash of the plot ID, challenge, and signage point starts with 9 zeros. This excludes 511 out of every 512 plots. The filter hurts everyone equally (except for [replotting attackers](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack "Section 3.14: Short Range Replotting Attack")), and is therefore fair. The plot filter is discussed in greater detail in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points").
 
 The plot filter effectively reduces the amount of resources required for farming by 512x -- each plot only requires a few disk reads every few minutes. A farmer with 1 PiB of storage (10,000 plots) will only have an average of 20 plots that pass the filter for each challenge. Even if these plots all are stored on slow HDDs, and connected to a single Raspberry Pi, the average time required to respond to each challenge will be less than two seconds. This is well within the limits to avoid missing out on any challenges.
 

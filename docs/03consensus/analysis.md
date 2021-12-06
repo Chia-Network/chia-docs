@@ -26,10 +26,10 @@ Of course, in the event of a long-term network split the effects are that one ch
 
 The blockchain with the largest netspace will probably be the only secure one, since the farmers can attack smaller ones. This is especially true of blockchains with less than 50% of the top chain's netspace -- the remaining farmers who have not joined the smaller chain could collude to join, and attack, that chain.
 + Minimum energy used, since only a few nodes run VDFs, and these are not parallelized. Very low marginal cost to mine. 
-+ More consistent transaction block times (one per ~1 min).[TODO: actually 45 seconds? find]
++ More consistent transaction block times (targeted average is one per 46.875 seconds, as discussed in [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage")).
 + Less susceptible to selfish mining attacks.
 + Smaller orphan rates and forks, since blocks can be included in parallel.
-+ Continues to advances at nearly the same rate when space decreases, since only 1/3 [TODO verify] of blocks include transactions. PoW Nakamoto Consensus slows down linearly when hashrate drops. 
++ Continues to advances at nearly the same rate when space decreases, since only around 1/3 of blocks include transactions. PoW Nakamoto Consensus slows down linearly when hashrate drops. 
 - Drawback of more potential attackers (large companies). Hardware is general purpose, and therefore attackers could switch between farming, attacking, and using for data storage.
 - If an attacker acquires a significantly faster VDF, they could gain a space advantage.
 - More complexity due to sub slots and VDFs, potentially more cryptographic assumptions.

@@ -18,6 +18,7 @@ This is relevant because sometimes a slot spans multiple sub-slots, and thus mul
 <img src="/img/overflow.png" alt="drawing"/>
 <figcaption>
 Figure 9: B4 in this diagram is an overflow block, since the infusion is in the next sub-slot.
+
 B4 is not based on a current-slot challenge, and thus does not decrease the deficit or make a challenge block.
 </figcaption>
 </figure>
@@ -46,8 +47,6 @@ Figure 10: c2 is the end of the sub-slot but not the end of the slot (we have ye
 Deficit is 3 instead of resetting to 16, and the infused challenge chain continues.
 </figcaption>
 </figure>
-
-
 
 ## Weight
 

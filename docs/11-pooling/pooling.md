@@ -35,7 +35,7 @@ When not pooling, farmers receive signage points from full nodes every 9 seconds
 
 Each signage point is sent along with the `sub_slot_iters` and `difficulty`, two network-wide parameters which are adjusted every 4608 blocks (~24 hours). The `sub_slot_iters` is the number of VDF iterations performed in 10 minutes for the fastest VDF in the network. This increases if the fastest timelord's speed increases. The difficulty is similarly affected by timelord speed (it goes up when timelord speed increases, since blocks come faster), but it's also affected by the total amount of space in the network. These two parameters determine how difficult it is to "win" a block and find a proof.
 
-  See [Section 3.4](/docs/03consensus/challenges "Section 3.4: Challenges") for more details.
+  >See [Section 3.4](/docs/03consensus/challenges "Section 3.4: Challenges") for more details.
 
 Since only about 1 farmer worldwide finds a proof every 18.75 seconds (two signage points), this means the chances of finding one are tiny, with the default `difficulty` and `sub_slot_iters`. For pooling, we increase the `sub_slot_iters` to a constant, but very high number: 37600000000, and then we decrease the difficulty to an artificially lower one, so that proofs can be found more frequently.
 
@@ -50,7 +50,7 @@ singleton is used, and therefore that plot is tied to that singleton forever.
 
 When a block is found by the farmer, 7/8 of the block reward (the pool portion) go into the singleton. When the farmer claims these funds they are sent directly to the pool's target address. The other 1/8 of the reward, plus transaction fees, are sent directly to the farmer. 
 
-  The block reward's payout amount will change according to the halving cycle, detailed in [Section 5.3](/docs/05block-validation/block_rewards#halvings "Section 5.3: Block reward halvings"))
+  >The block reward's payout amount will change according to the halving cycle, detailed in [Section 5.3](/docs/05block-validation/block_rewards#halvings "Section 5.3: Block reward halvings"))
 
 The farmer can also configure their payout instructions, so that the pool knows where to send the occasional rewards to.
 
@@ -67,8 +67,6 @@ A few minutes later, the pool pulls from the queue, and checks that the signage 
 
 
 ### Collecting pool rewards
-
-TODO: add image here
 
 The pool periodically searches the blockchain for new pool rewards (according to the [rewards schedule](/docs/05block-validation/block_rewards "Section 5.3: Block rewards")) that go to the various `p2_singleton_puzzle_hashes` of each of the farmers. These coins are locked, and can only be spent along with the singleton that they correspond to. The singleton is also locked to a `target_puzzle_hash`, which in this diagram is the red pool address. Anyone can spend the singleton and the `p2_singleton_puzzle_hash` coin, as long as it's a block reward, and all conditions are met. Some of these conditions require that the singleton always create exactly 1 new child singleton with the same launcher ID, and that the coinbase funds are sent to the `target_puzzle_hash`.
 

@@ -5,7 +5,7 @@ sidebar_position: 8
 # 3.8 Three VDF Chains
 If we only used one VDF (for the reward chain), the inclusion or exclusion of blocks would allow control of the challenge for the next slot. This means that an attacker could try many different combinations of blocks, and choose the challenge that suits them best, to obtain more wins in the next slot.
 
-These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or PoStake. More detail is provided in the “Attacks and countermeasures” section. [TODO link]
+These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or PoStake. More detail is provided in [Section 3.14](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Relevant Attacks and Countermeasures").
 
 To mitigate this, the challenges will be based only on the first block to be infused in a slot.
 
@@ -13,8 +13,10 @@ To mitigate this, the challenges will be based only on the first block to be inf
 <img src="/img/multiple_chains.png" alt="drawing"/>
 <figcaption>
 Figure 8: The three VDF chains for 1+ challenges.
-          cc = challenge chain, ic = infused challenge chain, rc = reward chain,
-          sp = signage point, B = block, c = challenge, r = reward
+
+cc = challenge chain, ic = infused challenge chain, rc = reward chain,
+
+sp = signage point, B = block, c = challenge, r = reward
 
 An attacker can manipulate the reward chain results but this has no effect on c2, and therefore has no effect on the PoSpace lottery.
 </figcaption>

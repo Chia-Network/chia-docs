@@ -12,7 +12,7 @@ This is called a proof of weight.
 
 Naively, the light client could download every single block and all the required proofs and verify them. But, with a large number of blocks, this would require a lot of bandwidth and CPU.
 
-A more efficient method relies on a protocol similar to Flyclient[4][TODO]. The node (Prover) sends all the sub-epoch summaries from the fork point, including difficulty resets, to the light client.
+A more efficient method relies on a protocol similar to [Flyclient](https://eprint.iacr.org/2019/226.pdf). The node (Prover) sends all the sub-epoch summaries from the fork point, including difficulty resets, to the light client.
 
 There is only one sub-epoch every 384 blocks, so the summaries will only reach a few MB of data.
 
@@ -29,4 +29,4 @@ The main difference between this protocol and Flyclient is that blocks are not c
 More analysis needs to be done on how many sub-epochs should be downloaded and what the bounds are for what the proof of weight implies.
 
 ## Obtaining Transactions
-Although this is described more in depth on other sections [TODO, specific links], light clients can fetch the transactions that they are interested in, without having to download every single block or block header. Two wallet protocols are available for this, a less efficient one that maintains better privacy, and a super efficient one that has a privacy tradeoff, namely that the wallet musk ask a node for payments made to certain addresses.
+Light clients can fetch the transactions that they are interested in, without having to download every single block or block header. Two wallet protocols are available for this, a less efficient one that maintains better privacy, and a super efficient one that has a privacy tradeoff, namely that the wallet musk ask a node for payments made to certain addresses.

@@ -10,9 +10,12 @@ The difficulty adjusts automatically to target 32 winning proofs for the entire 
 
 The consensus requires farmers to follow the heaviest chain, which is the chain that has the highest accumulated difficulty (usually the chain with the most blocks). 
 
+<figure>
 <img src="/img/challenges.png" alt="drawing"/>
-
+<figcaption>
 Figure 4: Three sub-slots. The x axis represents time. Dotted lines represent VDF execution, advancing in time from left to right. Arrows represent hash dependencies (an object which points to another object includes the hash of the second object). 
+</figcaption>
+</figure>
 
 In figure 4, we can see three challenge points, c1, c2, and c3. At the these points timelords create challenges (256-bit hashes) which are provided as input to VDFs. Timelords take these hashes, and start computing a VDF on this challenge, for the specified number of iterations. In this example, each slot is 100,000,000 iterations. When the VDF is finished, the timelord publishes the new challenge and the proof of the VDF. An infusion of end-of-slot information happens at the end of each sub-slot.
 
@@ -22,6 +25,6 @@ In figure 4, we can see three challenge points, c1, c2, and c3. At the these poi
 
 **Challenge**: a sha256 output string. It is used as a proof-of-space challenge for farmers’ plots. It is also used for the challenge chain VDF. This is also referred to as challenge hash.
 
-As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in the following sections.
+As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in detail in [Section 3.8](/docs/03consensus/three_vdf_chains "Section 3.8: Three VDF Chains").
 
-In the networking protocol, the three VDF proofs are usually passed around together, in what is called a **end of sub-slot bundle**.
+In the networking protocol, the three VDF proofs are usually passed around together, in what is called an _end of sub-slot bundle_.

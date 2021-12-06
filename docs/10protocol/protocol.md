@@ -6,8 +6,7 @@ sidebar_position: 1
 This is a bi-directional protocol for communication between full nodes in the Chia system. The sender is the full node that is sending the message, and the recipient is the full node that is receiving the message.
 
 ## new_peak
-Sent to peers whenever a full node's peak weight advances (whenever the blockchain moves forward). The fork point allows peers to detect how deep of a re-org happened, and fetch the correct blocks. The unfinished reward block hash allows the receiving peer to use their cache for unfinished blocks, since they most likely already have the unfinished
-version of the same block, and therefore don't need to re-request the block transactions generator.
+Sent to peers whenever a full node's peak weight advances (whenever the blockchain moves forward). The fork point allows peers to detect how deep of a re-org happened, and fetch the correct blocks. The unfinished reward block hash allows the receiving peer to use their cache for unfinished blocks, since they most likely already have the unfinished version of the same block, and therefore don't need to re-request the block transactions generator.
 
 Usually, during normal operation, peers will ask for just the latest block, or ignore this message if they have already received it from another peer. If we are a few blocks behind, blocks are fetched one by one in reverse order up to the fork.
 

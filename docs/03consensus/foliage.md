@@ -12,8 +12,7 @@ In order to include farming rewards, as well as transactions in the system, we m
 
 **Trunk**: The component of blocks and the blockchain which includes VDFs, proofs of space, PoSpace signatures, challenges, and previous trunk blocks, and is completely canonical. The trunk never refers to the foliage chain.
 
-**Foliage**: The component of blocks and the blockchain which includes specification of where rewards should go,
-which transactions should be included, and what the previous foliage block is. This is up to the farmer to decide and is grindable, so it can never be used as input to the challenges.
+**Foliage**: The component of blocks and the blockchain which includes specification of where rewards should go, which transactions should be included, and what the previous foliage block is. This is up to the farmer to decide and is grindable, so it can never be used as input to the challenges.
 
 **Reorg**: A reorg (or reorganization) is when a node’s view of the peak changes, such that the old view contains a block that is not included in the new view (some block has been reversed).
 Both trunk and foliage reorgs are possible, but should be rare in practice, and low in depth.
@@ -24,7 +23,7 @@ To prevent a foliage reorg, honest farmers only create one foliage block per blo
 
 Furthermore, blocks like B3, which come parallel with another foliage block (B2), do not have to sign the previous foliage block, since they do not necessarily have enough time to see it.
   
-  By “coming in parallel”, we mean that the second block’s signage point occurs before the first block infusion point.
+  >By “coming in parallel”, we mean that the second block’s signage point occurs before the first block infusion point.
 
 The red arrows in the diagram represent a foliage pointer that is signed by the plot key for the proof of space in that block. The gray arrows represent a hash pointer which is not signed by the plot key (therefore the gray arrow in B3 can be replaced if B2 changes or is withheld). This prevents attacks where B2 modifies their block and forces B3 to reorg. 
 
@@ -49,6 +48,4 @@ Note that the farmers of blocks B2 and B3 might both have a chance to create the
 
 While all blocks still choose the puzzle hashes of where their rewards go, those transactions do not get included into the blockchain until the next transaction block. 
 
-For the chia mainnet, there are 32 blocks every 600 seconds, for an average block time of 18.75 seconds.
-There are be 64 signage points, so the minimum time between blocks is 3*600/64 = 28.125 seconds.
-This puts the average transaction block time at 46.875 seconds. 
+For the chia mainnet, there are 32 blocks every 600 seconds, for an average block time of 18.75 seconds. There are be 64 signage points, so the minimum time between blocks is 3*600/64 = 28.125 seconds. This puts the average transaction block time at 46.875 seconds. 

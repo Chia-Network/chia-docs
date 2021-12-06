@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 3.3 VDFs
 
-A Verifiable Delay Function, also referred to as a proof of time or VDF, is a proof that a sequential function was executed a certain number of times. 
+A Verifiable Delay Function, also referred to as a Proof of Time or VDF, is a proof that a sequential function was executed a certain number of times. 
 
 **Verifiable**: This means that after performing the computation (which takes time), the Prover can create a very small proof in a very short time, and the Verifier can verify this proof without having to redo the whole computation.
 
@@ -14,13 +14,16 @@ A Verifiable Delay Function, also referred to as a proof of time or VDF, is a pr
 
 The key word here is “sequential”, like hashing a number many times: hash(hash(hash(a))), etc. This means the prover cannot just add more machines to make the function execute faster. Therefore we can assume that computing a VDF requires real (wall-clock) time. The construction that we use is repeated squaring. The Prover must square a challenge x T times. This requires time ϴ(T). The Prover also must create a proof that this was performed properly.
 
+<figure>
 <img src="/img/vdf.png" alt="drawing"/>
+<figcaption>
+Figure 3: The Verifier (blockchain) sends a challenge to a Prover (timelord) and the Prover computes the output and proof.
+</figcaption>
+</figure>
 
-Figure 3: Verifier (blockchain) sends a challenge to a prover (timelord) and prover computes output and proof. 
+Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures") become possible.
 
-Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some attacks become possible.
-
-The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long"). There are two main ways to generate a large group that has an unknown order.
+The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long"). There are two main ways to generate a large group that has an unknown order:
 1. Use an RSA modulus, and use the integers mod N as a group. The order of the group is unknown if you can generate your modulus with many participating parties using an MPC ceremony.
 2. An easier approach is to use classgroups with a large prime discriminant, which are groups of unknown order. This does not require any complex or trusted setup, so we chose this option for Chia.
 

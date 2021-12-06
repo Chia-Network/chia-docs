@@ -19,5 +19,4 @@ bech32m addresses have several features which make them attractive:
 * An XCH prefix to distinguish from other cryptocurrencies.
 * Shorter than hex, and more compact than base58 addresses (and fit better in QR codes)
 
-
 The blockchain consensus code does not operate with addresses, addresses are only used in user facing applications.
