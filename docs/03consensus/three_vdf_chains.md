@@ -15,9 +15,7 @@ To mitigate this, the challenges will be based only on the first block to be inf
 Figure 8: The three VDF chains for 1+ challenges.
 
 cc = challenge chain, ic = infused challenge chain, rc = reward chain,
-
 sp = signage point, B = block, c = challenge, r = reward
-
 An attacker can manipulate the reward chain results but this has no effect on c2, and therefore has no effect on the PoSpace lottery.
 </figcaption>
 </figure>

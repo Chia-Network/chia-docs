@@ -44,6 +44,6 @@ Wallets are programs that allow users to interact with the blockchain, by signin
 ### Pools
 Pools allow farmers to smooth out their rewards. They pay out small rewards frequently, often daily. They tend to charge a small fee for their services. The Chia company doesn't run its own pools. Many popular Chia pools also offer services for farming or mining other cryptocurrencies.
 
-  >For more info on Chia's pooling protocol, see [Section 11](/docs/pooling/pooling "Section 11: Pooling").
+  >For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling "Section 11: Pooling").
 
 The rest of the documentation will go into depth into all of the above topics.
