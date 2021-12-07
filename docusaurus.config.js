@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
 (module.exports = {
   title: 'Chia Documentation',
   tagline: 'A new blockchain and smart transaction platform that is easier to use, more efficient, and secure.',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://www.chia.net/chia-docs/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -22,13 +22,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+          editUrl: 'https://github.com/Chia-Network/chia-docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -47,51 +41,71 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           src: 'img/chia_logo.svg',
         },
         items: [
-          {href: 'https://chialisp.com/', label: 'Chialisp', position: 'left'},
-          {href: 'https://www.chia.net/blog/', label: 'Blog', position: 'left'},
-          {href: 'https://www.chia.net/assets/Chia-Business-Whitepaper-2021-02-09-v1.0.pdf', label: 'Business Whitepaper', position: 'left'},
-          {
-            href: 'https://github.com/Chia-Network/chia-docs',
-            label: 'Edit Docs on GitHub',
-            position: 'right',
-          },
+          {to: 'https://www.chia.net/approach/', label: 'Approach', position: 'right'},
+          {to: 'https://www.chia.net/technology/', label: 'Technology', position: 'right'},
+          {to: 'https://www.chia.net/developers/', label: 'Developers', position: 'right'},
+          {to: 'https://www.chia.net/blog/', label: 'Blog', position: 'right'},
+          {to: 'https://www.chia.net/news/', label: 'News', position: 'right'},
+          {to: 'https://www.chia.net/about/', label: 'About', position: 'right'},
         ],
       },
       footer: {
         style: 'dark',
         links: [
           {
-            title: 'Community',
+            title: 'Approach',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'White Paper',
+                to: 'https://www.chia.net/approach',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'Technology',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Green Paper',
+                to: 'https://www.chia.net/greenpaper',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Consensus 1.1',
+                to: 'https://www.chia.net/assets/Chia-New-Consensus-0.9.pdf',
+              },
+            ],
+          },
+          {
+            title: 'Developers',
+            items: [
+              {
+                label: 'Grants',
+                to: 'https://www.chia.net/grants',
+              },
+              {
+                label: 'Chialisp',
+                to: 'https://www.chialisp.com',
+              },
+            ],
+          },
+          {
+            title: 'Company',
+            items: [
+              {
+                label: 'About',
+                to: 'https://chia.net/about',
+              },
+              {
+                label: 'Blog',
+                to: 'https://chia.net/blog',
+              },
+              {
+                label: 'Contact',
+                to: 'https://chia.net/contact',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `© Chia Network ${new Date().getFullYear()} | <a href="https://www.chia.net/terms">Terms</a>`,
       },
       prism: {
         theme: lightCodeTheme,

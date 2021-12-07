@@ -6,13 +6,10 @@ sidebar_position: 2
 
 
 ## Full Block
-The full block is the data structure that contains all information required for validating and adding block `N`, assuming
-all blocks up to `N - 1` are already added. FullBlocks are sent over the network protocol, and also sometimes stored
+The full block is the data structure that contains all information required for validating and adding block `N`, assuming all blocks up to `N - 1` have already been added. FullBlocks are sent over the network protocol, and also sometimes stored
 on disk for the purpose of serving other nodes in the future.
 
-The FullBlock has fields for both the trunk and the foliage of the blockchain. The `header_hash`, which is used as the
-block identifier, is the hash of the `foliage` field in [streamable](/docs/08serialization/serialization) format. 
-This commits to all relevant data and to all previous blocks.
+The FullBlock has fields for both the trunk and the foliage of the blockchain. The `header_hash`, which is used as the block identifier, is the hash of the `foliage` field in [streamable](/docs/08serialization/serialization) format. This commits to all relevant data and to all previous blocks.
 
 * **finished_sub_sots**: List[EndOfSubSlotBundle]: This contains all sub-slots that have been completed since the previous block in the chain (block `N-1`).
 * **reward_chain_block**: RewardChainBlock: This is trunk data for the reward chain and challenge chain, including vdf outputs and proof of space.
@@ -25,6 +22,6 @@ This commits to all relevant data and to all previous blocks.
 * **foliage_transaction_block**: Optional[FoliageTransactionBlock]: Transaction related metadata that is relevant for light clients (not actual transactions), only for tx blocks.
 * **transactions_info**: Optional[TransactionsInfo]: Transaction related metadata that is not relevant for light clients (not actual transactions), only for tx blocks.
 * **transactions_generator**: Optional[SerializedProgram]: A clvm program that generates all transactions (spends).
-* **transactions_generator_ref_list**: List[uint32]: A list of block heights of previous generators referenced by this blocks's generator.
+* **transactions_generator_ref_list**: List[uint32]: A list of block heights of previous generators referenced by this block's generator.
 
 // TODO: include sub objects as well

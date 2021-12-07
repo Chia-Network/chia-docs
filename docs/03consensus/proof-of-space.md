@@ -4,45 +4,52 @@ sidebar_position: 2
 
 # 3.2 Proof of Space
 
-A proof of space protocol is one in which:
-a Verifier can send a challenge to a Prover, and 
-the Prover can demonstrate to the verifier that the Prover is reserving a specific amount of storage space at that precise time. 
+A Proof of Space protocol is one in which:
+* A Verifier can send a challenge to a Prover.
+* The Prover can demonstrate to the Verifier that the Prover is reserving a specific amount of storage space at that precise time. 
 
-The proof of space protocol has three components: plotting, proving/farming, and verifying.
-Details of the chiapos specification are [here](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), and reference implementation [here](https://github.com/Chia-Network/chiapos).
+The Proof of Space protocol has three components: plotting, proving/farming, and verifying. For more info, see our [Details of the chiapos specification](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), and [reference implementation](https://github.com/Chia-Network/chiapos).
 
 ![chia-architecture](/img/pospace.png)
 
 ## Plotting 
-Plotting is the process by which a prover, who we refer to as a farmer, initializes a certain amount of space. A farmer can be any person who has at least 100 GiB available to reserve on their laptop, or an enterprise prepared to allocate a large volume of unused storage space.
-There is no upper limit. Plotting takes on the order of hours or days, and is performed only once.
-The initialized space is occupied by a file called a plot. Plot sizes are determined by a k parameter, where `space = 780 * k * pow(2, k - 10)`, with a minimum k of 32 (101.4 GiB).
-As of Chia 1.2.7, a k32 plot can be created in around 5 minutes if you have 400 GiB of ram, six hours with a normal commodity machine, and 12 hours with a slow machine using one CPU core and a few GB of memory.
-There are opportunities for huge speedups. The PosSpace construction is based on Beyond Hellman [8], but is nested 6 times and contains other heuristics to make it practical.
+Plotting is the process by which a Prover, who we refer to as a _farmer_, initializes a certain amount of space. To become a farmer, one must have at least 101.4 GiB available to reserve on their computer (the minimum spec is a [Raspberry Pi 4](https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi "Running Chia on a Raspberry Pi 4")). There is no upper limit to the size of a Chia farm. Several farmers have multi-PiB farms.
 
-The result is a plot file that can be, for example, 100 GiB. The file contains seven tables with random-looking data.
-Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table).
-Finally, each table 1 entry contains a pair of integers between 0 and 2^k, called “x-values.” A proof of space is a collection of 64 x-values that have a certain mathematical relationship.
-The actual on disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
+As of Chia 1.2.7, a k32 plot can be created in around five minutes with a high-end machine with 400 GiB of RAM, or six hours with a normal commodity machine, or 12 hours with a slow machine using one CPU core and a few GB of RAM. Opportunities still remain for huge speedups. Furthermore, each plot only needs to be created once; a farmer can farm with the same plots for many years.
 
-![chia-architecture](/img/plot.png)
+Plot sizes are determined by a k parameter, where `space = 780 * k * pow(2, k - 10)`, with a minimum k of 32 (101.4 GiB). The Proof of Space construction is based on [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space"), but it is nested six times (thereby creating seven tables), and it contains other heuristics to make it practical.
 
-In the diagram above, once the Prover has initialized 100 GiB, they are ready to receive a challenge and create a proof. One attractive property of this scheme is that it is non-interactive: no registration or online connection is required to create a plot. Nothing hits the blockchain until a reward is won, similar to PoW.
+Each of the seven tables in a plot is filled with random-looking data that cannot be compressed. Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table). Finally, each table-1 entry contains a pair of integers between 0 and 2^k, called “x-values.” A proof of space is a collection of 64 x-values that have a certain mathematical relationship. The actual on-disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
 
+<figure>
+<img src="/img/plot.png" alt="drawing"/>
+<figcaption>
+Figure 2: Structure of a plot file. The 64 red x-values represent the proof, the 2 green x-values represent the quality.
+</figcaption>
+</figure>
+
+Once the Prover has initialized 101.4 GiB, they are ready to receive a challenge and create a proof. One attractive property of this scheme is that it is non-interactive: no registration or online connection is required to create a plot. Nothing hits the blockchain until a reward is won, similar to PoW.
+
+See our [plotting FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#plotting "Chia plotting FAQ") for more info.
 
 ## Farming
-Farming is the process by which a farmer receives a sequence of challenges to prove that they have legitimately put aside a defined amount of storage. In response to each challenge the farmer checks their plots, generates a proof and submits any winning proofs to the network for verification. 
+Farming is the process by which a farmer receives a sequence of 256-bit challenges to prove that they have legitimately put aside a defined amount of storage. In response to each challenge, the farmer checks their plots, generates a proof, and submits any winning proofs to the network for verification. 
 
-Each iteration of this process is a table lookup. A lookup takes a 256 bit challenge as input and outputs a proof. The farmer responds to a challenge by reading a pair of values in table 7. These point to two entries in table 6, etc. Finally, the farmer fetches the whole tree of x-values. This requires one read for table 7, two for table 6, four for table 5, etc. The whole process would take approximately 640ms, assuming a slow HDD with a 10ms seek time. The amount of data read is small and is independent of plot size.
+The process of inputting a challenge and outputting a proof involves multiple table lookups. First, the farmer responds to a challenge by reading a pair of values in table 7. These point to two entries in table 6, four entries in table 5, etc.
 
-Since most proofs generated by this process are not good enough (as discussed later) to be submitted to the network for verification, we can optimize this process by only checking one branch of the tree, which results in two x-values, depending on the challenge. We then hash the x-values generated in this way into a 256 bit string to determine whether the proof is good. Hashing these x-values gives us the quality string, a 256 bit random value. This is combined with the difficulty and the plot size to generate the required_iterations. If the required_iterations is less than a certain number (we can get into the blockchain), then we look up the whole PoSpace. Looking up one branch requires only around 7 disk seeks and reads or about 70ms on a slow hard drive. 
-Figure 2: Structure of a plot file. The 64 red x- values represent the proof, the 2 green x- values represent the quality. 
+Finally, the farmer fetches the whole tree of x-values. This requires one disk read for table 7, two for table 6, four for table 5, etc. The whole process thus requires 64 disk reads, which takes approximately 640 ms on a slow HDD with a 10 ms seek time. The amount of data read is small and is independent of plot size.
 
-A further optimization is to disqualify a certain proportion (for example 511/512) plots from eligibility for each challenge. This is referred to as the plot filter. For example, requiring that the hash of the challenge and the plot_id starts with 9 zeros. This hurts everyone equally (except for replotting attackers), and is therefore fair. This makes farming require almost no resources, and very few disk reads every few minutes.  Chia users have successfully been farming multiple PiB of storage on a single Raspberry Pi. We assume that farmers always use HDDs since they are cheap and there is no reason to use SSDs since the speed is not relevant for farming. SSDs / RAM can be used for faster plotting, however. 
+Since most proofs generated by this process are not good enough (as discussed in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")) to be submitted to the network for verification, we can optimize this process by only checking one branch of the tree. This branch will return two of the 64 x-values. The position of the x-values will always be consecutive and will depend on the signage point (eg x0 and x1... or x34 and x35). We hash these x-values to produce a random 256-bit "quality string." This is combined with the difficulty and the plot size to generate the required_iterations. If the required_iterations is less than a certain number, the proof can be included in the blockchain. At this point, we look up the whole proof of space.
 
-The plot key is a private key that is stored in the plot file. The plot id is generated by hashing the plot public key and the pool public key. Creating a block with a proof of space requires signing with both the plot key and the pool key. Therefore the pool may not be changed after creating the plot. In practice, the plot key is a 2/2 BLS aggregate public key between a local key stored in the plot and a key stored by the farmer software. For security and efficiency a farmer may run a centralized server using this key and signature scheme. The server may be connected to many harvester machines that store plots. Farming requires the farmer key and the local key, but does not require the pool key, since the pool’s signature can be cached and reused for many blocks.
+By only looking up one branch to determine the quality string, we can rule out most proofs. This optimization requires only around 7 disk seeks and reads, or about 70 ms on a slow hard drive. 
 
+Chia also uses a further optimization to disqualify a certain proportion of plots from eligibility for each challenge. This is referred to as the _plot filter_. The current requirement is that the hash of the plot ID, challenge, and signage point starts with 9 zeros. This excludes 511 out of every 512 plots. The filter hurts everyone equally (except for [replotting attackers](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack "Section 3.14: Short Range Replotting Attack")), and is therefore fair. The plot filter is discussed in greater detail in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points").
 
+The plot filter effectively reduces the amount of resources required for farming by 512x -- each plot only requires a few disk reads every few minutes. A farmer with 1 PiB of storage (10,000 plots) will only have an average of 20 plots that pass the filter for each challenge. Even if these plots all are stored on slow HDDs, and connected to a single Raspberry Pi, the average time required to respond to each challenge will be less than two seconds. This is well within the limits to avoid missing out on any challenges.
+
+Each plot file has its own unique private key called a _plot key_. The plot ID is generated by hashing the plot public key, the farmer public key, and either the pool public key (for OG plots) or the pool contract puzzle hash (for pooled plots). The requirements for signing a proof of space depend on the type of plots being used. See [Section 9.3](/docs/09keys/plot_public_keys "Section 9.3: Public Plot Keys") for details on the keys used for plot construction.
+
+In practice, the plot key is a 2/2 BLS aggregate public key between a local key stored in the plot and a key stored by the farmer software. For security and efficiency, a farmer may run on one server using this key and signature scheme. This server can then be connected to one or more harvester machines that store the actual plots. Farming requires the farmer key and the local key, but it does not require the pool key, since the pool’s signature can be cached and reused for many blocks.
 
 ## Verifying
-After the farmer has successfully created a proof of space, the proof can be verified by performing a few hashes and making comparisons between the x-values in the proof. Recall that the proof is a list of 64 x-values, where each x-value is k bits long. For a k32 this is 256 bytes, and is therefore very compact. Verification is very fast, but not quite fast enough to be verified in solidity on ethereum (something that would enable trustless transfers between chains), since it requires blake3 and chacha8 operations.
+After the farmer has successfully created a proof of space, the proof can be verified by performing a few hashes and making comparisons between the x-values in the proof. Recall that the proof is a list of 64 x-values, where each x-value is k bits long. For a k32 this is 256 bytes (2048 bits), and is therefore very compact. Verification is very fast, but not quite fast enough to be verified in Solidity on Ethereum (something that would enable trustless transfers between chains), since this verification requires blake3 and chacha8 operations.
