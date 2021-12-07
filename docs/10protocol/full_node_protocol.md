@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# 10.2 Full Node Protocol
+# 10.3 Full Node Protocol
 This protocol is a bidirectional protocol for communication between full nodes in the Chia system.
 The sender is the full node sending the message, and the recipient is the full node that is receiving the message.
 
