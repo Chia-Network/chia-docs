@@ -24,7 +24,7 @@ This adds a small amount of data, but prevents attackers from creating small for
 
 The main difference between this protocol and Flyclient is that blocks are not committed to using a Merkle mountain range, but instead the light client downloads the entire list of sub-epoch hashes from genesis, guaranteeing that the queried sub-epochs are included in the chain. Another difference is that entire sections are downloaded, as opposed to individual blocks.
 
-More analysis needs to be done on how many sub-epochs should be downloaded and what the bounds are for what the proof of weight implies.
+As of December 2021, more analysis needs to be done on how many sub-epochs should be downloaded and what the bounds are for what the proof of weight implies.
 
 ## Obtaining Transactions
-Light clients can fetch the transactions that they are interested in, without having to download every single block or block header. Two wallet protocols are available for this, a less efficient one that maintains better privacy, and a super efficient one that has a privacy tradeoff, namely that the wallet must ask a node for payments made to certain addresses.
+Light clients can fetch the transactions that they are interested in, without having to download every single block or block header. Two wallet protocols are available for this, a less efficient one that maintains better privacy, and a super efficient one that has a privacy tradeoff, namely that the wallet must ask a node for payments made to certain addresses. Both of these protocols are currently supported in the Wallet API.

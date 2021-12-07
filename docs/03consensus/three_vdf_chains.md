@@ -26,17 +26,19 @@ There is a lot going on in this diagram! Let's break it down.
 
 There are 4 **blocks**: B1, B2, B3, and B4. Farmers create these blocks. The blocks have pointers (the arrows), and the data the pointers are pointing to is all contained within the blocks themselves. At least 16 blocks have been created in the diagram's sub-slot, but we don’t draw all of them due to space constraints.
 
-The challenge chain and the reward chain each create 64 signage points, released every 9.375 seconds (on average) by timelords. Blocks must include the signage point VDFs (which mark the signage points) for both chains. Blocks must also include the infusion point VDFs for all three chains. 
+The challenge chain and the reward chain each create 64 signage points, released every 9.375 seconds (on average) by timelords. Blocks must include the signage point VDFs (which mark the signage points) for both chains.
 
-The challenge chain broadcasts the challenges (c1 and c2). The chain also executes the VDF from the start of the sub-slot to the end with nothing infused into it (the circles are VDF proofs but they do not interrupt the VDF). That is, in the challenge chain, the "lottery" is completely pre-determined, and not affected by blocks in the slot, until the end of the slot.
+The timelords send their VDF output to their full node, which adds it into an EndOfSubSlotBundle. This bundle includes the output from each chain (for example c1, ic1, and r1 in the diagram). The bundle is propagated to all other full nodes. Blocks must also include the infusion point VDFs for all three chains. 
+
+The challenge chain broadcasts the challenges (c1 and c2). The same chain also executes the VDF from the start of the sub-slot to the end with nothing infused into it (the circles are VDF proofs but they do not interrupt the VDF). That is, in the challenge chain, the "lottery" is completely pre-determined, and not affected by blocks in the slot, until the end of the slot.
 
 The reward chain infuses every block that is included. 
 
 The chain in the middle is called the **infused challenge chain**. It starts at the first infused block for each challenge, and goes on until the end of the slot. 
 
-A **slot** is the list of sub-slots which contain at least 16 reward-chain blocks based on the challenge of the first sub-slot, or later sub-slots.
+Recall that a **slot** must have at least 16 reward-chain blocks. A sub-slot doesn't have a minimum number of blocks (though it targets 32 blocks). Instead, a sub-slot always ends when sub-slot_iterations has been reached (this is targeted to take 10 minutes).
 
-For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. Usually each sub-slot is also a slot, since more than 16 blocks are included on average. The **deficit** is the number of blocks still necessary to end the slot: this is described later in more detail.
+Because a sub-slot is targeted to produce more than 16 blocks, a slot usually only needs one sub-slot to meet its minimum-block requirement, but that is not always the case. For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. The **deficit** is the number of blocks still necessary to end the slot: this is described in more detail in  [Section 3.9](/docs/03consensus/overflow_blocks#minimum-block-requirement "Section 3.9: Overflow Blocks and Weight").
 
 At the end of the slot, the challenge chain is combined with the infused challenge chain to generate the new challenge c2, which is used to start the challenge chain for the next sub-slot. 
 
@@ -59,7 +61,9 @@ For a block to be considered valid, it has to provide VDFs for the challenge cha
 **Infused challenge chain**: A VDF chain which starts at the first block infused in a slot (which is not based on the previous slot’s challenge, this is called the challenge block) and ends at the end of the slot. 
 This increases security by preventing VDF lookahead attacks.
 
-**Slot**: the list of sub-slots which contain at least 16 reward-chain blocks based on the challenge of the first sub-slot, or later sub-slots. At the end of the slot, the infused challenge chain stops, the challenge chain pulls in the result of the infused challenge chain, and the deficit is reset to 16.
+**Sub-slot**: a period of time for which a timelord must run a VDF. The number of calculations the timelord must perform (sub-slot_iterations) to complete the sub-slot are adjusted periodically (and automatically) take around 10 minutes. During this time, 64 signage points will be released and the entire network will submit an average of 32 valid proofs of space.
+
+**Slot**: one or more sub-slots. The important thing to remember is that a slot requires at least 16 reward-chain blocks. If these blocks are not produced in the first sub-slot, then another sub-slot will be required within the same slot. At the end of the slot, the infused challenge chain stops, the challenge chain pulls in the result of the infused challenge chain, and the deficit is reset to 16.
 
 **Block**: a block is a collection of data infused into the rewards chain which contains: a proof of space for a challenge hash with fewer iterations than the slot iterations, sp and ip VDFs for both chains, optional ip VDF for the infused challenge chain, and a rewards address. Some blocks are also transaction blocks. There is a maximum of 128 blocks per slot.
 

@@ -34,7 +34,7 @@ Chia uses the coin set model (similar to Bitcoin's UTXO) to track the blockchain
 
 [Chia's coins](https://chialisp.com/docs/coins_spends_and_wallets "Tutorial on Chia's coins") are created in a simple, yet highly secure manner:
 
-coinID = sha256(parent_ID + puzzlehash + amount)
+`coinID = sha256(parent_ID + puzzlehash + amount)`
 
 The coin's ID (a sha256 hash) is the main aspect that's stored on the blockchain. Hashes are not reversible, so it's very difficult for a hacker analyzing the blockchain to even determine what a coin's type is, let alone to view the code that created it. Contrast that with Ethereum, where it's trivial to view a smart contract's source code by using a decompiler.
 
@@ -74,7 +74,7 @@ Like many other blockchains, Chia allows pooling to smooth out the rewards struc
 There are many other innovations in Chia, some of which include:
 * BLS signatures, which allow aggregating all of a block's signatures together.
 * Scalability and performance improvements, which allow running a Chia node on a Raspberry Pi.
-* Weight proofs and light clients, which enable fast syncing from a mobile device.
+* Weight proofs and light clients, which enable fast syncing from a mobile device. For more info, see [Section 3.12](/docs/03consensus/light_clients "Section 3.12: Chia Light Clients") .
 
 This documentation will explain the motivation and implementation of the different components of the Chia system to a technical audience, and provide in-depth explanations of how everything works. If you would like to skip to how to make dapps (decentralized
 apps) on Chia, please visit [chialisp.com](https://chialisp.com).

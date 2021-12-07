@@ -30,18 +30,16 @@ So an address is analogous to a wallet child BLS public key, the private key of 
 The specification that Chia follows is described in the [IRTF CFRG BLS standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/), version 1. There was a change made in version 2 which makes the key generation incompatible. Both versions are secure, but Chia keys were created in 2020 and thus the older version of the specification is used.
 
 
-## Hardened vs Unhardened Keys
+## Non-Observer vs Observer Keys
 
-There are two ways in which child keys can be derived from parent keys: hardened and unhardened.
+There are two ways in which child keys can be derived from parent keys: non-observer and observer (also called hardened and unhardened).
 
-Hardened keys are the default, and only supported, method in the EIP-2333 spec. They are secure, since each key is cryptographically separated -- revealing one key has no impact on the security of its ancestors or siblings. However, hardened keys are limited in functionality, because they can only be derived through private derivation. That
-is, a parent _private_ key can be used to derive a child _private_ key, but a parent
-_public_ key cannot be used to derive a child _public_ key.
+Non-observer keys are the default, and only supported, method in the EIP-2333 spec. They are secure, since each key is cryptographically separated -- revealing one key has no impact on the security of its ancestors or siblings. However, non-observer keys are limited in functionality, because they can only be derived through private derivation. That is, a parent _private_ key can be used to derive a child _private_ key, but a parent _public_ key cannot be used to derive a child _public_ key.
 
-Unhardened keys do allow public derivation. This enables view-only wallets that support viewing _all_ of your public keys, using only the root (master) public key. This is what is usually done for Bitcoin HD view-only wallets. It enables more privacy when compared to systems like Ethereum, which reuse the same address for all transactions.
+Observer keys do allow public derivation. This enables view-only wallets that support viewing _all_ of your public keys, using only the root (master) public key. This is what is usually done for Bitcoin HD view-only wallets. It enables more privacy when compared to systems like Ethereum, which reuse the same address for all transactions.
 
-One advantage of HD keys is tax calculation: if you use a different address for each transaction, you only need to give your accountant your parent public key, who can use it to derive all of your child addresses. This would not be possible with hardened keys.
+One advantage of HD keys is tax calculation: if you use a different address for each transaction, you only need to give your accountant your parent public key, who can use it to derive all of your child addresses. This would not be possible with non-observer keys.
 
 The main security drawback of HD keys is that if you accidentally reveal a single child private key, along with the parent public key, then your parent private key and all sibling keys can be calculated as well.
 
-At the time of Chia's mainnet launch, only hardened keys were used. But now, unhardened keys are supported -- and preferred -- for the view only-wallet support.
+At the time of Chia's mainnet launch, only non-observer keys were used. But now, observer keys are supported -- and preferred -- for the view only-wallet support.

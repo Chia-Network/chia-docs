@@ -27,4 +27,6 @@ There are no signatures at the infusion point; the only things added at the infu
 
 Finally, note that there can be multiple winners at the same signage point, all of which can be included into the blockchain. That would be the case in the diagram, if `sp2 == sp3`. The one which gets included first is the one with the lower `required_iters`, and thus earlier infusion point.
 
-However, if two blocks have the same infusion point, then they must have both been created with the same proof of space. This means they came from identical plots, which is not permitted. The timelord will only accept the first block it received.
+You may be wondering what happens if a farmer makes a copy of a plot and the plot becomes eligible for infusion. Do the plots each win a block reward? No -- two blocks get created, but only one will be infused. The full nodes will only propagate the first copy of the block they see. The timelord node is ultimately connected to exactly one full node, so even if multiple identical blocks make it to that full node, they will not both be sent to the timelord for infusion.
+
+It is possible (albeit very unlikely) for two non-identical blocks to have the same infusion point, even though their hashes don't match. In this case, the full nodes will reject the second block they receive because each block must have total_iters > prev block total_iters. 

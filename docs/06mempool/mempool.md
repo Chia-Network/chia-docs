@@ -8,6 +8,8 @@ The mempool (or memory pool) is a collection of transactions stored by full node
 
 The mempool is a required facet of Chia due to the decentralized nature of the blockchain. Transaction blocks occur approximately every 47 seconds, and it's impossible to predict who will win a block. Therefore, all transactions must be broadcast to the whole network and stored locally until they are confirmed. Additionally, it is normal to have more pending transactions than can fit in a single block, so the mempool also acts as a queue for inclusion into the blockchain.
 
+>How many transactions can fit into a block? Due to the varying size of transactions, and the different definitions of what even counts as a "transaction," there is not an exact number. But just for a bit of rough guidance, approximately 1000 transactions with two inputs and two outputs, or 2000 transactions with one input and one output can fit into a single block.
+
 When a user makes a transaction, it gets sent to a full node, which then verifies it, adds it to the mempool, and broadcasts it to all of its peers. Therefore, transactions get propagated to the whole network in a very short period of time.
 
 ##  Validation
@@ -16,7 +18,7 @@ Only valid transactions are allowed to enter the mempool. The process of validat
 The transaction is also checked against other transactions in the mempool, to ensure there are no conflicts. 
 
 ## Fee Required for Inclusion
-If the mempool is not full, all transactions regardless of fee are accepted into the mempool. The maximum mempool size can vary by version, but it is 10-100 blocks.
+If the mempool is not full, all transactions regardless of fee are accepted into the mempool. The maximum mempool size can vary by version, and transactions have a large variance in size, but it is generally 10-100 blocks.
 
 Transactions with 0 fee are accepted into the mempool as of chia-blockchain version 1.2.12. Fees that are very close to zero are considered equivalent to zero. The threshold is set at 5 mojo per cost, but this can vary by implementation, version, and settings, so it's not guaranteed by the protocol.
 
