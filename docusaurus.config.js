@@ -10,7 +10,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/chia_leaf_green.svg',
   organizationName: 'Chia-Network', // Usually your GitHub org/user name.
   projectName: 'chia-docs', // Usually your repo name.
 
