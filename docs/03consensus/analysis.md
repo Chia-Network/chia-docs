@@ -14,7 +14,7 @@ In Chia, there are two main reasons to wait for a certain number of confirmation
 
   To be confident that there won't be a chain re-org, you should wait for six blocks to be created (around two minutes after the first confirmation).
 
-2. Just in case there is a foliage re-org attack, as described in [Section 3.14](/docs/03consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack "Section 3.14: Relevant Attacks and Countermeasures"). This type of attack would require an attacker to discover the identity of -- and successfully bribe -- a large and consecutive number of anonymous block winners. This attack would be _extroardinarily_ difficult to pull off, so it is expected to be extremely rare, if it is ever even attempted.
+2. Just in case there is a foliage re-org attack, as described in [Section 3.14](/docs/03consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack "Section 3.14: Relevant Attacks and Countermeasures"). This type of attack would require an attacker to discover the identity of -- and successfully bribe -- a large and consecutive number of anonymous block winners. This attack would be _extraordinarily_ difficult to pull off, so it is expected to be extremely rare, if it is ever even attempted.
 
   If you want to be nearly certain that even a successful foliage re-org attack won't reverse your transaction, you should wait for 32 blocks to be created (around ten minutes after the first confirmation).
 
