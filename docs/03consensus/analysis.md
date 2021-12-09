@@ -5,7 +5,19 @@ sidebar_position: 15
 # 3.15 Analysis
 
 ## Safety
-The safety of Chia's consensus is similar to that of other Nakamoto consensus algorithms like Bitcoin. There is no guaranteed finality, but the more confirmations a transaction has, the safer it is. A transaction needs a certain number of confirmations for a receiver to assume that it cannot be re-orged, under the < 46% (* vdf advantage) colluding assumption. Since farmers can theoretically sign multiple blocks at the same height, more confirmations should be used in Chia than in Bitcoin. However with a rate of 32 blocks per 10 minutes, 6 confirmations in Bitcoin is equivalent to 192 in Chia, which is more than enough to be considered safe. As long as one of those 192 farmers is well behaving (not double signing), that transaction will not be reversed.
+The safety of Chia's consensus is similar to that of other Nakamoto consensus algorithms like Bitcoin. There is no guaranteed finality, but the more confirmations a transaction has, the safer it is.
+
+A transaction needs a certain number of confirmations for a receiver to assume that it cannot be re-orged, under the < 46% (* vdf advantage) colluding assumption. Since farmers can theoretically sign multiple blocks at the same height, more _confirmations_ should be used in Chia than in Bitcoin. However, Chia doesn't require anywhere near as much _clock time_ as Bitcoin for a transaction to be considered safe.
+
+In Chia, there are two main reasons to wait for a certain number of confirmations:
+1. To be confident there won't be a chain re-org. As discussed in [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage"), a small re-org is a natural occurrence in blockchains, though rare in Chia.
+
+  To be confident that there won't be a chain re-org, you should wait for six blocks to be created (around two minutes after the first confirmation).
+
+2. Just in case there is a foliage re-org attack, as described in [Section 3.14](/docs/03consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack "Section 3.14: Relevant Attacks and Countermeasures"). This type of attack would require an attacker to discover the identity of -- and successfully bribe -- a large and consecutive number of anonymous block winners. This attack would be _extroardinarily_ difficult to pull off, so it is expected to be extremely rare, if it is ever even attempted.
+
+  If you want to be nearly certain that even a successful foliage re-org attack won't reverse your transaction, you should wait for 32 blocks to be created (around ten minutes after the first confirmation).
+
 
 It's worth noting that the 54% requirement only pertains to _non-colluding_ space, rather than _honest_ farming space. Profit-seeking farmers gain very little by deviating from the protocol.
 

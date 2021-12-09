@@ -97,7 +97,7 @@ In Chia, if participants knew in advance which plots would win, each user could 
 
 This problem is not present in this revision of the Chia consensus algorithm. This problem is solved by reducing the predictability: each farmer does not know for sure if their proof of space is fully eligible until the signage point. Therefore an attacker must bribe a large majority of the space to pull off this attack. 
 
-## Farmer bribe foliage reorg attack
+## Farmer bribe foliage re-org attack
 Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. If the attacker can convince every single farmer in N blocks to sign, they can revert or reorder any transaction in those N blocks. Potentially fraud proofs could be used, but these were not chosen since they enable other attacks and complicate behavior. 
 
 Instead, the solution is simply to wait longer. After 32 blocks (approximately 10 minutes), we can make a reasonable assumption that at least one farmer is following the protocol and not double signing. If 54% is non-colluding (the assumption for 46% attack resilience), the probability of a reversal after 32 blocks is `1.8*10^-13=0.00000000000018`. Furthermore, this attack is detectable, so it is not easy to pull off.
