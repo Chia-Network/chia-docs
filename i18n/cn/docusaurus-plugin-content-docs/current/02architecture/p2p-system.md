@@ -63,6 +63,7 @@ Chia 的农民类似于比特币的矿工。他们通过使用他们存储的地
 <summary>原文参考</summary>
 
 - ## Farmers
+
 Chia's farmers are analogous to Bitcoin's miners. They earn block rewards and fees by using their stored plots.
 The farmer processes don't maintain a copy of the blockchain, but they trust a full node to provide updates.
 The full node and the farmer process communicate through the farmer protocol, and usually farmers run both on the
@@ -107,6 +108,7 @@ to sign partials sent to pools.
 
 
 - ## Harvesters
+
 Harvesters are individual machines controlled by a farmer.
 In a large farming operation, a farmer may be connected to many harvesters.
 
