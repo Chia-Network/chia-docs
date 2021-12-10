@@ -6,6 +6,8 @@ sidebar_position: 2
 
 > Block format
 
+## 完整块
+
 完整块是包含验证和添加块所需的所有信息的数据结构`N`，假设所有块`N - 1`都已添加。FullBlocks 通过网络协议发送，有时也存储在磁盘上，以便将来为其他节点提供服务。
 
 FullBlock 具有区块链的树干和树叶的字段。的`header_hash`，其被用作所述块标识符，为的散列`foliage`在字段[可流传送的](/docs/08serialization/serialization)格式。这将提交到所有相关数据和所有先前的块。
