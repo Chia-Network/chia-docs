@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
 (module.exports = {
   title: 'Chia Documentation',
   tagline: 'A new blockchain and smart transaction platform that is easier to use, more efficient, and secure.',
-  url: 'https://www.chia.net/chia-docs/',
+  url: 'https://www.docs.chia.net',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
