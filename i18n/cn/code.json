@@ -1,30 +1,30 @@
 {
   "homepage.feature1": {
-    "message": "cn Decentralized"
+    "message": "Decentralized"
   },
   "homepage.detail1": {
-    "message": "cn The Chia network has more full nodes than any other blockchain, and allows anyone to participate in farming from their home, with just a hard drive."
+    "message": "The Chia network has more full nodes than any other blockchain, and allows anyone to participate in farming from their home, with just a hard drive."
   },
   "homepage.feature2": {
-    "message": "cn Environmentally Friendly"
+    "message": "Environmentally Friendly"
   },
   "homepage.detail2": {
-    "message": "cn Proof of Space and Time as a consensus mechanism uses less than 1% of the electricity that Bitcoin uses."
+    "message": "Proof of Space and Time as a consensus mechanism uses less than 1% of the electricity that Bitcoin uses."
   },
   "homepage.feature3": {
-    "message": "cn Powerful"
+    "message": "Powerful"
   },
   "homepage.detail3": {
-    "message": "cn The Chialisp programming language and blockchain environment allows developers to make extremely powerfuland secure decentralized apps, than can never be stopped."
+    "message": "The Chialisp programming language and blockchain environment allows developers to make extremely powerfuland secure decentralized apps, than can never be stopped."
   },
   "index.theme_title": {
-    "message": "cn Chia Documentation"
+    "message": "Chia Documentation"
   },
   "index.theme_discribe": {
-    "message": "cn A new blockchain and smart transaction platform that is easier to use, more efficient, and secure."
+    "message": "A new blockchain and smart transaction platform that is easier to use, more efficient, and secure."
   },
   "index.start_button": {
-    "message": "cn Start Learning about Chia ⏱️"
+    "message": "Start Learning about Chia ⏱️"
   },
   "theme.NotFound.title": {
     "message": "Page Not Found",
