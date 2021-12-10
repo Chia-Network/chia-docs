@@ -1,34 +1,31 @@
 {
-  "homepage.Dec": {
+  "homepage.feature1": {
     "message": "cn Decentralized"
   },
-  "homepage.Decentralized": {
+  "homepage.detail1": {
     "message": "cn The Chia network has more full nodes than any other blockchain, and allows anyone to participate in farming from their home, with just a hard drive."
   },
-  "homepage.EF": {
+  "homepage.feature2": {
     "message": "cn Environmentally Friendly"
   },
-  "homepage.EFriendly": {
+  "homepage.detail2": {
     "message": "cn Proof of Space and Time as a consensus mechanism uses less than 1% of the electricity that Bitcoin uses."
   },
-  "homepage.Pf": {
+  "homepage.feature3": {
     "message": "cn Powerful"
   },
-  "homepage.Powerful": {
+  "homepage.detail3": {
     "message": "cn The Chialisp programming language and blockchain environment allows developers to make extremely powerfuland secure decentralized apps, than can never be stopped."
   },
-
-
-  "index.hero_title": {
+  "index.theme_title": {
     "message": "cn Chia Documentation"
   },
-  "index.hero__subtitle": {
+  "index.theme_discribe": {
     "message": "cn A new blockchain and smart transaction platform that is easier to use, more efficient, and secure."
   },
-  "index.start_learning": {
+  "index.start_button": {
     "message": "cn Start Learning about Chia ⏱️"
   },
-
   "theme.NotFound.title": {
     "message": "Page Not Found",
     "description": "The title of the 404 page"
