@@ -974,7 +974,7 @@ https://poolurl.com/login?launcher_id=:launcher_id&authentication_token=:token&s
 | target_puzzle_hash | 字节32 |
 | authentication_token | uint64 |
 
-where `method_name` 必须是序列化的字符串 `"get_login"` ， `target_puzzle_hash` 是池的目标拼 [图哈希](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) （参见 [GET /pool\_info](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) ）。 参数必须根据 [签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列， 签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
+where `method_name` 必须是序列化的字符串 `"get_login"` ， `target_puzzle_hash` 是池的目标[拼图哈希](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) （参见 [GET /pool\_info](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) ）。 参数必须根据 [签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列， 签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
 其中参数必须根据 [签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列， 签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
