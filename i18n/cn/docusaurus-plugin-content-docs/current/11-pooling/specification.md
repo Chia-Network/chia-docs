@@ -156,7 +156,7 @@ All bytes values are encoded as hex with optional 0x in front. Clients are also 
 | 0x03 | 未找到 |
 | 0x04 | 空间证明无效 |
 | 0x05 | 空间证明不够好 |
-| 0x06 | 无效难度y |
+| 0x06 | 无效难度 |
 | 0x07 | 无效签名 |
 | 0x08 | Web 服务器引发异常|
 | 0x09 | 无效的拼图哈希|
