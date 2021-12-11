@@ -64,7 +64,7 @@ Since we are trying to create a globally decentralized and secure system, why no
 
 We could instead base the system on "one computer, one vote," counting each IP address as a "computer." However, it is trivial to buy new IP addresses, or to change addresses using a VPN or a proxy server. An attacker could even create millions of fake IP addresses. The attacker would gain control of the network once they own 51% of the addresses. At this point, they could decide transaction ordering and content. Again, the system becomes centralized, and possibly compromised.
 
-The key issue that makes it difficult to solve the double-spend problem is the Sybil attack. A Sybil attack is when an attacker creates a large amount of fake identities at a low cost. Most most "Proof of X" blockchains are not secure because if an attacker creates multiple identities, this will give the attacker an advantage.
+The key issue that makes it difficult to solve the double-spend problem is the Sybil attack. A Sybil attack is when an attacker creates a large amount of fake identities at a low cost. Most "Proof of X" blockchains are not secure because if an attacker creates multiple identities, this will give the attacker an advantage.
 
 The genius of Satoshi Nakamoto was to solve the double-spend problem by requiring real-world work in order to obtain "votes," and to decide consensus. This "Proof of Work" is cryptographically verifiable. The only requirements for participation are a computer and an internet connection.
 
