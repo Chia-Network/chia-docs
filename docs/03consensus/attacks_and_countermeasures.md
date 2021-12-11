@@ -4,37 +4,39 @@ sidebar_position: 14
 
 # 3.14 Relevant Attacks and Countermeasures
 
-## 51% (46%) attack:
-A 51% attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to reorg. The classic long range attack, which is also present in proof-of-work systems, is the 51% attack.
+## 51% attack
+A 51% (actually 46%, as explained below) attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to re-org. This is the classic long-range attack, which is present on many blockchain networks including Chia's, as well as on proof-of-work systems.
 
-In the 51% attack, the attacker with at least 51% of the network space creates an alternate chain and eventually catches up. There are two main differences between Chia's Proof of Space and Time consensus and Proof of Work.
-1. In Chia, the attacker can extend and farm on many chains simultaneously.
-2. In Chia, if the attacker has the fastest VDF, they can get an additional space advantage/boost.
+In this attack, someone who controls at least 46% of the network space creates an alternate chain, which eventually becomes heavier than the honest chain.
+
+There are two main differences between Chia's Proof of Space and Time consensus and Proof of Work.
+1. In Chia, the attacker can extend and farm on many chains simultaneously, making the attack possible with only 46% of the network space. A fast VDF is not required to gain this advantage. Therefore, a 46% assumption should used as the base line for a long-range attack.
+2. In Chia, if the attacker has the fastest VDF on the entire network, they can get an additional space advantage/boost. (If the attacker's VDF is even slightly slower than the fastest VDF, it will not give them any advantage.)
 
 ## Extending many chains
 If an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions, such that they get the best possible chain.
 
-Due to the average of 32 blocks with the same challenge, the attacker can only try about 32 different combinations (figuring out which block to include in the challenge chain). The exponential branching that results from trying each of these would give a small boost in space for the attacker. For example, someone with 5 PiB pretend to have 6 or 7 PiB.
+Due to the average of 32 blocks with the same challenge, the attacker can only try about 32 different combinations (figuring out which block to include in the challenge chain). The exponential branching that results from trying each of these would give a small boost in space to the attacker. For example, someone with 5 PiB could pretend to have 6 or 7 PiB.
 
 The reason for receiving just a minor boost is because the alternative chains being tried are inferior and less likely to overtake the longest one. This has been analyzed in the [PoSAT white paper](https://arxiv.org/abs/2010.08154).
 
 The actual amount of space required to perform this attack (for the attacker to get a heavier chain than the rest of the network combined) is 46.3%, due to the ability for an attacker to "try" different combinations of blocks, for example omitting or not omitting the first block.
 
-If there was a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% is required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per slot to 32. This increases the attacker's required space to 46%. 
+If there was a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% is required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 46%. 
 
-However, Chia also chose not to increase the number of blocks per slot to a number greater than 32. The reason was because increasing the number of blocks per sub-slot even further would decrease the time between blocks. This would allow a VDF that is only slightly faster than all others to orphan blocks more easily. As it stands, with 32 blocks per slot, an attacker would need to have a significantly faster VDF than everyone else in order to successfully orphan any blocks.
+However, Chia also chose not to increase the number of blocks per sub-slot to a number greater than 32. Doing so would decrease the time between blocks, which would allow a VDF that is only slightly faster than all others to orphan blocks more easily. As it stands, with 32 blocks per sub-slot, an attacker would need to have a significantly faster VDF than everyone else in order to successfully orphan any blocks.
 
 Furthermore, the [PoSAT white paper](https://arxiv.org/abs/2010.08154) shows that increasing the number of blocks per challenge increases security at a very slow rate, so increasing this number slightly does not provide much benefit.
 
-If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the required attacker space in the worst case scenario from 27% up to 42%.
+If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the required attacker space in the worst case scenario from 27% up to 46%.
 
 ## Faster VDF and 46% of space
 The 46% attack gets worse if the attacker’s VDF is faster. Let’s assume the attacker’s VDF is 2x faster than the second-fastest VDF. Then their chain will be able to create challenges and blocks at 2x the rate of the rest of the network, which means they can create a "heavier" chain with the same amount of space.
 
-This required space drops from 46% to approximately 30% of the total network space. `0.46/0.54 = 2x/(1-x). x=0.30`. If the attacker does not have access to the fastest VDF, they will not be able to get a space advantage.
+This reduces the required space from 46% to approximately 30% of the total network space. `0.46/0.54 = 2x/(1-x). x=0.30`. If the attacker does not have access to the fastest VDF, they will not be able to get a space advantage beyond 46%.
 
 ## Chia space / global hard drive space 
-There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to 51% attacks. Therefore the more space taken by the Chia network, the more secure the network is.
+There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to 46% attacks. Therefore the more space taken by the Chia network, the more secure the network is.
 
 We believe this type of attack is unlikely, though. Large data centers and companies with significant amounts of storage tend to not have much _unused_ storage available to hold Chia plots. And the more space that comes onto Chia's network, the lower the rewards per TB. With the netspace currently (December 2021) sitting at 35 EiB, companies will find it difficult to justify buying drives or deleting business data. Furthermore, creating a plot requires a fixed amount of upfront time and money (from current calculations, about 1kWh for a k32, or about 10 cents, which is $1 per terabyte).
 
@@ -98,9 +100,13 @@ In Chia, if participants knew in advance which plots would win, each user could 
 This problem is not present in this revision of the Chia consensus algorithm. This problem is solved by reducing the predictability: each farmer does not know for sure if their proof of space is fully eligible until the signage point. Therefore an attacker must bribe a large majority of the space to pull off this attack. 
 
 ## Farmer bribe foliage re-org attack
-Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. If the attacker can convince every single farmer in N blocks to sign, they can revert or reorder any transaction in those N blocks. Potentially fraud proofs could be used, but these were not chosen since they enable other attacks and complicate behavior. 
+Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. It does not require the attacker to have a faster VDF.
 
-Instead, the solution is simply to wait longer. After 32 blocks (approximately 10 minutes), we can make a reasonable assumption that at least one farmer is following the protocol and not double signing. If 54% is non-colluding (the assumption for 46% attack resilience), the probability of a reversal after 32 blocks is `1.8*10^-13=0.00000000000018`. Furthermore, this attack is detectable, so it is not easy to pull off.
+If the attacker can convince every single farmer in N blocks to sign, they can revert or reorder any transaction in those N blocks. This attack requires 100% compliance, likely from unwitting particpants. As soon as those participants learn of the attack, at least some of them would probably stop. It is therefore only a short-term attack.
+
+One potential prevention for this attack would be to use fraud proofs. However, these enable other attacks and complicate behavior, so they were not chosen.
+
+Instead, the solution is simply to wait longer. After 32 blocks (approximately 10 minutes), we can make a reasonable assumption that at least one farmer is following the protocol and not double signing. If 54% is non-colluding (the assumption for 46% attack resilience), the probability of a reversal after 32 blocks is `0.46^32` or `1.6*10^-11= 0.000000000016`. Furthermore, this attack is detectable, so it is not easy to pull off.
 
 Each user can choose their own threshold for which they accept a transaction/block as final. For example, in cases where the total network space drops suddenly, users can be more careful and not consider transactions final, in case there is another existing fork, due to a network split, for example. 
 
