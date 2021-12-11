@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # 3.10 Foliage
 
-In the above diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical.
+In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical.
 There is also no place to include transactions. Everything we have talked about so far is the trunk of the blockchain.
 
 Farmers have no say in how their block is constructed in the trunk, since they must use the exact proof of space, VDFs, and signatures that are specified.
@@ -21,7 +21,7 @@ In figure 11 below we can see that the foliage is added to blocks to produce an 
 To prevent a foliage re-org, honest farmers only create one foliage block per block. As soon as one honest farmer has added a foliage block, the foliage becomes impossible to re-org beyond that height with the same PoSpace, since that farmer will not sign again with the same PoSpace.
 
 Furthermore, blocks like B3, which come parallel with another foliage block (B2), do not have to sign the previous foliage block, since they do not necessarily have enough time to see it.
-  
+
   >By “coming in parallel”, we mean that the second block’s signage point occurs before the first block's infusion point.
 
 The red arrows in the diagram represent a foliage pointer that is signed by the plot key for the proof of space in that block. The gray arrows represent a hash pointer which is not signed by the plot key (therefore the gray arrow in B3 can be replaced if B2 changes or is withheld). This prevents attacks where B2 modifies their block and forces B3 to re-org.
@@ -45,9 +45,9 @@ The block hash is a hash of the entire foliage and trunk block. Re-orgs work on 
 
 Note that the farmers of blocks B2 and B3 might both have a chance to create the block, so they must both provide the signed pointer and transactions. However, any transaction block can be included as a normal block as well, and since B2 and B3 are in parallel, only one of them can make a transaction block.
 
-While all blocks still choose the puzzle hashes of where their rewards go, those transactions do not get included into the blockchain until the next transaction block. 
+While all blocks still choose the puzzle hashes of where their rewards go, those transactions do not get included into the blockchain until the next transaction block.
 
-For the chia mainnet, there is a target of 32 blocks every 600 seconds, for an average block time of 18.75 seconds. There are be 64 signage points, so the minimum time between transaction blocks is 3*600/64 = 28.125 seconds. This puts the average transaction block time at 46.875 seconds (average block time + minimum transaction block time).
+For the chia mainnet, there is a target of 32 blocks every 600 seconds, for an average block time of 18.75 seconds. There are 64 signage points, so the minimum time between transaction blocks is 3*600/64 = 28.125 seconds. This puts the average transaction block time at 46.875 seconds (average block time + minimum transaction block time).
 
 The time between transaction blocks was deliberately chosen because it comes with several advantages:
 * If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.

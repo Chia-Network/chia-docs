@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 11.2  Chia Pool Protocol 1.0 Specification
 
-This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later. It relies on farmers having smart coins (referred to as Pool NFTs in GUI + CLI) which allow them to switch between pools by making transactions on the blockchain. Furthermore, it decreases the reliance on pools for block production, since the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously.
+This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later. It relies on farmers having smart coins (referred to as plot NFTs in GUI + CLI) which allow them to switch between pools by making transactions on the blockchain. Furthermore, it decreases the reliance on pools for block production, since the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously.
 
 
 ## Security considerations
@@ -209,8 +209,8 @@ where the parameter must be serialized and hashed according to [Signature valida
 signature must be signed by the private key of the `authentication_public_key` using the Augmented Scheme in the BLS
 IETF spec.
 
-Note: The pool MUST return the current points balance, which is the total number of points found since the last 
-payout for that user. 
+Note: The pool MUST return the current points balance, which is the total number of points found since the last
+payout for that user.
 
 ## POST /farmer
 Register a farmer with the pool. This is required once before submitting the first partial.
@@ -294,7 +294,7 @@ Request:
 
 For a description of the request body entries see the corresponding keys in [POST /farmer](#post-farmer). The values
 provided with the key/value pairs are used to update the existing values on the server. All entries, except
-`launcher_id`, are optional but there must be at least one of them. 
+`launcher_id`, are optional but there must be at least one of them.
 
 See the [streamable](#signature-validation) class `PutFarmerPayload` in the
 [pool protocol](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) for details
@@ -415,7 +415,7 @@ A partial must be completely rejected if the BLS signature does not validate.
 
 ## GET /login
 This allows the user to log in to a web interface if the pool supports it, see service flags in
-[GET /pool_info](#get-pool_info). The farmer software must offer a way to generate and display a login link or provide 
+[GET /pool_info](#get-pool_info). The farmer software must offer a way to generate and display a login link or provide
 a button which generates the link and then just opens it in the default browser. The link follows the specification
 below.
 
