@@ -7,7 +7,7 @@ This protocol is a bidirectional protocol for communication between full nodes i
 The sender is the full node sending the message, and the recipient is the full node that is receiving the message.
 
 ## new_peak
-Sent to peers whenever our node's peak weight advances (whenever blockchain moves forward).
+Sent to peers whenever our node's peak weight advances (whenever the blockchain moves forward).
 The fork point allows peers to detect how deep of a reorg happenned, and fetch the correct blocks.
 The unfinished reward block hash allows the receiving peer to use their cache for unfinished blocks,
 since they most likely already have the unfinished
@@ -17,8 +17,8 @@ Usually, during normal operation, peers will ask for just the latest block, or
 ignore this message if they have already received it from another peer.  If we are a few blocks behind, blocks are
 fetched one by one in reverse order up to the fork.
 
-If we are far behind this peak, we will start a batch sync (download a few tens of blocks in batches) or a long sync, 
-where we download a weight proof and then download many blocks in batches. 
+If we are far behind this peak, we will start a batch sync (download a few tens of blocks in batches) or a long sync,
+where we download a weight proof and then download many blocks in batches.
 
 ```python
 class NewPeak(Streamable):
@@ -32,7 +32,7 @@ class NewPeak(Streamable):
 
 ## new_transaction
 Sent to peers when a new spend bundle has been added to the mempool. The receiving peer can then choose to ignore
-it, or request the whole transaction. 
+it, or request the whole transaction.
 
 ```python
 class NewTransaction(Streamable):
@@ -60,8 +60,8 @@ class RespondTransaction(Streamable):
 
 ## request_proof_of_weight
 Request a weight proof from a peer. This is done right before starting a long sync. The weight proof allows our
-node to validate whether a `new_peak` that we received from a peer corresponds to an actual valid blokchain. It is 
-proof that a certain amount of "weight", or space and time, has been used on that blockchain. 
+node to validate whether a `new_peak` that we received from a peer corresponds to an actual valid blokchain. It is
+proof that a certain amount of "weight", or space and time, has been used on that blockchain.
 
 ```python
 class RequestProofOfWeight(Streamable):
@@ -219,7 +219,7 @@ class RespondEndOfSubSlot(Streamable):
 
 ## request_mempool_transactions
 This is a request for transactions in the mempool. The filter corresponds to a BIP158 Compact Block Filter, which
-allows the recipient to see what transactions the sender already has (with some small chance for false positives), 
+allows the recipient to see what transactions the sender already has (with some small chance for false positives),
 without sending all transaction IDs. The recipient can then respond using `respond_transction` directly, but should
 not send a very large number of transactions, to not overwhelm the original sending peer.
 
