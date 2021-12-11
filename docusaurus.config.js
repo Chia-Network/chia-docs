@@ -14,6 +14,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
   organizationName: 'Chia-Network', // Usually your GitHub org/user name.
   projectName: 'chia-docs', // Usually your repo name.
 
+  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  
   presets: [
     [
       '@docusaurus/preset-classic',
