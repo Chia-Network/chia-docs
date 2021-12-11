@@ -102,7 +102,7 @@ This problem is not present in this revision of the Chia consensus algorithm. Th
 ## Farmer bribe foliage re-org attack
 Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. It does not require the attacker to have a faster VDF.
 
-If the attacker can convince every single farmer in N blocks to sign, they can revert or reorder any transaction in those N blocks. This attack requires 100% compliance, likely from unwitting particpants. As soon as those participants learn of the attack, at least some of them would probably stop. It is therefore only a short-term attack.
+If the attacker can convince every single farmer in N blocks to sign, they can revert or reorder any transaction in those N blocks. This attack requires 100% compliance, likely from unwitting participants. As soon as those participants learn of the attack, at least some of them would probably stop. It is therefore only a short-term attack.
 
 One potential prevention for this attack would be to use fraud proofs. However, these enable other attacks and complicate behavior, so they were not chosen.
 
