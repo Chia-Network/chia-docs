@@ -22,7 +22,7 @@ The proof of space challenge is computed as the hash of the plot filter bits:
 
 Using this challenge, the farmers fetch quality strings for each plot that made it past the filter. Recall that this process requires around seven random disk seeks, which takes around 70 ms on a slow HDD. The quality string is a hash derived from part of the proof of space (but the whole proof of space has yet to be retrieved).
 
-  >For both our [previous example](/docs/03consensus/challenges "Section 3.4: Challenges"), as well as the next example, we'll use the following values:
+  >For both of our [previous example](/docs/03consensus/challenges "Section 3.4: Challenges"), as well as the next example, we'll use the following values:
   * sub-slot_iterations = 100,000,000
   * sp_interval_iterations = `sub-slot_iterations` / 64 = 1,562,500
 
