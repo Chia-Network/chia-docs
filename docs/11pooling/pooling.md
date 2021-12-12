@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 11.1 Summary
 
-The Chia pool protocol has been designed for security and decentralization. It does not rely on any 3rd party, closed code, or trusted behavior. 
+The Chia pool protocol has been designed for security and decentralization. It does not rely on any 3rd party, closed code, or trusted behavior.
 
 Some of the protocol's highlights:
 
@@ -19,14 +19,14 @@ Several things can be customized by pool operators, while still adhering to the 
 * How long the timeout is for leaving the pool
 * How difficulty adjustment happens
 * Fees to take, and how much to pay in blockchain fees  
-* How farmers' points are counted when paying (PPS, PPLNS, etc)
+* How farmers' points are counted when paying ([PPS, PPLNS,](https://en.bitcoin.it/wiki/Comparison_of_mining_pools) etc)
 * How farmers receive payouts (XCH, BTC, ETH, etc), and how often
-* What store (DB) is used - by default it's an SQLite db. Users can use their own store implementations, based on 
+* What store (DB) is used - by default it's an SQLite db. Users can use their own store implementations, based on
   `AbstractPoolStore`, by supplying them to `pool_server.start_pool_server`
 * What happens (in terms of response) after a successful login
 * The backend architecture of the pool
 
-However, some things cannot be changed. These are described in our [pool specification](https://github.com/Chia-Network/pool-reference/blob/main/SPECIFICATION.md), and mostly relate to validation, protocol, and the singleton format for smart coins. 
+However, some things cannot be changed. These are described in our [pool specification](https://github.com/Chia-Network/pool-reference/blob/main/SPECIFICATION.md), and mostly relate to validation, protocol, and the singleton format for smart coins.
 
 ### Pool Protocol Summary
 When not pooling, farmers receive signage points from full nodes every 9 seconds, and send these signage points to the harvester.
@@ -43,16 +43,15 @@ The farmer communicates with one or several pools through an HTTPS protocol, and
 
 These "partial" proofs, however, are not sent to the full node to create a block. They are instead only sent to the pool. This means that the other full nodes in the network do not have to see and validate everyone else's proofs, and the network can scale to millions of farmers, as long as the pool scales properly. Only one of a given pool's farmers needs to win a block for the entire pool to be rewarded proportionally to their space.
 
-The pool then keeps track of how many proofs (partials) each farmer sends, weighing them by difficulty. Occasionally (for example every three days), the pool can perform a payout to farmers based on how many partials they submitted. Farmers with more space, and thus more points, will get linearly more rewards. 
+The pool then keeps track of how many proofs (partials) each farmer sends, weighing them by difficulty. Occasionally (for example every three days), the pool can perform a payout to farmers based on how many partials they submitted. Farmers with more space, and thus more points, will get linearly more rewards.
 
-Instead of farmers using a `pool_public_key` when plotting, they now use a puzzle hash, referred to as the `p2_singleton_puzzle_hash`, also known as the `pool_contract_address`. These values go into the plot itself, and cannot be changed after creating the plot, since they are hashed into the `plot_id`. The pool contract address is the address of a chialisp contract called a _singleton_. The farmer must first create a singleton on the blockchain, which stores the pool information of the pool that that singleton is assigned to. When making a plot, the address of that
-singleton is used, and therefore that plot is tied to that singleton forever.
+Instead of farmers using a `pool_public_key` when plotting, they now use a puzzle hash, referred to as the `p2_singleton_puzzle_hash`, also known as the `pool_contract_address`. These values go into the plot itself, and cannot be changed after creating the plot, since they are hashed into the `plot_id`. The pool contract address is the address of a chialisp contract called a _singleton_ or plot NFT. The farmer must first create a singleton on the blockchain, which stores the pool information of the pool that that singleton is assigned to. When making a plot, the address of that singleton is used, and therefore that plot is tied to that singleton forever.
 
-When a block is found by the farmer, 7/8 of the block reward (the pool portion) go into the singleton. When the farmer claims these funds they are sent directly to the pool's target address. The other 1/8 of the reward, plus transaction fees, are sent directly to the farmer. 
+When a block is found by the farmer, 7/8 of the block reward (the pool portion) go into the singleton. When the farmer claims these funds they are sent directly to the pool's target address. The other 1/8 of the reward, plus transaction fees, are sent directly to the farmer.
 
   >The block reward's payout amount will change according to the halving cycle, detailed in [Section 5.3](/docs/05block-validation/block_rewards#halvings "Section 5.3: Block reward halvings"). However, the 7/8 - 1/8 ratio will always remain the same.
 
-The farmer can also configure their payout instructions, so that the pool knows where to send the occasional rewards to.
+The farmer can also configure their payout instructions, so that the pool knows where to send the occasional rewards to. Optionally a farmer can opt out of a pool by updating the singleton and then claiming future rewards for themselves.
 
 
 ### Receiving partials
@@ -80,7 +79,7 @@ Periodically (for example once a day), the pool executes a payment loop, going t
 
 
 ### 1/8 vs 7/8
-Note that the coinbase rewards in Chia are divided into two coins: the farmer coin and the pool coin. The farmer coin (1/8 of the reward, plus transaction fees) only goes to the puzzle hash signed by the farmer private key, while the pool coin (7/8 of the reward) goes to the pool. This split of 7/8 - 1/8 exists to prevent attacks where one pool tries to destroy another by farming partials, but never submitting winning blocks.
+Note that the coinbase rewards in Chia are divided into two coins: the farmer coin and the pool coin. The farmer coin (1/8 of the reward, plus transaction fees) only goes to the puzzle hash signed by the farmer private key, while the pool coin (7/8 of the reward) goes to the pool. This split of 7/8 - 1/8 exists to deter attacks where one pool tries to destroy another by farming partials, but never submitting winning blocks.
 
 If a farmer is not a member of a pool, the farmer coin and the pool coin are both sent directly to the farmer.
 
@@ -107,7 +106,7 @@ The following is a simple difficulty adjustment algorithm executed by the pool, 
 - If < 45 minutes:
    - If have < 300 partials at this difficulty, maintain same difficulty
    - Else, multiply the difficulty by (24 * 3600 / (time taken for 300 partials))
-  
+
 Notes:
 
 * 6 hours is used to handle rare cases where a farmer's storage drops dramatically.
