@@ -8,15 +8,15 @@
     "description": "Navbar item with label Chialisp"
   },
   "item.label.Blog": {
-    "message": "Blog",
+    "message": "博客",
     "description": "Navbar item with label Blog"
   },
   "item.label.Business Whitepaper": {
-    "message": "Business Whitepaper",
+    "message": "商业白皮书",
     "description": "Navbar item with label Business Whitepaper"
   },
   "item.label.Edit Docs on GitHub": {
-    "message": "Edit Docs on GitHub",
+    "message": "打开 GitHub 修改文档",
     "description": "Navbar item with label Edit Docs on GitHub"
   }
 }

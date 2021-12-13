@@ -23,7 +23,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/01introduction/what-is-chia">
-            <Translate id="index.start_button">
+            <Translate id="banner.start.button">
               Start Learning about Chia ⏱️
             </Translate>
           </Link>
