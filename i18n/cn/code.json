@@ -1,30 +1,30 @@
 {
-  "homepage.feature1": {
-    "message": "Decentralized"
+  "feature1": {
+    "message": "去中心化"
   },
-  "homepage.detail1": {
-    "message": "The Chia network has more full nodes than any other blockchain, and allows anyone to participate in farming from their home, with just a hard drive."
+  "detail1": {
+    "message": "Chia 网络拥有比任何其他区块链更多的完整节点，并且只要拥有一块硬盘，任何人都可以在家中开始耕种。"
   },
-  "homepage.feature2": {
-    "message": "Environmentally Friendly"
+  "feature2": {
+    "message": "环保"
   },
-  "homepage.detail2": {
-    "message": "Proof of Space and Time as a consensus mechanism uses less than 1% of the electricity that Bitcoin uses."
+  "detail2": {
+    "message": "时空证明作为一种新的共识机制，其消耗的电力不到比特币的1%。"
   },
-  "homepage.feature3": {
-    "message": "Powerful"
+  "feature3": {
+    "message": "Dapps"
   },
-  "homepage.detail3": {
-    "message": "The Chialisp programming language and blockchain environment allows developers to make extremely powerfuland secure decentralized apps, than can never be stopped."
+  "detail3": {
+    "message": "Chialisp 编程语言和区块链环境的支持，使开发人员能够制作极其强大且安全的去中心化应用程序（Dapp），并且能够永久稳定运行。"
   },
-  "index.theme_title": {
-    "message": "Chia Documentation"
+  "banner.title": {
+    "message": "Chia 文档"
   },
-  "index.theme_discribe": {
-    "message": "A new blockchain and smart transaction platform that is easier to use, more efficient, and secure."
+  "banner.content": {
+    "message": "新型区块链和智能合约交易平台，更简单、高效、安全。"
   },
-  "index.start_button": {
-    "message": "Start Learning about Chia ⏱️"
+  "banner.start.button": {
+    "message": "开始学习"
   },
   "theme.NotFound.title": {
     "message": "Page Not Found",
