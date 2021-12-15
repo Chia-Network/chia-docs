@@ -155,7 +155,7 @@ Furthermore, an attacker with a much faster timelord can potentially 51% attack 
 这为农民提供了更多的权力，从而减少了集中式矿池的影响。
 
 农民定期向矿池发送包含空间证明和签名的部分。
-在[矿池协议](/docs/pooling/pooling) 页面中查看更多信息。
+在[矿池协议](/docs/03consensus/light_clients) 页面中查看更多信息。
 
 
 <details>
@@ -169,9 +169,7 @@ Pool public keys must be embedded into the plots themselves, so a pool cannot be
 Pools create and spend **coinbase transactions**, but in Chia's pool protocol they do not actually choose the contents of blocks.
 This gives more power to farmers and thus decreases the influence of centralized pools.
 
-Farmers periodically send partials, which contain a proof of space and a signature, to pools.
-See more in the [Pool Protocol](/docs/pooling/pooling) page.
-
+Farmers periodically send partials, which contain a proof of space and a signature, to pools. The pools use these partial proofs to determine how much space the farmers have dedicated, which in turn determines the farmer's portion of the reward when the pool wins a block.
 </details>
 
 ## 钱包
@@ -179,7 +177,7 @@ See more in the [Pool Protocol](/docs/pooling/pooling) page.
 钱包可以通过钱包协议与全节点通信。
 这类似于比特币的 SPV 协议，允许验证交易和区块重量，没有全节点的带宽和 CPU 要求。
 钱包节点类似于完整节点，因为它们是与网络中的其他对等点进行通信的服务器。 一个常见的用例是在本地运行钱包和全节点，其中钱包只连接到全节点。
-钱包从节点下载[权重证明](/docs/03consensus/weight-proofs)以快速验证哪个区块链是最长的。 然后他们要求全节点扫描区块链以获得他们想要的交易。
+钱包从节点下载[权重证明](/docs/03consensus/light_clients)以快速验证哪个区块链是最长的。 然后他们要求全节点扫描区块链以获得他们想要的交易。
 钱包还负责管理私钥，生成、存储和发送交易。 钱包公开了一个 RPC HTTP websocket JSON API，用户界面可以使用它来执行命令。 
 
 <details>
@@ -190,7 +188,7 @@ See more in the [Pool Protocol](/docs/pooling/pooling) page.
 Wallets can communicate with full nodes through the wallet protocol.
 This is similar to Bitcoin's SPV protocol, and allows verification of transactions and block weight, without the bandwidth and CPU requirements of full nodes.
 Wallet nodes are similar to full nodes, in that they are servers which communicate to other peers in the network. A common use case is to run a wallet locally along with a full node, where the wallet only connects to the full node.
-Wallets download [weight proofs](/docs/03consensus/weight-proofs) from nodes to quickly validate which blockchain is 
+Wallets download [weight proofs](/docs/03consensus/light_clients) from nodes to quickly validate which blockchain is 
 the longest. They then ask full nodes to scan the blockchain for their desired transactions.
 The wallet is also responsible for managing private keys, generating, storing and sending transactions. The wallet exposes an RPC HTTP websocket JSON API, which user interfaces can use to execute commands.
 
