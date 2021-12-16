@@ -48,15 +48,15 @@ For more info about the coin set model and Chia's on-chain programming environme
 
 Chia 节点连接到其他 Chia 节点的随机子集，称为对等节点。节点定期从对等方发送和接收信息，然后将这些信息本地存储在对等方数据库中。每个节点将他们看到的所有新交易和区块广播给他们的对等方，然后将这些信息传递给他们的对等方，从而使信息在整个网络中快速传播。首次启动时，节点必须通过下载区块和交易的整个历史来同步到区块链。
 
->完整节点协议可以在[第 10 节](https://github.com/Chiabee/chia-docs/blob/main/docs/10protocol/protocol)中找到。
+>完整节点协议可以在[第 10 节](/docs/10protocol/protocol "Section 3.10: Full Node Protocol")中找到。
 
 此外，节点可以选择 *耕种* 来帮助保护网络。他们通过存储称为 *图块* 的大文件来做到这一点，这些文件主要由称为 *空间证明* 的随机数据组成。这些空间证明作为正在进行的彩票中的彩票。农民储存的地块越多，获胜的概率就越高。
 
->[第 3.2 节](https://github.com/Chiabee/chia-docs/blob/main/docs/03consensus/proof-of-spac) 中列出了图块构建协议。 ）。
+>[第 3.2 节](/docs/03consensus/proof-of-space "Section 3.2: Proof of Space.") 中列出了图块构建协议。 ）。
 
 赢得彩票的奖品称为*块奖励*。最初，这个奖励是 2 XCH。但是，在 Chia 存在的前 12 年中，奖励金额大约每三年减少一半。从那时起，奖励将始终是 XCH 的 1/8。
 
->更多关于区块奖励结构的信息可以在[第5.3节](https://github.com/Chiabee/chia-docs/blob/main/docs/05block-validation/block_rewards)中找到.
+>更多关于区块奖励结构的信息可以在[第5.3节](/docs/05block-validation/block_rewards "Section 5.3: Block Rewards")中找到.
 
 虽然“XCH”是一种方便的 Chia 币计价方式，但区块链只知道 *mojos*。这些是 Chia 硬币的最小面额。每个魔力值一个 XCH 的万亿分之一（1/1,000,000,000,000）。
 
