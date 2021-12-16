@@ -58,5 +58,13 @@
   "sidebar.tutorialSidebar.category.14 - Python Implementation": {
     "message": "14 - Python Implementation",
     "description": "The label for category 14 - Python Implementation in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.11 - Pool Protocol": {
+    "message": "11 - Pool Protocol",
+    "description": "The label for category 11 - Pool Protocol in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.15 - Resources": {
+    "message": "15 - Resources",
+    "description": "The label for category 15 - Resources in sidebar tutorialSidebar"
   }
 }

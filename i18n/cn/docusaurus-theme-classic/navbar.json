@@ -18,5 +18,25 @@
   "item.label.Edit Docs on GitHub": {
     "message": "打开 GitHub 修改文档",
     "description": "Navbar item with label Edit Docs on GitHub"
+  },
+  "item.label.Approach": {
+    "message": "Approach",
+    "description": "Navbar item with label Approach"
+  },
+  "item.label.Technology": {
+    "message": "Technology",
+    "description": "Navbar item with label Technology"
+  },
+  "item.label.Developers": {
+    "message": "Developers",
+    "description": "Navbar item with label Developers"
+  },
+  "item.label.News": {
+    "message": "News",
+    "description": "Navbar item with label News"
+  },
+  "item.label.About": {
+    "message": "About",
+    "description": "Navbar item with label About"
   }
 }
