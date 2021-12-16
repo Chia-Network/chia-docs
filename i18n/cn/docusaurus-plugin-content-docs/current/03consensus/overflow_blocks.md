@@ -8,11 +8,11 @@ sidebar_position: 9
 
 ## 溢出块
 
-对于创建块的农民来说，他们的所需迭代次数必须小于子时隙迭代次数 / 64，如上所述。这意味着融入迭代可能大于子时隙迭代，因此融入必须发生在下一个子时隙中。
+对于创建区块的农民来说，他们的 required_iterations 必须小于 sub-slot_iterations / 64，如[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")中所述。 这意味着 infusion_iterations 可能大于 sub-slot_iterations，因此注入必须发生在下一个 sub-slot 中。
 
-**溢出块**：融入点与其标志点位于不同子时隙中的区块。
+**溢出块**：注入点与其标志点位于不同子槽中的块。
 
-**当前时隙挑战**：对于某个区块B，B的当前时隙挑战包括从该时隙中的第一个挑战开始，到该时隙结束时（不包括在内）的所有挑战。这是相关的，因为有时一个时隙跨越多个子时隙，因此存在多个挑战。
+**当前时隙挑战**：任何给定块的当前时隙挑战包括所有挑战从槽中的第一个挑战开始，并在槽的末尾结束（不包括在内）。这是相关的，因为有时一个时隙跨越多个子时隙，因此存在多个挑战。
 
 <figure>
 
@@ -25,20 +25,18 @@ sidebar_position: 9
 
 溢出块不能存在于纪元的第一个子时隙中（因为子时隙迭代发生变化）。
 
-此外，溢出块不会改变赤字，除非它们基于当前时隙挑战，因为溢出块是对前一个子时隙挑战的响应。溢出块不是挑战块，除非它们基于当前时隙挑战。请注意，溢出块很少会减少赤字，因为赤字几乎总是减少到零，并且每个子时隙都会开始一个新的时隙。
+此外，溢出块不会改变赤字，除非它们基于当前时隙质询，因为溢出块是对前一个子时隙质询的响应。 溢出块不是挑战块，除非它们基于当前时隙挑战。 请注意，溢出块很少会减少赤字，因为赤字几乎总是减少到零，并且每个子时隙都会开始一个新的时隙。
 
 <details>
 <summary>原文参考</summary>
 
 - ## Overflow Blocks
 
-For a farmer to create a block, their required_iterations must be less than the sub-slot iterations / 64, as described above. 
-This means that infusion iterations might be greater than the sub-slot iterations, and therefore 
-the infusion must happen in the next sub-slot. 
+For a farmer to create a block, their required_iterations must be less than sub-slot_iterations / 64, as described in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points"). This means that infusion_iterations might be greater than the sub-slot_iterations, and therefore the infusion must happen in the next sub-slot. 
 
 **Overflow block**: a block whose infusion point is in a different sub-slot than its signage point.
 
-**Current-slot challenge**: With respect to a certain block B, B’s current-slot challenges include all 
+**Current-slot challenge**: Any given block's current-slot challenges include all 
 challenges starting at the first challenge in the slot, and ending at the end of the slot (non-inclusive). 
 This is relevant because sometimes a slot spans multiple sub-slots, and thus multiple challenges.
 
@@ -52,26 +50,23 @@ B4 is not based on a current-slot challenge, and thus does not decrease the defi
 </figcaption>
 </figure>
 
-
 Overflow blocks cannot exist in the first sub-slot of the epoch (since the sub-slot iterations change). 
 
 Also, overflow blocks do not change the deficit unless they are based on a current-slot challenge, since overflow blocks are responses to the previous sub-slot’s challenge. Overflow blocks are not challenge blocks unless they are based on a current-slot challenge. Note that it is rare for overflow blocks to decrease the deficit, since the deficit will almost always be decreased to zero, and a new slot will be started on every sub-slot.
 
 </details>
 
-
-
 ## 最低区块要求
 
-必须至少将 16 个当前时隙挑战块注入奖励链才能完成一个时隙。
+必须至少将 16 个当前插槽挑战块注入奖励链才能完成一个插槽。 （回想一下子槽没有这样的要求，所以一个槽可以跨越多个子槽。）
 
-赤字是一个介于 0 和 16 之间的数字，它出现在子时隙的开始处，并且存在于每个完成的区块中。这被定义为我们需要注入以完成一个时隙的奖励链块的数量。每当我们启动一个时隙时，它都会重置为 16（因此每个挑战链融入必须至少有 16 个总区块）。每个基于当前时隙挑战的奖励链融入的赤字都会下降。
+赤字是一个介于 0 和 16 之间的数字，它出现在子时隙的开始处，并且存在于每个完成的块中。这被定义为我们需要注入以完成一个插槽的奖励链块的数量。每当我们启动一个插槽时，它都会重置为 16（因此每个挑战链注入必须至少有 16 个总块）。每个基于当前槽挑战的奖励链注入的赤字都会下降。
 
 赤字为 15 的区块是挑战区块。
 
-正常情况是赤字从 16 开始，然后在子时隙内下降到零，并在我们完成时隙并开始新的时隙时重置回 16。如果我们没有设法在时隙的末尾将其减少到 0，挑战链和融入的挑战链（如果存在）继续，并且赤字不会重置为 16。区块（包括现在的溢出块） ，不断从赤字中减去，直到我们达到0。当我们完成一个零赤字的子时隙时，融入的挑战链被纳入挑战链，赤字重置为16。
+正常情况是赤字从 16 开始，然后在子槽内下降到零，并在我们完成槽并开始新的槽时重置回 16。如果我们没有设法在 sub-slot 末尾将其减少到 0，挑战链和注入挑战链（如果存在）继续，并且赤字不会重置为 16。 块（包括溢出块）现在），继续从赤字中减去，直到我们达到0。当我们完成一个零赤字的子槽时，注入的挑战链被纳入挑战链，赤字重置为16。
 
-添加此要求是为了防止远程攻击，并在下面的对策部分进行了详细描述。绝大多数子时隙都会有>=16个块，因此不会对正常操作产生太大影响。
+添加此要求是为了阻止远程攻击，并在 [第 3.14 节](/docs/03consensus/attacks_and_countermeasures#51-46-attack "Section 3.14: Attacks and Countermeasures")中进行了详细描述。绝大多数子时隙将有 16 个以上的块（回想一下，平均目标数为 32），因此最小块要求不会对正常操作产生太大影响。
 
 <figure>
 
@@ -89,18 +84,15 @@ Also, overflow blocks do not change the deficit unless they are based on a curre
 
 - ## Minimum Block Requirement
 
-A minimum of 16 current-slot challenge blocks must be infused into the rewards chain in order for a slot to be finished.
+A minimum of 16 current-slot challenge blocks must be infused into the rewards chain in order for a slot to be finished. (Recall that a sub-slot has no such requirement, so a slot could span multiple sub-slots.)
 
-The deficit is a number between 0 and 16 that is present at the start of a sub-slot, and is present for each finished block.
-This is defined as the number of reward chain blocks that we need to infuse in order to finish a slot.
-It is reset to 16 whenever we start a slot (so there must be at least 16 total blocks per challenge chain infusion). 
-The deficit goes down for each reward chain infusion that is based on a current-slot challenge. 
+The deficit is a number between 0 and 16 that is present at the start of a sub-slot, and is present for each finished block. This is defined as the number of reward chain blocks that we need to infuse in order to finish a slot. It is reset to 16 whenever we start a slot (so there must be at least 16 total blocks per challenge chain infusion). The deficit goes down for each reward chain infusion that is based on a current-slot challenge. 
 
 The block with deficit 15 is a challenge block.
 
-The normal case is where the deficit starts at 16, and goes down to zero within the sub-slot, and resets back to 16 as we finish the slot and start a new one. In the case that we don't manage to reduce it to 0 within the end of the slot, the challenge chain and infused challenge chain (if present) continue, and the deficit does not reset to 16. Blocks (including overflow blocks now), keep subtracting from the deficit until we reach 0. When we finish a sub-slot with a zero deficit, the infused challenge chain is included into the challenge chain, and the deficit is reset to 16.
+The normal case is where the deficit starts at 16, and goes down to zero within the sub-slot, and resets back to 16 as we finish the slot and start a new one. In the case that we don't manage to reduce it to 0 within the end of the sub-slot, the challenge chain and infused challenge chain (if present) continue, and the deficit does not reset to 16. Blocks (including overflow blocks now), keep subtracting from the deficit until we reach 0. When we finish a sub-slot with a zero deficit, the infused challenge chain is included into the challenge chain, and the deficit is reset to 16.
 
-This requirement is added to prevent long range attacks, and is described in detail in the Countermeasures section below. The vast majority of sub-slots will have >=16 blocks, therefore it does not affect normal operation very much. 
+This requirement was added to discourage long-range attacks, and is described in detail in [Section 3.14](/docs/03consensus/attacks_and_countermeasures#51-46-attack "Section 3.14: Attacks and Countermeasures"). The vast majority of sub-slots will have more than 16 blocks (recall that the average number is targeted to be 32), therefore the minimum-block requirement will not have much of an affect on normal operation. 
 
 <figure>
 
@@ -137,9 +129,6 @@ Both VDF speed and total amount of space are important for weight, and changes i
 
 A farmer with exclusive access to a slightly faster VDF, however, cannot easily get more rewards than a farmer with the normal speed VDF. If an attacker tries to orphan one of the blocks on the chain, having a faster VDF will not help, since the attacker’s chain will have less blocks (and thus a lower weight). Farmers must sign the block which they are building on top of, and they will only build on top of the highest weight chain. 
 
-The VDF speed comes into play when the attacker wishes to launch a 51% attack, however. In this case, an attacking farmer can use the VDF to create a completely alternate chain with no honest blocks, and overtake the honest chain.
-This requires slightly less than 51% of the space, since the faster VDF chain can obtain weight at a faster rate
-than the honest chain.
+The VDF speed comes into play when the attacker wishes to launch a 51% attack, however. In this case, an attacking farmer can use the VDF to create a completely alternate chain with no honest blocks, and overtake the honest chain.This requires slightly less than 51% of the space, since the faster VDF chain can obtain weight at a faster rate than the honest chain.
 
 </details>
-
