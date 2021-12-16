@@ -21,7 +21,7 @@
   },
   "link.item.label.Blog": {
     "message": "博客",
-    "description": "The label of footer link with label=Blog linking to /blog"
+    "description": "The label of footer link with label=Blog linking to https://chia.net/blog"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
@@ -30,5 +30,49 @@
   "copyright": {
     "message": "© 2021 Chiabee",
     "description": "The footer copyright"
+  },
+  "link.title.Approach": {
+    "message": "Approach",
+    "description": "The title of the footer links column with title=Approach in the footer"
+  },
+  "link.title.Technology": {
+    "message": "Technology",
+    "description": "The title of the footer links column with title=Technology in the footer"
+  },
+  "link.title.Developers": {
+    "message": "Developers",
+    "description": "The title of the footer links column with title=Developers in the footer"
+  },
+  "link.title.Company": {
+    "message": "Company",
+    "description": "The title of the footer links column with title=Company in the footer"
+  },
+  "link.item.label.White Paper": {
+    "message": "White Paper",
+    "description": "The label of footer link with label=White Paper linking to https://www.chia.net/approach"
+  },
+  "link.item.label.Green Paper": {
+    "message": "Green Paper",
+    "description": "The label of footer link with label=Green Paper linking to https://www.chia.net/greenpaper"
+  },
+  "link.item.label.Consensus 1.1": {
+    "message": "Consensus 1.1",
+    "description": "The label of footer link with label=Consensus 1.1 linking to https://www.chia.net/assets/Chia-New-Consensus-0.9.pdf"
+  },
+  "link.item.label.Grants": {
+    "message": "Grants",
+    "description": "The label of footer link with label=Grants linking to https://www.chia.net/grants"
+  },
+  "link.item.label.Chialisp": {
+    "message": "Chialisp",
+    "description": "The label of footer link with label=Chialisp linking to https://www.chialisp.com"
+  },
+  "link.item.label.About": {
+    "message": "About",
+    "description": "The label of footer link with label=About linking to https://chia.net/about"
+  },
+  "link.item.label.Contact": {
+    "message": "Contact",
+    "description": "The label of footer link with label=Contact linking to https://chia.net/contact"
   }
 }
