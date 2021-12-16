@@ -83,9 +83,9 @@ While "XCH" is a convenient way to denominate Chia coins, the blockchain only kn
 
 ### 时间领主节点
 
-时间领主节点广播 *时间证明*（在 [第 3.3 节](https://github.com/Chiabee/chia-docs/blob/main/docs/03consensus/vdfs)中解释））大约每九秒。 这相当于在正在进行的彩票中选择和广播中奖号码。 当农民拥有有效的空间证明时，他们将赢得当前的彩票。 这允许他们将内存池中支付最高的交易处理到一个新块中。 然后他们将此块广播到网络的其余部分。 大约每三个区块中就有一个包含交易。 其余的块是空的，但要支付奖励。 （请参阅 [第 3.10 节](https://github.com/Chiabee/chia-docs/blob/main/docs/03consensus/foliage)了解更多详细信息。）
+时间领主节点广播 *时间证明*（在 [第 3.3 节](/docs/03consensus/vdfs "Section 3.3: VDFs")中解释））大约每九秒。 这相当于在正在进行的彩票中选择和广播中奖号码。 当农民拥有有效的空间证明时，他们将赢得当前的彩票。 这允许他们将内存池中支付最高的交易处理到一个新块中。 然后他们将此块广播到网络的其余部分。 大约每三个区块中就有一个包含交易。 其余的块是空的，但要支付奖励。 （请参阅 [第 3.10 节](/docs/03consensus/foliage "Section 3.10: Foliage")了解更多详细信息。）
 
->时间领主算法在[第3.13节](https://github.com/Chiabee/chia-docs/blob/main/docs/03consensus/timelords)中解释。
+>时间领主算法在[第3.13节](/docs/03consensus/timelords "Section 3.13: Timelord Algorithm")中解释。
 
 <details>
 <summary>原文参考</summary>
@@ -102,7 +102,7 @@ Timelord nodes broadcast _proofs of time_ (explained in [Section 3.3](/docs/03co
 
 钱包是允许用户通过签署交易并将交易提交给完整节点来与区块链交互的程序。 Chia 公司包括其带有典型安装的官方钱包。 但是，第三方钱包也存在。
 
-> [第 3.12 节](https://github.com/Chiabee/chia-docs/blob/main/docs/03consensus/light_clients) 有更多关于钱包的信息。
+> [第 3.12 节](/docs/03consensus/light_clients "Section 3.12: Light Clients") 有更多关于钱包的信息。
 
 <details>
 <summary>原文参考</summary>
@@ -119,7 +119,7 @@ Wallets are programs that allow users to interact with the blockchain, by signin
 
 池允许农民平滑他们的奖励。 他们经常支付小额奖励，通常是每天。 他们倾向于为他们的服务收取少量费用。 Chia 公司不经营自己的游泳池。 许多流行的 Chia 矿池还提供种植或开采其他加密货币的服务。
 
-> 有关 Chia 池化协议的更多信息，请参阅 [第 11 节](https://github.com/Chiabee/chia-docs/blob/main/docs/11pooling/pooling)。
+> 有关 Chia 池化协议的更多信息，请参阅 [第 11 节](/docs/11pooling/pooling "Section 11: Pooling")。
 
 文档的其余部分将对上述每个主题进行深入介绍。
 
