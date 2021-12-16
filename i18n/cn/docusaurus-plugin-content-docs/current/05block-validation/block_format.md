@@ -25,8 +25,6 @@ FullBlock 具有区块链的树干和树叶的字段。的`header_hash`，其被
 * **transactions_generator**：可选[SerializedProgram]：生成所有交易（支出）的clvm程序。
 * **transactions_generator_ref_list**: List[uint32]: 此块的生成器引用的先前生成器的块高度列表。 
 
-// TODO: 也包括子对象
-
 <details>
 <summary>原文参考</summary>
 
