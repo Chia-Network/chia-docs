@@ -291,5 +291,3 @@ latest seen authentication key for that launcher_id.
 
 </details>
 
-
- 
