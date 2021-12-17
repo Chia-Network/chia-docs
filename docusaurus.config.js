@@ -35,12 +35,18 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: ' Docs',
+        title: ' Chia Docs',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/chia_logo.svg',
+          src: 'img/chia-docs-icon.svg',
         },
         items: [
+          {
+            to: '/docs/01introduction/what-is-chia',
+            activeBasePath: 'docs',
+            label: 'Docs',
+            position: 'left',
+          },
           {to: 'https://www.chia.net/', label: 'Chia.net', position: 'left'},
           {to: 'https://github.com/Chia-Network/chia-docs', label: 'Github', position: 'left'}
         ],
