@@ -20,23 +20,23 @@
     "description": "Navbar item with label Edit Docs on GitHub"
   },
   "item.label.Approach": {
-    "message": "Approach",
+    "message": "方法",
     "description": "Navbar item with label Approach"
   },
   "item.label.Technology": {
-    "message": "Technology",
+    "message": "技术",
     "description": "Navbar item with label Technology"
   },
   "item.label.Developers": {
-    "message": "Developers",
+    "message": "开发者",
     "description": "Navbar item with label Developers"
   },
   "item.label.News": {
-    "message": "News",
+    "message": "新闻",
     "description": "Navbar item with label News"
   },
   "item.label.About": {
-    "message": "About",
+    "message": "关于",
     "description": "Navbar item with label About"
   }
 }
