@@ -6,7 +6,9 @@ sidebar_position: 1
 
 > Summary
 
-Chia 池协议专为安全性和去中心化而设计，不依赖任何第三方、封闭代码或受信任的行为。
+Chia 池协议专为安全性和去中心化而设计。 它不依赖于任何第三方、封闭代码或受信任的行为。
+
+该协议的一些亮点：
 
 * 农民永远不能通过双耕从池子里偷东西
 * 农民加入矿池不需要抵押品，他们只需要几美分就可以创建一个单身人士
@@ -17,8 +19,9 @@ Chia 池协议专为安全性和去中心化而设计，不依赖任何第三方
 <details>
 <summary>原文参考</summary>
 
-The Chia pool protocol has been designed for security, and decentralization, not relying on any 3rd party, closed code,
-or trusted behaviour. 
+The Chia pool protocol has been designed for security and decentralization. It does not rely on any 3rd party, closed code, or trusted behavior.
+
+Some of the protocol's highlights:
 
 * The farmer can never steal from the pool by double farming
 * The farmer does not need collateral to join a pool, they only need a few cents to create a singleton
