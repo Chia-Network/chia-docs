@@ -55,12 +55,12 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Chia Network Company FAQ',
+    title: 'Chia Network Inc. FAQ',
     Svg: require('../../static/img/chia_logo.svg').default,
     dest_url: 'https://www.chia.net/faq/',
     description: (
       <>
-      Frequently asked questions about Chia Network, LLC, the company.
+      Frequently asked questions about Chia Network Inc., the company.
       </>
     ),
   },
