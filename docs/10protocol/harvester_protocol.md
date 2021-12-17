@@ -85,7 +85,7 @@ class RequestSignatures(Streamable):
 
 ## respond_signatures
 This is a response to `request_signatures`. The local public key is the public key corresponding to the secret key
-in the plot. To see more about the keys for plots, look at [section 9](/docs/90keys/).
+in the plot. To see more about the keys for plots, look at [section 9](/docs/09keys/keys-and-signatures).
 
 ```python
 class RespondSignatures(Streamable):

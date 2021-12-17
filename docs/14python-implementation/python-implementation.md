@@ -19,11 +19,11 @@ of the system. Inside the source root (chia folder).
 * **daemon**: Server that runs the daemon, launching and stopping the other services.
 * **farmer**: Farmer server which handles signing blocks, coordinating the harvesters and communicating with a node. 
 * **full_node**: A large portion of the business logic of Chia is here, storing blocks and coins, full node protocol, etc.
-* **harvester**: 
-* introducer
-* plotters
-* plotting
-* pools
+* **harvester**: Code to handle harverster interaction with plot files and the filesystem
+* **introducer**: Temporary introducer server which has been partially replaced with DNS introducers.
+* **plotters**: Code for wrapping 3rd party plotters such as MadMax and Bladebit.
+* **plotting**: Code for creating plots and handling plot creation parameters, as well as checking plot correctness.
+* **pools**: Code for the 
 * protocols
 * rpc
 * server
