@@ -107,7 +107,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
             ],
           },
         ],
-        copyright: `© Chia Network ${new Date().getFullYear()} | <a href="https://www.chia.net/terms">Terms</a>`,
+        copyright: `© Chia Network ${new Date().getFullYear()}, Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://www.chia.net/terms">Terms</a>`,
       },
       prism: {
         theme: lightCodeTheme,
