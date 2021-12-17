@@ -5,20 +5,22 @@ sidebar_position: 1
 
 > Serialization
 
-Chia 中的序列化是指如何将对象转换为字节以用于以下用途：传输到其他节点、存储在磁盘上或散列对象。例如，header_hash 指的是块头的 sha256 哈希，但是 sha256 以字节为单位，因此我们需要一种一致的方式将对象转换为字节。
+Chia 中的序列化是指如何将对象转换为字节以供传输到其他节点、存储在磁盘上或散列对象等用途。
+
+例如，header_hash 指的是块头的 sha256 哈希，但是 sha256 以字节为单位，因此我们需要一种一致的方式将对象转换为字节。
 
 <details>
 <summary>原文参考</summary>
 
-Serialization in Chia refers to how objects are converted into bytes for uses like: transmitting to other nodes,
-storing on disk, or hashing objects. For example, a header_hash refers to the sha256 hash of the header of a block, but
-sha256 takes in bytes, so we need a consistent way to convert objects into bytes. 
+Serialization in Chia refers to how objects are converted into bytes for uses such as transmitting to other nodes, storing on disk, or hashing objects.
+
+For example, a header_hash refers to the sha256 hash of the header of a block, but sha256 takes in bytes, so we need a consistent way to convert objects into bytes. 
 
 </details>
 
 ## 可流格式
 
-流式格式旨在确定性且易于实施，以防止出现共识问题。Chia 协议中的所有对象，并使用可流式传输格式通过网络传输。此外，一些数据库表也使用流式表示。
+为防止出现共识问题，可流式传输格式被设计为具有确定性且易于实施。 Chia 协议中的所有对象都使用可流格式传输。 此外，一些数据库表也使用流式表示。
 
 原语是：
 
@@ -42,22 +44,20 @@ sha256 takes in bytes, so we need a consistent way to convert objects into bytes
 流媒体必须是根级别的元组。Iters按以下方式序列化：
 
 1. 通过附加每个项目的序列化来序列化 x 个项目的元组。
-2. 一个 List 被序列化为一个 4 字节大小的前缀（项目数）和每个项目的序列化。
+2. 一个 List 被序列化为一个 4 字节的前缀（项目数）和每个项目的序列化。
 3. 一个 Optional 被序列化为 0x00 或 0x01 的 1 字节前缀，如果是 1，则后面是 item 的序列化。
 4. 自定义项通过调用 .parse 方法进行序列化，将字节流传入其中。示例是 CLVM 程序。
 
 这种格式可以很容易地实现，并允许我们散列对象，如标题和空间证明，而无需复杂的序列化逻辑。
 
-请注意，在 Python 实现中，我们不在根级别使用元组，而是仅使用带有有序类型字段的数据类以方便使用。但是，它作为元组流式传输。
+请注意，在 python 实现中，我们不在根级别使用元组，而是仅使用带有有序类型字段的数据类以方便使用。 但是，它作为元组流式传输。
 
 <details>
 <summary>原文参考</summary>
 
 - ## Streamable Format
 
-The streamable format is designed to be deterministic and easy to implement, to prevent consensus issues.
-All objects in the Chia protocol and transmitted over the wire using the streamable format. Furthermore, some database
-tables use streamable representation as well.
+To prevent consensus issues, the streamable format was designed to be deterministic and easy to implement. All objects in the Chia protocol are transmitted using the streamable format. Furthermore, some database tables use streamable representation as well.
 
 The primitives are:
 * Sized ints serialized in big endian format, i.e uint64
@@ -79,15 +79,13 @@ An item is one of:
 A streamable must be a Tuple at the root level. Iters are serialized in the following way:
 
 1. A tuple of x items is serialized by appending the serialization of each item.
-2. A List is serialized into a 4 byte size prefix (number of items) and the serialization of each item.
+2. A List is serialized into a 4-byte prefix (number of items) and the serialization of each item.
 3. An Optional is serialized into a 1 byte prefix of 0x00 or 0x01, and if it's one, it's followed by the serialization of the item.
 4. A Custom item is serialized by calling the .parse method, passing in the stream of bytes into it. And example is a CLVM program.
 
-This format can be implemented very easily, and allows us to hash objects like headers and proofs of space,
-without complex serialization logic.
+This format can be implemented very easily, and allows us to hash objects like headers and proofs of space, without complex serialization logic.
 
-Note that in the python implemnetation, we don't use a Tuple at the root level, but instead just use a dataclass with
-ordered typed fields for ease of use. However, it is streamed as a Tuple.
+Note that in the python implementation, we don't use a Tuple at the root level, but instead just use a dataclass with ordered type fields for ease of use. However, it is streamed as a Tuple.
 
 </details>
 
@@ -95,7 +93,7 @@ ordered typed fields for ease of use. However, it is streamed as a Tuple.
 
 streamable 规范旨在使用 中提供的 @streamable 装饰器与 python 良好工作 `chia-blockchain` ，但它也可以与其他编程语言一起工作。 带有 @streamable 装饰器的类变得不可变，并且具有 `__bytes__()` 和 `.from_bytes(b)` 方法。
 
-## ProofOfSpace 类型定义
+### ProofOfSpace 类型定义
 
 ```python
 @streamable
@@ -132,9 +130,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0001bbbbbbbbbbbb
 
 - ## Examples
 
-The streamable specification has been designed to work well with python using the @streamable decorator available in
-`chia-blockchain`, but it can work just as well with other programming languages. A class with the @streamable
-decorator becomes immutable, and has the `__bytes__()` and `.from_bytes(b)` methods.
+The streamable specification has been designed to work well with python using the @streamable decorator available in `chia-blockchain`, but it can work just as well with other programming languages. A class with the @streamable decorator becomes immutable, and has the `__bytes__()` and `.from_bytes(b)` methods.
 
 - ### ProofOfSpace type definition
 
