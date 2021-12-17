@@ -1,27 +1,27 @@
 {
   "feature1": {
-    "message": "去中心化"
+    "message": "安全性"
   },
   "detail1": {
-    "message": "Chia 网络拥有比任何其他区块链更多的完整节点，并且只要拥有一块硬盘，任何人都可以在家中开始耕种。"
+    "message": "Chia 是有史以来最去中心化的区块链，拥有约 350,000 个节点，采用自 2009 年以来的第一个新的中本聪共识。 Chialisp 链上编程环境功能强大，同时更具可审计性和安全性。"
   },
   "feature2": {
-    "message": "环保"
+    "message": "合规性"
   },
   "detail2": {
-    "message": "时空证明作为一种新的共识机制，其消耗的电力不到比特币的1%。"
+    "message": "Chia 认为，为了兑现下一代区块链的承诺，我们必须遵守法规。我们的既定目标是成为受 1933 年《证券法》约束的公开报告公司。Chia 的原生货币 XCH 或 chia 从未被 Chia 网络出售以换取金钱，我们相信它作为商品受到 CFTC 监管"
   },
   "feature3": {
-    "message": "Dapps"
+    "message": "可持续性"
   },
   "detail3": {
-    "message": "Chialisp 编程语言和区块链环境的支持，使开发人员能够制作极其强大且安全的去中心化应用程序（Dapp），并且能够永久稳定运行。"
+    "message": "Chia 凭借其创新的时空证明共识，仅使用了比特币年能源消耗的 0.16% 和以太坊的 0.36%。Chia 是循环驱动计划（Circular Drive Initiative）的一部分，该计划通过安全地重复使用存储来减少电子垃圾，促进硬盘驱动器在 Chia 农业中的二次使用。"
   },
   "banner.title": {
     "message": "Chia 文档"
   },
   "banner.content": {
-    "message": "新型区块链和智能合约交易平台，更简单、高效、安全。"
+    "message": "新型区块链和智能合约交易平台，更加简单、高效、安全。"
   },
   "banner.start.button": {
     "message": "开始学习"
