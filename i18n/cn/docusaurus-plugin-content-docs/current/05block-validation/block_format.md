@@ -8,7 +8,7 @@ sidebar_position: 2
 
 ## 完整块
 
-完整块是包含验证和添加块所需的所有信息的数据结构`N`，假设所有块`N - 1`都已添加。FullBlocks 通过网络协议发送，有时也存储在磁盘上，以便将来为其他节点提供服务。
+完整块是包含验证和添加块“N”所需的所有信息的数据结构，假设已经添加了最多为“N-1”的所有块。 FullBlocks 通过网络协议发送，有时也存储在磁盘上，以便将来为其他节点提供服务。
 
 FullBlock 具有区块链的树干和树叶的字段。的`header_hash`，其被用作所述块标识符，为的散列`foliage`在字段[可流传送的](/docs/08serialization/serialization)格式。这将提交到所有相关数据和所有先前的块。
 
@@ -30,13 +30,9 @@ FullBlock 具有区块链的树干和树叶的字段。的`header_hash`，其被
 
 - ## Full Block
 
-The full block is the data structure that contains all information required for validating and adding block `N`, assuming
-all blocks up to `N - 1` are already added. FullBlocks are sent over the network protocol, and also sometimes stored
-on disk for the purpose of serving other nodes in the future.
+The full block is the data structure that contains all information required for validating and adding block `N`, assuming all blocks up to `N - 1` are already been added. FullBlocks are sent over the network protocol, and also sometimes stored on disk for the purpose of serving other nodes in the future.
 
-The FullBlock has fields for both the trunk and the foliage of the blockchain. The `header_hash`, which is used as the
-block identifier, is the hash of the `foliage` field in [streamable](/docs/08serialization/serialization) format. 
-This commits to all relevant data and to all previous blocks.
+The FullBlock has fields for both the trunk and the foliage of the blockchain. The `header_hash`, which is used as the block identifier, is the hash of the `foliage` field in [streamable](/docs/08serialization/serialization) format. This commits to all relevant data and to all previous blocks.
 
 * **finished_sub_sots**: List[EndOfSubSlotBundle]: This contains all sub-slots that have been completed since the previous block in the chain (block `N-1`).
 * **reward_chain_block**: RewardChainBlock: This is trunk data for the reward chain and challenge chain, including vdf outputs and proof of space.
