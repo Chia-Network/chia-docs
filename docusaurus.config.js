@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (module.exports = {
   title: 'Chia Documentation',
-  tagline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut efficitur semper arcu sagittis fermentum. Quisque molestie, erat ac facilisis aliquet, magna mi vehicula velit, at convallis mi nunc ac tortor.',
+  tagline: 'The source of truth for Chia documentation. Start here to learn more about Chia. ',
   url: 'https://docs.chia.net',
   baseUrl: '/',
   onBrokenLinks: 'throw',

@@ -45,22 +45,22 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Chia Network Company FAQ',
-    Svg: require('../../static/img/chia_logo.svg').default,
-    dest_url: 'https://www.chia.net/faq/',
-    description: (
-      <>
-      Frequently asked questions about Chia Network, LLC, the company.
-      </>
-    ),
-  },
-  {
     title: 'Chia Technical FAQ',
     Svg: require('../../static/img/technical_faq_icon.svg').default,
     dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki/FAQ',
     description: (
       <>
       Frequently asked questions regarding the Chia blockchain and its function.
+      </>
+    ),
+  },
+  {
+    title: 'Chia Network Company FAQ',
+    Svg: require('../../static/img/chia_logo.svg').default,
+    dest_url: 'https://www.chia.net/faq/',
+    description: (
+      <>
+      Frequently asked questions about Chia Network, LLC, the company.
       </>
     ),
   },
