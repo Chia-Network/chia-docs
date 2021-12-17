@@ -2,8 +2,18 @@
 trigger:
 - main
 
+strategy:
+  matrix:
+    linux:
+      imageName: "ubuntu-latest"
+    mac:
+      imageName: "macOs-latest"
+    windows:
+      imageName: "windows-latest"
+  maxParallel: 3
+
 pool:
-  vmImage: centos-latest
+  vmImage: $(imageName)
 
 steps:
 - task: PublishCodeCoverageResults@1
