@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (module.exports = {
   title: 'Chia Documentation',
-  tagline: 'A new blockchain and smart transaction platform that is easier to use, more efficient, and secure.',
+  tagline: 'The source of truth for Chia documentation. Start here to learn more about Chia. ',
   url: 'https://docs.chia.net',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -35,18 +35,20 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: ' Docs',
+        title: ' Chia Docs',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/chia_logo.svg',
+          src: 'img/chia-docs-icon.svg',
         },
         items: [
-          {to: 'https://www.chia.net/approach/', label: 'Approach', position: 'right'},
-          {to: 'https://www.chia.net/technology/', label: 'Technology', position: 'right'},
-          {to: 'https://www.chia.net/developers/', label: 'Developers', position: 'right'},
-          {to: 'https://www.chia.net/blog/', label: 'Blog', position: 'right'},
-          {to: 'https://www.chia.net/news/', label: 'News', position: 'right'},
-          {to: 'https://www.chia.net/about/', label: 'About', position: 'right'},
+          {
+            to: '/docs/01introduction/what-is-chia',
+            activeBasePath: 'docs',
+            label: 'Docs',
+            position: 'left',
+          },
+          {to: 'https://www.chia.net/', label: 'Chia.net', position: 'left'},
+          {to: 'https://github.com/Chia-Network/', label: 'Chia Github', position: 'left'}
         ],
       },
       footer: {
