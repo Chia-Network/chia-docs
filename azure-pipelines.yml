@@ -11,15 +11,12 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: centos-latest
 
 steps:
-- task: NodeTool@0
+- task: PublishCodeCoverageResults@1
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    codeCoverageTool: "JaCoCo"
+    summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/site/jacoco/jacoco.xml"
+    reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
+    failIfCoverageEmpty: true
