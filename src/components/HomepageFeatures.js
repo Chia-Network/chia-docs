@@ -30,6 +30,42 @@ const FeatureList = [
       </>
     ),
   },
+  {
+    title: 'Sustainable',
+    Svg: require('../../static/img/recycle.svg').default,
+    description: (
+      <>
+      With its innovative Proof Of Space and Time consensus, Chia uses 0.16% of the annual energy consumption of Bitcoin, and 0.36% of Ethereum. Chia is part of the Circular Drive Initiative that reduces e-waste through the secure reuse of storage, promoting the second use of hard drives for Chia farming.
+      </>
+    ),
+  },
+  {
+    title: 'Sustainable',
+    Svg: require('../../static/img/recycle.svg').default,
+    description: (
+      <>
+      With its innovative Proof Of Space and Time consensus, Chia uses 0.16% of the annual energy consumption of Bitcoin, and 0.36% of Ethereum. Chia is part of the Circular Drive Initiative that reduces e-waste through the secure reuse of storage, promoting the second use of hard drives for Chia farming.
+      </>
+    ),
+  },
+  {
+    title: 'Sustainable',
+    Svg: require('../../static/img/recycle.svg').default,
+    description: (
+      <>
+      With its innovative Proof Of Space and Time consensus, Chia uses 0.16% of the annual energy consumption of Bitcoin, and 0.36% of Ethereum. Chia is part of the Circular Drive Initiative that reduces e-waste through the secure reuse of storage, promoting the second use of hard drives for Chia farming.
+      </>
+    ),
+  },
+  {
+    title: 'Sustainable',
+    Svg: require('../../static/img/recycle.svg').default,
+    description: (
+      <>
+      With its innovative Proof Of Space and Time consensus, Chia uses 0.16% of the annual energy consumption of Bitcoin, and 0.36% of Ethereum. Chia is part of the Circular Drive Initiative that reduces e-waste through the secure reuse of storage, promoting the second use of hard drives for Chia farming.
+      </>
+    ),
+  },
 ];
 
 function Feature({Svg, title, description}) {
