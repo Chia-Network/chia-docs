@@ -23,13 +23,13 @@ of the system. Inside the source root (chia folder).
 * **introducer**: Temporary introducer server which has been partially replaced with DNS introducers.
 * **plotters**: Code for wrapping 3rd party plotters such as MadMax and Bladebit.
 * **plotting**: Code for creating plots and handling plot creation parameters, as well as checking plot correctness.
-* **pools**: Code for the 
-* protocols
-* rpc
-* server
-* simulator
-* ssl
-* timelord
-* types
-* util
-* wallet
+* **pools**: Code for the handling of plot NFTs and pooling (on the wallet side).
+* **protocols**: Protocol specification, also explained in section 10.
+* **rpc**: RPC Server and RPC api specification for all services.
+* **server**: Networking and Webscoket server.
+* **simulator**: A wrapper around the full node which allows creating and farming blocks, and running a local custom blockchain.
+* **ssl**: Managing TLS connections and certificates.
+* **timelord**: Code for running timelords, which uses the `chiavdf` dependency and connects to vdf clients.
+* **types**: Blockchain format and python types used throughout the project.
+* **util**: A collection of many utility files and functions used throughout the project.
+* **wallet**: Subdirectory containing all code relating to wallets and chialisp. This contains a large amount of code.

@@ -75,3 +75,8 @@ Each node will try to connect to 8 (implementation-dependent) external peers. As
 If a peer appears to be acting dishonestly, it can be disconnected and temporarily banned from reconnecting. Reasons for banning include (but are not limited to) exceeding the limits provided for each type of protocol message, sending invalid information, and making the node throw an exception when handling a message.
 
 The duration of the ban depends on the severity of the issue. Care should be taken to not ban honest peers by accident. Different implementations might have larger or different rate limits as well.
+
+## Certificates
+All connections between nodes are encrypted and signed with X.509 self signed certificates. Each node will have it's
+own CA and self sign their certificates. Node IDs are derived by hashing the public key of the certificate, so each
+node can have a consistent node ID to use for authentication.
