@@ -6,90 +6,85 @@ sidebar_position: 1
 
 > Block Validation
 
-Chia 中的块验证由两部分组成：头验证和正文验证。标头验证执行与共识算法相关的检查，例如空间和时间证明、标志点和注入点、上一个区块哈希、树叶哈希和时间戳。值得注意的是，它不验证任何 CLVM、硬币支出或签名。通常，轻客户端希望验证标题而不是正文以提高效率。
+Chia 中的块验证由两部分组成：头验证和正文验证。
+
+标头验证执行与共识算法相关的检查，例如空间和时间证明、标志点和注入点、先前的区块哈希、树叶哈希和时间戳。值得注意的是，它不验证任何 CLVM、硬币支出或签名。通常，为了效率，轻客户端会想要验证标题而不是正文。
 
 实体验证需要运行所有已用硬币的谜题，读取硬币数据库，验证签名，检查重复或无效的删除和添加等。
 
-在 Chia 中验证一个区块需要访问一些过去的区块，最大理论值是一个 slot 中最大区块数的三倍 3x128=384，但通常只需要几个。此外，需要有关先前子纪元和纪元的信息以及当前系统时间戳来验证。实现可以只缓存一些最近的块，而不是将所有块存储在内存中。`chia-blockchain`维护一个块记录数据库，其中仅包含验证未来块所需的重要块信息。
+在 Chia 中验证一个块需要访问一些过去的块，最大理论值是一个 slot 中最大块数的三倍（3x128=384），但通常只需要几个。此外，验证需要有关先前子时代和时代的信息，以及当前系统时间戳。实现可以只缓存一些最近的块，而不是将所有块存储在内存中。 `chia-blockchain` 维护着一个 BlockRecords 数据库，其中只包含验证未来区块所需的重要区块信息。
 
 <details>
 <summary>原文参考</summary>
 
-Block validation in Chia is composed of two parts: header validation and body validation. The header validation
-performs consensus algorithm related checks like proof of space and time, signage points and infusion points, 
-prev block hashes, foliage hashes, and timestamps. Notably, it does not validate any CLVM, coin spends, or signatures.
-Usually, light clients will want to validate headers but not the body for efficiency.
+Block validation in Chia is composed of two parts: header validation and body validation.
 
-Body validation entails running all puzzles for spent coins, reading the coin database, verifying signatures, checking
-for duplicate or invalid removals and additions, etc.
+The header validation performs consensus algorithm-related checks, such as proof of space and time, signage points and infusion points, previous block hashes, foliage hashes, and timestamps. Notably, it does not validate any CLVM, coin spends, or signatures. Usually, for efficiency, light clients will want to validate headers but not the body.
 
-Validating a block in Chia will require access to some blocks in the past, up to a maximum theoretical value
-of three times the max number of blocks in a slot 3x128=384, but usually only a few are needed. Also, information 
-regarding previous sub epochs and epochs is needed to validate, as well as the current system timestamp. Implementations
-can cache only some recent blocks instead of storing all blocks in memory. `chia-blockchain` maintains a DB of BlockRecords,
-which contain only the important pieces of block information required for validating future blocks.
+Body validation entails running all puzzles for spent coins, reading the coin database, verifying signatures, checking for duplicate or invalid removals and additions, etc.
+
+Validating a block in Chia will require access to some blocks in the past, up to a maximum theoretical value of three times the max number of blocks in a slot (3x128=384), but usually only a few are needed. Also, information regarding previous sub-epochs and epochs is needed for validation, as well as the current system timestamp. Implementations can cache only some recent blocks instead of storing all blocks in memory. `chia-blockchain` maintains a database of BlockRecords, which contain only the important pieces of block information required for validating future blocks.
 
 </details>
 
-## 完全同步与正常操作
+## 完全同步 vs 正常操作
 
-节点可能会验证块的情况有两种。第一个是完全同步，这意味着节点试图从旧块高度赶上新块高度，并一次下载许多块。另一种是正常操作，节点赶上最近的块，并且每隔几秒钟只下载一个块。
+节点可能会验证块的情况有两种。
+1. 在完全同步期间，节点试图从旧块高度开始赶上最新的块。 在这种情况下，节点能够一次下载许多块。
+2. 正常运行时，节点赶上最近的区块，每隔几秒只下载一个区块。
+
+我们将在下面介绍这两种情况。
 
 ### 完全同步
 
-完全同步是全节点下载并验证区块链中的所有块并赶上最新块的过程。完全同步很重要，因为它允许新节点验证区块链是最重的，因此是当前有效的链。它允许每个人对当前状态达成共识，无论他们何时上线，也无论他们下线多长时间。
+完全同步是全节点下载并验证区块链中的所有区块并赶上最新区块的过程。完全同步很重要，因为它允许新节点验证区块链是最重的——因此也是当前有效的——链。它允许每个人就当前状态达成共识，无论他们何时上线，或下线多长时间。
 
 完全同步的方法可能因实现而异，但高级算法如下：
+1. 连接到网络上的其他peer，通过查询介绍人DNS，爬取网络。
+2、查看peer当前峰值权重，选择几个peer进行同步。
+3. 下载并验证重量证明，以确保给定的峰值背后有实际工作。
+4. 批量下载并验证区块链中的所有区块。
 
-1. 连接到网络上的其他对等点，通过查询介绍人 DNS，并爬取网络
-2. 查看当前peer的峰值权重，选择几个 peer 进行同步
-3. 下载并验证重量证明，以确保给定的峰值背后有实际工作
-4. 批量下载并验证区块链中的所有区块
-
-重量证明很重要，因为它们可以防止其他同行就最重的峰值向我们撒谎，并防止我们下载可能无用的数据。一旦全节点赶上区块链，它就可以正常耕种、访问硬币状态等。
+重量证明很重要，因为它们可以防止其他同行就最重的峰值向我们撒谎。它们还阻止我们下载可能无用的数据。一旦全节点赶上区块链，它就可以正常耕种、访问硬币状态等。
 
 ### 正常操作
 
-正常操作是一个完整节点不断与其他对等节点闲聊和接收块的过程，始终遵循最重的峰值。如果我们的节点权重为 2000，并且我们看到一个对等节点在权重 2100 处有一个峰值，那么我们从对等节点获取该块。通常，这是分两个阶段完成的：首先发送未完成的块，其中包括直到标志点、交易等的所有信息。最后，还发送包含注入点 VDF 的完成块，通常没有已经发送的交易。
+正常操作是一个完整节点不断与其他对等节点闲聊和接收块的过程，始终遵循最重的峰值。 如果我们的节点权重为 2000，并且我们看到一个对等节点在权重 2100 处有一个峰值，那么我们从对等节点获取该块。 通常，这分两个阶段完成：
+1. 未完成的区块连同所有信息一起传播到标牌点、交易等。
+2. 包含注入点 VDF 的完成块也被传播。 这通常不包括已在步骤 1 中发送的交易。
 
-与完全同步相比，正常操作对 CPU 的占用要少得多，因为每 18 秒只有一个区块，而平均每 47 秒只有一个交易区块。像 RPI4 这样的低功率机器应该能够轻松地继续正常运行。
+与完全同步相比，正常操作对 CPU 的占用要少得多，因为平均每 18 秒只有一个区块，而每 47 秒只有一个交易区块。 像 Raspberry PI 4 这样的低功耗机器应该能够轻松地继续正常运行。
 
 <details>
 <summary>原文参考</summary>
 
 - ## Full Sync vs Normal Operation
 
-There are two cases when a node might verify blocks. The first is full sync, which means the node is trying to catch
-up from an old block height, to a new one, and downloads many blocks at one. The other is normal operation, where the
-node is caught up to the most recent block, and is only downloading one block every few seconds.
+There are two cases when a node might verify blocks.
+1. During a full sync, where the node is trying to catch up to the most recent block, starting from an old block height. In this case, the node is able to download many blocks at once.
+2. During normal operation, where the node is caught up to the most recent block, and is only downloading one block every few seconds.
+
+We'll cover both of these cases below.
 
 - ### Full Sync
 
-Full sync is the process by which a full nodes downloads and validates all the blocks in the blockchain and catches
-up to the most recent blocks. Full sync is important, because it allows new nodes to validate that a blockchain is
-the heaviest and thus the currently valid chain. It allows everyone to come to consensus on the current state, 
-regardless of when they come online, and regardless of how long they go offline. 
+Full sync is the process by which a full node downloads and validates all of the blocks in the blockchain and catches up to the most recent block. Full sync is important, because it allows new nodes to validate that a blockchain is the heaviest -- and thus, the currently valid -- chain. It allows everyone to come to consensus on the current state, regardless of when they come online, or for how long they go offline.
 
 The method of full sync can vary between implementations, but the high level algorithm is the following:
-1. Connect to other peers on the network, by querying the introducer DNS, and crawling the network
-2. Check the current weight of the peak of the peers, and select a few peers to sync from
-3. Download and validate a weight proof, to ensure that the given peak has real work behind it
-4. Download and validate all blocks in the blockchain, in batches
+1. Connect to other peers on the network, by querying the introducer DNS, and crawling the network.
+2. Check the current weight of the peak of the peers, and select a few peers to sync from.
+3. Download and validate a weight proof, to ensure that the given peak has real work behind it.
+4. Download and validate all blocks in the blockchain, in batches.
 
-Weight proofs are important, because they prevent other peers from lying to us about what the heaviest peak is,
-and prevents us from downloading potentially useless data. Once the full node is caught up to the blockchain, it can 
-properly farm, access the coin state, etc.
+Weight proofs are important, because they prevent other peers from lying to us about what the heaviest peak is. They also prevent us from downloading potentially useless data. Once the full node is caught up to the blockchain, it can properly farm, access the coin state, etc.
 
 - ### Normal Operation
 
-Normal operation is the process by which a full node continuously gossips and receives blocks with other peers, 
-always following the heaviest peak. If our node is at weight 2000, and we see that a peer has a peak at weight 2100,
-then we fetch that block from the peer. Usually, this is done in two phases: first the unfinished block is sent around,
-which includes all the information up to the signage point, transactions, etc. Finally, the finished block which 
-includes infusion point VDFs is sent as well,  usually without the transactions, which have already been sent.
+Normal operation is the process by which a full node continuously gossips and receives blocks with other peers, always following the heaviest peak. If our node is at weight 2000, and we see that a peer has a peak at weight 2100, then we fetch that block from the peer. Usually, this is done in two phases:
+1. The unfinished block is propagated across the network, along with all information up to the signage point, transactions, etc.
+2. The finished block, which includes infusion point VDFs, is also propagated. This typically excludes the transactions, which were already sent in step 1.
 
-Normal operation is much less CPU intensive than full sync, since there is only one block every 18 seconds, and one transaction block
-every 47 seconds on average. Low power machines like the RPI4 should be able to easily continue normal operation.
+Normal operation is much less CPU-intensive than full sync, since there is only one block every 18 seconds, and one transaction block every 47 seconds, on average. Low-power machines like the Raspberry PI 4 should be able to easily continue normal operation.
 
 </details>
 
@@ -100,7 +95,7 @@ every 47 seconds on average. Low power machines like the RPI4 should be able to 
 ### 标题验证
 
 1. 检查前一个区块是否存在于区块链中，或者它是创世区块。
-2. 检查自`prev_b`=链中的前一个区块以来已经交叉的完成槽。
+2. 检查自`prev_b`= 链中的前一个区块以来已经交叉的完成槽。
    * 检查创世区块的子槽挑战哈希。
    * 检查非创世区块的子槽挑战哈希。
    * 检查子槽挑战哈希是否为空槽。
@@ -121,7 +116,7 @@ every 47 seconds on average. Low power machines like the RPI4 should be able to 
    * 检查赤字（MIN_SUB .. 创世块的赤字边缘情况）
    * 如果 prev sb 的赤字为 0，则将赤字重置为 MIN_BLOCK_PER_CHALLENGE_BLOCK
    * 否则，槽尾赤字保持不变，不能重置，直到 0
-3. 查看 sub-epoch 摘要
+3. 查看sub-epoch摘要
    * 检查创世区块是否没有子纪元摘要
    * 检查我们是否完成了一个 slot 以及我们是否完成了一个 sub-epoch
    * 检查实际的 sub-epoch 是否正确
@@ -157,7 +152,7 @@ every 47 seconds on average. Low power machines like the RPI4 should be able to 
 30. 查看奖励链注入点 VDF
 31. 检查注入的挑战链注入点 VDF
 32. 检查奖励区块哈希
-33. 检查奖励区块 is_transaction_block 
+33. 检查奖励区块 is_transaction_block
 
 
 <details>
@@ -165,9 +160,8 @@ every 47 seconds on average. Low power machines like the RPI4 should be able to 
 
 - ## Block Validation Steps
 
-The following sections list all of the required checks to ensure validity of a block. Please note that the official
-protocol and specification are defined by the `chia-blockchain` 
-[python implementation](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/consensus), and NOT by this documentation page.
+The following sections list all of the required checks to ensure validity of a block. Please note that the official protocol and specification are defined by the `chia-blockchain` 
+[Python implementation](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/consensus), and NOT by this documentation page.
 
 - ### Header Validation
 
@@ -193,7 +187,7 @@ protocol and specification are defined by the `chia-blockchain`
    * Check deficit (MIN_SUB.. deficit edge case for genesis block)
    * If prev sb had deficit 0, resets deficit to MIN_BLOCK_PER_CHALLENGE_BLOCK
    * Otherwise, deficit stays the same at the slot ends, cannot reset until 0
-3. Check sub-epoch summary 
+3. Check sub-epoch summary
    * Check that genesis block does not have sub-epoch summary
    * Check that we finished a slot and we finished a sub-epoch
    * Check the actual sub-epoch is correct
@@ -220,7 +214,7 @@ protocol and specification are defined by the `chia-blockchain`
 21. Check extension data if applicable. None for mainnet.
 22. Check if foliage block is present
 23. Check foliage block hash
-24. Check prev block hash for genesis and non-genesis 
+24. Check prev block hash for genesis and non-genesis
 25. The filter hash in the Foliage Block must be the hash of the filter
 26. The timestamp in Foliage Block must not be over 5 minutes in the future, and the timestamp must be greater than the previous transaction block timestamp
 27. Check block height for genesis and non-genesis
@@ -233,7 +227,7 @@ protocol and specification are defined by the `chia-blockchain`
 
 </details>
 
-## 身体验证
+### 身体验证
 
 1. 对于非交易区块：树叶区块、交易过滤器、交易信息和生成器必须为空。如果它是一个块但不是一个交易块，则没有要验证的主体。检查所有字段是否为 None，然后返回。
 2. 对于区块，树叶区块，交易信息不能为空。
