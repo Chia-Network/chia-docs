@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 1.1 关于 Chia？
+# 1.1 关于 Chia
 
 > About Chia
 
