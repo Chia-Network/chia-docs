@@ -27,7 +27,7 @@ Chia protocol messages have a max length of `(4 + 2^32 - 1) = 4294967299` bytes,
 
 ## Handshake
 
-All peers in the Chia protocol (whether they are farmers, full nodes, timelords, etc.) act as both servers and clients (peers). As soon as a connection is initiated between two peers, both peers send a Handshake message, and a HandshakeAck message to complete the handshake. A peer's node_id is the SHA-256 hash of their [x.509](https://en.wikipedia.org/wiki/X.509) [DER](https://wiki.openssl.org/index.php/DER) certificate. 
+All peers in the Chia protocol (whether they are farmers, full nodes, timelords, etc.) act as both servers and clients (peers). As soon as a connection is initiated between two peers, both peers send a Handshake message, and a HandshakeAck message to complete the handshake. A peer's node_id is the SHA-256 hash of their [x.509](https://en.wikipedia.org/wiki/X.509) [DER](https://wiki.openssl.org/index.php/DER) certificate.
 
 ```python
 class Handshake(Streamable):
@@ -60,9 +60,9 @@ For example: `dig dns-introducer.chia.net`.
 More DNS introducers will be recruited in the future; check the [chia-blockchain GitHub repository](https://github.com/Chia-Network/chia-blockchain "chia-blockchain on GitHub") for updates. The introducer is only contacted at initial launch of the application, or if the peer database has no good peers.
 
 ## RPC
-Aside from the Chia protocols described in the next page, there is also a local RPC protocol to allow simple control over a node or wallet through HTTP. All requests and responses for the RPC protocol are in JSON, to simplify the interface. This allows doing things like getting the tips of the chain, getting a specific block, adding connections, stopping the node, etc. The full node UI connects to the full node using the RPC.
+Aside from the Chia protocols described in the next page, there is also a local RPC protocol to allow simple control over a node or wallet through HTTPS. All requests and responses for the RPC protocol are in JSON, to simplify the interface. This allows doing things like getting the tips of the chain, getting a specific block, adding connections, stopping the node, etc. The full node UI connects to the full node using the RPC.
 
-The RPC APIs are provided in both WebSocket and HTTP format.
+The RPC APIs are provided in both WebSocket and HTTPS format.
 
 ## Incoming and Outgoing Connections
 The Chia software has multiple rules and checks to make sure a node is connected to several good peers.
@@ -75,3 +75,8 @@ Each node will try to connect to 8 (implementation-dependent) external peers. As
 If a peer appears to be acting dishonestly, it can be disconnected and temporarily banned from reconnecting. Reasons for banning include (but are not limited to) exceeding the limits provided for each type of protocol message, sending invalid information, and making the node throw an exception when handling a message.
 
 The duration of the ban depends on the severity of the issue. Care should be taken to not ban honest peers by accident. Different implementations might have larger or different rate limits as well.
+
+## Certificates
+All connections between nodes are encrypted and signed with X.509 self signed certificates. Each node will have it's
+own CA and self sign their certificates. Node IDs are derived by hashing the public key of the certificate, so each
+node can have a consistent node ID to use for authentication.

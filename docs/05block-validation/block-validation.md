@@ -10,7 +10,7 @@ The header validation performs consensus algorithm-related checks, such as proof
 Body validation entails running all puzzles for spent coins, reading the coin database, verifying signatures, checking for duplicate or invalid removals and additions, etc.
 
 Validating a block in Chia will require access to some blocks in the past, up to a maximum theoretical value of three times the max number of blocks in a slot (3x128=384), but usually only a few are needed. Also, information regarding previous sub-epochs and epochs is needed for validation, as well as the current system timestamp. Implementations
-can cache only some recent blocks instead of storing all blocks in memory. `chia-blockchain` maintains a DB of BlockRecords, which contain only the important pieces of block information required for validating future blocks.
+can cache only some recent blocks instead of storing all blocks in memory. `chia-blockchain` maintains a database of BlockRecords, which contain only the important pieces of block information required for validating future blocks.
 
 ## Full Sync vs Normal Operation
 
@@ -21,10 +21,10 @@ There are two cases when a node might verify blocks.
 We'll cover both of these cases below.
 
 ### Full Sync
-Full sync is the process by which a full node downloads and validates all of the blocks in the blockchain and catches up to the most recent block. Full sync is important, because it allows new nodes to validate that a blockchain is the heaviest -- and thus, the currently valid -- chain. It allows everyone to come to consensus on the current state, regardless of when they come online, or for how long they go offline. 
+Full sync is the process by which a full node downloads and validates all of the blocks in the blockchain and catches up to the most recent block. Full sync is important, because it allows new nodes to validate that a blockchain is the heaviest -- and thus, the currently valid -- chain. It allows everyone to come to consensus on the current state, regardless of when they come online, or for how long they go offline.
 
 The method of full sync can vary between implementations, but the high level algorithm is the following:
-1. Connect to other peers on the network, by querying the introducer DNS, and crawling the network.
+1. Connect to other peers on the network, by querying the DNS introducer, and crawling the network.
 2. Check the current weight of the peak of the peers, and select a few peers to sync from.
 3. Download and validate a weight proof, to ensure that the given peak has real work behind it.
 4. Download and validate all blocks in the blockchain, in batches.
@@ -41,7 +41,7 @@ Normal operation is much less CPU-intensive than full sync, since there is only 
 
 ## Block Validation Steps
 
-The following sections list all of the required checks to ensure validity of a block. Please note that the official protocol and specification are defined by the `chia-blockchain` 
+The following sections list all of the required checks to ensure validity of a block. Please note that the official protocol and specification are defined by the `chia-blockchain`
 [Python implementation](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/consensus), and NOT by this documentation page.
 
 ### Header Validation
@@ -67,7 +67,7 @@ The following sections list all of the required checks to ensure validity of a b
    * Check deficit (MIN_SUB.. deficit edge case for genesis block)
    * If prev sb had deficit 0, resets deficit to MIN_BLOCK_PER_CHALLENGE_BLOCK
    * Otherwise, deficit stays the same at the slot ends, cannot reset until 0
-3. Check sub-epoch summary 
+3. Check sub-epoch summary
    * Check that genesis block does not have sub-epoch summary
    * Check that we finished a slot and we finished a sub-epoch
    * Check the actual sub-epoch is correct
@@ -94,7 +94,7 @@ The following sections list all of the required checks to ensure validity of a b
 21. Check extension data if applicable. None for mainnet.
 22. Check if foliage block is present
 23. Check foliage block hash
-24. Check prev block hash for genesis and non-genesis 
+24. Check prev block hash for genesis and non-genesis
 25. The filter hash in the Foliage Block must be the hash of the filter
 26. The timestamp in Foliage Block must not be over 5 minutes in the future, and the timestamp must be greater than the previous transaction block timestamp
 27. Check block height for genesis and non-genesis
@@ -117,13 +117,13 @@ None, and return.
 6. No transactions before INITIAL_TRANSACTION_FREEZE timestamp (this check has been removed).
 7. The generator root must be the hash of the serialized bytes of the generator for this block (or zeroes if no generator)
 8. Check the transactions generator reference list:
-   * The generator_ref_list must be the hash of the serialized bytes of 
+   * The generator_ref_list must be the hash of the serialized bytes of
    * the generator ref list for this block (or 'one' bytes [0x01] if no generator)
-   * The generator ref list length must be less than or equal to MAX_GENERATOR_REF_LIST_SIZE entries 
-   * The generator ref list must not point to a height >= this block's height 
-   * If we have a generator reference list, we must have a generator 
-   * Check that cost <= MAX_BLOCK_COST_CLVM 
-   * The CLVM program must not return any errors 
+   * The generator ref list length must be less than or equal to MAX_GENERATOR_REF_LIST_SIZE entries
+   * The generator ref list must not point to a height >= this block's height
+   * If we have a generator reference list, we must have a generator
+   * Check that cost <= MAX_BLOCK_COST_CLVM
+   * The CLVM program must not return any errors
 9. Check that the correct cost is in the transactions info
 10. Check additions for max coin amount (be careful to check for 64 bit overflows in other languages. This is the max 64 bit unsigned integer)
 11. Validate addition and removal merkle set roots.
@@ -132,7 +132,7 @@ None, and return.
 14. Check for duplicate spends inside block.
 15. Check if removals exist and were not previously spent. (coin_db up to the fork point + fork block + this_block).
 Be careful with forks and with ephemeral coins (added and removed in same block).
-16. Check that the total coin amount for added is <= removed. 
+16. Check that the total coin amount for added is <= removed.
 17. Check that the assert fee sum <= fees, and that each reserved fee is non-negative.
 18. Check that the fee amount + farmer reward < maximum coin amount.
 19. Check that the computed fees are equal to the fees in the block header.

@@ -15,14 +15,14 @@ When a user makes a transaction, it gets sent to a full node, which then verifie
 ##  Validation
 Only valid transactions are allowed to enter the mempool. The process of validating transactions is similar to the process of validating blocks. This includes running CLVM, checking conditions, validating signatures, and checking that the coins to be spent are currently unspent and valid.
 
-The transaction is also checked against other transactions in the mempool, to ensure there are no conflicts. 
+The transaction is also checked against other transactions in the mempool, to ensure there are no conflicts.
 
 ## Fee Required for Inclusion
 If the mempool is not full, all transactions regardless of fee are accepted into the mempool. The maximum mempool size can vary by version, and transactions have a large variance in size, but it is generally 10-100 blocks.
 
 Transactions with 0 fee are accepted into the mempool as of chia-blockchain version 1.2.12. Fees that are very close to zero are considered equivalent to zero. The threshold is set at 5 mojo per cost, but this can vary by implementation, version, and settings, so it's not guaranteed by the protocol.
 
-When the mempool gets full, nodes will start rejecting transactions that don't meet a minimum fee. The full node sorts the transactions by fee-per-cost, and kicks out the least valuable transactions first, when including new ones. 
+When the mempool gets full, nodes will start rejecting transactions that don't meet a minimum fee. The full node sorts the transactions by fee-per-cost, and kicks out the least valuable transactions first, when including new ones.
 
 
 ## Replace by Fee
@@ -37,7 +37,7 @@ since all spend bundles in the mempool must spend disjointed coins.
 Coin spends cannot impact other coin spends, which is a very nice property of UTXO systems, and allows parallelization of validation and block creation. The aggregate
 spend bundle also has one aggregate signature, which is a combination of every signature from every transaction in that block.
 
-For performance reasons, the chia-blockchain codebase currently creates only smaller blocks (less than 50% of the maximum size) in order to keep the blockchain smaller and  easier to run. This "throttle" is likely to be removed in future versions, after optimizations have been performed. 
+For performance reasons, the chia-blockchain codebase currently creates only smaller blocks (less than 50% of the maximum size) in order to keep the blockchain smaller and  easier to run. This "throttle" is likely to be removed in future versions, after additional optimizations have been performed. 
 
 ## Updating the Mempool
 After a new block is added to the blockchain, all full nodes must look at the coins that were spent in that new block, and remove them from the mempool. The full node does not need to re-apply every transaction again, since Chia coin spends are deterministic and sandboxed (see [chialisp.com](https://chialisp.com) for more info). The full node only needs to look at the spent coins in the new block, and if there are any transactions that spend one of those coins, they are removed from the mempool. This means the mempool can be very large, the codebase can be simple, and high performance can be achieved.

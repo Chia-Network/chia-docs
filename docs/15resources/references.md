@@ -31,7 +31,7 @@ sidebar_position: 1
 * [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki) -- the address encoding scheme used by Chia
 * [x.509](https://en.wikipedia.org/wiki/X.509) -- the public key certificate used in Chia peer nodes
 * [DER](https://wiki.openssl.org/index.php/DER) -- a data structure used with x.509 certificates
-* [BLS-12-381](https://github.com/zkcrypto/bls12_381) -- they type of keys Chia uses
+* [BLS-12-381](https://github.com/zkcrypto/bls12_381) -- the type of keys Chia uses
 * [IETF](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/) -- the BLS signature specification
 * [EIP-2333](https://eips.ethereum.org/EIPS/eip-2333) -- a tree structure for deriving BLS keys
 * [SLIP-0044](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) -- registered coin types for BIP-0044
