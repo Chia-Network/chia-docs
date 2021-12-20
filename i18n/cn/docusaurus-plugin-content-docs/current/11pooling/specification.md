@@ -6,15 +6,12 @@ sidebar_position: 2
 
 > Chia Pool Protocol 1.0 Specification
 
-这是 Chia Pool 协议的初始版本。它被设计成简单的，以后会被扩展。它依赖于拥有智能币（在 GUI + CLI 中称为 Pool NFT）的农民，这允许他们通过在区块链上进行交易来在矿池之间切换。此外，它减少了对区块生产池的依赖，因为该协议只处理奖励的分配，并且可以防止池或农民的恶意行为。
+这是 Chia Pool 协议的初始版本。 它被设计成简单的，以后会被扩展。 它依赖于拥有智能币（在 GUI + CLI 中称为绘图 NFT）的农民，这允许他们通过在区块链上进行交易来在池之间切换。 此外，它减少了对区块生产池的依赖，因为该协议只处理奖励的分配，并且可以防止池或农民的恶意行为。
 
 <details>
 <summary>原文参考</summary>
 
-This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later.
-It relies on farmers having smart coins (referred to as Pool NFTs in GUI + CLI) which allow them to switch between pools
-by making transactions on the blockchain. Furthermore, it decreases the reliance on pools for block production, since
-the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously.
+This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later. It relies on farmers having smart coins (referred to as plot NFTs in GUI + CLI) which allow them to switch between pools by making transactions on the blockchain. Furthermore, it decreases the reliance on pools for block production, since the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously.
 
 </details>
 
@@ -32,8 +29,7 @@ Chia 客户端必须仅通过 TLS >= 1.2 上的 HTTPS 连接到池配置 URL。 
 
 - ## Security considerations
 
-The pool must ensure that partials arrive quickly, faster than the 28 second time limit of inclusion into the
-blockchain. This allows farmers that have slow setups to detect issues.
+The pool must ensure that partials arrive quickly, faster than the 28 second time limit of inclusion into the blockchain. This allows farmers that have slow setups to detect issues.
 
 The Pool server must check that the `pool_contract_puzzle_hash` a.k.a. `p2_singleton_puzzle_hash` matches the
 puzzle that they expect. Otherwise, the pool has no guarantee that users will not attempt to claim block rewards
