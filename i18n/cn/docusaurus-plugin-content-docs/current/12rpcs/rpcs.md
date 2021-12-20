@@ -120,7 +120,7 @@ There is also another client here: https://github.com/freddiecoleman/chia-client
 
 ## 服务
 
-服务 RPC API 记录在以下部分： TODO：在此处添加链接并创建其他部分
+服务 RPC API 记录在以下部分：
 
 * Shared：所有服务共享的 RPC
 * 全节点
@@ -134,7 +134,7 @@ There is also another client here: https://github.com/freddiecoleman/chia-client
 
 - ## Services
 
-The service RPC Apis are documented in the following sections:
+The service RPC APIs are documented in the following sections:
 TODO: add links here and create the other sections
 * Shared: RPCs that all services share
 * Full Node
