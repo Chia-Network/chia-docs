@@ -25,7 +25,6 @@ sidebar_position: 1
 
 ## Chia 技术规格
 
-
 * [Chia 绿皮书](https://www.chia.net/assets/ChiaGreenPaper.pdf "Chia's Green Paper") -- 展示时空证明
 * [空间证明规范](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf)
 * [BLS 签名](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub")
