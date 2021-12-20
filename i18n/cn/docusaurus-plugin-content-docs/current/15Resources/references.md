@@ -49,11 +49,11 @@ sidebar_position: 1
 ## 外部资料
 
 * [Chia 的耗电量](https://chiapower.org "Chia's energy consumption statistics")
-* [密码学的历史](https://cs.stanford.edu/people/eroberts/courses/soco/projects/public-key-cryptography/history.html#:~:text=The%20idea%20of%20public%20key,known%20as%20the%20knapsack%20problem), 来自斯坦福大学
-* [超越赫尔曼](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space"), 作者 Hamza Abusalah, Jo ̈el Alwen, Bram Cohen, Danylo Khilko, Krzysztof Pietrzak, Leonid Reyzin
-* [POS 最长链协议](http://tselab.stanford.edu/downloads/PoS_LC_SBC2020.pdf), 作者 Vivek Bagaria, Amir Dembo, Sreeram Kannan, Sewoong Oh, David Tse, Pramod Viswanath, Xuechao Wang, Ofer Zeitouni
-* [Flyclient 白皮书](https://eprint.iacr.org/2019/226.pdf), 作者 Benedikt Bunz, Lucianna Kiffer, Loi Luu, and Mahdi Zamani
-* [PoSAT 白皮书](https://arxiv.org/abs/2010.08154), 作者 Soubhik Deb, Sreeram Kannan, David Tse
+* [密码学的历史](https://cs.stanford.edu/people/eroberts/courses/soco/projects/public-key-cryptography/history.html#:~:text=The%20idea%20of%20public%20key,known%20as%20the%20knapsack%20problem)，来自斯坦福大学
+* [超越赫尔曼](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space")，作者 Hamza Abusalah, Jo ̈el Alwen, Bram Cohen, Danylo Khilko, Krzysztof Pietrzak, Leonid Reyzin
+* [POS 最长链协议](http://tselab.stanford.edu/downloads/PoS_LC_SBC2020.pdf)，作者 Vivek Bagaria, Amir Dembo, Sreeram Kannan, Sewoong Oh, David Tse, Pramod Viswanath, Xuechao Wang, Ofer Zeitouni
+* [Flyclient 白皮书](https://eprint.iacr.org/2019/226.pdf)，作者 Benedikt Bunz, Lucianna Kiffer, Loi Luu, and Mahdi Zamani
+* [PoSAT 白皮书](https://arxiv.org/abs/2010.08154)，作者 Soubhik Deb, Sreeram Kannan, David Tse
 * [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki) -- Chia 使用的地址编码方案
 * [x.509](https://en.wikipedia.org/wiki/X.509) -- Chia 对等节点中使用的公钥证书
 * [DER](https://wiki.openssl.org/index.php/DER) -- 与 x.509 证书一起使用的数据结构
