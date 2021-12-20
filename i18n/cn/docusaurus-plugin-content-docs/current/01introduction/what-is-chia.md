@@ -23,7 +23,7 @@ Chia 的主网于 2021 年 3 月 19 日启动。其生态系统的开发正在�
 <details>
 <summary>原文参考</summary>
 
-## What is Chia?
+- ## What is Chia?
 
 Chia is a cryptocurrency and blockchain smart transaction platform. Chia was designed from the ground up to make cryptocurrency easier to use -- and harder to lose -- than cash. Chia's blockchain maintains the same level of security as Bitcoin's, while using a fraction of the energy.
 
