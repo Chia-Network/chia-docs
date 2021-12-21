@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 2.2 点对点系统
+# 2.1 点对点系统
 
 > Peer to Peer system
 
