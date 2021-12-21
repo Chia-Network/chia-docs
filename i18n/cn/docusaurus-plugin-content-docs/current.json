@@ -43,9 +43,9 @@
     "message": "10 - 协议",
     "description": "The label for category 10 - Protocol in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.10 - Pool Protocol": {
-    "message": "10 - Pool Protocol",
-    "description": "The label for category 10 - Pool Protocol in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.11 - Pool Protocol": {
+    "message": "11 - 矿池协议",
+    "description": "The label for category 11 - Pool Protocol in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.12 - RPC APIs": {
     "message": "12 - RPC APIs",
@@ -58,10 +58,6 @@
   "sidebar.tutorialSidebar.category.14 - Python Implementation": {
     "message": "14 - Python 实现",
     "description": "The label for category 14 - Python Implementation in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.11 - Pool Protocol": {
-    "message": "11 - 矿池协议",
-    "description": "The label for category 11 - Pool Protocol in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.15 - Resources": {
     "message": "15 - 资源",
