@@ -10,7 +10,7 @@ sidebar_position: 1
 
 Chia 是一个加密货币和区块链智能交易平台。 Chia 的设计初衷是让加密货币比现金更容易使用——也更难丢失。 Chia 的区块链保持与比特币相同安全级别的同时，只使用一小部分能源。
 
-2017年8月1日，[Bram Cohen](https://www.chia.net/profiles/bram-cohen "Bram Cohen's Chia profile")创立 Chia 公司并在特拉华州注册成立。Bram 与许多工程师、研究人员、开源贡献者一起领导了 Chia 的开发。在此过程中，Chia 在应用密码学方面创造了三项新发明，并在第四项中提高了兴趣和采用率：
+2017年8月1日，[Bram Cohen](https://www.chia.net/profiles/bram-cohen "Bram Cohen's Chia profile") 创立 Chia 公司并在特拉华州注册成立。Bram 与许多工程师、研究人员、开源贡献者一起领导了 Chia 的开发。在此过程中，Chia 在应用密码学方面创造了三项新发明，并在第四项中提高了兴趣和采用率：
   * [BLS 签名](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub")的首次生产使用。
   * [可验证延迟函数（VDF）](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")的首次生产使用。
   * [空间证明](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub") 和 [时间证明](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")（PoST），这是自工作量证明以来的第一个（也是唯一一个）中本聪共识。
@@ -18,7 +18,7 @@ Chia 是一个加密货币和区块链智能交易平台。 Chia 的设计初衷
 
 Chia 的主网于 2021 年 3 月 19 日启动。其生态系统的开发正在进行中。
 
-更多公司战略信息请参见[Chia商业白皮书](https://www.chia.net/whitepaper "Chia's business white paper")。
+更多公司战略信息请参见 [Chia 商业白皮书](https://www.chia.net/whitepaper "Chia's business white paper")。
 
 <details>
 <summary>原文参考</summary>
@@ -85,7 +85,7 @@ Chia 使用一种称为 [时空证明](https://www.chia.net/assets/ChiaGreenPape
 
 * 加入矿池是无需许可的。农民无需注册任何东西即可加入。
 
-* 当赢得一个区块时，农民获得 1/8 的奖励，矿池运营商获得另外的 7/8。这样做是为了阻止当矿池运营商在竞争矿池中耕种，获得证明时却忽略创建区块，从而损害他们的竞争。 （作为个体的农民在创建区块时会获得全部奖励。）
+* 当赢得一个区块时，农民获得 1/8 的奖励，矿池运营商获得另外的 7/8。这样做是为了阻止当矿池运营商在竞争矿池中耕种，获得证明时却忽略创建区块，从而损害他们的竞争。（作为个体的农民在创建区块时会获得全部奖励。）
 
 > 有关 Chia 矿池协议的更多信息，请参阅 [第 11 节](/docs/11pooling/pooling "Section 11: Pooling")。
 
