@@ -5,65 +5,76 @@ import {translate} from '@docusaurus/Translate';
 
 const FeatureList = [
   {
-    title: 'Chia Docs',
+    title: translate({
+      id: "feature1",
+      message: "Chia Docs"
+    }),
     Svg: require('../../static/img/chia-docs-icon.svg').default,
     dest_url: '/docs/01introduction/what-is-chia',
-    description: (
-      <>
-        Documentation regarding the Chia blockchain, consensus, and protocols.
-      </>
-    ),
+    description: translate({
+      id: "detail1",
+      message: "Documentation regarding the Chia blockchain, consensus, and protocols."
+    }),
   },
   {
-    title: 'Chialisp',
+    title: translate({
+      id: "feature2",
+      message: "Chialisp"
+    }),
     Svg: require('../../static/img/chialisp-icon.svg').default,
     dest_url: 'https://chialisp.com',
-    description: (
-      <>
-      Documentation and tutorials for Chialisp, our new Turing complete on-chain smart transaction programming language and development environment.
-      </>
-      
-    ),
+    description: translate({
+      id: "detail2",
+      message: "Documentation and tutorials for Chialisp, our new Turing complete on-chain smart transaction programming language and development environment."
+    }),
   },
   {
-    title: 'Chia Blockchain Wiki',
+    title: translate({
+      id: "feature3",
+      message: "Chia Blockchain Wiki"
+    }),
     Svg: require('../../static/img/chia_leaf_green.svg').default,
     dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki',
-    description: (
-      <>
-      Community-run wiki containing instructions and information about best practices regarding setup, hardware, farming, plotting, security, timelords, and more.
-      </>
-    ),
+    description:translate({
+      id: "detail3",
+      message: "Community-run wiki containing instructions and information about best practices regarding setup, hardware, farming, plotting, security, timelords, and more."
+    }),
   },
   {
-    title: 'Cultivation Grant Program',
+    title: translate({
+      id: "feature4",
+      message: "Cultivation Grant Program"
+    }),
     Svg: require('../../static/img/grant_icon.svg').default,
     dest_url: 'https://www.chia.net/grants/',
-    description: (
-      <>
-      Our Cultivation Grant Program is designed to enable and expand promising new projects that are being built on the Chia blockchain.
-      </>
-    ),
+    description: translate({
+      id: "detail4",
+      message: "Our Cultivation Grant Program is designed to enable and expand promising new projects that are being built on the Chia blockchain."
+    }),
   },
   {
-    title: 'Chia Technical FAQ',
+    title: translate({
+      id: "feature5",
+      message: "Chia Technical FAQ"
+    }),
     Svg: require('../../static/img/technical_faq_icon.svg').default,
     dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki/FAQ',
-    description: (
-      <>
-      Frequently asked questions regarding the Chia blockchain and its function.
-      </>
-    ),
+    description: translate({
+      id: "detail5",
+      message: "Frequently asked questions regarding the Chia blockchain and its function."
+    }),
   },
   {
-    title: 'Chia Network Inc. FAQ',
+    title: translate({
+      id: "feature6",
+      message: "Chia Network Inc. FAQ"
+    }),
     Svg: require('../../static/img/chia_logo.svg').default,
     dest_url: 'https://www.chia.net/faq/',
-    description: (
-      <>
-      Frequently asked questions about Chia Network Inc., the company.
-      </>
-    ),
+    description: translate({
+      id: "detail6",
+      message: "Frequently asked questions about Chia Network Inc., the company."
+    }),
   },
 ];
 
