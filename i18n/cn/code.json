@@ -17,6 +17,27 @@
   "detail3": {
     "message": "Chia 凭借其创新的时空证明共识，仅使用了比特币年能源消耗的 0.16% 和以太坊的 0.36%。Chia 是循环驱动计划（Circular Drive Initiative）的一部分，该计划通过安全地重复使用存储来减少电子垃圾，促进硬盘驱动器在 Chia 农业中的二次使用。"
   },
+  "feature4": {
+    "message": "安全性"
+  },
+  "detail4": {
+    "message": "Chia 是有史以来最去中心化的区块链，拥有约 350,000 个节点，采用自 2009 年以来的第一个新的中本聪共识。 Chialisp 链上编程环境功能强大，同时更具可审计性和安全性。"
+  },
+  "feature5": {
+    "message": "合规性"
+  },
+  "detail5": {
+    "message": "Chia 认为，为了兑现下一代区块链的承诺，我们必须遵守法规。我们的既定目标是成为受 1933 年《证券法》约束的公开报告公司。Chia 的原生货币 XCH 或 chia 从未被 Chia 网络出售以换取金钱，我们相信它作为商品受到 CFTC 监管。"
+  },
+  "feature6": {
+    "message": "可持续性"
+  },
+  "detail6": {
+    "message": "Chia 凭借其创新的时空证明共识，仅使用了比特币年能源消耗的 0.16% 和以太坊的 0.36%。Chia 是循环驱动计划（Circular Drive Initiative）的一部分，该计划通过安全地重复使用存储来减少电子垃圾，促进硬盘驱动器在 Chia 农业中的二次使用。"
+  },
+  "index.title": {
+    "message": "Chia 文档"
+  },
   "banner.title": {
     "message": "Chia 文档"
   },
