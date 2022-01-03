@@ -13,6 +13,7 @@ Some of the protocol's highlights:
 * The farmer can easily and securely change pools.
 * The farmer can run a full node (increasing decentralization) on low-end hardware, such as a Raspberry Pi 4.
 * The farmer can start a new full node, using only their 24-word seed phrase to log in to Chia's software, and the pooling configuration is detected, without requiring a central server.
+* The farmer chooses which transactions to include from their full node and creates transaction blocks in a decentralized way.
 
 ### Customization
 Several things can be customized by pool operators, while still adhering to the protocol. These include:
