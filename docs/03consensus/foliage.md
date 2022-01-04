@@ -47,7 +47,7 @@ Note that the farmers of blocks B2 and B3 might both have a chance to create the
 
 While all blocks still choose the puzzle hashes of where their rewards go, those transactions do not get included into the blockchain until the next transaction block.
 
-For the chia mainnet, there is a target of 32 blocks every 600 seconds, for an average block time of 18.75 seconds. There are 64 signage points, so the minimum time between transaction blocks is 3*600/64 = 28.125 seconds. This puts the average transaction block time at 46.875 seconds (average block time + minimum transaction block time).
+For the chia mainnet, there is a target of 32 blocks every 600 seconds, for an average block time of 18.75 seconds. The minimum time between transaction blocks is 3 signage points or 3 times 9.375 seconds which equals 28.125 seconds. On average you can not infuse a transaction block until 3.5 signage points have passsed. This puts the average transaction block time at 51.5625 seconds (average block time of 18.75 seconds + average transaction block infusion time of 3.5 signage points or 32.8125 seconds which equals 51.5625 seconds).
 
 The time between transaction blocks was deliberately chosen because it comes with several advantages:
 * If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.
