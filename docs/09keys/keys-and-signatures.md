@@ -38,8 +38,8 @@ Non-observer keys are the default, and only supported, method in the EIP-2333 sp
 
 Observer keys do allow public derivation. This enables view-only wallets that support viewing _all_ of your public keys, using only the root (master) public key. This is what is usually done for Bitcoin HD view-only wallets. It enables more privacy when compared to systems like Ethereum, which reuse the same address for all transactions.
 
-One advantage of HD keys is tax calculation: if you use a different address for each transaction, you only need to give your accountant your parent public key, who can use it to derive all of your child addresses. This would not be possible with non-observer keys.
+One advantage of observer keys is tax calculation: if you use a different address for each transaction, you only need to give your accountant your parent public key, who can use it to derive all of your child addresses. This would not be possible with non-observer keys.
 
-The main security drawback of HD keys is that if you accidentally reveal a single child private key, along with the parent public key, then your parent private key and all sibling keys can be calculated as well.
+The main security drawback of observer keys is that if you accidentally reveal a single child private key, along with the parent public key, then your parent private key and all sibling keys can be calculated as well.
 
 At the time of Chia's mainnet launch in March and May 2021, only non-observer keys were used. Beginning in December 2021, observer keys are supported -- and preferred -- for  view only-wallet support.
