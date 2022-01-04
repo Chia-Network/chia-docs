@@ -54,12 +54,13 @@ The average time between transaction blocks is 51.625 seconds. Several values ar
 * Average block time = 32 per sub-slot, or 600/32 = 18.75 seconds
 * Minimum signage points from current signage point until infusion_iterations is reached = 3 (See [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points") for more info.)
 * Minimum time for infusion_iterations to be reached (and therefore, minimum time between transaction blocks) = 3 * (600/64) = 28.125 seconds
-* Average signage points until infusion_iterations is reached = 3.5 (must wait 3 signage points, plus an average wait of 1/2 of the next signage point)
+* Average signage points until infusion_iterations is reached is slightly less than 3.5 (must wait 3 signage points, plus an average wait of about 50% of the next signage point) for a total of 52 seconds.
+* The formal equation is <img src="/img/block-time-calc.png" alt="(1/(e^(0.5)-1)+4)*9.375" width="200"/> or `(1/(e^(0.5)-1)+4)*9.375` which equals 51.95 seconds.
 
 To create a transaction block, infusion_iterations first must be met, and then the next block afterwards will be the transaction block. Therefore, the average time between transaction blocks = (average signage points * signage point time) + average block time = (3.5 * 9.375) + 18.75 = 51.625 seconds
 
 The time between transaction blocks was deliberately chosen because it comes with several advantages:
 * If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.
 * If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
-* Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm attack.
+* Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm.
 * Finally, empty blocks help to smooth farmers' rewards.
