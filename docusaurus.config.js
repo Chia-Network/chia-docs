@@ -22,7 +22,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/Chia-Network/chia-docs',
+          editUrl: 'https://github.com/Chia-Network/chia-docs/blob/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
