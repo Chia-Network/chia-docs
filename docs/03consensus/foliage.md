@@ -47,6 +47,8 @@ Note that the farmers of blocks B2 and B3 might both have a chance to create the
 
 While all blocks still choose the puzzle hashes of where their rewards go, those transactions do not get included into the blockchain until the next transaction block.
 
+### Transaction Block Time
+
 The average time between transaction blocks is 52 seconds. Several values are required to calculate this average:
 
 * Sub-slot time = 600 seconds
