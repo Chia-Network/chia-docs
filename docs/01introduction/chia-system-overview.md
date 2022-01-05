@@ -17,7 +17,7 @@ Each transaction in Chia must spend at least one coin. In order to spend a coin,
 For more info about the coin set model and Chia's on-chain programming environment, see [chialisp.com](https://chialisp.com).
 
 ### Nodes
-Chia nodes connect to a random subset of other Chia nodes, called peers. The nodes periodically send and receive information from peers, which is then stored locally in a peer database. Each node broadcasts all new transactions and blocks that they see to their peers, which in turn relay this information to _their_ peers, resulting in the information quickly being propagated throughout the network. When first starting up, nodes have to synchronize to the blockchain, by downloading the entire history of blocks and transactions.
+Chia nodes connect to a random subset of other Chia nodes, called peers. The nodes periodically send and receive information from peers, which is then stored locally in a peer database. Each node broadcasts all new transactions and blocks that they seed to their peers, which in turn relay this information to _their_ peers, resulting in the information quickly being propagated throughout the network. When first starting up, nodes have to synchronize to the blockchain, by downloading the entire history of blocks and transactions.
 
   >The Full Node Protocol can be found in [Section 10](/docs/10protocol/protocol "Section 3.10: Full Node Protocol").
 
