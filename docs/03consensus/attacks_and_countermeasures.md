@@ -5,45 +5,79 @@ sidebar_position: 14
 # 3.14 Relevant Attacks and Countermeasures
 
 ## 51% attack
-A 51% (actually 46%, as explained below) attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to re-org. This is the classic long-range attack, which is present on many blockchain networks including Chia's, as well as on proof-of-work systems.
-
-In this attack, someone who controls at least 46% of the network space creates an alternate chain, which eventually becomes heavier than the honest chain.
+A 51% (actually 42.6%, as explained below) attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to re-org. This is the classic long-range attack, which is present on many blockchain networks including Chia's, as well as on Proof-of-Work systems.
 
 There are two main differences between Chia's Proof of Space and Time consensus and Proof of Work.
-1. In Chia, the attacker can extend and farm on many chains simultaneously, making the attack possible with only 46% of the network space. A fast VDF is not required to gain this advantage. Therefore, a 46% assumption should used as the base line for a long-range attack.
-2. In Chia, if the attacker has the fastest VDF on the entire network, they can get an additional space advantage/boost. (If the attacker's VDF is even slightly slower than the fastest VDF, it will not give them any advantage.)
+1. In Chia, an attacker can extend and farm on many chains simultaneously, making the attack possible with only 42.6% of the network space. A fast timelord is not required to gain this advantage. Therefore, a 42.6% assumption should used as the base line for a long-range attack.
+2. In Chia, if an attacker has the fastest timelord on the entire network, they can get an additional space advantage/boost. This scenario is covered in detail in the next section. (Note that if the attacker's timelord is even slightly slower than the fastest timelord, it will not give them any advantage.)
+
+How do we arrive at 42.6%? The white paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a long-range attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
+
+* 16 -- This is the minimum number of blocks in a slot. (See [Section 3.9](/docs/03consensus/overflow_blocks#minimum-block-requirement "Section 3.9: Minimum Block Requirement") for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
+
+* 32 -- This is the targeted number of blocks per sub-slot. (See [Section 3.4](/docs/03consensus/challenges "Section 3.4: Challenges") for more info.) There will be some natural variance in this number, but an attacker who does not have the fastest timelord will not be able to modify this number artificially. Therefore, we'll use 32 blocks per sub-slot in our base line calculation.
+
+Here's the code to solve for these values in Wolfram alpha, where c is the number of consecutive blocks with the same challenge:
+
+```bash
+% Wolfram
+% solve q=-(c*p)/(ln(-p)+(c-1)ln(1-p)) , -ln(-p)-(c-1)ln(1-p)=-1+(c-1)*(p/(1-p)), c=16 ,f=1/(1+q)
+% Solution over the reals: p≈-0.438787 ∧ q≈1.34313 c=32
+% Solution over the reals:p≈-0.616585 ∧ q≈1.4678 c=16
+% 1/(1+1.4678)= 0.405219
+% 1/(1+1.34313) = 0.4267795
+```
+
+Using this equation, if an attacker does not have the fastest timelord, they must control at least 42.6% of the network space in order to build an alternate chain fast enough to overtake the honest chain.
+
+## Long-range attack combined with fastest timelord
+
+If an attacker has access to the fastest timelord on Chia's network, the attacker could occasionally fork the chain such that only slots with fewer blocks were included. This would reduce the amount of space required to run a successful long-range attack. Furthermore, as the attacker adds more fast timelords, the odds of a successful fork are increased. Theoretically, if the attacker has an unbounded amount of fast timelords, the attacker could create a chain consisting entirely of 16-block slots. As shown in the Wolfram code above, this would reduce the attacker's portion of the network space required to run a successful long-range attack to 40.5%.
+
+We'll assume a base line of 40.5% for an attacker with unlimited fast timelords.
+
+The attack gets worse if the attacker’s timelords are significantly faster than everyone else's. Let’s assume the attacker’s timelords are 2x faster than the second-fastest timelord on the network. In this scenario, the attacker's chain will be able to create challenges and blocks at 2x the rate of the rest of the network, which means they can create a "heavier" chain with the same amount of space.
+
+This reduces the required space from 42.6% to approximately 25% of the total network space. `(0.404/2) / (1-(0.404/2)) = 0.25`.
+
+However, this number is asymptotic in the sense that it is only approached for long forks and with the attacker having an unbounded number of timelords, so it is extremely pessimistic. Under a more realistic attack where the attacker only has one fast timelord, they would only be able to build a single adversarial chain, which would require 33.4% of the network space for the attack to succeed.
+
+To reduce the possibility of this attack, Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security).
+
+To summarize, the following percentages of the network space are required to run a successful long-range attack against Chia's network:
+
+* No fast timelord: 42.6%
+* Unlimited slightly faster timelords: 40.5%
+* One timelord (3 VDFs) 2x faster than the second fastest: 33.4%
+* Unlimited 2x faster timelords: 25%
 
 ## Extending many chains
+
 If an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions, such that they get the best possible chain.
 
 Due to the average of 32 blocks with the same challenge, the attacker can only try about 32 different combinations (figuring out which block to include in the challenge chain). The exponential branching that results from trying each of these would give a small boost in space for the attacker. For example, someone with 5 PiB can pretend to have 6 or 7 PiB.
 
 The reason for receiving just a minor boost is because the alternative chains being tried are inferior and less likely to overtake the longest one. This has been analyzed in the [PoSAT paper](https://arxiv.org/abs/2010.08154).
 
-The actual amount of space required to perform this attack (for the attacker to get a heavier chain than the rest of the network combined) is 46.3%, due to the ability for an attacker to "try" different combinations of blocks, for example omitting or not omitting the first block.
+If an attacker doesn't have the fastest timelord, the actual amount of space required to perform this attack (for the attacker to get a heavier chain than the rest of the network combined) is 42.6%, due to the ability for an attacker to "try" different combinations of blocks, for example omitting or not omitting the first block.
 
-If there was a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% is required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 46%. 
+If there were a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% would be required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 42.6%. 
 
-However, Chia also chose not to increase the number of blocks per sub-slot to a number greater than 32. Doing so would decrease the time between blocks, which would allow a VDF that is only slightly faster than all others to orphan blocks more easily. As it stands, with 32 blocks per sub-slot, an attacker would need to have a significantly faster VDF than everyone else in order to successfully orphan any blocks.
+However, Chia also chose not to increase the number of blocks per sub-slot to a number greater than 32. Doing so would decrease the time between blocks, which would allow a timelord that is only slightly faster than all others to orphan blocks more easily. As it stands, with 32 blocks per sub-slot, an attacker would need to have a significantly faster timelord than everyone else in order to successfully orphan any blocks.
 
 Furthermore, the [PoSAT paper](https://arxiv.org/abs/2010.08154) shows that increasing the number of blocks per challenge increases security at a very slow rate, so increasing this number slightly does not provide much benefit.
 
-If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the required attacker space in the worst case scenario from 27% up to 46%.
-
-## Faster VDF and 46% of space
-The 46% attack gets worse if the attacker’s VDF is faster. Let’s assume the attacker’s VDF is 2x faster than the second-fastest VDF. Then their chain will be able to create challenges and blocks at 2x the rate of the rest of the network, which means they can create a "heavier" chain with the same amount of space.
-
-This reduces the required space from 46% to approximately 30% of the total network space. `0.46/0.54 = 2x/(1-x). x=0.30`. If the attacker does not have access to the fastest VDF, they will not be able to get a space advantage beyond 46%.
+If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the attacker's required space in the worst case scenario (with unlimited slightly faster timelords) from 27% up to 40.5%, as discussed above.
 
 ## Chia space / global hard drive space 
-There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to 46% attacks. Therefore the more space taken by the Chia network, the more secure the network is.
+There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to long-range attacks. Therefore the more space taken by the Chia network, the more secure the network is.
 
-We believe this type of attack is unlikely, though. Large data centers and companies with significant amounts of storage tend to not have much _unused_ storage available to hold Chia plots. And the more space that comes onto Chia's network, the lower the rewards per TB. With the netspace currently (December 2021) sitting at 35 EiB, companies will find it difficult to justify buying drives or deleting business data. Furthermore, creating a plot requires a fixed amount of upfront time and money (from current calculations, about 1kWh for a k32, or about 10 cents, which is $1 per terabyte).
+We believe this type of attack is unlikely, though. Large data centers and companies with significant amounts of storage tend not to have much _unused_ storage available to hold Chia plots. And the more space that comes onto Chia's network, the lower the rewards per TB. With the netspace currently (December 2021) sitting at 35 EiB, companies will find it difficult to justify buying drives or deleting business data. Furthermore, creating a plot requires a fixed amount of upfront time and money (from current calculations, about 1kWh for a k32, or about 10 cents, which is $1 per terabyte).
 
 The most likely long-term scenario is that rewards per TB will be sufficiently low to discourage people and companies from acquiring new storage just to farm Chia. Most of the new netspace in the future will therefore come from used storage, often from hard disks that otherwise would have been bound for a landfill. This will serve two purposes: preventing the attack laid out here, and keeping Chia green.
 
 ## 100% attack
-If the difficulty adjustment were triggered every X VDF slots, as opposed to every X blocks, this would allow for a 100% attack, where all farmers collude to constantly decrease or increase the difficulty.
+If the difficulty adjustment were triggered every X timelord slots, as opposed to every X blocks, this would allow for a 100% attack, where all farmers collude to constantly decrease or increase the difficulty.
 
 Under normal operation, there are 32 blocks per slot.
 
@@ -78,12 +112,12 @@ Setting the filter constant to 512 provides a 512x multiplier. If the replotting
 
 In any case, this attack will not become feasible until at least 2026, given projected improvements in hardware speed.
 
-## Faster VDF (but not 51% attack)
-With the fastest VDF in the system, an attacker can more effectively perform a 51% attack: they can expand their space while farming in a private chain.
+## Faster timelord (but not 51% attack)
+With the fastest timelord in the system, an attacker can more effectively perform a long-range attack: they can expand their space while farming in a private chain.
 
-If the attacker does not reach a total of 51% of space (with the VDF boosting and extending many chains as above), the usefulness of the faster VDF decreases substantially. This is because inclusion and exclusion of blocks does not depend on how fast you can perform the VDF, but instead depends on whether it’s less than the sub-slot iterations. Furthermore, an attacker needs the space of the rest of the network in order to advance, and therefore must release the challenges to the network.
+If the attacker does not reach a total of 40.5% of space (with the timelord boosting and extending many chains as above), the usefulness of the faster timelord decreases substantially. This is because inclusion and exclusion of blocks does not depend on how fast you can perform the timelord, but instead depends on whether it’s less than the sub-slot iterations. Furthermore, an attacker needs the space of the rest of the network in order to advance, and therefore must release the challenges to the network.
 
-In certain cases where blocks come very close together, having a faster VDF can allow an attacker to orphan certain blocks, although this does not increase rewards in the short term (it would hurt others, but not benefit the attacker), and has a risk of undermining the network in the long term (orphaning blocks decreases public trust).
+In certain cases where blocks come very close together, having a faster timelord can allow an attacker to orphan certain blocks, although this does not increase rewards in the short term (it would hurt others, but not benefit the attacker), and has a risk of undermining the network in the long term (orphaning blocks decreases public trust).
 
 ## Selfish Farming
 Selfish farming occurs when an attacker farms blocks in private, and only releases them when they are at risk of being surpassed by the honest chain.
@@ -100,15 +134,15 @@ In Chia, if participants knew in advance which plots would win, each user could 
 This problem is not present in this revision of the Chia consensus algorithm. This problem is solved by reducing the predictability: each farmer does not know for sure if their proof of space is fully eligible until the signage point. Therefore an attacker must bribe a large majority of the space to pull off this attack.
 
 ## Farmer bribe foliage re-org attack
-Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. It does not require the attacker to have a faster VDF.
+Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. It does not require the attacker to have a faster timelord.
 
 If the attacker can convince every single farmer N blocks deep to sign, they can revert or reorder any transaction in those N blocks. This attack requires 100% compliance, likely from unwitting participants. As soon as those participants learn of the attack, at least some of them would probably stop. It is therefore only a short-term attack.
 
 One potential prevention for this attack would be to use fraud proofs. However, these enable other attacks and complicate behavior, so they were not chosen.
 
-Instead, the solution is simply to wait longer. After 32 blocks (approximately 10 minutes), we can make a reasonable assumption that at least one farmer is following the protocol and not double signing. If 54% is non-colluding (the assumption for 46% attack resilience), the probability of a reversal after 32 blocks is `0.46^32` or `1.6*10^-11= 0.000000000016`. Furthermore, this attack is detectable, so it is not easy to pull off.
+Instead, the solution is simply to wait longer. After 32 blocks (approximately 10 minutes), we can make a reasonable assumption that at least one farmer is following the protocol and not double signing. If 57.4% is non-colluding (the assumption for 42.6% attack resilience), the probability of a reversal after 32 blocks is `0.426^32` or `1.38*10^-12= 0.00000000000138`. Furthermore, this attack is detectable, so it is not easy to pull off.
 
-Each user can choose their own threshold for which they accept a transaction/block as final. For example, in cases where the total network space drops suddenly, users can be more careful and not consider transactions final, in case there is another existing fork, due to a network split, for example.
+Each user can choose their own threshold for which they accept a transaction/block as final. For example, in cases where the total network space drops suddenly, users can be more careful and not consider transactions final, in case there is another existing fork, due to a network split.
 
 ## Orphaning transaction blocks for transaction fees
 Transaction blocks are different from non-transaction blocks, since they contain transaction fees. These may surpass block rewards. For example, Ethereum has had created some blocks with 2 eth of rewards and 8 eth of fees. ([EIP 1559](https://eips.ethereum.org/EIPS/eip-1559) changes the calculation significantly, so this is just a historical example of what is possible in other chains.)
