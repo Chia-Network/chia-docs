@@ -60,8 +60,10 @@ The average time between transaction blocks is 52 seconds. Several values are re
 * To create a transaction block, infusion_iterations first must be met, and then the next block some seconds afterwards will be a transaction block. The total average time for this to happen is around 52 seconds.
 * The formal equation is <img src="/img/block-time-calc.png" alt="(1/(e^(0.5)-1)+4)*9.375" width="200"/> or `(1/(e^(0.5)-1)+4)*9.375` which equals 51.95 seconds.
 
-The time between transaction blocks was deliberately chosen because it comes with several advantages:
+The time between transaction blocks was deliberately chosen for a specific game-theoretic reason: If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
+
+Additionally, the fact that there are empty blocks between transaction blocks provides several benefits:
+
 * If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.
-* If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
 * Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm.
 * Finally, empty blocks help to smooth farmers' rewards.
