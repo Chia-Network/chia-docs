@@ -1,4 +1,7 @@
 {
+  "index.title":{
+    "message": "chia 文档"
+  },
   "feature1": {
     "message": "安全性"
   },
