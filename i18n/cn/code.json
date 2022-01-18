@@ -1,27 +1,45 @@
 {
   "index.title":{
-    "message": "chia 文档"
+    "message": "奇亚文档"
   },
   "feature1": {
-    "message": "安全性"
+    "message": "奇亚文档"
   },
   "detail1": {
-    "message": "Chia 是有史以来最去中心化的区块链，拥有约 350,000 个节点，采用自 2009 年以来的第一个新的中本聪共识。 Chialisp 链上编程环境功能强大，同时更具可审计性和安全性。"
+    "message": "关于奇亚区块链、共识和协议的文档。"
   },
   "feature2": {
-    "message": "合规性"
+    "message": "Chialisp"
   },
   "detail2": {
-    "message": "Chia 认为，为了兑现下一代区块链的承诺，我们必须遵守法规。我们的既定目标是成为受 1933 年《证券法》约束的公开报告公司。Chia 的原生货币 XCH 或 chia 从未被 Chia 网络出售以换取金钱，我们相信它作为商品受到 CFTC 监管。"
+    "message": "Chialisp 的文档和教程，新的图灵完备的链上智能交易编程语言和开发环境。"
   },
   "feature3": {
-    "message": "可持续性"
+    "message": "奇亚区块链维基"
   },
   "detail3": {
-    "message": "Chia 凭借其创新的时空证明共识，仅使用了比特币年能源消耗的 0.16% 和以太坊的 0.36%。Chia 是循环驱动计划（Circular Drive Initiative）的一部分，该计划通过安全地重复使用存储来减少电子垃圾，促进硬盘驱动器在 Chia 农业中的二次使用。"
+    "message": "社区运行的维基，包含有关设置、硬件、耕作、绘图、安全、时间领主等方面的最佳实践的说明和信息。"
+  },
+    "feature4": {
+    "message": "补助金培养计划"
+  },
+  "detail4": {
+    "message": "补助金培养计划旨在支持和扩展正在建立在奇亚区块链上有前途的新项目。"
+  },
+  "feature5": {
+    "message": "奇亚技术常见问答"
+  },
+  "detail5": {
+    "message": "关于奇亚区块链及其功能的常见问题。"
+  },
+  "feature6": {
+    "message": "奇亚网络公司常见问答"
+  },
+  "detail6": {
+    "message": "关于奇亚网络公司的常见问题。"
   },
   "banner.title": {
-    "message": "Chia 文档"
+    "message": "奇亚文档"
   },
   "banner.content": {
     "message": "新型区块链和智能合约交易平台，更加简单、高效、安全。"
