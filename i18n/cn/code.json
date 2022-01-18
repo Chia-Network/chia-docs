@@ -5,11 +5,17 @@
   "feature1": {
     "message": "奇亚文档"
   },
+  "feature1_url": {
+    "message": "https://chiadocs.chiabee.net/docs/01introduction/what-is-chia"
+  },
   "detail1": {
     "message": "关于奇亚区块链、共识和协议的文档。"
   },
   "feature2": {
     "message": "Chialisp"
+  },
+  "feature2_url": {
+    "message": "https://chialisp.chiabee.net"
   },
   "detail2": {
     "message": "Chialisp 的文档和教程，新的图灵完备的链上智能交易编程语言和开发环境。"

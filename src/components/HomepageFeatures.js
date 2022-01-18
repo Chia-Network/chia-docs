@@ -10,7 +10,10 @@ const FeatureList = [
       message: "Chia Docs"
     }),
     Svg: require('../../static/img/chia-docs-icon.svg').default,
-    dest_url: '/docs/01introduction/what-is-chia',
+    dest_url: translate({
+      id: "feature1_url",
+      message: "/docs/01introduction/what-is-chia"
+    }),
     description: translate({
       id: "detail1",
       message: "Documentation regarding the Chia blockchain, consensus, and protocols."
@@ -23,6 +26,10 @@ const FeatureList = [
     }),
     Svg: require('../../static/img/chialisp-icon.svg').default,
     dest_url: 'https://chialisp.com',
+    dest_url: translate({
+      id: "feature2_url",
+      message: "https://chialisp.com"
+    }),
     description: translate({
       id: "detail2",
       message: "Documentation and tutorials for Chialisp, our new Turing complete on-chain smart transaction programming language and development environment."
@@ -34,7 +41,10 @@ const FeatureList = [
       message: "Chia Blockchain Wiki"
     }),
     Svg: require('../../static/img/chia_leaf_green.svg').default,
-    dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki',
+    dest_url: translate({
+      id: "feature3_url",
+      message: "https://github.com/Chia-Network/chia-blockchain/wiki"
+    }),
     description:translate({
       id: "detail3",
       message: "Community-run wiki containing instructions and information about best practices regarding setup, hardware, farming, plotting, security, timelords, and more."
@@ -46,7 +56,10 @@ const FeatureList = [
       message: "Cultivation Grant Program"
     }),
     Svg: require('../../static/img/grant_icon.svg').default,
-    dest_url: 'https://www.chia.net/grants/',
+    dest_url: translate({
+      id: "feature4_url",
+      message: "https://www.chia.net/grants/"
+    }),
     description: translate({
       id: "detail4",
       message: "Our Cultivation Grant Program is designed to enable and expand promising new projects that are being built on the Chia blockchain."
@@ -58,7 +71,10 @@ const FeatureList = [
       message: "Chia Technical FAQ"
     }),
     Svg: require('../../static/img/technical_faq_icon.svg').default,
-    dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki/FAQ',
+    dest_url: translate({
+      id: "feature5_url",
+      message: "https://github.com/Chia-Network/chia-blockchain/wiki/FAQ"
+    }),
     description: translate({
       id: "detail5",
       message: "Frequently asked questions regarding the Chia blockchain and its function."
@@ -70,7 +86,10 @@ const FeatureList = [
       message: "Chia Network Inc. FAQ"
     }),
     Svg: require('../../static/img/chia_logo.svg').default,
-    dest_url: 'https://www.chia.net/faq/',
+    dest_url: translate({
+      id: "feature6_url",
+      message: "https://www.chia.net/faq/"
+    }),
     description: translate({
       id: "detail6",
       message: "Frequently asked questions about Chia Network Inc., the company."
