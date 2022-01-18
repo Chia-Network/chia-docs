@@ -13,6 +13,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
   favicon: 'img/chia_leaf_green.svg',
   organizationName: 'Chia-Network', // Usually your GitHub org/user name.
   projectName: 'chia-docs', // Usually your repo name.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'cn'],
+  },
   plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
   presets: [
     [
