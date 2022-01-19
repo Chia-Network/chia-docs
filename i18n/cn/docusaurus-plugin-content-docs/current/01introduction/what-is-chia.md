@@ -8,12 +8,12 @@ sidebar_position: 1
 
 ## 什么是奇亚？
 
-奇亚（Chia） 是一个加密货币和区块链智能交易平台。 奇亚的设计初衷是让加密货币比现金更容易使用——也更难丢失。奇亚的区块链保持与比特币相同安全级别的同时，只使用一小部分能源。
+奇亚（Chia） 是一个加密货币和区块链智能交易平台。奇亚的设计初衷是让加密货币比现金更容易使用——也更难丢失。奇亚的区块链保持与比特币相同安全级别的同时，只使用一小部分能源。
 
 2017年8月1日，[布拉姆·科恩](https://www.chia.net/profiles/bram-cohen "Bram Cohen's Chia profile")（Bram Cohen） 创立奇亚公司并在特拉华州注册成立。布拉姆与许多工程师、研究人员、开源贡献者一起领导了奇亚的开发。在此过程中，奇亚在应用密码学方面创造了三项新发明，并在第四项中提高了兴趣和采用率：
   * [BLS 签名](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub")的首次生产使用。
   * [可验证延迟函数（VDF）](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")的首次生产使用。
-  * [空间证明](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub") 和 [时间证明](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")（PoST），这是自工作量证明以来的第一个（也是唯一一个）中本聪共识。
+  * [空间证明](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub")和[时间证明](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")（PoST），这是自工作量证明以来的第一个（也是唯一一个）中本聪（Nakamoto）共识。
   * [未知顺序的类组](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long")的首次生产使用。
 
 奇亚的主网于 2021 年 3 月 19 日启动。其生态系统的开发正在进行中。
