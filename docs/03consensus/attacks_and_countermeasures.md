@@ -4,18 +4,31 @@ sidebar_position: 14
 
 # 3.14 Relevant Attacks and Countermeasures
 
-## 51% attack
-A 51% (actually 42.7%, as explained below) attack involves creating an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to re-org. This is the classic long-range attack, which is present on many blockchain networks including Chia's, as well as on Proof-of-Work systems.
+## Majority attack
 
-There are two main differences between Chia's Proof of Space and Time consensus and Proof of Work.
-1. In Chia, an attacker can extend and farm on many chains simultaneously, making the attack possible with only 42.7% of the network space. A fast timelord is not required to gain this advantage. Therefore, a 42.7% assumption should used as the base line for a long-range attack.
-2. In Chia, if an attacker has the fastest timelord on the entire network, they can get an additional space advantage/boost. This scenario is covered in detail in the next section. (Note that if the attacker's timelord is even slightly slower than the fastest timelord, it will not give them any advantage.)
+In a majority attack, an attacker creates an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to re-org. This attack is present on many blockchain networks including Chia's, as well as on Proof-of-Work systems. It is colloquially known as a "51% attack" because the attacker must control more than half of the blockchain's resources (hashrate for PoW, netspace for PoST) in order to succeed.
 
-How do we arrive at 42.7%? The white paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a long-range attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
+However, Chia's consensus makes this attack more complex to evaluate than in Proof-of-Work systems, so we cannot make a flat 51% assumption. In analyzing this attack, there are several variables at play:
+
+* Number of timelords (regardless of speed)
+    * The attacker must control at least one timelord for the attack to be possible.
+    * With exactly one timelord, the attacker can only build one private chain.
+    * With an unbounded number of timelords, the attacker can build multiple chains simultaneously, keeping the best one while discarding the rest. This allows the attacker to create slots with fewer blocks, giving them a "double-dip" advantage, discussed in detail below.
+* Timelord speed (regardless of number)
+    * If the attacker has a single timelord, the amount of storage required for the attack is directly correlated to the speed of the attacker's timelord relative to the speed of the fastest honest timelord on the network.
+    * For example (ceteris paribus), if the attacker's timelord is twice as fast as the fastest honest timelord on the network, then the attacker's space will be twice as "valuable."
+    * Additionally, the double-dip advantage will increase as the timelord's speed increases. However, due to the minimum block requirement, this advantage will hit its maximum limit with a timelord that is somewhat less than twice as fast as the fastest honest timelord on the network. Also, multiple timelords are required to gain any double-dip advantage at all.
+* Duration of attack
+    * For attacks lasting less than one epoch (~4608 blocks or 1 day), we must assume the worst case for the attacker's double-dip advantage, based on the speed and number of timelords.
+    * For attacks lasting one epoch or longer, the minimum double-dip advantage can always be used. This is because the difficulty will adjust during the attack, so the attacker will lose the ability to create slots with fewer blocks.
+
+Before we can evaluate the percentage requirements for various scenarios, we must first calculate the range for the double-dip advantage.
+
+The white paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a majority attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
 
 * 16 -- This is the minimum number of blocks in a slot. (See [Section 3.9](/docs/03consensus/overflow_blocks#minimum-block-requirement "Section 3.9: Minimum Block Requirement") for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
 
-* 32 -- This is the targeted number of blocks per sub-slot. (See [Section 3.4](/docs/03consensus/challenges "Section 3.4: Challenges") for more info.) There will be some natural variance in this number, but an attacker who does not have the fastest timelord will not be able to modify this number artificially. Therefore, we'll use 32 blocks per sub-slot in our base line calculation.
+* 32 -- This is the targeted number of blocks per sub-slot. (See [Section 3.4](/docs/03consensus/challenges "Section 3.4: Challenges") for more info.) There will be some natural variance in this number, but an attacker who does not have the fastest timelord will not be able to manipulate it.
 
 Here's the code to solve for these values in Wolfram alpha, where c is the number of consecutive blocks with the same challenge:
 
@@ -28,49 +41,64 @@ Here's the code to solve for these values in Wolfram alpha, where c is the numbe
 % 1/(1+1.34313) = 0.4267795
 ```
 
-Using this equation, if an attacker does not have the fastest timelord, they must control at least 42.7% of the network space in order to build an alternate chain fast enough to overtake the honest chain.
+Using `DD` to represent the double-dip advantage,
+* With a single timelord, `DD` is always 1 (no advantage), regardless of the timelord's speed. This is because the attacker will only be able to build a single private chain.
+* With an unbounded number of timelords, `DD` will exist in a range, such that 1.34313 < `DD` < 1.4678. This range has a maximum value due to the minimum of 16 blocks per slot.
 
-## Long-range attack combined with fastest timelord
+In addition to `DD`, we'll use the following variables in our calculations:
+* `SH` is the total space of the honest nodes on the network
+* `VH` is the speed of the fastest honest timelord (VDF)
+* `SA` is the attacker's total space
+* `VA` is the speed of the attacker's timelord (VDF)
 
-If an attacker has access to the fastest timelord on Chia's network, the attacker could occasionally fork the chain such that only slots with fewer blocks were included. This would reduce the amount of space required to run a successful long-range attack. Furthermore, as the attacker adds more fast timelords, the odds of a successful fork are increased. Theoretically, if the attacker has an unbounded amount of fast timelords, the attacker could create a chain consisting entirely of 16-block slots. As shown in the Wolfram code above, this would reduce the attacker's portion of the network space required to run a successful long-range attack to 40.5%.
+Using these variables, the formula to calculate when an attacker is able to create a chain at the same speed as the honest chain is:
 
-However, this is not a step function. It depends on the "double dip" advantage an attacker can gain from having a fast timelord. The formula to calculate when an attacker is able to create a chain at the same speed as the honest chain is:
+`SH * VH = SA * VA * DD`
 
-`SH*VH = SA*VA*DD`
+If we normalize the network's honest space and fastest timelord to equal 1, then in order for the attack to succeed, the product of the attacker's space, timelord speed, and double-dip advantage must be at least 1:
 
-Where:
-* SH is the total space of the honest nodes on the network
-* VH is the speed of the fastest honest VDF
-* SA is the attacker's total space
-* VA is the speed of the attacker's VDF
-* DD is the double dip advantage, where 1 <= DD <= 1.4678
+`SA * VA * DD >= 1`
 
-We'll assume a base line of 40.5% for an attacker with unlimited fast timelords.
+The formula to calculate the minimum `SA` then becomes:
 
-The attack gets worse if the attacker’s timelords are significantly faster than everyone else's. Let’s assume the attacker’s timelords are 2x faster than the second-fastest timelord on the network. In this scenario, the attacker's chain will be able to create challenges and blocks at 2x the rate of the rest of the network, which means they can create a "heavier" chain with the same amount of space.
+`SA = 1 / (VA * DD)`
 
-This reduces the required space from 42.7% to approximately 25% of the total network space. `(0.404/2) / (1-(0.404/2)) = 0.25`.
+Finally, the formula to calculate the minimum netspace percentage required for the attack is:
 
-However, this number is asymptotic in the sense that it is only approached for long forks and with the attacker having an unbounded number of timelords, so it is extremely pessimistic. Under a more realistic attack where the attacker only has one fast timelord, they would only be able to build a single adversarial chain, which would require 33.4% of the network space for the attack to succeed.
+`% = (SA / (1 + SA)) * 100`
 
-To reduce the possibility of this attack, Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security).
+The following table shows the minimum required proportion of the total netspace an attacker must have in order to succeed in a majority attack. This table is valid for attacks lasting any amount of time, though sometimes it's overly conservative for attacks lasting more than one epoch. It uses fixed values for the first two columns.
 
-To summarize, the following percentages of the network space are required to run a successful long-range attack against Chia's network:
+| Number of Timelords | VA (relative to VH) | DD      | SA    | Percent of netspace required  | Comment   |
+|:-------------------:|:-------------------:|:-------:|:-----:|:-----------------------------:|:----------|
+| 0                   | N/A                 | 1       | ∞     | N/A                           | Without a timelord, the attack is not possible. |
+| 1                   | 0.5                 | 1       | 2     | 66.7%                         | With a 0.5x timelord, the attacker must control twice as much space as the rest of the network combined. |
+| ∞                   | 0.5                 | 1.34313 | 1.489 | 59.8%                         | With infinite 0.5x timelords, the attacker gains a double-dip advantage, so less space is required versus having a single timelord of the same speed. |
+| 1                   | 1                   | 1       | 1     | 50.0%                         | If the attacker has one timelord that's tied with the fastest honest timelord, then the attacker must control more space than the network's honest space. |
+| ∞                   | 1                   | 1.34313 | 0.745 | 42.7%                         | With infinite timelords tied with the fastest honest timelord on the network, the attacker gains a double-dip advantage. |
+| 1                   | 2                   | 1       | 0.5   | 33.3%                         | If the attacker has one timelord that's twice as fast as the fastest honest timelord, the attacker must control half as much space as the rest of the network. |
+| ∞                   | 2                   | 1.4678  | 0.341 | 25.4%                         | With infinite 2x timelords, the attacker gains the maximum double-dip advantage.
 
-* No fast timelord: 42.7%
-* Unlimited slightly faster timelords: 40.5%
-* One timelord (3 VDFs) 2x faster than the second fastest: 33.4%
-* Unlimited 2x faster timelords: 25%
+For attacks lasting longer than one epoch, `DD` will not exceed 1.34313. In such an attack, the final row from the preceding table will change to the following:
+
+| Number of Timelords | VA (relative to VH) | DD      | SA    | Percent of netspace required  | Comment   |
+|:-------------------:|:-------------------:|:-------:|:-----:|:-----------------------------:|:----------|
+| ∞                   | 2                   | 1.34313 | 0.372 | 27.1%                         | If the attack longer than one epoch, the double-dip advantage will be minimized.
+
+Note that if we continue to increase `VA`, `DD` will always remain at 1.4678 for the first table, and 1.34313 for the second table. The percent of netspace required will decrease linearly.
+
+It is reasonable to assume that if a long-term attack were attempted, the attacker would have access to many timelords, but they wouldn't be significantly faster than the fastest honest timelord. Therefore, Chia uses a base line assumption of 42.7% of the netspace required to for the attacker to succeed.
+
+To reduce the possibility of an attacker gaining access to a fast timelord, Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security).
+
 
 ## Extending many chains
 
-If an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions, such that they get the best possible chain.
+As discussed in the previous section, if an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions, such that they get the best possible chain.
 
 Due to the average of 32 blocks with the same challenge, the attacker can only try about 32 different combinations (figuring out which block to include in the challenge chain). The exponential branching that results from trying each of these would give a small boost in space for the attacker. For example, someone with 5 PiB can pretend to have 6 or 7 PiB.
 
 The reason for receiving just a minor boost is because the alternative chains being tried are inferior and less likely to overtake the longest one. This has been analyzed in the [PoSAT paper](https://arxiv.org/abs/2010.08154).
-
-If an attacker doesn't have the fastest timelord, the actual amount of space required to perform this attack (for the attacker to get a heavier chain than the rest of the network combined) is 42.7%, due to the ability for an attacker to "try" different combinations of blocks, for example omitting or not omitting the first block.
 
 If there were a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% would be required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 42.7%. 
 
@@ -78,7 +106,7 @@ However, Chia also chose not to increase the number of blocks per sub-slot to a 
 
 Furthermore, the [PoSAT paper](https://arxiv.org/abs/2010.08154) shows that increasing the number of blocks per challenge increases security at a very slow rate, so increasing this number slightly does not provide much benefit.
 
-If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the attacker's required space in the worst case scenario (with unlimited slightly faster timelords) from 27% up to 40.5%, as discussed above.
+If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the attacker's required space in the worst case scenario (with unlimited slightly faster timelords) from 27% up to 42.7%, as discussed above.
 
 ## Chia space / global hard drive space 
 There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to long-range attacks. Therefore the more space taken by the Chia network, the more secure the network is.
@@ -126,7 +154,7 @@ In any case, this attack will not become feasible until at least 2026, given pro
 ## Faster timelord (but not 51% attack)
 With the fastest timelord in the system, an attacker can more effectively perform a long-range attack: they can expand their space while farming in a private chain.
 
-If the attacker does not reach a total of 40.5% of space (with the timelord boosting and extending many chains as above), the usefulness of the faster timelord decreases substantially. This is because inclusion and exclusion of blocks does not depend on how fast you can perform the timelord, but instead depends on whether it’s less than the sub-slot iterations. Furthermore, an attacker needs the space of the rest of the network in order to advance, and therefore must release the challenges to the network.
+If the attacker does not reach a total of 40.5% of space (with the timelord boosting and extending many chains as above), the usefulness of the faster timelord decreases substantially. This is because inclusion and exclusion of blocks does not depend on how fast you can perform the VDF, but instead depends on whether it’s less than the sub-slot iterations. Furthermore, an attacker needs the space of the rest of the network in order to advance, and therefore must release the challenges to the network.
 
 In certain cases where blocks come very close together, having a faster timelord can allow an attacker to orphan certain blocks, although this does not increase rewards in the short term (it would hurt others, but not benefit the attacker), and has a risk of undermining the network in the long term (orphaning blocks decreases public trust).
 
