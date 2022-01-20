@@ -28,6 +28,7 @@ sidebar_position: 1
 * [POS Longest Chain Protocols](http://tselab.stanford.edu/downloads/PoS_LC_SBC2020.pdf), by Vivek Bagaria, Amir Dembo, Sreeram Kannan, Sewoong Oh, David Tse, Pramod Viswanath, Xuechao Wang, and Ofer Zeitouni
 * [Flyclient white paper](https://eprint.iacr.org/2019/226.pdf), by Benedikt Bunz, Lucianna Kiffer, Loi Luu, and Mahdi Zamani
 * [PoSAT white paper](https://arxiv.org/abs/2010.08154), by Soubhik Deb, Sreeram Kannan, and David Tse
+* [PoS security vs predictability](https://arxiv.org/pdf/1910.02218.pdf), by Vivek Bagaria, Amir Dembo, Sreeram Kannan, Sewoong Oh, David Tse, Pramod Viswanath, Xuechao Wang, and Ofer Zeitouni
 * [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki) -- the address encoding scheme used by Chia
 * [x.509](https://en.wikipedia.org/wiki/X.509) -- the public key certificate used in Chia peer nodes
 * [DER](https://wiki.openssl.org/index.php/DER) -- a data structure used with x.509 certificates
