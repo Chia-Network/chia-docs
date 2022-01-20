@@ -8,7 +8,7 @@ sidebar_position: 2
 
 空间证明协议是这样一种协议：验证者可以向证明者发送质询，证明者可以向验证者证明：证明者在那个精确时间保留了特定数量的存储空间。
 
-空间证明协议包含三个部分：绘图、证明/耕作和验证。有关更多信息，请参阅我们的[chiapos 规范详细信息](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) ，和[参考实现](https://github.com/Chia-Network/chiapos)。
+空间证明协议包含三个部分：绘图、证明/耕作和验证。有关更多信息，请参阅我们的 [chiapos 规范详细信息](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) ，和[参考实现](https://github.com/Chia-Network/chiapos)。
 
 ![chia-architecture](/img/pospace.png)
 
@@ -27,11 +27,11 @@ The proof of space protocol has three components: plotting, proving/farming, and
 
 ## 绘图
 
-绘图是证明者（我们称为 _农民_）初始化一定数量空间的过程。要成为农民，必须至少有 101.4 GiB 可用在他们的计算机上（最低规格是 [Raspberry Pi 4](https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi "Running Chia on a Raspberry Pi 4")）。 Chia 农场的规模没有上限。一些农民拥有多 PiB 农场。
+绘图是证明者（我们称为_农民_）初始化一定数量空间的过程。要成为农民，必须至少有 101.4 GiB 可用在他们的计算机上（最低规格是[树莓派 4](https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi "Running Chia on a Raspberry Pi 4")）。奇亚农场的规模没有上限。一些农民拥有多 PiB 农场。
 
-从 Chia 1.2.7 开始，使用 400 GiB RAM 的高端机器可以在大约 5 分钟内创建一个 k32 图，或者使用普通商品机器 6 小时，或者使用一个 CPU 内核的慢速机器 12 小时和几 GB 的 RAM。巨大的加速机会仍然存在。此外，每个图只需要创建一次，一个农民可以在同一块土地上耕种多年。
+从奇亚 1.2.7 开始，使用 400 GiB RAM 的高端机器可以在大约 5 分钟内创建一个 k32 图，或者使用普通商品机器 6 小时，或者使用一个 CPU 内核的慢速机器 12 小时和几 GB 的 RAM。巨大的加速机会仍然存在。此外，每个图只需要创建一次，一个农民可以在同一块土地上耕种多年。
 
-绘图大小由 k 参数决定，其中 `space = 780 * k * pow(2, k - 10)`，最小 k 为 32 (101.4 GiB)。 The Proof of Space 构造基于 [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space")，但它嵌套了六个次（从而创建七个表），并且它包含其他启发式方法以使其实用。
+绘图大小由 k 参数决定，其中 `space = 780 * k * pow(2, k - 10)`，最小 k 为 32 (101.4 GiB)。 The Proof of Space 构造基于 [超越赫尔曼（Hellman）](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space")，但它嵌套了六个次（从而创建七个表），并且它包含其他启发式方法以使其实用。
 
 图中的七个表中的每一个都填充了无法压缩的随机数据。每个表有 2^k 个条目。表 i 中的每个条目都包含两个指向表 i-1（上一个表）的指针。最后，每个表 1 条目包含一对介于 0 和 2^k 之间的整数，称为“x 值”。空间证明是具有特定数学关系的 64 个 x 值的集合。实际的磁盘结构和生成它所需的算法相当[复杂](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf)，但这是总体思路。
 
@@ -44,7 +44,7 @@ The proof of space protocol has three components: plotting, proving/farming, and
 </figcaption>
 </figure>
 
-一旦证明者初始化了 101.4 GiB，他们就准备好接受挑战并创建证明。 该方案的一个吸引人的特性是它是非交互式的，除非农民选择 [plot NFT style pooling](/docs/02architecture/p2p-system#pools)：无需注册或在线连接即可使用原始图创建情节 情节格式。 在获得奖励之前，区块链不会受到任何影响，类似于 PoW。 对于池可移植地块，农民只需要一些魔力在绘图之前创建一个地块 NFT，然后一切都具有相同的特征。
+一旦证明者初始化了 101.4 GiB，他们就准备好接受挑战并创建证明。该方案的一个吸引人的特性是它是非交互式的，除非农民选择 [plot NFT style pooling](/docs/02architecture/p2p-system#pools)：无需注册或在线连接即可使用原始图创建情节情节格式。在获得奖励之前，区块链不会受到任何影响，类似于工作量证明。对于池可移植地块，农民只需要一些魔力在绘图之前创建一个地块 NFT，然后一切都具有相同的特征。
 
 有关更多信息，请参阅我们的 [绘图常见问题解答](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#plotting "Chia plotting FAQ")。
 
