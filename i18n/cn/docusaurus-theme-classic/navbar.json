@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "奇亚文档",
+    "description": "The title in the navbar"
+  },
+  "item.label.Chialisp": {
+    "message": "Chialisp",
+    "description": "Navbar item with label Chialisp"
+  },
+  "item.label.Blog": {
+    "message": "博客",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Business Whitepaper": {
+    "message": "商业白皮书",
+    "description": "Navbar item with label Business Whitepaper"
+  },
+  "item.label.Edit Docs on GitHub": {
+    "message": "打开 GitHub 修改文档",
+    "description": "Navbar item with label Edit Docs on GitHub"
+  },
+  "item.label.Approach": {
+    "message": "方法",
+    "description": "Navbar item with label Approach"
+  },
+  "item.label.Technology": {
+    "message": "技术",
+    "description": "Navbar item with label Technology"
+  },
+  "item.label.Developers": {
+    "message": "开发者",
+    "description": "Navbar item with label Developers"
+  },
+  "item.label.News": {
+    "message": "新闻",
+    "description": "Navbar item with label News"
+  },
+  "item.label.About": {
+    "message": "关于",
+    "description": "Navbar item with label About"
+  }
+}
