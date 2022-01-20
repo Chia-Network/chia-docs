@@ -7,7 +7,7 @@ sidebar_position: 15
 ## Safety
 The safety of Chia's consensus is similar to that of other Nakamoto consensus algorithms like Bitcoin. There is no guaranteed finality, but the more confirmations a transaction has, the safer it is.
 
-A transaction needs a certain number of confirmations for a receiver to assume that it cannot be re-orged, under the < 42.6% (* vdf advantage) colluding assumption. Since farmers can theoretically sign multiple blocks at the same height, more _confirmations_ should be used in Chia than in Bitcoin. However, Chia doesn't require anywhere near as much _clock time_ as Bitcoin for a transaction to be considered safe.
+A transaction needs a certain number of confirmations for a receiver to assume that it cannot be re-orged, under the < 46% (* vdf advantage) colluding assumption. Since farmers can theoretically sign multiple blocks at the same height, more _confirmations_ should be used in Chia than in Bitcoin. However, Chia doesn't require anywhere near as much _clock time_ as Bitcoin for a transaction to be considered safe.
 
 In Chia, there are two main reasons to wait for a certain number of confirmations:
 1. To be confident there won't be a chain re-org. As discussed in [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage"), a small re-org is a natural occurrence in blockchains, though rare in Chia.
@@ -37,7 +37,7 @@ Of course, in the event of a long-term network split, the effects are that one c
 + (+) Hopefully more decentralized. (Analysis in mainnet's first year shows this to be the case.)
 + (+) Easy merge farming. Other cryptocurrencies can use the same format, and everyone can share the space (assuming their farming computers have sufficient disk space and memory). (Note that the blockchain with the largest netspace will probably be the only secure one, since the farmers can attack smaller ones. This is especially true of blockchains with less than 50% of the top chain's netspace -- the remaining farmers who have not joined the smaller chain could collude to join, and attack, that chain.)
 + (+) Minimum energy used, since only a few nodes run VDFs, and these are not parallelized. Very low marginal cost to farm.
-+ (+) More consistent transaction block times (targeted average is one per 52 seconds, as discussed in [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage")).
++ (+) More consistent transaction block times (targeted average is one per 46.875 seconds, as discussed in [Section 3.10](/docs/03consensus/foliage "Section 3.10: Foliage")).
 + (+) Less susceptible to selfish mining attacks.
 + (+) Smaller orphan rates and forks, since blocks can be included in parallel.
 + (+) Continues to advance at nearly the same rate when space decreases, since only around 1/3 of blocks include transactions. PoW Nakamoto Consensus slows down linearly when hashrate drops.

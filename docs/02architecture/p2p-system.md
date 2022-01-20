@@ -72,7 +72,7 @@ Timelords do not directly earn rewards. Furthermore, only the fastest timelord o
 
 If someone controls the fastest timelord in the world, it doesn't give them much of an advantage at winning rewards. However, they could potentially orphan or censor other farmers, depending on how much faster their timelord is.
 
-Furthermore, an attacker with a significantly faster timelord than anyone else could potentially run a long-range attack against the network with less than 42.6% of the total netspace. For security purposes, it is very important to maintain open designs of VDF hardware.
+Furthermore, an attacker with a significantly faster timelord than anyone else could potentially run a 51% attack against the network with less than 51% of the space. For security purposes, it is very important to maintain open designs of VDF hardware.
 
   >You can learn about potential attacks against Chia's network in [Section 3.14](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures").
 
