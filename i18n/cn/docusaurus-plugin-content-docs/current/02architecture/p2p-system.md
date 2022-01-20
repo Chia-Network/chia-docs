@@ -14,7 +14,7 @@ sidebar_position: 1
 
 ## 全节点
 
-Chia 点对点系统的核心是由全节点组成。全节点有几个职责：
+奇亚点对点系统的核心是由全节点组成。全节点有几个职责：
 
 1. 维护区块链的副本。
 2. 验证区块链。
@@ -98,7 +98,7 @@ Farmers also have a private key, which is used for both signing blocks when a wi
 
 >注意：磁带驱动器对于耕作来说太慢了。该协议旨在支持硬盘，但速度并不慢。可以使用磁带进行长期的地块存储，仅将地块转移到磁盘以用于偶尔的耕作，但这可能是一个非常罕见的用例。
 
-最后，收割机还为每个地块维护一个私钥。块用这些密钥签名，这是奇亚的一个重要概念。这意味着即使农民是池的成员，农民仍然控制块的内容。这与其他区块链的池协议大不相同，池操作员是签署块的人。
+最后，收割机还为每个地块维护一个私钥。块用这些密钥签名，这是奇亚的一个重要概念。这意味着即使农民是矿池的成员，农民仍然控制块的内容。这与其他区块链的池协议大不相同，池操作员是签署块的人。
 
 > [第 3.6 节](/docs/03consensus/harvester_algorith "Section 3.6: Harvester Algorithm")中更详细地讨论了收割机算法。
 
@@ -139,7 +139,7 @@ Finally, harvesters also maintain a private key for each plot. The blocks are si
 
 时间领主不直接获得奖励。此外，只有网络上最快的时间领主才会在任何给定时间广播证明。因此，只需要一个时间领主来保持网络运行，大多数农民不会觉得有必要运行一个。然而，拥有多 PiB 农场的农民可能想要运行一个时间领主，以实现冗余和防止临时本地延迟问题。
 
->注意：Chia网络目前正在[开发 ASIC 时间领主](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security)。这将为网络增加冗余，同时降低攻击者创建自己的时间领主的可能性，该时间领主比其他任何人都快得多。
+>注意：奇亚网络目前正在[开发 ASIC 时间领主](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security)。这将为网络增加冗余，同时降低攻击者创建自己的时间领主的可能性，该时间领主比其他任何人都快得多。
 
 如果有人控制了世界上最快的时间领主，那么他们在赢得奖励方面并没有太大优势。然而，他们可能会成为孤儿或审查其他农民，这取决于他们的时间领主有多快。
 
@@ -186,7 +186,6 @@ Furthermore, an attacker with a significantly faster timelord than anyone else c
 
 >更多信息，请参阅我们的[矿池常见问题](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ "Chia Pooling FAQ")，以及本站的[池协议](/docs/11pooling/pooling) 页面。
 
-
 <details>
 <summary>原文参考</summary>
 
@@ -210,7 +209,7 @@ When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to 
 
 钱包可以通过钱包协议与全节点通信。 这类似于比特币的 SPV 协议：它允许验证交易和区块权重，而没有全节点的带宽和 CPU 要求。
 
-钱包节点类似于完整节点，因为它们是与网络中的其他对等点进行通信的服务器。 一个常见的用例是在本地运行钱包和全节点，其中钱包只连接到全节点。 钱包从节点下载 [权重证明](/docs/03consensus/light_clients)以快速验证哪个区块链最长。 然后他们要求全节点扫描区块链以获得他们想要的交易。 钱包还负责管理私钥，以及生成、存储和发送交易。 钱包公开了一个 RPC HTTPS websocket JSON API，用户界面可以使用它来执行命令。
+钱包节点类似于完整节点，因为它们是与网络中的其他对等点进行通信的服务器。一个常见的用例是在本地运行钱包和全节点，其中钱包只连接到全节点。钱包从节点下载 [权重证明](/docs/03consensus/light_clients)以快速验证哪个区块链最长。然后他们要求全节点扫描区块链以获得他们想要的交易。 钱包还负责管理私钥，以及生成、存储和发送交易。钱包公开了一个 RPC HTTPS websocket JSON API，用户界面可以使用它来执行命令。
 
 <details>
 <summary>原文参考</summary>
