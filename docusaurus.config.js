@@ -14,6 +14,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
   organizationName: 'Chia-Network', // Usually your GitHub org/user name.
   projectName: 'chia-docs', // Usually your repo name.
   plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+  },
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -48,7 +52,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
             position: 'left',
           },
           {to: 'https://www.chia.net/', label: 'Chia.net', position: 'left'},
-          {to: 'https://github.com/Chia-Network/', label: 'Chia Github', position: 'left'}
+          {to: 'https://github.com/Chia-Network/', label: 'Chia Github', position: 'left'},
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
         ],
       },
       footer: {

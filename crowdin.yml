@@ -1,0 +1,21 @@
+project_id: '493733'
+# Replace with your own Crowdin token
+# api_token: '${CROWDIN_PERSONAL_TOKEN}'
+api_token: '${CROWDIN_PERSONAL_TOKEN}'
+preserve_hierarchy: true
+files: [
+    # JSON translation files
+    {
+      source: '/i18n/en/**/*',
+      translation: '/i18n/%two_letters_code%/**/%original_file_name%',
+    },
+    # Docs Markdown files
+    {
+      source: '/docs/**/*',
+      translation: '/i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%',
+    },
+    {
+      source: '/src/pages/**/*.md',
+      translation: '/i18n/%two_letters_code%/docusaurus-plugin-content-pages/%original_file_name%',
+    },
+  ]
