@@ -38,7 +38,7 @@ The block with deficit 15 is a challenge block.
 
 The normal case is where the deficit starts at 16, and goes down to zero within the sub-slot, and resets back to 16 as we finish the slot and start a new one. In the case that we don't manage to reduce it to 0 within the end of the sub-slot, the challenge chain and infused challenge chain (if present) continue, and the deficit does not reset to 16. Blocks (including overflow blocks now), keep subtracting from the deficit until we reach 0. When we finish a sub-slot with a zero deficit, the infused challenge chain is included into the challenge chain, and the deficit is reset to 16.
 
-This requirement was added to discourage long-range attacks, and is described in detail in [Section 3.14](/docs/03consensus/attacks_and_countermeasures#51-46-attack "Section 3.14: Attacks and Countermeasures"). The vast majority of sub-slots will have more than 16 blocks (recall that the average number is targeted to be 32), therefore the minimum-block requirement will not have much of an affect on normal operation. 
+This requirement was added to discourage long-range attacks, and is described in detail in [Section 3.14](/docs/03consensus/attacks_and_countermeasures#51-attack "Section 3.14: Attacks and Countermeasures"). The vast majority of sub-slots will have more than 16 blocks (recall that the average number is targeted to be 32), therefore the minimum-block requirement will not have much of an affect on normal operation. 
 
 <figure>
 <img src="/img/deficit.png" alt="drawing"/>
@@ -56,4 +56,4 @@ Both VDF speed and total amount of space are important for weight, and changes i
 
 A farmer with exclusive access to a slightly faster VDF, however, cannot easily get more rewards than a farmer with the normal speed VDF. If an attacker tries to orphan one of the blocks on the chain, having a faster VDF will not help, since the attacker’s chain will have fewer blocks (and thus a lower weight). Farmers must sign the block which they are building on top of, and they will only build on top of the highest weight chain. 
 
-The VDF speed comes into play when the attacker wishes to launch a 51% attack, however. In this case, an attacking farmer can use the VDF to create a completely alternate chain with no honest blocks, and overtake the honest chain. This requires slightly less than 51% of the space, since the faster VDF chain can obtain weight at a faster rate than the honest chain.
+The VDF speed comes into play when the attacker wishes to launch a 51% attack, however. In this case, an attacking farmer can use the VDF to create a completely alternate chain with no honest blocks, and overtake the honest chain. This requires 42.7% of the total netspace, since the faster VDF chain can obtain weight at a faster rate than the honest chain. This attack is described in detail in [Section 3.14](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures").
