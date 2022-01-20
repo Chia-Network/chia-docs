@@ -46,7 +46,7 @@ The proof of space protocol has three components: plotting, proving/farming, and
 
 一旦证明者初始化了 101.4 GiB，他们就准备好接受挑战并创建证明。该方案的一个吸引人的特性是它是非交互式的，除非农民选择 [plot NFT style pooling](/docs/02architecture/p2p-system#pools)：无需注册或在线连接即可使用原始图创建情节情节格式。在获得奖励之前，区块链不会受到任何影响，类似于工作量证明。对于池可移植地块，农民只需要一些魔力在绘图之前创建一个地块 NFT，然后一切都具有相同的特征。
 
-有关更多信息，请参阅我们的 [绘图常见问题解答](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#plotting "Chia plotting FAQ")。
+有关更多信息，请参阅我们的[绘图常见问题解答](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#plotting "Chia plotting FAQ")。
 
 <details>
 <summary>原文参考</summary>
@@ -85,17 +85,17 @@ See our [plotting FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#
 
 最后，农夫获取整个 x 值树。这需要对表 7 进行一次磁盘读取，对表 6 进行两次读取，对表 5 进行四次读取，等等。因此，整个过程需要 64 次磁盘读取，在具有 10 毫秒寻道时间的慢速 HDD 上大约需要 640 毫秒。读取的数据量很小，并且与绘图大小无关。
 
-由于此过程生成的大多数证明都不够好(/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points") 所述）提交给网络进行验证，我们可以优化这个过程只检查树的一个分支。此分支将返回 64 个 x 值中的两个。 x 值的位置将始终是连续的，并取决于标志点（例如 x0 和 x1...或 x34 和 x35）。我们散列这些 x 值以生成随机的 256 位“质量字符串”。这与难度和绘图大小相结合以生成 required_iterations。如果 required_iterations 小于一定数量，则证明可以包含在区块链中。此时，我们查找整个空间证明。
+由于此过程生成的大多数证明都不够好（如[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")所述）提交给网络进行验证，我们可以优化这个过程只检查树的一个分支。此分支将返回 64 个 x 值中的两个。 x 值的位置将始终是连续的，并取决于标志点（例如 x0 和 x1...或 x34 和 x35）。我们散列这些 x 值以生成随机的 256 位“质量字符串”。这与难度和绘图大小相结合以生成所需的迭代。如果所需的迭代小于一定数量，则证明可以包含在区块链中。此时，我们查找整个空间证明。
 
 通过只查找一个分支来确定质量字符串，我们可以排除大多数证明。这种优化只需要大约 7 次磁盘搜索和读取，或者在慢速硬盘驱动器上大约需要 70 毫秒。
 
-Chia 还使用进一步的优化来取消一定比例的地块参加每个挑战的资格。这称为 _plot filter_。当前的要求是地块 ID、挑战和标牌点的哈希值以 9 个零开头。这排除了每 512 个地块中的 511 个。过滤器对每个人的伤害都是一样的（除了[重新绘制攻击者](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack "Section 3.14: Short Range Replotting Attack")），因此是公平的。 [第 3.5 节](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")中更详细地讨论了绘图过滤器。
+奇亚还使用进一步的优化来取消一定比例的地块参加每个挑战的资格。这称为 _绘图过滤器_。当前的要求是地块 ID、挑战和标牌点的哈希值以 9 个零开头。这排除了每 512 个地块中的 511 个。过滤器对每个人的伤害都是一样的（除了[重新绘制攻击者](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack "Section 3.14: Short Range Replotting Attack")），因此是公平的。[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")中更详细地讨论了绘图过滤器。
 
-地块过滤器有效地将耕作所需的资源量减少了 512 倍——每个地块每几分钟只需要几次磁盘读取。拥有 1 PiB 存储空间（10,000 个地块）的农民将平均只有 20 个地块通过每个挑战的过滤器。即使这些图都存储在慢速硬盘上，并连接到单个 Raspberry Pi，响应每个挑战所需的平均时间也将不到两秒。这完全在限制范围内，以避免错过任何挑战。
+地块过滤器有效地将耕作所需的资源量减少了 512 倍——每个地块每几分钟只需要几次磁盘读取。拥有 1 PiB 存储空间（10,000 个地块）的农民将平均只有 20 个地块通过每个挑战的过滤器。即使这些图都存储在慢速硬盘上，并连接到单个树莓派，响应每个挑战所需的平均时间也将不到两秒。这完全在限制范围内，以避免错过任何挑战。
 
-每个绘图文件都有自己唯一的私钥，称为_绘图密钥_。地块 ID 是通过对地块公钥、农民公钥和矿池公钥（对于 OG 地块）或矿池合同拼图哈希（对于汇集地块）进行散列生成的。签署空间证明的要求取决于所使用的地块类型。请参阅 [第 9.3 节](/docs/09keys/plot_public_keys "Section 9.3: Public Plot Keys")，了解有关用于情节构建的密钥的详细信息。
+每个绘图文件都有自己唯一的私钥，称为_绘图密钥_。地块 ID 是通过对地块公钥、农民公钥和矿池公钥（对于 OG 地块）或矿池合同谜语哈希（对于汇集地块）进行哈希生成的。签署空间证明的要求取决于所使用的地块类型。请参阅[第 9.3 节](/docs/09keys/plot_public_keys "Section 9.3: Public Plot Keys")，了解有关用于情节构建的密钥的详细信息。
 
-实际上，地块密钥是存储在地块中的本地密钥和农民软件存储的密钥之间的 2/2 BLS 聚合公钥。为了安全和效率，农民可以使用此密钥和签名方案在一台服务器上运行。然后，该服务器可以连接到存储实际地块的一台或多台收割机。 Farming 需要 Farmer 密钥和本地密钥，但不需要池密钥，因为池的签名可以缓存并在许多块中重复使用。
+实际上，地块密钥是存储在地块中的本地密钥和农民软件存储的密钥之间的 2/2 BLS 聚合公钥。为了安全和效率，农民可以使用此密钥和签名方案在一台服务器上运行。然后，该服务器可以连接到存储实际地块的一台或多台收割机。耕种需要农民密钥和本地密钥，但不需要矿池密钥，因为池的签名可以缓存并在许多块中重复使用。
 
 <details>
 <summary>原文参考</summary>
@@ -124,7 +124,7 @@ In practice, the plot key is a 2/2 BLS aggregate public key between a local key 
 
 ## 验证
 
-在农民成功创建空间证明后，可以通过执行一些散列并在证明中的 x 值之间进行比较来验证该证明。 回想一下，证明是一个包含 64 个 x 值的列表，其中每个 x 值是 k 位长。 对于 k32，这是 256 字节（2048 位），因此非常紧凑。 验证速度非常快，但还不够快，无法在 Ethereum 上的 Solidity 中进行验证（可以实现链之间的无信任传输），因为此验证需要 blake3 和 chacha8 操作。
+在农民成功创建空间证明后，可以通过执行一些散列并在证明中的 x 值之间进行比较来验证该证明。回想一下，证明是一个包含 64 个 x 值的列表，其中每个 x 值是 k 位长。 对于 k32，这是 256 字节（2048 位），因此非常紧凑。验证速度非常快，但还不够快，无法在以太坊上的 Solidity 中进行验证（可以实现链之间的无信任传输），因为此验证需要 blake3 和 chacha8 操作。
 
 <details>
 <summary>原文参考</summary>
