@@ -31,8 +31,8 @@ class NewSignagePointHarvester:
    
    如果结果位以 9 个零开头，则图块通过过滤器。这不需要磁盘访问，因为 plot_ids 可以存储在内存中。
 2. 对于通过过滤器的每个图，启动一个新线程，执行质量查找。回想一下，这需要大约七次随机读取绘图，每个表一个。这是大部分磁盘活动所在的位置。平均而言，每 512 个地块中有 1 个将执行此步骤。
-3. 计算 required_iterations，如[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")中所述。如果农民当前正在为一个矿池耕作，那么该池将使用自定义值来设置“难度”和“子槽迭代次数”。这些值使得更有可能找到证明。使用这些值的原因是使池更容易确定农民当前拥有的存储量。
-如果 required_iterations 小于 interval_iterations，则这个空间证明是好的（它赢得了池部分或块）。大多数证明都不会通过这一步。
+3. 计算所需迭代次数，如[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")中所述。如果农民当前正在为一个矿池耕作，那么该池将使用自定义值来设置“难度”和“子时隙迭代次数”。这些值使得更有可能找到证明。使用这些值的原因是使池更容易确定农民当前拥有的存储量。
+如果所需迭代次数小于间隔迭代次数，则这个空间证明是好的（它赢得了矿池部分或块）。大多数证明都不会通过这一步。
 4. 对于获胜的证明，整个证明被提取到磁盘上（图中大约有 64 次随机读取）。
 5. 证明发回给农民。
 
