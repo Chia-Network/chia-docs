@@ -10,7 +10,7 @@ sidebar_position: 1
 
 奇亚（Chia） 是一个加密货币和区块链智能交易平台。奇亚的设计初衷是让加密货币比现金更容易使用——也更难丢失。奇亚的区块链保持与比特币相同安全级别的同时，只使用一小部分能源。
 
-2017年8月1日，[布拉姆·科恩](https://www.chia.net/profiles/bram-cohen "Bram Cohen's Chia profile")（Bram Cohen） 创立奇亚公司并在特拉华州注册成立。布拉姆与许多工程师、研究人员、开源贡献者一起领导了奇亚的开发。在此过程中，奇亚在应用密码学方面创造了三项新发明，并在第四项中提高了兴趣和采用率：
+2017年8月1日，[布拉姆·科恩](https://www.chia.net/profiles/bram-cohen "Bram Cohen's Chia profile")（Bram Cohen）创立奇亚公司并在特拉华州注册成立。布拉姆与许多工程师、研究人员、开源贡献者一起领导了奇亚的开发。在此过程中，奇亚在应用密码学方面创造了三项新发明，并在第四项中提高了兴趣和采用率：
   * [BLS 签名](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub")的首次生产使用。
   * [可验证延迟函数（VDF）](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")的首次生产使用。
   * [空间证明](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub")和[时间证明](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")（PoST），这是自工作量证明以来的第一个（也是唯一一个）中本聪（Nakamoto）共识。
@@ -53,7 +53,7 @@ For more information on the company's strategies, see [Chia's business white pap
 
 ### 强大的安全性
 
-[奇亚币](https://chialisp.com/docs/coins_spends_and_wallets "Tutorial on Chia's coins") 以一种简单却高度安全的方式创建：
+[奇亚币](https://chialisp.com/docs/coins_spends_and_wallets "Tutorial on Chia's coins")以一种简单却高度安全的方式创建：
 
 `coinID = sha256(parent_ID + puzzlehash + amount)`
 
@@ -61,11 +61,11 @@ For more information on the company's strategies, see [Chia's business white pap
 
 同样由于哈希（的不可逆性），黑客不能在不更改 ID 的情况下更改硬币的谜语 ID、谜语哈希或金额。黑客可以尝试更改硬币的唯一方法是更改它的谜底，确保任何此类更改都将导致花费失败是微不足道的。
 
-> 更多信息，请参见[chialisp.com](https://chialisp.com/ "Chialisp.com")。
+> 更多信息，请参见 [chialisp.com](https://chialisp.com/ "Chialisp.com")。
 
 ### 高效节能
 
-与工作量证明 (PoW) 相比，PoST（时空证明）共识具有 [更低的能耗](https://chiapower.org "Chia's energy consumption statistics")，并且奇亚的部分愿景是改善区块链行业的碳足迹。
+与工作量证明 (PoW) 相比，PoST（时空证明）共识具有[更低的能耗](https://chiapower.org "Chia's energy consumption statistics")，并且奇亚的部分愿景是改善区块链行业的碳足迹。
 
 > 奇亚的共识算法在[第 3 节](/docs/03consensus/consensus_intro "Section 3.1: Chia Consensus") 中有详细讨论。
 
