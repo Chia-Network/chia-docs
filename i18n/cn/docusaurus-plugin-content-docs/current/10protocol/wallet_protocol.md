@@ -6,7 +6,7 @@ sidebar_position: 4
 
 > Wallet Protocol
 
-该协议是Chia系统中全节点和钱包之间通信的双向协议。这有时也称为轻客户端协议。
+该协议是 Chia 系统中全节点和钱包之间通信的双向协议。这有时也称为轻客户端协议。
     
 钱包协议包含两个子协议，钱包可以通过它们从节点同步交易。
 
@@ -18,14 +18,14 @@ sidebar_position: 4
 
 第二个是快速同步协议，钱包直接要求节点查找某些硬币 ID 或谜语哈希。它的隐私性较少，但速度要快得多。以下是任何钱包开发人员都应遵循的钱包同步流程。连接到几个随机节点以提高安全性很重要。对于没有很多事务的用户来说，这个同步协议应该非常快。
 
-1. 执行DNS查找以获取随机节点IPS：`dig dns-introducer.chia.net`。
+1. 执行DNS查找以获取随机节点 IPS：`dig dns-introducer.chia.net`。
 2.连接几个节点，确保服务器不遗漏交易。节点将发送一条带有他们声称的峰值的 `new_peak_wallet` 消息。
 3. 从具有最重峰值的节点之一（或多个）下载权重证明。
 4. 验证重量证明以确保声称的峰值是正确的
 5. 订阅我们的密钥（观察者和非观察者）的前 100 个拼图哈希。
-6. 验证全节点返回的拼图哈希订阅状态。这需要确保包含这些硬币的区块是 SubEpochSummaries 链的一部分。这里只需要检查块哈希。此外，应该在这个块之后验证一些块头（大约 30-50），以确保它被正确地掩埋。
-7. 从第 5 步开始，我们获得所有我们感兴趣的硬币 ID，并且我们恢复任何 CAT 钱包以获取在提示中包含我们的拼图哈希的硬币。
-8.订阅有趣的硬币ID。
+6. 验证全节点返回的谜语哈希订阅状态。这需要确保包含这些硬币的区块是 SubEpochSummaries 链的一部分。这里只需要检查块哈希。此外，应该在这个块之后验证一些块头（大约 30-50），以确保它被正确地掩埋。
+7. 从第 5 步开始，我们获得所有我们感兴趣的硬币 ID，并且我们恢复任何 CAT 钱包以获取在提示中包含我们的谜语哈希的硬币。
+8.订阅有趣的硬币 ID。
 9. 验证从全节点返回的硬币订阅，类似于步骤 5 中的操作。
 
 <details>
@@ -66,7 +66,7 @@ should be very fast for users who don't have many transactions.
 
 ## request_puzzle_solution
 
-钱包向全节点请求某个已用币 ID 的谜题和解决方案。
+钱包向全节点请求某个已用币 ID 的谜语和谜底。
 
 ```python
 class RequestPuzzleSolution(Streamable):
@@ -299,7 +299,7 @@ class RequestRemovals(Streamable):
 
 ## respond_removals
 
-对 `request_removals` 请求的响应。 如果 `coin_names` 为 None，则返回所有删除，并且 `proofs` 设置为 None。 否则，只返回请求的硬币，（id 到硬币元组）并为每个硬币 id 返回一个证明（id 到证明元组）。 证明是默克尔集包含证明。 有关如何验证这些证明的更多信息，请参阅 chia-blockchain 中的 `merkle_set.py`。
+对 `request_removals` 请求的响应。 如果 `coin_names` 为 None，则返回所有删除，并且 `proofs` 设置为 None。否则，只返回请求的硬币，（id 到硬币元组）并为每个硬币 id 返回一个证明（id 到证明元组）。证明是默克尔集包含证明。有关如何验证这些证明的更多信息，请参阅 chia-blockchain 中的 `merkle_set.py`。
 
 ```python
 class RespondRemovals(Streamable):
@@ -363,7 +363,7 @@ class RejectRemovalsRequest(Streamable):
 
 ## request_additions
 
-从钱包到完整节点的请求，以增加某个区块的添加（添加的硬币）。 如果 `puzzle_hashes` 为 None，我们正在请求块中的所有添加。 否则，我们只重新请求具有此拼图哈希的添加。
+从钱包到完整节点的请求，以增加某个区块的添加（添加的硬币）。如果 `puzzle_hashes` 为 None，我们正在请求块中的所有添加。否则，我们只重新请求具有此谜语哈希的添加。
 
 ```python
 class RequestAdditions(Streamable):
@@ -374,7 +374,7 @@ class RequestAdditions(Streamable):
 
 ## respond_additions
 
-对 `request_additions` 请求的响应。 如果 `puzzle_hashes` 为 None，则返回所有加法，并且 `proofs` 设置为 None。 否则，只返回请求的硬币，（puzzle_hash 到硬币元组列表，因为多个硬币可以具有相同的谜语哈希）并为每个硬币返回一个证明（puzzle_hash，proof，proof2 tuples）。 证明是默克尔集包含证明。 有关如何验证这些证明的更多信息，请参阅 chia-blockchain 中的 `merkle_set.py`。 `proof` 是默克尔集中谜语哈希的证明，`proof2` 是 merkle 集中每个谜语哈希的 `sha256(concatenation of coin ids)` 的默克尔证明。 两者都作为每个块的默克尔集中的元素。
+对 `request_additions` 请求的响应。如果 `puzzle_hashes` 为 None，则返回所有加法，并且 `proofs` 设置为 None。否则，只返回请求的硬币，（puzzle_hash 到硬币元组列表，因为多个硬币可以具有相同的谜语哈希）并为每个硬币返回一个证明（puzzle_hash，proof，proof2 tuples）。证明是默克尔集包含证明。有关如何验证这些证明的更多信息，请参阅 chia-blockchain 中的 `merkle_set.py`。 `proof` 是默克尔集中谜语哈希的证明，`proof2` 是 merkle 集中每个谜语哈希的 `sha256(concatenation of coin ids)` 的默克尔证明。 两者都作为每个块的默克尔集中的元素。
 
 ```python
 class RespondAdditions(Streamable):
@@ -386,7 +386,7 @@ class RespondAdditions(Streamable):
 
 ## reject_additions_request
 
-拒绝 `request_additions` 请求
+拒绝 `request_additions` 请求。
 
 ```python
 class RejectAdditionsRequest(Streamable):
@@ -440,16 +440,9 @@ class RejectAdditionsRequest(Streamable):
 
 </details>
 
-
-
-<details>
-<summary>原文参考</summary>
-
-
-</details>
-
 ## request_header_blocks
-A request from the wallet to the full node for a list of consecutive header blocks, inclusive.
+
+从钱包到完整节点的请求，以获取连续头块列表（包括在内）。
 
 ```python
 class RequestHeaderBlocks(Streamable):
@@ -458,7 +451,8 @@ class RequestHeaderBlocks(Streamable):
 ```
 
 ## reject_header_blocks
-A rejection for a `request_header_blocks` request.
+
+拒绝 `request_header_blocks` 请求。
 
 ```python
 class RejectHeaderBlocks(Streamable):
@@ -467,7 +461,8 @@ class RejectHeaderBlocks(Streamable):
 ```
 
 ## respond_header_blocks
-A response to a `request_header_blocks` request.
+
+对 `request_header_blocks` 请求的响应。
 
 ```python
 class RespondHeaderBlocks(Streamable):
@@ -479,9 +474,71 @@ class RespondHeaderBlocks(Streamable):
 <details>
 <summary>原文参考</summary>
 
+- ## request_header_blocks
+
+A request from the wallet to the full node for a list of consecutive header blocks, inclusive.
+
+```python
+class RequestHeaderBlocks(Streamable):
+    start_height: uint32
+    end_height: uint32
+```
+
+- ## reject_header_blocks
+
+A rejection for a `request_header_blocks` request.
+
+```python
+class RejectHeaderBlocks(Streamable):
+    start_height: uint32
+    end_height: uint32
+```
+
+- ## respond_header_blocks
+
+A response to a `request_header_blocks` request.
+
+```python
+class RespondHeaderBlocks(Streamable):
+    start_height: uint32
+    end_height: uint32
+    header_blocks: List[HeaderBlock]
+```
 
 </details>
+
 ## register_for_ph_updates
+
+从钱包到完整节点的请求以注册对谜语哈希的更新。这是快速同步协议的一部分。每当创建或使用具有这些拼图哈希（或提示）之一的新硬币时，全节点将向钱包发送通知（`coin_state_update`）。此外，一次性通知会与所有更新一起发回 (`respond_to_ph_updates`)。
+
+```python
+class RegisterForPhUpdates(Streamable):
+    puzzle_hashes: List[bytes32]
+    min_height: uint32
+```
+
+## respond_to_ph_updates
+
+对 `register_for_ph_updates` 的一次性响应，包含所有确认或花费的高度，所有 CoinStates。CoinState 是一个显示硬币变化的对象。 如果 `spent_height` 不是 None，则表示硬币已被使用。如果 `created_height` 不是 None，则表示硬币已创建但未使用。 如果两者都为无，则意味着硬币已恢复（从链中重组）并且不再存在。
+
+```python
+class RespondToPhUpdates(Streamable):
+    puzzle_hashes: List[bytes32]
+    min_height: uint32
+    coin_states: List[CoinState]
+    
+class CoinState(Streamable):
+    coin: Coin
+    spent_height: Optional[uint32]
+    created_height: Optional[uint32]
+`
+```
+
+<details>
+<summary>原文参考</summary>
+
+- ## register_for_ph_updates
+
 A request from the wallet to the full node to register for updates to a puzzle hash. This is part of the fast sync
 protocol. Whenever a new coin with one of these puzzle hashes (or hint) is created or spent, the full node will send a notification
 to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_ph_updates`).
@@ -492,10 +549,8 @@ class RegisterForPhUpdates(Streamable):
     min_height: uint32
 ```
 
+- ## respond_to_ph_updates
 
-
-
-## respond_to_ph_updates
 A one-time response to `register_for_ph_updates` with all the confirmation or spent heights, and all the CoinStates.
 CoinState is an object that shows a change in a coin. if `spent_height` is not None, that means the coin was spent.
 If `created_height` is not None, that means the coin was created but not spent. If both are None, it means the 
@@ -514,16 +569,11 @@ class CoinState(Streamable):
 `
 ```
 
-
-<details>
-<summary>原文参考</summary>
-
-
 </details>
+
 ## register_for_coin_updates
-A request from the wallet to the full node to register for updates to a coin ID. This is part of the fast sync
-protocol. Whenever a new coin with one of these coin IDs is created or spent, the full node will send a notification
-to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_coin_updates`).
+
+从钱包到完整节点的请求以注册对硬币 ID 的更新。这是快速同步协议的一部分。每当创建或使用具有这些代币 ID 之一的新代币时，全节点都会向钱包发送通知（`coin_state_update`）。此外，一次性通知会与所有更新一起发回（`respond_to_coin_updates`）。
 
 ```python
 class RegisterForCoinUpdates(Streamable):
@@ -532,7 +582,8 @@ class RegisterForCoinUpdates(Streamable):
 ```
 
 ## respond_to_coin_updates
-A one-time response to `register_for_coin_updates` with all the confirmation or spent heights, and all the CoinStates.
+
+对 `register_for_coin_updates` 的一次性响应，包含所有确认或花费的高度，以及所有 CoinStates。
 
 ```python
 class RespondToCoinUpdates(Streamable):
@@ -544,11 +595,48 @@ class RespondToCoinUpdates(Streamable):
 <details>
 <summary>原文参考</summary>
 
+- ## register_for_coin_updates
+
+A request from the wallet to the full node to register for updates to a coin ID. This is part of the fast sync
+protocol. Whenever a new coin with one of these coin IDs is created or spent, the full node will send a notification
+to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_coin_updates`).
+
+```python
+class RegisterForCoinUpdates(Streamable):
+    coin_ids: List[bytes32]
+    min_height: uint32
+```
+
+- ## respond_to_coin_updates
+
+A one-time response to `register_for_coin_updates` with all the confirmation or spent heights, and all the CoinStates.
+
+```python
+class RespondToCoinUpdates(Streamable):
+    coin_ids: List[bytes32]
+    min_height: uint32
+    coin_states: List[CoinState]
+```
 
 </details>
 
-
 ## coin_state_update
+
+这是一个更新，但不是响应请求。每当确认包含钱包感兴趣的删除或添加的新块时，完整节点将发送更新。
+
+```python
+class CoinStateUpdate(Streamable):
+    height: uint32
+    fork_height: uint32
+    peak_hash: bytes32
+    items: List[CoinState]
+```
+
+<details>
+<summary>原文参考</summary>
+
+- ## coin_state_update
+
 This is an update but not in response to a request. The full node will send the update whenever a new block
 is confirmed which contains removals or additions that are interesting to the wallet.
 
@@ -560,14 +648,11 @@ class CoinStateUpdate(Streamable):
     items: List[CoinState]
 ```
 
-
-<details>
-<summary>原文参考</summary>
-
-
 </details>
+
 ## request_children
-A request from the wallet to the node for the children of a certain (spent) coin ID. 
+
+从钱包到节点对某个（已用）硬币 ID 的子节点的请求。
 
 ```python
 class RequestChildren(Streamable):
@@ -575,6 +660,28 @@ class RequestChildren(Streamable):
 ```
 
 ## respond_children
+
+对 `request_children` 请求的响应。
+
+```python
+class RespondChildren(Streamable):
+    coin_states: List[CoinState]
+```
+
+<details>
+<summary>原文参考</summary>
+
+- ## request_children
+
+A request from the wallet to the node for the children of a certain (spent) coin ID. 
+
+```python
+class RequestChildren(Streamable):
+    coin_name: bytes32
+```
+
+- ## respond_children
+
 A response to a `request_children` request.
 
 ```python
@@ -582,14 +689,33 @@ class RespondChildren(Streamable):
     coin_states: List[CoinState]
 ```
 
+</details>
 
+## request_ses_info
+
+从钱包到完整节点的 SubEpochSummary 高度请求。这用于快速同步协议，以了解子时期的开始和结束位置。
+
+```python
+class RequestSESInfo(Streamable):
+    start_height: uint32
+    end_height: uint32
+```
+
+## respond_ses_info
+
+对 `reques_ses_info` 请求的响应。
+
+```python
+class RespondSESInfo(Streamable):
+    reward_chain_hash: List[bytes32]
+    heights: List[List[uint32]]
+```
 
 <details>
 <summary>原文参考</summary>
 
+- ## request_ses_info
 
-</details>
-## request_ses_info
 A request from the wallet to the full node for SubEpochSummary heights. This is used for the fast sync protocol, 
 to know where sub epochs start and end.
 
@@ -600,10 +726,13 @@ class RequestSESInfo(Streamable):
 ```
 
 
-## respond_ses_info
+- ## respond_ses_info
+
 A response to a `reques_ses_info` request.
 ```python
 class RespondSESInfo(Streamable):
     reward_chain_hash: List[bytes32]
     heights: List[List[uint32]]
 ```
+
+</details>
