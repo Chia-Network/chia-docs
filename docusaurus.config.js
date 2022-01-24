@@ -35,6 +35,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        gtag: {
+          trackingID: 'G-6HSSLLPE6Q',
+          anonymizeIP: true,
+        },
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
