@@ -6,12 +6,12 @@ sidebar_position: 1
 
 > Networking
 
-Chia 协议是异步和点对点的。 它运行在端口 8444（或农民和时间领主的其他端口）上的 WebSockets 之上。 所有节点既充当客户端又充当服务器，并且可以与其他对等点保持长期连接。
+奇亚协议是异步和点对点的。它运行在端口 8444（或农民和时间领主的其他端口）上的网络套接字之上。所有节点既充当客户端又充当服务器，并且可以与其他对等点保持长期连接。
 
-Chia 协议中的每条消息都由字节组成，使用 Streamable 格式，并作为 WebSocket 消息发送。 每条消息由三部分组成。
-1. 一个跨越 1 个字节的字段，代表正在传输的消息类型以及如何对数据进行解码。
+奇亚协议中的每条消息都由字节组成，使用可流式传输格式，并作为网络套接字消息发送。每条消息由三部分组成。
+1. 第一，跨越 1 个字节的字段，代表正在传输的消息类型以及如何对数据进行解码。
 2. 其次，一个可选的 2 字节 ID，每个连接使用它来跟踪请求和响应。
-3. 第三，数据，它是协议消息之一的 Streamable 编码表示。
+3. 第三，数据，它是协议消息之一的可流式传输编码表示。
 
 ```python
 class Message(Streamable):
@@ -24,7 +24,7 @@ class Message(Streamable):
 
 ```
 
-Chia 协议消息的最大 `(4 + 2^32 - 1) = 4294967299` 字节长度约为 4GB。
+奇亚协议消息的最大 `(4 + 2^32 - 1) = 4294967299` 字节长度约为 4GB。
 
 <details>
 <summary>原文参考</summary>
@@ -54,7 +54,7 @@ Chia protocol messages have a max length of `(4 + 2^32 - 1) = 4294967299` bytes,
 
 ## 握手
 
-Chia 协议中的所有对等点（无论是农民、完整节点、时间领主等）都充当服务器和客户端（对等点）。 一旦在两个对等方之间发起连接，双方都会发送 Handshake 消息和 HandshakeAck 消息以完成握手。 对等方的 node_id 是其 [x.509](https://en.wikipedia.org/wiki/X.509) [DER](https://wiki.openssl.org/index.php/DER) 证书 的 SHA-256 哈希值 。
+奇亚协议中的所有对等节点（无论是农民、完整节点、时间领主等）都充当服务器和客户端（对等节点）。一旦在两个对等方之间发起连接，双方都会发送 Handshake 消息和 HandshakeAck 消息以完成握手。对等方的 节点 ID 是其 [x.509](https://en.wikipedia.org/wiki/X.509) [DER](https://wiki.openssl.org/index.php/DER) 证书的 SHA-256 哈希值 。
 
 ```python
 class Handshake(Streamable):
@@ -67,7 +67,7 @@ class Handshake(Streamable):
 
 ```
 
-握手完成后，双方都可以发送 Chia 协议消息，并随时通过关闭 WebSocket 断开连接。
+握手完成后，双方都可以发送奇亚协议消息，并随时通过关闭网络套接字断开连接。
 
 <details>
 <summary>原文参考</summary>
@@ -93,7 +93,7 @@ After the handshake is completed, both peers can send Chia protocol messages, an
 
 ## 心跳
 
-心跳消息由 WebSocket 库定期发送。因此，无响应的对等点将断开连接。
+心跳消息由网络套接字库定期发送。因此，无响应的对等点将断开连接。
 
 如果某个节点在一段时间内没有收到来自对等方的任何消息，即使正在收到心跳，该节点也会断开连接并将该对等方从活动对等方列表中删除。
 
@@ -112,13 +112,13 @@ If a node does not receive any message from a peer for a certain period of time,
 
 对于加入去中心化网络的新节点，他们必须选择所有在线节点的子集来连接。
 
-为促进这一过程，Chia 和其他用户将临时运行一些介绍人节点，它们将抓取网络并支持一个协议消息：get\_peers\_introducer。 然后，介绍人将返回调用节点将尝试连接的已知最近对等节点的随机子集。
+为促进这一过程，奇亚和其他用户将临时运行一些介绍人节点，它们将抓取网络并支持一个协议消息：get\_peers\_introducer。 然后，介绍人将返回调用节点将尝试连接的已知最近对等节点的随机子集。
 
 DNS 介绍器也有不同的名称，它们返回随机可靠的对等点进行连接。
 
 例如：`dig dns-introducer.chia.net`。
 
-未来将招募更多DNS介绍人； 检查 [chia-blockchain GitHub 存储库](https://github.com/Chia-Network/chia-blockchain "chia-blockchain on GitHub") 以获取更新。 仅在应用程序初始启动时或在对等数据库没有好的对等时才联系介绍人。
+未来将招募更多DNS介绍人；检查[奇亚区块链 GitHub 存储库](https://github.com/Chia-Network/chia-blockchain "chia-blockchain on GitHub") 以获取更新。仅在应用程序初始启动时或在对等数据库没有好的对等时才联系介绍人。
 
 <details>
 <summary>原文参考</summary>
@@ -139,7 +139,7 @@ More DNS introducers will be recruited in the future; check the [chia-blockchain
 
 ## RPC
 
-除了下一页描述的 Chia 协议之外，还有一个本地 RPC 协议允许通过 HTTP 对节点或钱包进行简单的控制。RPC 协议的所有请求和响应都采用 JSON 格式，以简化接口。这允许执行诸如获取链的提示、获取特定块、添加连接、停止节点等操作。完整节点 UI 使用 RPC 连接到完整节点。
+除了下一页描述的奇亚协议之外，还有一个本地 RPC 协议允许通过 HTTP 对节点或钱包进行简单的控制。RPC 协议的所有请求和响应都采用 JSON 格式，以简化接口。这允许执行诸如获取链的提示、获取特定块、添加连接、停止节点等操作。完整节点 UI 使用 RPC 连接到完整节点。
 
 RPC API 以 WebSocket 和 HTTP 格式提供。
 
@@ -158,9 +158,9 @@ The RPC APIs are provided in both WebSocket and HTTP format.
 
 Chia 软件有多个规则和检查，以确保一个节点连接到几个好的对等点。
 
-例如，传出连接（我们的节点与外部节点建立的连接）排名高于传入连接。 这是因为我们无法验证传入的对等点是否是攻击的一部分。
+例如，传出连接（我们的节点与外部节点建立的连接）排名高于传入连接。这是因为我们无法验证传入的对等点是否是攻击的一部分。
 
-每个节点将尝试连接到 8 个（依赖于实现的）外部对等点。 只要一个节点连接到至少一个快速且无恶意的对等点，该节点就应该能够跟上并保持与最重的区块链的共识。
+每个节点将尝试连接到 8 个（依赖于实现的）外部对等点。只要一个节点连接到至少一个快速且无恶意的对等点，该节点就应该能够跟上并保持与最重的区块链的共识。
 
 <details>
 <summary>原文参考</summary>
@@ -177,9 +177,9 @@ Each node will try to connect to 8 (implementation-dependent) external peers. As
 
 ## 禁令
 
-如果对等方似乎行为不诚实，则可以将其断开连接并暂时禁止重新连接。 禁止的原因包括（但不限于）超出对每种类型的协议消息提供的限制，发送无效信息，以及使节点在处理消息时抛出异常。
+如果对等方似乎行为不诚实，则可以将其断开连接并暂时禁止重新连接。禁止的原因包括（但不限于）超出对每种类型的协议消息提供的限制，发送无效信息，以及使节点在处理消息时抛出异常。
 
-禁令的持续时间取决于问题的严重程度。 应注意不要意外禁止诚实的同行。 不同的实现也可能有更大或不同的速率限制。
+禁令的持续时间取决于问题的严重程度。应注意不要意外禁止诚实的同行。不同的实现也可能有更大或不同的速率限制。
 
 <details>
 <summary>原文参考</summary>
