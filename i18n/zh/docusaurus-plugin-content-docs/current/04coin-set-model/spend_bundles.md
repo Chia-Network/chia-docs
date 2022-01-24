@@ -19,8 +19,7 @@ class SpendBundle:
     aggregated_signature: G2Element
 ```
 
-As you can see in the code sample above, a spend bundle is a group of coin spends, where each coin spend includes the coin being spent, the puzzle program, and the solution program. Each solution is passed into each puzzle and run through the CLVM, where it outputs conditions. Two of the conditions -- `AGG_SIG_ME` and `AGG_SIG_UNSAFE` -- require
-that a signature be present in order for the spend to be valid.
+As you can see in the code sample above, a spend bundle is a group of coin spends, where each coin spend includes the coin being spent, the puzzle program, and the solution program. Each solution is passed into each puzzle and run through the CLVM, where it outputs conditions. Two of the conditions -- `AGG_SIG_ME` and `AGG_SIG_UNSAFE` -- require that a signature be present in order for the spend to be valid.
 
 Usually when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](https://chialisp.com/docs/puzzles/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
 
@@ -48,14 +47,13 @@ Let's say a farmer wants to include 1000 spend bundles into a block. First, they
 
 ## Additions and Removals
 
-In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are coins A, B, and C, and the additions are coins D and E. This is very similar to how the standard transaction script works in `chia-blockchain`.
+In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are coins A, B, and C, and the additions are coins C and D. This is very similar to how the standard transaction script works in `chia-blockchain`.
 
 <figure>
 <img src="/img/spend_bundle.png" alt="drawing"/>
 </figure>
 
-Let's go through the different components in the image. First, let's say Alice wants to send 13 XCH to Bob. Alice looks at her coin database, and selects 3 unspent coins (A, B, and C) that add up to at least 13 XCH. Each one of these coins has an associated CLVM puzzle, which has a public key encoded inside of it. Let's denote these public keys as `pkA`, `pkB`, and `pkC`.  Alice needs to generate the puzzle and solution for each of the
-spends, in order to create the spend bundle.
+Let's go through the different components in the image. First, let's say Alice wants to send 13 XCH to Bob. Alice looks at her coin database, and selects 3 unspent coins (A, B, and C) that add up to at least 13 XCH. Each one of these coins has an associated CLVM puzzle, which has a public key encoded inside of it. Let's denote these public keys as `pkA`, `pkB`, and `pkC`.  Alice needs to generate the puzzle and solution for each of the spends, in order to create the spend bundle.
 
 Each puzzle, when run with the solutions, returns an `AGG_SIG` condition (either AGG_SIG_ME or AGG_SIG_UNSAFE). This means that a signature is required from the respective public key, in order for this spend to be valid.
 
