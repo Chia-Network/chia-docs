@@ -5,9 +5,9 @@ sidebar_position: 1
 
 > Serialization
 
-Chia 中的序列化是指如何将对象转换为字节以供传输到其他节点、存储在磁盘上或散列对象等用途。
+奇亚中的序列化是指如何将对象转换为字节以供传输到其他节点、存储在磁盘上或散列对象等用途。
 
-例如，header_hash 指的是块头的 sha256 哈希，但是 sha256 以字节为单位，因此我们需要一种一致的方式将对象转换为字节。
+例如，哈希头指的是区块头的 sha256 哈希，但是 sha256 以字节为单位，因此我们需要一种一致的方式将对象转换为字节。
 
 <details>
 <summary>原文参考</summary>
@@ -18,9 +18,9 @@ For example, a header_hash refers to the sha256 hash of the header of a block, b
 
 </details>
 
-## 可流格式
+## 可流式传输格式
 
-为防止出现共识问题，可流式传输格式被设计为具有确定性且易于实施。 Chia 协议中的所有对象都使用可流格式传输。 此外，一些数据库表也使用流式表示。
+为防止出现共识问题，可流式传输格式被设计为具有确定性且易于实施。奇亚协议中的所有对象都使用可流格式传输。此外，一些数据库表也使用流式表示。
 
 原语是：
 
@@ -29,9 +29,9 @@ For example, a header_hash refers to the sha256 hash of the header of a block, b
 *   以 bls 格式序列化的 BLS 公钥（48 字节）
 *   以 bls 格式序列化的 BLS 签名（96 字节）
 *   bool 序列化为 1 个字节（0x01 或 0x00）
-*   字节序列化为 4​​ 字节大小的前缀，然后是字节。
+*   字节序列化为 4 字节大小的前缀，然后是字节。
 *   ConditionOpcode 被序列化为 1 字节值。
-*   str 序列化为 4​​ 字节大小的前缀，然后以字节为单位的 utf-8 表示。
+*   str 序列化为 4 字节大小的前缀，然后以字节为单位的 utf-8 表示。
 
 一个项目是以下之一：
 
@@ -41,7 +41,7 @@ For example, a header_hash refers to the sha256 hash of the header of a block, b
 *   可选 \[项目\]
 *   定制项目
 
-流媒体必须是根级别的元组。Iters按以下方式序列化：
+可流式传输必须是根级别的元组。迭代器按以下方式序列化：
 
 1. 通过附加每个项目的序列化来序列化 x 个项目的元组。
 2. 一个 List 被序列化为一个 4 字节的前缀（项目数）和每个项目的序列化。
@@ -50,7 +50,7 @@ For example, a header_hash refers to the sha256 hash of the header of a block, b
 
 这种格式可以很容易地实现，并允许我们散列对象，如标题和空间证明，而无需复杂的序列化逻辑。
 
-请注意，在 python 实现中，我们不在根级别使用元组，而是仅使用带有有序类型字段的数据类以方便使用。 但是，它作为元组流式传输。
+请注意，在 python 实现中，我们不在根级别使用元组，而是仅使用带有有序类型字段的数据类以方便使用。但是，它作为元组流式传输。
 
 <details>
 <summary>原文参考</summary>
@@ -91,7 +91,7 @@ Note that in the python implementation, we don't use a Tuple at the root level, 
 
 ## 例子
 
-streamable 规范旨在使用 中提供的 @streamable 装饰器与 python 良好工作 `chia-blockchain` ，但它也可以与其他编程语言一起工作。 带有 @streamable 装饰器的类变得不可变，并且具有 `__bytes__()` 和 `.from_bytes(b)` 方法。
+可流式传输规范旨在使用 中提供的 @streamable 装饰器与 python 良好工作 `奇亚区块链` ，但它也可以与其他编程语言一起工作。带有 @streamable 装饰器的类变得不可变，并且具有 `__bytes__()` 和 `.from_bytes(b)` 方法。
 
 ### ProofOfSpace 类型定义
 
@@ -119,7 +119,7 @@ print(bytes(pospace))
 
 ### 输出
 
-如您所见，根据上述规范，每个字段都按顺序序列化。 G1 Generator 值以 BLS 格式序列化为： `<G1Element 97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb>` 。
+如您所见，根据上述规范，每个字段都按顺序序列化。G1 Generator 值以 BLS 格式序列化为： `<G1Element 97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb>` 。
 
 ```
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0001bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb2100000108cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
