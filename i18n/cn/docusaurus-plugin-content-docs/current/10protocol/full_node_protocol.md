@@ -6,14 +6,14 @@ sidebar_position: 3
 
 > Full Node Protocol
 
-该协议是 Chia 系统中全节点之间通信的双向协议。
+该协议是奇亚系统中全节点之间通信的双向协议。
 发送方是发送消息的全节点，接收方是接收消息的全节点。
 
 ## new_peak
 
-每当我们节点的峰值权重增加时（每当区块链向前移动时）发送给对等节点。 分叉点允许对等点检测重组发生的深度，并获取正确的块。 未完成奖励区块哈希允许接收对等方将其缓存用于未完成区块，因为他们很可能已经拥有同一区块的未完成版本，因此不需要重新请求区块交易生成器。
+每当我们节点的峰值权重增加时（每当区块链向前移动时）发送给对等节点。分叉点允许对等点检测重组发生的深度，并获取正确的区块。未完成奖励区块哈希允许接收对等方将其缓存用于未完成区块，因为他们很可能已经拥有同一区块的未完成版本，因此不需要重新请求区块交易生成器。
 
-通常，在正常操作期间，对等方将只请求最新的块，或者如果他们已经从另一个对等方接收到该消息，则忽略该消息。 如果我们落后几个块，则块以相反的顺序一个一个地取出直到分叉。
+通常，在正常操作期间，对等方将只请求最新的块，或者如果他们已经从另一个对等方接收到该消息，则忽略该消息。如果我们落后几个块，则块以相反的顺序一个一个地取出直到分叉。
 
 如果我们远远落后于这个峰值，我们将开始批量同步（批量下载几十个块）或长时间同步，我们下载权重证明，然后批量下载许多块。
 
@@ -60,7 +60,7 @@ class NewPeak(Streamable):
 
 ## new_transaction
 
-当新的支出包被添加到内存池时发送给对等点。然后接收对等方可以选择忽略它，或请求整个交易。
+当新的花费组合被添加到内存池时发送给对等点。然后接收对等方可以选择忽略它，或请求整个交易。
 
 ```python
 class NewTransaction(Streamable):
@@ -88,7 +88,7 @@ class NewTransaction(Streamable):
 
 ## request_transaction
 
-通过其 id 从对等方请求完整交易（花费捆绑）。如果对等方没有响应，则为同一事务联系其他对等方。
+通过其 id 从对等方请求完整交易（花费组合）。如果对等方没有响应，则为同一事务联系其他对等方。
 
 ```python
 class RequestTransaction(Streamable):
@@ -112,7 +112,7 @@ class RequestTransaction(Streamable):
 
 ## respond_transaction
 
-`request_transaction`消息的响应。将支出包发送给对等方。要查看 `SpendBundle` 的内容，请参阅[此部分](/docs/04coin-set-model/spend_bundles)。
+`request_transaction` 消息的响应。将花费组合发送给对等方。要查看 `花费组合` 的内容，请参阅[此部分](/docs/04coin-set-model/spend_bundles)。
 
 ```python
 class RespondTransaction(Streamable):
@@ -135,7 +135,7 @@ class RespondTransaction(Streamable):
 
 ## request_proof_of_weight
 
-向对等方请求重量证明。这是在开始长同步之前完成的。权重证明允许我们的节点验证我们从对等方收到的`new_peak`是否对应于实际有效的区块链。这证明在该区块链上使用了一定数量的“权重”或空间和时间。
+向对等方请求重量证明。这是在开始长同步之前完成的。权重证明允许我们的节点验证我们从对等方收到的 `new_peak` 是否对应于实际有效的区块链。这证明在该区块链上使用了一定数量的“权重”或空间和时间。
 
 ```python
 class RequestProofOfWeight(Streamable):
@@ -162,7 +162,7 @@ class RequestProofOfWeight(Streamable):
 
 ## respond_proof_of_weight
 
-对`request_proof_of_weight`消息的响应。请注意，权重证明可能非常大，在数十 MB 范围内。如果链 VDF 被压缩（又名 blueboxed），那么它们的权重证明会更小。这是权重证明的V1版本，以后可能会加入更高效的版本。
+对 `request_proof_of_weight` 消息的响应。请注意，权重证明可能非常大，在数十 MB 范围内。如果链 VDF 被压缩（又名 blueboxed），那么它们的权重证明会更小。这是权重证明的V1版本，以后可能会加入更高效的版本。
 
 ```python
 class RespondProofOfWeight(Streamable):
@@ -189,7 +189,7 @@ class RespondProofOfWeight(Streamable):
 
 ## request_block
 
-从对等点请求某个高度的块。在收到`new_peak`消息后调用。
+从对等点请求某个高度的区块。在收到 `new_peak` 消息后调用。
 
 ```python
 class RequestBlock(Streamable):
@@ -214,7 +214,7 @@ class RequestBlock(Streamable):
 
 ## respond_block
 
-对`request_block`消息的响应。
+对 `request_block` 消息的响应。
 
 ```python
 class RespondBlock(Streamable):
@@ -237,7 +237,7 @@ class RespondBlock(Streamable):
 
 ## reject_block
 
-拒绝`request_block`消息。
+拒绝 `request_block` 消息。
 
 ```python
 class RejectBlock(Streamable):
@@ -260,7 +260,7 @@ class RejectBlock(Streamable):
 
 ## request_blocks
 
-从对等方一次请求多个块。
+从对等方一次请求多个区块。
 
 ```python
 class RequestBlocks(Streamable):
@@ -287,7 +287,7 @@ class RequestBlocks(Streamable):
 
 ## respond_blocks
 
-对`request_blocks`消息的响应。
+对 `request_blocks` 消息的响应。
 
 ```python
 class RespondBlocks(Streamable):
@@ -314,7 +314,7 @@ class RespondBlocks(Streamable):
 
 ## reject_blocks
 
-拒绝`request_blocks`消息。
+拒绝 `request_blocks` 消息。
 
 Rejection to a `request_blocks` message.
 
@@ -341,7 +341,7 @@ class RejectBlocks(Streamable):
 
 ## new_unfinished_block
 
-通知另一个对等点新的未完成块已添加到缓存中。这些未完成的区块暂时保留，直到注入点VDF释放，区块才可以“完成”并加入区块链。
+通知另一个对等点新的未完成块已添加到缓存中。这些未完成的区块暂时保留，直到融入点 VDF 释放，区块才可以“完成”并加入区块链。
 
 ```python
 class NewUnfinishedBlock(Streamable):
@@ -365,7 +365,7 @@ class NewUnfinishedBlock(Streamable):
 
 ## request_unfinished_block
 
-从对等方请求未完成的块。
+从对等方请求未完成的区块。
 
 ```python
 class RequestUnfinishedBlock(Streamable):
@@ -389,7 +389,7 @@ class RequestUnfinishedBlock(Streamable):
 
 ## respond_unfinished_block
 
-对`request_unfinished_block`消息的响应。
+对 `request_unfinished_block` 消息的响应。
 
 ```python
 class RespondUnfinishedBlock(Streamable):
@@ -412,7 +412,7 @@ class RespondUnfinishedBlock(Streamable):
 
 ## new_signage_point_or_end_of_sub_slot
 
-当节点向全节点存储添加新的标牌点或新的子槽末端时发送。接收者可以选择请求对象，或者如果它们远远落后，则可能请求前一个子槽。比如最近同步到了区块链的顶峰。
+当节点向全节点存储添加新的标牌点或新的子时隙末端时发送。接收者可以选择请求对象，或者如果它们远远落后，则可能请求前一个子时隙。比如最近同步到了区块链的顶峰。
 
 ```python
 class NewSignagePointOrEndOfSubSlot(Streamable):
@@ -444,7 +444,7 @@ class NewSignagePointOrEndOfSubSlot(Streamable):
 
 ## request_signage_point_or_end_of_sub_slot
 
-请求标牌点或插槽末端。
+请求标牌点或时隙末端。
 
 ```python
 class RequestSignagePointOrEndOfSubSlot(Streamable):
@@ -471,7 +471,7 @@ class RequestSignagePointOrEndOfSubSlot(Streamable):
 
 ## respond_signage_point
 
-`request_signage_point_or_end_of_sub_slot`的响应。收到此消息后，接收者将检查所有 VDF 是否正确，并将其转发给其他完整节点和潜在的农民。
+`request_signage_point_or_end_of_sub_slot` 的响应。收到此消息后，接收者将检查所有 VDF 是否正确，并将其转发给其他完整节点和潜在的农民。
 
 ```python
 class RespondSignagePoint(Streamable):
@@ -503,7 +503,7 @@ class RespondSignagePoint(Streamable):
 
 ## respond_end_of_sub_slot
 
-在`index_from_challenge`为零的情况下对`request_signage_point_or_end_of_sub_slot`的另一个响应。这也由全节点验证和转发，类似于标牌点。
+在 `index_from_challenge` 为零的情况下对 `request_signage_point_or_end_of_sub_slot` 的另一个响应。这也由全节点验证和转发，类似于标牌点。
 
 ```python
 class RespondEndOfSubSlot(Streamable):
@@ -528,7 +528,7 @@ class RespondEndOfSubSlot(Streamable):
 
 ## request_mempool_transactions
 
-这是对内存池中的交易的请求。 该过滤器对应于 BIP158 紧凑型块过滤器，它允许接收者查看发送者已经拥有的交易（误报的可能性很小），而无需发送所有交易 ID。 然后接收方可以直接使用“respond_transction”进行响应，但不应发送大量交易，以免压倒原始发送对等方。
+这是对内存池中的交易的请求。该过滤器对应于 BIP158 紧凑型块过滤器，它允许接收者查看发送者已经拥有的交易（误报的可能性很小），而无需发送所有交易 ID。然后接收方可以直接使用 `respond_transction` 进行响应，但不应发送大量交易，以免压倒原始发送对等方。
 
 ```python
 class RequestMempoolTransactions(Streamable):
@@ -673,7 +673,7 @@ class RequestPeers(Streamable):
 
 ## respond_peers
 
-对`request_peers`的响应，包含每个对等方的 ip 和端口列表。不得大于 1000。时间戳对应于上次更新此对等记录的时间，基于对等数据库更新规则。
+对 `request_peers` 的响应，包含每个对等方的 ip 和端口列表。不得大于 1000。时间戳对应于上次更新此对等记录的时间，基于对等数据库更新规则。
 
 
 ```python
