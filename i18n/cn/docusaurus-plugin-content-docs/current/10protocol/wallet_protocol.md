@@ -6,7 +6,7 @@ sidebar_position: 4
 
 > Wallet Protocol
 
-该协议是 Chia 系统中全节点和钱包之间通信的双向协议。这有时也称为轻客户端协议。
+该协议是奇亚系统中全节点和钱包之间通信的双向协议。这有时也称为轻客户端协议。
     
 钱包协议包含两个子协议，钱包可以通过它们从节点同步交易。
 
@@ -18,14 +18,14 @@ sidebar_position: 4
 
 第二个是快速同步协议，钱包直接要求节点查找某些硬币 ID 或谜语哈希。它的隐私性较少，但速度要快得多。以下是任何钱包开发人员都应遵循的钱包同步流程。连接到几个随机节点以提高安全性很重要。对于没有很多事务的用户来说，这个同步协议应该非常快。
 
-1. 执行DNS查找以获取随机节点 IPS：`dig dns-introducer.chia.net`。
-2.连接几个节点，确保服务器不遗漏交易。节点将发送一条带有他们声称的峰值的 `new_peak_wallet` 消息。
+1. 执行 DNS 查找以获取随机节点 IPS：`dig dns-introducer.chia.net`。
+2. 连接几个节点，确保服务器不遗漏交易。节点将发送一条带有他们声称的峰值的 `new_peak_wallet` 消息。
 3. 从具有最重峰值的节点之一（或多个）下载权重证明。
-4. 验证重量证明以确保声称的峰值是正确的
-5. 订阅我们的密钥（观察者和非观察者）的前 100 个拼图哈希。
+4. 验证重量证明以确保声称的峰值是正确的。
+5. 订阅我们的密钥（观察者和非观察者）的前 100 个谜语哈希。
 6. 验证全节点返回的谜语哈希订阅状态。这需要确保包含这些硬币的区块是 SubEpochSummaries 链的一部分。这里只需要检查块哈希。此外，应该在这个块之后验证一些块头（大约 30-50），以确保它被正确地掩埋。
 7. 从第 5 步开始，我们获得所有我们感兴趣的硬币 ID，并且我们恢复任何 CAT 钱包以获取在提示中包含我们的谜语哈希的硬币。
-8.订阅有趣的硬币 ID。
+8. 订阅有趣的硬币 ID。
 9. 验证从全节点返回的硬币订阅，类似于步骤 5 中的操作。
 
 <details>
@@ -299,7 +299,7 @@ class RequestRemovals(Streamable):
 
 ## respond_removals
 
-对 `request_removals` 请求的响应。 如果 `coin_names` 为 None，则返回所有删除，并且 `proofs` 设置为 None。否则，只返回请求的硬币，（id 到硬币元组）并为每个硬币 id 返回一个证明（id 到证明元组）。证明是默克尔集包含证明。有关如何验证这些证明的更多信息，请参阅 chia-blockchain 中的 `merkle_set.py`。
+对 `request_removals` 请求的响应。 如果 `coin_names` 为 None，则返回所有删除，并且 `proofs` 设置为 None。否则，只返回请求的硬币，（id 到硬币元组）并为每个硬币 id 返回一个证明（id 到证明元组）。证明是默克尔集包含证明。有关如何验证这些证明的更多信息，请参阅奇亚区块链中的 `merkle_set.py`。
 
 ```python
 class RespondRemovals(Streamable):
@@ -374,7 +374,7 @@ class RequestAdditions(Streamable):
 
 ## respond_additions
 
-对 `request_additions` 请求的响应。如果 `puzzle_hashes` 为 None，则返回所有加法，并且 `proofs` 设置为 None。否则，只返回请求的硬币，（puzzle_hash 到硬币元组列表，因为多个硬币可以具有相同的谜语哈希）并为每个硬币返回一个证明（puzzle_hash，proof，proof2 tuples）。证明是默克尔集包含证明。有关如何验证这些证明的更多信息，请参阅 chia-blockchain 中的 `merkle_set.py`。 `proof` 是默克尔集中谜语哈希的证明，`proof2` 是 merkle 集中每个谜语哈希的 `sha256(concatenation of coin ids)` 的默克尔证明。 两者都作为每个块的默克尔集中的元素。
+对 `request_additions` 请求的响应。如果 `puzzle_hashes` 为 None，则返回所有加法，并且 `proofs` 设置为 None。否则，只返回请求的硬币，（puzzle_hash 到硬币元组列表，因为多个硬币可以具有相同的谜语哈希）并为每个硬币返回一个证明（puzzle_hash，proof，proof2 tuples）。证明是默克尔集包含证明。有关如何验证这些证明的更多信息，请参阅奇亚区块链中的 `merkle_set.py`。`proof` 是默克尔集中谜语哈希的证明，`proof2` 是默克尔集中每个谜语哈希的 `sha256(concatenation of coin ids)` 的默克尔证明。两者都作为每个块的默克尔集中的元素。
 
 ```python
 class RespondAdditions(Streamable):
@@ -509,7 +509,7 @@ class RespondHeaderBlocks(Streamable):
 
 ## register_for_ph_updates
 
-从钱包到完整节点的请求以注册对谜语哈希的更新。这是快速同步协议的一部分。每当创建或使用具有这些拼图哈希（或提示）之一的新硬币时，全节点将向钱包发送通知（`coin_state_update`）。此外，一次性通知会与所有更新一起发回 (`respond_to_ph_updates`)。
+从钱包到完整节点的请求以注册对谜语哈希的更新。这是快速同步协议的一部分。每当创建或使用具有这些谜语哈希（或提示）之一的新硬币时，全节点将向钱包发送通知（`coin_state_update`）。此外，一次性通知会与所有更新一起发回 (`respond_to_ph_updates`)。
 
 ```python
 class RegisterForPhUpdates(Streamable):
@@ -622,7 +622,7 @@ class RespondToCoinUpdates(Streamable):
 
 ## coin_state_update
 
-这是一个更新，但不是响应请求。每当确认包含钱包感兴趣的删除或添加的新块时，完整节点将发送更新。
+这是一个更新，但不是响应请求。每当确认包含钱包感兴趣的删除或添加的新区块时，完整节点将发送更新。
 
 ```python
 class CoinStateUpdate(Streamable):
