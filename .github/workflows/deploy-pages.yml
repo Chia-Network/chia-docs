@@ -10,12 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     container: node:17-alpine
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-
     - name: "Install deps"
       run: |
         apk add python3 make g++ git
+
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: "yarn deps"
+      run: |
         yarn
 
     - name: "yarn deploy"
