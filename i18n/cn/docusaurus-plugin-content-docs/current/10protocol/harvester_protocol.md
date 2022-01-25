@@ -6,13 +6,13 @@ sidebar_position: 2
 
 > 10.2 Harvester Protocol
 
-收割机协议定义了农民服务和收割机服务之间发送的消息。 对于小农来说，它们往往是一台相同的机器，但对于中型或大型农户，它们可以使用多台机器。
+收割机协议定义了农民服务和收割机服务之间发送的消息。对于小农户来说，它们往往是一台相同的机器，但对于中型或大型农户，它们可以使用多台机器。
 
 ## harvester_handshake
 
-农民和收割机之间的握手。农民将此消息发送给收割机，以初始化它们并告诉他们可以使用哪些池公钥和农民公钥。
+农夫机和收割机之间的握手。农夫机将此消息发送给收割机，以初始化它们并告诉他们可以使用哪些矿池公钥和农民公钥。
 
-一个农民可以连接多台收割机，但一台收割机只能连接一个农民。收割机可以开始使用与这些键相关联的地块。
+一个农夫机可以连接多台收割机，但一台收割机只能连接一个农夫机。收割机可以开始使用与这些密钥相关联的图块。
 
 ```python
 class HarvesterHandshake(Streamable):
@@ -47,7 +47,7 @@ class HarvesterHandshake(Streamable):
 
 PK
 
-此消息通知收割机新的挑战。收割机在每个地块中查找挑战，并计算质量。对于每种质量，这需要大约 7 次磁盘搜索。预计每个地块平均有一个空间证明，因此对于 50 个地块，收割机将具有大约 50 种品质。
+此消息通知收割机新的挑战。收割机在每个图块中查找挑战，并计算质量。对于每种质量，这需要大约 7 次磁盘搜索。预计每个地块平均有一个空间证明，因此对于 50 个图块，收割机将具有大约 50 种质量。
 
 ``` python
 class NewSignagePointHarvester:
@@ -67,7 +67,7 @@ class ChallengeResponse:
     plot_size: uint8
 ```
 
-收割机向农民发送响应，其中包含针对发现的每个品质的 `ChallengeResponse`。
+收割机向农民发送响应，其中包含针对发现的每个质量的 `挑战回复`。
 
 收到 `ChallengeResponse` 后，农民可以使用质量来计算使用此空间证明完成区块所需的预期时间。如果这个时间低于一个阈值（一个小的常数倍预期块大小），这意味着空间证明非常好，农民可以通过 `RequestProofOfSpace` 向收割机请求整个空间证明。
 
@@ -85,7 +85,7 @@ class RespondProofOfSpace:
     proof: ProofOfSpace
 ```
 
-收割机响应请求的空间证明。农民现在可以选择为这个证明请求部分（发送到池中），或者如果证明非常好，则创建一个块。为了创建一个区块，Farmer 必须使用 `RequestHeader`（在 Farmer 协议中）从全节点请求块头，然后使用 `RequestHeaderSignature` 从收割机获取签名。
+收割机响应请求的空间证明。农民现在可以选择为这个证明请求部分（发送到池中），或者如果证明非常好，则创建一个块。为了创建一个区块，农民必须使用 `RequestHeader`（在农民协议中）从全节点请求区块头，然后使用 `RequestHeaderSignature` 从收割机获取签名。
 
 
 ```Python
@@ -94,7 +94,7 @@ class RequestHeaderSignature:
     header_hash: bytes32
 ```
 
-农夫请求具有给定散列的标头的标头签名。收割机使用本地存储的私钥对标头进行签名。这允许农民以更分散的方式存储他们的私钥，每台收割机都将密钥与地块一起存储。
+农夫请求具有给定哈希头的标头签名。收割机使用本地存储的私钥对标头进行签名。这允许农民以更分散的方式存储他们的私钥，每台收割机都将密钥与图块一起存储。
 
 ```Python
 class RespondHeaderSignature:
@@ -102,7 +102,7 @@ class RespondHeaderSignature:
     header_hash_signature: PrependSignature
 ```
 
-收割机在标头哈希上使用 BLS 前置签名进行响应。
+收割机在头哈希上使用 BLS 前置签名进行响应。
 
 ```Python
 class RequestPartialProof:
@@ -110,7 +110,7 @@ class RequestPartialProof:
     farmer_target_hash: bytes32
 ```
 
-农场主要求提供部分证明以用于领取奖池奖励。这些比 `RequestHeaderSignature` 更频繁地发送，因为池部分比好的块更频繁地发生。收割机使用地块私钥签署农民目标哈希（资金目标）。
+农场主要求提供部分证明以用于领取奖池奖励。这些比 `RequestHeaderSignature` 更频繁地发送，因为矿池部分比好的块更频繁地发生。收割机使用地块私钥签署农民目标哈希（资金目标）。
 
 ```Python
 class RespondPartialProof:
@@ -118,7 +118,7 @@ class RespondPartialProof:
     farmer_target_signature: PrependSignature
 ```
 
-收割者以签名作为回应，然后农民可以将其发送到池中以索取资金。
+收割者以签名作为回应，然后农民可以将其发送到矿池中以索取资金。
 
 <details>
 <summary>原文参考</summary>
