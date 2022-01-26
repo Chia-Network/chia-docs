@@ -55,7 +55,7 @@ sidebar_position: 1
 * [飞客白皮书](https://eprint.iacr.org/2019/226.pdf)，作者本尼迪克特·班兹，露西安娜·基弗，Loi Luu，和马赫迪·扎马尼
 * [PoSAT 白皮书](https://arxiv.org/abs/2010.08154)，作者苏比克·德布，斯里拉姆·卡南，谢大卫
 * [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki) -- 奇亚使用的地址编码方案
-* [x.509](https://en.wikipedia.org/wiki/X.509) -- Chia 对等节点中使用的公钥证书
+* [x.509](https://en.wikipedia.org/wiki/X.509) -- 奇亚对等节点中使用的公钥证书
 * [DER](https://wiki.openssl.org/index.php/DER) -- 与 x.509 证书一起使用的数据结构
 * [BLS-12-381](https://github.com/zkcrypto/bls12_381) -- 奇亚使用的密钥类型
 * [IETF](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/) -- BLS 签名规范
