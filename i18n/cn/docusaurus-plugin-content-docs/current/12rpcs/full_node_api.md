@@ -184,11 +184,11 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 </details>
 
-## 获取块
+## get_block
 
-通过标头哈希检索整个块作为 FullBlock。 请注意，有些区块是交易区块，有些则不是（如下所示）。
+通过哈希头将整个区块作为 FullBlock 检索。请注意，有些区块是交易区块，有些则不是（如下所示）。
 
-* **header\_hash** ：要获取的块的头哈希（块标识符）。
+* **header_hash** ：要获取的区块的头哈希（区块标识符）。
 
 ```json
 // Request
@@ -378,13 +378,13 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 </details>
 
-## 获取块
+## get_blocks
 
-按高度获取完整块的列表。 重要提示：每个高度可能有多个块。 要找出区块链中的哪个，请使用 `get_block_record_by_height` 。
+按高度获取完整块的列表。重要提示：每个高度可能有多个块。要找出区块链中的哪个，请使用 `get_block_record_by_height`。
 
 * **开始** ：开始高度。
-* **end** ：结束高度（不包括在内）。
-* **exclude\_header\_hash** : 是否在响应中排除头哈希（默认为 false）
+* **结束** ：结束高度（不包括在内）。
+* **exclude_header_hash** ：是否在响应中排除头哈希（默认为 false）
 
 ```json
 // Request
@@ -432,9 +432,9 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## 按高度获取区块记录
 
-按高度检索块记录（假设高度 <= 峰高）。 请注意，并非所有区块都会在此处设置所有字段（取决于交易区块、完成子纪元等）。
+按高度检索块记录（假设高度 <= 峰高）。请注意，并非所有区块都会在此处设置所有字段（取决于交易区块、完成子纪元等）。
 
-* **height** : 要获得的高度
+* **height** ：要获得的高度。
 
 ```json
 // Request
@@ -560,9 +560,9 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## 获取区块记录
 
-通过头哈希检索块记录。
+通过头哈希检索区块记录。
 
-* **header_hash** : 块的 header_hash
+* **header_hash** ：区块的头哈希
 
 ```json
 // Request
@@ -690,7 +690,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 检索范围内的块记录。
 
 * **开始** ：开始高度
-* **end** : 结束高度（不包括在内）
+* **结束** ：结束高度（不包括在内）
 
 ```json 
 // Request
@@ -734,7 +734,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## 获取未完成的区块头
 
-检索最近未完成的标题块。这些块可能很快就会完成并得到确认。高度和头部哈希是未知的，因为其中一些块可能没有得到确认，这会影响它之后的块。
+检索最近未完成的区块头。这些区块可能很快就会完成并得到确认。高度和头哈希是未知的，因为其中一些区块可能没有得到确认，这会影响它之后的区块。
 
 ```json
 // Request
@@ -917,8 +917,8 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     
 检索网络空间的估计值，即所有农民的总绘制空间（以字节为单位）。
 
-* **old\_block\_header\_hash** : 起始头哈希
-* **newer\_block\_header\_hash** : 结束头哈希
+* **old_block_header_hash** ：起始头哈希
+* **newer_block_header_hash** ：结束头哈希
 
 ```json
 // Request
@@ -962,9 +962,9 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## 获取添加和删除
     
-检索特定块的添加和删除（状态转换）。 返回每次添加和删除的硬币记录。 不是事务块的块将有空的删除和添加列表。 要获得用过的硬币的实际谜题和解决方案，请使用 `get_puzzle_and_solution` api。
+检索特定块的添加和删除（状态转换）。返回每次添加和删除的硬币记录。不是事务块的块将有空的删除和添加列表 要获得用过的硬币的实际谜语和谜底，请使用 `get_puzzle_and_solution` api。
 
-* **header\_hash** : 区块的头部哈希
+* **header_hash** ：区块的头哈希
 
 ```json
 // Request
@@ -1112,9 +1112,9 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## 按名称获取硬币记录
 
-按名称/ID 检索硬币记录。 硬币 id 可以通过散列 Coin 对象获得。
+按名称/ID 检索硬币记录。可以通过对硬币对象进行哈希处理来获得硬币 ID。
 
-* **name** : 硬币 ID 或硬币名称。
+* **name** ：硬币 ID 或硬币名称。
 
 ```json
 // Request
@@ -1177,12 +1177,12 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 </details>
 
-## 得到谜题和解决方案
+## 得到谜语和谜底
 
-通过硬币 ID 检索硬币的支出记录，有时称为硬币名称。 硬币 ID 可以通过散列硬币来计算。 谜题和解决方案以 CLVM 格式提供。
+通过硬币 ID 检索硬币的支出记录，有时称为硬币名称。硬币 ID 可以通过散列硬币来计算。谜语和谜底以 CLVM 格式提供。
 
-* **coin_id** : 硬币 ID 或硬币名称。
-* **height** : 硬币花费的高度。
+* **coin_id** ：硬币 ID 或硬币名称。
+* **height** ：硬币花费的高度。
 
 ```json
 // Request
@@ -1244,14 +1244,14 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 </details>
 
-## 通过拼图哈希获取硬币记录
+## 通过谜语哈希获取硬币记录
 
-检索具有特定拼图哈希的硬币记录列表。
+检索具有特定谜语哈希的硬币记录列表。
 
-* **puzzle_hash**：要搜索的拼图哈希
-* **start_height** （可选）：确认搜索的起始高度
-* **end_height** （可选）：确认搜索结束高度
-* **include_spend_coins** : 是否也包括用过的硬币，而不是只包括未使用的硬币，默认为 false
+* **puzzle_hash**：要搜索的谜语哈希
+* **start_height**（可选）：确认搜索的起始高度
+* **end_height**（可选）：确认搜索结束高度
+* **include_spend_coins**：是否也包括用过的硬币，而不是只包括未使用的硬币，默认为 false
 
 ```json
 // Request
@@ -1325,19 +1325,19 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## 推送交易
 
-将交易/支出包推送到内存池和区块链。 返回支出包是否成功包含到内存池中。
+将交易/花费组合推送到内存池和区块链。返回支出包是否成功包含到内存池中。
 
-`SUCCESS` 不保证交易会得到确认。 如果费用太低，交易可能会从内存池中删除并且不包括在内。 一笔交易也可能与其他交易组合形成不同的花费包，因此通过 ID 查找包并不能保证找到原始交易。 只要新交易中花费的硬币是旧交易中花费的硬币的超集，就可以以更高的费用重新提交交易。
+`SUCCESS` 不保证交易会得到确认。如果费用太低，交易可能会从内存池中删除并且不包括在内。一笔交易也可能与其他交易组合形成不同的花费组合，因此通过 ID 查找包并不能保证找到原始交易。只要新交易中花费的硬币是旧交易中花费的硬币的超集，就可以以更高的费用重新提交交易。
 
-要检查交易是否已被确认，请使用 `get_coin_record_by_name` 此支出包应创建的每个硬币 ID。
+要检查交易是否已被确认，请使用 `get_coin_record_by_name` 此花费组合应创建的每个硬币 ID。
 
-* **spend_bundle** : **spend_bundle** 提交，在 JSON
+* **花费组合** ：**花费组合**提交，以 JSON 格式
 
 错误状态可以是以下之一：
 
-* **SUCCESS** : 如果交易成功添加到内存池
-* **PENDING** ：如果由于时间锁定或冲突无法包含交易是
-* **FAILED** : 交易未添加到内存池中，已被删除
+* **SUCCESS** ：如果交易成功添加到内存池
+* **PENDING** ：如果由于时间锁定或冲突无法包含交易
+* **FAILED** ：交易未添加到内存池中，已被删除
 
 ```json
 // Request
@@ -1420,9 +1420,9 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 </details>
 
-## 获取所有内存池交易id
+## 获取所有内存池交易 id
 
-返回内存池中所有交易 ID（花费捆绑哈希）的列表。
+返回内存池中所有交易 ID（组合哈希）的列表。
 
 ```json
 // Request
@@ -1645,7 +1645,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 通过交易 id 获取内存池项目。
 
-* **tx_id** : 花费捆绑哈希
+* **tx_id** ：花费组合哈希
 
 ```json
 // Request
