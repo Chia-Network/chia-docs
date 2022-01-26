@@ -67,7 +67,7 @@ For more information on the company's strategies, see [Chia's business white pap
 
 与工作量证明 (PoW) 相比，PoST（时空证明）共识具有[更低的能耗](https://chiapower.org "Chia's energy consumption statistics")，并且奇亚的部分愿景是改善区块链行业的碳足迹。
 
-> 奇亚的共识算法在[第 3 节](/docs/03consensus/consensus_intro "Section 3.1: Chia Consensus") 中有详细讨论。
+> 奇亚的共识算法在[第 3 节](/docs/03consensus/consensus_intro "Section 3.1: Chia Consensus")中有详细讨论。
 
 ### 去中心化
 
