@@ -6,7 +6,7 @@ sidebar_position: 1
 
 > Chia RPC API
 
-chia 节点和服务带有一个 JSON rpc api 服务器，允许您访问信息和控制服务。 这些可以通过 HTTP、WebSockets 或通过客户端 SDK 访问。 端口可以​​在 `~/.chia/mainnet/config/config.yaml` 。 rpc 端口不应暴露于 Internet。 TLS 证书用于保护通信。
+奇亚节点和服务带有一个 JSON rpc api 服务器，允许您访问信息和控制服务。这些可以通过 HTTP、网络套接字或通过客户端 SDK 访问。 端口可以在 `~/.chia/mainnet/config/config.yaml`。rpc 端口不应暴露在互联网上。TLS 证书用于保护通信。
 
 <details>
 <summary>原文参考</summary>
@@ -56,7 +56,7 @@ All endpoints are made with POST with JSON data. The response is a JSON dictiona
 
 ## 网络套接字
 
-如果您使用的是 Websockets API，您可以直接通过守护进程来路由请求。 每个 WebSocket 消息都包含以下字段： TODO：解释如何调用 Websocket RPC，示例可以在这里找到： [https](https://github.com/Chia-Mine/chia-agent) : [//github.com/Chia-Mine/chia-agent](https://github.com/Chia-Mine/chia-agent) 。
+如果您使用的是网络套接字 API，您可以直接通过守护进程来路由请求。每个网络套接字消息都包含以下字段：TODO：解释如何调用 Websocket RPC，示例可以在这里找到：[https](https://github.com/Chia-Mine/chia-agent) : [//github.com/Chia-Mine/chia-agent](https://github.com/Chia-Mine/chia-agent) 。
 
 ```json
 {
@@ -92,7 +92,7 @@ TODO: Explain how to call a Websocket RPC, examples can be found here: https://g
 
 ## Python
 
-大多数 rpc 方法都可以通过 `chia-blockchain/chia/rpc` . 有关使用示例，请参阅命令行实现（chia wallet、chia show 等）。
+大多数 rpc 方法都可以通过 `chia-blockchain/chia/rpc`。有关使用示例，请参阅命令行实现（奇亚钱包、奇亚展示等）。
 
 <details>
 <summary>原文参考</summary>
@@ -106,7 +106,7 @@ For examples of usage, see the command line implementation (chia wallet, chia sh
 
 ## Javascript
 
-可以在此处找到 javascript 客户端： [https](https://github.com/Chia-Mine/chia-agent) : [//github.com/Chia-Mine/chia-agent](https://github.com/Chia-Mine/chia-agent) 。 这里还有另一个客户端： [https](https://github.com/freddiecoleman/chia-client) : [//github.com/freddiecoleman/chia-client](https://github.com/freddiecoleman/chia-client) 。
+可以在此处找到 javascript 客户端：https://github.com/Chia-Mine/chia-agent 。这里还有另一个客户端：https://github.com/freddiecoleman/chia-client 。
 
 <details>
 <summary>原文参考</summary>
@@ -122,7 +122,7 @@ There is also another client here: https://github.com/freddiecoleman/chia-client
 
 服务 RPC API 记录在以下部分：
 
-* Shared：所有服务共享的 RPC
+* 共享：所有服务共享的 RPC
 * 全节点
 * 农民
 * 收割机
