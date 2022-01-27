@@ -9,11 +9,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container: node:17-alpine
+    container: node:17
     steps:
     - name: "Install deps"
       run: |
-        apk add python3 make g++ git
+        apt install python3 make g++ git openssl
 
     - name: Checkout Code
       uses: actions/checkout@v2
@@ -26,7 +26,11 @@ jobs:
       run: |
         yarn build
 
+    - name: "yarn build"
+      run: |
+        zip -r build.zip ./build
+
     - uses: actions/upload-artifact@v2
       with:
         name: pages-rendering
-        path: ./
+        path: ./build.zip
