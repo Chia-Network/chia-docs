@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 1.3 Chia System Overview
 
-本节将提供 Chia 网络的基本概述。 We'll go into much more detail in later sections.
+This section will provide a basic overview of Chia's network. We'll go into much more detail in later sections.
 
 ### Chia's network
 There are different types of peer-to-peer (P2P) networks, such as BitTorrent, Bitcoin, and Chia. The Chia network is a blockchain that performs several major functions, including processing financial transactions, running programs written in Chialisp, and minting tokens from XCH (Chia's base currency). The network is composed of hundreds of thousands of nodes, each of which stores a copy of the blockchain's history, while also propagating new transactions across the network.
