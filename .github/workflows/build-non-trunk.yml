@@ -7,13 +7,14 @@ on:
       - "!main"
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     container: node:17
     steps:
     - name: "Install deps"
       run: |
-        apt install python3 make g++ git openssl
+        apt update
+        apt install python3 make g++ git openssl zip
 
     - name: Checkout Code
       uses: actions/checkout@v2
