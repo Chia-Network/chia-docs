@@ -53,6 +53,12 @@
   "banner.start.button": {
     "message": "开始学习"
   },
+  "cmfcmf/d-s-l.searchBar.placeholder": {
+    "message": "搜索"
+  },
+  "cmfcmf/d-s-l.searchBar.detachedCancelButtonText": {
+    "message": ""
+  },
   "theme.NotFound.title": {
     "message": "Page Not Found",
     "description": "The title of the 404 page"
