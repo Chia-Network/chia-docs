@@ -3,22 +3,22 @@ sidebar_position: 4
 ---
 
 # 10.4 Wallet Protocol
-This protocol is a bidirectional protocol for communication between full nodes and wallets in the Chia system. This is also sometimes referred to as the light client protocol. This is also sometimes referred to as the light client protocol.
+This protocol is a bidirectional protocol for communication between full nodes and wallets in the Chia system. This is also sometimes referred to as the light client protocol.
 
 The wallet protocol contains two sub protocols by which a wallet can sync transaction from a node.
 
 ## Privacy Protocol
-The first is the privacy protocol, where the wallet downloads each header and checks the filter for transactions. It is more private, but much slower. It is more private, but much slower.
+The first is the privacy protocol, where the wallet downloads each header and checks the filter for transactions. It is more private, but much slower.
 
 ## Fast Sync Protocol (recommended)
-The second is the fast sync protocol, where the wallet directly asks the node to look for certain coin ids or puzzle hashes. It has less privacy but is much faster. The following is the flow for syncing for a wallet that any wallet developer should follow. It is important to connect to several random nodes to increase security. This sync protocol should be very fast for users who don't have many transactions. It has less privacy but is much faster. The following is the flow for syncing for a wallet that any wallet developer should follow. It is important to connect to several random nodes to increase security. This sync protocol should be very fast for users who don't have many transactions.
+The second is the fast sync protocol, where the wallet directly asks the node to look for certain coin ids or puzzle hashes. It has less privacy but is much faster. The following is the flow for syncing for a wallet that any wallet developer should follow. It is important to connect to several random nodes to increase security. This sync protocol should be very fast for users who don't have many transactions.
 
 1. Perform a DNS lookup to obtain random node IPS: `dig dns-introducer.chia.net`.
-2. Connect to a few nodes, to ensure the server does not omit transactions. Connect to a few nodes, to ensure the server does not omit transactions. The nodes will send a `new_peak_wallet` message with their claimed peaks.
+2. Connect to a few nodes, to ensure the server does not omit transactions. The nodes will send a `new_peak_wallet` message with their claimed peaks.
 3. Download a weight proof from one of the nodes (or several) with the heaviest peak
 4. Verify the weight proof to make sure the claimed peak is correct
 5. Subscribe to first 100 puzzle hashes for our key (both observer and non-observer)
-6. Validate the puzzle hash subscription state returned from the full node. This requires making sure the block in which these coins are included is part of the chain of SubEpochSummaries. Only the block hashes have to be checked here. Furthermore, a few block headers (around 30-50) should be validated after this block to make sure it is properly buried. This requires making sure the block in which these coins are included is part of the chain of SubEpochSummaries. Only the block hashes have to be checked here. Furthermore, a few block headers (around 30-50) should be validated after this block to make sure it is properly buried.
+6. Validate the puzzle hash subscription state returned from the full node. This requires making sure the block in which these coins are included is part of the chain of SubEpochSummaries. Only the block hashes have to be checked here. Furthermore, a few block headers (around 30-50) should be validated after this block to make sure it is properly buried.
 7. From step 5, we obtain all coin IDs which we are interested in, and we restore any CAT wallets for coins which have our puzzle hash in the hint.
 8. Subscribe to interesting coin IDs
 9. Validate the coin subscription returned from the full node, similar to how it's done in step 5
@@ -62,7 +62,7 @@ class RejectPuzzleSolution(Streamable):
 
 ## send_transaction
 
-A message by which a wallet can send a transaction to the mempool and broadcast it to the network. The full node will attempt to include it into the mempool. The full node will attempt to include it into the mempool.
+A message by which a wallet can send a transaction to the mempool and broadcast it to the network. The full node will attempt to include it into the mempool.
 
 ```python
 class SendTransaction(Streamable):
@@ -70,7 +70,7 @@ class SendTransaction(Streamable):
 ```
 
 ## transaction_ack
-A response to a `send_transaction` message. A response to a `send_transaction` message. After attempting to include the transaction, the mempool inclusion status is returned, with an optional english error string in case it did not succeed.
+A response to a `send_transaction` message. After attempting to include the transaction, the mempool inclusion status is returned, with an optional english error string in case it did not succeed.
 
 ```python
 class MempoolInclusionStatus(IntEnum):
@@ -122,7 +122,7 @@ class RejectHeaderRequest(Streamable):
 ```
 
 ## request_removals
-A request from the wallet to the full node for the removals (removed coins) of a certain block. A request from the wallet to the full node for the removals (removed coins) of a certain block. If `coin_names` is None, we are requesting all removals in the block. Otherwise, we are requesting only these specific removal coin IDs. Otherwise, we are requesting only these specific removal coin IDs.
+A request from the wallet to the full node for the removals (removed coins) of a certain block. If `coin_names` is None, we are requesting all removals in the block. Otherwise, we are requesting only these specific removal coin IDs.
 
 ```python
 class RequestRemovals(Streamable):
@@ -152,7 +152,7 @@ class RejectRemovalsRequest(Streamable):
 ```
 
 ## request_additions
-A request from the wallet to the full node for the additions (added coins) of a certain block. A request from the wallet to the full node for the additions (added coins) of a certain block. If `puzzle_hashes` is None, we are requesting all additions in the block. Otherwise, we are requeting only additions which have this puzzle hash. Otherwise, we are requeting only additions which have this puzzle hash.
+A request from the wallet to the full node for the additions (added coins) of a certain block. If `puzzle_hashes` is None, we are requesting all additions in the block. Otherwise, we are requeting only additions which have this puzzle hash.
 
 ```python
 class RequestAdditions(Streamable):
@@ -162,14 +162,14 @@ class RequestAdditions(Streamable):
 ```
 
 ## respond_additions
-A response to a `request_additions` request. If `puzzle_hashes` is None, all additions are returned, and `proofs` is set to None. A response to a `request_additions` request. If `puzzle_hashes` is None, all additions are returned, and `proofs` is set to None. Otherwise, only the requested coins are returned, (puzzle_hash to list of coin tuples, since multiple coins can have the same puzzle hash) and a proof is returned for each coin (puzzle_hash, proof, proof2 tuples). The proofs are merkle set inclusion proofs. See `merkle_set.py` in chia-blockchain for more info on how to verify these proofs. `proof` refers to a proof of the puzzle hash in the merkle set, and `proof2` is the merkle proof of `sha256(concatenation of coin ids)` for each puzzle hash, in the merkle set. Both are included as elements in the merkle set for each block. The proofs are merkle set inclusion proofs. See `merkle_set.py` in chia-blockchain for more info on how to verify these proofs. `proof` refers to a proof of the puzzle hash in the merkle set, and `proof2` is the merkle proof of `sha256(concatenation of coin ids)` for each puzzle hash, in the merkle set. Both are included as elements in the merkle set for each block.
+A response to a `request_additions` request. If `puzzle_hashes` is None, all additions are returned, and `proofs` is set to None. Otherwise, only the requested coins are returned, (puzzle_hash to list of coin tuples, since multiple coins can have the same puzzle hash) and a proof is returned for each coin (puzzle_hash, proof, proof2 tuples). The proofs are merkle set inclusion proofs. See `merkle_set.py` in chia-blockchain for more info on how to verify these proofs. `proof` refers to a proof of the puzzle hash in the merkle set, and `proof2` is the merkle proof of `sha256(concatenation of coin ids)` for each puzzle hash, in the merkle set. Both are included as elements in the merkle set for each block.
 
 ```python
 class RespondAdditions(Streamable):
     height: uint32
     header_hash: bytes32
     coins: List[Tuple[bytes32, List[Coin]]]     # puzzle hash => List[Coin] with that puzzle hash
-    proofs: Optional[List[Tuple[bytes32, bytes, Optional[bytes]]]]  # Puzzle hash. proof, proof2 proof, proof2
+    proofs: Optional[List[Tuple[bytes32, bytes, Optional[bytes]]]]  # Puzzle hash. proof, proof2
 ```
 
 ## reject_additions_request
@@ -211,7 +211,7 @@ class RespondHeaderBlocks(Streamable):
 
 
 ## register_for_ph_updates
-A request from the wallet to the full node to register for updates to a puzzle hash. This is part of the fast sync protocol. Whenever a new coin with one of these puzzle hashes (or hint) is created or spent, the full node will send a notification to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_ph_updates`). This is part of the fast sync protocol. Whenever a new coin with one of these puzzle hashes (or hint) is created or spent, the full node will send a notification to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_ph_updates`).
+A request from the wallet to the full node to register for updates to a puzzle hash. This is part of the fast sync protocol. Whenever a new coin with one of these puzzle hashes (or hint) is created or spent, the full node will send a notification to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_ph_updates`).
 
 ```python
 class RegisterForPhUpdates(Streamable):
@@ -220,7 +220,7 @@ class RegisterForPhUpdates(Streamable):
 ```
 
 ## respond_to_ph_updates
-A one-time response to `register_for_ph_updates` with all the confirmation or spent heights, and all the CoinStates. CoinState is an object that shows a change in a coin. if `spent_height` is not None, that means the coin was spent. If `created_height` is not None, that means the coin was created but not spent. If both are None, it means the coin was reverted (reorged out of the chain) and no longer exists. CoinState is an object that shows a change in a coin. if `spent_height` is not None, that means the coin was spent. If `created_height` is not None, that means the coin was created but not spent. If both are None, it means the coin was reverted (reorged out of the chain) and no longer exists.
+A one-time response to `register_for_ph_updates` with all the confirmation or spent heights, and all the CoinStates. CoinState is an object that shows a change in a coin. if `spent_height` is not None, that means the coin was spent. If `created_height` is not None, that means the coin was created but not spent. If both are None, it means the coin was reverted (reorged out of the chain) and no longer exists.
 
 ```python
 class RespondToPhUpdates(Streamable):
@@ -236,7 +236,7 @@ class CoinState(Streamable):
 ```
 
 ## register_for_coin_updates
-A request from the wallet to the full node to register for updates to a coin ID. This is part of the fast sync protocol. A request from the wallet to the full node to register for updates to a coin ID. This is part of the fast sync protocol. Whenever a new coin with one of these coin IDs is created or spent, the full node will send a notification to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_coin_updates`). Also, a one time notification is sent back with all the updates (`respond_to_coin_updates`).
+A request from the wallet to the full node to register for updates to a coin ID. This is part of the fast sync protocol. Whenever a new coin with one of these coin IDs is created or spent, the full node will send a notification to the wallet (`coin_state_update`). Also, a one time notification is sent back with all the updates (`respond_to_coin_updates`).
 
 ```python
 class RegisterForCoinUpdates(Streamable):
@@ -255,7 +255,7 @@ class RespondToCoinUpdates(Streamable):
 ```
 
 ## coin_state_update
-This is an update but not in response to a request. This is an update but not in response to a request. The full node will send the update whenever a new block is confirmed which contains removals or additions that are interesting to the wallet.
+This is an update but not in response to a request. The full node will send the update whenever a new block is confirmed which contains removals or additions that are interesting to the wallet.
 
 ```python
 class CoinStateUpdate(Streamable):
@@ -282,7 +282,7 @@ class RespondChildren(Streamable):
 ```
 
 ## request_ses_info
-A request from the wallet to the full node for SubEpochSummary heights. This is used for the fast sync protocol, to know where sub epochs start and end. This is used for the fast sync protocol, to know where sub epochs start and end.
+A request from the wallet to the full node for SubEpochSummary heights. This is used for the fast sync protocol, to know where sub epochs start and end.
 
 ```python
 class RequestSESInfo(Streamable):
