@@ -19,7 +19,6 @@ The key word here is “sequential”, like hashing a number many times: hash(ha
 <figcaption>
 Figure 3: The Verifier (blockchain) sends a challenge to the Prover (timelord) and the Prover computes the output and proof.
 </figcaption>
-</figcaption>
 </figure>
 
 Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures") become possible.
