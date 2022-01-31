@@ -34,8 +34,7 @@ The red arrows provide security by burying foliage blocks, but the gray arrows d
 <figure>
 <img src="/img/foliage.png" alt="drawing" width="1400"/>
 <figcaption>
-Figure 11: Foliage blocks and trunk blocks. Blocks B1, B2, and B4 have transactions and have red pointers (pointers to last block). Note that the start of the sub-slot is also a signage point.
-</figcaption> Blocks B1, B2, and B4 have transactions and have red pointers (pointers to last block). Note that the start of the sub-slot is also a signage point.
+Figure 11: Foliage blocks and trunk blocks. Blocks B1, B2, and B4 have transactions and have red pointers (pointers to last block). Note that the start of the sub-slot is also a signage point. Blocks B1, B2, and B4 have transactions and have red pointers (pointers to last block). Note that the start of the sub-slot is also a signage point.
 </figcaption>
 </figure>
 
