@@ -7,8 +7,7 @@ sidebar_position: 7
 <figure>
 <img src="/img/multiple_blocks.png" alt="drawing"/>
 <figcaption>
-Figure 7: multiple blocks. Sp1 = signage point 1
-</figcaption> Sp1 = signage point 1
+Figure 7: multiple blocks. Sp1 = signage point 1 Sp1 = signage point 1
 </figcaption>
 </figure>
 

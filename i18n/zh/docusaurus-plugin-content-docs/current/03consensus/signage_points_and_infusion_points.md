@@ -51,8 +51,7 @@ Therefore, infusion_iterations will be between 3 and 4 signage points after the 
 <figure>
 <img src="/img/signage_points.png" alt="drawing"/>
 <figcaption>
-Figure 5: timelords create proofs for both the signage point and the infusion point. But they only infuse (change the VDF classgroup) for the latter. Squares symbolize infusions, where a new VDF is started.
-</figcaption> But they only infuse (change the VDF classgroup) for the latter. Squares symbolize infusions, where a new VDF is started.
+Figure 5: timelords create proofs for both the signage point and the infusion point. But they only infuse (change the VDF classgroup) for the latter. Squares symbolize infusions, where a new VDF is started. But they only infuse (change the VDF classgroup) for the latter. Squares symbolize infusions, where a new VDF is started.
 </figcaption>
 </figure>
 
