@@ -3,12 +3,12 @@ sidebar_position: 2
 ---
 
 # 10.2 Harvester Protocol
-The harvester protocol defines the messages sent between a farmer service and a harvester service. These tend to be on the same machine for small farmers, but for medium or large farmers they can be in multiple machines.
+The harvester protocol defines the messages sent between a farmer service and a harvester service. The harvester protocol defines the messages sent between a farmer service and a harvester service. These tend to be on the same machine for small farmers, but for medium or large farmers they can be in multiple machines.
 
 ## harvester_handshake
-The handshake between farmer and harvester. A farmer sends this message to harvesters, to initialize them and tell them which pool public keys and farmer public keys are acceptable to use.
+The handshake between farmer and harvester. The handshake between farmer and harvester. A farmer sends this message to harvesters, to initialize them and tell them which pool public keys and farmer public keys are acceptable to use.
 
-A farmer can be connected to multiple harvesters, but a harvester should only have one farmer connection. The harvester can start using plots which have these keys associated with them.
+A farmer can be connected to multiple harvesters, but a harvester should only have one farmer connection. The harvester can start using plots which have these keys associated with them. The harvester can start using plots which have these keys associated with them.
 
 ```python
 class HarvesterHandshake(Streamable):
@@ -18,10 +18,14 @@ class HarvesterHandshake(Streamable):
 
 ## new_signage_point_harvester
 
-This message is a notification from the farmer to the harvester of a new challenge. The harvester first checks which plots pass the plot filter (see section 3.6), and for those that do, fetches the quality. This requires around 7 random reads (and thus disk seeks) for each quality. Each plot is expected to have one proof of space (and therefore one quality) on average, so for 50 plots, a harvester would have around 50 qualities. For those qualities that are sufficiently good to win a block or a pool partial, the whole proof is fetched (64 random reads in the plot), and then `new_proof_of_space` is sent to the farmer.
+This message is a notification from the farmer to the harvester of a new challenge. The harvester first checks which plots pass the plot filter (see section 3.6), and for those that do, fetches the quality. This requires around 7-9 random reads (and thus disk seeks) for each quality. Each plot is expected to have one proof of space (and therefore one quality) on average, so for 50 plots, a harvester would have around 50 qualities. For those qualities that are sufficiently good to win a block or a pool partial, the whole proof is fetched (64 random reads in the plot), and then `new_proof_of_space` is sent to the farmer.
 
 ```python
 class NewSignagePointHarvester(Streamable):
+    challenge_hash: bytes32     # The challenge hash for the sub slot in which the signage point lies
+    difficulty: uint64          # The current blockchain difficulty
+    sub_slot_iters: uint64      # The current blockchain sub-slot iters
+    signage_point_index: uint8  # The signage point's index, from 0 to 63. class NewSignagePointHarvester(Streamable):
     challenge_hash: bytes32     # The challenge hash for the sub slot in which the signage point lies
     difficulty: uint64          # The current blockchain difficulty
     sub_slot_iters: uint64      # The current blockchain sub-slot iters
@@ -37,9 +41,9 @@ class PoolDifficulty(Streamable):
 ```
 
 ## new_proof_of_space
-A successful proof of space that is sent to the farmer. The `challenge_hash`, `sp_hash`, and `signage_point_index` correspond to the ones sent in `new_signage_point_harvester`. Many proofs can be submitted for each signage point.
+A successful proof of space that is sent to the farmer. A successful proof of space that is sent to the farmer. The `challenge_hash`, `sp_hash`, and `signage_point_index` correspond to the ones sent in `new_signage_point_harvester`. Many proofs can be submitted for each signage point. Many proofs can be submitted for each signage point.
 
-The plot is a string chosen by the harvester to represent the winning plot (and proof index) in future communications between the farmer and harvester. This can be, for example, the filename of the plot with an additional byte for the index. This is relevant, because a certain plot can potentially have more than one proof for each signage point, and we want communications for each proof to be separate and not conflict (specifically to fetch signatures from the harvester).
+The plot is a string chosen by the harvester to represent the winning plot (and proof index) in future communications between the farmer and harvester. This can be, for example, the filename of the plot with an additional byte for the index. This is relevant, because a certain plot can potentially have more than one proof for each signage point, and we want communications for each proof to be separate and not conflict (specifically to fetch signatures from the harvester). This can be, for example, the filename of the plot with an additional byte for the index. This is relevant, because a certain plot can potentially have more than one proof for each signage point, and we want communications for each proof to be separate and not conflict (specifically to fetch signatures from the harvester).
 
 ```python
 class NewProofOfSpace(Streamable):
@@ -59,7 +63,7 @@ class ProofOfSpace(Streamable):
 ```
 
 ## request_signatures
-This is a request from the farmer to the harvester for a signature from the plot key, for a specific plot (using the plot identifier from `new_proof_of_space`). The farmer can request signatures from multiple messages.
+This is a request from the farmer to the harvester for a signature from the plot key, for a specific plot (using the plot identifier from `new_proof_of_space`). The farmer can request signatures from multiple messages. The farmer can request signatures from multiple messages.
 
 ```python
 class RequestSignatures(Streamable):
@@ -70,7 +74,7 @@ class RequestSignatures(Streamable):
 ```
 
 ## respond_signatures
-This is a response to `request_signatures`. The local public key is the public key corresponding to the secret key in the plot. To see more about the keys for plots, look at [section 9](/docs/09keys/keys-and-signatures).
+This is a response to `request_signatures`. The local public key is the public key corresponding to the secret key in the plot. This is a response to `request_signatures`. The local public key is the public key corresponding to the secret key in the plot. To see more about the keys for plots, look at [section 9](/docs/09keys/keys-and-signatures).
 
 ```python
 class RespondSignatures(Streamable):
@@ -93,7 +97,7 @@ class RequestPlots(Streamable):
 ```
 
 ## respond_plots
-A response to `request_plots` request. This message is also sent whenever a new plot is loaded.
+A response to `request_plots` request. This message is also sent whenever a new plot is loaded. This message is also sent whenever a new plot is loaded.
 
 ```python
 class RespondPlots(Streamable):
