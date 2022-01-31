@@ -4,25 +4,25 @@ sidebar_position: 2
 
 # 11.2  Chia Pool Protocol 1.0 Specification
 
-This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later. This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later. It relies on farmers having smart coins (referred to as plot NFTs in GUI + CLI) which allow them to switch between pools by making transactions on the blockchain. Furthermore, it decreases the reliance on pools for block production, since the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously. Furthermore, it decreases the reliance on pools for block production, since the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously.
+This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later. It relies on farmers having smart coins (referred to as plot NFTs in GUI + CLI) which allow them to switch between pools by making transactions on the blockchain. Furthermore, it decreases the reliance on pools for block production, since the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously.
 
 
 ## Security considerations
-The pool must ensure that partials arrive quickly, faster than the 28-second time limit of inclusion into the blockchain. This allows farmers that have slow setups to detect issues. This allows farmers that have slow setups to detect issues.
+The pool must ensure that partials arrive quickly, faster than the 28-second time limit of inclusion into the blockchain. This allows farmers that have slow setups to detect issues.
 
-The Pool server must check that the `pool_contract_puzzle_hash` a.k.a. `p2_singleton_puzzle_hash` matches the puzzle that they expect. Otherwise, the pool has no guarantee that users will not attempt to claim block rewards for themselves, and immediately leave the pool, something that the provided smart contract prevents. `p2_singleton_puzzle_hash` matches the puzzle that they expect. Otherwise, the pool has no guarantee that users will not attempt to claim block rewards for themselves, and immediately leave the pool, something that the provided smart contract prevents.
+The Pool server must check that the `pool_contract_puzzle_hash` a.k.a. `p2_singleton_puzzle_hash` matches the puzzle that they expect. Otherwise, the pool has no guarantee that users will not attempt to claim block rewards for themselves, and immediately leave the pool, something that the provided smart contract prevents.
 
-The Chia client must only connect to the pool configuration URL via HTTPS over TLS >= 1.2. This is to prevent session hijacking, leading to user funds being stolen. This is to prevent session hijacking, leading to user funds being stolen.
+The Chia client must only connect to the pool configuration URL via HTTPS over TLS >= 1.2. This is to prevent session hijacking, leading to user funds being stolen.
 
 
 ## Parties
 
-The parties involved in the pool protocol are the pool operator and farmers. Each farmer is running a farmer process, and any number of harvester processes connected to that farmer process. The parties involved in the pool protocol are the pool operator and farmers. Each farmer is running a farmer process, and any number of harvester processes connected to that farmer process. The full node can either be run by the farmer (the default in the Chia GUI application), or run by the pool operator. If the farmer does not want to run a full node, they can configure their node to connect to a remote full node. If the farmer does not want to run a full node, they can configure their node to connect to a remote full node.
+The parties involved in the pool protocol are the pool operator and farmers. Each farmer is running a farmer process, and any number of harvester processes connected to that farmer process. The full node can either be run by the farmer (the default in the Chia GUI application), or run by the pool operator. If the farmer does not want to run a full node, they can configure their node to connect to a remote full node.
 
 A pool operator can support any number of farmers.
 
 ## Farmer identification
-A farmer can be uniquely identified by the identifier of the farmer's singleton on the blockchain, this is what `launcher_id` refers to. The `launcher_id` can be used as a primary key in a database. The pool must periodically check the singleton's state on the blockchain to validate that it's farming to the pool, and not leaving or farming to another pool. The `launcher_id` can be used as a primary key in a database. The pool must periodically check the singleton's state on the blockchain to validate that it's farming to the pool, and not leaving or farming to another pool.
+A farmer can be uniquely identified by the identifier of the farmer's singleton on the blockchain, this is what `launcher_id` refers to. The `launcher_id` can be used as a primary key in a database. The pool must periodically check the singleton's state on the blockchain to validate that it's farming to the pool, and not leaving or farming to another pool.
 
 ## Farmer authentication
 For the farmer to authenticate to the pool the following time based authentication token scheme must be added to the signing messages of some endpoints.
@@ -31,11 +31,11 @@ For the farmer to authenticate to the pool the following time based authenticati
 authentication_token = current_utc_minutes / authentication_token_timeout
 ```
 
-Where `authentication_token_timeout` is a configuration parameter of the pool which is also included in the [GET /pool_info](#get-pool_info) response that must be respected by the farmer. Whereas `current_utc_minutes` is the local UTC timestamp in **minutes** at the moment of signing. The local clock should ideally be in sync with a time synchronization protocol e.g., NTP. The authentication token is usually included in a signed payload. Whereas `current_utc_minutes` is the local UTC timestamp in **minutes** at the moment of signing. The local clock should ideally be in sync with a time synchronization protocol e.g., NTP. The authentication token is usually included in a signed payload.
+Where `authentication_token_timeout` is a configuration parameter of the pool which is also included in the [GET /pool_info](#get-pool_info) response that must be respected by the farmer. Whereas `current_utc_minutes` is the local UTC timestamp in **minutes** at the moment of signing. The local clock should ideally be in sync with a time synchronization protocol e.g., NTP. The authentication token is usually included in a signed payload.
 
 ## HTTPS Endpoints Summary
 
-The pool protocol consists of several HTTPS endpoints which return JSON responses. The HTTPS server can run on any port, but must be running with TLS enabled (using a CA approved certificate), and with pipelining enabled. All bytes values are encoded as hex with optional 0x in front. Clients are also expected to run with pipelining. The HTTPS server can run on any port, but must be running with TLS enabled (using a CA approved certificate), and with pipelining enabled. All bytes values are encoded as hex with optional 0x in front. Clients are also expected to run with pipelining.
+The pool protocol consists of several HTTPS endpoints which return JSON responses. The HTTPS server can run on any port, but must be running with TLS enabled (using a CA approved certificate), and with pipelining enabled. All bytes values are encoded as hex with optional 0x in front. Clients are also expected to run with pipelining.
 
 - [GET /pool_info](#get-pool_info)
 - [GET /farmer](#get-farmer)
@@ -75,7 +75,7 @@ The following errors may occur:
 
 ## Signature validation
 
-Most of the endpoints require signature validation. Most of the endpoints require signature validation. The validation requires serialization of the endpoints payloads to calculate the message hash which is done like:
+Most of the endpoints require signature validation. The validation requires serialization of the endpoints payloads to calculate the message hash which is done like:
 
 ```
 message_hash = sha256(serialized_payload)
@@ -84,7 +84,7 @@ message_hash = sha256(serialized_payload)
 The serialized payload must follow the `Streamable` standard defined [here](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/util/streamable.py).
 
 ## Pool URL
-The pool URL is the url that farmers use to connect to the pool. The subdomains, port, and path are optional. The client will use 443 if there is no port. Note that the trailing slash must NOT be present. Everything must be lower case. The subdomains, port, and path are optional. The client will use 443 if there is no port. Note that the trailing slash must NOT be present. Everything must be lower case.
+The pool URL is the url that farmers use to connect to the pool. The subdomains, port, and path are optional. The client will use 443 if there is no port. Note that the trailing slash must NOT be present. Everything must be lower case.
 ```
 https://subdomain.domain.tld:port/path
 ```
@@ -110,13 +110,13 @@ This takes no arguments, and allows clients to fetch information about a pool. I
 The description is a short paragraph that can be displayed in GUIs when the farmer enters a pool URL.
 
 #### fee
-The fee that the pool charges by default, a number between 0.0 (0.0%) and 1.0 (100.0%). This does not include blockchain transaction fees. This does not include blockchain transaction fees.
+The fee that the pool charges by default, a number between 0.0 (0.0%) and 1.0 (100.0%). This does not include blockchain transaction fees.
 
 #### logo_url
-A URL for a pool logo that the client can display in the UI. This is optional for v1.0. This is optional for v1.0.
+A URL for a pool logo that the client can display in the UI. This is optional for v1.0.
 
 #### minimum_difficulty
-The minimum difficulty that the pool supports. The minimum difficulty that the pool supports. This will also be the default that farmers start sending proofs for.
+The minimum difficulty that the pool supports. This will also be the default that farmers start sending proofs for.
 
 #### name
 Name of the pool, this is only for display purposes and does not go on the blockchain.
@@ -125,10 +125,10 @@ Name of the pool, this is only for display purposes and does not go on the block
 The pool protocol version supported by the pool.
 
 #### relative_lock_height
-The number of blocks (confirmations) that a user must wait between the point when they start escaping a pool, and the point at which they can finalize their pool switch. Must be less than 4608 (approximately 24 hours). Must be less than 4608 (approximately 24 hours).
+The number of blocks (confirmations) that a user must wait between the point when they start escaping a pool, and the point at which they can finalize their pool switch. Must be less than 4608 (approximately 24 hours).
 
 #### target_puzzle_hash
-This is the target of where rewards will be sent to from the singleton. Controlled by the pool. Controlled by the pool.
+This is the target of where rewards will be sent to from the singleton. Controlled by the pool.
 
 #### authentication_token_timeout
 The time in **minutes** for an `authentication_token` to be valid, see [Farmer authentication](#farmer-authentication).
@@ -182,7 +182,7 @@ where the parameter must be serialized and hashed according to [Signature valida
 Note: The pool MUST return the current points balance, which is the total number of points found since the last payout for that user.
 
 ## POST /farmer
-Register a farmer with the pool. Register a farmer with the pool. This is required once before submitting the first partial.
+Register a farmer with the pool. This is required once before submitting the first partial.
 
 Request:
 ```json
@@ -200,7 +200,7 @@ Request:
 
 Successful response:
 ```json
-{"welcome_message" : "Welcome to the reference pool. Happy farming."} Happy farming."}
+{"welcome_message" : "Welcome to the reference pool. Happy farming."}
 ```
 
 A successful response must always contain a welcome message which must be defined by the pool.
@@ -214,13 +214,13 @@ The unique identifier of the farmer's singleton, see [Farmer identification](#fa
 See [Farmer authentication](#farmer-authentication) for the specification of `authentication_token`.
 
 #### payload.authentication_public_key
-The public key of the authentication key, which is a temporary key used by the farmer to sign requests to the pool. It is authorized by the `owner_key`, so that the owner key can be kept more secure. The pool should reject requests made with outdated `authentication_keys`. These key can be changed using `PUT /farmer`, which is signed with the owner key. It is authorized by the `owner_key`, so that the owner key can be kept more secure. The pool should reject requests made with outdated `authentication_keys`. These key can be changed using `PUT /farmer`, which is signed with the owner key.
+The public key of the authentication key, which is a temporary key used by the farmer to sign requests to the pool. It is authorized by the `owner_key`, so that the owner key can be kept more secure. The pool should reject requests made with outdated `authentication_keys`. These key can be changed using `PUT /farmer`, which is signed with the owner key.
 
 #### payload.payout_instructions
-These are the instructions for how the farmer wants to get paid. These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier.
+These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier.
 
 #### payload.suggested_difficulty
-A request from the farmer to update the difficulty. Can be ignored or respected by the pool. A request from the farmer to update the difficulty. Can be ignored or respected by the pool. However, this should only be respected if the authentication public key is the most recent one seen for this farmer.
+A request from the farmer to update the difficulty. Can be ignored or respected by the pool. However, this should only be respected if the authentication public key is the most recent one seen for this farmer.
 
 See [Difficulty](#difficulty) for more details about the impact of the difficulty.
 
@@ -252,7 +252,7 @@ Request:
 }
 ```
 
-For a description of the request body entries see the corresponding keys in [POST /farmer](#post-farmer). The values provided with the key/value pairs are used to update the existing values on the server. All entries, except `launcher_id`, are optional but there must be at least one of them. The values provided with the key/value pairs are used to update the existing values on the server. All entries, except `launcher_id`, are optional but there must be at least one of them.
+For a description of the request body entries see the corresponding keys in [POST /farmer](#post-farmer). The values provided with the key/value pairs are used to update the existing values on the server. All entries, except `launcher_id`, are optional but there must be at least one of them.
 
 See the [streamable](#signature-validation) class `PutFarmerPayload` in the [pool protocol](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) for details and [Farmer authentication](#farmer-authentication) for the specification of `authentication_token`.
 
@@ -265,7 +265,7 @@ Successful response:
 }
 ```
 
-A successful response must always contain one key/value pair for each entry provided in the request body. The value must be `true` if the entry has been updated or `false` if the value was the same as the current value. The value must be `true` if the entry has been updated or `false` if the value was the same as the current value.
+A successful response must always contain one key/value pair for each entry provided in the request body. The value must be `true` if the entry has been updated or `false` if the value was the same as the current value.
 
 See below for an example body to only update the authentication key:
 
@@ -327,10 +327,10 @@ The proof of space in chia-blockchain format.
 The challenge of the proof of space, computed from the signage point or end of subslot.
 
 #### payload.proof_of_space.pool_contract_puzzle_hash
-The puzzle hash that is encoded in the plots, equivalent to the `p2_singleton_puzzle_hash`. This is the first address that the 7/8 rewards get paid out to in the blockchain, if this proof wins. This value can be derived from the `launcher_id`, and must be valid for all partials. This is the first address that the 7/8 rewards get paid out to in the blockchain, if this proof wins. This value can be derived from the `launcher_id`, and must be valid for all partials.
+The puzzle hash that is encoded in the plots, equivalent to the `p2_singleton_puzzle_hash`. This is the first address that the 7/8 rewards get paid out to in the blockchain, if this proof wins. This value can be derived from the `launcher_id`, and must be valid for all partials.
 
 #### payload.proof_of_space.plot_public_key
-Public key associated with the plot. Public key associated with the plot. (Can be a 2/2 BLS between plot local key and farmer, but not necessarily).
+Public key associated with the plot. (Can be a 2/2 BLS between plot local key and farmer, but not necessarily).
 
 #### payload.proof_of_space.size
 K size, must be at least 32.
@@ -339,7 +339,7 @@ K size, must be at least 32.
 64 x values encoding the actual proof of space, must be valid corresponding to the `sp_hash`.
 
 #### payload.sp_hash
-This is either the hash of the output for the signage point, or the challenge_hash for the sub slot, if it's an end of sub slot challenge. This must be a valid signage point on the blockchain that has not been reverted. The pool must check a few minutes after processing the partial, that it has not been reverted on the blockchain. This must be a valid signage point on the blockchain that has not been reverted. The pool must check a few minutes after processing the partial, that it has not been reverted on the blockchain.
+This is either the hash of the output for the signage point, or the challenge_hash for the sub slot, if it's an end of sub slot challenge. This must be a valid signage point on the blockchain that has not been reverted. The pool must check a few minutes after processing the partial, that it has not been reverted on the blockchain.
 
 #### payload.end_of_sub_slot
 If true, the sp_hash encodes the challenge_hash of the sub slot.
@@ -361,9 +361,9 @@ See the [streamable](#signature-validation) class `PostPartialPayload` in the [p
 A partial must be completely rejected if the BLS signature does not validate.
 
 ## GET /login
-This allows the user to log in to a web interface if the pool supports it, see service flags in [GET /pool_info](#get-pool_info). The farmer software must offer a way to generate and display a login link or provide a button which generates the link and then just opens it in the default browser. The link follows the specification below. The farmer software must offer a way to generate and display a login link or provide a button which generates the link and then just opens it in the default browser. The link follows the specification below.
+This allows the user to log in to a web interface if the pool supports it, see service flags in [GET /pool_info](#get-pool_info). The farmer software must offer a way to generate and display a login link or provide a button which generates the link and then just opens it in the default browser. The link follows the specification below.
 
-Note that there is no explicit account creation. Note that there is no explicit account creation. A farmer can log in after making their self known at the pool with [POST /farmer](#post-farmer).
+Note that there is no explicit account creation. A farmer can log in after making their self known at the pool with [POST /farmer](#post-farmer).
 
 Request parameters:
 ```
@@ -393,13 +393,13 @@ This is a BLS signature of the hashed serialization of the following data in the
 | target_puzzle_hash | bytes32 |
 | authentication_token | uint64  |
 
-where `method_name` must be the serialized string `"get_login"` and `target_puzzle_hash` is pool's target puzzle hash (see [GET /pool_info](#get-pool_info)). The parameters must be serialized and hashed according to [Signature validation](#signature-validation) and the signature must be signed by the private key of the `authentication_public_key` using the Augmented Scheme in the BLS IETF spec. The parameters must be serialized and hashed according to [Signature validation](#signature-validation) and the signature must be signed by the private key of the `authentication_public_key` using the Augmented Scheme in the BLS IETF spec.
+where `method_name` must be the serialized string `"get_login"` and `target_puzzle_hash` is pool's target puzzle hash (see [GET /pool_info](#get-pool_info)). The parameters must be serialized and hashed according to [Signature validation](#signature-validation) and the signature must be signed by the private key of the `authentication_public_key` using the Augmented Scheme in the BLS IETF spec.
 
 where the parameter must be serialized and hashed according to [Signature validation](#signature-validation) and the signature must be signed by the private key of the `authentication_public_key` using the Augmented Scheme in the BLS IETF spec.
 
 
 ## Difficulty
-The difficulty allows the pool operator to control how many partials per day they are receiving from each farmer. The difficulty can be adjusted separately for each farmer. A reasonable target would be 300 partials per day, to ensure frequent feedback to the farmer, and low variability. A difficulty of 1 results in approximately 10 partials per day per k32 plot. This is the minimum difficulty that the V1 of the protocol supports is 1. However, a pool may set a higher minimum difficulty for efficiency. When calculating whether a proof is high quality enough for being awarded points, the pool should use `sub_slot_iters=37600000000`. If the farmer submits a proof that is not good enough for the current difficulty, the pool should respond by setting the `current_difficulty` in the response. The difficulty can be adjusted separately for each farmer. A reasonable target would be 300 partials per day, to ensure frequent feedback to the farmer, and low variability. A difficulty of 1 results in approximately 10 partials per day per k32 plot. This is the minimum difficulty that the V1 of the protocol supports is 1. However, a pool may set a higher minimum difficulty for efficiency. When calculating whether a proof is high quality enough for being awarded points, the pool should use `sub_slot_iters=37600000000`. If the farmer submits a proof that is not good enough for the current difficulty, the pool should respond by setting the `current_difficulty` in the response.
+The difficulty allows the pool operator to control how many partials per day they are receiving from each farmer. The difficulty can be adjusted separately for each farmer. A reasonable target would be 300 partials per day, to ensure frequent feedback to the farmer, and low variability. A difficulty of 1 results in approximately 10 partials per day per k32 plot. This is the minimum difficulty that the V1 of the protocol supports is 1. However, a pool may set a higher minimum difficulty for efficiency. When calculating whether a proof is high quality enough for being awarded points, the pool should use `sub_slot_iters=37600000000`. If the farmer submits a proof that is not good enough for the current difficulty, the pool should respond by setting the `current_difficulty` in the response.
 
 ## Points
-X points are awarded for submitting a partial with difficulty X, which means that points scale linearly with difficulty. For example, 100 TiB of space should yield approximately 10,000 points per day, whether the difficulty is set to 100 or 200. It should not matter what difficulty is set for a farmer, as long as they are consistently submitting partials. The specification does not require pools to pay out proportionally by points, but the payout scheme should be clear to farmers, and points should be acknowledged and accumulated points returned in the response. For example, 100 TiB of space should yield approximately 10,000 points per day, whether the difficulty is set to 100 or 200. It should not matter what difficulty is set for a farmer, as long as they are consistently submitting partials. The specification does not require pools to pay out proportionally by points, but the payout scheme should be clear to farmers, and points should be acknowledged and accumulated points returned in the response.
+X points are awarded for submitting a partial with difficulty X, which means that points scale linearly with difficulty. For example, 100 TiB of space should yield approximately 10,000 points per day, whether the difficulty is set to 100 or 200. It should not matter what difficulty is set for a farmer, as long as they are consistently submitting partials. The specification does not require pools to pay out proportionally by points, but the payout scheme should be clear to farmers, and points should be acknowledged and accumulated points returned in the response.
