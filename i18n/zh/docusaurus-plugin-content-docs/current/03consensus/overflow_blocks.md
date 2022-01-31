@@ -18,7 +18,6 @@ For a farmer to create a block, their required_iterations must be less than sub-
 Figure 9: B4 in this diagram is an overflow block, since the infusion is in the next sub-slot.
 
 B4 is not based on a current-slot challenge, and thus does not decrease the deficit or make a challenge block.
-</figcaption>
 
 B4 is not based on a current-slot challenge, and thus does not decrease the deficit or make a challenge block.
 </figcaption>
@@ -44,8 +43,7 @@ This requirement was added to discourage long-range attacks, and is described in
 <img src="/img/deficit.png" alt="drawing"/>
 <figcaption>
 Figure 10: c2 is the end of the sub-slot but not the end of the slot (we have yet to reach 0 deficit). c2 does NOT point to ic2, since the slot did not end at this sub-slot.
-Deficit is 3 instead of resetting to 16, and the infused challenge chain continues.
-</figcaption> c2 does NOT point to ic2, since the slot did not end at this sub-slot.
+Deficit is 3 instead of resetting to 16, and the infused challenge chain continues. c2 does NOT point to ic2, since the slot did not end at this sub-slot.
 Deficit is 3 instead of resetting to 16, and the infused challenge chain continues.
 </figcaption>
 </figure>
