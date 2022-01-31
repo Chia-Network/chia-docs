@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 
 # 12.2 Full Node API
-The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for security concerns.
+The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for security concerns. This port must not be exposed publicly for security concerns.
 
 ## get_network_info
 Retrieves some information about the current network.
@@ -86,7 +86,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ## get_block
 
-Retrieves an entire block as a FulLBlock by header hash. Note that some blocks are transaction blocks, and some are not (like the one below).
+Retrieves an entire block as a FulLBlock by header hash. Note that some blocks are transaction blocks, and some are not (like the one below). Note that some blocks are transaction blocks, and some are not (like the one below).
 
 * **header_hash**: Heaader hash (block identifier) of the block to get.
 
@@ -180,7 +180,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 
 ## get_blocks
-Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. To find out which one is in the blockchain, use `get_block_record_by_height`.
+Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. To find out which one is in the blockchain, use `get_block_record_by_height`.
 
 * **start**: The start height.
 * **end**: The end height (non-inclusive).
@@ -202,7 +202,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_block_record_by_height
- Retrieves a block record by height (assuming the height <= peak height). Note that not all blocks will have all fields set here (depending on transaction block, finishing sub epoch, etc).
+ Retrieves a block record by height (assuming the height <= peak height). Note that not all blocks will have all fields set here (depending on transaction block, finishing sub epoch, etc). Note that not all blocks will have all fields set here (depending on transaction block, finishing sub epoch, etc).
 
 * **height**: the height to get
 
@@ -342,7 +342,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
  ```
 
 ## get_unfinished_block_headers
-Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon. The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the blocks after it.
+Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon. Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon. The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the blocks after it.
 
 ```json
 // Request
@@ -448,7 +448,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_additions_and_removals
-Retrieves the additions and removals (state transitions) for a certain block. Returns coin records for each addition and removal. Blocks that are not transaction blocks will have empty removal and addition lists. To get the actual puzzles and solutions for spent coins, use the `get_puzzle_and_solution` api.
+Retrieves the additions and removals (state transitions) for a certain block. Returns coin records for each addition and removal. Blocks that are not transaction blocks will have empty removal and addition lists. Retrieves the additions and removals (state transitions) for a certain block. Returns coin records for each addition and removal. Blocks that are not transaction blocks will have empty removal and addition lists. To get the actual puzzles and solutions for spent coins, use the `get_puzzle_and_solution` api.
 
 * **header_hash**: header hash of the block
 
@@ -518,7 +518,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_coin_record_by_name
-Retrieves a coin record by its name/id. The coin id can be obtained by hashing the Coin object.
+Retrieves a coin record by its name/id. Retrieves a coin record by its name/id. The coin id can be obtained by hashing the Coin object.
 
 * **name**: coin id or coin name.
 
@@ -615,7 +615,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 
 ## push_tx
-Pushes a transaction / spend bundle to the mempool and blockchain. Returns whether the spend bundle was successfully included into the mempool.
+Pushes a transaction / spend bundle to the mempool and blockchain. Returns whether the spend bundle was successfully included into the mempool. Returns whether the spend bundle was successfully included into the mempool.
 
 `SUCCESS` does not guarantee that the transaction will get confirmed. A transaction may be dropped from the mempool and not included if the fee is too low. A transaction may also be combined with other transactions to form different spend bundles, so looking up the bundle by ID does not guarantee finding the original transaction. Transaction can be resubmitted with a higher fee, as long as the coins spent in the new transaction are a superset of the coins spent in the old one.
 
