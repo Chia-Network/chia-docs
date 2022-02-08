@@ -35,7 +35,7 @@ Normal operation is the process by which a full node continuously gossips and re
 1. The unfinished block is propagated across the network, along with all information up to the signage point, transactions, etc.
 2. The finished block, which includes infusion point VDFs, is also propagated. This typically excludes the transactions, which were already sent in step 1.
 
-Normal operation is much less CPU-intensive than full sync, since there is only one block every 18 seconds, and one transaction block every 52 seconds, on average. Low-power machines like the Raspberry PI 4 should be able to easily continue normal operation.
+Normal operation is much less CPU-intensive than full sync, since there is only one block every 18 seconds, and one transaction block every 47 seconds, on average. Low-power machines like the Raspberry PI 4 should be able to easily continue normal operation.
 
 
 ## Block Validation Steps

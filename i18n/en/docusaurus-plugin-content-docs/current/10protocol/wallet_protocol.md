@@ -88,7 +88,7 @@ class TransactionAck(Streamable):
 A notification from the full node to the wallet that the blockchain's peak has changed.
 
 ```python
-class NewPeakWallet(Streamable):
+class NewPeakWallet(Streamable)```python:
     header_hash: bytes32       # New peak of the blockchain
     height: uint32             # New peak's height
     weight: uint128            # New peak's weight

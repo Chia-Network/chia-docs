@@ -4,7 +4,7 @@ sidebar_position: 12
 
 # 3.12 Light Clients
 
-Light client support is another benefit of Proof of Space (PoSpace) when compared with Proof of Stake (PoS). In PoSpace, all proofs can be verified objectively and cryptographically, while maintaining the requirement to control an actual resource at a certain point in time. With Chia's consensus, a candidate chain can be compared to an alternate chain objectively for weight, even after being offline for a long time, without relying on a central authority.
+Light client support is another benefit of Proof of Space (PoSpace) when compared with Proof of Stake (PoS). In PoSpace, all proofs can be verified objectively and cryptographically, while maintaining the requirement to control an actual resource at a certain point in time. With Chia's consensus, a candidate chain can be compared to an alternate chain objectively for weight, even after being online for a long time, without relying on a central authority.
 
 For light clients that want to sync up quickly to the chain (for example, mobile wallets), a full node can create a small-sized proof that can convince the light client that the weight of a chain is close to some value. This is called a proof of weight.
 
@@ -16,7 +16,7 @@ There is only one sub-epoch every 384 blocks, so the summaries will only reach a
 
 The node also deterministically samples several sub-epochs based on the challenge of the last block. Sub-epochs have a chance to be chosen proportional to the difficulty during that sub-epoch. For the chosen sub-epoch, the light client downloads one of the challenge chain blocks (which are approximately 1/32 of all blocks), and computes the average infusion iterations of all challenge blocks in that sub-epoch. Based on this time, the light client can extrapolate how many blocks the reward chain contains.
 
-For example, if the challenge blocks all occur with very small iterations (close to the beginning of the sub-slot), there are likely many blocks in that sub-slot. Conversely, if the iterations are close to the middle of the sub-slot, there is likely only one block per sub-slot. This allows the light client to only download 1/32 of the blocks in each sub-slot, but still get a good estimate of the total weight.
+For example, if the challenge blocks all occur with very small iterations (close to the beginning of the slot), there are likely many blocks in that slot. Conversely, if the iterations are close to the middle of the slot, there is likely only one block per slot. This allows the light client to only download 1/32 of the blocks in each slot, but still get a good estimate of the total weight.
 
 Furthermore, the last few sub-epochs should be downloaded in full for the light client. This adds a small amount of data, but prevents attackers from creating small forks at the end of the chain.
 

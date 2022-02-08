@@ -47,7 +47,7 @@ Let's say a farmer wants to include 1000 spend bundles into a block. First, they
 
 ## Additions and Removals
 
-In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are coins A, B, and C, and the additions are coins D and E. This is very similar to how the standard transaction script works in `chia-blockchain`.
+In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are coins A, B, and C, and the additions are coins C and D. This is very similar to how the standard transaction script works in `chia-blockchain`.
 
 <figure>
 <img src="/img/spend_bundle.png" alt="drawing"/>
