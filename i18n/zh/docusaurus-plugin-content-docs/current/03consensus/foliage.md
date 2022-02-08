@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # 3.10 Foliage
 
-In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical. There is also no place to include transactions. Everything we have talked about so far is the trunk of the blockchain.
+In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical. There is also no place to include transactions. 到目前为止我们所谈论的一切都是区块链的主干。
 
 Farmers have no say in how their block is constructed in the trunk, since they must use the exact proof of space, VDFs, and signatures that are specified. In order to include farming rewards, as well as transactions, in the system, we must introduce an additional component of blocks called _foliage_.
 
@@ -46,18 +46,18 @@ While all blocks still choose the puzzle hashes of where their rewards go, those
 
 ### Transaction Block Time
 
-This puts the average transaction block time at 46.875 seconds (average block time + minimum transaction block time). Several values are required to calculate this average:
+The average time between transaction blocks is 52 seconds. Several values are required to calculate this average:
 
 * Sub-slot time = 600 seconds
-* If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
-* Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm attack.
+* Signage point time = 64 per sub-slot, or 600/64 = 9.375 seconds
+* Average block time = 32 per sub-slot, or 600/32 = 18.75 seconds
 * Minimum signage points from current signage point until infusion_iterations is reached = 3 (See [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points") for more info.)
-* There are 64 signage points, so the minimum time between transaction blocks is 3*600/64 = 28.125 seconds.
+* Minimum time for infusion_iterations to be reached (and therefore, minimum time between transaction blocks) = 3 * (600/64) = 28.125 seconds
 * Average signage points until infusion_iterations is reached is slightly more than 3.5 (must wait 3 signage points, plus an average wait of about 50% of the next signage point), or around 3.5 * 9.375 = 32.8125 seconds.
 * To create a transaction block, infusion_iterations first must be met, and then the next block some seconds afterwards will be a transaction block. The total average time for this to happen is around 52 seconds.
 * The formal equation is <img src="/img/block-time-calc.png" alt="(1/(e^(0.5)-1)+4)*9.375" width="200" /> or `(1/(e^(0.5)-1)+4)*9.375` which equals 51.95 seconds.
 
-The time between transaction blocks was deliberately chosen because it comes with several advantages:
+The time between transaction blocks was deliberately chosen for a specific game-theoretic reason: If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
 
 Additionally, the fact that there are empty blocks between transaction blocks provides several benefits:
 

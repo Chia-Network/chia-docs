@@ -10,7 +10,7 @@ Address: `xch1pwrzyy35qxk0rz76jl0648fvt6ql905vwd7zs0scjqant5sf25lql4hz3z`
 
 Puzzle hash: `0b8622123401acf18bda97dfaa9d2c5e81f2be8c737c283e18903b35d209553e`
 
-An address is just a different way to display the puzzle hash, which contains some additional data (checksum) at the end to find errors. Puzzle hashes can be converted to addresses and vice versa. Puzzle hashes can be converted to addresses and vice versa.
+An address is just a different way to display the puzzle hash, which contains some additional data (checksum) at the end to find errors. Puzzle hashes can be converted to addresses and vice versa.
 
 bech32m addresses have several features which make them attractive:
 * Checksum, which makes addresses invalid if only one character is modified.
