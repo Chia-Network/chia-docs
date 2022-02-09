@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # 3.10 Foliage
 
-In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical. There is also no place to include transactions. Everything we have talked about so far is the trunk of the blockchain. There is also no place to include transactions. 到目前为止我们所谈论的一切都是区块链的主干。
+In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical. There is also no place to include transactions. Everything we have talked about so far is the trunk of the blockchain. There is also no place to include transactions. Everything we have talked about so far is the trunk of the blockchain.
 
 Farmers have no say in how their block is constructed in the trunk, since they must use the exact proof of space, VDFs, and signatures that are specified. In order to include farming rewards, as well as transactions, in the system, we must introduce an additional component of blocks called _foliage_. In order to include farming rewards, as well as transactions, in the system, we must introduce an additional component of blocks called _foliage_.
 
