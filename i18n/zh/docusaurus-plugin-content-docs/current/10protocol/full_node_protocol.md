@@ -3,12 +3,12 @@ sidebar_position: 3
 ---
 
 # 10.3 Full Node Protocol
-This protocol is a bidirectional protocol for communication between full nodes in the Chia system. The sender is the full node sending the message, and the recipient is the full node that is receiving the message. The sender is the full node sending the message, and the recipient is the full node that is receiving the message.
+This protocol is a bidirectional protocol for communication between full nodes in the Chia system. The sender is the full node sending the message, and the recipient is the full node that is receiving the message.
 
 ## new_peak
-Sent to peers whenever our node's peak weight advances (whenever the blockchain moves forward). The fork point allows peers to detect how deep of a reorg happenned, and fetch the correct blocks. Sent to peers whenever our node's peak weight advances (whenever the blockchain moves forward). The fork point allows peers to detect how deep of a reorg happenned, and fetch the correct blocks. The unfinished reward block hash allows the receiving peer to use their cache for unfinished blocks, since they most likely already have the unfinished version of the same block, and therefore don't need to re-request the block transactions generator.
+Sent to peers whenever our node's peak weight advances (whenever the blockchain moves forward). The fork point allows peers to detect how deep of a reorg happenned, and fetch the correct blocks. The unfinished reward block hash allows the receiving peer to use their cache for unfinished blocks, since they most likely already have the unfinished version of the same block, and therefore don't need to re-request the block transactions generator.
 
-Usually, during normal operation, peers will ask for just the latest block, or ignore this message if they have already received it from another peer.  If we are a few blocks behind, blocks are fetched one by one in reverse order up to the fork.  If we are a few blocks behind, blocks are fetched one by one in reverse order up to the fork.
+Usually, during normal operation, peers will ask for just the latest block, or ignore this message if they have already received it from another peer.  If we are a few blocks behind, blocks are fetched one by one in reverse order up to the fork.
 
 If we are far behind this peak, we will start a batch sync (download a few tens of blocks in batches) or a long sync, where we download a weight proof and then download many blocks in batches.
 
@@ -23,7 +23,7 @@ class NewPeak(Streamable):
 
 
 ## new_transaction
-Sent to peers when a new spend bundle has been added to the mempool. The receiving peer can then choose to ignore it, or request the whole transaction. The receiving peer can then choose to ignore it, or request the whole transaction.
+Sent to peers when a new spend bundle has been added to the mempool. The receiving peer can then choose to ignore it, or request the whole transaction.
 
 ```python
 class NewTransaction(Streamable):
@@ -33,7 +33,7 @@ class NewTransaction(Streamable):
 ```
 
 ## request_transaction
-Request for a full transaction (spend bundle) from a peer by its id. Request for a full transaction (spend bundle) from a peer by its id. If a peer does not respond, other peers are contacted for the same transaction.
+Request for a full transaction (spend bundle) from a peer by its id. If a peer does not respond, other peers are contacted for the same transaction.
 
 ```python
 class RequestTransaction(Streamable):
@@ -41,7 +41,7 @@ class RequestTransaction(Streamable):
 ```
 
 ## respond_transaction
-Response for a `request_transaction` message. Sends a spend bundle to a peer. Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see [this section](/docs/04coin-set-model/spend_bundles).
+Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see [this section](/docs/04coin-set-model/spend_bundles).
 
 ```python
 class RespondTransaction(Streamable):
@@ -59,7 +59,7 @@ class RequestProofOfWeight(Streamable):
 
 
 ## respond_proof_of_weight
-Response to a `request_proof_of_weight` message. Note that weight proofs can be quite large, in the tens of MB range. Response to a `request_proof_of_weight` message. Note that weight proofs can be quite large, in the tens of MB range. If the chain VDFs are compressed (aka blueboxed), then they weight proofs will be smaller. This is the V1 version of weight proofs, more efficient versions might be added in the future. This is the V1 version of weight proofs, more efficient versions might be added in the future.
+Response to a `request_proof_of_weight` message. Note that weight proofs can be quite large, in the tens of MB range. If the chain VDFs are compressed (aka blueboxed), then they weight proofs will be smaller. This is the V1 version of weight proofs, more efficient versions might be added in the future.
 
 ```python
 class RespondProofOfWeight(Streamable):
@@ -68,7 +68,7 @@ class RespondProofOfWeight(Streamable):
 ```
 
 ## request_block
-Request for a block at a certain height from a peer.  Request for a block at a certain height from a peer.  Called after receiving a `new_peak` message.
+Request for a block at a certain height from a peer.  Called after receiving a `new_peak` message.
 
 
 ```python
@@ -127,7 +127,7 @@ class RejectBlocks(Streamable):
 
 
 ## new_unfinished_block
-Notification to another peer that a new unfinished block was added to the cache. Notification to another peer that a new unfinished block was added to the cache. These unfinished blocks are kept around temporarily, until the infusion point VDF is released, and the block can be "finished" and added to the blockchain.
+Notification to another peer that a new unfinished block was added to the cache. These unfinished blocks are kept around temporarily, until the infusion point VDF is released, and the block can be "finished" and added to the blockchain.
 
 ```python
 class NewUnfinishedBlock(Streamable):
@@ -152,7 +152,7 @@ class RespondUnfinishedBlock(Streamable):
 
 
 ## new_signage_point_or_end_of_sub_slot
-Sent when the node adds a new signage point or a new end of sub slot to the full node store.  The receiver can choose to request the object, or potentially request the previous sub slot, if they are far behind. For example, recently synced up to the peak of the blockchain.  The receiver can choose to request the object, or potentially request the previous sub slot, if they are far behind. For example, recently synced up to the peak of the blockchain.
+Sent when the node adds a new signage point or a new end of sub slot to the full node store.  The receiver can choose to request the object, or potentially request the previous sub slot, if they are far behind. For example, recently synced up to the peak of the blockchain.
 
 
 ```python
@@ -176,7 +176,7 @@ class RequestSignagePointOrEndOfSubSlot(Streamable):
 
 
 ## respond_signage_point
-Response for `request_signage_point_or_end_of_sub_slot`. Response for `request_signage_point_or_end_of_sub_slot`. After receiving this message, the recipient will check that all VDFs are correct, and forward it to other full nodes and potentially farmers.
+Response for `request_signage_point_or_end_of_sub_slot`. After receiving this message, the recipient will check that all VDFs are correct, and forward it to other full nodes and potentially farmers.
 
 ```python
 class RespondSignagePoint(Streamable):
@@ -189,7 +189,7 @@ class RespondSignagePoint(Streamable):
 
 
 ## respond_end_of_sub_slot
-Another response for `request_signage_point_or_end_of_sub_slot` in the case where `index_from_challenge` is zero. This is also verified and forwarded by the full node, similar to signage points. This is also verified and forwarded by the full node, similar to signage points.
+Another response for `request_signage_point_or_end_of_sub_slot` in the case where `index_from_challenge` is zero. This is also verified and forwarded by the full node, similar to signage points.
 
 
 ```python
@@ -199,7 +199,7 @@ class RespondEndOfSubSlot(Streamable):
 
 
 ## request_mempool_transactions
-This is a request for transactions in the mempool. This is a request for transactions in the mempool. The filter corresponds to a BIP158 Compact Block Filter, which allows the recipient to see what transactions the sender already has (with some small chance for false positives), without sending all transaction IDs. The recipient can then respond using `respond_transction` directly, but should not send a very large number of transactions, to not overwhelm the original sending peer. The recipient can then respond using `respond_transction` directly, but should not send a very large number of transactions, to not overwhelm the original sending peer.
+This is a request for transactions in the mempool. The filter corresponds to a BIP158 Compact Block Filter, which allows the recipient to see what transactions the sender already has (with some small chance for false positives), without sending all transaction IDs. The recipient can then respond using `respond_transction` directly, but should not send a very large number of transactions, to not overwhelm the original sending peer.
 
 ```python
 class RequestMempoolTransactions(Streamable):
@@ -208,7 +208,7 @@ class RequestMempoolTransactions(Streamable):
 
 
 ## new_compact_vdf
-A notification to a peer that a new compact VDF has been added to the blockchain. A notification to a peer that a new compact VDF has been added to the blockchain. Compact VDFs are smaller versions of VDF proofs present in blocks. They do not change the block itself, they just compress the block data to keep the DB smaller and sync time lower. The actual proof They do not change the block itself, they just compress the block data to keep the DB smaller and sync time lower. The actual proof
+A notification to a peer that a new compact VDF has been added to the blockchain. Compact VDFs are smaller versions of VDF proofs present in blocks. They do not change the block itself, they just compress the block data to keep the DB smaller and sync time lower. The actual proof
 
 ```python
 class NewCompactVDF(Streamable):
@@ -253,7 +253,7 @@ class RequestPeers(Streamable):
 ```
 
 ## respond_peers
-A response to `request_peers`, containing a list of ip and port for each peer. Must be no larger than 1000. A response to `request_peers`, containing a list of ip and port for each peer. Must be no larger than 1000. The timestamp corresponds to the last time this peer's record was updated, based on the peer DB update rules.
+A response to `request_peers`, containing a list of ip and port for each peer. Must be no larger than 1000. The timestamp corresponds to the last time this peer's record was updated, based on the peer DB update rules.
 
 ```python
 class RespondPeers(Streamable):
