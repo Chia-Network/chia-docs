@@ -3,12 +3,12 @@ sidebar_position: 1
 ---
 
 # 14.1 chia-blockchain
-`chia-blockchain` is the first and official implementation of the Chia protocol. It is written in python, with a few dependencies written in C++ or rust in order to improve performance. It is written from the ground up by the Chia team as well as open source contributors, and is not a fork of any other blockchain system.
+`chia-blockchain` is the first and official implementation of the Chia protocol. It is written in python, with a few dependencies written in C++ or rust in order to improve performance. It is written from the ground up by the Chia team as well as open source contributors, and is not a fork of any other blockchain system. It is written in python, with a few dependencies written in C++ or rust in order to improve performance. It is written from the ground up by the Chia team as well as open source contributors, and is not a fork of any other blockchain system.
 
 https://github.com/Chia-Network/chia-blockchain
 
 
-The codebase is split into several subfolders which categorize code on the different components of the system. Inside the source root (chia folder).
+The codebase is split into several subfolders which categorize code on the different components of the system. Inside the source root (chia folder). Inside the source root (chia folder).
 
 * **cmds**: Contains the command line interface program, which is a python wrapper around the chia RPC api. When a command is run, a connection is established directly to the Chia services running locally.
 * **consensus**: Consensus critical code that is high risk to change.
@@ -28,4 +28,4 @@ The codebase is split into several subfolders which categorize code on the diffe
 * **timelord**: Code for running timelords, which uses the `chiavdf` dependency and connects to vdf clients.
 * **types**: Blockchain format and python types used throughout the project.
 * **util**: A collection of many utility files and functions used throughout the project.
-* **wallet**: Subdirectory containing all code relating to wallets and chialisp. This contains a large amount of code.
+* **wallet**: Subdirectory containing all code relating to wallets and chialisp. This contains a large amount of code. This contains a large amount of code.
