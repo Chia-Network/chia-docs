@@ -8,7 +8,7 @@ Serialization in Chia refers to how objects are converted into bytes for uses su
 For example, a header_hash refers to the sha256 hash of the header of a block, but sha256 takes in bytes, so we need a consistent way to convert objects into bytes.
 
 ## Streamable Format
-To prevent consensus issues, the streamable format was designed to be deterministic and easy to implement. All objects in the Chia protocol are transmitted using the streamable format. Furthermore, some database tables use streamable representation as well.
+To prevent consensus issues, the streamable format was designed to be deterministic and easy to implement. All objects in the Chia protocol are transmitted using the streamable format. Furthermore, some database tables use streamable representation as well. All objects in the Chia protocol are transmitted using the streamable format. Furthermore, some database tables use streamable representation as well.
 
 The primitives are:
 * Sized ints serialized in big endian format, i.e uint64
@@ -22,26 +22,26 @@ The primitives are:
 
 An item is one of:
 * primitive
-* Tuple[item1, .. itemx]
-* List[item1, .. itemx]
+* Tuple[item1, .. itemx] itemx]
+* List[item1, .. itemx] itemx]
 * Optional[item]
 * Custom item
 
 
-A streamable must be a Tuple at the root level. Iters are serialized in the following way:
+A streamable must be a Tuple at the root level. Iters are serialized in the following way: Iters are serialized in the following way:
 
 1. A tuple of x items is serialized by appending the serialization of each item.
 2. A List is serialized into a 4-byte prefix (number of items) and the serialization of each item.
 3. An Optional is serialized into a 1-byte prefix of 0x00 or 0x01, and if it's one, it's followed by the serialization of the item.
-4. A Custom item is serialized by calling the .parse method, passing in the stream of bytes into it. And example is a CLVM program.
+4. A Custom item is serialized by calling the .parse method, passing in the stream of bytes into it. And example is a CLVM program. And example is a CLVM program.
 
 This format can be implemented very easily, and allows us to hash objects like headers and proofs of space, without complex serialization logic.
 
-Note that in the python implementation, we don't use a Tuple at the root level, but instead just use a dataclass with ordered type fields for ease of use. However, it is streamed as a Tuple.
+Note that in the python implementation, we don't use a Tuple at the root level, but instead just use a dataclass with ordered type fields for ease of use. However, it is streamed as a Tuple. However, it is streamed as a Tuple.
 
 ## Examples
 
-The streamable specification has been designed to work well with Python using the @streamable decorator available in `chia-blockchain`, but it can work just as well with other programming languages. A class with the @streamable decorator becomes immutable, and has the `__bytes__()` and `.from_bytes(b)` methods.
+The streamable specification has been designed to work well with Python using the @streamable decorator available in `chia-blockchain`, but it can work just as well with other programming languages. A class with the @streamable decorator becomes immutable, and has the `__bytes__()` and `.from_bytes(b)` methods. A class with the @streamable decorator becomes immutable, and has the `__bytes__()` and `.from_bytes(b)` methods.
 
 ### ProofOfSpace type definition
 ```python
@@ -67,7 +67,7 @@ print(bytes(pospace))
 ```
 
 ### Output
-As you can see, each one of the fields is serialized in order, according to the above specification. The G1 Generator value is serialized in BLS format as: `<G1Element 97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb>`.
+As you can see, each one of the fields is serialized in order, according to the above specification. As you can see, each one of the fields is serialized in order, according to the above specification. The G1 Generator value is serialized in BLS format as: `<G1Element 97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb>`.
 ```
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0001bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb2100000108cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ```
