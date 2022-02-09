@@ -49,7 +49,7 @@ class RespondTransaction(Streamable):
 ```
 
 ## request_proof_of_weight
-Request a weight proof from a peer. This is done right before starting a long sync. The weight proof allows our node to validate whether a `new_peak` that we received from a peer corresponds to an actual valid blokchain. It is proof that a certain amount of "weight", or space and time, has been used on that blockchain.
+Request a weight proof from a peer. This is done right before starting a long sync. The weight proof allows our node to validate whether a `new_peak` that we received from a peer corresponds to an actual valid blockchain. It is proof that a certain amount of "weight", or space and time, has been used on that blockchain.
 
 ```python
 class RequestProofOfWeight(Streamable):
