@@ -3,7 +3,8 @@ name: Deploy to pages on trunk
 on:
   push:
     branches:
-      - "!main"
+      - '*'
+      - '!main'
 
 jobs:
   deploy:
