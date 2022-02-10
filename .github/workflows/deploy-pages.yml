@@ -3,7 +3,7 @@ name: Deploy to pages on trunk
 on:
   push:
     branches:
-      - "main"
+      - "!main"
 
 jobs:
   deploy:
@@ -17,12 +17,26 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
+    - name: Install J2
+      run: |
+        pip install j2cli
+
+    - name: Set env
+      run: |
+        # Gets repository name (without owner prefix) variable
+        echo "REPOSITORY_NAME=$(echo ${GITHUB_REPOSITORY} | cut -d "/" -f2)" >> $GITHUB_ENV
+
+    - name: Generate docusaurus.config.js.j2
+      run: |
+        j2 docusaurus.config.js.j2 -o docusaurus.config.js
+        cat docusaurus.config.js
+
     - name: "yarn deps"
       run: |
         yarn
 
-    - name: "yarn deploy"
-      run: |
-        git config --global user.name 'ChiaAutomation'
-        git config --global user.email 'automation@chia.net'
-        GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy
+#    - name: "yarn deploy"
+#      run: |
+#        git config --global user.name 'ChiaAutomation'
+#        git config --global user.email 'automation@chia.net'
+#        GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy
