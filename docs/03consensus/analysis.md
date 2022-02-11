@@ -53,7 +53,7 @@ Chia's consensus algorithm could also be used for Proof of Stake, where the spac
 + (+) There might be situations where the attacker can grind on many different ways to transfer stake. Perhaps this can be mitigated by requiring a long period before stake becomes active.
 + (+) Registration is required, you cannot participate in proof of stake until you sign up. This reduces privacy and scalability (how many people can stake).
 + (+) Higher barrier to entry: security deposits and slashing make it difficult for small users to participate. Slashing can be a huge risk for participants in the network. Centralized custodians lead to a less distributed set of participants.
-+ (+) Some assumptions are required to perform light client syncs in Proof of Stake. Source: [Flyclient white paper](https://eprint.iacr.org/2019/226.pdf).
++ (+) Some assumptions are required to perform light client syncs in Proof of Stake. Source: [Flyclient paper](https://eprint.iacr.org/2019/226.pdf).
 - (-) Skin in the game: with PoS, the consensus can slash people’s stake, and also requires some investment into the system (exposure to price). In Proof of Space, hard drives can be used for other purposes and there is no ability to “slash” people's hardware.
 
 
@@ -68,7 +68,7 @@ The pros and cons of using Chia Nakamoto Consensus vs Byzantine consensus, which
 + (+) More censorship resistant. As long as a small portion of the farming space does not censor, eventually you can get into the blockchain.
 + (+) No liveness requirements, potentially fewer network assumptions.
 + (+) Fully objective (A node can compare chain 1 and chain 2, and immediately know which one is heavier). No need for checkpoints with ⅔ consensus.
-+ (+) Better light client support. See the [Flyclient white paper](https://eprint.iacr.org/2019/226.pdf) for more info.
++ (+) Better light client support. See the [Flyclient paper](https://eprint.iacr.org/2019/226.pdf) for more info.
 - (-) No finality, only probabilistic.
 - (-) Need to wait longer for transaction confirmations (related to no finality).
 - (-) Less consistent block times and transaction throughput.
