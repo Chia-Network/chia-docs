@@ -24,7 +24,7 @@ However, Chia's consensus makes this attack more complex to evaluate than in Pro
 
 Before we can evaluate the percentage requirements for various scenarios, we must first calculate the range for the double-dip advantage.
 
-The white paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a majority attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
+The paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a majority attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
 
 * 16 -- This is the minimum number of blocks in a slot. (See [Section 3.9](/docs/03consensus/overflow_blocks#minimum-block-requirement "Section 3.9: Minimum Block Requirement") for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
 
@@ -100,7 +100,7 @@ Due to the average of 32 blocks with the same challenge, the attacker can only t
 
 The reason for receiving just a minor boost is because the alternative chains being tried are inferior and less likely to overtake the longest one. This has been analyzed in the [PoSAT paper](https://arxiv.org/abs/2010.08154).
 
-If there were a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% would be required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 42.7%. 
+If there were a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% would be required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 42.7%.
 
 However, Chia also chose not to increase the number of blocks per sub-slot to a number greater than 32. Doing so would decrease the time between blocks, which would allow a timelord that is only slightly faster than all others to orphan blocks more easily. As it stands, with 32 blocks per sub-slot, an attacker would need to have a significantly faster timelord than everyone else in order to successfully orphan any blocks.
 
@@ -108,7 +108,7 @@ Furthermore, the [PoSAT paper](https://arxiv.org/abs/2010.08154) shows that incr
 
 If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the attacker's required space in the worst case scenario (with unlimited slightly faster timelords) from 27% up to 42.7%, as discussed above.
 
-## Chia space / global hard drive space 
+## Chia space / global hard drive space
 There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to long-range attacks. Therefore the more space taken by the Chia network, the more secure the network is.
 
 We believe this type of attack is unlikely, though. Large data centers and companies with significant amounts of storage tend not to have much _unused_ storage available to hold Chia plots. And the more space that comes onto Chia's network, the lower the rewards per TB. With the netspace currently (December 2021) sitting at 35 EiB, companies will find it difficult to justify buying drives or deleting business data. Furthermore, creating a plot requires a fixed amount of upfront time and money (from current calculations, about 1kWh for a k32, or about 10 cents, which is $1 per terabyte).
@@ -166,7 +166,7 @@ In Nakamoto PoW this provides significant gains, because at any point at which t
 In Chia consensus, a "selfish" farmer could withhold a proof until just before the infusion point, but this would provide zero benefit versus submitting the proof right away. There can be multiple block winners per signage point, so farming is not a zero-sum game as it is in PoW. Furthermore, the timelord cannot accept proofs for an infusion point that has already passed, so farmers are not allowed to stack a large number of proofs to be infused later.
 
 ## Farmer bribe trunk attack
-An interesting attack explored in the [PoSAT white paper](https://arxiv.org/abs/2010.08154) is the bribing attack, which takes advantage of the predictability of the elected “leaders” in each slot. The authors analyze a Proof of Stake chain, and argue that when participants know that they are going to win in advance, there is a potential bribing attack.
+An interesting attack explored in the [PoSAT paper](https://arxiv.org/abs/2010.08154) is the bribing attack, which takes advantage of the predictability of the elected “leaders” in each slot. The authors analyze a Proof of Stake chain, and argue that when participants know that they are going to win in advance, there is a potential bribing attack.
 
 In Chia, if participants knew in advance which plots would win, each user could notify an attacker that they'd be willing to participate in the attack. If the number of participants reached a certain threshold, they could completely re-org the chain (or orphan those who do not participate, censor transactions, etc). This attack does NOT require the majority of the space in the network to participate; it only requires a certain threshold of winners within a short time frame. Furthermore, it is undetectable, since the attacker can make a normal looking chain.
 
