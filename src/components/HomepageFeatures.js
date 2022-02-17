@@ -64,6 +64,16 @@ const FeatureList = [
       </>
     ),
   },
+  {
+    title: 'Developer Mailing List',
+    Svg: require('../../static/img/email_icon.svg').default,
+    dest_url: 'https://staging.chia.net/mailing-lists/#developer-news',
+    description: (
+      <>
+      Sign up to receive news about Chialisp and building on the Chia blockchain.
+      </>
+    ),
+  },
 ];
 
 function Feature({Svg, title, description, dest_url}) {
