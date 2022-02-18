@@ -28,11 +28,11 @@ So an address is analogous to a wallet child BLS public key, the private key of 
 
 ## Difference between Chia and EIP-2333
 
-Chia committed to its final plot format in July 2020. This format uses keys compliant with BLS version 2, as specified in the [IRTF CFRG BLS standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/).
+Chia committed to its final plot format in July 2020. This format uses keys compliant with IETF BLS version 2, as specified in the [IRTF CFRG BLS standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/).
 
-BLS version 4 introduced some optional changes, one of which was not backwards compatible with version 2. Because of this incompatibility, Chia will continue to use keys as specified in version 2. These keys are compliant with version 4, though they differ from the recommended method of generation.
+IETF BLS version 4 introduced some optional changes, one of which was not backwards compatible with version 2. Because of this incompatibility, Chia will continue to use keys as specified in version 2. These keys are compliant with version 4, though they differ from the recommended method of generation.
 
-**BLS Version 2 and 4 are both secure.**
+**IETF BLS Version 2 and 4 are both secure.**
 
 Here is the incompatible change:
 
