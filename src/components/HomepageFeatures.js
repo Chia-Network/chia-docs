@@ -80,6 +80,7 @@ function Feature({Svg, title, description, dest_url}) {
     </div>
   );
 }
+const EmailSvg = require('../../static/img/email_icon.svg').default
 
 export default function HomepageFeatures() {
   return (
@@ -93,9 +94,9 @@ export default function HomepageFeatures() {
         <div id="mc_embed_signup">
           <form action="https://chia.us20.list-manage.com/subscribe/post?u=e4d570ef4efb6250ec4a2d825&amp;id=bbcb58034c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
               <div id="mc_embed_signup_scroll">
-                <img className={styles.featureSvg} src="../../static/img/email_icon.svg"/>
+              <EmailSvg className={styles.featureSvg} alt="Developer Mailing List"/>
                 <h3>Developer Mailing List</h3>
-                <input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required className={styles.emailInput} />
+                <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="email address" required className={styles.emailInput} />
                 <div class="mc-field-group input-group" style={{display: "none"}}>
                     <strong>Interest </strong>
                     <ul>
