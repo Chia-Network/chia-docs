@@ -19,10 +19,22 @@ sidebar_position: 1
 * [Proofs of Space](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub")
 * [Binary Quadratic Forms](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long") -- a white paper by Lipa Long
 
+## Video
+
+* [Mariano Sorgente's 2019 presentation](https://youtu.be/_075bzQPooU) at MIT on how to achieve Nakamoto consensus with Proof of Space and VDFs
+* [Bram Cohen's 2018 presentation](https://www.youtube.com/watch?v=2Zlcgt8FVz4) at Stanford on Proofs of Space
+* [Bram Cohen's 2018 presentation](https://www.youtube.com/watch?v=iqxkO7C-cyk) at BPASE on the [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space") academic paper ([slides](https://view.publitas.com/chia-network/pbase18slides/page/1) by Hamza Abusalah)
+* [Ben Fisch's 2018 presentation](https://www.youtube.com/watch?v=qUoagL7OZ1k&feature=youtu.be) at BPASE 2018 on Verifiable Delay Functions
+* [Bram Cohen's 2018 presentation](https://www.facebook.com/BlockchainatBerkeley/videos/2006069823011271/) at Berkeley (which starts about 20:00)
+* [Bram Cohen's 2017 presentation](https://www.youtube.com/watch?v=aYG0NxoG7yw) at BPASE on removing waste with Proofs of Space and Time
+* [Bram Cohen's 2015 presentation](https://www.youtube.com/watch?v=zZaB4hM8SQ4) at SF Bitcoin Devs Seminar about data structures for scaling Bitcoin with [slides](https://view.publitas.com/chia-network/bitcoin_data_structures/) and [Merkle Set code](https://github.com/bramcohen/MerkleSet)
+
 
 ## External
 
 * [Chia's power consumption](https://chiapower.org "Chia's energy consumption statistics")
+* [A Survey of Two Verifiable Delay Functions](https://eprint.iacr.org/2018/712.pdf "The underlying technology of Proof of Time"), by our advisors Dan Boneh, Benedikt Bünz, and Ben Fisch
+* [Simple Verifiable Delay Functions](https://eprint.iacr.org/2018/627.pdf "The basis for Proof of Time"), by our advisor Krzysztof Pietrzak
 * [History of Cryptography](https://cs.stanford.edu/people/eroberts/courses/soco/projects/public-key-cryptography/history.html#:~:text=The%20idea%20of%20public%20key,known%20as%20the%20knapsack%20problem), from Stanford University
 * [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space"), by Hamza Abusalah, Jo ̈el Alwen, Bram Cohen, Danylo Khilko, Krzysztof Pietrzak, and Leonid Reyzin
 * [POS Longest Chain Protocols](http://tselab.stanford.edu/downloads/PoS_LC_SBC2020.pdf), by Vivek Bagaria, Amir Dembo, Sreeram Kannan, Sewoong Oh, David Tse, Pramod Viswanath, Xuechao Wang, and Ofer Zeitouni
