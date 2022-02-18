@@ -97,7 +97,7 @@ export default function HomepageFeatures() {
                 <div id="mc_embed_signup_scroll">
                   <EmailSvg className={styles.featureSvg} alt="Developer Mailing List"/>
                   <h3>Developer Mailing List</h3>
-                  <input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required className={styles.emailInput} />
+                  <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="email address" required className={styles.emailInput} />
                   <div class="mc-field-group input-group" style={{display: "none"}}>
                       <strong>Interest </strong>
                       <ul>
