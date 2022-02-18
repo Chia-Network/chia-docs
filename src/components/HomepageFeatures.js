@@ -64,16 +64,6 @@ const FeatureList = [
       </>
     ),
   },
-  {
-    title: 'Developer Mailing List',
-    Svg: require('../../static/img/email_icon.svg').default,
-    dest_url: 'https://staging.chia.net/mailing-lists/#developer-news',
-    description: (
-      <>
-      Sign up to receive news about Chialisp and building on the Chia blockchain.
-      </>
-    ),
-  },
 ];
 
 function Feature({Svg, title, description, dest_url}) {
@@ -99,6 +89,38 @@ export default function HomepageFeatures() {
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}
+        </div>
+        <div id="mc_embed_signup">
+          <form action="https://chia.us20.list-manage.com/subscribe/post?u=e4d570ef4efb6250ec4a2d825&amp;id=bbcb58034c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+                <img className={styles.featureSvg} src="../../static/img/email_icon.svg"/>
+                <h3>Developer Mailing List</h3>
+                <input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required className={styles.emailInput} />
+                <div class="mc-field-group input-group" style={{display: "none"}}>
+                    <strong>Interest </strong>
+                    <ul>
+                      <li>
+                        <input type="checkbox" value="1" name="group[22233][1]" id="mce-group[22233]-22233-0" style={{display: "none"}} checked/>
+                        <label for="mce-group[22233]-22233-0">dev</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" value="2" name="group[22233][2]" id="mce-group[22233]-22233-1" style={{display: "none"}} />
+                        <label for="mce-group[22233]-22233-1">chia</label>
+                      </li>
+                    </ul>
+                </div>
+                <div className={styles.mceResponses}>
+                    <div class="response display_none" id="mce-error-response"></div>
+                    <div class="response display_none" id="mce-success-response"></div>
+                </div>
+                <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true">
+                  <input type="text" name="b_e4d570ef4efb6250ec4a2d825_bbcb58034c" tabindex="-1" value=""/>
+                </div>
+                <div class="clear">
+                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className={styles.button}/>
+                </div>
+              </div>
+          </form>
         </div>
       </div>
     </section>
