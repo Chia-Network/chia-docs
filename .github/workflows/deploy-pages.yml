@@ -39,15 +39,15 @@ jobs:
       run: |
         yarn
 
-    - name: "docusaurus write-translations"
+    - name: "Docusaurus write-translations"
       run: |
         yarn write-translations
 
     - name: "Crowdin upload"
-      run: yarn crowdin-upload"
+      run: yarn crowdin-upload
 
     - name: "Crowdin download"
-      run: yarn crowdin-download"
+      run: yarn crowdin-download
 
     - name: "yarn deploy"
       run: |
