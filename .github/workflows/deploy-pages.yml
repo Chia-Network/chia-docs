@@ -3,7 +3,8 @@ name: Deploy to pages on trunk
 on:
   push:
     branches:
-      - 'main'
+      - '**'
+      - '!main'
 
 jobs:
   deploy:
@@ -34,6 +35,13 @@ jobs:
     - name: "yarn deps"
       run: |
         yarn
+
+    - name: "crowdin sync"
+      env:
+        CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+        CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
+      run: |
+        yarn crowdin:sync
 
     - name: "yarn deploy"
       run: |

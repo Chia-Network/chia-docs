@@ -1,7 +1,5 @@
-project_id: '493733'
-# Replace with your own Crowdin token
-# api_token: '${CROWDIN_PERSONAL_TOKEN}'
-api_token: '${CROWDIN_PERSONAL_TOKEN}'
+project_id_env: "CROWDIN_PROJECT_ID"
+api_token_env: "CROWDIN_TOKEN"
 preserve_hierarchy: true
 files: [
     # JSON translation files
