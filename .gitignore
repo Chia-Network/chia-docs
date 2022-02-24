@@ -18,3 +18,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+docusaurus.config.js
+i18n
+yarn.lock
