@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: "Install deps"
       run: |
-        apk add python3 py3-pip make g++ git
+        apk add python3 py3-pip make g++ git openjdk11
 
     - name: Checkout Code
       uses: actions/checkout@v2
