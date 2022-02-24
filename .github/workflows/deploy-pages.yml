@@ -3,8 +3,7 @@ name: Deploy to pages on trunk
 on:
   push:
     branches:
-      - '**'
-      - '!main'
+      - 'main'
 
 jobs:
   deploy:
@@ -39,6 +38,7 @@ jobs:
       run: |
         yarn
         npm install node-gyp
+        # This command will fail but links Java from openjdk11 to node
         npm install java || true
 
     - name: "Docusaurus write-translations"
