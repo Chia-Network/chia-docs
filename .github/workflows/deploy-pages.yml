@@ -7,52 +7,12 @@ on:
       - '!main'
 
 jobs:
-  docusaurus-translations:
-    runs-on: ubuntu-latest
-    container: node:17-alpine
-    steps:
-    - name: "Install deps"
-      run: |
-        apk add python3 py3-pip make g++ git openjdk11
-
-    - name: Checkout Code
-      uses: actions/checkout@v2
-
-    - name: "yarn deps"
-      run: |
-        yarn
-
-    - name: "docusaurus write-translations"
-      run: |
-        yarn write-translations
-
-  crowdin:
-    runs-on: ubuntu-latest
-    container: openjdk:11
-    needs: [docusaurus-translations]
-    env:
-      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
-      CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-
-    - name: "Install crowdin CLI"
-      run: |
-        wget -qO - https://artifacts.crowdin.com/repo/GPG-KEY-crowdin | apt-key add -
-        echo "deb https://artifacts.crowdin.com/repo/deb/ /" > /etc/apt/sources.list.d/crowdin.list
-        apt update && apt install crowdin3
-
-    - name: "Crowdin upload"
-      run: crowdin upload"
-
-    - name: "Crowdin download"
-      run: crowdin download"
-
   deploy:
     runs-on: ubuntu-latest
     container: node:17-alpine
-    needs: [docusaurus-translations,crowdin]
+    env:
+      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+      CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
     steps:
     - name: "Install deps"
       run: |
@@ -78,6 +38,16 @@ jobs:
     - name: "yarn deps"
       run: |
         yarn
+
+    - name: "docusaurus write-translations"
+      run: |
+        yarn write-translations
+
+    - name: "Crowdin upload"
+      run: yarn crowdin-upload"
+
+    - name: "Crowdin download"
+      run: yarn crowdin-download"
 
     - name: "yarn deploy"
       run: |
