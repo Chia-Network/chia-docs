@@ -12,8 +12,4 @@ files: [
       source: '/docs/**/*',
       translation: '/i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%',
     },
-    {
-      source: '/src/pages/**/*.md',
-      translation: '/i18n/%two_letters_code%/docusaurus-plugin-content-pages/%original_file_name%',
-    },
   ]
