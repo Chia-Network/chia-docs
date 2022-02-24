@@ -38,6 +38,7 @@ jobs:
     - name: "yarn deps"
       run: |
         yarn
+        npm install node-gyp
         npm install java || true
 
     - name: "Docusaurus write-translations"
