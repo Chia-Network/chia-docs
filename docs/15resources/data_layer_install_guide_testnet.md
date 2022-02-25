@@ -545,6 +545,7 @@ You have successfully installed the Climate Warehouse. The rest of this document
   * In-Country Jurisdiction Of Owner -- If applicable, enter the region within the country selected above.
   * *Serial Number Block -- Enter the serial number block.
   * *Serial Number Pattern -- If the serial number format is different from what your organization typically uses, please enter the format here.
+    >**Note: It is very important to use a well-formed regex pattern.** For example, to use a combination of letters and numbers with a hyphen separating them, use `[.*\D]+([0-9]+)+[-][.*\D]+([0-9]+)$`. With this pattern, serial numbers such as `abc100-abd100`, `abcde1-a12345`, and `a1-b2-c3` are all valid.
   * *Vintage Year -- Enter the year in which the units were awarded.
   * *Unit Type -- Select the type that best describes the units produced.
   * Marketplace -- Select, or manually enter, the market on which the units are listed, if applicable.
@@ -563,3 +564,29 @@ You have successfully installed the Climate Warehouse. The rest of this document
 <figure>
   <img src="images/climate_warehouse/17_create_unit.png" alt="Step 3 to register a unit."/>
 </figure>
+
+4. You'll receive a message that the unit was successfully created. Your unit will be held in `STAGING` until you click the `Commit` button.
+
+<figure>
+  <img src="images/climate_warehouse/18_unit_create_success.png" alt="Success creating a unit"/>
+</figure>
+
+5. After you click the `Commit` button, you'll receive a message that the transactions have been committed. They will now be `PENDING`.
+
+<figure>
+  <img src="images/climate_warehouse/19_unit_pending.png" alt="Unit committed pending"/>
+</figure>
+
+6. The blockchain will confirm the transactions after a few minutes. `No pending data at this time` will be displayed.
+
+<figure>
+  <img src="images/climate_warehouse/20_no_units_pending.png" alt="No units pending"/>
+</figure>
+
+7. Your unit will now be listed in the COMMITTED tab.
+
+<figure>
+  <img src="images/climate_warehouse/21_unit_committed.png" alt="New unit listed"/>
+</figure>
+
+  You have successfully created your new unit.
