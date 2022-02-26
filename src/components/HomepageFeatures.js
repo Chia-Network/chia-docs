@@ -64,7 +64,16 @@ const FeatureList = [
       </>
     ),
   },
-];
+  {
+    title: 'Chia Developer Forums',
+    Svg: require('../../static/img/chiadevs-icon.svg').default,
+    dest_url: 'https://developers.chia.net/',
+    description: (
+      <>
+      Discuss all things development related: Chialisp, CATs, applications, NFTs, and more.
+      </>
+    ),
+  },];
 
 function Feature({Svg, title, description, dest_url}) {
   return (
