@@ -87,7 +87,7 @@ For attacks lasting longer than one epoch, `DD` will not exceed 1.34313. In such
 
 Note that if we continue to increase `VA`, `DD` will always remain at 1.4678 for the first table, and 1.34313 for the second table. The percent of netspace required will decrease linearly.
 
-It is reasonable to assume that if a long-term attack were attempted, the attacker would have access to many timelords, but they wouldn't be significantly faster than the fastest honest timelord. Therefore, Chia uses a base line assumption of 42.7% of the netspace required to for the attacker to succeed.
+It is reasonable to assume that if a long-term attack were attempted, the attacker's timelord would not be significantly faster than the fastest honest timelord. Additionally, it would be difficult for an attacker to procure enough fast timelords to make use of the double dip advantage. Therefore, Chia uses a base line assumption of 51% of the netspace required for the attack to have a chance at succeeding.
 
 To reduce the possibility of an attacker gaining access to a fast timelord, Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security).
 
