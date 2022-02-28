@@ -9,6 +9,8 @@ We also have documented the [CLI](/docs/13cli/data "Section 13.2: Data Layer CLI
 The data layer RPC API is exposed by default on port 8562. This port must not be exposed publicly for
 security concerns.
 
+Note: Hashes used as arguments for the commands documented here may or may not be prefixed with `0x`. Both forms are valid syntax.
+
 ## Commands
 
 * [`create_data_store`](#create_data_store)

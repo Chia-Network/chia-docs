@@ -26,6 +26,21 @@ The relevant Data Layer commands can all be found under the `chia data` command:
 
 ---
 
+## A note on syntax
+
+The commands in this document will work with or without the `=` symbol. Additionally, hashes may or may not be prefixed with `0x`. Thus, the following are all valid syntax for a store ID:
+
+* `-store 77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+* `-store=77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+* `-store 0x77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+* `-store=0x77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+* `--id 77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+* `--id=77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+* `--id 0x77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+* `--id=0x77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323`
+
+---
+
 ## Reference
 
 ### `create_data_store`
