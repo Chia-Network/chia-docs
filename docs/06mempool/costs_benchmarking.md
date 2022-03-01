@@ -45,7 +45,8 @@ This makes the max cost for (2) 1317054957 + 2303030000 = 3620084957. This is al
 
 The max cost for the whole block is: 3620084957 * 3 = 10860254871.
 
-The cost for 1 `AGG_SIG_UNSAFE` and `AGG_SIG_ME` condition is 2303030000 / 2000 = 1151515.
+The cost for one `AGG_SIG_UNSAFE` and `AGG_SIG_ME` condition is 2303030000 / 2000 = 1151515.
+
 
 The cost for creating 2000 coins is 3620084957, which makes the cost for one
 `CREATE_COIN` 3620084957 / 2000 = 1810042.4785. We round that down to 1810042.
