@@ -230,15 +230,7 @@ This document will guide you through the process of installing the Climate Wareh
   </figcaption>
   </figure>
 
-19. Run `chia configure --enable-data-server true` to enable the data propagation server.
-
-  ```powershell
-  PS C:\Users\User> chia configure --enable-data-server true
-  Data Server enabled.
-  Restart any running chia services for changes to take effect
-  ```
-
-20. Run `chia start wallet`. This command will start your daemon, wallet and full node.
+19. Run `chia start wallet`. This command will start your daemon, wallet and full node.
   ```powershell
   PS C:\Users\User> chia start wallet
   Daemon not started yet
@@ -247,13 +239,13 @@ This document will guide you through the process of installing the Climate Wareh
   chia_full_node: started
   ```
 
-21. Run `chia start data` to start the Data Layer server.
+20. Run `chia start data` to start the Data Layer server.
   ```powershell
   PS C:\Users\User> chia start data
   chia_data_layer: started
   ```
 
-22. Run `chia wallet show` to show your balance. You'll need to wait for `Sync status:` to say `Synced`. This will take a few minutes. After your wallet has synced, hopefully it will show a balance of 1.0 TXCH, which you requested from the faucet. If not, contact a Chia engineer and they can send you some TXCH.
+21. Run `chia wallet show` to show your balance. You'll need to wait for `Sync status:` to say `Synced`. This will take a few minutes. After your wallet has synced, hopefully it will show a balance of 1.0 TXCH, which you requested from the faucet. If not, contact a Chia engineer and they can send you some TXCH.
 
   ```powershell
   PS C:\Users\User> chia wallet show
@@ -266,7 +258,7 @@ This document will guide you through the process of installing the Climate Wareh
     -Spendable: 1.0 txch (1000000000000 mojo)
   ```
 
-23. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 TXCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. The format for this command is `chia wallet send -i <wallet ID, usually 1> -a <amount in TXCH> -m <fee in TXCH> -t <your own TXCH address> -f <your fingerprint>`.
+22. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 TXCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. The format for this command is `chia wallet send -i <wallet ID, usually 1> -a <amount in TXCH> -m <fee in TXCH> -t <your own TXCH address> -f <your fingerprint>`.
 
   For example, the following command will create a new coin worth 0.25 TXCH, with a 0.001 TXCH fee:
 
@@ -278,7 +270,7 @@ This document will guide you through the process of installing the Climate Wareh
   ```
   Run a similar command three times, waiting about two minutes between each time. You will end up with four coins in your wallet.
 
-24. Finally, run `chia show -s` to check the status of your node. It should say `Full Node Synced`.
+23. Finally, run `chia show -s` to check the status of your node. It should say `Full Node Synced`.
 
   ```powershell
   PS C:\Users\User> chia show -s

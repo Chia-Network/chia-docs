@@ -209,15 +209,7 @@ This document will guide you through the process of installing the Climate Wareh
 
       * Run `sudo pfctl -sr | grep 8000` to verify that the changes are active.
 
-16. Run `chia configure --enable-data-server true` to enable the data propagation server.
-
-  ```powershell
-  PS C:\Users\User> chia configure --enable-data-server true
-  Data Server enabled.
-  Restart any running chia services for changes to take effect
-  ```
-
-17. Run `chia start wallet-only`. This command will start your daemon and wallet.
+16. Run `chia start wallet-only`. This command will start your daemon and wallet.
   ```powershell
   PS C:\Users\User> chia start wallet-only
   Daemon not started yet
@@ -225,13 +217,13 @@ This document will guide you through the process of installing the Climate Wareh
   chia_wallet: started
   ```
 
-18. Run `chia start data` to start the Data Layer server.
+17. Run `chia start data` to start the Data Layer server.
   ```powershell
   PS C:\Users\User> chia start data
   chia_data_layer: started
   ```
 
-19. Run `chia wallet show` to show your balance. You'll need to wait for `Sync status:` to say `Synced`. This will take a few minutes. After your wallet has synced, it should show a balance greater than 0. For example:
+18. Run `chia wallet show` to show your balance. You'll need to wait for `Sync status:` to say `Synced`. This will take a few minutes. After your wallet has synced, it should show a balance greater than 0. For example:
 
   ```powershell
   PS C:\Users\User> chia wallet show
@@ -244,7 +236,7 @@ This document will guide you through the process of installing the Climate Wareh
     -Spendable: 1.0 xch (1000000000000 mojo)
   ```
 
-20. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 XCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. The format for this command is `chia wallet send -i <wallet ID, usually 1> -a <amount in XCH> -m <fee in XCH> -t <your own XCH address> -f <your fingerprint>`.
+19. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 XCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. The format for this command is `chia wallet send -i <wallet ID, usually 1> -a <amount in XCH> -m <fee in XCH> -t <your own XCH address> -f <your fingerprint>`.
 
   For example, the following command will create a new coin worth 0.25 XCH, with a 0.001 XCH fee:
 
