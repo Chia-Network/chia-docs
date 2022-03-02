@@ -52,6 +52,8 @@ jobs:
       run: yarn crowdin-download
 
     - name: "yarn deploy"
+      env:
+        NODE_OPTIONS: --openssl-legacy-provider
       run: |
         git config --global user.name 'ChiaAutomation'
         git config --global user.email 'automation@chia.net'
