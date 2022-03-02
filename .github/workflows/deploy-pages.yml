@@ -3,8 +3,7 @@ name: Deploy to pages on trunk
 on:
   push:
     branches:
-      - '**'
-      - '!main'
+      - 'main'
 
 jobs:
   deploy:
@@ -56,8 +55,6 @@ jobs:
       env:
         NODE_OPTIONS: --openssl-legacy-provider
       run: |
-        yarn build
-
-#        git config --global user.name 'ChiaAutomation'
-#        git config --global user.email 'automation@chia.net'
-#        GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy
+        git config --global user.name 'ChiaAutomation'
+        git config --global user.email 'automation@chia.net'
+        GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy
