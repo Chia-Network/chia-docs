@@ -3,7 +3,8 @@ name: Deploy to pages on trunk
 on:
   push:
     branches:
-      - 'main'
+      - '**'
+      - '!main'
 
 jobs:
   deploy:
@@ -12,6 +13,7 @@ jobs:
     env:
       CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
       CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
+      NODE_OPTIONS: --openssl-legacy-provider
     steps:
     - name: "Install deps"
       run: |
@@ -53,6 +55,8 @@ jobs:
 
     - name: "yarn deploy"
       run: |
-        git config --global user.name 'ChiaAutomation'
-        git config --global user.email 'automation@chia.net'
-        GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy
+        yarn build
+
+#        git config --global user.name 'ChiaAutomation'
+#        git config --global user.email 'automation@chia.net'
+#        GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy
