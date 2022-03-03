@@ -47,18 +47,18 @@ This document will guide you through the process of installing the Climate Wareh
 	
 	* Double click Setup-[version].dmg. Drag the Chia icon to the Applications folder.
 
-<figure>
+<div class="figure">
   <img src="images/data_layer/01_downloads.png" alt="Chia installation file"/>
-  <figcaption>
+  <div class="figcaption">
 	<em>Windows installer (left) and MacOS installer (right).</em>
-  </figcaption>
-</figure>
+  </div>
+</div>
 
 4. On Windows, the _Select Your Client Mode_ window will appear. We'll be using the Command Line Interface, so close this window. On MacOS this window doesn't appear, so no need to close it.
 
-<figure>
+<div class="figure">
   <img src="images/data_layer/02_close_installer.png" alt="Chia sign-in screen"/>
-</figure>
+</div>
 
 5. Open PowerShell on Windows, or Terminal on MacOS.
 
@@ -146,20 +146,20 @@ This document will guide you through the process of installing the Climate Wareh
 
 13. You'll need some TXCH in order to use the Climate Warehouse. Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit".
 
-  <figure>
+  <div class="figure">
 	<img src="images/data_layer/03_faucet.png" alt="Chia's testnet10 faucet"/>
-  </figure>
+  </div>
 
   You'll receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you'll receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your money to arrive before continuing.
 
 14. Edit `config.yaml`, located in `~/.chia/mainnet/config` on MacOS, and `C:\Users\<user>\.chia\mainnet\config` on Windows.
 
-  <figure>
+  <div class="figure">
 	<img src="images/data_layer/04_config_location.png" alt="Chia's config file location"/>
-	<figcaption>
+	<div class="figcaption">
 	<em>The location of config.yaml on Windows.</em>
-	</figcaption>
-  </figure>
+	</div>
+  </div>
 
   In the data_layer section, verify that the host_ip is set to 0.0.0.0. This will tell the data propagation server to listen to all interfaces.
 
@@ -223,12 +223,12 @@ This document will guide you through the process of installing the Climate Wareh
 
 18. You must wait for your database file to finish downloading before continuing. After the download has completed, run `mv ~/Downloads/blockchain_v1_testnet10.sqlite ~/.chia/mainnet/db` to move it to the folder you just created.
 
-  <figure>
+  <div class="figure">
 	<img src="images/data_layer/05_db_location.png" alt="Chia database file and location"/>
-	<figcaption>
+	<div class="figcaption">
 	<em>The blockchain database file in the correct location on Windows.</em>
-  </figcaption>
-  </figure>
+  </div>
+  </div>
 
 19. Run `chia start wallet`. This command will start your daemon, wallet and full node.
   ```powershell
@@ -294,12 +294,12 @@ This document will guide you through the process of installing the Climate Wareh
 
 	* Extract `windows-x64.zip` to the folder you want to run the Climate Warehouse from.
 
-  <figure>
+  <div class="figure">
 	<img src="images/climate_warehouse/01_cw_installer_windows.png" alt="Climate Warehouse installation file"/>
-	<figcaption>
+	<div class="figcaption">
 	<em>The contents of windows-x64.zip.</em>
-	</figcaption>
-  </figure>
+	</div>
+  </div>
 
 	* Open a PowerShell window, change to the `windows-x64` folder, and run `climate-warehouse.exe`. The application will begin polling for updates.
 
@@ -322,12 +322,12 @@ This document will guide you through the process of installing the Climate Wareh
 
 	* Double click `ClimateWarehouse-macos-installer-x64.pkg` to run the installer. Choose the default settings. When the installation process completes, close the installer.
 
-<figure>
+<div class="figure">
 	  <img src="images/climate_warehouse/02_cw_installer_macos.png" alt="CW installer on MacOS"/>
-	  <figcaption>
+	  <div class="figcaption">
 		<em>The final panel of the Climate Warehouse installer.</em>
-	  </figcaption>
-</figure>
+	  </div>
+</div>
 
 	* Open a Terminal window, change to the `~/ClimateWarehouse` folder, and run `./climate-warehouse`. The application will begin polling for updates.
  
@@ -404,20 +404,20 @@ This document will guide you through the process of installing the Climate Wareh
 
    * Double click `Climate Warehouse-0.1.3-universal.dmg`. The application will install automatically. You'll need to drag the `Climate Warehouse` icon to the `Applications` folder.
 
-<figure>
+<div class="figure">
 	  <img src="images/climate_warehouse/03_cw_gui_installer_macos.png" alt="CW GUI on MacOS"/>
-	  <figcaption>
+	  <div class="figcaption">
 		<em>Drag the Climate Warehouse icon to complete the installation.</em>
-	  </figcaption>
-</figure>
+	  </div>
+</div>
 
 	* Open the `Applications` folder and double click `Climate Warehouse` to run the application.
 
 3. Initially, there will be no projects in the Climate Warehouse.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/04_empty_projects.png" alt="Climate Warehouse empty Projects List"/>
-</figure>
+</div>
 
 You have successfully installed the Climate Warehouse. The rest of this document will show you how to create an organization, create a new project, and create a new unit.
 
@@ -427,21 +427,21 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 1. If you have not yet created your organization, you'll need to do so now. Click "+ Create Organization".
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/05_create_organization.png" alt="Create a new organization"/>
-</figure>
+</div>
 
 2. Fill in your Organization Name and Icon URL, as they are required fields. If you don't have an icon URL, you can use our default: `https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg`
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/06_create_organization_fields.png" alt="Fill in fields to create a new organization"/>
-</figure>
+</div>
 
 3. Click `OK`. You should be informed that your organization was successfully added. You will also be given an Organization ID.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/07_create_organization_success.png" alt="Success creating a new organization"/>
-</figure>
+</div>
 
 -----
 
@@ -449,15 +449,15 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 1. To create a new project, click `My Projects`, then click `+ Create`:
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/08_create_new_project.png" alt="Create a new project"/>
-</figure>
+</div>
 
 2. Fill in the required fields.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/09_cw_new_project.png" alt="Step 1 to register a project"/>
-</figure>
+</div>
   
 	* Required Field
 
@@ -483,34 +483,34 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 3. When you reach Step 8, click Create Project.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/10_ratings_tab.png" alt="Step 8 to register a project"/>
-</figure>
+</div>
 
 
 4. You'll receive a message that the project was successfully created. Your project will be held in `STAGING` until you click the `Commit` button.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/11_successful_creation.png" alt="Success creating a project"/>
-</figure>
+</div>
 
 5. After you click the `Commit` button, you'll receive a message that the transactions have been committed. They will now be `PENDING`.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/12_transactions_committed.png" alt="Transactions committed pending"/>
-</figure>
+</div>
 
 6. The blockchain will confirm the transactions after a few minutes. `No pending data at this time` will be displayed.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/13_no_pending_data.png" alt="Transactions committed"/>
-</figure>
+</div>
 
 7. Your project will now be listed in the Projects List.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/14_projects_list.png" alt="New project listed"/>
-</figure>
+</div>
 
   You have successfully created your new project.
 
@@ -519,15 +519,15 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 1. To create a new unit, click `My Units`, then click `+ Create`:
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/15_new_unit.png" alt="Create a new unit"/>
-</figure>
+</div>
 
 2. Fill in the required fields.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/16_unit_fields.png" alt="Step 1 to register a unit"/>
-</figure>
+</div>
 	
 	* Required Field
 
@@ -553,32 +553,32 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 3. When you reach Step 3, click Create.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/17_create_unit.png" alt="Step 3 to register a unit."/>
-</figure>
+</div>
 
 4. You'll receive a message that the unit was successfully created. Your unit will be held in `STAGING` until you click the `Commit` button.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/18_unit_create_success.png" alt="Success creating a unit"/>
-</figure>
+</div>
 
 5. After you click the `Commit` button, you'll receive a message that the transactions have been committed. They will now be `PENDING`.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/19_unit_pending.png" alt="Unit committed pending"/>
-</figure>
+</div>
 
 6. The blockchain will confirm the transactions after a few minutes. `No pending data at this time` will be displayed.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/20_no_units_pending.png" alt="No units pending"/>
-</figure>
+</div>
 
 7. Your unit will now be listed in the COMMITTED tab.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/21_unit_committed.png" alt="New unit listed"/>
-</figure>
+</div>
 
   You have successfully created your new unit.
