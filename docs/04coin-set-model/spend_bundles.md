@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# 4.3 Spend Bundles
+# 4.4 Spend Bundles
 
 A spend bundle is a set of spends of multiple coins, which is usually submitted to full nodes for inclusion into the blockchain. In Bitcoin, the equivalent data structure would be the transaction.
 

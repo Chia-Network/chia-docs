@@ -1,10 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# 4.1 Coins, Puzzles and Solutions
-
-NOTE: This section will briefly discuss Chialisp and the coin set model. For a more in-depth tutorial, head over to [chialisp.com](http://chialisp.com "Chialisp's official website").
+# 4.2 Coins, Puzzles and Solutions
 
 The Chia blockchain, as explained in the consensus section, is a linked list of blocks, agreed upon by nodes. Nodes also maintain a table of **coins**. A coin in chia is a record of ownership of a certain amount of XCH, which can be unlocked by providing a puzzle and solution. 
 
@@ -39,19 +37,3 @@ The data required to spend a coin is:
 * The solution to the puzzle
 
 A coin also has the option of requiring an aggregate signature in order to spend it.
-
-## Account Model vs Coin Set Model
-In the account model, which is used by Ethereum and many other systems, balances are kept in accounts. These are permanent data structures which do not get destroyed when they send funds. There are some tradeoffs between the account model and the coin set model (similar to Bitcoin's UTXO model).
-
-### Benefits of the account model
-* All logic and state can be stored in one program and one account, simplifying development.
-* It is simple to combine multiple transactions that affect the same dapp in one block.
-* Users and wallets only have to keep track of one account for all of their balance (although the UTXO model can support this).
-
-### Benefits of the coin set model
-* Very parallelizable since each coin spend is independent.
-* Coin value is split between many coins, increasing sandboxing and security. One program cannot call or affect another.
-* Deterministic operation of every spend.
-* More efficient storage of state  (although this depends on implementation).
-* Increased privacy, since one user usually has many coins.
-* Re-applying mempool transactions after a new block is not necessary due to deterministic results.
