@@ -478,7 +478,7 @@ curl --insecure \
      --location --request POST 'https://localhost:8562/subscribe' --header 'Content-Type: application/json' --data-raw '{
      "id": "26462fbf4a10175dbc6945dd3fda35e05da845532f585d79097e06d77ef7165e",
      "ip": "71.121.237.241",
-     "port": 8000
+     "port": 8575
    }'
 
 // Response
