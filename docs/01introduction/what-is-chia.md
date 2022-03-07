@@ -28,7 +28,7 @@ Chia has a new smart transaction model, which uses a powerful (yet simple) highe
 
 Chia uses the coin set model (similar to Bitcoin's UTXO) to track the blockchain's state. The simple nature of this model facilitates the writing of high value and secure contracts. Unlike in systems that use the account model such as Ethereum, the code that creates Chia's coins is strongly sandboxed. This increases security, reduces Maximum Extractable Value (MEV), and makes the code fully auditable.
 
->For more info on Chia's smart transactions, see [Section 4.1](/docs/04coin-set-model/what-is-a-coin "Section 4.1: Coins, Puzzles, and Solutions").
+>For more info on Chia's smart transactions, see [Section 4.2](/docs/04coin-set-model/what-is-a-coin "Section 4.2: Coins, Puzzles, and Solutions").
 
 ### Strong Security
 
