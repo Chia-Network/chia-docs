@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # 4.7 Coin Set vs Account
 
-In the account model used in many blockchains such as Ethereum, Solana and EOS, balances are kept in accounts. These are permanent data structures which do not get destroyed when they send funds.
+In the account model used in many blockchains such as Ethereum, Solana and Algorand, balances are kept in accounts. These are permanent data structures which do not get destroyed when they send funds.
 
 In this section, we'll focus on Ethereum and how its account model compares with Chia's coin set model.
 
@@ -89,7 +89,7 @@ Each user typically has just one account. It's possible to create additional acc
 
 Coins can only be spent once, making the results deterministic (if you run the same program multiple times, you'll get the same result each time). Because of this, re-applying mempool transactions after a new block is not necessary.
 
-Note, however, that smart coins _could_ be designed such that multiple people could spent the same coin, which would potentially reduce determinism for those coins.
+Note, however, that smart coins _could_ be designed such that multiple people could spend the same coin, which would potentially reduce determinism for those coins.
 
 #### Account
 
