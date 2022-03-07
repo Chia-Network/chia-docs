@@ -32,9 +32,9 @@ This document will guide you through the process of installing the Climate Wareh
 
   >Note: Your firewall might give warnings when installing both Chia and the Climate warehouse. This is normal. Allow the installations to continue.
 
-1. We'll be running on Chia's testnet, so you can safely download a copy of the database. Do not attempt this on mainnet. [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v1_testnet10.sqlite "Chia's testnet10 database download site") Save the file to your Downloads folder.
+1. We'll be running on Chia's testnet, so you can safely download a copy of the database. Do not attempt this on mainnet. [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v1_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
 
-  Note that the database file is around 25 GB. You can continue with the next steps while it is downloading.
+  Note that the database file is around 35 GB. You can continue with the next steps while it is downloading.
 
 2. Download the latest Chia installer from Keybase Files in chia_network.datalayerdogfood.
   
@@ -151,31 +151,6 @@ This document will guide you through the process of installing the Climate Wareh
   </div>
 
   You'll receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you'll receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your money to arrive before continuing.
-
-14. Edit `config.yaml`, located in `~/.chia/mainnet/config` on MacOS, and `C:\Users\<user>\.chia\mainnet\config` on Windows.
-
-  <div class="figure">
-	<img src="images/data_layer/04_config_location.png" alt="Chia's config file location"/>
-	<div class="figcaption">
-	<em>The location of config.yaml on Windows.</em>
-	</div>
-  </div>
-
-  In the data_layer section, verify that the host_ip is set to 0.0.0.0. This will tell the data propagation server to listen to all interfaces.
-
-  ```yaml
-  data_layer:
-  database_path: data_layer/db/data_layer_CHALLENGE.sqlite
-  fee: 0
-  fetch_data_interval: 60
-  host_ip: 0.0.0.0
-  host_port: 8000
-  ...
-  ```
-
-  The value of `fee` will be paid to the network each time you create a new singleton (any time you commit changes to the Data Layer). In general, the higher the fee, the quicker your transaction is likely to be processed. Chia's testnet frequently experiences heavy load, in which case the mempool will be full. If you leave the `fee` set to `0`, you may experience delays while interacting with the Climate Warehouse.
-  
-  In order to reduce your chances of experiencing long delays, we recommend that you set the `fee` to `1000000000` (one billion mojos) on both testnet and mainnet.
 
 15. If you want to receive updates from the network, you'll need to configure your router to forward port 8000 to the machine running your data propagation server. To configure your router's settings, typically you'll need enter `http://192.168.1.1` in a web browser, though this address varies for different routers. From your router's settings, locate the Port Forwarding section and add a rule to forward port 8000 to your local IP address.
 
