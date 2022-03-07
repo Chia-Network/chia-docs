@@ -328,7 +328,7 @@ Options:
 Example:
 
 ```bash
-$ chia data subscribe --id=d6ae899e99f813181527605180a92ace6c5020fb8bc2c6eca7ac9b5a1a656eac --ip=92.115.141.83 --port=8000
+$ chia data subscribe --id=d6ae899e99f813181527605180a92ace6c5020fb8bc2c6eca7ac9b5a1a656eac --ip=92.115.141.83 --port=8575
 ```
 ---
 

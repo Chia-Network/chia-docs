@@ -152,42 +152,17 @@ This document will guide you through the process of installing the Climate Wareh
   
   >NOTE: If you ever need to display your address, run `chia keys show`. This command will only output your public keys and address; your private keys and seed phrase will not be shown.
 
-13. Edit `config.yaml`, located in `~/.chia/mainnet/config` on MacOS, and `C:\Users\<user>\.chia\mainnet\config` on Windows.
+13. If you want to receive updates from the network, you'll need to configure your router to forward port 8575 to the machine running your data propagation server. To configure your router's settings, typically you'll need enter `http://192.168.1.1` in a web browser, though this address varies for different routers. From your router's settings, locate the Port Forwarding section and add a rule to forward port 8575 to your local IP address.
 
-  <figure>
-    <img src="images/data_layer/04_config_location.png" alt="Chia's config file location"/>
-    <figcaption>
-    <em>The location of config.yaml on Windows.</em>
-    </figcaption>
-  </figure>
-
-  In the data_layer section, verify that the host_ip is set to 0.0.0.0. This will tell the data propagation server to listen to all interfaces.
-
-  ```yaml
-  data_layer:
-  database_path: data_layer/db/data_layer_CHALLENGE.sqlite
-  fee: 0
-  fetch_data_interval: 60
-  host_ip: 0.0.0.0
-  host_port: 8000
-  ...
-  ```
-
-  The value of `fee` will be paid to the network each time you create a new singleton (any time you commit changes to the Data Layer). In general, the higher the fee, the quicker your transaction is likely to be processed. Chia's mainnet frequently experiences heavy load, in which case the mempool will be full. If you leave the `fee` set to `0`, you may experience delays while interacting with the Climate Warehouse.
-  
-  In order to reduce your chances of experiencing long delays, we recommend that you set the `fee` to `1000000000` (one billion mojos).
-
-14. If you want to receive updates from the network, you'll need to configure your router to forward port 8000 to the machine running your data propagation server. To configure your router's settings, typically you'll need enter `http://192.168.1.1` in a web browser, though this address varies for different routers. From your router's settings, locate the Port Forwarding section and add a rule to forward port 8000 to your local IP address.
-
-15. You'll also need to configure your firewall to allow connections on port 8000.
+14. You'll also need to configure your firewall to allow connections on port 8575.
 
     Windows:
     
       * From a PowerShell prompt, run `Start-Process powershell -Verb runAs`. This will open a new PowerShell window as an Administrator. From this new window, you'll need to run two commands, one for incoming connections and on for outgoing connections.
 
-      * `netsh advfirewall firewall add rule name="allowDataServerIn" dir=in action=allow protocol=TCP localport=8000`
+      * `netsh advfirewall firewall add rule name="allowDataServerIn" dir=in action=allow protocol=TCP localport=8575`
   
-      * `netsh advfirewall firewall add rule name="allowDataServerOut" dir=out action=allow protocol=TCP localport=8000`
+      * `netsh advfirewall firewall add rule name="allowDataServerOut" dir=out action=allow protocol=TCP localport=8575`
   
       * Both of these commands should give a response of `Ok.` Once you have successfully run the commands, exit the Administrator PowerShell window.
 
@@ -199,17 +174,17 @@ This document will guide you through the process of installing the Climate Wareh
 
       * Add the following lines to the end of the file:
       
-        `# Open port 8000 for Chia Data Server`
+        `# Open port 8575 for Chia Data Server`
     
-        `pass in proto tcp from any to any port 8000`
+        `pass in proto tcp from any to any port 8575`
       
       * Save and close the file.
       
       * Run `sudo pfctl -f /etc/pf.conf` to load the changes.
 
-      * Run `sudo pfctl -sr | grep 8000` to verify that the changes are active.
+      * Run `sudo pfctl -sr | grep 8575` to verify that the changes are active.
 
-16. Run `chia start wallet-only`. This command will start your daemon and wallet.
+15. Run `chia start wallet-only`. This command will start your daemon and wallet.
   ```powershell
   PS C:\Users\User> chia start wallet-only
   Daemon not started yet
@@ -217,13 +192,13 @@ This document will guide you through the process of installing the Climate Wareh
   chia_wallet: started
   ```
 
-17. Run `chia start data` to start the Data Layer server.
+16. Run `chia start data` to start the Data Layer server.
   ```powershell
   PS C:\Users\User> chia start data
   chia_data_layer: started
   ```
 
-18. Run `chia wallet show` to show your balance. You'll need to wait for `Sync status:` to say `Synced`. This will take a few minutes. After your wallet has synced, it should show a balance greater than 0. For example:
+17. Run `chia wallet show` to show your balance. You'll need to wait for `Sync status:` to say `Synced`. This will take a few minutes. After your wallet has synced, it should show a balance greater than 0. For example:
 
   ```powershell
   PS C:\Users\User> chia wallet show
@@ -236,7 +211,7 @@ This document will guide you through the process of installing the Climate Wareh
     -Spendable: 1.0 xch (1000000000000 mojo)
   ```
 
-19. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 XCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. The format for this command is `chia wallet send -i <wallet ID, usually 1> -a <amount in XCH> -m <fee in XCH> -t <your own XCH address> -f <your fingerprint>`.
+18. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 XCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. The format for this command is `chia wallet send -i <wallet ID, usually 1> -a <amount in XCH> -m <fee in XCH> -t <your own XCH address> -f <your fingerprint>`.
 
   For example, the following command will create a new coin worth 0.25 XCH, with a 0.001 XCH fee:
 
