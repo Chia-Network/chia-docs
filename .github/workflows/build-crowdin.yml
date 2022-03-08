@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: "Install deps"
       run: |
-        apk add python3 py3-pip make g++ git openjdk11
+        apk add python3 py3-pip make g++ git openjdk11 bash
 
     - name: Checkout Code
       uses: actions/checkout@v2
@@ -35,11 +35,11 @@ jobs:
         cat docusaurus.config.js
 
     - name: "yarn deps"
+      env:
+        # Required for npm to install the java package used by crowdin CLI
+        JAVA_HOME: "/usr/lib/jvm/java-11-openjdk/"
       run: |
         yarn
-        npm install node-gyp
-        # This command will fail but links Java from openjdk11 to node
-        npm install java || true
 
     - name: "Docusaurus write-translations"
       run: |
