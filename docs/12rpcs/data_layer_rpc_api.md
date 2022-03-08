@@ -160,19 +160,180 @@ Options:
 | changelist      | TEXT    | True     | A string representing the changelist
 | data-rpc-port   | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml (default is 8562) |
 
-Example:
+A few notes on the `changelist` option:
+  * The entire list must be formatted as a JSON array
+  * There are two actions allowed: `insert` and `delete`
+  * `insert` requires `key` and `value` flags
+  * `delete` requires a `key` flag only
+  * Keys and values must be written in hex format. Values can be derived from text or binary.
+  * Labels, keys and values must all be enclosed in double quotes
+  * Multiple inserts and deletes are allowed
+  * The size of a single `value` flag is limited to 100 MiB. However, adding anything close to that size has not been tested and could produce unexpected results.
 
+The following examples will show the basic functionality of this command.
+
+Insert a single key/value pair:
 ```json
 // Request
 curl --insecure \
      --cert ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.crt \
      --key ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.key \
      --location --request POST 'https://localhost:8562/batch_update' --header 'Content-Type: application/json' --data-raw '{
-     "id": "77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b4b94a7a6f0912b323",
-     "hash": "0x53705e5461959a448dbd3e1482cce31849b7f989fee3e1af80b8079dd67b9bc8"
+     "id": "dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d",
+     "changelist": [{"action":"insert", "key":"00000001", "value":"cafef00d"}]
    }'
 
 // Response
+{"success": true, "tx_id": "0x4ae9b68ee812d358366db5f3ce860d4a6d1c4e8edcfef07632ce2c0ad040f51f"}
+```
+
+Delete a single key:
+```json
+// Request
+curl --insecure \
+     --cert ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.crt \
+     --key ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.key \
+     --location --request POST 'https://localhost:8562/batch_update' --header 'Content-Type: application/json' --data-raw '{
+     "id": "dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d",
+     "changelist": [{"action":"delete", "key":"00000001"}]
+   }'
+
+// Response
+{"success": true, "tx_id": "0x0bf43d545a5d8f09f1aacaaef02c3145b3bb2e9cf0f5301828beaf445ae87494"}
+```
+
+Insert two keys:
+```json
+// Request
+curl --insecure \
+     --cert ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.crt \
+     --key ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.key \
+     --location --request POST 'https://localhost:8562/batch_update' --header 'Content-Type: application/json' --data-raw '{
+     "id": "dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d",
+     "changelist": [{"action":"insert", "key":"00000001", "value":"cafef00d"},{"action":"insert", "key":"00000002", "value":"fadedcab"}]
+   }'
+
+// Response
+{"success": true, "tx_id": "0x49e9268e8ebd593098f4278ebcd18d70a6c1d423f8a9b1b3e79acb5c30d8647d"}
+```
+
+List all keys and values after running the previous command:
+```json
+// Request
+curl --insecure \
+     --cert ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.crt \
+     --key ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.key \
+     --location --request POST 'https://localhost:8562/get_keys_values' --header 'Content-Type: application/json' --data-raw '{
+     "id": "dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d"
+   }'
+
+// Response
+{
+    "keys_values": [{
+        "atom": null, 
+        "hash": "0x09c15143e7028c59f9f4d8aa9eedf2052188919a1677f0297e8cb7f2cc6cfec9", 
+        "key": "0x00000002", 
+        "value": "0xfadedcab"
+    }, {
+        "atom": null, 
+        "hash": "0x3735937a33f861e66504efaffb6a2d1966efd0238c71d0296329c60ac3261b45", 
+        "key": "0x00000001", 
+        "value": "0xcafef00d"
+    }], 
+    "success": true
+}
+```
+
+
+Note that you may not write over the top of an existing key/value pair:
+```json
+// Request
+curl --insecure \
+     --cert ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.crt \
+     --key ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.key \
+     --location --request POST 'https://localhost:8562/batch_update' --header 'Content-Type: application/json' --data-raw '{
+     "id": "dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d",
+     "changelist": [{"action":"insert", "key":"00000002", "value":"0123456789abcdef"}]
+   }'
+
+// Response
+{"error": "Key already present: 00000002", "success": false}
+```
+
+However, you may delete and add the same key in one command:
+```json
+// Request
+curl --insecure \
+     --cert ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.crt \
+     --key ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.key \
+     --location --request POST 'https://localhost:8562/batch_update' --header 'Content-Type: application/json' --data-raw '{
+     "id": "dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d",
+     "changelist": [{"action":"delete", "key":"00000002"},{"action":"insert", "key":"00000002", "value":"0123456789abcdef"}]
+   }'
+
+// Response
+{"success": true, "tx_id": "0x4eb4e0daa5dfb19b3ca2c70dfee0f3d4086820480267b29accd1dc3cc2720d67"}
+```
+
+The result of the previous command is that the key/value pair has been updated:
+```json
+// Request
+curl --insecure \
+     --cert ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.crt \
+     --key ~/.chia/mainnet/config/ssl/data_layer/private_data_layer.key \
+     --location --request POST 'https://localhost:8562/get_keys_values' --header 'Content-Type: application/json' --data-raw '{
+     "id": "dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d"
+   }'
+
+// Response
+{
+    "keys_values": [{
+        "atom": null, 
+        "hash": "0x0bb5aa4e182e953717a4e0f7919fd7fcd5be413686a4021d9730b02748310983", 
+        "key": "0x00000002", 
+        "value": "0x0123456789abcdef"
+    }, {
+        "atom": null, 
+        "hash": "0x3735937a33f861e66504efaffb6a2d1966efd0238c71d0296329c60ac3261b45", 
+        "key": "0x00000001", 
+        "value": "0xcafef00d"
+    }], 
+    "success": true
+}
+```
+
+Finally, here's an actual example of a key/value pair that was inserted into the Climate Warehouse:
+```json
+[{"action":"insert","key":"70726f6a6563747c37353339656336392d636238652d343464362d383832332d653062313135303162643433","value":"7b2263757272656e745265676973747279223a2243756c7469766f222c2272656769737472794f664f726967696e223a2243756c7469766f222c226f726967696e50726f6a6563744964223a224d6163546573743135222c2270726f6772616d223a224d6163546573743135222c2270726f6a6563744964223a224d6163546573743135222c2270726f6a6563744e616d65223a224d6163546573743135222c2270726f6a6563744c696e6b223a224d6163546573743135222c2270726f6a656374446576656c6f706572223a224d6163546573743135222c22736563746f72223a22456e6572677920646973747269627574696f6e222c2270726f6a65637454797065223a224f7a6f6e65204465706c6574696e67205375627374616e636573222c22636f766572656442794e4443223a224f757473696465204e4443222c226e6463496e666f726d6174696f6e223a224d6163546573743135222c2270726f6a656374537461747573223a22436f6d706c65746564222c22756e69744d6574726963223a2274434f3265222c226d6574686f646f6c6f6779223a22426173656c696e65204d6574686f646f6c6f677920666f72206465636f6d706f736974696f6e206f66204e324f2066726f6d206578697374696e672061646970696320616369642070726f64756374696f6e20706c616e7473202d2d2d2056657273696f6e20332e30222c2270726f6a65637454616773223a224d6163546573743135222c2276616c69646174696f6e426f6479223a22436172626f6e20436865636b2028496e646961292050726976617465204c74642e222c2270726f6a65637453746174757344617465223a22323032302d30332d32385430303a30303a30302e3030305a222c2276616c69646174696f6e44617465223a22323032322d30332d30315430303a30303a30302e3030305a222c2277617265686f75736550726f6a6563744964223a2237353339656336392d636238652d343464362d383832332d653062313135303162643433222c2274696d65537461676564223a313634363639343630322c226f7267556964223a2230623039643861653437626665323731366263323532383231333463653661613931616333646364663933363335616338656436626362333031626234636238227d"}]
+```
+
+The hex from this example can be decoded to obtain the following:
+```json
+key = project|7539ec69-cb8e-44d6-8823-e0b11501bd43
+value = {
+    "currentRegistry":"Cultivo",
+    "registryOfOrigin":"Cultivo",
+    "originProjectId":"MacTest15",
+    "program":"MacTest15",
+    "projectId":"MacTest15",
+    "projectName":"MacTest15",
+    "projectLink":"MacTest15",
+    "projectDeveloper":"MacTest15",
+    "sector":"Energy distribution",
+    "projectType":"Ozone Depleting Substances",
+    "coveredByNDC":"Outside NDC",
+    "ndcInformation":"MacTest15",
+    "projectStatus":"Completed",
+    "unitMetric":"tCO2e",
+    "methodology":"Baseline Methodology for decomposition of N2O from existing adipic acid production plants --- Version 3.0",
+    "projectTags":"MacTest15",
+    "validationBody":"Carbon Check (India) Private Ltd.",
+    "projectStatusDate":"2020-03-28T00:00:00.000Z",
+    "validationDate":"2022-03-01T00:00:00.000Z",
+    "warehouseProjectId":"7539ec69-cb8e-44d6-8823-e0b11501bd43",
+    "timeStaged":1646694602,
+    "orgUid":"0b09d8ae47bfe2716bc25282134ce6aa91ac3dcdf93635ac8ed6bcb301bb4cb8"
+}
 ```
 ---
 
@@ -276,6 +437,7 @@ curl --insecure \
    }'
 
 // Response
+{"ancestors": [], "success": true}
 ```
 ---
 

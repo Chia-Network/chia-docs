@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 # Climate Warehouse Install Guide
-
+* The default size limit of a single batch update is 25 MiB
 ### This website is a temporary home for this document. The permanent home of the mainnet version of this document will likely in the public wiki.
 
 ---
