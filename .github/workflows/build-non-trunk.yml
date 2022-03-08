@@ -3,16 +3,20 @@ name: Deploy to pages on trunk
 on:
   push:
     branches:
-      - 'main'
+      - '**'
+      - '!main'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     container: node:17-alpine
+    env:
+      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+      CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
     steps:
     - name: "Install deps"
       run: |
-        apk add python3 py3-pip make g++ git
+        apk add python3 py3-pip make g++ git openjdk11
 
     - name: Checkout Code
       uses: actions/checkout@v2
@@ -34,8 +38,24 @@ jobs:
     - name: "yarn deps"
       run: |
         yarn
+        npm install node-gyp
+        # This command will fail but links Java from openjdk11 to node
+        npm install java || true
+
+    - name: "Docusaurus write-translations"
+      run: |
+        yarn write-translations
+
+    - name: "Crowdin upload"
+      run: yarn crowdin-upload
+
+    - name: "Crowdin download"
+      run: yarn crowdin-download
 
     - name: "yarn deploy"
+      env:
+        DEPLOYMENT_BRANCH: "gh-pages-nontrunk"
+        NODE_OPTIONS: --openssl-legacy-provider
       run: |
         git config --global user.name 'ChiaAutomation'
         git config --global user.email 'automation@chia.net'
