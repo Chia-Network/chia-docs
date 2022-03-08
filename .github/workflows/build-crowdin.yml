@@ -1,10 +1,9 @@
-name: Deploy to pages on trunk
+name: Test Crowdin integration
 
 on:
-  push:
+  pull_request:
     branches:
-      - '**'
-      - '!main'
+      - 'crowdin/**'
 
 jobs:
   deploy:
@@ -54,7 +53,7 @@ jobs:
 
     - name: "yarn deploy"
       env:
-        DEPLOYMENT_BRANCH: "gh-pages-nontrunk"
+        DEPLOYMENT_BRANCH: "gh-pages-crowdin"
         NODE_OPTIONS: --openssl-legacy-provider
       run: |
         git config --global user.name 'ChiaAutomation'
