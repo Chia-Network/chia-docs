@@ -12,6 +12,8 @@ jobs:
     env:
       CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
       CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
+      # Required for npm to install the java package used by crowdin CLI
+      JAVA_HOME: "/usr/lib/jvm/java-11-openjdk/"
     steps:
     - name: "Install deps"
       run: |
@@ -35,9 +37,6 @@ jobs:
         cat docusaurus.config.js
 
     - name: "yarn deps"
-      env:
-        # Required for npm to install the java package used by crowdin CLI
-        JAVA_HOME: "/usr/lib/jvm/java-11-openjdk/"
       run: |
         yarn
 
