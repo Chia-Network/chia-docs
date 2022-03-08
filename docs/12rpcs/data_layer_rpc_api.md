@@ -1,10 +1,10 @@
 ---
 sidebar_position: 3
 ---
-# 12.3 Data Layer RPC API
-This page includes a comprehensive list of Chia's Data Layer RPC API. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide_testnet "Climate Warehouse install guide").
+# 12.3 Data Layer (Beta) RPC API
+This page includes a comprehensive list of Chia's Data Layer Beta RPC API. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide "Climate Warehouse install guide").
 
-We also have documented the [CLI](/docs/13cli/data "Section 13.2: Data Layer CLI") commands for interacting with the Data Layer.
+We also have documented the [CLI](/docs/13cli/data "Section 13.2: Data Layer (Beta) CLI") commands for interacting with the Data Layer.
 
 The data layer RPC API is exposed by default on port 8562. This port must not be exposed publicly for
 security concerns.

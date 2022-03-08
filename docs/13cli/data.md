@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2
 ---
-# 13.2 Data Layer CLI
-This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the Data Layer. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide_testnet "Climate Warehouse install guide").
+# 13.2 Data Layer (Beta) CLI
+This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the Data Layer Beta. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide "Climate Warehouse install guide").
 
-We also have documented the [RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer RPC API") for interacting with the Data Layer.
+We also have documented the [RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer Beta RPC API") for interacting with the Data Layer.
 
 The relevant Data Layer commands can all be found under the `chia data` command:
 

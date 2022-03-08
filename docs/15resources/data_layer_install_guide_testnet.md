@@ -10,13 +10,13 @@ sidebar_position: 3
 ---
 
 This document will guide you through the process of installing the Climate Warehouse application on Windows and MacOS. For additional technial resources, see the following:
-* [Data Layer RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer RPC API")
-* [Data Layer CLI Reference](/docs/13cli/data "Section 12.3: Data Layer CLI Reference")
+* [Data Layer (Beta) RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer Beta RPC API")
+* [Data Layer (Beta) CLI Reference](/docs/13cli/data "Section 12.3: Data Layer Beta CLI Reference")
 
 ## Contents:
 
 * Installation
-  * [Install and configure Chia and the Data Layer server](#install-and-configure-chia-and-the-data-layer-server)
+  * [Install and configure Chia and the Data Layer (Beta) server](#install-and-configure-chia-and-the-data-layer-beta-server)
   * [Install the Climate Warehouse service](#install-the-climate-warehouse-service)
   * [Install and configure the Climate Warehouse Aux Application (GUI)](#install-and-configure-the-climate-warehouse-aux-application-gui)
 
@@ -28,7 +28,7 @@ This document will guide you through the process of installing the Climate Wareh
 
 -----
 
-## Install and configure Chia and the Data Layer server
+## Install and configure Chia and the Data Layer (Beta) server
 
   >Note: Your firewall might give warnings when installing both Chia and the Climate warehouse. This is normal. Allow the installations to continue.
 
@@ -216,7 +216,7 @@ This document will guide you through the process of installing the Climate Wareh
   chia_full_node: started
   ```
 
-19. Run `chia start data` to start the Data Layer server.
+19. Run `chia start data` to start the Data Layer Beta server.
   ```powershell
   PS C:\Users\User> chia start data
   chia_data_layer: started
