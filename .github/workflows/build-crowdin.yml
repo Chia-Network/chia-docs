@@ -17,10 +17,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: "Crowdin upload"
-      run: yarn crowdin-upload
+      run: crowdin upload
 
     - name: "Crowdin download"
-      run: yarn crowdin-download
+      run: crowdin download
 
     - name: Upload Crowdin docs
       uses: actions/upload-artifact@v3
