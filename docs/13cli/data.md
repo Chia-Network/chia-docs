@@ -319,6 +319,11 @@ The result of the previous command is that the key/value pair has been updated:
 {
     'keys_values': [{
         'atom': None, 
+        'hash': '0x3735937a33f861e66504efaffb6a2d1966efd0238c71d0296329c60ac3261b45', 
+        'key': '0x00000001', 
+        'value': '0xcafef00d'
+    }, {
+        'atom': None, 
         'hash': '0x0bb5aa4e182e953717a4e0f7919fd7fcd5be413686a4021d9730b02748310983', 
         'key': '0x00000002', 
         'value': '0x0123456789abcdef'
