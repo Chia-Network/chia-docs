@@ -33,6 +33,7 @@ jobs:
           i18n
  
   crowdin:
+    needs: docusaurus-translations
     runs-on: ubuntu-latest
     container: crowdin/cli:latest
     env:
