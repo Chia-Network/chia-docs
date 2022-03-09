@@ -6,6 +6,32 @@ on:
       - 'crowdin/**'
 
 jobs:
+  docusaurus-translations:
+    runs-on: ubuntu-latest
+    container: node:17-alpine
+    steps:
+    - name: "Install deps"
+      run: |
+        apk add python3 make g++ git
+
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: "yarn deps"
+      run: |
+        yarn
+
+    - name: "Docusaurus write-translations"
+      run: |
+        yarn write-translations  
+
+    - name: Upload Crowdin docs
+      uses: actions/upload-artifact@v3
+      with:
+        name: translations
+        path: |
+          i18n
+ 
   crowdin:
     runs-on: ubuntu-latest
     container: crowdin/cli:latest
@@ -15,6 +41,11 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: translations
 
     - name: "Crowdin upload"
       run: crowdin upload
@@ -63,10 +94,6 @@ jobs:
     - name: "yarn deps"
       run: |
         yarn
-
-    - name: "Docusaurus write-translations"
-      run: |
-        yarn write-translations
 
     - name: "yarn deploy"
       env:
