@@ -6,21 +6,45 @@ on:
       - 'crowdin/**'
 
 jobs:
-  deploy:
+  crowdin:
     runs-on: ubuntu-latest
-    container: node:17-alpine
+    container: crowdin/cli:latest
     env:
       CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
       CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
-      # Required for npm to install the java package used by crowdin CLI
-      JAVA_HOME: "/usr/lib/jvm/java-11-openjdk/"
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: "Crowdin upload"
+      run: yarn crowdin-upload
+
+    - name: "Crowdin download"
+      run: yarn crowdin-download
+
+    - name: Upload Crowdin docs
+      uses: actions/upload-artifact@v3
+      with:
+        name: i18n
+        path: |
+          i18n
+
+  deploy:
+    needs: crowdin
+    runs-on: ubuntu-latest
+    container: node:17-alpine
     steps:
     - name: "Install deps"
       run: |
-        apk add python3 py3-pip make g++ git openjdk11 bash
+        apk add python3 py3-pip make g++ git
 
     - name: Checkout Code
       uses: actions/checkout@v2
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: i18n
 
     - name: Install J2
       run: |
@@ -30,9 +54,8 @@ jobs:
       run: |
         # Gets repository name (without owner prefix) variable
         echo "PROJECT_NAME=$(echo ${GITHUB_REPOSITORY} | cut -d "/" -f2)" >> $GITHUB_ENV
-        echo "PATH=$(echo "$PATH:/usr/lib/jvm/java-11-openjdk/jre/bin")" >> $GITHUB_ENV
 
-    - name: Generate docusaurus.config.js.j2
+    - name: Generate docusaurus.config.js
       run: |
         j2 docusaurus.config.js -o docusaurus.config.js
         cat docusaurus.config.js
@@ -45,16 +68,9 @@ jobs:
       run: |
         yarn write-translations
 
-    - name: "Crowdin upload"
-      run: yarn crowdin-upload
-
-    - name: "Crowdin download"
-      run: yarn crowdin-download
-
     - name: "yarn deploy"
       env:
         DEPLOYMENT_BRANCH: "gh-pages-crowdin"
-        NODE_OPTIONS: --openssl-legacy-provider
       run: |
         git config --global user.name 'ChiaAutomation'
         git config --global user.email 'automation@chia.net'
