@@ -6,7 +6,63 @@ on:
       - 'main'
 
 jobs:
+  docusaurus-translations:
+    runs-on: ubuntu-latest
+    container: node:17-alpine
+    steps:
+    - name: "Install deps"
+      run: |
+        apk add python3 make g++ git
+
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: "yarn deps"
+      run: |
+        yarn
+
+    - name: "Docusaurus write-translations"
+      run: |
+        yarn write-translations  
+
+    - name: Upload docusaurus translations
+      uses: actions/upload-artifact@v3
+      with:
+        name: translations
+        path: |
+          i18n
+ 
+  crowdin:
+    needs: docusaurus-translations
+    runs-on: ubuntu-latest
+    container: crowdin/cli:latest
+    env:
+      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+      CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: translations
+
+    - name: "Crowdin upload"
+      run: crowdin upload
+
+    - name: "Crowdin download"
+      run: crowdin download
+
+    - name: Upload Crowdin docs
+      uses: actions/upload-artifact@v3
+      with:
+        name: i18n
+        path: |
+          i18n
+
   deploy:
+    needs: crowdin
     runs-on: ubuntu-latest
     container: node:17-alpine
     steps:
@@ -17,6 +73,11 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: i18n
+
     - name: Install J2
       run: |
         pip install j2cli
@@ -26,7 +87,7 @@ jobs:
         # Gets repository name (without owner prefix) variable
         echo "PROJECT_NAME=$(echo ${GITHUB_REPOSITORY} | cut -d "/" -f2)" >> $GITHUB_ENV
 
-    - name: Generate docusaurus.config.js.j2
+    - name: Generate docusaurus.config.js
       run: |
         j2 docusaurus.config.js -o docusaurus.config.js
         cat docusaurus.config.js
