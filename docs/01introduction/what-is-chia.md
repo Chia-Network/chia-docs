@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 1.1 About Chia
+# 1.1 About Chia Blockchain
 
 ## What is Chia?
 
