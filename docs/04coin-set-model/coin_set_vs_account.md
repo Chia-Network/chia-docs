@@ -24,7 +24,7 @@ In Chia's coin set model, there are no accounts or balances. There are only coin
 
 A typical Chia transaction would look like the following:
 
-Alice wants to send 1 XCH to Bob. Alice has five coins in her wallet: four worth 0.2 XCH apiece, and one worth 0.7 XCH. Her wallet automatically selects two of the coins worth 0.2 XCH and the 0.7 XCH coin to be spent. All three coin spends happen simultaneously, along with two new coin creations: one worth 1 XCH which goes to Bob's wallet, and one worth 0.1 XCH which goes to Alice's wallet as "change." Alice now has two coins worth 0.2 XCH and one worth 0.1 XCH. Bob has one coin worth 1 XCH. The total value owned by Alice and Bob has not changed -- it was 1.5 XCH both before and after the transaction was processed.
+Alice wants to send 1 XCH to Bob. Alice has five coins in her wallet: four worth 0.2 XCH apiece, and one worth 0.7 XCH. Her wallet automatically selects four of the coins worth 0.2 XCH and the 0.7 XCH coin to be spent. All five coin spends happen simultaneously, along with two new coin creations: one worth 1 XCH which goes to Bob's wallet, and one worth 0.5 XCH which goes to Alice's wallet as "change." Now Alice has one coin worth 0.5 XCH and Bob has one coin worth 1 XCH. The total value owned by Alice and Bob has not changed -- it was 1.5 XCH both before and after the transaction was processed.
 
 Owner | Before            | After
 ----- | ----------------- | -------
