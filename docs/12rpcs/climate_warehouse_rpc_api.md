@@ -11,11 +11,11 @@ sidebar_position: 4
 
 ### `organizations`
 
-Functionality: List all subcribed organizations
+Functionality: Use GET, POST, and PUT to list, create, and update organizations
 
-Options: None
+GET Options: None
 
-Example:
+GET Example to list organizations:
 
 ```json
 // Request
@@ -32,11 +32,189 @@ curl --location --request GET 'localhost:31310/v1/organizations' --header 'Conte
     }
 }
 ```
+
+POST Options:
+
+| Key                | Type       | Description |
+|:------------------:|:----------:|:------------|
+| name               | text       | (Required) Name of the organization to be created
+| icon               | text       | (Required) URL of the icon to be used for this organization
+| language           | text       | The language used for this organization
+
+POST Example to create an organization:
+
+```json
+// Request
+curl --location --header 'Content-Type: application/json' --request POST \
+     -F 'name=DanSample' \
+     -F 'icon=https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg' \
+     'localhost:31310/v1/organizations/create'
+[todo fix + add language]
+ {
+      "name": "POST Organization",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"New Org\",\r\n    \"icon\": \"https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{default}}/organizations/",
+          "host": ["{{default}}"],
+          "path": ["organizations", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create Organization",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{default}}/organizations/create",
+          "host": ["{{default}}"],
+          "path": ["organizations", "create"]
+        }
+      },
+      "response": []
+    },
+// Response
+
+```
+
+PUT Options:
+
+| Key                | Type       | Description |
+|:------------------:|:----------:|:------------|
+| name               | text       | (Required) Name of the organization to be created
+| icon               | text       | (Required) URL of the icon to be used for this organization
+| language           | text       | The language used for this organization
+
+PUT Example to update an organization:
+[todo update]
+```json
+// Request
+curl --location --header 'Content-Type: application/json' --request PUT 'localhost:31310/v1/organizations'
+
+
+   
+    {
+      "name": "PUT Organization",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{default}}/organizations/",
+          "host": ["{{default}}"],
+          "path": ["organizations", ""]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "<Basic Auth Username>",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "<Basic Auth Password>",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "localhost:3000",
+      "type": "string"
+    }
+  ]
+}
+// Response
+```
+
+-----
+
+### `audit`
+
+Functionality: Show the complete history of an organization
+
+Options:
+
+| Key                | Type       | Description |
+|:------------------:|:----------:|:------------|
+| orgUid             | Hex String | (Required) Display subscribed projects matching this orgUid |
+
+Example:
+
+```json
+// Request
+curl --location --request GET 'localhost:31310/v1/audit?orgUid=77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9' --header 'Content-Type: application/json'
+
+// Response
+[{
+  "id":2,
+  "orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9",
+  "registryId":"9508ff7a1851ead7702b28f37f36145a0b389e374e2b82504b6ceb977ea41ada",
+  "rootHash":"0x0000000000000000000000000000000000000000000000000000000000000000",
+  "type":"CREATE REGISTRY",
+  "change":null,
+  "table":null,
+  "onchainConfirmationTimeStamp":0,
+  "createdAt":"2022-03-09T05:22:53.217Z",
+  "updatedAt":"2022-03-09T05:22:53.217Z"
+},{
+  "id":3,
+  "orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9",
+  "registryId":"9508ff7a1851ead7702b28f37f36145a0b389e374e2b82504b6ceb977ea41ada",
+  "rootHash":"0x4e25dd858553085c246546085f7d79140c2f78db8fc3ff8e34e73c849f3844df",
+  "type":"INSERT",
+  "change":"{
+    \"currentRegistry\":\"Gold Standard\",
+    \"registryOfOrigin\":\"Gold Standard\",
+    \"originProjectId\":\"555\",
+    \"projectId\":\"555\",
+    \"projectName\":\"Stop Deforestation\",
+    \"projectLink\":\"http://testurl.com\",
+    \"projectDeveloper\":\"Example Developer\",
+    \"sector\":\"Agriculture Forestry and Other Land Use (AFOLU)\",
+    \"projectType\":\"Soil Enrichment\",
+    \"coveredByNDC\":\"Unknown\",
+    \"projectStatus\":\"Listed\",
+    \"unitMetric\":\"tCO2e\",
+    \"methodology\":\"Decomposition of fluoroform (HFC-23) waste streams --- Version 6.0.0\",
+    \"projectStatusDate\":\"2022-03-02T00:00:00.000Z\",
+    \"warehouseProjectId\":\"51ca9638-22b0-4e14-ae7a-c09d23b37b58\",
+    \"timeStaged\":1646803417,
+    \"orgUid\":\"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9\"
+  }",
+  "table":"project",
+  "onchainConfirmationTimeStamp":1646803574,
+  "createdAt":"2022-03-09T05:27:23.266Z",
+  "updatedAt":"2022-03-09T05:27:23.266Z"
+},{"id":4,
+  ...
+  abbreviated (output is same as above)
+  ...
+}
+```
 -----
 
 ### `projects`
 
-Functionality: List subcribed projects, as specified by the appropriate URL option(s)
+Functionality: List subscribed projects, as specified by the appropriate URL option(s)
 
 Query string options:
 
@@ -44,7 +222,7 @@ Query string options:
 |:------------------:|:----------:|:------------|
 | None (default)     | N/A        | Display all subscribed projects |
 | warehouseProjectId | Hex String | Only display subscribed projects matching this warehouseProjectId |
-| orgUid             | Hex String | Only display subscribed projects matching this orgUid |
+| orgUid             | Hex String | [todo: update]Only display subscribed projects matching this orgUid |
 | search             | Text       | Display all subscribed projects that contain the specified query (case insensitive) |
 | columns            | Text       | Limit the result to the specified column. Can be used multiple times to show multiple columns
 | limit              | Number     | Limit the number subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
@@ -489,3 +667,292 @@ curl --location -g --request DELETE 'http://localhost:31310/v1/projects' \
 {"message":"Project deleted successfully"}
 ```
 -----
+
+### `issuances`
+
+Functionality: List all issuances from subscribed projects
+
+Options: None
+
+Example:
+
+```json
+// Request
+curl --location --request GET 'localhost:31310/v1/issuances' --header 'Content-Type: application/json'
+
+// Response
+[{
+  "id":"d9f58b08-af25-461c-88eb-403bb02b135e",
+  "orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9",
+  "warehouseProjectId":"9b9bb857-c71b-4649-b805-a289db27dc1c",
+  "startDate":"2022-01-02T00:00:00.000Z",
+  "endDate":"2022-02-11T00:00:00.000Z",
+  "verificationApproach":"Sample Approach",
+  "verificationReportDate":"2022-03-16T00:00:00.000Z",
+  "verificationBody":"Sample Body",
+  "timeStaged":null,
+  "createdAt":"2022-03-12T08:58:43.271Z",
+  "updatedAt":"2022-03-12T08:58:43.271Z"
+}]
+```
+-----
+
+### `labels`
+
+Functionality: List all labels from subscribed projects
+
+Options: None
+
+Example:
+
+```json
+// Request
+curl --location --request GET 'localhost:31310/v1/labels' --header 'Content-Type: application/json'
+
+// Response
+[{
+  "id":"dcacd68e-1cfb-4f06-9798-efa0aacda42c",
+  "warehouseProjectId":"9b9bb857-c71b-4649-b805-a289db27dc1c",
+  "orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9",
+  "label":"Sample Label",
+  "labelType":"Certification",
+  "creditingPeriodStartDate":"2014-03-29T00:00:00.000Z",
+  "creditingPeriodEndDate":"2022-03-30T00:00:00.000Z",
+  "validityPeriodStartDate":"2017-03-08T00:00:00.000Z",
+  "validityPeriodEndDate":"2025-03-19T00:00:00.000Z",
+  "unitQuantity":40,
+  "labelLink":"http://samplelabel.net",
+  "timeStaged":null,
+  "createdAt":"2022-03-12T08:58:43.270Z",
+  "updatedAt":"2022-03-12T08:58:43.270Z"
+}]
+```
+-----
+
+### `staging`
+
+Functionality: List, modify, confirm, and cancel projects and units in the `STAGING` state
+
+Options:
+
+| Key                | Type       | Description |
+|:------------------:|:----------:|:------------|
+| None (default)     | N/A        | Display all projects and units that are currently in `STAGING` |
+
+
+
+
+| limit              | Number     | Limit the number subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
+| page               | Number     | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
+
+GET Example to list all projects and units in the `STAGING` state. For this example, there is one project with a `DELETE` action, one project with an `INSERT` action, and one unit with an `INSERT` action:
+
+```json
+// Request
+curl --location --request GET 'localhost:31310/v1/staging' --header 'Content-Type: application/json'
+
+// Response
+[{
+  "id":38,
+  "uuid":"cbc966cd-f4a9-4f7b-9c57-8186fea8b54c",
+  "table":"Projects",
+  "action":"DELETE",
+  "commited":false,
+  "failedCommit":false,
+  "createdAt":"2022-03-13T03:08:15.156Z",
+  "updatedAt":"2022-03-13T03:08:15.156Z",
+  "diff":{
+    "original":{
+      "warehouseProjectId":"cbc966cd-f4a9-4f7b-9c57-8186fea8b54c",
+      "orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9",
+      "currentRegistry":"123",
+      "projectId":"Abcde-12345",
+      "originProjectId":null,
+      "registryOfOrigin":"500",
+      "program":"",
+      "projectName":"Example",
+      "projectLink":"https://exampleurl",
+      "projectDeveloper":"Example Developer",
+      "sector":"Viva",
+      "projectType":"",
+      "projectTags":null,
+      "coveredByNDC":"NO",
+      "ndcInformation":"Outside NDC",
+      "projectStatus":"Registered",
+      "projectStatusDate":"2022-03-09T16:00:00.000Z",
+      "unitMetric":"tCO2e",
+      "methodology":"Quatz",
+      "validationBody":null,
+      "validationDate":null,
+      "timeStaged":null,
+      "createdAt":"2022-03-13T03:04:53.168Z",
+      "updatedAt":"2022-03-13T03:04:53.168Z",
+      "projectLocations":[],
+      "labels":[],
+      "issuances":[],
+      "coBenefits":[],
+      "relatedProjects":[],
+      "projectRatings":[],
+      "estimations":[]
+    },
+    "change":{}
+  }
+},{
+  "id":39,
+  "uuid":"2120ab85-4622-454c-be29-c97071286df1",
+  "table":"Projects",
+  "action":"INSERT",
+  "commited":false,
+  "failedCommit":false,
+  "createdAt":"2022-03-13T03:09:10.194Z",
+  "updatedAt":"2022-03-13T03:09:10.194Z",
+  "diff":{
+    "original":{},
+    "change":[{
+      "currentRegistry":"123",
+      "projectId":"Abcde-12345",
+      "registryOfOrigin":"500",
+      "program":"",
+      "projectName":"Example",
+      "projectLink":"https://exampleurl",
+      "projectDeveloper":"Example Developer",
+      "sector":"Viva",
+      "projectType":"",
+      "coveredByNDC":"NO",
+      "ndcInformation":"Outside NDC",
+      "projectStatus":"Registered",
+      "projectStatusDate":"3/10/2022",
+      "unitMetric":"tCO2e",
+      "methodology":"Quatz",
+      "warehouseProjectId":"2120ab85-4622-454c-be29-c97071286df1",
+      "orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9"
+    }]
+  }
+},{
+  "id":40,
+  "uuid":"89d7a102-a5a6-4f80-bc67-d28eba4952f3",
+  "table":"Units",
+  "action":"INSERT",
+  "commited":false,
+  "failedCommit":false,
+  "createdAt":"2022-03-13T03:17:51.752Z",
+  "updatedAt":"2022-03-13T03:17:51.752Z",
+  "diff":{
+    "original":{},
+    "change":[{
+      "projectLocationId":"789",
+      "unitOwner":"Sample Owner",
+      "countryJurisdictionOfOwner":"Belize",
+      "serialNumberBlock":"A345-B567",
+      "serialNumberPattern":"[.*\\D]+([0-9]+)+[-][.*\\D]+([0-9]+)$",
+      "vintageYear":2014,
+      "unitRegistryLink":"sampleurl.com",
+      "unitType":"Reduction - technical",
+      "unitStatus":"Buffer",
+      "correspondingAdjustmentDeclaration":"Unknown",
+      "correspondingAdjustmentStatus":"Pending",
+      "warehouseUnitId":"89d7a102-a5a6-4f80-bc67-d28eba4952f3",
+      "timeStaged":1647141471,
+      "orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9"
+    }]
+  }
+}]
+```
+-----
+
+GET Example to list only units, with paging:
+
+```json
+// Request
+curl --location --request GET 'localhost:31310/v1/staging?page=1&limit=5&type=units' --header 'Content-Type: application/json'
+
+// Response
+[todo: currently shows projects and units. verify/sort out later]
+{"page":1,"pageCount":1,"data":[{"id":38,"uuid":"cbc966cd-f4a9-4f7b-9c57-8186fea8b54c","table":"Projects","action":"DELETE","commited":false,"failedCommit":false,"createdAt":"2022-03-13T03:08:15.156Z","updatedAt":"2022-03-13T03:08:15.156Z","diff":{"original":{"warehouseProjectId":"cbc966cd-f4a9-4f7b-9c57-8186fea8b54c","orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9","currentRegistry":"123","projectId":"Abcde-12345","originProjectId":null,"registryOfOrigin":"500","program":"","projectName":"Example","projectLink":"https://exampleurl","projectDeveloper":"Example Developer","sector":"Viva","projectType":"","projectTags":null,"coveredByNDC":"NO","ndcInformation":"Outside NDC","projectStatus":"Registered","projectStatusDate":"2022-03-09T16:00:00.000Z","unitMetric":"tCO2e","methodology":"Quatz","validationBody":null,"validationDate":null,"timeStaged":null,"createdAt":"2022-03-13T03:04:53.168Z","updatedAt":"2022-03-13T03:04:53.168Z","projectLocations":[],"labels":[],"issuances":[],"coBenefits":[],"relatedProjects":[],"projectRatings":[],"estimations":[]},"change":{}}},{"id":39,"uuid":"2120ab85-4622-454c-be29-c97071286df1","table":"Projects","action":"INSERT","commited":false,"failedCommit":false,"createdAt":"2022-03-13T03:09:10.194Z","updatedAt":"2022-03-13T03:09:10.194Z","diff":{"original":{},"change":[{"currentRegistry":"123","projectId":"Abcde-12345","registryOfOrigin":"500","program":"","projectName":"Example","projectLink":"https://exampleurl","projectDeveloper":"Example Developer","sector":"Viva","projectType":"","coveredByNDC":"NO","ndcInformation":"Outside NDC","projectStatus":"Registered","projectStatusDate":"3/10/2022","unitMetric":"tCO2e","methodology":"Quatz","warehouseProjectId":"2120ab85-4622-454c-be29-c97071286df1","orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9"}]}},{"id":40,"uuid":"89d7a102-a5a6-4f80-bc67-d28eba4952f3","table":"Units","action":"INSERT","commited":false,"failedCommit":false,"createdAt":"2022-03-13T03:17:51.752Z","updatedAt":"2022-03-13T03:17:51.752Z","diff":{"original":{},"change":[{"projectLocationId":"789","unitOwner":"Sample Owner","countryJurisdictionOfOwner":"Belize","serialNumberBlock":"A345-B567","serialNumberPattern":"[.*\\D]+([0-9]+)+[-][.*\\D]+([0-9]+)$","vintageYear":2014,"unitRegistryLink":"sampleurl.com","unitType":"Reduction - technical","unitStatus":"Buffer","correspondingAdjustmentDeclaration":"Unknown","correspondingAdjustmentStatus":"Pending","warehouseUnitId":"89d7a102-a5a6-4f80-bc67-d28eba4952f3","timeStaged":1647141471,"orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9"}]}}]}
+
+```
+-----
+
+Post Example to commit all projects and units in the `STAGING` state:
+
+```json
+// Request
+curl --location --request POST \
+    --header 'Content-Type: application/json' \
+     'localhost:31310/v1/staging/commit'
+
+// Response
+{"message":"Staging Table committed to full node"}
+-----
+
+Post Example to commit a single project, using its `uuid`:
+
+```json
+// Request
+curl --location -g --request POST 'localhost:31310/v1/staging/commit' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "uuid": "37a620bd-c832-44e3-927e-849cd1c2999f"
+}'
+[TODO: how to commit a single project or unit?]
+// Response
+
+```
+-----
+
+POST Example to retry committing a single project, using its `uuid`:
+
+```json
+// Request
+curl --location -g --request POST 'localhost:31310/v1/staging/retry' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "uuid": "37a620bd-c832-44e3-927e-849cd1c2999f"
+}'
+
+[TODO: Cannot POST /v1/staging/retry]
+// Response
+
+```
+-----
+
+DELETE all projects and units in `STAGING`:
+
+```json
+// Request
+curl --location -g --request DELETE 'localhost:31310/v1/staging/clean' \
+     --header 'Content-Type: application/json'
+// Response
+{"message":"Staging Data Cleaned"}
+```
+-----
+
+DELETE a specific project in `STAGING`:
+
+```json
+// Request
+curl --location -g --request DELETE 'localhost:31310/v1/staging' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "uuid": "1647855c-c1fa-4f5b-ae8e-bd9d544442ea"
+}'
+// Response
+{"message":"Deleted from stage"}
+```
+-----
+
+DELETE a specific unit in `STAGING`:
+
+```json
+// Request
+curl --location -g --request DELETE 'localhost:31310/v1/staging' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "uuid": "1936260d-632c-4d63-8cba-0014e7c84c0c"
+}'
+// Response
+{"message":"Deleted from stage"}
+```
+-----
+
+```
