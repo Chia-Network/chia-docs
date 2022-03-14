@@ -711,13 +711,15 @@ curl --location -g --request GET 'localhost:31310/v1/units' --header 'Content-Ty
 -----
 
 #### Search for units containing the keyword "certification"
+[todo: This isn't implemented yet.
+See [CW issue 232](https://github.com/Chia-Network/climate-warehouse/issues/232) for more info]
 
 ```json
 // Request
 curl --location -g --request GET 'localhost:31310/v1/units?search=Certification'
 
 // Response
-[todo: search doesn't appear to be implemented with units, example uses projects. If need to remove, also remove search option above]
+
 ```
 -----
 
@@ -1014,9 +1016,9 @@ curl --location -g --request POST 'localhost:31310/v1/units' \
 -----
 
 #### Split units in four
+[todo: This command isn't working yet. See [CW issue 387](https://github.com/Chia-Network/climate-warehouse/issues/387) for more info.]
 
 ```json
-
 // Request
 curl --location -g --request POST 'localhost:31310/units/split' \
 --header 'Content-Type: application/json' \
@@ -1043,7 +1045,6 @@ curl --location -g --request POST 'localhost:31310/units/split' \
 }'
 
 // Response
-[todo: error]
 ```
 -----
 
@@ -1097,18 +1098,21 @@ curl --location -g --request PUT 'localhost:31310/v1/units/xlsx' \
 
 #### Delete a unit
 
-Note that it's possible to delete a one or more units in one command by listing all of their `warehouseUnitId` values
+Note that it's possible to delete one or more units in one command by listing all of their `warehouseUnitId` values
+
+[todo: Note that while deleting a single unit does work, deleting multiple units does not.
+see [CW issue 388 for more info](https://github.com/Chia-Network/climate-warehouse/issues/388)]
 
 ```json
 // Request
 curl --location -g --request DELETE 'localhost:31310/v1/units' \
      --header 'Content-Type: application/json' \
      --data-raw '{
+       "warehouseUnitId": "104b082c-b112-4c39-9249-a52c6c53282b",
        "warehouseUnitId": "d03d7940-1216-4575-b00d-8819481c39bd"
 }'
 
 // Response
-[todo: possible defect - deleting two units... only deletes the second one]
 {"message":"Unit deleted successfully"}
 ```
 -----
@@ -1311,6 +1315,7 @@ curl --location --request GET 'localhost:31310/v1/staging' --header 'Content-Typ
 -----
 
 #### List all units in `STAGING`, with paging
+[todo: This call doesn't work yet. see [CW issue 389](https://github.com/Chia-Network/climate-warehouse/issues/389]) for more info.]
 
 ```json
 // Request
@@ -1318,8 +1323,6 @@ curl --location --request GET 'localhost:31310/v1/staging?page=1&limit=5&type=un
      --header 'Content-Type: application/json'
 
 // Response
-[todo: this doesn't work properly yet]
-
 ```
 -----
 
