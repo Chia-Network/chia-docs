@@ -3,7 +3,12 @@ sidebar_position: 4
 ---
 # 12.4 Climate Warehouse (Beta) RPC API
 
-[todo: add intro]
+This page lists commands and examples from the Climate Warehouse Beta RPC API. For instructions on installing and configuring the Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide "Climate Warehouse install guide").
+
+We also have documented the Chia Data Layer [CLI](/docs/13cli/data "Section 13.2: Data Layer (Beta) CLI") commands, as well as the [RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer Beta RPC API").
+
+The Climate Warehosue RPC API is exposed by default on port 31310. This port must not be exposed publicly for
+security concerns.
 
 ## Commands
 
@@ -29,7 +34,7 @@ sidebar_position: 4
     * [Stage a new project from a csv file](#stage-a-new-project-from-a-csv-file)
   * [PUT Examples](#put-examples-1)
     * [Update a pre-existing project using only the required parameters](#update-a-pre-existing-project-using-only-the-required-parameters)
-    * [Update a pre-existing project from a csv file](#update-a-pre-existing-project-from-a-csv-file)
+    * [Update a pre-existing project from an xlsx file](#update-a-pre-existing-project-from-an-xlsx-file)
   * [DELETE Examples](#delete-examples)
     * [Delete a project](#delete-a-project)
 * [`units`](#units)
@@ -118,48 +123,18 @@ POST Options:
 
 ```json
 // Request
-curl --location --header 'Content-Type: application/json' --request POST \
-     -F 'name=DanSample' \
-     -F 'icon=https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg' \
-     'localhost:31310/v1/organizations/create'
-[todo fix + add language]
- {
-      "name": "POST Organization",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"name\": \"New Org\",\r\n    \"icon\": \"https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{default}}/organizations/",
-          "host": ["{{default}}"],
-          "path": ["organizations", ""]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "POST Create Organization",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "{{default}}/organizations/create",
-          "host": ["{{default}}"],
-          "path": ["organizations", "create"]
-        }
-      },
-      "response": []
-    },
-// Response
+curl --location -g --request POST 'localhost:31310/v1/organizations/' \
+     --header 'Content-Type: application/json' \
+     --data-raw '{
+        "name": "Sample Org",
+        "icon": "https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg"
+}'
 
+// Response
+{
+  "message":"New organization created successfully.",
+  "orgId":"d84ab5fa679726e988b31ecc8ecff0ba8d001e9d65f1529d794fa39d32a5455e"
+}
 ```
 -----
 
@@ -175,53 +150,14 @@ PUT Options:
 
 #### Update an organization
 
-[todo update]
 ```json
 // Request
-curl --location --header 'Content-Type: application/json' --request PUT 'localhost:31310/v1/organizations'
+curl --location -g --request PUT 'localhost:31310/v1/organizations/'
 
-
-   
-    {
-      "name": "PUT Organization",
-      "request": {
-        "method": "PUT",
-        "header": [],
-        "url": {
-          "raw": "{{default}}/organizations/",
-          "host": ["{{default}}"],
-          "path": ["organizations", ""]
-        }
-      },
-      "response": []
-    }
-  ],
-  "auth": {
-    "type": "basic",
-    "basic": [
-      {
-        "key": "username",
-        "value": "<Basic Auth Username>",
-        "type": "string"
-      },
-      {
-        "key": "password",
-        "value": "<Basic Auth Password>",
-        "type": "string"
-      }
-    ]
-  },
-  "variable": [
-    {
-      "key": "baseUrl",
-      "value": "localhost:3000",
-      "type": "string"
-    }
-  ]
-}
 // Response
+{"message":"Importing and subscribing organization this can take a few mins."}
+[todo This doesn't appear to do anything]
 ```
-
 -----
 
 ## `projects`
@@ -234,7 +170,7 @@ Query string options:
 |:------------------:|:----------:|:------------|
 | None (default)     | N/A        | Display all subscribed projects |
 | warehouseProjectId | Hex String | Only display subscribed projects matching this warehouseProjectId |
-| orgUid             | Hex String | [todo: update]Only display subscribed projects matching this orgUid |
+| orgUid             | Hex String | Only display subscribed projects matching this orgUid |
 | search             | Text       | Display all subscribed projects that contain the specified query (case insensitive) |
 | columns            | Text       | Limit the result to the specified column. Can be used multiple times to show multiple columns
 | limit              | Number     | Limit the number subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
@@ -657,20 +593,15 @@ curl --location -g --request PUT 'http://localhost:31310/v1/projects' \
 ```
 -----
 
-#### Update a pre-existing project from a csv file
+#### Update a pre-existing project from an xlsx file
 
-For this example, we'll use file named `updateProject.xlsx` created from a csv file with the following contents:
-```
-currentRegistry,projectId,registryOfOrigin,program,projectName,projectLink,projectDeveloper,sector,projectType,coveredByNDC,ndcInformation,projectStatus,projectStatusDate,unitMetric,methodology
-112233,Aabbccddee-1122334455,600,,Example after updating,https://exampleurl,Example Developer,Viva,,NO,Outside NDC,Registered,3/10/2022,tCO2e,Quatz
-```
-
+For this example, we'll use a file named `cw_query.xlsx`, created from [this example](#list-all-projects-and-save-the-results-to-an-xlsx-file "List all projects and save the results to an xlsx file") and modified with updates
 ```json
 // Request
-curl --location -g --request PUT 'http://localhost:31310/v1/projects/xlsx' --form 'xlsx=@"./updateProject.xlsx"'
+curl --location -g --request PUT 'http://localhost:31310/v1/projects/xlsx' --form 'xlsx=@"./cw_query.xlsx"'
 
 // Response
-[todo]
+{"message":"Updates from xlsx added to staging"}
 ```
 -----
 
@@ -700,8 +631,8 @@ Query string options:
 | Key                | Type       | Description |
 |:------------------:|:----------:|:------------|
 | None (default)     | N/A        | Display all subscribed units |
-| orgUid             | Hex String | [todo: update]Only display subscribed units matching this orgUid |
-| search             | Text       | [todo: maybe remove] Display all subscribed units that contain the specified query (case insensitive) |
+| orgUid             | Hex String | Only display subscribed units matching this orgUid |
+| search             | Text       | Display all subscribed units that contain the specified query (case insensitive) |
 | columns            | Text       | Limit the result to the specified column. Can be used multiple times to show multiple columns
 | limit              | Number     | Limit the number subscribed units to be displayed (must be used with page, eg `?page=5&limit=2`) |
 | page               | Number     | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
@@ -783,10 +714,10 @@ curl --location -g --request GET 'localhost:31310/v1/units' --header 'Content-Ty
 
 ```json
 // Request
-[todo: search doesn't appear to be implemented with units, example uses projects]
+curl --location -g --request GET 'localhost:31310/v1/units?search=Certification'
 
 // Response
-
+[todo: search doesn't appear to be implemented with units, example uses projects. If need to remove, also remove search option above]
 ```
 -----
 
@@ -1019,9 +950,6 @@ curl --location -g --request POST 'localhost:31310/v1/units' \
 This unit will have two labels, one pre-existing (using the "id" and "warehouseProjectId" fields), and one new.
 The issuance is pre-existing.
 
-[todo: can change label fields if use existing ID (defect?)]
-[todo: ?labels doesn't show all labels (defect?)]
-
 ```json
 
 // Request
@@ -1116,8 +1044,6 @@ curl --location -g --request POST 'localhost:31310/units/split' \
 
 // Response
 [todo: error]
-Cannot PUT /units/split
-
 ```
 -----
 
@@ -1154,7 +1080,7 @@ curl --location -g --request PUT 'localhost:31310/v1/units' \
 
 #### Update a pre-existing unit using an xlsx file
 
-* Note that it's possible to construct an xlsx file for this purpose using [todo: link to example]
+* Note that it's possible to construct an xlsx file for this purpose using [this example](#list-all-units-and-save-the-results-to-an-xlsx-file "List all units and save the results to an xlsx file")
 
 ```json
 // Request
@@ -1171,7 +1097,6 @@ curl --location -g --request PUT 'localhost:31310/v1/units/xlsx' \
 
 #### Delete a unit
 
-[todo: possible defect - deleting two units... only deletes the second one]
 Note that it's possible to delete a one or more units in one command by listing all of their `warehouseUnitId` values
 
 ```json
@@ -1179,12 +1104,12 @@ Note that it's possible to delete a one or more units in one command by listing 
 curl --location -g --request DELETE 'localhost:31310/v1/units' \
      --header 'Content-Type: application/json' \
      --data-raw '{
-       "warehouseUnitId": "5a4c7053-aa08-42ed-8d78-69458e049b82"
+       "warehouseUnitId": "d03d7940-1216-4575-b00d-8819481c39bd"
 }'
 
 // Response
+[todo: possible defect - deleting two units... only deletes the second one]
 {"message":"Unit deleted successfully"}
-
 ```
 -----
 
@@ -1389,11 +1314,11 @@ curl --location --request GET 'localhost:31310/v1/staging' --header 'Content-Typ
 
 ```json
 // Request
-curl --location --request GET 'localhost:31310/v1/staging?page=1&limit=5&type=units' --header 'Content-Type: application/json'
+curl --location --request GET 'localhost:31310/v1/staging?page=1&limit=5&type=units' \
+     --header 'Content-Type: application/json'
 
 // Response
-[todo: currently shows projects and units. verify/sort out later]
-{"page":1,"pageCount":1,"data":[{"id":38,"uuid":"cbc966cd-f4a9-4f7b-9c57-8186fea8b54c","table":"Projects","action":"DELETE","commited":false,"failedCommit":false,"createdAt":"2022-03-13T03:08:15.156Z","updatedAt":"2022-03-13T03:08:15.156Z","diff":{"original":{"warehouseProjectId":"cbc966cd-f4a9-4f7b-9c57-8186fea8b54c","orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9","currentRegistry":"123","projectId":"Abcde-12345","originProjectId":null,"registryOfOrigin":"500","program":"","projectName":"Example","projectLink":"https://exampleurl","projectDeveloper":"Example Developer","sector":"Viva","projectType":"","projectTags":null,"coveredByNDC":"NO","ndcInformation":"Outside NDC","projectStatus":"Registered","projectStatusDate":"2022-03-09T16:00:00.000Z","unitMetric":"tCO2e","methodology":"Quatz","validationBody":null,"validationDate":null,"timeStaged":null,"createdAt":"2022-03-13T03:04:53.168Z","updatedAt":"2022-03-13T03:04:53.168Z","projectLocations":[],"labels":[],"issuances":[],"coBenefits":[],"relatedProjects":[],"projectRatings":[],"estimations":[]},"change":{}}},{"id":39,"uuid":"2120ab85-4622-454c-be29-c97071286df1","table":"Projects","action":"INSERT","commited":false,"failedCommit":false,"createdAt":"2022-03-13T03:09:10.194Z","updatedAt":"2022-03-13T03:09:10.194Z","diff":{"original":{},"change":[{"currentRegistry":"123","projectId":"Abcde-12345","registryOfOrigin":"500","program":"","projectName":"Example","projectLink":"https://exampleurl","projectDeveloper":"Example Developer","sector":"Viva","projectType":"","coveredByNDC":"NO","ndcInformation":"Outside NDC","projectStatus":"Registered","projectStatusDate":"3/10/2022","unitMetric":"tCO2e","methodology":"Quatz","warehouseProjectId":"2120ab85-4622-454c-be29-c97071286df1","orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9"}]}},{"id":40,"uuid":"89d7a102-a5a6-4f80-bc67-d28eba4952f3","table":"Units","action":"INSERT","commited":false,"failedCommit":false,"createdAt":"2022-03-13T03:17:51.752Z","updatedAt":"2022-03-13T03:17:51.752Z","diff":{"original":{},"change":[{"projectLocationId":"789","unitOwner":"Sample Owner","countryJurisdictionOfOwner":"Belize","serialNumberBlock":"A345-B567","serialNumberPattern":"[.*\\D]+([0-9]+)+[-][.*\\D]+([0-9]+)$","vintageYear":2014,"unitRegistryLink":"sampleurl.com","unitType":"Reduction - technical","unitStatus":"Buffer","correspondingAdjustmentDeclaration":"Unknown","correspondingAdjustmentStatus":"Pending","warehouseUnitId":"89d7a102-a5a6-4f80-bc67-d28eba4952f3","timeStaged":1647141471,"orgUid":"77641db780adc6c74f1ff357804e26a799e4a09157f426aac588963a39bdb2d9"}]}}]}
+[todo: this doesn't work properly yet]
 
 ```
 -----
@@ -1420,11 +1345,12 @@ curl --location --request POST \
 curl --location -g --request POST 'localhost:31310/v1/staging/commit' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "uuid": "37a620bd-c832-44e3-927e-849cd1c2999f"
+    "uuid": "e09c1999-d939-4512-9271-ac63830d78b0"
 }'
-[TODO: how to commit a single project or unit?]
-// Response
 
+// Response
+[TODO: how to commit a single project or unit?]
+{"message":"Staging Table committed to full node"}
 ```
 -----
 
@@ -1435,12 +1361,11 @@ curl --location -g --request POST 'localhost:31310/v1/staging/commit' \
 curl --location -g --request POST 'localhost:31310/v1/staging/retry' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "uuid": "37a620bd-c832-44e3-927e-849cd1c2999f"
+    "uuid": "86c1cd01-0c07-4f02-9a29-490be967ca6c"
 }'
 
-[TODO: Cannot POST /v1/staging/retry]
 // Response
-
+{"message":"Staging record re-staged."}
 ```
 -----
 
