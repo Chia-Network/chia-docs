@@ -375,7 +375,7 @@ This document will guide you through the process of installing the Climate Wareh
 
 ## Install and configure the Climate Warehouse Aux Application (GUI)
 
-1. Visit Chia's [Climate Warehouse Aux Application download site](https://github.com/Chia-Network/climate-warehouse/releases/latest). Download the appropriate installer for your OS:
+1. Visit Chia's [Climate Warehouse Aux Application download site](https://github.com/Chia-Network/climate-warehouse-ui/releases/latest). Download the appropriate installer for your OS:
   * Windows -- `Climate.Warehouse.Setup.<version>.exe`
   * MacOS -- `Climate.Warehouse-<version>-universal.dmg`
 
