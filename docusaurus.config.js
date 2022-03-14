@@ -20,14 +20,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
         hashed: true,
         // For Docs using Chinese, The `language` is recommended to set to:
         // ```
-        language: ["en"],
+        language: ["en", "zh"],
         // ```
         // When applying `zh` in language, please install `nodejieba` in your project.
       },
     ],],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh'],
   },
   presets: [
     [
