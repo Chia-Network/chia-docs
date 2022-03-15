@@ -18,7 +18,7 @@ security concerns.
   * [POST Examples](#post-examples)
     * [Create an organization](#create-an-organization)
   * [PUT Examples](#put-examples)
-    * [Update an organization](#update-an-organization)
+    * [Subscribe to an organization](#subscribe-to-an-organization)
 * [`projects`](#projects)
   * [GET Examples](#get-examples-1)
     * [Show all subscribed projects](#show-all-subscribed-projects)
@@ -68,7 +68,6 @@ security concerns.
     * [List all units in STAGING, with paging](#list-all-units-in-staging-with-paging)
   * [POST Examples](#post-examples-3)
     * [Commit all projects and units in STAGING](#commit-all-projects-and-units-in-staging)
-    * [Commit a single project, using its uuid](#commit-a-single-project-using-its-uuid)
     * [Retry committing a single project, using its uuid](#retry-committing-a-single-project-using-its-uuid)
   * [DELETE Examples](#delete-examples-2)
     * [Delete all projects and units in STAGING](#delete-all-projects-and-units-in-staging)
@@ -148,7 +147,7 @@ PUT Options:
 
 ### PUT Examples
 
-#### Update an organization
+#### Subscribe to an organization
 
 ```json
 // Request
@@ -156,7 +155,6 @@ curl --location -g --request PUT 'localhost:31310/v1/organizations/'
 
 // Response
 {"message":"Importing and subscribing organization this can take a few mins."}
-[todo This doesn't appear to do anything]
 ```
 -----
 
@@ -1098,18 +1096,12 @@ curl --location -g --request PUT 'localhost:31310/v1/units/xlsx' \
 
 #### Delete a unit
 
-Note that it's possible to delete one or more units in one command by listing all of their `warehouseUnitId` values
-
-[todo: Note that while deleting a single unit does work, deleting multiple units does not.
-see [CW issue 388 for more info](https://github.com/Chia-Network/climate-warehouse/issues/388)]
-
 ```json
 // Request
 curl --location -g --request DELETE 'localhost:31310/v1/units' \
      --header 'Content-Type: application/json' \
      --data-raw '{
-       "warehouseUnitId": "104b082c-b112-4c39-9249-a52c6c53282b",
-       "warehouseUnitId": "d03d7940-1216-4575-b00d-8819481c39bd"
+       "warehouseUnitId": "104b082c-b112-4c39-9249-a52c6c53282b"
 }'
 
 // Response
@@ -1315,7 +1307,7 @@ curl --location --request GET 'localhost:31310/v1/staging' --header 'Content-Typ
 -----
 
 #### List all units in `STAGING`, with paging
-[todo: This call doesn't work yet. see [CW issue 389](https://github.com/Chia-Network/climate-warehouse/issues/389]) for more info.]
+[todo: This call doesn't work yet. see [CW issue 389](https://github.com/Chia-Network/climate-warehouse/issues/389) for more info.]
 
 ```json
 // Request
@@ -1337,22 +1329,6 @@ curl --location --request POST \
      'localhost:31310/v1/staging/commit'
 
 // Response
-{"message":"Staging Table committed to full node"}
-```
------
-
-#### Commit a single project, using its `uuid`:
-
-```json
-// Request
-curl --location -g --request POST 'localhost:31310/v1/staging/commit' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "uuid": "e09c1999-d939-4512-9271-ac63830d78b0"
-}'
-
-// Response
-[TODO: how to commit a single project or unit?]
 {"message":"Staging Table committed to full node"}
 ```
 -----
