@@ -3,12 +3,14 @@ sidebar_position: 4
 ---
 # 12.4 Climate Warehouse (Beta) RPC API
 
-This page lists commands and examples from the Climate Warehouse Beta RPC API. For instructions on installing and configuring the Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide "Climate Warehouse install guide").
+This page lists commands and examples from the Climate Warehouse Beta RPC API.
 
-We also have documented the Chia Data Layer [CLI](/docs/13cli/data "Section 13.2: Data Layer (Beta) CLI") commands, as well as the [RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer Beta RPC API").
+Please also see the following related documents:
+  * [Climate Warehouse](/docs/15resources/data_layer_install_guide "Climate Warehouse install guide") installation/configuration guide
+  * [Chia Data Layer CLI](/docs/13cli/data "Section 13.2: Data Layer (Beta) CLI") reference
+  * [Chia Data Layer RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer Beta RPC API") reference
 
-The Climate Warehosue RPC API is exposed by default on port 31310. This port must not be exposed publicly for
-security concerns.
+The Climate Warehosue RPC API is exposed by default on port 31310. This document will give examples to access the RPC API using `http://localhost:31310/v1`.
 
 ## Commands
 
@@ -29,6 +31,7 @@ security concerns.
     * [List projects by orguid, with paging](#list-projects-by-orguid-with-paging)
     * [Search for projects containing the keyword "gold", with paging](#search-for-projects-containing-the-keyword-gold-with-paging)
     * [List all projects and save the results to an xlsx file](#list-all-projects-and-save-the-results-to-an-xlsx-file)
+    * [Show only the requested columns](#show-only-the-requested-columns)
   * [POST Examples](#post-examples-1)
     * [Stage a new project with the minimum required fields](#stage-a-new-project-with-the-minimum-required-fields)
     * [Stage a new project from a csv file](#stage-a-new-project-from-a-csv-file)
@@ -46,7 +49,7 @@ security concerns.
     * [List units by orguid, with paging](#list-units-by-orguid-with-paging)
     * [List all units and save the results to an xlsx file](#list-all-units-and-save-the-results-to-an-xlsx-file)
     * [List units using all available query string options](#list-units-using-all-available-query-string-options)
-    * [List five columns from all units, with paging](#list-the-five-specified-columns-from-all-units-with-paging)
+    * [Show only specified columns from all units, with paging](#show-only-specified-columns-from-all-units-with-paging)
   * [POST Examples](#post-examples-2)
     * [Create a new unit using only the required fields](#create-a-new-unit-using-only-the-required-fields)
     * [Create a new unit with pre-existing issuance and labels](#create-a-new-unit-with-pre-existing-issuance-and-labels)
@@ -110,11 +113,10 @@ curl --location --request GET 'localhost:31310/v1/organizations' --header 'Conte
 
 POST Options:
 
-| Key                | Type       | Description |
-|:------------------:|:----------:|:------------|
-| name               | text       | (Required) Name of the organization to be created
-| icon               | text       | (Required) URL of the icon to be used for this organization
-| language           | text       | The language used for this organization
+| Key   | Type   | Description |
+|:-----:|:------:|:------------|
+| name  | String | (Required) Name of the organization to be created |
+| icon  | String | (Required) URL of the icon to be used for this organization |
 
 ### POST Examples
 
@@ -137,13 +139,7 @@ curl --location -g --request POST 'localhost:31310/v1/organizations/' \
 ```
 -----
 
-PUT Options:
-
-| Key                | Type       | Description |
-|:------------------:|:----------:|:------------|
-| name               | text       | (Required) Name of the organization to be created
-| icon               | text       | (Required) URL of the icon to be used for this organization
-| language           | text       | The language used for this organization
+PUT Options: None
 
 ### PUT Examples
 
@@ -164,16 +160,16 @@ Functionality: List subscribed projects, as specified by the appropriate URL opt
 
 Query string options:
 
-| Key                | Type       | Description |
-|:------------------:|:----------:|:------------|
-| None (default)     | N/A        | Display all subscribed projects |
-| warehouseProjectId | Hex String | Only display subscribed projects matching this warehouseProjectId |
-| orgUid             | Hex String | Only display subscribed projects matching this orgUid |
-| search             | Text       | Display all subscribed projects that contain the specified query (case insensitive) |
-| columns            | Text       | Limit the result to the specified column. Can be used multiple times to show multiple columns
-| limit              | Number     | Limit the number subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
-| page               | Number     | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
-| xls                | Boolean    | If `true`, save the results to xls (Excel spreadsheet) format |
+| Key                | Type    | Description |
+|:------------------:|:-------:|:------------|
+| None (default)     | N/A     | Display all subscribed projects |
+| warehouseProjectId | String  | Only display subscribed projects matching this warehouseProjectId |
+| orgUid             | String  | Only display subscribed projects matching this orgUid |
+| search             | String  | Display all subscribed projects that contain the specified query (case insensitive) |
+| columns            | String  | Limit the result to the specified column. Can be used multiple times to show multiple columns
+| limit              | Number  | Limit the number of subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
+| page               | Number  | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
+| xls                | Boolean | If `true`, save the results to xls (Excel spreadsheet) format |
 
 ### GET Examples
 
@@ -405,7 +401,7 @@ curl --location --request GET 'localhost:31310/v1/projects?search=forestry' --he
 ```
 -----
 
-#### List all projects with paging
+#### List all projects, with paging
 
 ```json
 // Request
@@ -486,12 +482,12 @@ The results are saved to a file in the current directory called `cw_query.xlsx`.
 ```
 -----
 
-Example using a query string using `page`, `limit` and `columns` to show only the requested six columns:
+#### Show only the requested columns
 
 ```json
 // Request
-
 curl --location --request GET 'http://localhost:31310/v1/projects?page=1&limit=5&columns=warehouseProjectId&columns=currentRegistry&columns=registryOfOrigin&columns=originProjectId&columns=program&columns=projectName' --header 'Content-Type: application/json'
+
 // Response
 {
   "page":1,
@@ -537,6 +533,7 @@ curl --location --request POST \
      -F 'unitMetric=tCO2e' \
      -F 'methodology=Integrated Solar Combined Cycle (ISCC) projects --- Version 1.0.0' \
      'http://localhost:31310/v1/projects'
+
 // Response
 {"message":"Project staged successfully"}
 ```
@@ -544,11 +541,13 @@ curl --location --request POST \
 
 #### Stage a new project from a csv file
 
-* For this next example, we'll use file named `createProject.csv` with the following contents:
+* For this example, we'll use a file named `createProject.csv`, created from [this example](#list-all-projects-and-save-the-results-to-an-xlsx-file "List all projects and save the results to an xlsx file") and converted to csv format
+* The contents of the csv file used in this example are as follows:
 
 ```
-currentRegistry,projectId,registryOfOrigin,program,projectName,projectLink,projectDeveloper,sector,projectType,coveredByNDC,ndcInformation,projectStatus,projectStatusDate,unitMetric,methodology
-123,Abcde-12345,500,,Example,https://exampleurl,Example Developer,Viva,,NO,Outside NDC,Registered,3/10/2022,tCO2e,Quatz
+warehouseProjectId,orgUid,currentRegistry,projectId,originProjectId,registryOfOrigin,program,projectName,projectLink,projectDeveloper,sector,projectType,projectTags,coveredByNDC,ndcInformation,projectStatus,projectStatusDate,unitMetric,methodology,validationBody,validationDate
+f925cb3f-f59a-4ba4-8844-e2a63eb38221,f048f0c4e2ef2d852354a71a0839687301376eeef4358f6204795723ef906bcf,,c9d147e2-bc07-4e68-a76d-43424fa8cd4e,12345-123-123-12345,UNFCCC,,POST sample,http://testurl.com,POST developer,Manufacturing industries,Conservation,,Inside NDC,Shuffletag,Registered,2022-03-12T00:00:00.000Z,tCO2e,Integrated Solar Combined Cycle (ISCC) projects --- Version 1.0.0,,
+
 ```
 
 ```json
@@ -593,7 +592,8 @@ curl --location -g --request PUT 'http://localhost:31310/v1/projects' \
 
 #### Update a pre-existing project from an xlsx file
 
-For this example, we'll use a file named `cw_query.xlsx`, created from [this example](#list-all-projects-and-save-the-results-to-an-xlsx-file "List all projects and save the results to an xlsx file") and modified with updates
+* For this example, we'll use a file named `cw_query.xlsx`, created from [this example](#list-all-projects-and-save-the-results-to-an-xlsx-file "List all projects and save the results to an xlsx file") and modified with updates
+
 ```json
 // Request
 curl --location -g --request PUT 'http://localhost:31310/v1/projects/xlsx' --form 'xlsx=@"./cw_query.xlsx"'
@@ -626,15 +626,15 @@ Functionality: List subscribed units, as specified by the appropriate URL option
 
 Query string options:
 
-| Key                | Type       | Description |
-|:------------------:|:----------:|:------------|
-| None (default)     | N/A        | Display all subscribed units |
-| orgUid             | Hex String | Only display subscribed units matching this orgUid |
-| search             | Text       | Display all subscribed units that contain the specified query (case insensitive) |
-| columns            | Text       | Limit the result to the specified column. Can be used multiple times to show multiple columns
-| limit              | Number     | Limit the number subscribed units to be displayed (must be used with page, eg `?page=5&limit=2`) |
-| page               | Number     | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
-| xls                | Boolean    | If `true`, save the results to xls (Excel spreadsheet) format |
+| Key                | Type    | Description |
+|:------------------:|:-------:|:------------|
+| None (default)     | N/A     | Display all subscribed units |
+| orgUid             | String  | Only display subscribed units matching this orgUid |
+| search             | String  | Display all subscribed units that contain the specified query (case insensitive) |
+| columns            | String  | Limit the result to the specified column. Can be used multiple times to show multiple columns
+| limit              | Number  | Limit the number of subscribed units to be displayed (must be used with page, eg `?page=5&limit=2`) |
+| page               | Number  | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
+| xls                | Boolean | If `true`, save the results to xls (Excel spreadsheet) format |
 
 
 ### GET Examples
@@ -895,7 +895,7 @@ curl --location -g --request GET 'localhost:31310/v1/units?page=1&limit=10&searc
 ```
 -----
 
-#### List the five specified columns from all units, with paging
+#### Show only specified columns from all units, with paging
 
 ```json
 // Request
@@ -1180,12 +1180,12 @@ Functionality: List, modify, confirm, and cancel projects and units in the `STAG
 
 Options:
 
-| Key                | Type       | Description |
-|:------------------:|:----------:|:------------|
-| None (default)     | N/A        | Display all projects and units that are currently in `STAGING` |
-| type               | text       | Must be `projects` or `units`
-| limit              | Number     | Limit the number subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
-| page               | Number     | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
+| Key                | Type   | Description |
+|:------------------:|:------:|:------------|
+| None (default)     | N/A    | Display all projects and units that are currently in `STAGING` |
+| type               | String | Must be `projects` or `units` |
+| limit              | Number | Limit the number of subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
+| page               | Number | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`) |
 
 ### GET Examples
 
@@ -1322,6 +1322,9 @@ curl --location --request GET 'localhost:31310/v1/staging?page=1&limit=5&type=un
 
 #### Commit all projects and units in `STAGING`
 
+* Note that it is not possible to commit projects or units individually. 
+If you need to commit a single project or unit, 
+then stage and commit it before staging anything new.
 ```json
 // Request
 curl --location --request POST \
@@ -1395,9 +1398,9 @@ Functionality: Show the complete history of an organization
 
 Options:
 
-| Key                | Type       | Description |
-|:------------------:|:----------:|:------------|
-| orgUid             | Hex String | (Required) Display subscribed projects matching this orgUid |
+| Key                | Type   | Description |
+|:------------------:|:------:|:------------|
+| orgUid             | String | (Required) Display subscribed projects matching this orgUid |
 
 ### GET Examples
 
