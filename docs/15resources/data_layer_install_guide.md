@@ -7,14 +7,14 @@ sidebar_position: 4
 
 ---
 
-This document will guide you through the process of installing the Climate Warehouse application on Windows and MacOS. For additional technial resources, see the following:
-* [Data Layer RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer RPC API")
-* [Data Layer CLI Reference](/docs/13cli/data "Section 12.3: Data Layer CLI Reference")
+This document will guide you through the process of installing the Climate Warehouse application on Windows and MacOS. For additional technical resources, see the following:
+* [Data Layer (Beta) RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer Beta RPC API")
+* [Data Layer (Beta) CLI Reference](/docs/13cli/data "Section 12.3: Data Layer Beta CLI Reference")
 
 ## Contents:
 
 * Installation
-  * [Install and configure Chia and the Data Layer server](#install-and-configure-chia-and-the-data-layer-server)
+  * [Install and configure Chia and the Data Layer (Beta) server](#install-and-configure-chia-and-the-data-layer-beta-server)
   * [Install the Climate Warehouse service](#install-the-climate-warehouse-service)
   * [Install and configure the Climate Warehouse Aux Application (GUI)](#install-and-configure-the-climate-warehouse-aux-application-gui)
 
@@ -22,31 +22,31 @@ This document will guide you through the process of installing the Climate Wareh
   * [Create a new Organization](#create-a-new-organization)
   * [Create a new project](#create-a-new-project)
   * [Create a new Unit](#create-a-new-unit)
-
+  * [Connect to a remote node](#connect-to-a-remote-node)
 
 -----
 
-## Install and configure Chia and the Data Layer server
+## Install and configure Chia and the Data Layer Beta server
 
   >Note: Your firewall might give warnings when installing both Chia and the Climate Warehouse. This is normal. Allow the installations to continue.
 
-1. Download the latest [Chia + Data Layer installer](https://todo_unknown_url)
+1. Download the latest [Chia + Data Layer (Beta) installer](https://todo_unknown_url)
   
 2. Install Chia
 
   Windows:
-    * Double click Setup-Win64.exe.[todo - update name] The installation process will take less than 30 seconds on most computers. 
+	* Double click ChiaSetup-[version].exe. The installation process will take less than 30 seconds on most computers. 
 
   MacOS:
-    
-    * Double click Setup-MacOS.dmg (for Intel CPUs) or Setup-MacOS-arm64.dmg (for 64-bit ARM CPUs). Drag the Chia icon to the Applications folder.
+	
+	* Double click Setup-[version].dmg. Drag the Chia icon to the Applications folder.
 
 <figure>
   <img src="images/data_layer/01_downloads.png" alt="Chia installation file"/>
   <figcaption>
     <em>Windows installer (left) and MacOS installer (right).</em>
   </figcaption>
-</figure>
+</figure><br/>
 
 3. On Windows, if this is your first time installing Chia on this machine, the _Select Your Client Mode_ dialog will appear. If you have already installed Chia on this machine, the _Select Key_ dialog will appear. In either case, We'll be using the Command Line Interface, so close the application. On MacOS this dialog doesn't appear, so no need to close it.
 
@@ -152,19 +152,23 @@ This document will guide you through the process of installing the Climate Wareh
   
   >NOTE: If you ever need to display your address, run `chia keys show`. This command will only output your public keys and address; your private keys and seed phrase will not be shown.
 
-13. If you want to receive updates from the network, you'll need to configure your router to forward port 8575 to the machine running your data propagation server. To configure your router's settings, typically you'll need enter `http://192.168.1.1` in a web browser, though this address varies for different routers. From your router's settings, locate the Port Forwarding section and add a rule to forward port 8575 to your local IP address.
+13. Configure your router to forward ports 8575 (data propagation server) and 31310 (Climate Warehouse) to your local machine. To configure your router's settings, typically you'll need enter `http://192.168.1.1` in a web browser, though this address varies for different routers. From your router's settings, locate the Port Forwarding section and add a rule to forward ports 8575 and 31310 to your local IP address.
 
-14. You'll also need to configure your firewall to allow connections on port 8575.
+14. You'll also need to configure your firewall to allow connections on ports 8575 and 31310.
 
     Windows:
     
-      * From a PowerShell prompt, run `Start-Process powershell -Verb runAs`. This will open a new PowerShell window as an Administrator. From this new window, you'll need to run two commands, one for incoming connections and on for outgoing connections.
+      * From a PowerShell prompt, run `Start-Process powershell -Verb runAs`. This will open a new PowerShell window as an Administrator. From this new window, you'll need to run four commands, two for incoming connections and two for outgoing connections.
 
       * `netsh advfirewall firewall add rule name="allowDataServerIn" dir=in action=allow protocol=TCP localport=8575`
   
       * `netsh advfirewall firewall add rule name="allowDataServerOut" dir=out action=allow protocol=TCP localport=8575`
+
+      * `netsh advfirewall firewall add rule name="allowClimateWarehouseIn" dir=in action=allow protocol=TCP localport=31310`
   
-      * Both of these commands should give a response of `Ok.` Once you have successfully run the commands, exit the Administrator PowerShell window.
+      * `netsh advfirewall firewall add rule name="allowClimateWarehouseOut" dir=out action=allow protocol=TCP localport=31310`
+  
+      * Each of these commands should give a response of `Ok.` Once you have successfully run the commands, exit the Administrator PowerShell window.
 
     MacOS:
     
@@ -174,15 +178,18 @@ This document will guide you through the process of installing the Climate Wareh
 
       * Add the following lines to the end of the file:
       
-        `# Open port 8575 for Chia Data Server`
-    
-        `pass in proto tcp from any to any port 8575`
-      
+        ```bash
+        # Open port 8575 for Chia Data Server
+        pass in proto tcp from any to any port 8575
+        # Open port 31310 for Climate Warehouse Server
+        pass in proto tcp from any to any port 31310
+        ```
+
       * Save and close the file.
       
       * Run `sudo pfctl -f /etc/pf.conf` to load the changes.
 
-      * Run `sudo pfctl -sr | grep 8575` to verify that the changes are active.
+      * Run `sudo pfctl -sr | grep 8575` and `sudo pfctl -sr | grep 31310` to verify that the changes are active.
 
 15. Run `chia start wallet-only`. This command will start your daemon and wallet.
   ```powershell
@@ -192,7 +199,7 @@ This document will guide you through the process of installing the Climate Wareh
   chia_wallet: started
   ```
 
-16. Run `chia start data` to start the Data Layer server.
+16. Run `chia start data` to start the Data Layer Beta server.
   ```powershell
   PS C:\Users\User> chia start data
   chia_data_layer: started
@@ -229,140 +236,142 @@ This document will guide you through the process of installing the Climate Wareh
 
 ## Install the Climate Warehouse service
 
-1. Download the [Climate Warehouse](https://todo_unknown_url).
+1. Visit Chia's [Climate Warehouse download site](https://github.com/Chia-Network/climate-warehouse/releases/latest). Download the zip file according to your OS.
 
 2. Install the Climate Warehouse
 
   Windows: 
 
-    * Extract `windows-x64.zip` to the folder you want to run the Climate Warehouse from.
+	 * Extract `windows-x64-<version>.zip` to the folder you want to run the Climate Warehouse from.
 
-  <figure>
-    <img src="images/climate_warehouse/01_cw_installer_windows.png" alt="Climate Warehouse installation file"/>
-    <figcaption>
-    <em>The contents of windows-x64.zip.</em>
-    </figcaption>
-  </figure>
+  <div class="figure">
+	<img src="images/climate_warehouse/01_cw_installer_windows.png" alt="Climate Warehouse installation file"/>
+	<div class="figcaption">
+	<em>The contents of windows-x64.zip.</em>
+	</div>
+  </div>
 
-    * Open a PowerShell window, change to the `windows-x64` folder, and run `climate-warehouse.exe`. The application will begin polling for updates.
+	* Open a PowerShell window, change to the `windows-x64` folder, and run `climate-warehouse.exe`. The application will begin polling for updates.
 
-      ```powershell
-      PS C:\Users\User> cd C:\Users\User\Downloads\ClimateWarehouse\windows-x64
-      PS C:\Users\User\Downloads\ClimateWarehouse\windows-x64> .\climate-warehouse.exe
-      Start Datalayer Update Polling
-      Syncing PickLists
-      Subscribing to default organizations
-      (node:7588) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
-      (Use `climate-warehouse --trace-warnings ...` to show where the warning was created)
-      Mirror DB not connected
-      ...
-      Mirror DB not connected
-      Connected to database
-      Polling For Updates \
-      ```
+	  ```powershell
+	  PS C:\Users\User> cd C:\Users\User\Downloads\ClimateWarehouse\windows-x64
+	  PS C:\Users\User\Downloads\ClimateWarehouse\windows-x64> .\climate-warehouse.exe
+	  Start Datalayer Update Polling
+	  Syncing PickLists
+	  Subscribing to default organizations
+	  (node:7588) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+	  (Use `climate-warehouse --trace-warnings ...` to show where the warning was created)
+	  Mirror DB not connected
+	  ...
+	  Mirror DB not connected
+	  Connected to database
+	  Polling For Updates \
+	  ```
 
   MacOS:
 
-    * Double click `ClimateWarehouse-macos-installer-x64.pkg` to run the installer. Choose the default settings. When the installation process completes, close the installer.
+	* Double click `ClimateWarehouse-macos-installer-x64.pkg` to run the installer. Choose the default settings. When the installation process completes, close the installer.
 
-    <figure>
-      <img src="images/climate_warehouse/02_cw_installer_macos.png" alt="CW installer on MacOS"/>
-      <figcaption>
-        <em>The final panel of the Climate Warehouse installer.</em>
-      </figcaption>
-    </figure>
+  <div class="figure">
+	  <img src="images/climate_warehouse/02_cw_installer_macos.png" alt="CW installer on MacOS"/>
+	  <div class="figcaption">
+		<em>The final panel of the Climate Warehouse installer.</em>
+	  </div>
+  </div>
+  
+  * Open a Terminal window, change to the `~/ClimateWarehouse` folder, and run `./climate-warehouse`. The application will begin polling for updates.
 
-    * Open a Terminal window, change to the `~/ClimateWarehouse` folder, and run `./climate-warehouse`. The application will begin polling for updates.
- 
-      ```shell
-      ~ % cd ~/ClimateWarehouse 
-      ClimateWarehouse % ./climate-warehouse 
-      Start Datalayer Update Polling
-      Syncing PickLists
-      Subscribing to default organizations
-      (node:29004) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
-      (Use climate-warehouse --trace-warnings ... to show where the warning was created)
-      Mirror DB not connected
-      ...
-      Mirror DB not connected
-      Connected to database
-      Polling For Updates \
-      ```
+  ```shell
+  ~ % cd ~/ClimateWarehouse 
+  ClimateWarehouse % ./climate-warehouse 
+  Start Datalayer Update Polling
+  Syncing PickLists
+  Subscribing to default organizations
+  (node:29004) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+  (Use climate-warehouse --trace-warnings ... to show where the warning was created)
+  Mirror DB not connected
+  ...
+  Mirror DB not connected
+  Connected to database
+  Polling For Updates \
+  ```
 
-3. Steps 3-5 will show you how to create your organization from the CLI. If, instead, you want to create your organization from the GUI, proceed to the [next section](#install-and-configure-the-climate-warehouse-aux-application-gui).
+3. To create your organization from the CLI (Can also be done later from the GUI):
 
-    * Windows: Download and install [Git for Windows](https://gitforwindows.org/ "Git for Windows website") (GitBash). Run the application, which looks similar to the Windows command prompt.
+	* Windows: Download and install [Git for Windows](https://gitforwindows.org/ "Git for Windows website") (GitBash). Run the application, which looks similar to the Windows command prompt.
 
-    * MacOS: Open a normal Terminal window.
+	* MacOS: Open a normal Terminal window.
 
 4. Create your organization 
 
-    * Run the following command to create a new organization.
+	* Run the following command to create a new organization.
 
-    ```powershell
-    curl --location --request POST 'localhost:3030/v1/organizations' \
-      --header 'Content-Type: application/json' \
-      --data-raw '{
-      "name": "<Your Org Name>",
-      "icon": "<Icon URL>"
-      }'
-    ```
+	```powershell
+	curl --location --request POST 'localhost:31310/v1/organizations' \
+	  --header 'Content-Type: application/json' \
+	  --data-raw '{
+	  "name": "<Your Org Name>",
+	  "icon": "<Icon URL>"
+	  }'
+	```
 
-    Be sure to replace &lt;Your Org Name&gt; and &lt;Icon URL&gt;. If you don't have an icon URL, you can use our default: `https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg`
+	Be sure to replace &lt;Your Org Name&gt; and &lt;Icon URL&gt;. If you don't have an icon URL, you can use our default: `https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg`
 
-    If the command succeeds, you'll receive this message: `"New organization created successfully"`, along with an orgId. For example:
+	If the command succeeds, you'll receive this message: `"New organization created successfully"`, along with an orgId. For example:
 
-    ```bash
-    ~ $ curl --location --request POST 'localhost:3030/v1/organizations' --header 'Content-Type: application/json' --data-raw '{
-    "name": "Test Org",
-    "icon": "https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg"
-    }'
-    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100   238  100   127  100   111    112     98  0:00:01  0:00:01 --:--:--   211{"message":"New organization created successfully.","orgId":"7c256cee3b1bda974259ae5e887bcd5b86c88bc49e353aaf3533a7823d93be42"}
-    ```
+	```bash
+	~ $ curl --location --request POST 'localhost:31310/v1/organizations' --header 'Content-Type: application/json' --data-raw '{
+	"name": "Test Org",
+	"icon": "https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg"
+	}'
+	% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100   238  100   127  100   111    112     98  0:00:01  0:00:01 --:--:--   211{"message":"New organization created successfully.","orgId":"7c256cee3b1bda974259ae5e887bcd5b86c88bc49e353aaf3533a7823d93be42"}
+	```
 
 5. Get your root hash
 
-    * To verify your local organization, you can query its root hash by running `chia data get_root --id=<orgId>`, using the `orgId` from the previous command:
+	* To verify your local organization, you can query its root hash by running `chia data get_root --id=<orgId>`, using the `orgId` from the previous command:
 
-    ```powershell
-    PS C:\Users\User> chia data get_root --id=7c256cee3b1bda974259ae5e887bcd5b86c88bc49e353aaf3533a7823d93be42
-    {'confirmed': True, 'hash': '0x1714ec438ddb0846425a1e47352b5e17e723d9ce27924ed0c5cec338c7a56b69', 'success': True, 'timestamp': 1645404216}
-    ```
+	```powershell
+	PS C:\Users\User> chia data get_root --id=7c256cee3b1bda974259ae5e887bcd5b86c88bc49e353aaf3533a7823d93be42
+	{'confirmed': True, 'hash': '0x1714ec438ddb0846425a1e47352b5e17e723d9ce27924ed0c5cec338c7a56b69', 'success': True, 'timestamp': 1645404216}
+	```
 
 -----
 
 ## Install and configure the Climate Warehouse Aux Application (GUI)
 
-1. Download the [Climate Warehouse Aux Application](https://todo_unknown_url)
+1. Visit Chia's [Climate Warehouse Aux Application download site](https://github.com/Chia-Network/climate-warehouse-ui/releases/latest). Download the appropriate installer for your OS:
+  * Windows -- `Climate.Warehouse.Setup.<version>.exe`
+  * MacOS -- `Climate.Warehouse-<version>-universal.dmg`
 
 2. Install the Climate Warehouse Aux Application
 
    Windows:
 
-   * Double click `Climate Warehouse Setup 0.1.3.exe`. The application will be installed automatically and will create a Desktop icon called `Climate Warehouse`. The application will launch automatically.
+   * Double click `Climate.Warehouse.Setup.<version>.exe`. The application will be installed automatically and will create a Desktop icon called `Climate Warehouse`. The application will launch automatically.
 
    MacOS:
 
-   * Double click `Climate Warehouse-0.1.3-universal.dmg`. The application will install automatically. You'll need to drag the `Climate Warehouse` icon to the `Applications` folder.
+   * Double click `Climate.Warehouse-<version>-universal.dmg`. The application will install automatically. You'll need to drag the `Climate Warehouse` icon to the `Applications` folder.
 
-    <figure>
-      <img src="images/climate_warehouse/03_cw_gui_installer_macos.png" alt="CW GUI on MacOS"/>
-      <figcaption>
-        <em>Drag the Climate Warehouse icon to complete the installation.</em>
-      </figcaption>
-    </figure>
+<div class="figure">
+	  <img src="images/climate_warehouse/03_cw_gui_installer_macos.png" alt="CW GUI on MacOS"/>
+	  <div class="figcaption">
+		<em>Drag the Climate Warehouse icon to complete the installation.</em>
+	  </div>
+</div><br/>
 
-    * Open the `Applications` folder and double click `Climate Warehouse` to run the application.
+* Open the `Applications` folder and double click `Climate Warehouse` to run the application.
 
 3. Initially, there will be no projects in the Climate Warehouse.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/04_empty_projects.png" alt="Climate Warehouse empty Projects List"/>
-</figure>
+</div>
 
-You have successfully installed the Climate Warehouse. The rest of this document will show you how to create an organization, create a new project, and create a new unit.
+You have successfully installed the Climate Warehouse. The rest of this document will show you how to create an organization, create a new project, create a new unit, and connect to a remote node.
 
 -----
 
@@ -370,21 +379,21 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 1. If you have not yet created your organization, you'll need to do so now. Click "+ Create Organization".
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/05_create_organization.png" alt="Create a new organization"/>
-</figure>
+</div><br/>
 
 2. Fill in your Organization Name and Icon URL, as they are required fields. If you don't have an icon URL, you can use our default: `https://climate-warehouse.s3.us-west-2.amazonaws.com/public/orgs/me.svg`
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/06_create_organization_fields.png" alt="Fill in fields to create a new organization"/>
-</figure>
+</div><br/>
 
 3. Click `OK`. You should be informed that your organization was successfully added. You will also be given an Organization ID.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/07_create_organization_success.png" alt="Success creating a new organization"/>
-</figure>
+</div>
 
 -----
 
@@ -392,68 +401,74 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 1. To create a new project, click `My Projects`, then click `+ Create`:
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/08_create_new_project.png" alt="Create a new project"/>
-</figure>
+</div><br/>
 
 2. Fill in the required fields.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/09_cw_new_project.png" alt="Step 1 to register a project"/>
-</figure>
+</div>
   
-    * Required Field
+	* Required Field
 
-  * *Registry of Origin -- The registry that originally hosted the project. If it is the same as the current registry, please list the registry again.  
-  * *Origin Project ID -- Identifier used to track the project in the registry that first held this project. If it is the same as the Project ID, please list the project ID again.
-  * Program -- Use this field to categorize the project into a specific program, if applicable.
-  * *Project ID -- Identifier used to track the project in the current registry.
   * *Project Name -- The name of the project.
-  * *Project Link -- Place a URL link to the project website or website that hosts the project and its descriptions.
+  * *Project ID -- Identifier used to track the project in the current registry.
   * *Project Developer -- Enter the name(s) of the developer(s) associated with this project, separating each with a comma.
+  * Program -- Use this field to categorize the project into a specific program, if applicable.
+  * *Project Link -- Place a URL link to the project website or website that hosts the project and its descriptions.
   * *Sector -- Select the industry sector which the project is associated with.
   * *Project Type -- Select the corresponding type to describe the project.
-  * *Covered by NDC -- Select whether the project is covered by Nationally Determined Contributions.
-  * NDC Information -- Add text description to show how the project falls under NDC.
   * *Project Status -- Select the status that best describes the current state of the project.
   * *Project Status Date -- Enter the date that corresponds to the above status selection.
+  * *Covered by NDC -- Select whether the project is covered by Nationally Determined Contributions.
+  * NDC Information -- Add text description to show how the project falls under NDC.
+  * *Current Registry -- Name of the registry that currently hosts the project.
+  * *Registry of Origin -- The registry that originally hosted the project. If it is the same as the current registry, please list the registry again.  
+  * *Origin Project ID -- Identifier used to track the project in the registry that first held this project. If it is the same as the Project ID, please list the project ID again.
   * *Unit Metric -- Select the metric that best describes the mitigation outcomes achieved by this project.
   * *Methodology -- Select the methodology that is being used to evaluate the project.
-  * Validation Date -- Enter the date when a validation was granted to the project.
   * Validation Body -- Select the validation organization that is, or will, validate the project.
+  * Validation Date -- Enter the date when a validation was granted to the project.
   * Project Tags -- Add any tags, separated by commas, to apply to this project. This can capture information not shown in other fields.
   <br/><br/>The rest of the steps in the registration form allow you to add optional information.
 
 3. When you reach Step 8, click Create Project.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/10_ratings_tab.png" alt="Step 8 to register a project"/>
-</figure>
-
+</div><br/>
 
 4. You'll receive a message that the project was successfully created. Your project will be held in `STAGING` until you click the `Commit` button.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/11_successful_creation.png" alt="Success creating a project"/>
-</figure>
+</div><br/>
 
-5. After you click the `Commit` button, you'll receive a message that the transactions have been committed. They will now be `PENDING`.
+5. After you click the `Commit` button, the `Commit Message` dialog will appear. If you have Units in the staging state, click `Everything`. Otherwise, clicking `Only Projects` will suffice.
 
-<figure>
+<div class="figure">
+  <img src="images/climate_warehouse/26_commit_message.png" alt="Commit Message dialog"/>
+</div><br/>
+
+6. You'll receive a message that the transactions have been committed. They will now be `PENDING`.
+
+<div class="figure">
   <img src="images/climate_warehouse/12_transactions_committed.png" alt="Transactions committed pending"/>
-</figure>
+</div><br/>
 
-6. The blockchain will confirm the transactions after a few minutes. `No pending data at this time` will be displayed.
+7. The blockchain will confirm the transactions after a few minutes. You'll receive a message that your data may be out of date. Click the message to refresh the Climate Warehouse.
 
-<figure>
-  <img src="images/climate_warehouse/13_no_pending_data.png" alt="Transactions committed"/>
-</figure>
+<div class="figure">
+  <img src="images/climate_warehouse/27_click_to_refresh.png" alt="Click to refresh"/>
+</div><br/>
 
-7. Your project will now be listed in the Projects List.
+8. Your project should now be visible.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/14_projects_list.png" alt="New project listed"/>
-</figure>
+</div>
 
   You have successfully created your new project.
 
@@ -462,66 +477,101 @@ You have successfully installed the Climate Warehouse. The rest of this document
 
 1. To create a new unit, click `My Units`, then click `+ Create`:
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/15_new_unit.png" alt="Create a new unit"/>
-</figure>
+</div><br/>
 
 2. Fill in the required fields.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/16_unit_fields.png" alt="Step 1 to register a unit"/>
-</figure>
-    
-    * Required Field
+</div>
+	
+	* Required Field
 
-  * *Project Location ID -- Enter the location from which the particular block of units derives. This could be the same as the project location or it might be a more specific location within the project.
+  * *External Project Location ID -- Enter the location from which the particular block of units derives. This could be the same as the project location or it might be a more specific location within the project.
   * *Unit Owner -- Enter the name of the organization that currently owns the specific set of units issued.
-  * *Country Jurisdiction Of Owner -- Select the country which has jurisdiction over the set of units issued.
-  * In-Country Jurisdiction Of Owner -- If applicable, enter the region within the country selected above.
-  * *Serial Number Block -- Enter the serial number block.
   * *Serial Number Pattern -- If the serial number format is different from what your organization typically uses, please enter the format here.
-    >**Note: It is very important to use a well-formed regex pattern.** For example, to use a combination of letters and numbers with a hyphen separating them, use `[.*\D]+([0-9]+)+[-][.*\D]+([0-9]+)$`. With this pattern, serial numbers such as `abc100-abd100`, `abcde1-a12345`, and `a1-b2-c3` are all valid.
-  * *Vintage Year -- Enter the year in which the units were awarded.
+	>**Note: It is very important to use a well-formed regex pattern.** The default pattern of `[.*\D]+([0-9]+)+[-][.*\D]+([0-9]+)$` will allow a combination of letters and numbers with a hyphen separating them, such as `abc100-abd105` and `abcde1-a12345`.
+  * *Serial Number Block -- Enter the serial number block.
+  * In-Country Jurisdiction Of Owner -- If applicable, enter the region within the country selected above.
+  * *Country Jurisdiction Of Owner -- Select the country which has jurisdiction over the set of units issued.
   * *Unit Type -- Select the type that best describes the units produced.
-  * Marketplace -- Select, or manually enter, the market on which the units are listed, if applicable.
-  * Marketplace Link -- Enter the URL which links to the marketplace which the unit is being sold, if applicable.
-  * Marketplace Identifier -- Enter the unique identifier being listed on the marketplace which corresponds to the units in question, if applicable.
-  * Unit Tags -- Enter additional information, separated by a comma, to track any additional notes against these units not already submitted in previous fields.
   * *Unit Status -- Select the status that best describes the current state of the units.
   * *Unit Status Reason -- Enter the appropriate reason for the status. If no reason is needed, simply enter 'N/A'.
   * *Unit Registry Link -- Enter the URL which links to the registry which hosts the units.
+  * *Vintage Year -- Enter the year in which the units were awarded.
+  * Marketplace -- Select, or manually enter, the market on which the units are listed, if applicable.
+  * Marketplace Identifier -- Enter the unique identifier being listed on the marketplace which corresponds to the units in question, if applicable.
+  * Marketplace Link -- Enter the URL which links to the marketplace which the unit is being sold, if applicable.
   * *Corresponding Adjustment Declaration -- Select whether the units have a corresponding adjustment capability or not.
   * *Corresponding Adjustment Status -- Select the corresponding status of the corresponding adjustment.
-  <br/><br/>The rest of the steps allow you to add optional information.
+  * Unit Tags -- Enter additional information, separated by a comma, to track any additional notes against these units not already submitted in previous fields.
+
+  <br/>The rest of the steps allow you to add optional information.
 
 3. When you reach Step 3, click Create.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/17_create_unit.png" alt="Step 3 to register a unit."/>
-</figure>
+</div><br/>
 
 4. You'll receive a message that the unit was successfully created. Your unit will be held in `STAGING` until you click the `Commit` button.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/18_unit_create_success.png" alt="Success creating a unit"/>
-</figure>
+</div><br/>
 
-5. After you click the `Commit` button, you'll receive a message that the transactions have been committed. They will now be `PENDING`.
+5. After you click the `Commit` button, the `Commit Message` dialog will appear. If you have Projects in the staging state, click `Everything`. Otherwise, clicking `Only Units` will suffice.
 
-<figure>
+<div class="figure">
+  <img src="images/climate_warehouse/28_unit_commit_message.png" alt="Unit Commit Message dialog"/>
+</div><br/>
+
+6. You'll receive a message that the transactions have been committed. They will now be `PENDING`.
+
+<div class="figure">
   <img src="images/climate_warehouse/19_unit_pending.png" alt="Unit committed pending"/>
-</figure>
+</div><br/>
 
-6. The blockchain will confirm the transactions after a few minutes. `No pending data at this time` will be displayed.
+7. The blockchain will confirm the transactions after a few minutes. `No pending data at this time` will be displayed.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/20_no_units_pending.png" alt="No units pending"/>
-</figure>
+</div><br/>
 
-7. Your unit will now be listed in the COMMITTED tab.
+8. Either refresh the GUI or click `My Projects` and click `My Units` again. Your unit will now be listed in the COMMITTED tab.
 
-<figure>
+<div class="figure">
   <img src="images/climate_warehouse/21_unit_committed.png" alt="New unit listed"/>
-</figure>
+</div>
 
   You have successfully created your new unit.
+
+-----
+
+## Connect to a remote node
+
+1. To connect to a remote node, first you must have created your organization. After you have done so, the `Connect` button will appear. Click this button to get started.
+
+<div class="figure">
+  <img src="images/climate_warehouse/22_connect_remote.png" alt="Connect to a remote node"/>
+</div><br/>
+
+2. The `Log in to remote node` dialog will appear. Fill in a valid server address and API key for the remote node and click `Connect`.
+
+<div class="figure">
+  <img src="images/climate_warehouse/23_remote_log_in_dialog.png" alt="Log in to remote node dialog"/>
+</div><br/>
+
+3. You will now be connected to the remote node. You'll be able to view that node's projects and units. If you would like to disconnect, click the `Disconnect` button.
+
+<div class="figure">
+  <img src="images/climate_warehouse/24_remote_connected.png" alt="Log in to remote node dialog"/>
+</div><br/>
+
+4. Click any project for a detailed view, including any locations, labels, co benefits, estimations etc which may exist.
+
+<div class="figure">
+  <img src="images/climate_warehouse/25_view_remote_project.png" alt="Log in to remote node dialog"/>
+</div>

@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2
 ---
-# 13.2 Data Layer CLI
-This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the Data Layer. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide_testnet "Climate Warehouse install guide").
+# 13.2 Data Layer (Beta) CLI
+This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the Data Layer Beta. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide "Climate Warehouse install guide").
 
-We also have documented the [RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer RPC API") for interacting with the Data Layer.
+We also have documented the [RPC API](/docs/12rpcs/data_layer_rpc_api "Section 12.3: Data Layer Beta RPC API") for interacting with the Data Layer.
 
 The relevant Data Layer commands can all be found under the `chia data` command:
 
@@ -15,9 +15,9 @@ The relevant Data Layer commands can all be found under the `chia data` command:
 ## Commands
 
 * [`create_data_store`](#create_data_store)
-* [`update_data_store`](#update_data_store)
 * [`get_value`](#get_value)
 * [`get_keys_values`](#get_keys_values)
+* [`update_data_store`](#update_data_store)
 * [`get_root`](#get_root)
 * [`get_root_history`](#get_root_history)
 * [`subscribe`](#subscribe)
@@ -157,29 +157,6 @@ $ chia data create_data_store
 ```
 ---
 
-### `update_data_store`
-
-Functionality: Update a data store with a given changelist. Triggers a Chia transaction
-
-Usage: `chia data subscribe [OPTIONS]`
-
-Options:
-
-| Short Command | Long Command    | Type    | Required | Description |
-|:-------------:|:---------------:|:-------:|:--------:|:------------|
-| -store        | --id            | TEXT    | True     | The hexidecimal store ID. Optionally can be prefixed with 0x |
-| -d            | --changelist    | TEXT    | True     | A string representing the changelist
-| -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml (default is 8562) |
-| -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]
-| -h            | --help          | None    | False    | Show a help message and exit |
-
-Example:
-
-```bash
-```
----
-
 ### `get_value`
 
 Functionality: Get a value from a Store's key.
@@ -246,6 +223,149 @@ $ chia data get_keys_values --id 77fd0011c477911a8daa93dd8e09c8081155bbb24a02f4b
     'success': True
 }
 ```
+---
+
+### `update_data_store`
+
+Functionality: Update a data store with a given changelist. Triggers a Chia transaction
+
+Usage: `chia data update_data_store [OPTIONS]`
+
+Options:
+
+| Short Command | Long Command    | Type    | Required | Description |
+|:-------------:|:---------------:|:-------:|:--------:|:------------|
+| -store        | --id            | TEXT    | True     | The hexidecimal store ID. Optionally can be prefixed with 0x |
+| -d            | --changelist    | TEXT    | True     | A JSON array representing the changelist
+| -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml (default is 8562) |
+| -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]
+| -h            | --help          | None    | False    | Show a help message and exit |
+
+A few notes on the `-d` / `--changelist` option:
+  * The entire list must be formatted as a JSON array
+  * There are two actions allowed: `insert` and `delete`
+  * `insert` requires `key` and `value` flags
+  * `delete` requires a `key` flag only
+  * Keys and values must be written in hex format. Values can be derived from text or binary.
+  * Labels, keys and values must all be enclosed in double quotes
+  * Multiple inserts and deletes are allowed
+  * The size of a single `value` flag is limited to 100 MiB. However, adding anything close to that size has not been tested and could produce unexpected results.
+  * On Windows, you must escape the double quotes in the JSON array with backslashes. See below for an example. This is not required on MacOS.
+
+Here's an example of how to insert a single key/value pair on Windows:
+
+```powershell
+PS C:\> chia data update_data_store --id=dba2f5291c17395391e6c29abefa07f7d00238967799442fbd95084eb2686e4d -d '[{\"action\":\"insert\", \"key\":\"00000003\", \"value\":\"cafef00d\"}]'
+{'success': True, 'tx_id': '0x9cd9a3c40354719bdbab2f3763c3a302b56f0216a3b2079eac449695d6f70996'}
+```
+
+Each double quote (`"`) must be escaped with a backslash (`\`).
+
+The following examples are from MacOS. It is also possible to run these commands on Windows by escaping the quotes as above.
+
+Insert a single key/value pair:
+```bash
+% chia data update_data_store --id 1b4a9dba9798cb56bb2401f7bdd2f114aa655e854de0dbfa2aeb41c3ab45471f --changelist '[{"action":"insert", "key":"00000001", "value":"cafef00d"}]'
+{'success': True, 'tx_id': '0xc1d30cf0a4fe0334fff89975b756831f1654293a98d5a3c6ee2fbeee873d3ecf'}
+```
+
+Delete a single key:
+```bash
+% chia data update_data_store --id 1b4a9dba9798cb56bb2401f7bdd2f114aa655e854de0dbfa2aeb41c3ab45471f --changelist '[{"action":"delete", "key":"00000001"}]'
+{'success': True, 'tx_id': '0xf24c76e7c2f5fb89cd7e36a3cba600a411844c86e4268c0027742c76ab758fb0'}
+```
+
+Insert two keys:
+```bash
+% chia data update_data_store --id 1b4a9dba9798cb56bb2401f7bdd2f114aa655e854de0dbfa2aeb41c3ab45471f --changelist '[{"action":"insert", "key":"00000001", "value":"cafef00d"},{"action":"insert", "key":"00000002", "value":"fadedcab"}]'
+{'success': True, 'tx_id': '0x8531075c11452f52e28a4fce4252dd6ab38bc680fc484f1481061508903c1e0a'}
+```
+
+List all keys and values after running the previous command:
+```bash
+% chia data get_keys_values --id 1b4a9dba9798cb56bb2401f7bdd2f114aa655e854de0dbfa2aeb41c3ab45471f 
+{
+    'keys_values': [{
+        'atom': None, 
+        'hash': '0x3735937a33f861e66504efaffb6a2d1966efd0238c71d0296329c60ac3261b45', 
+        'key': '0x00000001', 
+        'value': '0xcafef00d'
+    }, {
+        'atom': None, 
+        'hash': '0x09c15143e7028c59f9f4d8aa9eedf2052188919a1677f0297e8cb7f2cc6cfec9', 
+        'key': '0x00000002', 
+        'value': '0xfadedcab'
+    }], 
+    'success': True
+}
+```
+
+Note that you may not write over the top of an existing key/value pair:
+```bash
+% chia data update_data_store --id 1b4a9dba9798cb56bb2401f7bdd2f114aa655e854de0dbfa2aeb41c3ab45471f --changelist '[{"action":"insert", "key":"00000002", "value":"0123456789abcdef"}]'
+Exception from 'data': {'error': 'Key already present: 00000002', 'success': False}
+```
+
+However, you may delete and add the same key in one command:
+```bash
+% chia data update_data_store --id 1b4a9dba9798cb56bb2401f7bdd2f114aa655e854de0dbfa2aeb41c3ab45471f --changelist '[{"action":"delete", "key":"00000002"},{"action":"insert", "key":"00000002", "value":"0123456789abcdef"}]'
+{'success': True, 'tx_id': '0x94227eada65012ecad89d739d71a95b7111cffedcfb0856e5f6a58e3021af881'}
+```
+
+The result of the previous command is that the key/value pair has been updated:
+```bash
+% chia data get_keys_values --id 1b4a9dba9798cb56bb2401f7bdd2f114aa655e854de0dbfa2aeb41c3ab45471f 
+{
+    'keys_values': [{
+        'atom': None, 
+        'hash': '0x3735937a33f861e66504efaffb6a2d1966efd0238c71d0296329c60ac3261b45', 
+        'key': '0x00000001', 
+        'value': '0xcafef00d'
+    }, {
+        'atom': None, 
+        'hash': '0x0bb5aa4e182e953717a4e0f7919fd7fcd5be413686a4021d9730b02748310983', 
+        'key': '0x00000002', 
+        'value': '0x0123456789abcdef'
+    }], 
+    'success': True
+}
+```
+
+Finally, here's an actual example of a key/value pair that was inserted into the Climate Warehouse:
+```bash
+[{"action":"insert","key":"70726f6a6563747c37353339656336392d636238652d343464362d383832332d653062313135303162643433","value":"7b2263757272656e745265676973747279223a2243756c7469766f222c2272656769737472794f664f726967696e223a2243756c7469766f222c226f726967696e50726f6a6563744964223a224d6163546573743135222c2270726f6772616d223a224d6163546573743135222c2270726f6a6563744964223a224d6163546573743135222c2270726f6a6563744e616d65223a224d6163546573743135222c2270726f6a6563744c696e6b223a224d6163546573743135222c2270726f6a656374446576656c6f706572223a224d6163546573743135222c22736563746f72223a22456e6572677920646973747269627574696f6e222c2270726f6a65637454797065223a224f7a6f6e65204465706c6574696e67205375627374616e636573222c22636f766572656442794e4443223a224f757473696465204e4443222c226e6463496e666f726d6174696f6e223a224d6163546573743135222c2270726f6a656374537461747573223a22436f6d706c65746564222c22756e69744d6574726963223a2274434f3265222c226d6574686f646f6c6f6779223a22426173656c696e65204d6574686f646f6c6f677920666f72206465636f6d706f736974696f6e206f66204e324f2066726f6d206578697374696e672061646970696320616369642070726f64756374696f6e20706c616e7473202d2d2d2056657273696f6e20332e30222c2270726f6a65637454616773223a224d6163546573743135222c2276616c69646174696f6e426f6479223a22436172626f6e20436865636b2028496e646961292050726976617465204c74642e222c2270726f6a65637453746174757344617465223a22323032302d30332d32385430303a30303a30302e3030305a222c2276616c69646174696f6e44617465223a22323032322d30332d30315430303a30303a30302e3030305a222c2277617265686f75736550726f6a6563744964223a2237353339656336392d636238652d343464362d383832332d653062313135303162643433222c2274696d65537461676564223a313634363639343630322c226f7267556964223a2230623039643861653437626665323731366263323532383231333463653661613931616333646364663933363335616338656436626362333031626234636238227d"}]
+```
+
+The hex from this example can be decoded to obtain the following:
+```bash
+key = project|7539ec69-cb8e-44d6-8823-e0b11501bd43
+value = {
+    "currentRegistry":"Cultivo",
+    "registryOfOrigin":"Cultivo",
+    "originProjectId":"MacTest15",
+    "program":"MacTest15",
+    "projectId":"MacTest15",
+    "projectName":"MacTest15",
+    "projectLink":"MacTest15",
+    "projectDeveloper":"MacTest15",
+    "sector":"Energy distribution",
+    "projectType":"Ozone Depleting Substances",
+    "coveredByNDC":"Outside NDC",
+    "ndcInformation":"MacTest15",
+    "projectStatus":"Completed",
+    "unitMetric":"tCO2e",
+    "methodology":"Baseline Methodology for decomposition of N2O from existing adipic acid production plants --- Version 3.0",
+    "projectTags":"MacTest15",
+    "validationBody":"Carbon Check (India) Private Ltd.",
+    "projectStatusDate":"2020-03-28T00:00:00.000Z",
+    "validationDate":"2022-03-01T00:00:00.000Z",
+    "warehouseProjectId":"7539ec69-cb8e-44d6-8823-e0b11501bd43",
+    "timeStaged":1646694602,
+    "orgUid":"0b09d8ae47bfe2716bc25282134ce6aa91ac3dcdf93635ac8ed6bcb301bb4cb8"
+}
+```
+
 ---
 
 ### `get_root`
