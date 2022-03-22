@@ -55,4 +55,4 @@ Value may only be added to the coin set via the pre-farm (a one-time occurrence)
 Typically, in a block's combined spend bundle, value added will be equal to value spent, other than the block rewards. By definition, there are two possible exceptions:
 
 * Value added > value spent -- This is not allowed, so the transaction will be rejected. The rejection will usually happen at the mempool level, though a malicious actor could write their own mempool to accept the transaction, in which case the blockchain will reject it.
-* Value added < value spent -- This is allowed, so the transaction will succeed. In this case, the remaining value will be rewarded to the farmer of the block containing the transaction.
+* Value added < value spent -- This is allowed, so the transaction will succeed. If the value added is less than the value spent the remaining value will be rewarded to the farmer of the block containing the transaction awarded as a tip (you probably don't want to do that!).

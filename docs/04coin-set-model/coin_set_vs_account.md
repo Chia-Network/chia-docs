@@ -28,7 +28,7 @@ Alice wants to send 1 XCH to Bob. Alice has five coins in her wallet: four worth
 
 Owner | Before            | After
 ----- | ----------------- | -------
-Alice | 1.5 XCH (5 coins) | 0.5 XCH (1 coin)
+Alice | 1.5 XCH (5 coins) | 0.5 XCH (3 coin)
 Bob   |   0 XCH           | 1.0 XCH (1 coin)
       |                   | 
 Total | 1.5 XCH           | 1.5 XCH
