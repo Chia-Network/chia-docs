@@ -237,7 +237,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
         "overflow": false,
         "pool_puzzle_hash": "0x8f5474dc460673a39c96bb0fdfea933f5d1269c138e47a67f07872c04803a4e7",
         "prev_hash": "0x9a6c8728021574c5f3242370831b9fde7a0421f4448b4848276fe1652580c6a7",
-        "prev_transaction_block_hash": "0x6c94307cb88f37ca002936769246579824ecadc77fe1e445d31165e6958288e8", // iff is transaciton block
+        "prev_transaction_block_hash": "0x6c94307cb88f37ca002936769246579824ecadc77fe1e445d31165e6958288e8", // iff is transaction block
         "prev_transaction_block_height": 97,
         "required_iters": 1045145,
         "reward_claims_incorporated": [
@@ -298,7 +298,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
         "overflow": false,
         "pool_puzzle_hash": "0x8f5474dc460673a39c96bb0fdfea933f5d1269c138e47a67f07872c04803a4e7",
         "prev_hash": "0x9a6c8728021574c5f3242370831b9fde7a0421f4448b4848276fe1652580c6a7",
-        "prev_transaction_block_hash": "0x6c94307cb88f37ca002936769246579824ecadc77fe1e445d31165e6958288e8", // iff is transaciton block
+        "prev_transaction_block_hash": "0x6c94307cb88f37ca002936769246579824ecadc77fe1e445d31165e6958288e8", // iff is transaction block
         "prev_transaction_block_height": 97,
         "required_iters": 1045145,
         "reward_claims_incorporated": [
