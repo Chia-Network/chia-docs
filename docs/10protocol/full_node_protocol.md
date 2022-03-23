@@ -8,7 +8,7 @@ The sender is the full node sending the message, and the recipient is the full n
 
 ## new_peak
 Sent to peers whenever our node's peak weight advances (whenever the blockchain moves forward).
-The fork point allows peers to detect how deep of a reorg happenned, and fetch the correct blocks.
+The fork point allows peers to detect how deep of a reorg happened, and fetch the correct blocks.
 The unfinished reward block hash allows the receiving peer to use their cache for unfinished blocks,
 since they most likely already have the unfinished
 version of the same block, and therefore don't need to re-request the block transactions generator.
