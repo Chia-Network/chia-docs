@@ -72,9 +72,11 @@ Like many other blockchains, Chia allows pooling to smooth out the rewards struc
 ### Other key features
 
 There are many other innovations in Chia, some of which include:
-* BLS signatures, which allow aggregating all of a block's signatures together.
-* Scalability and performance improvements, which allow running a Chia node on a Raspberry Pi.
-* Weight proofs and light clients, which enable fast syncing from a mobile device. For more info, see [Section 3.12](/docs/03consensus/light_clients "Section 3.12: Chia Light Clients") .
+* **BLS signatures**, which allow aggregating all of a block's signatures together. For more info on BLS keys, see [Section 9.1](/docs/09keys/keys-and-signatures "Section 9.1: Keys and signatures"). For a comparison between the ECDSA and Schnorr signatures used by Bitcoin, and the BLS signatures used by Chia, see [Section 4.6](/docs/04coin-set-model/coin_set_vs_utxo#signature-type "Section 4.6: Signature type").
+* **Scalability and performance** improvements, which [allow running a Chia node](https://chialisp.com/docs/ref/clvm#minimum-spec-machine-for-farming "Explanation of how we could ascertain the minimum spec machine for farming") on a Raspberry Pi. Our Wiki has [instructions for farming on a Pi 4](https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi "Wiki instructions for farming on a Raspberry Pi 4").
+* **Weight proofs and light clients**, which enable fast syncing from a mobile device. For more info, see [Section 3.12](/docs/03consensus/light_clients "Section 3.12: Chia Light Clients").
+* **Chia Asset Tokens** (CATs) are fungible tokens that can be minted from standard XCH. The possiblilties are endless! Chialisp.com contains the [technical details of CATs](https://chialisp.com/docs/puzzles/cats "Cat1 standard"). To create your own CAT, see our [written tutorial](https://chialisp.com/docs/tutorials/CAT_Launch_Process_Windows "CAT written tutorial"), as well as our [video tutorial](https://chialisp.com/docs/tutorials/single_issuance_CAT "CAT video tutorial"). Additionally, a community member has created [TAIL Database](https://www.taildatabase.com/ "TAIL database"), which contains a list of CATs in the wild.
+* **Offer files** enable the peer-to-peer exchange of assets, including standard XCH, as well as CATs. For a brief introduction, see our [YouTube video](https://youtu.be/Z2FoZSNtttM "Offers intro on YouTube"). Chialisp.com has the [technical details](https://chialisp.com/docs/puzzles/offers "Offer files, technical details") and a [tutorial](https://chialisp.com/docs/tutorials/offers_gui_tutorial "Offers, GUI tutorial") to help you get started.
 
 This documentation will explain the motivation and implementation of the different components of the Chia system to a technical audience, and provide in-depth explanations of how everything works. If you would like to skip to how to make dapps (decentralized
 apps) on Chia, please visit [chialisp.com](https://chialisp.com).
