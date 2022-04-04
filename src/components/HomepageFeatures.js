@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from '@docusaurus/Link'
+
 import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
 
@@ -79,10 +81,10 @@ function Feature({Svg, title, description, dest_url}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <a href={dest_url}><Svg className={styles.featureSvg} alt={title} /></a>
+        <Link href={dest_url}><Svg className={styles.featureSvg} alt={title} /></Link>
       </div>
       <div className="text--center padding-horiz--md feature-item">
-        <h3><a href={dest_url}>{title}</a></h3>
+        <h3><Link href={dest_url}>{title}</Link></h3>
         <p>{description}</p>
         
       </div>
