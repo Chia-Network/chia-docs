@@ -48,23 +48,67 @@ This document will guide you through the process of installing the Climate Wareh
   </figcaption>
 </figure><br/>
 
-3. On Windows, if this is your first time installing Chia on this machine, the _Select Your Client Mode_ dialog will appear. If you have already installed Chia on this machine, the _Select Key_ dialog will appear. In either case, We'll be using the Command Line Interface, so close the application. On MacOS this dialog doesn't appear, so no need to close it.
+3. On MacOS, Chia will not start automatically. Instead, start Chia from your _Applications_ folder. (On Windows, Chia will start automatically after the installation completes.)
 
 <figure>
-  <img src="images/data_layer/02_close_installer.png" alt="Select Your Client Mode dialog"/>
+  <img src="images/data_layer/02_start_chia_mac.png" alt="Choose Farming Mode"/>
   <figcaption>
-    <em>If the Select Your Client Mode dialog appears, close it.</em>
+    <em>Starting Chia on MacOS.</em>
+    </figcaption>
+</figure><br/>
+
+4. If this is your first time installing Chia on this machine, the _Select Your Client Mode_ dialog will appear.
+
+We recommend that you select Wallet Mode. This mode will quickly sync your wallet.
+
+<figure>
+  <img src="images/data_layer/03_choose_wallet_mode.png" alt="Choose Wallet Mode"/>
+  <figcaption>
+    <em>We recommend that you choose Farming Mode.</em>
     </figcaption>
 </figure>
 <br/>
+
+5. If you don't already have a Chia wallet, you'll need to create one now. If you already have a wallet, proceed to step 6.
+
 <figure>
-  <img src="images/data_layer/02_close_installer2.png" alt="Select Key dialog"/>
+  <img src="images/data_layer/04_create_private_key.png" alt="Create a private key"/>
+</figure>
+<br/>
+
+You'll be shown a list of 24 words. Copy these words to a private location. Order is important. These words are all you'll need to recover your wallet later.
+
+  >**IMPORTANT**: Your seed phrase is all that is required to recover your wallet. If you lose your seed phrase, recovery will not be possible. If a bad actor gains access to your seed phrase, they'll be able to steal your Chia, including the singletons you'll use for the data layer. Do not take a picture of your seed phrase or store it on a computer.
+ 
+<figure>
+  <img src="images/data_layer/05_seed_phrase.png" alt="24-word seed phrase"/>
   <figcaption>
-    <em>If the Select Key dialog appears, close it.</em>
+    <em>Carefully copy your mnemonic seed phrase for future wallet recovery.</em>
     </figcaption>
 </figure>
+<br/>
 
-4. Open PowerShell on Windows, or Terminal on MacOS.
+6. The _Select Key_ dialog will appear. If you see multiple keys, select one that has some XCH (if possible).
+
+<figure>
+  <img src="images/data_layer/06_choose_key.png" alt="Select Key dialog"/>
+  <figcaption>
+    <em>If the Select Key dialog appears, choose your primary key.</em>
+    </figcaption>
+</figure>
+<br/>
+
+7. Your wallet will begin syncing. "Not Synced" will appear in the upper right corner. You may proceed to the next step while syncing is in progress.
+
+<figure>
+  <img src="images/data_layer/07_not_synced.png" alt="Not synced"/>
+  <figcaption>
+    <em>The wallet is syncing.</em>
+    </figcaption>
+</figure>
+<br/>
+
+8. Open PowerShell on Windows, or Terminal on MacOS.
 
   We'll create an alias to run the `chia` command from any folder.
 
@@ -77,7 +121,7 @@ This document will guide you through the process of installing the Climate Wareh
   MacOS:
     * Run `alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'`
 
-5. MacOS only:
+9. MacOS only:
   
   Run `chia init --fix-ssl-permissions`. This will update the permissions for Chia's SSL files.
 
@@ -93,60 +137,18 @@ This document will guide you through the process of installing the Climate Wareh
   No keys are present in the keychain. Generate them with 'chia keys generate'
   ```
 
-6. Run `chia version`. You should be shown the correct version. For example:
+10. Run `chia version`. You should be shown the correct version. For example:
   ```powershell
   PS C:\Users\User> chia version
-  v1.2.12.dev671
+  1.3.2.dev694
   ```
 
-7. Run `chia configure --testnet false`. This will ensure that Chia is set up to run on mainnet.
-  ```powershell
-  PS C:\Users\User> chia configure --testnet false
-  Setting Mainnet
-  Default full node port, introducer and network setting updated
-  Restart any running chia services for changes to take effect
-  ```
-
-8. Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING.
+11. Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING.
   ```powershell
   PS C:\Users\User> chia configure --set-log-level INFO
   Logging level updated. Check C:\Users\User\.chia\mainnet/log/debug.log
   Restart any running chia services for changes to take effect
   ```
-
-9. Run `chia keys show`.
-  * If you already have a public/private key pair, you will receive the following message, along with your public keys and address: `Showing all public keys derived from your master seed and private key:`. If you have not yet copied your mnemonic seed phrase to a secure location, see step 11. Otherwise, proceed to step 12.
-  * If you do not have a public/private key pair, you will be shown this message: `There are no saved private keys`. In this case, proceed to the next step.
-
-10. Run `chia keys generate`. This will create a new public/private key pair.
-
-  ```shell
-  PS C:\Users\User> chia keys generate
-  Generating private key
-  Added private key with public key fingerprint 3049838316
-  Setting the xch destination for the farmer reward (1/8 plus fees, solo and pooling) to xch1tsepaz2qx978sajarelw33ekee0uzrydw5gpxq42lrtf7c6a2rksy3lxp7
-  Setting the xch destination address for pool reward (7/8 for solo only) to xch1tsepaz2qx978sajarelw33ekee0uzrydw5gpxq42lrtf7c6a2rksy3lxp7
-  To change the XCH destination addresses, edit the xch_target_address entries in /Users/user/.chia/mainnet/config/config.yaml.
-  ```
-
-11. Run `chia keys show --show-mnemonic-seed`. You'll be shown your public and private keys. The last line of the output will be a list of 24 secret words. This is your _seed phrase_. **Carefully copy the words on paper and store them in a secure location.** Order is important.
-
-  ```shell
-  PS C:\Users\User> chia keys show --show-mnemonic-seed
-  Showing all public and private keys
-
-  Fingerprint: 3049838316
-  Master public key (m): b976ead8b3fe50d6813d6073cc161fc020f399fc7789e55c0da944ad8b5d04da418159e5dc40e492258baf2ca5123278
-  Farmer public key (m/12381/8444/0/0): a5ec38213280c67c02733244c577f27f659b21ea70b347cbe8bb15c162e5d7d3c090b74d1e90a62734a1861531c5c86e
-  Pool public key (m/12381/8444/1/0): ab82d14faa38f179d096b7471578461a4712109cb2ebd31953e9b333356850c133c109eb767e9dfd75443f63f8979438
-  First wallet address: xch1tsepaz2qx978sajarelw33ekee0uzrydw5gpxq42lrtf7c6a2rksy3lxp7
-  Master private key (m): 4036ad6e56a1de925411bfce35aca18fc692950d99241466267b475730a834cc
-  First wallet secret key (m/12381/8444/2/0): <PrivateKey 2832e5f50dc5a092614e8627cf75f5fc378cc4c51db0932442f04b50fff338f1>
-    Mnemonic seed (24 secret words):
-  youth stomach social aware clay pottery benefit asthma mail cry rubber panda wife around provide atom cute sand staff exotic pink east gloom minute
-  ```
-
-  >**IMPORTANT**: Your seed phrase is all that is required to recover your wallet. If you lose your seed phrase, recovery will not be possible. If a bad actor gains access to your seed phrase, they'll be able to steal your Chia, including the singletons you'll use for the data layer. Do not take a picture of your seed phrase or store it on a computer.
 
 12. Acquire some XCH in order to use the Climate Warehouse. If you are unsure how to do this, ask a Chia employee for help.
   
@@ -191,46 +193,29 @@ This document will guide you through the process of installing the Climate Wareh
 
       * Run `sudo pfctl -sr | grep 8575` and `sudo pfctl -sr | grep 31310` to verify that the changes are active.
 
-15. Run `chia start wallet-only`. This command will start your daemon and wallet.
-  ```powershell
-  PS C:\Users\User> chia start wallet-only
-  Daemon not started yet
-  Starting daemon
-  chia_wallet: started
-  ```
-
-16. Run `chia start data` to start the Data Layer Beta server.
+15. Run `chia start data` to start the Data Layer Beta server.
   ```powershell
   PS C:\Users\User> chia start data
   chia_data_layer: started
   ```
 
-17. Run `chia wallet show` to show your balance. You'll need to wait for `Sync status:` to say `Synced`. This will take a few minutes. After your wallet has synced, it should show a balance greater than 0. For example:
+16. "Synced" should now appear in the upper right corner of your wallet. You should have a balance greater than 0. If your wallet still says "Syncing", then you'll need to wait before continuing.
 
-  ```powershell
-  PS C:\Users\User> chia wallet show
-  Wallet height: 588320
-  Sync status: Synced
-  Balances, fingerprint: 318577323
-  Wallet ID 1 type STANDARD_WALLET Chia Wallet
-    -Total Balance: 1.0 xch (1000000000000 mojo)
-    -Pending Total Balance: 1.0 xch (1000000000000 mojo)
-    -Spendable: 1.0 xch (1000000000000 mojo)
-  ```
+<figure>
+  <img src="images/data_layer/16_synced.png" alt="Synced wallet"/>
+</figure>
+<br/>
 
-18. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 XCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. The format for this command is `chia wallet send -i <wallet ID, usually 1> -a <amount in XCH> -m <fee in XCH> -t <your own XCH address> -f <your fingerprint>`.
+17. Chia uses the coin set (similar to UTXO) model of accounting. In the example above, the wallet contains 1 coin worth 1 XCH. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee so the transaction gets processed quickly. For this example, we'll create a new coin worth 0.25 XCH, with a 0.0001 XCH fee, sent to our own wallet:
 
-  For example, the following command will create a new coin worth 0.25 XCH, with a 0.001 XCH fee:
+<figure>
+  <img src="images/data_layer/17_send_self_money.png" alt="An example of a wallet sending money to itself"/>
+</figure>
+<br/>
 
-  ```powershell
-  PS C:\Users\User> chia wallet send -i 1 -a 0.25 -m 0.001 -t xch16f8puxdnxh7vhsc4l5e2pjvudzxhjxe5k7rd4c2xynpvunvcc2rq7rjcjy -f 318577323
-  Submitting transaction...
-  Transaction submitted to nodes: [('cb355777f896bd81b94e259cb073981d888b3e577e482fd074e3d22804056549', 1, None)]
-  Do chia wallet get_transaction -f 318577323 -tx 0x21e6c640bd53ba1b5839cda6c984db81bf8f10fa4a6e369889490de5e9d8afc4 to get status
-  ```
-  Run a similar command three times, waiting about two minutes between each time. You will end up with four coins in your wallet.
+If you do something similar on your wallet three times, while waiting for the transaction to complete each time, you'll end up with four coins in your wallet. This will be sufficient to use the Climate Warehouse.
 
-  Chia is now installed and configured properly. Next you'll install the Climate Warehouse.
+Chia is now installed and configured properly. Next you'll install the Climate Warehouse.
 
 ------
 
