@@ -35,9 +35,15 @@ See our [plotting FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#
 ## Farming
 Farming is the process by which a farmer receives a sequence of 256-bit challenges to prove that they have legitimately put aside a defined amount of storage. In response to each challenge, the farmer checks their plots, generates a proof, and submits any winning proofs to the network for verification.
 
-The process of inputting a challenge and outputting a proof involves multiple table lookups. First, the farmer reads from three checkpoint tables. This requires an average of 5000 reads (the maximum is 10 000). These are sequential reads of 4 bytes (for a total of 20 KiB on average). Because the reads are sequential, the entire process only requires a few ms to complete.
-
-The result from reading the checkpoint tables is an f7 value in table 7, which allows the farmer to read a single index of k+1 bits into table 6. The table 6 index contains one _line point_ with two _back pointers_ to table 5, four to table 4, eight to table 3, sixteen to table 2 and thirty-two to table 1. Each back pointer requires 1 read, so a total of 64 disk reads (1 f7 value, 63 back pointers) are performed to fetch the whole tree of 64 x-values. (Note that the 64 disk reads are an estimate. The actual result could be +/- two reads, depending on the checkpoint tables.)
+For each eligible plot (explained later), a farmer uses the following procedure to generate a full proof of space. Keep in mind that a plot consists of 7 tables (T1-T7) of approximately the same size, as well as 3 checkpoint tables (C1-C3), which are much smaller:
+1. The farmer receives a challenge from the VDF
+2. For each eligible plot, extract a k-sized value from the challenge, where _k_ denotes the size of the plot (k32, k33, etc)
+3. Look in the C2 table (which is less than 200 bytes and is pre-loaded into memory) for a location at which to start scanning the C1 table
+4. Scan the C1 table for the location at which to start scanning the C3 table
+5. Read either one or two C3 parks. The number of parks to read depends on the index and value calculated from the C1 table. This requires an average of 5000 reads (the maximum is 10 000). These are sequential reads of 4 bytes (for an average total of 20 KiB)
+6. Grab all the f7 entries matching the challenge value (which can be 0 or more), along with the index in the table at which they were found
+7. For each matching f7 value, read T7 at the same index where the f7 value was found in its own table, and grab that entry, which is an index into T6
+8. The T6 index contains one _line point_ with two _back pointers_ to T5, four to T4, eight to T3, sixteen to T2 and thirty-two to T1. Each back pointer requires 1 read, so a total of 64 disk reads (1 f7 value, 63 back pointers) are performed to fetch the whole tree of 64 x-values. (Note that the 64 disk reads are an estimate. The actual result could be +/- two reads, depending on the checkpoint tables.)
 
 Sixty-four disk reads require approximately 640 ms on a slow HDD with a 10 ms seek time.
 
