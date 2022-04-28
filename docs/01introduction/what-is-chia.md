@@ -78,3 +78,7 @@ There are many other innovations in Chia, some of which include:
 
 This documentation will explain the motivation and implementation of the different components of the Chia system to a technical audience, and provide in-depth explanations of how everything works. If you would like to skip to how to make dapps (decentralized
 apps) on Chia, please visit [chialisp.com](https://chialisp.com).
+
+This is a test for localization. Will test after.
+
+Delete Text.
