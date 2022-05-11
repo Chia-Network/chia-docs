@@ -14,12 +14,13 @@ This document will guide you through the process of minting NFTs that adhere to 
 
 ---
 
-:::info Note about Python on Windows
+<details>
+  <summary>Note about Python <code>RuntimeError</code> on Windows</summary>
 
 If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 "More info about this issue") and can be safely ignored. For example:
 
 ```powershell
-(venv) $ chia stop -d all
+chia stop -d all
 
 Exception ignored in: <function _ProactorBasePipeTransport.__del__ at 0x000001A719716160>
 Traceback (most recent call last):
@@ -34,7 +35,7 @@ Traceback (most recent call last):
 RuntimeError: Event loop is closed
 daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination': 'client', 'origin': 'daemon', 'request_id': '0de5449121b6873ce18661b2adc4213d7dc795c2943ff7f4be9502058e8eaba0'}
 ```
-:::
+</details>
 
 ---
 
@@ -61,12 +62,17 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
   Ensure there are no `chia` related processes running. If you are unsure, you may want to uninstall Chia before continuing.
 
 3. Chia's NFT and DID development is currently happening in the [main_dids](https://github.com/Chia-Network/chia-blockchain/tree/main_dids "main_dids branch") branch of the `chia-blockchain` repository. You'll need to download this branch.
-  
-  a. If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
 
-  b. Create and `cd` to a new directory (eg `main_dids`)
+  :::note
+  If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
+  :::
 
-  c. Run `git clone https://github.com/Chia-Network/chia-blockchain.git -b main_dids --recurse-submodules`. This will download the `main_dids` branch of the `chia-blockchain` repository
+  Create a new directory and download the `main_dids` branch of the `chia-blockchain` repository into it:
+  ```powershell
+  mkdir main_dids
+  cd main_dids
+  git clone -b main_dids --recurse-submodules https://github.com/Chia-Network/chia-blockchain.git
+  ```
   
 4. Install Chia:
   ```mdx-code-block
@@ -101,74 +107,81 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
   ```
   :::
 
-5. Run `chia version`. You should be shown the correct version, which is currently `1.3.5.dev<xyz>`. For example:
-  ```powershell
-  (venv) $ chia version
+5. Check the version of the Chia software:
+  ```bash
+  chia version
+  ```
+  For example, as of writing the current version is:
+  ```text
   1.3.5.dev215
   ```
 
-6. **IMPORTANT:** Run `chia configure --testnet true`. This will set up Chia to use the testnet. For example:
-  ```powershell
-  (venv) $ chia configure --testnet true
-  Setting Testnet
-  Default full node port, introducer and network setting updated
-  Restart any running chia services for changes to take effect
+6. **IMPORTANT:** Run the following command to set up Chia to use the testnet:
+  ```bash
+  chia configure --testnet true
   ```
 
-7. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run `chia configure --set-log-level INFO`.
-  ```powershell
-  (venv) $ chia configure --set-log-level INFO
-  Logging level updated. Check ~/.chia/mainnet/log/debug.log
-  Restart any running chia services for changes to take effect
+7. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run:
+  ```bash
+  chia configure --set-log-level INFO
   ```
 
-8. We recommend that you use a public/private key pair for testnet that is separate from your mainnet keys. If you don't have a separate set of testnet keys, run `chia keys generate` to create one.
+8. We recommend that you use a public/private key pair for testnet that is separate from your mainnet keys. If you don't have a separate set of testnet keys, generate them:
 
-  ```powershell
-  $ chia keys generate
+  ```bash
+  chia keys generate
+  ```
+  This will give an output such as the following:
+  ```bash
   Generating private key
   Added private key with public key fingerprint 3049838316
-  Setting the xch destination for the farmer reward (1/8 plus fees, solo and pooling) to txch1mr8vnm63fy7l6qzy4t6lchgfl39aqlk2aycjxp96u8mmckunun8seexzdh
-  Setting the xch destination address for pool reward (7/8 for solo only) to txch1mr8vnm63fy7l6qzy4t6lchgfl39aqlk2aycjxp96u8mmckunun8seexzdh
-  To change the XCH destination addresses, edit the xch_target_address entries in /Users/user/.chia/mainnet/config/config.yaml.
+  (...)
   ```
 
-  > It is good security practice to use this set of keys for testnet development only. In case of key compromise, your TXCH and NFTs will be sandboxed from your XCH.
+  :::tip
+  It is good security practice to use this set of keys for testnet development only. In case of key compromise, your TXCH and NFTs will be sandboxed from your XCH.
+  :::
 
-9. If you generated new testnet keys in the last step, we recommend that you write down your seed phrase for later recovery. Run `chia keys show --show-mnemonic-seed`. You'll be shown your public and private keys. The last line of the output will be a list of 24 secret words. This is your _seed phrase_. **Carefully copy the words on paper and store them in a secure location.** Order is important.
+9. If you generated new testnet keys in the last step, we recommend that you write down your seed phrase for later recovery. Run the following: 
 
-  ```shell
-  $ chia keys show --show-mnemonic-seed
+  ```bash
+  chia keys show --show-mnemonic-seed
+  ```
+
+  You'll be shown your public and private keys. The last line of the output will be a list of 24 secret words. This is your _seed phrase_. **Carefully copy the words on paper and store them in a secure location.** Order is important.
+  ```text
   Showing all public and private keys
 
   Fingerprint: 3049838316
-  Master public key (m): b976ead8b3fe50d6813d6073cc161fc020f399fc7789e55c0da944ad8b5d04da418159e5dc40e492258baf2ca5123278
-  Farmer public key (m/12381/8444/0/0): a5ec38213280c67c02733244c577f27f659b21ea70b347cbe8bb15c162e5d7d3c090b74d1e90a62734a1861531c5c86e
-  Pool public key (m/12381/8444/1/0): ab82d14faa38f179d096b7471578461a4712109cb2ebd31953e9b333356850c133c109eb767e9dfd75443f63f8979438
-  First wallet address: txch1mr8vnm63fy7l6qzy4t6lchgfl39aqlk2aycjxp96u8mmckunun8seexzdh
-  Master private key (m): 4036ad6e56a1de925411bfce35aca18fc692950d99241466267b475730a834cc
-  First wallet secret key (m/12381/8444/2/0): <PrivateKey 2832e5f50dc5a092614e8627cf75f5fc378cc4c51db0932442f04b50fff338f1>
+  (...)
 	Mnemonic seed (24 secret words):
+  // highlight-next-line
   youth stomach social aware clay pottery benefit asthma mail cry rubber panda wife around provide atom cute sand staff exotic pink east gloom minute
   ```
 
-  >**IMPORTANT**: Your seed phrase is all that is required to recover your wallet. If you lose your seed phrase, recovery will not be possible. If a bad actor gains access to your seed phrase, they'll be able to steal your Chia assets, including XCH, CATs and NFTs.
+  :::warning important
+  Your seed phrase is all that is required to recover your wallet. If you lose your seed phrase, recovery will not be possible. If a bad actor gains access to your seed phrase, they'll be able to steal your Chia assets, including XCH, CATs and NFTs.
+  :::
 
-  >**NOTE**: If you ever need to display your address, run `chia keys show`. This command will only output your public keys and address; your private keys and seed phrase will not be shown.
+  :::info
+  If you ever need to display your address, run `chia keys show`. This command will only output your public keys and address; your private keys and seed phrase will not be shown.
+  :::
 
-10. Start your wallet by running `chia start wallet`:
+10. Start your wallet by running:
 
-  ```powershell
-  (venv) $ chia start wallet
-  Daemon not started yet
-  Starting daemon
-  chia_wallet: started
+  ```bash
+  chia start wallet
   ```
 
-11. Wait for your wallet to sync. You can view the status of your wallet with the `chia wallet show` command. Be sure to select the correct key/fingerprint, which you obtained from the `chia keys show` command:
+11. Wait for your wallet to sync. You can view the status of your wallet with the following command:
 
-  ```powershell
-  (venv) $ chia wallet show
+  ```bash
+  chia wallet show
+  ```
+
+  Be sure to select the correct key/fingerprint, which you obtained from the `chia keys show` command:
+
+  ```text
   Wallet keys:
   1)   285637561
   2) * 3049838316 (Not Synced)
@@ -177,14 +190,9 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
   Sync status: Syncing...
   ```
 
-Syncing should only require a few minutes, unless your wallet has a large number of previous transactions. Eventually, the `chia wallet show` command will show that your wallet has been synced:
+  Syncing should only require a few minutes, unless your wallet has a large number of previous transactions. Eventually, the `chia wallet show` command will show that your wallet has been synced:
 
-  ```powershell
-  (venv) $ chia wallet show
-  Wallet keys:
-  1)   285637561
-  2) * 3049838316 (Synced)
-  Choose a wallet key [1-2] ('q' to quit, or Enter to use 3049838316):
+  ```text
   Wallet height: 938990
   Sync status: Synced
   Balances, fingerprint: 3049838316
@@ -199,40 +207,42 @@ Syncing should only require a few minutes, unless your wallet has a large number
 
 12. In order to continue, you'll need to have some TXCH in your wallet. If your total balance is 0, you can obtain 1 TXCH from our faucet. Copy the value of "First wallet address:" from the output of the `chia keys show` command. It will be a long string beginning with "txch". 
 
-Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit".
+  Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit".
 
-You'll receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you'll receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your money to arrive before continuing.
+  You'll receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you'll receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your coins to arrive before continuing.
 
-13. Run `mkdir ~/.chia/mainnet/db` to create the folder where your database will sit.
+13. Create the folder where your database will reside:
 
-	```powershell
-	PS C:\Users\User> mkdir ~/.chia/mainnet/db
-
-	Directory: C:\Users\User\.chia\mainnet
-
-	Mode           LastWriteTime         Length Name
-	----           -------------         ------ ----
-	d-----         5/10/2022   3:28 PM          db
+	```bash
+	mkdir ~/.chia/mainnet/db
 	```
 
-14. You must wait for your database file to finish downloading before continuing. After the download has completed, use a zip manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called blockchain_v2_testnet10.sqlite.
+14. You must wait for your database file to finish downloading before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called `blockchain_v2_testnet10.sqlite`.
 
- run `mv ~/Downloads/blockchain_v2_testnet10.sqlite ~/.chia/mainnet/db` to move it to the folder you just created.
+ Move the database to the folder you just created:
+ ```bash
+ mv ~/Downloads/blockchain_v2_testnet10.sqlite ~/.chia/mainnet/db
+ ```
 
-15. Run `chia start node`. This command will start your full node, which will begin syncing to the database file:
+15. Start the full node, which will begin syncing to the database file:
 
-  ```powershell
+  ```bash
   (venv) $ chia start node
   chia_full_node: started
   ```
 
-16. Run `chia show -s`. This command will show your status. Eventually it will say `Current Blockchain Status: Full Node Synced`.
+16. Check the sync status:
 
-```powershell
-(venv) $ chia show -s
+```bash
+chia show -s
+```
+
+Eventually, it will say `Full Node Synced`:
+```text
 Network: testnet10    Port: 58444   RPC Port: 8555
 Node ID: 82a73b06b3a5f9493a3ac4e3d903026b39c85b748158ba41c623d531947f2a2a
 Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
+// highlight-next-line
 Current Blockchain Status: Full Node Synced
 ```
 
