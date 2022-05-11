@@ -1,31 +1,26 @@
 ---
-id: nft0_user_guide
-title: NFT0 User Guide
-sidebar_label: 15.3 NFT0 User Guide
+id: nft_dev_guide
+title: NFT0 Developer Guide
+sidebar_label: 15.3 NFT0 Developer Guide
 sidebar_position: 3
 ---
 
-This document will guide you through the process of minting NFTs that comply with Chia's NFT0 standard, using the command line interface (CLI), on Windows, MacOS and Linux. Apologies if you are not comfortable with CLIs. Chia's Electron wallet will support the NFT1 standard, which is coming... Soon®!
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
 
-## Contents:
-
-* [Note about Python on Windows](#note-about-python-on-windows)
-* [Install and configure Chia](#install-and-configure-chia)
-* [Create an NFT wallet (CLI)](#create-an-nft-wallet-cli)
-* [Create an NFT wallet (RPC)](#create-an-nft-wallet-rpc)
-* [Obtain an image and its hash](#obtain-an-image-and-its-hash)
-* [Mint an NFT (RPC)](#mint-an-nft-rpc)
-* [Transfer an NFT (RPC)](#transfer-an-nft-rpc)
-* [Add a URI to an NFT (RPC)](#add-a-uri-to-an-nft-rpc)
+This document will guide you through the process of minting NFTs that adhere to Chia's NFT0 standard, using the command-line interface (CLI), on Windows, macOS and Linux. If you are not comfortable with CLIs, Chia's Electron wallet will support the NFT1 standard, which is coming... Soon®!
 
 ---
 
-## Note about Python on Windows
+:::info Note about Python on Windows
 
 If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 "More info about this issue") and can be safely ignored. For example:
 
 ```powershell
 (venv) $ chia stop -d all
+
 Exception ignored in: <function _ProactorBasePipeTransport.__del__ at 0x000001A719716160>
 Traceback (most recent call last):
   File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\proactor_events.py", line 116, in __del__
@@ -39,6 +34,7 @@ Traceback (most recent call last):
 RuntimeError: Event loop is closed
 daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination': 'client', 'origin': 'daemon', 'request_id': '0de5449121b6873ce18661b2adc4213d7dc795c2943ff7f4be9502058e8eaba0'}
 ```
+:::
 
 ---
 
@@ -46,35 +42,64 @@ daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination
 
 This section will show you how to download and install Chia from the `main_dids` branch, configure your installation to run on the testnet, sync your node, and obtain some TXCH. If you have already done all of these things, you can skip to the next section, [Create an NFT wallet (CLI)](#create-an-nft-wallet-cli "Create an NFT wallet (CLI)").
 
-  >Note: Your firewall might give warnings when installing Chia. This is normal. Allow the installations to continue.
+:::tip
+Your firewall might give warnings when installing Chia. This is normal. Allow the installations to continue.
+:::
 
 1. We'll be running on Chia's testnet. If you don't have a synced testnet node, you can safely download a copy of the database. **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
 
-  > Note that the file you will download is around 15 GB, compressed. Uncompressed, it will be around 30 GB. Make sure you have at least this much free space, and ideally 50 GB.
+  :::note
+  The file you will download is around 15 GB, compressed. Uncompressed, it will be around 30 GB. Make sure you have at least this much free space, and ideally 50 GB.
+  :::
 
-You may continue with the next steps while the download is in progress.
+  You may continue with the next steps while the download is in progress.
 
-2. If Chia is already installed on your system, make sure it is stopped by running `chia stop -d all`. Be sure there are no "chia" related processes running. If you are unsure, you may want to uninstall Chia before continuing.
+2. If Chia is already installed on your system, make sure it is stopped:
+  ```bash
+  chia stop -d all
+  ```
+  Ensure there are no `chia` related processes running. If you are unsure, you may want to uninstall Chia before continuing.
 
 3. Chia's NFT and DID development is currently happening in the [main_dids](https://github.com/Chia-Network/chia-blockchain/tree/main_dids "main_dids branch") branch of the `chia-blockchain` repository. You'll need to download this branch.
   
-    a. If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
-  
-    b. Create and `cd` to a new directory (eg `main_dids`)
-  
-    c. Run `git clone https://github.com/Chia-Network/chia-blockchain.git -b main_dids --recurse-submodules`. This will download the `main_dids` branch of the `chia-blockchain` repository
+  a. If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
+
+  b. Create and `cd` to a new directory (eg `main_dids`)
+
+  c. Run `git clone https://github.com/Chia-Network/chia-blockchain.git -b main_dids --recurse-submodules`. This will download the `main_dids` branch of the `chia-blockchain` repository
   
 4. Install Chia:
- 
-    a. Run `cd chia-blockchain`
-    
-    b. Run `.\Install.ps1` (Windows) or `sh install.sh` (Linux/MacOS) to install Chia. This will take a few minutes to complete
-    
-    c. Run `.\venv\Scripts\Activate.ps1` (Windows) or `. ./activate` (Linux/MacOS) to activate a virtual environment
-    
-    d. Run `chia init` to initialize your environment
+  ```mdx-code-block
+  <Tabs>
+    <TabItem value="Windows">
+  ```
+  ```powershell
+  cd chia-blockchain
+  .\Install.ps1
+  .\venv\Scripts\Activate.ps1
+  chia init
+  ```
+  ```mdx-code-block
+    </TabItem>
+    <TabItem value="Linux/macOS">
+  ```
+  ```bash
+  cd chia-blockchain
+  sh install.sh
+  . ./activate
+  chia init
+  ```
+  ```mdx-code-block
+    </TabItem>
+  </Tabs>
+  ```
 
-    e. If you receive this message: "WARNING: UNPROTECTED SSL FILE!" then run `chia init --fix-ssl-permissions`
+  :::tip
+  If you receive the message `WARNING: UNPROTECTED SSL FILE!` then run:
+  ```powershell
+  chia init --fix-ssl-permissions
+  ```
+  :::
 
 5. Run `chia version`. You should be shown the correct version, which is currently `1.3.5.dev<xyz>`. For example:
   ```powershell
@@ -90,7 +115,7 @@ You may continue with the next steps while the download is in progress.
   Restart any running chia services for changes to take effect
   ```
 
-7. We recommend that you use INFO-level logging instead of the default level of WARNING. To do this, run `chia configure --set-log-level INFO`.
+7. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run `chia configure --set-log-level INFO`.
   ```powershell
   (venv) $ chia configure --set-log-level INFO
   Logging level updated. Check ~/.chia/mainnet/log/debug.log

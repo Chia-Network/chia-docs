@@ -136,6 +136,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ['powershell'],
       },
     }),
 });
