@@ -76,8 +76,13 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
   
 4. Install Chia:
   ```mdx-code-block
-  <Tabs>
-    <TabItem value="Windows">
+  <Tabs
+    defaultValue="windows"
+    values={[
+      {label: 'Windows', value: 'windows'},
+      {label: 'Linux/macOS', value: 'nix'},
+    ]}>
+    <TabItem value="windows">
   ```
   ```powershell
   cd chia-blockchain
@@ -87,7 +92,7 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
   ```
   ```mdx-code-block
     </TabItem>
-    <TabItem value="Linux/macOS">
+    <TabItem value="nix">
   ```
   ```bash
   cd chia-blockchain
@@ -233,18 +238,18 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
 
 16. Check the sync status:
 
-```bash
-chia show -s
-```
+  ```bash
+  chia show -s
+  ```
 
-Eventually, it will say `Full Node Synced`:
-```text
-Network: testnet10    Port: 58444   RPC Port: 8555
-Node ID: 82a73b06b3a5f9493a3ac4e3d903026b39c85b748158ba41c623d531947f2a2a
-Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
-// highlight-next-line
-Current Blockchain Status: Full Node Synced
-```
+  Eventually, it will say `Full Node Synced`:
+  ```text
+  Network: testnet10    Port: 58444   RPC Port: 8555
+  Node ID: 82a73b06b3a5f9493a3ac4e3d903026b39c85b748158ba41c623d531947f2a2a
+  Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
+  // highlight-next-line
+  Current Blockchain Status: Full Node Synced
+  ```
 
 Once you have a synced full node and some TXCH, you may proceed to the next section. If your requested TXCH has not yet arrived, post your address on the #dev channel on Keybase. Someone might be able to send some to you.
 
