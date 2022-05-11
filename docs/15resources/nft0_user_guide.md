@@ -46,13 +46,16 @@ daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination
 
 This section will show you how to download and install Chia from the `main_dids` branch, configure your installation to run on the testnet, sync your node, and obtain some TXCH. If you have already done all of these things, you can skip to the next section, [Create an NFT wallet (CLI)](#create-an-nft-wallet-cli "Create an NFT wallet (CLI)").
 
-  >Note: Your firewall might give warnings when installing Chia. This is normal. Allow the installations to continue.
+:::note
+Your firewall might give warnings when installing Chia. This is normal. Allow the installations to continue.
+:::
 
 1. We'll be running on Chia's testnet. If you don't have a synced testnet node, you can safely download a copy of the database. **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
+  :::note
+  Note that the file you will download is around 15 GB, compressed. Uncompressed, it will be around 30 GB. Make sure you have at least this much free space, and ideally 50 GB.
+  :::
 
-  > Note that the file you will download is around 15 GB, compressed. Uncompressed, it will be around 30 GB. Make sure you have at least this much free space, and ideally 50 GB.
-
-You may continue with the next steps while the download is in progress.
+  You may continue with the next steps while the download is in progress.
 
 2. If Chia is already installed on your system, make sure it is stopped by running `chia stop -d all`. Be sure there are no "chia" related processes running. If you are unsure, you may want to uninstall Chia before continuing.
 
