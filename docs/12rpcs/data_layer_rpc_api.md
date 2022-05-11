@@ -1,7 +1,7 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
-# 12.3 Data Layer (Beta) RPC API
+# 12.4 Data Layer (Beta) RPC API
 This page includes a comprehensive list of Chia's Data Layer Beta RPC API. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide "Climate Warehouse install guide").
 
 We also have documented the [CLI](/docs/13cli/data "Section 13.2: Data Layer (Beta) CLI") commands for interacting with the Data Layer.
