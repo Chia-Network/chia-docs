@@ -16,9 +16,9 @@
   "dependencies": {
     "@cmfcmf/docusaurus-search-local": "^0.9.2",
     "@crowdin/cli": "^3.7.7",
-    "@docusaurus/core": "2.0.0-beta.6",
-    "@docusaurus/plugin-google-gtag": "^2.0.0-beta.14",
-    "@docusaurus/preset-classic": "2.0.0-beta.6",
+    "@docusaurus/core": "^2.0.0-beta.20",
+    "@docusaurus/plugin-google-gtag": "^2.0.0-beta.20",
+    "@docusaurus/preset-classic": "^2.0.0-beta.20",
     "@easyops-cn/docusaurus-search-local": "^0.21.4",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
@@ -28,7 +28,8 @@
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "yarn": "^1.22.18"
   },
   "browserslist": {
     "production": [
