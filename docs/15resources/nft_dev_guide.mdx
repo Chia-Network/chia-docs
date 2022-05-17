@@ -257,7 +257,9 @@ Once you have a synced full node and some TXCH, you may proceed to the next sect
 
 ## Create an NFT wallet (CLI)
 
-> Note that you can create an NFT wallet via a CLI command or an RPC. This section will show you the CLI command. If you prefer to use an RPC, skip to the [next section](#create-an-nft-wallet-rpc "Create an NFT wallet (RPC)").
+:::info
+You can create an NFT wallet via a CLI command or an RPC. This section will show you the CLI command. If you prefer to use an RPC, skip to the [next section](#create-an-nft-wallet-rpc "Create an NFT wallet (RPC)").
+:::
 
 1. Run `chia wallet nft create` to create a new NFT wallet. Be sure to select your wallet fingerprint that is synced and contains some TXCH:
 
@@ -294,27 +296,38 @@ NFT Wallet:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  NFT
-   -Asset ID:              {"my_nft_coins": [], "did_wallet_id": null}
+   -Asset ID:              {"my_nft_coins": [{"coin": {"parent_coin_info": "0x4ad596f88e5b6
    -Wallet ID:             2
 ```
 
-> If you have successfully created an NFT wallet from the CLI command shown above, feel free to skip the next section, which will show you how to create an NFT wallet using an RPC. Instead, head to the following section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
+:::info
+NFT0 does not include DIDs, so each NFT wallet can only be anchored to a public/private key pair. Additionally, each public/private key pair can only contain a single NFT wallet, which will act as the "inbox" for all NFTs associated with that key pair. It is therefore only possible to have one `NFT Wallet` for each `Wallet key`.
+
+The NFT1 standard will include DIDs. When that standard is released, each NFT wallet will be able to anchor to either a DID or a public/private key pair. This will allow for the creation of multiple `NFT Wallets` inside the same `Wallet key`.
+:::
+
+If you have successfully created an NFT wallet from the CLI command shown above, feel free to skip the next section, which will show you how to create an NFT wallet using an RPC. Instead, head to the following section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
+
 
 ## Create an NFT wallet (RPC)
 
-  > NOTE: This section will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you will need to escape all quotes with backslashes.
+:::warning important
+This section will use **Linux/MacOS** rpc syntax. When running rpc commands on **Windows**, you will need to escape all quotes with backslashes.
   
-  > For example, here is a typical RPC command on Linux and MacOS:
-  ```powershell
- chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
-  ```
+For example, here is a typical rpc command on **Linux** and **MacOS**:
+```powershell
+chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+```
 
-  > To run the same command on Windows, you will need to escape the quotes, so it looks like this:
-  ```powershell  
-  chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
-  ```
+To run the same command on **Windows**, you will need to escape the quotes, so it looks like this:
+```powershell  
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```
+:::
   
-  > **NOTE:** If you already created an NFT wallet using the CLI command from the previous section, you can skip to the next section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
+:::info
+If you already created an NFT wallet using the CLI command from the previous section, you can skip to the next section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
+:::
 
 1. Run `chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'` to create a new NFT wallet: 
 
@@ -323,7 +336,7 @@ NFT Wallet:
 {
     "success": true,
     "type": 10,
-    "wallet_id": 3
+    "wallet_id": 2
 }
 ```
 Note that a wallet with a `type` of `10` is an NFT wallet.
@@ -352,16 +365,8 @@ NFT Wallet:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  NFT
-   -Asset ID:              {"my_nft_coins": [], "did_wallet_id": null}
+   -Asset ID:              {"my_nft_coins": [{"coin": {"parent_coin_info": "0x4ad596f88e5b6
    -Wallet ID:             2
-
-NFT Wallet:
-   -Total Balance:         0.0
-   -Pending Total Balance: 0.0
-   -Spendable:             0.0
-   -Type:                  NFT
-   -Asset ID:              {"my_nft_coins": [], "did_wallet_id": null}
-   -Wallet ID:             3
 ```
 
 ---
@@ -476,12 +481,14 @@ If successful, you will receive a JSON output, including the coin additions and 
 
 This section will show you how to transfer an NFT from one TXCH wallet to another.
 
-> NOTE: Before you can run this example, you'll need a second NFT wallet. One way to accomplish this would be to follow this guide on another computer. If you want to use the same computer, you'll need to generate another set of keys and create another NFT wallet. This can be accomplished by doing the following:
+:::important
+Before you can run this example, you'll need a second NFT wallet. One way to accomplish this would be to follow this guide on another computer. If you want to use the same computer, you'll need to generate another set of keys and create another NFT wallet. This can be accomplished by doing the following:
 * Run `chia keys generate` to generate a new key
 * Run `chia keys show` and copy the `First wallet address:` of the new key
 * Run `chia wallet show` and sync the new wallet key
 * Run `chia wallet nft create` to create a new NFT wallet with the new key
 * Run `chia wallet show` and sync the wallet key that contains the NFT
+:::
 
 Before continuing, be sure that you have a synced wallet that contains an NFT to transfer, as well as another wallet that will receive the NFT.
 
