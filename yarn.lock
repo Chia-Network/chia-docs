@@ -2188,7 +2188,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/core@npm:2.0.0-beta.20, @docusaurus/core@npm:^2.0.0-beta.20":
+"@docusaurus/core@npm:2.0.0-beta.20, @docusaurus/core@npm:^2.0.0-beta.14":
   version: 2.0.0-beta.20
   resolution: "@docusaurus/core@npm:2.0.0-beta.20"
   dependencies:
@@ -2437,7 +2437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/plugin-google-gtag@npm:2.0.0-beta.20, @docusaurus/plugin-google-gtag@npm:^2.0.0-beta.20":
+"@docusaurus/plugin-google-gtag@npm:2.0.0-beta.20, @docusaurus/plugin-google-gtag@npm:^2.0.0-beta.14":
   version: 2.0.0-beta.20
   resolution: "@docusaurus/plugin-google-gtag@npm:2.0.0-beta.20"
   dependencies:
@@ -2469,7 +2469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/preset-classic@npm:^2.0.0-beta.20":
+"@docusaurus/preset-classic@npm:^2.0.0-beta.14":
   version: 2.0.0-beta.20
   resolution: "@docusaurus/preset-classic@npm:2.0.0-beta.20"
   dependencies:
@@ -4683,9 +4683,9 @@ __metadata:
   dependencies:
     "@cmfcmf/docusaurus-search-local": ^0.9.2
     "@crowdin/cli": ^3.7.7
-    "@docusaurus/core": ^2.0.0-beta.20
-    "@docusaurus/plugin-google-gtag": ^2.0.0-beta.20
-    "@docusaurus/preset-classic": ^2.0.0-beta.20
+    "@docusaurus/core": ^2.0.0-beta.14
+    "@docusaurus/plugin-google-gtag": ^2.0.0-beta.14
+    "@docusaurus/preset-classic": ^2.0.0-beta.14
     "@easyops-cn/docusaurus-search-local": ^0.21.4
     "@mdx-js/react": ^1.6.21
     "@svgr/webpack": ^5.5.0

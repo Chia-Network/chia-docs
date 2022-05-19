@@ -16,8 +16,12 @@
 .env.production.local
 
 npm-debug.log*
+
+# Yarn Stuff
 yarn-debug.log*
 yarn-error.log*
 yarn.lock
 .yarn/*
 .yarnrc.yml
+.pnp.*
+
