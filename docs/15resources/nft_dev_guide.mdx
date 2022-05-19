@@ -255,9 +255,51 @@ Once you have a synced full node and some TXCH, you may proceed to the next sect
 
 ---
 
+## Note about Chia wallets
+
+In Chia, each public/private key pair can hold multiple wallets of various types.
+
+A "fingerprint" is a 4-byte hash of a public key. The computer running the examples we'll use in the next sections had two public/private key pairs, and thus two fingerprints, labeled `1)` and `2)`.
+
+Note that simultaneous syncing of multiple fingerprints is not possible. Whether you're using the CLI or the GUI (in general, not just for NFTs) you have to select one of the fingerprints to sync, while the other will be temporarily ignored and not synced.
+
+Within each of the fingerprints, you can store multiple wallets of various types. The default wallet is a `Chia Wallet`, aka a `STANDARD_WALLET`. This label is [part of a enum](https://github.com/Chia-Network/chia-blockchain/blob/main_dids/chia/wallet/util/wallet_types.py) with a value of `0`. The other wallet types are as follows:
+
+```python
+STANDARD_WALLET = 0
+RATE_LIMITED = 1
+ATOMIC_SWAP = 2
+AUTHORIZED_PAYEE = 3
+MULTI_SIG = 4
+CUSTODY = 5
+CAT = 6
+RECOVERABLE = 7
+DISTRIBUTED_ID = 8
+POOLING_WALLET = 9
+NFT = 10
+```
+
+A few notes about this enum:
+* The only types that are supported as of NFT0 are STANDARD_WALLET, CAT, and NFT.
+* Each fingerprint/Wallet Key can only hold one `STANDARD_WALLET` and one `NFT` (for now), but it can hold multiple `CAT`s.
+* In addition to a type, each wallet also has a `Wallet ID`. This is simply an integer that increments for each new wallet.
+
+For example, the following setup would be possible to run on a single computer:
+
+* Wallet Key 1 (not synced)
+  * Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  * Marmot (Type = CAT, Wallet ID = 2)
+* Wallet Key 2 (synced)
+  * Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  * NFT Wallet (Type = NFT, Wallet ID = 2)
+  * Marmot (Type = CAT, Wallet ID = 3)
+  * Spacebucks (Type = CAT, Wallet ID = 4)
+
+---
+
 ## Create an NFT wallet (CLI)
 
-:::info
+:::tip
 You can create an NFT wallet via a CLI command or an RPC. This section will show you the CLI command. If you prefer to use an RPC, skip to the [next section](#create-an-nft-wallet-rpc "Create an NFT wallet (RPC)").
 :::
 
@@ -341,7 +383,7 @@ If you already created an NFT wallet using the CLI command from the previous sec
 ```
 Note that a wallet with a `type` of `10` is an NFT wallet.
 
-2. Run `chia wallet show` to view the status. In this example, there are now two NFT wallets, with `Wallet ID`s of `2` (created via RPC) and `3` (created via CLI):
+2. Run `chia wallet show` to view the status. The NFT wallet has a `Wallet ID` of `2`:
 
 ```powershell
 (venv) $ chia wallet show
