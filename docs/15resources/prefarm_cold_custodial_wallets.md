@@ -19,7 +19,7 @@ The withdrawal rate is the custodial wallet's principal rule. This rule supersed
 Here's how it works:
 * CNI's and the Swiss company's portion of the prefarm will each be moved to their respective cold custodial wallets. Each wallet will contain a pre-configured Unix timestamp called `start_date`, which will be purposely set to a future time, some days or weeks after the wallet's creation. When `start_date` is reached, the entire amount contained in the wallets will be frozen
 * From `start_date` forward, a constant number of mojos become available to be withdrawn with each passing second. This number must be decided in advance of the wallet's creation
-* The amount of available mojos increases linearly over a period of ten years, after which the entire prefarm will have become available
+* The amount of available mojos increases linearly, until the entire prefarm has become available. The plan is to configure this rate such that this process will take ten years.
 * The number of mojos considered _available_ is based on the time that a withdrawal is _initiated_, as explained later in this document
 * Even after certain mojos have become available, they will not automatically be withdrawn. They will still need to follow the rest of the rules laid out in this document
 * The mojos that are not yet available are frozen. There is no override function
@@ -38,7 +38,7 @@ Where:
 ## Singleton Structure
 
 Both of the prefarm's custodial wallets use a singleton with five main features:
-1. **Withdrawal rate** -- as discussed in the previous section, funds are made available to be withdrawn at a constant rate of some number of mojos per second, for ten years after `start_date`
+1. **Withdrawal rate** -- as discussed in the previous section, funds are made available to be withdrawn at a constant rate of some number of mojos per second
 
 2. **Multisig** -- required to perform actions on the singleton, where:
   * The total number of keys in the multisig is initially set to 5, which will be referred to as `N` for the rest of this document. `N` can be changed with a rekey (explained later)
