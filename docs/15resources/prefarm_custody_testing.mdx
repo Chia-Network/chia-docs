@@ -25,7 +25,7 @@ This tutorial will go over both of these paths. It will also show you how to ins
 
 Before continuing, you might want to familiarize yourself with the following documents:
 * [Basic description](/docs/15resources/prefarm_custody_english) of how the custody tool works, in plain English
-* [Flow chart](https://drive.google.com/file/d/1CvFOM59gA8Q-wwBNvPEuylWNYplPRG-1/view?usp=sharing) to visualize how the custody tool works
+* [Flow chart](https://drive.google.com/file/d/1E6_8cqL3cvEbWLNdWUDSQmMGten9quZs/view?usp=sharing) to visualize how the custody tool works
 * [CLI reference](/docs/15resources/custody_tool_cli_reference) for all custody commands used in this tutorial
 
 ---
@@ -812,7 +812,31 @@ Requirements:
     * Next, run the command listed in the repo's readme under [HSMS Install](https://github.com/Chia-Network/internal-custody#hsms-install). Currently (May 2022) this command is `pip install git+https://github.com/Chia-Network/hsms.git@main#1c6122bebf482e8ee777f5c401eb16ac2ffca68c`. This command is subject to change, so you should consider the above link to be the source of truth
     * If you are on Windows, run `pip install pyreadline`
 
+:::info
+
   Note that you may receive pip warning and/or dependency errors for blspy and/or clvm-tools-rs (see example below). These can be safely ignored.
+
+```powershell
+Successfully built hsms
+Installing collected packages: blspy, clvm-tools-rs, hsms
+  Attempting uninstall: blspy
+    Found existing installation: blspy 1.0.13
+    Uninstalling blspy-1.0.13:
+      Successfully uninstalled blspy-1.0.13
+  Attempting uninstall: clvm-tools-rs
+    Found existing installation: clvm-tools-rs 0.1.9
+    Uninstalling clvm-tools-rs-0.1.9:
+      Successfully uninstalled clvm-tools-rs-0.1.9
+      //highlight-next-line
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+chia-blockchain 1.3.6.dev212 requires blspy==1.0.13, but you have blspy 1.0.9 which is incompatible.
+chia-blockchain 1.3.6.dev212 requires clvm-tools-rs==0.1.9, but you have clvm-tools-rs 0.1.7 which is incompatible.
+Successfully installed blspy-1.0.9 clvm-tools-rs-0.1.7 hsms-0.1.dev79
+```
+:::
+
+
+
 
   ```powershell
   (venv) PS C:\Users\User\prefarm_test\internal-custody> pip install .
@@ -897,19 +921,19 @@ Regarding the blockchain:
 
 The `cic init` command will initialize the public configuration of the singleton. **None** of this command's arguments may be changed later.
 
-The following table lists the arguments for this command that will be used in this tutorial, as well as their equivalent notations in the [flow chart](https://drive.google.com/file/d/1CvFOM59gA8Q-wwBNvPEuylWNYplPRG-1/view?usp=sharing):
+The following table lists the arguments for this command that will be used in this tutorial, as well as in the [flow chart](https://drive.google.com/file/d/1E6_8cqL3cvEbWLNdWUDSQmMGten9quZs/view?usp=sharing):
 
-Flag         |Flow Chart<br/>Equivalent | Tutorial<br/>Value            | Prefarm<br/>Value | Description
-:------------|:-------------------------|:-----------------------------|:------------------|:-----------
-`--directory`| N/A                      | keys_and_sb                  | Unknown           | The directory where all of the keys and spend bundles will be stored.
-`--date`     | N/A                      | 1653449948                   | Unknown           | The [UNIX epoch timestamp](https://www.epochconverter.com/) when the singleton's "amount available" setting will begin to increase. For testing, you can set it to a time in the near future (for example, 100 seconds from now).
-`-r`         | Max Withdrawal Amount    | 10^13 mojos (10 XCH)         | Billions of mojos | The number of mojos per second you want to be made available to be withdrawn.
-`-a`         | N/A                      | 10^19 mojos (10 million XCH) | Millions of XCH   | The total size of the singleton. This example uses 1 million mojos. The prefarm will set this to some millions of XCH.
-`-wt`        | `W`                      | 600 seconds                  | 30 days           | Withdrawal Timelock -- When attempting to begin a withdrawal, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back.
-`-pc`        | `D`                      | 1200 seconds                 | 90 days           | Payment Claw back -- The minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Claw backs are possible during this window.
-`-rt`        | `T`                      | 300 seconds                  | 15 days           | Rekey Timelock -- When attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`.
-`-rc`        | `D'`                     | 600 seconds                  | 30 days           | Rekey Claw back -- The minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Claw backs are possible during this window.
-`-sp`        | `P`                      | 900 seconds                  | 45 days           | Slow rekey Penalty -- This amount gets added to the Rekey Timelock when a slow rekey is being performed.
+Flag         | Tutorial<br/>Value            | Prefarm<br/>Value | Description
+:------------|:-----------------------------|:------------------|:-----------
+`--directory`| keys_and_sb                  | Unknown           | The directory where all of the keys and spend bundles will be stored.
+`--date`     | 1653449948                   | Unknown           | The [UNIX epoch timestamp](https://www.epochconverter.com/) when the singleton's "amount available" setting will begin to increase. For testing, you can set it to a time in the near future (for example, 100 seconds from now).
+`-r`         | 10^13 mojos (10 XCH)         | Billions of mojos | The number of mojos per second you want to be made available to be withdrawn.
+`-a`         | 10^19 mojos (10 million XCH) | Millions of XCH   | The total size of the singleton. This example uses 1 million mojos. The prefarm will set this to some millions of XCH.
+`-wt`        | 600 seconds                  | 30 days           | Withdrawal Timelock -- When attempting to begin a withdrawal, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back.
+`-pc`        | 1200 seconds                 | 90 days           | Payment Claw back -- The minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Claw backs are possible during this window.
+`-rt`        | 300 seconds                  | 15 days           | Rekey Timelock -- When attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`.
+`-rc`        | 600 seconds                  | 30 days           | Rekey Claw back -- The minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Claw backs are possible during this window.
+`-sp`        | 900 seconds                  | 45 days           | Slow rekey Penalty -- This amount gets added to the Rekey Timelock when a slow rekey is being performed.
 
 :::info note regarding the above table
 * With the exception of `--date`, singleton's time values are relative to when they're confirmed on chain
