@@ -8,7 +8,7 @@ The UTXO and coin set models of accounting are very similar and are often used i
 
 ## First class objects
 
-In the UXTO model, _transactions_ are first class objects. Each transaction has an ID and an output number, which is persisted in the system's overall state.
+In the UTXO model, _transactions_ are first class objects. Each transaction has an ID and an output number, which is persisted in the system's overall state.
 
 In the coin set model, _coins_ are first class objects (everything is a coin). "Transaction" is a term used to represent the spending of some coins and the creation of others. Coins are the only information persisted in the system's overall state.
 
