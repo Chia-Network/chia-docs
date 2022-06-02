@@ -106,7 +106,7 @@ Options:
 
 ### `examine_spend`
 
-Functionality: Examine an unsigned spend to see the details before you sign it
+Functionality: Examine an unsigned spend bundle to see the details before you sign it
 
 Usage: `cic examine_spend [OPTIONS] SPEND_FILE`
 
@@ -115,6 +115,8 @@ Options:
 | Short Command | Long Command | Type | Required | Description |
 |:-------------:|:------------:|:----:|:--------:|:------------|
 | -h            | --help       | None | False    | Show a help message and exit
+
+`SPEND_FILE` is an unsigned spend bundle. This command will convert the spend bundle into a QR code and open it into a web browser for printing. You can then scan this QR code, for example using an HSM's QR scanner, for easier signing.
 
 ---
 

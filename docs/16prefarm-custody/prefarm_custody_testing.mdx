@@ -574,6 +574,12 @@ First wallet address: txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8
 
 IPS has created several test cases for the custody tool.
 
+:::info
+About the [examine_spend](/docs/16prefarm-custody/custody_tool_cli_reference#examine_spend) command:
+
+During any of the following test cases, you can convert an unsigned spend bundle into a QR code by using the command `cic examine_spend <spend bundle>`. You likely won't need this command if you are testing on a local computer, but it will be an important step when making changes to the actual prefarm. Using this command, you can print a QR code and take it into an HSM for signing.
+:::
+
 ---
 
 ### Test 1 - absorb 1
