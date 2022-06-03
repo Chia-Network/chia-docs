@@ -450,7 +450,8 @@ NFT Wallet:
   * `wallet_id`: The ID of your NFT wallet
   * `uris`: A comma-separated list of URIs where this image may be found. We'll only use one URI for this example. For NFT1, the image at this uri will be displayed in Chia's GUI wallet. Be sure to add two backslashes (`\\`) to escape any special characters in the URI, such as `?` and `=`
   * `hash`: The hash you just calculated. For now, the minting tool and wallet will not verify that this hash is correct. Be sure to double-check this, ideally using multiple methods to calculate the hash. Hash verification will be included in NFT1
-  * `artist_percentage`: For NFT1, this will be the royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 15% royalty, set this value to 1500. However, this feature is disabled in NFT0
+  * `artist_percentage`: The royalty that will go to the original artist each time the NFT is sold. The royalty percentage is represented by an unsigned int with the three least significant digits representing values past the decimal point. For example, a royalty of 1575 would equal 1.575%
+
   * `artist_address`: Enter the wallet address of the original artist. For this example on testnet, we'll use a local address
 
 The command will end up looking like this:
