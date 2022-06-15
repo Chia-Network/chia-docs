@@ -1,8 +1,8 @@
 ---
 id: nft_dev_guide
 title: NFT Developer Guide
-sidebar_label: 15.6 NFT Developer Guide
-sidebar_position: 6
+sidebar_label: 15.5 NFT Developer Guide
+sidebar_position: 5
 ---
 
 ```mdx-code-block
@@ -41,9 +41,7 @@ daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination
 
 ## Install and configure Chia
 
-[todo: this should now be mainnet and coming from release branch I think]
-
-This section will show you how to download and install Chia from the `main_dids` branch, configure your installation to run on the testnet, sync your node, and obtain some TXCH. If you have already done all of these things, you can skip to the next section, [Create an NFT wallet (CLI)](#create-an-nft-wallet-cli "Create an NFT wallet (CLI)").
+This section will show you how to download and install Chia from the `release/1.4.0` branch, configure your installation to run on the testnet, sync your node, and obtain some TXCH. If you have already done all of these things, you can skip to the next section, [Create an NFT wallet (CLI)](#create-an-nft-wallet-cli "Create an NFT wallet (CLI)").
 
 :::tip
 Your firewall might give warnings when installing Chia. This is normal. Allow the installations to continue.
@@ -63,17 +61,17 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
   ```
   Ensure there are no `chia` related processes running. If you are unsure, you may want to uninstall Chia before continuing.
 
-3. Chia's NFT and DID development is currently happening in the [main_dids](https://github.com/Chia-Network/chia-blockchain/tree/main_dids "main_dids branch") branch of the `chia-blockchain` repository. You'll need to download this branch.
+3. The code to be released in version 1.4 (including NFTs and DIDs) is in the [release/1.4.0](https://github.com/Chia-Network/chia-blockchain/tree/release/1.4.0 "release/1.4.0 branch") branch of the `chia-blockchain` repository. You'll need to download this branch.
 
   :::note
   If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
   :::
 
-  Create a new directory and download the `main_dids` branch of the `chia-blockchain` repository into it:
+  Create a new directory and download the `release/1.4.0` branch of the `chia-blockchain` repository into it:
   ```powershell
-  mkdir main_dids
-  cd main_dids
-  git clone -b main_dids --recurse-submodules https://github.com/Chia-Network/chia-blockchain.git
+  mkdir 1_4_0
+  cd 1_4_0
+  git clone -b release/1.4.0 --recurse-submodules https://github.com/Chia-Network/chia-blockchain.git
   ```
   
 4. Install Chia:
@@ -136,7 +134,7 @@ MacOS:
   ```
   For example, as of writing the current version is:
   ```text
-  1.3.5.dev215
+  1.3.6.dev565
   ```
 
 6. **IMPORTANT:** Run the following command to set up Chia to use the testnet:
@@ -269,6 +267,40 @@ MacOS:
   Current Blockchain Status: Full Node Synced
   ```
 
+17. Optionally Install and run Chia's GUI:
+
+  ```mdx-code-block
+  <Tabs
+    defaultValue="windows"
+    values={[
+      {label: 'Windows', value: 'windows'},
+      {label: 'Linux/macOS', value: 'nix'},
+    ]}>
+    <TabItem value="windows">
+  ```
+  ```powershell
+  (You should be in the <chia-blockchain> folder)
+
+  .\Install-gui.ps1
+  cd .\chia-blockchain-gui
+  npm run electron
+  ```
+  ```mdx-code-block
+    </TabItem>
+    <TabItem value="nix">
+  ```
+  ```bash
+  (You should be in the <chia-blockchain> folder)
+  
+  sh install-gui.sh
+  cd ./chia-blockchain-gui
+  npm run electron &
+  ```
+  ```mdx-code-block
+    </TabItem>
+  </Tabs>
+  ```
+
 Once you have a synced full node and some TXCH, you may proceed to the next section. If your requested TXCH has not yet arrived, post your address on the #dev channel on Keybase. Someone might be able to send some to you.
 
 ---
@@ -281,7 +313,7 @@ A "fingerprint" is a 4-byte hash of a public key. The computer running the examp
 
 Note that simultaneous syncing of multiple fingerprints is not possible. Whether you're using the CLI or the GUI (in general, not just for NFTs) you have to select one of the fingerprints to sync, while the other will be temporarily ignored and not synced.
 
-Within each of the fingerprints, you can store multiple wallets of various types. The default wallet is a `Chia Wallet`, aka a `STANDARD_WALLET`. This label is [part of a enum](https://github.com/Chia-Network/chia-blockchain/blob/main_dids/chia/wallet/util/wallet_types.py) with a value of `0`. The other wallet types are as follows:
+Within each of the fingerprints, you can store multiple wallets of various types. The default wallet is a `Chia Wallet`, aka a `STANDARD_WALLET`. This label is [part of an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) with a value of `0`. The other wallet types are as follows:
 
 ```python
 STANDARD_WALLET = 0
@@ -298,7 +330,7 @@ NFT = 10
 ```
 
 A few notes about this enum:
-* The only types that are supported as of NFT0 are STANDARD_WALLET, CAT, and NFT.
+* The only types that are supported as of June 2022 are STANDARD_WALLET, CAT, and NFT.
 * Each fingerprint/Wallet Key can only hold one `STANDARD_WALLET` and one `NFT` (for now), but it can hold multiple `CAT`s.
 * In addition to a type, each wallet also has a `Wallet ID`. This is simply an integer that increments for each new wallet.
 

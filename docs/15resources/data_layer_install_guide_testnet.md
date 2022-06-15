@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 ---
-# Climate Warehouse Install Guide (Testnet)
+# 15.4 Climate Warehouse Install Guide (Testnet)
 
 ### Note to Chia employees: This document is meant for internal consumption only. It assumes you're running on testnet10. It also assumes you have never previously installed Chia. If you already have keys and a database for testnet10, you can skip the steps for adding/downloading them. The final version of this doc will use mainnet.
 
