@@ -1,7 +1,7 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 ---
-# 12.5 Climate Warehouse (Beta) RPC API
+# 12.4 Climate Warehouse (Beta) RPC API
 
 This page lists commands and examples from the Climate Warehouse Beta RPC API.
 

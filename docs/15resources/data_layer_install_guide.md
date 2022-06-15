@@ -1,7 +1,7 @@
 ---
-sidebar_position: 5
+sidebar_position: 3
 ---
-# Climate Warehouse Install Guide
+# 15.3 Climate Warehouse Install Guide
 
 ### This website is a temporary home for this document. The permanent home of the mainnet version of this document will likely in the public wiki.
 

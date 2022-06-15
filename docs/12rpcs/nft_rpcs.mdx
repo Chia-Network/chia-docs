@@ -1,9 +1,14 @@
 ---
-id: nft1_rpcs
-title: NFT1 RPCs
-sidebar_label: 12.5 NFT1 RPCs
-sidebar_position: 5
+id: nft_rpcs
+title: NFT RPCs
+sidebar_label: 12.6 NFT RPCs
+sidebar_position: 6
 ---
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
 
 ## Commands
 
@@ -200,32 +205,6 @@ chia rpc wallet nft_get_nfts '{"wallet_id": 3}'
 
 ---
 
-### `nft_get_info`
-
-Functionality: Get info about an NFT
-
-Usage: chia rpc wallet [OPTIONS] nft_get_info [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit
-
-Request Parameters:
-
-Request Parameters:
-
-| Parameter      | Required | Description |
-|:---------------|:---------|:------------|
-| wallet_id      | True     | The Wallet ID of the NFT from which to retrieve info |
-| nft_coin_id    | True     | The coin ID of the NFT about which to retrieve info |
-
-Example:
-
----
-
 ### `nft_transfer_nft`
 
 Functionality: Transfer an NFT to a new wallet address
@@ -273,6 +252,32 @@ chia rpc wallet nft_transfer_nft '{"wallet_id": 2, "target_address": "txch167lgv
     "wallet_id": 2
 }
 ```
+
+---
+
+### `nft_get_info`
+
+Functionality: Get info about an NFT
+
+Usage: chia rpc wallet [OPTIONS] nft_get_info [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description |
+|:--------------|:-------------|:-----|:---------|:------------|
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit
+
+Request Parameters:
+
+Request Parameters:
+
+| Parameter      | Required | Description |
+|:---------------|:---------|:------------|
+| wallet_id      | True     | The Wallet ID of the NFT from which to retrieve info |
+| nft_coin_id    | True     | The coin ID of the NFT about which to retrieve info |
+
+Example:
 
 ---
 
