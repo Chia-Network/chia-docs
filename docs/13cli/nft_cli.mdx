@@ -15,6 +15,7 @@ import TabItem from '@theme/TabItem';
 * [`create`](#create)
 * [`mint`](#mint)
 * [`list`](#list)
+* [`get_info`](#get_info)
 * [`transfer`](#transfer)
 * [`add_uri`](#add_uri)
 * [`set_did`](#set_did)
@@ -105,24 +106,24 @@ Options:
 | -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use |
 | -i            | --id                          | INTEGER | True     | Id of the NFT wallet to use |
-| -ra           | --royalty-address             | TEXT    | False    | Royalty address |
-| -ta           | --target-address              | TEXT    | False    | Target address |
+| -u            | --uris                        | TEXT    | True     | Comma separated list of content URIs |
 | -nh           | --hash                        | TEXT    | True     | NFT content hash |
-| -u            | --uris                        | TEXT    | True     | Comma separated list of URIs |
-| -mh           | --metadata-hash               | TEXT    | False    | NFT metadata hash |
 | -mu           | --metadata-uris               | TEXT    | False    | Comma separated list of metadata URIs |
-| -lh           | --license-hash                | TEXT    | False    | NFT license hash |
+| -mh           | --metadata-hash               | TEXT    | False    | NFT metadata hash |
 | -lu           | --license-uris                | TEXT    | False    | Comma separated list of license URIs |
-| -st           | --series-total                | INTEGER | False    | NFT series total number  [default: 1] |
-| -sn           | --series-number               | INTEGER | False    | NFT series number  [default: 1] |
-| -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH  [default: 0] |
+| -lh           | --license-hash                | TEXT    | False    | NFT license hash |
+| -ra           | --royalty-address             | TEXT    | False    | Royalty address |
 | -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75%  [default: 0] |
+| -ta           | --target-address              | TEXT    | False    | Target address |
+| -sn           | --series-number               | INTEGER | False    | NFT series number  [default: 1] |
+| -st           | --series-total                | INTEGER | False    | NFT series total number  [default: 1] |
+| -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH  [default: 0] |
 | -h            | --help                        | None    | False    | Show a help message and exit |
 
 Example 1 - Mint an NFT that is not associated with a DID: 
 
 ```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft mint -i 3 -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg
+(venv) PS C:\Users\User\chia-blockchain> chia wallet nft mint -i 3 -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
 NFT minted Successfully with spend bundle:
 {
    'aggregated_signature': '0x955e7af8daabdc133b403e6339aaf8db62547bb248b506cedaa66caba69878b93db40297b92ea33d793eb966da7bb9fb0a962830d9cb979c8f92380f29208fd5db9ffb6074945df165ef59aa8910f1f1aa2dba874cfe98bfa7991e10e80a2935', 
@@ -154,48 +155,72 @@ NFT minted Successfully with spend bundle:
 ]}
 ```
 
-Example 2 - Mint an NFT that is associated with a DID. Specify a royalty of 3%:
+Example 2 - Mint an NFT that is associated with a DID. Specify all URLs and hashes, along with a royalty of 3%:
 
 ```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft mint -f 4288332900 -ra txch1cr25c46lvxf6dnpa9ej0jadf8lctxlsnk27vgjdrdhyt5qtytmkq8ceues -ta txch1qhw5lvfrhz8wgvpg9emtamqlfp4qxg7kn05dcmcfsr0gvawl3wusvd34qz -i 4 -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -st 1337 -sn 42 -rp 300
-
+(venv) PS C:\Users\User\Chia\chia-blockchain> chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h -ta txch1z456h8t2wyzhrpzz8mf844zd6jc6tf7stlwggdf57hm3f3mh6cmqf2kzv2 -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -st 1337 -sn 42 -rp 300
 NFT minted Successfully with spend bundle: 
 {
-   'aggregated_signature': '0xa72774284040966a3b353bde9c50d8bd393aa5d643ef1e0531d4aabf76b6b24080eb246c529747e3e914b72da7267e161732deab30ae3b79bf42c74436cd8cd2156f5ebfce02ff846db5ba4063f8e97f51e2bd0d11ef2a9c25e74fe603aa7f91', 
+   'aggregated_signature': '0xb64cc927430004c4ea2a0691a4eaa0095a546d3895bb709f243aeae008585592bdf1bb6a1b8a47d09524969adaa53eda19218391b586302595edcb5245e1de7cb2000a24caf41de5691852d56dc6733edae73e8ee8729aad1a24676f932415e0', 
    'coin_solutions': [{
       'coin': {
-         'amount': 999989999990, 
-         'parent_coin_info': '0xab48568ee3b109a71d1bb097da77a3c4c5eee7e9add00dee779bf62323598cc7',
-         'puzzle_hash': '0xff408b795e816dcef40ca081b10aa0e1cff7ff34313455e9d71be9097809582b'
-      },
-      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b6d2ea22b58b16f663e95b65cca7d97b59dea02162ea255144d2d345126645b1fa424b8b1b67dbc744ba130562b5a563ff018080', 
-      'solution': '0xff80ffff01ffff33ffa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ff0180ffff33ffa0f6cfceffd4c2f1999ddc1519985406a9feb67d514e9a156f22f865ed8b28ff8fff8600e8d40c797580ffff3cffa031e0f8fe13707156b9b1c49280f38d91fe8ddfd3a95bbd4d9148f7e2ccd7d38e80ffff3dffa04c9ad8bdf2c95f0b4eb384c907b77c7573a4e3aef1d0d1413b46c549ff245e528080ff8080'
+         'amount': 989949999979, 
+         'parent_coin_info': '0x360946634ca064b8b5fb7e57700180372026071361844b7f89d4e169ea9338f8', 
+         'puzzle_hash': '0xab14a74b9d5db864e9fd5d0d11f273ac27833aee9ef620ce6645d0fba8af845b'
+      }, 
+      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0990651e1f532086b86f02ee2105835359bb32ecc40c6bea72c7836293ce1987029b8315f46b6ee887eb7897e02555831ff018080', 
+      'solution': '0xff80ffff01ffff33ffa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ff0180ffff33ffa09c5ba7cc1bad5775e0c434159bdfc81a1291a079103e061382a0774f862ccd8dff8600e67d9e3b6a80ffff3cffa04e218ac628b8edc5e27eec0c596daf2d7d360a16db1b5b5a69b33b574ecea30280ffff3dffa0e7bf28c408f4099a590a6b9ef00c476053a3706c39021a98505bd754c5ae7fba8080ff8080'
    }, {
       'coin': {
          'amount': 1, 
-         'parent_coin_info': '0xf1d5fed1b413415a5535e228d9b019c33b3299a51149907d796ac07b0b8cfac6',
+         'parent_coin_info': '0x42318b29a8000f8286f6b4fbb62b50be4f89e4d2717bdbabaad3a25903adb345', 
          'puzzle_hash': '0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9'
-      },
-      'puzzle_reveal': '0xff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff0affff04ffff02ff0effff04ff02ffff04ffff04ff05ffff04ff0bffff04ff17ff80808080ff80808080ff808080ff808080ffff04ffff01ff33ff3cff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080',
-      'solution': '0xffa062a3cce310029e709a76c94fa4d632d0e3c28ef3087532494a4c319c29a3ec8aff01ff8080'
+      }, 
+      'puzzle_reveal': '0xff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff0affff04ffff02ff0effff04ff02ffff04ffff04ff05ffff04ff0bffff04ff17ff80808080ff80808080ff808080ff808080ffff04ffff01ff33ff3cff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080', 
+      'solution': '0xffa02b5775837ee7f6c87e16c8e53b9fcaae0b94cb0b7f89fcaef1b539b36e0f528fff01ff8080'
    }, {
       'coin': {
          'amount': 1, 
-         'parent_coin_info': '0x070f40b830d511ed9624edc7e333cf6b9ec5b22f43cd0ab80faeaecfc670b8c3',
-         'puzzle_hash': '0xcd5e5004c997d7658c18001e7108fa3fa9e64af5dd416035b28ef7b9e6861f4f'
+         'parent_coin_info': '0x219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc', 
+         'puzzle_hash': '0x2b5775837ee7f6c87e16c8e53b9fcaae0b94cb0b7f89fcaef1b539b36e0f528f'
       }, 
-      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0f4997f944714b52df55c35abb0494a095f74852a2c19f67c9dff0f6813298302a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff81bfffff01ff02ff05ff82017f80ffff01ff02ffff03ffff22ffff09ffff02ff7effff04ff02ffff04ff8217ffff80808080ff0b80ffff15ff17ff808080ffff01ff04ffff04ff28ffff04ff82017fff808080ffff04ffff04ff34ffff04ff8202ffffff04ff82017fffff04ffff04ff8202ffff8080ff8080808080ffff04ffff04ff38ffff04ff822fffff808080ffff02ff26ffff04ff02ffff04ff2fffff04ff17ffff04ff8217ffffff04ff822fffffff04ff8202ffffff04ff8205ffffff04ff820bffffff01ff8080808080808080808080808080ffff01ff088080ff018080ff0180ffff04ffff01ffffffff313dff4946ffff0233ff3c04ffffff0101ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff22ff3c80ffff0bff2affff0bff2affff0bff22ff3280ff0980ffff0bff2aff0bffff0bff22ff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff17ffff01ff02ffff03ff82013fffff01ff04ffff04ff30ffff04ffff0bffff0bffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ff82023fffff04ff82053fffff04ff820b3fff8080808080808080ffff02ff7effff04ff02ffff04ffff02ff2effff04ff02ffff04ff2fffff04ff5fffff04ff82017fff808080808080ff8080808080ff2f80ff808080ffff02ff26ffff04ff02ffff04ff05ffff04ff0bffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ffff10ff8202ffffff010180ff808080808080808080808080ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ff8202ffff8080808080808080808080ff0180ffff01ff02ffff03ffff15ff8202ffffff11ff0bffff01018080ffff01ff04ffff04ff20ffff04ff82017fffff04ff5fff80808080ff8080ffff01ff088080ff018080ff0180ff0bff17ffff02ff5effff04ff02ffff04ff09ffff04ff2fffff04ffff02ff7effff04ff02ffff04ffff04ff09ffff04ff0bff1d8080ff80808080ff808080808080ff5f80ffff04ffff0101ffff04ffff04ff2cffff04ff05ff808080ffff04ffff04ff20ffff04ff17ffff04ff0bff80808080ff80808080ffff0bff2affff0bff22ff2480ffff0bff2affff0bff2affff0bff22ff3280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff22ff2280ff8080808080ffff0bff22ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff7effff04ff02ffff04ff09ff80808080ffff02ff7effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0a365c9811f5ea4c5bfb15cae0d9ccb9e0f1e0db1be4db9af747eb130f46a06ffaaf3cc62692251bfc0ffe403ee06a1a3ff018080ffff04ffff01a04bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459affff04ffff0180ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0f4997f944714b52df55c35abb0494a095f74852a2c19f67c9dff0f6813298302a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff0180ff01808080808080ff01808080', 
-      'solution': '0xffffa0f4997f944714b52df55c35abb0494a095f74852a2c19f67c9dff0f6813298302ffa01c79ed42e7f76df1f2f5b6d0f13e9a15d4854d6f7c596570fa48495b18fa0f0bff0180ff01ffff01ffff80ffff01ffff33ffa01c79ed42e7f76df1f2f5b6d0f13e9a15d4854d6f7c596570fa48495b18fa0f0bff01ffffa01c79ed42e7f76df1f2f5b6d0f13e9a15d4854d6f7c596570fa48495b18fa0f0b8080ffff3effa0ebfab91ca3950beb014142f2ea0e1606e0ce11cfcd670931ff9a7009e0f2eddf8080ff80808080'
-   }, {
-      'coin': {
-         'amount': 1, 
-         'parent_coin_info': '0xebfab91ca3950beb014142f2ea0e1606e0ce11cfcd670931ff9a7009e0f2eddf', 
-         'puzzle_hash': '0x62a3cce310029e709a76c94fa4d632d0e3c28ef3087532494a4c319c29a3ec8a'
-      }, 
-      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0ebfab91ca3950beb014142f2ea0e1606e0ce11cfcd670931ff9a7009e0f2eddfa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff01ff0180808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a031f5e810e2ad078817e8b047306c877ad82c77511aa235179c4a98af413f162affff04ffff01ffff75ffc04468747470733a2f2f696d616765732e706578656c732e636f6d2f70686f746f732f31323035313336352f706578656c732d70686f746f2d31323035313336352e6a70656780ffff68a0fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533fffff826d7580ffff826d6800ffff826c7580ffff826c6800ffff82736e2affff82737482053980ffff04ffff01a0fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78bffff04ffff01ff02ffff01ff02ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff17ffff04ff0bffff04ffff02ff2fff5f80ff80808080808080ffff04ffff01ffffff88ad4cd55cf7ad6414ff0233ffff3e04ff81f601ffffff0102ffff02ffff03ff05ffff01ff02ff2affff04ff02ffff04ff0dffff04ffff0bff32ffff0bff3cff3480ffff0bff32ffff0bff32ffff0bff3cff2280ff0980ffff0bff32ff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ff04ffff04ff38ffff04ffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ffff02ff2effff04ff02ffff04ffff02ffff03ff81afffff0181afffff010b80ff0180ff80808080ffff04ffff0bff3cff4f80ffff04ffff0bff3cff0580ff8080808080808080ff378080ff82016f80ffffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff2fffff01ff80ff80ff80ff80ff808080808080808080ff0bff32ffff0bff3cff2880ffff0bff32ffff0bff32ffff0bff3cff2280ff0580ffff0bff32ffff02ff2affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff5fffff01ff02ffff03ffff09ff82011fff3880ffff01ff02ffff03ffff09ffff18ff82059f80ff3c80ffff01ff02ffff03ffff20ff81bf80ffff01ff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff82019fffff04ff82017fff80808080808080808080ffff01ff088080ff0180ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff808080808080808080808080ff0180ffff01ff02ffff03ffff09ff82011fff2c80ffff01ff02ffff03ffff20ff82017f80ffff01ff04ffff04ff24ffff04ffff0eff10ffff02ff2effff04ff02ffff04ff82019fff8080808080ff808080ffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ffff02ff0bffff04ff17ffff04ff2fffff04ff82019fff8080808080ff8080808080808080808080ffff01ff088080ff0180ffff01ff02ffff03ffff09ff82011fff2480ffff01ff02ffff03ffff22ffff20ffff09ffff0cff82029fff80ffff010880ff108080ffff09ffff0128ffff0dff82029f808080ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff8080808080808080808080ffff01ff088080ff0180ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff808080808080808080808080ff018080ff018080ff0180ffff01ff02ffff03ff81bfffff01ff02ff3affff04ff02ffff04ff05ffff04ff0bffff04ff81bfffff04ffff02ffff03ff82017fffff0182017fffff01ff02ff0bffff04ff17ffff04ff2fffff01ff808080808080ff0180ff80808080808080ffff01ff088080ff018080ff0180ff018080ffff04ffff01a0dacf3308015a4dd77e45a3f79c8b3cea7ec637d05554894c3eb5f779b17f379bffff04ffff01a0f4997f944714b52df55c35abb0494a095f74852a2c19f67c9dff0f6813298302ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff8202ffffff01ff04ff8204ffffff04ff80ffff04ffff02ffff03ffff22ff8204ffffff20ffff09ff8204ffff81bf808080ffff01ff04ffff04ff10ffff04ffff0bffff02ff2effff04ff02ffff04ff09ffff04ff8216ffffff04ffff02ff3effff04ff02ffff04ffff04ff09ffff04ff8204ffff1d8080ff80808080ff808080808080ff1580ff808080ffff02ff16ffff04ff02ffff04ff0bffff04ff17ffff04ff2fffff04ff5fffff04ff820affffff04ff15ff80808080808080808080ffff01ff02ff16ffff04ff02ffff04ff0bffff04ff17ffff04ff2fffff04ff5fffff04ff820affffff04ff15ff80808080808080808080ff0180ff80808080ffff01ff04ff81bfffff01ff80ff80808080ff0180ffff04ffff01ffffff3f02ff04ff0101ffff822710ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff2cff1480ffff0bff2affff0bff2affff0bff2cff3c80ff0980ffff0bff2aff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ff5fffff01ff04ffff04ff10ffff04ffff0bffff02ffff03ff82019fffff01ff02ff2effff04ff02ffff04ff2fffff04ff17ffff04ffff0bff2cff82029f80ffff04ffff0bff2cff2f80ff80808080808080ffff011780ff0180ffff02ff3effff04ff02ffff04ffff04ff81bfffff04ffff04ff05ffff04ffff05ffff14ffff12ff82011fff0b80ff128080ffff04ffff04ff05ff8080ff80808080ff808080ff8080808080ff808080ffff02ff16ffff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfff80808080808080808080ff8080ff0180ffff0bff2affff0bff2cff1880ffff0bff2affff0bff2affff0bff2cff3c80ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff3effff04ff02ffff04ff09ff80808080ffff02ff3effff04ff02ffff04ff0dff8080808080ffff01ff0bff2cff058080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0ebfab91ca3950beb014142f2ea0e1606e0ce11cfcd670931ff9a7009e0f2eddfa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01a0c0d54c575f6193a6cc3d2e64f975a93ff0b37e13b2bcc449a36dc8ba01645eecffff04ffff0182012cffff04ffff01a0bae24162efbd568f89bc7a340798a6118df0189eb9e3f8697bcea27af99f8f79ffff04ffff01a072dec062874cd4d3aab892a0906688a1ae412b0109982e1797a170add88bdcdcff01808080808080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08704d319ba2f30be83dfd849fe2b462196cbf10bef19439e63b95d0ab32f9feee42f8685119fa619b26a646f76ab77a6ff018080ff018080808080ff018080808080ff01808080', 
-      'solution': '0xffffa0f1d5fed1b413415a5535e228d9b019c33b3299a51149907d796ac07b0b8cfac6ff0180ff01ffffffff80ffff01ffff33ffa005dd4fb123b88ee430282e76beec1f486a0323d69be8dc6f0980de8675df8bb9ff01ffffa005dd4fb123b88ee430282e76beec1f486a0323d69be8dc6f0980de8675df8bb98080ffff81f6ffa0f4997f944714b52df55c35abb0494a095f74852a2c19f67c9dff0f6813298302ff80ffa01c79ed42e7f76df1f2f5b6d0f13e9a15d4854d6f7c596570fa48495b18fa0f0b8080ff8080808080'
+      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcca0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff01ff0180808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a031f5e810e2ad078817e8b047306c877ad82c77511aa235179c4a98af413f162affff04ffff01ffff75ffc04468747470733a2f2f696d616765732e706578656c732e636f6d2f70686f746f732f31323035313336352f706578656c732d70686f746f2d31323035313336352e6a70656780ffff68a0fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533fffff826d75ff9c68747470733a2f2f6d657461646174615f6578616d706c652e636f6d80ffff826c75ff9b68747470733a2f2f6c6963656e73655f6578616d706c652e636f6d80ffff82736e2affff827374820539ffff826d68a0868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823effff826c68a0358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a8280ffff04ffff01a0fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78bffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b65abbed758f97032351ac630c6e7c60f60679fd3492074ef4b72e4961b8f933c5bbe05fc9b583a911b35e43df935824ff018080ff018080808080ff01808080', 
+      'solution': '0xffffa042318b29a8000f8286f6b4fbb62b50be4f89e4d2717bdbabaad3a25903adb345ff0180ff01ffffff80ffff01ffff33ffa01569ab9d6a71057184423ed27ad44dd4b1a5a7d05fdc843534f5f714c777d636ff01ffffa01569ab9d6a71057184423ed27ad44dd4b1a5a7d05fdc843534f5f714c777d636808080ff8080ff018080'
    }
 ]}
+```
+
+Show the results of running Example 2:
+
+```powershell
+(venv) PS C:\Users\User\Chia\release_1.4.0\2022_06_17\chia-blockchain> chia wallet nft list -i 2
+
+NFT identifier:            nft1yxvkdfgpxfyx47wqq56jww87m0ka878c9a9wyr9hqrq0f479phxqps7rtf
+Launcher coin ID:          219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc
+Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
+Current NFT coin ID:       b2084a3d30780b3b02c967135bdee387aaf9e5114ffe70275c81f7f3257157e2
+On-chain data/info:        ((117 "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 42) (29556 . 1337) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
+Owner DID:                 None
+Royalty percentage:        None
+Royalty puzhash:           None
+NFT content hash:          fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f
+Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
+License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
+NFT series total:          1337
+Current NFT number in the series: 42
+Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
+NFT minting block height:  1126632
+Inner puzzle supports DID: False
+NFT is pending for a transaction: False
+
+URIs:
+   https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg
+
+Metadata URIs:
+   https://metadata_example.com
+
+License URIs:
+   https://license_example.com
 ```
 ---
 
@@ -216,16 +241,35 @@ Options:
 
 Example 1 - Show NFTs from a wallet that is not associated with a DID: 
 
-[todo this currently doesn't work, see https://github.com/Chia-Network/chia-blockchain/issues/11924]
 ```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft list -i 3
+(venv) PS C:\Users\User\Chia\release_1.4.0\2022_06_17\chia-blockchain> chia wallet nft list -i 2
 
-NFT identifier:            nft1a9ssxz3rntlyfvgmfl9cnmdes5sdxfeh240fqqs78v8ha2xst6xqf9ydhw
-Launcher coin ID:          e961030a239afe44b11b4fcb89edb98520d32737555e90021e3b0f7ea8d05e8c
+NFT identifier:            nft1yxvkdfgpxfyx47wqq56jww87m0ka878c9a9wyr9hqrq0f479phxqps7rtf
+Launcher coin ID:          219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
-Current NFT coin ID:       889b12b6d4585bb63f51cf9b4e6ac138c2042330c0f3d386d40be6a4a42b9a4a
-On-chain data/info:        ((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021) (28008 . 0x00) (27765) (27752 . 0x00) (29550 . 1) (29556 . 1))
-Failed to list NFTs for wallet with id 3 on key 4288332900: 'NoneType' object is not iterable
+Current NFT coin ID:       b2084a3d30780b3b02c967135bdee387aaf9e5114ffe70275c81f7f3257157e2
+On-chain data/info:        ((117 "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 42) (29556 . 1337) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
+Owner DID:                 None
+Royalty percentage:        None
+Royalty puzhash:           None
+NFT content hash:          fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f
+Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
+License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
+NFT series total:          1337
+Current NFT number in the series: 42
+Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
+NFT minting block height:  1126632
+Inner puzzle supports DID: False
+NFT is pending for a transaction: False
+
+URIs:
+   https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg
+
+Metadata URIs:
+   https://metadata_example.com
+
+License URIs:
+   https://license_example.com
 ```
 
 Example 2 - Show NFTs from a wallet that is associated with a DID: 
@@ -233,26 +277,76 @@ Example 2 - Show NFTs from a wallet that is associated with a DID:
 ```powershell
 (venv) PS C:\Users\User\chia-blockchain> chia wallet nft list -i 4
 
-NFT identifier:            nft1a0atj89rj597kq2pgtew5rskqmsvuyw0e4nsjv0lnfcqnc8jah0slgt29g
-Launcher coin ID:          ebfab91ca3950beb014142f2ea0e1606e0ce11cfcd670931ff9a7009e0f2eddf
+NFT identifier:            nft1s5hlcv0q3edg5vf33dkzrg0z35dnhch5tszntcma0zc7mcrpqurqlhwceh
+Launcher coin ID:          852ffc31e08e5a8a31318b6c21a1e28d1b3be2f45c0535e37d78b1ede0610706
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
-Current NFT coin ID:       8daa6ce105509c65a7e72e74ed5fa7c46dfbd96987727c85a9808fcf7d4d98a0
-On-chain data/info:        ((117 "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021) (28008 . 0x00) (27765) (27752 . 0x00) (29550 . 42) (29556 . 1337))
-Owner DID:                 did:chia:17jvhl9z8zj6jma2uxk4mqj22p90hfpf29svlvlyalu8ksyefsvpql7f403
+Current NFT coin ID:       48e92b64a0a5b7f4c7b6d9df1d1766901785ef26970113eb01c64f3444c5c56d
+On-chain data/info:        ((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 42) (29556 . 1337) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
+Owner DID:                 did:chia:16kgxghw80cjlytl7x7zxuuux32v308fnmcgkfrh652rtcdqexm4q7gsarr
 Royalty percentage:        300
-Royalty puzhash:           c0d54c575f6193a6cc3d2e64f975a93ff0b37e13b2bcc449a36dc8ba01645eec
-NFT content hash:          fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f
-Metadata hash:             00
-License hash:              00
+Royalty puzhash:           1aaf838ba6d832bb3b80114b3805ddf37f7990dae70df59e031c1aa9f830c392
+NFT content hash:          14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
+Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
+License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
 NFT series total:          1337
 Current NFT number in the series: 42
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
-NFT minting block height:  1118394
+NFT minting block height:  1126708
 Inner puzzle supports DID: True
 NFT is pending for a transaction: False
 
 URIs:
-   https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg
+   https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg
+
+Metadata URIs:
+   https://metadata_example.com
+
+License URIs:
+   https://license_example.com
+```
+
+---
+
+### `get_info`
+
+Functionality: Get info about an NFT
+
+Usage: chia wallet nft get_info [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description |
+|:--------------|:------------------|:--------|:---------|:------------|
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use |
+| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin for which to sho info |
+| -h            | --help            | None    | False    | Show a help message and exit |
+
+Example:
+
+```powershell
+(venv) PS C:\Users\User\chia-blockchain> chia wallet nft get_info -ni 1338537ad709b6b99430216519780dbee187a3057ce1130ef750d28ccb97e14a
+
+NFT identifier:            nft1hf22udrkfvpykwm6fu826e0xdeflha2d99tr7zdnvzuh36leahcsu7h2c3
+Launcher coin ID:          ba54ae34764b024b3b7a4f0ead65e66e53fbf54d29563f09b360b978ebf9edf1
+Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
+Current NFT coin ID:       1338537ad709b6b99430216519780dbee187a3057ce1130ef750d28ccb97e14a
+On-chain data/info:        ((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021) (27765) (29550 . 1) (29556 . 1))
+Owner DID:                 None
+Royalty percentage:        None
+Royalty puzhash:           None
+NFT content hash:          14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
+Metadata hash:
+License hash:
+NFT series total:          1
+Current NFT number in the series: 1
+Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
+NFT minting block height:  1127233
+Inner puzzle supports DID: False
+NFT is pending for a transaction: False
+
+URIs:
+   https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg
 
 Metadata URIs:
 
@@ -325,19 +419,26 @@ Functionality: Add a data URI to an NFT
 
 Usage: chia wallet nft add_uri [OPTIONS]
 
-Note: The metadata updater can only add one URI for one field per spend. If you want to add multiple URIs for one field, you need to spend multiple times. The new URI will automatically be prepended to the list. If the URI is invalid, wallets might not discover a valid URI deeper in the list.
-
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description |
 |:--------------|:------------------|:--------|:---------|:------------|
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use |
-| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use |
-| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin to transfer |
-| -u            | --uri             | TEXT    | True     | URI to add to the NFT |
-| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0] |
-| -h            | --help            | None    | False    | Show a help message and exit |
+| -wp           | --wallet-rpc-port | INTEGER | False              | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False              | Set the fingerprint to specify which wallet to use |
+| -i            | --id              | INTEGER | True               | Id of the NFT wallet to use |
+| -ni           | --nft-coin-id     | TEXT    | True               | Id of the NFT coin to update |
+| -u            | --uri             | TEXT    | True (see INFO)    | Data URI to add to the NFT |
+| -mu           | --metadata-uri    | TEXT    | True (see INFO)    | Metadata URI to add to the NFT |
+| -lu           | --license-uri     | TEXT    | True (see INFO)    | License URI to add to the NFT |
+| -m            | --fee             | TEXT    | False              | Set the fees per transaction, in XCH. [default: 0] |
+| -h            | --help            | None    | False              | Show a help message and exit |
+
+:::info
+ * Exactly one of `--uri`, `--metadata-uri`, and `--license-uri` is required
+ * Exactly one URI is able to be added per spend
+ * Lists are not allowed to be added. To add more than one item, more than one spend is required
+ * The new URI is _prepended_ to the existing list. If an invalid item is added, wallets and block explorers may read the invalid new item and not examine subsequent, valid items
+:::
 
 Example: 
 
@@ -393,9 +494,31 @@ Options:
 
 Example: 
 
-[todo not implemented yet as of 2022/06/16]
-```powershell
+[todo this tx goes through, but it doesn't actually set the did yet]
 
+```powershell
+(venv) PS C:\Users\User\Chia\release_1.4.0\2022_06_17\chia-blockchain> chia wallet nft set_did -i 2 -di did:chia:16kgxghw80cjlytl7x7zxuuux32v308fnmcgkfrh652rtcdqexm4q7gsarr -ni 6052a11829c20e9fb9c8fd66b38565e1fcfdedae3d3b410dfb6caef363fb22d8
+Transaction to set DID on NFT has been initiated with: 
+{
+   'aggregated_signature': '0x85b31b9cab5f943e8aee056869abe5b83cf6f4ba82abf0818eb235f29776c1413980e97944dd305c11bd936b1412324e19cc5a7dbff3be62f1ed0b8fe6b7dffec019036882cc09988c76ca978164767f31af5e95f4ea919f5c7c9ec8d1fc21cc', 
+   'coin_solutions': [{
+      'coin': {
+         'amount': 1, 
+         'parent_coin_info': '0xf3c16450c3bda3f913ebcb9ad8291e8bd658d3c0e166d745203106e1149df51b', 
+         'puzzle_hash': '0xccd5da42dd88885494d6a8fa7863310565eec33961d7425554bfeaa23d16a563'
+      }, 
+      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa049285cc9f2b0990f874e1319fe26ad749f15eb89cb5fd16bd75a1bb5c2a05a0ba0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff01ff0180808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a031f5e810e2ad078817e8b047306c877ad82c77511aa235179c4a98af413f162affff04ffff01ffff75ffc04468747470733a2f2f696d616765732e706578656c732e636f6d2f70686f746f732f31313035333037322f706578656c732d70686f746f2d31313035333037322e6a70656780ffff68a014836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0ffff826d75ff9c68747470733a2f2f6d657461646174615f6578616d706c652e636f6d80ffff826c75ff9b68747470733a2f2f6c6963656e73655f6578616d706c652e636f6d80ffff82736e2affff827374820539ffff826d68a0868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823effff826c68a0358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a8280ffff04ffff01a0fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78bffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b905b9eb2b50c70016c7851f9f089bfc2ce28fb86106a10324408db18a401d5ae89b2f49ecbdec8c28bd23a7b9851337ff018080ff018080808080ff01808080', 
+      'solution': '0xffffa049285cc9f2b0990f874e1319fe26ad749f15eb89cb5fd16bd75a1bb5c2a05a0bffa093d60f351de47e725af74e1f610b9414025bd5bb22b2c1309eacdae760efb8abff0180ff01ffffff80ffff01ffff33ffa01569ab9d6a71057184423ed27ad44dd4b1a5a7d05fdc843534f5f714c777d636ff01ffffa01569ab9d6a71057184423ed27ad44dd4b1a5a7d05fdc843534f5f714c777d636808080ff80808080'
+   }, {
+   'coin': {
+      'amount': 1, 
+      'parent_coin_info': '0xdaefa89b6346915a8925a3c825201d21ea2b5f655766fbc9b244d5cdf0b6d3e4', 
+      'puzzle_hash': '0xe28652b116337599961cb6d138091bbced075a0cee2b8307360ec98c62f7e2d8'
+   }, 
+   'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0d590645dc77e25f22ffe37846e73868a99179d33de11648efaa286bc341936eaa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff81bfffff01ff02ff05ff82017f80ffff01ff02ffff03ffff22ffff09ffff02ff7effff04ff02ffff04ff8217ffff80808080ff0b80ffff15ff17ff808080ffff01ff04ffff04ff28ffff04ff82017fff808080ffff04ffff04ff34ffff04ff8202ffffff04ff82017fffff04ffff04ff8202ffff8080ff8080808080ffff04ffff04ff38ffff04ff822fffff808080ffff02ff26ffff04ff02ffff04ff2fffff04ff17ffff04ff8217ffffff04ff822fffffff04ff8202ffffff04ff8205ffffff04ff820bffffff01ff8080808080808080808080808080ffff01ff088080ff018080ff0180ffff04ffff01ffffffff313dff4946ffff0233ff3c04ffffff0101ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff22ff3c80ffff0bff2affff0bff2affff0bff22ff3280ff0980ffff0bff2aff0bffff0bff22ff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff17ffff01ff02ffff03ff82013fffff01ff04ffff04ff30ffff04ffff0bffff0bffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ff82023fffff04ff82053fffff04ff820b3fff8080808080808080ffff02ff7effff04ff02ffff04ffff02ff2effff04ff02ffff04ff2fffff04ff5fffff04ff82017fff808080808080ff8080808080ff2f80ff808080ffff02ff26ffff04ff02ffff04ff05ffff04ff0bffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ffff10ff8202ffffff010180ff808080808080808080808080ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ff8202ffff8080808080808080808080ff0180ffff01ff02ffff03ffff15ff8202ffffff11ff0bffff01018080ffff01ff04ffff04ff20ffff04ff82017fffff04ff5fff80808080ff8080ffff01ff088080ff018080ff0180ff0bff17ffff02ff5effff04ff02ffff04ff09ffff04ff2fffff04ffff02ff7effff04ff02ffff04ffff04ff09ffff04ff0bff1d8080ff80808080ff808080808080ff5f80ffff04ffff0101ffff04ffff04ff2cffff04ff05ff808080ffff04ffff04ff20ffff04ff17ffff04ff0bff80808080ff80808080ffff0bff2affff0bff22ff2480ffff0bff2affff0bff2affff0bff22ff3280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff22ff2280ff8080808080ffff0bff22ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff7effff04ff02ffff04ff09ff80808080ffff02ff7effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b091f4a1811c7ccdf84207e433bc470ef9aaed1f141960017918fc3427b5e3bbff3513c3023b43a2f8a66d37df12c0aaddff018080ffff04ffff01a04bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459affff04ffff0180ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0d590645dc77e25f22ffe37846e73868a99179d33de11648efaa286bc341936eaa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff0180ff01808080808080ff01808080', 
+   'solution': '0xffffa0729faa60d6708cf6dd20af3c87419b8fb527b16b0510f14c50d76356f213e088ffa078a56af36aa6b98edf7a05b7bbb94d1afbb7e9640dfdbeeefba3c67f8d24c97cff0180ff01ffff01ffff80ffff01ffff33ffa078a56af36aa6b98edf7a05b7bbb94d1afbb7e9640dfdbeeefba3c67f8d24c97cff01ffffa078a56af36aa6b98edf7a05b7bbb94d1afbb7e9640dfdbeeefba3c67f8d24c97c8080ffff3effa049285cc9f2b0990f874e1319fe26ad749f15eb89cb5fd16bd75a1bb5c2a05a0b8080ff80808080'
+   }
+]}
 ```
 
 ---
