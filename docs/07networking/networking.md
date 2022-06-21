@@ -77,9 +77,7 @@ If a peer appears to be acting dishonestly, it can be disconnected and temporari
 The duration of the ban depends on the severity of the issue. Care should be taken to not ban honest peers by accident. Different implementations might have larger or different rate limits as well.
 
 ## Certificates
-All connections between nodes are encrypted and signed with X.509 self signed certificates. Each node will have it's
-own CA and self sign their certificates. Node IDs are derived by hashing the public key of the certificate, so each
-node can have a consistent node ID to use for authentication.
+All connections between nodes are encrypted and signed with X.509 signed certificates. Each node generates an X.509 certificate and signs it with the Chia CA (Valid To: January 21, 2031, Serial Number: 5c8a71239328650eb9fef85cec32bf779ca6a0c5) for node connections on port 8444. Node IDs are derived by hashing the public key of the certificate, so each node can have a consistent node ID to use for authentication. Each node will also generate and have its own private CA and self-sign certificates for local connections to services like farmer and harvester.
 
 ## Peer gossiping
 Peers are broadcasted within the network with `request_peers` and `respond_peers` messages. The `respond_peers` message contains up to 1000 peers, each having its IP address, its port and an estimate of its last active timestamp.
