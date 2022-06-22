@@ -12,6 +12,7 @@ import TabItem from '@theme/TabItem';
 
 ### Commands
 
+* [`create_new_wallet`](#create_new_wallet)
 * [`did_set_wallet_name`](#did_set_wallet_name)
 * [`did_get_wallet_name`](#did_get_wallet_name)
 * [`did_update_recovery_ids`](#did_update_recovery_ids)
@@ -43,6 +44,73 @@ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 
 ## Reference
 
+### `create_new_wallet`
+
+Functionality: Create a new DID wallet (From the Chia wallet RPC endpoint)
+
+Usage: chia rpc wallet [OPTIONS] create_new_wallet [REQUEST]
+
+Note: This is part of the wallet RPC API. It is included here to document the only way in which to create a new DID with an RPC. Because `backup_dids` is required, you must already have access to a DID in order to run this RPC. If you do not already have a DID, then run the CLI command to create a DID wallet instead.
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description |
+|:--------------|:-------------|:-----|:---------|:------------|
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data
+| -h            | --help       | None | False    | Show a help message and exit
+
+Request Parameters:
+
+| Parameter                | Required | Description |
+|:-------------------------|:---------|:------------|
+| wallet_type              | True     | This must be set to `did_wallet` in order to create a DID wallet |
+| did_type                 | True     | Set this to `new` to create a new DID |
+| amount                   | True     | Number of mojos to add to the DID initially. Minimum value is `1` |
+| backup_dids              | True     | A list of DIDs to be used for recovery. Must match actual DIDs |
+| num_of_backup_ids_needed | True     | The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
+| fee                      | False    | An optional blockchain fee, in mojos |
+
+Example: 
+
+```json
+// Request
+(venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83"], "num_of_backup_ids_needed": 1, "fee": 10000000}'
+
+---
+
+// Response
+{
+    "my_did": "did:chia:1pzrm9dyhvu8hmqyzqmy0v3wyp7cn98jlxk49jv7mgkhvk229erhqmh6c2m",
+    "success": true,
+    "type": 8,
+    "wallet_id": 2
+}
+```
+
+Show the newly created DID wallet:
+
+```powershell
+(venv) $ chia wallet show
+Wallet height: 1144662
+Sync status: Synced
+Balances, fingerprint: 455254876
+
+Chia Wallet:
+   -Total Balance:         0.999999999999 txch (999999999999 mojo)
+   -Pending Total Balance: 0.999999999999 txch (999999999999 mojo)
+   -Spendable:             0.999999999999 txch (999999999999 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+Profile 1:
+   -Total Balance:         1.0
+   -Pending Total Balance: 1.0
+   -Spendable:             1.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1pzrm9dyhvu8hmqyzqmy0v3wyp7cn98jlxk49jv7mgkhvk229erhqmh6c2m
+   -Wallet ID:             2
+```
+
 ### `did_set_wallet_name`
 
 Functionality: Set the name of a DID wallet
@@ -67,7 +135,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet did_set_wallet_name '{"wallet_id": 3, "name": "My DID Wallet"}'
+(venv) $ chia rpc wallet did_set_wallet_name '{"wallet_id": 3, "name": "My DID Wallet"}'
 
 // Response
 {
@@ -78,17 +146,16 @@ $ chia rpc wallet did_set_wallet_name '{"wallet_id": 3, "name": "My DID Wallet"}
 
 Show wallet with new name: 
 ```powershell
-$ chia wallet show -w distributed_id
+(venv) $ chia wallet show -w decentralized_id
 Wallet height: 1122161
 Sync status: Synced
 Balances, fingerprint: 4288332900
 
-//highlight-next-line
 My DID Wallet:
    -Total Balance:         1.0
    -Pending Total Balance: 1.0
    -Spendable:             1.0
-   -Type:                  DISTRIBUTED_ID
+   -Type:                  DECENTRALIZED_ID
    -DID ID:                did:chia:16kgxghw80cjlytl7x7zxuuux32v308fnmcgkfrh652rtcdqexm4q7gsarr
    -Wallet ID:             3
 ```
@@ -155,14 +222,14 @@ To show an example, first we need at least one DID to be used for recovery. In t
 
 Create one recovery DID:
 ```json
-$ chia wallet did create -n "Recovery DID 1"
+(venv) $ chia wallet did create -n "Recovery DID 1"
 Successfully created a DID wallet with name Recovery DID 1 and id 4 on key 3003259627
 Successfully created a DID did:chia:1d2x5wnm4sl4j2ena8ka3fyv8x7tzc9v520gstd3zfdu4pf6c2yksk8th4u in the newly created DID wallet
 ```
 
 Create another recovery DID:
 ```json
-$ chia wallet did create -n "Recovery DID 2"
+(venv) $ chia wallet did create -n "Recovery DID 2"
 Successfully created a DID wallet with name Recovery DID 2 and id 6 on key 3003259627
 Successfully created a DID did:chia:1gsarjll9lrd4kwxdglh28cjn3ln6u7ldfzsask9gw4tprzce20vsywwsqs in the newly created DID wallet
 ```
@@ -170,7 +237,7 @@ Successfully created a DID did:chia:1gsarjll9lrd4kwxdglh28cjn3ln6u7ldfzsask9gw4t
 Example of adding both recovery DIDs: 
 ```json
 // Request
-$ chia rpc wallet did_update_recovery_ids '{"wallet_id": 3, "new_list": ["did:chia:1d2x5wnm4sl4j2ena8ka3fyv8x7tzc9v520gstd3zfdu4pf6c2yksk8th4u", "did:chia:1gsarjll9lrd4kwxdglh28cjn3ln6u7ldfzsask9gw4tprzce20vsywwsqs"]}'
+(venv) $ chia rpc wallet did_update_recovery_ids '{"wallet_id": 3, "new_list": ["did:chia:1d2x5wnm4sl4j2ena8ka3fyv8x7tzc9v520gstd3zfdu4pf6c2yksk8th4u", "did:chia:1gsarjll9lrd4kwxdglh28cjn3ln6u7ldfzsask9gw4tprzce20vsywwsqs"]}'
 
 // Response
 {
@@ -204,7 +271,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet did_update_metadata '{"wallet_id": 3, "metadata": {"foo": "bar", "something": 5}}'
+(venv) $ chia rpc wallet did_update_metadata '{"wallet_id": 3, "metadata": {"foo": "bar", "something": 5}}'
 
 // Response
 {
@@ -237,7 +304,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet did_get_did '{"wallet_id": 3}'
+(venv) $ chia rpc wallet did_get_did '{"wallet_id": 3}'
 
 // Response
 {
@@ -273,7 +340,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet did_get_recovery_list '{"wallet_id": 3}'
+(venv) $ chia rpc wallet did_get_recovery_list '{"wallet_id": 3}'
 
 // Response
 {
@@ -418,7 +485,7 @@ Request Parameters:
 
 For this example, we'll use a pre-existing DID. First, obtain the `coin_id` (`coin_name`):
 ```json
-$ chia rpc wallet did_get_did '{"wallet_id": 4}'
+(venv) $ chia rpc wallet did_get_did '{"wallet_id": 4}'
 {
     "coin_id": "0x44a3e90ab1f103d6a259aa3009bdb34e9b092dce9f320f96342368df6b0555c7",
     "my_did": "did:chia:1d2x5wnm4sl4j2ena8ka3fyv8x7tzc9v520gstd3zfdu4pf6c2yksk8th4u",
@@ -429,7 +496,7 @@ $ chia rpc wallet did_get_did '{"wallet_id": 4}'
 
 Next, obtain the `did_innerpuz` (`puzhash`):
 ```json
-$ chia rpc wallet did_get_current_coin_info '{"wallet_id": 4}'
+(venv) $ chia rpc wallet did_get_current_coin_info '{"wallet_id": 4}'
 {
     "did_amount": 1,
     "did_innerpuz": "0xb83b62a297e44cb53878276e51db3daaf6b0a69ca8fdd4165c8c5bb1816289ea",
@@ -442,7 +509,7 @@ $ chia rpc wallet did_get_current_coin_info '{"wallet_id": 4}'
 
 Next, obtain the `Master public key` (`pubkey`);
 ```json
-$ chia keys show
+(venv) $ chia keys show
 Showing all public keys derived from your master seed and private key:
 
 Fingerprint: 3003259627
@@ -533,7 +600,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet did_get_current_coin_info '{"wallet_id": 3}'
+(venv) $ chia rpc wallet did_get_current_coin_info '{"wallet_id": 3}'
 
 // Response
 {
@@ -572,7 +639,7 @@ Example:
 ```json
 // Request
 
-$ chia rpc wallet did_create_backup_file '{"wallet_id": 3}' > wallet2.bak
+(venv) $ chia rpc wallet did_create_backup_file '{"wallet_id": 3}' > wallet2.bak
 more wallet2.bak
 
 // Response
@@ -609,7 +676,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet did_transfer_did '{"wallet_id": 4, "inner_address": "txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h"}'
+(venv) $ chia rpc wallet did_transfer_did '{"wallet_id": 4, "inner_address": "txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h"}'
 
 // Response
 {
