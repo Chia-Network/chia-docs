@@ -32,6 +32,8 @@ To run the same command on Windows, you need to escape the quotes, so it looks l
 (venv) C:\> chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
 
+---
+
 ## Reference
 
 ### `nft_mint_nft`
@@ -55,11 +57,11 @@ Request Parameters:
 | uris               | True     | A list of URIs to mark the location(s) of the NFT |
 | hash               | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list
 | meta_uris          | False    | A list of URIs to mark the location(s) of the NFT’s metadata |
-| meta_hash          | False    | The has of the NFT's metadata
+| meta_hash          | False    | The hash of the NFT's metadata
 | license_uris       | False    | A list of URIs to mark the location(s) of the NFT’s license
 | license_hash       | False    | The hash of the NFT's license
 | royalty_address    | False    | The wallet address of the NFT’s artist. This is where royalties will be sent. It could be either an XCH address or a DID address
-| royalty_percentage | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 15% royalty, set this value to 1500. The default value is 0
+| royalty_percentage | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0
 | target_address     | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address
 | series_number      | False    | If this NFT is part of a series, then this indicates the number/sequence of this NFT in the series
 | series_total       | False    | If this NFT is part of a series, then this indicates the total number of NFTs in the series
@@ -69,7 +71,7 @@ Example 1 - Mint an NFT without using a DID:
 
 ```json
 // Request
-$ chia rpc wallet nft_mint_nft '{
+(venv) $ chia rpc wallet nft_mint_nft '{
   "wallet_id": 3, 
   "uris": [
     "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
@@ -119,7 +121,7 @@ $ chia rpc wallet nft_mint_nft '{
 Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and hashes, as well as royalties:
 ```json
 // Request
-$ chia rpc wallet nft_mint_nft '{
+(venv) $ chia rpc wallet nft_mint_nft '{
   "wallet_id": 4, 
   "uris": ["https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"], 
   "hash": "14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0",
@@ -185,7 +187,7 @@ $ chia rpc wallet nft_mint_nft '{
 Show the result of running Example 2:
 
 ```json
-$ chia wallet nft list -i 4
+(venv) $ chia wallet nft list -i 4
 
 NFT identifier:            nft1sg0a6yl7yz2xduwxnkpwh9gu7ccd9r5srshpg2za3ft5m00qxnzqs0up49
 Launcher coin ID:          821fdd13fe209466f1c69d82eb951cf630d28e901c2e14285d8a574dbde034c4
@@ -240,7 +242,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
 
 // Response
 {
@@ -296,13 +298,13 @@ Request Parameters:
 | wallet_id      | True     | The Wallet ID of the NFT to transfer |
 | target_address | True     | The address to transfer the NFT to. For NFT0 this must be an XCH address. For NFT1 this could also be a DID address |
 | nft_coin_id    | True     | The coin ID of the NFT to transfer
-| fee            | False    | The one-time blockchain fee to be used upon transfering the NFT
+| fee            | False    | The one-time blockchain fee to be used upon transferring the NFT
 
 Example:
 
 ```json
 // Request
-$ chia rpc wallet nft_transfer_nft '
+(venv) $ chia rpc wallet nft_transfer_nft '
 {
     "wallet_id": 2, 
     "target_address": "txch13w2ytvchereqawqjp4r09mqjhwk7unvndew2a400jxtu7q5kr7csqy70f7", 
@@ -370,7 +372,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet nft_get_info '{
+(venv) $ chia rpc wallet nft_get_info '{
     "wallet_id": 4, 
     "coin_id": "0x821fdd13fe209466f1c69d82eb951cf630d28e901c2e14285d8a574dbde034c4"
 }'
@@ -444,7 +446,7 @@ Example:
 
 ```json
 // Request
-$ chia rpc wallet nft_add_uri '
+(venv) $ chia rpc wallet nft_add_uri '
 {
     "wallet_id": 4, 
     "nft_coin_id": "0x9bcf429079bd8e394658a3f0c43c6641c9f92d0dcc1770eeb6be6588a49fc925", 

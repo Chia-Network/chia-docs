@@ -10,7 +10,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-This document will guide you through the process of minting NFTs that adhere to Chia's NFT standard, using the command-line interface (CLI), on Windows, macOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's Electron wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnnet.
+This document will guide you through the process of creating DIDs that conform to [Chia's DID standard](https://github.com/Chia-Network/chips/pull/18), as well as minting NFTs that adhere to [Chia's NFT standard](https://github.com/Chia-Network/chips/pull/19). This guide will demonstrate this functionality using both the Command-Line Interface (CLI) and Remote Procedure Calls (RPCs), on Windows, macOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's Electron wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnet.
+
+Detailed instructions for each of the commands from this tutorial are available from the following references:
+* CLI
+  * [DID](/docs/13cli/did_cli "Chia DIDs: CLI reference")
+  * [NFT](/docs/13cli/nft_cli "Chia NFTs: CLI reference")
+* RPC
+  * [DID](/docs/12rpcs/did_rpcs "Chia DIDs: RPC reference")
+  * [NFT](/docs/12rpcs/nft_rpcs "Chia NFTs: RPC reference")
 
 :::info
 As detailed in our [CLVM reference](https://chialisp.com/docs/clvm/lang_reference#evaluating-cost-for-a-typical-transaction), the CLVM cost for an XCH transaction with two inputs and two outputs is around 17 million.
@@ -99,12 +107,12 @@ If, rather than following the steps from this tutorial, you want to run a binary
 Windows:
 
   * From a powershell window, run `Set-Alias -Name chia C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe`. Be sure to update [username] and [version] to match the actual folder structure. This will allow you to run the `chia` command as you would in a virtual environment
-  * Run `chia configure -t true`. This will swith your configuration to run the testnet
+  * Run `chia configure -t true`. This will switch your configuration to run the testnet
 
 MacOS:
 
   * From a terminal window, run `alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'`. This will allow you to run the `chia` command as you would in a virtual environment
-  * Run `chia configure -t true`. This will swith your configuration to run the testnet
+  * Run `chia configure -t true`. This will switch your configuration to run the testnet
 :::
 
 
@@ -203,6 +211,8 @@ MacOS:
   :::info
   If you ever need to display your address, run `chia keys show`. This command will only output your public keys and address; your private keys and seed phrase will not be shown.
   :::
+
+  Note: At this point we'll start the Chia light wallet, but not the full node. The only reason not to start the node now is because the database file might still be downloading. If you want to run the full node now, run steps 13, 14, and 15, then return here.
 
 10. Start your wallet by running:
 
@@ -442,9 +452,19 @@ The following is a list of the sample images and hashes this guide will use. For
   * License URI: https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE
   * License Hash: 30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6
 
+### Where to store images for NFTs
+
+In theory you can use any hosting site to host your NFT images. However, do make sure that the service doesn't modify the image _at all_. Doing so will also change the hash and make it more likely to be lost long-term. The best way to verify this is to use each of the above techniques to generate the image hash, and make sure they all match.
+
+Certain decentralized services such as IPFS can be slow. The first time a user attempts to view an NFT in their wallet (before caching), it might take a long time to load.
+
+Chia NFTs use a list to store image URIs, so it is possible to add multiple locations to increase permanance. However, do make sure each image's hash is the same as the data hash.
+
 ---
 
-## Create a DID wallet (CLI)
+## DID/NFT Tutorial (CLI)
+
+### Create a DID wallet
 
 An NFT wallet has the option of being associated with a DID. In this section, we'll create a new DID. Later we'll create two NFT wallets -- one that is associated with a DID and one that is not.
 
@@ -452,7 +472,7 @@ To create a new DID using Chia's CLI:
 1. Run `chia wallet did create -n '<name>' -a 1 -m 0.00001`. This will create a DID wallet with a custom name and 1 mojo. The `-m` flag will add a network fee to make it likely that the transaction will processed in a timely manner. Be sure to select your wallet fingerprint that is synced and contains some TXCH:
 
 ```powershell
-(venv) $  chia wallet did create -n "Test DID" -a 1 -m 0.00001
+(venv) $ chia wallet did create -n "Test DID" -a 1 -m 0.00001
 Successfully created a DID wallet with name Test DID and id 2 on key 2527948602
 Successfully created a DID did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83 in the newly created DID wallet
 ```
@@ -483,7 +503,7 @@ Test DID:
 
 ---
 
-## Create an NFT wallet (CLI)
+### Create an NFT wallet
 
 :::tip
 You can create an NFT wallet via a CLI command or an RPC. This section will show you the CLI command. If you prefer to use an RPC, skip to the [next section](#create-an-nft-wallet-rpc "Create an NFT wallet (RPC)").
@@ -501,7 +521,7 @@ Next, we'll create a second NFT wallet that is associated with the DID you alrea
 * Run `chia wallet nft create -di <DID ID> -n "<NFT Wallet Name>"`. For example:
 
 ```powershell
-chia wallet nft create -di did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83 -n "DID-Linked NFT Wallet"
+(venv) $ chia wallet nft create -di did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83 -n "DID-Linked NFT Wallet"
 Successfully created an NFT wallet with id 4 on key 2527948602
 ```
 
@@ -550,7 +570,7 @@ Each NFT wallet can be anchored to either a DID or a public/private key pair. A 
 
 If you have successfully created an NFT wallet from the CLI command shown above, feel free to skip the next section, which will show you how to create an NFT wallet using an RPC. Instead, head to the following section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
 
-## Mint an NFT (CLI, no DID)
+### Mint an NFT (no DID)
 
 For this example, we'll mint an NFT using only the required values:
 * `-i`: The ID of your NFT wallet
@@ -591,7 +611,7 @@ NFT minted Successfully with spend bundle:
 ]}
 ```
 
-## Mint an NFT (CLI, with DID)
+### Mint an NFT (with DID)
 
 Next we'll mint an NFT that is associated with a DID. For this example, we'll use all available options:
 
@@ -611,7 +631,7 @@ Next we'll mint an NFT that is associated with a DID. For this example, we'll us
 * `-m` : The blockchain fee for this transaction, in XCH
 
 ```powershell
-chia wallet nft mint -f 2527948602 -i 4 -ra txch1sf7j7aes8y5akheuym7jrdjeqx359cmtnkgj43zyp4sct7qdz75qxvrr5k -ta txch182f65hgw2hdewmry389rvg4qgh4y58f2g80g2j5thjff9j4cngzs8m0s7k -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -sn 42 -st 1337 -rp 300 -m 0.00001
+(venv) $ chia wallet nft mint -f 2527948602 -i 4 -ra txch1sf7j7aes8y5akheuym7jrdjeqx359cmtnkgj43zyp4sct7qdz75qxvrr5k -ta txch182f65hgw2hdewmry389rvg4qgh4y58f2g80g2j5thjff9j4cngzs8m0s7k -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -sn 42 -st 1337 -rp 300 -m 0.00001
 
 NFT minted Successfully with spend bundle: 
 {
@@ -709,12 +729,12 @@ If successful, you will receive a JSON output, including the coin additions and 
 }
 ```
 
-## List your NFTs (CLI)
+### List your NFTs
 
 We'll list the NFTs from both wallets that were created with the CLI. As a refresher, we'll run `chia wallet show` to show each of the wallets:
 
 ```powershell
-$ chia wallet show
+(venv) $ chia wallet show
 
 Wallet height: 1145640
 Sync status: Synced
@@ -753,7 +773,7 @@ DID-Linked NFT Wallet:
 
 Next, show the NFT the non-DID-linked wallet (Wallet ID 3). This NFT used a minimum set of options when created:
 ```powershell
-chia wallet nft list -i 3
+(venv) $ chia wallet nft list -i 3
 
 NFT identifier:            nft1k8hf52m30thue6puwnj6ff0rhph4s0cezmp570h0lrf08wvg3dqq5zsvzp
 Launcher coin ID:          b1ee9a2b717aefcce83c74e5a4a5e3b86f583f1916c34f3eeff8d2f3b9888b40
@@ -783,7 +803,7 @@ License URIs:
 
 Now we'll show the NFT that used every available option. This NFT was created with a DID:
 ```powershell
-chia wallet nft list -i 4
+(venv) $ chia wallet nft list -i 4
 
 NFT identifier:            nft1euzj4fuh2h46nd5dpm6vh2cmqkvnh2zwwpzd9l0awx496zrhe0psfmklxm
 Launcher coin ID:          cf052aa79755eba9b68d0ef4cbab1b05993ba84e7044d2fdfd71aa5d0877cbc3
@@ -815,7 +835,7 @@ License URIs:
 
 Note that you can obtain the same info with the `get_info` command. You'll need to pass in the identifier of the NFT you want to list:
 ```powershell
-$ chia wallet nft get_info -ni nft1euzj4fuh2h46nd5dpm6vh2cmqkvnh2zwwpzd9l0awx496zrhe0psfmklxm
+(venv) $ chia wallet nft get_info -ni nft1euzj4fuh2h46nd5dpm6vh2cmqkvnh2zwwpzd9l0awx496zrhe0psfmklxm
 
 NFT identifier:            nft1euzj4fuh2h46nd5dpm6vh2cmqkvnh2zwwpzd9l0awx496zrhe0psfmklxm
 Launcher coin ID:          cf052aa79755eba9b68d0ef4cbab1b05993ba84e7044d2fdfd71aa5d0877cbc3
@@ -847,7 +867,7 @@ License URIs:
 
 ---
 
-## Add a URI to your NFTs (CLI)
+### Add a URI to your NFTs
 
 Each NFT has three URI lists:
 * Data URIs (also simply called "URIs")
@@ -866,7 +886,6 @@ It is only possible to add one URI per spend. Exactly one of `-u` `-mu`, and `lu
 (venv) $ chia wallet nft add_uri -i 4 -ni 4e1e452bf3612ddd654fe1e3684a635c1d2495cbfde338ef875c8f292e21adb8 -mu https://metadata_example.com -m 0.00001
 
 ...
-
 
 (venv) $ chia wallet nft add_uri -i 4 -ni 33ae5afc65ec4404aba16bd9a0b17cfa23ddca9ac9bb49a03548167e286762ba -lu https://license_example.com -m 0.00001
 ```
@@ -909,7 +928,7 @@ License URIs:
 
 ---
 
-## Set the DID for an NFT (CLI)
+### Set the DID for an NFT
 
 Next we'll set the DID for an existing NFT. But first we'll need to create the new DID:
 
@@ -988,7 +1007,7 @@ License URIs:
 
 ---
 
-## Transfer your NFTs (CLI)
+### Transfer your NFTs
 
 The final step for the CLI portion of this tutorial is to transfer your NFTs to another address. This can be any XCH or TXCH address. If the recipient does not have an NFT wallet, then one will be created automatically.
 
@@ -1038,19 +1057,21 @@ NFT transferred successfully with spend bundle:
 
 ---
 
-## Create a DID wallet (RPC)
+## DID/NFT Tutorial (RPC)
+
+### Create a DID wallet
 
 :::warning important
 This section will use **Linux/MacOS** rpc syntax. When running rpc commands on **Windows**, you will need to escape all quotes with backslashes.
   
 For example, here is a typical rpc command on **Linux** and **MacOS**:
 ```powershell
-chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+(venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
 To run the same command on **Windows**, you will need to escape the quotes, so it looks like this:
 ```powershell  
-chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+(venv) $ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
 :::
   
@@ -1063,7 +1084,7 @@ In this section, we'll start with a brand new wallet fingerprint. However, you'l
 1. Run `chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["<existing DID ID>"], "num_of_backup_ids_needed": 1, "fee": <amount in mojos>}'`. This will create a DID wallet containing 1 mojo. It will also use a backup DID for recovery. Finally, it will add an optional fee in mojos. The recommended amount is 10 million. Even if you don't specify a fee, your wallet must contain at least 1 mojo in order to run this RPC:
 
 ```powershell
-(venv) $ chia rpc wallet create_new_wallet '{\"wallet_type\": \"did_wallet\", \"did_type\": \"new\", \"amount\": 1, \"backup_dids\": [\"did:chia:1plzd3t49kek2clpfmy7eam3hkmqtm8lu66uw8r3v3qgdu5vecnfsmsdmm7\"], \"num_of_backup_ids_needed\": 1, \"fee\": 10000000}'
+(venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["did:chia:1plzd3t49kek2clpfmy7eam3hkmqtm8lu66uw8r3v3qgdu5vecnfsmsdmm7"], "num_of_backup_ids_needed": 1, "fee": 10000000}'
 {
     "my_did": "did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga",
     "success": true,
@@ -1110,12 +1131,12 @@ Profile 1:
 
 ---
 
-## Create an NFT wallet (RPC)
+### Create an NFT wallet
 
 1. First, we'll create an NFT wallet that doesn't reference a DID:
 
 ```powershell
-(venv) $ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\", \"name\": \"My NFT Wallet (RPC/non-DID)\", \"fee\": 10000000}'
+(venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet", "name": "My NFT Wallet (RPC/non-DID)", "fee": 10000000}'
 {
     "success": true,
     "type": 10,
@@ -1127,7 +1148,7 @@ Note that a wall with a `type` of `10` is an NFT wallet.
 2. Next, we'll create an NFT wallet that references your DID wallet's `Wallet ID`. Be sure to change the `did_id` to your local DID wallet's `Wallet ID`:
 
 ```powershell
-(venv) $ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\", \"name\": \"My NFT Wallet (RPC/DID)\", \"did_id\": \"did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga\", \"fee\": 10000000}'
+(venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet", "name": "My NFT Wallet (RPC/DID)", "did_id": "did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga", "fee": 10000000}'
 {
     "success": true,
     "type": 10,
@@ -1184,7 +1205,7 @@ My NFT Wallet (RPC/DID):
 
 ---
 
-## Mint an NFT (RPC, Non-DID)
+### Mint an NFT (No DID)
 
 1. Mint your NFT using the following values:
   * `wallet_id`: The ID of your NFT wallet
@@ -1200,7 +1221,7 @@ The command will end up looking like this:
 If successful, you will receive a JSON output, including the coin additions and removals involved in minting the NFT, as well as the spend bundle that was used. At the end of the output, you should see `"success": true,`.
 
 ```powershell
-(venv) $ chia rpc wallet nft_mint_nft '{\"wallet_id\": 5, \"uris\": [\"https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg\"], \"hash\": \"995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600\"}'
+(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 5, "uris": ["https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"], "hash": "995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600"}'
 {
     "spend_bundle": {
         "aggregated_signature": "0xb5dee0fd86ccd2c136b173dd8d0b8ee5541365f4266764b6361914a4b1f3b53bc9e0004cc248adc6b9f9a8f8c9a045420b0e4dccaabd6645b4c0dd2d18037b70537f9e653abd438df12471a68c4dc640d95bc4c387c67ea247ad5752f856b092",
@@ -1242,11 +1263,11 @@ If successful, you will receive a JSON output, including the coin additions and 
 2. Wait a few minutes for your NFT to be confirmed on the blockchain. To view your NFT, run the `nft_get_nfts` RPC, passing in your NFT wallet's ID. Eventually, the NFT will show up:
 
 ```powershell
-(venv) $ chia rpc wallet nft_get_nfts '{\"wallet_id\": 5}'
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
 {
     "nft_list": [
         {
-            "chain_info": "((117 \"https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg\") (104 . 0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600) (28021) (27765) (29550 . 1) (29556 . 1))",
+            "chain_info": "((117 "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg") (104 . 0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600) (28021) (27765) (29550 . 1) (29556 . 1))",
             "data_hash": "0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600",
             "data_uris": [
                 "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
@@ -1276,7 +1297,7 @@ If successful, you will receive a JSON output, including the coin additions and 
 
 ---
 
-## Mint an NFT (RPC, with DID)
+### Mint an NFT (with DID)
 
 1. Mint your NFT using the following values:
   * `wallet_id`: The ID of your NFT wallet
@@ -1296,7 +1317,7 @@ If successful, you will receive a JSON output, including the coin additions and 
 The command will end up looking like this:
 
 ```powershell
-(venv) $ chia rpc wallet nft_mint_nft '{\"wallet_id\": 6, \"uris\": [\"https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg\"], \"hash\": \"0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4\", \"meta_uris\": [\"https://pastebin.com/raw/BHZc1suk\", \"https://pastebin.com/raw/bnzGwjmB\"], \"meta_hash\": \"07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51\", \"license_uris\": [\"https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE\"], \"license_hash\": \"30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6\", \"royalty_address\": \"txch1ape36g8rn8fm7d53z8rvngjkwhlkr83p28vnrpha94zt25szh8aq6anp3y\", \"royalty_percentage\": 175, \"target_address\": \"txch1ezy69gr6gpmu5e3hvyrn07ls7gqrw66s93pt555xcw50x25a2g7q3l3f8m\", \"series_number\": 42, \"series_total\": 1337}'
+(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 6, "uris": ["https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"], "hash": "0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4", "meta_uris": ["https://pastebin.com/raw/BHZc1suk", "https://pastebin.com/raw/bnzGwjmB"], "meta_hash": "07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51", "license_uris": ["https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE"], "license_hash": "30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6", "royalty_address": "txch1ape36g8rn8fm7d53z8rvngjkwhlkr83p28vnrpha94zt25szh8aq6anp3y", "royalty_percentage": 175, "target_address": "txch1ezy69gr6gpmu5e3hvyrn07ls7gqrw66s93pt555xcw50x25a2g7q3l3f8m", "series_number": 42, "series_total": 1337}'
 
 {
     "spend_bundle": {
@@ -1350,11 +1371,11 @@ If successful, you will receive a JSON output, including the coin additions and 
 2. Wait a few minutes for your NFT to be confirmed on the blockchain. To view your NFT, run the `nft_get_nfts` RPC, passing in your NFT wallet's ID. Eventually, the NFT will show up:
 
 ```powershell
-(venv) $ chia rpc wallet nft_get_nfts '{\"wallet_id\": 6}'
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 6}'
 {
     "nft_list": [
         {
-            "chain_info": "((117 \"https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg\") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 \"https://pastebin.com/raw/BHZc1suk\" \"https://pastebin.com/raw/bnzGwjmB\") (27765 \"https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE\") (29550 . 42) (29556 . 1337) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . 0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6))",
+            "chain_info": "((117 "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 "https://pastebin.com/raw/BHZc1suk" "https://pastebin.com/raw/bnzGwjmB") (27765 "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE") (29550 . 42) (29556 . 1337) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . 0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6))",
             "data_hash": "0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4",
             "data_uris": [
                 "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"
@@ -1385,41 +1406,251 @@ If successful, you will receive a JSON output, including the coin additions and 
     "success": true,
     "wallet_id": 6
 }
+```
 
 ---
 
-## Get info about your NFTs (RPC)
+### Get info about your NFTs
 
+There are two RPCs that show info about NFTs. One will show all NFTs in a wallet, and the other will only show a specific NFT.
 
----
+1. `chia rpc wallet nft_get_nfts '{"wallet_id": <wallet ID>}'`
 
-## Add a URI to an NFT (RPC)
-This section will show you how to add a new data URI to your NFT. Remember, NFTs contain a list of URIs. The current owner may add URIs as needed, but they may not be removed. This helps to obtain digital permanence while decreasing the likelihood of fraud from changing URIs.
-
-1. Run the `nft_add_uri` RPC using the following values:
-  * `wallet_id`: The `Wallet ID` of the NFT to which to add a URI
-  * `nft_coin_id`: The ID of the NFT coin, obtained from the `nft_get_nfts` RPC
-  * `uri`: The new URI to add
-
+For example:
 ```powershell
-(venv) $ chia rpc wallet nft_add_uri '{"wallet_id": 2, "nft_coin_id": "B5178AB54CD922889B4E97B2DDC0DD43FD85BE26F69DD3D697084C80AE4E9625", "uri": "https://newuri.net"}'
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 6}'
+{
+    "nft_list": [
+        {
+            "chain_info": "((117 "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 "https://pastebin.com/raw/BHZc1suk" "https://pastebin.com/raw/bnzGwjmB") (27765 "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE") (29550 . 42) (29556 . 1337) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . 0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6))",
+            "data_hash": "0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4",
+            "data_uris": [
+                "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"
+            ],
+            "launcher_id": "0xa2982da3fda6f12e613eaf01770d8cd607102b9446c33793d580fee5d0c672be",
+            "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+            "license_hash": "0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6",
+            "license_uris": [
+                "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE"
+            ],
+            "metadata_hash": "0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51",
+            "metadata_uris": [
+                "https://pastebin.com/raw/BHZc1suk",
+                "https://pastebin.com/raw/bnzGwjmB"
+            ],
+            "mint_height": 1150673,
+            "nft_coin_id": "0xf5c8951c18dba6482df3447329a2e92f432c8d93d7bcec4ec5488df8763c321b",
+            "owner_did": "0x289ffeb788c28a68ea8779332405f0d60407f4cbaac0f77ac32f2d57d55d8720",
+            "pending_transaction": false,
+            "royalty_percentage": 175,
+            "royalty_puzzle_hash": "0xe8731d20e399d3bf369111c6c9a25675ff619e2151d93186fd2d44b55202b9fa",
+            "series_number": 42,
+            "series_total": 1337,
+            "supports_did": true,
+            "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+        }
+    ],
+    "success": true,
+    "wallet_id": 6
+}
+```
+
+2. `chia rpc wallet nft_get_info '{"wallet_id": <wallet ID>, "coin_id": "<coin ID>"}'`
+
+For example:
+```powershell
+(venv) $ chia rpc wallet nft_get_info '{"wallet_id": 6, "coin_id": "0xf5c8951c18dba6482df3447329a2e92f432c8d93d7bcec4ec5488df8763c321b"}'
+{
+    "nft_info": {
+        "chain_info": "((117 "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 "https://pastebin.com/raw/BHZc1suk" "https://pastebin.com/raw/bnzGwjmB") (27765 "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE") (29550 . 42) (29556 . 1337) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . 0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6))",
+        "data_hash": "0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4",
+        "data_uris": [
+            "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"
+        ],
+        "launcher_id": "0xa2982da3fda6f12e613eaf01770d8cd607102b9446c33793d580fee5d0c672be",
+        "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+        "license_hash": "0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6",
+        "license_uris": [
+            "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE"
+        ],
+        "metadata_hash": "0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51",
+        "metadata_uris": [
+            "https://pastebin.com/raw/BHZc1suk",
+            "https://pastebin.com/raw/bnzGwjmB"
+        ],
+        "mint_height": 1150673,
+        "nft_coin_id": "0xf5c8951c18dba6482df3447329a2e92f432c8d93d7bcec4ec5488df8763c321b",
+        "owner_did": "0x289ffeb788c28a68ea8779332405f0d60407f4cbaac0f77ac32f2d57d55d8720",
+        "pending_transaction": false,
+        "royalty_percentage": 175,
+        "royalty_puzzle_hash": "0xe8731d20e399d3bf369111c6c9a25675ff619e2151d93186fd2d44b55202b9fa",
+        "series_number": 42,
+        "series_total": 1337,
+        "supports_did": true,
+        "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+    },
+    "success": true
+}
+```
+
+---
+
+### Add a URI to your NFTs
+This section will show you how to add a new URI to your NFT. As a reminder, NFT contain URI lists for data, metadata, and license. The current owner may add URIs as needed, but they may not be removed. The URIs are recommended to their corresponding data, metadata, and license hashes  This helps to obtain digital permanence while decreasing the likelihood of fraud from changing URIs.
+
+A few caveats:
+* You can only update one type of key in one spend, and you can only add a single URI per spend
+* The `nft_add_uri` RPC takes one key and one URI. The key must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI)
+* The new URI will be prepended to the existing list
+* If the new URI is inaccessible, some wallets may not continue to traverse the URI list
+* Each time you run the `nft_add_uri` RPC, the NFT's coin ID will change. You therefore should run either `nft_get_nfts` or `nft_get_info` to obtain the current coin ID before adding a new URI
+
+Example 1 -- Add a new data URI
+
+Obtain coin info. Note that this NFT has one data URI and zero license and metadata URIs:
+```powershell
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
+{
+    "nft_list": [
+        {
+          ...
+            "data_uris": [
+                "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
+            ],
+          ...
+            "license_uris": [],
+          ...
+            "metadata_uris": [],
+          ...
+          "nft_coin_id": "0x8470b7feda2f42459399bba36308449bfd24f46e4842258a25c60a0dfeb3f72c",
+          ...
+        }
+    ],
+    "success": true,
+    "wallet_id": 5
+}
+```
+
+Add new data URI:
+```powershell
+(venv) $ chia rpc wallet nft_add_uri '{"wallet_id": 5, "nft_coin_id": "0x8470b7feda2f42459399bba36308449bfd24f46e4842258a25c60a0dfeb3f72c", "key": "u", "uri": "new_datauri.com"}'
 {
     "spend_bundle": {
-        "aggregated_signature": "0xa5c7e75ad3c6d51ccaf6f9a77c11974b348ebdaa7dd172fc8203cecd1f21e8477f70917d112d6d89d12ef28a6813f56e1887c4200a10844cc55f8546f275902e140cb7f87e4fe321c32385fc8e0fb08617bc851c6b5418bf85a369129a8394ab",
+        "aggregated_signature": "0xad392288e50e8a083baa032e212932377e9655260299d389eef9ee980e2705901146be1d67c0133b78a209ade9cbc05a198cd041e5de3ac4aa82e749eacef9b1ecab6951cd70bf9db3148366a2423e0df231c703628f60868a77368984ddca45",
         "coin_solutions": [
             {
                 "coin": {
                     "amount": 1,
-                    "parent_coin_info": "0x4296d4e49e2056db5aeb62df849851e61326daea4337825be15410e7f4c07e32",
-                    "puzzle_hash": "0xe9f6301cbb24aad305e56754c044bcc924ce04a28173381429d96920f4323bb1"
+                    "parent_coin_info": "0x06673e7f4d5cb6fac227b5355036c2e541d8e72f02e3ac28b3d19e2568f1c60e",
+                    "puzzle_hash": "0xcdd2d2a6692a7bb544c16daa5dd9385b1282b20466425b92c3f2119a80a775bd"
                 },
-                "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0c2f3f7d54d254381fd33fbe2b6c031e5be3ba1267215a2fa182e064ed6015fefa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff04ffff04ff10ffff04ff81bfff808080ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff3affff04ff02ffff04ff17ffff04ff0bffff04ffff02ff2fff5f80ff808080808080ffff04ff81bfffff01ff8080808080808080ffff04ffff01ffffff49ff0233ffff0401ff0102ffffffff02ffff03ff05ffff01ff02ff22ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ff02ffff03ff17ffff01ff02ffff03ffff09ff47ffff0181e880ffff01ff02ffff03ffff09ffff02ff2effff04ff02ffff04ff81a7ff80808080ff0580ffff01ff02ff81a7ffff04ff0bffff04ff05ffff04ff820167ff8080808080ffff01ff088080ff0180ffff01ff02ff32ffff04ff02ffff04ff05ffff04ff0bffff04ff37ff80808080808080ff0180ffff01ff04ffff04ff0bffff04ff05ff808080ffff01ff80808080ff0180ffff02ffff03ff05ffff01ff04ff09ffff02ff2affff04ff02ffff04ff0dffff04ff0bff808080808080ffff010b80ff0180ff02ff26ffff04ff02ffff04ffff02ff32ffff04ff02ffff04ff05ffff04ff0bffff04ff17ff808080808080ffff04ff17ff8080808080ffffff04ff09ffff04ffff02ff2affff04ff02ffff04ff15ffff04ff0bff8080808080ff808080ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff22ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff2bffff01ff02ffff03ffff09ff818bff3880ffff01ff02ffff03ffff18ff8202cbff3480ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff4bff80808080808080ffff01ff04ff4bffff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff2fff808080808080808080ff0180ffff01ff02ffff03ffff15ff818bff8080ffff01ff04ff4bffff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff2fff8080808080808080ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff2fff8080808080808080ff018080ff0180ffff01ff02ffff03ff2fffff01ff04ffff04ff38ffff04ffff02ff36ffff04ff02ffff04ff05ffff04ff81afffff04ffff0bff34ff5380ffff04ffff02ff2effff04ff02ffff04ff23ff80808080ffff04ffff0bff34ff0580ff8080808080808080ffff04ff17ff8201ef808080ff8080ffff01ff088080ff018080ff0180ff018080ffff04ffff01a0dd8135d546e291df295b376aa89fc409c8c50d7f655d1ff4e845637901bc2f8fffff04ffff01ffff75ffc04468747470733a2f2f696d616765732e706578656c732e636f6d2f70686f746f732f31313035333037322f706578656c732d70686f746f2d31313035333037322e6a70656780ffff68a014836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb080ffff04ffff01a081970d352e6a39a241eaf8ca510a0e669e40d778ba612621c60a50ef6cf29c7bffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0ad2e4e7de145259166b19be05cbcea393c66cc436a631154a20a30e12dce380f00a0bc86c19490c409640bb76546b273ff018080ff018080808080ff01808080",
-                "solution": "0xffffa0eb46562a95a335f77b4d0d97458580674a10b210c849c1d01c06ec29d0bde8ccffa08e18568a642e3406dabf891aee9b4c1ace3e65daf15502a6b9ca7e1fa5f41a3fff0180ff01ffffff80ffff01ffff33ffa0d7be864587d6f4c11065856ae519d09f0d86b20e57d904f87c7c700d07c624d1ff01ffffa0d7be864587d6f4c11065856ae519d09f0d86b20e57d904f87c7c700d07c624d18080ffff81e8ffff02ffff01ff04ffff04ffff02ffff03ff17ffff01ff02ff02ffff04ff02ffff04ff05ffff04ff17ff8080808080ffff010580ff0180ffff04ff0bff808080ffff01ff808080ffff04ffff01ff02ffff03ff05ffff01ff02ffff03ffff09ff11ffff017580ffff01ff04ffff04ffff0175ffff04ff0bff198080ff0d80ffff01ff04ff09ffff02ff02ffff04ff02ffff04ff0dffff04ff0bff80808080808080ff0180ff8080ff0180ff018080ff9268747470733a2f2f6e65777572692e6e65748080ff8080ff01ff808080"
+                "puzzle_reveal": ...,
+                "solution": ...
             }
         ]
     },
     "success": true,
-    "wallet_id": 2
+    "wallet_id": 5
+}
+```
+
+Example 2 -- Add a new metadata URI
+
+Obtain new coin info:
+```powershell
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
+{
+    "nft_list": [
+        {
+            "nft_coin_id": "0x1b3375608b8baa528a9e2fac3d460af82083e37b7078363513eaf65b17ef88fa",
+        }
+    ],
+    "success": true,
+    "wallet_id": 5
+}
+```
+
+Add new metadata URI:
+```powershell
+(venv) $ chia rpc wallet nft_add_uri '{"wallet_id": 5, "nft_coin_id": "0x1b3375608b8baa528a9e2fac3d460af82083e37b7078363513eaf65b17ef88fa", "key": "mu", "uri": "new_metadatauri.com"}'
+{
+    "spend_bundle": {
+        "aggregated_signature": "0x8fd16016f682cb13c3a965874b0070b5cab6898914bbf95366fcf5d12bfdc63cc491429fc5a61f012d07cc3a298906f10235ad8a1186c1e3e14b2505fb7bb37c96b0d05e866c7caf299c40d878115ae748e73705503d75ea520483fcb5620383",
+        "coin_solutions": [
+            {
+                "coin": {
+                    "amount": 1,
+                    "parent_coin_info": "0x8470b7feda2f42459399bba36308449bfd24f46e4842258a25c60a0dfeb3f72c",
+                    "puzzle_hash": "0x55ae8c90568ac90c0aca15f2a9275575ed577c3f168c537e6b3a30de6c44d83b"
+                },
+                "puzzle_reveal": ...,
+                "solution": ...
+            }
+        ]
+    },
+    "success": true,
+    "wallet_id": 5
+}
+```
+
+Example 3 -- Add a new license URI
+
+Obtain new coin info:
+```powershell
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
+{
+    "nft_list": [
+        {
+            "nft_coin_id": "0xe2487e41652b3aa01f0937423ccd9e5ed3d3442accb71974ad1e5e2b240ac2e2",
+        }
+    ],
+    "success": true,
+    "wallet_id": 5
+}
+```
+
+```powershell
+(venv) $ chia rpc wallet nft_add_uri '{"wallet_id": 5, "nft_coin_id": "0xe2487e41652b3aa01f0937423ccd9e5ed3d3442accb71974ad1e5e2b240ac2e2", "key": "lu", "uri": "new_licenseuri.com"}'
+{
+    "spend_bundle": {
+        "aggregated_signature": "0x91191c523ffc6608ce22ce05ea1e06e2058bf14b150aeb0940bb15189191a697dd3315cc7bf4353383505dcdf94e1bae00ea2e57f6ec89d75ad1a4ae43cad8a3ab17a7c8a26b74e9e6b73d8e9c6715f110472343f715f6eeddc44076a671173d",
+        "coin_solutions": [
+            {
+                "coin": {
+                    "amount": 1,
+                    "parent_coin_info": "0x1b3375608b8baa528a9e2fac3d460af82083e37b7078363513eaf65b17ef88fa",
+                    "puzzle_hash": "0x67ab4378f5d52eeef02a550a849d6e54c5a0f8a575a8d28d6c696d144a879294"
+                },
+                "puzzle_reveal": ...,
+                "solution": ...
+            }
+        ]
+    },
+    "success": true,
+    "wallet_id": 5
+}
+```
+
+Finally, show the new URIs:
+```powershell
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
+{
+    "nft_list": [
+        {
+            "data_uris": [
+                "new_datauri.com",
+                "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
+            ],
+            "license_uris": [
+                "new_licenseuri.com"
+            ],
+            "metadata_uris": [
+                "new_metadatauri.com"
+            ],
+        }
+    ],
+    "success": true,
+    "wallet_id": 5
 }
 ```
 
@@ -1453,28 +1684,123 @@ This section will show you how to add a new data URI to your NFT. Remember, NFTs
 }
 ```
 
-
-
-
-
 ---
 
-## Transfer an NFT (RPC)
+### Transfer your NFTs
 
-This section will show you how to transfer an NFT from one TXCH wallet to another.
+This section will show you how to transfer an NFT to a new wallet. For this example, we'll generate a new set of keys and transfer two NFTs to it: one with a DID and one without one.
 
-:::important
-Before you can run this example, you'll need a second NFT wallet. One way to accomplish this would be to follow this guide on another computer. If you want to use the same computer, you'll need to generate another set of keys and create another NFT wallet. This can be accomplished by doing the following:
-* Run `chia keys generate` to generate a new key
-* Run `chia keys show` and copy the `First wallet address:` of the new key
-* Run `chia wallet show` and sync the new wallet key
-* Run `chia wallet nft create` to create a new NFT wallet with the new key
-* Run `chia wallet show` and sync the wallet key that contains the NFT
-:::
+1. Generate a new set of keys, which will receive the NFTs:
 
-Before continuing, be sure that you have a synced wallet that contains an NFT to transfer, as well as another wallet that will receive the NFT.
+```powershell
+(venv) $ chia keys generate
+Generating private key
+Added private key with public key fingerprint 3014780109
+WARNING: using a farmer address which we might not have the private keys for. We searched the first 50 addresses. Consider overriding txch13amy3jfp8kkmqa87eswytj3a8ef22nm8zwsf3ckptpm8rv72qtgqgvk6fs with txch1ape36g8rn8fm7d53z8rvngjkwhlkr83p28vnrpha94zt25szh8aq6anp3y
+WARNING: using a pool address which we might not have the private keys for. We searched the first 50 addresses. Consider overriding txch13amy3jfp8kkmqa87eswytj3a8ef22nm8zwsf3ckptpm8rv72qtgqgvk6fs with txch1ape36g8rn8fm7d53z8rvngjkwhlkr83p28vnrpha94zt25szh8aq6anp3y
+```
 
-1. Run the `nft_transfer_nft` RPC using the following values:
+2. Obtain the receive address for the new wallet with fingerprint 3014780109:
+```powershell
+(venv) $ chia keys show
+Showing all public keys derived from your master seed and private key:
+
+Fingerprint: 2473516996
+Master public key (m): a5eaca596431b5149b61ae707ab1de643db25d7415a29cd9a19eb7898c398c7da638e0ab06db1cf6a8d007c6032db636
+Farmer public key (m/12381/8444/0/0): a20ce686aa8b466b3535a11f043b328f8dec0f129cf85e5c2bce27bf14c7d652805865dc75ae501ea71fe56418c3e291
+Pool public key (m/12381/8444/1/0): b44a448fe6a003e02f0e84beb3cf8dc0774d941341443401241a848ebd2c2407ce07a0c6268c2d846903ee72bc70fc27
+First wallet address: txch1ape36g8rn8fm7d53z8rvngjkwhlkr83p28vnrpha94zt25szh8aq6anp3y
+
+Fingerprint: 3014780109
+Master public key (m): 96243c818a916a014c8c431c6f468e220e4b1f49d5a2acf9eab68d182be36b961677be48e080de6588bfe49be50942e3
+Farmer public key (m/12381/8444/0/0): ad6bb3da07c886fccf49528a0f0b50d27fcde387c9cdf8d897651590663f0a7c7fe67d568da4edee83bafa9f6de77071
+Pool public key (m/12381/8444/1/0): b879c9f384a7fc94f3195e613c0b22ff65718da9e0568394e205b7082c17dbfbb0935cefe29ab51bc2aed89e99b65ec2
+First wallet address: txch1nqpall7xesjrk8eggqxxzly2jsntrgv4usfhk5uckg8gsxfmvpxsgjvzz5
+```
+
+3. Get the coin IDs of each NFT to transfer:
+
+Wallet 5 (no DID):
+```powershell
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
+{
+    "nft_list": [
+        {
+            "chain_info": "((117 "new_datauri.com" "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg") (104 . 0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600) (28021 "new_metadatauri.com") (27765 "new_licenseuri.com") (29550 . 1) (29556 . 1))",
+            "data_hash": "0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600",
+            "data_uris": [
+                "new_datauri.com",
+                "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
+            ],
+            "launcher_id": "0xd2a9c664cb131b4a9516ad4750e49924f77a1f784d43a6544998d5c4beac6d2d",
+            "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+            "license_hash": "0x",
+            "license_uris": [
+                "new_licenseuri.com"
+            ],
+            "metadata_hash": "0x",
+            "metadata_uris": [
+                "new_metadatauri.com"
+            ],
+            "mint_height": 1150666,
+            "nft_coin_id": "0x1185a9fd7924b8d38062197ada0cc95d372c05892dfa347440914e0869dd6f01",
+            "owner_did": null,
+            "pending_transaction": false,
+            "royalty_percentage": null,
+            "royalty_puzzle_hash": null,
+            "series_number": 1,
+            "series_total": 1,
+            "supports_did": false,
+            "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+        }
+    ],
+    "success": true,
+    "wallet_id": 5
+}
+```
+
+Wallet 6 (has DID):
+```powershell
+(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 6}'
+{
+    "nft_list": [
+        {
+            "chain_info": "((117 "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 "new_metadatauri.com" "https://pastebin.com/raw/bnzGwjmB" "https://pastebin.com/raw/BHZc1suk" "https://pastebin.com/raw/bnzGwjmB") (27765 "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE") (29550 . 42) (29556 . 1337) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . 0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6))",
+            "data_hash": "0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4",
+            "data_uris": [
+                "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"
+            ],
+            "launcher_id": "0xa2982da3fda6f12e613eaf01770d8cd607102b9446c33793d580fee5d0c672be",
+            "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+            "license_hash": "0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6",
+            "license_uris": [
+                "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE"
+            ],
+            "metadata_hash": "0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51",
+            "metadata_uris": [
+                "new_metadatauri.com",
+                "https://pastebin.com/raw/bnzGwjmB",
+                "https://pastebin.com/raw/BHZc1suk",
+                "https://pastebin.com/raw/bnzGwjmB"
+            ],
+            "mint_height": 1150673,
+            "nft_coin_id": "0x0ee605a198dca410f4a820d4e2c8186c4d4e779d88330406b5e80579554e2213",
+            "owner_did": "0x289ffeb788c28a68ea8779332405f0d60407f4cbaac0f77ac32f2d57d55d8720",
+            "pending_transaction": false,
+            "royalty_percentage": 175,
+            "royalty_puzzle_hash": "0xe8731d20e399d3bf369111c6c9a25675ff619e2151d93186fd2d44b55202b9fa",
+            "series_number": 42,
+            "series_total": 1337,
+            "supports_did": true,
+            "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+        }
+    ],
+    "success": true,
+    "wallet_id": 6
+}
+```
+
+4. Run the `nft_transfer_nft` RPC for each NFT using the following values:
   * `wallet_id`: The `Wallet ID` of the NFT to transfer
   * `target_address`: The address of the NFT wallet to transfer to
   * `nft_coin_id`: The ID of the NFT coin, obtained from the `nft_get_nfts` RPC
@@ -1482,49 +1808,139 @@ Before continuing, be sure that you have a synced wallet that contains an NFT to
 If successful, the target address, coin id, and spend bundle will all be displayed. For example:
 
 ```powershell
-(venv) $ chia rpc wallet nft_transfer_nft '{"wallet_id": 2, "target_address": "txch167lgv3v86m6vzyr9s44w2xwsnuxcdvsw2lvsf7ru03cq6p7xyngs7mvju7", "nft_coin_id": "4296D4E49E2056DB5AEB62DF849851E61326DAEA4337825BE15410E7F4C07E32"}'
+(venv) $ chia rpc wallet nft_transfer_nft '{"wallet_id": 5, "target_address": "txch1nqpall7xesjrk8eggqxxzly2jsntrgv4usfhk5uckg8gsxfmvpxsgjvzz5", "nft_coin_id": "0x1185a9fd7924b8d38062197ada0cc95d372c05892dfa347440914e0869dd6f01"}'
 {
     "spend_bundle": {
-        "aggregated_signature": "0x91dc6a78a2ca1a0992c3b4c0f4cb93c2a8f04c58b9b82afe2b383975b1fb346e9f039f1dd50792383513c6645c8dfa9e061a52468ddefba25deb706c3c9e2bda8ac1431238d926c6eb3c23ee89f882e670b6a285717934af368d2e1db31def60",
+        "aggregated_signature": "0xa2e00566b404201a2e84eaf130ae7b1a3ee345f4b00b007154ed5f16c2bbd72206876c300942f823f180813d5b08f363029a3cf7a674b65e5b77e0ea9febc9aa354bc0e8a719071331d08bd5a2067f3c89278e43a2f4c3e9800f6e262383528c",
         "coin_solutions": [
             {
                 "coin": {
                     "amount": 1,
-                    "parent_coin_info": "0xeb46562a95a335f77b4d0d97458580674a10b210c849c1d01c06ec29d0bde8cc",
-                    "puzzle_hash": "0xb28550e1d3cec070aa79ff582d5327d5fed881c7b66acc2977e84e5a49109fe1"
+                    "parent_coin_info": "0xe2487e41652b3aa01f0937423ccd9e5ed3d3442accb71974ad1e5e2b240ac2e2",
+                    "puzzle_hash": "0x3690d884e384638122bd2c757a54dce2b2d0ca568a52849ff5a8396fd59431ab"
                 },
-                "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa0c2f3f7d54d254381fd33fbe2b6c031e5be3ba1267215a2fa182e064ed6015fefa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff04ffff04ff10ffff04ff81bfff808080ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff3affff04ff02ffff04ff17ffff04ff0bffff04ffff02ff2fff5f80ff808080808080ffff04ff81bfffff01ff8080808080808080ffff04ffff01ffffff49ff0233ffff0401ff0102ffffffff02ffff03ff05ffff01ff02ff22ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ff02ffff03ff17ffff01ff02ffff03ffff09ff47ffff0181e880ffff01ff02ffff03ffff09ffff02ff2effff04ff02ffff04ff81a7ff80808080ff0580ffff01ff02ff81a7ffff04ff0bffff04ff05ffff04ff820167ff8080808080ffff01ff088080ff0180ffff01ff02ff32ffff04ff02ffff04ff05ffff04ff0bffff04ff37ff80808080808080ff0180ffff01ff04ffff04ff0bffff04ff05ff808080ffff01ff80808080ff0180ffff02ffff03ff05ffff01ff04ff09ffff02ff2affff04ff02ffff04ff0dffff04ff0bff808080808080ffff010b80ff0180ff02ff26ffff04ff02ffff04ffff02ff32ffff04ff02ffff04ff05ffff04ff0bffff04ff17ff808080808080ffff04ff17ff8080808080ffffff04ff09ffff04ffff02ff2affff04ff02ffff04ff15ffff04ff0bff8080808080ff808080ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff22ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff2bffff01ff02ffff03ffff09ff818bff3880ffff01ff02ffff03ffff18ff8202cbff3480ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff4bff80808080808080ffff01ff04ff4bffff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff2fff808080808080808080ff0180ffff01ff02ffff03ffff15ff818bff8080ffff01ff04ff4bffff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff2fff8080808080808080ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff04ffff04ff23ffff04ff53ff808080ffff04ff6bff808080ffff04ff17ffff04ff2fff8080808080808080ff018080ff0180ffff01ff02ffff03ff2fffff01ff04ffff04ff38ffff04ffff02ff36ffff04ff02ffff04ff05ffff04ff81afffff04ffff0bff34ff5380ffff04ffff02ff2effff04ff02ffff04ff23ff80808080ffff04ffff0bff34ff0580ff8080808080808080ffff04ff17ff8201ef808080ff8080ffff01ff088080ff018080ff0180ff018080ffff04ffff01a0dd8135d546e291df295b376aa89fc409c8c50d7f655d1ff4e845637901bc2f8fffff04ffff01ffff75ffc04468747470733a2f2f696d616765732e706578656c732e636f6d2f70686f746f732f31313035333037322f706578656c732d70686f746f2d31313035333037322e6a70656780ffff68a014836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb080ffff04ffff01a081970d352e6a39a241eaf8ca510a0e669e40d778ba612621c60a50ef6cf29c7bffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0a9e78ce31daf07c9bb35339201d7ba3c2dc79df506e9214565ebab8d6e1c9d32313f1522e7fdc95a4f04d9fa38675b8fff018080ff018080808080ff01808080",
-                "solution": "0xffffa0c2f3f7d54d254381fd33fbe2b6c031e5be3ba1267215a2fa182e064ed6015fefffa0f38367ca5d4dd82f5ec7f76777ac0647d4b7b1a3f97fdb683530317a04deab2fff0180ff01ffffff80ffff01ffff33ffa0d7be864587d6f4c11065856ae519d09f0d86b20e57d904f87c7c700d07c624d1ff01ffffa0d7be864587d6f4c11065856ae519d09f0d86b20e57d904f87c7c700d07c624d1808080ff8080ff01ff808080"
+                "puzzle_reveal": ...,
+                "solution": ...
             }
         ]
     },
     "success": true,
-    "wallet_id": 2
+    "wallet_id": 5
 }
 ```
 
-2. Sync the wallet you just transferred the NFT to (whether it's on the same machine or a different one). After syncing is complete, run the `nft_get_nfts` rpc again to view the NFT in its new location:
+```powershell
+(venv) $ chia rpc wallet nft_transfer_nft '{"wallet_id": 6, "target_address": "txch1nqpall7xesjrk8eggqxxzly2jsntrgv4usfhk5uckg8gsxfmvpxsgjvzz5", "nft_coin_id": "0x0ee605a198dca410f4a820d4e2c8186c4d4e779d88330406b5e80579554e2213"}'
+{
+    "spend_bundle": {
+        "aggregated_signature": "0x826377fd91e337bc8fb17342f8d2c6fdd2e6bb45a89b3ed6fa27b7b933e5829192ef9a4d59c2929dc2f29ba2833963d10aee8019023208fbe0c9ecdfd9c82467f3994cc19d18692ae156927e13e64dc55388341e1f7dac29f5f913aa9cc81370",
+        "coin_solutions": [
+            {
+                "coin": {
+                    "amount": 1,
+                    "parent_coin_info": "0xf5c8951c18dba6482df3447329a2e92f432c8d93d7bcec4ec5488df8763c321b",
+                    "puzzle_hash": "0x981893d399db72e3ed0a8b7622558a378311c2c196e30e75e74c75742badd918"
+                },
+                "puzzle_reveal": ...,
+                "solution": ...
+            }
+        ]
+    },
+    "success": true,
+    "wallet_id": 6
+}
+```
+
+5. Sync the wallet you just transferred the NFT to (whether it's on the same machine or a different one). After syncing is complete, run `chia wallet show`. A new NFT wallet should have been created automatically.
+
+```powershell
+chia wallet show
+Wallet keys:
+1)   2473516996
+2) * 3014780109 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 3014780109):
+Wallet height: 1159136
+Sync status: Synced
+Balances, fingerprint: 3014780109
+
+Chia Wallet:
+   -Total Balance:         0.0 txch (0 mojo)
+   -Pending Total Balance: 0.0 txch (0 mojo)
+   -Spendable:             0.0 txch (0 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+NFT Wallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  NFT
+   -Wallet ID:             2
+```
+
+6. Run the `nft_get_nfts` rpc again to view the NFTs:
 
 ```powershell
 (venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
 {
     "nft_list": [
         {
-            "data_hash": "14836B86A48E1B2B5E857213AF97534704475B4C155D34B2CB83ED4B7CBA2BB0",
+            "chain_info": "((117 "new_datauri.com" "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg") (104 . 0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600) (28021 "new_metadatauri.com") (27765 "new_licenseuri.com") (29550 . 1) (29556 . 1))",
+            "data_hash": "0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600",
             "data_uris": [
-                "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
+                "new_datauri.com",
+                "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
             ],
-            "did_owner": "",
-            "edition_count": 1,
-            "edition_number": 1,
-            "launcher_id": "C2F3F7D54D254381FD33FBE2B6C031E5BE3BA1267215A2FA182E064ED6015FEF",
-            "license_hash": "",
-            "license_uris": [],
-            "metadata_hash": "",
-            "metadata_uris": [],
-            "nft_coin_id": "B5178AB54CD922889B4E97B2DDC0DD43FD85BE26F69DD3D697084C80AE4E9625",
-            "royalty": 0,
-            "version": "NFT0"
+            "launcher_id": "0xd2a9c664cb131b4a9516ad4750e49924f77a1f784d43a6544998d5c4beac6d2d",
+            "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+            "license_hash": "0x",
+            "license_uris": [
+                "new_licenseuri.com"
+            ],
+            "metadata_hash": "0x",
+            "metadata_uris": [
+                "new_metadatauri.com"
+            ],
+            "mint_height": 1150666,
+            "nft_coin_id": "0x3652afed15850be1d371f26f6a3789caf719fa15e79a10232ed64e6314c2f379",
+            "owner_did": null,
+            "pending_transaction": false,
+            "royalty_percentage": null,
+            "royalty_puzzle_hash": null,
+            "series_number": 1,
+            "series_total": 1,
+            "supports_did": false,
+            "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+        },
+        {
+            "chain_info": "((117 "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 "new_metadatauri.com" "https://pastebin.com/raw/bnzGwjmB" "https://pastebin.com/raw/BHZc1suk" "https://pastebin.com/raw/bnzGwjmB") (27765 "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE") (29550 . 42) (29556 . 1337) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . 0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6))",
+            "data_hash": "0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4",
+            "data_uris": [
+                "https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"
+            ],
+            "launcher_id": "0xa2982da3fda6f12e613eaf01770d8cd607102b9446c33793d580fee5d0c672be",
+            "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+            "license_hash": "0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6",
+            "license_uris": [
+                "https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE"
+            ],
+            "metadata_hash": "0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51",
+            "metadata_uris": [
+                "new_metadatauri.com",
+                "https://pastebin.com/raw/bnzGwjmB",
+                "https://pastebin.com/raw/BHZc1suk",
+                "https://pastebin.com/raw/bnzGwjmB"
+            ],
+            "mint_height": 1150673,
+            "nft_coin_id": "0x4b2587ae95b451d21f63f5863bbcc48b796b54bf5ee249ded334408d2ab85500",
+            "owner_did": null,
+            "pending_transaction": false,
+            "royalty_percentage": 175,
+            "royalty_puzzle_hash": "0xe8731d20e399d3bf369111c6c9a25675ff619e2151d93186fd2d44b55202b9fa",
+            "series_number": 42,
+            "series_total": 1337,
+            "supports_did": true,
+            "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
         }
     ],
     "success": true,
@@ -1534,3 +1950,14 @@ If successful, the target address, coin id, and spend bundle will all be display
 
 ---
 
+## Mainnet Usage
+
+After you are comfortable with creating and using DIDs and NFTs on the testnet, you may wish to move to mainnet. Please keep in mind that there are extra risks inherent to publishing code on a public blockchain. For example, NFT data, metadata and license hashes are not allowed to change after minting. Proceed with caution.
+
+That said, the code is the same for both testnet and mainnet usage. You can continue to run off of the release/1.4.0 code branch, which will eventually be merged into main.
+
+When you are ready to move to mainnet, the first step is to run `chia configure -t false`, which will instruct Chia to switch your configuration to mainnet.
+
+You should also generate a new set of keys and be extra careful to protect your seed phrase.
+
+Happy minting!

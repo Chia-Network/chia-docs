@@ -39,7 +39,7 @@ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 
 To run the same command on Windows, you need to escape the quotes, so it looks like this:
 ```powershell  
-chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
 
 ## Reference
@@ -76,8 +76,6 @@ Example:
 // Request
 (venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83"], "num_of_backup_ids_needed": 1, "fee": 10000000}'
 
----
-
 // Response
 {
     "my_did": "did:chia:1pzrm9dyhvu8hmqyzqmy0v3wyp7cn98jlxk49jv7mgkhvk229erhqmh6c2m",
@@ -110,6 +108,8 @@ Profile 1:
    -DID ID:                did:chia:1pzrm9dyhvu8hmqyzqmy0v3wyp7cn98jlxk49jv7mgkhvk229erhqmh6c2m
    -Wallet ID:             2
 ```
+
+---
 
 ### `did_set_wallet_name`
 
@@ -185,7 +185,7 @@ Example:
 
 ```json
 // Request
-chia rpc wallet did_get_wallet_name '{"wallet_id": 3}'
+(venv) $ chia rpc wallet did_get_wallet_name '{"wallet_id": 3}'
 
 // Response
 {
@@ -379,7 +379,7 @@ Example:
 
 ```json
 // Request
-chia rpc wallet did_get_metadata '{"wallet_id": 3}'
+(venv) $ chia rpc wallet did_get_metadata '{"wallet_id": 3}'
 
 // Response
 {
@@ -450,7 +450,7 @@ Example:
 
 ```json
 // Request
-chia rpc wallet did_get_pubkey '{"wallet_id": 2}'
+(venv) $ chia rpc wallet did_get_pubkey '{"wallet_id": 2}'
 
 // Response
 {
@@ -522,7 +522,7 @@ First wallet address: txch13w2ytvchereqawqjp4r09mqjhwk7unvndew2a400jxtu7q5kr7csq
 Finally, using the above values, output the attest data:
 ```json
 // Request
-chia rpc wallet did_create_attest '{"wallet_id": 4, "coin_name": "0x44a3e90ab1f103d6a259aa3009bdb34e9b092dce9f320f96342368df6b0555c7", "pubkey": "af8024892a231de462ed7f70abfc1a49372be4d2c34b80f9b48f06093a1629f7a0734c001eb0dd3942aeaecb372b70d2", "puzhash": "0xb83b62a297e44cb53878276e51db3daaf6b0a69ca8fdd4165c8c5bb1816289ea"}'
+(venv) $ chia rpc wallet did_create_attest '{"wallet_id": 4, "coin_name": "0x44a3e90ab1f103d6a259aa3009bdb34e9b092dce9f320f96342368df6b0555c7", "pubkey": "af8024892a231de462ed7f70abfc1a49372be4d2c34b80f9b48f06093a1629f7a0734c001eb0dd3942aeaecb372b70d2", "puzhash": "0xb83b62a297e44cb53878276e51db3daaf6b0a69ca8fdd4165c8c5bb1816289ea"}'
 
 // Response
 {
@@ -540,14 +540,14 @@ chia rpc wallet did_create_attest '{"wallet_id": 4, "coin_name": "0x44a3e90ab1f1
 The `attest_data` value can then be directed to a text file, which can later be used for recovery with the `did_recovery_spend` RPC. For example:
 
 ```powershell
-echo 6a8d474f7587eb25667d3dbb14918737962c159453d105b6224b7950a758512d:0000000144a3e90ab1f103d6a259aa3009bdb34e9b092dce9f320f96342368df6b0555c77ffee04b4796a1442b18ddb41644acd8de703ac23771a7bb779ff08cbc97cf290000000000000000ff01ffff3cffa044a3e90ab1f103d6a259aa3009bdb34e9b092dce9f320f96342368df6b0555c780ffff31ffb0af8024892a231de462ed7f70abfc1a49372be4d2c34b80f9b48f06093a1629f7a0734c001eb0dd3942aeaecb372b70d2ffa0b83b62a297e44cb53878276e51db3daaf6b0a69ca8fdd4165c8c5bb1816289ea808080c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000:7738c8bc6629a6ece9197280238fa2db9437a66d4dc09d8c7d8446956e91e905:b83b62a297e44cb53878276e51db3daaf6b0a69ca8fdd4165c8c5bb1816289ea:1 > attest1
+echo "6a8d474f7587eb25667d3dbb14918737962c159453d105b6224b7950a758512d:0000000144a3e90ab1f103d6a259aa3009bdb34e9b092dce9f320f96342368df6b0555c77ffee04b4796a1442b18ddb41644acd8de703ac23771a7bb779ff08cbc97cf290000000000000000ff01ffff3cffa044a3e90ab1f103d6a259aa3009bdb34e9b092dce9f320f96342368df6b0555c780ffff31ffb0af8024892a231de462ed7f70abfc1a49372be4d2c34b80f9b48f06093a1629f7a0734c001eb0dd3942aeaecb372b70d2ffa0b83b62a297e44cb53878276e51db3daaf6b0a69ca8fdd4165c8c5bb1816289ea808080c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000:7738c8bc6629a6ece9197280238fa2db9437a66d4dc09d8c7d8446956e91e905:b83b62a297e44cb53878276e51db3daaf6b0a69ca8fdd4165c8c5bb1816289ea:1" > attest1
 ```
 
 ---
 
 ### `did_get_information_needed_for_recovery`
 
-Functionality: Display all relevant information needed to recover a given DID
+Functionality: Display all relevant information needed to recover a given DID. This RPC must be called on a DID wallet that was created with `"did_type":"recovery"`.
 
 Usage: chia rpc wallet [OPTIONS] did_get_information_needed_for_recovery [REQUEST]
 
@@ -568,11 +568,20 @@ Example:
 
 ```json
 // Request
-[todo: maybe doesn't work yet]
-chia rpc wallet did_get_information_needed_for_recovery '{"wallet_id": 2}'
+(venv) $ chia rpc wallet did_get_information_needed_for_recovery '{"wallet_id": 2}'
 
 // Response
-Request failed: {'error': "'NoneType' object has no attribute 'name'", 'success': False}
+{
+    "backup_dids": [
+        "0x0fc4d8aea5b66cac7c29d93d9eee37b6c0bd9ffcd6b8e38e2c8810de5199c4d3"
+    ],
+    "coin_name": "025b4ed9eafab653a6e80c1c1603272cfec0e5c5591bb45a7025dadedba63e23",
+    "my_did": "did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga",
+    "newpuzhash": "0x3929e3a268d3d04b8a40f226b66f0ab4f00b5c12fd628bc18f8ce573e76b291f",
+    "pubkey": "0xa1b184cf85e9804ba1df27acd2efd4622366315293f2c2e06eae7d9776cd3ef474edd4d0f10323e8a7a817b5a42317de",
+    "success": true,
+    "wallet_id": 2
+}
 ```
 
 ---
