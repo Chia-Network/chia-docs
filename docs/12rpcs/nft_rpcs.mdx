@@ -56,11 +56,12 @@ Request Parameters:
 | wallet_id          | True     | The Wallet ID in which to mint an NFT |
 | uris               | True     | A list of URIs to mark the location(s) of the NFT |
 | hash               | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list
-| meta_uris          | False    | A list of URIs to mark the location(s) of the NFT’s metadata |
+| did_id             | False    | Optionally specify the DID to be associated with this NFT |
+| meta_uris          | False    | A list of URIs to mark the location(s) of the NFT's metadata |
 | meta_hash          | False    | The hash of the NFT's metadata
-| license_uris       | False    | A list of URIs to mark the location(s) of the NFT’s license
+| license_uris       | False    | A list of URIs to mark the location(s) of the NFT's license
 | license_hash       | False    | The hash of the NFT's license
-| royalty_address    | False    | The wallet address of the NFT’s artist. This is where royalties will be sent. It could be either an XCH address or a DID address
+| royalty_address    | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address
 | royalty_percentage | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0
 | target_address     | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address
 | series_number      | False    | If this NFT is part of a series, then this indicates the number/sequence of this NFT in the series

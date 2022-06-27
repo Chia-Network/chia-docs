@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-This document will guide you through the process of creating DIDs that conform to [Chia's DID standard](https://github.com/Chia-Network/chips/pull/18), as well as minting NFTs that adhere to [Chia's NFT standard](https://github.com/Chia-Network/chips/pull/19). This guide will demonstrate this functionality using both the Command-Line Interface (CLI) and Remote Procedure Calls (RPCs), on Windows, macOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's Electron wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnet.
+This document will guide you through the process of creating DIDs that conform to [Chia's DID standard](https://github.com/Chia-Network/chips/pull/18), as well as minting NFTs that adhere to [Chia's NFT standard](https://github.com/Chia-Network/chips/pull/19). It will demonstrate this functionality using both the Command-Line Interface (CLI) and Remote Procedure Calls (RPCs), on Windows, macOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's Electron wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnet.
 
 Detailed instructions for each of the commands from this tutorial are available from the following references:
 * CLI
@@ -34,7 +34,7 @@ The cost for minting and modifying NFTs is significantly higher. The following c
 | Assign DID to NFT	          | 107 million 	| 535 million     |
 | Adding URI to NFT w/ DID    |  71 million   | 355 million     |
 
-The maximum CLVM cost in a transaction block is 11 billion. If you plan to mint several NFTs at once, be careful not to exceed this cost or your CLVM program will fail. Even if your spend bundle's total cost is less than the maximum, it may take a very long time to be included in a block if an insufficient fee is included. We therefore recommended that you create multiple spend bundles with only a few mintings that adhere to the minimum fees laid out above, which will increase the likely hood of your blocks making it onto the chain in a timely manner.
+The maximum CLVM cost in a transaction block is 11 billion. If you plan to mint several NFTs at once, be careful not to exceed this cost or your CLVM program will fail. Even if your spend bundle's total cost is less than the maximum, it may take a very long time to be included in a block if an insufficient fee is included. We therefore recommended that you create multiple spend bundles with only a few mintings that adhere to the minimum fees laid out above, which will increase the likelihood of your blocks making it onto the chain in a timely manner.
 :::
 
 ---
@@ -72,10 +72,12 @@ This section will show you how to download and install Chia from the `release/1.
 Your firewall might give warnings when installing Chia. This is normal. Allow the installations to continue.
 :::
 
-1. We'll be running on Chia's testnet. If you don't have a synced testnet node, you can safely download a copy of the database. **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
+1. We'll be running on Chia's testnet. You can either run on a full node, or use the light wallet. A full node takes longer to sync (see detailed instructions below), but once it is synced, it is generally faster than the light wallet. You also have the option of starting the light wallet and switching to the full node after it is synced.
+
+  If you wish to run a full testnet node, you can safely download a copy of the database. **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
 
   :::note
-  The file you will download is around 15 GB, compressed. Uncompressed, it will be around 30 GB. Make sure you have at least this much free space, and ideally 50 GB.
+  The file you will download is around 20 GB, compressed. Uncompressed, it will be around 40 GB. Make sure you have at least this much free space, and ideally 60 GB.
   :::
 
   You may continue with the next steps while the download is in progress.
@@ -212,7 +214,7 @@ MacOS:
   If you ever need to display your address, run `chia keys show`. This command will only output your public keys and address; your private keys and seed phrase will not be shown.
   :::
 
-  Note: At this point we'll start the Chia light wallet, but not the full node. The only reason not to start the node now is because the database file might still be downloading. If you want to run the full node now, run steps 13, 14, and 15, then return here.
+  Note: At this point we'll start the Chia light wallet, but not the full node. As noted above, the full node is not required for minting NFTs, but it will generally be faster than the light wallet. The main reason not to start the node now is because the database file might still be downloading. If your database download has completed and you want to run the full node now, run steps 13, 14, and 15, then return here.
 
 10. Start your wallet by running:
 
@@ -428,7 +430,7 @@ Here's the general technique to obtain images and hashes:
   
   In all three cases, the hash for this sample image is `14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0`.
 
-The following is a list of the sample images and hashes this guide will use. For the NFTs without DIDs, we won't specify the metadata or license information. For the NFTs with DIDs, we will specify this data. Additionally, we'll use multiple copies of either the Metadata URI or the License URI with these NFTs. If multiple copies are used, the hash needs to match.
+The following is a list of the sample images and hashes this guide will use. For the NFTs with DIDs, we'll specify the metadata and license information. Additionally, we'll use multiple copies of the Metadata URI with these NFTs. For the NFTs without DIDs, we won't specify license or metadata information (this is only for simplicity -- normally you would want to specify this data).
 * CLI, no DID
   * URI: [https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg](https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg)
   * Hash: feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68
@@ -464,6 +466,7 @@ Chia NFTs use a list to store image URIs, so it is possible to add multiple loca
 
 ## DID/NFT Tutorial (CLI)
 
+The next section of this tutorial will demonstrate how to create and use DIDs and NFTs on the Command Line Interface (CLI). If you wish to use Remote Procedure Calls (RPCs) instead, you can skip ahead to the [RPC section](#didnft-tutorial-rpc).
 ### Create a DID wallet
 
 An NFT wallet has the option of being associated with a DID. In this section, we'll create a new DID. Later we'll create two NFT wallets -- one that is associated with a DID and one that is not.
@@ -504,10 +507,6 @@ Test DID:
 ---
 
 ### Create an NFT wallet
-
-:::tip
-You can create an NFT wallet via a CLI command or an RPC. This section will show you the CLI command. If you prefer to use an RPC, skip to the [next section](#create-an-nft-wallet-rpc "Create an NFT wallet (RPC)").
-:::
 
 First, we'll create an NFT wallet that is not associated with a DID:
 * Run `chia wallet nft create` to create a new NFT wallet. If you have multiple wallet fingerprints, be sure to select your wallet fingerprint that is synced and contains some TXCH:
@@ -568,8 +567,6 @@ DID-Linked NFT Wallet:
 Each NFT wallet can be anchored to either a DID or a public/private key pair. A public/private key pair can only contain a single NFT wallet, which will act as the "inbox" for all NFTs associated with that key pair. Each DID can also contain a single NFT wallet, which allows for the creation of multiple `NFT Wallets` inside the same `Wallet key`.
 :::
 
-If you have successfully created an NFT wallet from the CLI command shown above, feel free to skip the next section, which will show you how to create an NFT wallet using an RPC. Instead, head to the following section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
-
 ### Mint an NFT (no DID)
 
 For this example, we'll mint an NFT using only the required values:
@@ -578,7 +575,7 @@ For this example, we'll mint an NFT using only the required values:
 * `-nh`: The NFT hash (data hash). If this hash does not match the actual image hash from `-u`, the NFT creation will succeed. However, the image will not be viewable in the wallet
 
 ```powershell
-(venv) $ chia wallet nft mint -i 3 -u https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg -nh feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68
+(venv) $ chia wallet nft mint -i 3 -u https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg -nh feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68 -m 0.000265
 
 NFT minted Successfully with spend bundle: 
 {
@@ -613,7 +610,7 @@ NFT minted Successfully with spend bundle:
 
 ### Mint an NFT (with DID)
 
-Next we'll mint an NFT that is associated with a DID. For this example, we'll use all available options:
+Next we'll mint an NFT that is associated with a DID. For this example, we'll use most of the available options:
 
 * `-f` : The fingerprint of the wallet under which you want to mint the NFT
 * `-i` : The ID of your NFT wallet
@@ -628,10 +625,11 @@ Next we'll mint an NFT that is associated with a DID. For this example, we'll us
 * `-sn`: This NFT's number in the series
 * `-st`: The total number of NFTs in this series
 * `-rp`: The royalty percentage to be sent to the royalty address (`-ra`) with each sale. This number is expressed in basis points. For example, `175` would represent `1.75%`
+* `--no-did-ownership`: Disable DID ownership support. If this flag is not set, then DID ownership is supported by default
 * `-m` : The blockchain fee for this transaction, in XCH
 
 ```powershell
-(venv) $ chia wallet nft mint -f 2527948602 -i 4 -ra txch1sf7j7aes8y5akheuym7jrdjeqx359cmtnkgj43zyp4sct7qdz75qxvrr5k -ta txch182f65hgw2hdewmry389rvg4qgh4y58f2g80g2j5thjff9j4cngzs8m0s7k -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -sn 42 -st 1337 -rp 300 -m 0.00001
+(venv) $ chia wallet nft mint -f 2086972020 -i 4 -ra txch10e2hg2xkd7n2rfyh0frg6ls3q9v27ty0rfawxuvergrfyl0502vsx5se2t -ta txch1rhrkwf9a53v89r5ghn2du4e5vadt68crdfjuxcuq8zpykejw7vzq2t85nx -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 -mu "https://pastebin.com/raw/PnaQGQiH, https://pastebin.com/raw/KTwUQ8hM" -mh e9e9366f050e90ceb04a4778f2adfa02dfb565327d225eb35101f0de553ac20b -lu https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE -lh 30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6 -sn 42 -st 1337 -rp 300 -m 0.000615
 
 NFT minted Successfully with spend bundle: 
 {
@@ -671,34 +669,7 @@ NFT minted Successfully with spend bundle:
 ]}
 ```
 
-If successful, you will receive a JSON output, including the coin additions and removals involved in minting the NFT, as well as the spend bundle that was used. At the end of the output, you should see `"success": true,`.
-
-```powershell
-(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 2, "uris": ["https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"], "hash": "14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0", "royalty_percentage": 1500, "royalty_address": "txch1m4fshsg2cas5lmzh8x6n50mhcs2fehc3tucundczp0kk2z7t3cxsgj65pu"}'
-{
-    "nft_list": [
-        {
-            "data_hash": "14836B86A48E1B2B5E857213AF97534704475B4C155D34B2CB83ED4B7CBA2BB0",
-            "data_uris": [
-                "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
-            ],
-            "did_owner": "",
-            "edition_count": 1,
-            "edition_number": 1,
-            "launcher_id": "C2F3F7D54D254381FD33FBE2B6C031E5BE3BA1267215A2FA182E064ED6015FEF",
-            "license_hash": "",
-            "license_uris": [],
-            "metadata_hash": "",
-            "metadata_uris": [],
-            "nft_coin_id": "4296D4E49E2056DB5AEB62DF849851E61326DAEA4337825BE15410E7F4C07E32",
-            "royalty": 0,
-            "version": "NFT0"
-        }
-    ],
-    "success": true,
-    "wallet_id": 2
-}
-```
+If successful, you will receive a JSON output, including the coin additions and removals involved in minting the NFT, as well as the spend bundle that was used.
 
 2. Wait a few minutes for your NFT to be confirmed on the blockchain. To view your NFT, run the `nft_get_nfts` RPC, passing in your NFT wallet's ID. Eventually, the NFT will show up:
 
@@ -874,9 +845,9 @@ Each NFT has three URI lists:
 * Metadata URIs
 * License URIs
 
-It is _not_ possible to delete these lists or to remove any of their items. However, it is possible to _prepend_ new items to any of these lists. One reason to do this is if a link is broken. But keep in mind that if an invalid item is added, wallets and block explorers may read the invalid new item and not examine subsequent, valid items
+It is _not_ possible to delete these lists or to remove any of their items. However, it is possible to _prepend_ new items to any of these lists. One reason to do this is if a link is broken. But keep in mind that if an invalid item is added, wallets and block explorers may read the invalid new item and not examine subsequent, valid items.
 
-It is only possible to add one URI per spend. Exactly one of `-u` `-mu`, and `lu` is required. For this example, we'll add one of each of these items, which requires three separate spends. For simplicity, we'll just duplicate the URIs that already existed. The Current NFT Coin ID (`-ni`) will change with each spend. We'll add them to the DID-linked NFT:
+It is only possible to add one URI per spend. Exactly one of `-u` `-mu`, and `-lu` is required. For this example, we'll add one of each of these items, which requires three separate spends. For simplicity, we'll just duplicate the URIs that already existed. The Current NFT Coin ID (`-ni`) will change with each spend. We'll add them to the DID-linked NFT:
 
 ```powershell
 (venv) $ chia wallet nft add_uri -i 4 -ni 5cdfe3eb4429ad5cb12ab549b6d2f0f7d919fa9f4389d187ad7414f747a86bd4 -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -m 0.00001
@@ -1058,6 +1029,7 @@ NFT transferred successfully with spend bundle:
 ---
 
 ## DID/NFT Tutorial (RPC)
+The next section of this tutorial will demonstrate how to create and use DIDs and NFTs using Remote Procedure Calls (RPCs). If you wish to use the Command Line Interface (CLI) instead, head to the [CLI section](#didnft-tutorial-cli).
 
 ### Create a DID wallet
 
@@ -1081,7 +1053,11 @@ If you already created an NFT wallet using the CLI command from the previous sec
 
 In this section, we'll start with a brand new wallet fingerprint. However, you'll still need an existing DID to set up a new DID with this RPC. As detailed earlier in this guide, this can be created by running `chia wallet did create -n "Backup DID"`
 
-1. Run `chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["<existing DID ID>"], "num_of_backup_ids_needed": 1, "fee": <amount in mojos>}'`. This will create a DID wallet containing 1 mojo. It will also use a backup DID for recovery. Finally, it will add an optional fee in mojos. The recommended amount is 10 million. Even if you don't specify a fee, your wallet must contain at least 1 mojo in order to run this RPC:
+1. Run `chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["<existing DID ID>"], "num_of_backup_ids_needed": 1, "fee": <amount in mojos>}'`.
+  * This will create a DID wallet containing 1 mojo
+  * It will also use a backup DID for recovery
+  * Finally, it will add an optional fee in mojos. The recommended amount is 10 million
+  * Even if you don't specify a fee, your wallet must contain at least 1 mojo in order to run this RPC:
 
 ```powershell
 (venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["did:chia:1plzd3t49kek2clpfmy7eam3hkmqtm8lu66uw8r3v3qgdu5vecnfsmsdmm7"], "num_of_backup_ids_needed": 1, "fee": 10000000}'
@@ -1210,18 +1186,19 @@ My NFT Wallet (RPC/DID):
 1. Mint your NFT using the following values:
   * `wallet_id`: The ID of your NFT wallet
   * `uris`: A comma-separated list of URIs where this image may be found. We'll only use one URI for this example. Be sure to add two backslashes (`\\`) to escape any special characters in the URI, such as `?` and `=`
-  * `hash`: The hash you just calculated. The RPC will not verify that this hash is correct. Be sure to double-check this, ideally using multiple methods to calculate the hash
+  * `hash`: The image hash. The RPC will not verify that this hash is correct. Be sure to double-check this, ideally using multiple methods to calculate the hash
 
 The command will end up looking like this:
 
 ```powershell
-(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 5, "uris": ["https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"], "hash": "995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600"}'
+(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 5, "uris": ["https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"], "hash": "995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600", "fee": 265000000}'
 ```
 
 If successful, you will receive a JSON output, including the coin additions and removals involved in minting the NFT, as well as the spend bundle that was used. At the end of the output, you should see `"success": true,`.
 
 ```powershell
-(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 5, "uris": ["https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"], "hash": "995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600"}'
+(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 5, "uris": ["https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"], "hash": "995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600", "fee": 265000000}'
+
 {
     "spend_bundle": {
         "aggregated_signature": "0xb5dee0fd86ccd2c136b173dd8d0b8ee5541365f4266764b6361914a4b1f3b53bc9e0004cc248adc6b9f9a8f8c9a045420b0e4dccaabd6645b4c0dd2d18037b70537f9e653abd438df12471a68c4dc640d95bc4c387c67ea247ad5752f856b092",
@@ -1302,7 +1279,8 @@ If successful, you will receive a JSON output, including the coin additions and 
 1. Mint your NFT using the following values:
   * `wallet_id`: The ID of your NFT wallet
   * `uris`: A comma-separated list of URIs where this image may be found. We'll only use one URI for this example. Be sure to add two backslashes (`\\`) to escape any special characters in the URI, such as `?` and `=`
-  * `hash`: The hash you just calculated. The RPC will not verify that this hash is correct. Be sure to double-check this, ideally using multiple methods to calculate the hash
+  * `hash`: The image hash. The RPC will not verify that this hash is correct. Be sure to double-check this, ideally using multiple methods to calculate the hash
+  * `did_id`: Optionally specify the DID to be associated with this NFT
   * `meta_uris`: A list of URIs to mark the location(s) of the NFT's metadata
   * `meta_hash`:The has of the NFT's metadata
   * `license_uris`: A list of URIs to mark the location(s) of the NFT's license. For this example, we'll use [Chia's Apache licence](https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE)
@@ -1317,7 +1295,7 @@ If successful, you will receive a JSON output, including the coin additions and 
 The command will end up looking like this:
 
 ```powershell
-(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 6, "uris": ["https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"], "hash": "0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4", "meta_uris": ["https://pastebin.com/raw/BHZc1suk", "https://pastebin.com/raw/bnzGwjmB"], "meta_hash": "07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51", "license_uris": ["https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE"], "license_hash": "30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6", "royalty_address": "txch1ape36g8rn8fm7d53z8rvngjkwhlkr83p28vnrpha94zt25szh8aq6anp3y", "royalty_percentage": 175, "target_address": "txch1ezy69gr6gpmu5e3hvyrn07ls7gqrw66s93pt555xcw50x25a2g7q3l3f8m", "series_number": 42, "series_total": 1337}'
+(venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 6, "uris": ["https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg"], "hash": "0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4", "meta_uris": ["https://pastebin.com/raw/BHZc1suk", "https://pastebin.com/raw/bnzGwjmB"], "meta_hash": "07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51", "license_uris": ["https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE"], "license_hash": "30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6", "royalty_address": "txch1ape36g8rn8fm7d53z8rvngjkwhlkr83p28vnrpha94zt25szh8aq6anp3y", "royalty_percentage": 175, "target_address": "txch1ezy69gr6gpmu5e3hvyrn07ls7gqrw66s93pt555xcw50x25a2g7q3l3f8m", "series_number": 42, "series_total": 1337, "fee": 615000000}'
 
 {
     "spend_bundle": {
@@ -1411,7 +1389,6 @@ If successful, you will receive a JSON output, including the coin additions and 
 ---
 
 ### Get info about your NFTs
-
 There are two RPCs that show info about NFTs. One will show all NFTs in a wallet, and the other will only show a specific NFT.
 
 1. `chia rpc wallet nft_get_nfts '{"wallet_id": <wallet ID>}'`
@@ -1496,7 +1473,7 @@ For example:
 ---
 
 ### Add a URI to your NFTs
-This section will show you how to add a new URI to your NFT. As a reminder, NFT contain URI lists for data, metadata, and license. The current owner may add URIs as needed, but they may not be removed. The URIs are recommended to their corresponding data, metadata, and license hashes  This helps to obtain digital permanence while decreasing the likelihood of fraud from changing URIs.
+This section will show you how to add a new URI to your NFT. As a reminder, NFTs contain URI lists for data, metadata, and license. The current owner may add URIs as needed, but they may not be removed. The URIs are recommended to hash to their corresponding data, metadata, and license hashes. This helps to obtain digital permanence while decreasing the likelihood of fraud from changing URIs.
 
 A few caveats:
 * You can only update one type of key in one spend, and you can only add a single URI per spend
@@ -1952,7 +1929,7 @@ NFT Wallet:
 
 ## Mainnet Usage
 
-After you are comfortable with creating and using DIDs and NFTs on the testnet, you may wish to move to mainnet. Please keep in mind that there are extra risks inherent to publishing code on a public blockchain. For example, NFT data, metadata and license hashes are not allowed to change after minting. Proceed with caution.
+After you are comfortable with creating and using DIDs and NFTs on the testnet, you may wish to move to mainnet. Please keep in mind that there are extra risks inherent to publishing code on a public blockchain. For example, an NFT's data, metadata and license hashes are not allowed to change after minting. Proceed with caution.
 
 That said, the code is the same for both testnet and mainnet usage. You can continue to run off of the release/1.4.0 code branch, which will eventually be merged into main.
 
