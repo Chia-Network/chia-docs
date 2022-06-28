@@ -467,6 +467,7 @@ Chia NFTs use a list to store image URIs, so it is possible to add multiple loca
 ## DID/NFT Tutorial (CLI)
 
 The next section of this tutorial will demonstrate how to create and use DIDs and NFTs on the Command Line Interface (CLI). If you wish to use Remote Procedure Calls (RPCs) instead, you can skip ahead to the [RPC section](#didnft-tutorial-rpc).
+
 ### Create a DID wallet
 
 An NFT wallet has the option of being associated with a DID. In this section, we'll create a new DID. Later we'll create two NFT wallets -- one that is associated with a DID and one that is not.
@@ -571,7 +572,7 @@ Each NFT wallet can be anchored to either a DID or a public/private key pair. A 
 
 For this example, we'll mint an NFT using only the required values:
 * `-i`: The ID of your NFT wallet
-* `-u`: A comma-separated list of URIs where this image may be found. We'll only use one URI for this example. Be sure to add two backslashes (`\\`) to escape any special characters in the URI, such as `?` and `=`
+* `-u`: A comma-separated list of URIs where this image may be found. We'll only use one URI for this example. If you are using Linux or MacOS, be sure to add one backslash (`\`) to escape any special characters in the URI, such as `?` and `=`. If you are using Windows, you need two backslashes (`\\`) instead of `one
 * `-nh`: The NFT hash (data hash). If this hash does not match the actual image hash from `-u`, the NFT creation will succeed. However, the image will not be viewable in the wallet
 
 ```powershell
@@ -1029,6 +1030,7 @@ NFT transferred successfully with spend bundle:
 ---
 
 ## DID/NFT Tutorial (RPC)
+
 The next section of this tutorial will demonstrate how to create and use DIDs and NFTs using Remote Procedure Calls (RPCs). If you wish to use the Command Line Interface (CLI) instead, head to the [CLI section](#didnft-tutorial-cli).
 
 ### Create a DID wallet
@@ -1198,7 +1200,6 @@ If successful, you will receive a JSON output, including the coin additions and 
 
 ```powershell
 (venv) $ chia rpc wallet nft_mint_nft '{"wallet_id": 5, "uris": ["https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"], "hash": "995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600", "fee": 265000000}'
-
 {
     "spend_bundle": {
         "aggregated_signature": "0xb5dee0fd86ccd2c136b173dd8d0b8ee5541365f4266764b6361914a4b1f3b53bc9e0004cc248adc6b9f9a8f8c9a045420b0e4dccaabd6645b4c0dd2d18037b70537f9e653abd438df12471a68c4dc640d95bc4c387c67ea247ad5752f856b092",
@@ -1389,6 +1390,7 @@ If successful, you will receive a JSON output, including the coin additions and 
 ---
 
 ### Get info about your NFTs
+
 There are two RPCs that show info about NFTs. One will show all NFTs in a wallet, and the other will only show a specific NFT.
 
 1. `chia rpc wallet nft_get_nfts '{"wallet_id": <wallet ID>}'`
