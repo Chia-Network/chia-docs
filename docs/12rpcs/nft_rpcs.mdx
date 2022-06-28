@@ -12,23 +12,25 @@ import TabItem from '@theme/TabItem';
 
 ## Commands
 
-* [`nft_mint_nft`](#nft_mint_nft)
-* [`nft_get_nfts`](#nft_get_nfts)
-* [`nft_get_info`](#nft_get_info)
-* [`nft_transfer_nft`](#nft_transfer_nft)
-* [`nft_add_uri`](#nft_add_uri)
+- [`nft_mint_nft`](#nft_mint_nft)
+- [`nft_get_nfts`](#nft_get_nfts)
+- [`nft_get_info`](#nft_get_info)
+- [`nft_transfer_nft`](#nft_transfer_nft)
+- [`nft_add_uri`](#nft_add_uri)
 
 ## Note about Windows
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
-  
+
 For example, here is a typical RPC command on Linux and MacOS:
+
 ```powershell
 (venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
 To run the same command on Windows, you need to escape the quotes, so it looks like this:
-```powershell  
+
+```powershell
 (venv) C:\> chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
 
@@ -44,39 +46,39 @@ Usage: chia rpc wallet [OPTIONS] nft_mint_nft [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter          | Required | Description |
-|:-------------------|:---------|:------------|
-| wallet_id          | True     | The Wallet ID in which to mint an NFT |
-| uris               | True     | A list of URIs to mark the location(s) of the NFT |
-| hash               | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list
-| did_id             | False    | Optionally specify the DID to be associated with this NFT |
-| meta_uris          | False    | A list of URIs to mark the location(s) of the NFT's metadata |
-| meta_hash          | False    | The hash of the NFT's metadata
-| license_uris       | False    | A list of URIs to mark the location(s) of the NFT's license
-| license_hash       | False    | The hash of the NFT's license
-| royalty_address    | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address
-| royalty_percentage | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0
-| target_address     | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address
-| series_number      | False    | If this NFT is part of a series, then this indicates the number/sequence of this NFT in the series
-| series_total       | False    | If this NFT is part of a series, then this indicates the total number of NFTs in the series
-| fee                | False    | The one-time blockchain fee to be used upon minting the NFT
+| Parameter          | Required | Description                                                                                                                                                                                       |
+| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| wallet_id          | True     | The Wallet ID in which to mint an NFT                                                                                                                                                             |
+| uris               | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                 |
+| hash               | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                   |
+| did_id             | False    | Optionally specify the DID to be associated with this NFT                                                                                                                                         |
+| meta_uris          | False    | A list of URIs to mark the location(s) of the NFT's metadata                                                                                                                                      |
+| meta_hash          | False    | The hash of the NFT's metadata                                                                                                                                                                    |
+| license_uris       | False    | A list of URIs to mark the location(s) of the NFT's license                                                                                                                                       |
+| license_hash       | False    | The hash of the NFT's license                                                                                                                                                                     |
+| royalty_address    | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                  |
+| royalty_percentage | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0 |
+| target_address     | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                   |
+| series_number      | False    | If this NFT is part of a series, then this indicates the number/sequence of this NFT in the series                                                                                                |
+| series_total       | False    | If this NFT is part of a series, then this indicates the total number of NFTs in the series                                                                                                       |
+| fee                | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                       |
 
 Example 1 - Mint an NFT without using a DID:
 
 ```json
 // Request
 (venv) $ chia rpc wallet nft_mint_nft '{
-  "wallet_id": 3, 
+  "wallet_id": 3,
   "uris": [
     "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
-  ], 
+  ],
   "hash": "14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0"
 }'
 
@@ -120,11 +122,12 @@ Example 1 - Mint an NFT without using a DID:
 ```
 
 Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and hashes, as well as royalties:
+
 ```json
 // Request
 (venv) $ chia rpc wallet nft_mint_nft '{
-  "wallet_id": 4, 
-  "uris": ["https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"], 
+  "wallet_id": 4,
+  "uris": ["https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"],
   "hash": "14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0",
   "meta_uris": ["https://metadata_example.com", "https://metadata_example2.com"],
   "meta_hash": "868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e",
@@ -228,15 +231,15 @@ Usage: chia rpc wallet [OPTIONS] nft_get_nfts [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                   |
+| :-------- | :------- | :-------------------------------------------- |
 | wallet_id | True     | The Wallet ID from which to retrieve the NFTs |
 
 Example:
@@ -287,19 +290,19 @@ Usage: chia rpc wallet [OPTIONS] nft_transfer_nft [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter      | Required | Description |
-|:---------------|:---------|:------------|
-| wallet_id      | True     | The Wallet ID of the NFT to transfer |
+| Parameter      | Required | Description                                                                                                         |
+| :------------- | :------- | :------------------------------------------------------------------------------------------------------------------ |
+| wallet_id      | True     | The Wallet ID of the NFT to transfer                                                                                |
 | target_address | True     | The address to transfer the NFT to. For NFT0 this must be an XCH address. For NFT1 this could also be a DID address |
-| nft_coin_id    | True     | The coin ID of the NFT to transfer
-| fee            | False    | The one-time blockchain fee to be used upon transferring the NFT
+| nft_coin_id    | True     | The coin ID of the NFT to transfer                                                                                  |
+| fee            | False    | The one-time blockchain fee to be used upon transferring the NFT                                                    |
 
 Example:
 
@@ -307,9 +310,9 @@ Example:
 // Request
 (venv) $ chia rpc wallet nft_transfer_nft '
 {
-    "wallet_id": 2, 
-    "target_address": "txch13w2ytvchereqawqjp4r09mqjhwk7unvndew2a400jxtu7q5kr7csqy70f7", 
-    "nft_coin_id": "0x2691a4aa3533a3b3ef57cc8f70af22f1238d8961fb6b98b4f48eb34b61dc47b1", 
+    "wallet_id": 2,
+    "target_address": "txch13w2ytvchereqawqjp4r09mqjhwk7unvndew2a400jxtu7q5kr7csqy70f7",
+    "nft_coin_id": "0x2691a4aa3533a3b3ef57cc8f70af22f1238d8961fb6b98b4f48eb34b61dc47b1",
     "fee": 10000000
 }'
 
@@ -353,17 +356,17 @@ Usage: chia rpc wallet [OPTIONS] nft_get_info [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter      | Required | Description |
-|:---------------|:---------|:------------|
-| wallet_id      | True     | The Wallet ID of the NFT from which to retrieve info |
-| coin_id        | True     | The coin ID of the NFT about which to retrieve info |
+| Parameter | Required | Description                                          |
+| :-------- | :------- | :--------------------------------------------------- |
+| wallet_id | True     | The Wallet ID of the NFT from which to retrieve info |
+| coin_id   | True     | The coin ID of the NFT about which to retrieve info  |
 
 :::info
 `coin_id` can refer to the specific `nft_coin_id` pertaining to this NFT, or to the `launcher_id`, or to the bech32m encoded launcher id
@@ -374,7 +377,7 @@ Example:
 ```json
 // Request
 (venv) $ chia rpc wallet nft_get_info '{
-    "wallet_id": 4, 
+    "wallet_id": 4,
     "coin_id": "0x821fdd13fe209466f1c69d82eb951cf630d28e901c2e14285d8a574dbde034c4"
 }'
 
@@ -390,7 +393,7 @@ Example:
         "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
         "license_hash": "0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82",
         "license_uris": [
-            "https://license_example.com", 
+            "https://license_example.com",
             "https://license_example2.com"
         ],
         "metadata_hash": "0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e",
@@ -411,7 +414,7 @@ Example:
     },
     "success": true
 }
-````
+```
 
 ---
 
@@ -423,25 +426,26 @@ Usage: chia rpc wallet [OPTIONS] nft_add_uri [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter      | Required | Description |
-|:---------------|:---------|:------------|
-| wallet_id      | True     | The Wallet ID of the DID wallet to transfer |
-| nft_coin_id    | True     | The coin ID of the NFT on which to add a URI |
-| key            | True     | Must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI) |
-| uri            | True     | The URI to add |
+| Parameter   | Required | Description                                                               |
+| :---------- | :------- | :------------------------------------------------------------------------ |
+| wallet_id   | True     | The Wallet ID of the DID wallet to transfer                               |
+| nft_coin_id | True     | The coin ID of the NFT on which to add a URI                              |
+| key         | True     | Must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI) |
+| uri         | True     | The URI to add                                                            |
 
 :::info
-* You can only update one type of key in one spend, and you can only add a single URI per spend
-* The new URI will be prepended to the existing list
-* If the new URI is inaccessible, some wallets may not continue to traverse the URI list
-:::
+
+- You can only update one type of key in one spend, and you can only add a single URI per spend
+- The new URI will be prepended to the existing list
+- If the new URI is inaccessible, some wallets may not continue to traverse the URI list
+  :::
 
 Example:
 
@@ -449,9 +453,9 @@ Example:
 // Request
 (venv) $ chia rpc wallet nft_add_uri '
 {
-    "wallet_id": 4, 
-    "nft_coin_id": "0x9bcf429079bd8e394658a3f0c43c6641c9f92d0dcc1770eeb6be6588a49fc925", 
-    "key": "mu", 
+    "wallet_id": 4,
+    "nft_coin_id": "0x9bcf429079bd8e394658a3f0c43c6641c9f92d0dcc1770eeb6be6588a49fc925",
+    "key": "mu",
     "uri": "https://new_metadata_uri.com"
 }'
 
@@ -492,13 +496,13 @@ Show the updated NFT:
             "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
             "license_hash": "0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82",
             "license_uris": [
-                "https://license_example.com", 
+                "https://license_example.com",
                 "https://license_example2.com"
             ],
             "metadata_hash": "0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e",
             "metadata_uris": [
                 "https://new_metadata_uri.com",
-                "https://metadata_example.com", 
+                "https://metadata_example.com",
                 "https://metadata_example2.com"
             ],
             "mint_height": 1127304,

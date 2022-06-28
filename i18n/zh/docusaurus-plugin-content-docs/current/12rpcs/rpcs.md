@@ -13,19 +13,19 @@ sidebar_position: 1
 
 The chia node and services come with a JSON rpc api server that allows you to access information and control the services.
 These are accessible via HTTP, WebSockets, or via client SDKs.
-The ports can be configured in `~/.chia/mainnet/config/config.yaml`. 
-The rpc ports should not be exposed to the internet. 
+The ports can be configured in `~/.chia/mainnet/config/config.yaml`.
+The rpc ports should not be exposed to the internet.
 TLS certificates are used to secure the communication.
 
 </details>
 
 ## 默认端口：
 
-* 守护进程：55400
-* 全节点：8555
-* 农民：8559
-* 收割机：8560
-* 钱包：9256
+- 守护进程：55400
+- 全节点：8555
+- 农民：8559
+- 收割机：8560
+- 钱包：9256
 
 <details>
 <summary>原文参考</summary>
@@ -50,7 +50,7 @@ TLS certificates are used to secure the communication.
 - ### HTTP/JSON
 
 The certificates must be used when calling the RPCs from the command line, make sure to use the correct certificates for the services you are calling.
-All endpoints are made with POST with JSON data. The response is a JSON dictionary with a success field, which can be true or false. 
+All endpoints are made with POST with JSON data. The response is a JSON dictionary with a success field, which can be true or false.
 
 </details>
 
@@ -60,12 +60,12 @@ All endpoints are made with POST with JSON data. The response is a JSON dictiona
 
 ```json
 {
-    "command": "get_blockchain_state",
-    "ack": false,
-    "data": {},
-    "request_id": "123456",
-    "destination": "wallet",
-    "origin": "ui",
+  "command": "get_blockchain_state",
+  "ack": false,
+  "data": {},
+  "request_id": "123456",
+  "destination": "wallet",
+  "origin": "ui"
 }
 ```
 
@@ -79,12 +79,12 @@ TODO: Explain how to call a Websocket RPC, examples can be found here: https://g
 
 ```json
 {
-    "command": "get_blockchain_state",
-    "ack": false,
-    "data": {},
-    "request_id": "123456",
-    "destination": "wallet",
-    "origin": "ui",
+  "command": "get_blockchain_state",
+  "ack": false,
+  "data": {},
+  "request_id": "123456",
+  "destination": "wallet",
+  "origin": "ui"
 }
 ```
 
@@ -122,12 +122,12 @@ There is also another client here: https://github.com/freddiecoleman/chia-client
 
 服务 RPC API 记录在以下部分：
 
-* 共享：所有服务共享的 RPC
-* 全节点
-* 农民
-* 收割机
-* 时间领主
-* 钱包（这个 API 仍然是一个 WIP，可能很快会改变）
+- 共享：所有服务共享的 RPC
+- 全节点
+- 农民
+- 收割机
+- 时间领主
+- 钱包（这个 API 仍然是一个 WIP，可能很快会改变）
 
 <details>
 <summary>原文参考</summary>
@@ -136,11 +136,12 @@ There is also another client here: https://github.com/freddiecoleman/chia-client
 
 The service RPC APIs are documented in the following sections:
 TODO: add links here and create the other sections
-* Shared: RPCs that all services share
-* Full Node
-* Farmer
-* Harvester
-* Timelord
-* Wallet (This API is still a WIP and likely to change soon)
+
+- Shared: RPCs that all services share
+- Full Node
+- Farmer
+- Harvester
+- Timelord
+- Wallet (This API is still a WIP and likely to change soon)
 
 </details>

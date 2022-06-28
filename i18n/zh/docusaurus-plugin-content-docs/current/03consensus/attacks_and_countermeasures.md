@@ -6,7 +6,6 @@ sidebar_position: 14
 
 > Relevant Attacks and Countermeasures
 
-
 ## 51% (46%) 攻击：
 
 51%（实际上是 46%，如下所述）攻击涉及创建一个替代链，该链最终达到比诚实链更高的权重，并迫使用户重新组织。这是经典的远程攻击，存在于包括奇亚在内的许多区块链网络以及工作量证明系统中。
@@ -14,6 +13,7 @@ sidebar_position: 14
 在这次攻击中，控制至少 46% 网络空间的人创建了一个替代链，最终变得比诚实链更重。
 
 奇亚的时空证明共识和工作证明之间有两个主要区别。
+
 1. 在奇亚中，攻击者可以同时在多条链上扩展和耕种，使得攻击只需要 46% 的网络空间。不需要快速 VDF 即可获得此优势。因此，46% 的假设应该用作远程攻击的基线。
 2. 在奇亚，如果攻击者拥有全网最快的 VDF，他们可以获得额外的空间优势/提升。（如果攻击者的 VDF 甚至比最快的 VDF 稍微慢一点，它也不会给他们任何优势。）
 
@@ -27,6 +27,7 @@ A 51% (actually 46%, as explained below) attack involves creating an alternate c
 In this attack, someone who controls at least 46% of the network space creates an alternate chain, which eventually becomes heavier than the honest chain.
 
 There are two main differences between Chia's Proof of Space and Time consensus and Proof of Work.
+
 1. In Chia, the attacker can extend and farm on many chains simultaneously, making the attack possible with only 46% of the network space. A fast VDF is not required to gain this advantage. Therefore, a 46% assumption should used as the base line for a long-range attack.
 2. In Chia, if the attacker has the fastest VDF on the entire network, they can get an additional space advantage/boost. (If the attacker's VDF is even slightly slower than the fastest VDF, it will not give them any advantage.)
 
@@ -63,7 +64,7 @@ The reason for receiving just a minor boost is because the alternative chains be
 
 The actual amount of space required to perform this attack (for the attacker to get a heavier chain than the rest of the network combined) is 46.3%, due to the ability for an attacker to "try" different combinations of blocks, for example omitting or not omitting the first block.
 
-If there was a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% is required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 46%. 
+If there was a new proof of space challenge for every single block, the attacker could multiply their space by a factor of e=2.718, where only 27% is required to overtake the network. Chia has chosen to mitigate this attack vector by setting the expected number of blocks per sub-slot to 32. This increases the attacker's required space to 46%.
 
 However, Chia also chose not to increase the number of blocks per sub-slot to a number greater than 32. Doing so would decrease the time between blocks, which would allow a VDF that is only slightly faster than all others to orphan blocks more easily. As it stands, with 32 blocks per sub-slot, an attacker would need to have a significantly faster VDF than everyone else in order to successfully orphan any blocks.
 
@@ -101,7 +102,7 @@ This reduces the required space from 46% to approximately 30% of the total netwo
 <details>
 <summary>原文参考</summary>
 
-- ## Chia space / global hard drive space 
+- ## Chia space / global hard drive space
 
 There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to 46% attacks. Therefore the more space taken by the Chia network, the more secure the network is.
 
@@ -118,11 +119,12 @@ The most likely long-term scenario is that rewards per TB will be sufficiently l
 在正常操作下，每个时隙有 32 个块。
 
 在假设的 100% 攻击下：
-1. 难度将人为减半，临时允许每个时隙创建64个区块。
+
+1. 难度将人为减半，临时允许每个时隙创建 64 个区块。
 2. 然后人为地将难度增加了 4 倍，暂时允许每个时隙 16 个块。
 3. 重复步骤 1。
 
-这种攻击的结果是每个时隙平均创造 (64+16)/2 = 40 个区块奖励，奖励增加 25%。 这也是Chia选择根据区块数量触发难度调整的原因。 如果在当前系统下尝试这种攻击，它会减慢和加速网络，但不会产生任何额外的奖励。
+这种攻击的结果是每个时隙平均创造 (64+16)/2 = 40 个区块奖励，奖励增加 25%。 这也是 Chia 选择根据区块数量触发难度调整的原因。 如果在当前系统下尝试这种攻击，它会减慢和加速网络，但不会产生任何额外的奖励。
 
 <details>
 <summary>原文参考</summary>
@@ -134,6 +136,7 @@ If the difficulty adjustment were triggered every X VDF slots, as opposed to eve
 Under normal operation, there are 32 blocks per slot.
 
 Under the hypothetical 100% attack:
+
 1. The difficulty would be artificially cut in half, temporarily allowing 64 blocks to be created per slot.
 2. The difficulty would then be artificially increased by 4x, temporarily allowing 16 blocks per slot.
 3. Repeat step 1.
@@ -204,7 +207,6 @@ In any case, this attack will not become feasible until at least 2026, given pro
 如果攻击者没有达到总共 51% 的空间（通过 VDF 提升和扩展许多链如上），更快的 VDF 的有用性会大大降低。 这是因为块的包含和排除不取决于您执行 VDF 的速度，而是取决于它是否小于子时隙迭代。此外，攻击者需要网络其余部分的空间才能前进，因此必须向网络释放挑战。
 
 在某些块非常靠近的情况下，拥有更快的 VDF 可以让攻击者孤立某些块，尽管这不会在短期内增加奖励（它会伤害他人，但不会使攻击者受益），并且有风险长期破坏网络（孤立块会降低公众信任）。
-
 
 <details>
 <summary>原文参考</summary>

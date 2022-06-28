@@ -18,13 +18,14 @@ sidebar_position: 7
 正如您在图 7 中看到的，多个块可以被注入到同一个子时隙中。 奇亚的系统平均每 18.75 秒定位一个区块（每个子时隙 32 个区块），并且通过工作难度算法每 4608 个区块（大约 24 小时）调整一次。
 
 VDF 校样范围：
-* 从当前标牌点之前的前一个融入点到当前标牌点，以及
-* 从上一个融入点到当前融入点。
-这意味着每个块所需的 VDF 证明可以重叠。
 
-在图 7 的示例中，B2 包含从 B1 到 sp2 以及从 B1 到 B2 的 VDF 证明。 B3 包含从 B1 到 sp3，以及从 B2 到 B3 的证明。 B2完全不依赖B3，但B3依赖B2，因为它的 VDF 来自 B2 的注入点。
+- 从当前标牌点之前的前一个融入点到当前标牌点，以及
+- 从上一个融入点到当前融入点。
+  这意味着每个块所需的 VDF 证明可以重叠。
 
-如[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points")中所述，块是在标牌点创建的，但它们缺少融入点 VDF。添加此 VDF 后，该块就完成了，并构成了区块链的一部分。
+在图 7 的示例中，B2 包含从 B1 到 sp2 以及从 B1 到 B2 的 VDF 证明。 B3 包含从 B1 到 sp3，以及从 B2 到 B3 的证明。 B2 完全不依赖 B3，但 B3 依赖 B2，因为它的 VDF 来自 B2 的注入点。
+
+如[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')中所述，块是在标牌点创建的，但它们缺少融入点 VDF。添加此 VDF 后，该块就完成了，并构成了区块链的一部分。
 
 签名由农民在标牌点创建和添加，然后广播到整个网络。
 融入点没有签名；在注入点添加的唯一东西是 VDF。
@@ -50,21 +51,22 @@ Figure 7: multiple blocks. Sp1 = signage points 1
 As you can see in Figure 7, multiple blocks can get infused into the same sub-slot. Chia’s system targets one block every 18.75 seconds on average (32 blocks per sub-slot), and this is adjusted every 4608 blocks (around 24 hours) through the work difficulty algorithm.
 
 VDF proofs span:
-* from the previous infusion point before the current signage point to the current signage point, and
-* from the previous infusion point to the current infusion point.
-This means that the VDF proofs required for each block can overlap. 
 
-In the example in Figure 7, B2 contains a VDF proof from B1 to sp2, and from B1 to B2. B3 contains a proof from B1 to sp3, and from B2 to B3. B2 does not depend at all on B3, but B3 depends on B2, since its VDF is from B2’s infusion point. 
+- from the previous infusion point before the current signage point to the current signage point, and
+- from the previous infusion point to the current infusion point.
+  This means that the VDF proofs required for each block can overlap.
 
-As discussed in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points"), the blocks get created at the signage points, but they are missing the infusion point VDF. Once this VDF is added, the block is finished, and forms part of the blockchain. 
+In the example in Figure 7, B2 contains a VDF proof from B1 to sp2, and from B1 to B2. B3 contains a proof from B1 to sp3, and from B2 to B3. B2 does not depend at all on B3, but B3 depends on B2, since its VDF is from B2’s infusion point.
+
+As discussed in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points'), the blocks get created at the signage points, but they are missing the infusion point VDF. Once this VDF is added, the block is finished, and forms part of the blockchain.
 
 The signatures get created and added by the farmers at the signage points, and broadcast to the whole network.
-There are no signatures at the infusion point; the only things added at the infusion point are the VDFs. 
+There are no signatures at the infusion point; the only things added at the infusion point are the VDFs.
 
 Finally, note that there can be multiple winners at the same signage point, all of which can be included into the blockchain. That would be the case in the diagram, if `sp2 == sp3`. The one which gets included first is the one with the lower `required_iters`, and thus earlier infusion point.
 
 You may be wondering what happens if a farmer makes a copy of a plot and the plot becomes eligible for infusion. Do the plots each win a block reward? No -- two blocks get created, but only one will be infused. The full nodes will only propagate the first copy of the block they see. The timelord node is ultimately connected to exactly one full node, so even if multiple identical blocks make it to that full node, they will not both be sent to the timelord for infusion.
 
-It is possible (albeit very unlikely) for two non-identical blocks to have the same infusion point, even though their hashes don't match. In this case, the full nodes will reject the second block they receive because each block must have total_iters > prev block total_iters. 
+It is possible (albeit very unlikely) for two non-identical blocks to have the same infusion point, even though their hashes don't match. In this case, the full nodes will reject the second block they receive because each block must have total_iters > prev block total_iters.
 
 </details>

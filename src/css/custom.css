@@ -27,13 +27,11 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-
 @media screen and (max-width: 440px) {
   h1.hero__title {
     font-size: 2rem;
   }
 }
-
 
 .feature-item {
   margin-bottom: 50px;

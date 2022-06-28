@@ -12,7 +12,7 @@ sidebar_position: 3
 <summary>原文参考</summary>
 
 In Chia, the issuance schedule, also referred to as the block reward schedule, determines how many XCH get created with every block that gets farmed on the network.
-1 XCH, or 1 Chia, is equivalent to 1,000,000,000,000 or 1x10^12 or 1 trillion mojos. 
+1 XCH, or 1 Chia, is equivalent to 1,000,000,000,000 or 1x10^12 or 1 trillion mojos.
 All consensus code uses mojos, Chias are used as a conveniently larger unit.
 
 </details>
@@ -67,8 +67,8 @@ After the start of year 12, 0.125 XCH is created in perpetuity.
 
 在大多数加密货币中，区块的创建者根据*当前*区块奖励支付自己的费用。 在 Chia 中，有一点不同——区块奖励在*未来*区块中支付，取决于农民的区块是否是交易区块。
 
-* 选项 1：如果农民的区块是交易区块，农民将在下一个交易区块获得报酬。
-* 选项 2：如果农民的区块不是交易区块，农民将在下一个交易区块之后的下一个交易区块获得报酬（下一个下一个）。
+- 选项 1：如果农民的区块是交易区块，农民将在下一个交易区块获得报酬。
+- 选项 2：如果农民的区块不是交易区块，农民将在下一个交易区块之后的下一个交易区块获得报酬（下一个下一个）。
 
 因此，奇亚币永远不会被销毁。在给定的区块中，未添加到新硬币中的已用硬币的任何部分都将作为费用发送给农民。[chialisp.com](https://chialisp.com/docs/coin_lifecycle#fees-and-the-mempool "Fees and the Mempool section of Chialisp's tutorial on coin lifecycles")中更详细地介绍了该主题。
 
@@ -79,8 +79,8 @@ After the start of year 12, 0.125 XCH is created in perpetuity.
 
 In most cryptocurrencies, the creator of a block pays themselves based on the _current_ block reward. In Chia, there is a slight difference -- block rewards are paid in a _future_ block, depending on whether the farmer's block is a transaction block or not.
 
-* Option 1: If the farmer's block is a transaction block, the farmer will get paid on the next transaction block.
-* Option 2: If the farmer's block is not a transaction block, the farmer will get paid on the next transaction block after the next transaction block (next next).
+- Option 1: If the farmer's block is a transaction block, the farmer will get paid on the next transaction block.
+- Option 2: If the farmer's block is not a transaction block, the farmer will get paid on the next transaction block after the next transaction block (next next).
 
 Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in [chialisp.com](https://chialisp.com/docs/coin_lifecycle#fees-and-the-mempool "Fees and the Mempool section of Chialisp's tutorial on coin lifecycles").
 
@@ -91,6 +91,7 @@ Therefore, Chia coins are never destroyed. In a given block, any portion of a sp
 区块奖励分为两个硬币。第一个硬币进入农民谜语哈希，由农民指定，通常直接进入农民的钱包。这包含总价值的 1/8（前 3 年为 0.25 XCH）。这被称为*农民硬币*。
 
 价值为 7/8 的第二个硬币称为*矿池硬币*。 这枚硬币可以去两个地方之一：
+
 1. 如果为获胜地块指定了*矿池公钥*，则奖励被发送到由该公钥签名的地址。*矿池公钥*通常用于单人耕作，直接发送到农民的钱包。
 2. 否则，必须在地块中编码一个*矿池地址*，并将奖励发送到该地址。*矿池地址*通常与官方奇亚池化协议一起使用，并使用付费到单例硬币的地址。
 
@@ -99,9 +100,10 @@ Therefore, Chia coins are never destroyed. In a given block, any portion of a sp
 
 - ## Farmer vs Pool reward
 
-The block reward is divided into two coins. The first coin goes to the farmer puzzle hash, which is specified by the farmer, and usually goes straight to the farmer's wallet. This contains 1/8 of the total value (0.25 XCH for the first 3 years). This is referred to as the _farmer coin_. 
+The block reward is divided into two coins. The first coin goes to the farmer puzzle hash, which is specified by the farmer, and usually goes straight to the farmer's wallet. This contains 1/8 of the total value (0.25 XCH for the first 3 years). This is referred to as the _farmer coin_.
 
 The second coin, with 7/8 of the value, is called the _pool coin_. This coin can go to one of two places:
+
 1. If a _pool public key_ is specified for the winning plot, then the reward is sent to the address signed by that public key. The _pool public key_ is usually used for solo farming, and sent directly to the farmer's wallet.
 2. Otherwise, a _pool address_ must be encoded into the plot, and the reward is sent to the address. The _pool address_ is usually used along with the official Chia pooling protocol, and a pay-to-singleton address is used.
 

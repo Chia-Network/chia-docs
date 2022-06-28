@@ -13,12 +13,13 @@ sidebar_position: 2
 加密货币使用巧妙的密码学、数学和货币激励创建一个系统，在该系统中，被称为农民或矿工的人可以通过获得报酬来运行该系统，并且没有可以被恶意行为者取消的中央控制点。
 
 这带来了许多好处，其中一些是：
-* **无加入要求**：任何有互联网连接的人都可以参与新的加密经济，无论国籍、财富状况、宗教信仰等。
-* **抗审查**：很难或完全不可能审查。任何人都可以随时进行交易、发送任何金额或运行任何程序。
-* **独立的货币政策**：可以创建不依赖于任何一个组织或一个国家的决策，而是基于算法或具有固定供应量的新货币。
-* **不可阻挡的应用程序**：为安全区块链开发并运行的程序永远不会改变或停止。该程序本身可以拥有资金并进行金融交易。代码可以自主运行，不依赖于人工操作。一些区块链应用包括：其他资产的代币化、非同质化代币 (NFT)、贷款、汇款、身份钱包等。
-* **全球标准**：通过加密，不同国家和地区可以根据一个明确记录、完全开源且免费的共享标准进行交互和交易。不同的各方可以聚集在一起使用一个中立的平台，这降低了建立在加密货币之上的人工成本。
-* **安全**：对任何金融基础设施都存在多种形式的潜在攻击，包括虚拟攻击和物理攻击、贿赂、网络问题等。具有一百万个节点的系统比上述单点故障更难以攻击。
+
+- **无加入要求**：任何有互联网连接的人都可以参与新的加密经济，无论国籍、财富状况、宗教信仰等。
+- **抗审查**：很难或完全不可能审查。任何人都可以随时进行交易、发送任何金额或运行任何程序。
+- **独立的货币政策**：可以创建不依赖于任何一个组织或一个国家的决策，而是基于算法或具有固定供应量的新货币。
+- **不可阻挡的应用程序**：为安全区块链开发并运行的程序永远不会改变或停止。该程序本身可以拥有资金并进行金融交易。代码可以自主运行，不依赖于人工操作。一些区块链应用包括：其他资产的代币化、非同质化代币 (NFT)、贷款、汇款、身份钱包等。
+- **全球标准**：通过加密，不同国家和地区可以根据一个明确记录、完全开源且免费的共享标准进行交互和交易。不同的各方可以聚集在一起使用一个中立的平台，这降低了建立在加密货币之上的人工成本。
+- **安全**：对任何金融基础设施都存在多种形式的潜在攻击，包括虚拟攻击和物理攻击、贿赂、网络问题等。具有一百万个节点的系统比上述单点故障更难以攻击。
 
 <details>
 <summary>原文参考</summary>
@@ -32,6 +33,7 @@ The financial world was fundamentally changed with the introduction of Bitcoin o
 Cryptocurrencies use clever cryptography, mathematics, and monetary incentives to create a system where people called farmers or miners get paid to run the system, and there is no central point of control that can be taken down by malicious actors.
 
 This brings many benefits, some of which are:
+
 - **No requirements to participate**: Anyone with an internet connection can participate in the new crypto economy, regardless of nationality, wealth status, religion, etc.
 - **Censorship resistance**: Censorship is difficult or impossible. Anyone is allowed to transact, and to send any amount or run any program at any time.
 - **Independent monetary policy**: New currencies can be created that do not depend on decisions made by one group or one country, and instead can be based on algorithms or have a fixed supply.
@@ -44,7 +46,7 @@ This brings many benefits, some of which are:
 ## 加密货币如何运作？
 
 要了解像比特币或奇亚这样的加密货币如何工作的基础知识，我们首先需要了解如何从头开始设计加密货币。本节针对区块链行业的新手，其他人可以跳过它。
- 
+
 我们可以依靠一个带有公共 API 的中央服务器来发送交易（需要用户名和密码），一个用于读取数据。然而，这不是去中心化的，它不会带来上述大部分好处，但这却是许多金融系统在比特币出现之前的运作方式。
 
 我们如何设计一个不依赖任何一方的交易系统呢？
@@ -92,7 +94,7 @@ How would we design a transaction system which does not depend on any one party?
 
 First, we need a secure way to send transactions to many servers. Let's assume that there are 1000 servers across the world, instead of just one, and that these servers send transaction information of users to each other.
 
-These servers are assumed to be run by different entities (companies, people, etc). Usernames and passwords would not work in this decentralized model, because every server would need to know the password in order to verify that a transaction is valid. This would be extremely insecure. 
+These servers are assumed to be run by different entities (companies, people, etc). Usernames and passwords would not work in this decentralized model, because every server would need to know the password in order to verify that a transaction is valid. This would be extremely insecure.
 
 ![](/img/crypto02.png)
 
@@ -102,7 +104,7 @@ For example, a user named Alice maintains a secret key (also called a private ke
 
 Each server running in this decentralized system can accept a transaction, which includes the ID of the coin that is being sent, the recipient information, and the signature.
 
-Digital signatures are fundamental building blocks for cryptocurrencies. 
+Digital signatures are fundamental building blocks for cryptocurrencies.
 
 ![](/img/crypto03.png)
 
@@ -128,7 +130,7 @@ Digital signatures are fundamental building blocks for cryptocurrencies.
 
 在比特币的共识算法中，每个证明平均需要 10 分钟来生成。随着越来越多的计算机加入网络，生成证明的平均时间自然会减少。这给我们带来了中本聪的另一个简单而优雅的想法：难度调整。每 2016 个区块（平均两周），工作量证明算法会自动调整找到证明的难度。它通过增加或减少生成的哈希中所需的前导零数量来实现这一点。结果是，无论有多少计算机开始或停止参与工作量证明抽奖，找到证明所需的平均时间始终为 10 分钟。
 
-有了这种共识机制，攻击网络就变得非常困难。如果攻击者想通过创建替代区块链来“重写历史”，他们需要比系统中的诚实参与者更快地创建新区块。由于创建每个区块所需的工作量证明，攻击者需要比网络中所有其他计算机的总和更快地生成哈希。这被称为“51% 攻击”，稍后将在[第 3.14 节](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures")中进行更详细的讨论。
+有了这种共识机制，攻击网络就变得非常困难。如果攻击者想通过创建替代区块链来“重写历史”，他们需要比系统中的诚实参与者更快地创建新区块。由于创建每个区块所需的工作量证明，攻击者需要比网络中所有其他计算机的总和更快地生成哈希。这被称为“51% 攻击”，稍后将在[第 3.14 节](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')中进行更详细的讨论。
 
 工作量证明解决了双重支付问题——任何时候只有一台计算机可以创建一个区块。它还解决了女巫问题——创建一个区块不仅需要对硬件进行实际投资，而且它也不会给创建多个身份的人带来任何好处。每个人有相同的获胜概率，无论他们使用的是一个身份还是一百万个身份。
 
@@ -153,11 +155,11 @@ The genius of Satoshi Nakamoto was to solve the double-spend problem by requirin
 
 In Proof of Work networks, each computer that is participating repeatedly generates cryptographic hashes using random input. This functions as a global lottery, where hashes are generated until one computer generates a winner -- a hash with a certain number of leading zeros. This is known as a _proof of work_ because there are no shortcuts. Computers must put in the required amount of computational "work" by generating hashes.
 
-When a winning proof is found, the computer that discovered it earns the right to generate a new "block" in the blockchain. This block contains a pointer to the previous block, a list of valid transactions, and the winning hash. All nodes are required to accept the heaviest chain (the one which required the most work). Therefore, all nodes will accept the new block, and the proof-of-work lottery begins anew. 
+When a winning proof is found, the computer that discovered it earns the right to generate a new "block" in the blockchain. This block contains a pointer to the previous block, a list of valid transactions, and the winning hash. All nodes are required to accept the heaviest chain (the one which required the most work). Therefore, all nodes will accept the new block, and the proof-of-work lottery begins anew.
 
 In Bitcoin's consensus algorithm, each proof takes an average of 10 minutes to generate. As more computers join the network, the average amount of time to generate a proof will naturally decrease. This brings us to another of Satoshi's simple and elegant ideas: the difficulty adjustment. Every 2016 blocks (two weeks, on average) the proof-of-work algorithm automatically adjusts how difficult it is to find a proof. It accomplishes this by increasing or decreasing the required number of leading zeros in a generated hash. The result is that the average time required to find a proof will always be 10 minutes, no matter how many computers start or stop participating in the proof-of-work lottery.
 
-With this consensus mechanism in place, attacking the network becomes very difficult. If an attacker wants to "rewrite history" by creating an alternative blockchain, they'll need to create new blocks faster than the honest actors in the system. Because of the proof of work that is required to create each block, the attacker will need to generate hashes faster than all other computers in the network, combined. This is known as a "51% attack" and is discussed in greater detail later [Section 3.14](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures").
+With this consensus mechanism in place, attacking the network becomes very difficult. If an attacker wants to "rewrite history" by creating an alternative blockchain, they'll need to create new blocks faster than the honest actors in the system. Because of the proof of work that is required to create each block, the attacker will need to generate hashes faster than all other computers in the network, combined. This is known as a "51% attack" and is discussed in greater detail later [Section 3.14](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures').
 
 Proof of Work solves the double-spend problem -- only one computer can create a block at any one time. It also solves the Sybil problem -- not only does creating a block require a real-world investment in hardware, but it also gives no advantage to someone who creates multiple identities. This person has the same probability of winning, whether they're using one identity or a million.
 
@@ -165,10 +167,9 @@ Proof of Work solves the double-spend problem -- only one computer can create a 
 
 </details>
 
-
 ### 区块链
 
-网络中的每个节点都与其他一些随机节点保持活跃的连接。如果用户想要进行交易，他们会将其发送到网络中的任何节点，该节点会自动将其广播给他们的对等方。因为每个节点都连接到一组唯一的对等点，所以交易很快就会传播到网络中的每个节点。然后节点将交易，包括所有其他未决交易，保存在本地内存中的。这称为 *内存池*。
+网络中的每个节点都与其他一些随机节点保持活跃的连接。如果用户想要进行交易，他们会将其发送到网络中的任何节点，该节点会自动将其广播给他们的对等方。因为每个节点都连接到一组唯一的对等点，所以交易很快就会传播到网络中的每个节点。然后节点将交易，包括所有其他未决交易，保存在本地内存中的。这称为 _内存池_。
 
 > 有关奇亚交易池的更多信息，请参阅[第 6 节](/docs/06mempool/mempool "Section 6: Chia's Mempool")。
 
@@ -176,7 +177,7 @@ Proof of Work solves the double-spend problem -- only one computer can create a 
 
 区块链交易还可以包括脚本或程序，允许直接用代码控制资金。此代码可能需要一定数量的签名才能释放资金，或者具有任意逻辑。
 
->请记住，区块链程序的运行成本很高，因为系统中的每个节点都必须下载并运行该程序。仅仅因为它*可以*在区块链上运行，并不意味着它*应该*在一个区块链上运行。
+> 请记住，区块链程序的运行成本很高，因为系统中的每个节点都必须下载并运行该程序。仅仅因为它*可以*在区块链上运行，并不意味着它*应该*在一个区块链上运行。
 
 每个块还有一个指向前一个块的哈希指针。这意味着前一个块的内容的哈希值包含在当前块中。如果攻击者可以找到历史区块的替代有效证明，那么该证明将更改该区块的哈希值，这将使下一个区块无效。如果攻击者想要更改过去发生 10 个区块的区块，他们因此需要重新做至少 10 个区块的工作量证明。然而，网络的其余部分将继续创建合法区块，因此在现实中，攻击者可能需要创建的区块远不止 10 个。事实上，只要网络的其余部分结合起来，可以以相同或更快的速度创建区块，攻击者就*永远*无法创建比合法链更长的链。
 
@@ -191,13 +192,13 @@ Proof of Work solves the double-spend problem -- only one computer can create a 
 
 Each node in the network maintains active connections with a few other random nodes. If a user wants to make a transaction, they send it to any node in the network, which automatically broadcasts it to their peers. Because each node is connected to a unique set of peers, the transaction quickly gets propagated to every node in the network. The nodes then save the transaction, including all other pending transactions, locally in memory. This is called the _mempool_.
 
->For more info on Chia's mempool, see [Section 6](/docs/06mempool/mempool "Section 6: Chia's Mempool").
+> For more info on Chia's mempool, see [Section 6](/docs/06mempool/mempool "Section 6: Chia's Mempool").
 
-In order for each node to search for a proof, it must assemble a block to hash against. It does this by including transactions from the mempool, and it will most likely choose the pending transactions that pay the highest fee. A transaction fee market is thus created, where the supply is the total transactions per second (TPS) that the system supports, and the demand is based on the number of transactions in the mempool. A transaction is said to be "confirmed" once it is included inside a block which has the required proof of work. 
+In order for each node to search for a proof, it must assemble a block to hash against. It does this by including transactions from the mempool, and it will most likely choose the pending transactions that pay the highest fee. A transaction fee market is thus created, where the supply is the total transactions per second (TPS) that the system supports, and the demand is based on the number of transactions in the mempool. A transaction is said to be "confirmed" once it is included inside a block which has the required proof of work.
 
 Blockchain transactions can also include scripts or programs, which allow controlling funds directly with code. This code can require a certain number of signatures to release the funds, or have any arbitrary logic.
 
->Keep in mind that blockchain programs are expensive to run, since every node in the system must download and run the program. Just because it _can_ be run on a blockchain, doesn't mean that is _should_ be run on one.
+> Keep in mind that blockchain programs are expensive to run, since every node in the system must download and run the program. Just because it _can_ be run on a blockchain, doesn't mean that is _should_ be run on one.
 
 Each block also has a hash pointer to the previous block. This means that the hash of the contents of the previous block are included in the current block. If an attacker could find an alternative valid proof for a historical block, the proof would then change that block's hash, which would invalidate the next block. If the attacker wanted to change a block that occurred 10 blocks in the past, they would therefore need to re-do the proof of work for at least 10 blocks. The rest of the network would continue to create legitimate blocks, however, so in reality, the attacker would likely have to create many more than just 10 blocks. In fact, as long as the rest of the network, combined, could create blocks at the same rate or faster, the attacker would _never_ be able to create a chain longer than the legitimate chain.
 

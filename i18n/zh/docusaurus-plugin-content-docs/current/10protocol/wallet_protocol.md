@@ -7,7 +7,7 @@ sidebar_position: 4
 > Wallet Protocol
 
 该协议是奇亚系统中全节点和钱包之间通信的双向协议。这有时也称为轻客户端协议。
-    
+
 钱包协议包含两个子协议，钱包可以通过它们从节点同步交易。
 
 ## 隐私协议
@@ -38,12 +38,12 @@ The wallet protocol contains two sub protocols by which a wallet can sync transa
 
 - ## Privacy Protocol
 
-The first is the privacy protocol, where the wallet downloads each header and checks the filter for transactions. It is more private, 
-but much slower. 
+The first is the privacy protocol, where the wallet downloads each header and checks the filter for transactions. It is more private,
+but much slower.
 
 - ## Fast Sync Protocol (recommended)
 
-The second is the fast sync protocol, where the wallet directly asks the node to look for certain coin ids or puzzle 
+The second is the fast sync protocol, where the wallet directly asks the node to look for certain coin ids or puzzle
 hashes. It has less privacy but is much faster. The following is the flow for syncing for a wallet that any wallet
 developer should follow. It is important to connect to several random nodes to increase security. This sync protocol
 should be very fast for users who don't have many transactions.
@@ -57,7 +57,7 @@ should be very fast for users who don't have many transactions.
 7. From step 5, we obtain all coin IDs which we are interested in, and we restore any CAT wallets for coins which have our puzzle hash in the hint.
 8. Subscribe to interesting coin IDs
 9. Validate the coin subscription returned from the full node, similar to how it's done in step 5
-    
+
 </details>
 
 # 协议消息
@@ -115,7 +115,7 @@ class RequestPuzzleSolution(Streamable):
 
 - ## respond_puzzle_solution
 
-A response to a `request_puzzle_solution` request. 
+A response to a `request_puzzle_solution` request.
 
 ```python
 
@@ -171,7 +171,7 @@ class TransactionAck(Streamable):
 
 - ## send_transaction
 
-A message by which a wallet can send a transaction to the mempool and broadcast it to the network. The full node 
+A message by which a wallet can send a transaction to the mempool and broadcast it to the network. The full node
 will attempt to include it into the mempool.
 
 ```python
@@ -202,13 +202,13 @@ class TransactionAck(Streamable):
 
 全节点向钱包发出区块链峰值发生变化的通知。
 
-```python
+````python
 class NewPeakWallet(Streamable)```python:
     header_hash: bytes32       # New peak of the blockchain
     height: uint32             # New peak's height
     weight: uint128            # New peak's weight
     fork_point_with_previous_peak: uint32
-```
+````
 
 <details>
 <summary>原文参考</summary>
@@ -217,13 +217,13 @@ class NewPeakWallet(Streamable)```python:
 
 A notification from the full node to the wallet that the blockchain's peak has changed.
 
-```python
+````python
 class NewPeakWallet(Streamable)```python:
     header_hash: bytes32       # New peak of the blockchain
     height: uint32             # New peak's height
     weight: uint128            # New peak's weight
     fork_point_with_previous_peak: uint32
-```
+````
 
 </details>
 
@@ -336,8 +336,8 @@ class RequestRemovals(Streamable):
 
 - ## respond_removals
 
-A response to a `request_removals` request. If `coin_names` is None, all removals are returned, and `proofs` is set 
-to None. Otherwise, only the requested coins are returned, (id to coin tuples) and a proof is returned for each 
+A response to a `request_removals` request. If `coin_names` is None, all removals are returned, and `proofs` is set
+to None. Otherwise, only the requested coins are returned, (id to coin tuples) and a proof is returned for each
 coin id (id to proof tuples). The proofs are merkle set inclusion proofs. See `merkle_set.py` in chia-blockchain
 for more info on how to verify these proofs.
 
@@ -399,7 +399,7 @@ class RejectAdditionsRequest(Streamable):
 
 - ## request_additions
 
-A request from the wallet to the full node for the additions (added coins) of a certain block. If `puzzle_hashes` is 
+A request from the wallet to the full node for the additions (added coins) of a certain block. If `puzzle_hashes` is
 None, we are requesting all additions in the block. Otherwise, we are requeting only additions which have this
 puzzle hash.
 
@@ -413,11 +413,11 @@ class RequestAdditions(Streamable):
 - ## respond_additions
 
 A response to a `request_additions` request. If `puzzle_hashes` is None, all additions are returned, and `proofs` is set
-to None. Otherwise, only the requested coins are returned, (puzzle_hash to list of coin tuples, since multiple coins 
+to None. Otherwise, only the requested coins are returned, (puzzle_hash to list of coin tuples, since multiple coins
 can have the same puzzle hash) and a proof is returned for each
 coin (puzzle_hash, proof, proof2 tuples). The proofs are merkle set inclusion proofs. See `merkle_set.py` in chia-blockchain
-for more info on how to verify these proofs. `proof` refers to a proof of the puzzle hash in the merkle set, and 
-`proof2` is the merkle proof of `sha256(concatenation of coin ids)` for each puzzle hash, in the merkle set. Both are 
+for more info on how to verify these proofs. `proof` refers to a proof of the puzzle hash in the merkle set, and
+`proof2` is the merkle proof of `sha256(concatenation of coin ids)` for each puzzle hash, in the merkle set. Both are
 included as elements in the merkle set for each block.
 
 ```python
@@ -526,7 +526,7 @@ class RespondToPhUpdates(Streamable):
     puzzle_hashes: List[bytes32]
     min_height: uint32
     coin_states: List[CoinState]
-    
+
 class CoinState(Streamable):
     coin: Coin
     spent_height: Optional[uint32]
@@ -553,7 +553,7 @@ class RegisterForPhUpdates(Streamable):
 
 A one-time response to `register_for_ph_updates` with all the confirmation or spent heights, and all the CoinStates.
 CoinState is an object that shows a change in a coin. if `spent_height` is not None, that means the coin was spent.
-If `created_height` is not None, that means the coin was created but not spent. If both are None, it means the 
+If `created_height` is not None, that means the coin was created but not spent. If both are None, it means the
 coin was reverted (reorged out of the chain) and no longer exists.
 
 ```python
@@ -561,7 +561,7 @@ class RespondToPhUpdates(Streamable):
     puzzle_hashes: List[bytes32]
     min_height: uint32
     coin_states: List[CoinState]
-    
+
 class CoinState(Streamable):
     coin: Coin
     spent_height: Optional[uint32]
@@ -673,7 +673,7 @@ class RespondChildren(Streamable):
 
 - ## request_children
 
-A request from the wallet to the node for the children of a certain (spent) coin ID. 
+A request from the wallet to the node for the children of a certain (spent) coin ID.
 
 ```python
 class RequestChildren(Streamable):
@@ -716,7 +716,7 @@ class RespondSESInfo(Streamable):
 
 - ## request_ses_info
 
-A request from the wallet to the full node for SubEpochSummary heights. This is used for the fast sync protocol, 
+A request from the wallet to the full node for SubEpochSummary heights. This is used for the fast sync protocol,
 to know where sub epochs start and end.
 
 ```python
@@ -725,10 +725,10 @@ class RequestSESInfo(Streamable):
     end_height: uint32
 ```
 
-
 - ## respond_ses_info
 
 A response to a `reques_ses_info` request.
+
 ```python
 class RespondSESInfo(Streamable):
     reward_chain_hash: List[bytes32]

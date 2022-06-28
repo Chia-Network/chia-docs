@@ -26,8 +26,7 @@ class SpendBundle:
 <details>
 <summary>原文参考</summary>
 
-A spend bundle is a set of spends of multiple coins, which is usually submitted to full nodes for inclusion into the blockchain. In Bitcoin, the relevant data structure would be the transaction. 
-
+A spend bundle is a set of spends of multiple coins, which is usually submitted to full nodes for inclusion into the blockchain. In Bitcoin, the relevant data structure would be the transaction.
 
 ```python
 class CoinSpend:
@@ -40,7 +39,7 @@ class SpendBundle:
     aggregated_signature: G2Element
 ```
 
-As you can see in the code sample above, a spend bundle is a group of coin spends, where each coin spend includes the coin being spent, the puzzle program, and the solution program. Each solution is passed into each puzzle and  run through the CLVM, where it outputs conditions. Two of the conditions -- `AGG_SIG_ME` and `AGG_SIG_UNSAFE` -- require
+As you can see in the code sample above, a spend bundle is a group of coin spends, where each coin spend includes the coin being spent, the puzzle program, and the solution program. Each solution is passed into each puzzle and run through the CLVM, where it outputs conditions. Two of the conditions -- `AGG_SIG_ME` and `AGG_SIG_UNSAFE` -- require
 that a signature be present in order for the spend to be valid.
 
 Usually, when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](https://chialisp.com/docs/puzzles/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
@@ -63,7 +62,7 @@ s3 m3 pk3
 
 这允许农民将所有三个花费组合合并为一个花费组合，只有一个签名。这意味着更少的数据传输和存储在链和磁盘上。
 
-这些聚合签名的另一个好处是，当花费多个硬币时，用户只会传输一个签名，而不是每次花费一个或多个。更多信息可以在[第 9.1 节](/docs/09keys/keys-and-signatures "Section 9.1: Keys and Signatures")中找到。您还可以阅读[BLS 签名代码](https://github.com/Chia-Network/bls-signatures)。
+这些聚合签名的另一个好处是，当花费多个硬币时，用户只会传输一个签名，而不是每次花费一个或多个。更多信息可以在[第 9.1 节](/docs/09keys/keys-and-signatures 'Section 9.1: Keys and Signatures')中找到。您还可以阅读[BLS 签名代码](https://github.com/Chia-Network/bls-signatures)。
 
 <details>
 <summary>原文参考</summary>
@@ -73,6 +72,7 @@ s3 m3 pk3
 In Bitcoin, each spend has its own signature or signatures, one for each `(public key, message)` combination. Then, each signature `s_i` is passed through a signature verification algorithm: `V(s, m, pk) -> T/F`, with the message `m` and public key `pk`, and would be valid if and only if `V` returns true.
 
 In Chia, BLS signatures are used. These signatures can be combined (added) together to produce an aggregate signature of the same size as the originals. Let's say we have three spend bundles, each with its own pair:
+
 ```
 s1 m1 pk1
 s2 m2 pk2
@@ -83,7 +83,7 @@ With BLS signatures, farmers combine all three signatures `s1, s2, and s3` into 
 
 This allows the farmer to combine all three spend bundles into one spend bundle, with only one signature.which means less data is transmitted and stored on chain and disk.
 
-Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/docs/09keys/keys-and-signatures "Section 9.1: Keys and Signatures"). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
+Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/docs/09keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
 
 </details>
 
@@ -100,7 +100,7 @@ Another benefit of these aggregate signatures is that when spending multiple coi
 
 One major difference between Chia and other UTXO based blockchain systems, is that spend bundles are not a first-class object in the block database. Each block in chia contains a list of removals and additions, where removals are the coins spent in that block, and additions are the coins added in that block.
 
-Let's say a farmer wants to include 1000 spend bundles into a block. First, they can combine all spend bundles into one,and then they can make the block. Each block will have exactly one signature for all spends. Full nodes that verify and store this block do not need to know the original information of which spends were bundled with which other spends. 
+Let's say a farmer wants to include 1000 spend bundles into a block. First, they can combine all spend bundles into one,and then they can make the block. Each block will have exactly one signature for all spends. Full nodes that verify and store this block do not need to know the original information of which spends were bundled with which other spends.
 
 </details>
 
@@ -126,6 +126,7 @@ Let's say a farmer wants to include 1000 spend bundles into a block. First, they
 也就是说，获得爱丽丝的花费组合的攻击者无法拆开支出包以仅花费其中一个硬币。当爱丽丝将此支出包发送到奇亚网络时，其他全节点将运行 CLVM 程序，收集所有 `AGG_SIG` 条件，然后使用花费组合中提供的聚合签名对其进行验证。
 
 硬币 A 的第一个谜语也返回两个 `CREATE_COIN` 条件。这意味着必须将两个硬币添加到硬币数据库中才能使支出 A 有效：
+
 1. 硬币 D 是给鲍勃的（谜语哈希 0x1b54f 和 13 XCH）。
 2. 硬币 E 是爱丽丝的零钱。她花了 14 个 XCH，却只想送 13 个 XCH 给鲍勃。每个硬币的价值都必须完全花掉，所以爱丽丝需要向自己发送 1 个 XCH 作为找零。
 
@@ -140,7 +141,7 @@ Let's say a farmer wants to include 1000 spend bundles into a block. First, they
 
 - ## Additions and Removals
 
-In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are  coins A, B, and C, and the additions are coins C and D. This is very similar to how the standard transaction script works in `chia-blockchain`.
+In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are coins A, B, and C, and the additions are coins C and D. This is very similar to how the standard transaction script works in `chia-blockchain`.
 
 <figure>
 
@@ -148,7 +149,7 @@ In the figure below, you can see a spend bundle that was created by a user. The 
 
 </figure>
 
-Let's go through the different components in the image. First, let's say Alice wants to send 13 XCH to Bob. Alice looks at her coin database, and selects 3 unspent coins (A, B, and C) that add up to at least 13 XCH. Each one of these coins has an associated CLVM puzzle, which has a public key encoded inside of it. Let's denote these public keys as `pkA`, `pkB`, and `pkC`.  Alice needs to generate the puzzle and solution for each of the
+Let's go through the different components in the image. First, let's say Alice wants to send 13 XCH to Bob. Alice looks at her coin database, and selects 3 unspent coins (A, B, and C) that add up to at least 13 XCH. Each one of these coins has an associated CLVM puzzle, which has a public key encoded inside of it. Let's denote these public keys as `pkA`, `pkB`, and `pkC`. Alice needs to generate the puzzle and solution for each of the
 spends, in order to create the spend bundle.
 
 Each puzzle, when run with the solutions, returns an `AGG_SIG` condition (either AGG_SIG_ME or AGG_SIG_UNSAFE). This means that a signature is required from the respective public key, in order for this spend to be valid.
@@ -161,6 +162,7 @@ Instead of providing 3 signatures, we can use BLS signature arithmetic to combin
 That is, an attacker who obtains Alice's spend bundle is not able to pull apart the spend bundle in order to spend just one of the coins. When Alice sends this spend bundle to the Chia network, other full nodes will run the CLVM programs, collect all the `AGG_SIG` conditions, and then verify them using the aggregate signature provided in the spend bundle.
 
 The first puzzle here for coin A also returns two `CREATE_COIN` conditions. This means that two coins must be added to the coin database in order for spend A to be valid:
+
 1. Coin D is for Bob (puzzle hash 0x1b54f and 13 XCH).
 2. Coin E is Alice's change. She spent 14 XCH, but only wanted to send 13 XCH to Bob. Each coin's value must be spent entirely, so Alice needs to send 1 XCH to herself as change.
 

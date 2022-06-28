@@ -49,7 +49,7 @@ PK
 
 此消息通知收割机新的挑战。收割机在每个图块中查找挑战，并计算质量。对于每种质量，这需要大约 7 次磁盘搜索。预计每个地块平均有一个空间证明，因此对于 50 个图块，收割机将具有大约 50 种质量。
 
-``` python
+```python
 class NewSignagePointHarvester:
     challenge_hash: bytes32
     difficulty: uint64
@@ -58,7 +58,6 @@ class NewSignagePointHarvester:
     sp_hash: bytes32
     pool_difficulties: List[PoolDifficulty]
 ```
-
 
 ```Python
 class ChallengeResponse:
@@ -78,7 +77,6 @@ class RequestProofOfSpace:
 
 农夫要求收割机提供完整的空间证明，这将需要更多的磁盘搜索（大约 50）。这仅适用于高质量的证明。
 
-
 ```Python
 class RespondProofOfSpace:
     quality_string: bytes32
@@ -86,7 +84,6 @@ class RespondProofOfSpace:
 ```
 
 收割机响应请求的空间证明。农民现在可以选择为这个证明请求部分（发送到池中），或者如果证明非常好，则创建一个块。为了创建一个区块，农民必须使用 `RequestHeader`（在农民协议中）从全节点请求区块头，然后使用 `RequestHeaderSignature` 从收割机获取签名。
-
 
 ```Python
 class RequestHeaderSignature:
@@ -132,7 +129,7 @@ The harvester looks up the challenge in each of the plots, and computes the qual
 This requires around 7 disk seeks for each quality.
 Each plot is expected to have one proof of space on average, so for 50 plots, a harvester would have around 50 qualities.
 
-``` python
+```python
 class NewSignagePointHarvester:
     challenge_hash: bytes32
     difficulty: uint64
@@ -142,71 +139,70 @@ class NewSignagePointHarvester:
     pool_difficulties: List[PoolDifficulty]
 ```
 
-
 ```Python
 class ChallengeResponse:
     challenge_hash: bytes32
     quality_string: bytes32
     plot_size: uint8
 ```
+
 The harvester sends a response to the farmer, with `ChallengeResponse` for each of the qualities found.
 
 After receiving a `ChallengeResponse`, farmers can use the quality to compute the expected time required to finalize a block with this proof of space.
-If this time is lower than a threshold (a small constant times expected block size), which means the proof of space is very good, the farmer can request the entire proof of space from the harvester through ```RequestProofOfSpace```.
-
+If this time is lower than a threshold (a small constant times expected block size), which means the proof of space is very good, the farmer can request the entire proof of space from the harvester through `RequestProofOfSpace`.
 
 ```Python
 class RequestProofOfSpace:
     quality_string: bytes32
 ```
+
 The farmer requests the entire proof of space from the harvester, which will require more disk seeks (around 50).
 This is done only for proofs with high quality.
-
-
 
 ```Python
 class RespondProofOfSpace:
     quality_string: bytes32
     proof: ProofOfSpace
 ```
+
 The harvester responds with the requested proof of space.
 The farmer can now choose to request a partial for this proof (to send to a pool), or if the proof is extremely good, to make a block.
 In order to make a block the farmer must request a block header from the full node using `RequestHeader` (which is in the farmer protocol), and then get a signature from the harvester using `RequestHeaderSignature`.
-
 
 ```Python
 class RequestHeaderSignature:
     quality_string: bytes32
     header_hash: bytes32
 ```
+
 The farmer requests a header signature for a header with the given hash.
 The harvester signs the header using the locally stored private key.
 This allows farmers to store their private keys in a more distributed way, with each harvester machine storing keys along with the plots.
-
 
 ```Python
 class RespondHeaderSignature:
     quality_string: bytes32
     header_hash_signature: PrependSignature
 ```
-The harvester responds with a BLS prepend signature on the header hash.
 
+The harvester responds with a BLS prepend signature on the header hash.
 
 ```Python
 class RequestPartialProof:
     quality_string: bytes32
     farmer_target_hash: bytes32
 ```
+
 The farmer requests a partial proof to be used for claiming pool rewards.
 These are sent much more often than `RequestHeaderSignature`, since pool partials happen more often than good blocks.
 The harvester signs that farmer target hash (target of funds) with the plot private key.
-
 
 ```Python
 class RespondPartialProof:
     quality_string: bytes32
     farmer_target_signature: PrependSignature
 ```
+
 The harvester responds with the signature, which the farmer can then send to the pool to claim funds.
 
 </details>
