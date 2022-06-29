@@ -41,15 +41,15 @@ In order to include farming rewards, as well as transactions, in the system, we 
 
 此外，与另一个树叶块 (B2) 平行的 B3 块不必签署前一个树叶块，因为它们不一定有足够的时间看到它。
 
->“并行”是指第二个区块的标牌点出现在第一个区块的融入点之前。
+> “并行”是指第二个区块的标牌点出现在第一个区块的融入点之前。
 
 图中的红色箭头代表一个叶子指针，由该块中空间证明的绘图键签名。灰色箭头表示未由绘图键签名的哈希指针（因此，如果 B2 更改或被保留，可以替换 B3 中的灰色箭头）。这可以防止 B2 修改其块并强制 B3 重新组织的攻击。
 
 具有红色指针的区块也有资格创建交易，因此被称为交易区块。
 
-__一个区块是一个交易区块，当且仅当它是在前一个交易区块注入之后出现标志点的第一个区块。__
+**一个区块是一个交易区块，当且仅当它是在前一个交易区块注入之后出现标志点的第一个区块。**
 
-图中 sp3 在 B2 之前，（一个交易块，B3的前一个块），所以 B3 不能是一个交易块。
+图中 sp3 在 B2 之前，（一个交易块，B3 的前一个块），所以 B3 不能是一个交易块。
 
 红色箭头通过掩埋树叶块来提供安全性，但灰色箭头则不然。灰色箭头的目的是在叶子中维护一个链表，并降低实现的复杂性。然而，带有灰色箭头的方块会被埋在下一个方块中。
 
@@ -68,13 +68,14 @@ __一个区块是一个交易区块，当且仅当它是在前一个交易区块
 
 虽然所有区块仍然选择其奖励去向的谜语哈希，但在下一个交易区块之前，这些交易不会被包含在区块链中。
 
-对于奇亚主网，每 600 秒有 32 个区块的目标，平均区块时间为 18.75 秒。有 64 个标牌点，因此交易块之间的最短时间为 3*600/64 = 28.125 秒。这使平均交易出块时间为 46.875 秒（平均出块时间 + 最小交易出块时间）。
+对于奇亚主网，每 600 秒有 32 个区块的目标，平均区块时间为 18.75 秒。有 64 个标牌点，因此交易块之间的最短时间为 3\*600/64 = 28.125 秒。这使平均交易出块时间为 46.875 秒（平均出块时间 + 最小交易出块时间）。
 
 交易块之间的时间是特意选择的，因为它具有以下几个优点：
-* 如果块以相同的速度创建并且所有块都包含交易，则树莓派等低功耗机器将无法跟上链，因此将不受支持。
-* 如果交易块以相同的速度发生，但它们之间没有空块，重组和贿赂攻击将更容易实现。
-* 空块还可以帮助抑制链条减速的影响，例如在沙尘暴袭击期间。
-* 最后，空块有助于平滑农民的奖励。
+
+- 如果块以相同的速度创建并且所有块都包含交易，则树莓派等低功耗机器将无法跟上链，因此将不受支持。
+- 如果交易块以相同的速度发生，但它们之间没有空块，重组和贿赂攻击将更容易实现。
+- 空块还可以帮助抑制链条减速的影响，例如在沙尘暴袭击期间。
+- 最后，空块有助于平滑农民的奖励。
 
 <details>
 <summary>原文参考</summary>
@@ -85,17 +86,17 @@ To prevent a foliage re-org, honest farmers only create one foliage block per bl
 
 Furthermore, blocks like B3, which come parallel with another foliage block (B2), do not have to sign the previous foliage block, since they do not necessarily have enough time to see it.
 
-  >By “coming in parallel”, we mean that the second block’s signage point occurs before the first block's infusion point.
+> By “coming in parallel”, we mean that the second block’s signage point occurs before the first block's infusion point.
 
 The red arrows in the diagram represent a foliage pointer that is signed by the plot key for the proof of space in that block. The gray arrows represent a hash pointer which is not signed by the plot key (therefore the gray arrow in B3 can be replaced if B2 changes or is withheld). This prevents attacks where B2 modifies their block and forces B3 to re-org.
 
 Blocks which have red pointers are also eligible to create transactions, and are therefore called transaction blocks.
 
-__A block is a transaction block if and only if it is the first block whose signage point occurs after the infusion of the previous transaction block.__
+**A block is a transaction block if and only if it is the first block whose signage point occurs after the infusion of the previous transaction block.**
 
 In the diagram, sp3 comes before B2, (a transaction block, and the previous block of B3), so B3 cannot be a transaction block.
 
-The red arrows provide security by burying foliage blocks, but the gray arrows do not. The purpose of the gray arrows is to maintain a linked list in the foliage, and to reduce complexity in implementations. However, blocks with gray arrows pointing to them do get buried in the next-next block. 
+The red arrows provide security by burying foliage blocks, but the gray arrows do not. The purpose of the gray arrows is to maintain a linked list in the foliage, and to reduce complexity in implementations. However, blocks with gray arrows pointing to them do get buried in the next-next block.
 
 <figure>
 
@@ -113,12 +114,13 @@ Note that the farmers of blocks B2 and B3 might both have a chance to create the
 
 While all blocks still choose the puzzle hashes of where their rewards go, those transactions do not get included into the blockchain until the next transaction block.
 
-For the chia mainnet, there is a target of 32 blocks every 600 seconds, for an average block time of 18.75 seconds. There are 64 signage points, so the minimum time between transaction blocks is 3*600/64 = 28.125 seconds. This puts the average transaction block time at 46.875 seconds (average block time + minimum transaction block time).
+For the chia mainnet, there is a target of 32 blocks every 600 seconds, for an average block time of 18.75 seconds. There are 64 signage points, so the minimum time between transaction blocks is 3\*600/64 = 28.125 seconds. This puts the average transaction block time at 46.875 seconds (average block time + minimum transaction block time).
 
 The time between transaction blocks was deliberately chosen because it comes with several advantages:
-* If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.
-* If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
-* Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm attack.
-* Finally, empty blocks help to smooth farmers' rewards.
+
+- If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.
+- If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
+- Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm attack.
+- Finally, empty blocks help to smooth farmers' rewards.
 
 </details>

@@ -26,9 +26,10 @@ sidebar_position: 3
 </figcaption>
 </figure>
 
-虽然以下细节对于理解共识算法不是很重要，但选择使用什么 VDF 是相关的，因为如果攻击者成功获得了更快的机器，一些[攻击](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures")成为可能。
+虽然以下细节对于理解共识算法不是很重要，但选择使用什么 VDF 是相关的，因为如果攻击者成功获得了更快的机器，一些[攻击](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')成为可能。
 
-Chia 使用的 VDF 在[未知顺序的类组](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long")中重复平方。生成具有未知顺序的大组有两种主要方法：
+Chia 使用的 VDF 在[未知顺序的类组](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long')中重复平方。生成具有未知顺序的大组有两种主要方法：
+
 1. 使用 RSA 模数，并使用整数 mod N 作为一个组。如果您可以使用 MPC 仪式与许多参与方生成模数，则该组的顺序是未知的。
 2. 一种更简单的方法是使用具有大素数判别式的类群，它们是未知阶的群。这不需要任何复杂或可信的设置，所以我们为奇亚选择了这个选项。
 
@@ -37,7 +38,7 @@ Chia 使用的 VDF 在[未知顺序的类组](https://github.com/Chia-Network/vd
 <details>
 <summary>原文参考</summary>
 
-A Verifiable Delay Function, also referred to as a proof of time or VDF, is a proof that a sequential function was executed a certain number of times. 
+A Verifiable Delay Function, also referred to as a proof of time or VDF, is a proof that a sequential function was executed a certain number of times.
 
 **Verifiable**: this means that after performing the computation (which takes time), the prover can create a very small proof in a very short time, and the verifier can verify this proof without having to redo the whole computation.
 
@@ -57,16 +58,16 @@ Figure 3: The Verifier (blockchain) sends a challenge to a Prover (timelord) and
 </figcaption>
 </figure>
 
-Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures") become possible.
+Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures') become possible.
 
-The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long"). There are two main ways to generate a large group that has an unknown order:
+The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long'). There are two main ways to generate a large group that has an unknown order:
+
 1. Use an RSA modulus, and use the integers mod N as a group. The order of the group is unknown if you can generate your modulus with many participating parties using an MPC ceremony.
 2. An easier approach is to use classgroups with a large prime discriminant, which are groups of unknown order. This does not require any complex or trusted setup, so we chose this option for Chia.
 
 To create one of these groups, one just needs a large, random, prime number. The drawbacks are that classgroup code is less tested in real life, and optimizations are less well-known than in RSA groups. We use the same initial element for the squaring (a=2, b=1 classgroup element), and instead use the challenge to generate a new random prime number for each VDF, which is used as the discriminant. The discriminant has a size of 1024 bits, which means the proof sizes are around 1024 bits. We use the [Wesolowski scheme](https://eprint.iacr.org/2018/623) split into n (1<=n<=64) phases so that creating the proofs is very fast. Since the n-wesolowski proofs can be large, we replace them with 1-wesolowski proofs as soon as they are available. These are smaller, but require more time to make. The proofs themselves are not committed to on-chain, so they are replaceable.
 
 </details>
-
 
 ### 融合
 
@@ -81,7 +82,7 @@ To create one of these groups, one just needs a large, random, prime number. The
 
 - ### Infusion
 
-As a recap, VDFs take in an input, called the challenge, and produce an output together with a proof that certifies that the function was evaluated correctly. 
+As a recap, VDFs take in an input, called the challenge, and produce an output together with a proof that certifies that the function was evaluated correctly.
 
 A _value_, in this context, can be thought of as a block with a proof of space. The value is combined with an output of a VDF, to generate a new value, which is used as the input/challenge for the next VDF. This is known as an _infusion_ of a value into a VDF.
 

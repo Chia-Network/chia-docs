@@ -36,14 +36,14 @@ Usage: chia wallet did create [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description |
-|:--------------|:------------------|:--------|:---------|:------------|
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use |
-| -n            | --name            | TEXT    | False    | Set the DID wallet name [default: None] |
-| -a            | --amount          | INTEGER | False    | Set the DID amount in mojos. Value must be an odd number.  [default: 1]
-| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0] |
-| -h            | --help            | None    | False    | Show a help message and exit. |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -n            | --name            | TEXT    | False    | Set the DID wallet name [default: None]                                                                  |
+| -a            | --amount          | INTEGER | False    | Set the DID amount in mojos. Value must be an odd number. [default: 1]                                   |
+| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
+| -h            | --help            | None    | False    | Show a help message and exit.                                                                            |
 
 <details>
 <summary>Example</summary>
@@ -99,13 +99,12 @@ Usage: chia wallet did get_did [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description |
-|:--------------|:------------------|:--------|:---------|:------------|
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use |
-| -i            | --id              | INTEGER | True     | ID of the wallet to use |
-| -h            | --help            | None    | False    | Show a help message and exit. |
-
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit.                                                                            |
 
 <details>
 <summary>Example</summary>
@@ -134,14 +133,13 @@ Usage: chia wallet did get_did [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description |
-|:--------------|:------------------|:--------|:---------|:------------|
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use |
-| -i            | --id              | INTEGER | True     | ID of the wallet to use |
-| -n            | --name            | TEXT    | True     | Set the DID wallet name |
-| -h            | --help            | None    | False    | Show a help message and exit. |
-
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -n            | --name            | TEXT    | True     | Set the DID wallet name                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit.                                                                            |
 
 <details>
 <summary>Example</summary>

@@ -15,7 +15,6 @@ This is the initial version of the Chia Pool Protocol. It is designed to be simp
 
 </details>
 
-
 ## 安全考虑
 
 矿池必须确保部分快速到达，快于包含到区块链中的 28 秒时间限制。这允许设置缓慢的农民检测问题。
@@ -86,7 +85,6 @@ authentication_token = current_utc_minutes / authentication_token_timeout
 
 `authentication_token_timeout` 是矿池的配置参数，该参数也包含在 [GET /pool_info](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) 响应中，农民必须遵守该参数。 而在签名 `current_utc_minutes` 时以**分钟**为单位的本地 UTC 时间戳 。理想情况下，本地时钟应与时间同步协议（例如 NTP）同步。身份验证令牌通常包含在签名的有效负载中。
 
-
 <details>
 <summary>原文参考</summary>
 
@@ -110,12 +108,12 @@ synchronization protocol e.g., NTP. The authentication token is usually included
 
 矿池协议由几个返回 JSON 响应的 HTTPS 端点组成。HTTPS 服务器可以在任何端口上运行，但必须在启用 TLS（使用 CA 批准的证书）和启用流水线的情况下运行。所有字节值都编码为十六进制，前面有可选的 0x。 客户端也应该使用流水线运行。
 
-* [获取/矿池信息](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info)
-* [获取/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#get-farmer)
-* [POST/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#post-farmer)
-* [PUT/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#put-farmer)
-* [POST/部分](http://10.177.0.168:3000/cn/docs/pooling/specification#post-partial)
-* [获取/登录（可选）](http://10.177.0.168:3000/cn/docs/pooling/specification#get-login)
+- [获取/矿池信息](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info)
+- [获取/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#get-farmer)
+- [POST/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#post-farmer)
+- [PUT/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#put-farmer)
+- [POST/部分](http://10.177.0.168:3000/cn/docs/pooling/specification#post-partial)
+- [获取/登录（可选）](http://10.177.0.168:3000/cn/docs/pooling/specification#get-login)
 
 <details>
 <summary>原文参考</summary>
@@ -145,25 +143,24 @@ All bytes values are encoded as hex with optional 0x in front. Clients are also 
 
 可能会出现以下错误：
 
-|错误代码|描述|
-|---|---|
-| 0x01 | 提供的标牌点已恢复 |
-| 0x02 | 收到部分太晚了 |
-| 0x03 | 未找到 |
-| 0x04 | 空间证明无效 |
-| 0x05 | 空间证明不够好 |
-| 0x06 | 无效难度 |
-| 0x07 | 无效签名 |
-| 0x08 | 网络服务器引发异常|
-| 0x09 | 无效的谜语哈希|
-| 0x0A | 农民不详 |
-| 0x0B | 农民已经知道 |
-| 0x0C | 无效的认证公钥 |
-| 0x0D | 无效的付款说明 |
-| 0x0E | 无效的单例硬币 |
-| 0x0F | 延迟时间太短 |
-| 0x10 | 请求失败 |
-
+| 错误代码 | 描述               |
+| -------- | ------------------ |
+| 0x01     | 提供的标牌点已恢复 |
+| 0x02     | 收到部分太晚了     |
+| 0x03     | 未找到             |
+| 0x04     | 空间证明无效       |
+| 0x05     | 空间证明不够好     |
+| 0x06     | 无效难度           |
+| 0x07     | 无效签名           |
+| 0x08     | 网络服务器引发异常 |
+| 0x09     | 无效的谜语哈希     |
+| 0x0A     | 农民不详           |
+| 0x0B     | 农民已经知道       |
+| 0x0C     | 无效的认证公钥     |
+| 0x0D     | 无效的付款说明     |
+| 0x0E     | 无效的单例硬币     |
+| 0x0F     | 延迟时间太短       |
+| 0x10     | 请求失败           |
 
 <details>
 <summary>原文参考</summary>
@@ -174,29 +171,29 @@ A failed endpoint will always return a JSON object with an error code and an
 english error message as shown below:
 
 ```json
-{"error_code": 0, "error_message": ""}
+{ "error_code": 0, "error_message": "" }
 ```
 
 The following errors may occur:
 
-|Error code|Description|
-|---|---|
-| 0x01 | The provided signage point has been reverted |
-| 0x02 | Received partial too late |
-| 0x03 | Not found |
-| 0x04 | Proof of space invalid |
-| 0x05 | Proof of space not good enough |
-| 0x06 | Invalid difficulty |
-| 0x07 | Invalid signature |
-| 0x08 | Web-Server raised an exception|
-| 0x09 | Invalid puzzle hash|
-| 0x0A | Farmer not known |
-| 0x0B | Farmer already known |
-| 0x0C | Invalid authentication public key |
-| 0x0D | Invalid payout instructions |
-| 0x0E | Invalid singleton |
-| 0x0F | Delay time too short |
-| 0x10 | Request failed |
+| Error code | Description                                  |
+| ---------- | -------------------------------------------- |
+| 0x01       | The provided signage point has been reverted |
+| 0x02       | Received partial too late                    |
+| 0x03       | Not found                                    |
+| 0x04       | Proof of space invalid                       |
+| 0x05       | Proof of space not good enough               |
+| 0x06       | Invalid difficulty                           |
+| 0x07       | Invalid signature                            |
+| 0x08       | Web-Server raised an exception               |
+| 0x09       | Invalid puzzle hash                          |
+| 0x0A       | Farmer not known                             |
+| 0x0B       | Farmer already known                         |
+| 0x0C       | Invalid authentication public key            |
+| 0x0D       | Invalid payout instructions                  |
+| 0x0E       | Invalid singleton                            |
+| 0x0F       | Delay time too short                         |
+| 0x10       | Request failed                               |
 
 </details>
 
@@ -242,6 +239,7 @@ https://subdomain.domain.tld:port/path
 
 The pool URL is the url that farmers use to connect to the pool. The subdomains, port, and path are optional. The client
 will use 443 if there is no port. Note that the trailing slash must NOT be present. Everything must be lower case.
+
 ```
 https://subdomain.domain.tld:port/path
 ```
@@ -254,15 +252,15 @@ https://subdomain.domain.tld:port/path
 
 ```json
 {
-    "description": "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia.",
-    "fee": 0.01,
-    "logo_url": "https://www.chia.net/img/chia_logo.svg",
-    "minimum_difficulty": 10,
-    "name": "The Reference Pool",
-    "protocol_version": 1,
-    "relative_lock_height": 100,
-    "target_puzzle_hash": "0x344587cf06a39db471d2cc027504e8688a0a67cce961253500c956c73603fd58",
-    "authentication_token_timeout": 5
+  "description": "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia.",
+  "fee": 0.01,
+  "logo_url": "https://www.chia.net/img/chia_logo.svg",
+  "minimum_difficulty": 10,
+  "name": "The Reference Pool",
+  "protocol_version": 1,
+  "relative_lock_height": 100,
+  "target_puzzle_hash": "0x344587cf06a39db471d2cc027504e8688a0a67cce961253500c956c73603fd58",
+  "authentication_token_timeout": 5
 }
 ```
 
@@ -312,17 +310,18 @@ when the farmer enters the pool URL into the client. This allows the farmer to s
 decide whether or not to join. It also allows the farmer to set the correct parameters in their singleton on the
 blockchain. Warning to client implementers: if displaying any of this information, make sure to account for malicious
 scripts and JS injections. It returns a JSON response with the following data:
+
 ```json
 {
-    "description": "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia.",
-    "fee": 0.01,
-    "logo_url": "https://www.chia.net/img/chia_logo.svg",
-    "minimum_difficulty": 10,
-    "name": "The Reference Pool",
-    "protocol_version": 1,
-    "relative_lock_height": 100,
-    "target_puzzle_hash": "0x344587cf06a39db471d2cc027504e8688a0a67cce961253500c956c73603fd58",
-    "authentication_token_timeout": 5
+  "description": "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia.",
+  "fee": 0.01,
+  "logo_url": "https://www.chia.net/img/chia_logo.svg",
+  "minimum_difficulty": 10,
+  "name": "The Reference Pool",
+  "protocol_version": 1,
+  "relative_lock_height": 100,
+  "target_puzzle_hash": "0x344587cf06a39db471d2cc027504e8688a0a67cce961253500c956c73603fd58",
+  "authentication_token_timeout": 5
 }
 ```
 
@@ -388,10 +387,10 @@ https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&
 
 ```json
 {
-    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-    "current_difficulty": 10,
-    "current_points": 10
+  "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+  "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+  "current_difficulty": 10,
+  "current_points": 10
 }
 ```
 
@@ -409,12 +408,12 @@ https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&
 
 这是按给定顺序对以下数据进行哈希序列化的 BLS 签名：
 
-| 元素 | 类型 |
-| --- | --- |
-| 方法名称 | 字符串 |
-| launcher_id | 字节32 |
-| target_puzzle_hash | 字节32 |
-| authentication_token | uint64 |
+| 元素                 | 类型    |
+| -------------------- | ------- |
+| 方法名称             | 字符串  |
+| launcher_id          | 字节 32 |
+| target_puzzle_hash   | 字节 32 |
+| authentication_token | uint64  |
 
 其中 `method_name` 必须是序列化字符串 `"get_farmer"` ，参数必须根据[签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和哈希，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
@@ -430,6 +429,7 @@ https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&
 Get the latest information for a farmer.
 
 Request parameter:
+
 ```
 - launcher_id
 - authentication_token
@@ -437,17 +437,19 @@ Request parameter:
 ```
 
 Example request:
+
 ```
 https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&signature=:signature
 ```
 
 Successful response:
+
 ```json
 {
-    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-    "current_difficulty": 10,
-    "current_points": 10
+  "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+  "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+  "current_difficulty": 10,
+  "current_points": 10
 }
 ```
 
@@ -466,12 +468,12 @@ See [Farmer authentication](#farmer-authentication) for the specification of
 
 This is a BLS signature of the hashed serialization of the following data in the given order:
 
-|Element|Type|
-|---|---|
-|method_name| string|
-|launcher_id | bytes32 |
-|target_puzzle_hash | bytes32 |
-|authentication_token | uint64 |
+| Element              | Type    |
+| -------------------- | ------- |
+| method_name          | string  |
+| launcher_id          | bytes32 |
+| target_puzzle_hash   | bytes32 |
+| authentication_token | uint64  |
 
 where `method_name` must be the serialized string `"get_farmer"`, the parameters must be serialized and hashed
 according to [Signature validation](#signature-validation) and the signature must be signed by the private key of the
@@ -481,8 +483,8 @@ where the parameter must be serialized and hashed according to [Signature valida
 signature must be signed by the private key of the `authentication_public_key` using the Augmented Scheme in the BLS
 IETF spec.
 
-Note: The pool MUST return the current points balance, which is the total number of points found since the last 
-payout for that user. 
+Note: The pool MUST return the current points balance, which is the total number of points found since the last
+payout for that user.
 
 </details>
 
@@ -494,21 +496,21 @@ payout for that user.
 
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_token": 27062279,
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-        "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-        "suggested_difficulty": 10
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_token": 27062279,
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+    "suggested_difficulty": 10
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
 成功回复：
 
 ```json
-{"welcome_message" : "Welcome to the reference pool. Happy farming."}
+{ "welcome_message": "Welcome to the reference pool. Happy farming." }
 ```
 
 成功的响应必须始终包含必须由矿池定义的欢迎消息。
@@ -549,7 +551,6 @@ sha256(PostFarmerPayload)
 
 见[可流式传输](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 类 `PostFarmerPayload` 的[矿池协议](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) 和[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 的规格 `authentication_token` 。
 
-
 <details>
 <summary>原文参考</summary>
 
@@ -558,22 +559,24 @@ sha256(PostFarmerPayload)
 Register a farmer with the pool. This is required once before submitting the first partial.
 
 Request:
+
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_token": 27062279,
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-        "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-        "suggested_difficulty": 10
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_token": 27062279,
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+    "suggested_difficulty": 10
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
 Successful response:
+
 ```json
-{"welcome_message" : "Welcome to the reference pool. Happy farming."}
+{ "welcome_message": "Welcome to the reference pool. Happy farming." }
 ```
 
 A successful response must always contain a welcome message which must be defined by the pool.
@@ -633,14 +636,14 @@ and [Farmer authentication](#farmer-authentication) for the specification of `au
 
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_token": 27062279,
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-        "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-        "suggested_difficulty": 10
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_token": 27062279,
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+    "suggested_difficulty": 10
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
@@ -666,11 +669,11 @@ and [Farmer authentication](#farmer-authentication) for the specification of `au
 
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29"
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29"
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
@@ -682,22 +685,23 @@ and [Farmer authentication](#farmer-authentication) for the specification of `au
 Allows farmers to update their information on the pool.
 
 Request:
+
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_token": 27062279,
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-        "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-        "suggested_difficulty": 10
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_token": 27062279,
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+    "suggested_difficulty": 10
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
 For a description of the request body entries see the corresponding keys in [POST /farmer](#post-farmer). The values
 provided with the key/value pairs are used to update the existing values on the server. All entries, except
-`launcher_id`, are optional but there must be at least one of them. 
+`launcher_id`, are optional but there must be at least one of them.
 
 See the [streamable](#signature-validation) class `PutFarmerPayload` in the
 [pool protocol](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) for details
@@ -705,6 +709,7 @@ and [Farmer authentication](#farmer-authentication) for the specification of
 `authentication_token`.
 
 Successful response:
+
 ```json
 {
   "authentication_public_key": true,
@@ -719,13 +724,14 @@ must be `true` if the entry has been updated or `false` if the value was the sam
 See below for an example body to only update the authentication key:
 
 Example to update `authentication_public_key`:
+
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29"
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29"
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
@@ -760,7 +766,7 @@ Example to update `authentication_public_key`:
 成功回复：
 
 ```json
-{"new_difficulty": 10}
+{ "new_difficulty": 10 }
 ```
 
 一个成功的反应必须始终包含农民必须尊重的新困难。
@@ -834,6 +840,7 @@ sha256(PostPartialPayload)
 This is a partial submission from the farmer to the pool operator.
 
 Request:
+
 ```json
 {
   "payload": {
@@ -855,8 +862,9 @@ Request:
 ```
 
 Successful response:
+
 ```json
-{"new_difficulty": 10}
+{ "new_difficulty": 10 }
 ```
 
 A successful response must always contain the new difficulty which must be respected by the farmer.
@@ -963,12 +971,12 @@ https://poolurl.com/login?launcher_id=:launcher_id&authentication_token=:token&s
 
 这是按给定顺序对以下数据进行散列序列化的 BLS 签名：
 
-| 元素 | 类型 |
-| --- | --- |
-| 方法名称 | 字符串 |
-| launcher_id | 字节32 |
-| target_puzzle_hash | 字节32 |
-| authentication_token | uint64 |
+| 元素                 | 类型    |
+| -------------------- | ------- |
+| 方法名称             | 字符串  |
+| launcher_id          | 字节 32 |
+| target_puzzle_hash   | 字节 32 |
+| authentication_token | uint64  |
 
 `method_name` 必须是序列化的字符串 `"get_login"`，`target_puzzle_hash` 是矿池的目标[谜语哈希](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info)（参见 [GET/矿池信息](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) ）。参数必须根据[签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
@@ -980,7 +988,7 @@ https://poolurl.com/login?launcher_id=:launcher_id&authentication_token=:token&s
 - ## GET /login
 
 This allows the user to log in to a web interface if the pool supports it, see service flags in
-[GET /pool_info](#get-pool_info). The farmer software must offer a way to generate and display a login link or provide 
+[GET /pool_info](#get-pool_info). The farmer software must offer a way to generate and display a login link or provide
 a button which generates the link and then just opens it in the default browser. The link follows the specification
 below.
 
@@ -988,6 +996,7 @@ Note that there is no explicit account creation. A farmer can log in after makin
 [POST /farmer](#post-farmer).
 
 Request parameters:
+
 ```
 - launcher_id
 - authentication_token
@@ -995,6 +1004,7 @@ Request parameters:
 ```
 
 Example request:
+
 ```
 https://poolurl.com/login?launcher_id=:launcher_id&authentication_token=:token&signature=:signature
 ```
@@ -1012,12 +1022,12 @@ See [Farmer authentication](#farmer-authentication) for the specification of
 
 This is a BLS signature of the hashed serialization of the following data in the given order:
 
-|Element|Type|
-|---|---|
-|method_name| string|
-|launcher_id | bytes32 |
-|target_puzzle_hash | bytes32 |
-|authentication_token | uint64 |
+| Element              | Type    |
+| -------------------- | ------- |
+| method_name          | string  |
+| launcher_id          | bytes32 |
+| target_puzzle_hash   | bytes32 |
+| authentication_token | uint64  |
 
 where `method_name` must be the serialized string `"get_login"` and `target_puzzle_hash`
 is pool's target puzzle hash (see [GET /pool_info](#get-pool_info)). The parameters must be serialized and hashed
@@ -1032,7 +1042,7 @@ IETF spec.
 
 ## 难度
 
-难度允许矿池操作员控制他们每天从每个农民那里收到多少部分。可以为每个农民单独调整难度。一个合理的目标是每天 300 个部分，以确保对农民的频繁反馈和低可变性。难度为 1 会导致每个 k32 图每天大约有 10 个部分。这是协议的 V1 支持的最小难度为1。但是，为了效率，矿池可以设置更高的最小难度。在计算证明质量是否足以获得积分时，矿池应使用 `sub_slot_iters=37600000000` 。如果农户提交的证明对当前难度不够好，则矿池应通过 `current_difficulty` 在响应中设置来响应。
+难度允许矿池操作员控制他们每天从每个农民那里收到多少部分。可以为每个农民单独调整难度。一个合理的目标是每天 300 个部分，以确保对农民的频繁反馈和低可变性。难度为 1 会导致每个 k32 图每天大约有 10 个部分。这是协议的 V1 支持的最小难度为 1。但是，为了效率，矿池可以设置更高的最小难度。在计算证明质量是否足以获得积分时，矿池应使用 `sub_slot_iters=37600000000` 。如果农户提交的证明对当前难度不够好，则矿池应通过 `current_difficulty` 在响应中设置来响应。
 
 <details>
 <summary>原文参考</summary>

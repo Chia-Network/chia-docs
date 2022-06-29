@@ -21,7 +21,7 @@ The mempool (or memory pool) is a collection of transactions stored by full node
 
 The mempool is a required facet of Chia due to the decentralized nature of the blockchain. Transaction blocks occur approximately every 47 seconds, and it's impossible to predict who will win a block. Therefore, all transactions must be broadcast to the whole network and stored locally until they are confirmed. Additionally, it is normal to have more pending transactions than can fit in a single block, so the mempool also acts as a queue for inclusion into the blockchain.
 
->How many transactions can fit into a block? Due to the varying size of transactions, and the different definitions of what even counts as a "transaction," there is not an exact number. But just for a bit of rough guidance, approximately 1000 transactions with two inputs and two outputs, or 2000 transactions with one input and one output can fit into a single block.
+> How many transactions can fit into a block? Due to the varying size of transactions, and the different definitions of what even counts as a "transaction," there is not an exact number. But just for a bit of rough guidance, approximately 1000 transactions with two inputs and two outputs, or 2000 transactions with one input and one output can fit into a single block.
 
 When a user makes a transaction, it gets sent to a full node, which then verifies it, adds it to the mempool, and broadcasts it to all of its peers. Therefore, transactions get propagated to the whole network in a very short period of time.
 
@@ -36,7 +36,7 @@ When a user makes a transaction, it gets sent to a full node, which then verifie
 <details>
 <summary>原文参考</summary>
 
-- ##  Validation
+- ## Validation
 
 Only valid transactions are allowed to enter the mempool. The process of validating transactions is similar to the process of validating blocks. This includes running CLVM, checking conditions, validating signatures, and checking that the coins to be spent are currently unspent and valid.
 
@@ -96,18 +96,18 @@ For example, if the original transaction spent coins A and B, then another trans
 - ## Block Creation
 
 When the farmer makes a block, they will select the highest fee/cost transactions from the mempool until they reach the maximum block size. These spend bundles are combined into one large spend bundle, which is guaranteed to be valid,
-since all spend bundles in the mempool must spend disjoint coins. 
+since all spend bundles in the mempool must spend disjoint coins.
 
 Coin spends cannot impact other coin spends, which is a very nice property of UTXO systems, and allows parallelization of validation and block creation. The aggregate
 spend bundle also has one aggregate signature, which is a combination of all the signatures of all the transactions in that block.
 
-For performance reasons, the chia-blockchain codebase currently creates only smaller blocks (less than 50% of the maximum size) in order to keep the blockchain smaller and  easier to run. This "throttle" is likely to be removed in future versions, after additional optimizations have been performed. 
+For performance reasons, the chia-blockchain codebase currently creates only smaller blocks (less than 50% of the maximum size) in order to keep the blockchain smaller and easier to run. This "throttle" is likely to be removed in future versions, after additional optimizations have been performed.
 
 </details>
 
 ## 更新内存池
 
-将新区块添加到区块链后，所有完整节点都必须查看在该新区块中花费的硬币，并将它们从内存池中删除。全节点不需要再次重新申请每笔交易，因为奇亚币的支出是确定性和沙盒的（有关更多信息，请参阅  [chialisp.com](https://chialisp.com)）。全节点只需要查看新区块中花费的硬币，如果有任何交易花费了其中一个硬币，它们就会从内存池中删除。这意味着内存池可以非常大，代码库可以很简单，并且可以实现高性能。
+将新区块添加到区块链后，所有完整节点都必须查看在该新区块中花费的硬币，并将它们从内存池中删除。全节点不需要再次重新申请每笔交易，因为奇亚币的支出是确定性和沙盒的（有关更多信息，请参阅 [chialisp.com](https://chialisp.com)）。全节点只需要查看新区块中花费的硬币，如果有任何交易花费了其中一个硬币，它们就会从内存池中删除。这意味着内存池可以非常大，代码库可以很简单，并且可以实现高性能。
 
 <details>
 <summary>原文参考</summary>

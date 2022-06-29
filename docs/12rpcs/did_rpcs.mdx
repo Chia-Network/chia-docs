@@ -14,14 +14,16 @@ import TabItem from '@theme/TabItem';
   <summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
-  
+
 For example, here is a typical RPC command on Linux and MacOS:
+
 ```powershell
 chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
 To run the same command on Windows, you need to escape the quotes, so it looks like this:
-```powershell  
+
+```powershell
 chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
 </details>
@@ -38,21 +40,21 @@ Note: This is part of the wallet RPC API. It is included here to document the on
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data
-| -h            | --help       | None | False    | Show a help message and exit
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter                | Required | Description |
-|:-------------------------|:---------|:------------|
-| wallet_type              | True     | This must be set to `did_wallet` in order to create a DID wallet |
-| did_type                 | True     | Set this to `new` to create a new DID |
-| amount                   | True     | Number of mojos to add to the DID initially. Minimum value is `1` |
-| backup_dids              | True     | A list of DIDs to be used for recovery. Must match actual DIDs |
+| Parameter                | Required | Description                                                                                                                 |
+| :----------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| wallet_type              | True     | This must be set to `did_wallet` in order to create a DID wallet                                                            |
+| did_type                 | True     | Set this to `new` to create a new DID                                                                                       |
+| amount                   | True     | Number of mojos to add to the DID initially. Minimum value is `1`                                                           |
+| backup_dids              | True     | A list of DIDs to be used for recovery. Must match actual DIDs                                                              |
 | num_of_backup_ids_needed | True     | The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
-| fee                      | False    | An optional blockchain fee, in mojos |
+| fee                      | False    | An optional blockchain fee, in mojos                                                                                        |
 
 <details>
 <summary>Example</summary> 
@@ -112,17 +114,17 @@ Usage: chia rpc wallet [OPTIONS] did_set_wallet_name [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data
-| -h            | --help       | None | False    | Show a help message and exit
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                              |
+| :-------- | :------- | :------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet on which to set the name |
-| name      | True     | The new name of the DID wallet |
+| name      | True     | The new name of the DID wallet                           |
 
 
 <details>
@@ -175,15 +177,15 @@ Usage: chia rpc wallet [OPTIONS] did_get_wallet_name [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                              |
+| :-------- | :------- | :------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet on which to get the name |
 
 <details>
@@ -215,17 +217,17 @@ Usage: chia rpc wallet [OPTIONS] did_update_recovery_ids [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter                  | Required | Description |
-|:---------------------------|:---------|:------------|
-| wallet_id                  | True     | The Wallet ID of the DID wallet for which to update the recovery IDs |
-| new_list                   | True     | The new recovery ID list. Each item from this list will be appended to the existing list |
+| Parameter                  | Required | Description                                                                                                                         |
+| :------------------------- | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                  | True     | The Wallet ID of the DID wallet for which to update the recovery IDs                                                                |
+| new_list                   | True     | The new recovery ID list. Each item from this list will be appended to the existing list                                            |
 | num_verifications_required | False    | Optionally set the number of IDs required for wallet recovery. If not set, then the entire updated list will be required by default |
 
 
@@ -235,6 +237,7 @@ Request Parameters:
 To show an example, first we need at least one DID to be used for recovery. In this case, we'll create two and use them both.
 
 Create one recovery DID:
+
 ```json
 chia wallet did create -n "Recovery DID 1"
 ```
@@ -285,17 +288,17 @@ Usage: chia rpc wallet [OPTIONS] did_update_metadata [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                      |
+| :-------- | :------- | :--------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to update the metadata |
-| metadata  | False    | The updated metadata |
+| metadata  | False    | The updated metadata                                             |
 
 <details>
 <summary>Example</summary>
@@ -324,15 +327,15 @@ Usage: chia rpc wallet [OPTIONS] did_get_did [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                   |
+| :-------- | :------- | :------------------------------------------------------------ |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the DID info |
 
 <details>
@@ -365,15 +368,15 @@ Usage: chia rpc wallet [OPTIONS] did_get_recovery_list [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the recovery list |
 
 <details>
@@ -409,15 +412,15 @@ Usage: chia rpc wallet [OPTIONS] did_get_metadata [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the metadata list |
 
 <details>
@@ -452,18 +455,18 @@ Usage: chia rpc wallet [OPTIONS] did_recovery_spend [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter   | Required | Description |
-|:------------|:---------|:------------|
-| wallet_id   | True     | The Wallet ID of the DID wallet to recover |
-| attest_data | True     | A list of attest files to be used for recovery |
-| pubkey      | False    | The public key of the wallet to recover. If this is not provided, a temporary public key will be used instead |
+| Parameter   | Required | Description                                                                                                     |
+| :---------- | :------- | :-------------------------------------------------------------------------------------------------------------- |
+| wallet_id   | True     | The Wallet ID of the DID wallet to recover                                                                      |
+| attest_data | True     | A list of attest files to be used for recovery                                                                  |
+| pubkey      | False    | The public key of the wallet to recover. If this is not provided, a temporary public key will be used instead   |
 | puzhash     | False    | The puzzle hash of the wallet to recover. If this is not provided, a temporary puzzle hash will be used instead |
 
 <details>
@@ -489,15 +492,15 @@ Usage: chia rpc wallet [OPTIONS] did_get_pubkey [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                         |
+| :-------- | :------- | :------------------------------------------------------------------ |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the public key |
 
 <details>
@@ -529,19 +532,19 @@ Usage: chia rpc wallet [OPTIONS] did_create_attest [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                  |
+| :-------- | :------- | :------------------------------------------- |
 | wallet_id | True     | The Wallet ID for which to create the attest |
-| coin_name | True     | The coin to use for the attest |
-| pubkey    | True     | The public key to use for the attest |
-| puzhash   | True     | The puzzle hash to use for the attest |
+| coin_name | True     | The coin to use for the attest               |
+| pubkey    | True     | The public key to use for the attest         |
+| puzhash   | True     | The puzzle hash to use for the attest        |
 
 <details>
 <summary>Example</summary>
@@ -561,7 +564,7 @@ Response:
     "success": true,
     "wallet_id": 4
 }
-````
+```
 
 Next, obtain the `did_innerpuz` (`puzhash`):
 
@@ -639,15 +642,15 @@ Usage: chia rpc wallet [OPTIONS] did_get_information_needed_for_recovery [REQUES
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                                   |
+| :-------- | :------- | :---------------------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the recovery information |
 
 <details>
@@ -685,15 +688,15 @@ Usage: chia rpc wallet [OPTIONS] did_get_current_coin_info [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the coin info |
 
 <details>
@@ -729,15 +732,15 @@ Usage: chia rpc wallet [OPTIONS] did_create_backup_file [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the coin info |
 
 <details>
@@ -769,16 +772,16 @@ Usage: chia rpc wallet [OPTIONS] did_transfer_did [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description |
-|:--------------|:-------------|:-----|:---------|:------------|
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data
-| -h            | --help       | None | False    | Show a help message and exit
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter     | Required | Description |
-|:--------------|:---------|:------------|
-| wallet_id     | True     | The Wallet ID of the DID wallet to transfer |
+| Parameter     | Required | Description                                                  |
+| :------------ | :------- | :----------------------------------------------------------- |
+| wallet_id     | True     | The Wallet ID of the DID wallet to transfer                  |
 | inner_address | True     | The address of the inner puzzle to which to transfer the DID |
 
 <details>

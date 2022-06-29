@@ -3,17 +3,19 @@ sidebar_position: 2
 ---
 
 # 12.2 Full Node API
+
 The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for
 security concerns.
 
 ## get_network_info
+
 Retrieves some information about the current network.
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{}' \             
+-d '{}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_network_info  | python -m json.tool
 
 // Response
@@ -23,7 +25,6 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     "success": true
 }
 ```
-
 
 ## get_blockchain_state
 
@@ -90,7 +91,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 Retrieves an entire block as a FulLBlock by header hash. Note that some blocks are transaction blocks, and some are not
 (like the one below).
 
-* **header_hash**: Heaader hash (block identifier) of the block to get. 
+- **header_hash**: Heaader hash (block identifier) of the block to get.
 
 ```json
 // Request
@@ -98,7 +99,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"header_hash":"0xf42b4e77315d79ddfb3d64becb21e26ebff5408bda4d1b7c3782fd04f49ec0bb"}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_block | python -m json.tool
-        
+
 
 // Response
 
@@ -180,14 +181,14 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ```
 
-
 ## get_blocks
+
 Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. To find out which
 one is in the blockchain, use `get_block_record_by_height`.
 
-* **start**: The start height.
-* **end**: The end height (non-inclusive).
-* **exclude_header_hash**: whether to exclude the header hash in the response (default false)
+- **start**: The start height.
+- **end**: The end height (non-inclusive).
+- **exclude_header_hash**: whether to exclude the header hash in the response (default false)
 
 ```json
 // Request
@@ -205,16 +206,17 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_block_record_by_height
- Retrieves a block record by height (assuming the height <= peak height). Note that not all blocks will have all
-fields set here (depending on transaction block, finishing sub epoch, etc). 
 
-* **height**: the height to get
+Retrieves a block record by height (assuming the height <= peak height). Note that not all blocks will have all
+fields set here (depending on transaction block, finishing sub epoch, etc).
+
+- **height**: the height to get
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"height": 101}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record_by_height | python -m json.tool 
+-d '{"height": 101}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record_by_height | python -m json.tool
 
 // Reponse
 {
@@ -266,16 +268,17 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_block_record
+
 Retrieves a block record by header hash.
 
-* **header_hash**: the block's header_hash
- 
+- **header_hash**: the block's header_hash
+
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"header_hash": "0x3723909a7374c4c88cf00ab9b15365f4988f5bdb2d51bac23f6af939fe40f56c"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record | python -m json.tool 
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record | python -m json.tool
 
 // Response
 {
@@ -326,26 +329,28 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_block_records
- Retrieves block records in a range. 
- 
-* **start**: the start height
-* **end**: the end height (non-inclusive)
 
-```json 
+Retrieves block records in a range.
+
+- **start**: the start height
+- **end**: the end height (non-inclusive)
+
+```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"start": 5, "end": 7}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_block_records | python -m json.tool 
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_block_records | python -m json.tool
 
 // Response
 {
     "block_records": [list of block records as described above]
     "success": true
 }
- ```
+```
 
 ## get_unfinished_block_headers
+
 Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon.
 The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the
 blocks after it.
@@ -434,17 +439,18 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_network_space
+
 Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes.
 
-* **older_block_header_hash**: the start header hash
-* **newer_block_header_hash**: the end header hash
+- **older_block_header_hash**: the start header hash
+- **newer_block_header_hash**: the end header hash
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"older_block_header_hash": "0xd780d22c7a87c9e01d98b49a0910f6701c3b95015741316b3fda042e5d7b81d2", "newer_block_header_hash": "0xd3372ec62d3ef2f55a8e3d0e76f6f341212f5e09b4d5112add588262257a8e4e"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_network_space | python -m json.tool 
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_network_space | python -m json.tool
 
 // Response
 {
@@ -454,12 +460,13 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_additions_and_removals
-Retrieves the additions and removals (state transitions) for a certain block. 
+
+Retrieves the additions and removals (state transitions) for a certain block.
 Returns coin records for each addition and removal.
 Blocks that are not transaction blocks will have empty removal and addition lists. To get the actual puzzles and solutions
 for spent coins, use the `get_puzzle_and_solution` api.
 
-* **header_hash**: header hash of the block
+- **header_hash**: header hash of the block
 
 ```json
 // Request
@@ -521,15 +528,16 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
             "spent_block_index": 922652,
             "timestamp": 1632832185
         },
-  ], 
+  ],
 "success": true
 }
 ```
 
 ## get_coin_record_by_name
+
 Retrieves a coin record by its name/id. The coin id can be obtained by hashing the Coin object.
 
-* **name**: coin id or coin name.
+- **name**: coin id or coin name.
 
 ```json
 // Request
@@ -537,7 +545,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"name": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0"}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_coin_record_by_name | python -m json.tool
-        
+
 // Response
 {
     "coin_record": {
@@ -557,12 +565,12 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_puzzle_and_solution
+
 Retrieves a coin's spend record by its coin id, sometimes referred to as coin name. Coin IDs can be calculated
 by hashing the coin. The puzzle and solution are provided in CLVM format.
 
-* **coin_id**: coin id or coin name.
-* **height**: height that the coin was spent.
-
+- **coin_id**: coin id or coin name.
+- **height**: height that the coin was spent.
 
 ```json
 // Request
@@ -570,7 +578,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"coin_id": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0", "height": 922641}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_puzzle_and_solution | python -m json.tool
-        
+
 // Response
 {
     "coin_solution": {
@@ -588,12 +596,13 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_coin_records_by_puzzle_hash
+
 Retrieves a list of coin records with a certain puzzle hash.
 
-* **puzzle_hash**: puzzle hash to search for
-* **start_height** (optional): confirmation start height for search
-* **end_height** (optional): confirmation end height for search
-* **include_spend_coins**: whether to include spent coins too, instead of just unspent, default to false
+- **puzzle_hash**: puzzle hash to search for
+- **start_height** (optional): confirmation start height for search
+- **end_height** (optional): confirmation end height for search
+- **include_spend_coins**: whether to include spent coins too, instead of just unspent, default to false
 
 ```json
 // Request
@@ -623,35 +632,33 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ```
 
-
 ## push_tx
+
 Pushes a transaction / spend bundle to the mempool and blockchain.
-Returns whether the spend bundle was successfully included into the mempool. 
+Returns whether the spend bundle was successfully included into the mempool.
 
 `SUCCESS` does not guarantee that the transaction will get confirmed. A transaction may be dropped from the mempool and not
-included if the fee is too low. A transaction may also be combined with other transactions to form different spend 
-bundles, so looking up the bundle by ID does not guarantee finding the original transaction. Transaction can be 
-resubmitted with a higher fee, as long as the coins spent in the new transaction are a superset of the coins spent in 
+included if the fee is too low. A transaction may also be combined with other transactions to form different spend
+bundles, so looking up the bundle by ID does not guarantee finding the original transaction. Transaction can be
+resubmitted with a higher fee, as long as the coins spent in the new transaction are a superset of the coins spent in
 the old one.
 
 To check whether a transaction has been confirmed, use `get_coin_record_by_name` with
-each coin id that should be created by this spend bundle. 
+each coin id that should be created by this spend bundle.
 
-
-* **spend_bundle**: spend bundle to submit, in JSON
-
+- **spend_bundle**: spend bundle to submit, in JSON
 
 The error status can be one of:
-* **SUCCESS**: if the transaction was successfully added to the mempool
-* **PENDING**: if the transaction cannot be included yes due to timelocks or conflicts
-* **FAILED**: transaction was not added to the mempool, and was dropped
 
+- **SUCCESS**: if the transaction was successfully added to the mempool
+- **PENDING**: if the transaction cannot be included yes due to timelocks or conflicts
+- **FAILED**: transaction was not added to the mempool, and was dropped
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{       
+-d '{
     "spend_bundle": {
     "aggregated_signature": "0xa5e5ea1f5ae2335a72fe0a7ed7ca39e8f142e2e1f6e37a348482290e88eb9cea2d973acf6145e34d0afeee7ba22f99850641e21a549b2c092bb49aa393acd938825bccca9413c1a268ba44367bc8433cd0fc0eb82e87bebe23817aa695bdb566",
     "coin_spends": [
@@ -668,12 +675,13 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
   }
 }' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/push_tx
-        
+
 // Response
 {"status": "SUCCESS", "success": true}
 ```
 
 ## get_all_mempool_tx_ids
+
 Returns a list of all transaction IDs (spend bundle hashes) in the mempool.
 
 ```json
@@ -692,7 +700,9 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_all_mempool_items
+
 Returns all items in the mempool.
+
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
@@ -777,10 +787,10 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_mempool_item_by_tx_id
+
 Gets a mempool item by tx id.
 
-* **tx_id**: spend bundle hash
-
+- **tx_id**: spend bundle hash
 
 ```json
 // Request
@@ -880,4 +890,3 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 }
 
 ```
-

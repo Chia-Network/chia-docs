@@ -9,6 +9,7 @@ sidebar_position: 1
 奇亚协议是异步和点对点的。它运行在端口 8444（或农民和时间领主的其他端口）上的网络套接字之上。所有节点既充当客户端又充当服务器，并且可以与其他对等点保持长期连接。
 
 奇亚协议中的每条消息都由字节组成，使用可流式传输格式，并作为网络套接字消息发送。每条消息由三部分组成。
+
 1. 第一，跨越 1 个字节的字段，代表正在传输的消息类型以及如何对数据进行解码。
 2. 其次，一个可选的 2 字节 ID，每个连接使用它来跟踪请求和响应。
 3. 第三，数据，它是协议消息之一的可流式传输编码表示。
@@ -32,10 +33,10 @@ class Message(Streamable):
 The Chia protocol is asynchronous and peer-to-peer. It runs on top of WebSockets on port 8444 (or other ports for farmers and timelords). All nodes act as both clients and servers, and can maintain long-term connections with other peers.
 
 Every message in the Chia protocol is composed of bytes, using the Streamable format, and sent as a WebSocket message. Each message is composed of three parts.
+
 1. A field spanning 1 byte, representing the type of message being transmitted, and how to decode the data.
 2. Second, an optional 2-byte ID, which is used per connection to keep track of requests and responses.
 3. Third, the data, which is a Streamable encoded representation of one of the protocol messages.
-
 
 ```python
 class Message(Streamable):
@@ -74,7 +75,7 @@ class Handshake(Streamable):
 
 - ## Handshake
 
-All peers in the Chia protocol (whether they are farmers, full nodes, timelords, etc.) act as both servers and clients (peers). As soon as a connection is initiated between two peers, both peers send a Handshake message, and a HandshakeAck message to complete the handshake. A peer's node_id is the SHA-256 hash of their [x.509](https://en.wikipedia.org/wiki/X.509) [DER](https://wiki.openssl.org/index.php/DER) certificate. 
+All peers in the Chia protocol (whether they are farmers, full nodes, timelords, etc.) act as both servers and clients (peers). As soon as a connection is initiated between two peers, both peers send a Handshake message, and a HandshakeAck message to complete the handshake. A peer's node_id is the SHA-256 hash of their [x.509](https://en.wikipedia.org/wiki/X.509) [DER](https://wiki.openssl.org/index.php/DER) certificate.
 
 ```python
 class Handshake(Streamable):
@@ -112,13 +113,13 @@ If a node does not receive any message from a peer for a certain period of time,
 
 对于加入去中心化网络的新节点，他们必须选择所有在线节点的子集来连接。
 
-为促进这一过程，奇亚和其他用户将临时运行一些介绍人节点，它们将抓取网络并支持一个协议消息：get\_peers\_introducer。 然后，介绍人将返回调用节点将尝试连接的已知最近对等节点的随机子集。
+为促进这一过程，奇亚和其他用户将临时运行一些介绍人节点，它们将抓取网络并支持一个协议消息：get_peers_introducer。 然后，介绍人将返回调用节点将尝试连接的已知最近对等节点的随机子集。
 
 DNS 介绍器也有不同的名称，它们返回随机可靠的对等点进行连接。
 
 例如：`dig dns-introducer.chia.net`。
 
-未来将招募更多DNS介绍人；检查[奇亚区块链 GitHub 存储库](https://github.com/Chia-Network/chia-blockchain "chia-blockchain on GitHub") 以获取更新。仅在应用程序初始启动时或在对等数据库没有好的对等时才联系介绍人。
+未来将招募更多 DNS 介绍人；检查[奇亚区块链 GitHub 存储库](https://github.com/Chia-Network/chia-blockchain 'chia-blockchain on GitHub') 以获取更新。仅在应用程序初始启动时或在对等数据库没有好的对等时才联系介绍人。
 
 <details>
 <summary>原文参考</summary>
@@ -133,7 +134,7 @@ DNS introducers are also available at different names, which return random relia
 
 For example: `dig dns-introducer.chia.net`.
 
-More DNS introducers will be recruited in the future; check the [chia-blockchain GitHub repository](https://github.com/Chia-Network/chia-blockchain "chia-blockchain on GitHub") for updates. The introducer is only contacted at initial launch of the application, or if the peer database has no good peers.
+More DNS introducers will be recruited in the future; check the [chia-blockchain GitHub repository](https://github.com/Chia-Network/chia-blockchain 'chia-blockchain on GitHub') for updates. The introducer is only contacted at initial launch of the application, or if the peer database has no good peers.
 
 </details>
 
@@ -148,7 +149,7 @@ RPC API 以 WebSocket 和 HTTP 格式提供。
 
 - ## RPC
 
-Aside from the Chia protocols described in the next page, there is also a local RPC protocol to allow simple control over a node or wallet through HTTP. All requests and responses for the RPC protocol are in JSON, to simplify the interface. This allows doing things like getting the tips of the chain, getting a specific block, adding connections, stopping the node, etc. The full node UI connects to the full node using the RPC. 
+Aside from the Chia protocols described in the next page, there is also a local RPC protocol to allow simple control over a node or wallet through HTTP. All requests and responses for the RPC protocol are in JSON, to simplify the interface. This allows doing things like getting the tips of the chain, getting a specific block, adding connections, stopping the node, etc. The full node UI connects to the full node using the RPC.
 
 The RPC APIs are provided in both WebSocket and HTTP format.
 

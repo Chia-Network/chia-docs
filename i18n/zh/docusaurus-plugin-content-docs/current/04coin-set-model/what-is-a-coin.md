@@ -34,7 +34,7 @@ class Coin:
 
 NOTE: This section will briefly discuss Chialisp and the coin set model. For a more in-depth tutorial, head over to [chialisp.com](http://chialisp.com "Chialisp's official website").
 
-The Chia blockchain, as explained in the consensus section, is a list of blocks that is agreed upon by nodes. Nodes also maintain a table of **coins**. A coin in chia is a record of ownership of a certain amount of XCH, which can be unlocked by providing a puzzle and solution. 
+The Chia blockchain, as explained in the consensus section, is a list of blocks that is agreed upon by nodes. Nodes also maintain a table of **coins**. A coin in chia is a record of ownership of a certain amount of XCH, which can be unlocked by providing a puzzle and solution.
 
 The 3 properties in a coin are:
 
@@ -64,9 +64,10 @@ For example, if Bob wanted to pay Alice, Bob would create a coin with a puzzle (
 该网络没有账户或硬币所有权的概念。任何人都可以尝试在网络上花费任何硬币。由谜语来防止硬币被盗或以意外方式花费。
 
 花费一个硬币所需的数据是：
-* 硬币 ID
-* 谜语（完整的 CLVM 源代码）
-* 谜语的谜底
+
+- 硬币 ID
+- 谜语（完整的 CLVM 源代码）
+- 谜语的谜底
 
 硬币还可以选择需要聚合签名才能使用它。
 
@@ -75,14 +76,15 @@ For example, if Bob wanted to pay Alice, Bob would create a coin with a puzzle (
 
 - ## Spends
 
-When Alice wants to spend her coin, she creates a spend bundle (transaction), which reveals the coin she will spend, the original puzzle, and the solution to that puzzle. The solution usually involves things like signatures, conditions, and recipients of the coin. Alice is the only one that knows the solution to her puzzles, and thus she controls that coin. A basic example is that the puzzle requires a digital signature from Alice's public key. 
+When Alice wants to spend her coin, she creates a spend bundle (transaction), which reveals the coin she will spend, the original puzzle, and the solution to that puzzle. The solution usually involves things like signatures, conditions, and recipients of the coin. Alice is the only one that knows the solution to her puzzles, and thus she controls that coin. A basic example is that the puzzle requires a digital signature from Alice's public key.
 
 The network has no concept of accounts, or of coin ownership. Anybody can attempt to spend any coin on the network. It's up to the puzzles to prevent coins from being stolen or spent in unintended ways.
 
 The data required to spend a coin is:
-* The coin ID
-* The puzzle (full CLVM source code)
-* The solution to the puzzle
+
+- The coin ID
+- The puzzle (full CLVM source code)
+- The solution to the puzzle
 
 A coin also has the option of requiring an aggregate signature in order to spend it.
 
@@ -94,9 +96,9 @@ A coin also has the option of requiring an aggregate signature in order to spend
 
 ### 帐户模型的好处
 
-* 所有逻辑和状态都可以存储在一个程序和一个帐户中，简化开发。
-* 将影响同一个去中心化应用（dapp）的多个交易合并到一个区块中很简单。
-* 用户和钱包只需跟踪一个账户的所有余额（尽管 UTXO 模型可以支持这一点）。
+- 所有逻辑和状态都可以存储在一个程序和一个帐户中，简化开发。
+- 将影响同一个去中心化应用（dapp）的多个交易合并到一个区块中很简单。
+- 用户和钱包只需跟踪一个账户的所有余额（尽管 UTXO 模型可以支持这一点）。
 
 ### 硬币集模型的好处
 
@@ -125,7 +127,7 @@ In the account model, which is used by Ethereum and many other systems, balances
 * Very parallelizable since each coin spend is independent.
 * Coin value is split between many coins, increasing sandboxing and security. One program cannot call or affect another.
 * Deterministic operation of every spend.
-* More efficient storage of state  (although this depends on implementation).
+* More efficient storage of state (although this depends on implementation).
 * Increased privacy, since one user usually has many coins.
 * Re-applying mempool transactions after a new block is not necessary due to deterministic results.
 

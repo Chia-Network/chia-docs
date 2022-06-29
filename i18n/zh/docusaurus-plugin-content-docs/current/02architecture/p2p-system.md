@@ -18,10 +18,7 @@ sidebar_position: 1
 
 1. 维护区块链的副本。
 2. 验证区块链。
-3. 使用对等协议通过网络传播新的区块、交易和证明。
-4.（可选）通过钱包协议服务轻客户端（钱包）。
-5.（可选）与农民沟通。
-6.（可选）与时间领主沟通。
+3. 使用对等协议通过网络传播新的区块、交易和证明。 4.（可选）通过钱包协议服务轻客户端（钱包）。 5.（可选）与农民沟通。 6.（可选）与时间领主沟通。
 
 通常，农民在他们的农民进程旁边运行一个全节点进程。全节点不赚取任何奖励或费用，但它们对于维护共识规则和系统安全很重要。运行全节点可以让用户对区块链的完整状态充满信心，并避免信任他人。
 
@@ -39,6 +36,7 @@ Let's discuss each of these processes, and the protocols that connect them, sepa
 - ## Full Nodes
 
 The core of Chia's peer-to-peer system is composed of full nodes. Full nodes have several responsibilities:
+
 1. Maintain a copy of the blockchain.
 2. Validate the blockchain.
 3. Propagate new blocks, transactions, and proofs through the network, using the peer protocol.
@@ -60,8 +58,8 @@ Full nodes are always connected to a random set of full nodes in the network. Fu
 
 农民通过等待来自完整节点的更新进行操作，大约每 9 秒就会为他们提供新的标牌点（相当于彩票的中奖号码）。农民然后将标牌点发送到每个收割机，以检查是否存在任何获胜的空间证明。如果收割机找到任何有效的证明，它会将它们发送给农民，农民将它们分为两类：
 
-* 完整的证明必须达到或超过网络难度级别要求的质量。这些证明被发送到全节点，然后创建一个新块。
-* 矿池使用部分证明来估算节点的总存储量。
+- 完整的证明必须达到或超过网络难度级别要求的质量。这些证明被发送到全节点，然后创建一个新块。
+- 矿池使用部分证明来估算节点的总存储量。
 
 农民还有一个私钥，用于在找到获胜证明时对区块进行签名，以及对部分证明进行签名，然后将其发送到矿池中。
 
@@ -75,8 +73,9 @@ Chia's farmers are analogous to Bitcoin's miners. They earn block rewards and fe
 Farmers communicate with harvesters (individual machines, including the farmer machine, that actually store the plots) through the harvester protocol.
 
 Farmers operate by waiting for updates from a full node, which gives them new signage points (equivalent to a lottery's winning numbers) approximately every nine seconds. Farmers then send the signage point to each harvester, to check whether any winning proofs of space exist. If the harvester finds any valid proofs, it sends them to the farmer, which separates them into two categories:
-* Full proofs must match or surpass the quality required by the network's difficulty level. These proofs are sent to the full node, which then creates a new block.
-* Partial proofs are used by pools to approximate a node's total storage.
+
+- Full proofs must match or surpass the quality required by the network's difficulty level. These proofs are sent to the full node, which then creates a new block.
+- Partial proofs are used by pools to approximate a node's total storage.
 
 Farmers also have a private key, which is used for both signing blocks when a winning proof is found, as well as for signing partial proofs, which are then sent to pools.
 
@@ -91,16 +90,16 @@ Farmers also have a private key, which is used for both signing blocks when a wi
 难度级别每 4608 个块自动调整，以针对每两个标牌点的一个空间证明——跨越整个网络。这是目标平均值——每个标牌点也可以有零个或多个证明。这导致大约每 24 小时调整一次难度。
 
 给定一个图块，收割者必须执行两项任务才能找到有效的证明：
-1. 获取初始质量——这需要大约 7 次随机磁盘搜索，或者在慢速 HDD 上需要 70 毫秒。
-2.（仅当初始质量足够高时才执行）获取完整证明——这需要大约 64 次磁盘寻道，或在慢速 HDD 上需要 640 毫秒。
+
+1. 获取初始质量——这需要大约 7 次随机磁盘搜索，或者在慢速 HDD 上需要 70 毫秒。 2.（仅当初始质量足够高时才执行）获取完整证明——这需要大约 64 次磁盘寻道，或在慢速 HDD 上需要 640 毫秒。
 
 对于大多数挑战，质量（第 1 步）将非常低，因此不需要获取整个证明（第 2 步）。节点有 28 秒的时间返回证明，因此磁盘 I/O 不会成为限制因素，即使证明存储在慢速 HDD 上也是如此。
 
->注意：磁带驱动器对于耕作来说太慢了。该协议旨在支持硬盘，但速度并不慢。可以使用磁带进行长期的地块存储，仅将地块转移到磁盘以用于偶尔的耕作，但这可能是一个非常罕见的用例。
+> 注意：磁带驱动器对于耕作来说太慢了。该协议旨在支持硬盘，但速度并不慢。可以使用磁带进行长期的地块存储，仅将地块转移到磁盘以用于偶尔的耕作，但这可能是一个非常罕见的用例。
 
 最后，收割机还为每个地块维护一个私钥。块用这些密钥签名，这是奇亚的一个重要概念。这意味着即使农民是矿池的成员，农民仍然控制块的内容。这与其他区块链的池协议大不相同，池操作员是签署块的人。
 
-> [第 3.6 节](/docs/03consensus/harvester_algorith "Section 3.6: Harvester Algorithm")中更详细地讨论了收割机算法。
+> [第 3.6 节](/docs/03consensus/harvester_algorith 'Section 3.6: Harvester Algorithm')中更详细地讨论了收割机算法。
 
 <details>
 <summary>原文参考</summary>
@@ -114,61 +113,62 @@ Harvesters control the actual plot files by retrieving qualities or proofs from 
 The difficulty level automatically adjusts every 4608 blocks to target one proof of space -- across the entire network -- for every two signage points. This is the targeted average value -- there can also be zero or multiple proofs per signage point. This leads to a difficulty adjustment approximately every 24 hours.
 
 Given a plot, the harvester must perform two tasks to find a valid proof:
+
 1. Fetch the initial quality -- this requires around seven random disk seeks, or 70 milliseconds on a slow HDD.
 2. (Only performed if the initial quality is sufficiently high) Fetch the full proof -- this requires around 64 disk seeks, or 640 milliseconds on a slow HDD.
 
 For most challenges, the quality (step 1) will be very low, so fetching the entire proof (step 2) will not be necessary. A node has 28 seconds to return a proof, so disk I/O will not be a limiting factor, even when proofs are stored on slow HDDs.
 
-  >NOTE: Tape drives are too slow for farming. The protocol was designed to support hard disks, but nothing slower. It is possible to use tape for long-term plot storage, only transferring the plots to disks for occasional farming, but this is likely a very rare use case.
+> NOTE: Tape drives are too slow for farming. The protocol was designed to support hard disks, but nothing slower. It is possible to use tape for long-term plot storage, only transferring the plots to disks for occasional farming, but this is likely a very rare use case.
 
 Finally, harvesters also maintain a private key for each plot. The blocks are signed with these keys, which is an important concept in Chia. It means that even when a farmer is a member of a pool, the farmer still controls the contents of a block. This is quite different from other blockchains' pooling protocols, where the pool operators are the ones signing the blocks.
 
-  >The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/03consensus/harvester_algorith "Section 3.6: Harvester Algorithm").
+> The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/03consensus/harvester_algorith 'Section 3.6: Harvester Algorithm').
 
 </details>
 
 ## 时间领主
 
-时间领主通过创建连续的时间证明（使用[可验证延迟函数](/docs/03consensus/vdfs "Section 3.3: VDFs")）并大约每 9 秒广播一次来支持网络。这提供了“确定性随机性”，用于决定空间的获胜证明。
+时间领主通过创建连续的时间证明（使用[可验证延迟函数](/docs/03consensus/vdfs 'Section 3.3: VDFs')）并大约每 9 秒广播一次来支持网络。这提供了“确定性随机性”，用于决定空间的获胜证明。
 
 由于这种计算是顺序的，因此消耗的能量非常少，与工作量证明系统相反，其中计算是可并行的。例如，如果 100 个时间领主在时间证明上进行相同的计算，他们都会创建完全相同的输出。
 
->时间领主算法在[第3.13节](/docs/03consensus/timelords "Section 3.13: Timelord Algorithm")中有解释。
+> 时间领主算法在[第 3.13 节](/docs/03consensus/timelords 'Section 3.13: Timelord Algorithm')中有解释。
 
 时间领主需要连接到一个完整的节点，通常在同一台机器上。此连接使用证书进行验证。这种 1:1 架构具有很大的安全优势：它将时间领主保持在自己的专用网络中的沙箱中。这样，全节点协议是唯一需要完全安全的协议。如果多个完整节点可以连接到同一个时间领主，就会给网络增加一个潜在的攻击向量。
 
 时间领主不直接获得奖励。此外，只有网络上最快的时间领主才会在任何给定时间广播证明。因此，只需要一个时间领主来保持网络运行，大多数农民不会觉得有必要运行一个。然而，拥有多 PiB 农场的农民可能想要运行一个时间领主，以实现冗余和防止临时本地延迟问题。
 
->注意：奇亚网络目前正在[开发 ASIC 时间领主](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security)。这将为网络增加冗余，同时降低攻击者创建自己的时间领主的可能性，该时间领主比其他任何人都快得多。
+> 注意：奇亚网络目前正在[开发 ASIC 时间领主](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security)。这将为网络增加冗余，同时降低攻击者创建自己的时间领主的可能性，该时间领主比其他任何人都快得多。
 
 如果有人控制了世界上最快的时间领主，那么他们在赢得奖励方面并没有太大优势。然而，他们可能会成为孤儿或审查其他农民，这取决于他们的时间领主有多快。
 
 此外，时间领主比其他任何人都快得多的攻击者可能会在不到 51% 的空间内对网络进行 51% 的攻击。出于安全目的，保持 VDF 硬件的开放设计非常重要。
 
->您可以在[第 3.14 节](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures")中了解针对奇亚网络的潜在攻击。
+> 您可以在[第 3.14 节](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')中了解针对奇亚网络的潜在攻击。
 
 <details>
 <summary>原文参考</summary>
 
 - ## Timelords
 
-Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/docs/03consensus/vdfs "Section 3.3: VDFs")) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
+Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/docs/03consensus/vdfs 'Section 3.3: VDFs')) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
 
 Since this computation is sequential, very little energy is consumed, as opposed to proof-of-work systems, where computation is parallelizable. For example, if 100 timelords are doing the same computation on a proof of time, they will all create the exact same output.
 
-  >The timelord algorithm is explained in [Section 3.13](/docs/03consensus/timelords "Section 3.13: Timelord Algorithm").
+> The timelord algorithm is explained in [Section 3.13](/docs/03consensus/timelords 'Section 3.13: Timelord Algorithm').
 
 A timelord is required to connect to exactly one full node, typically on the same machine. This connection is verified with a certificate. This 1:1 architecture has a large security benefit: it keeps the timelord sandboxed in its own private network. That way, the full node protocol is the only protocol that requires total security. If more than one full node could connect to the same timelord, it would add a potential attack vector to the network.
 
 Timelords do not directly earn rewards. Furthermore, only the fastest timelord on the network will broadcast proofs at any given time. Therefore, only one timelord is required to keep the network running, and most farmers will not feel compelled to run one. However, farmers with multi-PiB farms may want to run a timelord, both for redundancy and for protection against temporary local latency issues.
 
->NOTE: Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security). This will add redundancy to the network, while reducing the possibility of an attacker creating their own timelord that is significantly faster than anyone else's.
+> NOTE: Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security). This will add redundancy to the network, while reducing the possibility of an attacker creating their own timelord that is significantly faster than anyone else's.
 
 If someone controls the fastest timelord in the world, it doesn't give them much of an advantage at winning rewards. However, they could potentially orphan or censor other farmers, depending on how much faster their timelord is.
 
 Furthermore, an attacker with a significantly faster timelord than anyone else could potentially run a 51% attack against the network with less than 51% of the space. For security purposes, it is very important to maintain open designs of VDF hardware.
 
-  >You can learn about potential attacks against Chia's network in [Section 3.14](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Attacks and Countermeasures").
+> You can learn about potential attacks against Chia's network in [Section 3.14](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures').
 
 </details>
 
@@ -184,7 +184,7 @@ Furthermore, an attacker with a significantly faster timelord than anyone else c
 
 当作为矿池成员的农民赢得一个区块时，7/8 的奖励会进入矿池，然后分配给参与者。农民保留另外 1/8 的奖励。这是一个有意的设计决定。如果农民没有因创建区块而获得直接奖励，则竞争池的运营商可能有经济动机加入一个拥有大量图块的矿池（他们没有运行），而忽略了创建当他们找到一个有效的证明时，一个区块，从而破坏了竞争池。
 
->更多信息，请参阅我们的[矿池常见问题](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ "Chia Pooling FAQ")，以及本站的[池协议](/docs/11pooling/pooling) 页面。
+> 更多信息，请参阅我们的[矿池常见问题](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ 'Chia Pooling FAQ')，以及本站的[池协议](/docs/11pooling/pooling) 页面。
 
 <details>
 <summary>原文参考</summary>
@@ -201,7 +201,7 @@ Farmers periodically send partials, which contain a proof of space and a signatu
 
 When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to the pool, which is later distributed to the participants. The farmer keeps the other 1/8 of the reward. This was an intentional design decision. If a farmer didn't receive a direct reward for creating a block, the operator of a competing pool might have had a financial incentive to join a pool (that they didn't run) with a large number of plots, and neglect to create a block when they found a valid proof, thereby spoiling the competing pool.
 
-  >For more info, see our [pooling FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ "Chia Pooling FAQ"), as well as this site's [Pool Protocol](/docs/11pooling/pooling) page.
+> For more info, see our [pooling FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ 'Chia Pooling FAQ'), as well as this site's [Pool Protocol](/docs/11pooling/pooling) page.
 
 </details>
 

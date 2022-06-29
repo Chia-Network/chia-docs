@@ -6,7 +6,7 @@ sidebar_position: 1
 
 > Chia Protocol
 
-奇亚协议由几个不同的子协议组成。所有协议消息都以可流式传输格式编码发送，使用[第 7 节](/docs/07networking/networking "Section 3.7: Networking")中定义的网络协议。以下文档深入介绍了每种类型的服务/节点发送的消息，以及如何解释它们。
+奇亚协议由几个不同的子协议组成。所有协议消息都以可流式传输格式编码发送，使用[第 7 节](/docs/07networking/networking 'Section 3.7: Networking')中定义的网络协议。以下文档深入介绍了每种类型的服务/节点发送的消息，以及如何解释它们。
 
 该协议是异步双向的，即连接的每一端都可以发送消息，也可以接收一个响应，多个响应，或者每条消息不响应。
 
@@ -20,7 +20,7 @@ sidebar_position: 1
 <details>
 <summary>原文参考</summary>
 
-The Chia protocol is composed of a few different sub-protocols. All protocol messages are sent encoded in Streamable format, using the networking protocol defined in [Section 7](/docs/07networking/networking "Section 3.7: Networking"). The following documents go into depth into the messages sent by each type of service/node, and how they should be interpreted.
+The Chia protocol is composed of a few different sub-protocols. All protocol messages are sent encoded in Streamable format, using the networking protocol defined in [Section 7](/docs/07networking/networking 'Section 3.7: Networking'). The following documents go into depth into the messages sent by each type of service/node, and how they should be interpreted.
 
 The protocol is asynchronous and bidirectional, that is, each end of the connection can send messages, and receive a response, multiple responses, or no response for each message.
 

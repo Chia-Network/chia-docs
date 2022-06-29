@@ -41,7 +41,7 @@ since they most likely already have the unfinished
 version of the same block, and therefore don't need to re-request the block transactions generator.
 
 Usually, during normal operation, peers will ask for just the latest block, or
-ignore this message if they have already received it from another peer.  If we are a few blocks behind, blocks are
+ignore this message if they have already received it from another peer. If we are a few blocks behind, blocks are
 fetched one by one in reverse order up to the fork.
 
 If we are far behind this peak, we will start a batch sync (download a few tens of blocks in batches) or a long sync,
@@ -162,7 +162,7 @@ class RequestProofOfWeight(Streamable):
 
 ## respond_proof_of_weight
 
-对 `request_proof_of_weight` 消息的响应。请注意，权重证明可能非常大，在数十 MB 范围内。如果链 VDF 被压缩（又名 blueboxed），那么它们的权重证明会更小。这是权重证明的V1版本，以后可能会加入更高效的版本。
+对 `request_proof_of_weight` 消息的响应。请注意，权重证明可能非常大，在数十 MB 范围内。如果链 VDF 被压缩（又名 blueboxed），那么它们的权重证明会更小。这是权重证明的 V1 版本，以后可能会加入更高效的版本。
 
 ```python
 class RespondProofOfWeight(Streamable):
@@ -202,7 +202,7 @@ class RequestBlock(Streamable):
 
 - ## request_block
 
-Request for a block at a certain height from a peer.  Called after receiving a `new_peak` message.
+Request for a block at a certain height from a peer. Called after receiving a `new_peak` message.
 
 ```python
 class RequestBlock(Streamable):
@@ -264,7 +264,7 @@ class RejectBlock(Streamable):
 
 ```python
 class RequestBlocks(Streamable):
-    start_height: uint32             
+    start_height: uint32
     end_height: uint32               # Inclusive
     include_transaction_block: bool  # Whether to include transaction data
 ```
@@ -278,7 +278,7 @@ Request multiple blocks at once from a peer.
 
 ```python
 class RequestBlocks(Streamable):
-    start_height: uint32             
+    start_height: uint32
     end_height: uint32               # Inclusive
     include_transaction_block: bool  # Whether to include transaction data
 ```
@@ -375,8 +375,7 @@ class RequestUnfinishedBlock(Streamable):
 <details>
 <summary>原文参考</summary>
 
-
-- ##  request_unfinished_block
+- ## request_unfinished_block
 
 Request for an unfinished block from a peer.
 
@@ -427,10 +426,9 @@ class NewSignagePointOrEndOfSubSlot(Streamable):
 
 - ## new_signage_point_or_end_of_sub_slot
 
-Sent when the node adds a new signage point or a new end of sub slot to the full node store.  The receiver can choose
+Sent when the node adds a new signage point or a new end of sub slot to the full node store. The receiver can choose
 to request the object, or potentially request the previous sub slot, if they are far behind. For example, recently
 synced up to the peak of the blockchain.
-
 
 ```python
 class NewSignagePointOrEndOfSubSlot(Streamable):
@@ -476,7 +474,7 @@ class RequestSignagePointOrEndOfSubSlot(Streamable):
 ```python
 class RespondSignagePoint(Streamable):
     index_from_challenge: uint8       # Which index out of the 64 signage points, cannot be 0 since that is the EOS
-    challenge_chain_vdf: VDFInfo    
+    challenge_chain_vdf: VDFInfo
     challenge_chain_proof: VDFProof
     reward_chain_vdf: VDFInfo
     reward_chain_proof: VDFProof
@@ -493,7 +491,7 @@ all VDFs are correct, and forward it to other full nodes and potentially farmers
 ```python
 class RespondSignagePoint(Streamable):
     index_from_challenge: uint8       # Which index out of the 64 signage points, cannot be 0 since that is the EOS
-    challenge_chain_vdf: VDFInfo    
+    challenge_chain_vdf: VDFInfo
     challenge_chain_proof: VDFProof
     reward_chain_vdf: VDFInfo
     reward_chain_proof: VDFProof
@@ -517,7 +515,6 @@ class RespondEndOfSubSlot(Streamable):
 
 Another response for `request_signage_point_or_end_of_sub_slot` in the case where `index_from_challenge` is zero.
 This is also verified and forwarded by the full node, similar to signage points.
-
 
 ```python
 class RespondEndOfSubSlot(Streamable):
@@ -674,7 +671,6 @@ class RequestPeers(Streamable):
 ## respond_peers
 
 对 `request_peers` 的响应，包含每个对等方的 ip 和端口列表。不得大于 1000。时间戳对应于上次更新此对等记录的时间，基于对等数据库更新规则。
-
 
 ```python
 class RespondPeers(Streamable):

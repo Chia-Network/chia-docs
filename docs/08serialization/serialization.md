@@ -1,32 +1,36 @@
 ---
 sidebar_position: 1
 ---
+
 # 8.1 Serialization
+
 Serialization in Chia refers to how objects are converted into bytes for uses such as transmitting to other nodes, storing on disk, or hashing objects.
 
 For example, a header_hash refers to the sha256 hash of the header of a block, but
-sha256 takes in bytes, so we need a consistent way to convert objects into bytes. 
+sha256 takes in bytes, so we need a consistent way to convert objects into bytes.
 
 ## Streamable Format
+
 To prevent consensus issues, the streamable format was designed to be deterministic and easy to implement. All objects in the Chia protocol are transmitted using the streamable format. Furthermore, some database tables use streamable representation as well.
 
 The primitives are:
-* Sized ints serialized in big endian format, i.e uint64
-* Sized bytes serialized in big endian format, i.e bytes32
-* BLS public keys serialized in bls format (48 bytes)
-* BLS signatures serialized in bls format (96 bytes)
-* bool serialized into 1 byte (0x01 or 0x00)
-* bytes serialized as a 4 byte size prefix and then the bytes.
-* ConditionOpcode is serialized as a 1 byte value.
-* str serialized as a 4 byte size prefix and then the utf-8 representation in bytes.
+
+- Sized ints serialized in big endian format, i.e uint64
+- Sized bytes serialized in big endian format, i.e bytes32
+- BLS public keys serialized in bls format (48 bytes)
+- BLS signatures serialized in bls format (96 bytes)
+- bool serialized into 1 byte (0x01 or 0x00)
+- bytes serialized as a 4 byte size prefix and then the bytes.
+- ConditionOpcode is serialized as a 1 byte value.
+- str serialized as a 4 byte size prefix and then the utf-8 representation in bytes.
 
 An item is one of:
-* primitive
-* Tuple[item1, .. itemx]
-* List[item1, .. itemx]
-* Optional[item]
-* Custom item
 
+- primitive
+- Tuple[item1, .. itemx]
+- List[item1, .. itemx]
+- Optional[item]
+- Custom item
 
 A streamable must be a Tuple at the root level. Iters are serialized in the following way:
 
@@ -44,6 +48,7 @@ Note that in the python implementation, we don't use a Tuple at the root level, 
 The streamable specification has been designed to work well with Python using the @streamable decorator available in `chia-blockchain`, but it can work just as well with other programming languages. A class with the @streamable decorator becomes immutable, and has the `__bytes__()` and `.from_bytes(b)` methods.
 
 ### ProofOfSpace type definition
+
 ```python
 @streamable
 class ProofOfSpace(Streamable):
@@ -55,8 +60,8 @@ class ProofOfSpace(Streamable):
     proof: bytes
 ```
 
-
 ### Creating and serializing a proof of space
+
 ```python
 from chia.types.blockchain_format.proof_of_space import ProofOfSpace
 from blspy import G1Element
@@ -67,8 +72,10 @@ print(bytes(pospace))
 ```
 
 ### Output
+
 As you can see, each one of the fields is serialized in order, according to the above specification. The G1 Generator value
 is serialized in BLS format as: `<G1Element 97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb>`.
+
 ```
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0001bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb97f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb2100000108cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ```
