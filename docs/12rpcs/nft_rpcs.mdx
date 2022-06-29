@@ -10,31 +10,22 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## Commands
-
-- [`nft_mint_nft`](#nft_mint_nft)
-- [`nft_get_nfts`](#nft_get_nfts)
-- [`nft_get_info`](#nft_get_info)
-- [`nft_transfer_nft`](#nft_transfer_nft)
-- [`nft_add_uri`](#nft_add_uri)
-
-## Note about Windows
+<details>
+  <summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
 For example, here is a typical RPC command on Linux and MacOS:
 
 ```powershell
-(venv) $ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
 To run the same command on Windows, you need to escape the quotes, so it looks like this:
-
-```powershell
-(venv) C:\> chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```powershell  
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
-
----
+</details>
 
 ## Reference
 
@@ -70,19 +61,22 @@ Request Parameters:
 | series_total       | False    | If this NFT is part of a series, then this indicates the total number of NFTs in the series                                                                                                       |
 | fee                | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                       |
 
-Example 1 - Mint an NFT without using a DID:
+<details>
+<summary>Example 1 - Mint an NFT without using a DID</summary>
 
 ```json
-// Request
-(venv) $ chia rpc wallet nft_mint_nft '{
-  "wallet_id": 3,
+chia rpc wallet nft_mint_nft '{
+  "wallet_id": 3, 
   "uris": [
     "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
   ],
   "hash": "14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0"
 }'
+```
 
-// Response
+Response:
+
+```json
 {
     "spend_bundle": {
         "aggregated_signature": "0xacadbf688d91d3c8526f80c75a3644f5a2b864c6989249ea73d9efd884aa6336aca19d348feb64bbc0b47eb485e88cbd0c8661f96607f74db2924124ef7ec6a3889a57ab5fa84ab8102894f7de9bceae2089861db9e758ed7645ed7c6c8e05b9",
@@ -121,13 +115,15 @@ Example 1 - Mint an NFT without using a DID:
 }
 ```
 
-Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and hashes, as well as royalties:
+</details>
+
+<details>
+<summary>Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and hashes, as well as royalties</summary>
 
 ```json
-// Request
-(venv) $ chia rpc wallet nft_mint_nft '{
-  "wallet_id": 4,
-  "uris": ["https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"],
+chia rpc wallet nft_mint_nft '{
+  "wallet_id": 4, 
+  "uris": ["https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"], 
   "hash": "14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0",
   "meta_uris": ["https://metadata_example.com", "https://metadata_example2.com"],
   "meta_hash": "868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e",
@@ -139,8 +135,11 @@ Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and
   "series_number": 42,
   "series_total": 1337
 }'
+```
 
-// Response
+Response:
+
+```json
 {
     "spend_bundle": {
         "aggregated_signature": "0xb05cdc06d4d74cf284cc7b4c759897ed080270377f1154d879d4cbd8696d1e0a60666cc486864a32a3ca25eb3ff2831c04be3526fe8912462c19a78beb96154f09e919a1e94dfb8d555897ef556db70af54db412a5e6609bcb0223241aab2ed4",
@@ -191,8 +190,12 @@ Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and
 Show the result of running Example 2:
 
 ```json
-(venv) $ chia wallet nft list -i 4
+chia wallet nft list -i 4
+```
 
+Response:
+
+```
 NFT identifier:            nft1sg0a6yl7yz2xduwxnkpwh9gu7ccd9r5srshpg2za3ft5m00qxnzqs0up49
 Launcher coin ID:          821fdd13fe209466f1c69d82eb951cf630d28e901c2e14285d8a574dbde034c4
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
@@ -221,6 +224,8 @@ License URIs:
    https://license_example.com, https://license_example2.com
 ```
 
+</details>
+
 ---
 
 ### `nft_get_nfts`
@@ -242,13 +247,16 @@ Request Parameters:
 | :-------- | :------- | :-------------------------------------------- |
 | wallet_id | True     | The Wallet ID from which to retrieve the NFTs |
 
-Example:
+<details>
+<summary>Example</summary>
 
 ```json
-// Request
-(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
+chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
+```
 
-// Response
+Response:
+
+```json
 {
     "nft_list": [
         {
@@ -280,6 +288,8 @@ Example:
 }
 ```
 
+</details>
+
 ---
 
 ### `nft_transfer_nft`
@@ -304,19 +314,22 @@ Request Parameters:
 | nft_coin_id    | True     | The coin ID of the NFT to transfer                                                                                  |
 | fee            | False    | The one-time blockchain fee to be used upon transferring the NFT                                                    |
 
-Example:
+<details>
+<summary>Example</summary>
 
 ```json
-// Request
-(venv) $ chia rpc wallet nft_transfer_nft '
+chia rpc wallet nft_transfer_nft '
 {
     "wallet_id": 2,
     "target_address": "txch13w2ytvchereqawqjp4r09mqjhwk7unvndew2a400jxtu7q5kr7csqy70f7",
     "nft_coin_id": "0x2691a4aa3533a3b3ef57cc8f70af22f1238d8961fb6b98b4f48eb34b61dc47b1",
     "fee": 10000000
 }'
+```
 
-// Response
+Response:
+
+```json
 {
     "spend_bundle": {
         "aggregated_signature": "0xa309c0f92836f8026b7a0ed72db29b6505b11ace1fb2bfb5ab75a32184b50d11ef31f935fd383301bf38fa3d4211e06a0ddc8a27f48f6aa71c73e86a45056066d9ebe71c504494d079eb7cd74e7f7cf2f9e6c193790e3caa8cc7169afe3e320b",
@@ -346,6 +359,8 @@ Example:
 }
 ```
 
+</details>
+
 ---
 
 ### `nft_get_info`
@@ -372,16 +387,19 @@ Request Parameters:
 `coin_id` can refer to the specific `nft_coin_id` pertaining to this NFT, or to the `launcher_id`, or to the bech32m encoded launcher id
 :::
 
-Example:
+<details>
+<summary>Example</summary>
 
 ```json
-// Request
-(venv) $ chia rpc wallet nft_get_info '{
-    "wallet_id": 4,
+chia rpc wallet nft_get_info '{
+    "wallet_id": 4, 
     "coin_id": "0x821fdd13fe209466f1c69d82eb951cf630d28e901c2e14285d8a574dbde034c4"
 }'
+```
 
-// Response
+Response:
+
+```json
 {
     "nft_info": {
         "chain_info": "((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 "https://metadata_example.com", "https://metadata_example2.com") (27765 "https://license_example.com", "https://license_example2.com") (29550 . 42) (29556 . 1337) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))",
@@ -416,6 +434,8 @@ Example:
 }
 ```
 
+</details>
+
 ---
 
 ### `nft_add_uri`
@@ -447,19 +467,22 @@ Request Parameters:
 - If the new URI is inaccessible, some wallets may not continue to traverse the URI list
   :::
 
-Example:
+<details>
+<summary>Example</summary>
 
 ```json
-// Request
-(venv) $ chia rpc wallet nft_add_uri '
+chia rpc wallet nft_add_uri '
 {
     "wallet_id": 4,
     "nft_coin_id": "0x9bcf429079bd8e394658a3f0c43c6641c9f92d0dcc1770eeb6be6588a49fc925",
     "key": "mu",
     "uri": "https://new_metadata_uri.com"
 }'
+```
 
-// Response
+Response:
+
+```json
 {
     "spend_bundle": {
         "aggregated_signature": "0xaf0401904105c62c492b79f2b812ef9290b74988059e48248f60f6d46fd3a28bc228c19b83ded7eed5551ddb58b5b80010525bcf0f57744fdd8a057707a1abd248110ed9398d294859cdf6929535309606ac7c20f49bc18a4b90dbb2342d03a6",
@@ -483,7 +506,12 @@ Example:
 Show the updated NFT:
 
 ```json
-(venv) $ chia rpc wallet nft_get_nfts '{"wallet_id": 4}'
+chia rpc wallet nft_get_nfts '{"wallet_id": 4}'
+```
+
+Response:
+
+```json
 {
     "nft_list": [
         {
@@ -521,5 +549,7 @@ Show the updated NFT:
     "wallet_id": 4
 }
 ```
+
+</details>
 
 ---

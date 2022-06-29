@@ -10,15 +10,21 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-### Commands
+<details>
+  <summary>Note about Windows command escaping</summary>
 
-- [`create`](#create)
-- [`mint`](#mint)
-- [`list`](#list)
-- [`get_info`](#get_info)
-- [`transfer`](#transfer)
-- [`add_uri`](#add_uri)
-- [`set_did`](#set_did)
+This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
+  
+For example, here is a typical RPC command on Linux and MacOS:
+```powershell
+chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+```
+
+To run the same command on Windows, you need to escape the quotes, so it looks like this:
+```powershell  
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```
+</details>
 
 ## Reference
 
@@ -38,24 +44,44 @@ Options:
 | -n            | --name            | TEXT    | False    | Set the NFT wallet name                                                                                  |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-Example 1 - Create an NFT wallet that is not linked to a DID:
+<details>
+<summary>Example 1 - Create an NFT wallet that is not linked to a DID</summary>
+ 
+Create an NFT Wallet:
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft create
+```bash
+chia wallet nft create
+```
+
+Response:
+```
 Successfully created an NFT wallet with id 3 on key 4288332900
 ```
+</details>
 
-Example 2 - Create an NFT wallet that is linked to a DID, specifying the fingerprint and name:
+<details>
+<summary>Example 2 - Create an NFT wallet that is linked to a DID, specifying the fingerprint and name</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft create -f 4288332900 -di did:chia:17jvhl9z8zj6jma2uxk4mqj22p90hfpf29svlvlyalu8ksyefsvpql7f403 -n "DID-linked NFT Wallet"
-Successfully created an NFT wallet with id 4 on key 4288332900
+```bash
+chia wallet nft create -f 4288332900 -di did:chia:17jvhl9z8zj6jma2uxk4mqj22p90hfpf29svlvlyalu8ksyefsvpql7f403 -n "DID-linked NFT Wallet"
 ```
 
-Show both of these NFT wallets:
+Response:
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet show
+```
+Successfully created an NFT wallet with id 4 on key 4288332900
+```
+</details>
+<details>
+<summary>Show both of these NFT wallets</summary>
+
+```bash
+chia wallet show
+```
+
+Response:
+
+```
 Wallet height: 1117958
 Sync status: Synced
 Balances, fingerprint: 4288332900
@@ -91,6 +117,8 @@ DID-linked NFT Wallet:
    -Wallet ID:             4
 ```
 
+</details>
+
 ---
 
 ### `mint`
@@ -104,27 +132,32 @@ Options:
 | Short Command | Long Command                  | Type    | Required | Description                                                                                              |
 | :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -i            | --id                          | INTEGER | True     | Id of the NFT wallet to use                                                                              |
-| -u            | --uris                        | TEXT    | True     | Comma separated list of content URIs                                                                     |
-| -nh           | --hash                        | TEXT    | True     | NFT content hash                                                                                         |
-| -mu           | --metadata-uris               | TEXT    | False    | Comma separated list of metadata URIs                                                                    |
-| -mh           | --metadata-hash               | TEXT    | False    | NFT metadata hash                                                                                        |
-| -lu           | --license-uris                | TEXT    | False    | Comma separated list of license URIs                                                                     |
-| -lh           | --license-hash                | TEXT    | False    | NFT license hash                                                                                         |
-| -ra           | --royalty-address             | TEXT    | False    | Royalty address                                                                                          |
-| -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75% [default: 0]         |
-| -ta           | --target-address              | TEXT    | False    | Target address                                                                                           |
-| -sn           | --series-number               | INTEGER | False    | NFT series number [default: 1]                                                                           |
-| -st           | --series-total                | INTEGER | False    | NFT series total number [default: 1]                                                                     |
-| -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
-|               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default       |
-| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
+| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use |
+| -i            | --id                          | INTEGER | True     | Id of the NFT wallet to use |
+| -u            | --uris                        | TEXT    | True     | Comma separated list of content URIs |
+| -nh           | --hash                        | TEXT    | True     | NFT content hash |
+| -mu           | --metadata-uris               | TEXT    | False    | Comma separated list of metadata URIs |
+| -mh           | --metadata-hash               | TEXT    | False    | NFT metadata hash |
+| -lu           | --license-uris                | TEXT    | False    | Comma separated list of license URIs |
+| -lh           | --license-hash                | TEXT    | False    | NFT license hash |
+| -ra           | --royalty-address             | TEXT    | False    | Royalty address |
+| -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75%  [default: 0] |
+| -ta           | --target-address              | TEXT    | False    | Target address |
+| -sn           | --series-number               | INTEGER | False    | NFT series number  [default: 1] |
+| -st           | --series-total                | INTEGER | False    | NFT series total number  [default: 1] |
+| -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH  [default: 0] |
+|               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default |
+| -h            | --help                        | None    | False    | Show a help message and exit |
 
-Example 1 - Mint an NFT that is not associated with a DID:
+<details>
+   <summary>Example 1 - Mint an NFT that is not associated with a DID</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft mint -i 3 -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
+```bash
+chia wallet nft mint -i 3 -u https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg -nh 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
+```
+
+Response:
+```
 NFT minted Successfully with spend bundle:
 {
    'aggregated_signature': '0x955e7af8daabdc133b403e6339aaf8db62547bb248b506cedaa66caba69878b93db40297b92ea33d793eb966da7bb9fb0a962830d9cb979c8f92380f29208fd5db9ffb6074945df165ef59aa8910f1f1aa2dba874cfe98bfa7991e10e80a2935',
@@ -155,11 +188,17 @@ NFT minted Successfully with spend bundle:
    }
 ]}
 ```
+</details>
 
-Example 2 - Mint an NFT that is associated with a DID. Specify all URLs and hashes, along with a royalty of 3%:
+<details>
+   <summary>Example 2 - Mint an NFT that is associated with a DID. Specify all URLs and hashes, along with a royalty of 3%</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h -ta txch1z456h8t2wyzhrpzz8mf844zd6jc6tf7stlwggdf57hm3f3mh6cmqf2kzv2 -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -st 1337 -sn 42 -rp 300
+```bash
+chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h -ta txch1z456h8t2wyzhrpzz8mf844zd6jc6tf7stlwggdf57hm3f3mh6cmqf2kzv2 -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -st 1337 -sn 42 -rp 300
+```
+
+Response:
+```
 NFT minted Successfully with spend bundle:
 {
    'aggregated_signature': '0xb64cc927430004c4ea2a0691a4eaa0095a546d3895bb709f243aeae008585592bdf1bb6a1b8a47d09524969adaa53eda19218391b586302595edcb5245e1de7cb2000a24caf41de5691852d56dc6733edae73e8ee8729aad1a24676f932415e0',
@@ -191,11 +230,15 @@ NFT minted Successfully with spend bundle:
 ]}
 ```
 
+
 Show the results of running Example 2:
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft list -i 2
+```bash
+chia wallet nft list -i 2
+```
 
+Response:
+```
 NFT identifier:            nft1yxvkdfgpxfyx47wqq56jww87m0ka878c9a9wyr9hqrq0f479phxqps7rtf
 Launcher coin ID:          219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
@@ -223,6 +266,8 @@ Metadata URIs:
 License URIs:
    https://license_example.com
 ```
+
+</details>
 
 ---
 
@@ -241,11 +286,16 @@ Options:
 | -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-Example 1 - Show NFTs from a wallet that is not associated with a DID:
+<details>
+   <summary>Example 1 - Show NFTs from a wallet that is not associated with a DID</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft list -i 2
+```bash
+chia wallet nft list -i 2
+```
 
+Response:
+
+```
 NFT identifier:            nft1yxvkdfgpxfyx47wqq56jww87m0ka878c9a9wyr9hqrq0f479phxqps7rtf
 Launcher coin ID:          219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
@@ -274,11 +324,18 @@ License URIs:
    https://license_example.com
 ```
 
-Example 2 - Show NFTs from a wallet that is associated with a DID:
+</details>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft list -i 4
+<details>
+   <summary>Example 2 - Show NFTs from a wallet that is associated with a DID</summary>
 
+```bash
+chia wallet nft list -i 4
+```
+
+Response:
+
+ ```
 NFT identifier:            nft1s5hlcv0q3edg5vf33dkzrg0z35dnhch5tszntcma0zc7mcrpqurqlhwceh
 Launcher coin ID:          852ffc31e08e5a8a31318b6c21a1e28d1b3be2f45c0535e37d78b1ede0610706
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
@@ -307,6 +364,8 @@ License URIs:
    https://license_example.com
 ```
 
+</details>
+
 ---
 
 ### `get_info`
@@ -324,11 +383,18 @@ Options:
 | -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin for which to show info                                                                |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-Example:
+<details>
+   <summary>Example</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft get_info -ni 1338537ad709b6b99430216519780dbee187a3057ce1130ef750d28ccb97e14a
+Get coin info by NFT Coin ID:
 
+```bash
+chia wallet nft get_info -ni 1338537ad709b6b99430216519780dbee187a3057ce1130ef750d28ccb97e14a
+```
+
+Response:
+
+```
 NFT identifier:            nft1hf22udrkfvpykwm6fu826e0xdeflha2d99tr7zdnvzuh36leahcsu7h2c3
 Launcher coin ID:          ba54ae34764b024b3b7a4f0ead65e66e53fbf54d29563f09b360b978ebf9edf1
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
@@ -354,6 +420,7 @@ Metadata URIs:
 
 License URIs:
 ```
+</details>
 
 ---
 
@@ -375,10 +442,18 @@ Options:
 | -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-Example 1 - Send an NFT from a wallet not associated with a DID. This recipient in this example will be a common burn address (an address for which nobody has the private key):
+<details>
+<summary>Example 1 - Send an NFT from a wallet not associated with a DID</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft transfer -i 2 -ni 889b12b6d4585bb63f51cf9b4e6ac138c2042330c0f3d386d40be6a4a42b9a4a -ta txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
+This recipient in this example will be a common burn address (an address for which nobody has the private key):
+
+```bash
+chia wallet nft transfer -i 2 -ni 889b12b6d4585bb63f51cf9b4e6ac138c2042330c0f3d386d40be6a4a42b9a4a -ta txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
+```
+
+Response:
+
+```
 NFT transferred successfully with spend bundle:
 {
    'aggregated_signature': '0x86f5ca73687ac07518d933f8994b7e6dd73c0359b5266aab7fa744931082bd1220421a65c32900f0a20c66febfb599ba025b45119f5f3312b7abfcb2ae12dfd634b8ad206e227a877782d6c89ed25e7e543af07d31b49650214084add93960f3',
@@ -393,12 +468,21 @@ NFT transferred successfully with spend bundle:
    }
 ]}
 ```
+</details>
 
-Example 2 - Send an NFT from a wallet associated with a DID. This recipient in this example will be a common burn address (an address for which nobody has the private key):
+<details>
+<summary>Example 2 - Send an NFT from a wallet associated with a DID</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft transfer -i 3 -ni 8daa6ce105509c65a7e72e74ed5fa7c46dfbd96987727c85a9808fcf7d4d98a0 -ta txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
-NFT transferred successfully with spend bundle:
+This recipient in this example will be a common burn address (an address for which nobody has the private key): 
+
+```bash
+chia wallet nft transfer -i 3 -ni 8daa6ce105509c65a7e72e74ed5fa7c46dfbd96987727c85a9808fcf7d4d98a0 -ta txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
+```
+
+Response: 
+
+```
+NFT transferred successfully with spend bundle: 
 {
    'aggregated_signature': '0xa91bb34bccb51344e09a0a8ced2ef205f95e59ddd1118d54b30b2c9bd36673061ec71fef4b5018fc5538a0b1798f168e065283929f355272ee8443f8553e68d9545f260629e374ea84603fae52d98140703b5480888e0b67101df3934765dac7',
    'coin_solutions': [{
@@ -412,6 +496,7 @@ NFT transferred successfully with spend bundle:
    }
 ]}
 ```
+</details>
 
 ---
 
@@ -437,17 +522,19 @@ Options:
 
 :::info
 
-- Exactly one of `--uri`, `--metadata-uri`, and `--license-uri` is required
-- Exactly one URI is able to be added per spend
-- Lists are not allowed to be added. To add more than one item, more than one spend is required
-- The new URI is _prepended_ to the existing list. If an invalid item is added, wallets and block explorers may read the invalid new item and not examine subsequent, valid items
-  :::
+<details>
+<summary>Example</summary>
 
-Example:
+Add a URI to an NFT by NFT coin ID:
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft add_uri -i 3 -ni 254e54c6c8f2ecec8f4f5ec8291dab47b4042b350b6f1e1852212d194fc61537 -u https://sample.uri
-URI added successfully with spend bundle:
+```bash
+chia wallet nft add_uri -i 3 -ni 254e54c6c8f2ecec8f4f5ec8291dab47b4042b350b6f1e1852212d194fc61537 -u https://sample.uri
+```
+
+Response:
+
+```
+URI added successfully with spend bundle: 
 {
    'aggregated_signature': '0xb605edf55dd94da2a22c9eafc1e18ba07740d4e2f36712a15cb17cf425f22dce38a02be75f263bf8227aca3e0649a5731650c068e58dd59571825e5310cc682894284381f6751420cd783dafc7ee044319ea14c1f0a6b3f3f6fabc2bc33d72d4',
    'coin_solutions': [{
@@ -462,17 +549,23 @@ URI added successfully with spend bundle:
 ]}
 ```
 
-New NFT info:
+Get new NFT info by Wallet ID:
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft list -i 3
+```bash
+chia wallet nft list -i 3
+```
 
+Response:
+
+```
 NFT identifier:            nft14tdr9adtnraplgq8u7fm7aa75gvzetru8dcq4ea9rac3xdfk4kzsm47vr5
 Launcher coin ID:          aada32f5ab98fa1fa007e793bf77bea2182cac7c3b700ae7a51f71133536ad85
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
 Current NFT coin ID:       02de32c2c18c5a1049cfd5192021a9a8b08388e1ecd9e915468724fe91e4669b
 On-chain data/info:        ((117 "https://sample.uri" "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021) (28008 . 0x00) (27765) (27752 . 0x00) (29550 . 42) (29556 . 1337))
 ```
+
+</details>
 
 ---
 
@@ -494,11 +587,17 @@ Options:
 | -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-Example:
+<details>
+<summary>Example</summary>
 
-```powershell
-(venv) PS C:\Users\User\chia-blockchain> chia wallet nft set_did -i 2 -di did:chia:16kgxghw80cjlytl7x7zxuuux32v308fnmcgkfrh652rtcdqexm4q7gsarr -ni 6052a11829c20e9fb9c8fd66b38565e1fcfdedae3d3b410dfb6caef363fb22d8
-Transaction to set DID on NFT has been initiated with:
+```bash
+chia wallet nft set_did -i 2 -di did:chia:16kgxghw80cjlytl7x7zxuuux32v308fnmcgkfrh652rtcdqexm4q7gsarr -ni 6052a11829c20e9fb9c8fd66b38565e1fcfdedae3d3b410dfb6caef363fb22d8
+```
+
+Response:
+
+```
+Transaction to set DID on NFT has been initiated with: 
 {
    'aggregated_signature': '0x85b31b9cab5f943e8aee056869abe5b83cf6f4ba82abf0818eb235f29776c1413980e97944dd305c11bd936b1412324e19cc5a7dbff3be62f1ed0b8fe6b7dffec019036882cc09988c76ca978164767f31af5e95f4ea919f5c7c9ec8d1fc21cc',
    'coin_solutions': [{
@@ -520,5 +619,6 @@ Transaction to set DID on NFT has been initiated with:
    }
 ]}
 ```
+</details>
 
 ---
