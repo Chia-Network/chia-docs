@@ -21,10 +21,10 @@ For example, here is a typical RPC command on Linux and MacOS:
 chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
-To run the same command on Windows, you need to escape the quotes, so it looks like this:
+To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
 ```powershell
-chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+chia rpc wallet create_new_wallet '"wallet_type": "nft_wallet"'
 ```
 </details>
 
@@ -449,7 +449,7 @@ Response:
 
 ### `did_recovery_spend`
 
-Functionality: Recover a DID [todo explain better]
+Functionality: Recover a DID to a new DID by using an attest file
 
 Usage: chia rpc wallet [OPTIONS] did_recovery_spend [REQUEST]
 
@@ -472,14 +472,304 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
-```json
-// Request
+There are several steps involved in performing a DID recovery spend. We'll go through them one at a time here.
 
-[todo]
-// Response
-[todo]
+For this example, we'll start with a brand new setup: a single fingerprint with a Chia wallet and some TXCH:
+
+```json
+$ chia wallet show
+Wallet height: 1190999
+Sync status: Synced
+Balances, fingerprint: 2136152685
+
+Chia Wallet:
+   -Total Balance:         28.312944999982 txch (28312944999982 mojo)
+   -Pending Total Balance: 28.312944999982 txch (28312944999982 mojo)
+   -Spendable:             28.312944999982 txch (28312944999982 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
 ```
 
+We'll start by creating two DIDs, labeled "DID A" and "DID B". DID A is the one we'll recover later.
+
+```json
+$ chia wallet did create -n "DID A" -a 1 -m 0.00001
+Successfully created a DID wallet with name DID A and id 2 on key 2136152685
+Successfully created a DID did:chia:1yk9vl86ek6duzah5pj0xtsp8wd5czqu9p3hvlsxw0c8cj3w95tssg0l2d6 in the newly created DID wallet
+
+$ chia wallet did create -n "DID B" -a 1 -m 0.00001
+Successfully created a DID wallet with name DID B and id 3 on key 2136152685
+Successfully created a DID did:chia:1l3hkwrlkmja526pzjuxhfm9c859hn64m2hwq76hfdletpfj09q6qf6e9k4 in the newly created DID wallet
+```
+
+At this point, both DIDs will show up. They are listed under Wallet IDs 2 and 3:
+
+```json
+$ chia wallet show
+Wallet height: 1191003
+Sync status: Synced
+Balances, fingerprint: 2136152685
+
+Chia Wallet:
+   -Total Balance:         28.312934999981 txch (28312934999981 mojo)
+   -Pending Total Balance: 28.31292499998 txch (28312924999980 mojo)
+   -Spendable:             0.899879999999 txch (899879999999 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+DID A:
+   -Total Balance:         1.0
+   -Pending Total Balance: 1.0
+   -Spendable:             1.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1yk9vl86ek6duzah5pj0xtsp8wd5czqu9p3hvlsxw0c8cj3w95tssg0l2d6
+   -Wallet ID:             2
+
+DID B:
+   -Total Balance:         0.0
+   -Pending Total Balance: 1.0
+   -Spendable:             0.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1l3hkwrlkmja526pzjuxhfm9c859hn64m2hwq76hfdletpfj09q6qf6e9k4
+   -Wallet ID:             3
+```
+
+Next, update the recovery list of DID A. This command will add DID B as the recovery ID:
+```json
+$ chia rpc wallet did_update_recovery_ids '{"wallet_id": 2, "new_list": ["did:chia:1l3hkwrlkmja526pzjuxhfm9c859hn64m2hwq76hfdletpfj09q6qf6e9k4"]}'
+{
+    "success": true
+}
+```
+
+Now we can create a backup file of DID A:
+```json
+chia rpc wallet did_create_backup_file '{"wallet_id": 2}'
+{
+    "backup_data": "e1995096382bcb7fef4c961bc09c32cbe0af929e768fc927133405271b3ca759:eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9:1:fc6f670ff6dcbb456822970d74ecb83d0b79eabb55dc0f6ae96ff2b0a64f2834:ff02ffff01ff02ffff01ff02ffff03ff81bfffff01ff02ff05ff82017f80ffff01ff02ffff03ffff22ffff09ffff02ff7effff04ff02ffff04ff8217ffff80808080ff0b80ffff15ff17ff808080ffff01ff04ffff04ff28ffff04ff82017fff808080ffff04ffff04ff34ffff04ff8202ffffff04ff82017fffff04ffff04ff8202ffff8080ff8080808080ffff04ffff04ff38ffff04ff822fffff808080ffff02ff26ffff04ff02ffff04ff2fffff04ff17ffff04ff8217ffffff04ff822fffffff04ff8202ffffff04ff8205ffffff04ff820bffffff01ff8080808080808080808080808080ffff01ff088080ff018080ff0180ffff04ffff01ffffffff313dff4946ffff0233ff3c04ffffff0101ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff22ff3c80ffff0bff2affff0bff2affff0bff22ff3280ff0980ffff0bff2aff0bffff0bff22ff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff17ffff01ff02ffff03ff82013fffff01ff04ffff04ff30ffff04ffff0bffff0bffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ff82023fffff04ff82053fffff04ff820b3fff8080808080808080ffff02ff7effff04ff02ffff04ffff02ff2effff04ff02ffff04ff2fffff04ff5fffff04ff82017fff808080808080ff8080808080ff2f80ff808080ffff02ff26ffff04ff02ffff04ff05ffff04ff0bffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ffff10ff8202ffffff010180ff808080808080808080808080ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ff8202ffff8080808080808080808080ff0180ffff01ff02ffff03ffff15ff8202ffffff11ff0bffff01018080ffff01ff04ffff04ff20ffff04ff82017fffff04ff5fff80808080ff8080ffff01ff088080ff018080ff0180ff0bff17ffff02ff5effff04ff02ffff04ff09ffff04ff2fffff04ffff02ff7effff04ff02ffff04ffff04ff09ffff04ff0bff1d8080ff80808080ff808080808080ff5f80ffff04ffff0101ffff04ffff04ff2cffff04ff05ff808080ffff04ffff04ff20ffff04ff17ffff04ff0bff80808080ff80808080ffff0bff2affff0bff22ff2480ffff0bff2affff0bff2affff0bff22ff3280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff22ff2280ff8080808080ffff0bff22ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff7effff04ff02ffff04ff09ff80808080ffff02ff7effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b083770b050c01211b8e966c7dc40fa970e5d150293c0615910c09482c1491dd87d9115b639e88f84b0c6fc634df4b7b0fff018080ffff04ffff01a0bd61b4e994cc949bfc9350386c1818aea4ff5a300e9acfeb9e0ff7111d26a453ffff04ffff0101ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa0258acf9f59b69bc176f40c9e65c02773698103850c6ecfc0ce7e0f8945c5a2e1a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff0180ff01808080808080:1:{}",
+    "success": true,
+    "wallet_id": 2
+}
+```
+
+At this point we need to create a new wallet fingerprint. This will be the final location for the recovered DID:
+```json
+chia keys generate
+Generating private key
+Added private key with public key fingerprint 2118200991
+WARNING: using a farmer address which we might not have the private keys for. We searched the first 50 addresses. Consider overriding txch13amy3jfp8kkmqa87eswytj3a8ef22nm8zwsf3ckptpm8rv72qtgqgvk6fs with txch1phed5va8r3ch94qr6kp8mu5hu52xz6u7267624vtq2lkl06zn73q3sryj6
+WARNING: using a pool address which we might not have the private keys for. We searched the first 50 addresses. Consider overriding txch13amy3jfp8kkmqa87eswytj3a8ef22nm8zwsf3ckptpm8rv72qtgqgvk6fs with txch1phed5va8r3ch94qr6kp8mu5hu52xz6u7267624vtq2lkl06zn73q3sryj6
+```
+
+Show both wallet keys:
+```json
+$ chia keys show
+Showing all public keys derived from your master seed and private key:
+
+Fingerprint: 2118200991
+Master public key (m): 93e0afa4e8c537c8d6642225a45e267bc6f12fe9dfcbb3fab177645df6a7c8bb8fd62892b534ca82e4c05e45e774ccc3
+Farmer public key (m/12381/8444/0/0): b63fbd179e3089bee17bfb430f1a559ab16ec8217b0a26dbb9a9501a82840614c74167c76e759716aae9b6c1cf4a701a
+Pool public key (m/12381/8444/1/0): 9028d7a806a6ddcb2e3266442002c70fba369fe5e46cc7fae0c4dcd12ffb1ce993752abdc45a1bf17d15918f1cfb7891
+First wallet address: txch1phed5va8r3ch94qr6kp8mu5hu52xz6u7267624vtq2lkl06zn73q3sryj6
+
+Fingerprint: 2136152685
+Master public key (m): b9bcda4cd4affe38e4f8bbb2943eb478ed4799c1abfda150d583433e8f5e45b5d0eb57e459193a6a2d6ed6339f5d32cf
+Farmer public key (m/12381/8444/0/0): 9521e9cb089d2185f5547cfed0547d3eb7d1b0dfb372174d6a46f813d02db20eb646820929ac30d0b314e7541d842f66
+Pool public key (m/12381/8444/1/0): a3a9f40c651f1ba0e56b33182920496939decc6a23bda6c6dc040644203b216ddf42f0a605fe6977b9d42fe30d734997
+First wallet address: txch1svp4tl59wzhz97lemf228jsrtlansej48wec5cuzxpc7g0g4tqcq0s5v68
+```
+
+Sync the second wallet fingerprint and show the contents. So far, there is only a regular Chia wallet:
+```json
+chia wallet show
+Wallet keys:
+1) * 2118200991 (Synced)
+2)   2136152685
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 2118200991):
+Wallet height: 1191071
+Sync status: Synced
+Balances, fingerprint: 2118200991
+
+Chia Wallet:
+   -Total Balance:         0.0 txch (0 mojo)
+   -Pending Total Balance: 0.0 txch (0 mojo)
+   -Spendable:             0.0 txch (0 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+```
+
+Now we can create a new wallet within the second fingerprint. This will have a did_type of "recovery". It will use the backup file of DID A. At this point, however, it will just be an empty DID because the recovery spend has not yet been performed.
+
+Note the values of `coin_name`, `pubkey` and `newpuzhash` as they will be used shortly when creating the attest:
+```json
+chia rpc wallet create_new_wallet '{"wallet_type":"did_wallet", "did_type":"recovery", "backup_data":"e1995096382bcb7fef4c961bc09c32cbe0af929e768fc927133405271b3ca759:eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9:1:fc6f670ff6dcbb456822970d74ecb83d0b79eabb55dc0f6ae96ff2b0a64f2834:ff02ffff01ff02ffff01ff02ffff03ff81bfffff01ff02ff05ff82017f80ffff01ff02ffff03ffff22ffff09ffff02ff7effff04ff02ffff04ff8217ffff80808080ff0b80ffff15ff17ff808080ffff01ff04ffff04ff28ffff04ff82017fff808080ffff04ffff04ff34ffff04ff8202ffffff04ff82017fffff04ffff04ff8202ffff8080ff8080808080ffff04ffff04ff38ffff04ff822fffff808080ffff02ff26ffff04ff02ffff04ff2fffff04ff17ffff04ff8217ffffff04ff822fffffff04ff8202ffffff04ff8205ffffff04ff820bffffff01ff8080808080808080808080808080ffff01ff088080ff018080ff0180ffff04ffff01ffffffff313dff4946ffff0233ff3c04ffffff0101ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff22ff3c80ffff0bff2affff0bff2affff0bff22ff3280ff0980ffff0bff2aff0bffff0bff22ff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff17ffff01ff02ffff03ff82013fffff01ff04ffff04ff30ffff04ffff0bffff0bffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ff82023fffff04ff82053fffff04ff820b3fff8080808080808080ffff02ff7effff04ff02ffff04ffff02ff2effff04ff02ffff04ff2fffff04ff5fffff04ff82017fff808080808080ff8080808080ff2f80ff808080ffff02ff26ffff04ff02ffff04ff05ffff04ff0bffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ffff10ff8202ffffff010180ff808080808080808080808080ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ff8202ffff8080808080808080808080ff0180ffff01ff02ffff03ffff15ff8202ffffff11ff0bffff01018080ffff01ff04ffff04ff20ffff04ff82017fffff04ff5fff80808080ff8080ffff01ff088080ff018080ff0180ff0bff17ffff02ff5effff04ff02ffff04ff09ffff04ff2fffff04ffff02ff7effff04ff02ffff04ffff04ff09ffff04ff0bff1d8080ff80808080ff808080808080ff5f80ffff04ffff0101ffff04ffff04ff2cffff04ff05ff808080ffff04ffff04ff20ffff04ff17ffff04ff0bff80808080ff80808080ffff0bff2affff0bff22ff2480ffff0bff2affff0bff2affff0bff22ff3280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff22ff2280ff8080808080ffff0bff22ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff7effff04ff02ffff04ff09ff80808080ffff02ff7effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b083770b050c01211b8e966c7dc40fa970e5d150293c0615910c09482c1491dd87d9115b639e88f84b0c6fc634df4b7b0fff018080ffff04ffff01a0bd61b4e994cc949bfc9350386c1818aea4ff5a300e9acfeb9e0ff7111d26a453ffff04ffff0101ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa0258acf9f59b69bc176f40c9e65c02773698103850c6ecfc0ce7e0f8945c5a2e1a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff0180ff01808080808080:1:{}"}'
+{
+    "backup_dids": [
+        "0xfc6f670ff6dcbb456822970d74ecb83d0b79eabb55dc0f6ae96ff2b0a64f2834"
+    ],
+    "coin_list": [
+        "0x7aa58b37be28b3dde7f8990bf9d32913e7cd89d2cd490196234bcab327645cf9",
+        "0x90d067146f4ffd80d37ecbd754e3a3b15c86186fcfb1113562d4ec12e24ca0ae",
+        1
+    ],
+    "coin_name": "7b7cb8ea30d4bda2bb4d8bfaf82fbc0a6893d2e55c56d47c333d0d96b1509fe5",
+    "my_did": "258acf9f59b69bc176f40c9e65c02773698103850c6ecfc0ce7e0f8945c5a2e1",
+    "newpuzhash": "1220da328f91466714867ffeed7159db14d9522a784adf042beb91ffbaed9013",
+    "num_verifications_required": 1,
+    "pubkey": "8a1a8036d61a3bb5f2d751c90e643989f0db6ad2fd4e5aa63c6716e187e10c3493c2d59a58e688b78261211cd446d0ba",
+    "success": true,
+    "type": 8,
+    "wallet_id": 2
+}
+```
+
+Next, sync the original wallet and show the contents:
+```json
+chia wallet show
+Wallet keys:
+1)   2118200991
+2) * 2136152685 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 2136152685):
+Wallet height: 1191076
+Sync status: Synced
+Balances, fingerprint: 2136152685
+
+Chia Wallet:
+   -Total Balance:         28.31292499998 txch (28312924999980 mojo)
+   -Pending Total Balance: 28.31292499998 txch (28312924999980 mojo)
+   -Spendable:             28.31292499998 txch (28312924999980 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+DID A:
+   -Total Balance:         1.0
+   -Pending Total Balance: 1.0
+   -Spendable:             1.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1yk9vl86ek6duzah5pj0xtsp8wd5czqu9p3hvlsxw0c8cj3w95tssg0l2d6
+   -Wallet ID:             2
+
+DID B:
+   -Total Balance:         1.0
+   -Pending Total Balance: 1.0
+   -Spendable:             1.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1l3hkwrlkmja526pzjuxhfm9c859hn64m2hwq76hfdletpfj09q6qf6e9k4
+   -Wallet ID:             3
+```
+
+Create the attest using DID B. The `coin_name`, `pubkey`, and `puzhash` (called `newpuzhash` above) all come from the recovery wallet in the new wallet fingerprint.
+
+```json
+chia rpc wallet did_create_attest '{"wallet_id": 3, "coin_name": "0x7b7cb8ea30d4bda2bb4d8bfaf82fbc0a6893d2e55c56d47c333d0d96b1509fe5", "pubkey": "8a1a8036d61a3bb5f2d751c90e643989f0db6ad2fd4e5aa63c6716e187e10c3493c2d59a58e688b78261211cd446d0ba", "puzhash": "0x1220da328f91466714867ffeed7159db14d9522a784adf042beb91ffbaed9013"}'
+{
+    "attest_data": "fc6f670ff6dcbb456822970d74ecb83d0b79eabb55dc0f6ae96ff2b0a64f2834:000000010aa0becc194467bf318773b2a9f2afb11372021cd91dbdd2c9b86ce62a0958ec295226d71b97c9ad9aa47bb4bdc7724c64426c587ccf726154af3e98d7f765b30000000000000000ff01ffff3cffa07b7cb8ea30d4bda2bb4d8bfaf82fbc0a6893d2e55c56d47c333d0d96b1509fe580ffff31ffb08a1a8036d61a3bb5f2d751c90e643989f0db6ad2fd4e5aa63c6716e187e10c3493c2d59a58e688b78261211cd446d0baffa01220da328f91466714867ffeed7159db14d9522a784adf042beb91ffbaed9013808080c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000:9b28688c247e13f6d25d9213f56f1cb98efed8553d3fdf7b2bafb02946f10b1d:4e87afa498547c9086455b9e922208dc698816c4100d089884adbc35c6d5c036:1",
+    "info": [
+        "9b28688c247e13f6d25d9213f56f1cb98efed8553d3fdf7b2bafb02946f10b1d",
+        "4e87afa498547c9086455b9e922208dc698816c4100d089884adbc35c6d5c036",
+        1
+    ],
+    "message_spend_bundle": "000000010aa0becc194467bf318773b2a9f2afb11372021cd91dbdd2c9b86ce62a0958ec295226d71b97c9ad9aa47bb4bdc7724c64426c587ccf726154af3e98d7f765b30000000000000000ff01ffff3cffa07b7cb8ea30d4bda2bb4d8bfaf82fbc0a6893d2e55c56d47c333d0d96b1509fe580ffff31ffb08a1a8036d61a3bb5f2d751c90e643989f0db6ad2fd4e5aa63c6716e187e10c3493c2d59a58e688b78261211cd446d0baffa01220da328f91466714867ffeed7159db14d9522a784adf042beb91ffbaed9013808080c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "success": true
+}
+```
+
+Send some money to the new wallet to be used during the recovery:
+```json
+(venv) PS C:\Users\User> chia wallet send -t txch1phed5va8r3ch94qr6kp8mu5hu52xz6u7267624vtq2lkl06zn73q3sryj6 -a 1 -m 0.00001
+Wallet keys:
+1)   2118200991
+2) * 2136152685 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 2136152685):
+Submitting transaction...
+Transaction submitted to nodes: [{'peer_id': 'f40100b8b46550eb75b79edab4de38611eb543ac8975e262c2d2bf1e1c594312', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
+Run 'chia wallet get_transaction -f 2136152685 -tx 0x09dc82f5d8737def4b0ec70e7cd6a92a3a00be8b31152d30fbe73bc939776187' to get status
+```
+
+Sync the new wallet and show its contents. Note that `Profile 1` has zero balance:
+```json
+(venv) PS C:\Users\User> chia wallet show
+Wallet keys:
+1) * 2118200991 (Synced)
+2)   2136152685
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 2118200991):
+Wallet height: 1191101
+Sync status: Synced
+Balances, fingerprint: 2118200991
+
+Chia Wallet:
+   -Total Balance:         1.0 txch (1000000000000 mojo)
+   -Pending Total Balance: 1.0 txch (1000000000000 mojo)
+   -Spendable:             1.0 txch (1000000000000 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+Profile 1:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1yk9vl86ek6duzah5pj0xtsp8wd5czqu9p3hvlsxw0c8cj3w95tssg0l2d6
+   -Wallet ID:             2
+```
+
+Now perform the recovery, passing in the attest_data obtained previously:
+```json
+chia rpc wallet did_recovery_spend '{"wallet_id":2, "attest_data":["fc6f670ff6dcbb456822970d74ecb83d0b79eabb55dc0f6ae96ff2b0a64f2834:000000010aa0becc194467bf318773b2a9f2afb11372021cd91dbdd2c9b86ce62a0958ec295226d71b97c9ad9aa47bb4bdc7724c64426c587ccf726154af3e98d7f765b30000000000000000ff01ffff3cffa07b7cb8ea30d4bda2bb4d8bfaf82fbc0a6893d2e55c56d47c333d0d96b1509fe580ffff31ffb08a1a8036d61a3bb5f2d751c90e643989f0db6ad2fd4e5aa63c6716e187e10c3493c2d59a58e688b78261211cd446d0baffa01220da328f91466714867ffeed7159db14d9522a784adf042beb91ffbaed9013808080c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000:9b28688c247e13f6d25d9213f56f1cb98efed8553d3fdf7b2bafb02946f10b1d:4e87afa498547c9086455b9e922208dc698816c4100d089884adbc35c6d5c036:1"]}'
+{
+    "spend_bundle": {
+        "aggregated_signature": "0xafc1f292dc4c6d6492a1d5ba760c4f28941398392f414f7e937b0695c68bd9d144bdbfba5956d5a49f4a02f0a72b2a5206345539b20a7ccc4a5ad7463e5c0bfeb6246511f9bdebfdcf55275e2c94833162e86ecc6335ae9a1c39073b24dae873",
+        "coin_solutions": [
+            {
+                "coin": {
+                    "amount": 0,
+                    "parent_coin_info": "0x0aa0becc194467bf318773b2a9f2afb11372021cd91dbdd2c9b86ce62a0958ec",
+                    "puzzle_hash": "0x295226d71b97c9ad9aa47bb4bdc7724c64426c587ccf726154af3e98d7f765b3"
+                },
+                "puzzle_reveal": "0xff01ffff3cffa07b7cb8ea30d4bda2bb4d8bfaf82fbc0a6893d2e55c56d47c333d0d96b1509fe580ffff31ffb08a1a8036d61a3bb5f2d751c90e643989f0db6ad2fd4e5aa63c6716e187e10c3493c2d59a58e688b78261211cd446d0baffa01220da328f91466714867ffeed7159db14d9522a784adf042beb91ffbaed90138080",
+                "solution": "0x80"
+            },
+            {
+                "coin": {
+                    "amount": 1,
+                    "parent_coin_info": "0x7aa58b37be28b3dde7f8990bf9d32913e7cd89d2cd490196234bcab327645cf9",
+                    "puzzle_hash": "0x90d067146f4ffd80d37ecbd754e3a3b15c86186fcfb1113562d4ec12e24ca0ae"
+                },
+                "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3480ffff01ff04ffff04ff20ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff2affff04ff02ffff04ff27ffff04ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff04ffff02ffff03ff77ffff0181b7ffff015780ff0180ff808080808080ffff04ff77ff808080808080ffff02ff3affff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4947ff0233ffff0401ff0102ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ff0bffff01ff02ffff03ffff02ff26ffff04ff02ffff04ff13ff80808080ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffff02ffff03ffff09ff09ff3880ffff01ff02ffff03ffff18ff2dffff010180ffff01ff0101ff8080ff0180ff8080ff0180ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff30ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa0258acf9f59b69bc176f40c9e65c02773698103850c6ecfc0ce7e0f8945c5a2e1a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff81bfffff01ff02ff05ff82017f80ffff01ff02ffff03ffff22ffff09ffff02ff7effff04ff02ffff04ff8217ffff80808080ff0b80ffff15ff17ff808080ffff01ff04ffff04ff28ffff04ff82017fff808080ffff04ffff04ff34ffff04ff8202ffffff04ff82017fffff04ffff04ff8202ffff8080ff8080808080ffff04ffff04ff38ffff04ff822fffff808080ffff02ff26ffff04ff02ffff04ff2fffff04ff17ffff04ff8217ffffff04ff822fffffff04ff8202ffffff04ff8205ffffff04ff820bffffff01ff8080808080808080808080808080ffff01ff088080ff018080ff0180ffff04ffff01ffffffff313dff4946ffff0233ff3c04ffffff0101ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff22ff3c80ffff0bff2affff0bff2affff0bff22ff3280ff0980ffff0bff2aff0bffff0bff22ff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff17ffff01ff02ffff03ff82013fffff01ff04ffff04ff30ffff04ffff0bffff0bffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ff82023fffff04ff82053fffff04ff820b3fff8080808080808080ffff02ff7effff04ff02ffff04ffff02ff2effff04ff02ffff04ff2fffff04ff5fffff04ff82017fff808080808080ff8080808080ff2f80ff808080ffff02ff26ffff04ff02ffff04ff05ffff04ff0bffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ffff10ff8202ffffff010180ff808080808080808080808080ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff37ffff04ff2fffff04ff5fffff04ff8201bfffff04ff82017fffff04ff8202ffff8080808080808080808080ff0180ffff01ff02ffff03ffff15ff8202ffffff11ff0bffff01018080ffff01ff04ffff04ff20ffff04ff82017fffff04ff5fff80808080ff8080ffff01ff088080ff018080ff0180ff0bff17ffff02ff5effff04ff02ffff04ff09ffff04ff2fffff04ffff02ff7effff04ff02ffff04ffff04ff09ffff04ff0bff1d8080ff80808080ff808080808080ff5f80ffff04ffff0101ffff04ffff04ff2cffff04ff05ff808080ffff04ffff04ff20ffff04ff17ffff04ff0bff80808080ff80808080ffff0bff2affff0bff22ff2480ffff0bff2affff0bff2affff0bff22ff3280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff22ff2280ff8080808080ffff0bff22ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff7effff04ff02ffff04ff09ff80808080ffff02ff7effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b083770b050c01211b8e966c7dc40fa970e5d150293c0615910c09482c1491dd87d9115b639e88f84b0c6fc634df4b7b0fff018080ffff04ffff01a0bd61b4e994cc949bfc9350386c1818aea4ff5a300e9acfeb9e0ff7111d26a453ffff04ffff0101ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa0258acf9f59b69bc176f40c9e65c02773698103850c6ecfc0ce7e0f8945c5a2e1a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff0180ff01808080808080ff01808080",
+                "solution": "0xffffa0767eec938e0b05170de23d79423404985e9f50dd1b43c3021fc66c42b9b83337ffa065ed09d2efb33577d189a0db02378a4de36eb228abfc1458e356f8f6353a2bf8ff0180ff01ffff80ff01ffa01220da328f91466714867ffeed7159db14d9522a784adf042beb91ffbaed9013ffffffa09b28688c247e13f6d25d9213f56f1cb98efed8553d3fdf7b2bafb02946f10b1dffa04e87afa498547c9086455b9e922208dc698816c4100d089884adbc35c6d5c036ff018080ffb08a1a8036d61a3bb5f2d751c90e643989f0db6ad2fd4e5aa63c6716e187e10c3493c2d59a58e688b78261211cd446d0baffffa0fc6f670ff6dcbb456822970d74ecb83d0b79eabb55dc0f6ae96ff2b0a64f283480ffa07b7cb8ea30d4bda2bb4d8bfaf82fbc0a6893d2e55c56d47c333d0d96b1509fe58080"
+            }
+        ]
+    },
+    "success": true
+}
+```
+
+Wait a few minutes for the recovery spend to be confirmed on the blockchain. Afterward, `Profile 1` will have a balance of 1.0:
+```json
+(venv) PS C:\Users\User> chia wallet show
+Wallet keys:
+1) * 2118200991 (Synced)
+2)   2136152685
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 2118200991):
+Wallet height: 1191108
+Sync status: Synced
+Balances, fingerprint: 2118200991
+
+Chia Wallet:
+   -Total Balance:         1.0 txch (1000000000000 mojo)
+   -Pending Total Balance: 1.0 txch (1000000000000 mojo)
+   -Spendable:             1.0 txch (1000000000000 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+Profile 1:
+   -Total Balance:         1.0
+   -Pending Total Balance: 1.0
+   -Spendable:             1.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1yk9vl86ek6duzah5pj0xtsp8wd5czqu9p3hvlsxw0c8cj3w95tssg0l2d6
+   -Wallet ID:             2
+```
 </details>
 
 ---
