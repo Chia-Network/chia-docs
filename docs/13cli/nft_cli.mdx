@@ -143,8 +143,10 @@ Options:
 | -ra           | --royalty-address             | TEXT    | False    | Royalty address |
 | -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75%  [default: 0] |
 | -ta           | --target-address              | TEXT    | False    | Target address |
-| -sn           | --series-number               | INTEGER | False    | NFT series number  [default: 1] |
-| -st           | --series-total                | INTEGER | False    | NFT series total number  [default: 1] |
+| -sn (deprecated) | --series-number (deprecated) | INTEGER | False  | Beginning in Chia version 1.4.1, please use `en` (`edition-number`) instead |
+| -st (deprecated) | --series-total  (deprecated) | INTEGER | False  | Beginning in Chia version 1.4.1, please use `ec` (`edition-count`)
+| -en           |  | --edition-number           | INTEGER | False    | The edition number. Specify if this NFT has multiple editions (multiple identical copies of an NFT). [default: 1] |
+| -ec           |  | --edition-count            | INTEGER | False    | The edition total number. Specify if this NFT has multiple editions. [default: 1] |
 | -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH  [default: 0] |
 |               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default |
 | -h            | --help                        | None    | False    | Show a help message and exit |
@@ -194,7 +196,7 @@ NFT minted Successfully with spend bundle:
    <summary>Example 2 - Mint an NFT that is associated with a DID. Specify all URLs and hashes, along with a royalty of 3%</summary>
 
 ```bash
-chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h -ta txch1z456h8t2wyzhrpzz8mf844zd6jc6tf7stlwggdf57hm3f3mh6cmqf2kzv2 -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -st 1337 -sn 42 -rp 300
+chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h -ta txch1z456h8t2wyzhrpzz8mf844zd6jc6tf7stlwggdf57hm3f3mh6cmqf2kzv2 -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -st 5 -sn 1 -rp 300
 ```
 
 Response:
@@ -243,15 +245,15 @@ NFT identifier:            nft1yxvkdfgpxfyx47wqq56jww87m0ka878c9a9wyr9hqrq0f479p
 Launcher coin ID:          219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
 Current NFT coin ID:       b2084a3d30780b3b02c967135bdee387aaf9e5114ffe70275c81f7f3257157e2
-On-chain data/info:        ((117 "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 42) (29556 . 1337) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
+On-chain data/info:        ((117 "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 1) (29556 . 5) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
 Owner DID:                 None
 Royalty percentage:        None
 Royalty puzhash:           None
 NFT content hash:          fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f
 Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
 License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
-NFT series total:          1337
-Current NFT number in the series: 42
+NFT edition total:         5
+Current NFT edition number: 1
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1126632
 Inner puzzle supports DID: False
@@ -300,15 +302,15 @@ NFT identifier:            nft1yxvkdfgpxfyx47wqq56jww87m0ka878c9a9wyr9hqrq0f479p
 Launcher coin ID:          219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
 Current NFT coin ID:       b2084a3d30780b3b02c967135bdee387aaf9e5114ffe70275c81f7f3257157e2
-On-chain data/info:        ((117 "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 42) (29556 . 1337) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
+On-chain data/info:        ((117 "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 1) (29556 . 5) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
 Owner DID:                 None
 Royalty percentage:        None
 Royalty puzhash:           None
 NFT content hash:          fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f
 Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
 License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
-NFT series total:          1337
-Current NFT number in the series: 42
+NFT edition total:          5
+Current NFT edition number: 1
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1126632
 Inner puzzle supports DID: False
@@ -340,15 +342,15 @@ NFT identifier:            nft1s5hlcv0q3edg5vf33dkzrg0z35dnhch5tszntcma0zc7mcrpq
 Launcher coin ID:          852ffc31e08e5a8a31318b6c21a1e28d1b3be2f45c0535e37d78b1ede0610706
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
 Current NFT coin ID:       48e92b64a0a5b7f4c7b6d9df1d1766901785ef26970113eb01c64f3444c5c56d
-On-chain data/info:        ((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 42) (29556 . 1337) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
+On-chain data/info:        ((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 "https://metadata_example.com") (27765 "https://license_example.com") (29550 . 1) (29556 . 5) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))
 Owner DID:                 did:chia:16kgxghw80cjlytl7x7zxuuux32v308fnmcgkfrh652rtcdqexm4q7gsarr
 Royalty percentage:        300
 Royalty puzhash:           1aaf838ba6d832bb3b80114b3805ddf37f7990dae70df59e031c1aa9f830c392
 NFT content hash:          14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
 Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
 License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
-NFT series total:          1337
-Current NFT number in the series: 42
+NFT edition total:          5
+Current NFT edition number: 1
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1126708
 Inner puzzle supports DID: True
@@ -406,8 +408,8 @@ Royalty puzhash:           None
 NFT content hash:          14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
 Metadata hash:
 License hash:
-NFT series total:          1
-Current NFT number in the series: 1
+NFT edition total:          1
+Current NFT edition number: 1
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1127233
 Inner puzzle supports DID: False
@@ -560,7 +562,7 @@ NFT identifier:            nft14tdr9adtnraplgq8u7fm7aa75gvzetru8dcq4ea9rac3xdfk4
 Launcher coin ID:          aada32f5ab98fa1fa007e793bf77bea2182cac7c3b700ae7a51f71133536ad85
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
 Current NFT coin ID:       02de32c2c18c5a1049cfd5192021a9a8b08388e1ecd9e915468724fe91e4669b
-On-chain data/info:        ((117 "https://sample.uri" "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021) (28008 . 0x00) (27765) (27752 . 0x00) (29550 . 42) (29556 . 1337))
+On-chain data/info:        ((117 "https://sample.uri" "https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg") (104 . 0xfca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f) (28021) (28008 . 0x00) (27765) (27752 . 0x00) (29550 . 1) (29556 . 5))
 ```
 
 </details>
@@ -604,7 +606,7 @@ Transaction to set DID on NFT has been initiated with:
          'parent_coin_info': '0xf3c16450c3bda3f913ebcb9ad8291e8bd658d3c0e166d745203106e1149df51b',
          'puzzle_hash': '0xccd5da42dd88885494d6a8fa7863310565eec33961d7425554bfeaa23d16a563'
       },
-      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa049285cc9f2b0990f874e1319fe26ad749f15eb89cb5fd16bd75a1bb5c2a05a0ba0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff01ff0180808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a031f5e810e2ad078817e8b047306c877ad82c77511aa235179c4a98af413f162affff04ffff01ffff75ffc04468747470733a2f2f696d616765732e706578656c732e636f6d2f70686f746f732f31313035333037322f706578656c732d70686f746f2d31313035333037322e6a70656780ffff68a014836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0ffff826d75ff9c68747470733a2f2f6d657461646174615f6578616d706c652e636f6d80ffff826c75ff9b68747470733a2f2f6c6963656e73655f6578616d706c652e636f6d80ffff82736e2affff827374820539ffff826d68a0868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823effff826c68a0358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a8280ffff04ffff01a0fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78bffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b905b9eb2b50c70016c7851f9f089bfc2ce28fb86106a10324408db18a401d5ae89b2f49ecbdec8c28bd23a7b9851337ff018080ff018080808080ff01808080',
+      'puzzle_reveal': '0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3c80ffff01ff04ffff04ff10ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff0bff27ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff02ffff03ff77ffff0181b7ffff015780ff018080ffff04ff77ff808080808080ffff02ff26ffff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffff49ff4702ff33ff0401ffff01ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff3cff2c80ffff0bff2affff0bff2affff0bff3cff1280ff0980ffff0bff2aff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ffffff02ffff03ff0bffff01ff02ffff03ffff02ffff03ffff09ff23ff1480ffff01ff02ffff03ffff18ff81b3ff3c80ffff01ff0101ff8080ff0180ff8080ff0180ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff3cff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff26ffff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ff0bff2affff0bff3cff3880ffff0bff2affff0bff2affff0bff3cff1280ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bff3cff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff28ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa0f1e8350cec62f8204aaf867cc3c12cae369f619258206616108c6cfd7be760b3ffa049285cc9f2b0990f874e1319fe26ad749f15eb89cb5fd16bd75a1bb5c2a05a0ba0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff01ff0180808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a031f5e810e2ad078817e8b047306c877ad82c77511aa235179c4a98af413f162affff04ffff01ffff75ffc04468747470733a2f2f696d616765732e706578656c732e636f6d2f70686f746f732f31313035333037322f706578656c732d70686f746f2d31313035333037322e6a70656780ffff68a014836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0ffff826d75ff9c68747470733a2f2f6d657461646174615f6578616d706c652e636f6d80ffff826c75ff9b68747470733a2f2f6c6963656e73655f6578616d706c652e636f6d80ffff82736e2affff827374820539ffff826d68a0868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823effff826c68a0358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a8280ffff04ffff01a0fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78bffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b905b9eb2b50c70016c7851f9f089bfc2ce28fb86106a10324408db18a401d5ae89b2f49ecbdec8c28bd23a7b9855ff018080ff018080808080ff01808080',
       'solution': '0xffffa049285cc9f2b0990f874e1319fe26ad749f15eb89cb5fd16bd75a1bb5c2a05a0bffa093d60f351de47e725af74e1f610b9414025bd5bb22b2c1309eacdae760efb8abff0180ff01ffffff80ffff01ffff33ffa01569ab9d6a71057184423ed27ad44dd4b1a5a7d05fdc843534f5f714c777d636ff01ffffa01569ab9d6a71057184423ed27ad44dd4b1a5a7d05fdc843534f5f714c777d636808080ff80808080'
    }, {
    'coin': {
