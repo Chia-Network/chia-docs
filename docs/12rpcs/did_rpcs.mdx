@@ -229,6 +229,7 @@ Request Parameters:
 | wallet_id                  | True     | The Wallet ID of the DID wallet for which to update the recovery IDs                                                                |
 | new_list                   | True     | The new recovery ID list. Each item from this list will be appended to the existing list                                            |
 | num_verifications_required | False    | Optionally set the number of IDs required for wallet recovery. If not set, then the entire updated list will be required by default |
+| fee                        | False    | An optional blockchain fee, in mojos                                                                                        |
 
 
 <details>
@@ -299,6 +300,7 @@ Request Parameters:
 | :-------- | :------- | :--------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to update the metadata |
 | metadata  | False    | The updated metadata                                             |
+| fee       | False    | An optional blockchain fee, in mojos                             |
 
 <details>
 <summary>Example</summary>
@@ -468,6 +470,7 @@ Request Parameters:
 | attest_data | True     | A list of attest files to be used for recovery                                                                  |
 | pubkey      | False    | The public key of the wallet to recover. If this is not provided, a temporary public key will be used instead   |
 | puzhash     | False    | The puzzle hash of the wallet to recover. If this is not provided, a temporary puzzle hash will be used instead |
+| fee         | False    | An optional blockchain fee, in mojos                                                                            |
 
 <details>
 <summary>Example</summary>
@@ -835,6 +838,7 @@ Request Parameters:
 | coin_name | True     | The coin to use for the attest               |
 | pubkey    | True     | The public key to use for the attest         |
 | puzhash   | True     | The puzzle hash to use for the attest        |
+| fee       | False    | An optional blockchain fee, in mojos         |
 
 <details>
 <summary>Example</summary>
@@ -1073,6 +1077,7 @@ Request Parameters:
 | :------------ | :------- | :----------------------------------------------------------- |
 | wallet_id     | True     | The Wallet ID of the DID wallet to transfer                  |
 | inner_address | True     | The address of the inner puzzle to which to transfer the DID |
+| fee           | False    | An optional blockchain fee, in mojos                         |
 
 <details>
 <summary>Example</summary>
