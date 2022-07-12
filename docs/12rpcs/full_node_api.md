@@ -806,7 +806,7 @@ Retrieves a list of coin records with a certain puzzle hash.
 * **puzzle_hash**: puzzle hash to search for
 * **start_height** (optional): confirmation start height for search
 * **end_height** (optional): confirmation end height for search
-* **include_spend_coins**: whether to include spent coins too, instead of just unspent, default to false
+* **include_spent_coins**: whether to include spent coins too, instead of just unspent, default to false
 
 ```json
 // Request
