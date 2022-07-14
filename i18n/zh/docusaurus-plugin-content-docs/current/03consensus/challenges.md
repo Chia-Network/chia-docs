@@ -10,7 +10,7 @@ sidebar_position: 4
 
 难度会自动调整以针对每个子时隙中整个网络的 32 个获胜证明，或者平均每 18.75 秒大约有一个获胜者（每 600 秒 32 个获胜者）。获胜证明在子时隙内的不同时间被注入 VDF。
 
-> 注意：子时隙始终以持续 10 分钟为目标。还有一段时间称为*时隙*。通常，时隙和子时隙是完全相同的东西。但是，为了防止远程攻击，要求时隙至少有 16 个块（子时隙没有）。如果一个子时隙结束时创建的块少于 16 个，则同一时隙必须继续用于另一个子时隙。有关更多信息，请参阅[第 3.9 节](/docs/03consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks')（最小块要求）。
+> 注意：子时隙始终以持续 10 分钟为目标。还有一段时间称为*时隙*。通常，时隙和子时隙是完全相同的东西。但是，为了防止远程攻击，要求时隙至少有 16 个块（子时隙没有）。如果一个子时隙结束时创建的块少于 16 个，则同一时隙必须继续用于另一个子时隙。有关更多信息，请参阅[第 3.9 节](/docs/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks')（最小块要求）。
 
 共识要求农民遵循最重的链，即累积难度最高的链（通常是出块最多的链）。
 
@@ -42,7 +42,7 @@ class ChallengeChainSubSlot(Streamable):
 
 **挑战**：sha256 输出字符串。它被用作农民土地的空间证明挑战。它也用于挑战链 VDF，有时被称为*挑战哈希*。
 
-正如您在图 4 中看到的，同时执行了三个 VDF，每个 VDF 都有不同的用途 它们在[第 3.8 节](/docs/03consensus/three_vdf_chains 'Section 3.8: Three VDF Chains')中有详细解释。
+正如您在图 4 中看到的，同时执行了三个 VDF，每个 VDF 都有不同的用途 它们在[第 3.8 节](/docs/consensus/three_vdf_chains 'Section 3.8: Three VDF Chains')中有详细解释。
 
 在网络协议中，三个 VDF 证明通常一起传递，在所谓的*子时隙束末端*中。
 
@@ -53,7 +53,7 @@ The Chia consensus algorithm relies on timelords running VDFs for periods of tim
 
 The difficulty adjusts automatically to target 32 winning proofs for the entire network in each sub-slot, or about one winner every 18.75 seconds on average (32 winners per 600 seconds). The winning proofs are infused into the VDF at different times within the sub-slot.
 
-> NOTE: A sub-slot is always targeted to last 10 minutes. There is also a period of time called a _slot_. Typically, a slot and a sub-slot are exactly the same thing. However, in order to prevent long-range attacks, slots are required to have at least 16 blocks (and sub-slots are not). If a sub-slot ends with fewer than 16 blocks having been created, the same slot must continue for another sub-slot. See [Section 3.9](/docs/03consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks') (minimum block requirement) for more info.
+> NOTE: A sub-slot is always targeted to last 10 minutes. There is also a period of time called a _slot_. Typically, a slot and a sub-slot are exactly the same thing. However, in order to prevent long-range attacks, slots are required to have at least 16 blocks (and sub-slots are not). If a sub-slot ends with fewer than 16 blocks having been created, the same slot must continue for another sub-slot. See [Section 3.9](/docs/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks') (minimum block requirement) for more info.
 
 The consensus requires farmers to follow the heaviest chain, which is the chain that has the highest accumulated difficulty (usually the chain with the most blocks).
 
@@ -85,7 +85,7 @@ class ChallengeChainSubSlot(Streamable):
 
 **Challenge**: a sha256 output string. It is used as a proof-of-space challenge for farmers’ plots. It is also used for the challenge chain VDF, and is sometimes referred to as a _challenge hash_.
 
-As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in detail in [Section 3.8](/docs/03consensus/three_vdf_chains 'Section 3.8: Three VDF Chains').
+As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in detail in [Section 3.8](/docs/consensus/three_vdf_chains 'Section 3.8: Three VDF Chains').
 
 In the networking protocol, the three VDF proofs are usually passed around together, in what is called an _end of sub-slot bundle_.
 

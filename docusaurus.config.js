@@ -67,7 +67,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           },
           items: [
             {
-              to: '/docs/01introduction/what-is-chia',
+              to: '/docs',
               activeBasePath: 'docs',
               label: 'Docs',
               position: 'left',

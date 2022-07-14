@@ -99,7 +99,7 @@ Farmers also have a private key, which is used for both signing blocks when a wi
 
 最后，收割机还为每个地块维护一个私钥。块用这些密钥签名，这是奇亚的一个重要概念。这意味着即使农民是矿池的成员，农民仍然控制块的内容。这与其他区块链的池协议大不相同，池操作员是签署块的人。
 
-> [第 3.6 节](/docs/03consensus/harvester_algorith 'Section 3.6: Harvester Algorithm')中更详细地讨论了收割机算法。
+> [第 3.6 节](/docs/consensus/harvester_algorith 'Section 3.6: Harvester Algorithm')中更详细地讨论了收割机算法。
 
 <details>
 <summary>原文参考</summary>
@@ -123,17 +123,17 @@ For most challenges, the quality (step 1) will be very low, so fetching the enti
 
 Finally, harvesters also maintain a private key for each plot. The blocks are signed with these keys, which is an important concept in Chia. It means that even when a farmer is a member of a pool, the farmer still controls the contents of a block. This is quite different from other blockchains' pooling protocols, where the pool operators are the ones signing the blocks.
 
-> The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/03consensus/harvester_algorith 'Section 3.6: Harvester Algorithm').
+> The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/consensus/harvester_algorith 'Section 3.6: Harvester Algorithm').
 
 </details>
 
 ## 时间领主
 
-时间领主通过创建连续的时间证明（使用[可验证延迟函数](/docs/03consensus/vdfs 'Section 3.3: VDFs')）并大约每 9 秒广播一次来支持网络。这提供了“确定性随机性”，用于决定空间的获胜证明。
+时间领主通过创建连续的时间证明（使用[可验证延迟函数](/docs/consensus/vdfs 'Section 3.3: VDFs')）并大约每 9 秒广播一次来支持网络。这提供了“确定性随机性”，用于决定空间的获胜证明。
 
 由于这种计算是顺序的，因此消耗的能量非常少，与工作量证明系统相反，其中计算是可并行的。例如，如果 100 个时间领主在时间证明上进行相同的计算，他们都会创建完全相同的输出。
 
-> 时间领主算法在[第 3.13 节](/docs/03consensus/timelords 'Section 3.13: Timelord Algorithm')中有解释。
+> 时间领主算法在[第 3.13 节](/docs/consensus/timelords 'Section 3.13: Timelord Algorithm')中有解释。
 
 时间领主需要连接到一个完整的节点，通常在同一台机器上。此连接使用证书进行验证。这种 1:1 架构具有很大的安全优势：它将时间领主保持在自己的专用网络中的沙箱中。这样，全节点协议是唯一需要完全安全的协议。如果多个完整节点可以连接到同一个时间领主，就会给网络增加一个潜在的攻击向量。
 
@@ -145,18 +145,18 @@ Finally, harvesters also maintain a private key for each plot. The blocks are si
 
 此外，时间领主比其他任何人都快得多的攻击者可能会在不到 51% 的空间内对网络进行 51% 的攻击。出于安全目的，保持 VDF 硬件的开放设计非常重要。
 
-> 您可以在[第 3.14 节](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')中了解针对奇亚网络的潜在攻击。
+> 您可以在[第 3.14 节](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')中了解针对奇亚网络的潜在攻击。
 
 <details>
 <summary>原文参考</summary>
 
 - ## Timelords
 
-Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/docs/03consensus/vdfs 'Section 3.3: VDFs')) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
+Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/docs/consensus/vdfs 'Section 3.3: VDFs')) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
 
 Since this computation is sequential, very little energy is consumed, as opposed to proof-of-work systems, where computation is parallelizable. For example, if 100 timelords are doing the same computation on a proof of time, they will all create the exact same output.
 
-> The timelord algorithm is explained in [Section 3.13](/docs/03consensus/timelords 'Section 3.13: Timelord Algorithm').
+> The timelord algorithm is explained in [Section 3.13](/docs/consensus/timelords 'Section 3.13: Timelord Algorithm').
 
 A timelord is required to connect to exactly one full node, typically on the same machine. This connection is verified with a certificate. This 1:1 architecture has a large security benefit: it keeps the timelord sandboxed in its own private network. That way, the full node protocol is the only protocol that requires total security. If more than one full node could connect to the same timelord, it would add a potential attack vector to the network.
 
@@ -168,7 +168,7 @@ If someone controls the fastest timelord in the world, it doesn't give them much
 
 Furthermore, an attacker with a significantly faster timelord than anyone else could potentially run a 51% attack against the network with less than 51% of the space. For security purposes, it is very important to maintain open designs of VDF hardware.
 
-> You can learn about potential attacks against Chia's network in [Section 3.14](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures').
+> You can learn about potential attacks against Chia's network in [Section 3.14](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures').
 
 </details>
 
@@ -184,7 +184,7 @@ Furthermore, an attacker with a significantly faster timelord than anyone else c
 
 当作为矿池成员的农民赢得一个区块时，7/8 的奖励会进入矿池，然后分配给参与者。农民保留另外 1/8 的奖励。这是一个有意的设计决定。如果农民没有因创建区块而获得直接奖励，则竞争池的运营商可能有经济动机加入一个拥有大量图块的矿池（他们没有运行），而忽略了创建当他们找到一个有效的证明时，一个区块，从而破坏了竞争池。
 
-> 更多信息，请参阅我们的[矿池常见问题](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ 'Chia Pooling FAQ')，以及本站的[池协议](/docs/11pooling/pooling) 页面。
+> 更多信息，请参阅我们的[矿池常见问题](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ 'Chia Pooling FAQ')，以及本站的[池协议](/docs/pooling/pooling) 页面。
 
 <details>
 <summary>原文参考</summary>
@@ -201,7 +201,7 @@ Farmers periodically send partials, which contain a proof of space and a signatu
 
 When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to the pool, which is later distributed to the participants. The farmer keeps the other 1/8 of the reward. This was an intentional design decision. If a farmer didn't receive a direct reward for creating a block, the operator of a competing pool might have had a financial incentive to join a pool (that they didn't run) with a large number of plots, and neglect to create a block when they found a valid proof, thereby spoiling the competing pool.
 
-> For more info, see our [pooling FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ 'Chia Pooling FAQ'), as well as this site's [Pool Protocol](/docs/11pooling/pooling) page.
+> For more info, see our [pooling FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ 'Chia Pooling FAQ'), as well as this site's [Pool Protocol](/docs/pooling/pooling) page.
 
 </details>
 
@@ -209,7 +209,7 @@ When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to 
 
 钱包可以通过钱包协议与全节点通信。 这类似于比特币的 SPV 协议：它允许验证交易和区块权重，而没有全节点的带宽和 CPU 要求。
 
-钱包节点类似于完整节点，因为它们是与网络中的其他对等点进行通信的服务器。一个常见的用例是在本地运行钱包和全节点，其中钱包只连接到全节点。钱包从节点下载 [权重证明](/docs/03consensus/light_clients)以快速验证哪个区块链最长。然后他们要求全节点扫描区块链以获得他们想要的交易。 钱包还负责管理私钥，以及生成、存储和发送交易。钱包公开了一个 RPC HTTPS websocket JSON API，用户界面可以使用它来执行命令。
+钱包节点类似于完整节点，因为它们是与网络中的其他对等点进行通信的服务器。一个常见的用例是在本地运行钱包和全节点，其中钱包只连接到全节点。钱包从节点下载 [权重证明](/docs/consensus/light_clients)以快速验证哪个区块链最长。然后他们要求全节点扫描区块链以获得他们想要的交易。 钱包还负责管理私钥，以及生成、存储和发送交易。钱包公开了一个 RPC HTTPS websocket JSON API，用户界面可以使用它来执行命令。
 
 <details>
 <summary>原文参考</summary>
@@ -218,6 +218,6 @@ When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to 
 
 Wallets can communicate with full nodes through the wallet protocol. This is similar to Bitcoin's SPV protocol: it allows verification of transactions and block weight, without the bandwidth and CPU requirements of full nodes.
 
-Wallet nodes are similar to full nodes, in that they are servers which communicate to other peers in the network. A common use case is to run a wallet locally along with a full node, where the wallet only connects to the full node. Wallets download [weight proofs](/docs/03consensus/light_clients) from nodes to quickly validate which blockchain is the longest. They then ask full nodes to scan the blockchain for their desired transactions. The wallet is also responsible for managing private keys, as well as generating, storing and sending transactions. The wallet exposes an RPC HTTPS websocket JSON API, which user interfaces can use to execute commands.
+Wallet nodes are similar to full nodes, in that they are servers which communicate to other peers in the network. A common use case is to run a wallet locally along with a full node, where the wallet only connects to the full node. Wallets download [weight proofs](/docs/consensus/light_clients) from nodes to quickly validate which blockchain is the longest. They then ask full nodes to scan the blockchain for their desired transactions. The wallet is also responsible for managing private keys, as well as generating, storing and sending transactions. The wallet exposes an RPC HTTPS websocket JSON API, which user interfaces can use to execute commands.
 
 </details>

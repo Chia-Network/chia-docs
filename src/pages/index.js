@@ -1,7 +1,7 @@
-import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
+import React from 'react';
 import HomepageFeatures from '../components/HomepageFeatures';
 import styles from './index.module.css';
 
@@ -16,7 +16,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/01introduction/what-is-chia">
+            to="/docs/introduction/what-is-chia">
             Start Learning about Chia ⏱️
           </Link>
         </div>

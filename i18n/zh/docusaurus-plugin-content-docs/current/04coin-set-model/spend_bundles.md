@@ -62,7 +62,7 @@ s3 m3 pk3
 
 这允许农民将所有三个花费组合合并为一个花费组合，只有一个签名。这意味着更少的数据传输和存储在链和磁盘上。
 
-这些聚合签名的另一个好处是，当花费多个硬币时，用户只会传输一个签名，而不是每次花费一个或多个。更多信息可以在[第 9.1 节](/docs/09keys/keys-and-signatures 'Section 9.1: Keys and Signatures')中找到。您还可以阅读[BLS 签名代码](https://github.com/Chia-Network/bls-signatures)。
+这些聚合签名的另一个好处是，当花费多个硬币时，用户只会传输一个签名，而不是每次花费一个或多个。更多信息可以在[第 9.1 节](/docs/keys/keys-and-signatures 'Section 9.1: Keys and Signatures')中找到。您还可以阅读[BLS 签名代码](https://github.com/Chia-Network/bls-signatures)。
 
 <details>
 <summary>原文参考</summary>
@@ -83,7 +83,7 @@ With BLS signatures, farmers combine all three signatures `s1, s2, and s3` into 
 
 This allows the farmer to combine all three spend bundles into one spend bundle, with only one signature.which means less data is transmitted and stored on chain and disk.
 
-Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/docs/09keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
+Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/docs/keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
 
 </details>
 

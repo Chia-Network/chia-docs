@@ -26,7 +26,7 @@ sidebar_position: 3
 </figcaption>
 </figure>
 
-虽然以下细节对于理解共识算法不是很重要，但选择使用什么 VDF 是相关的，因为如果攻击者成功获得了更快的机器，一些[攻击](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')成为可能。
+虽然以下细节对于理解共识算法不是很重要，但选择使用什么 VDF 是相关的，因为如果攻击者成功获得了更快的机器，一些[攻击](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')成为可能。
 
 Chia 使用的 VDF 在[未知顺序的类组](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long')中重复平方。生成具有未知顺序的大组有两种主要方法：
 
@@ -58,7 +58,7 @@ Figure 3: The Verifier (blockchain) sends a challenge to a Prover (timelord) and
 </figcaption>
 </figure>
 
-Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures') become possible.
+Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures') become possible.
 
 The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long'). There are two main ways to generate a large group that has an unknown order:
 

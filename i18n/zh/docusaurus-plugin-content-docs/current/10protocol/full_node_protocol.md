@@ -112,7 +112,7 @@ class RequestTransaction(Streamable):
 
 ## respond_transaction
 
-`request_transaction` 消息的响应。将花费组合发送给对等方。要查看 `花费组合` 的内容，请参阅[此部分](/docs/04coin-set-model/spend_bundles)。
+`request_transaction` 消息的响应。将花费组合发送给对等方。要查看 `花费组合` 的内容，请参阅[此部分](/docs/coin-set-model/spend_bundles)。
 
 ```python
 class RespondTransaction(Streamable):
@@ -124,7 +124,7 @@ class RespondTransaction(Streamable):
 
 - ## respond_transaction
 
-Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see [this section](/docs/04coin-set-model/spend_bundles).
+Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see [this section](/docs/coin-set-model/spend_bundles).
 
 ```python
 class RespondTransaction(Streamable):

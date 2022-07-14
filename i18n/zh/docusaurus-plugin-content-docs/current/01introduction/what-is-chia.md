@@ -51,7 +51,7 @@ For more information on the company's strategies, see [Chia's business white pap
 
 奇亚使用硬币集合模型（类似于比特币的 UTXO）来跟踪区块链的状态。该模型的简单性质有助于编写高价值和安全的合同。与使用帐户模型的系统（例如以太坊）不同，创建奇亚代币的代码被严格沙盒化，这提高了安全性，降低了最大可提取价值 (MEV)，并使代码完全可审计。
 
-> 有关奇亚智能交易的更多信息，请参阅[第 4.1 节](/docs/04coin-set-model/what-is-a-coin 'Section 4.1: Coins, Puzzles, and Solutions')。
+> 有关奇亚智能交易的更多信息，请参阅[第 4.1 节](/docs/coin-set-model/what-is-a-coin 'Section 4.1: Coins, Puzzles, and Solutions')。
 
 ### 强大的安全性
 
@@ -69,7 +69,7 @@ For more information on the company's strategies, see [Chia's business white pap
 
 与工作量证明 (PoW) 相比，PoST（时空证明）共识具有[更低的能耗](https://chiapower.org "Chia's energy consumption statistics")，并且奇亚的部分愿景是改善区块链行业的碳足迹。
 
-> 奇亚的共识算法在[第 3 节](/docs/03consensus/consensus_intro 'Section 3.1: Chia Consensus')中有详细讨论。
+> 奇亚的共识算法在[第 3 节](/docs/consensus/consensus_intro 'Section 3.1: Chia Consensus')中有详细讨论。
 
 ### 去中心化
 
@@ -89,7 +89,7 @@ For more information on the company's strategies, see [Chia's business white pap
 
 - 当赢得一个区块时，农民获得 1/8 的奖励，矿池运营商获得另外的 7/8。这样做是为了阻止当矿池运营商在竞争矿池中耕种，获得证明时却忽略创建区块，从而损害他们的竞争。（作为个体的农民在创建区块时会获得全部奖励。）
 
-> 有关奇亚矿池协议的更多信息，请参阅[第 11 节](/docs/11pooling/pooling 'Section 11: Pooling')。
+> 有关奇亚矿池协议的更多信息，请参阅[第 11 节](/docs/pooling/pooling 'Section 11: Pooling')。
 
 ### 其他主要特性
 
@@ -97,7 +97,7 @@ For more information on the company's strategies, see [Chia's business white pap
 
 - BLS 签名，允许将一个区块的所有签名聚合在一起。
 - 可扩展性和性能改进，允许在树莓派上运行奇亚节点。
-- 权重证明和轻量客户端，可从移动设备快速同步。更多详细信息，请参阅[第 3.12 节](/docs/03consensus/light_clients 'Section 3.12: Chia Light Clients')。
+- 权重证明和轻量客户端，可从移动设备快速同步。更多详细信息，请参阅[第 3.12 节](/docs/consensus/light_clients 'Section 3.12: Chia Light Clients')。
 
 本文档将向技术受众解释奇亚系统不同组件的动机和实现，并提供一切工作原理的深入解释。如果你想跳到如何在奇亚上制作去中心化应用程序（dapps），请访问 [chialisp.com](https://chialisp.com)。
 
@@ -114,7 +114,7 @@ Chia has a new smart transaction model, which uses a powerful (yet simple) highe
 
 Chia uses the coin set model (similar to Bitcoin's UTXO) to track the blockchain's state. The simple nature of this model facilitates the writing of high value and secure contracts. Unlike in systems that use the account model such as Ethereum, the code that creates Chia's coins is strongly sandboxed. This increases security, reduces Maximum Extractable Value (MEV), and makes the code fully auditable.
 
-> For more info on Chia's smart transactions, see [Section 4.1](/docs/04coin-set-model/what-is-a-coin 'Section 4.1: Coins, Puzzles, and Solutions').
+> For more info on Chia's smart transactions, see [Section 4.1](/docs/coin-set-model/what-is-a-coin 'Section 4.1: Coins, Puzzles, and Solutions').
 
 - ### Strong Security
 
@@ -133,7 +133,7 @@ Also due to hashing, a hacker cannot change a coin's parent_ID, puzzlehash, or a
 The PoST consensus has a much [lower energy consumption](https://chiapower.org "Chia's energy consumption statistics") compared to Proof of Work (PoW), and part of Chia's
 vision involves improving the carbon footprint of the blockchain industry.
 
-> Chia's consensus algorithm is discussed in detail in [Section 3](/docs/03consensus/consensus_intro 'Section 3.1: Chia Consensus').
+> Chia's consensus algorithm is discussed in detail in [Section 3](/docs/consensus/consensus_intro 'Section 3.1: Chia Consensus').
 
 - ### Decentralized
 
@@ -153,7 +153,7 @@ In Chia, the pool operators are only responsible for distributing rewards. They 
 
 - When a block is won, the farmer gets 1/8 of the rewards, and the pool operator gets the other 7/8. This was done to discourage pool operators from harming their competition by farming on a competing pool and neglecting to create a block when they find a proof. (Solo farmers collect the entire reward when they create a block.)
 
-> For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling 'Section 11: Pooling').
+> For more info on Chia's pooling protocol, see [Section 11](/docs/pooling/pooling 'Section 11: Pooling').
 
 - ### Other key features
 
@@ -161,7 +161,7 @@ There are many other innovations in Chia, some of which include:
 
 - BLS signatures, which allow aggregating all of a block's signatures together.
 - Scalability and performance improvements, which allow running a Chia node on a Raspberry Pi.
-- Weight proofs and light clients, which enable fast syncing from a mobile device. For more info, see [Section 3.12](/docs/03consensus/light_clients 'Section 3.12: Chia Light Clients') .
+- Weight proofs and light clients, which enable fast syncing from a mobile device. For more info, see [Section 3.12](/docs/consensus/light_clients 'Section 3.12: Chia Light Clients') .
 
 This documentation will explain the motivation and implementation of the different components of the Chia system to a technical audience, and provide in-depth explanations of how everything works. If you would like to skip to how to make dapps (decentralized
 apps) on Chia, please visit [chialisp.com](https://chialisp.com).

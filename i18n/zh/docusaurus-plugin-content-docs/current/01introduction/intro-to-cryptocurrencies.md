@@ -130,7 +130,7 @@ Digital signatures are fundamental building blocks for cryptocurrencies.
 
 在比特币的共识算法中，每个证明平均需要 10 分钟来生成。随着越来越多的计算机加入网络，生成证明的平均时间自然会减少。这给我们带来了中本聪的另一个简单而优雅的想法：难度调整。每 2016 个区块（平均两周），工作量证明算法会自动调整找到证明的难度。它通过增加或减少生成的哈希中所需的前导零数量来实现这一点。结果是，无论有多少计算机开始或停止参与工作量证明抽奖，找到证明所需的平均时间始终为 10 分钟。
 
-有了这种共识机制，攻击网络就变得非常困难。如果攻击者想通过创建替代区块链来“重写历史”，他们需要比系统中的诚实参与者更快地创建新区块。由于创建每个区块所需的工作量证明，攻击者需要比网络中所有其他计算机的总和更快地生成哈希。这被称为“51% 攻击”，稍后将在[第 3.14 节](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')中进行更详细的讨论。
+有了这种共识机制，攻击网络就变得非常困难。如果攻击者想通过创建替代区块链来“重写历史”，他们需要比系统中的诚实参与者更快地创建新区块。由于创建每个区块所需的工作量证明，攻击者需要比网络中所有其他计算机的总和更快地生成哈希。这被称为“51% 攻击”，稍后将在[第 3.14 节](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures')中进行更详细的讨论。
 
 工作量证明解决了双重支付问题——任何时候只有一台计算机可以创建一个区块。它还解决了女巫问题——创建一个区块不仅需要对硬件进行实际投资，而且它也不会给创建多个身份的人带来任何好处。每个人有相同的获胜概率，无论他们使用的是一个身份还是一百万个身份。
 
@@ -159,7 +159,7 @@ When a winning proof is found, the computer that discovered it earns the right t
 
 In Bitcoin's consensus algorithm, each proof takes an average of 10 minutes to generate. As more computers join the network, the average amount of time to generate a proof will naturally decrease. This brings us to another of Satoshi's simple and elegant ideas: the difficulty adjustment. Every 2016 blocks (two weeks, on average) the proof-of-work algorithm automatically adjusts how difficult it is to find a proof. It accomplishes this by increasing or decreasing the required number of leading zeros in a generated hash. The result is that the average time required to find a proof will always be 10 minutes, no matter how many computers start or stop participating in the proof-of-work lottery.
 
-With this consensus mechanism in place, attacking the network becomes very difficult. If an attacker wants to "rewrite history" by creating an alternative blockchain, they'll need to create new blocks faster than the honest actors in the system. Because of the proof of work that is required to create each block, the attacker will need to generate hashes faster than all other computers in the network, combined. This is known as a "51% attack" and is discussed in greater detail later [Section 3.14](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures').
+With this consensus mechanism in place, attacking the network becomes very difficult. If an attacker wants to "rewrite history" by creating an alternative blockchain, they'll need to create new blocks faster than the honest actors in the system. Because of the proof of work that is required to create each block, the attacker will need to generate hashes faster than all other computers in the network, combined. This is known as a "51% attack" and is discussed in greater detail later [Section 3.14](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures').
 
 Proof of Work solves the double-spend problem -- only one computer can create a block at any one time. It also solves the Sybil problem -- not only does creating a block require a real-world investment in hardware, but it also gives no advantage to someone who creates multiple identities. This person has the same probability of winning, whether they're using one identity or a million.
 
@@ -171,7 +171,7 @@ Proof of Work solves the double-spend problem -- only one computer can create a 
 
 网络中的每个节点都与其他一些随机节点保持活跃的连接。如果用户想要进行交易，他们会将其发送到网络中的任何节点，该节点会自动将其广播给他们的对等方。因为每个节点都连接到一组唯一的对等点，所以交易很快就会传播到网络中的每个节点。然后节点将交易，包括所有其他未决交易，保存在本地内存中的。这称为 _内存池_。
 
-> 有关奇亚交易池的更多信息，请参阅[第 6 节](/docs/06mempool/mempool "Section 6: Chia's Mempool")。
+> 有关奇亚交易池的更多信息，请参阅[第 6 节](/docs/mempool/mempool "Section 6: Chia's Mempool")。
 
 为了让每个节点搜索一个证明，它必须组装一个区块来进行散列。它通过包含来自内存池的交易来做到这一点，并且它很可能会选择支付最高费用的待处理交易。这样就创建了一个交易费用市场，其中供应是系统支持的每秒总交易量 (TPS)，需求基于内存池中的交易数量。一旦交易被包含在具有所需工作证明的块中，则称该交易被“确认”。
 
@@ -192,7 +192,7 @@ Proof of Work solves the double-spend problem -- only one computer can create a 
 
 Each node in the network maintains active connections with a few other random nodes. If a user wants to make a transaction, they send it to any node in the network, which automatically broadcasts it to their peers. Because each node is connected to a unique set of peers, the transaction quickly gets propagated to every node in the network. The nodes then save the transaction, including all other pending transactions, locally in memory. This is called the _mempool_.
 
-> For more info on Chia's mempool, see [Section 6](/docs/06mempool/mempool "Section 6: Chia's Mempool").
+> For more info on Chia's mempool, see [Section 6](/docs/mempool/mempool "Section 6: Chia's Mempool").
 
 In order for each node to search for a proof, it must assemble a block to hash against. It does this by including transactions from the mempool, and it will most likely choose the pending transactions that pay the highest fee. A transaction fee market is thus created, where the supply is the total transactions per second (TPS) that the system supports, and the demand is based on the number of transactions in the mempool. A transaction is said to be "confirmed" once it is included inside a block which has the required proof of work.
 

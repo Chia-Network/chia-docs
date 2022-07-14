@@ -1,5 +1,5 @@
-import React from 'react';
 import Link from '@docusaurus/Link';
+import React from 'react';
 
 import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
@@ -8,7 +8,7 @@ const FeatureList = [
   {
     title: 'Chia Docs',
     Svg: require('../../static/img/chia-docs-icon.svg').default,
-    dest_url: '/docs/01introduction/what-is-chia',
+    dest_url: '/docs/introduction/what-is-chia',
     description: (
       <>
         Documentation regarding the Chia blockchain, consensus, and protocols.

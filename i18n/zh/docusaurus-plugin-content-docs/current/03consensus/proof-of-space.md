@@ -45,7 +45,7 @@ The proof of space protocol has three components: plotting, proving/farming, and
 </figcaption>
 </figure>
 
-一旦证明者初始化了 101.4 GiB，他们就准备好接受挑战并创建证明。该方案的一个吸引人的特性是它是非交互式的，除非农民选择 [plot NFT style pooling](/docs/02architecture/p2p-system#pools)：无需注册或在线连接即可使用原始图创建情节情节格式。在获得奖励之前，区块链不会受到任何影响，类似于工作量证明。对于池可移植地块，农民只需要一些魔力在绘图之前创建一个地块 NFT，然后一切都具有相同的特征。
+一旦证明者初始化了 101.4 GiB，他们就准备好接受挑战并创建证明。该方案的一个吸引人的特性是它是非交互式的，除非农民选择 [plot NFT style pooling](/docs/architecture/p2p-system#pools)：无需注册或在线连接即可使用原始图创建情节情节格式。在获得奖励之前，区块链不会受到任何影响，类似于工作量证明。对于池可移植地块，农民只需要一些魔力在绘图之前创建一个地块 NFT，然后一切都具有相同的特征。
 
 有关更多信息，请参阅我们的[绘图常见问题解答](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#plotting 'Chia plotting FAQ')。
 
@@ -71,7 +71,7 @@ Figure 2: Structure of a plot file. The 64 red x-values represent the proof, the
 </figcaption>
 </figure>
 
-Once the Prover has initialized 101.4 GiB, they are ready to receive a challenge and create a proof. One attractive property of this scheme is that it is non-interactive unless the farmer chooses [plot NFT style pooling](/docs/02architecture/p2p-system#pools): no registration or online connection is required to create a plot using the original plot format. Nothing hits the blockchain until a reward is won, similar to PoW. For pool portable plots, a farmer only needs a few mojos to create a plot NFT before plotting and then everything has the same characteristics from there.
+Once the Prover has initialized 101.4 GiB, they are ready to receive a challenge and create a proof. One attractive property of this scheme is that it is non-interactive unless the farmer chooses [plot NFT style pooling](/docs/architecture/p2p-system#pools): no registration or online connection is required to create a plot using the original plot format. Nothing hits the blockchain until a reward is won, similar to PoW. For pool portable plots, a farmer only needs a few mojos to create a plot NFT before plotting and then everything has the same characteristics from there.
 
 See our [plotting FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#plotting 'Chia plotting FAQ') for more info.
 
@@ -85,15 +85,15 @@ See our [plotting FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#
 
 最后，农夫获取整个 x 值树。这需要对表 7 进行一次磁盘读取，对表 6 进行两次读取，对表 5 进行四次读取，等等。因此，整个过程需要 64 次磁盘读取，在具有 10 毫秒寻道时间的慢速 HDD 上大约需要 640 毫秒。读取的数据量很小，并且与绘图大小无关。
 
-由于此过程生成的大多数证明都不够好（如[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')所述）提交给网络进行验证，我们可以优化这个过程只检查树的一个分支。此分支将返回 64 个 x 值中的两个。 x 值的位置将始终是连续的，并取决于标志点（例如 x0 和 x1...或 x34 和 x35）。我们散列这些 x 值以生成随机的 256 位“质量字符串”。这与难度和绘图大小相结合以生成所需的迭代。如果所需的迭代小于一定数量，则证明可以包含在区块链中。此时，我们查找整个空间证明。
+由于此过程生成的大多数证明都不够好（如[第 3.5 节](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')所述）提交给网络进行验证，我们可以优化这个过程只检查树的一个分支。此分支将返回 64 个 x 值中的两个。 x 值的位置将始终是连续的，并取决于标志点（例如 x0 和 x1...或 x34 和 x35）。我们散列这些 x 值以生成随机的 256 位“质量字符串”。这与难度和绘图大小相结合以生成所需的迭代。如果所需的迭代小于一定数量，则证明可以包含在区块链中。此时，我们查找整个空间证明。
 
 通过只查找一个分支来确定质量字符串，我们可以排除大多数证明。这种优化只需要大约 7 次磁盘搜索和读取，或者在慢速硬盘驱动器上大约需要 70 毫秒。
 
-奇亚还使用进一步的优化来取消一定比例的地块参加每个挑战的资格。这称为 _绘图过滤器_。当前的要求是地块 ID、挑战和标牌点的哈希值以 9 个零开头。这排除了每 512 个地块中的 511 个。过滤器对每个人的伤害都是一样的（除了[重新绘制攻击者](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack 'Section 3.14: Short Range Replotting Attack')），因此是公平的。[第 3.5 节](/docs/03consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')中更详细地讨论了绘图过滤器。
+奇亚还使用进一步的优化来取消一定比例的地块参加每个挑战的资格。这称为 _绘图过滤器_。当前的要求是地块 ID、挑战和标牌点的哈希值以 9 个零开头。这排除了每 512 个地块中的 511 个。过滤器对每个人的伤害都是一样的（除了[重新绘制攻击者](/docs/consensus/attacks_and_countermeasures#short-range-replotting-attack 'Section 3.14: Short Range Replotting Attack')），因此是公平的。[第 3.5 节](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')中更详细地讨论了绘图过滤器。
 
 地块过滤器有效地将耕作所需的资源量减少了 512 倍——每个地块每几分钟只需要几次磁盘读取。拥有 1 PiB 存储空间（10,000 个地块）的农民将平均只有 20 个地块通过每个挑战的过滤器。即使这些图都存储在慢速硬盘上，并连接到单个树莓派，响应每个挑战所需的平均时间也将不到两秒。这完全在限制范围内，以避免错过任何挑战。
 
-每个绘图文件都有自己唯一的私钥，称为*绘图密钥*。地块 ID 是通过对地块公钥、农民公钥和矿池公钥（对于 OG 地块）或矿池合同谜语哈希（对于汇集地块）进行哈希生成的。签署空间证明的要求取决于所使用的地块类型。请参阅[第 9.3 节](/docs/09keys/plot_public_keys 'Section 9.3: Public Plot Keys')，了解有关用于情节构建的密钥的详细信息。
+每个绘图文件都有自己唯一的私钥，称为*绘图密钥*。地块 ID 是通过对地块公钥、农民公钥和矿池公钥（对于 OG 地块）或矿池合同谜语哈希（对于汇集地块）进行哈希生成的。签署空间证明的要求取决于所使用的地块类型。请参阅[第 9.3 节](/docs/keys/plot_public_keys 'Section 9.3: Public Plot Keys')，了解有关用于情节构建的密钥的详细信息。
 
 实际上，地块密钥是存储在地块中的本地密钥和农民软件存储的密钥之间的 2/2 BLS 聚合公钥。为了安全和效率，农民可以使用此密钥和签名方案在一台服务器上运行。然后，该服务器可以连接到存储实际地块的一台或多台收割机。耕种需要农民密钥和本地密钥，但不需要矿池密钥，因为池的签名可以缓存并在许多块中重复使用。
 
@@ -108,15 +108,15 @@ The process of inputting a challenge and outputting a proof involves multiple ta
 
 Finally, the farmer fetches the whole tree of x-values. This requires one disk read for table 7, two for table 6, four for table 5, etc. The whole process thus requires 64 disk reads, which takes approximately 640 ms on a slow HDD with a 10 ms seek time. The amount of data read is small and is independent of plot size.
 
-Since most proofs generated by this process are not good enough (as discussed in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')) to be submitted to the network for verification, we can optimize this process by only checking one branch of the tree. This branch will return two of the 64 x-values. The position of the x-values will always be consecutive and will depend on the signage point (eg x0 and x1... or x34 and x35). We hash these x-values to produce a random 256-bit "quality string." This is combined with the difficulty and the plot size to generate the required_iterations. If the required_iterations is less than a certain number, the proof can be included in the blockchain. At this point, we look up the whole proof of space.
+Since most proofs generated by this process are not good enough (as discussed in [Section 3.5](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')) to be submitted to the network for verification, we can optimize this process by only checking one branch of the tree. This branch will return two of the 64 x-values. The position of the x-values will always be consecutive and will depend on the signage point (eg x0 and x1... or x34 and x35). We hash these x-values to produce a random 256-bit "quality string." This is combined with the difficulty and the plot size to generate the required_iterations. If the required_iterations is less than a certain number, the proof can be included in the blockchain. At this point, we look up the whole proof of space.
 
 By only looking up one branch to determine the quality string, we can rule out most proofs. This optimization requires only around 7 disk seeks and reads, or about 70 ms on a slow hard drive.
 
-Chia also uses a further optimization to disqualify a certain proportion of plots from eligibility for each challenge. This is referred to as the _plot filter_. The current requirement is that the hash of the plot ID, challenge, and signage point starts with 9 zeros. This excludes 511 out of every 512 plots. The filter hurts everyone equally (except for [replotting attackers](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack 'Section 3.14: Short Range Replotting Attack')), and is therefore fair. The plot filter is discussed in greater detail in [Section 3.5](/docs/03consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points').
+Chia also uses a further optimization to disqualify a certain proportion of plots from eligibility for each challenge. This is referred to as the _plot filter_. The current requirement is that the hash of the plot ID, challenge, and signage point starts with 9 zeros. This excludes 511 out of every 512 plots. The filter hurts everyone equally (except for [replotting attackers](/docs/consensus/attacks_and_countermeasures#short-range-replotting-attack 'Section 3.14: Short Range Replotting Attack')), and is therefore fair. The plot filter is discussed in greater detail in [Section 3.5](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points').
 
 The plot filter effectively reduces the amount of resources required for farming by 512x -- each plot only requires a few disk reads every few minutes. A farmer with 1 PiB of storage (10,000 plots) will only have an average of 20 plots that pass the filter for each challenge. Even if these plots all are stored on slow HDDs, and connected to a single Raspberry Pi, the average time required to respond to each challenge will be less than two seconds. This is well within the limits to avoid missing out on any challenges.
 
-Each plot file has its own unique private key called a _plot key_. The plot ID is generated by hashing the plot public key, the farmer public key, and either the pool public key (for OG plots) or the pool contract puzzle hash (for pooled plots). The requirements for signing a proof of space depend on the type of plots being used. See [Section 9.3](/docs/09keys/plot_public_keys 'Section 9.3: Public Plot Keys') for details on the keys used for plot construction.
+Each plot file has its own unique private key called a _plot key_. The plot ID is generated by hashing the plot public key, the farmer public key, and either the pool public key (for OG plots) or the pool contract puzzle hash (for pooled plots). The requirements for signing a proof of space depend on the type of plots being used. See [Section 9.3](/docs/keys/plot_public_keys 'Section 9.3: Public Plot Keys') for details on the keys used for plot construction.
 
 In practice, the plot key is a 2/2 BLS aggregate public key between a local key stored in the plot and a key stored by the farmer software. For security and efficiency, a farmer may run on one server using this key and signature scheme. This server can then be connected to one or more harvester machines that store the actual plots. Farming requires the farmer key and the local key, but it does not require the pool key, since the pool’s signature can be cached and reused for many blocks.
 
