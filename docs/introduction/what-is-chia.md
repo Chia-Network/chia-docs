@@ -1,5 +1,5 @@
 ---
-title: About Chia Blockchain
+title: About Chia
 slug: /
 ---
 

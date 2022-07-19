@@ -5,14 +5,36 @@ module.exports = {
       label: 'Introduction',
       items: [
         'introduction/what-is-chia',
-        'introduction/intro-to-cryptocurrencies',
-        'introduction/chia-system-overview',
+        'introduction/getting-started',
+        'introduction/using-the-client',
+        'introduction/chia-concepts',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Plotting',
+      items: [
+        'plotting/plotting-basics',
+        'plotting/plotting-software',
+        'plotting/ssd-ram-endurance',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Farming',
+      items: [
+        'farming/farming-basics',
+        'farming/farming-many-machines',
+        'farming/pool-farming',
+        'farming/checking-farm-health',
+        'farming/reference-farming-hardware',
+        'farming/farming-best-practices',
       ],
     },
     {
       type: 'category',
       label: 'Architecture',
-      items: ['architecture/p2p-system'],
+      items: ['architecture/architecture-overview'],
     },
     {
       type: 'category',
@@ -61,16 +83,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Networking',
-      items: ['networking/networking'],
-    },
-    {
-      type: 'category',
-      label: 'Serialization',
-      items: ['serialization/serialization'],
-    },
-    {
-      type: 'category',
       label: 'Keys',
       items: [
         'keys/keys-and-signatures',
@@ -84,15 +96,20 @@ module.exports = {
       label: 'Protocol',
       items: [
         'protocol/protocol',
+        'protocol/networking',
+        'protocol/serialization',
         'protocol/harvester-protocol',
-        'protocol/full-node-protocol',
+        'protocol/peer-protocol',
+        {
+          type: 'category',
+          label: 'Pool Protocol',
+          items: [
+            'protocol/pool/pool-protocol',
+            'protocol/pool/pool-protocol-specification',
+          ],
+        },
         'protocol/wallet-protocol',
       ],
-    },
-    {
-      type: 'category',
-      label: 'Pool Protocol',
-      items: ['pooling/pooling', 'pooling/specification'],
     },
     {
       type: 'category',
@@ -100,8 +117,6 @@ module.exports = {
       items: [
         'rpcs/rpcs',
         'rpcs/full-node-api',
-        'rpcs/data-layer-rpc-api',
-        'rpcs/climate-warehouse-rpc-api',
         'rpcs/did-rpcs',
         'rpcs/nft-rpcs',
       ],
@@ -109,12 +124,19 @@ module.exports = {
     {
       type: 'category',
       label: 'Command Line Interface',
-      items: ['cli/cli', 'cli/data', 'cli/did-cli', 'cli/nft-cli'],
+      items: [
+        'cli/cli',
+        'cli/did-cli',
+        'cli/nft-cli',
+      ],
     },
     {
       type: 'category',
-      label: 'Python Implementation',
-      items: ['python-implementation/python-implementation'],
+      label: 'Client Implementations',
+      items: [
+        'client-implementations/python-client',
+        'client-implementations/electron-gui',
+      ],
     },
     {
       type: 'category',
@@ -122,20 +144,6 @@ module.exports = {
       items: [
         'resources/references',
         'resources/storage-farming',
-        'resources/climate-warehouse-guide',
-        'resources/climate-warehouse-guide-testnet',
-        'resources/nft-dev-guide',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Prefarm Custody',
-      items: [
-        'prefarm-custody/prefarm-custody-testing',
-        'prefarm-custody/prefarm-cold-custodial-wallets',
-        'prefarm-custody/custom-testnet',
-        'prefarm-custody/testnet10-configuration',
-        'prefarm-custody/custody-tool-cli-reference',
       ],
     },
   ],
