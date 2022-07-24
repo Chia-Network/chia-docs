@@ -19,4 +19,4 @@ bech32m addresses have several features which make them attractive:
 
 The blockchain consensus code does not operate with addresses; addresses are only used in user facing applications.
 
-Spacescan.io has a handy bi-directional [bech32m <> puzzle hash converter](https://www.spacescan.io/xch/tools/puzzlehashconvertor).
+Spacescan.io has a handy bi-directional [bech32m <\> puzzle hash converter](https://www.spacescan.io/xch/tools/puzzlehashconvertor).
