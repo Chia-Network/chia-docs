@@ -77,11 +77,11 @@ If an account's owner loses their private key, then any code or messages referri
 
 #### Coin set
 
-With a click of a button, a user can add a new address for each transaction; each new coin can be stored in a different address. This makes blacklisting difficult.
+With a click of a button, a user can add a new address for each transaction; each new coin can be stored in a different address. This makes blocklisting difficult.
 
 #### Account
 
-Each user typically has just one account. It's possible to create additional accounts in order to use more than one address. However, high fees typically discourage users from doing this. Also, it's easy to blacklist an ETH address.
+Each user typically has just one account. It's possible to create additional accounts in order to use more than one address. However, high fees typically discourage users from doing this. Also, it's easy to blocklist an ETH address.
 
 ### Determinism
 
