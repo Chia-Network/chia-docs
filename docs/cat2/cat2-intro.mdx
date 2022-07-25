@@ -117,10 +117,14 @@ No, you didn't do anything wrong. The Chia Wallet app, as of 1.5, only shows you
 #### The balance of my airdrop in my wallet doesn't match the balance that the website shows me, what should I do? {#balance-airdrop-match}
 
 1. First, please consult the [CAT1 balance website](https://cat1.chia.net) to view your historical CAT1 balances. We expect the full reissuance process to take approximately a week to complete.  
+
 2. If your CAT2 balances in the 1.5.0 wallet do not match the CAT1 historical reference, then check what your wallet derivation index is at and compare it to the derivation index shown in the balance on the Tokens screen.
-<img src="/img/cat2/wallet-derivation-index.png" alt="Derivation Index in the wallet"/>
+
+  <img src="/img/cat2/wallet-derivation-index.png" alt="Derivation Index in the wallet"/>
+
 3. If the derivation index in your wallet is less than the highest derivation index found on the website, you will want to update the derivation index in the wallet. To do so, go to Settings -> Derivation index and type in the number that you get from the [cat1.chia.net](https://cat1.chia.net) website.
-<img src="/img/cat2/settings-derivation-index.png" alt="Derivation Index in the settings"/>
+
+  <img src="/img/cat2/settings-derivation-index.png" alt="Derivation Index in the settings"/>
 
 #### I've tried all the recommendations, but the reissuer didn't get my wallet balance correct. What should I do? {#no-reissuance}
 
@@ -172,7 +176,7 @@ The Chia Network Support Team is available to answer questions and provide assis
 From the Chia Wallet GUI:
   1. Go to the *“Select Key”* screen and click on *“See private key”*
 
-  <img src="/img/cat2/key-selection.png" alt="Key selection screen"/>
+    <img src="/img/cat2/key-selection.png" alt="Key selection screen"/>
 
   2. Copy the *public key* from the list of keys available
 
@@ -194,8 +198,10 @@ The website scans the first 1000 wallet receive addresses, and if the balance do
 CH21 tokens were issued to non-observer keys, so they won't show up in the website unless they've been transferred at some point using a wallet without forcing the non-observer key support. The CAT standard was released at the same time as support for observer keys, so generally most CATs and wallets will be supported by the website. Even if your CH21 tokens are not displayed on the website, a CAT2 version will still be airdropped into your 1.5 wallet.
 
 #### I am running 1.5 and when I view an offer, instead of the CAT token, I see XCH. What's going on? {#see-xch-instead-of-cat}
-You are likely viewing an offer for a CAT1 which will be an invalid offer starting with version 1.5. The reason for this is because tail ids for CAT1s are no longer recognized by the wallet.
-<img src="/img/cat2/offer-summary.png" alt="Offer summary screen"/>
+
+You are likely viewing an offer for a CAT1 which will be an invalid offer starting with version 1.5. The reason for this is because tail IDs for CAT1s are no longer recognized by the wallet.
+
+  <img src="/img/cat2/offer-summary.png" alt="Offer summary screen"/>
 
 
 ### Wallet Developers {#wallet-developers}
