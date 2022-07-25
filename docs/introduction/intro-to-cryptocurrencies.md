@@ -51,7 +51,7 @@ Each server running in this decentralized system can accept a transaction, which
 Digital signatures are fundamental building blocks for cryptocurrencies.
 
 <div style={{textAlign: 'center'}}>
- <img src="/img/crypto03.png" alt="drawing" width="600"/>
+ <img src="/static/img/crypto03.png" alt="drawing" width="600"/>
 </div>
 
 ### Double Spending
