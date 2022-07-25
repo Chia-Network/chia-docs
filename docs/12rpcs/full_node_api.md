@@ -372,6 +372,35 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 }
  ```
 
+ ## get_block_spends
+ Retrieves coin spends made in a block.
+
+* **header_hash**: header hash of the block
+
+```json
+// Request
+curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
+--key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
+-d '{"header_hash": "bc89e52aabf264bd1fe4c11ee8aacfc7c03899a3f2604981000bddaedcc7167d"}' \
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_block_spends | python -m json.tool
+
+// Response
+{
+    "block_spends": [
+        {
+            "coin": {
+                "amount": 500000,
+                "parent_coin_info": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000004082",
+                "puzzle_hash": "0x94c6db00186900418ef7c1f05e127ee1a647cbe6e514ec3bc57acb7bbe6dfb10"
+            },
+            "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0aec9c2e5984fe928406abca942d55ec6b56340af8315bfefa55889dbaade669b9fd3f330af2af44c2a0626d383e64757ff018080",
+            "solution": "0xff80ffff01ffff33ffa03fa549a708302b401c45cf387f8f03b4f76b7c9eabf567bea974f61dedf721e0ff840098968080ffff33ffa055b9fe4c9ce0cef8ad574bf5a9158dc0db7848b96be1a98ab2806d8f0a376a08ff860197738845808080ff8080"
+        }
+    ],
+    "success": true
+}
+ ```
+
 ## get_unfinished_block_headers
 Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon.
 The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the
