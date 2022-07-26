@@ -32,10 +32,10 @@ We recommend that you follow this section to generate your own snapshot of your 
 This section will show you how to install the [CAT-addresses tool](https://github.com/Chia-Network/CAT-addresses) and use it to get a snapshot of the puzzle hash (address) and value of each coin of a particular CAT1. It can even obtain this info for all CAT1s on Chia's blockchain.'
 
 :::warning
-In order to use this tool, you are required to run a fully synced Chia node. This node must be running version 1.5 or greater. Please ensure that you have satisfied both of these requirements before continuing.
+In order to use this tool, you are required to run a fully synced Chia node. This node must be running version 1.5 or greater, and it must have been [installed from source](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL#install-from-source) (not from a binary installer). Please ensure that you have satisfied these requirements before continuing.
 :::
 
-1. Open a terminal window and ensure you have direct access to the `chia` command by doing one of the following:
+1. Open a terminal window and ensure you have direct access to the `chia` command:
 
     ```mdx-code-block
     <Tabs
@@ -49,17 +49,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
       <TabItem value="windows">
     ```
 
-    1. If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
-
-      :::caution
-      Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
-      :::
-
-      ```powershell
-      Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VERSION>\resources\app.asar.unpacked\daemon\chia.exe"
-      ```
-
-    2. If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+    1. Navigate to the `chia-blockchain` directory and activate your virtual environment:
 
       ```powershell
       .\venv\Scripts\Activate.ps1
@@ -70,9 +60,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
       <TabItem value="linux">
     ```
 
-    1. If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
-
-    2. If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+    1. Navigate to the `chia-blockchain` directory and activate your virtual environment:
 
       ```bash
       . ./activate
@@ -83,13 +71,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
       <TabItem value="macos">
     ```
 
-    1. If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
-
-      ```bash
-      alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia"
-      ```
-
-    2. If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+    1. Navigate to the `chia-blockchain` directory and activate your virtual environment:
 
       ```bash
       . ./activate
@@ -100,7 +82,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
     </Tabs>
     ```
 
-2. Run the following command:
+    2. Run the following command:
 
     ```bash
     chia version
@@ -108,13 +90,13 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 
     If step 1 was successful, you should see a version number in the output, such as `1.5.0`. This is a requirement for the snapshot tool to work.
 
-3. From the same terminal window, create a new directory in which to install the `CAT-addresses` repository (it can be in the parent directory) and run the following:
+2. From the same terminal window, create a new directory in which to install the `CAT-addresses` repository (it can be in the parent directory) and run the following:
 
     ```bash
     git clone https://github.com/Chia-Network/CAT-addresses.git -b main
     ```
 
-4. The following environment variables need to be set in order to use this tool:
+3. The following environment variables need to be set in order to use this tool:
 
     1. `FULL_NODE_HOSTNAME` - The hostname of the full node to call the RPCs against. This can be `localhost`.
     2. `DB_SOURCE_DIR` - The location of the full node database on the host machine.
@@ -175,7 +157,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
     </Tabs>
     ```
 
-5. Install dependencies:
+4. Install dependencies:
 
     ```mdx-code-block
     <Tabs
@@ -226,14 +208,14 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
     Finished processing dependencies for chia-transaction-exporter==0.1.dev55”
     ```
 
-6. Install the `dotenv` and `backoff` modules:
+5. Install the `dotenv` and `backoff` modules:
 
     ```bash
     pip install python-dotenv
     pip install backoff
     ```
 
-7. Set up the database:
+6. Set up the database:
 
     ```mdx-code-block
     <Tabs
@@ -285,7 +267,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
     INFO:setup_database:Database setup complete
     ```
 
-8. Start the snapshot generator:
+7. Start the snapshot generator:
 
     ```mdx-code-block
     <Tabs
