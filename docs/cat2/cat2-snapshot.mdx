@@ -430,6 +430,37 @@ Once you have populated the database with a snapshot, you can run a data export.
     This command will not create any directories, so make sure `<OUTPUT-DIR>` already exists before running it. Otherwise, you will receive a `FileNotFoundError`.
     :::
 
+## Fix EOL Characters {#fix-eol}
+
+This step is **required for Windows users**, and not needed for Linux or macOS users.
+
+If you are running on Windows, the CSV file will contain an extra CR (carriage return) character at the end of each line. This will cause [“Secure the Bag”](/docs/cat2/cat2-issuance#secure-single) to fail. First, you must convert the CSV file to use UNIX-style end-of-line characters.
+
+The easiest way to accomplish this is with `dos2unix`. This is not included with Windows, so you will need to download it from SourceForge.
+
+Steps to convert the CSV file:
+
+1. Visit the [SourceForge dos2unix site](https://sourceforge.net/projects/dos2unix/).
+2. Click the green *“Download”* button. After five seconds, the `dos2unix` zip file will be downloaded to your Downloads folder.
+3. Unzip the `dos2unix` zip file.
+4. From a PowerShell window, run:
+
+  ```powershell
+  <path to dos2unix.exe> -o <path to CSV file>
+  ```
+
+  For example:
+  ```powershell
+  ~\Downloads\dos2unix\bin\dos2unix.exe -o .\results\CKC_1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a.1658233083.183527.csv
+  ```
+
+  This message should appear in the output:
+  ```
+  dos2unix: converting file <CSV file> to Unix format...
+  ```
+
+5. To verify that the conversion was successful, open the file. There should be no blank lines between the entries.
+
 ## Data Cleanup {#cleanup}
 
 **Optional:** If the application exits partway through a run, it will only have imported some blocks at a particular height. You can delete the records from the database at and above a provided height by running the following command:
