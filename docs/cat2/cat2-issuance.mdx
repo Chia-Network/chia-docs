@@ -315,11 +315,12 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 5. Push the transaction to the network. This will actually create the coin tree (*Secure the Bag*). The arguments are the same as above, with one exception:
 
     `--send-to` – The XCH address from the “Secure the bag root address:” of the above output
+    `--fee` - If the network is busy, then the recommended fee is 20 million mojos
 
     The command to run is:
 
     ```bash
-    cats --tail <TAIL hex file> --send-to <root address> --amount <amount in mojos> --as-bytes --curry <0x Coin ID>
+    cats --tail <TAIL hex file> --send-to <root address> --amount <amount in mojos> --as-bytes --curry <0x Coin ID> --fee <amount in mojos>
     ```
 
     For this example, the command looks like this:
@@ -337,7 +338,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
     ```
 
     ```powershell
-    cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+    cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8 --fee 20000000
     ```
 
     ```mdx-code-block
@@ -346,7 +347,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
     ```
 
     ```bash
-    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8 --fee 20000000
     ```
 
     ```mdx-code-block
@@ -355,7 +356,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
     ```
 
     ```bash
-    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8 --fee 20000000
     ```
 
     ```mdx-code-block
@@ -665,7 +666,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
     The command to run is:
 
     ```
-    cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "<curry command output>" --signature <signature>
+    cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "<curry command output>" --signature <signature> --fee <amount in mojos>
     ```
 
     The arguments needed are:
@@ -677,6 +678,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
       - `--as-bytes` – Output the spend bundle in bytes (don't change this).
       - `--solution` – The output of the `curry` command from a previous step (in quotes).
       - `--signature` – The signature obtained from the previous step.
+      - `--fee` - If the network is busy, then the recommended fee is 20 million mojos
 
     For this example, the command to execute is:
 
@@ -693,7 +695,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
     ```
 
     ```powershell
-    cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+    cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc --fee 20000000
     ```
 
     ```mdx-code-block
@@ -702,7 +704,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
     ```
 
     ```bash
-    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc --fee 20000000
     ```
 
     ```mdx-code-block
@@ -711,7 +713,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
     ```
 
     ```bash
-    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc --fee 20000000
     ```
 
     ```mdx-code-block
