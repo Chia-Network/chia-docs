@@ -38,3 +38,27 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .feature-item {
   margin-bottom: 50px;
 }
+
+.banner {
+  background:#eeeeee;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.banner-message {
+  width: 35%;
+  height: 80%;
+  border-left: 0.5rem solid #3aac59;
+  background: #ffffff;
+  margin: 1rem;
+  padding: 1rem 1rem 0 1rem;
+  color: #000000;
+  font-size: 2rem;
+}
+
+.banner-title {
+  color: #3aac59;
+  font-size: 2rem;
+  padding-top: 0;
+}
