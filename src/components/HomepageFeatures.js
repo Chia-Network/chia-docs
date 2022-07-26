@@ -107,7 +107,7 @@ export default function HomepageFeatures() {
     <div className="banner row">
     <div className="banner-message">
       <h3 className="banner-title">CAT2 Standard Released</h3>
-      <h4 style={{'font-size': '1rem'}}><a href="/docs/cat2/cat2-intro">Learn about CAT1 end-of-life and CAT2 reissuance</a> ➡️</h4>
+      <a href="/docs/cat2/cat2-intro"><h4 style={{'font-size': '1rem'}}>Learn about CAT1 end-of-life and CAT2 reissuance →</h4></a>
     </div>
     </div>
     <section className={styles.features}>
