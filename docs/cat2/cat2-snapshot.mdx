@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 :::info
 [CAT1](https://chialisp.com/docs/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
 
-For more information on this end-of-life process, see the [CAT2 Intro & FAQ](cat2-intro).
+For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/docs/cat2/cat2-intro).
 :::
 
 This document will show CAT1 issuers how to:
@@ -21,7 +21,7 @@ This document will show CAT1 issuers how to:
 1. Generate a snapshot of their CAT1 status. This will show the puzzle hash (address) and value of each individual token at the end-of-life block height
 2. Export their required data from the snapshot
 
-After completing this, CAT issuers will be able to proceed to the [Token Reissuance guide](cat2-issuance).
+After completing this, CAT issuers will be able to proceed to the [Token Reissuance guide](/docs/cat2/cat2-issuance).
 
 ## Generate a CAT1 Snapshot {#generate}
 
@@ -52,11 +52,11 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
     1. If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
       :::caution
-      Ensure that you replace `<username>` and `<version>` with the actual folders
+      Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
       :::
 
       ```powershell
-      Set-Alias -Name chia "C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe"
+      Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VERSION>\resources\app.asar.unpacked\daemon\chia.exe"
       ```
 
     2. If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:

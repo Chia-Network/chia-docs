@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 :::info
 [CAT1](https://chialisp.com/docs/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
 
-For more information on this end-of-life process, see the [CAT2 Intro & FAQ](cat2-intro).
+For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/docs/cat2/cat2-intro).
 :::
 
 This document will show CAT1 issuers how to:
@@ -22,7 +22,7 @@ This document will show CAT1 issuers how to:
 2. "Secure the bag" – create a tree of new coins that are identical to the original CAT1 coins, in both size and destination wallet
 3. "Unwind the bag" – airdrop the coins to the appropriate locations
 
-Before starting this guide, you will need a snapshot CSV, instructions for which can be found in the [Snapshot Generation guide](cat2-snapshot).
+Before starting this guide, you will need a snapshot CSV, instructions for which can be found in the [Snapshot Generation guide](/docs/cat2/cat2-snapshot).
 
 ## Install the CAT Admin Tool
 
@@ -171,7 +171,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
     - Navigate to [taildatabase.com](https://www.taildatabase.com).
     - Search for your CAT. We'll use Spacebucks for this example.
     - You'll see *Supply* (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 trillion (1,000,000,000,000) XCH mojos.
-    - Click the *Chialisp* button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+  - Click the *Chialisp* button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
@@ -734,7 +734,80 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 The steps in this section are the same for both single-issuance and multi-issuance CATs.
 :::
 
-The last step is to actually send the CAT2 tokens to the correct locations (AKA *"unwind the bag"*). Before sending all of the tokens, you can run a test by sending the correct number of tokens to a single address.
+:::tip
+This step will unwind the bag for the entire set of coins. You may wish to run a test by first unwinding the coins due to a specific address; this way you can verify that the unwinding to this address has worked before preceeding with unwinding the whole bag.
+
+[Skip to the next section if you want to run this test.](#test-unwind)
+:::
+
+The final step is to actually send the CAT2 tokens to the correct locations (AKA *"unwind the bag"*). This will send coins to each appropriate wallet.
+
+The important values for this command are:
+
+  - `--eve-coin-id` – Obtained from the final “secure the bag” command above.
+  - `--tail-hash` – The `Asset ID:` from the final “secure the bag” command above.
+  - `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
+  - `--unwind-fee` – An optional blockchain fee in mojos, will be applied to each spend.
+  - `--wallet-id` – The ID of the wallet from which to unwind (typically `1`).
+
+The command to run is:
+
+```bash
+unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID>
+```
+
+For this example, the command to unwind the entire bag is:
+
+```mdx-code-block
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
+```
+
+```powershell
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="linux">
+```
+
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+  </TabItem>
+  <TabItem value="macos">
+```
+
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+  </TabItem>
+</Tabs>
+```
+
+This command could take a long time to finish running. Afterward, you will have an exact copy of your CAT1 issuance, but in CAT2 form.
+
+At this point, you can navigate to [taildatabase.com](https://www.taildatabase.com/) and register your new CAT2 token, using the Asset ID obtained from the final step of the Secure the Bag section.
+
+🎉 Congratulations! You've successfully reissued your tokens in the CAT2 standard. 🎉
+
+## Test Run: Unwind the Bag {#test-unwind}
+
+:::info
+**Optional:** Before unwinding the bag all at once, you can run a test by sending the correct number of tokens to a single address.
+:::
 
 1. We used Spacebucks in the single-issuance example, so we'll obtain the puzzle hash of a wallet that contains some CAT1 Spacebucks. First, run:
 
@@ -779,7 +852,9 @@ The last step is to actually send the CAT2 tokens to the correct locations (AKA 
     unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID> --unwind-target-puzzle-hash <PUZZLE-HASH>
     ```
 
-    For this example, the command to unwind the bag is:
+    You may have noticed that this command is identical to [the command that unwinds the whole bag](#unwind), with the addition of the `--unwind-target-puzzle-hash` flag that ensures only coins are sent to a specific address.
+
+    In this example, the command to unwind the bag is:
 
     ```mdx-code-block
     <Tabs
@@ -872,55 +947,4 @@ The last step is to actually send the CAT2 tokens to the correct locations (AKA 
 
     You should see matching coin_records for each entry in the CSV file, along with its corresponding value.
 
-6. The final step is to unwind the bag for the entire set of coins. This will send coins to each appropriate wallet. The only difference between this command and the last one is that you don't use the `--unwind-target-puzzle-hash` flag. 
-
-    The command to run is:
-
-    ```bash
-    unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID>
-    ```
-
-    For this example, the command to unwind the entire bag is:
-
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
-
-    ```powershell
-    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1
-    ```
-
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
-
-    ```bash
-    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
-    ```
-
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
-
-    ```bash
-    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
-    ```
-
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
-
-    This command could take a long time to finish running. Afterward, you will have an exact copy of your CAT1 issuance, but in CAT2 form.
-
-8. At this point, you can navigate to [taildatabase.com](https://www.taildatabase.com/) and register your new CAT2 token, using the Asset ID obtained from the final step of the Secure the Bag section.
+    Now that you've tested unwinding the bag, you can proceed to [unwind the rest of the bag](#unwind).
