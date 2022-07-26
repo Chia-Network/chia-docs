@@ -734,7 +734,80 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 The steps in this section are the same for both single-issuance and multi-issuance CATs.
 :::
 
-The last step is to actually send the CAT2 tokens to the correct locations (AKA *"unwind the bag"*). Before sending all of the tokens, you can run a test by sending the correct number of tokens to a single address.
+:::tip
+This step will unwind the bag for the entire set of coins. You may wish to run a test by first unwinding the coins due to a specific address; this way you can verify that the unwinding to this address has worked before preceeding with unwinding the whole bag.
+
+[Skip to the next section if you want to run this test.](#test-unwind)
+:::
+
+The final step is to actually send the CAT2 tokens to the correct locations (AKA *"unwind the bag"*). This will send coins to each appropriate wallet.
+
+The important values for this command are:
+
+  - `--eve-coin-id` – Obtained from the final “secure the bag” command above.
+  - `--tail-hash` – The `Asset ID:` from the final “secure the bag” command above.
+  - `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
+  - `--unwind-fee` – An optional blockchain fee in mojos, will be applied to each spend.
+  - `--wallet-id` – The ID of the wallet from which to unwind (typically `1`).
+
+The command to run is:
+
+```bash
+unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID>
+```
+
+For this example, the command to unwind the entire bag is:
+
+```mdx-code-block
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
+```
+
+```powershell
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="linux">
+```
+
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+  </TabItem>
+  <TabItem value="macos">
+```
+
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+  </TabItem>
+</Tabs>
+```
+
+This command could take a long time to finish running. Afterward, you will have an exact copy of your CAT1 issuance, but in CAT2 form.
+
+At this point, you can navigate to [taildatabase.com](https://www.taildatabase.com/) and register your new CAT2 token, using the Asset ID obtained from the final step of the Secure the Bag section.
+
+🎉 Congratulations! You've successfully reissued your tokens in the CAT2 standard. 🎉
+
+## Test Run: Unwind the Bag {#test-unwind}
+
+:::info
+**The section is optional:** Before unwinding the bag all at once, you can run a test by sending the correct number of tokens to a single address.
+:::
 
 1. We used Spacebucks in the single-issuance example, so we'll obtain the puzzle hash of a wallet that contains some CAT1 Spacebucks. First, run:
 
@@ -747,6 +820,10 @@ The last step is to actually send the CAT2 tokens to the correct locations (AKA 
     ```
     First wallet address: xch1qzz5xrd05698f2n2tt4qm500kys6p4w79ph7s2xrlau3drfugl3qqh9j4l
     ```
+
+    :::note
+    In our example, the first wallet address contains Spacebucks. However, this may not be the case for you - you should use any address under your control that you know contains some quantity of the CATs in question.
+    :::
 
 2. Use the `cdv decode` command to obtain the puzzle hash that corresponds to this wallet address:
 
@@ -779,7 +856,9 @@ The last step is to actually send the CAT2 tokens to the correct locations (AKA 
     unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID> --unwind-target-puzzle-hash <PUZZLE-HASH>
     ```
 
-    For this example, the command to unwind the bag is:
+    You may have noticed that this command is identical to [the command that unwinds the whole bag](#unwind), with the addition of the `--unwind-target-puzzle-hash` flag that ensures only coins are sent to a specific address.
+
+    In this example, the command to unwind the bag is:
 
     ```mdx-code-block
     <Tabs
@@ -872,55 +951,4 @@ The last step is to actually send the CAT2 tokens to the correct locations (AKA 
 
     You should see matching coin_records for each entry in the CSV file, along with its corresponding value.
 
-6. The final step is to unwind the bag for the entire set of coins. This will send coins to each appropriate wallet. The only difference between this command and the last one is that you don't use the `--unwind-target-puzzle-hash` flag. 
-
-    The command to run is:
-
-    ```bash
-    unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID>
-    ```
-
-    For this example, the command to unwind the entire bag is:
-
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
-
-    ```powershell
-    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1
-    ```
-
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
-
-    ```bash
-    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
-    ```
-
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
-
-    ```bash
-    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
-    ```
-
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
-
-    This command could take a long time to finish running. Afterward, you will have an exact copy of your CAT1 issuance, but in CAT2 form.
-
-8. At this point, you can navigate to [taildatabase.com](https://www.taildatabase.com/) and register your new CAT2 token, using the Asset ID obtained from the final step of the Secure the Bag section.
+    Now that you've tested unwinding the bag, you can proceed to [unwind the rest of the bag](#unwind).
