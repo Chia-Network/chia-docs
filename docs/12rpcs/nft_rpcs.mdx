@@ -46,35 +46,22 @@ Request Parameters:
 
 | Parameter          | Required | Description                                                                                                                                                                                       |
 | :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| wallet_id          | True     | The Wallet ID in which to mint an NFT                                                                                                                                                             |
-| uris               | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                 |
-| hash               | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                   |
-| did_id             | False    | Optionally specify the DID to be associated with this NFT                                                                                                                                         |
-| meta_uris          | False    | A list of URIs to mark the location(s) of the NFT's metadata                                                                                                                                      |
-| meta_hash          | False    | The hash of the NFT's metadata                                                                                                                                                                    |
-| license_uris       | False    | A list of URIs to mark the location(s) of the NFT's license                                                                                                                                       |
-| license_hash       | False    | The hash of the NFT's license                                                                                                                                                                     |
-| royalty_address    | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                  |
-| royalty_percentage | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0 |
-| target_address     | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                   |
-| fee                | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                       |
-| series_number [(WARNING)](#editions-and-series) | False    | If this NFT has multiple **editions** (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT.                                                                                                |
-| series_total [(WARNING)](#editions-and-series) | False    | If this NFT has multiple **editions**, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `series_number` parameter was also used                                                                                                       |
-
-:::danger Warning
-#### Editions and Series
-v1.4.0 of the Chia client uses the terms *editions* and *series* inconsistently. It's important to understand the meaning before using these flags.
-
-***Editions*** of an NFT refer to multiple identical copies of the same data (usually an image). For example, if an NFT is edition 1 of 5, this means there will be 5 NFTs with the same identical data, and this is the first.
-
-***Series*** of an NFT refers to a sequence or ordering of unique NFTs (i.e. not identical copies). Often the entirety of a collection will be a single sequence. For example, the first NFT in a collection of 100 NFTs will be series number 1 of 100; the second NFT will be series number 2 of 100; etc.
-
-In Chia, the **edition** of an NFT is stored on chain, but in v1.4.0 of the Chia client, this was mistakenly referred to as the series in several places. In v1.4.1, this will be rectified and made consistent throughout the RPCs, CLI and GUI.
-
-If you are using v1.4.0, you can continue to use the `series_number` and `series_total` parameters, but be aware that these refer to the **edition number** and **edition total number** respectively.
-
-To attach a series number to your NFT, you can include this information in the off-chain metadata file. This could be done through a custom field for the series, or a common practice is to include the series number in the NFT name e.g. *Chia Friends #1*, *Chia Friends #2*, etc.
-:::
+| wallet_id                  | True     | The Wallet ID in which to mint an NFT                                                                                                                                                             |
+| uris                       | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                 |
+| hash                       | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                   |
+| did_id                     | False    | Optionally specify the DID to be associated with this NFT                                                                                                                                         |
+| meta_uris                  | False    | A list of URIs to mark the location(s) of the NFT's metadata                                                                                                                                      |
+| meta_hash                  | False    | The hash of the NFT's metadata                                                                                                                                                                    |
+| license_uris               | False    | A list of URIs to mark the location(s) of the NFT's license                                                                                                                                       |
+| license_hash               | False    | The hash of the NFT's license                                                                                                                                                                     |
+| royalty_address            | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                  |
+| royalty_percentage         | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0 |
+| target_address             | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                   |
+| series_number (deprecated) | False    | Beginning in Chia version 1.5, please use the `edition_number` parameter instead of this one
+| series_total  (deprecated) | False    | Beginning in Chia version 1.5, please use the `edition_count` RPC instead of this one
+| edition_number             | False    | If this NFT has multiple editions (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT. |
+| edition_count              | False    | If this NFT has multiple editions, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `edition_number` parameter was also used |
+| fee                        | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                       |
 
 <details>
 <summary>Example 1 - Mint an NFT without using a DID</summary>
@@ -147,8 +134,8 @@ chia rpc wallet nft_mint_nft '{
   "royalty_address": "txch1pljwsktkpd64nqxf4ykfz3vmwh457qsntt8g6fe3ajsw388w78as0s60fh",
   "royalty_percentage": 300,
   "target_address": "txch1teztz9rd5edgdgrzt3eenrq5mktznuapm7sx27rp4uvc97e8l28sxu0x2d",
-  "series_number": 1,
-  "series_total": 5
+  "edition_number": 1,
+  "edition_count": 5
 }'
 ```
 
@@ -222,8 +209,8 @@ Royalty puzhash:           0fe4e859760b755980c9a92c91459b75eb4f02135ace8d2731eca
 NFT content hash:          14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
 Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
 License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
-NFT series total:          5
-Current NFT number in the series: 1
+NFT edition total:          5
+Current NFT edition number: 1
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1127304
 Inner puzzle supports DID: True
@@ -292,8 +279,8 @@ Response:
             "pending_transaction": false,
             "royalty_percentage": null,
             "royalty_puzzle_hash": null,
-            "series_number": 1,
-            "series_total": 1,
+            "edition_number": 1,
+            "edition_count": 1,
             "supports_did": false,
             "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
         }
@@ -440,8 +427,8 @@ Response:
         "pending_transaction": false,
         "royalty_percentage": 300,
         "royalty_puzzle_hash": "0x0fe4e859760b755980c9a92c91459b75eb4f02135ace8d2731eca0e89ceef1fb",
-        "series_number": 1,
-        "series_total": 5,
+        "edition_number": 1,
+        "edition_count": 5,
         "supports_did": true,
         "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
     },
@@ -474,6 +461,7 @@ Request Parameters:
 | nft_coin_id | True     | The coin ID of the NFT on which to add a URI                              |
 | key         | True     | Must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI) |
 | uri         | True     | The URI to add                                                            |
+| fee         | False    | The one-time blockchain fee to be used upon adding a URI                  |
 
 :::info
 
@@ -553,8 +541,8 @@ Response:
             "pending_transaction": false,
             "royalty_percentage": 300,
             "royalty_puzzle_hash": "0x0fe4e859760b755980c9a92c91459b75eb4f02135ace8d2731eca0e89ceef1fb",
-            "series_number": 1,
-            "series_total": 5,
+            "edition_number": 1,
+            "edition_count": 5,
             "supports_did": true,
             "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
         }
