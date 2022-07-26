@@ -1,5 +1,5 @@
-import React from 'react';
 import Link from '@docusaurus/Link';
+import React from 'react';
 
 import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
@@ -103,9 +103,19 @@ const EmailSvg = require('../../static/img/email_icon.svg').default;
 
 export default function HomepageFeatures() {
   return (
+    <>
+    <div style={{'background-color': '#eeeeee'}} className="row">
+    <div style={{ 'padding': '60px', 'text-align': 'center', 'width': '100%'}}>
+      <a href="/docs/cat2/cat2-intro"><h3 style={{'color': 'red', 'font-size': '35px'}}>CAT2 Upgrade Guide</h3></a>
+      <h4 style={{'font-size': '25px'}}>CAT2 is out! Read here to learn about CAT1 end-of-life and CAT2 reissuance.</h4>
+
+    </div>
+  </div>
     <section className={styles.features}>
       <div className="container">
+
         <div className="row">
+          
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}
@@ -201,5 +211,7 @@ export default function HomepageFeatures() {
         </div>
       </div>
     </section>
+    </>
   );
+
 }
