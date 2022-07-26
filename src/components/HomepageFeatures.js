@@ -93,6 +93,13 @@ const EmailSvg = require('../../static/img/email_icon.svg').default
 
 export default function HomepageFeatures() {
   return (
+    <>
+    <div className="banner row">
+    <div className="banner-message">
+      <h3 className="banner-title">CAT2 Standard Released</h3>
+      <a href="/docs/cat2/cat2-intro"><h4 style={{'font-size': '1rem'}}>Learn about CAT1 end-of-life and CAT2 reissuance →</h4></a>
+    </div>
+    </div>
     <section className={styles.features}>
       <div className="container">
         <div className="row">
@@ -137,5 +144,6 @@ export default function HomepageFeatures() {
         </div>
       </div>
     </section>
+    </>
   );
 }
