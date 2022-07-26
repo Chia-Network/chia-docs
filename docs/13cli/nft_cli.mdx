@@ -14,16 +14,19 @@ import TabItem from '@theme/TabItem';
   <summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
-  
+
 For example, here is a typical RPC command on Linux and MacOS:
+
 ```powershell
 chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
 To run the same command on Windows, you need to escape the quotes, so it looks like this:
-```powershell  
+
+```powershell
 chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
+
 </details>
 
 ## Reference
@@ -54,9 +57,11 @@ chia wallet nft create
 ```
 
 Response:
+
 ```
 Successfully created an NFT wallet with id 3 on key 4288332900
 ```
+
 </details>
 
 <details>
@@ -71,6 +76,7 @@ Response:
 ```
 Successfully created an NFT wallet with id 4 on key 4288332900
 ```
+
 </details>
 <details>
 <summary>Show both of these NFT wallets</summary>
@@ -129,27 +135,27 @@ Usage: chia wallet nft mint [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use |
-| -i            | --id                          | INTEGER | True     | Id of the NFT wallet to use |
-| -u            | --uris                        | TEXT    | True     | Comma separated list of content URIs |
-| -nh           | --hash                        | TEXT    | True     | NFT content hash |
-| -mu           | --metadata-uris               | TEXT    | False    | Comma separated list of metadata URIs |
-| -mh           | --metadata-hash               | TEXT    | False    | NFT metadata hash |
-| -lu           | --license-uris                | TEXT    | False    | Comma separated list of license URIs |
-| -lh           | --license-hash                | TEXT    | False    | NFT license hash |
-| -ra           | --royalty-address             | TEXT    | False    | Royalty address |
-| -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75%  [default: 0] |
-| -ta           | --target-address              | TEXT    | False    | Target address |
-| -sn (deprecated) | --series-number (deprecated) | INTEGER | False  | Beginning in Chia version 1.4.1, please use `en` (`edition-number`) instead |
-| -st (deprecated) | --series-total  (deprecated) | INTEGER | False  | Beginning in Chia version 1.4.1, please use `ec` (`edition-count`) |
-| -en           | --edition-number           | INTEGER | False    | The edition number. Specify if this NFT has multiple editions (multiple identical copies of an NFT). [default: 1] |
-| -ec           | --edition-count            | INTEGER | False    | The edition total number. Specify if this NFT has multiple editions. [default: 1] |
-| -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH  [default: 0] |
-|               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default |
-| -h            | --help                        | None    | False    | Show a help message and exit |
+| Short Command    | Long Command                  | Type    | Required | Description                                                                                                       |
+| :--------------- | :---------------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- |
+| -wp              | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml          |
+| -f               | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
+| -i               | --id                          | INTEGER | True     | Id of the NFT wallet to use                                                                                       |
+| -u               | --uris                        | TEXT    | True     | Comma separated list of content URIs                                                                              |
+| -nh              | --hash                        | TEXT    | True     | NFT content hash                                                                                                  |
+| -mu              | --metadata-uris               | TEXT    | False    | Comma separated list of metadata URIs                                                                             |
+| -mh              | --metadata-hash               | TEXT    | False    | NFT metadata hash                                                                                                 |
+| -lu              | --license-uris                | TEXT    | False    | Comma separated list of license URIs                                                                              |
+| -lh              | --license-hash                | TEXT    | False    | NFT license hash                                                                                                  |
+| -ra              | --royalty-address             | TEXT    | False    | Royalty address                                                                                                   |
+| -rp              | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75% [default: 0]                  |
+| -ta              | --target-address              | TEXT    | False    | Target address                                                                                                    |
+| -sn (deprecated) | --series-number (deprecated)  | INTEGER | False    | Beginning in Chia version 1.5, please use `en` (`edition-number`) instead                                         |
+| -st (deprecated) | --series-total (deprecated)   | INTEGER | False    | Beginning in Chia version 1.5, please use `ec` (`edition-count`)                                                  |
+| -en              | --edition-number              | INTEGER | False    | The edition number. Specify if this NFT has multiple editions (multiple identical copies of an NFT). [default: 1] |
+| -ec              | --edition-count               | INTEGER | False    | The edition total number. Specify if this NFT has multiple editions. [default: 1]                                 |
+| -m               | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                 |
+|                  | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default                |
+| -h               | --help                        | None    | False    | Show a help message and exit                                                                                      |
 
 <details>
    <summary>Example 1 - Mint an NFT that is not associated with a DID</summary>
@@ -159,6 +165,7 @@ chia wallet nft mint -i 3 -u https://images.pexels.com/photos/11053072/pexels-ph
 ```
 
 Response:
+
 ```
 NFT minted Successfully with spend bundle:
 {
@@ -190,6 +197,7 @@ NFT minted Successfully with spend bundle:
    }
 ]}
 ```
+
 </details>
 
 <details>
@@ -200,6 +208,7 @@ chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx
 ```
 
 Response:
+
 ```
 NFT minted Successfully with spend bundle:
 {
@@ -232,7 +241,6 @@ NFT minted Successfully with spend bundle:
 ]}
 ```
 
-
 Show the results of running Example 2:
 
 ```bash
@@ -240,6 +248,7 @@ chia wallet nft list -i 2
 ```
 
 Response:
+
 ```
 NFT identifier:            nft1yxvkdfgpxfyx47wqq56jww87m0ka878c9a9wyr9hqrq0f479phxqps7rtf
 Launcher coin ID:          219966a50132486af9c005352738fedbedd3f8f82f4ae20cb700c0f4d7c50dcc
@@ -337,7 +346,7 @@ chia wallet nft list -i 4
 
 Response:
 
- ```
+```
 NFT identifier:            nft1s5hlcv0q3edg5vf33dkzrg0z35dnhch5tszntcma0zc7mcrpqurqlhwceh
 Launcher coin ID:          852ffc31e08e5a8a31318b6c21a1e28d1b3be2f45c0535e37d78b1ede0610706
 Launcher puzhash:          eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
@@ -357,13 +366,13 @@ Inner puzzle supports DID: True
 NFT is pending for a transaction: False
 
 URIs:
-   https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg
+  https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg
 
 Metadata URIs:
-   https://metadata_example.com
+  https://metadata_example.com
 
 License URIs:
-   https://license_example.com
+  https://license_example.com
 ```
 
 </details>
@@ -422,6 +431,7 @@ Metadata URIs:
 
 License URIs:
 ```
+
 </details>
 
 ---
@@ -470,21 +480,22 @@ NFT transferred successfully with spend bundle:
    }
 ]}
 ```
+
 </details>
 
 <details>
 <summary>Example 2 - Send an NFT from a wallet associated with a DID</summary>
 
-This recipient in this example will be a common burn address (an address for which nobody has the private key): 
+This recipient in this example will be a common burn address (an address for which nobody has the private key):
 
 ```bash
 chia wallet nft transfer -i 3 -ni 8daa6ce105509c65a7e72e74ed5fa7c46dfbd96987727c85a9808fcf7d4d98a0 -ta txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
 ```
 
-Response: 
+Response:
 
 ```
-NFT transferred successfully with spend bundle: 
+NFT transferred successfully with spend bundle:
 {
    'aggregated_signature': '0xa91bb34bccb51344e09a0a8ced2ef205f95e59ddd1118d54b30b2c9bd36673061ec71fef4b5018fc5538a0b1798f168e065283929f355272ee8443f8553e68d9545f260629e374ea84603fae52d98140703b5480888e0b67101df3934765dac7',
    'coin_solutions': [{
@@ -498,6 +509,7 @@ NFT transferred successfully with spend bundle:
    }
 ]}
 ```
+
 </details>
 
 ---
@@ -534,7 +546,7 @@ chia wallet nft add_uri -i 3 -ni 254e54c6c8f2ecec8f4f5ec8291dab47b4042b350b6f1e1
 Response:
 
 ```
-URI added successfully with spend bundle: 
+URI added successfully with spend bundle:
 {
    'aggregated_signature': '0xb605edf55dd94da2a22c9eafc1e18ba07740d4e2f36712a15cb17cf425f22dce38a02be75f263bf8227aca3e0649a5731650c068e58dd59571825e5310cc682894284381f6751420cd783dafc7ee044319ea14c1f0a6b3f3f6fabc2bc33d72d4',
    'coin_solutions': [{
@@ -597,7 +609,7 @@ chia wallet nft set_did -i 2 -di did:chia:16kgxghw80cjlytl7x7zxuuux32v308fnmcgkf
 Response:
 
 ```
-Transaction to set DID on NFT has been initiated with: 
+Transaction to set DID on NFT has been initiated with:
 {
    'aggregated_signature': '0x85b31b9cab5f943e8aee056869abe5b83cf6f4ba82abf0818eb235f29776c1413980e97944dd305c11bd936b1412324e19cc5a7dbff3be62f1ed0b8fe6b7dffec019036882cc09988c76ca978164767f31af5e95f4ea919f5c7c9ec8d1fc21cc',
    'coin_solutions': [{
@@ -619,6 +631,7 @@ Transaction to set DID on NFT has been initiated with:
    }
 ]}
 ```
+
 </details>
 
 ---
