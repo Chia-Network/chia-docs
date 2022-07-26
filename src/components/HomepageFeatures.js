@@ -104,13 +104,12 @@ const EmailSvg = require('../../static/img/email_icon.svg').default;
 export default function HomepageFeatures() {
   return (
     <>
-    <div style={{'background-color': '#eeeeee'}} className="row">
-    <div style={{ 'padding': '60px', 'text-align': 'center', 'width': '100%'}}>
-      <a href="/docs/cat2/cat2-intro"><h3 style={{'color': 'red', 'font-size': '35px'}}>CAT2 Upgrade Guide</h3></a>
-      <h4 style={{'font-size': '25px'}}>CAT2 is out! Read here to learn about CAT1 end-of-life and CAT2 reissuance.</h4>
-
+    <div className="banner row">
+    <div className="banner-message">
+      <h3 className="banner-title">CAT2 Standard Released</h3>
+      <a href="/docs/cat2/cat2-intro"><h4 style={{'font-size': '1rem'}}>Learn about CAT1 end-of-life and CAT2 reissuance →</h4></a>
     </div>
-  </div>
+    </div>
     <section className={styles.features}>
       <div className="container">
 
