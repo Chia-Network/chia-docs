@@ -32,10 +32,69 @@ We recommend that you follow this section to generate your own snapshot of your 
 This section will show you how to install the [CAT-addresses tool](https://github.com/Chia-Network/CAT-addresses) and use it to get a snapshot of the puzzle hash (address) and value of each coin of a particular CAT1. It can even obtain this info for all CAT1s on Chia's blockchain.'
 
 :::warning
-In order to use this tool, you are required to run a fully synced Chia node. This node must be running version 1.5 or greater, and it must have been [installed from source](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL#install-from-source) (not from a binary installer). Please ensure that you have satisfied these requirements before continuing.
+In order to use this tool, you are required to run a fully synced Chia node. Chia must be installed from the `main` branch, and it must have been [installed from source](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL#install-from-source) (not from a binary installer). Please ensure that you have satisfied these requirements before continuing.
+
+Here are the instructions for installing from source from the `main` branch:
+
+```mdx-code-block
+<Tabs
+  defaultValue="windows"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux/MacOS', value: 'nix'},
+  ]}>
+  <TabItem value="windows">
+```
+
+```powershell
+git clone https://github.com/Chia-Network/chia-blockchain.git -b main --recurse-submodules
+cd chia-blockchain
+.\Install.ps1
+.\venv\Scripts\Activate.ps1
+chia init
+
+(Optional) To install and run the GUI:
+.\Install-gui.ps1
+cd .\chia-blockchain-gui
+npm run electron
+```
+
+```mdx-code-block
+  </TabItem>
+  <TabItem value="nix">
+```
+
+```bash
+git clone https://github.com/Chia-Network/chia-blockchain.git -b main --recurse-submodules
+cd chia-blockchain
+sh install.sh
+. ./activate
+chia init
+
+(Optional) To install and run the GUI:
+. ./install-gui.sh
+cd chia-blockchain-gui
+npm run electron
+```
+
+```mdx-code-block
+  </TabItem>
+</Tabs>
+```
 :::
 
-1. Open a terminal window and ensure you have direct access to the `chia` command:
+:::tip
+If you receive the message `WARNING: UNPROTECTED SSL FILE!` then run:
+
+```bash
+chia init --fix-ssl-permissions
+```
+
+:::
+
+1. If you do not already have a terminal window open with an activated virtual environment, then:
+
+    Open a terminal window and ensure you have direct access to the `chia` command:
 
     ```mdx-code-block
     <Tabs
