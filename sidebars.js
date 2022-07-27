@@ -8,6 +8,7 @@ module.exports = {
         'introduction/getting-started',
         'introduction/using-the-client',
         'introduction/chia-concepts',
+        'introduction/node-syncing'
       ],
     },
     {
@@ -17,6 +18,7 @@ module.exports = {
         'plotting/plotting-basics',
         'plotting/plotting-software',
         'plotting/ssd-ram-endurance',
+        'plotting/moving-plots'
       ],
     },
     {
@@ -144,6 +146,7 @@ module.exports = {
       items: [
         'resources/references',
         'resources/storage-farming',
+        'resources/faq'
       ],
     },
   ],

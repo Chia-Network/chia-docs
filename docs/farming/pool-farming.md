@@ -38,6 +38,7 @@ and in the wallet tab in the top right, it should say `Synced` as well.
  <img src="/img/wallet_sync.png" alt="wallet sync" width="600"/>
 </div>
 
+
 IMPORTANT: If you are using the same key (24 words) on more than one computer, you should update both computers to 1.2+ before creating your plot NFT. If you have already created the plot NFT and the second computer is running a version older than 1.2, it will not be able to see the plot NFT. This can be fixed by shutting down the application on the second computer, and deleting the `~/.chia/wallet/db` folder and all files inside of it.
 
 ### Step 2: Receive some XCH
@@ -62,7 +63,11 @@ to join a pool, enter the url (must start with _https://_), and look at the desc
 NFT, and wait for it to be confirmed (click only once). It can take several minutes for it to be confirmed and to show up in the Pools tab.
 You only need 1 plot NFT.
 
-![join_pool](images/join_pool.png)
+
+<div style={{textAlign: 'center'}}>
+ <img src="/img/join_pool.png" alt="join pool" width="600"/>
+</div>
+
 
 ### Step 4: Add Plots
 You can now start creating plots for this Plot NFT, which means these plots will be "pooling" and can earn rewards
@@ -93,7 +98,12 @@ You should ensure that your points found in the last 24h are accurate. You shoul
 per k32, so if you have 100 k32 plots, you should be getting around 1000 points per day. Make sure your points balance
 is going up. After you get paid, the points balance will reset to zero. Points will come at random times, since finding proofs is still random. Therefore expect a lot of variability and times of both good and bad luck.
 
-![points](images/points.png)
+
+<div style={{textAlign: 'center'}}>
+ <img src="/img/points.png" alt="points" width="600"/>
+</div>
+
+
 
 ### Step 6: Wait for Payouts
 You are now done. If your points balance is increasing, you are properly pooling, and you should check your pool to see 
