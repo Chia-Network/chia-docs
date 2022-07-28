@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 :::info
-[CAT1](https://chialisp.com/docs/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
+[CAT1](https://chialisp.com/docs/puzzles/cats) reached its end of life at block 2,311,760.
 
 For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/docs/cat2/cat2-intro).
 :::
@@ -24,11 +24,11 @@ This document will show CAT1 issuers how to:
 
 Before starting this guide, you will need a snapshot CSV, instructions for which can be found in the [Snapshot Generation guide](/docs/cat2/cat2-snapshot).
 
-## Install the CAT Admin Tool
-
 :::warning
-A new version of the CAT Admin Tool will be released shortly after Chia version `1.5.0`, at approximately the end-of-life block height (`2311760`). You should not attempt token reissuance before you have updated to this version.
+Chia version 1.5.0 or later is a prerequisite for using this guide. If you installed Chia from the `main` branch in order to generate your snapshot, you will need to update to version 1.5.0 or later now.
 :::
+
+## Install the CAT Admin Tool
 
 Now that you have a CSV file containing the necessary information, you can run the [CAT Admin Tool](https://github.com/Chia-Network/CAT-admin-tool) to secure and airdrop a set of CAT2 tokens equivalent in size and address to their CAT1 counterparts.
 
@@ -671,7 +671,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 8. The final step is to create the coin using the `secure the bag root address` as the target address.
 
-    The command to run is (Note that you need the parentheses after `curry command output`):
+    The command to run is (Note that you need to include the parentheses):
 
     ```
     cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "(<curry command output> ())" --signature <signature> --fee <amount in mojos>
