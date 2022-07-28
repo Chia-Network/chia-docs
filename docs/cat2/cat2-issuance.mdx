@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 :::info
-[CAT1](https://chialisp.com/docs/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
+[CAT1](https://chialisp.com/docs/puzzles/cats) reached its end of life at block 2,311,760.
 
 For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/docs/cat2/cat2-intro).
 :::
@@ -24,11 +24,11 @@ This document will show CAT1 issuers how to:
 
 Before starting this guide, you will need a snapshot CSV, instructions for which can be found in the [Snapshot Generation guide](/docs/cat2/cat2-snapshot).
 
-## Install the CAT Admin Tool
-
 :::warning
-A new version of the CAT Admin Tool will be released shortly after Chia version `1.5.0`, at approximately the end-of-life block height (`2311760`). You should not attempt token reissuance before you have updated to this version.
+Chia version 1.5.0 or later is a prerequisite for using this guide. If you installed Chia from the `main` branch in order to generate your snapshot, you will need to update to version 1.5.0 or later now.
 :::
+
+## Install the CAT Admin Tool
 
 Now that you have a CSV file containing the necessary information, you can run the [CAT Admin Tool](https://github.com/Chia-Network/CAT-admin-tool) to secure and airdrop a set of CAT2 tokens equivalent in size and address to their CAT1 counterparts.
 
@@ -167,9 +167,13 @@ This section will show you how to create a tree of CAT2 coins that are identical
 
 If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1 will show you how to view the TAIL that was used to create it.
 
-1. Figure out the total number of XCH mojos that were issued for your CAT1.
+1. Figure out the total number of XCH mojos that were issued for your CAT1. If you already know this number, then you can skip this step.
+
+  Note that this technique will only work if you previously registered your CAT1 with taildatabase.
+
     - Navigate to [taildatabase.com](https://www.taildatabase.com).
-    - Search for your CAT. We'll use Spacebucks for this example.
+    - Log in using the same user ID and password you used to register your CAT1.
+    - Locate your CAT1. We'll use Spacebucks for this example.
     - You'll see *Supply* (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 trillion (1,000,000,000,000) XCH mojos.
   - Click the *Chialisp* button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
@@ -389,9 +393,13 @@ This section will show you how to secure the bag for a multi-issuance CAT that u
 You need to use the same public/private key pair to sign the CAT2 issuance as you used for the CAT1 issuance. Your `Asset ID` will not change between CAT1 and CAT2.
 :::
 
-1. Figure out the total number of XCH mojos that were issued for your CAT1.
+1. Figure out the total number of XCH mojos that were issued for your CAT1. If you already know this number, then you can skip this step.
+
+  Note that this technique will only work if you previously registered your CAT1 with taildatabase.
+
     - Navigate to [taildatabase.com](https://www.taildatabase.com).
-    - Search for your CAT.
+    - Log in using the same user ID and password you used to register your CAT1.
+    - Locate your CAT1. We'll use Spacebucks for this example.
     - You'll see *Supply* (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. In this example, we'll use an issuance of 6 million (6,000,000) tokens, which is equivalent to 6 billion (6,000,000,000) XCH mojos.
     - Click the *Chialisp* button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
@@ -663,10 +671,10 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 8. The final step is to create the coin using the `secure the bag root address` as the target address.
 
-    The command to run is (Note that you need the parentheses after `curry command output`):
+    The command to run is (Note that you need to include the parentheses):
 
     ```
-    cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "<curry command output> ()" --signature <signature> --fee <amount in mojos>
+    cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "(<curry command output> ())" --signature <signature> --fee <amount in mojos>
     ```
 
     The arguments needed are:
@@ -805,7 +813,7 @@ unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde66
 
 This command could take a long time to finish running. Afterward, you will have an exact copy of your CAT1 issuance, but in CAT2 form.
 
-At this point, you can navigate to [taildatabase.com](https://www.taildatabase.com/) and register your new CAT2 token, using the Asset ID obtained from the final step of the Secure the Bag section.
+At this point, you can navigate to [taildatabase.com](https://www.taildatabase.com/), log in or sign up, and update your asset ID for your CAT2 token, using the Asset ID obtained from the final step of the Secure the Bag section.
 
 🎉 Congratulations! You've successfully reissued your tokens in the CAT2 standard. 🎉
 
