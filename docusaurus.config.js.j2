@@ -13,7 +13,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
   favicon: 'img/chia_leaf_green.svg',
   organizationName: 'Chia-Network', // Usually your GitHub org/user name.
   projectName: '{{ REPOSITORY_NAME }}', // Usually your repo name.
-  plugins: [    [
+  plugins: [    
+    [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         // ... Your options.
@@ -25,7 +26,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
         // ```
         // When applying `zh` in language, please install `nodejieba` in your project.
       },
-    ],],
+    ],
+  ],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+  },
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -54,9 +60,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
         id: 'cat2_launch',
         content:
           'CAT2 Standard Released 🌱<a target="_blank" rel="noopener noreferrer" href="/docs/cat2/cat2-intro/"> Learn about CAT1 end-of-life and CAT2 reissuance</a>',
-        backgroundColor: '#20232a',
+        backgroundColor: '#0d3349',
         textColor: '#fff',
-        isCloseable: false,
+        isCloseable: true,
       },
       image: '/img/og-chia.png',
       navbar: {
@@ -74,10 +80,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           },
           {to: 'https://www.chia.net/', label: 'Chia.net', position: 'left'},
           {to: 'https://github.com/Chia-Network/', label: 'Chia Github', position: 'left'},
-          // {
-          //   type: 'localeDropdown',
-          //   position: 'right',
-          // },
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
         ],
       },
       footer: {

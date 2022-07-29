@@ -1,0 +1,979 @@
+---
+id: cat2-issuance
+title: CAT2代币重新发配
+sidebar_label: 3. CAT2代币重新发配
+sidebar_position: 3
+---
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+:::info
+**信息**<br />
+[CAT1](https://chialisp.com/docs/puzzles/cats) 将在2311760区块高度结束其生命周期，也就是UTC时间 2022年7月26日 17:00。更多关于结束生命周期的信息可以参考CAT2 介绍及[FAQ](/docs/cat2/cat2-intro#常见问题).
+:::
+
+本文档将向 CAT1 发行人展示如何：
+
+1. 安装 CAT 工具箱，用于重新发行代币
+2. **生成空投方案**——创建一个与原来CAT1代币一样的货币树状结构，他们的金额和所属钱包地址相同
+3. **发放空投**——将新代币空投到准确的地址
+
+在开始本指南之前，您需要一个 CSV 快照，其说明可在[快照生成指南](/docs/cat2/cat2-snapshot)中找到。.
+:::warning
+**警告**<br />
+新版本的 CAT 管理工具将在 Chia 版本 1.5.0 之后不久发布，大约在生命周期结束时的块高度 (2311760)。 在更新到此版本之前，您不应尝试重新发行代币。
+:::
+
+## 安装 CAT 管理工具
+
+现在您有了一个包含必要信息的 CSV 文件，您可以运行[CAT 管理工具](https://github.com/Chia-Network/CAT-admin-tool)来生成和空投一组大小和地址与 CAT1 对应相当的 CAT2 代币。
+
+
+1. 打开一个新的终端窗口并运行以下命令以克隆 CAT 管理工具库，使用`main`分支：
+
+    ```bash
+    git clone https://github.com/Chia-Network/CAT-admin-tool.git -b main
+    ```
+
+2. 进入到克隆好的库：
+    
+    ```bash
+    cd CAT-admin-tool
+    ```
+
+3. 通过以下运行创建一个新的虚拟环境:
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    python -m venv venv
+    .\venv\Scripts\Activate.ps1
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    python3 -m venv venv
+    . ./venv/bin/activate
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    python3 -m venv venv
+    . ./venv/bin/activate
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+4. 安装最新版本的 `pip`、`setuptools` 和 `wheel`：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    python -m pip install --upgrade pip setuptools wheel
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    python3 -m pip install --upgrade pip setuptools wheel
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    python3 -m pip install --upgrade pip setuptools wheel
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+5. 安装 CAT 管理工具:
+
+    ```bash
+    pip install .
+    pip install chia-dev-tools --no-deps
+    pip install pytest
+    ```
+    :::note
+    **注意**<br />
+    您可以放心地忽略以下错误：
+    ```
+    ERROR: Failed building wheel for CAT-admin-tool
+    ERROR: pip's dependency resolver...
+    ```
+    :::
+
+    :::tip
+    **提示**<br />
+    macOS可能需要python3.9+
+
+    :::
+
+6. 现在管理工具应该安装设置好了。 如果要测试它，可以运行:
+
+    ```bash
+    cats --help
+    cdv --help
+    ```
+
+    您应该获得每个命令的用法说明。 此时，您已准备好创建新的 CAT2 代币。
+
+## 生成空投方案(一次性发行){#secure-single}
+
+:::tip
+**提示**<br />
+用多次发行 TAIL，请跳至[下一部分](#secure-multi)。
+:::
+
+本节将向您展示如何创建与原始 CAT1 硬币相同Puzzle哈希（地址）和大小的 CAT2 硬币树。 我们将首先演示如何使用一次性发行 CAT 来做到这一点，它通常（并非总是）使用 `genesis_by_coin_id` TAIL。
+
+如果您不确定您的 CAT 使用的是单发行还是多发行 TAIL，步骤 1 将向您展示如何查看用于创建它的 TAIL.
+
+1. 计算出为您的 CAT1 发布的 XCH mojo 总数。 如果您已经知道此号码，则可以跳过此步骤。请注意，此技术仅在您之前使用 taildatabase 注册您的 CAT1 时才有效。
+    - 打开[taildatabase.com](https://www.taildatabase.com).
+    - 使用与注册 CAT1 相同的用户 ID 和密码登录。
+    - 找到您的 CAT1。 我们将在此示例中使用 Spacebucks。
+    - 您会在屏幕标题下的右侧看到 Supply（和一个数字）。 数字表示发行的代币数量。 但是，您需要将此数字乘以 1000 才能计算用于发行的 XCH mojo 数量。 例如，Spacebucks 发行了 10 亿（1 000 000 000）个代币，相当于 1 万亿（1 000 000 000 000）个 XCH mojos
+
+  - 单击“Chialisp”按钮。 这将向您显示用于发行的 TAIL程序。 如果它是单发行的 CAT，它可能使用了 `genesis_by_coin_id`。 如果不确定，请将显示的 [TAIL 与 Github](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm)中的 TAIL 进行比较。 请记录下此 TAIL，因为您需要在后续步骤中输入其十六进制版本（如果您使用的是我们的模板 TAIL ，那么您已经拥有此文件的副本）。
+
+
+2. 同步一个 Chia 钱包，该钱包的 XCH mojos 至少与原始发行量一样多。
+
+    :::note
+    *注意**<br />
+    - 您必须运行 Chia `1.5.0` 或更高版本
+    - 您可以运行轻钱包或全节点
+    - 建议您有足够的 mojos 来支付重新发行的交易费用。 建议每枚要重新发行的硬币支付五十万 (500 000) mojos手续费
+    - 您需要有一枚足够大的硬币来覆盖整个重新发行。 即使您的 XCH 余额充足，也可能被分成多个小币。 确保您拥有足够大的硬币的最简单方法是向您自己发送至少所需总价值的交易
+    :::
+
+3. 使用 CAT 管理工具选择将用于发行 CAT2 代币的硬币。
+
+    您需要从终端窗口运行“cats”命令。 此命令所需的参数包括：
+    
+      - `--tail` – 原来使用的 TAIL 程序（通常是 genesis_by_coin_id），以16进制文件的形式
+      - `--send-to` – 最初发行代币时将其发送到哪里。 这只是一个占位符——您可以在此处
+      - `--amount` – 本次发行的 mojo 总数。 你的钱包里需要有这么多mojo。 此数量必须与最初发布的实际 mojo 数量相匹配
+      - `--as-bytes` – 这告诉工具以字节而不是 JSON 格式输出支出包
+      - `--select-coin` – 这告诉工具从你的钱包中选择一个特定的硬币
+
+    要运行的命令是：
+    
+    ```bash
+    cats --tail <HEX-FILE> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --select-coin
+    ```
+
+    以下是重发 Spacebucks 的命令示例：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    输出的最后一行将类似于:
+
+    ```
+    Name: 8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+    ```
+
+    这是您将用于重新发行的硬币的硬币 ID。 请记录下这个值。
+
+4. 通过运行`secure_the_bag`命令获取目标Puzzle哈希。 这里是重要的参数：
+
+    - `--tail` – 原来使用的 TAIL 程序（通常是 `genesis_by_coin_id`），以16进制文件的形式
+    - `--amount` – 本次发行的 mojo 总数。 你的钱包里需要有这么多mojo。 此数量必须与最初发布的实际 mojo 数量相匹配
+    - `--secure-the-bag-targets-path` – 包含此 CAT 快照的 CSV 文件的完整路径
+    - `--curry` – `Name` 的值：来自上面命令的输出。 请注意，您需要在此参数前添加`0x`，因此对于上面的示例，该值将以`0x8f4`开头
+
+    要运行的命令是:
+
+    ```bash
+    secure_the_bag --tail <HEX-FILE> --amount <AMOUNT> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --prefix xch --curry <COIN-ID>
+    ```
+
+    以下是生成空投Spacebucks的命令示例：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    secure_the_bag --tail .\reference_tails\genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /Users/Username/Download/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+   该命令将创建一棵硬币树。 这可能需要很长时间，具体取决于需要创建多少代币。 在执行过程中，它将输出完成百分比。 完成后会输出Puzzle哈希和要创建的新币的地址。
+
+    对于此示例，输出的最后两行是:
+
+    ```
+    Secure the bag root puzzle hash: 17060adf6856d2904c4fe90c9690b710cf758aee5968718e2fbfd12f7b9d817f
+    Secure the bag root address: xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr
+    ```
+
+    稍后您将需要这两个值。
+
+5. 将交易推送到网络。 这实际上将创建硬币树（生成空投）。 参数与上述相同，但有一个例外：
+
+    - `--send-to` – 上述输出的“Secure the bag root address:”中的 XCH 地址
+    - `--fee` - 如果网络繁忙，则建议费用为 2000 万 mojos
+
+    要运行的命令是:
+
+    ```bash
+    cats --tail <TAIL hex file> --send-to <root address> --amount <amount in mojos> --as-bytes --curry <0x Coin ID> --fee <amount in mojos>
+    ```
+
+    对于此示例，命令如下所示：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8 --fee 20000000
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8 --fee 20000000
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8 --fee 20000000
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    您需要确认您要推送交易，然后您将收到`Asset ID` 和 `Eve Coin ID`。 对于此示例，结果如下：
+
+    ```
+    The transaction has been created, would you like to push it to the network? (Y/N)y
+    Successfully pushed the transaction to the network
+    Asset ID: 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d
+    Eve Coin ID: 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b
+    ```
+
+    稍后您将需要使用这两个值。 此时，您选择的金额应该已经从您的钱包中扣除，以生成空投。 但是，由于这不是标准交易，它不会显示在您的钱包 GUI 的交易部分。
+    
+    交易被推送到区块链后，您将成功创建一个硬币树，其大小和最终目的地与原始 CAT1 硬币集相同。
+
+## 生成空投方案（多次发行) {#secure-multi}
+
+:::tip
+**提示**<br />
+如果您已经在上一节中为单次发行 CAT 运行了secure_the_bag，那么您应该跳过本节并继续下一节，发放空投。
+:::
+
+本节将向您展示如何生成多次发行 CAT 的方案，该 CAT 使用 `delegated_tail` 作为其外层Puzzle，并使用 `genesis_by_coin_id` 作为其内层Puzzle。 这是实现多发行 CAT 的标准方法。 如果您使用自定义 TAIL 进行发行，那么您仍然可以使用此处的命令。
+
+:::info
+**信息**<br />
+您需要使用与 CAT1 发行相同的公钥/私钥对来签名 CAT2的 发行。 您CAT2的Asset ID 会和CAT1的相同。
+:::
+
+1. 计算出为您的 CAT1 发布的 XCH mojo 总数。 如果您已经知道此号码，则可以跳过此步骤。请注意，此技术仅在您之前使用 taildatabase 注册您的 CAT1 时才有效。
+    - 打开[taildatabase.com](https://www.taildatabase.com).
+    - 使用与注册 CAT1 相同的用户 ID 和密码登录。
+    - 找到您的 CAT1。 我们将在此示例中使用 Spacebucks。
+    - 您会在屏幕右侧的标题下看到 Supply（和一个数字）。 数字表示发行的代币数量。 但是，您需要将此数字乘以 1,000 才能计算用于发行的 XCH mojo 数量。 在此示例中，我们将使用 600 万 (6,000,000) 个代币的发行，这相当于 60 亿 (6,000,000,000) 个 XCH mojos。
+    - 单击 Chialisp 按钮。 这将向您显示用于发行的 TAIL程序。 如果它是多发 CAT，它可能使用了`delegated_tail`。 如果您不确定，请将显示的 TAIL 与 [GitHub 中的 TAIL](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm)进行比较。 请注意此 TAIL，因为您需要在后续步骤中输入其十六进制版本（如果您使用了我们的模板TAIL ，那么您已经拥有此文件的副本）。
+
+2. 同步一个 Chia 钱包，该钱包的 XCH mojo 数量至少与原始发行量一样多。
+
+    :::note
+    **注意**<br />
+    - 您必须运行 Chia `1.5.0` 或更高版本
+    - 您可以运行轻钱包或全节点
+    - 建议您有足够的 mojos 来支付重新发行的交易费用。 建议的数量是每枚要重新发行的硬币五十万 (500 000) mojos
+    - Y您需要有一枚足够大的硬币来覆盖整个重新发行。 即使您的 XCH 余额充足，也可能被分成多个小币。 确保您拥有足够大的硬币的最简单方法是向您自己发送至少所需总价值的交易
+    :::
+
+3. 使用 CAT 管理工具选择将用于发行 CAT2 代币的硬币。
+
+    您需要从终端窗口运行cats 命令。 此命令所需的参数包括：
+    
+      - `--tail` – 原来使用的 TAIL 程序（通常是 `delegated_tail`），采用 16进制 文件格式。
+      - `--send-to` – 最初发行代币时将代币发送到哪里。 这只是一个占位符——您可以在此处输入任何 XCH 地址。 该值是必需的，但将被忽略。
+      - `--amount` – 本次发行的 mojo 总数。 你的钱包里需要有这么多mojo。 此数量必须与最初发布的实际 mojo 数量相匹配。
+      - `--as-bytes` – 这以字节的形式告诉工具而不是 JSON 格式输出支出包。
+      - `--select-coin` – 这告诉工具从你的钱包中选择一个特定的硬币。
+
+    要执行的命令是：
+    
+    ```bash
+    cats --tail <HEX-FILE> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --select-coin
+    ```
+
+    下面是一个命令示例
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    cats --tail .\reference_tails\delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    输出的最后一行将类似于：
+
+    ```
+    Name: 11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+    ```
+
+    这是您将用于重新发行的硬币的硬币 ID。 请记录下此值。
+
+4. 通过运行`secure_the_bag`命令获取目标Puzzle哈希。 这里的重要点是：
+
+    - `--tail` – 原来使用的 TAIL 程序（通常是 `delegated_tail`），采用 16进制 文件格式。
+    - `--amount` – T本次发行的 mojo 总数。 你的钱包里需要有这么多mojo。 此数量必须与最初发布的实际 mojo 数量相匹配。
+    - `--secure-the-bag-targets-path` – T包含此 CAT 快照的 CSV 文件的完整路径。
+    - `--curry` – `Name` 的值：来自上面命令的输出。 请注意，您需要在此参数前添加 `0x`，因此对于上面的示例，此值将以 `0x110` 开头。
+
+    需要运行的命令是：
+
+    ```bash
+    secure_the_bag --tail <HEX-FILE> --amount <AMOUNT> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --prefix xch --curry <COIN-ID>
+    ```
+
+    以下是生成空投的命令示例：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    secure_the_bag --tail .\reference_tails\delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /home/Username/Downloads/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /Users/Username/Download/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    该命令将创建一棵硬币树。 这可能需要很长时间，具体取决于需要创建多少代币。 在执行过程中，它将输出完成百分比。 完成后，它将输出Puzzle哈希和要创建的新硬币的地址。
+
+    对于此示例，输出的最后两行是：
+
+    ```
+    Secure the bag root puzzle hash: ce663d935a4ca545475eeebff680922c32f496b326ade73a9820e354526449a1
+    Secure the bag root address: xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy
+    ```
+
+    您现在应该已经获得了 `Secure the bag root puzzle hash`和 `Secure the bag root address`。
+
+5. 使用从上述 cat 命令获得的硬币 ID，将 ID curry入 genesis_by_coin_id Puzzle中。
+
+    要运行的命令是:
+
+    ```bash
+    cdv clsp curry <HEX-FILE> -a <COIN-ID>
+    ```
+
+    在此示例中，命令将是：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    输出将是一个新的 CLVM Puzzle：
+ 
+    ```lisp
+    (a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))
+    ```
+
+    您将需要在后面的步骤中使用生成的Puzzle（输出，包含在括号内）。
+
+6. 运行与上一步相同的`curry`命令，但在末尾添加`--treehash`标志：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    输出将是您在上一步中计算的Puzzle的树哈希（treehash）：
+
+    ```
+    3a56fa8cdf70dfd0e894af58359d72cb04658a1b0628a4ffe0dcc02099c9863b
+    ```
+
+7. 对刚刚计算的树哈希进行签名。 这将有效地签署包含您选择的硬币的Puzzle。
+
+    要运行的命令是:
+
+    ```bash
+    chia keys sign -d <TREEHASH> -f <FINGERPRINT> -t m -b
+    ```
+
+    其中 `<fingerprint>` 是持有您之前选择的硬币的钱包的指纹。 这个指纹可以通过运行`chia keys show`来获得。
+
+    对于这个例子，命令是:
+
+    ```bash
+    chia keys sign -d 3a56fa8cdf70dfd0e894af58359d72cb04658a1b0628a4ffe0dcc02099c9863b -f 1131363750 -t m -b
+    ```
+ 
+    输出将是用于签名的公钥，以及获得的签名：
+
+    ```
+    Public key: 8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b
+    Signature: b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+    ```
+
+8. 最后一步是使用`secure the bag root address`作为目标地址来创建硬币。
+
+    要运行的命令是（请注意，您需要包含括号）：
+
+    ```
+    cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "<curry command output> ()" --signature <signature> --fee <amount in mojos>
+    ```
+
+    此命令所需的参数包括:
+
+      - `--tail` – 最初使用的 TAIL 程序（通常是 delegated_tail），采用 hex 文件格式。
+      - `--curry` – 从上面的步骤 4 获得的公钥。 确保以`0x`为前缀
+      - `--send-to` – `secure the bag root address`，从上面的步骤获得 
+      - `--amount` – 本次发行的 mojo 总数。 你的钱包里需要有这么多mojo。 此数量必须与最初发布的实际 mojo 数量相匹配
+      - `--as-bytes` – 以字节为单位输出支出包（不要更改）
+      - `--solution` – 上面的`curry`命令的输出获得的（确保在引号中）
+      - `--signature` – 从上面获得的签名
+      - `--fee` - 如果网络繁忙，则建议费用为 2000 万 mojos
+
+    对于这个例子，要执行的命令是:
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc --fee 20000000
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc --fee 20000000
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc --fee 20000000
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    此命令的输出将包含您发行的Asset ID 和 Eve Coin ID：
+
+    ```
+    Asset ID: cd3f7b65e1c20317ea0586b272262d5d59c1f0ebcab02231f1ec6f738c1953cf
+    Eve Coin ID: 06e2afb16c5eebb4c5fbbfe95856cf961dc59a6292b969d5c9f8c8914e57987c
+    ```
+
+    在下一节中您将需要这些值。请注意，如果Asset ID 与原始 CAT1 Asset ID 不匹配，则说明有问题。
+
+## 发放空投 {#unwind}
+
+:::info
+**信息**<br />
+本节中的步骤对于单发和多发 CAT 是相同的。
+
+:::
+
+:::danger
+**危险**<br />
+你需要一个已同步的全节点来**发放空投**
+:::
+
+:::tip
+**提示**<br />
+此步骤将为整套硬币发放空投。 您可能希望通过首先解开特定地址的硬币来运行测试； 通过这种方式，您可以在发放全部空投之前验证到该地址的展开是否有效。
+
+
+[如果你想测试一下可以跳到下一节](#test-unwind)
+:::
+
+最后一步是将 CAT2 代币实际发送到正确的位置（也称为“unwind the bag”）。这会将硬币发送到每个正确的钱包。
+
+此命令的参数是：
+
+  - `--eve-coin-id` – 从上面最后的“secure the bag”命令中获得。
+  - `--tail-hash` – `Asset ID:`来自上面最后的“secure the bag”命令。
+  - `--secure-the-bag-targets-path` – T包含此 CAT 快照的 CSV 文件的完整路径。
+  - `--unwind-fee` – 以mojo为单位的可选的区块链费用,将应用于每次支出。
+  - `--wallet-id` – 要从中空投的钱包的 ID（通常为 `1`）。
+
+要运行的命令是：
+
+```bash
+unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID>
+```
+
+对于这个例子，发放全部空投的命令是：
+
+```mdx-code-block
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
+```
+
+```powershell
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="linux">
+```
+
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+  </TabItem>
+  <TabItem value="macos">
+```
+
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
+```
+
+```mdx-code-block
+  </TabItem>
+</Tabs>
+```
+
+此命令可能需要很长时间才能完成运行。 之后，您将获得 CAT1 发行的准确副本，但采用 CAT2 形式。
+
+此时，您可以进入到 [taildatabase.com](https://www.taildatabase.com/)并使用从生成空投部分的最后一步获得的Asset ID 注册新的 CAT2 代币。
+
+恭喜！ 您已成功按照 CAT2 标准重新发行了您的代币。
+
+## 测试：投放空投 {#test-unwind}
+
+:::info
+**信息**<br />
+该部分是可选的：在一次全部投放空投之前，您可以通过将正确数量的代币发送到单个地址来运行测试。
+:::
+
+1. 我们在单次发行示例中使用了 Spacebucks，因此我们将获得包含一些 CAT1 Spacebucks 的钱包的Puzzle哈希。 第一次运行：
+
+    ```bash
+    chia keys show
+    ```
+
+    这将显示包含 Spacebucks 的密钥对的第一个钱包地址：
+
+    ```
+    First wallet address: xch1qzz5xrd05698f2n2tt4qm500kys6p4w79ph7s2xrlau3drfugl3qqh9j4l
+    ```
+
+    :::note
+    **注意**<br />
+    在我们的示例中，第一个钱包地址包含 Spacebucks。 但是，这可能对您而言并非如此—您应该使用您控制下的任何您知道其中包含一定数量的相关 CAT的地址。
+
+    :::
+
+2. 使用 `cdv decode` 命令获取该钱包地址对应的Puzzle哈希：
+
+    ```bash
+    cdv decode xch1qzz5xrd05698f2n2tt4qm500kys6p4w79ph7s2xrlau3drfugl3qqh9j4l
+    ```
+
+    对应输出：
+
+    ```
+    0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+    ```
+
+3. 如果您想验证那个Puzzle哈希实际上确实收到了一些代币，您可以检查 CSV 文件。 在这个示例中，Puzzle哈希 0085... 应该收到 42,000 (42,000) 个 barfs。
+
+4. 运行 `unwind_the_bag` 命令以将适当的数量发送到该Puzzle哈希。 请务必从其中包含适当资金的钱包中运行此命令。
+
+    此命令的重要阈值是：
+
+      - `--eve-coin-id` – 从上面最后的“secure the bag”命令中获得。
+      - `--tail-hash` – `Asset ID:` 来自上面最后的“secure the bag”命令。
+      - `--secure-the-bag-targets-path` – 包含此 CAT 快照的 CSV 文件的完整路径。
+      - `--unwind-fee` – mojos 中的可选区块链费用，将应用于每次支出。
+      - `--wallet-id` – 要从中解压的钱包的 ID（通常为 `1`）。
+      - `--unwind-target-puzzle-hash` – 从上面的 `cdv decode` 命令获得的谜题哈希。
+
+    要运行的命令是：
+
+    ```bash
+    unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID> --unwind-target-puzzle-hash <PUZZLE-HASH>
+    ```
+    您可能已经注意到，此命令与[发放全部空投](https://docs.chia.net/docs/cat2/cat2-issuance/#unwind)的命令相同，但添 `--unwind-target-puzzle-hash` 标志，以确保仅将硬币发送到特定地址。
+
+    在本例中，展开袋子的命令是：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    此命令可能需要很长时间，具体取决于要空投的硬币总数。 您将需要验证每个单独硬币的花费以空投，并且该命令将监控区块链以查找要花费的硬币。
+
+    最终结果应该是适当数量的硬币被发送到Puzzle哈希，然后您可以在您的 Chia 钱包中进行验证（假设您控制该钱包）。
+
+    :::note
+    **注意**<br />
+    每个Puzzle哈希只能收到一个空投。 当您稍后为每个地址发放空投时，任何已经收到空投的地址都将被跳过。 他们不会收到第二次空投。
+    :::
+
+5. CSV 文件中的Puzzle哈希实际上是内层Puzzle哈希，因此使用 `cdv rpc coinrecords` 在链上搜索它们比通常更复杂。 但是，您仍然可以通过搜索hint来验证是否完成了对该Puzzle哈希的空投：
+
+    ```mdx-code-block
+    <Tabs
+      defaultValue="windows"
+      groupId="os"
+      values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+        {label: 'macOS', value: 'macos'},
+      ]}>
+      <TabItem value="windows">
+    ```
+
+    ```powershell
+    chia rpc full_node get_coin_records_by_hint '{\"hint\": \"<puzzle hash obtained in step 2>\"}'
+    ```
+
+    ```mdx-code-block
+    </TabItem>
+    <TabItem value="linux">
+    ```
+
+    ```bash
+    chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+      <TabItem value="macos">
+    ```
+
+    ```bash
+    chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
+    ```
+
+    ```mdx-code-block
+      </TabItem>
+    </Tabs>
+    ```
+
+    您应该会看到 CSV 文件中每个条目的匹配 `coin_records` 及其对应的值。
+
+    现在您已经测试了发放空投，您可以继续[发放空投的其余部分](/docs/cat2/cat2-issuance/#unwind)。
