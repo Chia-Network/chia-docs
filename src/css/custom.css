@@ -48,8 +48,8 @@ div[class^="announcementBar"][role="banner"] {
 }
 
 div[class^="announcementBarContent"] {
-  line-height: 40px;
-  font-size: 20px;
+  line-height: 30px;
+  font-size: 15px;
   font-weight: bold;
   padding: 8px 30px;
 }
