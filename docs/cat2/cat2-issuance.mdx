@@ -316,15 +316,15 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
     You'll need both of these values later.
 
-5. Push the transaction to the network. This will actually create the coin tree (*Secure the Bag*). The arguments are the same as above, with one exception:
+5. Push the transaction to the network. This will actually create the coin tree (*Secure the Bag*). The arguments are the same as above, with the following two exceptions:
 
-    - `--send-to` – The XCH address from the “Secure the bag root address:” of the above output
-    - `--fee` - If the network is busy, then the recommended fee is 20 million mojos
+    - `--send-to` – The XCH address from the “Secure the bag root address:” of the above output.
+    - `--fee` - The fee in mojos. If the network is busy, then the recommended fee is 20 million mojos.
 
     The command to run is:
 
     ```bash
-    cats --tail <TAIL hex file> --send-to <root address> --amount <amount in mojos> --as-bytes --curry <0x Coin ID> --fee <amount in mojos>
+    cats --tail <HEX-FILE> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --curry <COIN-ID> --fee <AMOUNT>
     ```
 
     For this example, the command looks like this:
@@ -674,7 +674,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
     The command to run is (Note that you need to include the parentheses):
 
     ```
-    cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "(<curry command output> ())" --signature <signature> --fee <amount in mojos>
+    cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --solution "(<curry command output> ())" --signature <SIGNATURE> --fee <AMOUNT>
     ```
 
     The arguments needed are:
@@ -686,7 +686,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
       - `--as-bytes` – Output the spend bundle in bytes (don't change this).
       - `--solution` – The output of the `curry` command from a previous step (in quotes).
       - `--signature` – The signature obtained from the previous step.
-      - `--fee` - If the network is busy, then the recommended fee is 20 million mojos
+      - `--fee` - The fee in mojos. If the network is busy, then the recommended fee is 20 million mojos.
 
     For this example, the command to execute is:
 
