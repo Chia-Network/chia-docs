@@ -2,12 +2,12 @@
 sidebar_position: 2
 ---
 
-# 11.2  Chia Pool Protocol 1.0 Specification
+# 11.2 Chia Pool Protocol 1.0 Specification
 
 This is the initial version of the Chia Pool Protocol. It is designed to be simple, and to be extended later. It relies on farmers having smart coins (referred to as plot NFTs in GUI + CLI) which allow them to switch between pools by making transactions on the blockchain. Furthermore, it decreases the reliance on pools for block production, since the protocol only handles distribution of rewards, and it protects against pools or farmers acting maliciously.
 
-
 ## Security considerations
+
 The pool must ensure that partials arrive quickly, faster than the 28-second time limit of inclusion into the blockchain. This allows farmers that have slow setups to detect issues.
 
 The Pool server must check that the `pool_contract_puzzle_hash` a.k.a. `p2_singleton_puzzle_hash` matches the
@@ -16,7 +16,6 @@ for themselves, and immediately leave the pool, something that the provided smar
 
 The Chia client must only connect to the pool configuration URL via HTTPS over TLS >= 1.2. This is to
 prevent session hijacking, leading to user funds being stolen.
-
 
 ## Parties
 
@@ -28,12 +27,14 @@ to run a full node, they can configure their node to connect to a remote full no
 A pool operator can support any number of farmers.
 
 ## Farmer identification
+
 A farmer can be uniquely identified by the identifier of the farmer's singleton on the blockchain, this is what
 `launcher_id` refers to. The `launcher_id` can be used as a primary key in a database. The pool must periodically check
 the singleton's state on the blockchain to validate that it's farming to the pool, and not leaving or farming to another
 pool.
 
 ## Farmer authentication
+
 For the farmer to authenticate to the pool the following time based authentication token scheme must be added to the
 signing messages of some endpoints.
 
@@ -65,29 +66,29 @@ A failed endpoint will always return a JSON object with an error code and an
 english error message as shown below:
 
 ```json
-{"error_code": 0, "error_message": ""}
+{ "error_code": 0, "error_message": "" }
 ```
 
 The following errors may occur:
 
-|Error code|Description|
-|---|---|
-| 0x01 | The provided signage point has been reverted |
-| 0x02 | Received partial too late |
-| 0x03 | Not found |
-| 0x04 | Proof of space invalid |
-| 0x05 | Proof of space not good enough |
-| 0x06 | Invalid difficulty |
-| 0x07 | Invalid signature |
-| 0x08 | Web-Server raised an exception|
-| 0x09 | Invalid puzzle hash|
-| 0x0A | Farmer not known |
-| 0x0B | Farmer already known |
-| 0x0C | Invalid authentication public key |
-| 0x0D | Invalid payout instructions |
-| 0x0E | Invalid singleton |
-| 0x0F | Delay time too short |
-| 0x10 | Request failed |
+| Error code | Description                                  |
+| ---------- | -------------------------------------------- |
+| 0x01       | The provided signage point has been reverted |
+| 0x02       | Received partial too late                    |
+| 0x03       | Not found                                    |
+| 0x04       | Proof of space invalid                       |
+| 0x05       | Proof of space not good enough               |
+| 0x06       | Invalid difficulty                           |
+| 0x07       | Invalid signature                            |
+| 0x08       | Web-Server raised an exception               |
+| 0x09       | Invalid puzzle hash                          |
+| 0x0A       | Farmer not known                             |
+| 0x0B       | Farmer already known                         |
+| 0x0C       | Invalid authentication public key            |
+| 0x0D       | Invalid payout instructions                  |
+| 0x0E       | Invalid singleton                            |
+| 0x0F       | Delay time too short                         |
+| 0x10       | Request failed                               |
 
 ## Signature validation
 
@@ -102,8 +103,10 @@ The serialized payload must follow the `Streamable` standard defined
 [here](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/util/streamable.py).
 
 ## Pool URL
+
 The pool URL is the url that farmers use to connect to the pool. The subdomains, port, and path are optional. The client
 will use 443 if there is no port. Note that the trailing slash must NOT be present. Everything must be lower case.
+
 ```
 https://subdomain.domain.tld:port/path
 ```
@@ -115,53 +118,65 @@ when the farmer enters the pool URL into the client. This allows the farmer to s
 decide whether or not to join. It also allows the farmer to set the correct parameters in their singleton on the
 blockchain. Warning to client implementers: if displaying any of this information, make sure to account for malicious
 scripts and JS injections. It returns a JSON response with the following data:
+
 ```json
 {
-    "description": "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia.",
-    "fee": 0.01,
-    "logo_url": "https://www.chia.net/img/chia_logo.svg",
-    "minimum_difficulty": 10,
-    "name": "The Reference Pool",
-    "protocol_version": 1,
-    "relative_lock_height": 100,
-    "target_puzzle_hash": "0x344587cf06a39db471d2cc027504e8688a0a67cce961253500c956c73603fd58",
-    "authentication_token_timeout": 5
+  "description": "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia.",
+  "fee": 0.01,
+  "logo_url": "https://www.chia.net/img/chia_logo.svg",
+  "minimum_difficulty": 10,
+  "name": "The Reference Pool",
+  "protocol_version": 1,
+  "relative_lock_height": 100,
+  "target_puzzle_hash": "0x344587cf06a39db471d2cc027504e8688a0a67cce961253500c956c73603fd58",
+  "authentication_token_timeout": 5
 }
 ```
 
 #### description
+
 The description is a short paragraph that can be displayed in GUIs when the farmer enters a pool URL.
 
 #### fee
+
 The fee that the pool charges by default, a number between 0.0 (0.0%) and 1.0 (100.0%). This does not include blockchain
 transaction fees.
 
 #### logo_url
+
 A URL for a pool logo that the client can display in the UI. This is optional for v1.0.
 
 #### minimum_difficulty
+
 The minimum difficulty that the pool supports. This will also be the default that farmers start sending proofs for.
 
 #### name
+
 Name of the pool, this is only for display purposes and does not go on the blockchain.
 
 #### protocol_version
+
 The pool protocol version supported by the pool.
 
 #### relative_lock_height
+
 The number of blocks (confirmations) that a user must wait between the point when they start escaping a pool, and the
 point at which they can finalize their pool switch. Must be less than 4608 (approximately 24 hours).
 
 #### target_puzzle_hash
+
 This is the target of where rewards will be sent to from the singleton. Controlled by the pool.
 
 #### authentication_token_timeout
+
 The time in **minutes** for an `authentication_token` to be valid, see [Farmer authentication](#farmer-authentication).
 
 ## GET /farmer
+
 Get the latest information for a farmer.
 
 Request parameter:
+
 ```
 - launcher_id
 - authentication_token
@@ -169,37 +184,43 @@ Request parameter:
 ```
 
 Example request:
+
 ```
 https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&signature=:signature
 ```
 
 Successful response:
+
 ```json
 {
-    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-    "current_difficulty": 10,
-    "current_points": 10
+  "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+  "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+  "current_difficulty": 10,
+  "current_points": 10
 }
 ```
 
 ### Parameter
+
 #### launcher_id
+
 The unique identifier of the farmer's singleton, see [Farmer identification](#farmer-identification).
 
 #### authentication_token
+
 See [Farmer authentication](#farmer-authentication) for the specification of
 `authentication_token`.
 
 #### signature
+
 This is a BLS signature of the hashed serialization of the following data in the given order:
 
-|Element|Type|
-|---|---|
-|method_name| string|
-|launcher_id | bytes32 |
-|target_puzzle_hash | bytes32 |
-|authentication_token | uint64 |
+| Element              | Type    |
+| -------------------- | ------- |
+| method_name          | string  |
+| launcher_id          | bytes32 |
+| target_puzzle_hash   | bytes32 |
+| authentication_token | uint64  |
 
 where `method_name` must be the serialized string `"get_farmer"`, the parameters must be serialized and hashed
 according to [Signature validation](#signature-validation) and the signature must be signed by the private key of the
@@ -213,25 +234,28 @@ Note: The pool MUST return the current points balance, which is the total number
 payout for that user.
 
 ## POST /farmer
+
 Register a farmer with the pool. This is required once before submitting the first partial.
 
 Request:
+
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_token": 27062279,
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-        "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-        "suggested_difficulty": 10
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_token": 27062279,
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+    "suggested_difficulty": 10
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
 Successful response:
+
 ```json
-{"welcome_message" : "Welcome to the reference pool. Happy farming."}
+{ "welcome_message": "Welcome to the reference pool. Happy farming." }
 ```
 
 A successful response must always contain a welcome message which must be defined by the pool.
@@ -239,30 +263,36 @@ A successful response must always contain a welcome message which must be define
 #### payload
 
 #### payload.launcher_id
+
 The unique identifier of the farmer's singleton, see [Farmer identification](#farmer-identification).
 
 #### payload.authentication_token
+
 See [Farmer authentication](#farmer-authentication) for the specification of
 `authentication_token`.
 
 #### payload.authentication_public_key
+
 The public key of the authentication key, which is a temporary key used by the farmer to sign requests
 to the pool. It is authorized by the `owner_key`, so that the owner key can be kept more secure. The pool should reject
 requests made with outdated `authentication_keys`. These key can be changed using `PUT /farmer`, which is signed with
 the owner key.
 
 #### payload.payout_instructions
+
 These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can
 be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment
 system identifier.
 
 #### payload.suggested_difficulty
+
 A request from the farmer to update the difficulty. Can be ignored or respected by the pool. However, this should only
 be respected if the authentication public key is the most recent one seen for this farmer.
 
 See [Difficulty](#difficulty) for more details about the impact of the difficulty.
 
 #### signature
+
 This is a BLS signature of the hashed serialization of the payload:
 
 ```
@@ -276,19 +306,21 @@ See the [streamable](#signature-validation) class `PostFarmerPayload` in the
 and [Farmer authentication](#farmer-authentication) for the specification of `authentication_token`.
 
 ## PUT /farmer
+
 Allows farmers to update their information on the pool.
 
 Request:
+
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_token": 27062279,
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
-        "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
-        "suggested_difficulty": 10
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_token": 27062279,
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29",
+    "payout_instructions": "0xc2b08e41d766da4116e388357ed957d04ad754623a915f3fd65188a8746cf3e8",
+    "suggested_difficulty": 10
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
@@ -302,6 +334,7 @@ and [Farmer authentication](#farmer-authentication) for the specification of
 `authentication_token`.
 
 Successful response:
+
 ```json
 {
   "authentication_public_key": true,
@@ -316,20 +349,23 @@ must be `true` if the entry has been updated or `false` if the value was the sam
 See below for an example body to only update the authentication key:
 
 Example to update `authentication_public_key`:
+
 ```json
 {
-    "payload": {
-        "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
-        "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29"
-    },
-    "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
+  "payload": {
+    "launcher_id": "0xae4ef3b9bfe68949691281a015a9c16630fc8f66d48c19ca548fb80768791afa",
+    "authentication_public_key": "0x970e181ae45435ae696508a78012dc80548c334cf29676ea6ade7049eb9d2b9579cc30cb44c3fd68d35a250cfbc69e29"
+  },
+  "signature": "0xa078dc1462bbcdec7cd651c5c3d7584ac6c6a142e049c7790f3b0ee8768ed6326e3a639f949b2293469be561adfa1c57130f64334994f53c1bd12e59579e27127fbabadc5e8793a2ef194a5a22ac832e92dcb6ad9a0d33bd264726f6e8df6aad"
 }
 ```
 
 ## POST /partial
+
 This is a partial submission from the farmer to the pool operator.
 
 Request:
+
 ```json
 {
   "payload": {
@@ -351,50 +387,63 @@ Request:
 ```
 
 Successful response:
+
 ```json
-{"new_difficulty": 10}
+{ "new_difficulty": 10 }
 ```
 
 A successful response must always contain the new difficulty which must be respected by the farmer.
 
 #### payload
+
 This is the main payload of the partial, which is signed by two keys: `authentication_key` and `plot_key`.
 
 #### payload.launcher_id
+
 The unique identifier of the farmer's singleton, see [Farmer identification](#farmer-identification).
 
 #### payload.authentication_token
+
 See [Farmer authentication](#farmer-authentication) for the specification of `authentication_token`.
 
 #### payload.proof_of_space
+
 The proof of space in chia-blockchain format.
 
 #### payload.proof_of_space.challenge
+
 The challenge of the proof of space, computed from the signage point or end of subslot.
 
 #### payload.proof_of_space.pool_contract_puzzle_hash
+
 The puzzle hash that is encoded in the plots, equivalent to the `p2_singleton_puzzle_hash`. This is the first address
 that the 7/8 rewards get paid out to in the blockchain, if this proof wins. This value can be derived from the
 `launcher_id`, and must be valid for all partials.
 
 #### payload.proof_of_space.plot_public_key
+
 Public key associated with the plot. (Can be a 2/2 BLS between plot local key and farmer, but not necessarily).
 
 #### payload.proof_of_space.size
+
 K size, must be at least 32.
 
 #### payload.proof_of_space.proof
+
 64 x values encoding the actual proof of space, must be valid corresponding to the `sp_hash`.
 
 #### payload.sp_hash
+
 This is either the hash of the output for the signage point, or the challenge_hash for the sub slot, if it's an end
 of sub slot challenge. This must be a valid signage point on the blockchain that has not been reverted. The pool must
 check a few minutes after processing the partial, that it has not been reverted on the blockchain.
 
 #### payload.end_of_sub_slot
+
 If true, the sp_hash encodes the challenge_hash of the sub slot.
 
 #### aggregate_signature
+
 This is a 2/2 BLS signature of the hashed serialization of the payload:
 
 ```
@@ -414,6 +463,7 @@ and [Farmer authentication](#farmer-authentication) for the specification of
 A partial must be completely rejected if the BLS signature does not validate.
 
 ## GET /login
+
 This allows the user to log in to a web interface if the pool supports it, see service flags in
 [GET /pool_info](#get-pool_info). The farmer software must offer a way to generate and display a login link or provide
 a button which generates the link and then just opens it in the default browser. The link follows the specification
@@ -423,6 +473,7 @@ Note that there is no explicit account creation. A farmer can log in after makin
 [POST /farmer](#post-farmer).
 
 Request parameters:
+
 ```
 - launcher_id
 - authentication_token
@@ -430,26 +481,30 @@ Request parameters:
 ```
 
 Example request:
+
 ```
 https://poolurl.com/login?launcher_id=:launcher_id&authentication_token=:token&signature=:signature
 ```
 
 #### launcher_id
+
 The unique identifier of the farmer's singleton, see [Farmer identification](#farmer-identification).
 
 #### authentication_token
+
 See [Farmer authentication](#farmer-authentication) for the specification of
 `authentication_token`.
 
 #### signature
+
 This is a BLS signature of the hashed serialization of the following data in the given order:
 
-|Element|Type|
-|---|---|
-|method_name| string|
-|launcher_id | bytes32 |
-|target_puzzle_hash | bytes32 |
-|authentication_token | uint64 |
+| Element              | Type    |
+| -------------------- | ------- |
+| method_name          | string  |
+| launcher_id          | bytes32 |
+| target_puzzle_hash   | bytes32 |
+| authentication_token | uint64  |
 
 where `method_name` must be the serialized string `"get_login"` and `target_puzzle_hash`
 is pool's target puzzle hash (see [GET /pool_info](#get-pool_info)). The parameters must be serialized and hashed
@@ -460,8 +515,8 @@ where the parameter must be serialized and hashed according to [Signature valida
 signature must be signed by the private key of the `authentication_public_key` using the Augmented Scheme in the BLS
 IETF spec.
 
-
 ## Difficulty
+
 The difficulty allows the pool operator to control how many partials per day they are receiving from each farmer.
 The difficulty can be adjusted separately for each farmer. A reasonable target would be 300 partials per day,
 to ensure frequent feedback to the farmer, and low variability.
@@ -473,6 +528,7 @@ If the farmer submits a proof that is not good enough for the current difficulty
 the `current_difficulty` in the response.
 
 ## Points
+
 X points are awarded for submitting a partial with difficulty X, which means that points scale linearly with difficulty.
 For example, 100 TiB of space should yield approximately 10,000 points per day, whether the difficulty is set to
 100 or 200. It should not matter what difficulty is set for a farmer, as long as they are consistently submitting partials.

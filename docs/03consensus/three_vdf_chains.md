@@ -3,9 +3,10 @@ sidebar_position: 8
 ---
 
 # 3.8 Three VDF Chains
+
 If we only used one VDF (for the reward chain), the inclusion or exclusion of blocks would allow control of the challenge for the next slot. This means that an attacker could try many different combinations of blocks, and choose the challenge that suits them best, to obtain more wins in the next slot.
 
-These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or Proof of Stake. More detail is provided in [Section 3.14](/docs/03consensus/attacks_and_countermeasures "Section 3.14: Relevant Attacks and Countermeasures").
+These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or Proof of Stake. More detail is provided in [Section 3.14](/docs/03consensus/attacks_and_countermeasures 'Section 3.14: Relevant Attacks and Countermeasures').
 
 To mitigate this, the challenges will be based only on the first block to be infused in a slot.
 
@@ -19,6 +20,7 @@ cc = challenge chain, ic = infused challenge chain, rc = reward chain,
 sp = signage point, B = block, c = challenge, r = reward
 
 An attacker can manipulate the reward chain results but this has no effect on c2, and therefore has no effect on the PoSpace lottery.
+
 </figcaption>
 </figure>
 
@@ -38,15 +40,16 @@ The chain in the middle is called the **infused challenge chain**. It starts at 
 
 Recall that a **slot** must have at least 16 reward-chain blocks. A sub-slot doesn't have a minimum number of blocks (though it targets 32 blocks). Instead, a sub-slot always ends when sub-slot_iterations has been reached (this is targeted to take 10 minutes).
 
-Because a sub-slot is targeted to produce more than 16 blocks, a slot usually only needs one sub-slot to meet its minimum-block requirement, but that is not always the case. For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. The **deficit** is the number of blocks still necessary to end the slot: this is described in more detail in  [Section 3.9](/docs/03consensus/overflow_blocks#minimum-block-requirement "Section 3.9: Overflow Blocks and Weight").
+Because a sub-slot is targeted to produce more than 16 blocks, a slot usually only needs one sub-slot to meet its minimum-block requirement, but that is not always the case. For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. The **deficit** is the number of blocks still necessary to end the slot: this is described in more detail in [Section 3.9](/docs/03consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks and Weight').
 
 At the end of the slot, the challenge chain is combined with the infused challenge chain to generate the new challenge c2, which is used to start the challenge chain for the next sub-slot.
 
 The only block which affects the challenge chain (and thus the PoSpace lottery) is the first block in the slot, which here is B1. In fact, it's only a deterministic part of B1 called "cc B1", which only depends on challenge chain data. An attacker who wants to grind cannot change the challenge by withholding B2, B3, or any other block apart from the first one.
 
 An honest farmer who holds the first block (B1) will release it. If an attacker controls the first block (B1), they have two additional options: delay it or withhold it.
-* Delay it: In order to know whether the new challenge will benefit them, they will need to execute the VDF all the way up to c2. By that time, their chance to get included in the reward chain is gone, since honest farmers sign only one block per proof of space.
-* Withhold it: This does not provide much benefit to the attacker, since they must release it before sp2 in order to get the farmers on their chain. Farmers will choose the heaviest chain, which is the one with the most (heaviest) reward chain blocks.
+
+- Delay it: In order to know whether the new challenge will benefit them, they will need to execute the VDF all the way up to c2. By that time, their chance to get included in the reward chain is gone, since honest farmers sign only one block per proof of space.
+- Withhold it: This does not provide much benefit to the attacker, since they must release it before sp2 in order to get the farmers on their chain. Farmers will choose the heaviest chain, which is the one with the most (heaviest) reward chain blocks.
 
 Why do we commit to any blocks at all in the challenge chain? If we did not, an attacker with a faster VDF could look ahead, since they would not need the help of honest participants in order to compute the challenge chain into the future. The challenge chain would be totally deterministic. This would enable some advantage by replotting. Furthermore, the challenge chain can be used to probabilistically prove the weight of the reward chain to light clients, without sharing all reward chain blocks (since the challenge chain depends on the “best” block in the slot, you can calculate the number of reward chain blocks).
 

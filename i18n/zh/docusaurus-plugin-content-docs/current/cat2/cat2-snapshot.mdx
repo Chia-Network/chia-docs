@@ -10,31 +10,33 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-export const Highlight = ({children, color}) => (
+export const Highlight = ({ children, color }) => (
   <span
     style={{
       backgroundColor: color,
       borderRadius: '2px',
       color: '#fff',
       padding: '0.2rem',
-    }}>
+    }}
+  >
     {children}
   </span>
 );
 
 信息
-CAT1 将在2311760区块高度结束其生命周期，也就是UTC时间 2022年7月26日 17:00。
-更多关于结束生命周期的信息可以参考CAT2 介绍及FAQ
+CAT1 将在 2311760 区块高度结束其生命周期，也就是 UTC 时间 2022 年 7 月 26 日 17:00。
+更多关于结束生命周期的信息可以参考 CAT2 介绍及 FAQ
 本文档将向 CAT1 发行人展示如何：
-1. 生成其 CAT1 状态的快照。 这将显示Puzzle哈希（地址）和每个单独代币在生命周期结束高度的值
-2. 从快照中导出他们所需的数据
-完成此操作后，CAT 发行人将能够继续进行[代币重新发行指南](/docs/cat2/cat2-issuance/)。
 
-## 生成一个CAT1快照
+1. 生成其 CAT1 状态的快照。 这将显示 Puzzle 哈希（地址）和每个单独代币在生命周期结束高度的值
+2. 从快照中导出他们所需的数据
+   完成此操作后，CAT 发行人将能够继续进行[代币重新发行指南](/docs/cat2/cat2-issuance/)。
+
+## 生成一个 CAT1 快照
 
 注意：
-我们推荐你跟着本节内容来生成你的CAT1快照。请注意这一过程肯能会需要40多个小时来完成。为了方便您，我们会发布一个快照供您使用。这个快照应该与你自己生成的完全相同。
- 本节将向您展示如何安装 [CAT-addresses 工具](https://github.com/Chia-Network/CAT-addresses)并使用它来获取特定 CAT1 的每个硬币的puzzle哈希值（地址）和价值的快照。 它甚至可以获取 Chia 区块链上所有 CAT1 的信息。
+我们推荐你跟着本节内容来生成你的 CAT1 快照。请注意这一过程肯能会需要 40 多个小时来完成。为了方便您，我们会发布一个快照供您使用。这个快照应该与你自己生成的完全相同。
+本节将向您展示如何安装 [CAT-addresses 工具](https://github.com/Chia-Network/CAT-addresses)并使用它来获取特定 CAT1 的每个硬币的 puzzle 哈希值（地址）和价值的快照。 它甚至可以获取 Chia 区块链上所有 CAT1 的信息。
 
 :::warning
 **警告** <br />
@@ -86,6 +88,7 @@ npm run electron
   </TabItem>
 </Tabs>
 ```
+
 :::
 
 :::tip
@@ -100,295 +103,296 @@ chia init --fix-ssl-permissions
 
 1. 如果您还没有使用激活的虚拟环境打开终端窗口，那么：<br />打开终端窗口并确保您可以直接访问 chia 命令：：
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    1. 进入到 `chia-blockchain` 目录并激活您的虚拟环境：
+   1. 进入到 `chia-blockchain` 目录并激活您的虚拟环境：
 
-      ```powershell
-      .\venv\Scripts\Activate.ps1
-      ```
+   ```powershell
+   .\venv\Scripts\Activate.ps1
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="linux">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="linux">
+   ```
 
-    1. 进入到 `chia-blockchain` 目录并激活您的虚拟环境:
+   1. 进入到 `chia-blockchain` 目录并激活您的虚拟环境:
 
-      ```bash
-      . ./activate
-      ```
+   ```bash
+   . ./activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    1. 进入到 `chia-blockchain` 目录并激活您的虚拟环境：
+   1. 进入到 `chia-blockchain` 目录并激活您的虚拟环境：
 
-      ```bash
-      . ./activate
-      ```
+   ```bash
+   . ./activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
-    2. 运行以下命令:
+   2. 运行以下命令:
 
-    ```bash
-    chia version
-    ```
+   ```bash
+   chia version
+   ```
 
-    如果步骤 1 成功，您应该会在输出中看到一个版本号，例如 1.4.1.dev364。 这是快照工具工作的必要条件。
+   如果步骤 1 成功，您应该会在输出中看到一个版本号，例如 1.4.1.dev364。 这是快照工具工作的必要条件。
 
 2. 在同一个终端窗口中，创建一个新目录来安装 CAT-addresses 存储库（它可以在父目录中）并运行以下命令：
 
-    ```bash
-    git clone https://github.com/Chia-Network/CAT-addresses.git -b main
-    ```
+   ```bash
+   git clone https://github.com/Chia-Network/CAT-addresses.git -b main
+   ```
 
 3. 使用本工具需要设置以下环境变量:
 
-    1. `FULL_NODE_HOSTNAME` - 要调用 RPC 的全节点的主机名。 这可以是`localhost`。
-    2. `DB_SOURCE_DIR` - 全节点数据库在主机上的位置。
-    3. `START_HEIGHT` - 开始创建快照的起始高度（默认值：`0`）。 如果您尝试获取您的CAT的所有记录，建议的起始高度为 `1146800`，即在 CAT1上线之后。
+   1. `FULL_NODE_HOSTNAME` - 要调用 RPC 的全节点的主机名。 这可以是`localhost`。
+   2. `DB_SOURCE_DIR` - 全节点数据库在主机上的位置。
+   3. `START_HEIGHT` - 开始创建快照的起始高度（默认值：`0`）。 如果您尝试获取您的 CAT 的所有记录，建议的起始高度为 `1146800`，即在 CAT1 上线之后。
 
-    4. `TARGET_HEIGHT` - 结束快照的区块链高度（无默认值 - 必须设置）。 建议高度为 `2311760`，这是 CAT1 有效的最后一个区块。
+   4. `TARGET_HEIGHT` - 结束快照的区块链高度（无默认值 - 必须设置）。 建议高度为 `2311760`，这是 CAT1 有效的最后一个区块。
 
-    :::caution
-    **注意**<br /> 
-    此过程可能需要40多个小时才能完成。 您可能希望先将`TARGET_HEIGHT`设置为`1146900`来进行测试。这将只从100个块中提取数据，这应该只需要几秒钟。
+   :::caution
+   **注意**<br />
+   此过程可能需要 40 多个小时才能完成。 您可能希望先将`TARGET_HEIGHT`设置为`1146900`来进行测试。这将只从 100 个块中提取数据，这应该只需要几秒钟。
 
-    :::
+   :::
 
-    为了设置这些变量，建议您将它们放入`CAT-addresses`项目根目录下名为`.env`的文件中。 该工具将自动读取此文件中的变量。 例如：
+   为了设置这些变量，建议您将它们放入`CAT-addresses`项目根目录下名为`.env`的文件中。 该工具将自动读取此文件中的变量。 例如：
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```bash title=".env"
-    FULL_NODE_HOSTNAME=localhost
-    DB_SOURCE_DIR=C:\Users\Username\.chia\mainnet\db
-    START_HEIGHT=1146800
-    TARGET_HEIGHT=2311760
-    ```
+   ```bash title=".env"
+   FULL_NODE_HOSTNAME=localhost
+   DB_SOURCE_DIR=C:\Users\Username\.chia\mainnet\db
+   START_HEIGHT=1146800
+   TARGET_HEIGHT=2311760
+   ```
 
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash title=".env"
-    FULL_NODE_HOSTNAME=localhost
-    DB_SOURCE_DIR=/home/Username/.chia/mainnet/db
-    START_HEIGHT=1146800
-    TARGET_HEIGHT=2311760
-    ```
+   ```bash title=".env"
+   FULL_NODE_HOSTNAME=localhost
+   DB_SOURCE_DIR=/home/Username/.chia/mainnet/db
+   START_HEIGHT=1146800
+   TARGET_HEIGHT=2311760
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash title=".env"
-    FULL_NODE_HOSTNAME=localhost
-    DB_SOURCE_DIR=/Users/Username/.chia/mainnet/db
-    START_HEIGHT=1146800
-    TARGET_HEIGHT=2311760
-    ```
+   ```bash title=".env"
+   FULL_NODE_HOSTNAME=localhost
+   DB_SOURCE_DIR=/Users/Username/.chia/mainnet/db
+   START_HEIGHT=1146800
+   TARGET_HEIGHT=2311760
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
 4. 安装依赖项：
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    python setup.py install
-    ```
+   ```powershell
+   python setup.py install
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="linux">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="linux">
+   ```
 
-    ```bash
-    python3 setup.py install
-    ```
+   ```bash
+   python3 setup.py install
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    python3 setup.py install
-    ```
+   ```bash
+   python3 setup.py install
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
-    :::note
-    **注意**<br />
-    结果可能包含多个警告，例如`WARNING: The wheel package is not available.`。 这些可以安全地忽略.
+   :::note
+   **注意**<br />
+   结果可能包含多个警告，例如`WARNING: The wheel package is not available.`。 这些可以安全地忽略.
 
-    :::
+   :::
 
-    此命令可能需要几分钟才能完成。 在最后的输出，您应该会看到类似:
+   此命令可能需要几分钟才能完成。 在最后的输出，您应该会看到类似:
 
-    ```
-    Finished processing dependencies for chia-transaction-exporter==0.1.dev55”
-    ```
+   ```
+   Finished processing dependencies for chia-transaction-exporter==0.1.dev55”
+   ```
 
 5. 运行以下命令安装`dotenv`和`backoff`模块：
 
-    ```bash
-    pip install python-dotenv
-    pip install backoff
-    ```
+   ```bash
+   pip install python-dotenv
+   pip install backoff
+   ```
 
 6. 通过运行以下内容设置数据库：
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    python setup_database.py
-    ```
+   ```powershell
+   python setup_database.py
+   ```
 
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash
-    python3 setup_database.py
-    ```
+   ```bash
+   python3 setup_database.py
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    python3 setup_database.py
-    ```
+   ```bash
+   python3 setup_database.py
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
-    :::tip
-    **提示**<br />
-    如果您收到诸如`ModuleNotFoundError: No module named 'chia'`之类的错误消息，请确保您可以从该目录运行`chia`命令并重试。
+   :::tip
+   **提示**<br />
+   如果您收到诸如`ModuleNotFoundError: No module named 'chia'`之类的错误消息，请确保您可以从该目录运行`chia`命令并重试。
 
-    :::
+   :::
 
-    如果此命令成功，那么它将输出：
+   如果此命令成功，那么它将输出：
 
-    ```
-    INFO:setup_database:Setting up database
-    INFO:setup_database:Database setup complete
-    ```
+   ```
+   INFO:setup_database:Setting up database
+   INFO:setup_database:Database setup complete
+   ```
 
 7. 运行以下命令启动快照生成器:
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    python start.py
-    ```
+   ```powershell
+   python start.py
+   ```
 
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash
-    python3 start.py
-    ```
+   ```bash
+   python3 start.py
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    python3 start.py
-    ```
+   ```bash
+   python3 start.py
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
-    该命令将根据区块高度显示其进度。 如果您在`.env`文件中使用了建议的`START_HEIGHT`和`TARGET_HEIGHT`范围，则此命令可能需要 40 多个小时才能完成。 需要这么长时间的原因是它需要逐个处理每个区块。 如果并行处理多个区块，那么结果就有可能不准确。 通过一次处理一个块，该工具将给予提供范围的正确结果。
+   该命令将根据区块高度显示其进度。 如果您在`.env`文件中使用了建议的`START_HEIGHT`和`TARGET_HEIGHT`范围，则此命令可能需要 40 多个小时才能完成。 需要这么长时间的原因是它需要逐个处理每个区块。 如果并行处理多个区块，那么结果就有可能不准确。 通过一次处理一个块，该工具将给予提供范围的正确结果。
 
-    :::note
-    **注意**<br />
-    您只能为每个区块生成一次快照。 如果您尝试在已针对其运行的范围内运行此命令，您将收到包含以下消息的错误：
+   :::note
+   **注意**<br />
+   您只能为每个区块生成一次快照。 如果您尝试在已针对其运行的范围内运行此命令，您将收到包含以下消息的错误：
 
-    ```
-    sqlite3.IntegrityError: UNIQUE constraint failed: coin_create.coin_name
-    ```
-    在这种情况下，您要么需要从更高的高度开始，要么（推荐）重新开始。 跟随可选部分：数据清理部分（如下）并重试。
-    :::
+   ```
+   sqlite3.IntegrityError: UNIQUE constraint failed: coin_create.coin_name
+   ```
+
+   在这种情况下，您要么需要从更高的高度开始，要么（推荐）重新开始。 跟随可选部分：数据清理部分（如下）并重试。
+   :::
 
 ## 从快照中导出所需的数据 {#export}
 
@@ -398,98 +402,98 @@ chia init --fix-ssl-permissions
 
 2. 搜索您的 CAT。我们将在这个例子中使用[CAT King Cole](https://www.taildatabase.com/tail/1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a) . 请记录下它的 TAIL 哈希值（Asset ID）, 它列在代币标题的上方。 在这个例子中，它是：
 
-    ```
-    1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
-    ```
+   ```
+   1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
+   ```
 
-3. 为您的 CAT 生成一个包含所有内层Puzzle哈希值和金额的 CSV 文件：
+3. 为您的 CAT 生成一个包含所有内层 Puzzle 哈希值和金额的 CSV 文件：
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    python export.py --output-dir <OUTPUT-DIR>\<PREFIX> --tail-hash <TAIL-HASH> --coins
-    ```
+   ```powershell
+   python export.py --output-dir <OUTPUT-DIR>\<PREFIX> --tail-hash <TAIL-HASH> --coins
+   ```
 
-    ```mdx-code-block
-    <details>
-      <summary>样例命令</summary>
-    ```
+   ```mdx-code-block
+   <details>
+     <summary>样例命令</summary>
+   ```
 
-    ```powershell
-    python export.py --output-dir C:\Users\Username\Chia\CAT-addresses\results\CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
-    ```
+   ```powershell
+   python export.py --output-dir C:\Users\Username\Chia\CAT-addresses\results\CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
+   ```
 
-    ```mdx-code-block
-    </details>
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </details>
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash
-    python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
-    ```
+   ```bash
+   python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
+   ```
 
-    ```mdx-code-block
-    <details>
-      <summary>Example command</summary>
-    ```
+   ```mdx-code-block
+   <details>
+     <summary>Example command</summary>
+   ```
 
-    ```bash
-    python3 export.py --output-dir /home/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
-    ```
+   ```bash
+   python3 export.py --output-dir /home/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
+   ```
 
-    ```mdx-code-block
-    </details>
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+   </details>
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
-    ```
+   ```bash
+   python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
+   ```
 
-    ```mdx-code-block
-    <details>
-      <summary>Example command</summary>
-    ```
+   ```mdx-code-block
+   <details>
+     <summary>Example command</summary>
+   ```
 
-    ```bash
-    python3 export.py --output-dir /Users/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
-    ```
+   ```bash
+   python3 export.py --output-dir /Users/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
+   ```
 
-    ```mdx-code-block
-    </details>
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+   </details>
+     </TabItem>
+   </Tabs>
+   ```
 
-    :::info
-    **信息**<br />
-      - `<OUTPUT-DIR>` - 是您选择的用于保存 CSV 文件的目录
-      - `<PREFIX>` - 一个添加到输出文件名的字符串前缀
-      - `<TAIL-HASH>` - 是您从 [taildatabase.com](https://www.taildatabase.com/) 获得的 TAIL 哈希值
-      - `--coins` - 一个**可选**开关，将有关单个硬币的信息添加到输出中（这可能有助于审计目的）
-    :::
+   :::info
+   **信息**<br />
 
-    :::note
-    **注意**<br />
-    此命令不会创建任何目录，因此请确保`<OUTPUT DIR>`在运行之前已经存在。 否则，您将收到 `FileNotFoundError`。
-    :::
+   - `<OUTPUT-DIR>` - 是您选择的用于保存 CSV 文件的目录
+   - `<PREFIX>` - 一个添加到输出文件名的字符串前缀
+   - `<TAIL-HASH>` - 是您从 [taildatabase.com](https://www.taildatabase.com/) 获得的 TAIL 哈希值
+   - `--coins` - 一个**可选**开关，将有关单个硬币的信息添加到输出中（这可能有助于审计目的）
+     :::
 
-## 修复EOL字符 {#fix-eol}
+   :::note
+   **注意**<br />
+   此命令不会创建任何目录，因此请确保`<OUTPUT DIR>`在运行之前已经存在。 否则，您将收到 `FileNotFoundError`。
+   :::
+
+## 修复 EOL 字符 {#fix-eol}
 
 此步骤对于 **Windows** 用户是必需的，对于 Linux/MacOS 用户则不需要。
-
 
 如果您在 Windows 上运行，CSV 文件将在每行的末尾包含一个额外的 CR（回车）字符。 这将导致[“代币重新发配”](/docs/cat2/cat2-issuance#secure-single)（下一节）失败。 首先，您必须将 CSV 文件转换为使用 UNIX 样式的行尾字符。
 
@@ -499,22 +503,24 @@ chia init --fix-ssl-permissions
 
 1. 访问[SourceForge dos2unix site](https://sourceforge.net/projects/dos2unix/)
 2. 点击绿色的“下载”按钮。 五秒钟后，`dos2unix zip` 文件将下载到您的下载文件夹
-3. 解压`dos2unix` zip文件
+3. 解压`dos2unix` zip 文件
 4. 在 Powershell 窗口中，运行：
 
-  ```powershell
-  <path to dos2unix.exe> -o <path to CSV file>
-  ```
+```powershell
+<path to dos2unix.exe> -o <path to CSV file>
+```
 
-  举个例子：
-  ```powershell
-  ~\Downloads\dos2unix\bin\dos2unix.exe -o .\results\CKC_1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a.1658233083.183527.csv
-  ```
+举个例子：
 
-  此消息应出现在输出中：
-  ```
-  dos2unix: converting file <CSV file> to Unix format...
-  ```
+```powershell
+~\Downloads\dos2unix\bin\dos2unix.exe -o .\results\CKC_1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a.1658233083.183527.csv
+```
+
+此消息应出现在输出中：
+
+```
+dos2unix: converting file <CSV file> to Unix format...
+```
 
 5. 要验证转换是否成功，请打开该文件。 条目之间不应有空行。
 
@@ -561,9 +567,9 @@ python3 clean.py --height <BLOCK-HEIGHT>
 </Tabs>
 ```
 
-## 获取区块链上所有CAT的余额 {#export-all}
+## 获取区块链上所有 CAT 的余额 {#export-all}
 
-**可选**：如果您希望获得 Chia 区块链上所有 CAT 的余额，您可以使用各种不同的选项运行 
+**可选**：如果您希望获得 Chia 区块链上所有 CAT 的余额，您可以使用各种不同的选项运行
 
 ```mdx-code-block
 <Tabs

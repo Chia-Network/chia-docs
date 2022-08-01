@@ -3,17 +3,19 @@ sidebar_position: 2
 ---
 
 # 12.2 Full Node API
+
 The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for
 security concerns.
 
 ## get_network_info
+
 Retrieves some information about the current network.
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{}' \             
+-d '{}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_network_info  | python -m json.tool
 
 // Response
@@ -23,7 +25,6 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     "success": true
 }
 ```
-
 
 ## get_blockchain_state
 
@@ -90,7 +91,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 Retrieves an entire block as a FulLBlock by header hash. Note that some blocks are transaction blocks, and some are not
 (like the one below).
 
-* **header_hash**: Heaader hash (block identifier) of the block to get. 
+- **header_hash**: Heaader hash (block identifier) of the block to get.
 
 ```json
 // Request
@@ -98,7 +99,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"header_hash":"0xf42b4e77315d79ddfb3d64becb21e26ebff5408bda4d1b7c3782fd04f49ec0bb"}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_block | python -m json.tool
-        
+
 
 // Response
 
@@ -180,14 +181,14 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ```
 
-
 ## get_blocks
+
 Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. To find out which
 one is in the blockchain, use `get_block_record_by_height`.
 
-* **start**: The start height.
-* **end**: The end height (non-inclusive).
-* **exclude_header_hash**: whether to exclude the header hash in the response (default false)
+- **start**: The start height.
+- **end**: The end height (non-inclusive).
+- **exclude_header_hash**: whether to exclude the header hash in the response (default false)
 
 ```json
 // Request
@@ -205,10 +206,12 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_block_count_metrics
+
 Gets various metrics for the blockchain's blocks. Currently shows:
-* compact blocks
-* hint count
-* uncompact blocks
+
+- compact blocks
+- hint count
+- uncompact blocks
 
 ```json
 // Request
@@ -223,25 +226,26 @@ $ curl -X POST --insecure \
 // Response
 {
     "metrics": {
-        "compact_blocks": 1347047, 
-        "hint_count": 1072468, 
+        "compact_blocks": 1347047,
+        "hint_count": 1072468,
         "uncompact_blocks": 494593
-    }, 
+    },
     "success": true
 }
 ```
 
 ## get_block_record_by_height
- Retrieves a block record by height (assuming the height <= peak height). Note that not all blocks will have all
-fields set here (depending on transaction block, finishing sub epoch, etc). 
 
-* **height**: the height to get
+Retrieves a block record by height (assuming the height <= peak height). Note that not all blocks will have all
+fields set here (depending on transaction block, finishing sub epoch, etc).
+
+- **height**: the height to get
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"height": 101}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record_by_height | python -m json.tool 
+-d '{"height": 101}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record_by_height | python -m json.tool
 
 // Reponse
 {
@@ -293,16 +297,17 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_block_record
+
 Retrieves a block record by header hash.
 
-* **header_hash**: the block's header_hash
- 
+- **header_hash**: the block's header_hash
+
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"header_hash": "0x3723909a7374c4c88cf00ab9b15365f4988f5bdb2d51bac23f6af939fe40f56c"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record | python -m json.tool 
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record | python -m json.tool
 
 // Response
 {
@@ -353,26 +358,57 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_block_records
- Retrieves block records in a range. 
- 
-* **start**: the start height
-* **end**: the end height (non-inclusive)
 
-```json 
+Retrieves block records in a range.
+
+- **start**: the start height
+- **end**: the end height (non-inclusive)
+
+```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"start": 5, "end": 7}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_block_records | python -m json.tool 
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_block_records | python -m json.tool
 
 // Response
 {
     "block_records": [list of block records as described above]
     "success": true
 }
- ```
+```
+
+## get_block_spends
+
+Retrieves every coin that was spent in a block. Requires the header hash of the block to retrieve. Keep in mind that most blocks do not cointain any transactions. These blocks will simply return "[]" for this request.
+
+- **header_hash**: the block's header_hash
+
+```json
+// Request
+curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key -d '{
+    "header_hash":"0x2e927dd3c83bf057b0f0144d79a046c6e58229e522dc2d6b9cc41ec96391609e"
+}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_spends
+
+// Response
+{
+    "block_spends": [{
+        "coin": {
+            "amount": 1,
+            "parent_coin_info": "0xd75976eb5837b2c91778f47d5ad8d2972d9cbd854627940aa5df3dd51e08bb5a",
+            "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+        },
+        "puzzle_reveal": "0xff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff0affff04ffff02ff0effff04ff02ffff04ffff04ff05ffff04ff0bffff04ff17ff80808080ff80808080ff808080ff808080ffff04ffff01ff33ff3cff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080",
+        "solution": "0xffa07418054c549480839e77b4d16d8766c76f826936ddda3c9d93a8cc7687e5897bff01ff8080"
+    },
+    ...
+    ],
+    "success": true
+}
+```
 
 ## get_unfinished_block_headers
+
 Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon.
 The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the
 blocks after it.
@@ -461,17 +497,18 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_network_space
+
 Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes.
 
-* **older_block_header_hash**: the start header hash
-* **newer_block_header_hash**: the end header hash
+- **older_block_header_hash**: the start header hash
+- **newer_block_header_hash**: the end header hash
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"older_block_header_hash": "0xd780d22c7a87c9e01d98b49a0910f6701c3b95015741316b3fda042e5d7b81d2", "newer_block_header_hash": "0xd3372ec62d3ef2f55a8e3d0e76f6f341212f5e09b4d5112add588262257a8e4e"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_network_space | python -m json.tool 
+-H "Content-Type: application/json" -X POST https://localhost:8555/get_network_space | python -m json.tool
 
 // Response
 {
@@ -481,12 +518,13 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_additions_and_removals
-Retrieves the additions and removals (state transitions) for a certain block. 
+
+Retrieves the additions and removals (state transitions) for a certain block.
 Returns coin records for each addition and removal.
 Blocks that are not transaction blocks will have empty removal and addition lists. To get the actual puzzles and solutions
 for spent coins, use the `get_puzzle_and_solution` api.
 
-* **header_hash**: header hash of the block
+- **header_hash**: header hash of the block
 
 ```json
 // Request
@@ -548,15 +586,16 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
             "spent_block_index": 922652,
             "timestamp": 1632832185
         },
-  ], 
+  ],
 "success": true
 }
 ```
 
 ## get_coin_record_by_name
+
 Retrieves a coin record by its name/id. The coin id can be obtained by hashing the Coin object.
 
-* **name**: coin id or coin name.
+- **name**: coin id or coin name.
 
 ```json
 // Request
@@ -564,7 +603,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"name": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0"}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_coin_record_by_name | python -m json.tool
-        
+
 // Response
 {
     "coin_record": {
@@ -584,15 +623,18 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_coin_records_by_names
+
 Retrieves the coins for given coin IDs, by default returns unspent coins.
 
 Required inputs:
-* **names**: A list of coin_ids to examine
+
+- **names**: A list of coin_ids to examine
 
 Optional inputs:
-* **start_height**: The block height at which to begin the search
-* **end_height**: The block height at which to end the search
-* **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
+
+- **start_height**: The block height at which to begin the search
+- **end_height**: The block height at which to end the search
+- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
 
 ```json
 // Request
@@ -614,41 +656,44 @@ curl -X POST --insecure \
 {
     "coin_records": [{
         "coin": {
-            "amount": 7180937600000, 
-            "parent_coin_info": "0x459d10d2d2c9eef036825b7b4a8a7618b0e3137641ab6abde515c0af0ddf9f85", 
+            "amount": 7180937600000,
+            "parent_coin_info": "0x459d10d2d2c9eef036825b7b4a8a7618b0e3137641ab6abde515c0af0ddf9f85",
             "puzzle_hash": "0xabd433d8744b06a4cf2b5872a951bf66358af6f6bcb54075a85708aff6e90ed8"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 472449, 
-        "spent": true, 
-        "spent_block_index": 472472, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 472449,
+        "spent": true,
+        "spent_block_index": 472472,
         "timestamp": 1624450760
     }, {
         "coin": {
-            "amount": 126, 
-            "parent_coin_info": "0x6a16808f534325b809df04f64277c84b7e6f3d01b84ba7146858e3546ab97db4", 
+            "amount": 126,
+            "parent_coin_info": "0x6a16808f534325b809df04f64277c84b7e6f3d01b84ba7146858e3546ab97db4",
             "puzzle_hash": "0x8949f28258c35e47dceebf3a14a206c389ec1b85261ba217688e7b8303eb9b0f"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 1856394, 
-        "spent": true, 
-        "spent_block_index": 1872533, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 1856394,
+        "spent": true,
+        "spent_block_index": 1872533,
         "timestamp": 1650315703
-    }], 
+    }],
     "success": true
 }
 ```
 
 ## get_coin_records_by_parent_ids
+
 Retrieves the coins for given parent coin IDs, by default returns unspent coins.
 
 Required inputs:
-* **parent_ids**: A list of parent IDs to examine
+
+- **parent_ids**: A list of parent IDs to examine
 
 Optional inputs:
-* **start_height**: The block height at which to begin the search
-* **end_height**: The block height at which to end the search
-* **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
+
+- **start_height**: The block height at which to begin the search
+- **end_height**: The block height at which to end the search
+- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
 
 ```json
 // Request
@@ -670,52 +715,55 @@ curl -X POST --insecure \
 {
     "coin_records": [{
         "coin": {
-            "amount": 1016446400000, 
-            "parent_coin_info": "0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195", 
+            "amount": 1016446400000,
+            "parent_coin_info": "0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195",
             "puzzle_hash": "0x4ed688a013a7059d3619440c6f73d9c3759cdd8c55ece7ec86ded295aa2da8fe"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 472472, 
-        "spent": false, 
-        "spent_block_index": 0, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 472472,
+        "spent": false,
+        "spent_block_index": 0,
         "timestamp": 1624451109
     }, {
         "coin": {
-            "amount": 6164491200000, 
-            "parent_coin_info": "0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195", 
+            "amount": 6164491200000,
+            "parent_coin_info": "0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195",
             "puzzle_hash": "0xfbefc3b96a0c2d1dfe8f4dce7c546fd849a3b0b5cf4d75a794f07ac6bb96a80e"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 472472, 
-        "spent": true, 
-        "spent_block_index": 472488, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 472472,
+        "spent": true,
+        "spent_block_index": 472488,
         "timestamp": 1624451109
     }, {
         "coin": {
-            "amount": 1750000000000, 
-            "parent_coin_info": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000061", 
+            "amount": 1750000000000,
+            "parent_coin_info": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000061",
             "puzzle_hash": "0x8f3dff600992a0b77aefbe8eb81dd4f233b9126f3b67557594b5a927d6e6d588"
-        }, 
-        "coinbase": true, 
-        "confirmed_block_index": 101, 
-        "spent": true, 
-        "spent_block_index": 341109, 
+        },
+        "coinbase": true,
+        "confirmed_block_index": 101,
+        "spent": true,
+        "spent_block_index": 341109,
         "timestamp": 1616164827
-    }], 
+    }],
     "success": true
 }
 ```
 
 ## get_coin_records_by_hint
+
 Retrieves coins by hint, by default returns unspent coins.
 
 Required inputs:
-* **hint**: The hint to examine
+
+- **hint**: The hint to examine
 
 Optional inputs:
-* **start_height**: The block height at which to begin the search
-* **end_height**: The block height at which to end the search
-* **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
+
+- **start_height**: The block height at which to begin the search
+- **end_height**: The block height at which to end the search
+- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
 
 ```json
 //Request
@@ -735,39 +783,39 @@ curl -X POST --insecure \
 {
     "coin_records": [{
         "coin": {
-            "amount": 10000, 
-            "parent_coin_info": "0x13eb187994e143a122c868d47e3e1201ddaf8fbaee13e6b04293ff527ec7b8e8", 
+            "amount": 10000,
+            "parent_coin_info": "0x13eb187994e143a122c868d47e3e1201ddaf8fbaee13e6b04293ff527ec7b8e8",
             "puzzle_hash": "0xd229b55df95852e99f1c2708a7248380676ead58fd6a3cbfb44c870204506751"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 1868037, 
-        "spent": true, 
-        "spent_block_index": 1868399, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 1868037,
+        "spent": true,
+        "spent_block_index": 1868399,
         "timestamp": 1650533680
     }, {
         "coin": {
-            "amount": 10000, 
-            "parent_coin_info": "0x7fcc1791720603314f134cf47dc80c2d36bae1dd236eada570993d285f7437a5", 
+            "amount": 10000,
+            "parent_coin_info": "0x7fcc1791720603314f134cf47dc80c2d36bae1dd236eada570993d285f7437a5",
             "puzzle_hash": "0xd229b55df95852e99f1c2708a7248380676ead58fd6a3cbfb44c870204506751"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 1872712, 
-        "spent": false, 
-        "spent_block_index": 0, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 1872712,
+        "spent": false,
+        "spent_block_index": 0,
         "timestamp": 1650620445
-    }], 
+    }],
     "success": true
 }
 
 ```
 
 ## get_puzzle_and_solution
+
 Retrieves a coin's spend record by its coin id, sometimes referred to as coin name. Coin IDs can be calculated
 by hashing the coin. The puzzle and solution are provided in CLVM format.
 
-* **coin_id**: coin id or coin name.
-* **height**: height that the coin was spent.
-
+- **coin_id**: coin id or coin name.
+- **height**: height that the coin was spent.
 
 ```json
 // Request
@@ -775,7 +823,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
 -d '{"coin_id": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0", "height": 922641}' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/get_puzzle_and_solution | python -m json.tool
-        
+
 // Response
 {
     "coin_solution": {
@@ -793,20 +841,22 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_recent_signage_point_or_eos
+
 Retrieves a recent signage point or end of slot.
 
 Paramaters - one of:
-* **sp_hash**: The hash of the output for a signage point (if it's in the middle of a sub slot)
-* **challenge_hash**: The challenge_hash for the subslot (if it's an end of sub slot challenge)
 
+- **sp_hash**: The hash of the output for a signage point (if it's in the middle of a sub slot)
+- **challenge_hash**: The challenge_hash for the subslot (if it's an end of sub slot challenge)
 
 ## get_coin_records_by_puzzle_hash
+
 Retrieves a list of coin records with a certain puzzle hash.
 
-* **puzzle_hash**: puzzle hash to search for
-* **start_height** (optional): confirmation start height for search
-* **end_height** (optional): confirmation end height for search
-* **include_spent_coins**: whether to include spent coins too, instead of just unspent, default to false
+- **puzzle_hash**: puzzle hash to search for
+- **start_height** (optional): confirmation start height for search
+- **end_height** (optional): confirmation end height for search
+- **include_spent_coins**: whether to include spent coins too, instead of just unspent, default to false
 
 ```json
 // Request
@@ -837,15 +887,18 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_coin_records_by_puzzle_hashes
+
 Retrieves the coins for a given puzzlehashes, by default returns unspent coins.
 
 Required inputs:
-* **puzzle_hashes**: A list of puzzle hashes to examine
+
+- **puzzle_hashes**: A list of puzzle hashes to examine
 
 Optional inputs:
-* **start_height**: The block height at which to begin the search
-* **end_height**: The block height at which to end the search
-* **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
+
+- **start_height**: The block height at which to begin the search
+- **end_height**: The block height at which to end the search
+- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
 
 ```json
 // Request
@@ -868,59 +921,58 @@ curl -X POST --insecure \
 {
     "coin_records": [{
         "coin": {
-            "amount": 40628100000, 
-            "parent_coin_info": "0x8f5d9b9688dd1376d17ade139da58bf03183936600ccc4bf5dc3327f40cd596b", 
+            "amount": 40628100000,
+            "parent_coin_info": "0x8f5d9b9688dd1376d17ade139da58bf03183936600ccc4bf5dc3327f40cd596b",
             "puzzle_hash": "0x6776391535247e1617ee17cabc6a13932faa3d3f2094a55fe95ccefcbb1a749a"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 1853188, 
-        "spent": false, "spent_block_index": 0, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 1853188,
+        "spent": false, "spent_block_index": 0,
         "timestamp": 1650255465
         }, {
         "coin": {
-            "amount": 40252630000, 
-            "parent_coin_info": "0xd786b601719f3a8a91b62cbd3b9cfaeede5242a69c740cc2be2faeff1513ca3b", 
+            "amount": 40252630000,
+            "parent_coin_info": "0xd786b601719f3a8a91b62cbd3b9cfaeede5242a69c740cc2be2faeff1513ca3b",
             "puzzle_hash": "0x6776391535247e1617ee17cabc6a13932faa3d3f2094a55fe95ccefcbb1a749a"
-        }, 
-        "coinbase": false, 
-        "confirmed_block_index": 1829991, 
-        "spent": false, 
-        "spent_block_index": 0, 
+        },
+        "coinbase": false,
+        "confirmed_block_index": 1829991,
+        "spent": false,
+        "spent_block_index": 0,
         "timestamp": 1649822423
         }
-    ], 
+    ],
     "success": true
 }
 ```
 
 ## push_tx
+
 Pushes a transaction / spend bundle to the mempool and blockchain.
-Returns whether the spend bundle was successfully included into the mempool. 
+Returns whether the spend bundle was successfully included into the mempool.
 
 `SUCCESS` does not guarantee that the transaction will get confirmed. A transaction may be dropped from the mempool and not
-included if the fee is too low. A transaction may also be combined with other transactions to form different spend 
-bundles, so looking up the bundle by ID does not guarantee finding the original transaction. Transaction can be 
-resubmitted with a higher fee, as long as the coins spent in the new transaction are a superset of the coins spent in 
+included if the fee is too low. A transaction may also be combined with other transactions to form different spend
+bundles, so looking up the bundle by ID does not guarantee finding the original transaction. Transaction can be
+resubmitted with a higher fee, as long as the coins spent in the new transaction are a superset of the coins spent in
 the old one.
 
 To check whether a transaction has been confirmed, use `get_coin_record_by_name` with
-each coin id that should be created by this spend bundle. 
+each coin id that should be created by this spend bundle.
 
-
-* **spend_bundle**: spend bundle to submit, in JSON
-
+- **spend_bundle**: spend bundle to submit, in JSON
 
 The error status can be one of:
-* **SUCCESS**: if the transaction was successfully added to the mempool
-* **PENDING**: if the transaction cannot be included yes due to timelocks or conflicts
-* **FAILED**: transaction was not added to the mempool, and was dropped
 
+- **SUCCESS**: if the transaction was successfully added to the mempool
+- **PENDING**: if the transaction cannot be included yes due to timelocks or conflicts
+- **FAILED**: transaction was not added to the mempool, and was dropped
 
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
 --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{       
+-d '{
     "spend_bundle": {
     "aggregated_signature": "0xa5e5ea1f5ae2335a72fe0a7ed7ca39e8f142e2e1f6e37a348482290e88eb9cea2d973acf6145e34d0afeee7ba22f99850641e21a549b2c092bb49aa393acd938825bccca9413c1a268ba44367bc8433cd0fc0eb82e87bebe23817aa695bdb566",
     "coin_spends": [
@@ -937,12 +989,13 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
   }
 }' \
 -H "Content-Type: application/json" -X POST https://localhost:8555/push_tx
-        
+
 // Response
 {"status": "SUCCESS", "success": true}
 ```
 
 ## get_all_mempool_tx_ids
+
 Returns a list of all transaction IDs (spend bundle hashes) in the mempool.
 
 ```json
@@ -961,7 +1014,9 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_all_mempool_items
+
 Returns all items in the mempool.
+
 ```json
 // Request
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
@@ -1046,10 +1101,10 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_mempool_item_by_tx_id
+
 Gets a mempool item by tx id.
 
-* **tx_id**: spend bundle hash
-
+- **tx_id**: spend bundle hash
 
 ```json
 // Request
@@ -1151,6 +1206,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 ```
 
 ## get_routes
+
 Show all RPC endpoints. This endpoint is lightweight and can be used as a health check. However, a better option may be `healthz` (below).
 
 Options: none
@@ -1167,15 +1223,16 @@ curl -X POST --insecure \
 
 // Response
 {"routes": [
-    "/get_blockchain_state", 
+    "/get_blockchain_state",
     "/get_block",
     ...
-    "/healthz"], 
+    "/healthz"],
     "success": "true"
 }
 ```
 
 ## healthz
+
 Verifies that the RPC service is running. This endpoint is lightweight and can be queried often in intervals.
 
 Options: none
