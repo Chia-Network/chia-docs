@@ -81,7 +81,6 @@ npm run electron
   </TabItem>
 </Tabs>
 ```
-
 :::
 
 :::tip
@@ -99,51 +98,40 @@ chia init --fix-ssl-permissions
 
    ```mdx-code-block
    <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
+    defaultValue="windows"
+    groupId="os"
+    values={[
+      {label: 'Windows', value: 'windows'},
+      {label: 'Linux', value: 'linux'},
+      {label: 'macOS', value: 'macos'},
+    ]}>
+    <TabItem value="windows">
    ```
-
    1. Navigate to the `chia-blockchain` directory and activate your virtual environment:
-
    ```powershell
    .\venv\Scripts\Activate.ps1
    ```
-
    ```mdx-code-block
-     </TabItem>
-     <TabItem value="linux">
+    </TabItem>
+    <TabItem value="linux">
    ```
-
    1. Navigate to the `chia-blockchain` directory and activate your virtual environment:
-
    ```bash
    . ./activate
    ```
-
    ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
+    </TabItem>
+    <TabItem value="macos">
    ```
-
    1. Navigate to the `chia-blockchain` directory and activate your virtual environment:
-
    ```bash
    . ./activate
    ```
-
    ```mdx-code-block
-     </TabItem>
+    </TabItem>
    </Tabs>
    ```
-
    2. Run the following command:
-
    ```bash
    chia version
    ```
@@ -490,21 +478,21 @@ Steps to convert the CSV file:
 3. Unzip the `dos2unix` zip file.
 4. From a PowerShell window, run:
 
-```powershell
-<path to dos2unix.exe> -o <path to CSV file>
-```
+   ```powershell
+   <path to dos2unix.exe> -o <path to CSV file>
+   ```
 
-For example:
+   For example:
+   
+   ```powershell
+   ~\Downloads\dos2unix\bin\dos2unix.exe -o    .\results\CKC_1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a.1658233083.183527.csv
+   ```
 
-```powershell
-~\Downloads\dos2unix\bin\dos2unix.exe -o .\results\CKC_1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a.1658233083.183527.csv
-```
-
-This message should appear in the output:
-
-```
-dos2unix: converting file <CSV file> to Unix format...
-```
+   This message should appear in the output:
+   
+   ```
+   dos2unix: converting file <CSV file> to Unix format...
+   ```
 
 5. To verify that the conversion was successful, open the file. There should be no blank lines between the entries.
 
