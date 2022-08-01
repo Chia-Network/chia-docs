@@ -12,7 +12,7 @@ A plot ID can be generated in one of two ways, depending on the desired farming 
 <img src="/img/keys/plot_id.png" alt="drawing"/>
 </figure>
 
-1. Farm to pool public key. This method of farming is desirable if solo farming (no pools). To farm a plot like this, we hash together the pool public key and the plot public key (explained later). When successfully farming a block, the pool private key must sign the reward address. The drawback of this method is that if using a pool, the pool cannot be changed, and the plot is tied to the pool forever.
+1. Farm to pool public key. This method of farming can be used while solo farming (without a pool). To farm a plot like this, we hash together the pool public key and the plot public key (explained later). When successfully farming a block, the pool private key must sign the reward address. The drawback of this method is that if using a pool, the pool cannot be changed, and the plot is tied to the pool forever.
 
 2. Farm to pool contract address. This method of farming is suitable for users who want to farm to a pool, and to be able to change pools in the future. Most farmers will likely use this method.
 
