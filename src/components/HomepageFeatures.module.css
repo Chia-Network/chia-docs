@@ -17,7 +17,7 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
   color: #fff;
   background-color: #3aac59;
   box-sizing: border-box;
@@ -27,7 +27,7 @@
   display: inline-block;
   margin: 8px;
   transition: all 0.23s ease-in-out 0s;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .button:hover {
@@ -37,7 +37,7 @@
 
 form {
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .mc-field-group {
@@ -47,7 +47,7 @@ form {
 /* positions input field horizontally */
 .emailInput {
   font-size: 15px;
-  border: 1px solid #ABB0B2;
+  border: 1px solid #abb0b2;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -60,7 +60,7 @@ form {
   margin: 0;
   width: 350px;
   vertical-align: top;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .emailInput:focus {
@@ -69,7 +69,7 @@ form {
 }
 
 h3 {
-  color: #3aac59
+  color: #3aac59;
 }
 
 label {
@@ -80,13 +80,13 @@ label {
 }
 
 #mc_embed_signup.h3 {
-  color: #3aac59
+  color: #3aac59;
 }
 
 .mceResponses {
   float: left;
   top: -1.4em;
-  padding: 0em .5em 0em .5em;
+  padding: 0em 0.5em 0em 0.5em;
   overflow: hidden;
   width: 90%;
   margin: 0 5%;
@@ -95,7 +95,7 @@ label {
 
 div.response {
   margin: 1em 0;
-  padding: 1em .5em .5em 0;
+  padding: 1em 0.5em 0.5em 0;
   font-weight: bold;
   float: left;
   top: -1.5em;
@@ -118,7 +118,7 @@ label.error {
   width: auto;
   margin-left: 1.05em;
   text-align: left;
-  padding: .5em 0;
+  padding: 0.5em 0;
 }
 
 @media (max-width: 768px) {
@@ -129,7 +129,7 @@ label.error {
 
   .clear {
     display: block;
-    width: 100%
+    width: 100%;
   }
 
   .button {

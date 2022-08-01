@@ -28,22 +28,22 @@ Usage: cats [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :--------------------------------------------------------------------------------- |
-| -l            | --tail                        | TEXT    | True     | The TAIL program to launch this CAT with                                           |
-| -c            | --curry                       | TEXT    | False    | An argument to curry into the TAIL                                                 |
-| -s            | --solution                    | TEXT    | True     | The solution to the TAIL program [default: ()]                                     |
-| -t            | --send-to                     | TEXT    | True     | The address these CATs will appear at once they are issued                         |
-| -a            | --amount                      | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)               |
-| -m            | --fee                         | INTEGER | True     | The fees for the transaction, in mojos [default: 0]                                |
-| -f            | --fingerprint                 | INTEGER | False    | The wallet fingerprint to use as funds                                             |
-| -sig          | --signature                   | TEXT    | False    | A signature to aggregate with the transaction                                      |
-| -as           | --spend                       | TEXT    | False    | An additional spend to aggregate with the transaction                              |
-| -b            | --as-bytes                    | None    | False    | Output the spend bundle as a sequence of bytes instead of JSON                     |
-| -sc           | --select-coin                 | None    | False    | Stop the process once a coin from the wallet has been selected and return the coin |
-| -q            | --quiet                       | None    | False    | Quiet mode will not ask to push transaction to the network                         |
-| -p            | --push                        | None    | False    | Automatically push transaction to the network in quiet mode                        |
-|               | --help                        | None    | False    | Show a help message and exit                                                       |
+| Short Command | Long Command  | Type    | Required | Description                                                                        |
+| :------------ | :------------ | :------ | :------- | :--------------------------------------------------------------------------------- |
+| -l            | --tail        | TEXT    | True     | The TAIL program to launch this CAT with                                           |
+| -c            | --curry       | TEXT    | False    | An argument to curry into the TAIL                                                 |
+| -s            | --solution    | TEXT    | True     | The solution to the TAIL program [default: ()]                                     |
+| -t            | --send-to     | TEXT    | True     | The address these CATs will appear at once they are issued                         |
+| -a            | --amount      | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)               |
+| -m            | --fee         | INTEGER | True     | The fees for the transaction, in mojos [default: 0]                                |
+| -f            | --fingerprint | INTEGER | False    | The wallet fingerprint to use as funds                                             |
+| -sig          | --signature   | TEXT    | False    | A signature to aggregate with the transaction                                      |
+| -as           | --spend       | TEXT    | False    | An additional spend to aggregate with the transaction                              |
+| -b            | --as-bytes    | None    | False    | Output the spend bundle as a sequence of bytes instead of JSON                     |
+| -sc           | --select-coin | None    | False    | Stop the process once a coin from the wallet has been selected and return the coin |
+| -q            | --quiet       | None    | False    | Quiet mode will not ask to push transaction to the network                         |
+| -p            | --push        | None    | False    | Automatically push transaction to the network in quiet mode                        |
+|               | --help        | None    | False    | Show a help message and exit                                                       |
 
 <details>
 <summary>Example 1 - select a coin from the wallet with a value of at least 1 XCH (1 trillion mojos). </summary>
@@ -54,6 +54,7 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to txch1jk4r06x
 ```
 
 Response:
+
 ```
 {
     "amount": 1999731499999,
@@ -67,16 +68,17 @@ The "parent_coin_info", "puzzle_hash", and "amount" values are hashed together t
 
 </details>
 
-
 <details>
 <summary>Example 2 - Push a transaction to the network, currying an inner puzzle hash into the TAIL</summary>
 
 Request:
+
 ```bash
 cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to txch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
 ```
 
 Response:
+
 ```bash
 The transaction has been created, would you like to push it to the network? (Y/N)y
 Successfully pushed the transaction to the network
@@ -98,14 +100,14 @@ Usage: secure_the_bag [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                        |                      |
-| :------------ | :---------------------------- | :------ | :------- | :--------------------------------------------------------------------------------- |
-| -c            | --curry                       | TEXT    | False    | An argument to curry into the TAIL                                                 |
-| -a            | --amount                      | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)               |
+| Short Command | Long Command                  | Type    | Required | Description                                                                                                                                                                                                            |     |
+| :------------ | :---------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| -c            | --curry                       | TEXT    | False    | An argument to curry into the TAIL                                                                                                                                                                                     |
+| -a            | --amount                      | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)                                                                                                                                                   |
 | -stbtp        | --secure-the-bag-targets-path | TEXT    | True     | Path to CSV file containing targets of secure the bag (inner puzzle hash + amount). The total value of the coins in this file must match the value of the `amount` flag. If they don't match, an error will be thrown. |
-| -lw           | --leaf-width                  | INTEGER | True     | Secure the bag leaf width [default: 100]                                           |
-| -pr           | --prefix                      | TEXT    | True     | Address prefix [default: xch]                                                      |
-|               | --help                        | NONE    | False    | Show a help message and exit                                                       |
+| -lw           | --leaf-width                  | INTEGER | True     | Secure the bag leaf width [default: 100]                                                                                                                                                                               |
+| -pr           | --prefix                      | TEXT    | True     | Address prefix [default: xch]                                                                                                                                                                                          |
+|               | --help                        | NONE    | False    | Show a help message and exit                                                                                                                                                                                           |
 
 <details>
 <summary>Create a coin tree from a .csv file, currying a coin ID that was obtained from the `cats` command</summary>
@@ -115,11 +117,13 @@ secure_the_bag --tail .\reference_tails\genesis_by_coin_id.clsp.hex --amount 100
 ```
 
 The response will be a list of coins created in the tree. The command's progress will also be displayed. The last two lines of the output will be the root puzzle hash and address of the tree:
+
 ```
 ...
 Secure the bag root puzzle hash: 17060adf6856d2904c4fe90c9690b710cf758aee5968718e2fbfd12f7b9d817f
 Secure the bag root address: txch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr
 ```
+
 </details>
 
 ---

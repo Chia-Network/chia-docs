@@ -27,13 +27,11 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-
 @media screen and (max-width: 440px) {
   h1.hero__title {
     font-size: 2rem;
   }
 }
-
 
 .feature-item {
   margin-bottom: 50px;
@@ -43,11 +41,11 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   --docusaurus-announcement-bar-height: auto !important;
 }
 
-div[class^="announcementBar"][role="banner"] {
+div[class^='announcementBar'][role='banner'] {
   border-bottom-color: var(--deepdark);
 }
 
-div[class^="announcementBarContent"] {
+div[class^='announcementBarContent'] {
   line-height: 30px;
   font-size: 15px;
   font-weight: bold;

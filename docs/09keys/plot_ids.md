@@ -6,7 +6,7 @@ sidebar_position: 2
 
 A plot ID is a 32-byte value that is used as a deterministic seed to create an entire plot. In other words, two plots with the same plot ID will create byte-identical plot files. Plot IDs are public values that get put into Proof of Space objects.
 
-A plot ID can be generated in one of two ways, depending on the desired farming method of the plot. 
+A plot ID can be generated in one of two ways, depending on the desired farming method of the plot.
 
 <figure>
 <img src="/img/keys/plot_id.png" alt="drawing"/>

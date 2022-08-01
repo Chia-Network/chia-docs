@@ -3,10 +3,12 @@ sidebar_position: 2
 ---
 
 # 10.2 Harvester Protocol
+
 The harvester protocol defines the messages sent between a farmer service and a harvester service. These tend to
 be on the same machine for small farmers, but for medium or large farmers they can be in multiple machines.
 
 ## harvester_handshake
+
 The handshake between farmer and harvester.
 A farmer sends this message to harvesters, to initialize them and tell them which
 pool public keys and farmer public keys are acceptable to use.
@@ -37,7 +39,7 @@ class NewSignagePointHarvester(Streamable):
     signage_point_index: uint8  # The signage point's index, from 0 to 63. 0 for an end of sub slot signage point
     sp_hash: bytes32            # The hash of the signage point, this is == challenge_hash iff the index is 0
     pool_difficulties: List[PoolDifficulty]    # List of each pool the farmer is in, and what the difficulty is for that pool
-    
+
 
 class PoolDifficulty(Streamable):
     difficulty: uint64                  # The current difficulty that is set for plots belonging to this pool contract
@@ -46,10 +48,11 @@ class PoolDifficulty(Streamable):
 ```
 
 ## new_proof_of_space
+
 A successful proof of space that is sent to the farmer. The `challenge_hash`, `sp_hash`, and `signage_point_index`
 correspond to the ones sent in `new_signage_point_harvester`. Many proofs can be submitted for each signage point.
 
-The plot is a string chosen by the harvester to represent the winning plot (and proof index) in future communications 
+The plot is a string chosen by the harvester to represent the winning plot (and proof index) in future communications
 between the farmer and harvester. This can be, for example, the filename of the plot with an additional byte for the index.
 This is relevant, because a certain plot can potentially have more than one proof for each signage point, and we want
 communications for each proof to be separate and not conflict (specifically to fetch signatures from the harvester).
@@ -61,17 +64,18 @@ class NewProofOfSpace(Streamable):
     plot_identifier: str
     proof: ProofOfSpace         # The actual proof of space which contains more data, shown below
     signage_point_index: uint8
-    
+
 class ProofOfSpace(Streamable):
     challenge: bytes32                              # This is the challenge for the pospace, explained in section 3.5
     pool_public_key: Optional[G1Element]            # Only one of these two should be present
     pool_contract_puzzle_hash: Optional[bytes32]    # Present only for pooled plots
-    plot_public_key: G1Element                      # Explained in the keys section 
+    plot_public_key: G1Element                      # Explained in the keys section
     size: uint8                                     # k size, usually 32 but can vary
     proof: bytes                                    # proof bytes, 64 k bit values, total size 8k bytes
 ```
 
 ## request_signatures
+
 This is a request from the farmer to the harvester for a signature from the plot key, for a specific plot (using the
 plot identifier from `new_proof_of_space`). The farmer can request signatures from multiple messages.
 
@@ -84,6 +88,7 @@ class RequestSignatures(Streamable):
 ```
 
 ## respond_signatures
+
 This is a response to `request_signatures`. The local public key is the public key corresponding to the secret key
 in the plot. To see more about the keys for plots, look at [section 9](/docs/09keys/keys-and-signatures).
 
@@ -97,9 +102,8 @@ class RespondSignatures(Streamable):
     message_signatures: List[Tuple[bytes32, G2Element]]
 ```
 
-
-
 ## request_plots
+
 A request from the farmer to the harvester for the list of all plots being farmed by the harvester.
 
 ```python
@@ -108,6 +112,7 @@ class RequestPlots(Streamable):
 ```
 
 ## respond_plots
+
 A response to `request_plots` request. This message is also sent whenever a new plot is loaded.
 
 ```python

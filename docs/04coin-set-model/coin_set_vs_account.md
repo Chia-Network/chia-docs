@@ -20,18 +20,18 @@ Alice wants to send 1 eth to Bob. To complete this transaction, 1 eth is subtrac
 
 ## Chia's coin set model
 
-In Chia's coin set model, there are no accounts or balances. There are only coins (see [Section 4.1](/docs/04coin-set-model/intro "Section 4.1 Coin set info") for more info). Coins are first class objects; they are the only data that is persisted on the blockchain. Each coin has a parent, allowing for its history to be tracked to its coinbase.
+In Chia's coin set model, there are no accounts or balances. There are only coins (see [Section 4.1](/docs/04coin-set-model/intro 'Section 4.1 Coin set info') for more info). Coins are first class objects; they are the only data that is persisted on the blockchain. Each coin has a parent, allowing for its history to be tracked to its coinbase.
 
 A typical Chia transaction would look like the following:
 
 Alice wants to send 1 XCH to Bob. Alice has five coins in her wallet: four worth 0.2 XCH apiece, and one worth 0.7 XCH. Her wallet automatically selects two of the coins worth 0.2 XCH and the 0.7 XCH coin to be spent. All three coin spends happen simultaneously, along with two new coin creations: one worth 1 XCH which goes to Bob's wallet, and one worth 0.1 XCH which goes to Alice's wallet as "change." Alice now has two coins worth 0.2 XCH and one worth 0.1 XCH. Bob has one coin worth 1 XCH. The total value owned by Alice and Bob has not changed -- it was 1.5 XCH both before and after the transaction was processed.
 
-Owner | Before            | After
------ | ----------------- | -------
-Alice | 1.5 XCH (5 coins) | 0.5 XCH (3 coin)
-Bob   |   0 XCH           | 1.0 XCH (1 coin)
-      |                   | 
-Total | 1.5 XCH           | 1.5 XCH
+| Owner | Before            | After            |
+| ----- | ----------------- | ---------------- |
+| Alice | 1.5 XCH (5 coins) | 0.5 XCH (3 coin) |
+| Bob   | 0 XCH             | 1.0 XCH (1 coin) |
+|       |
+| Total | 1.5 XCH           | 1.5 XCH          |
 
 ## Advantages of the account model
 
@@ -55,9 +55,9 @@ Solidity shares similar paradigms in programming to web development, so there is
 
 #### Coin set
 
-Transactions might involve spending and creating many coins, so a programmer must think about the rules governing how coins may be spent, and how coins will interact with each other. This makes programming in Chia more difficult than in Ethereum. However, auditing is much easier in Chia (see [Section 4.8](/docs/04coin-set-model/clvm_vs_evm "Section 4.8 CLVM vs EVM") for more info).
+Transactions might involve spending and creating many coins, so a programmer must think about the rules governing how coins may be spent, and how coins will interact with each other. This makes programming in Chia more difficult than in Ethereum. However, auditing is much easier in Chia (see [Section 4.8](/docs/04coin-set-model/clvm_vs_evm 'Section 4.8 CLVM vs EVM') for more info).
 
-----
+---
 
 ## Advantages of the coin set model
 
@@ -113,6 +113,6 @@ Programmable features are not stored directly on chain. Instead, coins use hashi
 
 Chia's database is expected to grow by around 30 GB annually, which is roughly the same rate as Bitcoin's. Kryder's Law dictates that storage capacity will grow exponentially in the short-to-medium term, whereas the database will grow linearly. In early 2022, an SSD capable of storing Chia's database cost less than $50. This should hold true for the foreseeable future, even as Chia's database continues to expand.
 
-#### Account 
+#### Account
 
 User account information, as well as transaction data, is small. However, smart contracts are stored on chain. Because of this, Ethereum's database will likely grow more rapidly than Bitcoin's or Chia's.

@@ -22,13 +22,13 @@ To prevent a foliage re-org, honest farmers only create one foliage block per bl
 
 Furthermore, blocks like B3, which come parallel with another foliage block (B2), do not have to sign the previous foliage block, since they do not necessarily have enough time to see it.
 
-  >By “coming in parallel”, we mean that the second block’s signage point occurs before the first block's infusion point.
+> By “coming in parallel”, we mean that the second block’s signage point occurs before the first block's infusion point.
 
 The red arrows in the diagram represent a foliage pointer that is signed by the plot key for the proof of space in that block. The gray arrows represent a hash pointer which is not signed by the plot key (therefore the gray arrow in B3 can be replaced if B2 changes or is withheld). This prevents attacks where B2 modifies their block and forces B3 to re-org.
 
 Blocks which have red pointers are also eligible to create transactions, and are therefore called transaction blocks.
 
-__A block is a transaction block if and only if it is the first block whose signage point occurs after the infusion of the previous transaction block.__
+**A block is a transaction block if and only if it is the first block whose signage point occurs after the infusion of the previous transaction block.**
 
 In the diagram, sp3 comes before B2, (a transaction block, and the previous block of B3), so B3 cannot be a transaction block.
 
@@ -51,19 +51,19 @@ While all blocks still choose the puzzle hashes of where their rewards go, those
 
 The average time between transaction blocks is 52 seconds. Several values are required to calculate this average:
 
-* Sub-slot time = 600 seconds
-* Signage point time = 64 per sub-slot, or 600/64 = 9.375 seconds
-* Average block time = 32 per sub-slot, or 600/32 = 18.75 seconds
-* Minimum signage points from current signage point until infusion_iterations is reached = 3 (See [Section 3.5](/docs/03consensus/signage_points_and_infusion_points "Section 3.5: Signage Points and Infusion Points") for more info.)
-* Minimum time for infusion_iterations to be reached (and therefore, minimum time between transaction blocks) = 3 * (600/64) = 28.125 seconds
-* Average signage points until infusion_iterations is reached is slightly more than 3.5 (must wait 3 signage points, plus an average wait of about 50% of the next signage point), or around 3.5 * 9.375 = 32.8125 seconds.
-* To create a transaction block, infusion_iterations first must be met, and then the next block some seconds afterwards will be a transaction block. The total average time for this to happen is around 52 seconds.
-* The formal equation is <img src="/img/block-time-calc.png" alt="(1/(e^(0.5)-1)+4)*9.375" width="200"/> or `(1/(e^(0.5)-1)+4)*9.375` which equals 51.95 seconds.
+- Sub-slot time = 600 seconds
+- Signage point time = 64 per sub-slot, or 600/64 = 9.375 seconds
+- Average block time = 32 per sub-slot, or 600/32 = 18.75 seconds
+- Minimum signage points from current signage point until infusion_iterations is reached = 3 (See [Section 3.5](/docs/03consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points') for more info.)
+- Minimum time for infusion_iterations to be reached (and therefore, minimum time between transaction blocks) = 3 \* (600/64) = 28.125 seconds
+- Average signage points until infusion_iterations is reached is slightly more than 3.5 (must wait 3 signage points, plus an average wait of about 50% of the next signage point), or around 3.5 \* 9.375 = 32.8125 seconds.
+- To create a transaction block, infusion_iterations first must be met, and then the next block some seconds afterwards will be a transaction block. The total average time for this to happen is around 52 seconds.
+- The formal equation is <img src="/img/block-time-calc.png" alt="(1/(e^(0.5)-1)+4)*9.375" width="200"/> or `(1/(e^(0.5)-1)+4)*9.375` which equals 51.95 seconds.
 
 The time between transaction blocks was deliberately chosen for a specific game-theoretic reason: If transaction blocks occurred at the same rate but there were no empty blocks between them, re-orgs and bribery attacks would be easier to pull off.
 
 Additionally, the fact that there are empty blocks between transaction blocks provides several benefits:
 
-* If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.
-* Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm.
-* Finally, empty blocks help to smooth farmers' rewards.
+- If blocks were created at the same rate and all of them contained transactions, low-power machines such as the Raspberry Pi wouldn't be able to keep up with the chain and therefore wouldn't be supported.
+- Empty blocks can also help dampen the effect of the chain slowing down, for example during a dust storm.
+- Finally, empty blocks help to smooth farmers' rewards.
