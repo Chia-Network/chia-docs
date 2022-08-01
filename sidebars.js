@@ -136,6 +136,7 @@ module.exports = {
           type: 'category',
           label: 'Reference Client',
           items: [
+            'client-implementations/reference-client/chia-installation-guide',
             'client-implementations/reference-client/check-if-things-are-working',
             'client-implementations/reference-client/key-management',
             'client-implementations/reference-client/chia-seeder-guide',
