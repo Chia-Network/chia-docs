@@ -16,8 +16,8 @@ A plot ID can be generated in one of two ways, depending on the desired farming 
 
 2. Farm to pool contract address. This method of farming is suitable for users who want to farm to a pool, and to be able to change pools in the future. Most farmers will likely use this method.
 
-Instead of requiring a signature by the pool, rewards go straight into the puzzle hash (or address), that is encoded into the plot. This address is a smart contract controlled by the user, which specifies the user's current pool. The user can switch pools, with a timeout delay that the pool operator may customize (typically 30 minutes).
+   Instead of requiring a signature by the pool, rewards go straight into the puzzle hash (or address), that is encoded into the plot. This address is a smart contract controlled by the user, which specifies the user's current pool. The user can switch pools, with a timeout delay that the pool operator may customize (typically 30 minutes).
 
-This approach requires creating a blockchain transaction of at least one mojo before farming. Farmers can get 100 mojos for free from the official [faucet](https://faucet.chia.net/ "Chia Network's official faucet").
+   This approach requires creating a blockchain transaction of at least one mojo before farming. Farmers can get 100 mojos for free from the official [faucet](https://faucet.chia.net/ "Chia Network's official faucet").
 
 The plot public key is explained in the next section.
