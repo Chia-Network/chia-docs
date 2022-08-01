@@ -8,20 +8,21 @@ This section will explain the different types of keys in the Chia network. It wi
 
 All Chia keys are [BLS-12-381](https://github.com/zkcrypto/bls12_381) private keys, following the [IETF specification](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/), the [EIP-2333](https://eips.ethereum.org/EIPS/eip-2333) specification for key derivation and [BIP 44 registered](https://github.com/satoshilabs/slips/blob/master/slip-0044.md). Private keys are 32 bytes, public keys 48 bytes, and signatures 96 bytes (public keys are points in G1, signatures are points in G2.)
 
-  >WARNING: There is a slight difference between Chia's implementation and EIP-2333, as described in the next section.
+> WARNING: There is a slight difference between Chia's implementation and EIP-2333, as described in the next section.
 
 BLS signatures allow for many features and optimizations, such as non-interactive m/n thresholds, aggregation of all signatures in a block, and [chialisp](https://chialisp.com) tricks like combining two coins into the same transaction.
 
 A 24-word mnemonic phrase is used as entropy in order to generate a private BLS key. The recommended method of key backup is to store the 24-word phrase offline. Recovery can then be performed by entering the 24-word phrase. The private key is not required for recovery.
 
 In theory, wallet recovery could also be performed from the master private key alone. However, there are some caveats:
-  * Chia Network Inc has not attempted this, and has no plans to attempt it. In fact, as far as we know, nobody has attempted it, so it is not guaranteed to work. It is not supported, and likely never will be supported. Use at your own risk
-  * Because this is not supported, you would need to create your own wallet in order to perform this recovery
-  * Even after a successful wallet recovery, you would not be able to recover your 24-word mnemonic phrase. The phrase is used as entropy to generate a private key; a phrase _cannot_ be generated _from_ a private key
+
+- Chia Network Inc has not attempted this, and has no plans to attempt it. In fact, as far as we know, nobody has attempted it, so it is not guaranteed to work. It is not supported, and likely never will be supported. Use at your own risk
+- Because this is not supported, you would need to create your own wallet in order to perform this recovery
+- Even after a successful wallet recovery, you would not be able to recover your 24-word mnemonic phrase. The phrase is used as entropy to generate a private key; a phrase _cannot_ be generated _from_ a private key
 
 The BLS master private key is stored in the OS keychain, which usually requires password authentication and is encrypted.
 
-  > Note: In theory, wallet recovery should be possible on a new system by copying the keychain from a system on which the wallet has already been installed. However, this is not supported. The only supported method of wallet recovery is with the 24-word seed phrase.
+> Note: In theory, wallet recovery should be possible on a new system by copying the keychain from a system on which the wallet has already been installed. However, this is not supported. The only supported method of wallet recovery is with the 24-word seed phrase.
 
 The master private key can be used to derive child keys, which can further be used to derive child keys, etc. The number of levels can be infinite. BLS public keys can be combined to form a new public key, which can be used to validate aggregate signatures.
 
