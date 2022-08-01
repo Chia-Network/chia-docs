@@ -8,7 +8,7 @@ module.exports = {
         'introduction/getting-started',
         'introduction/using-the-client',
         'introduction/chia-concepts',
-        'introduction/node-syncing'
+        'introduction/node-syncing',
       ],
     },
     {
@@ -18,7 +18,7 @@ module.exports = {
         'plotting/plotting-basics',
         'plotting/plotting-software',
         'plotting/ssd-ram-endurance',
-        'plotting/moving-plots'
+        'plotting/moving-plots',
       ],
     },
     {
@@ -126,18 +126,27 @@ module.exports = {
     {
       type: 'category',
       label: 'Command Line Interface',
-      items: [
-        'cli/cli',
-        'cli/did-cli',
-        'cli/nft-cli',
-      ],
+      items: ['cli/cli', 'cli/did-cli', 'cli/nft-cli'],
     },
     {
       type: 'category',
       label: 'Client Implementations',
       items: [
-        'client-implementations/python-client',
-        'client-implementations/electron-gui',
+        {
+          type: 'category',
+          label: 'Reference Client',
+          items: [
+            'client-implementations/reference-client/check-if-things-are-working',
+            'client-implementations/reference-client/key-management',
+            'client-implementations/reference-client/chia-seeder-guide',
+            'client-implementations/reference-client/directory-structure',
+            'client-implementations/reference-client/freebsd-install',
+            'client-implementations/reference-client/openbsd-install',
+            'client-implementations/reference-client/logging-reference',
+            'client-implementations/reference-client/password-protected-keys',
+            'client-implementations/reference-client/raspberry-pi',
+          ],
+        },
       ],
     },
     {
@@ -146,7 +155,7 @@ module.exports = {
       items: [
         'resources/references',
         'resources/storage-farming',
-        'resources/faq'
+        'resources/faq',
       ],
     },
   ],
