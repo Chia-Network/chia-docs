@@ -372,6 +372,35 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 }
  ```
 
+## get_block_spends
+
+Retrieves every coin that was spent in a block. Requires the header hash of the block to retrieve. Keep in mind that most blocks do not cointain any transactions. These blocks will simply return "[]" for this request.
+
+* **header_hash**: the block's header_hash
+
+```json 
+// Request
+curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key -d '{
+    "header_hash":"0x2e927dd3c83bf057b0f0144d79a046c6e58229e522dc2d6b9cc41ec96391609e"
+}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_spends
+
+// Response
+{
+    "block_spends": [{
+        "coin": {
+            "amount": 1, 
+            "parent_coin_info": "0xd75976eb5837b2c91778f47d5ad8d2972d9cbd854627940aa5df3dd51e08bb5a", 
+            "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+        }, 
+        "puzzle_reveal": "0xff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff0affff04ffff02ff0effff04ff02ffff04ffff04ff05ffff04ff0bffff04ff17ff80808080ff80808080ff808080ff808080ffff04ffff01ff33ff3cff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080", 
+        "solution": "0xffa07418054c549480839e77b4d16d8766c76f826936ddda3c9d93a8cc7687e5897bff01ff8080"
+    },
+    ...
+    ], 
+    "success": true
+}
+```
+
 ## get_unfinished_block_headers
 Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon.
 The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the
