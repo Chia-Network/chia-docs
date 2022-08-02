@@ -63,6 +63,10 @@ The minimum plot size needed for farming is k=32.
 
 If you want more peers and better network connectivity, you should also try opening port 8444 on your router so other peers can connect to you. Follow [these steps on port forwarding](https://bitcoin.org/en/full-node#port-forwarding) but using port 8444 instead of 8333. This helps the network be more decentralized. For further details about sync issues and port 8444, visit the [Resolving Sync Issues](https://github.com/Chia-Network/chia-blockchain/wiki/Resolving-Sync-Issues---Port-8444) page.
 
+# Graphical User Interface (GUI)
+
+For a complete guide on using the GUI, check out [using the GUI](/using-the-gui).
+
 # Using the Command-line Interface (CLI)
 
 Using the CLI with Chia gives you greater and more precise control. For a more details on the commands, read the [CLI Commands Reference](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference).
@@ -118,14 +122,6 @@ If you installed from source (using git), just activate and run `chia` directly.
 </Tabs>
 ```
 
-## Development/source builds
-
-If you've installed via the installers you can skip these steps.
-
-Remember that once you complete your install you **must be in the [Python virtual environment](https://docs.python-guide.org/dev/virtualenvs/)** which you access from the chia-blockchain directory, or the Windows "Chia Blockchain" directory, or your home directory if you opted for a binary install. Enter the virtual environment with the command `. ./activate`. Both dots are critical and once executed correctly your cli prompt will look something like `(venv) username@machine:~$` with `(venv)` prepended.
-
-Use `deactivate` should you want to exit the venv. If you're not a fan of dots, an equivalent alternative on most platforms is `source venv/bin/activate` and you'll see that method in places in this documentation.
-
 ### Migrate or set up configuration files
 
 ```bash
@@ -161,34 +157,13 @@ npm run electron &
 Farmers are entities in the network who use their drive space to try to create
 blocks (like Bitcoin's miners), and earn block rewards.
 
+## Plotting
+
 You can use the command line tools and change the working directories and output directory for plotting, with the `-t` (temp), `-2` (second temp), and `-d` (destination) arguments to the `chia plots create` command. `-n 2` will create two plots of type k=32 and take about 12 hours on NVMe drives in the example below.
 
 ```bash
 chia plots create -k 32 -n 2
 chia plots check -n 30
-```
-
-# Run a Timelord
-
-:::info
-If you want to run a Timelord on Linux, see [BUILD_TIMELORD.md](https://github.com/Chia-Network/chia-blockchain/blob/main/BUILD_TIMELORD.md). Information on blue boxes coming soon.
-:::
-
-Timelords execute sequential verifiable delay functions (proofs of time or VDFs), that get added to
-blocks to make them valid. This requires fast CPUs and a few cores per VDF as well as completing the install steps above and running the following from the chia-blockchain directory:
-
-```bash
-. ./activate
-sh install-timelord.sh
-chia start timelord &
-```
-
-# Alternatively run the local simulation
-
-You can instead run the simulation, which runs all servers and multiple full nodes, locally. Note the the simulation is local only and requires installation of timelords and VDFs. The introducer will only know the local IPs of the full nodes, so it cannot broadcast the correct IPs to external peers. This should work on MacOS and Linux.
-
-```bash
-chia start simulator
 ```
 
 ## Tips

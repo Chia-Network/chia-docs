@@ -43,6 +43,19 @@ The Company plans to run a few Timelords around the world - and some backups too
 
 ## Installing a Timelord
 
+:::info
+If you want to run a Timelord on Linux, see [BUILD_TIMELORD.md](https://github.com/Chia-Network/chia-blockchain/blob/main/BUILD_TIMELORD.md). Information on blue boxes coming soon.
+:::
+
+Timelords execute sequential verifiable delay functions (proofs of time or VDFs), that get added to
+blocks to make them valid. This requires fast CPUs and a few cores per VDF as well as completing the install steps above and running the following from the chia-blockchain directory:
+
+```bash
+. ./activate
+sh install-timelord.sh
+chia start timelord &
+```
+
 ### Regular Timelords
 
 Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows - yet. We have a plan to use GCC and some tools to enable vdf_client on Windows in a way that will be compatible with a Windows install of chia-blockchain. However it's a bit convoluted to get it working right. On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `sh install-timelord.sh` in the venv of a `git clone` style chia-blockchain install. Try `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving. We will shortly modify the Timelord build process to support MacOS ARM64 as well - which is a cakewalk compared to Windows...

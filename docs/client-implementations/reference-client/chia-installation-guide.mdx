@@ -391,6 +391,12 @@ chmod +x ./install-gui.sh
 bash start-gui.sh
 ```
 
+### A Note on Virutal Environments
+
+Remember that once you complete your install you **must be in the [Python virtual environment](https://docs.python-guide.org/dev/virtualenvs/)** which you access from the `chia-blockchain` directory, or the Windows `Chia Blockchain` directory, or your home directory if you opted for a binary install. Enter the virtual environment with the command `. ./activate`. Both dots are critical and once executed correctly your cli prompt will look something like `(venv) username@machine:~$` with `(venv)` prepended.
+
+Use `deactivate` should you want to exit the venv. If you're not a fan of dots, an equivalent alternative on most platforms is `source venv/bin/activate` and you'll see that method in places in this documentation.
+
 ### Troubleshooting
 
 Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version. Make sure all daemons and chia processes are killed before installing or upgrading.

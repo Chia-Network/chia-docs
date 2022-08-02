@@ -10,8 +10,9 @@ module.exports = {
       label: 'Introduction',
       items: [
         'introduction/getting-started',
-        'introduction/using-the-client',
+        'introduction/using-the-gui',
         'introduction/chia-concepts',
+        'introduction/intro-to-cryptocurrencies',
       ],
     },
     {
