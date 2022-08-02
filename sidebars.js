@@ -9,7 +9,6 @@ module.exports = {
       type: 'category',
       label: 'Introduction',
       items: [
-        'introduction/what-is-chia',
         'introduction/getting-started',
         'introduction/using-the-client',
         'introduction/chia-concepts',
