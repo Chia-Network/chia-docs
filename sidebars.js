@@ -103,8 +103,8 @@ module.exports = {
       label: 'Protocol',
       items: [
         'protocol/protocol',
-        'protocol/networking',
-        'protocol/serialization',
+        'protocol/networking-protocol',
+        'protocol/serialization-protocol',
         'protocol/harvester-protocol',
         'protocol/peer-protocol',
         {
