@@ -52,6 +52,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        announcementBar: {
+          id: 'cat2_launch',
+          content:
+            'CAT2 Standard Released 🌱<a target="_blank" rel="noopener noreferrer" href="/docs/cat2/cat2-intro/"> Learn about CAT1 end-of-life and CAT2 reissuance</a>',
+          backgroundColor: '#0d3349',
+          textColor: '#fff',
+          isCloseable: true,
+        },
         image: '/img/og-chia.png',
         navbar: {
           title: ' Chia Docs',
