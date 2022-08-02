@@ -3,6 +3,12 @@ title: Architecture
 slug: /key-architecture
 ---
 
+:::info
+
+This page details the architecture of keys. For a more general overview of other components, refer to the [Architecture Overview](/docs/architecture/architecture-overview.md) page.
+
+:::
+
 The following image assumes an architecture where the farmer decides to keep all keys separate.
 
 - a wallet key that can potentially be cold storage

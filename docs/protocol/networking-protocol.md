@@ -1,5 +1,5 @@
 ---
-title: Networking
+title: Networking Protocol
 slug: /networking-protocol
 ---
 

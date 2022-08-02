@@ -13,7 +13,6 @@ module.exports = {
         'introduction/getting-started',
         'introduction/using-the-client',
         'introduction/chia-concepts',
-        'introduction/node-syncing',
       ],
     },
     {
@@ -41,15 +40,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Architecture',
-      items: [
-        'architecture/architecture-overview',
-        'architecture/full-nodes',
-        'architecture/farmers',
-        'architecture/harvesters',
-        'architecture/timelords',
-        'architecture/pools',
-        'architecture/wallets',
-      ],
+      items: ['architecture/architecture-overview', 'architecture/mempool'],
     },
     {
       type: 'category',
@@ -93,17 +84,12 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Mempool',
-      items: ['mempool/mempool'],
-    },
-    {
-      type: 'category',
       label: 'Keys',
       items: [
+        'keys/architecture',
         'keys/keys-and-signatures',
         'keys/plot-ids',
         'keys/plot-public-keys',
-        'keys/architecture',
       ],
     },
     {
@@ -111,8 +97,8 @@ module.exports = {
       label: 'Protocol',
       items: [
         'protocol/protocol',
-        'protocol/networking',
-        'protocol/serialization',
+        'protocol/networking-protocol',
+        'protocol/serialization-protocol',
         'protocol/harvester-protocol',
         'protocol/peer-protocol',
         {
@@ -151,6 +137,7 @@ module.exports = {
           items: [
             'client-implementations/reference-client/chia-installation-guide',
             'client-implementations/reference-client/check-if-things-are-working',
+            'client-implementations/reference-client/node-syncing',
             'client-implementations/reference-client/key-management',
             'client-implementations/reference-client/chia-seeder-guide',
             'client-implementations/reference-client/directory-structure',

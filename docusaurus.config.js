@@ -13,19 +13,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/chia_leaf_green.svg',
-    organizationName: 'Chia-Network', // Usually your GitHub org/user name.
+    organizationName: 'Chia-Network',
+    projectName: '{{ REPOSITORY_NAME }}',
     plugins: [
       [
         require.resolve('@easyops-cn/docusaurus-search-local'),
         {
-          // ... Your options.
-          // `hashed` is recommended as long-term-cache of index file is possible.
           hashed: true,
-          // For Docs using Chinese, The `language` is recommended to set to:
-          // ```
           language: ['en', 'zh'],
-          // ```
-          // When applying `zh` in language, please install `nodejieba` in your project.
         },
       ],
     ],
@@ -44,7 +39,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           },
           docs: {
             sidebarPath: require.resolve('./sidebars.js'),
-            // Please change this to your repo.
             editUrl:
               'https://github.com/Chia-Network/{{ PROJECT_NAME }}/blob/main/',
           },
@@ -63,7 +57,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           title: ' Chia Docs',
           logo: {
             alt: 'My Site Logo',
-            src: 'img/chia-docs-icon.svg',
+            src: 'img/chia_leaf_green.svg',
           },
           items: [
             {
