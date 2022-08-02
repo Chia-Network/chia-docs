@@ -172,14 +172,13 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
 1. Figure out the total number of XCH mojos that were issued for your CAT1. If you already know this number, then you can skip this step.
 
-Note that this technique will only work if you previously registered your CAT1 with taildatabase.
+   Note that this technique will only work if you previously registered your CAT1 with taildatabase.
 
-    - Navigate to [taildatabase.com](https://www.taildatabase.com).
-    - Log in using the same user ID and password you used to register your CAT1.
-    - Locate your CAT1. We'll use Spacebucks for this example.
-    - You'll see *Supply* (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 trillion (1,000,000,000,000) XCH mojos.
-
-- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+   - Navigate to [taildatabase.com](https://www.taildatabase.com).
+   - Log in using the same user ID and password you used to register your CAT1.
+   - Locate your CAT1. We'll use Spacebucks for this example.
+   - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of kens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for e issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 illion (1,000,000,000,000) XCH mojos.
+   - Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
@@ -400,23 +399,22 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 1. Figure out the total number of XCH mojos that were issued for your CAT1. If you already know this number, then you can skip this step.
 
-Note that this technique will only work if you previously registered your CAT1 with taildatabase.
+   Note that this technique will only work if you previously registered your CAT1 with taildatabase.
 
-    - Navigate to [taildatabase.com](https://www.taildatabase.com).
-    - Log in using the same user ID and password you used to register your CAT1.
-    - Locate your CAT1. We'll use Spacebucks for this example.
-    - You'll see *Supply* (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. In this example, we'll use an issuance of 6 million (6,000,000) tokens, which is equivalent to 6 billion (6,000,000,000) XCH mojos.
-    - Click the *Chialisp* button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+   - Navigate to [taildatabase.com](https://www.taildatabase.com).
+   - Log in using the same user ID and password you used to register your CAT1.
+   - Locate your CAT1. We'll use Spacebucks for this example.
+   - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. In this example, we'll use an issuance of 6 million (6,000,000) tokens, which is equivalent to 6 billion (6,000,000,000) XCH mojos.
+   - Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
    :::note
-
    - You must run Chia `1.5.0` or greater.
    - You can run either the light wallet or a full node.
    - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
    - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-     :::
+   :::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 

@@ -687,7 +687,7 @@ chia rpc wallet did_create_attest '{"wallet_id": 3, "coin_name": "0x7b7cb8ea30d4
 Send some money to the new wallet to be used during the recovery:
 
 ```json
-(venv) PS C:\Users\User> chia wallet send -t txch1phed5va8r3ch94qr6kp8mu5hu52xz6u7267624vtq2lkl06zn73q3sryj6 -a 1 -m 0.00001
+chia wallet send -t txch1phed5va8r3ch94qr6kp8mu5hu52xz6u7267624vtq2lkl06zn73q3sryj6 -a 1 -m 0.00001
 Wallet keys:
 1)   2118200991
 2) * 2136152685 (Synced)
@@ -700,7 +700,7 @@ Run 'chia wallet get_transaction -f 2136152685 -tx 0x09dc82f5d8737def4b0ec70e7cd
 Sync the new wallet and show its contents. Note that `Profile 1` has zero balance:
 
 ```json
-(venv) PS C:\Users\User> chia wallet show
+chia wallet show
 Wallet keys:
 1) * 2118200991 (Synced)
 2)   2136152685
@@ -760,7 +760,7 @@ chia rpc wallet did_recovery_spend '{"wallet_id":2, "attest_data":["fc6f670ff6dc
 Wait a few minutes for the recovery spend to be confirmed on the blockchain. Afterward, `Profile 1` will have a balance of 1.0:
 
 ```json
-(venv) PS C:\Users\User> chia wallet show
+chia wallet show
 Wallet keys:
 1) * 2118200991 (Synced)
 2)   2136152685
@@ -1051,7 +1051,7 @@ Request Parameters:
 <summary>Example</summary>
 
 ```json
-(venv) $ chia rpc wallet did_create_backup_file '{"wallet_id": 3}' > wallet2.bak
+chia rpc wallet did_create_backup_file '{"wallet_id": 3}' > wallet2.bak
 more wallet2.bak
 ```
 

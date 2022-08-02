@@ -46,9 +46,10 @@ Options:
 |               | --help        | None    | False    | Show a help message and exit                                                       |
 
 <details>
-<summary>Example 1 - select a coin from the wallet with a value of at least 1 XCH (1 trillion mojos). </summary>
- 
+<summary>Example 1 - select a coin from the wallet with a value of at least 1 XCH (1 trillion mojos)</summary>
+
 Request:
+
 ```bash
 cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to txch1jk4r06xsj0fnwqk57322yjqzkdyx7kh8h8kvxus3l68tjnkf05aqd9uevs --amount 1000000000000 --as-bytes --select-coin
 ```
@@ -110,8 +111,8 @@ Options:
 |               | --help                        | NONE    | False    | Show a help message and exit                                                                                                                                                                                           |
 
 <details>
-<summary>Create a coin tree from a .csv file, currying a coin ID that was obtained from the `cats` command</summary>
- 
+<summary>Create a coin tree from a CSV file, currying a coin ID that was obtained from the cats command</summary>
+
 ```bash
 secure_the_bag --tail .\reference_tails\genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path C:\Users\User\Downloads\spacebucks.csv --prefix txch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
 ```
