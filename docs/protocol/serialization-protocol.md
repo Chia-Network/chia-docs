@@ -1,5 +1,5 @@
 ---
-title: Serialization
+title: Serialization Protocol
 slug: /serialization-protocol
 ---
 
