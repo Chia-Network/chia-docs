@@ -41,7 +41,15 @@ module.exports = {
     {
       type: 'category',
       label: 'Architecture',
-      items: ['architecture/architecture-overview'],
+      items: [
+        'architecture/architecture-overview',
+        'architecture/full-nodes',
+        'architecture/farmers',
+        'architecture/harvesters',
+        'architecture/timelords',
+        'architecture/pools',
+        'architecture/wallets',
+      ],
     },
     {
       type: 'category',
