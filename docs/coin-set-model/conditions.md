@@ -1,8 +1,7 @@
 ---
-sidebar_position: 2
+title: Conditions
+slug: /coin-set-conditions
 ---
-
-# 4.2 Conditions
 
 Puzzles in Chia must be valid CLVM programs. These programs are executed by the CLVM interpreter, and they must either fail, or return a list of **conditions**. Recall that every spend of a coin must run the puzzle associated with that coin.
 

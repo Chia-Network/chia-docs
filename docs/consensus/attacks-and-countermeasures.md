@@ -1,5 +1,7 @@
 ---
+sidebar_label: Attacks and Countermeasures
 title: Relevant Attacks and Countermeasures
+slug: /consensus-attacks
 ---
 
 ## Majority attack

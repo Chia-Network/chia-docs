@@ -2,6 +2,11 @@ module.exports = {
   tutorialSidebar: [
     {
       type: 'category',
+      label: 'CAT2 Upgrade Guide',
+      items: ['cat2/cat2-intro', 'cat2/cat2-snapshot', 'cat2/cat2-issuance'],
+    },
+    {
+      type: 'category',
       label: 'Introduction',
       items: [
         'introduction/what-is-chia',
@@ -46,7 +51,7 @@ module.exports = {
         'consensus/proof-of-space',
         'consensus/vdfs',
         'consensus/challenges',
-        'consensus/signage-points-and-infusion-points',
+        'consensus/signage-and-infusion-points',
         'consensus/harvester-algorithm',
         'consensus/multiple-blocks',
         'consensus/three-vdf-chains',
@@ -63,7 +68,7 @@ module.exports = {
       type: 'category',
       label: 'Coin Set Model',
       items: [
-        'coin-set-model/what-is-a-coin',
+        'coin-set-model/coin-set-intro',
         'coin-set-model/conditions',
         'coin-set-model/spend-bundles',
         'coin-set-model/addresses',

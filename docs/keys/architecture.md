@@ -1,5 +1,6 @@
 ---
 title: Architecture
+slug: /key-architecture
 ---
 
 The following image assumes an architecture where the farmer decides to keep all keys separate.

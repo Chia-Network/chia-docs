@@ -1,5 +1,6 @@
 ---
 title: Foliage
+slug: /consensus-foliage
 ---
 
 In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical.

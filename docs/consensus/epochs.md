@@ -1,5 +1,6 @@
 ---
 title: Epoch and Difficulty Adjustment
+slug: /epoch-and-difficulty
 ---
 
 **Sub-epoch**: Sub-epoch N starts when sub-epoch N-1 ends (except for 0th sub-epoch), and it ends at the end of the first slot where 384 \* (N+1) blocks have been included since genesis.

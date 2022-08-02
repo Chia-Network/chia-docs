@@ -1,6 +1,6 @@
 ---
 title: Serialization
-slug: serialization
+slug: /serialization-protocol
 ---
 
 Serialization in Chia refers to how objects are converted into bytes for uses such as transmitting to other nodes, storing on disk, or hashing objects.

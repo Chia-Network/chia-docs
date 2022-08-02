@@ -1,5 +1,6 @@
 ---
 title: Plot Public Keys
+slug: /plot-public-keys
 ---
 
 So, what is the plot public key shown in the previous section? The plot public key can technically be any BLS public key. As long as the correct signatures are included in the block, full nodes will allow it. However, BLS allows us to combine many public keys into one, which allows native N-of-N signatures without full nodes noticing that a multi-signature is used. In the current versions of `chia-blockchain`, we use this to our advantage to increase security. Please note that these schemes are not consensus critical, and therefore some farmers might use different strategies for generating their public keys.

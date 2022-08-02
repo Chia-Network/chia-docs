@@ -1,5 +1,6 @@
 ---
 title: Analysis
+slug: /consensus-analysis
 ---
 
 ## Safety

@@ -1,5 +1,6 @@
 ---
 title: Block Format
+slug: /block-format
 ---
 
 ## Full Block

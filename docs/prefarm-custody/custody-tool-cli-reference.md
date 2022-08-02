@@ -1,5 +1,6 @@
 ---
 title: Custody Tool CLI Reference
+slug: /custody-tool-cli
 ---
 
 This is a reference guide for the commands available in the [internal-custody repo](https://github.com/Chia-Network/internal-custody/) as well as the HSM commands, which are used generating keys and for secure signing.

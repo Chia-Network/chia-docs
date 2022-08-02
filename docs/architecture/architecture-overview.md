@@ -1,6 +1,6 @@
 ---
 title: Architecture Overview
-slug: architecture-overview
+slug: /architecture-overview
 ---
 
 ![chia-architecture](/img/chia-network-architecture.png)
@@ -56,7 +56,7 @@ For most challenges, the quality (step 1) will be very low, so fetching the enti
 
 Finally, harvesters also maintain a private key for each plot. The blocks are signed with these keys, which is an important concept in Chia. It means that even when a farmer is a member of a pool, the farmer still controls the contents of a block. This is quite different from other blockchains' pooling protocols, where the pool operators are the ones signing the blocks.
 
-> The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/consensus/harvester_algorith 'Section 3.6: Harvester Algorithm').
+> The harvester algorithm is discussed in greater detail in [Section 3.6](/docs/consensus/harvester_algorithm 'Section 3.6: Harvester Algorithm').
 
 ## Timelords
 
@@ -139,7 +139,8 @@ Having an open-source ASIC Timelord that everyone can buy inexpensively is the C
 One of the things that is great about the [Chia new consensus](https://docs.google.com/document/d/1tmRIb7lgi4QfKkNaxuKOBHRmwbVlGL4f7EsBDr_5xZE/edit) is that it makes it almost impossible for a Farmer with a maliciously faster Timelord to selfishly Farm. Due to the way the new consensus works, a Farmer with a faster Timelord is basically compelled to prove time for all the farmers winning blocks around him also. Having an "evil" faster Timelord can give a benefit when attempting to 51% attack the network, so it is still important that over time we push the Timelord speeds as close to the maximum speeds of the silicon processes available. We expect to have the time and the resources to do that right and make open-source hardware versions widely available.
 
 ## Terminology
-* VDF: verifiable delay function, another way to say "proof of time"
-* Timelord launcher: a small program which launches "vdf client" processes over and over, to perform the actual VDF calculations.
-* VDF client: a C++ process which performs a VDF computation and then shuts down
-* Timelord: The timelord communicates with the node, and is what decides which VDF tasks to assign to which clients. The vdf clients connect through HTTP to the timelord. So you can have the timelord in a separate machine as the timelord launcher
+
+- VDF: verifiable delay function, another way to say "proof of time"
+- Timelord launcher: a small program which launches "vdf client" processes over and over, to perform the actual VDF calculations.
+- VDF client: a C++ process which performs a VDF computation and then shuts down
+- Timelord: The timelord communicates with the node, and is what decides which VDF tasks to assign to which clients. The vdf clients connect through HTTP to the timelord. So you can have the timelord in a separate machine as the timelord launcher

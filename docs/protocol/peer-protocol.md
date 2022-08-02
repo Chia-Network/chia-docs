@@ -1,6 +1,6 @@
 ---
 title: Peer Protocol
-slug: peer-protocol
+slug: /peer-protocol
 ---
 
 This protocol is a bidirectional protocol for communication between full nodes in the Chia system.

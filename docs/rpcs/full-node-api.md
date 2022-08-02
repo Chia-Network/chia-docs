@@ -1,5 +1,6 @@
 ---
 title: Full Node API
+slug: /full-node-api
 ---
 
 The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for

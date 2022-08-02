@@ -1,6 +1,6 @@
 ---
 title: Networking
-slug: networking
+slug: /networking-protocol
 ---
 
 The Chia protocol is asynchronous and peer-to-peer. It runs on top of WebSockets on port 8444 (or other ports for farmers and timelords). All nodes act as both clients and servers, and can maintain long-term connections with other peers.

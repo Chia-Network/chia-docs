@@ -1,6 +1,6 @@
 ---
 title: Summary
-slug: pool-protocol
+slug: /pool-protocol
 ---
 
 The Chia pool protocol has been designed for security and decentralization. It does not rely on any 3rd party, closed code, or trusted behavior.

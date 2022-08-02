@@ -1,5 +1,6 @@
 ---
 title: Chia Protocol
+slug: /chia-protocol
 ---
 
 The Chia protocol is composed of a few different sub-protocols. All protocol messages are sent encoded in Streamable format, using the networking protocol defined in [Section 7](/docs/networking/networking 'Section 3.7: Networking'). The following documents go into depth into the messages sent by each type of service/node, and how they should be interpreted.

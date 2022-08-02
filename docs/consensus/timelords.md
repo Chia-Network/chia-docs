@@ -1,5 +1,6 @@
 ---
 title: Timelord Algorithm
+slug: /timelord-algorithm
 ---
 
 A timelord keeps track of the current peak, which includes an infused block at a certain height, and signage points from the peak onward. A timelord might receive new blocks to infuse, new peaks (blocks which are already infused), or new signage points.

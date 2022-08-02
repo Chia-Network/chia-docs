@@ -1,5 +1,6 @@
 ---
 title: Addresses
+slug: /coin-set-addresses
 ---
 
 Puzzle hashes in Chia are 32-byte values. These can be displayed in hex, but this can lead to errors due to typos, and a poor user experience. Therefore, Chia displays puzzle hashes in a custom format called an _address_. The encoding scheme used is [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki).
@@ -20,7 +21,7 @@ The blockchain consensus code does not operate with addresses; addresses are onl
 
 # Chia Burn Address
 
-## tl;dr 
+## tl;dr
 
 Chia burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
 
@@ -34,7 +35,7 @@ A traditional bech32m puzzle hash for a burn address is all zeros ending in "dea
 
 Converting this to an address, you end up with the burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
 
-You can use a [puzzle hash converter](https://www.chiaexplorer.com/tools/address-puzzlehash-converter) to verify for yourself. 
+You can use a [puzzle hash converter](https://www.chiaexplorer.com/tools/address-puzzlehash-converter) to verify for yourself.
 
 ---
 

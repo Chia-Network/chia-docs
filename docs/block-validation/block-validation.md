@@ -1,5 +1,6 @@
 ---
 title: Block Validation
+slug: /block-validation
 ---
 
 Block validation in Chia is composed of two parts: header validation and body validation.

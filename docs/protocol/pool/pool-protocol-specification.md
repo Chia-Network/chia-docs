@@ -1,6 +1,6 @@
 ---
 title: Pool Protocol 1.0 Specification
-slug: pool-protocol-specification
+slug: /pool-protocol-specification
 ---
 
 # 11.2 Chia Pool Protocol 1.0 Specification

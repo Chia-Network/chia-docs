@@ -1,5 +1,6 @@
 ---
 title: Overflow Blocks and Weight
+slug: /overflow-blocks
 ---
 
 ## Overflow Blocks

@@ -1,5 +1,6 @@
 ---
 title: Harvester Protocol
+slug: /harvester-protocol
 ---
 
 The harvester protocol defines the messages sent between a farmer service and a harvester service. These tend to

@@ -1,5 +1,6 @@
 ---
 title: Three VDF Chains
+slug: /three-vdf-chains
 ---
 
 If we only used one VDF (for the reward chain), the inclusion or exclusion of blocks would allow control of the challenge for the next slot. This means that an attacker could try many different combinations of blocks, and choose the challenge that suits them best, to obtain more wins in the next slot.

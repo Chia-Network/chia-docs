@@ -1,5 +1,6 @@
 ---
-title: Signage Points and Infusion Points
+title: Signage and Infusion Points
+slug: /signage-and-infusion-points
 ---
 
 # 3.5 Signage Points and Infusion Points

@@ -1,5 +1,6 @@
 ---
 title: Index of Commands
+slug: /cli-commands
 ---
 
 We plan to add a reference doc for each of our CLI commands in this section. For now, we have a selection of commands documented on our [wiki](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference).
@@ -13,11 +14,12 @@ This is not meant to be comprehensive, because often the `-h` (help) text is cle
 If want to know what a command's options are, append `-h` at the end to see options and explanations.
 
 Some examples:
-* `chia -h`
-* `chia plots -h`
-* `chia plots check -h`
-* `chia plotters madmax -h`
-* `chia start -h`
+
+- `chia -h`
+- `chia plots -h`
+- `chia plots check -h`
+- `chia plotters madmax -h`
+- `chia start -h`
 
 As with the rest of this project, this doc is a work-in-progress. Feel free to browse the [source code](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/cmds) or the [Chia Proof of Space Construction Document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) for more insight in the meantime.
 
@@ -33,12 +35,9 @@ Do a sanity check in `Terminal.app` with
 
 You can use that if you augment your `PATH` with
 
-`
-PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$PATH
-`
+`PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$PATH`
 
 and then `chia -h` should work.
-
 
 ## Windows
 
@@ -55,32 +54,36 @@ Command: `chia init`
 First, `init` checks for old versions of chia installed in your ~/.chia directory.
 
 If so, `init` migrates these old files to the new version:
-* config (including old SSL files)
-* db
-* wallet
-* Using config.yaml, updates wallet keys and ensures coinbase rewards go to the right wallet puzzlehash.
+
+- config (including old SSL files)
+- db
+- wallet
+- Using config.yaml, updates wallet keys and ensures coinbase rewards go to the right wallet puzzlehash.
 
 If no old version exists, `init`:
-* Creates a default chia configuration
-* Initializes a new SSL key and cert (for secure communication with the GUI)
+
+- Creates a default chia configuration
+- Initializes a new SSL key and cert (for secure communication with the GUI)
 
 # start
 
 Command: `chia start {service}`
 
-* Service `node` will start only the full node.
-* Service `farmer` will start the farmer, harvester, a full node, and the wallet.
-* positional arguments:
+- Service `node` will start only the full node.
+- Service `farmer` will start the farmer, harvester, a full node, and the wallet.
+- positional arguments:
   {all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
 
 **Flags**
 
-`-r, --restart`: Restart of running processes 
+`-r, --restart`: Restart of running processes
 
 # plotters
+
 In 1.2.11 the option to use different plotters was introduced. The plotters supported include [Bladebit](https://github.com/Chia-Network/bladebit), [madMAx](https://github.com/madMAx43v3r/chia-plotter), and the original reference chiapos plotter. Each plotter has slightly different hardware requirements and may need slightly different options specified. Learn more about the alternative plotters here: [Alternative Plotters](https://github.com/Chia-Network/chia-blockchain/wiki/Alternative--Plotters)
 
 ## madmax
+
 For details on settings and usage of madMAx please refer to the original [madMAx Github repository](https://github.com/madMAx43v3r/chia-plotter), or run the help command `chia plotters madmax -h`.
 
 ```
@@ -119,6 +122,7 @@ optional arguments:
 ```
 
 ## bladebit
+
 `chia plotters bladebit -h`
 
 ```
@@ -196,18 +200,18 @@ Example 3 below will create five k32 plots (`-n 5`) one at a time using 4GB `-b 
 
 `chia plots create -k 32 -b 4000 -n 5 -t /path/to/temporary/directory -2 /path/to/secondary/temp/directory -d /path/to/final/directory`
 
-
 **Additional Plotting Notes**
 
-* During plotting, Phase 1 (Forward Propagation) and Phase 3 (Compression) tend to take the most time. Therefore, to maximize plotting speed, `-t` and `-2` should be on your fastest drives, and `-d` can be on a slow drive.
+- During plotting, Phase 1 (Forward Propagation) and Phase 3 (Compression) tend to take the most time. Therefore, to maximize plotting speed, `-t` and `-2` should be on your fastest drives, and `-d` can be on a slow drive.
 
-* There are 4 major phases to plotting. Phase 1 of plotting can utilize multi-threading. Phases 2-3 do not. You can better optimize your plotting by using the `-r` flag in your command and setting it to greater than 2, e.g,. `-r 2`. Above 4 threads there are diminishing returns. Many Chia users have determined it's more efficient to plot in parallel, rather than series. You can do this by just having multiple plotting instances open but staggering when they start 30min or more. 
+- There are 4 major phases to plotting. Phase 1 of plotting can utilize multi-threading. Phases 2-3 do not. You can better optimize your plotting by using the `-r` flag in your command and setting it to greater than 2, e.g,. `-r 2`. Above 4 threads there are diminishing returns. Many Chia users have determined it's more efficient to plot in parallel, rather than series. You can do this by just having multiple plotting instances open but staggering when they start 30min or more.
 
-* It's objectively faster to plot on SSD's instead of HDD's. However, SSD's have significantly more limited lifespans, and early Chia testing has seemed to indicate that plotting on SSD's wears them out pretty quickly. Therefore, many Chia users have decided it's more "green" to plot in parallel on many HDD's at once.
+- It's objectively faster to plot on SSD's instead of HDD's. However, SSD's have significantly more limited lifespans, and early Chia testing has seemed to indicate that plotting on SSD's wears them out pretty quickly. Therefore, many Chia users have decided it's more "green" to plot in parallel on many HDD's at once.
 
-* Plotting is designed to be as efficient as possible. However, to prevent grinding attacks, farmers should not be able to create a plot within the average block interval. That's why the minimum k-size is k32 on mainnet.
+- Plotting is designed to be as efficient as possible. However, to prevent grinding attacks, farmers should not be able to create a plot within the average block interval. That's why the minimum k-size is k32 on mainnet.
 
 ## plotnft
+
 Using the CLI, you can perform the same operations as with the GUI. There is a new command, called `chia plotnft`. Type `chia plotnft -h` to see all the available sub-commands:
 
 ```
@@ -244,18 +248,19 @@ First, this looks in all plot directories from your config.yaml. You can check t
 
 Examples for using `-g`
 
-* Check plots within a long directory name like `/mnt/chia/DriveA` can use `chia plots check -g DriveA`
-* Check only k33 plots can use `chia plots check -g k33`
-* Check plots created on October 31, 2020 can use `chia plots check -g 2020-10-31`
+- Check plots within a long directory name like `/mnt/chia/DriveA` can use `chia plots check -g DriveA`
+- Check only k33 plots can use `chia plots check -g k33`
+- Check plots created on October 31, 2020 can use `chia plots check -g 2020-10-31`
 
 `-l` allows you to find duplicate plots by ID. It checks all plot directories listed in config.yaml and lists out any plot filenames with the same filename ending; `*-[64 char plot ID].plot`. You should use `-l -n 0` if you only want to check for duplicates.
 
 `-n` represents the number of challenges given. If you don't include an `-n` integer, the default is 30. For instance, if `-n` is 30, then 30 challenges will be given to each plot. The challenges count from 5 (minimum) to `-n`, and are not random.
 
 Each plot will take each challenge and:
-* Get the quality for the challenge (Is there a proof of space? You should expect 1 proof per challenge, but there may be 0 or more than 1.)
-* Get the full proof(s) for the challenge if a proof was present
-* Validate that the # of full proofs matches the # of expected quality proofs.
+
+- Get the quality for the challenge (Is there a proof of space? You should expect 1 proof per challenge, but there may be 0 or more than 1.)
+- Get the full proof(s) for the challenge if a proof was present
+- Validate that the # of full proofs matches the # of expected quality proofs.
 
 Finally, you'll see a report the final true proofs vs. expected proofs.
 
@@ -268,13 +273,14 @@ Consider using `-n 30` to get a statistically better idea.
 For more detail, you can read about the DiskProver commands in [chiapos](https://github.com/Chia-Network/chiapos/blob/master/src/prover_disk.hpp)
 
 **What does the ratio of full proofs vs expected proofs mean?**
-* If the ratio is >1, your plot was relatively lucky for this run of challenges.
-* If the ratio is <1, your plot was relatively unlucky.
-    * This shouldn't really concern you unless your ratio is <0.70 # If so, do a more thorough `chia plots check` by increasing your `-n` 
 
-The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio << 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be << 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge.  "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge". 
+- If the ratio is >1, your plot was relatively lucky for this run of challenges.
+- If the ratio is <1, your plot was relatively unlucky.
+  - This shouldn't really concern you unless your ratio is <0.70 # If so, do a more thorough `chia plots check` by increasing your `-n`
 
-**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio << 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable.  Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`. 
+The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio << 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be << 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge. "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge".
+
+**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio << 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
 
 # db
 
@@ -284,7 +290,7 @@ Command: `chia db upgrade [add flags and parameters]`
 
 **Flags**
 
-`--input  [PATH]`: (optional) Specify a database input file. Must be a v1 database.
+`--input [PATH]`: (optional) Specify a database input file. Must be a v1 database.
 
 `--output [PATH]`: (optional) Specify a database output file. Can be any name, but must not already exist.
 
@@ -292,13 +298,12 @@ Command: `chia db upgrade [add flags and parameters]`
 
 **Database upgrade notes**
 
-* This will upgrade your database from version 1 to version 2, which is around 45% smaller and slightly faster.
-* The upgrade could take several hours to complete. Use at your own leisure.
-* You do not need to stop your Chia node while performing the upgrade.
-* The new database file will be written to the same folder as the original. The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly_. After the version 2 file has been created, you can stop Chia and move/delete your version 1 file, which will free up enough space to move your version 2 file to the original folder. Finally, update the references in config.yaml to point to your version 2 file.
-* After the upgrade has completed, run `chia start farmer -r`. This will restart your farmer, and begin using your new database. Note that it will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
-* For more info, see our [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-new-database "Longer explanation of the new database.").
-
+- This will upgrade your database from version 1 to version 2, which is around 45% smaller and slightly faster.
+- The upgrade could take several hours to complete. Use at your own leisure.
+- You do not need to stop your Chia node while performing the upgrade.
+- The new database file will be written to the same folder as the original. The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly_. After the version 2 file has been created, you can stop Chia and move/delete your version 1 file, which will free up enough space to move your version 2 file to the original folder. Finally, update the references in config.yaml to point to your version 2 file.
+- After the upgrade has completed, run `chia start farmer -r`. This will restart your farmer, and begin using your new database. Note that it will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
+- For more info, see our [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-new-database 'Longer explanation of the new database.').
 
 # keys
 
@@ -314,11 +319,10 @@ Command: `chia keys derive [OPTIONS] COMMAND [ARGS]`
 
 **Notes on deriving keys**
 
-* This command will display or search for derived keys or wallet-addresses.
-* This command requires either a fingerprint or a mnemonic seed file.
-* The valid values for `COMMAND` are `child-key`, `search`, and `wallet-address`.
-* See below for details and example commands.
-
+- This command will display or search for derived keys or wallet-addresses.
+- This command requires either a fingerprint or a mnemonic seed file.
+- The valid values for `COMMAND` are `child-key`, `search`, and `wallet-address`.
+- See below for details and example commands.
 
 ### [child-key](https://github.com/Chia-Network/chia-blockchain/blob/2f2593661c842b70a0e848752f12777f2df3ed18/chia/cmds/keys.py#L271)
 
@@ -342,15 +346,13 @@ Example HD path: m/12381n/8444n/2/
 
 `--show-hd-path`: Show the HD path of the derived wallet addresses. [default: False]
 
-
 **Examples**
 
-* Show the first singleton pubkey: `chia keys derive -f <fingerprint> child-key -t singleton`
+- Show the first singleton pubkey: `chia keys derive -f <fingerprint> child-key -t singleton`
 
-* Show a pair of public and private keys derived from a mixed observer/non-observer HD path using an imported key's mnemonic seed: `chia keys derive --mnemonic-seed-filename <(chia keys generate_and_print | sed -n 2p) child-key --derive-from-hd-path 'm/12381n/8444n/2/' --show-private-keys --show-hd-path`
+- Show a pair of public and private keys derived from a mixed observer/non-observer HD path using an imported key's mnemonic seed: `chia keys derive --mnemonic-seed-filename <(chia keys generate_and_print | sed -n 2p) child-key --derive-from-hd-path 'm/12381n/8444n/2/' --show-private-keys --show-hd-path`
 
-* Generate a mnemonic seed and show the farmer pubkeys 10-14 derived from that seed: `chia keys derive --mnemonic-seed-filename <(chia keys generate_and_print | sed -n 2p) child-key -i 10 -n 5 -t farmer`
-
+- Generate a mnemonic seed and show the farmer pubkeys 10-14 derived from that seed: `chia keys derive --mnemonic-seed-filename <(chia keys generate_and_print | sed -n 2p) child-key -i 10 -n 5 -t farmer`
 
 ### [search](https://github.com/Chia-Network/chia-blockchain/blob/2f2593661c842b70a0e848752f12777f2df3ed18/chia/cmds/keys.py#L162)
 
@@ -370,8 +372,7 @@ Command: `chia keys derive search [OPTIONS] [SEARCH_TERMS]...`
 
 **Examples**
 
-* Search for a wallet address: `chia keys derive search -t address -l 100 <xch address>`
-
+- Search for a wallet address: `chia keys derive search -t address -l 100 <xch address>`
 
 ### [wallet-address](https://github.com/Chia-Network/chia-blockchain/blob/2f2593661c842b70a0e848752f12777f2df3ed18/chia/cmds/keys.py#L234)
 
@@ -391,11 +392,11 @@ Command: `chia keys derive wallet-address [OPTIONS]`
 
 **Examples**
 
-* Show first 10 wallet addresses:
+- Show first 10 wallet addresses:
 
   `chia keys derive -f <fingerprint> wallet-address -i 0 -n 10 --show-hd-path`
 
---------
+---
 
 # DID
 
@@ -433,6 +434,7 @@ Commands:
   wallet      Manage your wallet
 
 ```
+
 To see what you can do with each of these commands, use the help flag -h. For example, `chia show -h`.
 
 To check your full node status, do `chia show -s` and you'll see something like this. To figure how close
@@ -473,6 +475,5 @@ Sample result:
 17:08:03.227 harvester src.plotting.plot_tools : INFO     Found plot /home/user/slab1/plots/plot-k32-2021-01-11-17-26-bf2363828e469a3417b89eb98cfa9d694809e1ce8bef0ffd1d12853d4227aa0a.plot of size 32
 17:08:03.227 harvester src.plotting.plot_tools : INFO     Loaded a total of 1 plots of size 0.09895819725716137 TiB
 ```
-
 
 Maybe follow logs: `tail -F ~/.chia/mainnet/log/debug.log`. Chia is nice enough to rotate logs for you.

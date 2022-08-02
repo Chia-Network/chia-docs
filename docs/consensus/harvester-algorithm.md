@@ -1,5 +1,6 @@
 ---
 title: Harvester Algorithm
+slug: /harvester-algorithm
 ---
 
 Approximately every 9.375 seconds, the full node sends a new signage point to the farmer, who sends it to each harvester.

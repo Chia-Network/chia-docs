@@ -1,8 +1,7 @@
 ---
-sidebar_position: 1
+title: Coin Set Intro
+slug: /coin-set-intro
 ---
-
-# 4.1 Coins, Puzzles and Solutions
 
 NOTE: This section will briefly discuss Chialisp and the coin set model. For a more in-depth tutorial, head over to [chialisp.com](http://chialisp.com "Chialisp's official website").
 

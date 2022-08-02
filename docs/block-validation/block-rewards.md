@@ -1,5 +1,6 @@
 ---
 title: Block Rewards
+slug: /block-rewards
 ---
 
 In Chia, the issuance schedule, also referred to as the block reward schedule, determines how many XCH get created with every block that gets farmed on the network.

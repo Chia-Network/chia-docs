@@ -1,5 +1,6 @@
 ---
 title: Proof of Space
+slug: /proof-of-space
 ---
 
 A Proof of Space protocol is one in which:

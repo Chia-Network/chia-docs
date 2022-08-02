@@ -1,5 +1,6 @@
 ---
 title: Multiple Blocks
+slug: /consensus-multiple-blocks
 ---
 
 <figure>
