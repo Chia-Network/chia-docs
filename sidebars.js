@@ -39,7 +39,16 @@ module.exports = {
     {
       type: 'category',
       label: 'Architecture',
-      items: ['architecture/architecture-overview', 'architecture/mempool'],
+      items: [
+        'architecture/architecture-overview',
+        'architecture/full-nodes',
+        'architecture/farmers',
+        'architecture/harvesters',
+        'architecture/timelords',
+        'architecture/pools',
+        'architecture/wallets',
+        'architecture/mempool',
+      ],
     },
     {
       type: 'category',

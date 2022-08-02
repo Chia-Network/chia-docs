@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-slug: /getting-started
+slug: /
 ---
 
 ## What is Chia?
