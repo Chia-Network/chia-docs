@@ -1,6 +1,6 @@
 ---
-title: SSD/RAM Endurance
-slug: /ssd-ram-endurance
+title: SSD Endurance
+slug: /ssd-endurance
 ---
 
 ## Estimated SSD wear out, endurance table
@@ -9,10 +9,10 @@ There are various approaches to picking a great plotting SSD, and a lot will dep
 
 Endurance with madMAx plotter is measured at
 
-* -t & -2 on same drive: 1.43TB or 1.31TiB written per k=32 plot
-* -t only (-2 in ramdisk): 396.3 GB, 369.1 GiB (0.36 TiB)
+- -t & -2 on same drive: 1.43TB or 1.31TiB written per k=32 plot
+- -t only (-2 in ramdisk): 396.3 GB, 369.1 GiB (0.36 TiB)
 
-Endurance is how much data can be written to the SSD before it wears out. In Chia this is important because a plotting SSD will generally be at 100% duty cycle and writing all day. 
+Endurance is how much data can be written to the SSD before it wears out. In Chia this is important because a plotting SSD will generally be at 100% duty cycle and writing all day.
 
 A mixed use or high endurance data center or enterprise SSD is the best choice for plotting. Used SSDs with plenty of endurance can be found for a good value on eBay, Craigslist, or similar.
 
@@ -24,34 +24,33 @@ working model can be found [here](https://docs.google.com/spreadsheets/d/1mNUYRW
 You can learn more about SSD endurance from this SNIA whitepaper from JM [here](https://www.snia.org/forums/cmsi/ssd-endurance)
 
 ## Math
-* NAND P/E Cycles = amount of program / erase cycles NAND can do before wearing out. NAND programs (writes) in pages and erases in blocks (contains many pages)
-* Wearing out - SSD no longer meeting UBER (uncorrectable bit error rate),  retention (keeping data safe while powered off), failure rate, or user capacity
-* UBER = number of data errors / number of bits read
-* WAF (Write Amplification Factor) = NAND writes / host writes
-* TBW or PBW – amount of host writes to SSD before wearing out
-* TBW = drive capacity * cycles / WAF
-* DWPD (drive writes per day): amount of data you can write to device each day of the warranty (typically 5 years) without wearing out
-* DWPD = TBW/365/5/drive capacity
+
+- NAND P/E Cycles = amount of program / erase cycles NAND can do before wearing out. NAND programs (writes) in pages and erases in blocks (contains many pages)
+- Wearing out - SSD no longer meeting UBER (uncorrectable bit error rate), retention (keeping data safe while powered off), failure rate, or user capacity
+- UBER = number of data errors / number of bits read
+- WAF (Write Amplification Factor) = NAND writes / host writes
+- TBW or PBW – amount of host writes to SSD before wearing out
+- TBW = drive capacity \* cycles / WAF
+- DWPD (drive writes per day): amount of data you can write to device each day of the warranty (typically 5 years) without wearing out
+- DWPD = TBW/365/5/drive capacity
 
 ## Monitor Endurance in Linux
 
-
 ### NVMe
+
 https://github.com/linux-nvme/nvme-cli
 
 https://nvmexpress.org/open-source-nvme-management-utility-nvme-command-line-interface-nvme-cli/
 
-Reading endurance with NVMe-CLI - this is the gas gauge that shows total endurance used 
+Reading endurance with NVMe-CLI - this is the gas gauge that shows total endurance used
 
 `sudo nvme smart-log /dev/nvme0 | grep percentage_used`
-	
 Reading amount of writes that the drive have actually done
 
 `sudo nvme smart-log /dev/nvme0 | grep data_units_written`
-	
-Bytes written = output * 1000 * 512B
+Bytes written = output _ 1000 _ 512B
 
-TBW = output * 1000 * 512B / (1000^4) or (1024^4)
+TBW = output _ 1000 _ 512B / (1000^4) or (1024^4)
 
 To find out NAND writes, you will have use the vendor plugins for NVMe-CLI.
 
@@ -61,8 +60,8 @@ Example with an Intel SSD
 
 `sudo nvme intel smart-log-add /dev/nvme0`
 
-
 ### SATA
+
 In SATA you can use the following commands
 
 `sudo apt install smartmontools`
@@ -78,16 +77,16 @@ note this does also work for NVMe for basic SMART health info
 `sudo smartctl -a /dev/nvme0`
 
 ### SAS
+
 `sg_logs /dev/sg1 --page=0x11`
 
 look for
 
-```Percentage used endurance indicator: 0%```
-
+`Percentage used endurance indicator: 0%`
 
 overview of SSD endurance testing from JEDEC industry standard here
 https://www.jedec.org/sites/default/files/Alvin_Cox%20%5BCompatibility%20Mode%5D_0.pdf
 
 ## Adding new models
-Please add your model string below if you want me to put it into my calculator and add to the list!
 
+Please add your model string below if you want me to put it into my calculator and add to the list!

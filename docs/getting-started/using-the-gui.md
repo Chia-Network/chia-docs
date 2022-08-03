@@ -74,7 +74,8 @@ Let's go ahead and add a plot!
 ![add a plot](/img/add-a-plot.png)
 
 If available I recommend madMAx Plotter as the plotting software of choice. This allows you to easily create plots in serial without much setup.
-Start off by just creating a single plot. Once you understand how it works, you can create many more. It is important to understand [temp space and k sizes](#), as well as [SSD endurance](#).
+Start off by just creating a single plot. Once you understand how it works, you can create many more. If you wish to create many plots It is important to understand [SSD endurance](/docs/ssd-endurance).
+
 ![pooling](/img/pooling.png)
 ![Join a pool faucet](/img/join-a-pool-faucet.png)
 ![faucet](/img/faucet.png)
