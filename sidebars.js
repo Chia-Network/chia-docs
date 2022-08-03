@@ -7,13 +7,17 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Introduction',
+      label: 'Getting Started',
       items: [
-        'introduction/getting-started',
-        'introduction/using-the-gui',
-        'introduction/chia-concepts',
-        'introduction/intro-to-cryptocurrencies',
+        'getting-started/quick-start-guide',
+        'getting-started/using-the-gui',
+        'getting-started/chia-concepts',
       ],
+    },
+    {
+      type: 'category',
+      label: 'About',
+      items: ['about/cryptocurrency-intro', 'about/chia-intro'],
     },
     {
       type: 'category',
@@ -80,6 +84,18 @@ module.exports = {
         'coin-set-model/conditions',
         'coin-set-model/spend-bundles',
         'coin-set-model/addresses',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Primitives',
+      items: [
+        'primitives/standard-transactions',
+        'primitives/cats',
+        'primitives/nfts',
+        'primitives/dids',
+        'primitives/offers',
+        'primitives/singletons',
       ],
     },
     {

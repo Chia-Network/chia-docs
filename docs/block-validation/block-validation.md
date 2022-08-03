@@ -46,7 +46,7 @@ Normal operation is much less CPU-intensive than full sync, since there is only 
 ## Block Validation Steps
 
 The following sections list all of the required checks to ensure validity of a block. Please note that the official protocol and specification are defined by the `chia-blockchain`
-[Python implementation](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/consensus), and NOT by this documentation page.
+[reference implementation](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/consensus), and not by this documentation page.
 
 ### Header Validation
 

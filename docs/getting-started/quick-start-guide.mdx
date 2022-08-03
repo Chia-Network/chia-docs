@@ -1,52 +1,114 @@
 ---
-title: Getting Started
+title: Quick Start Guide
 slug: /
 ---
 
-## What is Chia?
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
 
-Or, jump to [installation](#Install).
+## What is Chia? {#what}
 
-Chia is a cryptocurrency and blockchain smart transaction platform. Chia was designed from the ground up to make cryptocurrency easier to use -- and harder to lose -- than cash. The PoST consensus has a much [lower energy consumption](https://chiapower.org "Chia's energy consumption statistics") compared to Proof of Work (PoW), and part of Chia's vision involves improving the carbon footprint of the blockchain industry.
+Chia is a cryptocurrency and blockchain with smart transaction capabilities. Its [PoST consensus](/docs/consensus-overview) is the first (and only) Nakamoto consensus since Proof of Work, and has a much [lower energy consumption](https://chiapower.org/).
 
-On August 1, 2017, [Bram Cohen](https://www.chia.net/profiles/bram-cohen "Bram Cohen's Chia profile") founded the Chia company and incorporated it in the state of Delaware. Bram led the development of Chia, along with many engineers, researchers, and open source contributors. Along the way, Chia created three new inventions in applied cryptography, and advanced the interest and adoption in a fourth:
+Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives recently launched for CATs, Offers, NFTs and DIDs.
 
-- The first production use of [BLS Signatures](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub").
-- The first production use of a [Verifiable Delay Function (VDF)](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub").
-- [Proofs of Space](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub") and [Time](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub") (PoST), the first (and only) Nakamoto consensus since Proof of Work.
-- The first production use of [class groups of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long').
+The Chia software is [easy to install](#install). You can start earning cryptocurrency rewards by storing plot files on your hard drive and leaving the machine running.
 
-Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing.
+## Install Chia {#install}
 
-For more information on the company's strategies, see [Chia's business white paper](https://www.chia.net/whitepaper "Chia's business white paper").
+```mdx-code-block
+<Tabs
+  defaultValue="installer"
+  groupId="install"
+  values={[
+    {label: 'Official installer', value: 'installer'},
+    {label: 'Dev builds', value: 'dev'},
+    {label: 'apt repository', value: 'apt'},
+    {label: 'From source', value: 'source'},
+  ]}>
+  <TabItem value="installer">
+```
 
-### Smart transactions
+- [Windows](https://download.chia.net/latest/Setup-Win64.exe)
+- [macOS Apple Silicon](https://download.chia.net/latest/Setup-MacOS-arm64.dmg)
+- [macOS Intel](https://download.chia.net/latest/Setup-MacOS.dmg) _Catalina 10.15 and later_
+- [macOS Intel](https://download.chia.net/install/Chia-1.5.0-10.14-intel.dmg) _Mojave 10.14_
+- [Ubuntu/Debian](https://download.chia.net/latest/x86_64-Ubuntu-gui)
+- [Ubuntu/Debian ARM](https://download.chia.net/latest/ARM64-Ubuntu-gui)
+- [CentOS/Redhat](https://download.chia.net/latest/x86_64-Redhat-gui)
 
-Chia has a new smart transaction model, which uses a powerful (yet simple) higher-level language called [chialisp](https://chialisp.com 'Chialisp.com'), and an accompanying lower-level language called CLVM (ChiaLisp Virtual Machine).
+:::caution
+For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
+:::
 
-Chia uses the coin set model (similar to Bitcoin's UTXO) to track the blockchain's state. The simple nature of this model facilitates the writing of high value and secure contracts. Unlike in systems that use the account model such as Ethereum, the code that creates Chia's coins is strongly sandboxed. This increases security, reduces Maximum Extractable Value (MEV), and makes the code fully auditable.
+```mdx-code-block
+</TabItem>
+<TabItem value="dev">
+```
 
-> For more info, see [chialisp.com](https://chialisp.com/ 'Chialisp.com').
+- [Windows](https://download.chia.net/latest-dev/ChiaSetup-latest-dev.exe)
+- [macOS Apple Silicon](https://download.chia.net/latest-dev/Chia-arm64_latest_dev.dmg)
+- [macOS Intel](https://download.chia.net/latest-dev/Chia-intel_latest_dev.dmg) _Catalina 10.15 and later_
+- [Ubuntu/Debian](https://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb)
+- [Ubuntu/Debian ARM](https://download.chia.net/latest-dev/chia-blockchain_arm64_latest_dev.deb)
+- [CentOS/Redhat](https://download.chia.net/latest-dev/chia-blockchain-1.x86_64_latest_dev.rpm)
 
-### Decentralized
+:::caution
+For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
+:::
 
-Chia uses a consensus algorithm called [Proofs of Space and Time](https://www.chia.net/assets/ChiaGreenPaper.pdf "Chia's Green Paper"). This algorithm allows anyone with an internet connection and some free disk space to participate in securing the network. Because of this process of farming (analogous to mining), Chia has become the most decentralized blockchain on the planet, with hundreds of thousands of full nodes securing the system.
+```mdx-code-block
+</TabItem>
+<TabItem value="apt">
+```
 
-### Improved Pooling
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
-Like many other blockchains, Chia allows pooling to smooth out the rewards structure for smaller farmers. However, Chia's pooling protocol has three unique features:
+```mdx-code-block
+  </TabItem>
+  <TabItem value="source">
+```
 
-- Farmers create new blocks, whether they're farming solo or as a member of a pool.
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
-This design decision was made in conjunction with Chia's goal of decentralization. In other blockchains such as Bitcoin, four or five pools control over 51% of the global hashrate on any given day. (Sources: [blockchain.com](https://www.blockchain.com/pools "blockchain.com pie chart of Bitcoin's hashrate distribution"), [blockchair.com](https://blockchair.com/bitcoin/charts/hashrate-distribution "blockchair.com pie chart of Bitcoin's hashrate distribution")) Arguably, the easiest way to attack Bitcoin would be to bribe each of these pools' operators.
+```mdx-code-block
+  </TabItem>
+</Tabs>
+```
 
-In Chia, the pool operators are only responsible for distributing rewards. They cannot modify the blockchain. Therefore, Chia's pooling protocol doesn't lead to increased centralization.
+## What next?
 
-- Joining a pool is permissionless. Farmers don't need to sign up for anything in order to join.
+### Start Plotting
 
-- When a block is won, the farmer gets 1/8 of the rewards, and the pool operator gets the other 7/8. This was done to discourage pool operators from harming their competition by farming on a competing pool and neglecting to create a block when they find a proof. (Solo farmers collect the entire reward when they create a block.)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-> For more info on Chia's pooling protocol, see [Section 11](/docs/pooling/pooling 'Section 11: Pooling').
+[Get plotting now](/docs/)
+
+### Start Farming
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+[Get farming now](/docs/)
+
+### Run a Node
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+[Start running a node now](/docs/)
+
+### Build on Chia
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+[Start building on Chia today](/docs/)
 
 ## Install Chia {#install-chia}
 
@@ -70,9 +132,6 @@ For a complete guide on using the GUI, check out [using the GUI](/using-the-gui)
 # Using the Command-line Interface (CLI)
 
 Using the CLI with Chia gives you greater and more precise control. For a more details on the commands, read the [CLI Commands Reference](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference).
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ```mdx-code-block
 <Tabs>
@@ -159,6 +218,10 @@ blocks (like Bitcoin's miners), and earn block rewards.
 
 ## Plotting
 
+Plotting is the process of creating plots to be farmed. Once a plot is created, it can be farmed indefinately. In other words, you do not have to plot forever, just plot until you are out of storage.
+
+Reference our [plotting guide](/docs/plotting-basics) for more details.
+
 You can use the command line tools and change the working directories and output directory for plotting, with the `-t` (temp), `-2` (second temp), and `-d` (destination) arguments to the `chia plots create` command. `-n 2` will create two plots of type k=32 and take about 12 hours on NVMe drives in the example below.
 
 ```bash
@@ -178,4 +241,4 @@ in the router's configuration.
 
 # RPC Interface
 
-The Node has an RPC interface with [documentation](https://github.com/Chia-Network/chia-blockchain/wiki/RPC-Interfaces).
+The Node has an [RPC interface](/docs/rpc-api). This RPC will allow you to interact with the Chia node through code.

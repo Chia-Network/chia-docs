@@ -1,0 +1,4 @@
+---
+title: NFTs
+slug: /nfts
+---

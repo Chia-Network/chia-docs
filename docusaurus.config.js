@@ -56,7 +56,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
         navbar: {
           title: ' Chia Docs',
           logo: {
-            alt: 'My Site Logo',
+            alt: 'Chia Logo',
             src: 'img/chia_leaf_green.svg',
           },
           items: [
@@ -141,12 +141,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           copyright: `© ${new Date().getFullYear()} Chia Network Inc., Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://www.chia.net/terms">Terms</a>`,
         },
         prism: {
-          theme: lightCodeTheme,
-          darkTheme: darkCodeTheme,
-          additionalLanguages: [
-            'powershell',
-            'lisp',
-          ],
+          darkTheme: require('./src/theme/prism-dark-theme-chialisp'),
+          theme: require('./src/theme/prism-light-theme-chialisp'),
+          additionalLanguages: ['powershell', 'lisp'],
         },
       }),
   }

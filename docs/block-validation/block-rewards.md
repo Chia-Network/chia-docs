@@ -9,7 +9,7 @@ All consensus code uses mojos; XCH is used as a conveniently larger unit.
 
 ## Strategic Reserve (pre-farm)
 
-The first block of the network pays out 21 million XCH, divided into a 1/8 coin and a 7/8 coin, to an address that Chia Network Inc controls. The purpose and future usage of the funds is described in the [business whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html).
+The first block of the network pays out 21 million XCH, divided into a 1/8 coin and a 7/8 coin, to an address that Chia Network Inc controls. The purpose and future usage of the funds is described in the [business whitepaper](https://www.chia.net/whitepaper).
 
 ## Halvings
 
@@ -34,7 +34,7 @@ In most cryptocurrencies, the creator of a block pays themselves based on the _c
 
 Fees are also paid at the same time. Let's say a farmer creates a transaction block with 4.9 XCH of outputs, but 5 XCH of inputs (excluding reward claims). In this case, they will receive the remaining 0.1 XCH as a fee, plus their block reward, for a total of 2.1 XCH, in the next transaction block.
 
-Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in [chialisp.com](https://chialisp.com/docs/coin_lifecycle#fees-and-the-mempool "Fees and the Mempool section of Chialisp's tutorial on coin lifecycles").
+Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in the [Fees and the Mempool section](https://chialisp.com/docs/coin_lifecycle#fees-and-the-mempool) on the Chialisp website.
 
 ## Farmer vs Pool reward
 

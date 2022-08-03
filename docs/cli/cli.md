@@ -3,8 +3,6 @@ title: Index of Commands
 slug: /cli-commands
 ---
 
-We plan to add a reference doc for each of our CLI commands in this section. For now, we have a selection of commands documented on our [wiki](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference).
-
 # CLI Commands Reference (from Wiki)
 
 This page should provide additional high-level documentation and explanation beyond just `chia -h`.
@@ -80,7 +78,7 @@ Command: `chia start {service}`
 
 # plotters
 
-In 1.2.11 the option to use different plotters was introduced. The plotters supported include [Bladebit](https://github.com/Chia-Network/bladebit), [madMAx](https://github.com/madMAx43v3r/chia-plotter), and the original reference chiapos plotter. Each plotter has slightly different hardware requirements and may need slightly different options specified. Learn more about the alternative plotters here: [Alternative Plotters](https://github.com/Chia-Network/chia-blockchain/wiki/Alternative--Plotters)
+In 1.2.11 the option to use different plotters was introduced. The plotters supported include [Bladebit](https://github.com/Chia-Network/bladebit), [madMAx](https://github.com/madMAx43v3r/chia-plotter), and the original reference chiapos plotter. Each plotter has slightly different hardware requirements and may need slightly different options specified. Learn more about the alternative plotters in the [Alternative Plotters page](/docs/plotting-software).
 
 ## madmax
 
@@ -158,7 +156,7 @@ Command: `chia plots create [add flags and parameters]`
 
 **Flags**
 
-`-k` [size]: Define the size of the plot(s). For a list of k-sizes and creation times on various systems check out: [k-Sizes](https://github.com/Chia-Network/chia-blockchain/wiki/k-sizes)
+`-k` [size]: Define the size of the plot(s). For a list of k-sizes and creation times on various systems check out: [k-Sizes](/docs/plotting-basics)
 
 `-n` [number of plots]: The number of plots that will be made, in sequence. Once a plot is finished, it will be moved to the final location `-d`, before starting the next plot in the sequence.
 
@@ -303,7 +301,7 @@ Command: `chia db upgrade [add flags and parameters]`
 - You do not need to stop your Chia node while performing the upgrade.
 - The new database file will be written to the same folder as the original. The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly_. After the version 2 file has been created, you can stop Chia and move/delete your version 1 file, which will free up enough space to move your version 2 file to the original folder. Finally, update the references in config.yaml to point to your version 2 file.
 - After the upgrade has completed, run `chia start farmer -r`. This will restart your farmer, and begin using your new database. Note that it will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
-- For more info, see our [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-new-database 'Longer explanation of the new database.').
+- For more information on the new database version, see our [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-new-database').
 
 # keys
 
@@ -400,13 +398,13 @@ Command: `chia keys derive wallet-address [OPTIONS]`
 
 # DID
 
-See our [official DID reference](https://docs.chia.net/docs/13cli/did_cli).
+See our [official DID reference](/docs/did-cli).
 
 ---
 
 # NFT
 
-See our [official NFT reference](https://docs.chia.net/docs/13cli/nft_cli).
+See our [official NFT reference](/docs/nft-cli).
 
 ---
 
