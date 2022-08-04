@@ -114,13 +114,19 @@ This is the default hidden puzzle, used when calculating the synthetic public ke
 (=)
 ```
 
-## Design Decisions
+## Synthetic Key
+
+The code for calculating the synthetic public key can be found in the [chia-blockchain repository](https://github.com/Chia-Network/chia-blockchain/blob/67b45c92eaab014c9c77a83b42e14e5f5fa6e28b/chia/wallet/puzzles/p2_delegated_puzzle_or_hidden_puzzle.py#L88).
 
 The synthetic public key is calculated using a child of the root key. It contains a hidden puzzle which can be executed instead of revealing the original public key when spending the standard transaction. This is extra functionality that can be used for other wallets.
 
-Because you don't need to reveal the hidden puzzle ine very spend, it allows you to keep a secret until you want to spend it, even if you use the address to spend other coins normally. It can act as a sort of backup plan or alternative way to spend it.
+## Hidden Puzzle
+
+Because you don't need to reveal the hidden puzzle in every spend, it allows you to keep a secret until you want to spend it, even if you use the address to spend other coins normally. It can act as a sort of backup plan or alternative way to spend it.
 
 The default hidden puzzle simply fails when executed, preventing anything other than a typical transaction from being done with coins locked using it.
+
+In other words, we don't currently use this in the official wallet, but it may be used for additional functionality in the future.
 
 ## Addresses
 
