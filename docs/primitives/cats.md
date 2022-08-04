@@ -3,7 +3,9 @@ title: CATs
 slug: /cats
 ---
 
-Chia Asset Tokens are fungible tokens that are issued on the Chia blockchain.
+Chia Asset Tokens are fungible tokens that are issued on the Chia blockchain. The CAT puzzle ensures that the supply of a specific CAT never changes unless the rules of issuance specific to that CAT are followed. These are enforced using a separate Chialisp program called the Token and Asset Issuance Limitations (TAIL).
+
+Aside from the TAIL, there is also an [inner puzzle](https://devs.chia.net/guides/chialisp-inner-puzzles) that the CAT wraps around. The inner puzzle controls the ownership of the specific coin, and when the coin is spent, the new puzzle is wrapped in the CAT again. Typically, you wrap the [standard transaction](/standard-transactions) so that you can send CATs to Chia wallet addresses.
 
 :::note
 
@@ -426,7 +428,7 @@ This is the source code of the standard transaction, which can also be found on 
 
 </details>
 
-Additionally, there are a few standard TAIL (Token Asset and Issuance Limitations) puzzles.
+Additionally, there are a few standard TAIL puzzles.
 
 This is the single-issuance TAIL that prevents melting and requires the parent to be a specific coin. This is currently the default way to issue CATs, since it ensures the supply will never increase.
 
@@ -530,33 +532,23 @@ Here is the [source code](https://github.com/Chia-Network/chia-blockchain/blob/m
 
 </details>
 
-## Design Decisions
+## Usage
 
-CATs have the property of being "marked" in a way that makes them unusable as regular XCH. However, it is usually possible to "melt" CATs back into XCH later. CATs are often used as credits, or tokens - kind of like casino chips.
+CATs are designed in a way that makes them unusable as regular XCH in spends. However, it is usually possible to melt them back into XCH later. Tokens are often used as a form of credits, such as casino chips or store credit.
 
-The chialisp code that **all CATs** share is [here](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/cat.clvm 'cat.clvm - the source code that all CATs share'). Without following this puzzle format, wallets will not be able to recognize a token as a CAT.
+Using TAILs you can accommodate issuance requirements such as these:
 
-The entire purpose of the code linked above is to ensure that the supply of a specific CAT never changes unless a specific set of “rules of issuance” is followed. Each CAT has its own unique rules of issuance, **which is the only distinction between different types of CATs**. These issuance rules take the form of an arbitrary Chialisp program that follows a specific structure. We call that program the **Token and Asset Issuance Limitations (TAIL)**.
-
-The CAT layer is an [outer puzzle](https://chialisp.com/common_functions#outer-and-inner-puzzles 'Chialisp documentation for how to create outer and inner puzzles'), which contains two curried parameters:
-
-1. An inner puzzle, which controls the CAT's ownership.
-2. The puzzlehash of a TAIL, which defines three aspects of a CAT:
-   - The CAT's type. (Two CATs with the same TAIL are of the same type, even if they contain different inner puzzles.)
-   - The CAT's issuance rules.
-   - The CAT's melting rules.
-
-Some examples of issuance requirements that different TAILs could accommodate include:
-
-- Stablecoins - The creator will want to mint new tokens as they gain funds to back them.
-- Limited supply tokens - The creator will want to run a single issuance, with the guarantee that no more tokens of the same type can ever be minted.
-- Asset redemption tokens - The creator will want to allow the CAT's owners to melt the tokens into standard XCH, as long as they follow certain rules.
+| Usage            | Description                                                   |
+| ---------------- | ------------------------------------------------------------- |
+| Stablecoins      | Creator can mint new tokens as they gain funds to back them.  |
+| Limited Supply   | Creator can run one issuance, and no more can ever be minted. |
+| Asset Redemption | Creator can allow owners to melt into XCH by following rules. |
 
 In all of these cases, the TAIL program is run when a coin is spent to check if the issuance is valid.
 
-We will cover the TAIL program in more detail later, but first let's cover what the CAT layer does.
+## Design Decisions
 
-## Design choices
+(not done rewriting past here)
 
 - **When a CAT is spent, any coins created automatically become CATs with the same TAIL**
 
