@@ -315,7 +315,7 @@ Request Parameters:
 | :------------- | :------- | :------------------------------------------------------------------------------------------------------------------ |
 | wallet_id      | True     | The Wallet ID of the NFT to transfer                                                                                |
 | target_address | True     | The address to transfer the NFT to. For NFT0 this must be an XCH address. For NFT1 this could also be a DID address |
-| nft_coin_id    | True     | The coin ID of the NFT to transfer                                                                                  |
+| nft_coin_id    | True     | The coin ID of the NFT to transfer. This can be obtained by running the [nft_get_nfts](#nft_get_nfts) RPC and selecting the value of `nft_coin_id` from the output |
 | fee            | False    | The one-time blockchain fee to be used upon transferring the NFT                                                    |
 
 <details>
@@ -388,7 +388,7 @@ Request Parameters:
 | coin_id   | True     | The coin ID of the NFT about which to retrieve info  |
 
 :::info
-`coin_id` can refer to the specific `nft_coin_id` pertaining to this NFT, or to the `launcher_id`, or to the bech32m encoded launcher id
+For this RPC, `coin_id` can refer to the specific `nft_coin_id` pertaining to this NFT, or to the `launcher_id`, or to the bech32m encoded launcher id
 :::
 
 <details>
@@ -460,7 +460,7 @@ Request Parameters:
 | Parameter   | Required | Description                                                               |
 | :---------- | :------- | :------------------------------------------------------------------------ |
 | wallet_id   | True     | The Wallet ID of the DID wallet to transfer                               |
-| nft_coin_id | True     | The coin ID of the NFT on which to add a URI                              |
+| nft_coin_id | True     | The coin ID of the NFT to transfer. This can be obtained by running the [nft_get_nfts](#nft_get_nfts) RPC and selecting the value of `nft_coin_id` from the output |
 | key         | True     | Must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI) |
 | uri         | True     | The URI to add                                                            |
 | fee         | False    | The one-time blockchain fee to be used upon adding a URI                  |
