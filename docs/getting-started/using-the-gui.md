@@ -146,6 +146,8 @@ One way to get NFTs is to find them in a marketplace such as [Dexie](https://dex
 
 In the next section we will learn about offers which can be used to aquire NFTs in a decentralized way.
 
+[Read more about NFTs](/nfts).
+
 ## Offers
 
 When aquiring NFTs or tokens, you may need to make an offer for them. Offers are a form of decentralized exchange. Using offers you can trade one asset for another with no middleman.
@@ -155,3 +157,5 @@ When aquiring NFTs or tokens, you may need to make an offer for them. Offers are
 </p>
 
 By using offers you are embracing the decentralized nature of the Chia blockchain.
+
+[Read more about offers](/offers).
