@@ -538,7 +538,7 @@ The chialisp code that **all CATs** share is [here](https://github.com/Chia-Netw
 
 The entire purpose of the code linked above is to ensure that the supply of a specific CAT never changes unless a specific set of “rules of issuance” is followed. Each CAT has its own unique rules of issuance, **which is the only distinction between different types of CATs**. These issuance rules take the form of an arbitrary Chialisp program that follows a specific structure. We call that program the **Token and Asset Issuance Limitations (TAIL)**.
 
-The CAT layer is an [outer puzzle](https://chialisp.com/docs/common_functions#outer-and-inner-puzzles 'Chialisp documentation for how to create outer and inner puzzles'), which contains two curried parameters:
+The CAT layer is an [outer puzzle](https://chialisp.com/common_functions#outer-and-inner-puzzles 'Chialisp documentation for how to create outer and inner puzzles'), which contains two curried parameters:
 
 1. An inner puzzle, which controls the CAT's ownership.
 2. The puzzlehash of a TAIL, which defines three aspects of a CAT:
@@ -605,7 +605,7 @@ We will cover the TAIL program in more detail later, but first let's cover what 
 
 - **CATs have the option to use hinting**
 
-  Hinting is a way to signal the CAT's type to a Chia wallet. The hint is typically an inner puzzle hash. For more info, see our [FAQ](/docs/faq#q-what-is-hinting 'Hinting, explained').
+  Hinting is a way to signal the CAT's type to a Chia wallet. The hint is typically an inner puzzle hash. For more info, see our [FAQ](/faq#q-what-is-hinting 'Hinting, explained').
 
 ## Spend Accounting
 

@@ -15,7 +15,7 @@ Farmers respond to network challenges to earn rewards for securing the Chia netw
 
 ## Proof of space verification
 
-The proof of space construction and [Section 3.2](/docs/consensus/proof-of-space/) contains the details on the format for plot files. A plot file size is determined by a k value where each plot is made up of 7 tables each with 2^k entries. When a challenge arrives the plot filter is applied to reduce the disk io by the value of the plot filter constant, which is currently set to 512. The probability of a plot being accessed each challenge, which happens on the signage point interval time, is 1/512. The probability of an individual disk being accessed can be found with the binomial distribution function cumulative probability with a probability per plot, n trials equal to the number of plots on the disk (probability of X successes ≥ 1) per signage point. The amount of IOPS (input/output operations per second) can be estimated by determining the mean of the plot filter passes per day and multiplying by the number of seeks required for a proof quality check. In the pooling protocol a pool operator requests several partial proofs of space per day per drive to verify that the pool participant is indeed storing as much data as they claim. The bandwidth and amount of data transferred can be estimated by looking at the average blocksize of the read requests multiplied by the IOPS.
+The proof of space construction and [Section 3.2](/consensus/proof-of-space/) contains the details on the format for plot files. A plot file size is determined by a k value where each plot is made up of 7 tables each with 2^k entries. When a challenge arrives the plot filter is applied to reduce the disk io by the value of the plot filter constant, which is currently set to 512. The probability of a plot being accessed each challenge, which happens on the signage point interval time, is 1/512. The probability of an individual disk being accessed can be found with the binomial distribution function cumulative probability with a probability per plot, n trials equal to the number of plots on the disk (probability of X successes ≥ 1) per signage point. The amount of IOPS (input/output operations per second) can be estimated by determining the mean of the plot filter passes per day and multiplying by the number of seeks required for a proof quality check. In the pooling protocol a pool operator requests several partial proofs of space per day per drive to verify that the pool participant is indeed storing as much data as they claim. The bandwidth and amount of data transferred can be estimated by looking at the average blocksize of the read requests multiplied by the IOPS.
 
 **Constants in proof of space that were chosen for Chia**
 
@@ -126,7 +126,7 @@ Network Traffic (Chia harvester only)
 ### Measurement tools
 
 - [Grafana](https://grafana.com/)
-- [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
+- [Node Exporter](https://prometheus.io/guides/node-exporter/)
 - [Prometheus](https://prometheus.io/)
 - [Standalone Linux IO Tracer](https://github.com/Open-CAS/standalone-linux-io-tracer)
 - dstat, iostat (sysstat)
@@ -180,5 +180,5 @@ Chia is a light workload for a hard drive, 309 times lower disk busy time than a
 
 ## Resources
 
-1. [JEDEC ](https://www.jedec.org/standards-documents/docs/jesd218b01)JESD218B.01 SOLID STATE DRIVE (SSD) REQUIREMENTS AND ENDURANCE TEST METHOD
+1. [JEDEC ](https://www.jedec.org/standards-documents/jesd218b01)JESD218B.01 SOLID STATE DRIVE (SSD) REQUIREMENTS AND ENDURANCE TEST METHOD
 2. [Facebook’s Tectonic Filesystem: Efficiency from Exascale](https://www.usenix.org/system/files/fast21-pan.pdf)

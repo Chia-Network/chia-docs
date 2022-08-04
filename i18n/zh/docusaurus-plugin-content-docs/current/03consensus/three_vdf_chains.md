@@ -8,7 +8,7 @@ sidebar_position: 8
 
 如果我们只使用一个 VDF（用于奖励链），则包含或排除区块将允许控制下一个时隙的挑战。这意味着攻击者可以尝试多种不同的区块组合，并选择最适合他们的挑战，以便在下一个时隙中获得更多胜利。
 
-这些类型的攻击被称为权利压迫攻击，它们是从工作量证明转变为空间证明或权益证明的主要困难之一。[第 3.14 节](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Relevant Attacks and Countermeasures')提供了更多详细信息。
+这些类型的攻击被称为权利压迫攻击，它们是从工作量证明转变为空间证明或权益证明的主要困难之一。[第 3.14 节](/consensus/attacks_and_countermeasures 'Section 3.14: Relevant Attacks and Countermeasures')提供了更多详细信息。
 
 为了缓解这种情况，挑战将仅基于融入时隙的第一个区块。
 
@@ -47,7 +47,7 @@ sp = 标牌点，B = 块，c = 挑战，r = 奖励
 
 If we only used one VDF (for the reward chain), the inclusion or exclusion of blocks would allow control of the challenge for the next slot.This means that an attacker could try many different combinations of blocks, and choose the challenge that suits them best, to obtain more wins in the next slot.
 
-These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or PoStake.More detail is provided in [Section 3.14](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Relevant Attacks and Countermeasures').
+These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or PoStake.More detail is provided in [Section 3.14](/consensus/attacks_and_countermeasures 'Section 3.14: Relevant Attacks and Countermeasures').
 
 To mitigate this, the challenges will be based only on the first block to be infused in a slot.
 
@@ -85,7 +85,7 @@ The chain in the middle is called the **infused challenge chain**. It starts at 
 
 回想一下，一个**时隙**必须至少有 16 个奖励链块。子时隙没有最小块数（尽管它的目标是 32 个块）。相反，子时隙总是在达到子时隙迭代时结束（目标是需要 10 分钟）。
 
-因为一个子时隙的目标是生产 16 个以上的块，一个时隙通常只需要一个子时隙来满足其最小块要求，但情况并非总是如此。例如，我们可能在一个子时隙中只有 10 个块，然后是 3 个，然后是 7 个，这意味着这三个子时隙构成一个时隙。**赤字**是结束时隙仍然需要的块数：这在 [第 3.9 节](/docs/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks and Weight')。
+因为一个子时隙的目标是生产 16 个以上的块，一个时隙通常只需要一个子时隙来满足其最小块要求，但情况并非总是如此。例如，我们可能在一个子时隙中只有 10 个块，然后是 3 个，然后是 7 个，这意味着这三个子时隙构成一个时隙。**赤字**是结束时隙仍然需要的块数：这在 [第 3.9 节](/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks and Weight')。
 
 在时隙的末尾，挑战链与融合挑战链结合生成新的挑战 c2，用于启动下一个子时隙的挑战链。
 
@@ -105,7 +105,7 @@ The chain in the middle is called the **infused challenge chain**. It starts at 
 
 Recall that a **slot** must have at least 16 reward-chain blocks. A sub-slot doesn't have a minimum number of blocks (though it targets 32 blocks). Instead, a sub-slot always ends when sub-slot_iterations has been reached (this is targeted to take 10 minutes).
 
-Because a sub-slot is targeted to produce more than 16 blocks, a slot usually only needs one sub-slot to meet its minimum-block requirement, but that is not always the case. For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. The **deficit** is the number of blocks still necessary to end the slot: this is described in more detail in [Section 3.9](/docs/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks and Weight').
+Because a sub-slot is targeted to produce more than 16 blocks, a slot usually only needs one sub-slot to meet its minimum-block requirement, but that is not always the case. For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. The **deficit** is the number of blocks still necessary to end the slot: this is described in more detail in [Section 3.9](/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks and Weight').
 
 At the end of the slot, the challenge chain is combined with the infused challenge chain to generate the new challenge c2, which is used to start the challenge chain for the next sub-slot.
 

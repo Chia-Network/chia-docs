@@ -26,7 +26,7 @@ sidebar_position: 4
 
 此外，农民和收割机之间的通信通道通过 TLS 证书进行身份验证，这使收割机可以知道农民是否可信。
 
-农民还可以通过池协议与池通信。 在这种情况下，农民会定期向池发送消息，以证明空间。 回想一下[来自第 2.1 节](/docs/architecture/p2p-system#pools 'Section 2.1: Pool architecture')每个区块都有资格创建两个 coinbase 奖励币：矿池奖励，即 7/8，和农民 奖励，即 1/8 + 交易费用。
+农民还可以通过池协议与池通信。 在这种情况下，农民会定期向池发送消息，以证明空间。 回想一下[来自第 2.1 节](/architecture/p2p-system#pools 'Section 2.1: Pool architecture')每个区块都有资格创建两个 coinbase 奖励币：矿池奖励，即 7/8，和农民 奖励，即 1/8 + 交易费用。
 
 在耕种一个区块后，7/8 硬币被矿池吸收，然后分配给矿池成员。奇亚的矿池架构是去中心化的，因为农民运行自己的节点，池化不会导致系统的中央控制。
 
@@ -55,7 +55,7 @@ The farmer machine has its own key, which is used to create signatures of new bl
 
 Furthermore, the communication channel between the farmer and harvester is authenticated with TLS certificates, which allows the harvester to know if the farmer is trusted.
 
-The farmer can also communicate with a pool, through the pooling protocol. In this case, the farmer would send periodic messages to the pool, to prove space. Recall [from Section 2.1](/docs/architecture/p2p-system#pools 'Section 2.1: Pool architecture') that each block is eligible to create two coinbase reward coins: the pool reward, which is 7/8, and the farmer reward, which is 1/8 + transaction fees.
+The farmer can also communicate with a pool, through the pooling protocol. In this case, the farmer would send periodic messages to the pool, to prove space. Recall [from Section 2.1](/architecture/p2p-system#pools 'Section 2.1: Pool architecture') that each block is eligible to create two coinbase reward coins: the pool reward, which is 7/8, and the farmer reward, which is 1/8 + transaction fees.
 
 After farming a block, the 7/8 coin is absorbed by the pool, and later distributed to pool members. Chia's pool architecture is decentralized, because the farmers run their own node, and pooling does not lead to central control of the system.
 

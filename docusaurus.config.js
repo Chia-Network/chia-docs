@@ -56,7 +56,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
         announcementBar: {
           id: 'cat2_launch',
           content:
-            'CAT2 Standard Released 🌱<a target="_blank" rel="noopener noreferrer" href="/docs/cat2/cat2-intro/"> Learn about CAT1 end-of-life and CAT2 reissuance</a>',
+            'CAT2 Standard Released 🌱<a target="_blank" rel="noopener noreferrer" href="/cat2-intro/"> Learn about CAT1 end-of-life and CAT2 reissuance</a>',
           backgroundColor: '#0d3349',
           textColor: '#fff',
           isCloseable: true,

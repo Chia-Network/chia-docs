@@ -14,11 +14,11 @@ sidebar_position: 15
 
 在奇亚中，等待一定数量的确认有两个主要原因：
 
-1. 确信不会发生连锁重组。如[第 3.10 节](/docs/consensus/foliage 'Section 3.10: Foliage') 中所述，小型重组在区块链中是自然发生的，尽管在奇亚中很少见。
+1. 确信不会发生连锁重组。如[第 3.10 节](/consensus/foliage 'Section 3.10: Foliage') 中所述，小型重组在区块链中是自然发生的，尽管在奇亚中很少见。
 
 为了确信不会发生链重组，您应该等待六个区块被创建（第一次确认后大约两分钟）。
 
-2. 以防万一发生植物重组攻击，如[第 3.14 节](/docs/consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack 'Section 3.14: Relevant Attacks and Countermeasures')中所述，这种类型的攻击需要攻击者发现——并成功贿赂——大量连续的匿名区块获胜者的身份。这种攻击很难实施，因此即使有人尝试过，预计也极为罕见。
+2. 以防万一发生植物重组攻击，如[第 3.14 节](/consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack 'Section 3.14: Relevant Attacks and Countermeasures')中所述，这种类型的攻击需要攻击者发现——并成功贿赂——大量连续的匿名区块获胜者的身份。这种攻击很难实施，因此即使有人尝试过，预计也极为罕见。
 
 如果您想几乎确定即使是成功的 foliage re-org 攻击也不会逆转您的交易，您应该等待 32 个区块被创建（第一次确认后大约 10 分钟）。
 
@@ -37,11 +37,11 @@ A transaction needs a certain number of confirmations for a receiver to assume t
 
 In Chia, there are two main reasons to wait for a certain number of confirmations:
 
-1. To be confident there won't be a chain re-org. As discussed in [Section 3.10](/docs/consensus/foliage 'Section 3.10: Foliage'), a small re-org is a natural occurrence in blockchains, though rare in Chia.
+1. To be confident there won't be a chain re-org. As discussed in [Section 3.10](/consensus/foliage 'Section 3.10: Foliage'), a small re-org is a natural occurrence in blockchains, though rare in Chia.
 
 To be confident that there won't be a chain re-org, you should wait for six blocks to be created (around two minutes after the first confirmation).
 
-2. Just in case there is a foliage re-org attack, as described in [Section 3.14](/docs/consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack 'Section 3.14: Relevant Attacks and Countermeasures'). This type of attack would require an attacker to discover the identity of -- and successfully bribe -- a large and consecutive number of anonymous block winners. This attack would be difficult to pull off, so it is expected to be extremely rare, if it is ever even attempted.
+2. Just in case there is a foliage re-org attack, as described in [Section 3.14](/consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack 'Section 3.14: Relevant Attacks and Countermeasures'). This type of attack would require an attacker to discover the identity of -- and successfully bribe -- a large and consecutive number of anonymous block winners. This attack would be difficult to pull off, so it is expected to be extremely rare, if it is ever even attempted.
 
 If you want to be nearly certain that even a successful foliage re-org attack won't reverse your transaction, you should wait for 32 blocks to be created (around ten minutes after the first confirmation).
 
@@ -80,7 +80,7 @@ Of course, in the event of a long-term network split, the effects are that one c
 - (+) 希望更加去中心化。（主网第一年的分析表明情况确实如此。）
 - (+) 轻松合并农业。其他加密货币可以使用相同的格式，每个人都可以共享空间（假设他们的农场电脑有足够的磁盘空间和内存）。（请注意，具有最大网络空间的区块链可能是唯一安全的，因为农民可以攻击较小的区块链。对于顶级链的网络空间不到 50% 的区块链尤其如此——剩余的农民还没有加入较小的链可以串通加入并攻击该链。）
 - (+) 使用的能量最少，因为只有少数节点运行 VDF，而且这些节点没有并行化。农场的边际成本非常低。
-- (+) 更一致的交易块时间（目标平均值为每 46.875 秒一个，如 [第 3.10 节](/docs/consensus/foliage 'Section 3.10: Foliage')中所述）。
+- (+) 更一致的交易块时间（目标平均值为每 46.875 秒一个，如 [第 3.10 节](/consensus/foliage 'Section 3.10: Foliage')中所述）。
 - (+) 不太容易受到自私的挖矿攻击。
 - (+) 较小的孤块率和分叉，因为块可以并行包含。
 - (+) 当空间减少时继续以几乎相同的速度前进，因为只有大约 1/3 的区块包含交易。当算力下降时，中本聪工作量证明共识会线性放缓。
@@ -100,7 +100,7 @@ Of course, in the event of a long-term network split, the effects are that one c
 - (+) Hopefully more decentralized. (Analysis in mainnet's first year shows this to be the case.)
 - (+) Easy merge farming. Other cryptocurrencies can use the same format, and everyone can share the space (assuming their farming computers have sufficient disk space and memory). (Note that the blockchain with the largest netspace will probably be the only secure one, since the farmers can attack smaller ones. This is especially true of blockchains with less than 50% of the top chain's netspace -- the remaining farmers who have not joined the smaller chain could collude to join, and attack, that chain.)
 - (+) Minimum energy used, since only a few nodes run VDFs, and these are not parallelized. Very low marginal cost to farm.
-- (+) More consistent transaction block times (targeted average is one per 46.875 seconds, as discussed in [Section 3.10](/docs/consensus/foliage 'Section 3.10: Foliage')).
+- (+) More consistent transaction block times (targeted average is one per 46.875 seconds, as discussed in [Section 3.10](/consensus/foliage 'Section 3.10: Foliage')).
 - (+) Less susceptible to selfish mining attacks.
 - (+) Smaller orphan rates and forks, since blocks can be included in parallel.
 - (+) Continues to advance at nearly the same rate when space decreases, since only around 1/3 of blocks include transactions. PoW Nakamoto Consensus slows down linearly when hashrate drops.

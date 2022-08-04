@@ -25,7 +25,7 @@ VDF 校样范围：
 
 在图 7 的示例中，B2 包含从 B1 到 sp2 以及从 B1 到 B2 的 VDF 证明。 B3 包含从 B1 到 sp3，以及从 B2 到 B3 的证明。 B2 完全不依赖 B3，但 B3 依赖 B2，因为它的 VDF 来自 B2 的注入点。
 
-如[第 3.5 节](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')中所述，块是在标牌点创建的，但它们缺少融入点 VDF。添加此 VDF 后，该块就完成了，并构成了区块链的一部分。
+如[第 3.5 节](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')中所述，块是在标牌点创建的，但它们缺少融入点 VDF。添加此 VDF 后，该块就完成了，并构成了区块链的一部分。
 
 签名由农民在标牌点创建和添加，然后广播到整个网络。
 融入点没有签名；在注入点添加的唯一东西是 VDF。
@@ -58,7 +58,7 @@ VDF proofs span:
 
 In the example in Figure 7, B2 contains a VDF proof from B1 to sp2, and from B1 to B2. B3 contains a proof from B1 to sp3, and from B2 to B3. B2 does not depend at all on B3, but B3 depends on B2, since its VDF is from B2’s infusion point.
 
-As discussed in [Section 3.5](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points'), the blocks get created at the signage points, but they are missing the infusion point VDF. Once this VDF is added, the block is finished, and forms part of the blockchain.
+As discussed in [Section 3.5](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points'), the blocks get created at the signage points, but they are missing the infusion point VDF. Once this VDF is added, the block is finished, and forms part of the blockchain.
 
 The signatures get created and added by the farmers at the signage points, and broadcast to the whole network.
 There are no signatures at the infusion point; the only things added at the infusion point are the VDFs.

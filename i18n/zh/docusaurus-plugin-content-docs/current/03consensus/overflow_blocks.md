@@ -8,7 +8,7 @@ sidebar_position: 9
 
 ## 溢出块
 
-对于创建区块的农民来说，他们的所需迭代次数必须小于子时隙迭代次数 / 64，如[第 3.5 节](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')中所述。 这意味着融合迭代次数可能大于子时隙迭代次数，因此融合必须发生在下一个子时隙中。
+对于创建区块的农民来说，他们的所需迭代次数必须小于子时隙迭代次数 / 64，如[第 3.5 节](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')中所述。 这意味着融合迭代次数可能大于子时隙迭代次数，因此融合必须发生在下一个子时隙中。
 
 **溢出块**：融入点与其标牌点位于不同子时隙中的块。
 
@@ -32,7 +32,7 @@ sidebar_position: 9
 
 - ## Overflow Blocks
 
-For a farmer to create a block, their required_iterations must be less than sub-slot_iterations / 64, as described in [Section 3.5](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points'). This means that infusion_iterations might be greater than the sub-slot_iterations, and therefore the infusion must happen in the next sub-slot.
+For a farmer to create a block, their required_iterations must be less than sub-slot_iterations / 64, as described in [Section 3.5](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points'). This means that infusion_iterations might be greater than the sub-slot_iterations, and therefore the infusion must happen in the next sub-slot.
 
 **Overflow block**: a block whose infusion point is in a different sub-slot than its signage point.
 
@@ -66,7 +66,7 @@ Also, overflow blocks do not change the deficit unless they are based on a curre
 
 正常情况是赤字从 16 开始，然后在子时隙内下降到零，并在我们完成时隙并开始新的时隙时重置回 16。如果我们没有设法在子时隙末尾将其减少到 0，挑战链和融合挑战链（如果存在）继续，并且赤字不会重置为 16。区块（包括溢出块）现在），继续从赤字中减去，直到我们达到 0。当我们完成一个零赤字的子时隙时，融合挑战链被纳入挑战链，赤字重置为 16。
 
-添加此要求是为了阻止远程攻击，并在[第 3.14 节](/docs/consensus/attacks_and_countermeasures#51-46-attack 'Section 3.14: Attacks and Countermeasures')中进行了详细描述。绝大多数子时隙将有 16 个以上的块（回想一下，平均目标数为 32），因此最小块要求不会对正常操作产生太大影响。
+添加此要求是为了阻止远程攻击，并在[第 3.14 节](/consensus/attacks_and_countermeasures#51-46-attack 'Section 3.14: Attacks and Countermeasures')中进行了详细描述。绝大多数子时隙将有 16 个以上的块（回想一下，平均目标数为 32），因此最小块要求不会对正常操作产生太大影响。
 
 <figure>
 
@@ -90,7 +90,7 @@ The block with deficit 15 is a challenge block.
 
 The normal case is where the deficit starts at 16, and goes down to zero within the sub-slot, and resets back to 16 as we finish the slot and start a new one. In the case that we don't manage to reduce it to 0 within the end of the sub-slot, the challenge chain and infused challenge chain (if present) continue, and the deficit does not reset to 16. Blocks (including overflow blocks now), keep subtracting from the deficit until we reach 0. When we finish a sub-slot with a zero deficit, the infused challenge chain is included into the challenge chain, and the deficit is reset to 16.
 
-This requirement was added to discourage long-range attacks, and is described in detail in [Section 3.14](/docs/consensus/attacks_and_countermeasures#51-46-attack 'Section 3.14: Attacks and Countermeasures'). The vast majority of sub-slots will have more than 16 blocks (recall that the average number is targeted to be 32), therefore the minimum-block requirement will not have much of an affect on normal operation.
+This requirement was added to discourage long-range attacks, and is described in detail in [Section 3.14](/consensus/attacks_and_countermeasures#51-46-attack 'Section 3.14: Attacks and Countermeasures'). The vast majority of sub-slots will have more than 16 blocks (recall that the average number is targeted to be 32), therefore the minimum-block requirement will not have much of an affect on normal operation.
 
 <figure>
 

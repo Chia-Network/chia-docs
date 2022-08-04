@@ -13,4 +13,4 @@ Farmers periodically send partials, which contain a proof of space and a signatu
 
 When a farmer who is a member of a pool wins a block, 7/8 of the reward goes to the pool, which is later distributed to the participants. The farmer keeps the other 1/8 of the reward. This was an intentional design decision. If a farmer didn't receive a direct reward for creating a block, the operator of a competing pool might have had a financial incentive to join a pool (that they didn't run) with a large number of plots, and neglect to create a block when they found a valid proof, thereby spoiling the competing pool.
 
-> For more info, see our [Pool Farming page](/docs/pool-farming), as well as this site's [Pool Protocol page](/docs/pool-protocol) page.
+> For more info, see our [Pool Farming page](/pool-farming), as well as this site's [Pool Protocol page](/pool-protocol) page.

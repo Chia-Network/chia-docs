@@ -71,11 +71,11 @@ However, some things cannot be changed. These are described in our [pool specifi
 
 当不汇集时，农民每 9 秒从全节点收到标牌点，并将这些标牌点发送到收割机。
 
-> 请参阅[第 3.5 节](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')了解更多详情。
+> 请参阅[第 3.5 节](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')了解更多详情。
 
 每个标牌点都与 `sub_slot_iters` 和 `difficulty` 一起发送，这两个网络范围的参数每 4608 个块（约 24 小时）调整一次。 `sub_slot_iters` 是网络中最快的 VDF 在 10 分钟内执行的 VDF 迭代次数。如果最快的时间领主的速度增加，这会增加。难度同样受时间领主速度的影响（当时间领主速度增加时难度会增加，因为块来得更快），但它也受网络空间总量的影响。这两个参数决定了“赢得”一个区块并找到证明的难度。
 
-> 请参阅[第 3.4 节](/docs/consensus/challenges 'Section 3.4: Challenges') 了解更多详细信息。
+> 请参阅[第 3.4 节](/consensus/challenges 'Section 3.4: Challenges') 了解更多详细信息。
 
 由于全世界只有大约一个农民每 18.75 秒（两个标志点）找到一个证明，这意味着找到一个的机会很小，默认为 `difficulty`和`sub_slot_iters`。对于池化，我们将 `sub_slot_iters` 增加到一个常数，但非常高的数字：37,600,000,000（376 亿），然后我们将难度降低到人为降低的难度，以便可以更频繁地找到证明。
 
@@ -89,7 +89,7 @@ However, some things cannot be changed. These are described in our [pool specifi
 
 当农民发现一个区块时，7/8 的区块奖励（矿池部分）进入单例硬币。当农民认领这些资金时，它们会直接发送到矿池的目标地址。奖励的另外 1/8，加上交易费用，直接发送给农民。
 
-> 区块奖励的支付金额会根据减半周期变化，详见[第 5.3 节](/docs/block-validation/block_rewards#halvings 'Section 5.3: Block reward halvings')。但是，7/8 - 1/8 的比例将始终保持不变。
+> 区块奖励的支付金额会根据减半周期变化，详见[第 5.3 节](/block-validation/block_rewards#halvings 'Section 5.3: Block reward halvings')。但是，7/8 - 1/8 的比例将始终保持不变。
 
 农民还可以配置他们的支付指令，以便矿池知道将偶尔的奖励发送到哪里。农民可以选择退出矿池，方法是更新单例硬币，然后为自己申领未来的奖励。
 
@@ -100,11 +100,11 @@ However, some things cannot be changed. These are described in our [pool specifi
 
 When not pooling, farmers receive signage points from full nodes every 9 seconds, and send these signage points to the harvester.
 
-> See [Section 3.5](/docs/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points') for more details.
+> See [Section 3.5](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points') for more details.
 
 Each signage point is sent along with the `sub_slot_iters` and `difficulty`, two network-wide parameters which are adjusted every 4608 blocks (~24 hours). The `sub_slot_iters` is the number of VDF iterations performed in 10 minutes for the fastest VDF in the network. This increases if the fastest timelord's speed increases. The difficulty is similarly affected by timelord speed (it goes up when timelord speed increases, since blocks come faster), but it's also affected by the total amount of space in the network. These two parameters determine how difficult it is to "win" a block and find a proof.
 
-> See [Section 3.4](/docs/consensus/challenges 'Section 3.4: Challenges') for more details.
+> See [Section 3.4](/consensus/challenges 'Section 3.4: Challenges') for more details.
 
 Since only about one farmer worldwide finds a proof every 18.75 seconds (two signage points), this means the chances of finding one are tiny, with the default `difficulty` and `sub_slot_iters`. For pooling, we increase the `sub_slot_iters` to a constant, but very high number: 37,600,000,000 (37.6 billion), and then we decrease the difficulty to an artificially lower one, so that proofs can be found more frequently.
 
@@ -118,7 +118,7 @@ Instead of farmers using a `pool_public_key` when plotting, they now use a puzzl
 
 When a block is found by the farmer, 7/8 of the block reward (the pool portion) go into the singleton. When the farmer claims these funds they are sent directly to the pool's target address. The other 1/8 of the reward, plus transaction fees, are sent directly to the farmer.
 
-> The block reward's payout amount will change according to the halving cycle, detailed in [Section 5.3](/docs/block-validation/block_rewards#halvings 'Section 5.3: Block reward halvings'). However, the 7/8 - 1/8 ratio will always remain the same.
+> The block reward's payout amount will change according to the halving cycle, detailed in [Section 5.3](/block-validation/block_rewards#halvings 'Section 5.3: Block reward halvings'). However, the 7/8 - 1/8 ratio will always remain the same.
 
 The farmer can also configure their payout instructions, so that the pool knows where to send the occasional rewards to. Optionally a farmer can opt out of a pool by updating the singleton and then claiming future rewards for themselves.
 
@@ -157,7 +157,7 @@ A few minutes later, the pool pulls from the queue, and checks that the signage 
 
 ![](/img/Pooling_absorb.png)
 
-矿池定期在区块链上搜索新的矿池奖励（根据[奖励计划](/docs/block-validation/block_rewards 'Section 5.3: Block rewards')），这些奖励会分配给每个农民的各种 `p2_singleton_puzzle_hashes`。 这些硬币是锁定的，只能与它们对应的单例硬币一起使用。 单例也被锁定到一个 `target_puzzle_hash`。任何人都可以花费单例硬币和 `p2_singleton_puzzle_hash` 币，只要是出块奖励，并且满足所有条件即可。其中一些条件要求单例硬币始终创建一个具有相同启动器 ID 的新子单例硬币，并将 coinbase 资金发送到 `target_puzzle_hash`。
+矿池定期在区块链上搜索新的矿池奖励（根据[奖励计划](/block-validation/block_rewards 'Section 5.3: Block rewards')），这些奖励会分配给每个农民的各种 `p2_singleton_puzzle_hashes`。 这些硬币是锁定的，只能与它们对应的单例硬币一起使用。 单例也被锁定到一个 `target_puzzle_hash`。任何人都可以花费单例硬币和 `p2_singleton_puzzle_hash` 币，只要是出块奖励，并且满足所有条件即可。其中一些条件要求单例硬币始终创建一个具有相同启动器 ID 的新子单例硬币，并将 coinbase 资金发送到 `target_puzzle_hash`。
 
 <details>
 <summary>原文参考</summary>
@@ -166,7 +166,7 @@ A few minutes later, the pool pulls from the queue, and checks that the signage 
 
 ![](/img/Pooling_absorb.png)
 
-The pool periodically searches the blockchain for new pool rewards (according to the [rewards schedule](/docs/block-validation/block_rewards 'Section 5.3: Block rewards')) that go to the various `p2_singleton_puzzle_hashes` of each of the farmers. These coins are locked, and can only be spent along with the singleton that they correspond to. The singleton is also locked to a `target_puzzle_hash`. Anyone can spend the singleton and the `p2_singleton_puzzle_hash` coin, as long as it's a block reward, and all conditions are met. Some of these conditions require that the singleton always create exactly one new child singleton with the same launcher ID, and that the coinbase funds are sent to the `target_puzzle_hash`.
+The pool periodically searches the blockchain for new pool rewards (according to the [rewards schedule](/block-validation/block_rewards 'Section 5.3: Block rewards')) that go to the various `p2_singleton_puzzle_hashes` of each of the farmers. These coins are locked, and can only be spent along with the singleton that they correspond to. The singleton is also locked to a `target_puzzle_hash`. Anyone can spend the singleton and the `p2_singleton_puzzle_hash` coin, as long as it's a block reward, and all conditions are met. Some of these conditions require that the singleton always create exactly one new child singleton with the same launcher ID, and that the coinbase funds are sent to the `target_puzzle_hash`.
 
 </details>
 
