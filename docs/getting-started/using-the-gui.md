@@ -67,7 +67,7 @@ Additionally, you can send tokens to any other address.
   <img alt='sending XCH' src='/img/send-xch.png' width='600' />
 </p>
 
-Upon sending the transaction, it will be broadcasted to full nodes in the network. The fee will help push your transaction through to the blockchain after it reaches the mempool of a full node. Famers get not only block rewards but also transaction fees, so transactions with fees are prioritized. We recommend a fee of atleast .000005 XCH.
+Upon sending the transaction, it will be broadcasted to full nodes in the network. The fee will help push your transaction through to the blockchain after it reaches the mempool of a full node. Farmers get not only block rewards but also transaction fees, so transactions with fees are prioritized. We recommend a fee of atleast .000005 XCH.
 
 ## Plotting and Farming
 
