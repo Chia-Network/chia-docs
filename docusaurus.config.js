@@ -40,7 +40,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           docs: {
             sidebarPath: require.resolve('./sidebars.js'),
             editUrl:
-              'https://github.com/Chia-Network/{{ PROJECT_NAME }}/blob/main/',
+              'https://github.com/Chia-Network/{{ REPOSITORY_NAME }}/blob/main/',
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
