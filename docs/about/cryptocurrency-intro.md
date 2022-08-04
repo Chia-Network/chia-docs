@@ -3,7 +3,7 @@ title: Intro to Cryptocurrencies
 slug: /cryptocurrency-intro
 ---
 
-## What is a cryptocurrency?
+## What is a Cryptocurrency?
 
 A cryptocurrency system can be thought of as a payments and financial infrastructure that is not controlled by any single entity, such as a bank, company, or government. Prior to the introduction of cryptocurrencies, there had always been an operator that had control of transaction inclusion and monetary policy. This operator represented a centralized point of both power and failure.
 
@@ -20,7 +20,7 @@ This brings many benefits, some of which are:
 - **Global standards**: Through crypto, different countries and regions can interact and transact on one shared standard that is clearly documented, fully open source, and available for free. Different parties can come together to use a neutral platform, which reduces costs for those who build on top of the cryptocurrency.
 - **Security**: There are many forms of potential attacks on any financial infrastructure, including virtual and physical hacks, bribery, network issues, etc. A system with a million nodes is much more difficult to attack than the aforementioned single point of failure.
 
-## How do cryptocurrencies work?
+## How do Cryptocurrencies Work?
 
 To understand the basics of how a cryptocurrency like Bitcoin or Chia works, we first need to look at how one would design a cryptocurrency from scratch. This section is targeted toward those new to the blockchain industry; others can skip it.
 
@@ -51,7 +51,7 @@ Each server running in this decentralized system can accept a transaction, which
 Digital signatures are fundamental building blocks for cryptocurrencies.
 
 <div style={{textAlign: 'center'}}>
- <img src="/static/img/crypto03.png" alt="drawing" width="600"/>
+ <img src="/img/crypto03.png" alt="drawing" width="600"/>
 </div>
 
 ### Double Spending

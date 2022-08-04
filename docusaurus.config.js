@@ -38,6 +38,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
             anonymizeIP: true,
           },
           docs: {
+            routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
             editUrl:
               'https://github.com/Chia-Network/{{ REPOSITORY_NAME }}/blob/main/',
@@ -69,7 +70,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
           },
           items: [
             {
-              to: '/docs',
+              to: '/quick-start-guide',
               activeBasePath: 'docs',
               label: 'Docs',
               position: 'left',
