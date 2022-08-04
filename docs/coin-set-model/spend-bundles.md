@@ -21,7 +21,7 @@ class SpendBundle:
 As you can see in the code sample above, a spend bundle is a group of coin spends, where each coin spend includes the coin being spent, the puzzle program, and the solution program. Each solution is passed into each puzzle and run through the CLVM, where it outputs conditions. Two of the conditions -- `AGG_SIG_ME` and `AGG_SIG_UNSAFE` -- require
 that a signature be present in order for the spend to be valid.
 
-Usually when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](https://chialisp.com/docs/puzzles/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
+Usually when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](https://chialisp.com/puzzles/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
 
 ## Aggregate Signatures
 
@@ -39,7 +39,7 @@ With BLS signatures, farmers combine all three signatures `s1, s2, and s3` into 
 
 This allows the farmer to combine all three spend bundles into one spend bundle, with only one signature, which means less data is transmitted and stored on chain and disk.
 
-Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/docs/keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
+Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
 
 ## Coins vs Spend Bundles
 

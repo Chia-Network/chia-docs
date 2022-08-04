@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ## What is Chia? {#what-is-chia}
 
-Chia is a cryptocurrency and blockchain with smart transaction capabilities. Its [PoST consensus](/docs/consensus-overview) is the first (and only) Nakamoto consensus since Proof of Work, and has a much [lower energy consumption](https://chiapower.org/).
+Chia is a cryptocurrency and blockchain with smart transaction capabilities. Its [PoST consensus](/consensus-intro) is the first (and only) Nakamoto consensus since Proof of Work, and has a much [lower energy consumption](https://chiapower.org/).
 
 Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives recently launched for CATs, Offers, NFTs and DIDs.
 
@@ -90,31 +90,31 @@ python3 -m venv venv
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-[Get plotting now](/docs/)
+[Get plotting now](/)
 
 ### Start Farming
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-[Get farming now](/docs/)
+[Get farming now](/)
 
 ### Run a Node
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-[Start running a node now](/docs/)
+[Start running a node now](/)
 
 ### Build on Chia
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-[Start building on Chia today](/docs/)
+[Start building on Chia today](/)
 
 ## Install Chia {#install-chia}
 
 The easiest way to install Chia is to use an installer. Here is the installer for [Windows](https://download.chia.net/latest/Setup-Win64.exe) and the installer for [Mac](https://download.chia.net/latest/Setup-MacOS.dmg).
 
-For more detailed steps you can follow [these install instructions](/docs/chia-installation-guide) according to your operating system. This software only supports 64 bit operating systems.
+For more detailed steps you can follow [these install instructions](/chia-installation-guide) according to your operating system. This software only supports 64 bit operating systems.
 
 All configuration data is stored in a directory structure at the `$CHIA_ROOT` environment variable or at `~/.chia/mainnet/`. You can find databases, and logs there. Optionally, you can set `$CHIA_ROOT` to the `.chia` directory in your home directory with `export CHIA_ROOT=~/.chia` and if you add it to your `.bashrc` or `.zshrc` it will remain set across logouts and reboots. If you set `$CHIA_ROOT` you will have to migrate configuration items by hand or unset the variable for `chia init` to work with `unset CHIA_ROOT`.
 
@@ -220,7 +220,7 @@ blocks (like Bitcoin's miners), and earn block rewards.
 
 Plotting is the process of creating plots to be farmed. Once a plot is created, it can be farmed indefinately. In other words, you do not have to plot forever, just plot until you are out of storage.
 
-Reference our [plotting guide](/docs/plotting-basics) for more details.
+Reference our [plotting guide](/plotting-basics) for more details.
 
 You can use the command line tools and change the working directories and output directory for plotting, with the `-t` (temp), `-2` (second temp), and `-d` (destination) arguments to the `chia plots create` command. `-n 2` will create two plots of type k=32 and take about 12 hours on NVMe drives in the example below.
 
@@ -241,4 +241,4 @@ in the router's configuration.
 
 # RPC Interface
 
-The Node has an [RPC interface](/docs/rpc-api). This RPC will allow you to interact with the Chia node through code.
+The Node has an [RPC interface](/rpc-api). This RPC will allow you to interact with the Chia node through code.

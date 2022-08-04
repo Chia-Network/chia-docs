@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 ```
 
 :::info
-[CAT1](https://chialisp.com/docs/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
+[CAT1](https://chialisp.com/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
 
-For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/docs/cat2-intro).
+For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/cat2-intro).
 :::
 
 This document will show CAT1 issuers how to:
@@ -20,7 +20,7 @@ This document will show CAT1 issuers how to:
 1. Generate a snapshot of their CAT1 status. This will show the puzzle hash (address) and value of each individual token at the end-of-life block height
 2. Export their required data from the snapshot
 
-After completing this, CAT issuers will be able to proceed to the [Token Reissuance guide](/docs/cat2-issuance).
+After completing this, CAT issuers will be able to proceed to the [Token Reissuance guide](/cat2-issuance).
 
 ## Generate a CAT1 Snapshot {#generate}
 
@@ -436,7 +436,7 @@ Once you have populated the database with a snapshot, you can run a data export.
 
 This step is **required for Windows users**, and not needed for Linux or macOS users.
 
-If you are running on Windows, the CSV file will contain an extra CR (carriage return) character at the end of each line. This will cause [“Secure the Bag”](/docs/cat2-issuance#secure-single) to fail. First, you must convert the CSV file to use UNIX-style end-of-line characters.
+If you are running on Windows, the CSV file will contain an extra CR (carriage return) character at the end of each line. This will cause [“Secure the Bag”](/cat2-issuance#secure-single) to fail. First, you must convert the CSV file to use UNIX-style end-of-line characters.
 
 The easiest way to accomplish this is with `dos2unix`. This is not included with Windows, so you will need to download it from SourceForge.
 

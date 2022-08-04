@@ -254,11 +254,11 @@ These downsides will likely be acceptable in most cases, so "cancel on the block
 
 This option will simply notify Alice's wallet that the transaction has been canceled, so the coins will no longer be reserved. There is no blockchain transaction, so the two disadvantages of "Cancel on the blockchain" don't apply here -- the cancellation happens instantly and there is no need for a transaction fee. The downside of this option is that if the offer file ever leaves Alice's computer, a Taker can still take the offer (as long as Alice's coins have not been spent).
 
-> NOTE: Double spends on the blockchain aren't possible for either of these options. In the coin set model, coins can only ever be spent once. If someone attempts to take Alice's offer at the same time she spends the coins, only one of those transactions will make it onto the blockchain. [Chialisp.com](https://chialisp.com/docs/coin_lifecycle#the-coin-set-model 'Coin set model on chialisp.com') has a detailed explanation of the coin set model.
+> NOTE: Double spends on the blockchain aren't possible for either of these options. In the coin set model, coins can only ever be spent once. If someone attempts to take Alice's offer at the same time she spends the coins, only one of those transactions will make it onto the blockchain. [Chialisp.com](https://chialisp.com/coin_lifecycle#the-coin-set-model 'Coin set model on chialisp.com') has a detailed explanation of the coin set model.
 
 ### Coin set (UTXO)
 
-Chia uses the coin set model to keep track of state. This is similar to the UTXO model in Bitcoin. The coin set model [has many advantages](https://docs.chia.net/docs/04coin-set-model/what-is-a-coin 'Coin set model') over the account model, but it can create some situations that take time to understand.
+Chia uses the coin set model to keep track of state. This is similar to the UTXO model in Bitcoin. The coin set model [has many advantages](https://docs.chia.net/04coin-set-model/what-is-a-coin 'Coin set model') over the account model, but it can create some situations that take time to understand.
 
 In the coin set model, everything is a coin. There are no accounts, at least not at the blockchain level. Coins can only ever be spent once, and they can't be divided.
 

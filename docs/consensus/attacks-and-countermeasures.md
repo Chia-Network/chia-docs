@@ -26,9 +26,9 @@ Before we can evaluate the percentage requirements for various scenarios, we mus
 
 The white paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a majority attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
 
-- 16 -- This is the minimum number of blocks in a slot. (See [Section 3.9](/docs/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Minimum Block Requirement') for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
+- 16 -- This is the minimum number of blocks in a slot. (See [Section 3.9](/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Minimum Block Requirement') for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
 
-- 32 -- This is the targeted number of blocks per sub-slot. (See [Section 3.4](/docs/consensus/challenges 'Section 3.4: Challenges') for more info.) There will be some natural variance in this number, but an attacker who does not have the fastest timelord will not be able to manipulate it.
+- 32 -- This is the targeted number of blocks per sub-slot. (See [Section 3.4](/consensus/challenges 'Section 3.4: Challenges') for more info.) There will be some natural variance in this number, but an attacker who does not have the fastest timelord will not be able to manipulate it.
 
 Here's the code to solve for these values in Wolfram alpha, where c is the number of consecutive blocks with the same challenge:
 

@@ -83,7 +83,7 @@ pool.
 authentication_token = current_utc_minutes / authentication_token_timeout
 ```
 
-`authentication_token_timeout` 是矿池的配置参数，该参数也包含在 [GET /pool_info](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) 响应中，农民必须遵守该参数。 而在签名 `current_utc_minutes` 时以**分钟**为单位的本地 UTC 时间戳 。理想情况下，本地时钟应与时间同步协议（例如 NTP）同步。身份验证令牌通常包含在签名的有效负载中。
+`authentication_token_timeout` 是矿池的配置参数，该参数也包含在 [GET /pool_info](http://10.177.0.168:3000/cn/pooling/specification#get-pool_info) 响应中，农民必须遵守该参数。 而在签名 `current_utc_minutes` 时以**分钟**为单位的本地 UTC 时间戳 。理想情况下，本地时钟应与时间同步协议（例如 NTP）同步。身份验证令牌通常包含在签名的有效负载中。
 
 <details>
 <summary>原文参考</summary>
@@ -108,12 +108,12 @@ synchronization protocol e.g., NTP. The authentication token is usually included
 
 矿池协议由几个返回 JSON 响应的 HTTPS 端点组成。HTTPS 服务器可以在任何端口上运行，但必须在启用 TLS（使用 CA 批准的证书）和启用流水线的情况下运行。所有字节值都编码为十六进制，前面有可选的 0x。 客户端也应该使用流水线运行。
 
-- [获取/矿池信息](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info)
-- [获取/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#get-farmer)
-- [POST/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#post-farmer)
-- [PUT/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#put-farmer)
-- [POST/部分](http://10.177.0.168:3000/cn/docs/pooling/specification#post-partial)
-- [获取/登录（可选）](http://10.177.0.168:3000/cn/docs/pooling/specification#get-login)
+- [获取/矿池信息](http://10.177.0.168:3000/cn/pooling/specification#get-pool_info)
+- [获取/农民](http://10.177.0.168:3000/cn/pooling/specification#get-farmer)
+- [POST/农民](http://10.177.0.168:3000/cn/pooling/specification#post-farmer)
+- [PUT/农民](http://10.177.0.168:3000/cn/pooling/specification#put-farmer)
+- [POST/部分](http://10.177.0.168:3000/cn/pooling/specification#post-partial)
+- [获取/登录（可选）](http://10.177.0.168:3000/cn/pooling/specification#get-login)
 
 <details>
 <summary>原文参考</summary>
@@ -298,7 +298,7 @@ https://subdomain.domain.tld:port/path
 
 #### authentication_token_timeout
 
-有效的时间（以**分钟**为单位） `authentication_token` ，请参阅[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 。
+有效的时间（以**分钟**为单位） `authentication_token` ，请参阅[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 。
 
 <details>
 <summary>原文参考</summary>
@@ -398,11 +398,11 @@ https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&
 
 #### launcher_id
 
-农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-identification) 。
+农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/pooling/specification#farmer-identification) 。
 
 #### authentication_token
 
-请参阅[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
+请参阅[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
 
 #### 签名
 
@@ -415,9 +415,9 @@ https://poolurl.com/farmer/launcher_id=:launcher_id&authentication_token=:token&
 | target_puzzle_hash   | 字节 32 |
 | authentication_token | uint64  |
 
-其中 `method_name` 必须是序列化字符串 `"get_farmer"` ，参数必须根据[签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和哈希，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
+其中 `method_name` 必须是序列化字符串 `"get_farmer"` ，参数必须根据[签名验证](http://10.177.0.168:3000/cn/pooling/specification#signature-validation) 进行序列化和哈希，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
-其中参数必须根据[签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和哈希，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
+其中参数必须根据[签名验证](http://10.177.0.168:3000/cn/pooling/specification#signature-validation) 进行序列化和哈希，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
 注意：矿池必须返回当前的积分余额，这是自该用户上次付款以来找到的积分总数。
 
@@ -519,11 +519,11 @@ payout for that user.
 
 #### payload.launcher_id
 
-农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-identification) 。
+农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/pooling/specification#farmer-identification) 。
 
 #### payload.authentication_token
 
-请参阅[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
+请参阅[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
 
 #### payload.authentication_public_key
 
@@ -537,7 +537,7 @@ payout for that user.
 
 农民要求更新难度。可以被矿池忽略或尊重。但是，只有当认证公钥是该农民看到的最新公钥时，才应遵守这一点。
 
-有关[难度](http://10.177.0.168:3000/cn/docs/pooling/specification#difficulty) 影响的更多详细信息，请参阅[难度](http://10.177.0.168:3000/cn/docs/pooling/specification#difficulty) 。
+有关[难度](http://10.177.0.168:3000/cn/pooling/specification#difficulty) 影响的更多详细信息，请参阅[难度](http://10.177.0.168:3000/cn/pooling/specification#difficulty) 。
 
 #### 签名
 
@@ -549,7 +549,7 @@ sha256(PostFarmerPayload)
 
 由 `owner_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
-见[可流式传输](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 类 `PostFarmerPayload` 的[矿池协议](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) 和[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 的规格 `authentication_token` 。
+见[可流式传输](http://10.177.0.168:3000/cn/pooling/specification#signature-validation) 类 `PostFarmerPayload` 的[矿池协议](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) 和[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 的规格 `authentication_token` 。
 
 <details>
 <summary>原文参考</summary>
@@ -647,9 +647,9 @@ and [Farmer authentication](#farmer-authentication) for the specification of `au
 }
 ```
 
-有关请求正文条目的描述，请参阅 [POST/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#post-farmer) 中的相应密钥。随密钥/值对提供的值用于更新服务器上的现有值。所有条目，除了 `launcher_id`，都是可选的，但必须至少有一个。
+有关请求正文条目的描述，请参阅 [POST/农民](http://10.177.0.168:3000/cn/pooling/specification#post-farmer) 中的相应密钥。随密钥/值对提供的值用于更新服务器上的现有值。所有条目，除了 `launcher_id`，都是可选的，但必须至少有一个。
 
-见[可流式传输](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 类 `PutFarmerPayload` 在[矿池协议](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) 的细节和[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 的规格 `authentication_token` 。
+见[可流式传输](http://10.177.0.168:3000/cn/pooling/specification#signature-validation) 类 `PutFarmerPayload` 在[矿池协议](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) 的细节和[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 的规格 `authentication_token` 。
 
 成功回复：
 
@@ -777,11 +777,11 @@ Example to update `authentication_public_key`:
 
 #### payload.launcher_id
 
-农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-identification) 。
+农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/pooling/specification#farmer-identification) 。
 
 #### payload.authentication_token
 
-请参阅[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
+请参阅[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
 
 #### payload.proof_of_space
 
@@ -828,7 +828,7 @@ sha256(PostPartialPayload)
 1. `plot_public_key`
 2. `authentication_public_key`
 
-见[可流式传输](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 类 `PostPartialPayload` 在[矿池协议](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) 的细节和[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 的的规格 `authentication_token` 。
+见[可流式传输](http://10.177.0.168:3000/cn/pooling/specification#signature-validation) 类 `PostPartialPayload` 在[矿池协议](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/pool_protocol.py) 的细节和[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 的的规格 `authentication_token` 。
 
 如果 BLS 签名未验证，则必须完全拒绝部分。
 
@@ -941,9 +941,9 @@ A partial must be completely rejected if the BLS signature does not validate.
 
 ## 获取/登录
 
-如果池支持，这允许用户登录到 Web 界面，请参阅 [GET/矿池信息](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) 中的服务标志。农夫软件必须提供一种生成和显示登录链接的方法，或者提供一个生成链接的按钮，然后只需在默认浏览器中打开它。该链接遵循以下规范。
+如果池支持，这允许用户登录到 Web 界面，请参阅 [GET/矿池信息](http://10.177.0.168:3000/cn/pooling/specification#get-pool_info) 中的服务标志。农夫软件必须提供一种生成和显示登录链接的方法，或者提供一个生成链接的按钮，然后只需在默认浏览器中打开它。该链接遵循以下规范。
 
-请注意，没有明确的帐户创建。农民可以在使用 [POST/农民](http://10.177.0.168:3000/cn/docs/pooling/specification#post-farmer) 在矿池中[公开](http://10.177.0.168:3000/cn/docs/pooling/specification#post-farmer)自己的身份后登录 。
+请注意，没有明确的帐户创建。农民可以在使用 [POST/农民](http://10.177.0.168:3000/cn/pooling/specification#post-farmer) 在矿池中[公开](http://10.177.0.168:3000/cn/pooling/specification#post-farmer)自己的身份后登录 。
 
 请求参数：
 
@@ -961,11 +961,11 @@ https://poolurl.com/login?launcher_id=:launcher_id&authentication_token=:token&s
 
 #### launcher_id
 
-农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-identification) 。
+农民单例硬币的唯一标识，见[农民身份](http://10.177.0.168:3000/cn/pooling/specification#farmer-identification) 。
 
 #### authentication_token
 
-请参阅[农民身份验证](http://10.177.0.168:3000/cn/docs/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
+请参阅[农民身份验证](http://10.177.0.168:3000/cn/pooling/specification#farmer-authentication) 以了解 `authentication_token` .
 
 #### 签名
 
@@ -978,9 +978,9 @@ https://poolurl.com/login?launcher_id=:launcher_id&authentication_token=:token&s
 | target_puzzle_hash   | 字节 32 |
 | authentication_token | uint64  |
 
-`method_name` 必须是序列化的字符串 `"get_login"`，`target_puzzle_hash` 是矿池的目标[谜语哈希](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info)（参见 [GET/矿池信息](http://10.177.0.168:3000/cn/docs/pooling/specification#get-pool_info) ）。参数必须根据[签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
+`method_name` 必须是序列化的字符串 `"get_login"`，`target_puzzle_hash` 是矿池的目标[谜语哈希](http://10.177.0.168:3000/cn/pooling/specification#get-pool_info)（参见 [GET/矿池信息](http://10.177.0.168:3000/cn/pooling/specification#get-pool_info) ）。参数必须根据[签名验证](http://10.177.0.168:3000/cn/pooling/specification#signature-validation) 进行序列化和散列，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
-其中参数必须根据[签名验证](http://10.177.0.168:3000/cn/docs/pooling/specification#signature-validation) 进行序列化和散列，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
+其中参数必须根据[签名验证](http://10.177.0.168:3000/cn/pooling/specification#signature-validation) 进行序列化和散列，签名必须由 `authentication_public_key` 使用 BLS IETF 规范中的增强方案的私钥签名 。
 
 <details>
 <summary>原文参考</summary>

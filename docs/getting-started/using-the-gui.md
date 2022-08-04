@@ -98,7 +98,7 @@ Let's go ahead and add a plot!
 </p>
 
 I recommend **madMAx Plotter** as the plotting software of choice. This allows you to easily create plots in serial without much setup.
-Start off by just creating a single plot. Once you understand how it works, you can create many more. If you wish to create many plots It is important to understand [SSD endurance](/docs/ssd-endurance).
+Start off by just creating a single plot. Once you understand how it works, you can create many more. If you wish to create many plots It is important to understand [SSD endurance](/ssd-endurance).
 
 When creating a plot, you're given the option to join a pool. This is the recommend approach (even if you choose to _self-pool_). With Chia's unique approach to pooling, farming rewards are consistent without a sacrifice in decentralization of the network. To make pooling work you create your plots to be associated with a Plot NFT. This is a unique token controlling your membership to any pool.
 

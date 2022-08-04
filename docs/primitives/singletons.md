@@ -7,7 +7,7 @@ One of the most important puzzles in the Chia ecosystem is the **singleton**.
 This is a puzzle that assures anyone who looks at can see that it has a unique ID that no other coin has.
 Parties can decide to accept messages or commitments from that unique ID with the assurance that the party who controls the singleton is not double dipping or impersonating someone else.
 
-This puzzle is an [outer puzzle](/docs/common_functions) and is used to wrap pooling puzzles, NFTs, and decentralized identities.
+This puzzle is an [outer puzzle](/common_functions) and is used to wrap pooling puzzles, NFTs, and decentralized identities.
 Any inner puzzle can be wrapped with this puzzle if it has necessity for uniqueness.
 
 ## Design choices
@@ -21,7 +21,7 @@ A few design choices were made in the creation of this puzzle so let's go over t
   Coins can be multiples of 10 so you can send a full XCH rather than an XCH and a mojo.
   No matter how many even amounts you subtract from an odd amount, the end result will always be odd.
 - **Singletons always wrap their odd child.** This abstracts some of the singleton functionality away from the inner puzzles.
-  If an inner puzzle creates an odd coin, it doesn't have to worry about making it a singleton, the [outer puzzle will take care of that](https://chialisp.com/docs/common_functions/#outer-and-inner-puzzles).
+  If an inner puzzle creates an odd coin, it doesn't have to worry about making it a singleton, the [outer puzzle will take care of that](https://chialisp.com/common_functions/#outer-and-inner-puzzles).
   It also prevents an inner puzzle from accidentally melting the singleton by forgetting to wrap its odd output.
 - **A specific magic melt value determines whether the singleton wraps its child.** If you would like to destroy a singleton and use its amount to create a new non-singleton coin, you need to output a `CREATE_COIN` condition that uses the amount `-113`.
   When the singleton outer puzzle sees that condition, it filters it out.
@@ -433,7 +433,7 @@ Due to the launcher ID being curried into the singleton's puzzle hash, it will b
 We cannot use the singleton's coin ID, because if we curried that in, the singleton could spend and then this puzzle becomes unsolvable!
 
 The announcement that we create is simply for the singleton to assert that we are also being spent.
-This is necessary due to the fact that [nodes may try and exclude this spend](https://chialisp.com/docs/security#replay-attacks) causing the singleton to spend without claiming these rewards.
+This is necessary due to the fact that [nodes may try and exclude this spend](https://chialisp.com/security#replay-attacks) causing the singleton to spend without claiming these rewards.
 Since this coin cannot be signed, we must ensure somehow that if it is excluded, the whole spend bundle fails.
 We use `'$'` because it's one byte and somewhat relevant.
 

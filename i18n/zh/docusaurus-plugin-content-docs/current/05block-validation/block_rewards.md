@@ -70,7 +70,7 @@ After the start of year 12, 0.125 XCH is created in perpetuity.
 - 选项 1：如果农民的区块是交易区块，农民将在下一个交易区块获得报酬。
 - 选项 2：如果农民的区块不是交易区块，农民将在下一个交易区块之后的下一个交易区块获得报酬（下一个下一个）。
 
-因此，奇亚币永远不会被销毁。在给定的区块中，未添加到新硬币中的已用硬币的任何部分都将作为费用发送给农民。[chialisp.com](https://chialisp.com/docs/coin_lifecycle#fees-and-the-mempool "Fees and the Mempool section of Chialisp's tutorial on coin lifecycles")中更详细地介绍了该主题。
+因此，奇亚币永远不会被销毁。在给定的区块中，未添加到新硬币中的已用硬币的任何部分都将作为费用发送给农民。[chialisp.com](https://chialisp.com/coin_lifecycle#fees-and-the-mempool "Fees and the Mempool section of Chialisp's tutorial on coin lifecycles")中更详细地介绍了该主题。
 
 <details>
 <summary>原文参考</summary>
@@ -82,7 +82,7 @@ In most cryptocurrencies, the creator of a block pays themselves based on the _c
 - Option 1: If the farmer's block is a transaction block, the farmer will get paid on the next transaction block.
 - Option 2: If the farmer's block is not a transaction block, the farmer will get paid on the next transaction block after the next transaction block (next next).
 
-Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in [chialisp.com](https://chialisp.com/docs/coin_lifecycle#fees-and-the-mempool "Fees and the Mempool section of Chialisp's tutorial on coin lifecycles").
+Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in [chialisp.com](https://chialisp.com/coin_lifecycle#fees-and-the-mempool "Fees and the Mempool section of Chialisp's tutorial on coin lifecycles").
 
 </details>
 

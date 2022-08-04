@@ -78,7 +78,7 @@ Command: `chia start {service}`
 
 # plotters
 
-In 1.2.11 the option to use different plotters was introduced. The plotters supported include [Bladebit](https://github.com/Chia-Network/bladebit), [madMAx](https://github.com/madMAx43v3r/chia-plotter), and the original reference chiapos plotter. Each plotter has slightly different hardware requirements and may need slightly different options specified. Learn more about the alternative plotters in the [Alternative Plotters page](/docs/plotting-software).
+In 1.2.11 the option to use different plotters was introduced. The plotters supported include [Bladebit](https://github.com/Chia-Network/bladebit), [madMAx](https://github.com/madMAx43v3r/chia-plotter), and the original reference chiapos plotter. Each plotter has slightly different hardware requirements and may need slightly different options specified. Learn more about the alternative plotters in the [Alternative Plotters page](/plotting-software).
 
 ## madmax
 
@@ -156,7 +156,7 @@ Command: `chia plots create [add flags and parameters]`
 
 **Flags**
 
-`-k` [size]: Define the size of the plot(s). For a list of k-sizes and creation times on various systems check out: [k-Sizes](/docs/plotting-basics)
+`-k` [size]: Define the size of the plot(s). For a list of k-sizes and creation times on various systems check out: [k-Sizes](/plotting-basics)
 
 `-n` [number of plots]: The number of plots that will be made, in sequence. Once a plot is finished, it will be moved to the final location `-d`, before starting the next plot in the sequence.
 
@@ -398,13 +398,13 @@ Command: `chia keys derive wallet-address [OPTIONS]`
 
 # DID
 
-See our [official DID reference](/docs/did-cli).
+See our [official DID reference](/did-cli).
 
 ---
 
 # NFT
 
-See our [official NFT reference](/docs/nft-cli).
+See our [official NFT reference](/nft-cli).
 
 ---
 

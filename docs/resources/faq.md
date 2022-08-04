@@ -26,7 +26,7 @@ slug: /faq
 
 ## What are harvesters, farmers, full nodes, and timelords?
 
-You can read about each of them and the architecture in the [network architecture document](https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture). The [consensus document](https://docs.chia.net/docs/03consensus/consensus_intro) is the most current documentation, however. You can also check out our [Timelord documentation](https://github.com/Chia-Network/chia-blockchain/wiki/Timelords).
+You can read about each of them and the architecture in the [network architecture document](https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture). The [consensus document](https://docs.chia.net/03consensus/consensus_intro) is the most current documentation, however. You can also check out our [Timelord documentation](https://github.com/Chia-Network/chia-blockchain/wiki/Timelords).
 
 ## What is a proof of space?
 
@@ -61,7 +61,7 @@ You can see some example plot sizes, times to plot, and working space needed bas
 
 The minimum plot size is k=32. There is only one reason why you might want to plot larger than k=32: to maximize the total utilization of a given drive or space. A couple of k=33 plots with a majority of k=32 plots can reduce the amount of leftover unused space on a drive.
 
-The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](https://docs.chia.net/docs/03consensus/consensus_intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
+The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](https://docs.chia.net/03consensus/consensus_intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
 
 - Note that this attack does not create a winning plot; it only creates a plot that passes the filter.
 
@@ -272,7 +272,7 @@ trusted_peers:
 
 ## How does light wallet syncing work?
 
-This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](https://docs.chia.net/docs/03consensus/light_clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
+This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](https://docs.chia.net/03consensus/light_clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
 
 First, a bit about addresses in Chia. A single Chia wallet can use up to four billion (2^32) addresses. Hopefully, you won't need more than that! Using multiple addresses can help provide anonymity. Rather than having to sign up for a new account each time you want to receive money, you can simply click "NEW ADDRESS" and _presto_ -- a new address appears. Additionally, each time you receive change from sending money, a new address is automatically generated. Your wallet keeps track of each of the addresses that have been used. As long as your wallet is synced, it always knows how much money you have.
 
@@ -358,7 +358,7 @@ HD or Hierarchical Deterministic keys are a type of public key/private key schem
 
 ## How many confirmations do I need to trust that a chia transaction is final?
 
-Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](https://docs.chia.net/docs/03consensus/analysis#safety "Safety analysis of Chia's consensus").
+Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](https://docs.chia.net/03consensus/analysis#safety "Safety analysis of Chia's consensus").
 
 ## Why is my wallet not synced? Why can I not connect to wallet from the GUI?
 
@@ -388,7 +388,7 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ## Where can I buy Chia?
 
-Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](​​https://chialisp.com/docs/puzzles/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
+Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](​​https://chialisp.com/puzzles/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
 
 There are also several exchanges that offer XCH. You can see a list of exchanges supporting XCH [here](https://chialinks.com/exchanges/). This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
@@ -452,22 +452,22 @@ A similar (but slightly more complex technique) would be to use a singleton inst
 
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
-- [Technical reference document](https://chialisp.com/docs/puzzles/offers)
-- [GUI (graphical user interface) tutorial](https://chialisp.com/docs/tutorials/offers_gui_tutorial)
+- [Technical reference document](https://chialisp.com/puzzles/offers)
+- [GUI (graphical user interface) tutorial](https://chialisp.com/tutorials/offers_gui_tutorial)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
-- [CLI (command line interface) tutorial](https://chialisp.com/docs/tutorials/offers_cli_tutorial)
+- [CLI (command line interface) tutorial](https://chialisp.com/tutorials/offers_cli_tutorial)
 
 ## After creating an offer file, why does my spendable balance differ more than the amount specific in the offer?
 
-When you create an offer, [coins are reserved](https://chialisp.com/docs/puzzles/offers#on-chain-vs-off-chain) to ensure that when the offer has been accepted and written on to the blockchain, the transaction can be completed. Chia’s wallet will reserve the largest coin to fulfill an offer, and when that coin is reserved, it will lower the spendable balance by the total coin amount.
+When you create an offer, [coins are reserved](https://chialisp.com/puzzles/offers#on-chain-vs-off-chain) to ensure that when the offer has been accepted and written on to the blockchain, the transaction can be completed. Chia’s wallet will reserve the largest coin to fulfill an offer, and when that coin is reserved, it will lower the spendable balance by the total coin amount.
 
 ## I plan on making many offers and I want to ensure that my coins aren’t locked up?
 
-To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/docs/puzzles/offers#coin-set-utxo).
+To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/puzzles/offers#coin-set-utxo).
 
 ## When canceling an offer, when should I check the “cancel on blockchain” checkbox?
 
-You should use this option if the offer file has left your computer. If you don’t use this option, someone who sees your offer could still accept it. See our [reference doc](https://chialisp.com/docs/puzzles/offers#cancellation) for more info.
+You should use this option if the offer file has left your computer. If you don’t use this option, someone who sees your offer could still accept it. See our [reference doc](https://chialisp.com/puzzles/offers#cancellation) for more info.
 
 ## If I cancel my offer on the blockchain, will other people be able to fulfill it?
 
@@ -475,7 +475,7 @@ No, canceling on the blockchain ensures that your offer can no longer be fulfill
 
 ## I’m accepting an offer, but it shows a Unknown CAT, what should I do?
 
-You should always check the ID of the asset(s) being offered before accepting any offers. First make sure you have a CAT wallet set up for the assets that you are trading for and are getting that information from a reputable source. Second, when you view the offer in the wallet, ensure the amounts and the CATs match up to what you are expecting. For more info, see our [GUI tutorial](https://chialisp.com/docs/tutorials/offers_gui_tutorial#taker-accepts-an-unknown-cat-offer).
+You should always check the ID of the asset(s) being offered before accepting any offers. First make sure you have a CAT wallet set up for the assets that you are trading for and are getting that information from a reputable source. Second, when you view the offer in the wallet, ensure the amounts and the CATs match up to what you are expecting. For more info, see our [GUI tutorial](https://chialisp.com/tutorials/offers_gui_tutorial#taker-accepts-an-unknown-cat-offer).
 
 ## Where can I share my offers?
 
@@ -525,11 +525,11 @@ Non-Fungible Tokens have become extremely popular in the last few years. [This s
 
 ## How do I buy NFTs?
 
-Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/docs/puzzles/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click “Create an Offer” and “NFT Offer”. We’ll have a more detailed guide that includes all of the options soon.
+Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/puzzles/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click “Create an Offer” and “NFT Offer”. We’ll have a more detailed guide that includes all of the options soon.
 
 ## How can I make an NFT offer using the CLI?
 
-The CLI commands for NFT offers are almost the same as [those for CAT offers](https://chialisp.com/docs/tutorials/offers_cli_tutorial#create-a-single-token-offer). The main difference is that you have to include the NFT singleton's value after the NFT ID (typically this is `:1`). For example, to make an offer, you can run:
+The CLI commands for NFT offers are almost the same as [those for CAT offers](https://chialisp.com/tutorials/offers_cli_tutorial#create-a-single-token-offer). The main difference is that you have to include the NFT singleton's value after the NFT ID (typically this is `:1`). For example, to make an offer, you can run:
 
 `chia wallet make_offer -o 1:0.1 -r nft1g5gzj3hl9gdyrq83zveepf8wmeet8mxl8zutfyahs0wfkg9mcs9qepc4w5:1 -p test.offer -m 0.001`
 
@@ -733,11 +733,11 @@ No. NFTs can be left unassigned to a Profile.
 
 ## How do I use the CLI for creating and using DIDs and NFTs?
 
-Our [dev guide](https://devs.chia.net/guides/nft-cli/) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](https://docs.chia.net/docs/13cli/did_cli/) and [NFTs](https://docs.chia.net/docs/13cli/nft_cli).
+Our [dev guide](https://devs.chia.net/guides/nft-cli/) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](https://docs.chia.net/13cli/did_cli/) and [NFTs](https://docs.chia.net/13cli/nft_cli).
 
 ## What RPC functionality is available for DIDs and NFTs?
 
-We also have a [dev guide geared at using RPCs](https://devs.chia.net/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](https://docs.chia.net/docs/12rpcs/did_rpcs/) and [NFTs](https://docs.chia.net/docs/12rpcs/nft_rpcs/).
+We also have a [dev guide geared at using RPCs](https://devs.chia.net/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](https://docs.chia.net/12rpcs/did_rpcs/) and [NFTs](https://docs.chia.net/12rpcs/nft_rpcs/).
 
 ## What limitations, if any, are there for NFT1 on Chia's blockchain?
 

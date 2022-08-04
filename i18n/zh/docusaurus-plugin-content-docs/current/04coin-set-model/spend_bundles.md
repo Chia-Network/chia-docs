@@ -21,7 +21,7 @@ class SpendBundle:
 
 正如您在上面的代码示例中看到的那样，一个花费组合是一组硬币支出，其中每个硬币支出包括正在支出的硬币、谜语程序和谜底程序。每个谜底都被传递到每个谜语中，并通过 clvm 运行，在那里它输出条件。其中两个条件—— `AGG_SIG_ME` 和 `AGG_SIG_UNSAFE` ——要求存在签名才能使支出有效。
 
-通常，在进行交易时，用户会合并多次花费，以实现交易的预期价值。用户还可以组合代表 [CATs](https://chialisp.com/docs/puzzles/cats) (奇亚资产代币) 的硬币，并在同一个花费组合中发送不同类型的价值。
+通常，在进行交易时，用户会合并多次花费，以实现交易的预期价值。用户还可以组合代表 [CATs](https://chialisp.com/puzzles/cats) (奇亚资产代币) 的硬币，并在同一个花费组合中发送不同类型的价值。
 
 <details>
 <summary>原文参考</summary>
@@ -42,7 +42,7 @@ class SpendBundle:
 As you can see in the code sample above, a spend bundle is a group of coin spends, where each coin spend includes the coin being spent, the puzzle program, and the solution program. Each solution is passed into each puzzle and run through the CLVM, where it outputs conditions. Two of the conditions -- `AGG_SIG_ME` and `AGG_SIG_UNSAFE` -- require
 that a signature be present in order for the spend to be valid.
 
-Usually, when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](https://chialisp.com/docs/puzzles/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
+Usually, when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](https://chialisp.com/puzzles/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
 
 </details>
 
@@ -62,7 +62,7 @@ s3 m3 pk3
 
 这允许农民将所有三个花费组合合并为一个花费组合，只有一个签名。这意味着更少的数据传输和存储在链和磁盘上。
 
-这些聚合签名的另一个好处是，当花费多个硬币时，用户只会传输一个签名，而不是每次花费一个或多个。更多信息可以在[第 9.1 节](/docs/keys/keys-and-signatures 'Section 9.1: Keys and Signatures')中找到。您还可以阅读[BLS 签名代码](https://github.com/Chia-Network/bls-signatures)。
+这些聚合签名的另一个好处是，当花费多个硬币时，用户只会传输一个签名，而不是每次花费一个或多个。更多信息可以在[第 9.1 节](/keys/keys-and-signatures 'Section 9.1: Keys and Signatures')中找到。您还可以阅读[BLS 签名代码](https://github.com/Chia-Network/bls-signatures)。
 
 <details>
 <summary>原文参考</summary>
@@ -83,7 +83,7 @@ With BLS signatures, farmers combine all three signatures `s1, s2, and s3` into 
 
 This allows the farmer to combine all three spend bundles into one spend bundle, with only one signature.which means less data is transmitted and stored on chain and disk.
 
-Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/docs/keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
+Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
 
 </details>
 

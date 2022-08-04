@@ -3,11 +3,11 @@ title: Timelords
 slug: /timelord-architecture
 ---
 
-Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/docs/consensus-vdfs)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
+Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/consensus-vdfs)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
 
 Since this computation is sequential, very little energy is consumed, as opposed to proof-of-work systems, where computation is parallelizable. For example, if 100 timelords are doing the same computation on a proof of time, they will all create the exact same output.
 
-> The timelord algorithm is explained in the [Timelord Algorithm page](/docs/timelord-algorithm).
+> The timelord algorithm is explained in the [Timelord Algorithm page](/timelord-algorithm).
 
 A timelord is required to connect to exactly one full node, typically on the same machine. This connection is verified with a certificate. This 1:1 architecture has a large security benefit: it keeps the timelord sandboxed in its own private network. That way, the full node protocol is the only protocol that requires total security. If more than one full node could connect to the same timelord, it would add a potential attack vector to the network.
 
@@ -19,7 +19,7 @@ If someone controls the fastest timelord in the world, it doesn't give them much
 
 Furthermore, an attacker with a significantly faster timelord than anyone else could potentially run a long-range attack against the network with less than 42.7% of the total netspace. For security purposes, it is very important to maintain open designs of VDF hardware.
 
-> You can learn about potential attacks against Chia's network in the [Attacks and Countermeasures page](/docs/consensus-attacks).
+> You can learn about potential attacks against Chia's network in the [Attacks and Countermeasures page](/consensus-attacks).
 
 ## Types of Timelords
 

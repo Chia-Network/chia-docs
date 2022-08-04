@@ -20,7 +20,7 @@ Figure 3: The Verifier (blockchain) sends a challenge to the Prover (timelord) a
 </figcaption>
 </figure>
 
-Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/docs/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures') become possible.
+Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures') become possible.
 
 The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long'). There are two main ways to generate a large group that has an unknown order:
 
