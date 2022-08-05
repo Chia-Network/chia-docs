@@ -93,9 +93,9 @@ module.exports = {
         'primitives/standard-transactions',
         'primitives/singletons',
         'primitives/cats',
-        'primitives/offers',
         'primitives/nfts',
         'primitives/dids',
+        'primitives/offers',
       ],
     },
     {
