@@ -548,41 +548,27 @@ In all of these cases, the TAIL program is run when a coin is spent to check if 
 
 ## Design Decisions
 
-### Created coins become CATs with the same TAIL {#wrapping}
+#### Created coins become CATs with the same TAIL {#wrapping}
 
 When the inner puzzle returns a `CREATE_COIN` condition, it will wrap its puzzle hash with the CAT and curry in the same TAIL as before. This prevents the CAT from being implicitly melted and the value used for other things when spending it.
 
-### Unless TAIL is revealed, spends must net zero {#accounting}
+#### Unless TAIL is revealed, spends must net zero {#accounting}
 
 In order to prevent issuing new CATs or melting existing CATs without the TAIL permitting it, any spend that doesn't reveal the TAIL program must output the same amount as the input coins.
 
-### CATs must match their parent or use the TAIL {#lineage}
+#### CATs must match their parent or use the TAIL {#lineage}
 
 Another way to prevent CATs from being issued without permission, is that they validate their lineage by asserting the parent is a CAT of the same TAIL. This is done by using the `ASSERT_MY_ID` condition to verify the information passed in the spend.
 
-### CATs enforce prefixes for coin announcements {#prefixes}
+#### CATs enforce prefixes for coin announcements {#prefixes}
 
 In order to ensure that the CATs can communicate with each other without interference from an inner puzzle, they must prepend a `0xcb` prefix to coin announcements that are created within the CAT layer.
 
-### TAILs are given a list of pre-calculated truths {#truths}
+#### TAILs are given a list of pre-calculated truths {#truths}
 
 Many TAILs require information that has already been calculated in the CAT layer, so we bundle it together as a pre-validated collection of `Truths`. We then pass these truths into the TAIL as the first non-curried parameter in the solution.
 
-| Truth                       | Description                                                 |
-| --------------------------- | ----------------------------------------------------------- |
-| My ID                       | The ID of the coin.                                         |
-| My Parent's ID              | The ID of the coin's parent.                                |
-| My Full Puzzle Hash         | The puzzle hash contained inside the coin.                  |
-| My Amount                   | The amount of the coin in mojos.                            |
-| My Inner Puzzle Hash        | The puzzle hash of the inner puzzle inside the CAT layer.   |
-| My Lineage Proof (optional) | Proof that the CAT's parent has the same TAIL.              |
-| My TAIL Solution (optional) | A list of parameters passed into the TAIL program.          |
-| My Coin Info                | The parent, puzzle hash, and amount.                        |
-| CAT Mod Hash                | The hash of the CAT before anything is curried.             |
-| CAT Mod Hash Hash           | The hash of the CAT mod hash.                               |
-| CAT TAIL Program Hash       | The hash of the TAIL program that was curried into the CAT. |
-
-### CATs have the option to use hinting {#hinting}
+#### CATs have the option to use hinting {#hinting}
 
 Hinting is a way to signal the CAT's type to a Chia wallet. The hint is typically an inner puzzle hash. For more info, see our [explanation of hinting in the FAQ](/faq#q-what-is-hinting).
 
@@ -712,3 +698,19 @@ Here are some possible examples of this:
 ### Ephemeral Tokens
 
 A CAT could be created as a limited-time offer or as a game of musical chairs. In these cases, tokens would be melted _against the owner's will_. This could be done either at random or as a deliberate type of slashing.
+
+## Truth Table
+
+| Truth                       | Description                                                 |
+| --------------------------- | ----------------------------------------------------------- |
+| My ID                       | The ID of the coin.                                         |
+| My Parent's ID              | The ID of the coin's parent.                                |
+| My Full Puzzle Hash         | The puzzle hash contained inside the coin.                  |
+| My Amount                   | The amount of the coin in mojos.                            |
+| My Inner Puzzle Hash        | The puzzle hash of the inner puzzle inside the CAT layer.   |
+| My Lineage Proof (optional) | Proof that the CAT's parent has the same TAIL.              |
+| My TAIL Solution (optional) | A list of parameters passed into the TAIL program.          |
+| My Coin Info                | The parent, puzzle hash, and amount.                        |
+| CAT Mod Hash                | The hash of the CAT before anything is curried.             |
+| CAT Mod Hash Hash           | The hash of the CAT mod hash.                               |
+| CAT TAIL Program Hash       | The hash of the TAIL program that was curried into the CAT. |
