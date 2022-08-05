@@ -58,7 +58,7 @@ That is, if there were two identical worlds where VDF speeds were equal and spac
 
 Another way to look at it is that increasing sub-slot iterations increases the number of blocks per slot, but it also makes slots last longer, and thus has no effect on weight per second.
 
-## Sub epochs
+## Sub Epochs
 
 As described in [Section 3.8](/consensus/three_vdf_chains 'Section 3.8: Three VDF Chains'), the challenge chain is completely separate and does not refer to anything in the rewards chain. If these chains stayed separate forever, an attacker with a faster VDF would be able to look into the far future and predict challenges. The attacker could create one block per slot, with limited space, thus creating a whole challenge chain. This would allow them to create plots and instantly create proofs of space for these plots that will win in the future, and then delete the plots (a long range replotting attack). This would enable them to fill their reward chain and increase their weight.
 

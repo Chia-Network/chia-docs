@@ -3,7 +3,7 @@ title: Signage and Infusion Points
 slug: /signage-and-infusion-points
 ---
 
-# 3.5 Signage Points and Infusion Points
+# Signage Points and Infusion Points
 
 Each sub-slot in both the challenge chain and the reward chain is divided into 64 smaller VDFs. Between each of these smaller VDFs is a point called a **signage point**. Timelords publish the VDF output and proof when they reach each signage point.
 
