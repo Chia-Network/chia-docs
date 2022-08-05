@@ -701,11 +701,13 @@ For certain categories of CATs, such as stablecoins and redemption tokens, melti
 
 ### Value Exchange
 
-Some CATs might allow their owners to melt tokens in order to gain something else of value, for example NFTs or other CATs. In fact, an entire marketplace could emerge from this concept. Some possible examples:
+Some CATs might allow their owners to melt tokens in order to gain something else of value, for example NFTs or other CATs. In fact, an entire marketplace could emerge from this concept.
 
-- The creator of a set of NFTs also creates a small issuance of "golden tickets" that can be used to pick out any individual NFT before the set is made publicly available.
+Here are some possible examples of this:
+
+- The creator of a set of NFTs also creates a small issuance of golden tickets that can be used to pick out any individual NFT before the set is made publicly available.
 - A celebrity issues some tokens that can be exchanged for something of non-monetary value, such as a meeting with said celebrity.
-- The holder of a CAT must submit a "proof of melt" in order to enter a contest.
+- The holder of a CAT must submit a proof of melt in order to enter a contest.
 
 ### Ephemeral Tokens
 
