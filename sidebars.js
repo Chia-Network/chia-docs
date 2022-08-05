@@ -25,6 +25,7 @@ module.exports = {
       items: [
         'plotting/plotting-basics',
         'plotting/plotting-software',
+        'plotting/k-sizes',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
       ],
