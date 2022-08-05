@@ -601,8 +601,8 @@ To form the ring, every coin outputs the following conditions:
 
 ```chialisp
 (
-  (CREATE_COIN_ANNOUNCEMENT (concat previous_coin_ID sum_of_deltas_before_me))
-  (ASSERT_COIN_ANNOUNCEMENT (sha256 next_coin_id my_coin_id sum_of_deltas_including_me))
+    (CREATE_COIN_ANNOUNCEMENT (concat previous_coin_ID sum_of_deltas_before_me))
+    (ASSERT_COIN_ANNOUNCEMENT (sha256 next_coin_id my_coin_id sum_of_deltas_including_me))
 )
 ```
 
