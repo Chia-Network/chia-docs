@@ -26,7 +26,7 @@ This is the source code of the CAT, which can also be found in the chia-blockcha
 <details>
   <summary>Expand Chialisp puzzle</summary>
 
-```chialisp
+```chialisp title="cat_v2.clvm"
 ; Coins locked with this puzzle are spendable cats.
 ;
 ; Choose a list of n inputs (n>=1), I_1, ... I_n with amounts A_1, ... A_n.
@@ -437,7 +437,7 @@ This is the source code, which can also be found in the chia-blockchain reposito
 <details>
   <summary>Genesis By Coin Id</summary>
 
-```chialisp
+```chialisp title="genesis_by_coin_id.clvm"
 ; This is a TAIL for use with cat.clvm.
 ;
 ; This checker allows new CATs to be created if they have a particular coin id as parent
@@ -475,7 +475,7 @@ This is the source code, which can also be found in the chia-blockchain reposito
 <details>
   <summary>Everything With Signature</summary>
 
-```chialisp
+```chialisp title="everything_with_signature.clvm"
 ; This is a "limitations_program" for use with cat.clvm.
 (mod (
       PUBKEY
@@ -502,7 +502,7 @@ This is the source code, which can also be found in the chia-blockchain reposito
 <details>
   <summary>Delegated TAIL</summary>
 
-```chialisp
+```chialisp title="delegated_tail.clvm"
 ; This is a "limitations_program" for use with cat.clvm.
 (mod (
       PUBKEY
