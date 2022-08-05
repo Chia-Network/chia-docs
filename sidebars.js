@@ -70,7 +70,7 @@ module.exports = {
         'consensus/three-vdf-chains',
         'consensus/overflow-blocks',
         'consensus/foliage',
-        'consensus/epochs',
+        'consensus/epoch-and-difficulty',
         'consensus/light-clients',
         'consensus/timelords',
         'consensus/attacks-and-countermeasures',

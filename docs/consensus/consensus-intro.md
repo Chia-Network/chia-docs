@@ -1,5 +1,5 @@
 ---
-title: Chia Consensus Introduction
+title: Consensus Introduction
 slug: /consensus-intro
 ---
 

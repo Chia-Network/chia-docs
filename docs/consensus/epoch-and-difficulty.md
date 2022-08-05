@@ -1,5 +1,5 @@
 ---
-title: Epoch and Difficulty Adjustment
+title: Epoch and Difficulty
 slug: /epoch-and-difficulty
 ---
 
