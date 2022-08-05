@@ -562,7 +562,7 @@ Another way to prevent CATs from being issued without permission, is that they v
 
 ### CATs enforce prefixes for coin announcements {#prefixes}
 
-In order to ensure that the CATs can communicate with each other without interference from an inner puzzle, they must prepend a prefix to coin announcements that are created within the CAT layer.
+In order to ensure that the CATs can communicate with each other without interference from an inner puzzle, they must prepend a `0xcb` prefix to coin announcements that are created within the CAT layer.
 
 ### TAILs are given a list of pre-calculated truths {#truths}
 
