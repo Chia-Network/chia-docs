@@ -82,9 +82,9 @@ infusion_iterations is then computed as:
 
 infusion_iterations = signage_point_iterations + (3 \* sp_interval_iterations) + required_iterations
 
-= (signage*point * sp*interval_iterations) + (3 * sp_interval_iterations) + required_iterations
+= (signage \* point \* sp \* interval_iterations) + (3 \* sp_interval_iterations) + required_iterations
 
-= (20*1.5625M) + (3 * 1.5626M) + 0.7827M
+= (20 \* 1.5625M) + (3 \* 1.5626M) + 0.7827M
 
 = 36.7223M
 
