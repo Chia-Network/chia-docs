@@ -91,11 +91,11 @@ module.exports = {
       label: 'Primitives',
       items: [
         'primitives/standard-transactions',
+        'primitives/singletons',
         'primitives/cats',
+        'primitives/offers',
         'primitives/nfts',
         'primitives/dids',
-        'primitives/offers',
-        'primitives/singletons',
       ],
     },
     {
