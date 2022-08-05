@@ -20,7 +20,7 @@ As of Chia 1.2.7, a k32 plot can be created in around five minutes with a high-e
 
 Plot sizes are determined by a k parameter, where `space = 780 * k * pow(2, k - 10)`, with a minimum k of 32 (101.4 GiB). The Proof of Space construction is based on [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space"), but it is nested six times (thereby creating seven tables), and it contains other heuristics to make it practical.
 
-Each of the seven tables in a plot is filled with random-looking data that cannot be compressed. Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table). Finally, each table-1 entry contains a pair of integers between 0 and 2^k, called “x-values.” A proof of space is a collection of 64 x-values that have a certain mathematical relationship. The actual on-disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
+Each of the seven tables in a plot is filled with random-looking data that cannot be compressed. Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table). Finally, each table-1 entry contains a pair of integers between 0 and 2^k, called "x-values." A proof of space is a collection of 64 x-values that have a certain mathematical relationship. The actual on-disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
 
 <figure>
 <img src="/img/plot.png" alt="drawing"/>

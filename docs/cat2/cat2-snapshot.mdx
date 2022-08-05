@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 :::info
 [CAT1](https://chialisp.com/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
 
-For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/cat2-intro).
+For more information on this end-of-life process, see the [Intro and FAQ page](/cat2-intro).
 :::
 
 This document will show CAT1 issuers how to:
@@ -222,7 +222,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    This command may take a few minutes to complete. At the end of the output, you should see something like:
 
    ```
-   Finished processing dependencies for chia-transaction-exporter==0.1.dev55”
+   Finished processing dependencies for chia-transaction-exporter==0.1.dev55"
    ```
 
 6. Install the `dotenv` and `backoff` modules:
@@ -436,14 +436,14 @@ Once you have populated the database with a snapshot, you can run a data export.
 
 This step is **required for Windows users**, and not needed for Linux or macOS users.
 
-If you are running on Windows, the CSV file will contain an extra CR (carriage return) character at the end of each line. This will cause [“Secure the Bag”](/cat2-issuance#secure-single) to fail. First, you must convert the CSV file to use UNIX-style end-of-line characters.
+If you are running on Windows, the CSV file will contain an extra CR (carriage return) character at the end of each line. This will cause ["Secure the Bag"](/cat2-issuance#secure-single) to fail. First, you must convert the CSV file to use UNIX-style end-of-line characters.
 
 The easiest way to accomplish this is with `dos2unix`. This is not included with Windows, so you will need to download it from SourceForge.
 
 Steps to convert the CSV file:
 
 1. Visit the [SourceForge dos2unix site](https://sourceforge.net/projects/dos2unix/).
-2. Click the green _“Download”_ button. After five seconds, the `dos2unix` zip file will be downloaded to your Downloads folder.
+2. Click the green _"Download"_ button. After five seconds, the `dos2unix` zip file will be downloaded to your Downloads folder.
 3. Unzip the `dos2unix` zip file.
 4. From a PowerShell window, run:
 

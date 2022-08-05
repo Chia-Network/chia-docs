@@ -58,7 +58,7 @@ For more info about the coin set model and Chia's on-chain programming environme
 
 > 更多关于区块奖励结构的信息可以在[第 5.3 节](/block-validation/block_rewards 'Section 5.3: Block Rewards')中找到.
 
-虽然“XCH”是一种方便的奇亚币计价方式，但区块链只知道*mojos*。这些是奇亚币的最小面额。每个魔力值一个 XCH 的万亿分之一（1/1,000,000,000,000）。
+虽然"XCH"是一种方便的奇亚币计价方式，但区块链只知道*mojos*。这些是奇亚币的最小面额。每个魔力值一个 XCH 的万亿分之一（1/1,000,000,000,000）。
 
 <details>
 <summary>原文参考</summary>

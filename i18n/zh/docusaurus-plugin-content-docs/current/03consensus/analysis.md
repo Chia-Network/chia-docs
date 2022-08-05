@@ -74,7 +74,7 @@ Of course, in the event of a long-term network split, the effects are that one c
 
 ## 与中本聪工作量的比较
 
-（“+”表示奇亚的优势）
+（"+"表示奇亚的优势）
 
 - (+) 不同的资源。 空间证明是抗 ASIC 的，因此任何人都可以参与农业。
 - (+) 希望更加去中心化。（主网第一年的分析表明情况确实如此。）
@@ -113,23 +113,23 @@ Of course, in the event of a long-term network split, the effects are that one c
 
 ## 与权益证明的比较
 
-奇亚共识算法也可用于权益证明，在这种情况下，太空农民被在系统中拥有硬币的权益人所取代。好处是能够削减（删除人们的股份），农民将拥有“游戏中的皮肤”，但如果使用权益证明，则存在一些担忧。（“+”表示使用空间与权益的好处）。
+奇亚共识算法也可用于权益证明，在这种情况下，太空农民被在系统中拥有硬币的权益人所取代。好处是能够削减（删除人们的股份），农民将拥有"游戏中的皮肤"，但如果使用权益证明，则存在一些担忧。（"+"表示使用空间与权益的好处）。
 
-- (+) 攻击者可以将他们的股权转移给其他人，但在他们的股权转移之前分叉链。在这个替代链中，攻击者仍然拥有他们所有的股份，因此可以推进链。权益证明中的“无利害关系”问题与空间证明不同，因为创建空间证明需要物理资源（硬盘空间），而创建权益证明只需要一个密钥。
+- (+) 攻击者可以将他们的股权转移给其他人，但在他们的股权转移之前分叉链。在这个替代链中，攻击者仍然拥有他们所有的股份，因此可以推进链。权益证明中的"无利害关系"问题与空间证明不同，因为创建空间证明需要物理资源（硬盘空间），而创建权益证明只需要一个密钥。
 - (+) 攻击者可以通过质押他们的奖励（富人越富）来保证他们在整个货币供应中的份额，因为硬币的总数是有限的。
 - (+) 在某些情况下，攻击者可能会尝试多种不同的方式来转移股权。也许这可以通过在权益变得活跃之前需要很长时间来缓解。
 - (+) 需要注册，在注册之前您不能参与权益证明。这会降低隐私和可扩展性（可以质押多少人）。
 - (+) 更高的进入门槛：保证金和砍价让小用户难以参与。削减对网络参与者来说可能是一个巨大的风险。集中的保管人导致参与者的分布较少。
 - (+) 在权益证明中执行轻客户端同步需要一些假设。来源：[飞客白皮书](https://eprint.iacr.org/2019/226.pdf)。
 
-* (-) 游戏中的皮肤：通过权益证明，共识可以削减人们的股份，也需要对系统进行一些投资（暴露于价格）。在空间证明中，硬盘可以用于其他目的，并且没有能力“削减”人们的硬件。
+* (-) 游戏中的皮肤：通过权益证明，共识可以削减人们的股份，也需要对系统进行一些投资（暴露于价格）。在空间证明中，硬盘可以用于其他目的，并且没有能力"削减"人们的硬件。
 
 <details>
 <summary>原文参考</summary>
 
 - ## Comparison to Proof of Stake
 
-Chia's consensus algorithm could also be used for Proof of Stake, where the space farmers are replaced by stakers who own coins in the system. The benefit would be the ability to slash (delete people’s stake), and farmers would have “skin in the game”, but there are some concerns if Proof of Stake is used. ("+" means benefit for using space vs stake).
+Chia's consensus algorithm could also be used for Proof of Stake, where the space farmers are replaced by stakers who own coins in the system. The benefit would be the ability to slash (delete people’s stake), and farmers would have "skin in the game", but there are some concerns if Proof of Stake is used. ("+" means benefit for using space vs stake).
 
 - (+) An attacker can transfer their stake to someone else, but fork the chain right before their stake is transferred. In this alternate chain, the attacker still has all of their stake, and can therefore advance the chain. The "nothing at stake" issue is different in PoS than in PoSpace since creating a PoSpace requires a physical resource (hard drive space), while creating a PoS only requires a key.
 - (+) An attacker can guarantee their share of the whole monetary supply, by staking their rewards (the rich get richer), since the total number of coins is limited.
@@ -138,7 +138,7 @@ Chia's consensus algorithm could also be used for Proof of Stake, where the spac
 - (+) Higher barrier to entry: security deposits and slashing make it difficult for small users to participate. Slashing can be a huge risk for participants in the network. Centralized custodians lead to a less distributed set of participants.
 - (+) Some assumptions are required to perform light client syncs in Proof of Stake. Source: [Flyclient white paper](https://eprint.iacr.org/2019/226.pdf).
 
-* (-) Skin in the game: with PoS, the consensus can slash people’s stake, and also requires some investment into the system (exposure to price). In Proof of Space, hard drives can be used for other purposes and there is no ability to “slash” people's hardware.
+* (-) Skin in the game: with PoS, the consensus can slash people’s stake, and also requires some investment into the system (exposure to price). In Proof of Space, hard drives can be used for other purposes and there is no ability to "slash" people's hardware.
 
 </details>
 
@@ -146,7 +146,7 @@ Chia's consensus algorithm could also be used for Proof of Stake, where the spac
 
 空间证明也可以用作抗女巫的机制，以引导拜占庭共识（k 协议）系统。 Filecoin 和许多权益证明系统使用拜占庭共识的各个方面。
 
-使用奇亚中本聪共识与拜占庭共识的优缺点，因算法而异（“+”表示奇亚的优势）：
+使用奇亚中本聪共识与拜占庭共识的优缺点，因算法而异（"+"表示奇亚的优势）：
 
 - (+) 简单得多。
 - (+) 无注册要求。

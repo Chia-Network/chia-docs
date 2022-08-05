@@ -60,7 +60,7 @@ The [Chia CLI](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands
 
 ## Setting Expectations
 
-Once you have completed plots and are farming, you will see **Time to Win** in the farming tab. Whatever time it shows here is just an estimate. It might take 3 to 4 times longer than the time shown. For example, if it shows 2 days, it might take 5 or 8 days, sometimes even more to earn your first coin or partial coin. This is normal as luck plays a role over the short run. As you add more plots, the “time to win” decreases (more chances of winning).
+Once you have completed plots and are farming, you will see **Time to Win** in the farming tab. Whatever time it shows here is just an estimate. It might take 3 to 4 times longer than the time shown. For example, if it shows 2 days, it might take 5 or 8 days, sometimes even more to earn your first coin or partial coin. This is normal as luck plays a role over the short run. As you add more plots, the "time to win" decreases (more chances of winning).
 
 This is another reason we recommend creating your plots to a plot NFT. By doing this, you have the ability to join a pool and get consistent payouts regardless of your estimated time to win. With the pooling protocol, the estimated time to win refers to just 12.5% percent of the block reward which always goes to the farmer.
 
@@ -91,11 +91,11 @@ This is where you create plots. The accepted plot size starts at 101 GiB each. C
 
 - _GiB_ : is gibibytes and the old school way computers measured space. The new hotness - especially from hard drive manufacturers - is to measure in gigabytes. Since gigabytes are based on 1000 and gibibytes are based on 1024, GB is always 1.074 times larger than GiB.
 
-- _When you plot_ : You can think of each plot as a collection of bingo cards, which have a chance of winning blocks, and thus winning you coins.Your computer creates these large 101 [GiB](https://simple.wikipedia.org/wiki/Gibibyte) plot files (approx 108 GB - gigabytes). Inside are large tables (like Excel spreadsheets) where each cell has a random pointer to another cell in the table. This is what the computer is doing, and why it takes so long to create the plot. It is running calculations and putting the “answers” in these millions of cells. The expected life for a 101 GiB - k32 plot to be eligible on mainnet is about 5 to 10 years, for now. There are different sizes of plots. For now, only work with k32 plots. k33 and above are not necessary.
+- _When you plot_ : You can think of each plot as a collection of bingo cards, which have a chance of winning blocks, and thus winning you coins.Your computer creates these large 101 [GiB](https://simple.wikipedia.org/wiki/Gibibyte) plot files (approx 108 GB - gigabytes). Inside are large tables (like Excel spreadsheets) where each cell has a random pointer to another cell in the table. This is what the computer is doing, and why it takes so long to create the plot. It is running calculations and putting the "answers" in these millions of cells. The expected life for a 101 GiB - k32 plot to be eligible on mainnet is about 5 to 10 years, for now. There are different sizes of plots. For now, only work with k32 plots. k33 and above are not necessary.
 
 ### Farm tab
 
-This will show you how many plots you have created. On the top it will show how many Chias have been farmed. It also shows how many GiB of plots you have on the network. For example, you have 2 plots of 101 GiB created. Then it shows on Top left “Total size of Plots" as 0.2 [TiB](https://en.wikipedia.org/w/index.php?title=Tebibyte&redirect=no). This means you offer 0.2 TiB much storage of formulas to the Chia network. It is calculated as you have 101 GiB x 2 = 202 GiB.
+This will show you how many plots you have created. On the top it will show how many Chias have been farmed. It also shows how many GiB of plots you have on the network. For example, you have 2 plots of 101 GiB created. Then it shows on Top left "Total size of Plots" as 0.2 [TiB](https://en.wikipedia.org/w/index.php?title=Tebibyte&redirect=no). This means you offer 0.2 TiB much storage of formulas to the Chia network. It is calculated as you have 101 GiB x 2 = 202 GiB.
 
 - _Latest Block Challenges_ : This shows the latest challenges and signage points, which can be thought of as mini lotteries. Every 9 seconds, there is a new signage point, which means there is a new opportunity for you to check your plots and see if you've won. Every other signage point will be a winner for someone on the network so there is a new block created about every 18 seconds.
 
@@ -111,7 +111,7 @@ If for some reason those lines stop moving that is another indication you are no
 
 ## Create a plot
 
-1. Click on green button- top right “Add a Plot”
+1. Click on green button- top right "Add a Plot"
 
 2. Starting size plot is k 32 (101 GiB). You need a temp storage location of at least 239 GiB (256 GB) to create the plot.
 

@@ -5,7 +5,7 @@ slug: /consensus-intro
 
 Decentralized consensus algorithms require Sybil resistance, using a resource that is both cryptographically verifiable and scarce (not infinite). In previous blockchain systems, two different scarce resources have been used: computing power (Proof of Work) and staked money (Proof of Stake).
 
-Chia's Proof of Space and Time consensus uses storage capacity as the scarce resource. This comes much closer than previous systems to Satoshi's original ideal of “one CPU, one vote,” where a _vote_ refers to a chance to win and validate a block, not an actual vote on-chain. For example, someone storing 500 GiB has 5 “votes,” and someone storing 100 GiB has 1 “vote.”
+Chia's Proof of Space and Time consensus uses storage capacity as the scarce resource. This comes much closer than previous systems to Satoshi's original ideal of "one CPU, one vote," where a _vote_ refers to a chance to win and validate a block, not an actual vote on-chain. For example, someone storing 500 GiB has 5 "votes," and someone storing 100 GiB has 1 "vote."
 
 One other cryptographic puzzle piece is used to secure Chia's system: a verifiable delay function (VDF), which is a cryptographic proof that real time has passed.
 

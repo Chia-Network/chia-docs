@@ -14,7 +14,7 @@ sidebar_position: 3
 
 **函数**：这意味着它是确定性的：在输入 x 上计算 VDF 总是产生相同的结果 y。
 
-这里的关键词是“顺序”，就像对一个数字进行多次散列：hash(hash(hash(a))) 等。这意味着证明者不能只是添加更多机器来使函数执行得更快。 因此，我们可以假设计算 VDF 需要真实（挂钟）时间。 我们使用的构造是重复平方。 证明者必须将挑战平方 x T 次。 这需要时间 ϴ(T)。 证明者还必须创建一个证明，证明这是正确执行的。
+这里的关键词是"顺序"，就像对一个数字进行多次散列：hash(hash(hash(a))) 等。这意味着证明者不能只是添加更多机器来使函数执行得更快。 因此，我们可以假设计算 VDF 需要真实（挂钟）时间。 我们使用的构造是重复平方。 证明者必须将挑战平方 x T 次。 这需要时间 ϴ(T)。 证明者还必须创建一个证明，证明这是正确执行的。
 
 <figure>
 
@@ -46,7 +46,7 @@ A Verifiable Delay Function, also referred to as a proof of time or VDF, is a pr
 
 **Function**: this means it’s deterministic: computing a VDF on an input x always yields the same result y.
 
-The key word here is “sequential”, like hashing a number many times: hash(hash(hash(a))), etc. This means the prover cannot just add more machines tomake the function execute faster. Therefore we can assume that computing a VDF requires real (wall-clock) time. The construction that we use is repeated squaring. The prover must square a challenge x T times. This requires time ϴ(T). The prover also must create a proof that this was performed properly.
+The key word here is "sequential", like hashing a number many times: hash(hash(hash(a))), etc. This means the prover cannot just add more machines tomake the function execute faster. Therefore we can assume that computing a VDF requires real (wall-clock) time. The construction that we use is repeated squaring. The prover must square a challenge x T times. This requires time ϴ(T). The prover also must create a proof that this was performed properly.
 
 <figure>
 

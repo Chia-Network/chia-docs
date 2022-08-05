@@ -364,7 +364,7 @@ Small reorgs in Chia are possible, though rare. In order to be confident that yo
 
 Try the following options:
 
-1. GUI may not be fully refreshed. Try the “force reload” option under View to force the GUI to refresh.
+1. GUI may not be fully refreshed. Try the "force reload" option under View to force the GUI to refresh.
 2. It's possible the wallet DB may be corrupted. Deleting the wallet DB will resolve this, but will also cause you to lose any Offer history and you will need to setup your CAT wallets again.
 
 To delete your wallet DB follow these steps:
@@ -465,7 +465,7 @@ When you create an offer, [coins are reserved](https://chialisp.com/puzzles/offe
 
 To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/puzzles/offers#coin-set-utxo).
 
-## When canceling an offer, when should I check the “cancel on blockchain” checkbox?
+## When canceling an offer, when should I check the "cancel on blockchain" checkbox?
 
 You should use this option if the offer file has left your computer. If you don’t use this option, someone who sees your offer could still accept it. See our [reference doc](https://chialisp.com/puzzles/offers#cancellation) for more info.
 
@@ -487,13 +487,13 @@ Once you’ve created the offer, you’ll need to find someone who will take the
 - [Keybase - chia_offers](https://keybase.io/team/chia_offers) - #offers-trading channel is a forum where Chia Offers can be posted and accepted
 - [Offerpool.io](https://offerpool.io/) - an open-sourced, decentralized offers database built on top of OrbitDB and IPFS
 
-## Why am I seeing the following error when trying to share an offer to Keybase: “Failed to upload offer to Keybase:...”?
+## Why am I seeing the following error when trying to share an offer to Keybase: "Failed to upload offer to Keybase:..."?
 
-Please ensure that you have joined the chia_offers group first before hitting the “share” button.
+Please ensure that you have joined the chia_offers group first before hitting the "share" button.
 
-## Why do I see this error in Keybase when I click to Join Chia_Offers - “This team does not exist or it has no public information available”?
+## Why do I see this error in Keybase when I click to Join Chia_Offers - "This team does not exist or it has no public information available"?
 
-Ignore this error as this is a Keybase error, so long as you click on “Join Chia_offers”, you will get successfully added to the team to post or view offers.
+Ignore this error as this is a Keybase error, so long as you click on "Join Chia_offers", you will get successfully added to the team to post or view offers.
 
 ## Why don’t I see the offers option in my wallet?
 
@@ -525,7 +525,7 @@ Non-Fungible Tokens have become extremely popular in the last few years. [This s
 
 ## How do I buy NFTs?
 
-Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/puzzles/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click “Create an Offer” and “NFT Offer”. We’ll have a more detailed guide that includes all of the options soon.
+Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/puzzles/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click "Create an Offer" and "NFT Offer". We’ll have a more detailed guide that includes all of the options soon.
 
 ## How can I make an NFT offer using the CLI?
 
@@ -628,13 +628,13 @@ Yes, but you need to use an RPC. If you use the CLI command, the comma will be i
 
 On other blockchains, NFTs are typically custodied in a marketplace. This is akin to having an account with a company. The marketplace has a reputational motivation to keep your NFT safe and secure, but your NFT is still in their hands.
 
-_Self custody_ means that you have control over your own assets. The same mantra of “Not your keys, not your coins” also applies to NFTs. When you self-custody your Chia NFTs, it means that they are controlled by _your_ keys, and therefore they are _your_ assets.
+_Self custody_ means that you have control over your own assets. The same mantra of "Not your keys, not your coins" also applies to NFTs. When you self-custody your Chia NFTs, it means that they are controlled by _your_ keys, and therefore they are _your_ assets.
 
 ## Where does my NFT live?
 
 There are two components of a Chia NFT: on-chain and off-chain.
 
-**On-Chain:** An NFT is a special type of coin called a “singleton”. It contains three lists of URIs, which link to:
+**On-Chain:** An NFT is a special type of coin called a "singleton". It contains three lists of URIs, which link to:
 
 1. The NFT's data. This is typically an image file.
 2. The NFT's metadata. This is typically a JSON file containing information about the NFT.
@@ -744,7 +744,7 @@ We also have a [dev guide geared at using RPCs](https://devs.chia.net/guides/nft
 - For now, you can only transfer NFTs for free or exchange them for XCH. Eventually we plan to add the ability to trade NFTs for other NFTs and CATs.
 - For now, you can only mint one NFT per block if you’re using Chia’s CLI or RPCs. We are currently working on a bulk minting tool that will address this. If you attempt to mint more than one NFT in a single block, you’ll receive `{'error': 'ALREADY_INCLUDING_TRANSACTION'}` as a `WARNING` in your log file. The CLI will indicate a successful transaction; it will not show this warning. The reason for this is because the mempool is rejecting your transaction, which happens after the wallet submits it. The transaction will be stuck in the Pending state.
   - Workaround: After minting an NFT, wait for the transaction to clear (approximately 1 minute) before attempting to mint another NFT. If you do see a Pending transaction in your wallet that doesn’t clear after several minutes, then you can remove it by doing the following:
-    - GUI - Click the “Actions” dropdown and click “Delete Unconfirmed Transaction”
+    - GUI - Click the "Actions" dropdown and click "Delete Unconfirmed Transaction"
     - CLI - Run chia wallet delete_unconfirmed_transactions
 
 ## Are there any security concerns I should consider?

@@ -41,7 +41,7 @@ There are two main differences between Chia's Proof of Space and Time consensus 
 
 仅获得小幅提升的原因是因为正在尝试的替代链较差并且不太可能超过最长的链。 [PoSAT 论文](https://arxiv.org/abs/2010.08154) 对此进行了分析。
 
-由于攻击者能够“尝试”不同的块组合，例如省略或者不省略第一个块。
+由于攻击者能够"尝试"不同的块组合，例如省略或者不省略第一个块。
 
 如果每个区块都有新的空间挑战证明，攻击者可以将他们的空间乘以 e=2.718 的系数，其中只需要 27% 的空间就可以超越网络。奇亚选择通过将每个子时隙的预期块数设置为 32 来缓解这种攻击向量。这将攻击者所需的空间增加到 46%。
 
@@ -76,7 +76,7 @@ If the attacker were to manipulate the difficulty, they could change it so that 
 
 ## 更快的 VDF 和 46% 的空间
 
-如果攻击者的 VDF 更快，则 46% 攻击会变得更糟。假设攻击者的 VDF 快 2 倍。然后他们的链将能够以网络其余部分的 2 倍的速度创建挑战和块，这意味着他们可以创建具有相同空间量的“更重”链。
+如果攻击者的 VDF 更快，则 46% 攻击会变得更糟。假设攻击者的 VDF 快 2 倍。然后他们的链将能够以网络其余部分的 2 倍的速度创建挑战和块，这意味着他们可以创建具有相同空间量的"更重"链。
 
 这个所需的空间从总网络空间的 46% 下降到大约 30%。 0.46/0.54 = 2x/(1-x).x=0.30。如果攻击者无法访问最快的 VDF，他们将无法获得空间优势。奇亚空间/全球硬盘空间有人担心，如果与硬盘制造商或大公司的可用可用空间相比，奇亚系统没有大量空间，它将容易受到 51% 的攻击。因此，奇亚系统占用的空间越多，网络就越安全。一种可能的情况是，大量空间出现，使得每 TB 的回报非常低，并且不足以证明购买驱动器或删除业务数据是合理的。此外，创建图需要固定数量的前期时间和金钱（根据 beta17 中的当前计算，k32 大约为 1kWh，或大约 10 美分，即每 TB 1 美元）。
 
@@ -227,7 +227,7 @@ In certain cases where blocks come very close together, having a faster VDF can 
 
 在中本聪工作量证明中，这提供了显着的收益，因为在矿工领先于网络其余部分的任何时候，网络的其余部分都在一条不会获胜的链上浪费他们的算力。
 
-在奇亚共识中，“自私”的农民可以在注入点之前扣留证据，但这与立即提交证据相比，收益为零。每个标牌点可以有多个区块获胜者，因此农业不像工作量中那样是零和游戏。此外，时间领主不能接受已经通过的融入点的证明，因此不允许农民堆叠大量的证明以供以后融合。
+在奇亚共识中，"自私"的农民可以在注入点之前扣留证据，但这与立即提交证据相比，收益为零。每个标牌点可以有多个区块获胜者，因此农业不像工作量中那样是零和游戏。此外，时间领主不能接受已经通过的融入点的证明，因此不允许农民堆叠大量的证明以供以后融合。
 
 <details>
 <summary>原文参考</summary>
@@ -244,7 +244,7 @@ In Chia consensus, a "selfish" farmer could withhold a proof until just before t
 
 ## 农民贿赂树干攻击
 
-[PoSAT 白皮书](https://arxiv.org/abs/2010.08154)中探讨的一种有趣的攻击是贿赂攻击，这种攻击利用了当选“领导者”在每个时隙上的可预见性。作者分析了权益证明链，并认为当参与者提前知道他们将获胜时，就存在潜在的贿赂攻击。
+[PoSAT 白皮书](https://arxiv.org/abs/2010.08154)中探讨的一种有趣的攻击是贿赂攻击，这种攻击利用了当选"领导者"在每个时隙上的可预见性。作者分析了权益证明链，并认为当参与者提前知道他们将获胜时，就存在潜在的贿赂攻击。
 
 在奇亚中，如果参与者事先知道哪些情节会获胜，每个用户都可以通知攻击者他们愿意参与攻击。如果参与者数量达到一定阈值，他们可以完全重新组织链（或孤立那些不参与的人，审查交易等）。这种攻击不需要网络中的大部分空间参与；它只需要在很短的时间内达到一定的赢家门槛。此外，它是不可检测的，因为攻击者可以制作一个看起来正常的链。
 
@@ -255,7 +255,7 @@ In Chia consensus, a "selfish" farmer could withhold a proof until just before t
 
 - ## Farmer bribe trunk attack
 
-An interesting attack explored in the [PoSAT white paper](https://arxiv.org/abs/2010.08154) is the bribing attack, which takes advantage of the predictability of the elected “leaders” in each slot. The authors analyze a Proof of Stake chain, and argue that when participants know that they are going to win in advance, there is a potential bribing attack.
+An interesting attack explored in the [PoSAT white paper](https://arxiv.org/abs/2010.08154) is the bribing attack, which takes advantage of the predictability of the elected "leaders" in each slot. The authors analyze a Proof of Stake chain, and argue that when participants know that they are going to win in advance, there is a potential bribing attack.
 
 In Chia, if participants knew in advance which plots would win, each user could notify an attacker that they'd be willing to participate in the attack. If the number of participants reached a certain threshold, they could completely re-org the chain (or orphan those who do not participate, censor transactions, etc). This attack does NOT require the majority of the space in the network to participate; it only requires a certain threshold of winners within a short time frame. Furthermore, it is undetectable, since the attacker can make a normal looking chain.
 

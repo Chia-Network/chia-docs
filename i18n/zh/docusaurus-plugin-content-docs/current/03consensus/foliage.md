@@ -41,7 +41,7 @@ In order to include farming rewards, as well as transactions, in the system, we 
 
 此外，与另一个树叶块 (B2) 平行的 B3 块不必签署前一个树叶块，因为它们不一定有足够的时间看到它。
 
-> “并行”是指第二个区块的标牌点出现在第一个区块的融入点之前。
+> "并行"是指第二个区块的标牌点出现在第一个区块的融入点之前。
 
 图中的红色箭头代表一个叶子指针，由该块中空间证明的绘图键签名。灰色箭头表示未由绘图键签名的哈希指针（因此，如果 B2 更改或被保留，可以替换 B3 中的灰色箭头）。这可以防止 B2 修改其块并强制 B3 重新组织的攻击。
 
@@ -86,7 +86,7 @@ To prevent a foliage re-org, honest farmers only create one foliage block per bl
 
 Furthermore, blocks like B3, which come parallel with another foliage block (B2), do not have to sign the previous foliage block, since they do not necessarily have enough time to see it.
 
-> By “coming in parallel”, we mean that the second block’s signage point occurs before the first block's infusion point.
+> By "coming in parallel", we mean that the second block’s signage point occurs before the first block's infusion point.
 
 The red arrows in the diagram represent a foliage pointer that is signed by the plot key for the proof of space in that block. The gray arrows represent a hash pointer which is not signed by the plot key (therefore the gray arrow in B3 can be replaced if B2 changes or is withheld). This prevents attacks where B2 modifies their block and forces B3 to re-org.
 

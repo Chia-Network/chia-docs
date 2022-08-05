@@ -148,9 +148,9 @@ WD WD120EDAZ: 8, 10, 12, 14TB, Firmware: 81.00A81
 
 ## Data durability, uncorrectable bit error rate, and Chia farming
 
-UBER is defined as “A metric for the rate of occurrence of data errors, equal to the number of data errors per bits read.”
-In HDD and SSD, UBER is generally reflected in lifetime values for an entire population, but the actual rates of error and rate of increase are dependent on many factors including time, temperature, and amount of wear on the storage media. In SSDs this is adjusted for and measured per the JESD218B specification which defines UBER for SSDs using “The
-numerator is the total count of data errors detected over the full TBW rating for the population of SSDs, or the sample of SSDs in the endurance verification.”
+UBER is defined as "A metric for the rate of occurrence of data errors, equal to the number of data errors per bits read."
+In HDD and SSD, UBER is generally reflected in lifetime values for an entire population, but the actual rates of error and rate of increase are dependent on many factors including time, temperature, and amount of wear on the storage media. In SSDs this is adjusted for and measured per the JESD218B specification which defines UBER for SSDs using "The
+numerator is the total count of data errors detected over the full TBW rating for the population of SSDs, or the sample of SSDs in the endurance verification."
 
 ### UBER of standard storage devices
 

@@ -11,7 +11,7 @@ A Verifiable Delay Function, also referred to as a Proof of Time or VDF, is a pr
 
 **Function**: This means it’s deterministic: computing a VDF on an input x _always_ yields the same result y.
 
-The key word here is “sequential”, like hashing a number many times: hash(hash(hash(a))), etc. This means the prover cannot just add more machines to make the function execute faster. Therefore we can assume that computing a VDF requires real (wall-clock) time. The construction that we use is repeated squaring. The Prover must square a challenge x T times. This requires time ϴ(T). The Prover also must create a proof that this was performed properly.
+The key word here is "sequential", like hashing a number many times: hash(hash(hash(a))), etc. This means the prover cannot just add more machines to make the function execute faster. Therefore we can assume that computing a VDF requires real (wall-clock) time. The construction that we use is repeated squaring. The Prover must square a challenge x T times. This requires time ϴ(T). The Prover also must create a proof that this was performed properly.
 
 <figure>
 <img src="/img/vdf.png" alt="drawing"/>

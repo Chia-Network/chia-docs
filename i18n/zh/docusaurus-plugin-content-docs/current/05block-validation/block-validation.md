@@ -243,7 +243,7 @@ The following sections list all of the required checks to ensure validity of a b
 7. 生成器根必须是该块的生成器序列化字节的哈希值（如果没有生成器则为零）
 8. 检查交易生成器参考列表：
    - generator_ref_list 必须是序列化字节的哈希
-   - 此块的生成器引用列表（如果没有生成器，则为“一个”字节 [0x01]）
+   - 此块的生成器引用列表（如果没有生成器，则为"一个"字节 [0x01]）
    - 生成器引用列表长度必须小于或等于 MAX_GENERATOR_REF_LIST_SIZE 条目
    - 生成器引用列表不能指向一个高度 >= 这个块的高度
    - 如果我们有一个生成器引用列表，我们必须有一个生成器

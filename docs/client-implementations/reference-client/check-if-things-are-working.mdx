@@ -76,9 +76,9 @@ Here are some commands you can use to examine `debug.log` for problems.
 
 - Linux/macOS: `tail ~/.chia/mainnet/log/debug.log | grep eligible`
 - Windows:
-  - `Select-String -Path “~\.chia\mainnet\log\debug*” -Pattern “eligible”`
-  - `Select-String -Path “~\.chia\mainnet\log\debug*” -Pattern “Found [^0] proof”`
-  - `Select-String -Path “~\.chia\mainnet\log\debug*” -Pattern “Farmed unfinished_block”`
+  - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "eligible"`
+  - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Found [^0] proof"`
+  - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Farmed unfinished_block"`
   - `Get-Content -Path "~\.chia\mainnet\log\debug.log" -Wait | Select-String -Pattern "found"`
 
 ## Plotting

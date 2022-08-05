@@ -135,7 +135,7 @@ class RespondTransaction(Streamable):
 
 ## request_proof_of_weight
 
-向对等方请求重量证明。这是在开始长同步之前完成的。权重证明允许我们的节点验证我们从对等方收到的 `new_peak` 是否对应于实际有效的区块链。这证明在该区块链上使用了一定数量的“权重”或空间和时间。
+向对等方请求重量证明。这是在开始长同步之前完成的。权重证明允许我们的节点验证我们从对等方收到的 `new_peak` 是否对应于实际有效的区块链。这证明在该区块链上使用了一定数量的"权重"或空间和时间。
 
 ```python
 class RequestProofOfWeight(Streamable):
@@ -341,7 +341,7 @@ class RejectBlocks(Streamable):
 
 ## new_unfinished_block
 
-通知另一个对等点新的未完成块已添加到缓存中。这些未完成的区块暂时保留，直到融入点 VDF 释放，区块才可以“完成”并加入区块链。
+通知另一个对等点新的未完成块已添加到缓存中。这些未完成的区块暂时保留，直到融入点 VDF 释放，区块才可以"完成"并加入区块链。
 
 ```python
 class NewUnfinishedBlock(Streamable):

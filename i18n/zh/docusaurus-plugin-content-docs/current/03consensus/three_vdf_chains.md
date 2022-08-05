@@ -36,7 +36,7 @@ sp = 标牌点，B = 块，c = 挑战，r = 奖励
 
 时间领主将他们的 VDF 输出发送到他们的完整节点，然后将其添加到子时隙束末端中。这个包包括每个链的输出（例如图中的 c1、ic1 和 r1）。捆绑包传播到所有其他完整节点。区块还必须包括所有三个链的注入点 VDF。
 
-挑战链广播挑战（c1 和 c2）。同一个链也从子时隙的开始到结束执行 VDF，没有注入任何内容（圆圈是 VDF 证明，但它们不会中断 VDF）。即在挑战链中，“抽奖”是完全预先确定的，不受时隙中区块的影响，直到时隙结束。
+挑战链广播挑战（c1 和 c2）。同一个链也从子时隙的开始到结束执行 VDF，没有注入任何内容（圆圈是 VDF 证明，但它们不会中断 VDF）。即在挑战链中，"抽奖"是完全预先确定的，不受时隙中区块的影响，直到时隙结束。
 
 奖励链融入包含的每个块。
 
@@ -89,14 +89,14 @@ The chain in the middle is called the **infused challenge chain**. It starts at 
 
 在时隙的末尾，挑战链与融合挑战链结合生成新的挑战 c2，用于启动下一个子时隙的挑战链。
 
-唯一影响挑战链（以及 PoSpace 彩票）的区块是时隙中的第一个区块，这里是 B1。实际上，它只是 B1 的一个确定性部分，称为“cc B1”，仅取决于挑战链数据。想要碾压的攻击者不能通过保留 B2、B3 或除第一个块之外的任何其他块来改变挑战。
+唯一影响挑战链（以及 PoSpace 彩票）的区块是时隙中的第一个区块，这里是 B1。实际上，它只是 B1 的一个确定性部分，称为"cc B1"，仅取决于挑战链数据。想要碾压的攻击者不能通过保留 B2、B3 或除第一个块之外的任何其他块来改变挑战。
 
 持有第一个区块（B1）的诚实农民将释放它。如果攻击者控制了第一个块 (B1)，他们有两个额外的选择：延迟它或保留它。
 
 - 延迟：为了知道新挑战是否对他们有利，他们需要一直执行 VDF 直到 c2。到那时，他们被纳入奖励链的机会已经消失，因为诚实的农民每个空间证明只签署一个区块。
 - 保留它：这不会给攻击者带来太多好处，因为他们必须在 sp2 之前释放它才能让农民进入他们的链。农民将选择最重的链，即具有最多（最重）奖励链块的链。
 
-为什么我们要承诺挑战链中的任何区块？如果我们不这样做，拥有更快 VDF 的攻击者可以向前看，因为他们不需要诚实参与者的帮助来计算未来的挑战链。挑战链将是完全确定的。这将通过重新绘制获得一些优势。此外，挑战链可用于向轻客户端概率证明奖励链的权重，而无需共享所有奖励链区块（因为挑战链取决于插槽中的“最佳”区块，您可以计算奖励数量链块）。
+为什么我们要承诺挑战链中的任何区块？如果我们不这样做，拥有更快 VDF 的攻击者可以向前看，因为他们不需要诚实参与者的帮助来计算未来的挑战链。挑战链将是完全确定的。这将通过重新绘制获得一些优势。此外，挑战链可用于向轻客户端概率证明奖励链的权重，而无需共享所有奖励链区块（因为挑战链取决于插槽中的"最佳"区块，您可以计算奖励数量链块）。
 
 要使一个区块被认为是有效的，它必须为挑战链和奖励链提供 VDF，如果存在的话，还可以选择为融合挑战链提供 VDF。强制包含所有 VDF 意味着所有三个链都保证以相同的速度前进。
 
@@ -116,7 +116,7 @@ An honest farmer who holds the first block (B1) will release it. If an attacker 
 - Delay it: In order to know whether the new challenge will benefit them, they will need to execute the VDF all the way up to c2. By that time, their chance to get included in the reward chain is gone, since honest farmers sign only one block per proof of space.
 - Withhold it: This does not provide much benefit to the attacker, since they must release it before sp2 in order to get the farmers on their chain. Farmers will choose the heaviest chain, which is the one with the most (heaviest) reward chain blocks.
 
-Why do we commit to any blocks at all in the challenge chain? If we did not, an attacker with a faster VDF could look ahead, since they would not need the help of honest participants in order to compute the challenge chain into the future. The challenge chain would be totally deterministic. This would enable some advantage by replotting. Furthermore, the challenge chain can be used to probabilistically prove the weight of the reward chain to light clients, without sharing all reward chain blocks (since the challenge chain depends on the “best” block in the slot, you can calculate the number of reward chain blocks).
+Why do we commit to any blocks at all in the challenge chain? If we did not, an attacker with a faster VDF could look ahead, since they would not need the help of honest participants in order to compute the challenge chain into the future. The challenge chain would be totally deterministic. This would enable some advantage by replotting. Furthermore, the challenge chain can be used to probabilistically prove the weight of the reward chain to light clients, without sharing all reward chain blocks (since the challenge chain depends on the "best" block in the slot, you can calculate the number of reward chain blocks).
 
 For a block to be considered valid, it has to provide VDFs for the challenge chain and reward chain, and optionally for the infused challenge chain if it is present. Forcing all VDFs to be included means that all three chains are guaranteed to move forward at the same rate.
 

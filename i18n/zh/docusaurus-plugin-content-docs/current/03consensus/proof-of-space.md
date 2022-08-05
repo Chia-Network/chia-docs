@@ -34,7 +34,7 @@ The proof of space protocol has three components: plotting, proving/farming, and
 
 绘图大小由 k 参数决定，其中 `space = 780 * k * pow(2, k - 10)`，最小 k 为 32 (101.4 GiB)。 The Proof of Space 构造基于 [超越赫尔曼（Hellman）](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space")，但它嵌套了六个次（从而创建七个表），并且它包含其他启发式方法以使其实用。
 
-图中的七个表中的每一个都填充了无法压缩的随机数据。每个表有 2^k 个条目。表 i 中的每个条目都包含两个指向表 i-1（上一个表）的指针。最后，每个表 1 条目包含一对介于 0 和 2^k 之间的整数，称为“x 值”。空间证明是具有特定数学关系的 64 个 x 值的集合。实际的磁盘结构和生成它所需的算法相当[复杂](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf)，但这是总体思路。
+图中的七个表中的每一个都填充了无法压缩的随机数据。每个表有 2^k 个条目。表 i 中的每个条目都包含两个指向表 i-1（上一个表）的指针。最后，每个表 1 条目包含一对介于 0 和 2^k 之间的整数，称为"x 值"。空间证明是具有特定数学关系的 64 个 x 值的集合。实际的磁盘结构和生成它所需的算法相当[复杂](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf)，但这是总体思路。
 
 <figure>
 
@@ -60,7 +60,7 @@ As of Chia 1.2.7, a k32 plot can be created in around five minutes with a high-e
 
 Plot sizes are determined by a k parameter, where `space = 780 * k * pow(2, k - 10)`, with a minimum k of 32 (101.4 GiB). The Proof of Space construction is based on [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space"), but it is nested six times (thereby creating seven tables), and it contains other heuristics to make it practical.
 
-Each of the seven tables in a plot is filled with random-looking data that cannot be compressed. Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table). Finally, each table-1 entry contains a pair of integers between 0 and 2^k, called “x-values.” A proof of space is a collection of 64 x-values that have a certain mathematical relationship. The actual on-disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
+Each of the seven tables in a plot is filled with random-looking data that cannot be compressed. Each table has 2^k entries. Each entry in table i contains two pointers to table i-1 (the previous table). Finally, each table-1 entry contains a pair of integers between 0 and 2^k, called "x-values." A proof of space is a collection of 64 x-values that have a certain mathematical relationship. The actual on-disk structure and the algorithm required to generate it are quite [complicated](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), but this is the general idea.
 
 <figure>
 
@@ -85,7 +85,7 @@ See our [plotting FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#
 
 最后，农夫获取整个 x 值树。这需要对表 7 进行一次磁盘读取，对表 6 进行两次读取，对表 5 进行四次读取，等等。因此，整个过程需要 64 次磁盘读取，在具有 10 毫秒寻道时间的慢速 HDD 上大约需要 640 毫秒。读取的数据量很小，并且与绘图大小无关。
 
-由于此过程生成的大多数证明都不够好（如[第 3.5 节](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')所述）提交给网络进行验证，我们可以优化这个过程只检查树的一个分支。此分支将返回 64 个 x 值中的两个。 x 值的位置将始终是连续的，并取决于标志点（例如 x0 和 x1...或 x34 和 x35）。我们散列这些 x 值以生成随机的 256 位“质量字符串”。这与难度和绘图大小相结合以生成所需的迭代。如果所需的迭代小于一定数量，则证明可以包含在区块链中。此时，我们查找整个空间证明。
+由于此过程生成的大多数证明都不够好（如[第 3.5 节](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points')所述）提交给网络进行验证，我们可以优化这个过程只检查树的一个分支。此分支将返回 64 个 x 值中的两个。 x 值的位置将始终是连续的，并取决于标志点（例如 x0 和 x1...或 x34 和 x35）。我们散列这些 x 值以生成随机的 256 位"质量字符串"。这与难度和绘图大小相结合以生成所需的迭代。如果所需的迭代小于一定数量，则证明可以包含在区块链中。此时，我们查找整个空间证明。
 
 通过只查找一个分支来确定质量字符串，我们可以排除大多数证明。这种优化只需要大约 7 次磁盘搜索和读取，或者在慢速硬盘驱动器上大约需要 70 毫秒。
 

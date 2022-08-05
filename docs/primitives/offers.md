@@ -98,7 +98,7 @@ Offers have many properties that we think will make them a valuable tool for Chi
 
   > Takers are free to propose a counter offer by creating their own offer file. In this case, the original Maker could cancel the original offer, and both parties' roles would be reversed.
 
-- **Compliant**: As offers are inherently peer-to-peer, they don't constitute an “exchange” or other regulated market activity.
+- **Compliant**: As offers are inherently peer-to-peer, they don't constitute an "exchange" or other regulated market activity.
 
 - **Trustless**: Offers are _not_ analogous to a handshake or a promise, where one party could renege on the trade. By using Chia offers, the Maker and Taker don't need to trust each other. They don't even need to _know_ each other. As long as a Taker matches the offer identically, the offer will be valid.
 

@@ -8,7 +8,7 @@ sidebar_position: 1
 
 去中心化共识算法需要抵抗女巫，使用既可加密验证又稀缺（不是无限）的资源。在之前的区块链系统中，使用了两种不同的稀缺资源：计算能力（Proof of Work）和抵押资金（Proof of Stake）。
 
-奇亚的空间证明共识使用存储容量作为稀缺资源。这比之前的系统更接近中本聪最初的“一个 CPU 一票”的理想，其中*投票*指的是赢得和验证区块的机会，而不是链上的实际投票。例如，存储 500 GiB 的人有 5 个“投票”，存储 100 GiB 的人有 1 个“投票”。
+奇亚的空间证明共识使用存储容量作为稀缺资源。这比之前的系统更接近中本聪最初的"一个 CPU 一票"的理想，其中*投票*指的是赢得和验证区块的机会，而不是链上的实际投票。例如，存储 500 GiB 的人有 5 个"投票"，存储 100 GiB 的人有 1 个"投票"。
 
 另一个密码谜语用于保护奇亚的系统：可验证延迟函数 (VDF)，它是实时已经过去的密码证明。
 
@@ -26,7 +26,7 @@ sidebar_position: 1
 
 Decentralized consensus algorithms require Sybil resistance, using a resource that is both cryptographically verifiable and scarce (not infinite). In previous blockchain systems, two different scarce resources have been used: computing power (Proof of Work) and staked money (Proof of Stake).
 
-Chia's Proof of Space consensus uses storage capacity as the scarce resource. This comes much closer than previous systems to Satoshi's original ideal of “one CPU, one vote,” where a _vote_ refers to a chance to win and validate a block, not an actual vote on-chain. For example, someone storing 500 GiB has 5 “votes,” and someone storing 100 GiB has 1 “vote.”
+Chia's Proof of Space consensus uses storage capacity as the scarce resource. This comes much closer than previous systems to Satoshi's original ideal of "one CPU, one vote," where a _vote_ refers to a chance to win and validate a block, not an actual vote on-chain. For example, someone storing 500 GiB has 5 "votes," and someone storing 100 GiB has 1 "vote."
 
 One other cryptographic puzzle piece is used to secure Chia's system: a verifiable delay function (VDF), which is a cryptographic proof that real time has passed.
 

@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 :::info
 [CAT1](https://chialisp.com/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
 
-For more information on this end-of-life process, see the [CAT2 Intro & FAQ](/cat2-intro).
+For more information on this end-of-life process, see the [Intro and FAQ guide](/cat2-intro).
 :::
 
 This document will show CAT1 issuers how to:
@@ -251,7 +251,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
    This is the Coin ID of the coin that you will use for reissuance. Keep this value handy.
 
-4. Obtain the target puzzle hash by running the “secure_the_bag” command. The important arguments here are:
+4. Obtain the target puzzle hash by running the "secure_the_bag" command. The important arguments here are:
 
    - `--tail` – The TAIL program that was originally used (usually this is `genesis_by_coin_id`), in hex file format.
    - `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
@@ -318,7 +318,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
 5. Push the transaction to the network. This will actually create the coin tree (_Secure the Bag_). The arguments are the same as above, with one exception:
 
-   `--send-to` – The XCH address from the “Secure the bag root address:” of the above output
+   `--send-to` – The XCH address from the "Secure the bag root address:" of the above output
 
    The command to run is:
 
@@ -474,7 +474,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
    This is the Coin ID of the coin that you will use for reissuance. Keep this value handy.
 
-4. Obtain the target puzzle hash by running the “secure_the_bag” command. The important arguments here are:
+4. Obtain the target puzzle hash by running the "secure_the_bag" command. The important arguments here are:
 
    - `--tail` – The TAIL program that was originally used (usually this is `delegated_tail`), in hex file format.
    - `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
@@ -750,8 +750,8 @@ The final step is to actually send the CAT2 tokens to the correct locations (AKA
 
 The important values for this command are:
 
-- `--eve-coin-id` – Obtained from the final “secure the bag” command above.
-- `--tail-hash` – The `Asset ID:` from the final “secure the bag” command above.
+- `--eve-coin-id` – Obtained from the final "secure the bag" command above.
+- `--tail-hash` – The `Asset ID:` from the final "secure the bag" command above.
 - `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
 - `--unwind-fee` – An optional blockchain fee in mojos, will be applied to each spend.
 - `--wallet-id` – The ID of the wallet from which to unwind (typically `1`).
@@ -845,8 +845,8 @@ At this point, you can navigate to [taildatabase.com](https://www.taildatabase.c
 
    The important values for this command are:
 
-   - `--eve-coin-id` – Obtained from the final “secure the bag” command above.
-   - `--tail-hash` – The `Asset ID:` from the final “secure the bag” command above.
+   - `--eve-coin-id` – Obtained from the final "secure the bag" command above.
+   - `--tail-hash` – The `Asset ID:` from the final "secure the bag" command above.
    - `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
    - `--unwind-fee` – An optional blockchain fee in mojos, will be applied to each spend.
    - `--wallet-id` – The ID of the wallet from which to unwind (typically `1`).

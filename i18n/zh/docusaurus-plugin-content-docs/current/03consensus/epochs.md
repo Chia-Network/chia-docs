@@ -37,7 +37,7 @@ sub slot iterations = iterations per second * 300
 sp interval iterations = floor(sub slot iterations / 64)
 ```
 
-请注意，我们并没有在 epoch 结束时准确地获取迭代和时间，而是在一个 epoch 中块的最后注入点（又名“epoch$”），原因很简单，我们只有在注入块时才有可用的时间戳。
+请注意，我们并没有在 epoch 结束时准确地获取迭代和时间，而是在一个 epoch 中块的最后注入点（又名"epoch$"），原因很简单，我们只有在注入块时才有可用的时间戳。
 
 ```python
 weight/sec of last epoch = (new weight - old weight) / duration of last epoch

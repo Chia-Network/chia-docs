@@ -1,6 +1,6 @@
 ---
-title: CAT2 Intro & FAQ
-sidebar_label: 1. Intro & FAQ
+title: CAT2 Intro and FAQ
+sidebar_label: 1. Intro and FAQ
 slug: /cat2-intro
 ---
 
@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Chia version 1.5.0 will be released on July 26, 2022. This version will not show any CAT1 tokens in the wallet. Users will only see the newly-issued CAT2 tokens, which will be identical in value to their CAT1 equivalents.
 
 :::tip Are you a CAT issuer?
-Check out the [Snapshot Generation page](/cat2-snapshot) to get started with issuing your CAT2 tokens.
+Check out the [Snapshot Generation guide](/cat2-snapshot) to get started with issuing your CAT2 tokens.
 :::
 
 ## FAQ {#faq}
@@ -105,7 +105,7 @@ However, the CAT1 issuers do need to perform a complete airdrop of CAT2 tokens. 
 
 #### I am the issuer of a CAT1 token. What should I do? {#cat1-issuer-what-do}
 
-[Follow this document](/cat2-snapshot), which will guide you through the process of reissuing your token as a CAT2.
+Follow the [Snapshot Generation guide](/cat2-snapshot), which will guide you through the process of reissuing your token as a CAT2.
 
 ### Chia App {#chia-app}
 
@@ -161,19 +161,19 @@ After upgrading to 1.5, a new wallet database is created to preserve any previou
 
 #### How do I know when the updated tokens have been airdropped to my wallet? {#airdrop-know-when}
 
-You should follow the projects for the tokens that you own so you can be notified when they have begun running the airdrops. You can also monitor your Chia wallet app, and look under the _“Manage token list”_ to see if a new CAT2 has been airdropped to you.
+You should follow the projects for the tokens that you own so you can be notified when they have begun running the airdrops. You can also monitor your Chia wallet app, and look under the _"Manage token list"_ to see if a new CAT2 has been airdropped to you.
 
 #### Why doesn't the balance in my wallet match the balance reported on the website? {#balance-match-website}
 
 Get the _Derivation Index_ from the website and update the derivation index in the Chia wallet app. This will ensure the balance reported on the website matches up with the balance in your wallet.
 
-#### What is a “Derivation Index”? {#what-is-derivation-index}
+#### What is a "Derivation Index"? {#what-is-derivation-index}
 
 The derivation index is a numeric value that is used to track how many wallet addresses have been used based on the most recent transaction. This helps establish a window for which wallet addresses to scan for on the blockchain to find all possible coins owned by a specific wallet.
 
 #### Why do I see multiple tokens with the same value in my 1.5 wallet? {#multiple-tokens-same-value}
 
-It is possible that you have received multiple identical airdrops from different parties. Only one of them will be the real CAT2 token. To determine which one is real, click _“MANAGE TOKEN LIST”_ and click _“Search on Tail Database”_. Only the original CAT1 issuer will be allowed to register their CAT2 equivalent on Tail Database, so you should use it as the source of truth for naming your CAT2 tokens.
+It is possible that you have received multiple identical airdrops from different parties. Only one of them will be the real CAT2 token. To determine which one is real, click _"MANAGE TOKEN LIST"_ and click _"Search on Tail Database"_. Only the original CAT1 issuer will be allowed to register their CAT2 equivalent on Tail Database, so you should use it as the source of truth for naming your CAT2 tokens.
 
 #### Who can I contact if I have any problems or questions? {#who-to-contact}
 
@@ -185,7 +185,7 @@ The Chia Network Support Team is available to answer questions and provide assis
 
 From the Chia Wallet GUI:
 
-1. Go to the _“Select Key”_ screen and click on _“See private key”_
+1. Go to the _"Select Key"_ screen and click on _"See private key"_
 
    <img src="/img/cat2/key-selection.png" alt="Key selection screen" />
 
@@ -199,11 +199,11 @@ From the Chia Wallet command line:
 #### I checked the website (cat1.chia.net) and I don't see any tokens for my wallet, but there should be. What can I do? {#no-tokens-on-website}
 
 1. Confirm the pubkey you entered into the website is correct and had a CAT1 token balance, and is for an unhardened key
-2. Click on the _“Search next 1000”_ to see if your balance has been updated
+2. Click on the _"Search next 1000"_ to see if your balance has been updated
 
 #### The balance that the website is reporting doesn't match what I expect. What should I do? {#website-balance-doesnt-match}
 
-The website scans the first 1000 wallet receive addresses, and if the balance doesn't reflect what you expect, then you should hit the “search next 1000” for the website to scan and update the balance found. We expect most users to get their correct balance from the initial search, but some users might need an expanded search.
+The website scans the first 1000 wallet receive addresses, and if the balance doesn't reflect what you expect, then you should hit the "search next 1000" for the website to scan and update the balance found. We expect most users to get their correct balance from the initial search, but some users might need an expanded search.
 
 #### My CH21 balance is reported incorrectly on the website. What should I do? {#ch21-balance-incorrect}
 
