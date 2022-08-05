@@ -20,7 +20,7 @@ Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is o
 
 For more information on the company's strategies, see [Chia's business white paper](https://www.chia.net/whitepaper "Chia's business white paper").
 
-### Smart transactions
+### Smart Transactions
 
 Chia has a new smart transaction model, which uses a powerful (yet simple) higher-level language called [chialisp](https://chialisp.com 'Chialisp.com'), and an accompanying lower-level language called CLVM (ChiaLisp Virtual Machine).
 

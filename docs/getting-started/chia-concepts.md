@@ -5,11 +5,11 @@ slug: /chia-concepts
 
 This section will provide a basic overview of Chia's network. We'll go into much more detail in later sections.
 
-### Chia's network
+### Chia's Network
 
 There are different types of peer-to-peer (P2P) networks, such as BitTorrent, Bitcoin, and Chia. The Chia network is a blockchain that performs several major functions, including processing financial transactions, running programs written in Chialisp, and minting tokens from XCH (Chia's base currency). The network is composed of hundreds of thousands of nodes, each of which stores a copy of the blockchain's history, while also propagating new transactions across the network.
 
-### Coins and transactions
+### Coins and Transactions
 
 Chia uses the coin set (UTXO) model to keep track of the network's state. In this model, a coin is a first-class object. Each coin is locked with a Chialisp program called a _puzzle_, which is then hashed to create a _puzzlehash_. The coin's ID is a hash of its parent coin's ID, its puzzlehash, and its amount.
 
@@ -17,7 +17,7 @@ Each transaction in Chia must spend at least one coin. In order to spend a coin,
 
 For more info about the coin set model and Chia's on-chain programming environment, see [chialisp.com](https://chialisp.com).
 
-### Nodes
+### Full Nodes
 
 Chia nodes connect to a random subset of other Chia nodes, called peers. The nodes periodically send and receive information from peers, which is then stored locally in a peer database. Each node broadcasts all new transactions and blocks that they see to their peers, which in turn relay this information to _their_ peers, resulting in the information quickly being propagated throughout the network. When first starting up, nodes have to synchronize to the blockchain, by downloading the entire history of blocks and transactions.
 
