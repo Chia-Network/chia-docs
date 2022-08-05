@@ -7,12 +7,12 @@ The standard transaction is a puzzle used by the Chia wallet to generate its add
 
 ## Chialisp Code
 
-This is the source code of the standard transaction, which can also be found on the [chia-blockchain repository](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_delegated_puzzle_or_hidden_puzzle.clvm).
+This is the source code of the standard transaction, which can also be found in the `chia-blockchain` repository in the puzzle [`p2_delegated_puzzle_or_hidden_puzzle.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/p2_delegated_puzzle_or_hidden_puzzle.clvm):
 
 <details>
-  <summary>Expand Chialisp</summary>
+  <summary>Expand Chialisp puzzle</summary>
 
-```chialisp
+```chialisp title="p2_delegated_puzzle_or_hidden_puzzle.clvm"
 ; build a pay-to delegated puzzle or hidden puzzle
 ; coins can be unlocked by signing a delegated puzzle and its solution
 ; OR by revealing the hidden puzzle and the underlying original key
@@ -116,31 +116,45 @@ This is the default hidden puzzle, used when calculating the synthetic public ke
 
 ## Synthetic Key
 
-The code for calculating the synthetic public key can be found in the [chia-blockchain repository](https://github.com/Chia-Network/chia-blockchain/blob/67b45c92eaab014c9c77a83b42e14e5f5fa6e28b/chia/wallet/puzzles/p2_delegated_puzzle_or_hidden_puzzle.py#L88).
+The code for calculating the synthetic public key can be found in the [`p2_delegated_puzzle_or_hidden_puzzle.py`](https://github.com/Chia-Network/chia-blockchain/blob/67b45c92eaab014c9c77a83b42e14e5f5fa6e28b/chia/wallet/puzzles/p2_delegated_puzzle_or_hidden_puzzle.py#L88) puzzle program:
+
+
+<details>
+  <summary>Expand Python code</summary>
+
+```python title="p2_delegated_puzzle_or_hidden_puzzle.py"
+def calculate_synthetic_public_key(public_key: G1Element, hidden_puzzle_hash: bytes32) -> G1Element:
+    synthetic_offset: PrivateKey = PrivateKey.from_bytes(
+        calculate_synthetic_offset(public_key, hidden_puzzle_hash).to_bytes(32, "big")
+    )
+    return public_key + synthetic_offset.get_g1()
+```
+
+</details>
 
 The synthetic public key is calculated using a child of the root key. It contains a hidden puzzle which can be executed instead of revealing the original public key when spending the standard transaction. This is extra functionality that can be used for other wallets.
 
 ## Hidden Puzzle
 
-Because you don't need to reveal the hidden puzzle in every spend, it allows you to keep a secret until you want to spend it, even if you use the address to spend other coins normally. It can act as a sort of backup plan or alternative way to spend it.
+Because the hidden puzzle doesn't need to be revealed in every spend, it allows a secret to be retained until you want to spend it (even if you use the address to spend other coins normally). Essentially, it can act as a backup plan or an alternative way to spend a coin.
 
-The default hidden puzzle simply fails when executed, preventing anything other than a typical transaction from being done with coins locked using it.
+The default hidden puzzle simply fails when executed, preventing anything other than a typical transaction from being carried out with coins using it.
 
-In other words, we don't currently use this in the official wallet, but it may be used for additional functionality in the future.
+In other words, we don't currently make use of this hidden puzzle in the official wallet, but it may be used for additional functionality in the future.
 
 ## Addresses
 
-Previously we mentioned that the standard transaction can be used to create addresses. Here is how it works.
+As mentioned, the standard transaction can be used to create addresses. Here is how it works.
 
-First, you need to use the root key from your mnemonic to derive an unhardened public key at a given index. Use that to calculate the synthetic public key.
+First, use the root key from a mnemonic to derive an unhardened (observer) public key at a given index. Use that to calculate the synthetic public key.
 
-Then, you need to create an instance of the standard transaction puzzle using the synthetic public key you calculated. Run the following command to get the puzzle hash:
+Next, create an instance of the standard transaction puzzle using the synthetic public key just calculated. Run the following command to get the puzzle hash:
 
 ```bash
 opc -H "puzzle"
 ```
 
-Finally, convert the puzzle hash to a [bech32 address](https://en.bitcoin.it/wiki/Bech32) using the following command:
+Finally, convert the puzzle hash to a [bech32 address](/coin-set-addresses) using the following command:
 
 ```bash
 cdv encode -p xch "hash"
