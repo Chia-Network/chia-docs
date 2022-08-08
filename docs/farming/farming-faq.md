@@ -3,26 +3,37 @@ title: Farming FAQ
 slug: /farming-faq
 ---
 
-## How to tell if Chia is working on Windows GUI
+## How to tell if Chia Farming is Working?
 
-When you are first operating Chia and wondering if the software is working- here is some information to keep you informed.
-All of the chia programming is in a file called config.yaml located in c:/Users/ (Your username)/.chia/mainnet/config.yaml
+When you are first operating Chia and wondering if the software is working, here are some tips to keep you sane.
 
-Shut down Chia software before config access.
-Open Config with notepad. In the middle _ log_level: WARNING _ change wording of WARNING to INFO.
-Save File and exit. Start up Chia-- give it 20 minutes to run
+First off, you'll want to have your configuration set up to do additional logging. The configurations can be found in `config.yaml`. This file is located in `chia/mainnet/config.yaml`.
 
-Can access the log files and read activity, while Chia is running. It's located in c:/Users/ (Your username)/.chia/mainnet/log/debug.log
+The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/your username)/.chia/mainnet/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
+
+Shut down Chia before config access. Open `config.yaml` and edit the first `log_level`, setting it `INFO` instead of `WARNING`. Save the file.
+
+Now, you can relaunch Chia. Give it 20 minutes to run.
+
+Opening the log file while Chia is running, you'll see additional messages. You can find `debug.log` in the `log` directory right next to `config` directory accessed earlier.
+
 Log files are very informative. Once a log fills to 20mb another is created. If there are too many you can delete some of them.
 
-Inside what you are looking for are these lines
+Inside what you are looking for are these lines:
+
+```
 _07:02:41.663 harvester src.harvester.harvester : INFO 1 plots were eligible for farming f53c496e80... Found 0 proofs. Time: 0.00500 s. Total 8 plots_
+```
 
-This means Chia is working-- The filter system is 2 parts. Chia found that 1 plot passed the (1st) part, now it looks inside to determine if a pre-formulated "proof" will be able to do a transaction in fastest time (2-3 seconds) if it secures one in your plot then you win 1 proof means you won a coin. Many times it will say 0 proofs. But it shows it's working. This is where luck/time comes into play. At the end of that line it will indicate how many plots the software registers.
+This means Chia is working. The filter system is 2 parts. Chia found that 1 plot passed the first part, now it looks inside to determine if a pre-formulated "proof" will be able to do a transaction in the fastest time (2-3 seconds). If it secures one in your plot, you win. Many times it will say 0 proofs. But it shows it's working. This is where luck/time comes into play. At the end of that line it will indicate how many plots the software registers.
 
-## What is normal information in a log file
+:::info
+Another way to ensure your farm is operational is checking against a pool. Consistent payouts from regulary partials sent gives you peace of mind. This is opposed to solo farming where you may need to wait days, weeks, or months for a win, the whole time wondering if it truly is set up right. Checkout [pool-farming](/pool-farming).
+:::
 
-Below is a copy of normal information from a log file. :
+## What is Normal Information in a Log File?
+
+Below is a copy of normal information from a log file:
 
 ---
 
@@ -50,6 +61,4 @@ _09:32:08.211 harvester src.harvester.harvester : INFO 0 plots were eligible for
 
 ---
 
-The last line again shows at that current time of 09:32:08.211- that on this machine, of the 8 plots farming 0 plots were eligible. It still means the software recognized the plots and it's working.
-
-Everyone is very helpful to answer questions. The group does ask for questions to be in the selected chat room. Beginner questions in Beginner etc.
+The last line shows at that current time of 09:32:08.211 8 plots were farming and 0 plots were eligible. It still means the software recognized the plots and is farming.
