@@ -40,7 +40,7 @@ module.exports = {
         'farming/pool-farming',
         'farming/checking-farm-health',
         'farming/reference-farming-hardware',
-        'farming/farming-best-practices',
+        'farming/farming-faq',
       ],
     },
     {
