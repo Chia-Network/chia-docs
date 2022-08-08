@@ -714,3 +714,7 @@ A CAT could be created as a limited-time offer or as a game of musical chairs. I
 | CAT Mod Hash                | The hash of the CAT before anything is curried.             |
 | CAT Mod Hash Hash           | The hash of the CAT mod hash.                               |
 | CAT TAIL Program Hash       | The hash of the TAIL program that was curried into the CAT. |
+
+## Conclusion
+
+CATs are a great way to create tokens that represent divisible assets or currencies on top of the Chia blockchain. They can be used to represent stablecoins, tickets, store credit, and many other things.

@@ -118,7 +118,6 @@ This is the default hidden puzzle, used when calculating the synthetic public ke
 
 The code for calculating the synthetic public key can be found in the [`p2_delegated_puzzle_or_hidden_puzzle.py`](https://github.com/Chia-Network/chia-blockchain/blob/67b45c92eaab014c9c77a83b42e14e5f5fa6e28b/chia/wallet/puzzles/p2_delegated_puzzle_or_hidden_puzzle.py#L88) puzzle program:
 
-
 <details>
   <summary>Expand Python code</summary>
 
@@ -159,3 +158,7 @@ Finally, convert the puzzle hash to a [bech32m address](/coin-set-addresses) usi
 ```bash
 cdv encode -p xch "hash"
 ```
+
+## Conclusion
+
+Almost every coin on the Chia blockchain uses this primitive (or as an inner puzzle). The official wallet looks for coins locked with the standard transaction that you can spend. The `(=)` hidden puzzle fails immediately, since most users won't need the extra functionality for typical transactions. We have it built in simply to enable more possibilities in the future.
