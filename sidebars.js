@@ -28,6 +28,7 @@ module.exports = {
         'plotting/k-sizes',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
+        'plotting/plotting-faq',
       ],
     },
     {
