@@ -99,7 +99,7 @@ This will show you how many plots you have created. On the top it will show how 
 
 Once that match shows on the first line, it will move down to lines 2-5, then if another plot passes step 1, it starts at the top also, and moves its way done the filter process.
 
-Winning is very rare, and on average one person wins in the whole world every 18 seconds. On every signage point (9 seconds), all of your plots are checked to see which ones passes the [plot filter](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). Approximately 1/512 of all plots will pass the plot filter for each challenge, so here you can see how many of your plots passed. However there are 4,608 chances to win 2 chia every day.
+Winning is very rare, and on average one person wins in the whole world every 18 seconds. On every signage point (9 seconds), all of your plots are checked to see which ones passes the [plot filter](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). Approximately 1/512 of all plots will pass the plot filter for each challenge, so here you can see how many of your plots passed. With a new block every 18 seconds there are 4,608 chances to win chia every day.
 
 If for some reason those lines stop moving that is another indication you are not in sync with the database and need to resync—see below.
 
@@ -107,31 +107,36 @@ If for some reason those lines stop moving that is another indication you are no
 
 ## Create a plot
 
-1. Click on green button- top right "Add a Plot"
+Start the process by clicking the green button saying **Add a Plot**.
 
-2. Starting size plot is k 32 (101 GiB). You need a temp storage location of at least 239 GiB (256 GB) to create the plot.
+1. You will choose a plotting software. Getting started plotting with madMAx is the easiest. You can plot single plots in series fairly quick.
 
-3. Chose number of plots — you can select quantity to create.
+2. Starting size plot is k=32 (101 GiB). You need a temp storage location of at least 239 GiB (256 GB) to create the plot.
 
-   1. _Plot to Queue_ : Means if (5) is selected it will plot #1, then when finished will start #2
-   2. _Plot in Parallel_ : means running multiple plots at same time. Make sure you have enough temp storage for combined total.
-   3. _Advanced options_ : The default values appear for your selected plot size, as a beginner try to leave the defaults
-      1. _RAM Max Usage_: More memory slightly increases speed, if you assign too little (less than 4,000 for a k 32) or too much (more than you will have available) the plot might fail during the process.
-      2. _Number of Threads_: Default is 2.
-      3. _Buckets_: Default is 128, more buckets decreases the amount of RAM required and usually increases the speed of plotting.
-      4. _Queue name_: This is useful to mix parallel and series plotting. IE: If you want to do 2 plots at a time, 10 plots in total, you can make 5 plots to Queue name: "My First Queue" and after that add another 5 plots to Queue name: "My Second Queue".
+3. Chose number of plots. If you're just learning, get started by creating just a single plot.
 
-4. Select a temporary directory. This is where plots are created. About 128 temp files will be created (depending on buckets), then compacted to one plot file. This creation grows to 239 GiB (256 GB) and when finished it will be compressed to a single k 32 plot (101 GiB).
+4. Select a temporary directory. This is where the temp space is filled and a lot of writing will be done. For many plots it is not recommended to use the same SSD as your primary.
 
-   1. It's recommended to use a SSD drive or NVME drive for this work but make sure you are aware of [SSD Endurance](/ssd-endurance).
+:::info
+The suggestion is to use an added SSD to create plots and not the primary hard drive (especially for non-replaceable NVME like on some Mac or Windows laptops)
+If for some reason a plot fails to complete, it has to be deleted by deleting all of its temp files. If plotting multiple plots at once, be careful not to delete the temp files of another plot that's being plotted.
 
-5. Select a final directory. once the plot is created—it will go to this location to be farmed to earn chia coins. Storage will fill quickly due to size of plot. Storage can be internal or usb connected drives. Networked drives can work but could congest your local network or be to slow to respond for rewards (should be less than 30 seconds). Plan ahead—storage fills quickly.
+Make sure you are aware of [SSD Endurance](/ssd-endurance).
+:::
 
-6. Click create plot to start process.
+5. Select a final directory. This is where the final plot file will be copied to. Once the plot is created it will go to this location to be farmed to earn chia. Storage will fill quickly due to the size of plots. Storage can be internal or usb connected drives.
+
+:::info
+Network drives can work but could congest your local network or be too slow to respond for rewards (the max is 30 seconds, but under 5 is ideal). It is recommended that you set the first `log_level` to `INFO` in `config.yaml` which will allow you to see extra information in `debug.log`.
+:::
+
+6. Join a pool. This is a recommended option even if you decide to self pool.
+
+7. Click **create** to start process.
 
 ### How Plots are created
 
-Creating a plot is time consuming with an average of 9-20 hours on a normal computer and 4-8 hours on a high end machine. There are 4 phases that does operations in 7 tables.
+There are 4 phases that do operations in 7 tables.
 
 Phases:
 
@@ -163,11 +168,6 @@ Phases:
 |   3   | Compressing tables 6 and 7 |        98% |
 |   4   | Write checkpoint tables    |       100% |
 
-:::info
-The suggestion is to use an added SSD to create plots and not the primary hard drive (especially for non-replaceable NVME like on some Mac or Windows laptops)
-If for some reason a plot fails to complete, it has to be deleted by deleting all of its temp files. If plotting multiple plots at once, be careful not to delete the temp files of another plot that's being plotted.
-:::
-
 ## Proofs
 
 `Proof`: It is found inside the plot. Millions of "excel blocks" with formulas called proofs of space.
@@ -181,7 +181,7 @@ In Chia, the only electricity required is the electricity to create the plots, a
 
 ## Computer Hardware
 
-On an older computer you can purchase a PCIe adapter card-to take NVME/SSD drive as the new temp folder. This is internal to the PC. Some have tried to use a usb or firewire attached NVME/ SSD with some success. but doing multiple plots slows to 8 hrs each. This pertains to creating the temp files.
+On an older computer you can purchase a PCIe adapter card-to take NVME/SSD drive as the new temp folder. This is internal to the PC. Some have tried to use a usb or firewire attached NVME/ SSD with some success.
 
 One item to plan for is storage of plots as they fill storage quickly. As more plots are created, the discussions start to turn to terabytes of data storage instead of gigs of storage. Many use usb attached external drives for storage, internal drives, or external rack storage with many drives.
 
