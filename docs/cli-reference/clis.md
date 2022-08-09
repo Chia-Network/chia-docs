@@ -1,9 +1,8 @@
 ---
-title: Index of Commands
-slug: /cli-commands
+sidebar_label: Overview
+title: CLI Overview
+slug: /clis
 ---
-
-# CLI Commands Reference (from Wiki)
 
 This page should provide additional high-level documentation and explanation beyond just `chia -h`.
 

@@ -57,18 +57,18 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'RPC APIs',
+      label: 'RPC Reference',
       items: [
-        'rpcs/rpcs',
-        'rpcs/full-node-api',
-        'rpcs/did-rpcs',
-        'rpcs/nft-rpcs',
+        'rpc-reference/rpcs',
+        'rpc-reference/full-node',
+        'rpc-reference/dids',
+        'rpc-reference/nfts',
       ],
     },
     {
       type: 'category',
-      label: 'Command Line',
-      items: ['clis/cli', 'clis/did-cli', 'clis/nft-cli'],
+      label: 'CLI Reference',
+      items: ['cli-reference/clis', 'cli-reference/dids', 'cli-reference/nfts'],
     },
     {
       type: 'category',
