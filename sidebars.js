@@ -45,6 +45,43 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Primitives',
+      items: [
+        'primitives/standard-transactions',
+        'primitives/singletons',
+        'primitives/cats',
+        'primitives/nfts',
+        'primitives/dids',
+        'primitives/offers',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'RPC APIs',
+      items: [
+        'rpcs/rpcs',
+        'rpcs/full-node-api',
+        'rpcs/did-rpcs',
+        'rpcs/nft-rpcs',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Command Line',
+      items: ['clis/cli', 'clis/did-cli', 'clis/nft-cli'],
+    },
+    {
+      type: 'category',
+      label: 'Coin Set Model',
+      items: [
+        'coin-set-model/coin-set-intro',
+        'coin-set-model/conditions',
+        'coin-set-model/spend-bundles',
+        'coin-set-model/addresses',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Architecture',
       items: [
         'architecture/architecture-overview',
@@ -76,28 +113,6 @@ module.exports = {
         'consensus/timelords',
         'consensus/attacks-and-countermeasures',
         'consensus/analysis',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Coin Set Model',
-      items: [
-        'coin-set-model/coin-set-intro',
-        'coin-set-model/conditions',
-        'coin-set-model/spend-bundles',
-        'coin-set-model/addresses',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Primitives',
-      items: [
-        'primitives/standard-transactions',
-        'primitives/singletons',
-        'primitives/cats',
-        'primitives/nfts',
-        'primitives/dids',
-        'primitives/offers',
       ],
     },
     {
@@ -141,40 +156,20 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'RPC APIs',
+      label: 'Reference Client',
       items: [
-        'rpcs/rpcs',
-        'rpcs/full-node-api',
-        'rpcs/did-rpcs',
-        'rpcs/nft-rpcs',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Command Line Interface',
-      items: ['cli/cli', 'cli/did-cli', 'cli/nft-cli'],
-    },
-    {
-      type: 'category',
-      label: 'Client Implementations',
-      items: [
-        {
-          type: 'category',
-          label: 'Reference Client',
-          items: [
-            'client-implementations/reference-client/chia-installation-guide',
-            'client-implementations/reference-client/check-if-things-are-working',
-            'client-implementations/reference-client/node-syncing',
-            'client-implementations/reference-client/key-management',
-            'client-implementations/reference-client/chia-seeder-guide',
-            'client-implementations/reference-client/directory-structure',
-            'client-implementations/reference-client/freebsd-install',
-            'client-implementations/reference-client/openbsd-install',
-            'client-implementations/reference-client/logging-reference',
-            'client-implementations/reference-client/password-protected-keys',
-            'client-implementations/reference-client/raspberry-pi',
-          ],
-        },
+        'reference-client/chia-installation-guide',
+        'reference-client/check-if-things-are-working',
+        'reference-client/node-syncing',
+        'reference-client/key-management',
+        'reference-client/chia-seeder-guide',
+        'reference-client/directory-structure',
+        'reference-client/freebsd-install',
+        'reference-client/openbsd-install',
+        'reference-client/logging-reference',
+        'reference-client/password-protected-keys',
+        'reference-client/raspberry-pi',
+        'reference-client/electron-gui',
       ],
     },
     {
