@@ -6,3 +6,203 @@ slug: /nfts
 NFTs are non-fungible tokens that are minted on the Chia blockchain. The NFT puzzle ensures that there is only ever one copy of a given NFT, and it cannot be divided into multiple coins.
 
 They can be used to prove digital ownership of files such as images or videos, as well as the metadata and license pertaining to the file.
+
+## Chialisp Code
+
+This is the source code of the NFT state layer, which can also be found in the chia-blockchain repository in the puzzle [`nft_state_layer.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/164fd158c8626893bc45ba00b87ae69d2ab5f8b7/chia/wallet/puzzles/nft_state_layer.clvm).
+
+<details>
+  <summary>Expand NFT State Puzzle</summary>
+
+```chialisp title="nft_state_layer.clvm"
+(mod (
+    NFT_STATE_LAYER_MOD_HASH
+    METADATA
+    METADATA_UPDATER_PUZZLE_HASH
+    INNER_PUZZLE
+    inner_solution
+  )
+
+  (include condition_codes.clvm)
+  (include curry-and-treehash.clinc)
+  (include utility_macros.clib)
+
+  (defun-inline nft_state_layer_puzzle_hash (NFT_STATE_LAYER_MOD_HASH METADATA METADATA_UPDATER_PUZZLE_HASH inner_puzzle_hash)
+    (puzzle-hash-of-curried-function NFT_STATE_LAYER_MOD_HASH
+                                     inner_puzzle_hash
+                                     (sha256 ONE METADATA_UPDATER_PUZZLE_HASH)
+                                     (sha256tree METADATA)
+                                     (sha256 ONE NFT_STATE_LAYER_MOD_HASH)
+    )
+  )
+
+
+  ; this function does two things - it wraps the odd value create coins, and it also filters out all negative conditions
+  ; odd_coin_params is (puzhash amount ...)
+  ; new_metadata_info is ((METADATA METADATA_UPDATER_PUZZLE_HASH) conditions)
+  (defun wrap_odd_create_coins (NFT_STATE_LAYER_MOD_HASH conditions odd_coin_params new_metadata_info metadata_seen)
+    (if conditions
+      (if (= (f (f conditions)) CREATE_COIN)
+          (if (logand (f (r (r (f conditions)))) ONE)
+              (assert (not odd_coin_params)
+                (wrap_odd_create_coins NFT_STATE_LAYER_MOD_HASH (r conditions) (r (f conditions)) new_metadata_info metadata_seen)
+              )
+              (c (f conditions) (wrap_odd_create_coins NFT_STATE_LAYER_MOD_HASH (r conditions) odd_coin_params new_metadata_info metadata_seen))
+          )
+          (if (= (f (f conditions)) -24)
+              (wrap_odd_create_coins NFT_STATE_LAYER_MOD_HASH (r conditions) odd_coin_params
+                (assert (all
+                          (= (sha256tree (f (r (f conditions)))) (f (r (f new_metadata_info))))
+                          (not metadata_seen)
+                        )
+                    ; then
+                    (a (f (r (f conditions))) (list (f (f new_metadata_info)) (f (r (f new_metadata_info))) (f (r (r (f conditions))))))
+                )
+                ONE  ; the metadata update has been seen now
+              )
+              (c (f conditions) (wrap_odd_create_coins NFT_STATE_LAYER_MOD_HASH (r conditions) odd_coin_params new_metadata_info metadata_seen))
+          )
+      )
+      (c
+        (c CREATE_COIN
+            (c
+              (nft_state_layer_puzzle_hash
+                NFT_STATE_LAYER_MOD_HASH
+                (f (f new_metadata_info))
+                (f (r (f new_metadata_info)))
+                (f odd_coin_params)  ; metadata updater solution
+              )
+              (r odd_coin_params)
+            )
+        )
+        (f (r new_metadata_info))  ; metadata_updater conditions
+      )
+    )
+  )
+
+  ; main
+  (wrap_odd_create_coins
+    NFT_STATE_LAYER_MOD_HASH
+    (a INNER_PUZZLE inner_solution)
+    ()
+    (list (list METADATA METADATA_UPDATER_PUZZLE_HASH) 0)  ; if the magic condition is never seen, this is the information we us to recurry
+    ()
+  )
+)
+```
+
+</details>
+
+This is the source code of the NFT ownership layer, which can also be found in the chia-blockchain repository in the puzzle [`nft_ownership_layer.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/164fd158c8626893bc45ba00b87ae69d2ab5f8b7/chia/wallet/puzzles/nft_ownership_layer.clvm).
+
+<details>
+  <summary>Expand NFT Ownership Puzzle</summary>
+
+```chialisp title="nft_ownership_layer.clvm"
+(mod (
+    NFT_OWNERSHIP_LAYER_MOD_HASH
+    CURRENT_OWNER
+    TRANSFER_PROGRAM
+    INNER_PUZZLE
+    inner_solution
+   )
+
+   (include condition_codes.clvm)
+   (include curry-and-treehash.clinc)
+   (include utility_macros.clib)
+
+   (defconstant NEW_OWNER_CONDITION -10)
+   (defconstant ANNOUNCEMENT_PREFIX 0xad4c)  ; first 2 bytes of (sha256 "Ownership Layer")
+
+   (defun-inline nft_ownership_layer_puzzle_hash (NFT_OWNERSHIP_LAYER_MOD_HASH new_owner TRANSFER_PROGRAM inner_puzzle_hash)
+      (puzzle-hash-of-curried-function NFT_OWNERSHIP_LAYER_MOD_HASH
+                                       inner_puzzle_hash
+                                       (sha256tree TRANSFER_PROGRAM)
+                                       (sha256 ONE new_owner)
+                                       (sha256 ONE NFT_OWNERSHIP_LAYER_MOD_HASH)
+      )
+   )
+
+   (defun construct_end_conditions (NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM odd_args (new_owner new_tp conditions))
+     (c
+       (c
+         CREATE_COIN
+         (c
+           (nft_ownership_layer_puzzle_hash NFT_OWNERSHIP_LAYER_MOD_HASH new_owner (if new_tp new_tp TRANSFER_PROGRAM) (f odd_args))
+           (r odd_args)
+          )
+        )
+        conditions
+     )
+   )
+
+   (defun wrap_odd_create_coins (NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM CURRENT_OWNER all_conditions conditions odd_args tp_output)
+     (if conditions
+       (if (= (f (f conditions)) CREATE_COIN)
+         (if (= (logand (f (r (r (f conditions))))) ONE)
+            (assert (not odd_args)
+              ; then
+              (wrap_odd_create_coins NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM CURRENT_OWNER all_conditions (r conditions) (r (f conditions)) tp_output)
+            )
+            (c (f conditions) (wrap_odd_create_coins NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM CURRENT_OWNER all_conditions (r conditions) odd_args tp_output))
+         )
+         (if (= (f (f conditions)) NEW_OWNER_CONDITION)
+            (assert (not tp_output)
+              (c
+                (list CREATE_PUZZLE_ANNOUNCEMENT (concat ANNOUNCEMENT_PREFIX (sha256tree (r (f conditions)))))
+                (wrap_odd_create_coins NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM CURRENT_OWNER all_conditions (r conditions) odd_args (a TRANSFER_PROGRAM (list CURRENT_OWNER all_conditions (r (f conditions)))))
+              )
+            )
+            (if (= (f (f conditions)) CREATE_PUZZLE_ANNOUNCEMENT)
+                (assert (not (and
+                          (= 34 (strlen (f (r (f conditions)))))
+                          (= (substr (f (r (f conditions))) 0 2) ANNOUNCEMENT_PREFIX)  ; lazy eval
+                        ))
+                  ; then
+                  (c (f conditions) (wrap_odd_create_coins NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM CURRENT_OWNER all_conditions (r conditions) odd_args tp_output))
+                )
+                (c (f conditions) (wrap_odd_create_coins NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM CURRENT_OWNER all_conditions (r conditions) odd_args tp_output))
+            )
+         )
+       )
+       ; odd_args is guaranteed to not be nil or else we'll have a path into atom error
+       (construct_end_conditions NFT_OWNERSHIP_LAYER_MOD_HASH TRANSFER_PROGRAM odd_args
+          (if tp_output
+              tp_output
+              (a TRANSFER_PROGRAM (list CURRENT_OWNER all_conditions ()))
+          )
+       )
+     )
+   )
+
+  (defun main (
+      NFT_OWNERSHIP_LAYER_MOD_HASH
+      TRANSFER_PROGRAM
+      CURRENT_OWNER
+      conditions
+    )
+    (wrap_odd_create_coins
+      NFT_OWNERSHIP_LAYER_MOD_HASH
+      TRANSFER_PROGRAM
+      CURRENT_OWNER
+      conditions
+      conditions
+      () ()
+    )
+  )
+
+  ; main
+  (main
+    NFT_OWNERSHIP_LAYER_MOD_HASH
+    TRANSFER_PROGRAM
+    CURRENT_OWNER
+    (a INNER_PUZZLE inner_solution)
+  )
+)
+```
+
+</details>
+
+## Conclusion
+
+NFTs are a great way to represent indivisible assets on the Chia blockchain. You can attach royalties to them that get paid upon sale, and store files such as images in them, with attached metadata and license files.

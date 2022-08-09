@@ -10,7 +10,7 @@ The standard transaction is a puzzle used by the Chia wallet to generate its add
 This is the source code of the standard transaction, which can also be found in the `chia-blockchain` repository in the puzzle [`p2_delegated_puzzle_or_hidden_puzzle.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/p2_delegated_puzzle_or_hidden_puzzle.clvm):
 
 <details>
-  <summary>Expand Chialisp puzzle</summary>
+  <summary>Expand Chialisp Puzzle</summary>
 
 ```chialisp title="p2_delegated_puzzle_or_hidden_puzzle.clvm"
 ; build a pay-to delegated puzzle or hidden puzzle

@@ -24,7 +24,7 @@ Additionally, fungible tokens can be split apart and merged together, whereas no
 This is the source code of the CAT, which can also be found in the chia-blockchain repository in the puzzle [`cat_v2.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/cat_v2.clvm).
 
 <details>
-  <summary>Expand Chialisp puzzle</summary>
+  <summary>Expand CAT Puzzle</summary>
 
 ```chialisp title="cat_v2.clvm"
 ; Coins locked with this puzzle are spendable cats.
@@ -435,7 +435,7 @@ This is the single-issuance TAIL that prevents melting and requires the parent t
 This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`genesis_by_coin_id.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/genesis_by_coin_id.clvm).
 
 <details>
-  <summary>Genesis By Coin Id</summary>
+  <summary>Expand Genesis By Coin Id Puzzle</summary>
 
 ```chialisp title="genesis_by_coin_id.clvm"
 ; This is a TAIL for use with cat.clvm.
@@ -473,7 +473,7 @@ This is the multi-issuance TAIL that allows you to take any action as long as yo
 This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`everything_with_signature.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/everything_with_signature.clvm).
 
 <details>
-  <summary>Everything With Signature</summary>
+  <summary>Expand Everything With Signature Puzzle</summary>
 
 ```chialisp title="everything_with_signature.clvm"
 ; This is a "limitations_program" for use with cat.clvm.
@@ -500,7 +500,7 @@ This TAIL provides a balance between security and flexibility. It's similar to t
 This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`delegated_tail.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/delegated_tail.clvm).
 
 <details>
-  <summary>Delegated TAIL</summary>
+  <summary>Expand Delegated TAIL Puzzle</summary>
 
 ```chialisp title="delegated_tail.clvm"
 ; This is a "limitations_program" for use with cat.clvm.
