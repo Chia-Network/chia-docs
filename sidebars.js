@@ -63,12 +63,18 @@ module.exports = {
         'rpc-reference/full-node',
         'rpc-reference/dids',
         'rpc-reference/nfts',
+        'rpc-reference/offers',
       ],
     },
     {
       type: 'category',
       label: 'CLI Reference',
-      items: ['cli-reference/clis', 'cli-reference/dids', 'cli-reference/nfts'],
+      items: [
+        'cli-reference/clis',
+        'cli-reference/dids',
+        'cli-reference/nfts',
+        'cli-reference/offers',
+      ],
     },
     {
       type: 'category',
