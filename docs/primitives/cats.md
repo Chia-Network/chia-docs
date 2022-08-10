@@ -3,7 +3,7 @@ title: CATs
 slug: /cats
 ---
 
-Chia Asset Tokens are fungible tokens that are issued on the Chia blockchain. The CAT puzzle ensures that the supply of a specific CAT never changes unless the rules of issuance specific to that CAT are followed. These are enforced using a separate Chialisp program called the Token and Asset Issuance Limitations (TAIL).
+Chia Asset Tokens are fungible tokens that are issued on the Chia blockchain. The CAT puzzle ensures that the supply of a specific CAT never changes unless the rules of issuance specific to that CAT are followed. These are enforced using a separate Chialisp program called the [Token and Asset Issuance Limitations (TAIL)](#tail).
 
 Aside from the TAIL, there is also an [inner puzzle](https://devs.chia.net/guides/chialisp-inner-puzzles) that the CAT wraps around. The inner puzzle controls the ownership of the specific coin, and when the coin is spent, the new puzzle is wrapped in the CAT again. Typically, you wrap the [standard transaction](/standard-transactions) so that you can send CATs to Chia wallet addresses.
 
@@ -15,16 +15,16 @@ It has been replaced with the current CAT2 standard because of [a vulnerability 
 
 :::
 
-You can learn more about the terminology used on this page by reading the [blog entry explaining CAT naming conventions](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html).
+To learn more about the terminology used on this page, check out the [blog entry explaining CAT naming conventions](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html).
 
 Additionally, fungible tokens can be split apart and merged together, whereas non-fungible tokens are indivisible.
 
-## Chialisp Code
+## Chialisp Code {#code}
 
-This is the source code of the CAT, which can also be found in the chia-blockchain repository in the puzzle [`cat_v2.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/cat_v2.clvm).
+This is the source code of the CAT, which can also be found in the chia-blockchain repository in the puzzle [`cat_v2.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/cat_v2.clvm):
 
 <details>
-  <summary>Expand CAT Puzzle</summary>
+  <summary>Expand CAT2 puzzle</summary>
 
 ```chialisp title="cat_v2.clvm"
 ; Coins locked with this puzzle are spendable cats.
@@ -430,12 +430,14 @@ This is the source code of the CAT, which can also be found in the chia-blockcha
 
 Additionally, there are a few standard TAIL puzzles.
 
-This is the single-issuance TAIL that prevents melting and requires the parent to be a specific coin. This is currently the default way to issue CATs, since it ensures the supply will never increase.
+### Single-Issuance TAIL {#single}
 
-This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`genesis_by_coin_id.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/genesis_by_coin_id.clvm).
+The single-issuance TAIL prevents melting and requires the parent to be a specific coin. This is currently the default way to issue CATs, since it ensures the supply will never increase.
+
+This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`genesis_by_coin_id.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/genesis_by_coin_id.clvm):
 
 <details>
-  <summary>Expand Genesis By Coin Id Puzzle</summary>
+  <summary>Expand Genesis By Coin ID puzzle</summary>
 
 ```chialisp title="genesis_by_coin_id.clvm"
 ; This is a TAIL for use with cat.clvm.
@@ -468,12 +470,14 @@ This is the source code, which can also be found in the chia-blockchain reposito
 
 </details>
 
-This is the multi-issuance TAIL that allows you to take any action as long as you have the original key used to issue it. You commit to a public key that will be used to authorize supply changes. Each spend that changes the supply must be signed separately.
+### Multi-Issuance TAIL {#multi}
 
-This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`everything_with_signature.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/everything_with_signature.clvm).
+The multi-issuance TAIL allows any action to be taken, providing the original issuance key is used. Each spend that makes supply changes must be signed separately using this same key.
+
+This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`everything_with_signature.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/everything_with_signature.clvm):
 
 <details>
-  <summary>Expand Everything With Signature Puzzle</summary>
+  <summary>Expand Everything With Signature puzzle</summary>
 
 ```chialisp title="everything_with_signature.clvm"
 ; This is a "limitations_program" for use with cat.clvm.
@@ -495,12 +499,12 @@ This is the source code, which can also be found in the chia-blockchain reposito
 
 </details>
 
-This TAIL provides a balance between security and flexibility. It's similar to the previous, but the signature can be reused for the puzzle it's signed with, allowing the TAIL to change over time. The creator can publish the signature, allowing any owner to run the TAIL on their CAT, but remember that any permissions you grant can never be taken back.
+This TAIL provides a balance between security and flexibility. It's similar to the previous TAIL, but the signature can be reused for the puzzle it's signed with, allowing the TAIL to change over time. The creator can publish the signature, allowing any owner to run the TAIL on their CAT, but any permissions granted can never be revoked.
 
-This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`delegated_tail.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/delegated_tail.clvm).
+This is the source code, which can also be found in the chia-blockchain repository in the puzzle [`delegated_tail.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/fad414132e6950e79e805629427af76bf9ddcbc5/chia/wallet/puzzles/delegated_tail.clvm):
 
 <details>
-  <summary>Expand Delegated TAIL Puzzle</summary>
+  <summary>Expand Delegated TAIL puzzle</summary>
 
 ```chialisp title="delegated_tail.clvm"
 ; This is a "limitations_program" for use with cat.clvm.
@@ -536,17 +540,17 @@ This is the source code, which can also be found in the chia-blockchain reposito
 
 CATs are designed in a way that makes them unusable as regular XCH in spends. However, it is usually possible to melt them back into XCH later. Tokens are often used as a form of credits, such as casino chips or store credit.
 
-Using TAILs you can accommodate issuance requirements such as these:
+TAILs can be used to accommodate issuance requirements, such as:
 
-| Usage            | Description                                                   |
-| ---------------- | ------------------------------------------------------------- |
-| Stablecoins      | Creator can issue new tokens as they gain funds to back them. |
-| Limited Supply   | Creator can run one issuance, and no more can ever be issued. |
-| Asset Redemption | Creator can allow owners to melt into XCH by following rules. |
+| Usage            | Description                                                            |
+| ---------------- | ---------------------------------------------------------------------- |
+| Stablecoins      | Creator can issue new tokens which are backed by attested funds.       |
+| Limited Supply   | Creator can run a one-time issuance, and no more can ever be issued.   |
+| Asset Redemption | Creator can allow owners to melt into XCH by following specific rules. |
 
 In all of these cases, the TAIL program is run when a coin is spent to check if the issuance is valid.
 
-## Design Decisions
+## Design Decisions {#design}
 
 #### Created coins become CATs with the same TAIL {#wrapping}
 
@@ -566,22 +570,22 @@ In order to ensure that the CATs can communicate with each other without interfe
 
 #### TAILs are given a list of pre-calculated truths {#truths}
 
-Many TAILs require information that has already been calculated in the CAT layer, so we bundle it together as a pre-validated collection of `Truths`. We then pass these truths into the TAIL as the first non-curried parameter in the solution.
+Many TAILs require information that has already been calculated in the CAT layer, so it is bundled together as a pre-validated collection of `Truths`. These truths are then passed into the TAIL as the first non-curried parameter in the solution. For more info, see [the Truth Table](#truth-table).
 
 #### CATs have the option to use hinting {#hinting}
 
 Hinting is a way to signal the CAT's type to a Chia wallet. The hint is typically an inner puzzle hash. For more info, see our [explanation of hinting in the FAQ](/faq#q-what-is-hinting).
 
-## Spend Accounting
+## Spend Accounting {#accounting}
 
 Each CAT coin has a truthful calculation of the difference between its amount and its output amount, called its **delta**.
 
 The CAT coins also are given the sum of every other coin's deltas, which must be zero. In order to enforce this zero-delta rule, each CAT coin is assigned a next and previous neighbor, which ultimately forms a ring.
 
-The coins use coin announcements to communicate with their neighbors. For our use case, the announcements must contain two pieces of information:
+The coins use coin announcements to communicate with their neighbors. For this use case, the announcements must contain two pieces of information:
 
-- The id of the coin that created this coin. This is already implicitly contained in the coin announcement.
-- The intended recipient's coin id. The announcement's message must contain this information in order to prevent attacks where coins can receive messages that weren't intended for them.
+- The ID of the coin that created this coin. This is already implicitly contained in the coin announcement.
+- The intended recipient's Coin ID. The announcement's message must contain this information in order to prevent attacks where coins can receive messages that weren't intended for them.
 
 To form the ring, every coin outputs the following conditions:
 
@@ -592,13 +596,13 @@ To form the ring, every coin outputs the following conditions:
 )
 ```
 
-The announcement assertions take the hash of the announcement creator's id and message.
+The announcement assertions take the hash of the announcement creator's ID and message.
 
-In order to create the `next_coin_id`, we wrap the next coin's inner puzzle with the current coin's CAT information. This guarantees that the `next_coin_id` is a CAT of the same type as the current coin.
+In order to create `next_coin_id`, the next coin's inner puzzle is wrapped with the current coin's CAT information. This guarantees that `next_coin_id` is a CAT of the same type as the current coin.
 
 Because both coins follow the same CAT mod puzzle, they must comply with the same set of truths. This, in turn, guarantees that the whole ring is telling the truth. As long as the ring is connected, the total delta must be zero.
 
-## Extra Delta
+## Extra Delta {#extra-delta}
 
 There are two exceptions to the aforementioned zero-delta rule:
 
@@ -613,7 +617,7 @@ There are a few rules to ensure that extra coins are not issued or melted:
 - If the extra delta value in the solution does not cause the TAIL program to fail, then it is automatically added to the reported delta, which is used in the announcement ring.
 - If the TAIL program is not revealed and the extra delta is not `0`, then the spend will fail.
 
-## TAIL Program
+## TAIL Program {#tail}
 
 The TAIL program is powerful and flexible. It has control over, and access to, many things. This gives a programmer a lot of control, but also a great deal of responsibility.
 
@@ -632,7 +636,7 @@ Several parameters must be passed to a TAIL's solution:
 | Truths                   | These are bundled together, as explained in the [truths section](#truths). |
 | parent_is_cat            | Whether the parent CAT has been validated as the same type.                |
 | lineage_proof (optional) | Proof that the parent is a CAT of the same type as this CAT.               |
-| delta                    | The extra delta value, as explained above.                                 |
+| delta                    | The extra delta value, as explained [here](#extra-delta).                                 |
 | inner_conditions         | The conditions returned by the inner puzzle (see below).                   |
 | tail_solution (optional) | A list of opaque parameters passed to the TAIL.                            |
 
@@ -640,33 +644,33 @@ Although the TAIL is powerful, it is _not necessarily_ run every time the coin i
 
 `(51 0 -113 <TAIL puzzle> <TAIL solution>)`, where:
 
-- `51` is the condition code for CREATE_COIN.
+- `51` is the condition code for `CREATE_COIN`.
 - `0` can be replaced with anything, but this is the smallest possible value. Although the `CREATE_COIN` condition usually has a puzzle hash, it is ignored here.
-- `-113` is the magic amount, which signals to the CAT layer that the TAIL must be run. We chose to make this number negative because negative coins are usually invalid, but otherwise it is an arbitrary standard.
+- `-113` is the magic amount, which signals to the CAT layer that the TAIL must be run. A negative number was chosen because negative coins are usually invalid, but otherwise it is an arbitrary amount.
 
 The TAIL should check diligently for and authorize or reject the following things:
 
 - Is the extra delta issuing or melting any coins?
 - Is this coin's parent not a CAT of the same type?
 
-## Limitations of the TAIL
+## Limitations of the TAIL {#tail-limitations}
 
 In Ethereum, a token's issuer might have the ability to freeze or confiscate funds without the owner's permission. This is not possible in Chia.
 
 In Chia, an issuer creates a TAIL, which lives inside all CATs of the same type, including those that have already been distributed. However, the issuer does not have the power to spend coins they do not own. A TAIL can only run as the last step in a CAT's spend, and the owner of the CAT (not the issuer) is responsible for providing its solution. This means that only the owner can run the TAIL. Therefore, the CAT's owner is the only one with the ability to complete the spend.
 
-This decision adds some decentralization for users. It also adds some complexity. The importance of creating a well-constructed TAIL cannot be emphasized enough. Once you have distributed a CAT, it is no longer possible to change the TAIL across the entire token supply. The TAIL is locked into the same set of rules forever. To change the TAIL would be tantamount to replacing physical cash in circulation. You would have to offer an exchange for new tokens and eventually deprecate the old token, even if some people still carry it.
+This decision adds some decentralization for users. It also adds some complexity. The importance of creating a well-constructed TAIL cannot be emphasized enough. Once a CAT has been distributed, it is no longer possible to change the TAIL across the entire token supply. The TAIL is locked into the same set of rules forever. To change the TAIL would be tantamount to replacing physical cash in circulation. An exchange for new tokens would have to be offered, and the old token eventually deprecated, even if some people still carry it.
 
-It also means that if the set of rules is compromised, people may be able to issue or melt CATs maliciously. There’s no easy way to patch the TAIL, other than through the process above, which is obviously best avoided.
+It also means that if the set of rules is compromised, people may be able to issue or melt CATs maliciously. There’s no easy way to patch the TAIL, other than through the process above, and therefore it is best avoided.
 
-## Valuation
+## Valuation {#valuation}
 
 Some decisions regarding the granularity and denomination of CATs versus XCH:
 
 - Most Chia wallets choose to display their value in XCH. However, this is a purely cosmetic choice because Chia's blockchain only knows about mojos. One XCH is equal to one trillion (1,000,000,000,000) mojos.
-- In a similar vein, Chia Network has made the design decision to map 1 CAT to 1000 XCH mojos. This ratio will be the same for all CATs.
+- In a similar vein, Chia Network has made the design decision to map 1 CAT to 1,000 XCH mojos. This ratio will be the same for all CATs.
 - Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The official Chia wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
-- The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
+- The melt value of a single token is 1,000 mojos. This remains true regardless of the token's face value or its circulating supply.
 - A token's face value is based on supply and demand, rather than being matched to the melt value.
 
 By analogy, on multiple occasions the US Treasury has floated the idea of issuing a $1 trillion coin made from platinum. Leaving aside the practical implications of doing this, the magnitude of the difference between this hypothetical coin's face value and melt value would be similar to that of CATs and XCH. The coin would be worth $1 trillion dollars, but if someone melted it and sold the platinum, they'd only receive a minuscule fraction of that amount.
@@ -675,11 +679,11 @@ On the other end of the spectrum, consider the US penny. Its base metals (97.5% 
 
 ## Reasons for Melting
 
-It's important to keep in mind that a CAT's TAIL (and nothing else) decides the rules for melting, _if_ it allows melting at all. For example, our single-issuance TAIL only works with a specific coin, so it does not allow melting. CATs that use this TAIL can never be melted, no matter how small their face value.
+It's important to keep in mind that a CAT's TAIL (and nothing else) decides the rules for melting, _if_ it allows melting at all. For example, our [single-issuance TAIL](#single) only works with a specific coin, so it does not allow melting. CATs that use this TAIL can never be melted, no matter how small their face value.
 
 Our delegated TAIL leaves it entirely up to the CAT's creator how and when melting can happen. There are many possible reasons you may want to melt a CAT, other than the obvious example of its face value being less than the melt value.
 
-Beyond our pre-packaged examples, TAILs with a wide range of functionality are also possible. To illustrate some of this functionality, let's consider three potential reasons for melting, along with who gets to melt the tokens:
+Beyond our pre-packaged examples, TAILs with a wide range of functionality are also possible. To illustrate some of this functionality, let's consider three potential reasons for melting, along with who is permitted to melt the tokens.
 
 ### Removal From Circulation
 
@@ -700,6 +704,8 @@ Here are some possible examples of this:
 A CAT could be created as a limited-time offer or as a game of musical chairs. In these cases, tokens would be melted _against the owner's will_. This could be done either at random or as a deliberate type of slashing.
 
 ## Truth Table
+
+The following is a list of [truths](#truths) that are passed into the [TAIL](#tail):
 
 | Truth                       | Description                                                 |
 | --------------------------- | ----------------------------------------------------------- |
