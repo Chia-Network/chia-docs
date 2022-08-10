@@ -243,6 +243,30 @@ This is the source code of the default NFT metadata updater, which can also be f
 
 </details>
 
+## Decision Decisions
+
+#### Multiple separate forms of data {#data}
+
+There are three kinds of files that can be added to the NFT, one per type:
+
+- Data, for things such as images and videos
+- Metadata, for information about the data or NFT
+- License, detailing legal rights related to the NFT
+
+#### Data must match an immutable hash {#hash}
+
+Any data that the NFT points to must match a specific [sha256](https://en.wikipedia.org/wiki/SHA-2) hash. The hash cannot be changed later, even by the creator of the NFT. This prevents it from being modified or tampered with later, and enforces permanence.
+
+#### Extendable list of multiple URLs {#urls}
+
+Each type of data has a list of URLs that each resolve to the hash of the data. However, if a URL is no longer valid or has been compromised, it will no longer match, which means it won't be displayed in the wallet. To help uphold permanence, the owner can add a new URL that matches the original hash. It will be prepended to the beginning of the list so that it's checked first in the future.
+
+It's recommended to start with multiple links, some on a decentralized platform such as [IPFS](https://www.ipfs.com) or [Arweave](https://www.arweave.org), and others on a server you have control over. This way, even if one fails, the others can be used as a fallback.
+
+## Association with DID
+
+You can add a DID to the NFT when you mint it to show that it is a part of that identity. For example, you can always verify that a [Chia Friend NFT](https://chiafriends.xyz) is authentic by checking that the DID matches the DNS record on [did.chia.net](https://did.chia.net) and the collection id in the metadata matches the rest.
+
 ## Conclusion
 
 NFTs are a great way to represent indivisible assets on the Chia blockchain. You can attach royalties to them that get paid upon sale, and store files such as images in them, with attached metadata and license files.
