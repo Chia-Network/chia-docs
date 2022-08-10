@@ -203,6 +203,46 @@ This is the source code of the NFT ownership layer, which can also be found in t
 
 </details>
 
+This is the source code of the default NFT metadata updater, which can also be found in the chia-blockchain repository in the puzzle [`nft_metadata_updater_default.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/164fd158c8626893bc45ba00b87ae69d2ab5f8b7/chia/wallet/puzzles/nft_metadata_updater_default.clvm).
+
+<details>
+  <summary>Expand NFT Metadata Updater Puzzle</summary>
+
+```chialisp title="nft_metadata_updater_default.clvm"
+(mod (CURRENT_METADATA METADATA_UPDATER_PUZZLE_HASH (key . new_url))
+
+  ; METADATA and METADATA_UPDATER_PUZZLE_HASH are passed in as truths from the layer above
+  ; This program returns ((new_metadata new_metadata_updater_puzhash) conditions)
+
+  ; Add uri to a field
+  (defun add_url (METADATA key new_url)
+    (if METADATA
+      (if (= (f (f METADATA)) key)
+        (c (c key (c new_url (r (f METADATA)))) (r METADATA))
+        (c (f METADATA) (add_url (r METADATA) key new_url))
+      )
+      ()
+    )
+  )
+  ; main
+  ; returns ((new_metadata new_metadata_updater_puzhash) conditions)
+  (list
+    (list
+        (if (all key new_url)
+            (if (any (= key "mu") (= key "lu") (= key "u"))
+                (add_url CURRENT_METADATA key new_url)
+                CURRENT_METADATA
+            )
+            CURRENT_METADATA
+         )
+        METADATA_UPDATER_PUZZLE_HASH)
+    0
+  )
+)
+```
+
+</details>
+
 ## Conclusion
 
 NFTs are a great way to represent indivisible assets on the Chia blockchain. You can attach royalties to them that get paid upon sale, and store files such as images in them, with attached metadata and license files.
