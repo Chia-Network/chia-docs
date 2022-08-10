@@ -550,7 +550,7 @@ TAILs can be used to accommodate issuance requirements, such as:
 
 In all of these cases, the TAIL program is run when a coin is spent to check if the issuance is valid.
 
-## Design Decisions {#design}
+## Design Decisions
 
 #### Created coins become CATs with the same TAIL {#wrapping}
 
@@ -636,7 +636,7 @@ Several parameters must be passed to a TAIL's solution:
 | Truths                   | These are bundled together, as explained in the [truths section](#truths). |
 | parent_is_cat            | Whether the parent CAT has been validated as the same type.                |
 | lineage_proof (optional) | Proof that the parent is a CAT of the same type as this CAT.               |
-| delta                    | The extra delta value, as explained [here](#extra-delta).                                 |
+| delta                    | The extra delta value, as explained [here](#extra-delta).                  |
 | inner_conditions         | The conditions returned by the inner puzzle (see below).                   |
 | tail_solution (optional) | A list of opaque parameters passed to the TAIL.                            |
 
