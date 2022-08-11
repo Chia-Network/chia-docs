@@ -24,7 +24,7 @@ class HarvesterHandshake(Streamable):
 ## new_signage_point_harvester
 
 This message is a notification from the farmer to the harvester of a new challenge.
-The harvester first checks which plots pass the plot filter (see section 3.6), and for those that do, fetches the quality.
+The harvester first checks which plots pass the plot filter (see the [Harvester Algorithm page](/harvester-algorithm)), and for those that do, fetches the quality.
 This requires around 7-9 random reads (and thus disk seeks) for each quality.
 Each plot is expected to have one proof of space (and therefore one quality) on average, so for 50 plots, a harvester would have around 50 qualities.
 For those qualities that are sufficiently good to win a block or a pool partial, the whole proof is fetched (64 random reads in the plot),
@@ -65,7 +65,7 @@ class NewProofOfSpace(Streamable):
     signage_point_index: uint8
 
 class ProofOfSpace(Streamable):
-    challenge: bytes32                              # This is the challenge for the pospace, explained in section 3.5
+    challenge: bytes32                              # This is the challenge for the pospace, explained in the Signage and Infusion Points page
     pool_public_key: Optional[G1Element]            # Only one of these two should be present
     pool_contract_puzzle_hash: Optional[bytes32]    # Present only for pooled plots
     plot_public_key: G1Element                      # Explained in the keys section
