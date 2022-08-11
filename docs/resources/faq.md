@@ -367,7 +367,7 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ## Where can I buy Chia?
 
-Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](​​https://chialisp.com/puzzles/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
+Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.com/puzzles/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
 
 There are also several exchanges that offer XCH. You can see a list of exchanges supporting XCH [here](https://chialinks.com/exchanges/). This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 

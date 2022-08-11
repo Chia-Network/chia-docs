@@ -11,7 +11,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
     url: 'https://staging.docs.chia.net',
     baseUrl: '/',
     onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenMarkdownLinks: 'throw',
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
     projectName: '{{ REPOSITORY_NAME }}',

@@ -16,17 +16,17 @@ This tutorial will show you how to set up and use Chia's internal custody tool.
 
 Before continuing, you might want to familiarize yourself with the following documents:
 
-- [Basic description](/prefarm-custody/prefarm_custody_english) of how the custody tool works, in plain English
+- [Basic description](/prefarm-custody) of how the custody tool works, in plain English
 - [Flow chart](https://drive.google.com/file/d/1E6_8cqL3cvEbWLNdWUDSQmMGten9quZs/view?usp=sharing) to visualize how the custody tool works
-- [CLI reference](/prefarm-custody/custody_tool_cli_reference) for all custody commands used in this tutorial
+- [CLI reference](/custody-tool-cli) for all custody commands used in this tutorial
 
 There are two basic paths you can take for testing:
 
-1. **[Install and run a custom testnet.](/prefarm-custody/custom_testnet_configuration)** You will be given the entire prefarm for this testnet. Yes, you will actually own 21 million (T)XCH!
+1. **[Install and run a custom testnet.](/install-custom-testnet)** You will be given the entire prefarm for this testnet. Yes, you will actually own 21 million (T)XCH!
 
 The _only_ reason to go with this option is if you need to test the custody tool with millions of TXCH. Setting this up requires a few more steps than the second option.
 
-2. **[Run on testnet10](/prefarm-custody/testnet10_configuration)**
+2. **[Run on testnet10](/prefarm-custody-testnet10)**
 
 If you already have testnet10 installed and fully synced, as well as some TXCH in a wallet dedicated to testing the prefarm, then you can skip the installation guide and continue with this tutorial.
 
@@ -559,7 +559,7 @@ The singleton is now set up. Observers can verify that no payments or rekeys are
 
 If, at any point, you want to export your config's public, immutable information to be used by observer nodes, run `cic export_config -p -f <binary file name>`.
 
-For more info, see the [CLI reference](/prefarm-custody/custody_tool_cli_reference#export_config).
+For more info, see the [CLI reference](/custody-tool-cli#export_config).
 
 ### Create another wallet
 
@@ -592,7 +592,7 @@ First wallet address: txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8
 IPS has created several test cases for the custody tool.
 
 :::info
-About the [examine_spend](/prefarm-custody/custody_tool_cli_reference#examine_spend) command:
+About the [examine_spend](/custody-tool-cli#examine_spend) command:
 
 During any of the following test cases, you can convert an unsigned spend bundle into a QR code by using the command `cic examine_spend <spend bundle>`. You likely won't need this command if you are testing on a local computer, but it will be an important step when making changes to the actual prefarm. Using this command, you can print a QR code and take it into an HSM for signing.
 :::
