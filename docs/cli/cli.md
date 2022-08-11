@@ -3,7 +3,7 @@ title: Index of Commands
 slug: /cli-commands
 ---
 
-# CLI Commands Reference (from Wiki)
+# CLI Commands Reference
 
 This page should provide additional high-level documentation and explanation beyond just `chia -h`.
 

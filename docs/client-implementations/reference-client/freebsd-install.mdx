@@ -47,7 +47,7 @@ rm -rf chia-blockchain
 # ... now start again! You don't need to do all the setup steps but instead may start at the upgrade notes above if you had finished up to the py-cryptography ports build.
 ```
 
-### Pre-requisite package installation
+### Pre-requisite Package Installation
 
 _If starting the build again after a failure and you have not re-installed FreeBSD, don't just skip this package installation section! You may have missed one or more software packages critical to the build._
 
@@ -81,7 +81,7 @@ pkg install lang/gcc9 gcc gmake cmake
 
 ```
 
-### gcc notes
+### gcc Notes
 
 After installing gcc version 9.0, this message appears:
 
@@ -144,7 +144,7 @@ To exit the virtual environment:
 deactivate
 ```
 
-### Building py-cryptography from ports
+### Building py-cryptography from Ports
 
 _**You'll need to switch to root for this part. If you're already using root remember to leave the virtual environment for this step.**_
 
@@ -186,7 +186,7 @@ pip install git+https://github.com/Chia-Network/clvm@use_clvm_rs
 
 clvm_rs 0.1.7 is now installed in your virtual environment.
 
-### Install py-cryptography to the venv
+### Install py-cryptography to the Venv
 
 Copy py-cryptography and its meta-data from the staging directory to your virtual environment:
 
@@ -201,7 +201,7 @@ Clear any Python byte-code cache files that may contain the old path. These shou
 find ${VIRTUAL_ENV}/lib/python3.7/site-packages/cryptography -name __pycache__ | xargs -I{} rm -rf "{}"
 ```
 
-### Chia modifications and Building Chia Itself
+### Chia Modifications and Building Chia Itself
 
 Switch to your chia-blockchain clone directory. You will need to edit two files.
 
@@ -255,7 +255,7 @@ NOTE: if you need to disable UPnP - a protocol which automatically sets up port-
 sed -i .bak 's/enable_upnp: True/enable_upnp: False' ~/.chia/mainnet/config/config.yaml
 ```
 
-While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines)).
+While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [farm on many machines](/farming-on-many-machines).
 
 ---
 
@@ -263,4 +263,4 @@ While you don't absolutely need port 8444 forwarded to your Chia node, it is adv
 
 That's it! Provided the instructions were followed to the T, and the build is a fresh FreeBSD 11.3 or 11.4, either hardware or FreeNAS jailed, you should be good to go! Now go to town with `chia start node` or whatever floats your boat.
 
-More details can be found in the [Chia Quick Start Guide](https://github.com/Chia-Network/chia-blockchain/wiki/Quick-Start-Guide).
+More details can be found in the [Chia Quick Start Guide](/quick-start-guide).

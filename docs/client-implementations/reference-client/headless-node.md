@@ -1,11 +1,7 @@
 ---
-title: Electron GUI
-slug: /electron-gui
+title: Headless Node
+slug: /headless-node
 ---
-
-# Connection the UI to a Remote Daemon
-
-# Security Considerations
 
 Exposing a Chia daemon to the network is an advanced configuration. This allows other computers to communicate with the Chia daemon, including the ability to create transactions and send XCH.
 

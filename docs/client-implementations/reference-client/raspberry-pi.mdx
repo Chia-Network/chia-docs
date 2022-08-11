@@ -3,15 +3,19 @@ title: Chia on Raspberry Pi
 slug: /chia-on-raspberry-pi
 ---
 
-Update: Try our [experimental GUI installer](https://download.chia.net/latest/ARM64-Ubuntu-gui) for Raspberry Pi OS 64 and Ubuntu 20.04 LTS or newer on ARM64.
+Try our [GUI installer](https://download.chia.net/latest/ARM64-Ubuntu-gui) for Raspberry Pi OS 64 and Ubuntu 20.04 LTS or newer on ARM64.
 
 Tom's Hardware now has a [nice piece on farming with the Pi](https://www.tomshardware.com/how-to/raspberry-pi-chia-coin).
 
-> **_NOTE:_** The Raspberry Pi 3 is not supported.
+:::info
 
-> **_NOTE:_** It is highly recommended you put the Chia blockchain and wallet DB on an SSD (or NVMe) drive. Do not use the SD card for the blockchain or wallet DB location.
+The Raspberry Pi 3 is not supported.
 
-> **_NOTE:_** We do not recommend running the Chia GUI on the Pi4 4GB model
+It is highly recommended you put the Chia blockchain and wallet DB on an SSD (or NVMe) drive. Do not use the SD card for the blockchain or wallet DB location.
+
+We do not recommend running the Chia GUI on the Pi4 4GB model
+
+:::
 
 The following recipe was tested on a Pi 4 (4GiB RAM) running both Ubuntu Server 20.04 LTS 64 bit and Raspbian 64 bit. 64 bit OSes and python 3.7+ are required but helpfully Ubuntu 20.04 has python 3.8 out of the box and Raspbian ships with python 3.7. You can't just run a 64 bit kernel with a 32 bit OS install as you need 64 bit python 3.7+ also.
 
@@ -76,11 +80,9 @@ The Pi isn't cut out to be a Timelord and the Timelord requirements are very x86
 export BUILD_VDF_CLIENT=N
 ```
 
-It is feasible to plot with the Pi but it's slow. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. [Plotting times for Pi 4](https://github.com/Chia-Network/chia-blockchain/wiki/k-sizes#raspberry-pi-4) and other machines are available. Pi makes an excellent node/farmer/harvester however and is an economical machine to run and farm plots made on faster plotting machines and then transferred to it to harvest/farm.
-
 ## Headless
 
-You can run without the GUI using commands like `chia init`, `chia start farmer`, and `watch 'chia show -s -c'`. Be sure to check out `chia show -h` if you do. It is also possible to [remotely connect the UI to a headless node](https://github.com/Chia-Network/chia-blockchain/wiki/Connecting-the-UI-to-a-remote-daemon).
+You can run without the GUI using commands like `chia init`, `chia start farmer`, and `watch 'chia show -s -c'`. Be sure to check out `chia show -h` if you do. It is also possible to [remotely connect the UI to a headless node](/headless-node).
 
 ## Installing and running the GUI on Ubuntu 20.04 or Raspbian 64 bit
 

@@ -173,6 +173,7 @@ module.exports = {
             'client-implementations/reference-client/logging-reference',
             'client-implementations/reference-client/password-protected-keys',
             'client-implementations/reference-client/raspberry-pi',
+            'client-implementations/reference-client/headless-node',
           ],
         },
       ],

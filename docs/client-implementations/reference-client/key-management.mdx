@@ -4,14 +4,14 @@ slug: /chia-key-management
 ---
 
 The purpose of this page is to provide guidance on how to setup Chia keys for plotting, farming, receiving rewards and managing your wallet.
-It does not explain the Chia Keys Architecture. You can find this explanation here: [Chia Keys Architecture](https://github.com/Chia-Network/chia-blockchain/wiki/Chia-Keys-Architecture).
+It does not explain the Chia Keys Architecture. You can find this [Chia Keys Architecture](/key-architecture) explanation.
 It is mostly CLI focused; sorry GUI users.
 
 ## 1 key (default)
 
 This solution is the most straightforward, you use only one key for everything: plotting, farming, receiving rewards, managing your wallet.
 It is the default configuration when you install chia-network for the first time.
-The CLI (or GUI) creates a new private master key on the first initialization. Show can see it's mnemonic by typing: `chia keys show`
+The CLI (or GUI) creates a new private master key on the first initialization. Show can see it's mnemonic by typing `chia keys show`.
 
 By default, the rewards from farming will be sent to this private key's wallet address.
 
@@ -20,7 +20,7 @@ The risk is that, if your computer is compromised, the attacker would have acces
 
 Another solution for farming XCH and securing them is to use two keys:
 
-## 2 keys (farming key + cold storage key)
+## 2 Keys (farming key + cold storage key)
 
 1. Default key used for: plotting and farming
 1. Cold storage key used for: Wallet operations. Receiving/Sending funds and receiving farming rewards.
