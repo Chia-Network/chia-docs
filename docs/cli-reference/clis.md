@@ -4,11 +4,8 @@ title: CLI Overview
 slug: /clis
 ---
 
-<<<<<<< HEAD:docs/cli/cli.md
 # CLI Commands Reference
 
-=======
->>>>>>> 7c68aa24b36b14fb01bcd16153d8f02d137d687b:docs/cli-reference/clis.md
 This page should provide additional high-level documentation and explanation beyond just `chia -h`.
 
 This is not meant to be comprehensive, because often the `-h` (help) text is clear enough. We recommend fully investigating with the `-h` switch before looking elsewhere.

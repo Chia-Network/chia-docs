@@ -162,9 +162,8 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Reference Client',
+      label: 'Client Implementations',
       items: [
-<<<<<<< HEAD
         {
           type: 'category',
           label: 'Reference Client',
@@ -183,20 +182,6 @@ module.exports = {
             'client-implementations/reference-client/headless-node',
           ],
         },
-=======
-        'reference-client/chia-installation-guide',
-        'reference-client/check-if-things-are-working',
-        'reference-client/node-syncing',
-        'reference-client/key-management',
-        'reference-client/chia-seeder-guide',
-        'reference-client/directory-structure',
-        'reference-client/freebsd-install',
-        'reference-client/openbsd-install',
-        'reference-client/logging-reference',
-        'reference-client/password-protected-keys',
-        'reference-client/raspberry-pi',
-        'reference-client/electron-gui',
->>>>>>> 7c68aa24b36b14fb01bcd16153d8f02d137d687b
       ],
     },
     {
