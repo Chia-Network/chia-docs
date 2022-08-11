@@ -11,11 +11,11 @@ A transaction needs a certain number of confirmations for a receiver to assume t
 
 In Chia, there are two main reasons to wait for a certain number of confirmations:
 
-1. To be confident there won't be a chain re-org. As discussed in [Section 3.10](/consensus/foliage 'Section 3.10: Foliage'), a small re-org is a natural occurrence in blockchains, though rare in Chia.
+1. To be confident there won't be a chain re-org. As discussed in the [Foliage page](/consensus-foliage), a small re-org is a natural occurrence in blockchains, though rare in Chia.
 
 To be confident that there won't be a chain re-org, you should wait for six blocks to be created (around two minutes after the first confirmation).
 
-2. Just in case there is a foliage re-org attack, as described in [Section 3.14](/consensus/attacks_and_countermeasures#farmer-bribe-foliage-re-org-attack 'Section 3.14: Relevant Attacks and Countermeasures'). This type of attack would require an attacker to discover the identity of -- and successfully bribe -- a large and consecutive number of anonymous block winners. This attack would be difficult to pull off, so it is expected to be extremely rare, if it is ever even attempted.
+2. Just in case there is a foliage re-org attack, as described in the [Attacks and Countermeasures page](/consensus-attacks#bribe-foliage). This type of attack would require an attacker to discover the identity of -- and successfully bribe -- a large and consecutive number of anonymous block winners. This attack would be difficult to pull off, so it is expected to be extremely rare, if it is ever even attempted.
 
 If you want to be nearly certain that even a successful foliage re-org attack won't reverse your transaction, you should wait for 32 blocks to be created (around ten minutes after the first confirmation).
 
@@ -39,7 +39,7 @@ Of course, in the event of a long-term network split, the effects are that one c
 - (+) Hopefully more decentralized. (Analysis in mainnet's first year shows this to be the case.)
 - (+) Easy merge farming. Other cryptocurrencies can use the same format, and everyone can share the space (assuming their farming computers have sufficient disk space and memory). (Note that the blockchain with the largest netspace will probably be the only secure one, since the farmers can attack smaller ones. This is especially true of blockchains with less than 50% of the top chain's netspace -- the remaining farmers who have not joined the smaller chain could collude to join, and attack, that chain.)
 - (+) Minimum energy used, since only a few nodes run VDFs, and these are not parallelized. Very low marginal cost to farm.
-- (+) More consistent transaction block times (targeted average is one per 52 seconds, as discussed in [Section 3.10](/consensus/foliage 'Section 3.10: Foliage')).
+- (+) More consistent transaction block times (targeted average is one per 52 seconds, as discussed in the [Foliage page](/consensus-foliage)).
 - (+) Less susceptible to selfish mining attacks.
 - (+) Smaller orphan rates and forks, since blocks can be included in parallel.
 - (+) Continues to advance at nearly the same rate when space decreases, since only around 1/3 of blocks include transactions. PoW Nakamoto Consensus slows down linearly when hashrate drops.

@@ -20,9 +20,9 @@ Figure 3: The Verifier (blockchain) sends a challenge to the Prover (timelord) a
 </figcaption>
 </figure>
 
-Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/consensus/attacks_and_countermeasures 'Section 3.14: Attacks and Countermeasures') become possible.
+Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/consensus-attacks) become possible.
 
-The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long'). There are two main ways to generate a large group that has an unknown order:
+The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf). There are two main ways to generate a large group that has an unknown order:
 
 1. Use an RSA modulus, and use the integers mod N as a group. The order of the group is unknown if you can generate your modulus with many participating parties using an MPC ceremony.
 2. An easier approach is to use classgroups with a large prime discriminant, which are groups of unknown order. This does not require any complex or trusted setup, so we chose this option for Chia.

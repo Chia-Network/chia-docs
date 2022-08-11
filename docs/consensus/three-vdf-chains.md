@@ -5,7 +5,7 @@ slug: /three-vdf-chains
 
 If we only used one VDF (for the reward chain), the inclusion or exclusion of blocks would allow control of the challenge for the next slot. This means that an attacker could try many different combinations of blocks, and choose the challenge that suits them best, to obtain more wins in the next slot.
 
-These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or Proof of Stake. More detail is provided in [Section 3.14](/consensus/attacks_and_countermeasures 'Section 3.14: Relevant Attacks and Countermeasures').
+These types of attacks are called grinding attacks, and they are one of the main difficulties of changing from Proof of Work to Proof of Space or Proof of Stake. More detail is provided in the [Attacks and Countermeasures page](/consensus-attacks).
 
 To mitigate this, the challenges will be based only on the first block to be infused in a slot.
 
@@ -39,7 +39,7 @@ The chain in the middle is called the **infused challenge chain**. It starts at 
 
 Recall that a **slot** must have at least 16 reward-chain blocks. A sub-slot doesn't have a minimum number of blocks (though it targets 32 blocks). Instead, a sub-slot always ends when sub-slot_iterations has been reached (this is targeted to take 10 minutes).
 
-Because a sub-slot is targeted to produce more than 16 blocks, a slot usually only needs one sub-slot to meet its minimum-block requirement, but that is not always the case. For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. The **deficit** is the number of blocks still necessary to end the slot: this is described in more detail in [Section 3.9](/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Overflow Blocks and Weight').
+Because a sub-slot is targeted to produce more than 16 blocks, a slot usually only needs one sub-slot to meet its minimum-block requirement, but that is not always the case. For example, we may have only 10 blocks in a sub-slot, and then 3 and then 7, which means those three sub-slots form one slot. The **deficit** is the number of blocks still necessary to end the slot: this is described in more detail in the [Overflow Blocks and Weight page](/overflow-blocks#minimum-block-requirement).
 
 At the end of the slot, the challenge chain is combined with the infused challenge chain to generate the new challenge c2, which is used to start the challenge chain for the next sub-slot.
 

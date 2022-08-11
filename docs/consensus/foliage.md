@@ -53,7 +53,7 @@ The average time between transaction blocks is 52 seconds. Several values are re
 - Sub-slot time = 600 seconds
 - Signage point time = 64 per sub-slot, or 600/64 = 9.375 seconds
 - Average block time = 32 per sub-slot, or 600/32 = 18.75 seconds
-- Minimum signage points from current signage point until infusion_iterations is reached = 3 (See [Section 3.5](/consensus/signage_points_and_infusion_points 'Section 3.5: Signage Points and Infusion Points') for more info.)
+- Minimum signage points from current signage point until infusion_iterations is reached = 3 (See the [Signage and Infusion Points page](/signage-and-infusion-points) for more info.)
 - Minimum time for infusion_iterations to be reached (and therefore, minimum time between transaction blocks) = 3 \* (600/64) = 28.125 seconds
 - Average signage points until infusion_iterations is reached is slightly more than 3.5 (must wait 3 signage points, plus an average wait of about 50% of the next signage point), or around 3.5 \* 9.375 = 32.8125 seconds.
 - To create a transaction block, infusion_iterations first must be met, and then the next block some seconds afterwards will be a transaction block. The total average time for this to happen is around 52 seconds.

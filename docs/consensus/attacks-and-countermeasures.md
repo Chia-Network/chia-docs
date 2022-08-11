@@ -1,10 +1,9 @@
 ---
-sidebar_label: Attacks and Countermeasures
-title: Relevant Attacks and Countermeasures
+title: Attacks and Countermeasures
 slug: /consensus-attacks
 ---
 
-## Majority Attack
+## Majority Attack {#majority}
 
 In a majority attack, an attacker creates an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to re-org. This attack is present on many blockchain networks including Chia's, as well as on Proof-of-Work systems. It is colloquially known as a "51% attack" because the attacker must control more than half of the blockchain's resources (hashrate for PoW, netspace for PoST) in order to succeed.
 
@@ -26,9 +25,9 @@ Before we can evaluate the percentage requirements for various scenarios, we mus
 
 The white paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a majority attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
 
-- 16 -- This is the minimum number of blocks in a slot. (See [Section 3.9](/consensus/overflow_blocks#minimum-block-requirement 'Section 3.9: Minimum Block Requirement') for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
+- 16 -- This is the minimum number of blocks in a slot. (See the [Overflow Blocks and Weight page](/overflow-blocks#minimum-block-requirement) for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
 
-- 32 -- This is the targeted number of blocks per sub-slot. (See [Section 3.4](/consensus/challenges 'Section 3.4: Challenges') for more info.) There will be some natural variance in this number, but an attacker who does not have the fastest timelord will not be able to manipulate it.
+- 32 -- This is the targeted number of blocks per sub-slot. (See the [Challenges page](/consensus-challenges) for more info.) There will be some natural variance in this number, but an attacker who does not have the fastest timelord will not be able to manipulate it.
 
 Here's the code to solve for these values in Wolfram alpha, where c is the number of consecutive blocks with the same challenge:
 
@@ -93,7 +92,7 @@ It is reasonable to assume that if a long-term attack were attempted, the attack
 
 To reduce the possibility of an attacker gaining access to a fast timelord, Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security).
 
-## Extending Many Chains
+## Extending Many Chains {#many-chains}
 
 As discussed in the previous section, if an attacker is making their own private chain, they can choose which block gets infused into the challenge chain, and can therefore try many different infusions, such that they get the best possible chain.
 
@@ -109,7 +108,7 @@ Furthermore, the [PoSAT paper](https://arxiv.org/abs/2010.08154) shows that incr
 
 If the attacker were to manipulate the difficulty, they could change it so that they get fewer reward blocks per slot. Then they could either include or exclude each block, and exponentially extend all chains simultaneously. This would allow the attacker to multiply their space by a small factor. It is not clear whether this attack gains very much, since the attacker must change the difficulty, which requires sacrificing some weight. However, to prevent this attack, there is a requirement that at least 16 reward chain blocks must be created for a challenge block to be included. This brings the attacker's required space in the worst case scenario (with unlimited slightly faster timelords) from 27% up to 42.7%, as discussed above.
 
-## Chia Space / Global Hard Drive Space
+## Global Hard Drive Space {#space}
 
 There is a concern that if the Chia network does not have a significant amount of space compared to the available free space of hard drive manufacturers or large companies, then it will be vulnerable to long-range attacks. Therefore the more space taken by the Chia network, the more secure the network is.
 
@@ -117,7 +116,7 @@ We believe this type of attack is unlikely, though. Large data centers and compa
 
 The most likely long-term scenario is that rewards per TB will be sufficiently low to discourage people and companies from acquiring new storage just to farm Chia. Most of the new netspace in the future will therefore come from used storage, often from hard disks that otherwise would have been bound for a landfill. This will serve two purposes: preventing the attack laid out here, and keeping Chia green.
 
-## 100% attack
+## 100% Attack {#100-percent}
 
 If the difficulty adjustment were triggered every X timelord slots, as opposed to every X blocks, this would allow for a 100% attack, where all farmers collude to constantly decrease or increase the difficulty.
 
@@ -131,7 +130,7 @@ Under the hypothetical 100% attack:
 
 The result of this attack would be to create an average of (64+16)/2 = 40 block rewards per slot, a 25% increase in rewards. This is why Chia chose to trigger the difficulty adjustment based on the number of blocks. If this attack were attempted under the current system, it would slow down and speed up the network, but it would not yield any extra rewards.
 
-## Short range replotting attack
+## Short Range Replotting Attack {#replotting}
 
 Plotting usually takes a few minutes to a few hours, even on fast hardware, but it is parallelizable and getting faster.
 
@@ -156,7 +155,7 @@ Setting the filter constant to 512 provides a 512x multiplier. If the replotting
 
 In any case, this attack will not become feasible until at least 2026, given projected improvements in hardware speed.
 
-## Faster timelord (but not 51% attack)
+## Faster Timelord (But Not 51% Attack) {#faster-timelord}
 
 With the fastest timelord in the system, an attacker can more effectively perform a long-range attack: they can expand their space while farming in a private chain.
 
@@ -164,7 +163,7 @@ If the attacker does not reach a total of 40.5% of space (with the timelord boos
 
 In certain cases where blocks come very close together, having a faster timelord can allow an attacker to orphan certain blocks, although this does not increase rewards in the short term (it would hurt others, but not benefit the attacker), and has a risk of undermining the network in the long term (orphaning blocks decreases public trust).
 
-## Selfish Farming
+## Selfish Farming {#selfish-farming}
 
 Selfish farming occurs when an attacker farms blocks in private, and only releases them when they are at risk of being surpassed by the honest chain.
 
@@ -172,7 +171,7 @@ In Nakamoto PoW this provides significant gains, because at any point at which t
 
 In Chia consensus, a "selfish" farmer could withhold a proof until just before the infusion point, but this would provide zero benefit versus submitting the proof right away. There can be multiple block winners per signage point, so farming is not a zero-sum game as it is in PoW. Furthermore, the timelord cannot accept proofs for an infusion point that has already passed, so farmers are not allowed to stack a large number of proofs to be infused later.
 
-## Farmer bribe trunk attack
+## Farmer Bribe Trunk Attack {#bribe-trunk}
 
 An interesting attack explored in the [PoSAT white paper](https://arxiv.org/abs/2010.08154) is the bribing attack, which takes advantage of the predictability of the elected "leaders" in each slot. The authors analyze a Proof of Stake chain, and argue that when participants know that they are going to win in advance, there is a potential bribing attack.
 
@@ -180,7 +179,7 @@ In Chia, if participants knew in advance which plots would win, each user could 
 
 This problem is not present in this revision of the Chia consensus algorithm. This problem is solved by reducing the predictability: each farmer does not know for sure if their proof of space is fully eligible until the signage point. Therefore an attacker must bribe a large majority of the space to pull off this attack.
 
-## Farmer bribe foliage re-org attack
+## Farmer Bribe Foliage Re-Org Attack {#bribe-foliage}
 
 Since blocks are signed by PoSpace keys, a farmer can theoretically sign multiple blocks with the same PoSpace, at the same height. The attack requires a malicious party to bribe farmers with a certain amount of funds for them to provide a signature of an alternate chain. It does not require the attacker to have a faster timelord.
 
@@ -192,7 +191,7 @@ Instead, the solution is simply to wait longer. After 32 blocks (approximately 1
 
 Each user can choose their own threshold for which they accept a transaction/block as final. For example, in cases where the total network space drops suddenly, users can be more careful and not consider transactions final, in case there is another existing fork, due to a network split.
 
-## Orphaning transaction blocks for transaction fees
+## Orphaning Transaction Blocks for Fees {#orphaning}
 
 Transaction blocks are different from non-transaction blocks, since they contain transaction fees. These may surpass block rewards. For example, Ethereum has had created some blocks with 2 eth of rewards and 8 eth of fees. ([EIP 1559](https://eips.ethereum.org/EIPS/eip-1559) changes the calculation significantly, so this is just a historical example of what is possible in other chains.)
 
@@ -200,6 +199,6 @@ In Chia this will be more extreme, since not every block contains transactions. 
 
 However, if there are no blocks within 28 seconds of the 1st block, the 2nd could orphan the 1st, but they would have to convince the next block to farm on their alternate chain. An easier attack would be if the attacker controlled both the 2nd and 3rd, in which case they could ignore the first and still be longer. These orphaning attacks do not allow the attacker to steal rewards, but rather allow the attacker to slightly lower the difficulty. Since they are very situational and require a lot of space, attempting this attack will likely harm the network more than the potential gain to the attacker.
 
-## Orphan Rate
+## Orphan Rate {#orphan-rate}
 
 In Chia consensus, two competing blocks around the same time can both be included into the blockchain in parallel, without knowing about each other (although at most one can be a transaction block). When multiple blocks are included at the same time, the result is a chain with a higher weight. This means that the orphan rate in Chia will be essentially zero, assuming low network latency. If network latency exceeds the infusion delay (30-40 seconds), then orphaning of a block is almost guaranteed, so it is more of a step-function. This is in contrast with Nakamoto-PoW in which the orphan rate is high if there is network delay, and decreases smoothly as network condition improves, but never reaches zero.
