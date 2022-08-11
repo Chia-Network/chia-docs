@@ -10,7 +10,7 @@ Singletons allow you to keep track of the state of something on the blockchain, 
 This is the source code of the singleton, which can also be found in the chia-blockchain repository in the puzzle [`singleton_top_layer_v1_1.clvm`](https://github.com/Chia-Network/chia-blockchain/blob/8b70466a70388d0fff437d138192ba38faf92be8/chia/wallet/puzzles/singleton_top_layer_v1_1.clvm).
 
 <details>
-  <summary>Expand Chialisp puzzle</summary>
+  <summary>Expand Singleton Puzzle</summary>
 
 ```chialisp title="singleton_top_layer_v1_1.clvm"
 (mod (SINGLETON_STRUCT INNER_PUZZLE lineage_proof my_amount inner_solution)

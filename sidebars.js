@@ -45,6 +45,49 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Primitives',
+      items: [
+        'primitives/standard-transactions',
+        'primitives/singletons',
+        'primitives/cats',
+        'primitives/nfts',
+        'primitives/dids',
+        'primitives/offers',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'RPC Reference',
+      items: [
+        'rpc-reference/rpcs',
+        'rpc-reference/full-node',
+        'rpc-reference/dids',
+        'rpc-reference/nfts',
+        'rpc-reference/offers',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'CLI Reference',
+      items: [
+        'cli-reference/clis',
+        'cli-reference/dids',
+        'cli-reference/nfts',
+        'cli-reference/offers',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Coin Set Model',
+      items: [
+        'coin-set-model/coin-set-intro',
+        'coin-set-model/conditions',
+        'coin-set-model/spend-bundles',
+        'coin-set-model/addresses',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Architecture',
       items: [
         'architecture/architecture-overview',
@@ -76,28 +119,6 @@ module.exports = {
         'consensus/timelords',
         'consensus/attacks-and-countermeasures',
         'consensus/analysis',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Coin Set Model',
-      items: [
-        'coin-set-model/coin-set-intro',
-        'coin-set-model/conditions',
-        'coin-set-model/spend-bundles',
-        'coin-set-model/addresses',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Primitives',
-      items: [
-        'primitives/standard-transactions',
-        'primitives/singletons',
-        'primitives/cats',
-        'primitives/nfts',
-        'primitives/dids',
-        'primitives/offers',
       ],
     },
     {
@@ -141,23 +162,9 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'RPC APIs',
+      label: 'Reference Client',
       items: [
-        'rpcs/rpcs',
-        'rpcs/full-node-api',
-        'rpcs/did-rpcs',
-        'rpcs/nft-rpcs',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Command Line Interface',
-      items: ['cli/cli', 'cli/did-cli', 'cli/nft-cli'],
-    },
-    {
-      type: 'category',
-      label: 'Client Implementations',
-      items: [
+<<<<<<< HEAD
         {
           type: 'category',
           label: 'Reference Client',
@@ -176,6 +183,20 @@ module.exports = {
             'client-implementations/reference-client/headless-node',
           ],
         },
+=======
+        'reference-client/chia-installation-guide',
+        'reference-client/check-if-things-are-working',
+        'reference-client/node-syncing',
+        'reference-client/key-management',
+        'reference-client/chia-seeder-guide',
+        'reference-client/directory-structure',
+        'reference-client/freebsd-install',
+        'reference-client/openbsd-install',
+        'reference-client/logging-reference',
+        'reference-client/password-protected-keys',
+        'reference-client/raspberry-pi',
+        'reference-client/electron-gui',
+>>>>>>> 7c68aa24b36b14fb01bcd16153d8f02d137d687b
       ],
     },
     {

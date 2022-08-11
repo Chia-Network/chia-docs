@@ -1,6 +1,7 @@
 ---
-title: Chia RPC API
-slug: /rpc-api
+sidebar_label: Overview
+title: RPC Overview
+slug: /rpcs
 ---
 
 The Chia node and services come with a JSON RPC API server that allows you to access information and control the services.
