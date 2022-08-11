@@ -36,4 +36,4 @@ You can check if they are working by running `chia plots check` or using the UI 
 
 # Farming from multiple source plots
 
-If you would like to farm on many machines, but only run one full node and farmer (to save disk space, bandwidth, and keep private keys safer), you should [run one harvester per machine](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines).
+If you would like to farm on many machines, but only run one full node and farmer (to save disk space, bandwidth, and keep private keys safer), you should [run one harvester per machine](/farming-on-many-machines).

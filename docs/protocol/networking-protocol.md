@@ -57,7 +57,7 @@ DNS introducers are also available at different names, which return random relia
 
 For example: `dig dns-introducer.chia.net`.
 
-More DNS introducers will be recruited in the future; check the [chia-blockchain GitHub repository](https://github.com/Chia-Network/chia-blockchain 'chia-blockchain on GitHub') for updates. The introducer is only contacted at initial launch of the application, or if the peer database has no good peers.
+More DNS introducers will be recruited in the future; check the [chia-blockchain repository](https://github.com/Chia-Network/chia-blockchain) for updates. The introducer is only contacted at initial launch of the application, or if the peer database has no good peers.
 
 ## RPC
 

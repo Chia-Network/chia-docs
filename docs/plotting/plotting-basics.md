@@ -28,7 +28,7 @@ For now, focus on installing the Chia software, setting it up properly, and lear
 - Making sure you are connecting to other nodes (other computers with the blockchain) and syncing with them.
 - Starting making plots and farming.
 
-The simplest way to start with Chia is to [install the Chia software](https://www.chia.net/download/) on the operating system of your choice and run the GUI (Graphical User Interface). The Windows version automatically starts once installed, and the Mac version just needs to be opened from the Applications directory. Once the application is opened, it loads and starts to sync with the rest of the network and blockchain. Depending on your network setup, fully syncing can take over a day. Basically, you are syncing with everyone on the network, downloading the whole blockchain, which includes all transactions ever processed on the network. The Chia blockchain database copy will be stored on your computer. Everyone with Chia installed on their computer also has a copy.
+The simplest way to start with Chia is to [install the Chia software](https://chia.net/download) on the operating system of your choice and run the GUI (Graphical User Interface). The Windows version automatically starts once installed, and the Mac version just needs to be opened from the Applications directory. Once the application is opened, it loads and starts to sync with the rest of the network and blockchain. Depending on your network setup, fully syncing can take over a day. Basically, you are syncing with everyone on the network, downloading the whole blockchain, which includes all transactions ever processed on the network. The Chia blockchain database copy will be stored on your computer. Everyone with Chia installed on their computer also has a copy.
 
 ### The Basics of Farming
 
@@ -54,7 +54,7 @@ Inside each plot is a large number of pre-formulated calculations stored in a la
 
 ### The CLI - Command-line Interface
 
-The [Chia CLI](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference) is the more advanced way to use Chia. The CLI can do everything the GUI can do and more (like better utilize your hardware to optimize plotting). It is recommended you start with the GUI to understand the basics of Chia before starting to use the CLI.
+The [CLI](/clis) is the more advanced way to use Chia. The CLI can do everything the GUI can do and more (like better utilize your hardware to optimize plotting). It is recommended you start with the GUI to understand the basics of Chia before starting to use the CLI.
 
 ## Setting Expectations
 
@@ -99,7 +99,7 @@ This will show you how many plots you have created. On the top it will show how 
 
 Once that match shows on the first line, it will move down to lines 2-5, then if another plot passes step 1, it starts at the top also, and moves its way done the filter process.
 
-Winning is very rare, and on average one person wins in the whole world every 18 seconds. On every signage point (9 seconds), all of your plots are checked to see which ones passes the [plot filter](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). Approximately 1/512 of all plots will pass the plot filter for each challenge, so here you can see how many of your plots passed. With a new block every 18 seconds there are 4,608 chances to win chia every day.
+Winning is very rare, and on average one person wins in the whole world every 18 seconds. On every signage point (9 seconds), all of your plots are checked to see which ones passes the [plot filter](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). Approximately 1/512 of all plots will pass the plot filter for each challenge, so here you can see how many of your plots passed. With a new block every 18 seconds there are 4,608 chances to win chia every day.
 
 If for some reason those lines stop moving that is another indication you are not in sync with the database and need to resync—see below.
 

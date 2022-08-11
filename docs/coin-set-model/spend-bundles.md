@@ -39,7 +39,7 @@ With BLS signatures, farmers combine all three signatures `s1, s2, and s3` into 
 
 This allows the farmer to combine all three spend bundles into one spend bundle, with only one signature, which means less data is transmitted and stored on chain and disk.
 
-Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in [Section 9.1](/keys/keys-and-signatures 'Section 9.1: Keys and Signatures'). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
+Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in the [BLS Keys page](/bls-keys). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
 
 ## Coins vs Spend Bundles
 

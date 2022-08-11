@@ -54,13 +54,6 @@ The pool protocol consists of several HTTPS endpoints which return JSON response
 but must be running with TLS enabled (using a CA approved certificate), and with pipelining enabled.
 All bytes values are encoded as hex with optional 0x in front. Clients are also expected to run with pipelining.
 
-- [GET /pool_info](#get-pool_info)
-- [GET /farmer](#get-farmer)
-- [POST /farmer](#post-farmer)
-- [PUT /farmer](#put-farmer)
-- [POST /partial](#post-partial)
-- [GET /login (Optional)](#get-login)
-
 ## Error codes
 
 A failed endpoint will always return a JSON object with an error code and an
@@ -100,8 +93,7 @@ to calculate the message hash which is done like:
 message_hash = sha256(serialized_payload)
 ```
 
-The serialized payload must follow the `Streamable` standard defined
-[here](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/util/streamable.py).
+The serialized payload must follow the format defined in the [`Streamable` class](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/util/streamable.py).
 
 ## Pool URL
 

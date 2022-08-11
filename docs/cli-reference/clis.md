@@ -399,13 +399,13 @@ Command: `chia keys derive wallet-address [OPTIONS]`
 
 # DID
 
-See our [official DID reference](/did-cli).
+See our [official DID reference](/did-clis).
 
 ---
 
 # NFT
 
-See our [official NFT reference](/nft-cli).
+See our [official NFT reference](/nft-clis).
 
 ---
 

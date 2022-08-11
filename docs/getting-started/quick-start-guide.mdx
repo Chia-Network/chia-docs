@@ -34,8 +34,8 @@ The Chia software is [easy to install](#install). You can start earning cryptocu
 
 - [Windows](https://download.chia.net/latest/Setup-Win64.exe)
 - [macOS Apple Silicon](https://download.chia.net/latest/Setup-MacOS-arm64.dmg)
-- [macOS Intel](https://download.chia.net/latest/Setup-MacOS.dmg) *[Catalina 10.15 and later]*
-- [macOS Intel](https://download.chia.net/install/Chia-1.5.0-10.14-intel.dmg) *[Mojave 10.14]*
+- [macOS Intel](https://download.chia.net/latest/Setup-MacOS.dmg) _[Catalina 10.15 and later]_
+- [macOS Intel](https://download.chia.net/install/Chia-1.5.0-10.14-intel.dmg) _[Mojave 10.14]_
 - [Ubuntu/Debian](https://download.chia.net/latest/x86_64-Ubuntu-gui)
 - [Ubuntu/Debian ARM](https://download.chia.net/latest/ARM64-Ubuntu-gui)
 - [CentOS/Redhat](https://download.chia.net/latest/x86_64-Redhat-gui)
@@ -49,12 +49,12 @@ For convenience, direct links are provided to the latest installer builds. Howev
 <TabItem value="dev">
 ```
 
-- [Windows](https://download.chia.net/latest-dev/ChiaSetup-latest-dev.exe) *Dev build*
-- [macOS Apple Silicon](https://download.chia.net/latest-dev/Chia-arm64_latest_dev.dmg) *Dev build*
-- [macOS Intel](https://download.chia.net/latest-dev/Chia-intel_latest_dev.dmg) *Dev build* *[Catalina 10.15 and later]*
-- [Ubuntu/Debian](https://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb) *Dev build*
-- [Ubuntu/Debian ARM](https://download.chia.net/latest-dev/chia-blockchain_arm64_latest_dev.deb) *Dev build*
-- [CentOS/Redhat](https://download.chia.net/latest-dev/chia-blockchain-1.x86_64_latest_dev.rpm) *Dev build*
+- [Windows](https://download.chia.net/latest-dev/ChiaSetup-latest-dev.exe) _Dev build_
+- [macOS Apple Silicon](https://download.chia.net/latest-dev/Chia-arm64_latest_dev.dmg) _Dev build_
+- [macOS Intel](https://download.chia.net/latest-dev/Chia-intel_latest_dev.dmg) _Dev build_ _[Catalina 10.15 and later]_
+- [Ubuntu/Debian](https://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb) _Dev build_
+- [Ubuntu/Debian ARM](https://download.chia.net/latest-dev/chia-blockchain_arm64_latest_dev.deb) _Dev build_
+- [CentOS/Redhat](https://download.chia.net/latest-dev/chia-blockchain-1.x86_64_latest_dev.rpm) _Dev build_
 
 :::caution
 For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
@@ -134,7 +134,7 @@ If you are using the MacOS or Windows builds, your keys are created during the f
 
 The minimum plot size needed for farming is k=32.
 
-If you want more peers and better network connectivity, you should also try opening port 8444 on your router so other peers can connect to you. Follow [these steps on port forwarding](https://bitcoin.org/en/full-node#port-forwarding) but using port 8444 instead of 8333. This helps the network be more decentralized. For further details about sync issues and port 8444, visit the [Resolving Sync Issues](https://github.com/Chia-Network/chia-blockchain/wiki/Resolving-Sync-Issues---Port-8444) page.
+If you want more peers and better network connectivity, you should also try opening port 8444 on your router so other peers can connect to you. Follow [these steps on port forwarding](https://bitcoin.org/en/full-node#port-forwarding) but using port 8444 instead of 8333. This helps the network be more decentralized. For further details about sync issues and port 8444, visit the [Node Syncing page](/node-syncing).
 
 # Graphical User Interface (GUI)
 
@@ -142,7 +142,7 @@ For a complete guide on using the GUI, check out [using the GUI](/using-the-gui)
 
 # Using the Command-line Interface (CLI)
 
-Using the CLI with Chia gives you greater and more precise control. For a more details on the commands, read the [CLI Commands Reference](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference).
+Using the CLI with Chia gives you greater and more precise control. For a more details on the commands, read the [CLI Commands Reference](/clis).
 
 ```mdx-code-block
 <Tabs>
@@ -157,7 +157,7 @@ A handy trick is to add that directory to your path - `export PATH=/Applications
   </TabItem>
 <TabItem value="Windows" label="Windows">
 
-You can learn how to use the Graphical User Interface (GUI) in the [Beginners Guide](https://github.com/Chia-Network/chia-blockchain/wiki/Beginners-Guide).
+You can learn how to use the Graphical User Interface (GUI) in the [Using the GUI page](/using-the-gui).
 
 You can start with the Command Line Interface (CLI) by checking the commands available in `~\AppData\Local\Chia-Blockchain\app-1.1.5\resources\app.asar.unpacked\daemon\`. Try `.\chia -h` or `.\chia plots -h` for example:
 
@@ -173,7 +173,7 @@ You can start with the Command Line Interface (CLI) by checking the commands ava
 
    On _PowerShell_ type `.\chia -h` and press the enter key.
 
-For more information you can check these [Windows Tips & Tricks](https://github.com/Chia-Network/chia-blockchain/wiki/Windows-Tips-and-Tricks) and read more about commands in general in [CLI Commands Reference](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference).
+For more information you can read the [CLI Commands Reference page](/clis).
 
 You can view your logs by opening `\.chia\mainnet\log\debug.log` with a text editor like _Visual Studio Code_ or see it as it runs in _PowerShell_ by using Get-Content, `Get-Content ~\.chia\mainnet\log\debug.log -wait`.
 
@@ -252,4 +252,4 @@ in the router's configuration.
 
 # RPC Interface
 
-The Node has an [RPC interface](/rpc-api). This RPC will allow you to interact with the Chia node through code.
+The Node has an [RPC interface](/full-node-rpcs). This RPC will allow you to interact with the Chia node through code.

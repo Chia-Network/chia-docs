@@ -3,7 +3,7 @@ title: Pool Farming
 slug: /pool-farming
 ---
 
-[Link to Frequently Asked Questions](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ)
+[Link to Frequently Asked Questions](/pool-farming)
 
 Due to the increasing network space (netspace), winning blocks in Chia is a very difficult task, and can take months even years for
 users with multiple hard drives farming Chia. Pooling can allow you to win consistently, in small amounts. For example,
@@ -181,11 +181,6 @@ Commands:
 To create a Plot NFT, use `chia plotnft create -u https://poolnamehere.com`, entering the URL of the pool you want to use. To create a plot NFT in self-farming mode, do `chia plotnft create -s local`.
 To switch pools, you can use `chia plotnft join`, and to leave a pool (switch to self farming), use `chia plotnft leave`.
 The `show` command can be used to check your current points balance. CLI plotting with `create_plots` is the same as before, but the `-p` is replaced with `-c`, and the pool contract address from `chia plotnft show` should be used here.
-
-# Pooling FAQ
-
-- [General FAQ](#general-faq)
-- [Technical FAQ](#technical-faq)
 
 ---
 

@@ -3,40 +3,19 @@ title: FAQ
 slug: /faq
 ---
 
-## Table of Contents
-
-- [Vocabulary](#vocabulary)
-- [Plotting](#plotting)
-
-- [Full Node](#full-node) - Your Main Computer
-
-- [Farming](#farming) - The Farmer and Harvester
-
-- [Wallet](#wallet) - Wallet and Transactions
-
-- [Offers](#offers) - Decentralized peer-to-peer trading of assets
-
-- [NFTs](#nfts) - Non-Fungible Tokens
-
-- [Support/Miscellaneous](#supportmiscellaneous)
-
----
-
-# Vocabulary
-
 ## What are harvesters, farmers, full nodes, and timelords?
 
-You can read about each of them and the architecture in the [network architecture document](https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture). The [consensus document](https://docs.chia.net/03consensus/consensus_intro) is the most current documentation, however. You can also check out our [Timelord documentation](https://github.com/Chia-Network/chia-blockchain/wiki/Timelords).
+You can read about each of them and the architecture in the [Architecture Overview page](/architecture-overview). The [Consensus Intro page](/consensus-intro) is the most current documentation, however.
 
 ## What is a proof of space?
 
-A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) to manage the whole "farm."
+A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](/farming-on-many-machines) to manage the whole "farm".
 
 Farming uses substantially less electricity than Proof of Work for the same unit of security. You can learn more at [chiapower.org](https://chiapower.org).
 
 ## What is a VDF/proof of time?
 
-A VDF, also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](https://github.com/Chia-Network/chia-blockchain/wiki/Timelords) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
+A VDF, also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](/timelord-algorithm) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
 
 ## What is XCH, TXCH, and mojos?
 
@@ -55,7 +34,7 @@ XCH is the currency symbol for Chia. TXCH is the currency symbol currently being
 
 ## How big are plot sizes (k)?
 
-You can see some example plot sizes, times to plot, and working space needed based on various k's in these [k size tables](https://github.com/Chia-Network/chia-blockchain/wiki/k-sizes). Current working space needed for the default plotting options of a k=32 is 239 GiB and the final file is approximately 101.4 GiB. There is small natural variation in temp space needed and the final file size of each plot. Note that 239 GiB is 256.6 GB.
+You can see some example plot sizes, times to plot, and working space needed based on various k's in these [k size tables](/k-sizes). Current working space needed for the default plotting options of a k=32 is 239 GiB and the final file is approximately 101.4 GiB. There is small natural variation in temp space needed and the final file size of each plot. Note that 239 GiB is 256.6 GB.
 
 ## What k-size should you plot?
 
@@ -71,16 +50,16 @@ k=32 is expected to be the minimum plot size until at least 2026. If and when th
 
 ## What is recommended for plotting?
 
-We think you will want to use used Data Center grade NVMe SSD drives to create your plots. Regular consumer NVMe SSD generally has too low of a [TBW](https://www.enterprisestorageforum.com/storage-hardware/ssd-lifespan.html) rating. One of our community members keeps this handy [SSD Endurance document](https://github.com/Chia-Network/chia-blockchain/wiki/SSD-Endurance) up to date so you can compare various SSDs. You should never use your root/OS SSD to plot as it can lead to drive failure and loss of booting. You can plot directly to hard drives and get good results, especially if you plot in parallel to different drives. You can use non-root SSD over Thunderbolt 3 and migrate your plots off to whatever storage you want to keep them on long term. You could even load them on a Raspberry Pi 4 with outdated USB 2.0 drives attached and they will harvest and farm just fine. PC World offers this great [background on current storage technologies](https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html) but this graph gives you a quick view of why we recommend NVMe SSD:
+We think you will want to use used Data Center grade NVMe SSD drives to create your plots. Regular consumer NVMe SSD generally has too low of a [TBW](https://www.enterprisestorageforum.com/storage-hardware/ssd-lifespan.html) rating. One of our community members keeps this handy [SSD Endurance page](/ssd-endurance) up to date so you can compare various SSDs. You should never use your root/OS SSD to plot as it can lead to drive failure and loss of booting. You can plot directly to hard drives and get good results, especially if you plot in parallel to different drives. You can use non-root SSD over Thunderbolt 3 and migrate your plots off to whatever storage you want to keep them on long term. You could even load them on a Raspberry Pi 4 with outdated USB 2.0 drives attached and they will harvest and farm just fine. PC World offers this great [background on current storage technologies](https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html) but this graph gives you a quick view of why we recommend NVMe SSD:
 ![NVMe SSD vs SATA](/img/plotting-nvme-ssd.png 'NVMe SSD is 5.5 times faster than SATA SSD')
 
 ## Can I plot more than one plot at a time?
 
-Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. There are [tips for Windows users](https://github.com/Chia-Network/chia-blockchain/wiki/Windows-Tips-and-Tricks) and Mac users can find their CLI commands in the [Quick Start Guide](https://github.com/Chia-Network/chia-blockchain/wiki/Quick-Start-Guide#macos). You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
+Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. You can read the [Quick Start Guide](/quick-start-guide) to learn more. You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
 
 ## Can I make plots on one machine and move it to another machine?
 
-Yes. The [moving plots](https://github.com/Chia-Network/chia-blockchain/wiki/Moving-plots) topic here on the wiki gives you the details. You may also want to consider running a [remote harvester](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines). You can also use the same private key set to plot on more than one machine at a time but be aware of the [uPnP issues](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#why-should-i-not-run-more-than-one-node-on-a-home-network-and-whats-this-about-upnp).
+Yes. The [Moving Plots page](/moving-plots) gives you the details. You may also want to consider running a [remote harvester](/farming-on-many-machines). You can also use the same private key set to plot on more than one machine at a time but be aware of the [uPnP issues](/faq#why-should-i-not-run-more-than-one-node-on-a-home-network-and-whats-this-about-upnp).
 
 ## What is the secondary temp directory `-2`, and how should I set it?
 
@@ -126,13 +105,13 @@ Another option is port forwarding, where you tell your router/NAT to forward req
 
 ## Why should I not run more than one node on a home network and what's this about UPnP?
 
-First, running more than one node with the same private keys on your home network is wasting bandwidth by syncing two copies of the blockchain over your download link. You can get the same results by running one node and [using multiple harvesters](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) on multiple computers. Second, if you have [uPnP](https://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) enabled on both nodes and your home router supports uPnP (and most do) it will cause both of your nodes to not sync the blockchain. You need to disable uPnP on all or all but one node behind a uPnP enabled router. The CLI command `chia configure --enable-upnp false` will turn uPnP off on a node. It requires a restart of the node to take effect. If you disable UPnP on all but one of your nodes then your local router will forward inbound 8444 traffic to the one node and the rest will now be able to connect to the network but just will not accept inbound connections from the network.
+First, running more than one node with the same private keys on your home network is wasting bandwidth by syncing two copies of the blockchain over your download link. You can get the same results by running one node and [using multiple harvesters](/farming-on-many-machines) on multiple computers. Second, if you have [uPnP](https://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) enabled on both nodes and your home router supports uPnP (and most do) it will cause both of your nodes to not sync the blockchain. You need to disable uPnP on all or all but one node behind a uPnP enabled router. The CLI command `chia configure --enable-upnp false` will turn uPnP off on a node. It requires a restart of the node to take effect. If you disable UPnP on all but one of your nodes then your local router will forward inbound 8444 traffic to the one node and the rest will now be able to connect to the network but just will not accept inbound connections from the network.
 
 ## Why does my node have no connections? How can I get more connections?
 
-Step 1. Make sure you are running the most recent version of the Chia software. Check out the [INSTALL](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL) page.
+Step 1. Make sure you are running the most recent version of the Chia software. Check out the [Quick Start Guide page](/quick-start-guide).
 
-Step 2. If your node has no connections, it could be one of many reasons. The most likely reason is that there are no users with space to have new connections, so you cannot connect to them. To solve this, you should try opening port 8444 on your router so other peers can connect to you. Follow the steps here: [Resolving Sync Issues Port 8444](https://github.com/Chia-Network/chia-blockchain/wiki/Resolving-Sync-Issues---Port-8444)
+Step 2. If your node has no connections, it could be one of many reasons. The most likely reason is that there are no users with space to have new connections, so you cannot connect to them. To solve this, you should try opening port 8444 on your router so other peers can connect to you. Follow the steps in the [Node Syncing page](/node-syncing).
 
 Port 8444 is the port through which other Chia computers can communicate with your PC. When you set up port forwarding on port 8444, the Chia software on your computer can quickly talk to other PCs, link up, and start downloading and syncing with the Chia blockchain.
 
@@ -158,7 +137,7 @@ Beginning in 1.3, Chia uses version 2 of its blockchain database. The new databa
 
 If you install a brand new full node in Chia 1.3 or later, version 2 of the database will be created when you run `chia init`. If you want to stick with version 1, simply run `chia init --v1-db` instead.
 
-If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference#db).
+If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/clis).
 
 You do not need to stop Chia in order to perform the upgrade. This is because the program performing the upgrade only needs to _read_ from your original database file, while your upgraded file will be written alongside it in the same folder. Be sure you have enough free space on the disk that contains your database file to write the new file.
 
@@ -298,7 +277,7 @@ If you believe your balance is incorrect, changing `initial_num_public_keys` is 
 
 ## How do I tell if I'm farming correctly?
 
-If you see plots in the Plots section of the Farm page in the GUI - your plots are being farmed. You will see challenges and proof attempts as they come through in the Last Attempted Proof section however you usually will not have a proof worth sending to the network due to the [plot filter](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). You can additionally see the Total Size of Plots on the Farm view and it will tell you how much unique space is being farmed and statistically how long it should take - on average - to win a block.
+If you see plots in the Plots section of the Farm page in the GUI - your plots are being farmed. You will see challenges and proof attempts as they come through in the Last Attempted Proof section however you usually will not have a proof worth sending to the network due to the [plot filter](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). You can additionally see the Total Size of Plots on the Farm view and it will tell you how much unique space is being farmed and statistically how long it should take - on average - to win a block.
 Also, your node needs to be synced for you to farm properly. In the GUI, check the Full Node page. On the cli, do `chia show -s -c`.
 
 ## Does it matter how fast my internet connection is?
@@ -311,7 +290,7 @@ No. You have 30 seconds to respond to challenges.
 
 First, the bad news. Statistically, it would take multiple years to win a reward with a 10-TB farm. ("So you're saying there's a chance...")
 
-Now, the good news. You can join a pool and collect regular rewards, no matter your farm's size! See our [Pooling User Guide](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-User-Guide) for more info.
+Now, the good news. You can join a pool and collect regular rewards, no matter your farm's size! See the [Pool Farming page](/pool-farming) for more info.
 
 ## What is the plot filter and why didn't my plot pass it?
 
@@ -323,7 +302,7 @@ Please note that the speed of your lookups when passing the plot filter should b
 
 ## Can I join a farming pool?
 
-Yes you can. Please check the [Pooling User Guide](https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-User-Guide).
+Yes you can. Please check the [Pool Farming page](/pool-farming).
 
 ## I have heard that it's recommended that a winning plot be deleted on mainnet?
 
@@ -786,7 +765,7 @@ A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as
 
 ## Can I run this on a Raspberry Pi 3 or 4?
 
-Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](https://github.com/Chia-Network/chia-blockchain/wiki/Raspberry-Pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
+Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/chia-on-raspberry-pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
 
 ## How do I upgrade and keep my keys and plots?
 

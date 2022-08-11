@@ -87,7 +87,7 @@ If you need to debug, you can set the logging level to DEBUG, with `chia configu
 
 The outgoing `new_signage_point_harvester` message states the farmer sent a challenge to your harvester and the incoming `farming_info` message indicates a response. The `new_proof_of_space` message states the harvester found a proof for the challenge. You will get more `new_signage_point` and `farming_info` messages than `new_proof_of_space` messages.
 
-Here's how to find your logs: [Where to Find Things](<https://github.com/Chia-Network/chia-blockchain/wiki/How-to-Check-If-Everything-is-Working-(or-Not)#where-to-find-things>)
+Here's how to find your logs: [Where to Find Things](/check-if-things-are-working)
 
 # Good Security Practices on Many Machines
 
@@ -106,17 +106,17 @@ In other words, _only use the keys specific to your machine's purpose_.
 
 ### Plotting On Multiple Machines
 
-Buried in the [Farming on many machines](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) wiki page is this relevant tidbit:
+In the [Farming on Many Machines page](/farming-on-many-machines) is this relevant tidbit:
 
 > When creating plots on the other harvesters, use `chia plots create -f farmer_key -p pool_key`, inserting the farmer and pool keys from your main machine. Alternatively, you could copy your private keys over by using chia keys add, but this is less secure.
 
 ### Harvesting On Multiple Machines
 
-Follow the instructions on setting up certificates on harvesters on the [Farming on many machines](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines) wiki page.
+Follow the instructions on setting up certificates on harvesters on the [Farming on Many Machines page](/farming-on-many-machines).
 
 # Keep Your Wallet Separate
 
-One way to not get your wallet hacked is to not have it accessible to the internet. Here is how to do this: [Chia Keys Management](https://github.com/Chia-Network/chia-blockchain/wiki/Chia-Keys-Management)
+One way to not get your wallet hacked is to not have it accessible to the internet. Here is how to do this: [Chia Keys Management](/chia-key-management)
 
 > Your reward address for chia rewards should be a separate key as well, kept in an offline machine. You can generate an address on a different computer, and put this address in the config.yaml (farmer.xch_target_address and pool.xch_target_address), so if your farming machine gets hacked, you don't lose past rewards. ([Source](https://github.com/Chia-Network/chia-blockchain/discussions/1116#discussioncomment-420398))
 

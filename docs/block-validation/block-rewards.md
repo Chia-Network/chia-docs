@@ -34,7 +34,7 @@ In most cryptocurrencies, the creator of a block pays themselves based on the _c
 
 Fees are also paid at the same time. Let's say a farmer creates a transaction block with 4.9 XCH of outputs, but 5 XCH of inputs (excluding reward claims). In this case, they will receive the remaining 0.1 XCH as a fee, plus their block reward, for a total of 2.1 XCH, in the next transaction block.
 
-Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in the [Fees and the Mempool section](https://chialisp.com/coin_lifecycle#fees-and-the-mempool) on the Chialisp website.
+Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in the [Fees and the Mempool page](https://chialisp.com/coin_lifecycle#fees-and-the-mempool) on the Chialisp website.
 
 ## Farmer vs Pool reward
 

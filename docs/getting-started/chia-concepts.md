@@ -15,40 +15,40 @@ Chia uses the coin set (UTXO) model to keep track of the network's state. In thi
 
 Each transaction in Chia must spend at least one coin. In order to spend a coin, one must provide the original puzzle, as well as a valid solution, and an optional aggregated signature. Multiple coins can communicate with each other in the same transaction by using _announcements_.
 
-For more info about the coin set model and Chia's on-chain programming environment, see [chialisp.com](https://chialisp.com).
+For more info about the coin set model and Chia's on-chain programming environment, see [Chialisp.com](https://chialisp.com).
 
 ### Full Nodes
 
 Chia nodes connect to a random subset of other Chia nodes, called peers. The nodes periodically send and receive information from peers, which is then stored locally in a peer database. Each node broadcasts all new transactions and blocks that they see to their peers, which in turn relay this information to _their_ peers, resulting in the information quickly being propagated throughout the network. When first starting up, nodes have to synchronize to the blockchain, by downloading the entire history of blocks and transactions.
 
-> The Full Node Protocol can be found in [Section 10](/protocol/protocol 'Section 3.10: Full Node Protocol').
+> The Full Node Protocol can be found in the [Peer Protocol page](/peer-protocol).
 
 Additionally, nodes have the option of _farming_ to help secure the network. They do this by storing large files called _plots_, which mostly consist of random data called _proofs of space_. These proofs of space function as tickets in an ongoing lottery. The more plots a farmer stores, the higher the probability of winning.
 
-> The plot construction protocol is laid out in [Section 3.2](/consensus/proof-of-space 'Section 3.2: Proof of Space.').
+> The plot construction protocol is laid out in the [Proof of Space page](/proof-of-space).
 
 The prize for winning the lottery is called the _block reward_. Initially, this reward is 2 XCH. However, the reward amount is cut in half approximately every three years for the first 12 years of Chia's existence. From that point forward, the reward will always be 1/8 of an XCH.
 
-> More info on the block reward structure can be found in [Section 5.3](/block-validation/block_rewards 'Section 5.3: Block Rewards').
+> More info on the block reward structure can be found in the [Block Rewards page](/block-rewards).
 
 While "XCH" is a convenient way to denominate Chia coins, the blockchain only knows about _mojos_. These are the smallest denomination of Chia's coins. Each mojo is worth one trillionth (1/1,000,000,000,000) of an XCH.
 
 ### Timelord nodes
 
-Timelord nodes broadcast _proofs of time_ (explained in [Section 3.3](/consensus/vdfs 'Section 3.3: VDFs')) around every nine seconds. This is equivalent to selecting and broadcasting the winning numbers in an ongoing lottery. When a farmer has a valid proof of space, they win the current lottery drawing. This allows them to process the highest-paying transactions from the mempool into a new block. They then broadcast this block to the rest of the network. Around one out of every three blocks contains transactions. The rest of the blocks are empty, but do pay a reward. (See [Section 3.10](/consensus/foliage 'Section 3.10: Foliage') for more details.)
+Timelord nodes broadcast _proofs of time_ (explained in the [VDFs page](/consensus-vdfs)) around every nine seconds. This is equivalent to selecting and broadcasting the winning numbers in an ongoing lottery. When a farmer has a valid proof of space, they win the current lottery drawing. This allows them to process the highest-paying transactions from the mempool into a new block. They then broadcast this block to the rest of the network. Around one out of every three blocks contains transactions. The rest of the blocks are empty, but do pay a reward. (See the [Foliage page](/consensus-foliage) for more details.)
 
-> The timelord algorithm is explained in [Section 3.13](/consensus/timelords 'Section 3.13: Timelord Algorithm').
+> The timelord algorithm is explained in the [Timelord Algorithm page](/timelord-algorithm).
 
 ### Wallets
 
 Wallets are programs that allow users to interact with the blockchain, by signing and submitting transactions to full nodes. The Chia company includes its official wallet with a typical installation. However, third-party wallets also exist.
 
-> [Section 3.12](/consensus/light_clients 'Section 3.12: Light Clients') has more info on wallets.
+> The [Light Clients page](/light-clients) has more info on wallets.
 
 ### Pools
 
 Pools allow farmers to smooth out their rewards. They pay out small rewards frequently, often daily. They tend to charge a small fee for their services. The Chia company doesn't run its own pools. Many popular Chia pools also offer services for farming or mining other cryptocurrencies.
 
-> For more info on Chia's pooling protocol, see [Section 11](/pooling/pooling 'Section 11: Pooling').
+> For more info on Chia's pooling protocol, see the [Pool Protocol page](/pool-protocol).
 
 The rest of the documentation will go in-depth for each of the above topics.

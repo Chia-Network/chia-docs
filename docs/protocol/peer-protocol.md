@@ -54,7 +54,7 @@ class RequestTransaction(Streamable):
 
 ## respond_transaction
 
-Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see [this section](/coin-set-model/spend_bundles).
+Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see the [Spend Bundles page](/spend-bundles).
 
 ```python
 class RespondTransaction(Streamable):

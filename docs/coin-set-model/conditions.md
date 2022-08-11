@@ -7,6 +7,6 @@ Puzzles in Chia must be valid CLVM programs. These programs are executed by the 
 
 CLVM programs have no access to the outside world, or even to blockchain parameters like block height. Therefore, to interact with the outside environment, they return a list of conditions, each of which must be valid in order for the spend itself to be valid. Conditions are split into two categories: "this spend is only valid if X" and "if this spend is valid then X".
 
-For a complete list of conditions, along with their format and behavior, please see [Chialisp.com](https://chialisp.com/coins_spends_and_wallets#conditions 'Conditions in Chialisp').
+For a complete list of conditions, along with their format and behavior, please see [Chialisp.com](https://chialisp.com/coins_spends_and_wallets#conditions).
 
-Chialisp.com also contains information on the construction of [the standard transaction](https://chialisp.com/standard_transaction).
+Chialisp.com also contains information on the construction of the [Standard Transaction](https://chialisp.com/standard_transaction).
