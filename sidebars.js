@@ -183,7 +183,7 @@ module.exports = {
       label: 'Resources',
       items: [
         'resources/references',
-        'resources/storage-farming',
+        'resources/chia-farming-workload',
         'resources/faq',
       ],
     },

@@ -1,6 +1,6 @@
 ---
 title: Storage - Chia Farming Workload Analysis
-slug: /storage-farming
+slug: /chia-farming-workload
 ---
 
 Jonmichael Hands, VP Storage, Chia Network. For comments and questions reach out to @storage_jm on [keybase](https://keybase.io/team/chia_network.public), or [@LebanonJon](https://twitter.com/LebanonJon) on Twitter
