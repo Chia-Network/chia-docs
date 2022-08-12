@@ -1,7 +1,7 @@
 ---
 sidebar_label: Overview
 title: CLI Overview
-slug: /clis
+slug: /cli
 ---
 
 # CLI Commands Reference
