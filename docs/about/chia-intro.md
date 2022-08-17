@@ -26,7 +26,9 @@ Chia has a new smart transaction model, which uses a powerful (yet simple) highe
 
 Chia uses the coin set model (similar to Bitcoin's UTXO) to track the blockchain's state. The simple nature of this model facilitates the writing of high value and secure contracts. Unlike in systems that use the account model such as Ethereum, the code that creates Chia's coins is strongly sandboxed. This increases security, reduces Maximum Extractable Value (MEV), and makes the code fully auditable.
 
-> For more info, see [chialisp.com](https://chialisp.com/ 'Chialisp.com').
+:::info
+For more info, see [chialisp.com](https://chialisp.com/ 'Chialisp.com').
+:::
 
 ### Decentralized
 
@@ -46,4 +48,6 @@ In Chia, the pool operators are only responsible for distributing rewards. They 
 
 - When a block is won, the farmer gets 1/8 of the rewards, and the pool operator gets the other 7/8. This was done to discourage pool operators from harming their competition by farming on a competing pool and neglecting to create a block when they find a proof. (Solo farmers collect the entire reward when they create a block.)
 
-> For more info on Chia's pooling protocol, see the [Pool Protocol page](/pool-protocol).
+:::info
+For more info on Chia's pooling protocol, see the [Pool Protocol page](/pool-protocol).
+:::

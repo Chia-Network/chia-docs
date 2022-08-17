@@ -97,7 +97,8 @@ Three separate actions are allowed on the wallet's singleton: withdrawals, rekey
 
 This action removes money from the wallet
 
-> Note that the rate limit, as discussed above, must always be followed for all withdrawals
+:::info Note that the rate limit, as discussed above, must always be followed for all withdrawals
+:::
 
 - In order for a withdrawal to be initiated, exactly `m` of `n` signatures are required
 

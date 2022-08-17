@@ -37,7 +37,9 @@ Note that signatures from both the local secret key and the farmer secret key ar
 
 The plot format depends on whether "farm to public key" or "farm to contract address" is being used. If farming to a contract address, the puzzle hash (address) is directly encoded into the plot. Otherwise, the pool public key is directly encoded into the plot.
 
-> Note that this is not the exact plot format, there are a few more details that are left out here.
+:::note
+This is not the exact plot format, there are a few more details that are left out here.
+:::
 
 The important thing is that the harvester is only storing their local key in the plot, but no other keys are required from the harvester. This key alone is not enough to do anything, since it must be combined with the farmer's key. Therefore, compromising the harvester does not allow an attacker to redirect rewards.
 

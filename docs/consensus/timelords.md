@@ -5,7 +5,9 @@ slug: /timelord-algorithm
 
 A timelord keeps track of the current peak, which includes an infused block at a certain height, and signage points from the peak onward. A timelord might receive new blocks to infuse, new peaks (blocks which are already infused), or new signage points.
 
-> For more info, see the [Challenges page](/consensus-challenges).
+:::info
+For more info, see the [Challenges page](/consensus-challenges).
+:::
 
 How does a timelord decide which challenges to create proofs of time on, given a limited number of available processors? While ASICs are likely to develop in the future, at the moment the fastest classgroup VDF implementations are on general purpose hardware. Furthermore, even after the development of ASICs, it’s important to emphasize that any user with a CPU can be a timelord, to provide fallbacks in the case that the ASIC timelords go down, or becomes malicious, etc.
 

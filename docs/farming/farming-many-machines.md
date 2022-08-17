@@ -108,7 +108,9 @@ In other words, _only use the keys specific to your machine's purpose_.
 
 In the [Farming on Many Machines page](/farming-on-many-machines) is this relevant tidbit:
 
-> When creating plots on the other harvesters, use `chia plots create -f farmer_key -p pool_key`, inserting the farmer and pool keys from your main machine. Alternatively, you could copy your private keys over by using chia keys add, but this is less secure.
+:::info
+When creating plots on the other harvesters, use `chia plots create -f farmer_key -p pool_key`, inserting the farmer and pool keys from your main machine. Alternatively, you could copy your private keys over by using chia keys add, but this is less secure.
+:::
 
 ### Harvesting On Multiple Machines
 
@@ -118,7 +120,9 @@ Follow the instructions on setting up certificates on harvesters on the [Farming
 
 One way to not get your wallet hacked is to not have it accessible to the internet. Here is how to do this: [Chia Keys Management](/chia-key-management)
 
-> Your reward address for chia rewards should be a separate key as well, kept in an offline machine. You can generate an address on a different computer, and put this address in the config.yaml (farmer.xch_target_address and pool.xch_target_address), so if your farming machine gets hacked, you don't lose past rewards. ([Source](https://github.com/Chia-Network/chia-blockchain/discussions/1116#discussioncomment-420398))
+:::info
+Your reward address for chia rewards should be a separate key as well, kept in an offline machine. You can generate an address on a different computer, and put this address in the config.yaml (farmer.xch_target_address and pool.xch_target_address), so if your farming machine gets hacked, you don't lose past rewards. ([Source](https://github.com/Chia-Network/chia-blockchain/discussions/1116#discussioncomment-420398))
+:::
 
 ## How to Find Your Keys
 

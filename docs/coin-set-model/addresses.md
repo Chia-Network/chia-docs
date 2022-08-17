@@ -21,13 +21,11 @@ The blockchain consensus code does not operate with addresses; addresses are onl
 
 # Chia Burn Address
 
-## tl;dr
+The Chia burn address is `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`.
 
-Chia burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
-
----
-
-## The Burn Address Explained
+:::warning
+Do not send anything to this address unless you want it to be inaccessible forever.
+:::
 
 [Addresses](/coin-set-addresses) are puzzle hashes encoded into the "xch" prefix address format using the [bech32m encoding scheme](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki).
 
@@ -35,8 +33,6 @@ A traditional bech32m puzzle hash for a burn address is all zeros ending in "dea
 
 Converting this to an address, you end up with the burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
 
-You can use a [puzzle hash converter](https://www.chiaexplorer.com/tools/address-puzzlehash-converter) to verify for yourself.
+You can use a [puzzle hash converter](https://explorer.space/address-puzzlehash-converter) to verify for yourself.
 
 ---
-
-Thank you to [r/chia](https://www.reddit.com/r/chia/) member [juraj](https://www.reddit.com/r/chia/comments/q88yi8/does_chia_have_a_dead_address/hqolhgn/) for this information.

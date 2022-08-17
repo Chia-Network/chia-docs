@@ -5,7 +5,9 @@ slug: /signage-and-infusion-points
 
 Each sub-slot in both the challenge chain and the reward chain is divided into 64 smaller VDFs. Between each of these smaller VDFs is a point called a **signage point**. Timelords publish the VDF output and proof when they reach each signage point.
 
-> The challenge and reward chains both have signage points. The infused challenge chain, however, does not.
+:::info
+The challenge and reward chains both have signage points. The infused challenge chain, however, does not.
+:::
 
 The signage points occur every 9.375 seconds (64 signage points per 600-second sub-slot). The number of iterations between each signage point is **sp_interval_iterations**, which is equal to sub-slot_iterations / 64.
 
@@ -21,14 +23,18 @@ The proof of space challenge is computed as the hash of the plot filter bits:
 
 Using this challenge, the farmers fetch quality strings for each plot that made it past the filter. Recall that this process requires around seven random disk seeks, which takes around 70 ms on a slow HDD. The quality string is a hash derived from part of the proof of space (but the whole proof of space has yet to be retrieved).
 
-> For both of our [previous example](/consensus-challenges), as well as the next example, we'll use the following values:
+:::info
+For both of our [previous example](/consensus-challenges), as well as the next example, we'll use the following values:
+:::
 
 - sub-slot_iterations = 100,000,000
 - sp_interval_iterations = `sub-slot_iterations` / 64 = 1,562,500
 
 The farmer computes the **required_iterations** for each proof of space. If the required_iterations < sp_interval_iterations, the proof of space is eligible for inclusion into the blockchain. At this point, the farmer fetches the entire proof of space from disk (which requires 64 disk seeks, or 640 ms on a slow HDD), creates an unfinished block, and broadcasts it to the network.
 
-> For the vast majority of eligible plots, required_iterations will be far too high, since on average 32 will qualify for the whole network for each 10-minute sub-slot. This is a random process so it's possible (though unlikely) for a large number of proofs to qualify. The signage_point_iterations is the number of iterations from the start of the sub-slot to the signage point. Any plot that does meet the required_iterations for a signage point will qualify as there is no rivalry between winning plots.
+:::info
+For the vast majority of eligible plots, required_iterations will be far too high, since on average 32 will qualify for the whole network for each 10-minute sub-slot. This is a random process so it's possible (though unlikely) for a large number of proofs to qualify. The signage_point_iterations is the number of iterations from the start of the sub-slot to the signage point. Any plot that does meet the required_iterations for a signage point will qualify as there is no rivalry between winning plots.
+:::
 
 The exact method for required_iterations is the following:
 
@@ -50,7 +56,9 @@ The **infusion_iterations** is the number of iterations from the start of the su
 
 Therefore, infusion_iterations will be between 3 and 4 signage points after the current signage point. Farmers must submit their proofs and blocks before the infusion point is reached. The modulus is there to allow overflows into the next sub-slot, if the signage point is near the end of the sub-slot. This is expanded on in the [Overflow Blocks and Weight page](/overflow-blocks).
 
-> More information on infusion points is available in the [VDFs page](/consensus-vdfs#infusion).
+:::info
+More information on infusion points is available in the [VDFs page](/consensus-vdfs#infusion).
+:::
 
 <figure>
 <img src="/img/signage_points.png" alt="drawing"/>
@@ -68,7 +76,7 @@ At `b1`, the farmer's block gets combined with the VDF output for that point. Th
 
 In Figure 5, the farmer creates the block at the time of the signage point, `b1’`. However, `b1’` is not finished yet, since it needs the infusion point VDF. Once the infusion_iterations VDF has been released, it is added to `b1’` to form the finished block at `b1`.
 
-> Recall that in this example,
+Recall that in this example,
 
 - sub-slot_iterations = 100M
 - sp_interval_iterations is 1.5625M.
