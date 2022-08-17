@@ -1,6 +1,7 @@
 ---
-title: VDFs
-slug: /consensus-vdfs
+title: Proof of Time (VDFs)
+sidebar_label: Proof of Time
+slug: /proof-of-time
 ---
 
 A Verifiable Delay Function, also referred to as a Proof of Time or VDF, is a proof that a sequential function was executed a certain number of times.
