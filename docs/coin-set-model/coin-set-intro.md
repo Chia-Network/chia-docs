@@ -3,10 +3,6 @@ title: Coin Set Intro
 slug: /coin-set-intro
 ---
 
-:::info
-This section will briefly discuss Chialisp and the coin set model. For more in-depth information on coins and CLVM (ChiaLisp Virtual Machine) , head over to [Chialisp.com](https://chialisp.com).
-:::
-
 The Chia blockchain, as explained in the consensus section, is a linked list of blocks, agreed upon by nodes. Nodes also maintain a table of **coins**. A coin in chia is a record of ownership of a certain amount of XCH, which can be unlocked by providing a puzzle and solution.
 
 The 3 properties that make up a coin are:
