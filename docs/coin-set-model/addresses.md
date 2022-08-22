@@ -1,6 +1,6 @@
 ---
 title: Addresses
-slug: /coin-set-addresses
+slug: /addresses
 ---
 
 Puzzle hashes in Chia are 32-byte values. These can be displayed in hex, but this can lead to errors due to typos, and a poor user experience. Therefore, Chia displays puzzle hashes in a custom format called an _address_. The encoding scheme used is [bech32m](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki).
