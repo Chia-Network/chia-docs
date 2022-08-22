@@ -23,7 +23,7 @@ This is an extensive list of each condition allowed on the Chia blockchain.
 
 | Condition                  | Format                            | Description                                                 |
 | -------------------------- | --------------------------------- | ----------------------------------------------------------- |
-| ALWAYS_TRUE                | `(1)`                             | Always valid. Can be used to pass data to outer puzzles.    |
+| REMARK                     | `(1)`                             | Always valid. Can be used to pass data to outer puzzles.    |
 | AGG_SIG_UNSAFE             | `(49 public_key message)`         | Requires a signature for the message. Prefer `AGG_SIG_ME`.  |
 | AGG_SIG_ME                 | `(50 public_key message)`         | Requires a signature for the message specific to this coin. |
 | CREATE_COIN                | `(51 puzzle_hash amount (memos))` | Creates a new coin. The memo field is optional.             |
