@@ -11,7 +11,7 @@ sidebar_position: 3
 This document will guide you through the process of installing the Climate Warehouse application on Windows and MacOS. For additional technical resources, see the following:
 
 - [Data Layer (Beta) RPC API](/docs/12rpcs/data_layer_rpcs 'Section 12.3: Data Layer Beta RPC API')
-- [Data Layer (Beta) CLI Reference](/docs/13cli/data 'Section 12.3: Data Layer Beta CLI Reference')
+- [Data Layer (Beta) CLI Reference](/docs/13cli/data_layer_cli 'Section 12.3: Data Layer Beta CLI Reference')
 
 ## Contents:
 
