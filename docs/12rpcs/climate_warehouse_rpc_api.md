@@ -9,7 +9,7 @@ This page lists commands and examples from the Climate Warehouse Beta RPC API.
 Please also see the following related documents:
 
 - [Climate Warehouse](/docs/15resources/data_layer_install_guide 'Climate Warehouse install guide') installation/configuration guide
-- [Chia Data Layer CLI](/docs/13cli/data 'Section 13.2: Data Layer (Beta) CLI') reference
+- [Chia Data Layer CLI](/docs/13cli/data_layer_cli 'Section 13.2: Data Layer (Beta) CLI') reference
 - [Chia Data Layer RPC API](/docs/12rpcs/data_layer_rpcs 'Section 12.3: Data Layer Beta RPC API') reference
 
 The Climate Warehosue RPC API is exposed by default on port 31310. This document will give examples to access the RPC API using `http://localhost:31310/v1`.
