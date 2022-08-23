@@ -1675,9 +1675,10 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description                         |
-| :--- | :--- | :------- | :---------------------------------- |
-| fee  | TEXT | False    | Set the fee for the offer, in mojos |
+| Flag  | Type | Required | Description                                                                                            |
+| :---- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
+| offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
+| fee   | TEXT | False    | Set the fee for the offer, in mojos                                                                    |
 
 <details>
 <summary>Example</summary>
@@ -1765,6 +1766,68 @@ Response:
   ],
   "success": true
 }
+```
+
+</details>
+
+---
+
+### `verify_offer`
+
+Functionality: Verify that a Data Layer offer is well-formed
+
+Usage: chia rpc data_layer [OPTIONS] verify_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type | Required | Description                                                                                            |
+| :---- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
+| offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
+
+<details>
+<summary>Example 1</summary>
+
+This example will show a successful verification. It will use the offer file created in the [make_offer](#make_offer) example.
+
+Assuming the offer is saved in a file and named `offer.json`, here's how to verify the offer:
+
+```json
+chia rpc data_layer -j offer.json verify_offer
+```
+
+Response:
+
+```json
+{
+  "error": null,
+  "fee": 1,
+  "success": true,
+  "valid": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+This example will show an **unsuccessful** verification. It will use the offer file created in the [make_offer](#make_offer) example, with one byte modified to simulate file corruption:
+
+```json
+chia rpc data_layer -j offer.json verify_offer
+```
+
+Response:
+
+```json
+Request failed: {'error': 'non-hexadecimal number found in fromhex() arg at position 18699', 'success': False}
 ```
 
 </details>
@@ -2004,6 +2067,7 @@ Response:
     "/add_missing_files",
     "/make_offer",
     "/take_offer",
+    "/verify_offer",
     "/get_connections",
     "/open_connection",
     "/close_connection",
