@@ -52,7 +52,7 @@ vision involves improving the carbon footprint of the blockchain industry.
 
 ### Decentralized
 
-Chia uses a consensus algorithm called [Proofs of Space and Time](https://www.chia.net/assets/ChiaGreenPaper.pdf "Chia's Green Paper"). This algorithm allows anyone with an internet connection and some free disk space to participate in securing the network. Because of this process of farming (analogous to mining), Chia has become the most decentralized blockchain on the planet, with hundreds of thousands of full nodes securing the system.
+Chia uses a consensus algorithm called [Proofs of Space and Time](https://www.chia.net/assets/ChiaGreenPaper.pdf "Chia's Green Paper"). This algorithm allows anyone with an internet connection and some free disk space to participate in securing the network. Because of this process of farming (analogous to mining), Chia has become the most decentralized blockchain on the planet, with [hundreds of thousands of full nodes](https://dashboard.chia.net/d/em15uQ47k/peer-info) securing the system.
 
 ### Improved Pooling
 
@@ -70,6 +70,8 @@ In Chia, the pool operators are only responsible for distributing rewards. They 
 
 > For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling 'Section 11: Pooling').
 
+> You can r[eview the previous 24 hour unique block signatures](https://xchscan.com/top-farmers) to obtain Chia's Nakamoto Coefficient.
+
 ### Other key features
 
 There are many other innovations in Chia, some of which include:
@@ -79,6 +81,7 @@ There are many other innovations in Chia, some of which include:
 - **Weight proofs and light clients**, which enable fast syncing from a mobile device. For more info, see [Section 3.12](/docs/03consensus/light_clients 'Section 3.12: Chia Light Clients').
 - **Chia Asset Tokens** (CATs) are fungible tokens that can be minted from standard XCH. The possiblilties are endless! Chialisp.com contains the [technical details of CATs](https://chialisp.com/docs/puzzles/cats 'Cat1 standard'). To create your own CAT, see our [written tutorial](https://chialisp.com/docs/tutorials/CAT_Launch_Process_Windows 'CAT written tutorial'), as well as our [video tutorial](https://chialisp.com/docs/tutorials/single_issuance_CAT 'CAT video tutorial'). Additionally, a community member has created [TAIL Database](https://www.taildatabase.com/ 'TAIL database'), which contains a list of CATs in the wild.
 - **Offer files** enable the peer-to-peer exchange of assets, including standard XCH, as well as CATs. For a brief introduction, see our [YouTube video](https://youtu.be/Z2FoZSNtttM 'Offers intro on YouTube'). Chialisp.com has the [technical details](https://chialisp.com/docs/puzzles/offers 'Offer files, technical details') and a [tutorial](https://chialisp.com/docs/tutorials/offers_gui_tutorial 'Offers, GUI tutorial') to help you get started.
-
+- **NFTs** enable and drive real-world applications of digital ownership through true marketplace independence, consistent provenance, and digital permanence. We laid out our [vision for NFTs on Chia](https://www.chia.net/2022/05/11/our-vision-for-chia-nfts.en.html) and launched our [NFT1 standard](https://www.chia.net/2022/06/29/1.4.0-introducing-the-chia-nft1-standard.en.html) in June 2022.
+- 
 This documentation will explain the motivation and implementation of the different components of the Chia system to a technical audience, and provide in-depth explanations of how everything works. If you would like to skip to how to make dapps (decentralized
 apps) on Chia, please visit [chialisp.com](https://chialisp.com).
