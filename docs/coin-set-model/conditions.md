@@ -41,7 +41,7 @@ This is an extensive list of each condition allowed on the Chia blockchain.
 | ASSERT_HEIGHT_RELATIVE     | `(82 block_height_passed)`        | Requires blocks to have passed since coin creation.         |
 | ASSERT_HEIGHT_ABSOLUTE     | `(83 block_height)`               | Requires the block height to match a value.                 |
 
-## Condition Costs
+## Condition Costs {#costs}
 
 Conditions not listed here do not have a cost associated with them.
 
