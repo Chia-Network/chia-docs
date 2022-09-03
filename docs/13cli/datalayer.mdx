@@ -1,7 +1,7 @@
 ---
-id: data_layer_cli
-title: Data Layer CLI Reference
-sidebar_label: 13.2 Data Layer CLI Reference
+id: datalayer_cli
+title: DataLayer CLI Reference
+sidebar_label: 13.2 DataLayer CLI Reference
 sidebar_position: 2
 ---
 
@@ -12,11 +12,11 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the Data Layer. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide 'Climate Warehouse install guide').
+This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the DataLayer. For more info on getting set up with the DataLayer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide 'Climate Warehouse install guide').
 
-We also have documented the [RPC API](/docs/12rpcs/data_layer_rpcs 'Section 12.3: Data Layer RPC API') for interacting with the Data Layer.
+We also have documented the [RPC API](/docs/12rpcs/data_layer_rpcs 'Section 12.3: DataLayer RPC API') for interacting with the DataLayer.
 
-The relevant Data Layer commands can be found by running `chia data`:
+The relevant DataLayer commands can be found by running `chia data`:
 
 ```bash
 (venv) $ chia data -h
@@ -28,7 +28,7 @@ Commands that modify the blockchain include an optional fee. This fee can be spe
 2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
 3. If neither of these options is set, then no fee will be used
 
-For commands that change the state of the Data Layer singleton (ie all on-chain commands), you will need to wait for confirmation before running another command. If you run a command before the previous transaction has been confirmed, you will receive this error: `Request failed: {'error': 'Already have a pending root waiting for confirmation.', 'success': False}`
+For commands that change the state of the DataLayer singleton (ie all on-chain commands), you will need to wait for confirmation before running another command. If you run a command before the previous transaction has been confirmed, you will receive this error: `Request failed: {'error': 'Already have a pending root waiting for confirmation.', 'success': False}`
 
 The commands in this document will work with or without the `=` symbol. Additionally, hashes may or may not be prefixed with `0x`.
 
@@ -47,10 +47,10 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                                        |
 | :------------ | :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------- |
 | -i            | --id            | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                          |
-| -a            | --amount        | INTEGER | True     | The amount (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
+| -a            | --amount        | INTEGER | True     | The amount (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized. Minimum `amount` is 0 |
 | -u            | --url           | TEXT    | False    | A URL where the mirror will reside. Can be repeated to add multiple URLs in the same command                       |
 | -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                           |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under wallet in config.yaml           |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml           |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                       |
 
 <details>
@@ -86,7 +86,7 @@ Options:
 | -o            | --override      | None    | False    | If set, will overwrite files that already exist (default: not set)                                                                           |
 | -n            | --no-override   | None    | False    | If set, will not overwrite files that already exist (default: set)                                                                           |
 | -f            | --foldername    | TEXT    | False    | The name of the folder where the files to be restored are located (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`) |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml                                 |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml                                 |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                 |
 
 <details>
@@ -164,7 +164,7 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                                  |
 | :------------ | :-------------- | :------ | :------: | :----------------------------------------------------------------------------------------------------------- |
 | -f            | --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                           |
-| -dp           | --data-rpc-port | INTEGER |  False   | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER |  False   | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -m            | --fee           | TEXT    |  False   | Set the fees for the transaction, in XCH                                                                     |
 | -h            | --help          | None    |  False   | Show a help message and exit                                                                                 |
 
@@ -315,7 +315,7 @@ Options:
 | :------------ | :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -i            | --id            | TEXT    | True     | The coin_id of the mirror to delete (obtainable from the [get_mirrors](#get_mirrors) command)                |
 | -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                     |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
@@ -347,7 +347,7 @@ Options:
 | :------------ | :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                     |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
@@ -384,7 +384,7 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                              |
 | :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -i            | --id            | TEXT    | True     | The hexadecimal ID of the store for which to get mirrors                                                 |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -431,7 +431,7 @@ Options:
 | -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                     |
 |               | --key           | TEXT    | True     | The hexadecimal key                                                                                          |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
@@ -466,7 +466,7 @@ Options:
 | :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal ID of the store to which you would like to subscribe                                     |
 | -u            | --url           | TEXT    | False    | A URL where the data store resides. This argument can be used multiple times in the same command         |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -498,7 +498,7 @@ Options:
 | :------------ | :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                     |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
@@ -547,7 +547,7 @@ Options:
 | -store        | --id            | TEXT    | True     | The hexadecimal store ID                                                                                 |
 | -d            | --changelist    | TEXT    | True     | A JSON object representing the changelist                                                                |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                 |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                             |
 
@@ -746,7 +746,7 @@ Options:
 | :------------ | :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                     |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
@@ -782,7 +782,7 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                                  |
 | :------------ | :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                     |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
@@ -843,7 +843,7 @@ Options:
 | :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal ID of the store to which you would like to subscribe                                     |
 | -u            | --url           | TEXT    | False    | A URL where the data store resides. This argument can be used multiple times in the same command         |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -929,7 +929,7 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                              |
 | :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal ID of the store to which you would like to unsubscribe                                   |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                             |
 
 Example:
@@ -964,7 +964,7 @@ Options:
 | -store        | --id            | TEXT    | True     | The hexadecimal store ID                                                                                     |
 | -hash_1       | --hash_1        | TEXT    | True     | The first hash to compare                                                                                    |
 | -hash_2       | --hash_2        | TEXT    | True     | The second hash to compare                                                                                   |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the data layer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
 <details>

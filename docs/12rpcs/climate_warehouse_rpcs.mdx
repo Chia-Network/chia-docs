@@ -12,23 +12,23 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This page lists commands and examples from the Climate Warehouse Beta RPC API.
+This page lists commands and examples from the Climate Warehouse RPC API.
 
 Please also see the following related documents:
 
-- [Climate Warehouse](/docs/15resources/data_layer_install_guide 'Climate Warehouse install guide') installation/configuration guide
-- [Chia Data Layer CLI](/docs/13cli/data_layer_cli 'Section 13.2: Data Layer (Beta) CLI') reference
-- [Chia Data Layer RPC API](/docs/12rpcs/data_layer_rpcs 'Section 12.3: Data Layer Beta RPC API') reference
+- [Climate Warehouse](/docs/15resources/climate_warehouse_user_guide 'Climate Warehouse user guide') user guide
+- [Chia DataLayer CLI](/docs/13cli/datalayer_cli 'DataLayer CLI') reference
+- [Chia DataLayer RPC API](/docs/12rpcs/datalayer_rpcs 'DataLayer RPC API') reference
 
-The Climate Warehosue RPC API is exposed by default on port 31310. This document will give examples to access the RPC API using `http://localhost:31310/v1`.
+The Climate Warehouse RPC API is exposed by default on port 31310. This document will give examples to access the RPC API using `http://localhost:31310/v1`.
 
-## Reference
+---
 
-## **Filestore API**
+## **Filestore**
 
-Functionality: Use GET, POST, and DELETE to add, delete and list files from your organization
+Functionality: Add, delete and list files from your organization
 
-GET Options: None
+## `GET`
 
 ### Get a list of files in the local org
 
@@ -67,9 +67,9 @@ Response:
 
 ---
 
-POST Options:
+## `POST`
 
-### Upload a new file to a local org
+### Add a new file to a file store
 
 :::note
 The `form` flag is required to be used twice: once with the file's location (`file`), and once with the file's name (`fileName`).
@@ -94,11 +94,13 @@ Response:
 
 </details>
 
+---
+
 ### Download a file from an org
 
 | Key    | Type   | Required | Description                                                                                                       |
 | :----- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------- |
-| fileId | String | True     | The SHA-256 hash of the file to download, obtainable by running [this RPC](#get-a-list-of-files-in-the-local-org) |
+| fileId | String | True     | The SHA-256 hash of the file to download, obtainable by running the [GET RPC](#get-a-list-of-files-in-the-local-org) |
 
 :::note
 The `output` flag is recommended. This flag will download the file to the specified name. If this flag is not used, the file's binary contents will be sent to the display.
@@ -121,11 +123,13 @@ Response: The file is downloaded.
 
 ---
 
-DELETE Options:
+## `DELETE`
+
+Options:
 
 | Key    | Type   | Required | Description                                                                                                       |
 | :----- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------- |
-| fileId | String | True     | The SHA-256 hash of the file to delete, obtainable by running [this RPC](#get-a-list-of-files-in-the-local-org) |
+| fileId | String | True     | The SHA-256 hash of the file to delete, obtainable by running the [GET RPC](#get-a-list-of-files-in-the-local-org) |
 
 ### Delete a file
 
@@ -150,9 +154,17 @@ Response:
 
 ---
 
-## **governance**
+## **Governance**
 
-GET Options:
+Functionality: View and modify data from a governance node.
+
+:::info
+The commands in this section apply to the governance node. 
+Anyone can create a governance node, but it won't be of much use if nobody connects to it. 
+Therefore, most users will not need to use the governance RPCs.
+:::
+
+## `GET`
 
 ### List all governance data
 
@@ -226,13 +238,13 @@ Response: A comprehensive picklist
 
 ---
 
-POST Options:
-
-### Create a governance body
+## `POST`
 
 :::info
-You must have permission to run this RPC. If you do not have permission, you will receive an error message such as the one from the example.
+In order to run any of the governance POST RPCs, you must have admin access to a governance node. If you do not have such access, you will receive an error message such as the ones from the examples.
 :::
+
+### Create a governance body
 
 <details>
 <summary>Example</summary>
@@ -249,11 +261,9 @@ Response:
 
 </details>
 
-### Set the default governance org list
+---
 
-:::info
-You must have permission to run this RPC. If you do not have permission, you will receive an error message such as the one from the example.
-:::
+### Set the default governance org list
 
 <details>
 <summary>Example</summary>
@@ -272,11 +282,9 @@ Response:
 
 </details>
 
-### Set the governance picklist values
+---
 
-:::info
-You must be the owner of a governance body to run this RPC. If you are not, you will receive an error message such as the one from the example.
-:::
+### Set the governance picklist values
 
 <details>
 <summary>Example</summary>
@@ -357,15 +365,13 @@ Response:
 
 ---
 
-## **Organizations API**
+## **Organizations**
 
-Functionality: Use GET, POST, and PUT to list, create, and update organizations
+Functionality: List, create, and update, delete and unsubscribe from organizations
 
-GET Options: None
+## `GET`
 
-## `GET Examples`
-
-### List all subscribed Organizations
+### List all subscribed organizations
 
 The `organizations` GET RPC will list all organizations to which you have subscribed, including local organizations.
 
@@ -397,14 +403,14 @@ Response:
 
 ---
 
-POST Options:
+## `POST`
+
+Options:
 
 | Key  |  Type  | Required | Description                                      |
 | :--- | :----- | :------- | :----------------------------------------------- |
 | name | String | True     | Name of the organization to be created           |
 | icon | String | True     | URL of the icon to be used for this organization |
-
-## `POST Examples`
 
 ### Create a new organization
 
@@ -434,17 +440,17 @@ The response will take a few minutes, as several transactions need to be confirm
 
 ---
 
-PUT Options:
+## `PUT`
+
+Options:
 
 | Key    | Type    | Required                  | Description                            |
 | :----- | :------ | :------------------------ | :------------------------------------- |
 | orgUid | String  | True                      | Uid of the organization                |
 
-## `PUT Examples`
-
 ### Import an external organization
 
-This RPC must be called before subcribing to an organization. The following keys are required for this RPC:
+This RPC must be called before subscribing to an organization. The following keys are required for this RPC:
 
 | Key    | Type    | Required | Description                            |
 | :----- | :------ | :------- | :------------------------------------- |
@@ -470,7 +476,7 @@ Response:
 {"message":"Importing and subscribing organization this can take a few mins."}
 ```
 
-You must wait for the transation to be confirmed on the blockchain before subscribing to the organization.
+You must wait for the transaction to be confirmed on the blockchain before subscribing to the organization.
 
 </details>
 
@@ -502,7 +508,7 @@ Response:
 ### Subscribe to an organization
 
 :::note
-You must have previously [imported](#import-an-external-organization) this organization in order to subsribe to it.
+You must have previously [imported](#import-an-external-organization) this organization in order to subscribe to it.
 :::
 
 <details>
@@ -574,7 +580,7 @@ Response:
 
 ---
 
-## `DELETE Examples`
+## `DELETE`
 
 ### Delete your home organization
 
@@ -622,7 +628,7 @@ Response:
 
 ---
 
-## **Projects API**
+## **Projects**
 
 Functionality: List subscribed projects, as specified by the appropriate URL option(s)
 
@@ -639,14 +645,14 @@ Query string options:
 | page               | Number  | False    | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`)             |
 | xls                | Boolean | False    | If `true`, save the results to xls (Excel spreadsheet) format                                          |
 
-## `GET Examples`
+## `GET`
 
 ### Show all subscribed projects
 
-In this example, no query string is used. This will list all projects:
-
 <details>
 <summary>Example</summary>
+
+In this example, no query string is used. This will list all projects:
 
 ```json
 curl --location --request GET 'localhost:31310/v1/projects' --header 'Content-Type: application/json'
@@ -790,11 +796,10 @@ Response:
 
 ### List projects by `orgUid`
 
-
-This example will list the details of all projects with a specific orgUid namely orgUid=25824d086ec55565aca6149d463fae9d37457adc4b5ea2f49e6752d8c668b99b:
-
 <details>
 <summary>Example</summary>
+
+This example will list the details of all projects with a specific orgUid namely orgUid=25824d086ec55565aca6149d463fae9d37457adc4b5ea2f49e6752d8c668b99b:
 
 ```json
 curl --location --request GET 'localhost:31310/v1/projects?orgUid=25824d086ec55565aca6149d463fae9d37457adc4b5ea2f49e6752d8c668b99b' --header 'Content-Type: application/json'
@@ -1188,7 +1193,7 @@ curl --location --request GET 'http://localhost:31310/v1/projects?page=1&limit=5
 
 ---
 
-## `POST Examples`
+## `POST`
 
 ### Stage a new project
 
@@ -1316,7 +1321,7 @@ Response:
 
 ---
 
-## `PUT Examples`
+## `PUT`
 
 When using `PUT` to update projects, the following columns are required to be included:
 
@@ -1469,7 +1474,7 @@ Response:
 
 ---
 
-## `DELETE Examples`
+## `DELETE`
 
 ### Delete a project
 
@@ -1524,7 +1529,7 @@ null
 
 ---
 
-## **Units API**
+## **Units**
 
 Functionality: List subscribed units, as specified by the appropriate URL option(s)
 
@@ -1540,7 +1545,7 @@ Query string options:
 |      page      | Number  | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`)          |
 |      xls       | Boolean | If `true`, save the results to xls (Excel spreadsheet) format                                       |
 
-## `GET Examples`
+## `GET`
 
 ### List all subscribed units
 
@@ -2223,7 +2228,7 @@ Response:
 
 ---
 
-## `POST Examples`
+## `POST`
 
 ### Create a new unit
 
@@ -2652,7 +2657,7 @@ Response:
 
 ---
 
-## `PUT Examples`
+## `PUT`
 
 ### Update an existing unit
 
@@ -2706,7 +2711,7 @@ Response:
 
 ### Update a pre-existing unit using an xlsx file
 
-::: note
+:::note
 It's possible to construct an xlsx file for this purpose using created from [the output of this example](#save-all-project-details-to-an-xlsx-file 'Save all project details to an xlsx file')
 :::
 
@@ -2728,7 +2733,7 @@ Response:
 
 ---
 
-## `DELETE Examples`
+## `DELETE`
 
 ### Delete a unit
 
@@ -2755,13 +2760,13 @@ Response:
 
 ---
 
-## **issuances**
+## **Issuances**
 
 Functionality: List all issuances from subscribed projects
 
 Options: None
 
-## `GET Examples`
+## `GET`
 
 ### List all issuances from subscribed projects
 
@@ -2796,13 +2801,13 @@ Response:
 
 ---
 
-## **labels**
+## **Labels**
 
 Functionality: List all labels from subscribed projects
 
 Options: None
 
-## `GET Examples`
+## `GET`
 
 ### List all labels from subscribed projects
 
@@ -2840,7 +2845,7 @@ Response:
 
 ---
 
-## **Staging API**
+## **Staging**
 
 Functionality: List, modify, confirm, and cancel projects and units in the `STAGING` state
 
@@ -2853,7 +2858,7 @@ Options:
 |     limit      | Number | Limit the number of subscribed projects to be displayed (must be used with page, eg `?page=5&limit=2`) |
 |      page      | Number | Only display results from this page number (must be used with limit, eg `?page=5&limit=2`)             |
 
-## `GET Examples`
+## `GET`
 
 ### List all projects and units in `STAGING`
 
@@ -3171,7 +3176,7 @@ Response:
 
 ---
 
-## `POST Examples`
+## `POST`
 
 ### Commit projects and units
 
@@ -3246,7 +3251,7 @@ Response:
 
 ---
 
-## `PUT Examples`
+## `PUT`
 
 ### Update the details of a project in `STAGING`
 
@@ -3325,8 +3330,6 @@ Response:
 {"message":"Staging Record sucessfully updated."}
 ```
 
-</details>
-
 Run the original command again to show the updates:
 
 ```json
@@ -3364,9 +3367,11 @@ Response:
 ]
 ```
 
+</details>
+
 ---
 
-## `DELETE Examples`
+## `DELETE`
 
 ### Delete all projects and units in `STAGING`
 
@@ -3432,7 +3437,7 @@ Response:
 
 ---
 
-## **audit**
+## **Audit**
 
 Functionality: Show the complete history of an organization
 
@@ -3442,7 +3447,7 @@ Options:
 | :----: | :----: | :---------------------------------------------------------- |
 | orgUid | String | (Required) Display subscribed projects matching this orgUid |
 
-## `GET Examples`
+## `GET`
 
 ### Show the complete history of an organization
 
@@ -3541,6 +3546,7 @@ Response:
 
 </details>
 
+---
 
 ### Find all conflicts
 

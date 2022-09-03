@@ -1,7 +1,7 @@
 ---
-id: data_layer_rpcs
-title: Data Layer RPCs
-sidebar_label: 12.3 Data Layer RPCs
+id: datalayer_rpcs
+title: DataLayer RPCs
+sidebar_label: 12.3 DataLayer RPCs
 sidebar_position: 3
 ---
 
@@ -31,11 +31,11 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 ## Intro
 
-This page includes a comprehensive list of Chia's Data Layer RPC API. For more info on getting set up with the Data Layer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide 'Climate Warehouse install guide').
+This page includes a comprehensive list of Chia's DataLayer RPC API. For more info on getting set up with the DataLayer and Climate Warehouse, see our [install guide](/docs/15resources/data_layer_install_guide 'Climate Warehouse install guide').
 
-We also have documented the [CLI](/docs/13cli/data_layer_cli 'Section 13.2: Data Layer CLI') commands for interacting with the Data Layer.
+We also have documented the [CLI](/docs/13cli/data_layer_cli 'Section 13.2: DataLayer CLI') commands for interacting with the DataLayer.
 
-By default, the data layer RPC API is exposed on port 8562. This is configured in `~/.chia/mainnet/config/config.yaml` under `data_layer:rpc_port`. This port must not be exposed publicly for security concerns.
+By default, the DataLayer RPC API is exposed on port 8562. This is configured in `~/.chia/mainnet/config/config.yaml` under `data_layer:rpc_port`. This port must not be exposed publicly for security concerns.
 
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
 
@@ -43,7 +43,7 @@ Commands that modify the blockchain include an optional fee. This fee can be spe
 2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
 3. If neither of these options is set, then no fee will be used
 
-For commands that change the state of the Data Layer singleton (ie all on-chain commands), you will need to wait for confirmation before running another command. If you run a command before the previous transaction has been confirmed, you will receive this error: `Request failed: {'error': 'Already have a pending root waiting for confirmation.', 'success': False}`
+For commands that change the state of the DataLayer singleton (ie all on-chain commands), you will need to wait for confirmation before running another command. If you run a command before the previous transaction has been confirmed, you will receive this error: `Request failed: {'error': 'Already have a pending root waiting for confirmation.', 'success': False}`
 
 Note: Hashes used as arguments for the commands documented here may or may not be prefixed with `0x`. Both forms are valid syntax.
 
@@ -188,7 +188,7 @@ Response:
 }
 ```
 
-As a result of running the `create_data_store` command, a new Data Layer wallet is created:
+As a result of running the `create_data_store` command, a new DataLayer wallet is created:
 
 ```json
 chia wallet show
@@ -208,7 +208,7 @@ Chia Wallet:
    -Type:                  STANDARD_WALLET
    -Wallet ID:             1
 
-Data Layer Wallet:
+DataLayer Wallet:
    -Total Balance:         0.0
    -Pending Total Balance: 0.0
    -Spendable:             0.0
@@ -1476,6 +1476,10 @@ Request Parameters:
 | maker | TEXT | True     | The hexadecimal ID of the store for which to list mirrors |
 | fee   | TEXT | False    | Set the fee for the offer, in mojos                       |
 
+:::note
+You must own the store listed as the `maker`, and you must be subscribed to the store listed as the `taker`, as will be demonstrated in the example.
+:::
+
 <details>
 <summary>Example</summary>
 
@@ -1774,7 +1778,7 @@ Response:
 
 ### `verify_offer`
 
-Functionality: Verify that a Data Layer offer is well-formed
+Functionality: Verify that a DataLayer offer is well-formed
 
 Usage: chia rpc data_layer [OPTIONS] verify_offer [REQUEST]
 
@@ -1828,6 +1832,48 @@ Response:
 
 ```json
 Request failed: {'error': 'non-hexadecimal number found in fromhex() arg at position 18699', 'success': False}
+```
+
+</details>
+
+---
+
+### `cancel_offer`
+
+Functionality: Cancel a DataLayer offer
+
+Usage: chia rpc data_layer [OPTIONS] cancel_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag     | Type    | Required | Description                                                                                          |
+| :------- | :------ | :------- | :--------------------------------------------------------------------------------------------------- |
+| trade_id | TEXT    | True     | The `trade_id` of the offer. This is displayed with the response of the [make_offer](#make_offer) RPC |
+| secure   | BOOLEAN | True     | If `true`, the offer will be canceled on the blockchain, making it impossible to be accepted later. If `false`, the offer will only be canceled locally. We recommend that you set this to `true` unless you are certain that the offer file has not left your computer |
+| fee      | TEXT    | False    | If `secure` is `true`, this will set the fee for the transaction, in mojos. If `secure` is `false`, the fee will be ignored |
+
+<details>
+<summary>Example </summary>
+
+Cancel an offer on-chain, using "secure":"true":
+
+```json
+chia rpc data_layer cancel_offer '{"trade_id":"92652561cc3f40677d7d73513b4dde4a56da1c9edc0cfd9f03bb001b95df42af", "secure":"true", "fee":"1000"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
 ```
 
 </details>
@@ -2018,7 +2064,7 @@ Response:
 
 ### `get_routes`
 
-Functionality: Show a comprehensive list of RPC routes for the Data Layer
+Functionality: Show a comprehensive list of RPC routes for the DataLayer
 
 Usage: chia rpc data_layer [OPTIONS] get_routes
 
@@ -2068,6 +2114,7 @@ Response:
     "/make_offer",
     "/take_offer",
     "/verify_offer",
+    "/cancel_offer",
     "/get_connections",
     "/open_connection",
     "/close_connection",
