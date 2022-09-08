@@ -12,9 +12,10 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the DataLayer. For more info on getting set up with the DataLayer and Climate Warehouse, see our [install guide](/docs/15resources/climate_warehouse_user_guide 'Climate Warehouse install guide').
+This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the DataLayer. See also:
 
-We also have documented the [RPC API](/docs/12rpcs/datalayer_rpcs 'Section 12.3: DataLayer RPC API') for interacting with the DataLayer.
+* [RPC](/docs/12rpcs/datalayer_rpcs 'DataLayer RPC API') commands for interacting with the DataLayer
+* The [DataLayer user guide](/docs/15resources/datalayer_user_guide 'DataLayer user guide')
 
 The relevant DataLayer commands can be found by running `chia data`:
 
@@ -22,11 +23,7 @@ The relevant DataLayer commands can be found by running `chia data`:
 (venv) $ chia data -h
 ```
 
-Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
-
-1. The `-m` / `--fee` parameter can be specified explicitly in the command, as several of the examples in this document show
-2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
-3. If neither of these options is set, then no fee will be used
+Commands that modify the blockchain include an optional XCH fee, which can be added by using the `-m` / `--fee` parameter to the command.
 
 For commands that change the state of the DataLayer singleton (ie all on-chain commands), you will need to wait for confirmation before running another command. If you run a command before the previous transaction has been confirmed, you will receive this error: `Request failed: {'error': 'Already have a pending root waiting for confirmation.', 'success': False}`
 
@@ -49,7 +46,7 @@ Options:
 | -i            | --id            | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                          |
 | -a            | --amount        | INTEGER | True     | The amount (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized. Minimum `amount` is 0 |
 | -u            | --url           | TEXT    | False    | A URL where the mirror will reside. Can be repeated to add multiple URLs in the same command                       |
-| -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                           |
+| -m            | --fee           | TEXT    | False    | Set the fee for the transaction, in XCH                                                                           |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml           |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                       |
 
@@ -165,7 +162,7 @@ Options:
 | :------------ | :-------------- | :------ | :------: | :----------------------------------------------------------------------------------------------------------- |
 | -f            | --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                           |
 | -dp           | --data-rpc-port | INTEGER |  False   | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
-| -m            | --fee           | TEXT    |  False   | Set the fees for the transaction, in XCH                                                                     |
+| -m            | --fee           | TEXT    |  False   | Set the fee for the transaction, in XCH                                                                     |
 | -h            | --help          | None    |  False   | Show a help message and exit                                                                                 |
 
 <details>
@@ -314,7 +311,7 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                                  |
 | :------------ | :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -i            | --id            | TEXT    | True     | The coin_id of the mirror to delete (obtainable from the [get_mirrors](#get_mirrors) command)                |
-| -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                     |
+| -m            | --fee           | TEXT    | False    | Set the fee for the transaction, in XCH                                                                     |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                 |
 
@@ -548,7 +545,7 @@ Options:
 | -d            | --changelist    | TEXT    | True     | A JSON object representing the changelist                                                                |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
-| -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                 |
+| -m            | --fee           | TEXT    | False    | Set the fee for the transaction, in XCH                                                                 |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                             |
 
 A few notes on the `-d` / `--changelist` option:
