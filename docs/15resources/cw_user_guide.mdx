@@ -369,57 +369,6 @@ Regardless of the status of `FULL NODE`, you may safely proceed with this tutori
   <img src="/img/data_layer/10_synced.png" alt="Synced wallet" />
 </div><br/>
 
-17. Chia uses the coin set (similar to UTXO) model of accounting. If you transferred XCH to this wallet in one transaction, then you have one coin, worth the total balance. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee.
-
-First, click the `RECEIVE` panel and click the clipboard to copy your address:
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/11_copy_address.png" alt="Copy address" />
-</div><br/>
-
-Next:
-  * Click the `SEND` panel and paste your address in the `Address/Puzzle hash` field
-  * In the `Amount` field, enter approximately 25% of your total XCH value
-  * In the `Fee` field, enter a small fee. For this example, we'll use 100,000 mojos
-  * Click `SEND`
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/12_send_money.png" alt="Send money" />
-</div><br/>
-
-You will receive a dialog indicating that your transaction has been sent to the mempool. Click `OK`.
-
-Next, click the `SUMMARY` panel. If you only had 1 coin, then your `Spendable Balance` will be `0`. The transaction will be `Pending` for a minute or so:
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/13_send_pending.png" alt="Send pending" />
-</div><br/>
-
-:::warning warning
-If you attempt to send money while `Spendable Balance` is `0`, then you will receive an error dialog:
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/14_cant_send.png" alt="Cannot send" />
-</div><br/>
-:::
-
-After your transaction's status has changed from `Pending` to `Confirmed` and your `Spendable Balance` is greater than `0`, you will have two coins in your wallet. You should repeat the process to send yourself money two more times, increasing the amount a bit each time. For example, if you start with 1 XCH:
-* First, send 0.25 XCH
-* Next, send 0.26 XCH
-* Finally, send 0.27 XCH
-
-At this point you will have four coins in your wallet and you may proceed with the tutorial.
-
-:::warning important
-Be sure to vary the amount you send yourself, as shown above. If you continue to send yourself the same amount each time, then the coin matching the exact amount will be used. For example (**don't do this**):
-* Start with one coin worth 1 XCH
-* Send yourself 0.25 XCH
-  * The 1-XCH coin is automatically selected
-  * After the transaction has completed, you have two coins, worth 0.75 XCH and 0.25 XCH
-* Send yourself 0.25 XCH (the same amount)
-  * The 0.25-XCH coin is automatically selected
-  * After the transaction has completed, you still have 2 coins, worth 0.75 XCH and 0.25 XCH
-:::
-
 **Chia is now installed and configured properly. In the next sections, we'll install and configure the Climate Warehouse.**
 
 ---
