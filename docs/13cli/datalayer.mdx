@@ -23,7 +23,11 @@ The relevant DataLayer commands can be found by running `chia data`:
 (venv) $ chia data -h
 ```
 
-Commands that modify the blockchain include an optional XCH fee, which can be added by using the `-m` / `--fee` parameter to the command.
+Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
+
+1. The `-m` / `--fee` parameter can be specified explicitly in the command, as several of the examples in this document show
+2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
+3. If neither of these options is set, then no fee will be used
 
 For commands that change the state of the DataLayer singleton (ie all on-chain commands), you will need to wait for confirmation before running another command. If you run a command before the previous transaction has been confirmed, you will receive this error: `Request failed: {'error': 'Already have a pending root waiting for confirmation.', 'success': False}`
 
