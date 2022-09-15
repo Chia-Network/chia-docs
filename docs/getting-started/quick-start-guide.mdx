@@ -23,10 +23,11 @@ The Chia software is [easy to install](#install). You can start earning cryptocu
   defaultValue="installer"
   groupId="install"
   values={[
-    {label: 'Official Installer', value: 'installer'},
-    {label: 'Apt', value: 'apt'},
-    {label: 'Yum', value: 'yum'},
-    {label: 'From source', value: 'source'},
+    {label: 'Installer', value: 'installer'},
+    {label: 'APT', value: 'apt'},
+    {label: 'YUM', value: 'yum'},
+    {label: 'DNF', value: 'dnf'},
+    {label: 'Source', value: 'source'},
     {label: 'Dev Builds', value: 'dev'},
 ]}>
 <TabItem value="installer">
@@ -66,8 +67,21 @@ For convenience, direct links are provided to the latest installer builds. Howev
 ```
 
 ```bash
-python3 -m venv venv
-. ./venv/bin/activate
+# Install packages
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+
+# Add GPG key
+curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/chia.gpg
+
+# Set up repository
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/debian/ stable main" | sudo tee /etc/apt/sources.list.d/chia.list > /dev/null
+sudo apt-get update
+
+# Install Chia
+sudo apt-get install chia-blockchain
+
+# Use chia-blockchain-cli instead for CLI only
 ```
 
 ```mdx-code-block
@@ -76,8 +90,30 @@ python3 -m venv venv
 ```
 
 ```bash
-python3 -m venv venv
-. ./venv/bin/activate
+# Install packages
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://repo.chia.net/rhel/chia-blockchain.repo
+
+# Install Chia
+sudo yum install chia-blockchain
+
+# Use chia-blockchain-cli for CLI only
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="dnf">
+```
+
+```bash
+# Install packages
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://repo.chia.net/rhel/chia-blockchain.repo
+
+# Install Chia
+sudo dnf install chia-blockchain
+
+# Use chia-blockchain-cli for CLI only
 ```
 
 ```mdx-code-block
@@ -95,9 +131,7 @@ python3 -m venv venv
 </Tabs>
 ```
 
-## Install Chia {#install-chia}
-
-The easiest way to install Chia is to use an installer. Here is the installer for [Windows](https://download.chia.net/latest/Setup-Win64.exe) and the installer for [Mac](https://download.chia.net/latest/Setup-MacOS.dmg).
+The easiest way to install Chia is to use an installer. However, you can install from source if you want some extra control over the client.
 
 For more detailed steps you can follow [these install instructions](/chia-installation-guide) according to your operating system. This software only supports 64 bit operating systems.
 
