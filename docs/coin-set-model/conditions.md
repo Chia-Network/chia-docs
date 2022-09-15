@@ -1,6 +1,6 @@
 ---
-title: Conditions
 slug: /conditions
+title: Conditions
 ---
 
 When a coin is spent, its puzzle is executed on the Chialisp Virtual Machine (CLVM). If the program does not fail, it returns a list of conditions. These conditions determine what the outcome of the spend is, and whether or not the spend is valid.

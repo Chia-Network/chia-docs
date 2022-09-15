@@ -84,6 +84,7 @@ module.exports = {
         'coin-set-model/conditions',
         'coin-set-model/spend-bundles',
         'coin-set-model/addresses',
+        'coin-set-model/security',
       ],
     },
     {
@@ -121,16 +122,16 @@ module.exports = {
             'consensus/epoch-and-difficulty',
           ],
         },
-      {
-        type: 'category',
-        label: 'Block Validation',
-        items: [
-          'block-validation/block-validation',
-          'consensus/light-clients',
-          'block-validation/block-format',
-          'block-validation/block-rewards',
-        ],
-      },
+        {
+          type: 'category',
+          label: 'Block Validation',
+          items: [
+            'block-validation/block-validation',
+            'consensus/light-clients',
+            'block-validation/block-format',
+            'block-validation/block-rewards',
+          ],
+        },
         'consensus/timelords',
         'consensus/attacks-and-countermeasures',
         'consensus/analysis',
