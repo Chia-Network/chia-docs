@@ -81,7 +81,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               position: 'left',
             },
             {
-              href: 'https://github.com/Chia-Network/chia-docs',
+              href: 'https://github.com/Chia-Network/chia-blockchain',
               label: 'GitHub',
               position: 'left',
             },
