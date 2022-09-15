@@ -7,15 +7,15 @@ This section will provide a basic overview of Chia's network. We'll go into much
 
 ### Chia's Network
 
-There are different types of peer-to-peer (P2P) networks, such as BitTorrent, Bitcoin, and Chia. The Chia network is a blockchain that performs several major functions, including processing financial transactions, running programs written in Chialisp, and minting tokens from XCH (Chia's base currency). The network is composed of hundreds of thousands of nodes, each of which stores a copy of the blockchain's history, while also propagating new transactions across the network.
+There are different types of peer-to-peer (P2P) networks, such as BitTorrent, Bitcoin, and Chia. The Chia network is a blockchain that performs several major functions, including processing financial transactions, running programs written in [Chialisp](https://chialisp.com) on the [Chialisp Virtual Machine (CLVM)](https://chialisp.com/clvm), and minting tokens from XCH (Chia's base currency). The network is composed of hundreds of thousands of nodes, each of which stores a copy of the blockchain's history, while also propagating new transactions across the network.
 
 ### Coins and Transactions
 
-Chia uses the coin set (UTXO) model to keep track of the network's state. In this model, a coin is a first-class object. Each coin is locked with a Chialisp program called a _puzzle_, which is then hashed to create a _puzzlehash_. The coin's ID is a hash of its parent coin's ID, its puzzlehash, and its amount.
+Chia uses the coin set (UTXO) model to keep track of the network's state. In this model, a coin is a first-class object. Each coin is locked with a serialized CLVM program called a _puzzle_, which is then hashed to create a _puzzle hash_. The coin's ID is a hash of its parent coin's ID, its puzzlehash, and its amount.
 
 Each transaction in Chia must spend at least one coin. In order to spend a coin, one must provide the original puzzle, as well as a valid solution, and an optional aggregated signature. Multiple coins can communicate with each other in the same transaction by using _announcements_.
 
-For more info about the coin set model and Chia's on-chain programming environment, see [Chialisp.com](https://chialisp.com).
+For more information check out the [Coin Set Intro page](/coin-set-intro) and the [Chialisp.com](https://chialisp.com) website.
 
 ### Full Nodes
 

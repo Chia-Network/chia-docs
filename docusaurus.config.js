@@ -99,7 +99,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               items: [
                 {
                   label: 'White Paper',
-                  to: 'https://www.chia.net/approach',
+                  to: 'https://chia.net/approach',
                 },
               ],
             },
@@ -108,11 +108,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               items: [
                 {
                   label: 'Green Paper',
-                  to: 'https://www.chia.net/greenpaper',
+                  to: 'https://chia.net/greenpaper',
                 },
                 {
                   label: 'Consensus 1.1',
-                  to: 'https://www.chia.net/assets/Chia-New-Consensus-0.9.pdf',
+                  to: 'https://chia.net/assets/Chia-New-Consensus-0.9.pdf',
                 },
               ],
             },
@@ -121,11 +121,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               items: [
                 {
                   label: 'Grants',
-                  to: 'https://www.chia.net/grants',
+                  to: 'https://chia.net/grants',
                 },
                 {
                   label: 'Chialisp',
-                  to: 'https://www.chialisp.com',
+                  to: 'https://chialisp.com',
                 },
               ],
             },
@@ -147,7 +147,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               ],
             },
           ],
-          copyright: `© ${new Date().getFullYear()} Chia Network Inc., Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://www.chia.net/terms">Terms</a>`,
+          copyright: `© ${new Date().getFullYear()} Chia Network Inc., Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://chia.net/terms">Terms</a>`,
         },
         prism: {
           darkTheme: require('./src/theme/prism-dark-theme-chialisp'),

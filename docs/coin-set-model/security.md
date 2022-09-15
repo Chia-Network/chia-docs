@@ -3,7 +3,7 @@ slug: /coin-set-security
 title: Security
 ---
 
-When writing Chialisp, security concerns should be at the front of your mind. The language is specifically designed to secure money on a network with _no centralized authority_ to enforce rules. The only thing standing in the way of attackers and potentially large sums of money is how you design smart coins.
+When creating smart coins, security concerns should be at the front of your mind. The language is specifically designed to secure money on a network with _no centralized authority_ to enforce rules. The only thing standing in the way of attackers and potentially large sums of money is how you design smart coins.
 
 ## Signing the Solution {#signing}
 
@@ -58,6 +58,6 @@ Instead, make sure to pre-commit to things with hashes and then assert that they
 
 ## Conclusion
 
-Hopefully you have a better idea of what risks are involved when creating a Chialisp puzzle. It's very worth your time to try and exploit your puzzles by passing in dangerous solutions or leaving out transactions/signatures.
+Hopefully you have a better idea of what risks are involved when creating a smart coin. It's very worth your time to try and exploit your puzzles by passing in dangerous solutions or leaving out transactions/signatures.
 
 You're not just trying to protect against bad actors, but also against people accidentally bricking their coins. Puzzles are usually pretty permanent, so it's worth the extra time.
