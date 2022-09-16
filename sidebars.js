@@ -64,6 +64,8 @@ module.exports = {
         'rpc-reference/dids',
         'rpc-reference/nfts',
         'rpc-reference/offers',
+        'rpc-reference/datalayer',
+        'rpc-reference/climate-warehouse',
       ],
     },
     {
@@ -74,6 +76,7 @@ module.exports = {
         'cli-reference/dids',
         'cli-reference/nfts',
         'cli-reference/offers',
+        'cli-reference/datalayer',
       ],
     },
     {
@@ -191,6 +194,7 @@ module.exports = {
       items: [
         'resources/references',
         'resources/chia-farming-workload',
+        'resources/climate-warehouse-guide',
         'resources/faq',
       ],
     },
