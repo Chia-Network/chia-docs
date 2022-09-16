@@ -18,6 +18,12 @@ The Chia software is [easy to install](#install). You can start earning cryptocu
 
 ## Install Chia {#install}
 
+The easiest way to install Chia is to use an installer. However, you can install from source if you want some extra control over the client.
+
+For more detailed steps you can follow [these install instructions](/chia-installation-guide) according to your operating system. This software only supports 64 bit operating systems.
+
+### Binaries
+
 ```mdx-code-block
 <Tabs
   defaultValue="installer"
@@ -27,8 +33,6 @@ The Chia software is [easy to install](#install). You can start earning cryptocu
     {label: 'APT', value: 'apt'},
     {label: 'YUM', value: 'yum'},
     {label: 'DNF', value: 'dnf'},
-    {label: 'Source', value: 'source'},
-    {label: 'Dev Builds', value: 'dev'},
 ]}>
 <TabItem value="installer">
 ```
@@ -40,22 +44,6 @@ The Chia software is [easy to install](#install). You can start earning cryptocu
 - [Ubuntu/Debian](https://download.chia.net/latest/x86_64-Ubuntu-gui)
 - [Ubuntu/Debian ARM](https://download.chia.net/latest/ARM64-Ubuntu-gui)
 - [CentOS/Redhat](https://download.chia.net/latest/x86_64-Redhat-gui)
-
-:::caution
-For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
-:::
-
-```mdx-code-block
-</TabItem>
-<TabItem value="dev">
-```
-
-- [Windows](https://download.chia.net/latest-dev/ChiaSetup-latest-dev.exe) _Dev build_
-- [macOS Apple Silicon](https://download.chia.net/latest-dev/Chia-arm64_latest_dev.dmg) _Dev build_
-- [macOS Intel](https://download.chia.net/latest-dev/Chia-intel_latest_dev.dmg) _Dev build_ _[Catalina 10.15 and later]_
-- [Ubuntu/Debian](https://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb) _Dev build_
-- [Ubuntu/Debian ARM](https://download.chia.net/latest-dev/chia-blockchain_arm64_latest_dev.deb) _Dev build_
-- [CentOS/Redhat](https://download.chia.net/latest-dev/chia-blockchain-1.x86_64_latest_dev.rpm) _Dev build_
 
 :::caution
 For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
@@ -79,6 +67,9 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.
 sudo apt-get update
 
 # Install Chia
+
+
+
 sudo apt-get install chia-blockchain
 
 # Use chia-blockchain-cli instead for CLI only
@@ -118,22 +109,94 @@ sudo dnf install chia-blockchain
 
 ```mdx-code-block
 </TabItem>
-<TabItem value="source">
+</Tabs>
 ```
 
-```bash
-python3 -m venv venv
-. ./venv/bin/activate
+### Source
+
+```mdx-code-block
+<Tabs
+  defaultValue="linux-macos-source"
+  groupId="source"
+  values={[
+    {label: 'Linux/MacOS Source', value: 'linux-macos-source'},
+    {label: 'Windows Source', value: 'windows-source'},
+    {label: 'Developer Builds', value: 'developer-builds'},
+]}>
+<TabItem value="linux-macos-source">
 ```
+
+:::note
+
+Make sure you have Python 3.9 installed.
+
+:::
+
+```bash
+# Download chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain
+
+# Install dependencies
+sh install.sh
+
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+. ./venv/bin/activate
+
+# Initialize
+chia init
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="windows-source">
+```
+
+:::note
+
+Make sure you have Python 3.9 and Git installed.
+
+:::
+
+```bash
+# Download chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain
+
+# Install dependencies
+./Install.ps1
+
+# Create virtual environment
+py -m venv venv
+
+# Activate virtual environment
+. ./venv/Scripts/Activate.ps1
+
+# Initialize
+chia init
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="developer-builds">
+```
+
+- [Windows](https://download.chia.net/latest-dev/ChiaSetup-latest-dev.exe) _Dev build_
+- [macOS Apple Silicon](https://download.chia.net/latest-dev/Chia-arm64_latest_dev.dmg) _Dev build_
+- [macOS Intel](https://download.chia.net/latest-dev/Chia-intel_latest_dev.dmg) _Dev build_ _[Catalina 10.15 and later]_
+- [Ubuntu/Debian](https://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb) _Dev build_
+- [Ubuntu/Debian ARM](https://download.chia.net/latest-dev/chia-blockchain_arm64_latest_dev.deb) _Dev build_
+- [CentOS/Redhat](https://download.chia.net/latest-dev/chia-blockchain-1.x86_64_latest_dev.rpm) _Dev build_
+
+:::caution
+For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
+:::
 
 ```mdx-code-block
 </TabItem>
 </Tabs>
 ```
-
-The easiest way to install Chia is to use an installer. However, you can install from source if you want some extra control over the client.
-
-For more detailed steps you can follow [these install instructions](/chia-installation-guide) according to your operating system. This software only supports 64 bit operating systems.
 
 All configuration data is stored in a directory structure at the `$CHIA_ROOT` environment variable or at `~/.chia/mainnet/`. You can find databases, and logs there. Optionally, you can set `$CHIA_ROOT` to the `.chia` directory in your home directory with `export CHIA_ROOT=~/.chia` and if you add it to your `.bashrc` or `.zshrc` it will remain set across logouts and reboots. If you set `$CHIA_ROOT` you will have to migrate configuration items by hand or unset the variable for `chia init` to work with `unset CHIA_ROOT`.
 
