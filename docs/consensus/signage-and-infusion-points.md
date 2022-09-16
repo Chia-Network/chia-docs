@@ -57,7 +57,7 @@ The **infusion_iterations** is the number of iterations from the start of the su
 Therefore, infusion_iterations will be between 3 and 4 signage points after the current signage point. Farmers must submit their proofs and blocks before the infusion point is reached. The modulus is there to allow overflows into the next sub-slot, if the signage point is near the end of the sub-slot. This is expanded on in the [Overflow Blocks and Weight page](/overflow-blocks).
 
 :::info
-More information on infusion points is available in the [VDFs page](/consensus-vdfs#infusion).
+More information on infusion points is available in the [VDFs page](/proof-of-time#infusion).
 :::
 
 <figure>

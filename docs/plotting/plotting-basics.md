@@ -54,7 +54,7 @@ Inside each plot is a large number of pre-formulated calculations stored in a la
 
 ### The CLI - Command-line Interface
 
-The [CLI](/clis) is the more advanced way to use Chia. The CLI can do everything the GUI can do and more (like better utilize your hardware to optimize plotting). It is recommended you start with the GUI to understand the basics of Chia before starting to use the CLI.
+The [CLI](/cli) is the more advanced way to use Chia. The CLI can do everything the GUI can do and more (like better utilize your hardware to optimize plotting). It is recommended you start with the GUI to understand the basics of Chia before starting to use the CLI.
 
 ## Setting Expectations
 

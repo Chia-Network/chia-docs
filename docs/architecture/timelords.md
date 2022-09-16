@@ -3,7 +3,7 @@ title: Timelords
 slug: /timelord-architecture
 ---
 
-Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/consensus-vdfs)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
+Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/proof-of-time)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
 
 Since this computation is sequential, very little energy is consumed, as opposed to proof-of-work systems, where computation is parallelizable. For example, if 100 timelords are doing the same computation on a proof of time, they will all create the exact same output.
 

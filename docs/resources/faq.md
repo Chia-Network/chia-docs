@@ -137,7 +137,7 @@ Beginning in 1.3, Chia uses version 2 of its blockchain database. The new databa
 
 If you install a brand new full node in Chia 1.3 or later, version 2 of the database will be created when you run `chia init`. If you want to stick with version 1, simply run `chia init --v1-db` instead.
 
-If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/clis).
+If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli).
 
 You do not need to stop Chia in order to perform the upgrade. This is because the program performing the upgrade only needs to _read_ from your original database file, while your upgraded file will be written alongside it in the same folder. Be sure you have enough free space on the disk that contains your database file to write the new file.
 

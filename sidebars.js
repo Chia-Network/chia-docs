@@ -59,7 +59,7 @@ module.exports = {
       type: 'category',
       label: 'RPC Reference',
       items: [
-        'rpc-reference/rpcs',
+        'rpc-reference/rpc',
         'rpc-reference/full-node',
         'rpc-reference/dids',
         'rpc-reference/nfts',
@@ -70,7 +70,7 @@ module.exports = {
       type: 'category',
       label: 'CLI Reference',
       items: [
-        'cli-reference/clis',
+        'cli-reference/cli',
         'cli-reference/dids',
         'cli-reference/nfts',
         'cli-reference/offers',

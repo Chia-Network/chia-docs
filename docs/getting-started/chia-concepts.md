@@ -41,7 +41,7 @@ While "XCH" is a convenient way to denominate Chia coins, the blockchain only kn
 
 ### Timelord nodes
 
-Timelord nodes broadcast _proofs of time_ (explained in the [VDFs page](/consensus-vdfs)) around every nine seconds. This is equivalent to selecting and broadcasting the winning numbers in an ongoing lottery. When a farmer has a valid proof of space, they win the current lottery drawing. This allows them to process the highest-paying transactions from the mempool into a new block. They then broadcast this block to the rest of the network. Around one out of every three blocks contains transactions. The rest of the blocks are empty, but do pay a reward. (See the [Foliage page](/consensus-foliage) for more details.)
+Timelord nodes broadcast _proofs of time_ (explained in the [VDFs page](/proof-of-time)) around every nine seconds. This is equivalent to selecting and broadcasting the winning numbers in an ongoing lottery. When a farmer has a valid proof of space, they win the current lottery drawing. This allows them to process the highest-paying transactions from the mempool into a new block. They then broadcast this block to the rest of the network. Around one out of every three blocks contains transactions. The rest of the blocks are empty, but do pay a reward. (See the [Foliage page](/consensus-foliage) for more details.)
 
 :::info
 The timelord algorithm is explained in the [Timelord Algorithm page](/timelord-algorithm).

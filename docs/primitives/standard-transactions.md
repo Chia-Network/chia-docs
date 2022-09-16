@@ -153,7 +153,7 @@ Next, create an instance of the standard transaction puzzle using the synthetic 
 opc -H "puzzle"
 ```
 
-Finally, convert the puzzle hash to a [bech32m address](/coin-set-addresses) using the following command:
+Finally, convert the puzzle hash to a [bech32m address](/addresses) using the following command:
 
 ```bash
 cdv encode -p xch "hash"
