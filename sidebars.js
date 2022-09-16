@@ -190,6 +190,17 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Prefarm Custody',
+      items: [
+        'prefarm-custody/prefarm-custody-testing',
+        'prefarm-custody/prefarm-cold-custodial-wallets',
+        'prefarm-custody/custom-testnet',
+        'prefarm-custody/testnet10-configuration',
+        'prefarm-custody/custody-tool-cli-reference',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Resources',
       items: [
         'resources/references',
