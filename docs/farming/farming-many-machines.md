@@ -33,7 +33,7 @@ Then for each harvester, follow these steps:
 **NOTE:** For step 4, you are using a copy of your `/ca` directory from your main machine temporarily. DO NOT replace the `/ca` folder on your harvester. Put the `/ca` directory into a temp folder on your harvester. You're going to show your harvester these files temporarily and then you can delete the `/ca` directory in your temp folder.
 
 1. Make sure your **main** machines IP address on port 8447 is accessible by your harvester machines
-2. Shut down all chia daemon processes with `chia stop all -d`
+2. Shut down all Chia daemon processes with `chia stop all -d`
 3. Make a backup of any settings in your harvester
 4. Run `chia init -c [directory]` on your harvester, where `[directory]` is the copy of your **main** machine `/ca` directory that you put in a temp folder. This command creates a new certificate signed by your **main** machine's CA.
 5. Open the `~/.chia/mainnet/config/config.yaml` file in each harvester, and enter your main machine's IP address in the remote **`harvester`**'s farmer_peer section (NOT `full_node`).  
@@ -109,7 +109,7 @@ In other words, _only use the keys specific to your machine's purpose_.
 In the [Farming on Many Machines page](/farming-on-many-machines) is this relevant tidbit:
 
 :::info
-When creating plots on the other harvesters, use `chia plots create -f farmer_key -p pool_key`, inserting the farmer and pool keys from your main machine. Alternatively, you could copy your private keys over by using chia keys add, but this is less secure.
+When creating plots on the other harvesters, use `chia plots create -f farmer_key -p pool_key`, inserting the farmer and pool keys from your main machine. Alternatively, you could copy your private keys over by using `chia keys add`, but this is less secure.
 :::
 
 ### Harvesting On Multiple Machines
@@ -121,7 +121,7 @@ Follow the instructions on setting up certificates on harvesters on the [Farming
 One way to not get your wallet hacked is to not have it accessible to the internet. Here is how to do this: [Chia Keys Management](/chia-key-management)
 
 :::info
-Your reward address for chia rewards should be a separate key as well, kept in an offline machine. You can generate an address on a different computer, and put this address in the config.yaml (farmer.xch_target_address and pool.xch_target_address), so if your farming machine gets hacked, you don't lose past rewards. ([Source](https://github.com/Chia-Network/chia-blockchain/discussions/1116#discussioncomment-420398))
+Your reward address for Chia rewards should be a separate key as well, kept in an offline machine. You can generate an address on a different computer, and put this address in the config.yaml (farmer.xch_target_address and pool.xch_target_address), so if your farming machine gets hacked, you don't lose past rewards. ([Source](https://github.com/Chia-Network/chia-blockchain/discussions/1116#discussioncomment-420398))
 :::
 
 ## How to Find Your Keys

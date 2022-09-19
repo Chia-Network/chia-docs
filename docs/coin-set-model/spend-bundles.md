@@ -43,7 +43,7 @@ Another benefit of these aggregate signatures is that when spending multiple coi
 
 ## Coins vs Spend Bundles
 
-One major difference between Chia and other UTXO-based blockchain systems is that spend bundles are not a first-class object in the block database. Each block in chia contains a list of removals and additions, where removals are the coins spent in that block, and additions are the coins added in that block.
+One major difference between Chia and other UTXO-based blockchain systems is that spend bundles are not a first-class object in the block database. Each block in Chia contains a list of removals and additions, where removals are the coins spent in that block, and additions are the coins added in that block.
 
 Let's say a farmer wants to include 1000 spend bundles into a block. First, they can combine all spend bundles into one, and then they can make the block. Each block will have exactly one signature for all spends. Full nodes that verify and store this block do not need to know the original information of which spends were bundled with which other spends.
 

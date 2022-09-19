@@ -18,7 +18,7 @@ A trick is to rename a plot file from _.plot to _.plot-mv, copy/move it, and ren
 
 Pre-requisite: You'd need to have the same keys on the new machine.
 
-1. Install chia on the new machine
+1. Install Chia on the new machine
 2. Find your private keys using `chia keys show --show-mnemonic-seed` on the old machine, or on the UI by clicking on "Keys".
 3. Copy the 24 mnemonic words (this is your private key) and add them to the new machine using `chia keys add`
 4. Move the plot file

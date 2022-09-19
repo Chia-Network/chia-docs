@@ -23,10 +23,10 @@ First, here is how you switch between farming and wallet mode.
   <img alt='settings' src='/img/settings.png' width='300' />
 </p>
 
-At the bottom of the settings you'll see the option for setting a passphrase. This is an additional layer of security that requires a password to access the chia client.
+At the bottom of the settings you'll see the option for setting a passphrase. This is an additional layer of security that requires a password to access the Chia client.
 
 :::warning
-Enabling a passphrase is a recommended step for protecting your funds, but it only protects your local chia client. This may stop someone from steeling your funds while you're away from your desk, but does not protect your funds if someone gains access to your 24 words.
+Enabling a passphrase is a recommended step for protecting your funds, but it only protects your local Chia client. This may stop someone from steeling your funds while you're away from your desk, but does not protect your funds if someone gains access to your 24 words.
 :::
 
 ## Syncing
@@ -37,7 +37,7 @@ Upon opening Chia, your client will need to sync. You'll need to see a **sycned*
   <img alt='synced' src='/img/synced.png' width='300' />
 </p>
 
-All transactions on the Chia blockchain are added to blocks. Theese blocks are downloaded sequentially as your client syncs. If someone has sent you Chia (or any other tokens on the chia blockchain), your node doesn't know the transaction exists until you've synced past that block.
+All transactions on the Chia blockchain are added to blocks. Theese blocks are downloaded sequentially as your client syncs. If someone has sent you Chia (or any other tokens on the Chia blockchain), your node doesn't know the transaction exists until you've synced past that block.
 
 ## Tokens
 

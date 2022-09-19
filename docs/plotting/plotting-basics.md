@@ -99,7 +99,7 @@ This will show you how many plots you have created. On the top it will show how 
 
 Once that match shows on the first line, it will move down to lines 2-5, then if another plot passes step 1, it starts at the top also, and moves its way done the filter process.
 
-Winning is very rare, and on average one person wins in the whole world every 18 seconds. On every signage point (9 seconds), all of your plots are checked to see which ones passes the [plot filter](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). Approximately 1/512 of all plots will pass the plot filter for each challenge, so here you can see how many of your plots passed. With a new block every 18 seconds there are 4,608 chances to win chia every day.
+Winning is very rare, and on average one person wins in the whole world every 18 seconds. On every signage point (9 seconds), all of your plots are checked to see which ones passes the [plot filter](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). Approximately 1/512 of all plots will pass the plot filter for each challenge, so here you can see how many of your plots passed. With a new block every 18 seconds there are 4,608 chances to win XCH every day.
 
 If for some reason those lines stop moving that is another indication you are not in sync with the database and need to resync—see below.
 
@@ -124,7 +124,7 @@ If for some reason a plot fails to complete, it has to be deleted by deleting al
 Make sure you are aware of [SSD Endurance](/ssd-endurance).
 :::
 
-5. Select a final directory. This is where the final plot file will be copied to. Once the plot is created it will go to this location to be farmed to earn chia. Storage will fill quickly due to the size of plots. Storage can be internal or usb connected drives.
+5. Select a final directory. This is where the final plot file will be copied to. Once the plot is created it will go to this location to be farmed to earn XCH. Storage will fill quickly due to the size of plots. Storage can be internal or usb connected drives.
 
 :::info
 Network drives can work but could congest your local network or be too slow to respond for rewards (the max is 30 seconds, but under 5 is ideal). It is recommended that you set the first `log_level` to `INFO` in `config.yaml` which will allow you to see extra information in `debug.log`.
@@ -171,7 +171,7 @@ Phases:
 ## Proofs
 
 `Proof`: It is found inside the plot. Millions of "excel blocks" with formulas called proofs of space.
-The Chia software is designed to work on a lottery system. A key element to winning the lottery of earning coins is that the more plots you have, the more proofs you have, and therefore the higher chances of winning. Someone with 1% of all the plotted space, will win about 1% of all the blocks. There are about 4608 blocks per day, each rewarding 2 new chia, so 9216 chia are created per day.
+The Chia software is designed to work on a lottery system. A key element to winning the lottery of earning coins is that the more plots you have, the more proofs you have, and therefore the higher chances of winning. Someone with 1% of all the plotted space, will win about 1% of all the blocks. There are about 4608 blocks per day, each rewarding 2 new chia, so 9216 XCH are created per day.
 
 The Chia farming software gets a challenge, lets say 2021. It’s going to look through lookup tables on the front of the plots. Find the closest to 2021 and this is where the time comes into play. That proof (excel block hash) has a certain quality, and only proofs that are of a certain quality or better are eligible for winning.
 

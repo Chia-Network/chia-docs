@@ -50,7 +50,7 @@ The CLI one is the one referred to in this document, and for version 1.1.3 it ca
 
 Command: `chia init`
 
-First, `init` checks for old versions of chia installed in your ~/.chia directory.
+First, `init` checks for old versions of Chia installed in your ~/.chia directory.
 
 If so, `init` migrates these old files to the new version:
 
@@ -61,7 +61,7 @@ If so, `init` migrates these old files to the new version:
 
 If no old version exists, `init`:
 
-- Creates a default chia configuration
+- Creates a default Chia configuration
 - Initializes a new SSL key and cert (for secure communication with the GUI)
 
 # start
@@ -163,9 +163,9 @@ Command: `chia plots create [add flags and parameters]`
 
 `-b` [memory buffer size MiB]: Define memory/RAM usage. Default is 4608 (4.6 GiB). More RAM will marginally increase speed of plot creation. Please bear in mind that this is what is allocated to the plotting algorithm alone. Code, container, libraries etc. will require additional RAM from your system.
 
-`-f` [farmer pk]: This is your "Farmer Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full chia account access. To find your Chia Farmer Public Key use the following command: `chia keys show`
+`-f` [farmer pk]: This is your "Farmer Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full Chia account access. To find your Chia Farmer Public Key use the following command: `chia keys show`
 
-`-p` [pool pk]: This is your "Pool Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full chia account access. To find your Chia Pool Public Key use the following command: `chia keys show`
+`-p` [pool pk]: This is your "Pool Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full Chia account access. To find your Chia Pool Public Key use the following command: `chia keys show`
 
 `-c` [pool contract address]: This is your "Pool Contract Address". This replaces your Pool Public Key used previously in OG plots. This is used to point a plot to a plotNFT, which allows you to switch plots from local farming to pooling. To find your PlotNFT Contract Addres use the following command: `chia plotnft show`
 
@@ -425,11 +425,11 @@ Commands:
   keys        Manage your keys
   netspace    Estimate total farmed space on the network
   plots       Manage your plots
-  run_daemon  Runs chia daemon
+  run_daemon  Runs Chia daemon
   show        Show node information
   start       Start service groups
   stop        Stop services
-  version     Show chia version
+  version     Show Chia version
   wallet      Manage your wallet
 
 ```

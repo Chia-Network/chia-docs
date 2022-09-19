@@ -21,10 +21,11 @@ A VDF, also known as a proof of time, is a sequential operation that takes a pre
 
 XCH is the currency symbol for Chia. TXCH is the currency symbol currently being used for testnet chias. TXCH has no value and is only used for testing purposes. Chias and testnet chias can be divided up to 12 decimal places (trillionths). The smallest unit of chia, a trillionth of a chia, is called a mojo, as a tribute to [Mojo Nation](<https://en.wikipedia.org/wiki/Mnet_(peer-to-peer_network)#Evil_Geniuses_for_a_Better_Tomorrow>), a decentralized file storage platform created in the early 2000s by Zooko Wilcox, Bram Cohen, and others.
 
-## Chia vs chia - "chia" capitalization
+## Chia vs XCH vs Mojo
 
-- **Chia** - depending on context, this can refer to Chia Network the company, the Chia software (Chia client), or the Chia blockchain
-- **chia** - lowercase _chia_ refers to the Chia token, XCH. Similarly, _mojos_ are lowercase.
+- **Chia** - depending on context, this can refer to Chia Network the company, the Chia software (Chia client), or the Chia blockchain.
+- **XCH** - refers to the Chia token, XCH.
+- **Mojo** - a trillionth of an XCH.
 
 # Plotting
 

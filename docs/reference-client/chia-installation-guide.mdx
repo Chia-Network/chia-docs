@@ -59,7 +59,7 @@ See [install from source](#install-from-source) for detailed instruction.
 
 ## Ubuntu / Debian {#ubuntu}
 
-You can install Chia Blockchain in different ways, depending on your needs:
+You can install `chia-blockchain` in different ways, depending on your needs:
 
 - Set up Chia's repositories and install from them, for ease of installation and upgrade.
 
@@ -69,7 +69,7 @@ You can install Chia Blockchain in different ways, depending on your needs:
 
 ### Install using the repository
 
-Before you install Chia Blockchain for the first time on a new machine, you need to set up the Chia repository. Afterward, you can install and update Chia Blockchain from the repository.
+Before you install `chia-blockchain` for the first time on a new machine, you need to set up the Chia repository. Afterward, you can install and update `chia-blockchain` from the repository.
 
 #### Set up the repository
 
@@ -95,7 +95,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.
 
 #### Install Chia Blockchain
 
-1. Update the `apt` package index and install the latest stable version of Chia Blockchain
+1. Update the `apt` package index and install the latest stable version of `chia-blockchain`
 
 ```
 sudo apt-get update
@@ -130,7 +130,7 @@ You can install Chia Blockchain in different ways, depending on your needs:
 
 ### Install using the YUM / DNF repository
 
-Before you installer Chia Blockchain for the first time on a new machine, you need to set up the Chia repository. Afterward, you can install and update Chia Blockchain from the repository.
+Before you install `chia-blockchain` for the first time on a new machine, you need to set up the Chia repository. Afterward, you can install and update `chia-blockchain` from the repository.
 
 #### Set up and Install Using YUM
 
@@ -397,12 +397,12 @@ Use `deactivate` should you want to exit the venv. If you're not a fan of dots, 
 
 ### Troubleshooting
 
-Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version. Make sure all daemons and chia processes are killed before installing or upgrading.
+Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version. Make sure all daemons and Chia processes are killed before installing or upgrading.
 
 This is normally done by executing `chia stop -d all` from the upgrade example above.  
-But it doesn't hurt to double check using `ps -Af | grep chia` to make sure there are no chia processes left running. You may have to manually kill the chia daemon if an install and chia start was performed without first running `chia stop -d all`
+But it doesn't hurt to double check using `ps -Af | grep chia` to make sure there are no Chia processes left running. You may have to manually kill the Chia daemon if an install and `chia start` was performed without first running `chia stop -d all`
 
-If all else fails, rebooting the machine and restarting the chia daemon/processes usually does the trick.
+If all else fails, rebooting the machine and restarting the Chia daemon/processes usually does the trick.
 
 ## Testnets
 

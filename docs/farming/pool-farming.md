@@ -38,7 +38,7 @@ IMPORTANT: If you are using the same key (24 words) on more than one computer, y
 
 ### Step 2: Receive some XCH
 
-To start pooling, you first need a tiny amount of chia in your wallet. You can ask your friends to send you some mojos
+To start pooling, you first need a tiny amount of Chia in your wallet. You can ask your friends to send you some mojos
 (1 mojo is 0.000000000001 XCH), or get some using https://faucet.chia.net/. You can use the receive address on the "Wallets" page, and you can also create new receive addresses. Any of the receive addresses can be used, they are all part of the same wallet.
 
 ### Step 3: Create Plot NFT
@@ -240,7 +240,7 @@ We want there to be a healthy ecosystem of competing pools with no privileged of
 
 ## Can I name my pool chiapool.com?
 
-We are not going to allow pools to use "Chia" as the first word or its equivalent (the chia pool). You can say things like "a Chia pool" though that will probably need a free and easy to get license. Go to https://www.chia.net/terms/ to get more information on obtaining a license.
+We are not going to allow pools to use "Chia" as the first word or its equivalent (the Chia pool). You can say things like "a Chia pool" though that will probably need a free and easy to get license. Go to https://www.chia.net/terms/ to get more information on obtaining a license.
 
 ## If a pool gets 51% of netspace, can they take over the network?
 
@@ -327,7 +327,7 @@ multiply by 10. This allows participating easily with k25s on testnet.
 
 ## What is the expected ratio between a k32 and a k25?
 
-Look at the file `win_simulation.py` on this repo. This uses the function `_expected_plot_size` from chia blockchain,
+Look at the file `win_simulation.py` on this repo. This uses the function `_expected_plot_size` from chia-blockchain,
 which uses the formula: `((2 * k) + 1) * (2 ** (k - 1))` to compute plot size. Plug in your k values and divide.
 
 ## How to calculate how many partials with X difficulty a certain plot with Y size can get in Z time?

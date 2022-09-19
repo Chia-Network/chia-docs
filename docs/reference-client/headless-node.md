@@ -7,7 +7,7 @@ Exposing a Chia daemon to the network is an advanced configuration. This allows 
 
 **If you do not know how to configure and properly secure a computer network _do not_ use a remote daemon.**
 
-_Never_ expose the chia daemon to the internet.
+_Never_ expose the Chia daemon to the internet.
 
 # Setup
 
