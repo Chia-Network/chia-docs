@@ -1,4 +1,5 @@
 ---
+sidebar_label: Introduction
 title: Coin Set Intro
 slug: /coin-set-intro
 ---

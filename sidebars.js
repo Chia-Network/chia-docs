@@ -84,7 +84,7 @@ module.exports = {
       type: 'category',
       label: 'Coin Set Model',
       items: [
-        'coin-set-model/coin-set-intro',
+        'coin-set-model/intro',
         'coin-set-model/conditions',
         'coin-set-model/spend-bundles',
         'coin-set-model/addresses',
