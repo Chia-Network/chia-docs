@@ -21,7 +21,7 @@ Here's how we calculate iterations per second:
 
 ```python
 iterations per second = floor(num iterations in last epoch / duration of last epoch)
-                      = floor(i2 - i1 / t2 - t1)
+                      = floor((i2 - i1) / (t2 - t1))
 ```
 
 That is, the delta in total iterations from the start to the end of the epoch, divided by the delta in timestamps.

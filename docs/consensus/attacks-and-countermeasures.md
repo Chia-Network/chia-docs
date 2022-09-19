@@ -7,7 +7,7 @@ slug: /consensus-attacks
 
 In a majority attack, an attacker creates an alternate chain which eventually reaches a higher weight than the honest chain, and forces users to re-org. This attack is present on many blockchain networks including Chia's, as well as on Proof-of-Work systems. It is colloquially known as a "51% attack" because the attacker must control more than half of the blockchain's resources (hashrate for PoW, netspace for PoST) in order to succeed.
 
-However, Chia's consensus makes this attack more complex to evaluate than in Proof-of-Work systems, so we cannot make a flat 51% assumption. In analyzing this attack, there are several variables at play:
+Chia's consensus makes this attack more complex to evaluate than in Proof-of-Work systems. In analyzing this attack, there are several variables at play:
 
 - Number of timelords (regardless of speed)
   - The attacker must control at least one timelord for the attack to be possible.
@@ -23,7 +23,7 @@ However, Chia's consensus makes this attack more complex to evaluate than in Pro
 
 Before we can evaluate the percentage requirements for various scenarios, we must first calculate the range for the double-dip advantage.
 
-The white paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a majority attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
+The paper [Proof-of-Stake Longest Chain Protocols: Security vs Predictability](https://arxiv.org/pdf/1910.02218.pdf) outlines the equation to derive the minimum percentage of the network space an attacker would be required to have in order to undertake a majority attack, for chains using between 1 and 10 consecutive blocks with the same challenge. However, Chia uses a larger -- and variable -- amount of consecutive blocks with the same challenge. Because of this, we must solve the equation for two additional values:
 
 - 16 -- This is the minimum number of blocks in a slot. (See the [Overflow Blocks and Weight page](/overflow-blocks#minimum-block-requirement) for more info.) In the worst-case scenario, an attacker with an unbounded number of fast timelords could theoretically create a chain that always uses this minimum number, as explained in the next section.
 
@@ -88,7 +88,7 @@ For attacks lasting longer than one epoch, `DD` will not exceed 1.34313. In such
 
 Note that if we continue to increase `VA`, `DD` will always remain at 1.4678 for the first table, and 1.34313 for the second table. The percent of netspace required will decrease linearly.
 
-It is reasonable to assume that if a long-term attack were attempted, the attacker would have access to many timelords, but they wouldn't be significantly faster than the fastest honest timelord. Therefore, Chia uses a base line assumption of 42.7% of the netspace required to for the attacker to succeed.
+It is reasonable to assume that if a majority attack were attempted, the attacker's timelord wouldn't be significantly faster than the fastest honest timelord. Furthermore, it is unlikely that the attacker could gain access to an unbounded number of timeords, so the attacker would not gain the double-dip advantage. Therefore, Chia uses a base line assumption of 51% of the netspace required for a majority attack to have a chance at succeeding.
 
 To reduce the possibility of an attacker gaining access to a fast timelord, Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security).
 

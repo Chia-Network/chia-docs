@@ -22,7 +22,9 @@ To prevent a foliage re-org, honest farmers only create one foliage block per bl
 Furthermore, blocks like B3, which come parallel with another foliage block (B2), do not have to sign the previous foliage block, since they do not necessarily have enough time to see it.
 
 :::info
+
 By "coming in parallel", we mean that the second block’s signage point occurs before the first block's infusion point.
+
 :::
 
 The red arrows in the diagram represent a foliage pointer that is signed by the plot key for the proof of space in that block. The gray arrows represent a hash pointer which is not signed by the plot key (therefore the gray arrow in B3 can be replaced if B2 changes or is withheld). This prevents attacks where B2 modifies their block and forces B3 to re-org.

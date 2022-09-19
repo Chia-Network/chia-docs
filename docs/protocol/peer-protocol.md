@@ -9,7 +9,7 @@ The sender is the full node sending the message, and the recipient is the full n
 ## new_peak
 
 Sent to peers whenever our node's peak weight advances (whenever the blockchain moves forward).
-The fork point allows peers to detect how deep of a reorg happenned, and fetch the correct blocks.
+The fork point allows peers to detect how deep of a reorg happened, and fetch the correct blocks.
 The unfinished reward block hash allows the receiving peer to use their cache for unfinished blocks,
 since they most likely already have the unfinished
 version of the same block, and therefore don't need to re-request the block transactions generator.
@@ -64,7 +64,7 @@ class RespondTransaction(Streamable):
 ## request_proof_of_weight
 
 Request a weight proof from a peer. This is done right before starting a long sync. The weight proof allows our
-node to validate whether a `new_peak` that we received from a peer corresponds to an actual valid blokchain. It is
+node to validate whether a `new_peak` that we received from a peer corresponds to an actual valid blockchain. It is
 proof that a certain amount of "weight", or space and time, has been used on that blockchain.
 
 ```python

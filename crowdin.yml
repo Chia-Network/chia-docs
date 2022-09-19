@@ -4,7 +4,7 @@ preserve_hierarchy: true
 files: [
     # Docs Markdown files
     {
-      source: '/**/*',
+      source: '/docs/**/*',
       translation: '/i18n/%osx_locale%/docusaurus-plugin-content-docs/current/**/%original_file_name%',
     },
   ]

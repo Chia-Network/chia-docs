@@ -77,6 +77,7 @@ module.exports = {
         'cli-reference/nfts',
         'cli-reference/offers',
         'cli-reference/datalayer',
+        'cli-reference/cat-admin',
       ],
     },
     {
@@ -88,6 +89,9 @@ module.exports = {
         'coin-set-model/spend-bundles',
         'coin-set-model/addresses',
         'coin-set-model/security',
+        'coin-set-model/coin-set-vs-utxo',
+        'coin-set-model/coin-set-vs-account',
+        'coin-set-model/clvm-vs-evm',
       ],
     },
     {

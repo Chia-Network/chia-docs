@@ -13,11 +13,13 @@ An address is just a different way to display the puzzle hash, which contains so
 
 bech32m addresses have several features which make them attractive:
 
-- Checksum, which makes addresses invalid if only one character is modified.
+- [Checksum](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki#specification), which makes addresses invalid if only one character is modified.
 - An XCH prefix to distinguish from other cryptocurrencies.
-- Shorter than hex, and more compact than base58 addresses (and fit better in QR codes)
+- Shorter than hex, and more compact than base58 addresses (and fit better in QR codes).
 
 The blockchain consensus code does not operate with addresses; addresses are only used in user facing applications.
+
+Spacescan.io has a handy bi-directional [bech32m <\> puzzle hash converter](https://www.spacescan.io/xch/tools/puzzlehashconvertor).
 
 # Chia Burn Address
 

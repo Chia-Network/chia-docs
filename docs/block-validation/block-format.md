@@ -22,5 +22,3 @@ The FullBlock has fields for both the trunk and the foliage of the blockchain. T
 - **transactions_info**: Optional[TransactionsInfo]: Transaction related metadata that is not relevant for light clients (not actual transactions), only for tx blocks.
 - **transactions_generator**: Optional[SerializedProgram]: A clvm program that generates all transactions (spends).
 - **transactions_generator_ref_list**: List[uint32]: A list of block heights of previous generators referenced by this block's generator.
-
-// TODO: include sub objects as well

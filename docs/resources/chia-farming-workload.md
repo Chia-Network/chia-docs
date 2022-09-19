@@ -126,7 +126,7 @@ Network Traffic (Chia harvester only)
 ### Measurement tools
 
 - [Grafana](https://grafana.com/)
-- [Node Exporter](https://prometheus.io/guides/node-exporter/)
+- [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
 - [Prometheus](https://prometheus.io/)
 - [Standalone Linux IO Tracer](https://github.com/Open-CAS/standalone-linux-io-tracer)
 - dstat, iostat (sysstat)

@@ -6,7 +6,9 @@ slug: /signage-and-infusion-points
 Each sub-slot in both the challenge chain and the reward chain is divided into 64 smaller VDFs. Between each of these smaller VDFs is a point called a **signage point**. Timelords publish the VDF output and proof when they reach each signage point.
 
 :::info
+
 The challenge and reward chains both have signage points. The infused challenge chain, however, does not.
+
 :::
 
 The signage points occur every 9.375 seconds (64 signage points per 600-second sub-slot). The number of iterations between each signage point is **sp_interval_iterations**, which is equal to sub-slot_iterations / 64.
@@ -24,7 +26,9 @@ The proof of space challenge is computed as the hash of the plot filter bits:
 Using this challenge, the farmers fetch quality strings for each plot that made it past the filter. Recall that this process requires around seven random disk seeks, which takes around 70 ms on a slow HDD. The quality string is a hash derived from part of the proof of space (but the whole proof of space has yet to be retrieved).
 
 :::info
+
 For both of our [previous example](/consensus-challenges), as well as the next example, we'll use the following values:
+
 :::
 
 - sub-slot_iterations = 100,000,000
@@ -97,6 +101,18 @@ infusion_iterations = signage_point_iterations + (3 \* sp_interval_iterations) +
 = 36.7223M
 
 After realizing they have won (at the 20th infusion point), the farmer fetches the whole proof of space, makes a block (optionally including transactions), and broadcasts this to the network. The block has until infusion_iterations (typically a few seconds) to reach timelords, who will infuse the block, creating the infusion point VDFs. With these VDFs, the block can be finished and added to the blockchain by full nodes.
+
+## Rationale for choosing 64 signage points
+
+Chia's original consensus, which was phased out before the launch of mainnet, used a single signage point per 10-minute subslot. This left the network vulnerable to short-range [replotting attacks](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack), where an attacker initiates a plot's creation after a signage point, and completes the plot before the next infusion point. The attacker could always choose a plot that passes the plot filter (because the signage point is hashed with the subslot challenge and the plot ID in calculating the filter) and then delete the plot after the infusion point. For a 512-filter, this would result in the attacker mimicking 512 plots (~51 TiB). In reality, under the original consensus, he or she would only need to own single computer capable of creating a plot in less than ten minutes.
+
+> NOTE: Technically this isn't an _attack_ because -- even if successful -- the "attacker" wouldn't gain an ability to cheat the network. However the "attacker" _would_ be using the network in an unintended way, effectively turning Chia into a Proof of Work system. Therefore, Chia's new consensus was intentionally designed to discourage this behavior.
+
+The new consensus was introduced during Chia's beta phase. One of the modifications was to increase the number of signage points to 64 per 10-minute subslot, or one every 9.375 (600/64) seconds, on average. The Challenge Chain was also introduced (see [Section 3.8](/docs/03consensus/three_vdf_chains 'Section 3.8: Three VDF Chains') for more info). The maximum distance between a signage point and the next infusion point is now 4 signage points (see the `infusion_iterations` formula, above), or 37.5 seconds. This is the maximum amount of time for the attack to be possible, but for it to be consistently applied, the minimum time of 28.125 seconds must be applied. Assuming a few extra seconds for network latency and other factors, the attack is now only possible if one can create a new plot in less than 25 seconds.
+
+> Keep in mind that this "attack" is really mimicking the ownership of around 51 TiB of storage. Even when it does become possible to run the attack consistently, it will likely be much cheaper to use the network as intended, storing plots on non-volatile storage.
+
+This begs the question: why not use even more signage points in the consensus? The simple answer is because as the signage points increase, it becomes more difficult for the timelords and nodes to keep up with the network. Sixty-four signage points per subslot was deemed enough to discourage the attack laid out above, while still allowing the timelords and nodes to perform as intended and to stay in sync.
 
 ## Definitions
 

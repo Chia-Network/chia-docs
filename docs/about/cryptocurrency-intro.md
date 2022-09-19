@@ -24,6 +24,12 @@ This brings many benefits, some of which are:
 
 To understand the basics of how a cryptocurrency like Bitcoin or Chia works, we first need to look at how one would design a cryptocurrency from scratch. This section is targeted toward those new to the blockchain industry; others can skip it.
 
+:::info
+
+For a deeper introduction we recommend the book [Bitcoin and Cryptocurrency Technologies](https://bitcoinbook.cs.princeton.edu/) which also has a freely available pre-print and video lectures.
+
+:::
+
 We could rely on a central server with a public API to send transactions (which takes in a username and password) and a public API for reading data. However, this is not decentralized, and it does not bring most of the benefits above. This is the way in which many financial systems worked before Bitcoin.
 
 How would we design a transaction system which does not depend on any one party?
