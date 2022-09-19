@@ -3,8 +3,6 @@ title: Coin Set vs Account Model
 slug: /coin-set-vs-account
 ---
 
-# 4.7 Coin Set vs Account
-
 In the account model used in many blockchains such as Ethereum, Solana and Algorand, balances are kept in accounts. These are permanent data structures which do not get destroyed when they send funds.
 
 In this section, we'll focus on Ethereum and how its account model compares with Chia's coin set model.
@@ -21,7 +19,7 @@ Alice wants to send 1 eth to Bob. To complete this transaction, 1 eth is subtrac
 
 ## Chia's coin set model
 
-In Chia's coin set model, there are no accounts or balances. There are only coins (see [Section 4.1](/docs/04coin-set-model/intro 'Section 4.1 Coin set info') for more info). Coins are first class objects; they are the only data that is persisted on the blockchain. Each coin has a parent, allowing for its history to be tracked to its coinbase.
+There are no accounts or balances, but rather only coins (see the [Coin Set Intro page](/coin-set-intro) for more info). Coins are first class objects; they are the only data that is persisted on the blockchain. Each coin has a parent, allowing for its history to be tracked to its coinbase.
 
 A typical Chia transaction would look like the following:
 
@@ -56,7 +54,7 @@ Solidity shares similar paradigms in programming to web development, so there is
 
 #### Coin set
 
-Transactions might involve spending and creating many coins, so a programmer must think about the rules governing how coins may be spent, and how coins will interact with each other. This makes programming in Chia more difficult than in Ethereum. However, auditing is much easier in Chia (see [Section 4.8](/docs/04coin-set-model/clvm_vs_evm 'Section 4.8 CLVM vs EVM') for more info).
+Transactions might involve spending and creating many coins, so a programmer must think about the rules governing how coins may be spent, and how coins will interact with each other. This makes programming in Chia more difficult than in Ethereum. However, auditing is much easier in Chia (see the [CLVM vs EVM page](/clvm-vs-evm) for more info).
 
 ---
 

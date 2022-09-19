@@ -3,8 +3,6 @@ title: Coin Set vs UTXO Model
 slug: /coin-set-vs-utxo
 ---
 
-# 4.6 Coin Set vs UTXO
-
 The UTXO and coin set models of accounting are very similar and are often used interchangeably. This is fine in most contexts; coin set is based on UTXO, and there is a much larger difference between the coin set and account models. However, there are a few key differences, which we'll discuss in this section.
 
 ## First class objects
