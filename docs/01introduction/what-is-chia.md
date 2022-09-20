@@ -70,7 +70,7 @@ In Chia, the pool operators are only responsible for distributing rewards. They 
 
 > For more info on Chia's pooling protocol, see [Section 11](/docs/11pooling/pooling 'Section 11: Pooling').
 
-> You can r[eview the previous 24 hour unique block signatures](https://xchscan.com/top-farmers) to obtain Chia's Nakamoto Coefficient.
+> You can [review the previous 24 hour unique block signatures](https://xchscan.com/top-farmers) to obtain Chia's Nakamoto Coefficient.
 
 ### Other key features
 
