@@ -1,4 +1,6 @@
 ---
+title: Chia RPC API
+sidebar_label: 12.1 Chia RPC API
 sidebar_position: 1
 ---
 
