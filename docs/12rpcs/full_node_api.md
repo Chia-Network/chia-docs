@@ -1,4 +1,6 @@
 ---
+title: Full Node RPCs
+sidebar_label: 12.2 Full Node API
 sidebar_position: 2
 ---
 
