@@ -1480,6 +1480,10 @@ Request Parameters:
 You must own the store listed as the `maker`, and you must be subscribed to the store listed as the `taker`, as will be demonstrated in the example.
 :::
 
+:::warning identical key/value bug description
+In version 1.6.0, if you create an offer with an **identical** key/value pair on both the Maker and Taker side (such that the hash of both is the same), the offer will fail when being taken. Although this would be an unusual offer, it is still considered valid. Therefore, this is a bug, and it will be fixed in a future version.
+:::
+
 <details>
 <summary>Example</summary>
 
