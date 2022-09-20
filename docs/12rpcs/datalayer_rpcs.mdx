@@ -1471,10 +1471,10 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type | Required | Description                                               |
-| :---- | :--- | :------- | :-------------------------------------------------------- |
-| maker | TEXT | True     | The hexadecimal ID of the store for which to list mirrors |
-| fee   | TEXT | False    | Set the fee for the offer, in mojos                       |
+| Flag  | Type | Required                | Description                                               |
+| :---- | :--- | :---------------------- | :-------------------------------------------------------- |
+| maker | TEXT | True                    | The hexadecimal ID of the store for which to list mirrors |
+| fee   | TEXT | True* (see Description) | Set the Maker fee for the offer, in mojos. This is a transaction fee that will go to a farmer. If no fee is desired, this parameter may be set to `0`. Note that this fee may also be set with the JSON request, as detailed below. In this case, don't set the `fee` RPC parameter |
 
 :::note
 You must own the store listed as the `maker`, and you must be subscribed to the store listed as the `taker`, as will be demonstrated in the example.
@@ -1577,7 +1577,7 @@ The Maker offers to include a new key exchange for the Taker including a new key
 
 - Offers for multiple keys are also possible
 - Typically the Maker should not offer keys that have already been included because the Taker will have no incentive to accept the offer. (In making an offer, the Maker is essentially saying, "I'll include these keys if you agree to include these other keys.")
-- The `fee` is an optional transaction fee that will go to a farmer
+- As noted above, the `fee` is a required Maker fee, which must be specified either in the JSON or as an RPC parameter. It may be set to `0`. This is a transaction fee that will go to a farmer
 
 Here is the command to make an offer:
 
@@ -1659,7 +1659,7 @@ The offer will be contained within the response:
 Because the offer is quite large, your command line might have trouble processing it if you paste it directly. Therefore, you are recommended to do the following:
 
 - Copy the entire response into an editor that can handle JSON formatting
-- Change the last line from `"success": true` to `"fee": <fee amount in mojos>` (for example, `"fee": 10000000`). This is a required transaction fee, paid by the Taker
+- Change the last line from `"success": true` to `"fee": <fee amount in mojos>` (for example, `"fee": 10000000`). This is a _required_ transaction fee, paid by the Taker. If this fee is not desired, it may be set to `0`. As noted above, this fee may also be specified as an RPC parameter
 - Save it as a json file (for example, `offer.json`) and send it to the Taker, who will input it in the [take_offer](#take_offer) example
 
 The offer has now been saved as a .json file and been sent to the Taker. See [take_offer](#take_offer) for an example of how to accept the offer.
@@ -1683,10 +1683,10 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type | Required | Description                                                                                            |
-| :---- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
-| offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
-| fee   | TEXT | False    | Set the fee for the offer, in mojos                                                                    |
+| Flag  | Type | Required                | Description                                                                                            |
+| :---- | :--- | :---------------------- | :----------------------------------------------------------------------------------------------------- |
+| offer | TEXT | False                   | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
+| fee   | TEXT | True* (see Description) | Set the Taker fee for the offer, in mojos. This is a transaction fee that will go to a farmer. If no fee is desired, this parameter may be set to `0`. Note that this fee may also be set with the offer file, as detailed in the [make_offer](#make_offer) example. In this case, don't set the `fee` RPC parameter |
 
 <details>
 <summary>Example</summary>
