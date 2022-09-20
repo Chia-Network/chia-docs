@@ -12,8 +12,6 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
----
-
 This document will guide you through the process of installing and using the Climate Warehouse application. For additional technical resources, see the following:
 
 - [DataLayer RPC API](/docs/12rpcs/datalayer_rpcs 'DataLayer RPC API')
@@ -25,7 +23,9 @@ This document will guide you through the process of installing and using the Cli
 
 ### Install and configure Chia and the DataLayer server
 
-> Note: Your firewall might give warnings when installing both Chia and the Climate Warehouse. This is normal. Allow the installations to continue.
+:::note
+Your firewall might give warnings when installing both Chia and the Climate Warehouse. This is normal. Allow the installations to continue.
+:::
 
 1. Download the latest [Chia installer](https://www.chia.net/download/)
 
@@ -215,22 +215,43 @@ chia version
 chia configure --set-log-level INFO
 ```
 
-Bash:
+Result:
 
 ```bash
 Logging level updated. Check ~/.chia/mainnet/log/debug.log
 Restart any running chia services for changes to take effect
 ```
 
-11. Acquire some XCH in order to use the Climate Warehouse. 0.01 XCH is a sufficient amount to get started. If you plan to use the Climate Warehouse long-term, you may need closer to 1 XCH.
+(You will restart Chia later in this guide.)
+
+11. (optional) Modify the transaction fee
+
+Background: By default, a fee of 1 billion (`1 000 000 000`) mojos will be added to all DataLayer transactions. 
+When the mempool is full, this amount will be sufficient to jump ahead of zero-fee transactions, 
+which means your transaction likely will be included in the next block. However, when the mempool is not full,
+a significantly smaller fee, such as 500 thousand (`500 000`) mojos will be sufficient.
+
+The default fee is not very high in USD terms (just a few cents), but in case you wish to avoid paying it, you can modify the default setting.
+To do so, open `~/.chia/mainnet/config/config.yaml` in a text editor. Locate the `fee` setting in the `data_layer` section. It should look something like this:
+
+```
+data_layer:
+  client_timeout: 15
+  database_path: data_layer/db/data_layer_CHALLENGE.sqlite
+  fee: 1000000000
+```
+
+Modify the `fee` to your desired number of mojos. You will need to restart Chia for the change to take effect, which you will do in a subsequent step.
+
+12. Acquire some XCH in order to use the Climate Warehouse. 0.01 XCH is a sufficient amount to get started. If you plan to use the Climate Warehouse long-term, you may need closer to 1 XCH.
 
 :::tip
 If you ever need to display your address, run `chia keys show`. This command will only output your public keys and address; your private keys and seed phrase will not be shown.
 :::
 
-12. Configure your router to forward ports 8575 (data propagation server) and 31310 (Climate Warehouse) to your local machine. To configure your router's settings, typically you will need enter `http://192.168.1.1` in a web browser, though this address varies for different routers. From your router's settings, locate the Port Forwarding section and add a rule to forward ports 8575 and 31310 to your local IP address.
+13. Configure your router to forward ports 8575 (data propagation server) and 31310 (Climate Warehouse) to your local machine. To configure your router's settings, typically you will need enter `http://192.168.1.1` in a web browser, though this address varies for different routers. From your router's settings, locate the Port Forwarding section and add a rule to forward ports 8575 and 31310 to your local IP address.
 
-13. You will also need to configure your computer's firewall to allow connections on ports 8575 and 31310. This process is different for each OS:
+14. You will also need to configure your computer's firewall to allow connections on ports 8575 and 31310. This process is different for each OS:
 
 :::info Firewall setup
 
@@ -294,7 +315,7 @@ sudo vi /etc/pf.conf
 Add the following lines to the end of the file:
 
 ```bash
-# Open port 8575 for Chia Data Server
+# Open port 8575 for Chia Data Propagation Server
 pass in proto tcp from any to any port 8575
 # Open port 31310 for Climate Warehouse Server
 pass in proto tcp from any to any port 31310
@@ -318,7 +339,7 @@ sudo pfctl -sr | grep 31310
 
 :::
     
-14. Start the DataLayer services:
+15. Start the DataLayer services:
 
 <div style={{ textAlign: 'center' }}>
   <img src="/img/data_layer/09_start_data.png" alt="Start the DataLayer services" />
@@ -335,7 +356,7 @@ As shown in the above image:
 
 Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. When Chia starts, it will automatically enable both of the DataLayer services.
 
-15. If the dot to the left of `WALLET` is green (indicating that your wallet is synced), then you may proceed. If it is still orange, then you need to wait for it turn green before continuing.
+16. If the dot to the left of `WALLET` is green (indicating that your wallet is synced), then you may proceed. If it is still orange, then you need to wait for it turn green before continuing.
 
 :::info
 Regardless of the status of `FULL NODE`, you may safely proceed with this tutorial:
@@ -347,57 +368,6 @@ Regardless of the status of `FULL NODE`, you may safely proceed with this tutori
 <div style={{ textAlign: 'center' }}>
   <img src="/img/data_layer/10_synced.png" alt="Synced wallet" />
 </div><br/>
-
-16. Chia uses the coin set (similar to UTXO) model of accounting. If you transferred XCH to this wallet in one transaction, then you have one coin, worth the total balance. However, several coins are needed in order to configure the Climate Warehouse. To fix this, send yourself some money, and include a small fee.
-
-First, click the `RECEIVE` panel and click the clipboard to copy your address:
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/11_copy_address.png" alt="Copy address" />
-</div><br/>
-
-Next:
-  * Click the `SEND` panel and paste your address in the `Address/Puzzle hash` field
-  * In the `Amount` field, enter approximately 25% of your total XCH value
-  * In the `Fee` field, enter a small fee. For this example, we'll use 100,000 mojos
-  * Click `SEND`
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/12_send_money.png" alt="Send money" />
-</div><br/>
-
-You will receive a dialog indicating that your transaction has been sent to the mempool. Click `OK`.
-
-Next, click the `SUMMARY` panel. If you only had 1 coin, then your `Spendable Balance` will be `0`. The transaction will be `Pending` for a minute or so:
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/13_send_pending.png" alt="Send pending" />
-</div><br/>
-
-:::warning warning
-If you attempt to send money while `Spendable Balance` is `0`, then you will receive an error dialog:
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/data_layer/14_cant_send.png" alt="Cannot send" />
-</div><br/>
-:::
-
-After your transaction's status has changed from `Pending` to `Confirmed` and your `Spendable Balance` is greater than `0`, you will have two coins in your wallet. You should repeat the process to send yourself money two more times, increasing the amount a bit each time. For example, if you start with 1 XCH:
-* First, send 0.25 XCH
-* Next, send 0.26 XCH
-* Finally, send 0.27 XCH
-
-At this point you will have four coins in your wallet and you may proceed with the tutorial.
-
-:::warning important
-Be sure to vary the amount you send yourself, as shown above. If you continue to send yourself the same amount each time, then the coin matching the exact amount will be used. For example (**don't do this**):
-* Start with one coin worth 1 XCH
-* Send yourself 0.25 XCH
-  * The 1-XCH coin is automatically selected
-  * After the transaction has completed, you have two coins, worth 0.75 XCH and 0.25 XCH
-* Send yourself 0.25 XCH (the same amount)
-  * The 0.25-XCH coin is automatically selected
-  * After the transaction has completed, you still have 2 coins, worth 0.75 XCH and 0.25 XCH
-:::
 
 **Chia is now installed and configured properly. In the next sections, we'll install and configure the Climate Warehouse.**
 
