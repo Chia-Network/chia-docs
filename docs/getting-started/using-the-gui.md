@@ -5,7 +5,7 @@ slug: /using-the-gui
 
 ## Getting Things Set Up
 
-Getting started with Chia is easy with the use of the graphical user interface (GUI). Upon opening, you'll be given the ability to create a key. Each key is a 24 ordered word seed phrase used to control your wallet. **Do not share your 24 words with anyone**.
+Getting started with Chia is easy with the use of the graphical user interface (GUI). Upon opening and selecting wallet or farming mode, you'll be given the ability to create a key. Each key is a 24 ordered word seed phrase used to control your wallet. **Do not share your 24 words with anyone**.
 
 <p align="center">
     <img alt='select key' src="/img/select-key.png" width="500" align="center"/>
