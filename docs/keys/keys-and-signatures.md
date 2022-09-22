@@ -23,7 +23,9 @@ In theory, wallet recovery could also be performed from the master private key a
 
 The BLS master private key is stored in the OS keychain, which usually requires password authentication and is encrypted.
 
-> Note: In theory, wallet recovery should be possible on a new system by copying the keychain from a system on which the wallet has already been installed. However, this is not supported. The only supported method of wallet recovery is with the 24-word seed phrase.
+:::note
+In theory, wallet recovery should be possible on a new system by copying the keychain from a system on which the wallet has already been installed. However, this is not supported. The only supported method of wallet recovery is with the 24-word seed phrase.
+:::
 
 The master private key can be used to derive child keys, which can further be used to derive child keys, etc. The number of levels can be infinite. BLS public keys can be combined to form a new public key, which can be used to validate aggregate signatures.
 

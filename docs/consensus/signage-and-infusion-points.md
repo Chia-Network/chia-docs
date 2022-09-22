@@ -106,11 +106,15 @@ After realizing they have won (at the 20th infusion point), the farmer fetches t
 
 Chia's original consensus, which was phased out before the launch of mainnet, used a single signage point per 10-minute subslot. This left the network vulnerable to short-range [replotting attacks](/docs/03consensus/attacks_and_countermeasures#short-range-replotting-attack), where an attacker initiates a plot's creation after a signage point, and completes the plot before the next infusion point. The attacker could always choose a plot that passes the plot filter (because the signage point is hashed with the subslot challenge and the plot ID in calculating the filter) and then delete the plot after the infusion point. For a 512-filter, this would result in the attacker mimicking 512 plots (~51 TiB). In reality, under the original consensus, he or she would only need to own single computer capable of creating a plot in less than ten minutes.
 
-> NOTE: Technically this isn't an _attack_ because -- even if successful -- the "attacker" wouldn't gain an ability to cheat the network. However the "attacker" _would_ be using the network in an unintended way, effectively turning Chia into a Proof of Work system. Therefore, Chia's new consensus was intentionally designed to discourage this behavior.
+:::note
+Technically this isn't an _attack_ because -- even if successful -- the "attacker" wouldn't gain an ability to cheat the network. However the "attacker" _would_ be using the network in an unintended way, effectively turning Chia into a Proof of Work system. Therefore, Chia's new consensus was intentionally designed to discourage this behavior.
+:::
 
 The new consensus was introduced during Chia's beta phase. One of the modifications was to increase the number of signage points to 64 per 10-minute subslot, or one every 9.375 (600/64) seconds, on average. The Challenge Chain was also introduced (see the [Three VDF Chains page](/three-vdf-chains) for more info). The maximum distance between a signage point and the next infusion point is now 4 signage points (see the `infusion_iterations` formula, above), or 37.5 seconds. This is the maximum amount of time for the attack to be possible, but for it to be consistently applied, the minimum time of 28.125 seconds must be applied. Assuming a few extra seconds for network latency and other factors, the attack is now only possible if one can create a new plot in less than 25 seconds.
 
-> Keep in mind that this "attack" is really mimicking the ownership of around 51 TiB of storage. Even when it does become possible to run the attack consistently, it will likely be much cheaper to use the network as intended, storing plots on non-volatile storage.
+:::note
+Keep in mind that this "attack" is really mimicking the ownership of around 51 TiB of storage. Even when it does become possible to run the attack consistently, it will likely be much cheaper to use the network as intended, storing plots on non-volatile storage.
+:::
 
 This begs the question: why not use even more signage points in the consensus? The simple answer is because as the signage points increase, it becomes more difficult for the timelords and nodes to keep up with the network. Sixty-four signage points per subslot was deemed enough to discourage the attack laid out above, while still allowing the timelords and nodes to perform as intended and to stay in sync.
 

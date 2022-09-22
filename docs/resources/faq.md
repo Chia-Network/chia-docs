@@ -150,7 +150,9 @@ Note that the new database will have the same peak as version 1 at the time you 
 
 Because the upgrade from version 1 to 2 of the database is time-consuming, most users will likely only perform it on one of their systems and copy the new database file to their other systems afterward. If you choose this option, be sure to either copy the file _before_ running `chia start farmer -r`, or stop Chia altogether if it is already using the new database. Once the database is swapped from v1 to v2, you also need to update you `config.yaml` to reflect the new v2 database change. Under the `full_node:` section set `database_path: db/blockchain_v1_CHALLENGE.sqlite` to `database_path: db/blockchain_v2_CHALLENGE.sqlite`
 
-> WARNING: If you copy your database file to another computer while Chia is currently using it, you'll risk corrupting it, which will necessitate a full sync from genesis.
+:::warning
+If you copy your database file to another computer while Chia is currently using it, you'll risk corrupting it, which will necessitate a full sync from genesis.
+:::
 
 If you're interested in learning more technical details of the new database, see the first Github Pull Request that introduced the changes:
 <br/>
