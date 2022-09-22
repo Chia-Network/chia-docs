@@ -8,8 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## What is Chia? {#what-is-chia}
-
 Chia is a cryptocurrency and blockchain with smart transaction capabilities. Its [PoST consensus](/consensus-intro) is the first (and only) Nakamoto consensus since Proof of Work, and has a much [lower energy consumption](https://chiapower.org/).
 
 Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives recently launched for [CATs](/cats), [Offers](/offers), [NFTs](/nfts) and [DIDs](/dids).
@@ -66,10 +64,7 @@ curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/debian/ stable main" | sudo tee /etc/apt/sources.list.d/chia.list > /dev/null
 sudo apt-get update
 
-# Install Chia
-
-
-
+# Install chia-blockchain
 sudo apt-get install chia-blockchain
 
 # Use chia-blockchain-cli instead for CLI only
@@ -85,7 +80,7 @@ sudo apt-get install chia-blockchain
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://repo.chia.net/rhel/chia-blockchain.repo
 
-# Install Chia
+# Install chia-blockchain
 sudo yum install chia-blockchain
 
 # Use chia-blockchain-cli for CLI only
@@ -101,7 +96,7 @@ sudo yum install chia-blockchain
 sudo dnf install 'dnf-command(config-manager)'
 sudo dnf config-manager --add-repo https://repo.chia.net/rhel/chia-blockchain.repo
 
-# Install Chia
+# Install chia-blockchain
 sudo dnf install chia-blockchain
 
 # Use chia-blockchain-cli for CLI only
@@ -127,9 +122,7 @@ sudo dnf install chia-blockchain
 ```
 
 :::note
-
 Make sure you have Python 3.9 installed.
-
 :::
 
 ```bash
@@ -155,9 +148,7 @@ chia init
 ```
 
 :::note
-
 Make sure you have Python 3.9 and Git installed.
-
 :::
 
 ```bash
@@ -200,18 +191,9 @@ For convenience, direct links are provided to the latest installer builds. Howev
 
 All configuration data is stored in a directory structure at the `$CHIA_ROOT` environment variable or at `~/.chia/mainnet/`. You can find databases, and logs there. Optionally, you can set `$CHIA_ROOT` to the `.chia` directory in your home directory with `export CHIA_ROOT=~/.chia` and if you add it to your `.bashrc` or `.zshrc` it will remain set across logouts and reboots. If you set `$CHIA_ROOT` you will have to migrate configuration items by hand or unset the variable for `chia init` to work with `unset CHIA_ROOT`.
 
-If you are using the MacOS or Windows builds, your keys are created during the first run. We recommend writing down the mnemonic (24 ordered words). You can start plotting a plot file using the Plot tab or the command line. This can take a long time depending on the [size of the plots](https://github.com/Chia-Network/chia-blockchain/wiki/k-sizes)
-(the k variable). To be competitive on mainnet you will need many k=32 or larger plots. A k=32 plot can take a while even with an [M.2 PCIe NVMe SSD](https://en.wikipedia.org/wiki/M.2) and requires 239 GiB of temporary working space to create a final plot file of 101.4 GiB. Your likelihood of winning a with a plot is only driven by the final size of the plot file.
+If you are using the MacOS or Windows builds, your keys are created during the first run. We recommend writing down the mnemonic (24 ordered words).
 
-The minimum plot size needed for farming is k=32.
-
-If you want more peers and better network connectivity, you should also try opening port 8444 on your router so other peers can connect to you. Follow [these steps on port forwarding](https://bitcoin.org/en/full-node#port-forwarding) but using port 8444 instead of 8333. This helps the network be more decentralized. For further details about sync issues and port 8444, visit the [Node Syncing page](/node-syncing).
-
-# Graphical User Interface (GUI)
-
-For a complete guide on using the GUI, check out [using the GUI](/using-the-gui).
-
-# Using the Command-line Interface (CLI)
+## CLI Setup
 
 Using the CLI with Chia gives you greater and more precise control. For a more details on the commands, read the [CLI Commands Reference](/cli).
 
@@ -321,6 +303,6 @@ If this causes issues, you can disable it in `config.yaml`. Or you can run this 
 Some routers may require port forwarding, or enabling UPnP
 in the router's configuration.
 
-# RPC Interface
+## RPC Interface
 
 The Node has an [RPC interface](/full-node-rpc). This RPC will allow you to interact with the Chia node through code.
