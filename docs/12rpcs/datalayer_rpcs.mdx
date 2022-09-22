@@ -47,6 +47,12 @@ For commands that change the state of the DataLayer singleton (ie all on-chain c
 
 Note: Hashes used as arguments for the commands documented here may or may not be prefixed with `0x`. Both forms are valid syntax.
 
+:::info Maximum Key and Value Size
+
+Generally speaking, it is safe to insert keys and values totalling 50 MiB into a single data store. For more info, see the [DataLayer User Guide](http://localhost:3000/guides/datalayer-user-guide#note-on-maximum-key-and-value-lengths)
+
+:::
+
 ## Reference
 
 ### `create_data_store`
@@ -1329,7 +1335,7 @@ Request Parameters:
 | :----- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
 | id     | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                        |
 | urls   | TEXT    | True     | A list of URLs where the mirror will reside. Can be empty                                                        |
-| amount | INTEGER | True     | The number of mojos to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
+| amount | INTEGER | True     | The amount (in mojos) that will be locked into the mirror while it exists. In theory, a system could prioritize mirrors according to how much was spent to create them. The `amount` will be returned to the creator when the mirror is deleted. Minimum `amount` is 0 |
 | fee    | TEXT    | False    | Set the fee for the transaction, in mojos                                                                        |
 
 <details>
