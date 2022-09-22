@@ -32,6 +32,12 @@ For commands that change the state of the DataLayer singleton (ie all on-chain c
 
 The commands in this document will work with or without the `=` symbol. Additionally, hashes may or may not be prefixed with `0x`.
 
+:::info Maximum Key and Value Size
+
+Generally speaking, it is safe to insert keys and values totalling 50 MiB into a single data store. For more info, see the [DataLayer User Guide](http://localhost:3000/guides/datalayer-user-guide#note-on-maximum-key-and-value-lengths)
+
+:::
+
 ---
 
 ## Reference
@@ -47,7 +53,7 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                                                               |
 | :------------ | :-------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | -i            | --id            | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                                                 |
-| -a            | --amount        | INTEGER | True     | The amount (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized. Minimum `amount` is 0 |
+| -a            | --amount        | INTEGER | True     | The amount (in mojos) that will be locked into the mirror while it exists. In theory, a system could prioritize mirrors according to how much was spent to create them. The `amount` will be returned to the creator when the mirror is deleted. Minimum `amount` is 0 |
 | -u            | --url           | TEXT    | False    | A URL where the mirror will reside. Can be repeated to add multiple URLs in the same command                                              |
 | -m            | --fee           | TEXT    | False    | Set the fee for the transaction, in XCH                                                                                                   |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml                                   |

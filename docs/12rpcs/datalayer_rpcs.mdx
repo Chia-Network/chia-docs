@@ -1335,7 +1335,7 @@ Request Parameters:
 | :----- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
 | id     | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                        |
 | urls   | TEXT    | True     | A list of URLs where the mirror will reside. Can be empty                                                        |
-| amount | INTEGER | True     | The number of mojos to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
+| amount | INTEGER | True     | The amount (in mojos) that will be locked into the mirror while it exists. In theory, a system could prioritize mirrors according to how much was spent to create them. The `amount` will be returned to the creator when the mirror is deleted. Minimum `amount` is 0 |
 | fee    | TEXT    | False    | Set the fee for the transaction, in mojos                                                                        |
 
 <details>
