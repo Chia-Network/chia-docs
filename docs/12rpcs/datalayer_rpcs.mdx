@@ -666,7 +666,7 @@ Response:
 
 ### `get_root`
 
-Functionality: Get the root hash and timestamp of a given store ID. If the store is remote, this command will return an invalid hash (see example). In this case, use [get_local_root](#get_local_root) instead
+Functionality: Get the root hash and timestamp of a given store ID. If the store is empty, this command will return a root hash consisting of all zeros (see example). In this case, use [get_local_root](#get_local_root) instead
 
 Usage: chia rpc data_layer [OPTIONS] get_root [REQUEST]
 
@@ -708,7 +708,7 @@ Response:
 <details>
 <summary>Example 2</summary>
 
-Get the root hash of a remote store. Notice that an invalid hash is shown:
+Get the root hash of a remote store. This store happens to be empty, so it will return a root hash of all zeros:
 
 ```json
 chia rpc data_layer get_root '{"id":"8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d"}'
@@ -770,7 +770,7 @@ Response:
 
 ### `get_roots`
 
-Functionality: Get the root hashes and timestamps from a list of stores. Note that an invalid hash will be returned for remote stores. Use [get_local_root](#get_local_root) instead
+Functionality: Get the root hashes and timestamps from a list of stores. Note that a root hash consisting of all zeros will be returned for empty stores. Use [get_local_root](#get_local_root) instead
 
 Usage: chia rpc data_layer [OPTIONS] get_roots [REQUEST]
 
@@ -790,7 +790,7 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
-For this example, the first store is remote, so it will return an invalid root hash. The second store is local, so the root hash will be valid:
+For this example, the first store is empty, so it will return a root hash consisting of all zeros. The second store is local, so the root hash will be valid:
 
 ```json
 chia rpc data_layer get_roots '{"ids":["8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d", "0x1ad0908e248f48cc3e9b3cf8f68c748d2e3c5a2a933765032d3222086231ea5e"]}'
