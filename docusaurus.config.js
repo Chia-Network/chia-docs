@@ -73,7 +73,7 @@
             },
             {
               href: 'https://chia.net',
-              label: 'Chia.net',
+              label: 'Chia Network',
               position: 'left',
             },
             {
