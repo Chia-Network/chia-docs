@@ -41,7 +41,6 @@ Requirements:
 - Synced Chia testnet (either testnet10 or custom)
 - A wallet with some TXCH
 - Python 3.9 or greater **(will not work with 3.8.x)**
-- Git command line tool
 - Powershell 6 or greater (Windows only)
 - Visual C++ (Windows only)
 
@@ -66,20 +65,13 @@ Mode                 LastWriteTime         Length Name
 d----           5/23/2022  4:13 PM                chia-blockchain
 ```
 
-2. Clone the internal custody repository by running `git clone https://github.com/Chia-Network/internal-custody.git`
+2. Create a directory for custody testing `mkdir internal-custody`
 
 ```powershell
-PS C:\Users\User\prefarm_test> git clone https://github.com/Chia-Network/internal-custody.git
-Cloning into 'internal-custody'...
-remote: Enumerating objects: 554, done.
-remote: Counting objects: 100% (176/176), done.
-remote: Compressing objects: 100% (73/73), done.
-
-Receiving objects: 100% (554/554), 167.28 KiB | 2.01 MiB/s, done.
-Resolving deltas: 100% (325/325), done.
+PS C:\Users\User\prefarm_test> mkdir internal-custody
 ```
 
-3. Change to the new repo dir by running `cd internal-custody`
+3. Change to the new dir by running `cd internal-custody`
 
 ```powershell
 PS C:\Users\User\prefarm_test> cd internal-custody
