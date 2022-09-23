@@ -179,9 +179,6 @@ The following table lists the arguments for this command that will be used in th
 | Flag          | Tutorial<br/>Value           | Prefarm<br/>Value | Description                                                                                                                                                                                                                                   |
 | :------------ | :--------------------------- | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--directory` | keys_and_sb                  | Unknown           | The directory where all of the keys and spend bundles will be stored.                                                                                                                                                                         |
-| `--date`      | 1653449948                   | Unknown           | The [UNIX epoch timestamp](https://www.epochconverter.com/) when the singleton's "amount available" setting will begin to increase. For testing, you can set it to a time in the near future (for example, 100 seconds from now).             |
-| `-r`          | 10^13 mojos (10 XCH)         | Billions of mojos | The number of mojos per second you want to be made available to be withdrawn.                                                                                                                                                                 |
-| `-a`          | 10^19 mojos (10 million XCH) | Millions of XCH   | The total size of the singleton. This example uses 1 million mojos. The prefarm will set this to some millions of XCH.                                                                                                                        |
 | `-wt`         | 600 seconds                  | 30 days           | Withdrawal Timelock -- When attempting to begin a withdrawal, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back.                                                                     |
 | `-pc`         | 1200 seconds                 | 90 days           | Payment Claw back -- The minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Claw backs are possible during this window.                                                         |
 | `-rt`         | 300 seconds                  | 15 days           | Rekey Timelock -- When attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`. |
@@ -190,10 +187,8 @@ The following table lists the arguments for this command that will be used in th
 
 :::info note regarding the above table
 
-- With the exception of `--date`, singleton's time values are relative to when they're confirmed on chain
+- The singleton's time values are relative to when they're confirmed on chain
 - The specific time values for this example were chosen to give adequate time to run certain tests where withdrawals and rekeys are attempted before they are allowed. Feel free to shorten or lengthen these times as your own testing requires. Unfortunately, you won't be able to change any of these values later, unless you start over with a new singleton
-- The values listed for `-r` and `-a` assume you're using a custom testnet and possess 21 million TXCH. It will allow the entire singleton (10 million TXCH) to be withdrawn after 1 million seconds (~11.5 days). If you are running on testnet10, you could choose values such as `-r 1` and `-a 1000000` (1 million) to achieve the same timeline, but on a much smaller monetary scale
-- Be sure to update `--date` to a timestamp in the near future (200 seconds from now is probably fine). You can get the current timestamp from [this website](https://www.epochconverter.com/)
   :::
 
 First, create and `cd` to the directory that will be specified by the `--directory` flag:
@@ -214,7 +209,7 @@ d----           5/23/2022  2:55 PM                keys_and_sb
 Next, run the command to initialize the singleton:
 
 ```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic init --directory C:\Users\User\prefarm_test\keys_and_sb --date 1653449948 -r 10000000000000 -a 10000000000000000000 -wt 600 -pc 1200 -rt 300 -rc 600 -sp 900
+(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic init --directory C:\Users\User\prefarm_test\keys_and_sb -wt 600 -pc 1200 -rt 300 -rc 600 -sp 900
 Created a configuration file: C:\Users\User\prefarm_test\keys_and_sb\Configuration (needs derivation).txt
 ```
 
