@@ -354,7 +354,7 @@ If you receive an error stating the Chia is not running, then you need to modify
 - This command will **not** modify the blockchain
 - This command should be run from **outside** the vault
 
-At this point, the singleton should exist on the blockchain. However, it has not yet been funded -- you've indicated the amount to fund it with, but you haven't actually sent the money to it yet. We'll do that in the next step.
+At this point, the singleton should exist on the blockchain. However, it has not yet been funded -- you've launched the singleton to the chain, but you haven't actually sent the money to it yet. We'll do that in the next step.
 
 But first, let's view it. In order to do this, you must first synchronize the localhost with the blockchain.
 The first time you run the `sync` command, you'll need to specify the configuration file, which will then be copied into your config database.
@@ -387,7 +387,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 0
-  - amount available: -9985090000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -395,9 +394,6 @@ Outstanding events:
   REKEYS:
 
 Config:
- - started: 05/25/2022, 11:39:08
- - initial amount: 10000000000000000000
- - mojos available per second: 10000000000000
  - current root: f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103
  - withdrawal timelock: 600 seconds
  - payment clawback period: 1200 seconds
@@ -410,10 +406,6 @@ Here's how to interpret this output:
 
   - `launcher ID`: This shows the on-chain ID of your singleton
   - `amount left`: This is the current value of the singleton. For now it is zero because it has not yet been funded
-  - `amount available`: This is the number of mojos that may be withdrawn. This number is negative because it has not yet been funded.
-
-    After it is funded (explained later), it will correctly display the amount available to be withdrawn. Note that the singleton can absorb payments made to it, as well as make payments to others. If desired, it can do both of these things within the same block
-
   - `amount to claim`: This is the number of mojos currently in the process of being withdrawn (aka in a drop coin). The money is effectively sitting in escrow, and will be able to be withdrawn after the withdrawal timelock has been fulfilled
 
 - Outstanding events:
@@ -444,11 +436,11 @@ Note that even though this is the address of the singleton, which has a complex 
 - This command should be run from **outside** the vault
 
 Now that the singleton has been created and you have its address, you can finance it.
-This tutorial committed to funding the singleton with 10 million XCH (your value may be different). Now, we need to send the same amount.
+This tutorial funds the singleton with 10 million XCH (your value may be different).
 
 A few notes about the command to finance the singleton:
 
-- Even though you previously specified an amount in _mojos_ when you created the singleton (`-a 10000000000000000000` for this tutorial), you now need to specify the same amount in _XCH_ (`-a 10000000` for this tutorial)
+- You need to specify the amount in _XCH_ (`-a 10000000` for this tutorial)
 - The `-t` flag needs to specify the `p2_address` you calculated in the last step
 - You can optionally add a transaction fee by using the `-m` flag. The example from this tutorial is running on a custom testnet, so the network is not congested and no fee is needed. However, testnet10 is frequently being dusted, so you should add a fee on that network to ensure your transaction is processed quickly. For demonstration purposes we'll add a fee of 100 million mojos (`-m 0.00001`), even though it is not needed on this network
 - If your fee is greater than your singleton's value (as it might be if you're running on testnet10), you'll need to add the `--override` flag. For demonstration purposes, we'll use it here, even though it is not needed in this case
@@ -484,7 +476,7 @@ Created at: 2022-05-25 12:37:26
 - This command will **not** modify the blockchain
 - This command should be run from **outside** the vault
 
-Even though the amount available to be withdrawn will increase on chain, it won't increase locally until a new `sync` is performed. This is by design -- it avoids surprises.
+Even though the `amount left` to be withdrawn will increase on chain, it won't increase locally until a new `sync` is performed. This is by design -- it avoids surprises.
 
 Also note that `sync --show` will both sync the singleton locally, as well as show its status.
 
@@ -498,7 +490,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 0
-  - amount available: -9956840000000000000
   - amount to claim: 10000000000000000000
 
 Outstanding events:
@@ -518,7 +509,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 0
-  - amount available: -9953550000000000000
   - amount to claim: 10000000000000000000
 
 Outstanding events:
@@ -526,19 +516,14 @@ Outstanding events:
   REKEYS:
 
 Config:
- - started: 05/25/2022, 11:39:08
- - initial amount: 10000000000000000000
- - mojos available per second: 10000000000000
  - current root: f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103
  - withdrawal timelock: 600 seconds
  - payment clawback period: 1200 seconds
  - rekey cancellation period: 600 seconds
 ```
 
-The `amount to claim` should now match the `initial amount`.
+The `amount to claim` should now match the amount that you just sent.
 
-Note that the `amount available` is still negative.
-This is because the mojos that were used to fund the singleton are still sitting in `amount to claim`.
 Those mojos still need to be absorbed into the singleton, which will automatically happen when money is sent.
 Until this absorption has been accomplished, any attempts to rekey or perform a lock level increase will result in an `ASSERT_SECONDS_ABSOLUTE_FAILED` error.
 
@@ -606,7 +591,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 2dcadfa8dd5c0d079c9a59e7284754921c94b4ed2c77d194fe18f1a73a588b07
   - amount left: 0
-  - amount available: -3045470000000000000
   //highlight-next-line
   - amount to claim: 5000000000000000000
 
@@ -615,7 +599,7 @@ Outstanding events:
   REKEYS:
 ```
 
-Note that `amount to claim` is greater than 0 and `amount available` is less than 0. This is because the funds have not yet been absorbed. When you make a payment, all unabsorbed funds are typically absorbed. However, what if you don't want to make a payment yet? The most likely time for this to happen is immediately after the prefarm has been funded.
+Note that `amount to claim` is greater than 0. This is because the funds have not yet been absorbed. When you make a payment, all unabsorbed funds are typically absorbed. However, what if you don't want to make a payment yet? The most likely time for this to happen is immediately after the prefarm has been funded.
 
 Let's see how to absorb the funds without making a payment.
 
@@ -739,8 +723,7 @@ Config up to date: True
 
 Singleton:
   - launcher ID: 2dcadfa8dd5c0d079c9a59e7284754921c94b4ed2c77d194fe18f1a73a588b07
-  - amount left: 5000000000000000000
-  - amount available: 1962100000000000000
+  - amount left: 10000000000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -748,7 +731,7 @@ Outstanding events:
   REKEYS:
 ```
 
-The `amount available` is now a positive number, and it's increasing with each second. `amount to claim` is now 0, so the absorb was successful. `amount left` is the original amount, proving that no money was sent.
+The `amount to claim` is now 0, so the absorb was successful. `amount left` is the original amount, proving that no money was sent.
 
 ---
 
@@ -765,17 +748,15 @@ This test will make a payment based only on unabsorbed funds. The only time you 
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 0
-  - amount available: -9953550000000000000
   - amount to claim: 10000000000000000000
 ```
 
-`amount available` (absorbed funds) is negative and `amount to claim` (unabsorbed funds) is positive. If you send money at this point, it will automatically pull from the unabsorbed funds, and absorb the rest.
+Note that `amount to claim` (unabsorbed funds) is positive. If you send money at this point, it will automatically pull from the unabsorbed funds, and absorb the rest.
 
 To run this test:
 
-1. Figure out the actual amount available. This can be done by adding `amount available` and `amount to claim`. In this case, it's `46450000000000000`
-2. Run [Test 4](#test-4---payment-pass), using the amount you just calculated as the payment amount (`-a`)
-3. If the payment goes through without issue, then this test passes
+1. Run [Test 4](#test-4---payment-pass), using an amount up to the value of `amount to claim` as the payment amount (`-a`)
+2. If the payment goes through without issue, then this test passes
 
 ---
 
@@ -801,45 +782,17 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 923008000000000000
   - amount to claim: 1000000000000
 ```
 
-In this example, `amount available` (absorbed funds) is quite large, when compared with `amount to claim` (unabsorbed funds). It's better for the `amount to claim` to be much larger. Recall that `amount available` is increasing by 1 trillion mojos per second for this setup. If you simply added the two numbers shown above and tried to spend the sum, it would only take 1 second for `amount available` to contain that amount anyway. So you can't be sure that the funds being sent are actually coming out of `amount to claim` and are not being absorbed after the money has been sent from `amount available`.
-
-The solution here is to make sure `amount to claim` is significantly larger than `amount available`. The easiest way to set this up is to run [test 13](#test-13---clawback-pass-1) (clawback) first, with a couple of small changes:
-
-1. You should wait for a large amount of funds to become available to be spent. Your singleton should have been running for more than `-wt` seconds + 3600 seconds before attempting it, just to be sure.
-2. When you're setting up the withdrawal that you will claw back, make the amount the same as `amount available`. That way you'll claw back a large amount of funds and they'll end up in `amount to claim`.
-
-For this example, here is the singleton's status after running Test 13:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653542753 (05/26/2022, 13:25:53)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9076991000000000000
-  - amount available: 5041000000000000
-  - amount to claim: 923008000000000000
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-```
-
-`amount to claim` is now much larger than `amount available`, so if we withdraw slightly more than `amount to claim`, we can be assured that the funds were actually withdrawn. At this point, we can run a payment similar to Test 4. See that test if you need more details.
+If we withdraw slightly more than `amount to claim`, we can be assured that the funds were actually withdrawn using a mix of both amount to claim and amount left. At this point, we can run a payment similar to Test 4. See that test if you need more details.
 
 #### Initiate a payment
 
-The amount to send is `amount available` + `amount to claim`.
+The amount to send is `amount left` + `amount to claim`.
 
 ```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 928049000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
+(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 9999999000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
 Successfully wrote spend to initial_absorb.unsigned
 ```
 
@@ -896,13 +849,12 @@ Config up to date: True
 
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071950000000000000
-  - amount available: 34440000000000000
+  - amount left: 0
   - amount to claim: 0
 
 Outstanding events:
   PAYMENTS:
-- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 928049000000000000 (Ready)
+- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 9999999000000000000 (Ready)
   REKEYS:
 ```
 
@@ -912,7 +864,7 @@ Outstanding events:
 (venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f complete.signed
 Which actions would you like to complete?:
 
-1) PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 928049000000000000
+1) PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 9999999000000000000
 (Enter index of action to complete): 1
 Successfully wrote spend to complete.signed
 ```
@@ -940,8 +892,7 @@ Config up to date: True
 
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071950000000000000
-  - amount available: 36510000000000000
+  - amount left: 0
   - amount to claim: 0
 
 Outstanding events:
@@ -963,14 +914,14 @@ Sync status: Synced
 Balances, fingerprint: 2798912978
 
 Chia Wallet:
-   -Total Balance:         928050.0 txch (928050000000000000 mojo)
-   -Pending Total Balance: 928050.0 txch (928050000000000000 mojo)
-   -Spendable:             928050.0 txch (928050000000000000 mojo)
+   -Total Balance:         9999999.0 txch (9999999000000000000 mojo)
+   -Pending Total Balance: 9999999.0 txch (9999999000000000000 mojo)
+   -Spendable:             9999999.0 txch (9999999000000000000 mojo)
    -Type:                  STANDARD_WALLET
    -Wallet ID:             1
 ```
 
-The amount transferred was `928 049` txch. This is significantly greater than the `amount available` at the beginning of the test of `5041` txch. This proves that the unabsorbed and absorbed funds were spent together.
+The amount transferred was `9 999 999` txch, which was all of the `amount left` and `amount to claim`. This proves that the unabsorbed and absorbed funds were spent together.
 
 ---
 
@@ -981,8 +932,6 @@ The amount transferred was `928 049` txch. This is significantly greater than th
 **Expected result: pass**
 
 This test will run through the complete sequence of withdrawing money from the singleton.
-
-Keep in mind, the maximum number of mojos able to be withdrawn is shown as `amount available:`, retrieved from the `cic show -c` command. This amount supersedes all other rules for the singleton.
 
 #### Initiate a payment
 
@@ -1133,7 +1082,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999999000000000000
-  - amount available: 139179000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -1141,8 +1089,6 @@ Outstanding events:
 - PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000 (Ready at: 05/25/2022, 15:50:03)
   REKEYS:
 ```
-
-The `amount available` is now a positive number, and it's increasing with each second.
 
 As the output of this command shows, there is a new payment outstanding (`PAYMENT to xch...`). A few things to note:
 
@@ -1226,7 +1172,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999999000000000000
-  - amount available: 157139000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -2025,8 +1970,6 @@ If you received a similar error, then this test passes.
 
 This test will set up a payment and claw it back.
 
-Keep in mind, the maximum number of mojos able to be withdrawn is shown as `amount available:`, retrieved from the `cic show -c` command. This amount supersedes all other rules for the singleton.
-
 #### Initiate a payment
 
 - This command will **not** modify the blockchain
@@ -2178,7 +2121,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 287338000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -2186,8 +2128,6 @@ Outstanding events:
 - PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000 (Ready at: 05/25/2022, 19:56:52)
   REKEYS:
 ```
-
-The `amount available` is now a positive number, and it's increasing with each second.
 
 As the output of this command shows, there is a new payment outstanding (`PAYMENT to xch...`).
 
@@ -2289,7 +2229,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 291388000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -2312,7 +2251,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 292398000000000000
   - amount to claim: 1000000000000
 
 Outstanding events:
@@ -2368,7 +2306,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 292398000000000000
   - amount to claim: 1000000000000
 
 Outstanding events:
@@ -2542,7 +2479,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9071949000000000000
-  - amount available: 914619000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -2831,7 +2767,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9071949000000000000
-  - amount available: 966879000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -2916,7 +2851,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9071949000000000000
-  - amount available: 966879000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -2941,7 +2875,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9071949000000000000
-  - amount available: 968559000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -3168,7 +3101,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 328548000000000000
   - amount to claim: 1000000000000
 
 Outstanding events:
@@ -3258,7 +3190,6 @@ Config up to date: False
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 336748000000000000
   - amount to claim: 1000000000000
 
 Outstanding events:
@@ -3470,7 +3401,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9071949000000000000
-  - amount available: 997589000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -3526,7 +3456,6 @@ Config up to date: False
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9071949000000000000
-  - amount available: 1007029000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -3553,7 +3482,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9071949000000000000
-  - amount available: 1007249000000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -3752,7 +3680,6 @@ Config up to date: True
 Singleton:
   - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
   - amount left: 9999998000000000000
-  - amount available: 889348000000000000
   - amount to claim: 1000000000000
 
 Outstanding events:
