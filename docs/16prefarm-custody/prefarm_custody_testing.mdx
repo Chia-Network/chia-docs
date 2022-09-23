@@ -209,7 +209,7 @@ d----           5/23/2022  2:55 PM                keys_and_sb
 Next, run the command to initialize the singleton:
 
 ```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic init --directory C:\Users\User\prefarm_test\keys_and_sb -wt 600 -pc 1200 -rt 300 -rc 600 -sp 900
+(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic init --directory $(pwd) -wt 600 -pc 1200 -rt 300 -rc 600 -sp 900
 Created a configuration file: C:\Users\User\prefarm_test\keys_and_sb\Configuration (needs derivation).txt
 ```
 
@@ -247,9 +247,9 @@ This tutorial's examples are shown as if the user were acting alone and _not_ pa
 Next, use the `hsmpk` command to derive a public key from each of the secret exponents:
 
 ```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat .\1.se) > 1.pk
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat .\2.se) > 2.pk
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat .\3.se) > 3.pk
+(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat 1.se) > 1.pk
+(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat 2.se) > 2.pk
+(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat 3.se) > 3.pk
 ```
 
 As a result of running this command, a public key will be added to a new text file, which can be removed from the vault to be used in the next command.
