@@ -1,30 +1,25 @@
 name: Deploy to pages on trunk
-
 on:
   push:
     branches:
       - 'main'
-
 jobs:
   docusaurus-translations:
     runs-on: ubuntu-latest
-    container: node:16-alpine
+    container: node:17-alpine
     steps:
       - name: 'Install deps'
         run: |
-          apk add python3 py3-pip make g++ git
-
+          apk add python3 make g++ git
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Install J2
+      - name: 'yarn deps'
         run: |
-          pip install j2cli
-
+          yarn
       - name: 'Docusaurus write-translations'
         run: |
           yarn write-translations
-
       - name: Upload docusaurus translations
         uses: actions/upload-artifact@v3
         with:
@@ -42,25 +37,20 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: translations
-
       - name: 'Crowdin upload'
         run: crowdin upload
-
       - name: 'Crowdin download'
         run: crowdin download
-
       - name: Upload Crowdin docs
         uses: actions/upload-artifact@v3
         with:
           name: i18n
           path: |
             i18n
-
   deploy:
     needs: crowdin
     runs-on: ubuntu-latest
@@ -69,33 +59,26 @@ jobs:
       - name: 'Install deps'
         run: |
           apk add python3 py3-pip make g++ git
-
       - name: Checkout Code
         uses: actions/checkout@v2
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: i18n
-
       - name: Install J2
         run: |
           pip install j2cli
-
       - name: Set env
         run: |
           # Gets repository name (without owner prefix) variable
           echo "REPOSITORY_NAME=$(echo ${GITHUB_REPOSITORY} | cut -d "/" -f2)" >> $GITHUB_ENV
-
       - name: Generate docusaurus.config.js
         run: |
           j2 docusaurus.config.js -o docusaurus.config.js
           cat docusaurus.config.js
-
       - name: 'yarn deps'
         run: |
           yarn
-
       - name: 'yarn deploy'
         run: |
           git config --global user.name 'ChiaAutomation'
