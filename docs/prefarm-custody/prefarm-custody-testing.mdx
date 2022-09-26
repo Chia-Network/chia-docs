@@ -3793,17 +3793,17 @@ If the lock level has been increased to 3, then the test passes. Note that the k
 
 ---
 
-### Test 28 - overspend 1
+### Test 28 - misc 1
 
-**Title: overspend: test spending more than available (need to comment out the Raise around main.py:1002 to get a spendbundle to sign for this)**
+**Title: misc: Test sending CATs to p2_address, ensure nothing breaks**
 
-**Expected result: fail**
+**Expected result: pass**
 
 ---
 
-### Test 29 - misc 1
+### Test 29 - misc 2
 
-**Title: misc: Test sending cats to p2_address, ensure nothing breaks**
+**Title: misc: Test sending NFTs to p2_address, ensure nothing breaks**
 
 **Expected result: pass**
 
@@ -3839,17 +3839,7 @@ If the lock level has been increased to 3, then the test passes. Note that the k
 
 **Expected result: pass**
 
----
-
-### Test 34 - overspend 2
-
-**Title: Run test 2, but attempt to spend more than what should be allowed**
-
-**Expected result: fail**
-
----
-
-### Test 35 - ap flag
+### Test 34 - ap flag
 
 **Title: test a basic spend without the -ap flag, make sure previous payments aren't absorbed**
 
@@ -3857,7 +3847,7 @@ If the lock level has been increased to 3, then the test passes. Note that the k
 
 ---
 
-### Test 36 - dust
+### Test 35 - dust
 
 **Title: Dust the prefarm wallet, then test a basic spend of a large amount of txch, with -at flag set to 1 billion mojos or something.**
 
@@ -3865,7 +3855,7 @@ If the lock level has been increased to 3, then the test passes. Note that the k
 
 ---
 
-### Test 37 - mc flag
+### Test 36 - mc flag
 
 **Title: test the -mc flag set to different values with a basic spend**
 
@@ -3873,7 +3863,7 @@ If the lock level has been increased to 3, then the test passes. Note that the k
 
 ---
 
-### Test 38 - lock level increase 2
+### Test 37 - lock level increase 2
 
 **Title: attempt to increase lock level by 2 levels at once**
 
@@ -3881,7 +3871,7 @@ If the lock level has been increased to 3, then the test passes. Note that the k
 
 ---
 
-### Test 39 - timelock 5
+### Test 38 - timelock 5
 
 **Title: verify correct slow rekey times with various numbers of keys signing. expected result: rekey times should be enforced according to the design**
 
@@ -3889,7 +3879,7 @@ If the lock level has been increased to 3, then the test passes. Note that the k
 
 ---
 
-### Test 40 - timelock 6
+### Test 39 - timelock 6
 
 **Title: attempt to withdraw money immediately after a clawback. This is a test of -wt**
 
