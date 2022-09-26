@@ -1,0 +1,464 @@
+---
+title: Install and Run a Custom Testnet
+slug: /install-custom-testnet
+---
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+---
+
+This document will show you how to set up a custom testnet for testing the prefarm custody solution.
+
+<details>
+  <summary>Note about Python <code>RuntimeError</code> on Windows</summary>
+
+If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 'More info about this issue') and can be safely ignored. For example:
+
+```powershell
+chia stop -d all
+
+Exception ignored in: <function _ProactorBasePipeTransport.__del__ at 0x000001A719716160 >
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\proactor_events.py", line 116, in __del__
+    self.close()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\proactor_events.py", line 108, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 746, in call_soon
+    self._check_closed()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 510, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination': 'client', 'origin': 'daemon', 'request_id': '0de5449121b6873ce18661b2adc4213d7dc795c2943ff7f4be9502058e8eaba0'}
+```
+
+</details>
+
+Before you can create a custom testnet, you need to obtain a puzzle hash, which will hold the prefarm. This requires a few steps:
+
+### Install Chia
+
+In order to obtain a puzzle hash, Chia must be installed on your computer. A couple notes:
+
+- It doesn't matter which version of Chia you have installed, as long as it's at least 1.3.0. You only need this version of Chia to obtain a puzzlehash
+- It also doesn't matter if Chia is currently configured to run on the testnet or mainnet. Both are fine
+
+If Chia is already installed on your computer, then proceed to the next step ([Obtain a wallet address](#obtain-a-wallet-address)).
+
+If Chia is not already installed, run the appropriate installer from [chia.net/download/](https://www.chia.net/download/)
+
+### Obtain a wallet address
+
+:::warning important
+You should create a new wallet that will only be used for testing the prefarm.
+:::
+
+**If you are running Chia's GUI:**
+
+1. Click "CREATE A NEW PRIVATE KEY"
+   <figure>
+     <img src="/img/custody/create_new_key.png" alt="Create a new key" />
+   </figure>
+2. You are recommended to copy the mnemonic (on paper or on your computer) for later recovery
+3. Click "NEXT"
+   <figure>
+     <img
+       src="/img/custody/copy_seed.png"
+       alt="Copy the mnemonic seed and click next"
+     />
+   </figure>
+4. After a few seconds, you will be taken to your new wallet. Copy the number next to `Wallet` (on paper or on your computer). This is your wallet's fingerprint. You will need this number in a later step. Click `RECEIVE`
+   <figure>
+     <img
+       src="/img/custody/fingerprint.png"
+       alt="Copy the wallet fingerprint"
+     />
+   </figure>
+5. You will be shown your wallet's primary receive address. Click the button to copy this address to your computer's clipboard. (It doesn't matter if it starts with XCH or TXCH)
+   <figure>
+     <img
+       src="/img/custody/receive_address.png"
+       alt="Copy the receive address"
+     />
+   </figure>
+6. Proceed to the next step: [Obtain a puzzle hash](#obtain-a-puzzle-hash)
+
+**If you are running from a CLI:**
+
+1. Run `chia keys generate`. For example:
+
+   ```powershell
+   (venv) PS C:\> chia keys generate
+   Generating private key
+   Added private key with public key fingerprint 1541183844
+   ```
+
+2. Copy the fingerprint (on paper or on your computer)
+3. Run `chia keys show --show-mnemonic-seed`. For example:
+
+   ```powershell
+   (venv) PS C:\> chia keys show --show-mnemonic-seed
+   Showing all public and private keys
+
+   Fingerprint: 1541183844
+   Master public key (m): b84dfc835480ccecd88839e6aec9b054da743b90a8cdc6617504e2adc881d00335ddddd4e722e3c0edf530c40c5a9650
+   Farmer public key (m/12381/8444/0/0): 8657036a149034b91681c005fb4f322e7c4df987a1eaa1d426601c367bb01daad51934f9b60c482d687713b97aec3e9e
+   Pool public key (m/12381/8444/1/0): a466c7f4f19cf8285d0de0a58caa2f7f740fc0a2409e32fabcfb4e122098b2cd8549ede63afa04688a84d01c70ac4470
+   First wallet address: txch1hn6dxvhnrgnyg6yj20ry7yxzcnnlf2sh027s83u589kprf0fjfrs2unaad
+   Master private key (m): 4eaceac1c3b49e015cf7a59bee3548f85030e9d4145f53195f2e79c29fa8759b
+   First wallet secret key (m/12381/8444/2/0): <PrivateKey 38c2fa9c94d1f30c7706202ca08526a4f206550d2f4ad9f6a7c995c668c5318b >
+   Mnemonic seed (24 secret words):
+   coconut trick weapon sting faith physical resist message exercise decorate child ankle retire fresh boil human regret exile swear glimpse genius nominee nothing lab
+   ```
+
+4. You are recommended to copy the 24-word mnemonic listed under the fingerprint you just generated, for later recovery. You can copy this on paper or on your computer
+5. Copy the address located next to `First wallet address:` to your computer's clipboard. You'll use it in the next step. (It doesn't matter if it starts with `XCH` or `TXCH`)
+
+---
+
+### Obtain a puzzle hash
+
+You should now have a Chia wallet address copied to your computer's clipboard.
+
+The easiest way to obtain a puzzle hash is to use an online tool, such as the one available at [chia.tt/convert](https://chia.tt/convert).
+
+Paste your wallet address into the "Address" field and you will automatically receive a puzzle hash:
+
+<figure>
+  <img
+    src="/img/custody/address_to_puzzle_hash.png"
+    alt="Address to puzzle hash converter"
+  />
+</figure>
+
+Copy this to your computer's clipboard, to be used in the next step.
+
+:::info
+What Chia calls a "puzzle hash" is the tree hash of the puzzle that can be run with your public/private key pair. This puzzle hash can then be encoded into a wallet address with any prefix, such as `xch` or `txch`. You have done the opposite in this step -- you have _decoded_ a wallet address back into the original puzzle hash. The resulting puzzle hash will be the same, regardless of the prefix of the wallet address. For this reason, it didn't matter if your wallet address started with `xch` or `txch`.
+:::
+
+---
+
+### Create a custom testnet
+
+In this step, you will a custom testnet, which you will use to test the internal custody solution. Per the previous step, you should have a puzzle hash copied to your computer's clipboard.
+
+1. Visit the [GitHub workflow for generating a testnet](https://github.com/Chia-Network/testnet-config-generator/actions/workflows/make-testnet.yml)
+
+Click the "Run workflow" dropdown on the right side of the site. Fill in the following values:
+
+- Do not change `Branch: main`
+- In the text box under `The branch... to create the testnet from`, enter `latest`. (Technically you could use `main`, but there will be a higher chance of something being broken.)
+- In the text box under `The branch... with the testnet configuration`, enter `ictest-<your name>`. Remember the name you used
+- In the text box under `The network name to create...`, enter the same name you used in the previous text box (`ictest-<your name>`)
+- In the text box under `The puzzle hash the prefarm should go to`, paste your puzzle hash
+
+Here is an example screenshot:
+
+<figure>
+  <img
+    src="/img/custody/workflow_create.png"
+    alt="Workflow to create a testnet"
+  />
+</figure>
+<br />
+
+Click the green `Run workflow` button. This will begin the process of creating the testnet. You'll be shown the message "Workflow run was successfully requested."
+
+<figure>
+  <img
+    src="/img/custody/workflow_request_success.png"
+    alt="Workflow request success"
+  />
+</figure>
+<br />
+
+Click the workflow that is in progress (the red circle on the bottom right of the above screenshot). You'll be shown the status of this workflow. It should take less than two minutes to complete, after which the `Status` should say `Success`.
+
+<figure>
+  <img src="/img/custody/workflow_finished.png" alt="Workflow finished" />
+</figure>
+<br />
+
+Visit [https://github.com/Chia-Network/chia-blockchain/branches](https://github.com/Chia-Network/chia-blockchain/branches). You should see the branch your just created. This will automatically create a new testnet for you to use. The infrastructure to create this testnet is being run in the background.
+
+<figure>
+  <img src="/img/custody/github_new_branch.png" alt="New branch on GitHub" />
+</figure>
+<br />
+
+This process requires about 30 minutes to complete.
+
+You can continue with this tutorial in the meantime.
+
+---
+
+## Install your custom testnet
+
+1. Stop your current installation of Chia
+
+:::info
+If you are unsure of how to run the commands from this step, you can reboot your computer and skip to step 2
+:::
+
+- If the wallet GUI is running, close it
+- If you previously installed Chia using our packaged installer, then open a terminal (MacOS/Linux) or a Powershell window (Windows), and enter the following command:
+  - Windows (be sure to replace `<username>` and `<version>` with the actual values): `C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe stop -d all`
+  - MacOS: `/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia stop -d all`
+  - Linux: [todo]
+- If you previously installed Chia from source, then activate a virtual environment and run `chia stop -d all`:
+
+  ```powershell
+  (venv) PS C:\> chia stop -d all
+  Daemon not started yet
+  Couldn't connect to chia daemon
+  ```
+
+  Make sure to deactivate your virtual environment before continuing:
+
+  ```powershell
+  (venv) PS C:\> deactivate
+  PS C:\>
+  ```
+
+2. Make and `cd` to a new directory where you'll run your new Chia branch. You can name this directory whatever you want. This tutorial will call it `prefarm_test`:
+
+```powershell
+PS C:\Users\User> mkdir prefarm_test
+
+  Directory: C:\Users\User
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           5/23/2022  9:51 AM                prefarm_test
+
+PS C:\Users\User> cd prefarm_test
+PS C:\Users\User\prefarm_test>
+```
+
+3. Locally clone the branch you just created
+
+:::info
+If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
+:::
+
+Run `git clone https://github.com/Chia-Network/chia-blockchain.git -b <branch name> --recurse-submodules`.
+
+Be sure to replace `<branch name>` with actual branch name. The branch from this tutorial is called `ictest-dan_perry`.
+
+This command should take less than 30 seconds to complete, depending on your internet connection.
+
+```powershell
+(venv) PS C:\Users\User\prefarm_test> git clone https://github.com/Chia-Network/chia-blockchain.git -b ictest-dan_perry --recurse-submodules
+Cloning into 'chia-blockchain'...
+remote: Enumerating objects: 89238, done.
+remote: Counting objects: 100% (1572/1572), done.
+remote: Compressing objects: 100% (513/513), done.
+Receiving objects: 100% (89238/89238), 37.60 MiB | 10.06 MiB/s, done.ed 87666
+
+Resolving deltas: 100% (70645/70645), done.
+Submodule 'chia-blockchain-gui' (https://github.com/Chia-Network/chia-blockchain-gui.git) registered for path 'chia-blockchain-gui'
+Submodule 'mozilla-ca' (https://github.com/Chia-Network/mozilla-ca.git) registered for path 'mozilla-ca'
+Cloning into 'C:/Users/User/prefarm_test/chia-blockchain/chia-blockchain-gui'...
+remote: Enumerating objects: 48179, done.
+remote: Counting objects: 100% (3063/3063), done.
+remote: Compressing objects: 100% (919/919), done.
+remote: Total 48179 (delta 2173), reused 2801 (delta 1985), pack-reused 45116
+Receiving objects: 100% (48179/48179), 54.41 MiB | 16.78 MiB/s, done.
+Resolving deltas: 100% (31396/31396), done.
+Cloning into 'C:/Users/User/prefarm_test/chia-blockchain/mozilla-ca'...
+remote: Enumerating objects: 106, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 106 (delta 13), reused 12 (delta 11), pack-reused 89
+Receiving objects: 100% (106/106), 284.67 KiB | 689.00 KiB/s, done.
+Resolving deltas: 100% (34/34), done.
+Submodule path 'chia-blockchain-gui': checked out '32245d869c70eedbb2a5fe77618b107dda70a647'
+Submodule path 'mozilla-ca': checked out '20338a00758970843652262219f4e0f639a6feed'
+```
+
+4. `cd` to the `chia-blockchain` directory and run the install script.
+
+   - On Windows, this script is `Install.ps1`
+   - On MacOS and linux, the script is `install.sh`
+
+This will take a few minutes to execute.
+
+```powershell
+PS C:\Users\User\prefarm_test> cd .\chia-blockchain\
+PS C:\Users\User\prefarm_test\chia-blockchain>
+```
+
+```powershell
+PS C:\Users\User\prefarm_test\chia-blockchain> .\Install.ps1
+Python version is: 3.9.7
+Found Python with OpenSSL version:
+OpenSSL 1.1.1l  24 Aug 2021
+Anything before 1.1.1n is vulnerable to CVE-2022-0778.
+...
+...
+Chia blockchain .\Install.ps1 complete.
+For assistance join us on Keybase in the #support chat channel:
+https://keybase.io/team/chia_network.public
+
+Try the Quick Start Guide to running chia-blockchain:
+https://github.com/Chia-Network/chia-blockchain/wiki/Quick-Start-Guide
+
+To install the GUI type '.\Install-gui.ps1' after '.\venv\scripts\Activate.ps1'.
+
+Type '.\venv\Scripts\Activate.ps1' and then 'chia init' to begin.
+```
+
+5. Activate your virtual environment and initialize Chia
+
+   - On windows, run `.\venv\Scripts\Activate.ps1`
+   - On MacOS and Linux, run `. ./activate`
+   - Regardless of OS, run `chia init`
+
+```powershell
+PS C:\Users\User\prefarm_test\chia-blockchain> .\venv\Scripts\Activate.ps1
+(venv) PS C:\Users\User\prefarm_test\chia-blockchain> chia init
+Chia directory C:\Users\User\.chia\ictest-dan_perry
+Can't find private CA, creating a new one in C:\Users\User\.chia\ictest-dan_perry to generate TLS certificates
+Setting the xch destination for the farmer reward (1/8 plus fees, solo and pooling) to txch13amy3jfp8kkmqa87eswytj3a8ef22nm8zwsf3ckptpm8rv72qtgqgvk6fs
+Setting the xch destination address for pool reward (7/8 for solo only) to txch13amy3jfp8kkmqa87eswytj3a8ef22nm8zwsf3ckptpm8rv72qtgqgvk6fs
+To change the XCH destination addresses, edit the `xch_target_address` entries in C:\Users\User\.chia\ictest-dan_perry\config\config.yaml.
+
+To see your keys, run 'chia keys show --show-mnemonic-seed'
+```
+
+6. Connect to your testnet blockchain
+
+Run `chia start farmer`. This will start all of the required processes for running the custody tool.
+
+```powershell
+(venv) PS C:\Users\User\prefarm_test\chia-blockchain\chia-blockchain-gui> chia start farmer
+chia_harvester: started
+chia_farmer: started
+chia_full_node: started
+chia_wallet: started
+```
+
+7. Check the status of your testnet
+
+Run `chia show -s`. This will show the status of the network.
+The timelord and farmer required to run the network were created and started automatically when you created the branch in the previous step.
+
+It takes around 30 minutes for the first block to be created. However, it could take longer for you to start seeing the blocks. It took around 4 hours during one test run for this tutorial.
+
+If you receive this message: `Blockchain has no blocks yet`, then try the same command again later.
+
+For example:
+
+```powershell
+(venv) PS C:\Users\User\prefarm_test\chia-blockchain> chia show -s
+Network: ictest-dan_perry    Port: 58445   RPC Port: 8555
+Node ID: f40100b8b46550eb75b79edab4de38611eb543ac8975e262c2d2bf1e1c594312
+Genesis Challenge: 0b101cde014326bce48f030553bab0c4d430dfdbd0aeb9302b0fe85ca1b251ab
+
+Searching for an initial chain
+
+You may be able to expedite with 'chia show -a host:port' using a known node.
+
+Blockchain has no blocks yet
+```
+
+Once new blocks are being added, you will receive this message: `Current Blockchain Status: Full Node Synced`:
+
+```powershell
+(venv) PS C:\Users\User\prefarm_test\chia-blockchain\chia-blockchain-gui> chia show -s
+Network: ictest-dan_perry    Port: 58445   RPC Port: 8555
+Node ID: f40100b8b46550eb75b79edab4de38611eb543ac8975e262c2d2bf1e1c594312
+Genesis Challenge: 0b101cde014326bce48f030553bab0c4d430dfdbd0aeb9302b0fe85ca1b251ab
+ // highlight-next-line
+Current Blockchain Status: Full Node Synced
+Peak: Hash: f4d7056d832f1cd3b359421ab74a87177804b605dc8a9a0df5c6bd3210e0a950
+      Time: Mon May 23 2022 12:09:51 China Standard Time                  Height:        904
+
+Estimated network space: 48.902 GiB
+Current difficulty: 29
+Current VDF sub_slot_iters: 71303168
+Total iterations since the start of the blockchain: 2041687603
+
+  Height: |   Hash:
+      904 | f4d7056d832f1cd3b359421ab74a87177804b605dc8a9a0df5c6bd3210e0a950
+      903 | e9eec6068356c2897863926f1c0a6e21af738ec7fb573472bb8bcd1dec9f48ae
+      902 | 6fb79196dea5d9c8ba6f3896b5a39902839bc4c60784190886866431ef93b5da
+      901 | 962f3cf610c0e1dd8ee47206efd2fee1ad1c1b7d7f96a9f598ef889e0d24641c
+      900 | 17d0e231a67a6e560727096983aff3617c50bcb0e79fd53a376a5a48bc352d42
+      899 | fb46c9908260a7127f45a4a67aa4fa954c7aa1f3b625075887e0df2425c2f6ce
+      898 | bdf250bc7e22bb16e53126bcf09acaa40b3aefe47b1839934d50d5e1d872ff61
+      897 | 0e90c6f2cacea7e45cc0b50f7c8436d32da572731b2f435fb5291adde156a2e8
+      896 | 20ac76cab956f521195c52a43453c42eeeca3dd3d6cb9e952484c1b55669bea7
+      895 | 418c507e7908953389d8e66a5274db4a18337dcd0e3f09e84e12241584b2e991
+```
+
+You can verify that you have those cool 21 million TXCH by running `chia wallet show` and selecting the wallet from which you obtained the puzzle hash earlier:
+
+```powershell
+(venv) PS C:\Users\User\prefarm_test\chia-blockchain> chia wallet show
+Wallet keys:
+1)   502984008
+2) * 2447771420 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 2447771420):
+Wallet height: 10026
+Sync status: Synced
+Balances, fingerprint: 2447771420
+
+Chia Wallet:
+   -Total Balance:         21000000.0 txch (21000000000000000000 mojo)
+   -Pending Total Balance: 21000000.0 txch (21000000000000000000 mojo)
+   -Spendable:             21000000.0 txch (21000000000000000000 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+Connections:
+Type      IP                                     Ports       NodeID      Last Connect      MiB Up|Dwn
+FULL_NODE 127.0.0.1                              58445/58445 f40100b8... May 25 09:58:36      0.0|0.0
+                                               -Height: No Info    -Hash: No Info    -Trusted: True
+```
+
+If your wallet does not show a balance of 21000000.0 txch, then something is wrong. Verify that the puzzle hash of your personal testnet was entered correctly and that you are looking at the correct wallet fingerprint.
+
+#### You still have to do one thing before continuing.
+
+:::warning important
+
+Your custom testnet has created a new folder called `~\.chia\ictest-<your name>`.
+However, the custody tool will automatically use a version of Chia that expects this folder to be called `~\.chia\mainnet`. To avoid issues later, do one of the following:
+
+**--EITHER--**
+
+Set `CHIA_ROOT` to point at your custom testnet's folder:
+
+- Windows Powershell - `$Env:CHIA_ROOT = "~\.chia\ictest-<your-name>"`
+- MacOS/Linux - `export CHIA_ROOT=~/.chia/ictest-<your-name>`
+
+This command will only set `CHIA_ROOT` for the current terminal/Powershell window. To change back to your mainnet config, open a new window.
+
+**--OR--**
+
+1. Rename the `~\.chia\mainnet` folder to something like `~\.chia\mainnet_bak`
+2. Copy the `~\.chia\ictest-<your name>` folder and all of its contents to a new folder called `~\.chia\mainnet`
+
+You should now have three folders in `~\.chia`, where `mainnet` is actually a copy of `~\.chia\ictest-<your name>`.
+
+For example:
+
+```powershell
+(venv) PS C:\Users\User> ls ~/.chia
+
+    Directory: C:\Users\User\.chia
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           5/23/2022 10:39 AM                ictest-dan_perry
+d----           5/23/2022  9:39 PM                mainnet
+d----           5/12/2022 11:34 AM                mainnet_bak
+```
+
+:::
+
+Your custom testnet is now installed and ready to be used.

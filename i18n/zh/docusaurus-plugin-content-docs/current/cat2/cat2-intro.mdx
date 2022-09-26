@@ -1,8 +1,7 @@
 ---
-id: cat2-intro
-title: CAT2 Intro & FAQ
-sidebar_label: 1. Intro & FAQ
-sidebar_position: 1
+title: 简介
+sidebar_label: 1. 简介
+slug: /cat2-intro
 ---
 
 ```mdx-code-block
@@ -10,201 +9,218 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-[CAT1](https://chialisp.com/docs/puzzles/cats) will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC. This is the final block where CAT1 will be valid. At this block height, a snapshot will be taken of all CAT1 tokens, along with the addresses of where they are being held. CAT1 issuers will then be able to issue new CAT2 tokens and airdrop them to the same addresses where the CAT1 tokens were held.
+[CAT1](/cats) 将在太平洋夏季时间 7 月 26 日上午 10 点左右在的第 2,311,760 个区块结束其生命周期。 （这是 CAT1 有效的最后一个区块。）在这个区块高度，一张所有 CAT1 代币及它们所持有的地址的快照会被拍摄。 然后，CAT1 发行人将能够发行新的 CAT2 代币并将它们空投到持有 CAT1 代币的相同地址。
 
-Chia version 1.5.0 will be released on July 26, 2022. This version will not show any CAT1 tokens in the wallet. Users will only see the newly-issued CAT2 tokens, which will be identical in value to their CAT1 equivalents.
+Chia 1.5.0 版本将于 7 月 26 日发布。此版本将不会在钱包中显示任何 CAT1 代币。 用户只会看到新发行的 CAT2 代币，其价值与其 CAT1 代币相同。
 
-:::tip Are you a CAT issuer? Check out [the developer docs](/docs/cat2/cat2-snapshot) to get started with issuing your CAT2 tokens. :::
+<hr />
 
-## FAQ {#faq}
+## 常见问题
 
-### General {#general}
+**什么是 CAT？**
 
-#### What is a CAT? {#what-is-a-cat}
+CAT 是 Chia Asset Token (Chia 资产代币)。 CAT 是在 Chia 区块链上发行的同质化代币。 CAT1 标准于 2022 年 1 月完成。该标准可在 [CAT1](/cats) 找到。 例如这些 CAT， Stable USD (USDS), Spacebucks (SBX) 和 Marmot (MRMT)。
 
-A CAT is a Chia Asset Token. CATs are fungible tokens that are issued on the chia blockchain. The CAT1 standard was finalized in January 2022. The standard [can be found here](https://chialisp.com/docs/puzzles/cats/). Some examples of CATs include Stably USD (USDS), Spacebucks (SBX), and Marmot (MRMT).
+**为什么 Chia 资产代币会发生变化？**
 
-#### Why is this change happening with CATs? {#why-cat2}
+CAT 标准升级为 CAT2 是基于外部安全审计发现的安全漏洞。这使得我们需要更新 钱包应用程序。所有 CAT1 代币的原始发行人也需要按照 CAT2 标准重新发行他们的代币，并为 汰换 CAT1 提供技术支持。 Chia 正在积极与社区成员合作以使这一过程尽可能无缝。
 
-The CAT standard was upgraded to CAT2 based on a security vulnerability found by an outside security audit. This resulted in an upgrade to the latest Chia wallet app as well as updates that will require all original issuers of CAT1 tokens to reissue their tokens on the CAT2 standard and end-of-life support for CAT1. Chia is working with community members to make this process as seamless as possible.
+**此更改是否会影响 Chia Network 的安全性？**
 
-#### Does this change impact Chia Network's security? {#security-impact}
+不会。Chia Network 技术或 Chia 区块链的安全性不会受到威胁。 该更新仅将修补 CAT1 的漏洞。
 
-No. There is no threat to the security of Chia Network technology or the Chia Blockchain. The update patched the vulnerability to CAT1.
+**CAT1 的周期何时结束？**
 
-#### When does the end of life of CAT1 happen? {#when-eol}
+生命周期结束的区块高度为 2,311,760，大约是世界标准时间（UTC） 17:00 左右。 这是拍摄快照的时间。
 
-The end-of-life block height is `2,311,760` which is on July 26, 2022 at approximately 17:00 UTC. This is when the snapshot is taken.
+**如何在快照时查看我的 CAT1 余额？**
 
-#### How can I check my CAT1 balance at the time of the snapshot? {#check-snapshot}
+访问 [cat1.chia.net](https://cat1.chia.net) 并提供您的公钥以查看重新发行时将空投给您的 CAT 余额。
 
-Go to [cat1.chia.net](https://cat1.chia.net) and provide your pubkey to see the CAT balances that will be airdropped to you when they get re-issued.
+**每个人都必须升级吗？**
 
-#### Does everyone have to upgrade? {#everyone-upgrade}
+我们建议所有 CAT（包括 USDS）持有者尽快升级到 1.5。 在生命周期终止的区块 (2,311,760) 之后，将不再支持在 1.4 和更早版本上可见的 CAT1。 如果您没有任何 CAT（例如，如果您是一个不将 XCH 兑换为 USDS 或任何其他 CAT 的农场主），那么您不需要升级。
 
-We recommend that all CAT (including USDS) holders upgrade to 1.5 as soon as is convenient. The CAT1s that are visible on 1.4 and earlier versions will no longer be supported after the end-of-life block (2,311,760). If you do not own any CATs (for example, if you are a farmer who does not exchange XCH for USDS or any other CAT), then you don't need to upgrade.
+**我需要升级我的收割机吗？**
 
-#### Do I need to upgrade my harvesters? {#upgrade-harvesters}
+此更新仅影响钱包软件，因此您无需更新收割机。
 
-This update only affects the wallet software, so you don't need to update your harvesters.
+**我的 NFT 或 XCH 有风险吗？**
 
-#### Are my NFTs or XCH at risk? {#nft-xch-risk}
+不会。NFT 和 XCH 不受该漏洞影响，因此无需对其进行任何操作。
 
-No. NFTs and XCH are not affected by the vulnerability, so no changes are required for them.
+**在过渡期间是否存在亏损或余额不正确的风险？ 如果发生该怎么办？**
 
-#### Is there any risk that I'll lose money or my balance will be incorrect during the transition? If so, what do I do? {#risk-lose-balance}
+如果您的钱包中有任何 CAT，您将希望尽快升级到 1.5，并确保在达到生命周期终止高度 (2,311,760) 之后不与任何 CAT1 代币交互，直到您升级到 1.5。 这将有助于确保您期望的余额是在重新发行 CAT 时将空投给您的余额。 CAT1 网站准确反映了您的钱包在生命周期结束公告时的 CAT1 余额。 它不会动态更新，但我们预计重新发行过程大约需要一周时间才能完全完成，因此在该过程完成之前，您钱包中的 CAT2 余额可能与 CAT1 网站余额不同。
 
-If you have any CATs in your wallet, you will want to upgrade to 1.5 as soon as convenient and be sure not to transact with any CATs after the end-of-life block height (2,311,760) has been reached and until you have upgraded to 1.5. This will help ensure that the balance you are expecting is what will be airdropped to you when the CATs are reissued. The [CAT1 website](https://cat1.chia.net/) accurately reflects the CAT1 balance of your wallet as of the end-of-life announcement. It will not dynamically update, but we expect the reissuance process to take approximately a week to fully complete, so the CAT2 balance in your wallet may differ from the CAT1 website balance until the process is complete.
+**在公告和生命周期结束块高度之间，作为用户我应该做什么？**
 
-#### Between the announcement and the end-of-life block height, what should I be doing as a user? {#what-to-do}
+建议您：
 
-It is recommended that you:
+1.  取消您钱包中任何链上公开的 CAT 报价（Offer）
 
-  1. Cancel any open CAT offers on-chain in your wallet
-  2. Do not accept any CAT offers in your 1.4 or lower wallet
-  3. Make note of your current CAT1 balances
-  4. Upgrade to the latest Chia wallet app (1.5.0 or higher) when it becomes available
+2.  不接受 1.4 或更低版本钱包中的任何 CAT 报价
 
-#### How can I be sure that I've canceled all my open offers? {#ensure-offers-canceled}
+3.  记下您当前的 CAT1 余额
 
-Most importantly, you will want to make sure there are no outstanding offers to trade your XCH for someone else's CATs. In addition to canceling the offers in your wallet, you can also send your total balance of XCH to yourself. Due to the Chia coinset model, this will ensure that all XCH coins will no longer be available should a rogue or forgotten offer be accepted.
+4.  尽快升级到最新的 Chia 钱包应用程序（1.5.0 或更高版本）
 
-#### I lost money by transacting, what do I do now? {#lost-money}
+**我怎样才能确认已经取消了所有的公开报价？**
 
-Unfortunately, any CAT1 transactions that happen after the end of life block height won't be recoverable. For further confirmation, please contact our support team so they can help with checking when the transactions occurred and can help determine if the money is lost or not.
+最重要的是，您需要确保没有报价可以将您的 XCH 交易为 CAT。 除了取消钱包中的报价外，您还可以将您的 XCH 总余额发送给自己。 由于 chia 的币模型，这将确保所有 XCH 币在对方接受遗忘的报价时将不可用。
 
-#### Do I need to cancel my XCH-for-NFT offers? {#xch-nft-offers}
+**我因交易而亏损，我现在该怎么办？**
 
-No. Only CAT1 tokens are affected. No changes are being made to NFTs. However, if you have an open CAT-for-NFT offer, then you should cancel it.
+不幸的是，在生命区块高度结束后发生的任何 CAT1 交易都将无法恢复。 如需进一步确认，请联系我们的协助团队，以便他们帮助检查交易发生的时间，并帮助确定资金是否丢失。
 
-#### How can I trust that all of my currency will be transferred appropriately? {#ensure-cats-transferred}
+**我需要取消我的 XCH 换 NFT 报价吗？**
 
-You can check your CAT1 balance as of the snapshot through our website using your public key. We are providing tools and support to the community developers to help ensure that they can reissue the new CATs in a timely manner. All CAT reissuers will be going by token balances at the same end-of-life blockheight.
+不会。只有 CAT1 代币受到影响。 NFT 没有任何变化。 但是，如果您有一个开放的 CAT-for-NFT 报价，那么您应该取消它。
 
-#### What happens to my CAT1s? {#what-happens-cat1}
+**我怎么能相信我所有的货币都会被适当地转移？**
 
-Your existing CAT1 tokens still exist on the blockchain, but they are no longer of use as everyone upgrades to CAT2. You will be airdropped CAT2 to replace your CAT1 based on your balance as of block height of 2,311,760. Once you upgrade to 1.5, you will no longer see any balances for your original CATs.
+1.  您可以使用您的 公钥通过我们的[网站](https://cat1.chia.net/)查看快照时您的 CAT1 余额。
 
-#### How long will it take for me to get all my tokens airdropped to me? {#airdrop-how-long}
+2.  我们正在为社区开发人员提供工具和支持，以帮助确保他们能够及时重新发布新的 CAT。 所有 CAT 的再发行将与生命周期结束时使用代币余额相同。
 
-This will depend on when the original issuers re-issue their tokens based on the new CAT2 standard. We hope that it is soon after the CAT1 EOL date. It is recommended to follow social media or Discord for CAT projects so you can hear firsthand when to expect the airdrops.
+**我的 CAT1 会怎样？**
 
-#### What happens if I have a transaction with a CAT1 token after the block height snapshot? {#cat1-after-block-height}
+你现有的 CAT1 代币仍然存在于区块链上，但随着每个人都升级到 CAT2，它们不再有用。 根据您截至区块高度 2,311,760 的余额，您将被空投 CAT2 以替换您的 CAT1。 升级到 1.5 后，您将不再看到原始 CAT 的任何余额。
 
-You will only be airdropped the balance of the tokens at the time the snapshot is taken. Any transactions that occur after the snapshot will not be accounted for in the airdrop provided to you.
+**需要多长时间才能将所有代币空投给我？**
 
-#### How can I trust that all of my currency will be transferred appropriately? Is there any risk that I'll lose money or my balance will be incorrect during the transition? If so, what do I do? {#cat1-transfer-correctly}
+这将取决于原始发行人何时根据新的 CAT2 标准重新发行其代币。 我们希望它在 CAT1 EOL 日期之后不久。 建议关注相关社交媒体，或关注 CAT 代币项目，这样您就可以直接了解何时可以预期空投。
 
-Your CAT1 tokens won't be transferred. Instead, you will be given an identical (in value) set of CAT2 tokens. The blockchain already contains a complete record of all coins in the coinset. We have developed a tool that will use the blockchain to calculate a complete snapshot of CAT1 tokens. This snapshot will be accurate as of CAT1's end-of-life block.
+**如果我在区块高度快照之后交易 CAT1 代币的交易会发生什么？**
 
-However, the CAT1 issuers do need to perform a complete airdrop of CAT2 tokens. If the airdrop is not completed, or even started, then there is a risk that you will not receive your upgraded CAT2 tokens. In this case, you should ask the issuer to make the upgrade.
+您只会收到在拍摄快照时空投代币余额。 快照后发生的任何交易都不会计入提供给您的空投。
 
-### CAT Issuers {#cat-issuers}
+**我怎么能相信我所有的货币都会被适当地转移？ 在过渡期间是否存在亏损或余额不正确的风险？ 如果是这样，我该怎么办？**
 
-#### I am the issuer of a CAT1 token. What should I do? {#cat1-issuer-what-do}
+您的 CAT1 代币不会被转移。 相反，您将获得一组相同（价值）的 CAT2 代币。 区块链已经包含了硬币集中所有硬币的完整记录。 我们开发了一个工具，将使用区块链来计算 CAT1 代币的完整快照。 此快照准确显示 CAT1 的生命周期结束时的数额。
 
-[Follow this document](/docs/cat2/cat2-snapshot), which will guide you through the process of reissuing your token as a CAT2.
+但是，CAT1 发行者确实需要执行 CAT2 代币的完整空投。 如果空投没有完成，甚至没有开始，那么您就有可能收不到升级后的 CAT2 代币。 在这种情况下，您应该要求发行人进行升级。
 
-### Chia App {#chia-app}
+**我是 CAT1 代币的发行人。 我应该怎么办？**
 
-#### I upgraded to 1.5, but I don't see any of my tokens yet. Did I do something wrong? {#no-tokens-yet}
+按照此文档的 [添加链接]，它将指导您完成将代币重新发行为 CAT2 的过程。
 
-No, you didn't do anything wrong. The Chia Wallet app, as of 1.5, only shows you your XCH, and CAT2 balances. As not all CATs will be re-issued immediately, when your CAT2s show up in your wallet is dependent on when original issuers issue their updated CAT2s.
+### Chia 应用问题
 
-#### The balance of my airdrop in my wallet doesn't match the balance that the website shows me, what should I do? {#balance-airdrop-match}
+**我升级到 1.5，但我还没有看到我的任何代币。 我做错什么了吗？**
 
-1. First, please consult the [CAT1 balance website](https://cat1.chia.net) to view your historical CAT1 balances. We expect the full reissuance process to take approximately a week to complete.
+不，你没有做错任何事。 从 1.5 开始，Chia 钱包应用程序仅显示您的 XCH 和 CAT2 余额。 由于并非所有 CAT 都会立即重新发行，因此您的 CAT2 何时出现在您的钱包中取决于原始发行者何时发行其更新的 CAT2。
 
-2. If your CAT2 balances in the 1.5.0 wallet do not match the CAT1 historical reference, then check what your wallet derivation index is at and compare it to the derivation index shown in the balance on the Tokens screen.
+**我的钱包里的空投余额与网站显示的余额不符，我该怎么办？**
 
-  <img src="/img/cat2/wallet-derivation-index.png" alt="Derivation Index in the wallet" />
+- 首先，请访问 CAT1 余额网站以查看您的历史 CAT1 余额。 我们预计完整的重新发行过程大约需要一周时间才能完成。
 
-3. If the derivation index in your wallet is less than the highest derivation index found on the website, you will want to update the derivation index in the wallet. To do so, go to Settings -> Derivation index and type in the number that you get from the [cat1.chia.net](https://cat1.chia.net) website.
+- 如果您在 1.5.0 钱包中的 CAT2 余额与 CAT1 历史参考不匹配，请检查您的钱包衍生指数（derivation index）是多少，并将其与衍生指数（derivation index）进行比较。 衍生指数显示在代币屏幕上的余额中。![Graphical user interface, application
 
-  <img src="/img/cat2/settings-derivation-index.png" alt="Derivation Index in the settings" />
+  <img
+    src="/img/cat2/wallet-derivation-index.png"
+    alt="Derivation Index in the wallet"
+  />
 
-#### I've tried all the recommendations, but the reissuer didn't get my wallet balance correct. What should I do? {#no-reissuance}
+- 如果您钱包中的衍生指数低于网站上的最高衍生指数，您将需要更新钱包中的衍生指数。 为此，请转到设置 -> 衍生指数（derivation index）并输入您从 cat1.chia.net 网站获得的数字。
 
-After trying all the above steps and at least a week has passed since the announcement and your CAT2 airdropped balance still doesn't match, then we recommend reaching out directly to the reissuer of the relevant CAT1 token.
+  <img
+    src="/img/cat2/settings-derivation-index.png"
+    alt="Derivation Index in the settings"
+  />
 
-#### How do I cancel my open offers to exchange CATs? {#cancel-open-offers}
+**我已经尝试了所有建议，但重新发行人没有让我的钱包余额正确。 我应该怎么办？**
 
-From the Chia Wallet GUI:
-  1. Go to the *Offers* tab in the left hand navigation
-  2. Find all Offers you created that show a status of *Pending Accept*
-  3. Click on the three dots under *Actions*
-  4. Click on *Cancel Offer*
-  5. Ensure the *Cancel on blockchain* option is selected
-  6. Enter a fee (optional, but recommended)
-  7. Click on *Cancel Offer*
+- 在尝试了以上所有步骤后，距公告至少一周过去了，您的 CAT2 空投余额仍然不匹配，那么我们建议直接联系相关 CAT1 代币的重新发行。
 
-From the Chia Wallet command line:
-  1. Run `chia wallet cancel_offer` along with the parameters needed to cancel any open offers. Run `chia wallet cancel_offer -h` to see the relevant help output.
+**如何取消我的交换 CAT 的公开报价？**
 
-#### After upgrading to 1.5, I've lost all of my wallet transaction history. How do I access my previous transaction history with CATs or XCH? {#lost-transaction-history}
+从 Chia 钱包用户界面：
 
-After upgrading to 1.5, a new wallet database is created to preserve any previous copies of wallet DBs. You can install a previous version of the Chia wallet app, and that older client will look for your previous wallet db and display the transaction history for XCH, CATs, and NFTs that occurred in that wallet before upgrading to 1.5
+1.  转到左侧的"报价"选项卡
 
-#### How do I know when the updated tokens have been airdropped to my wallet? {#airdrop-know-when}
+2.  查找您创建的所有显示"等待接受"状态的报价
 
-You should follow the projects for the tokens that you own so you can be notified when they have begun running the airdrops. You can also monitor your Chia wallet app, and look under the *“Manage token list”* to see if a new CAT2 has been airdropped to you.
+3.  点击"Actions"下的三个点
 
-#### Why doesn't the balance in my wallet match the balance reported on the website? {#balance-match-website}
+4.  点击"取消报价"
 
-Get the *Derivation Index* from the website and update the derivation index in the Chia wallet app. This will ensure the balance reported on the website matches up with the balance in your wallet.
+5.  确保选择"在区块链上取消"选项
 
-#### What is a “Derivation Index”? {#what-is-derivation-index}
+6.  输入费用（可选，但推荐）
 
-The derivation index is a numeric value that is used to track how many wallet addresses have been used based on the most recent transaction. This helps establish a window for which wallet addresses to scan for on the blockchain to find all possible coins owned by a specific wallet.
+7.  点击"取消报价"
 
-#### Why do I see multiple tokens with the same value in my 1.5 wallet? {#multiple-tokens-same-value}
+从 Chia 钱包命令行：
 
-It is possible that you have received multiple identical airdrops from different parties. Only one of them will be the real CAT2 token. To determine which one is real, click *“MANAGE TOKEN LIST”* and click *“Search on Tail Database”*. Only the original CAT1 issuer will be allowed to register their CAT2 equivalent on Tail Database, so you should use it as the source of truth for naming your CAT2 tokens.
+1.  运行"chia wallet cancel_offer"以及取消任何公开报价所需的参数。 有关如何使用命令行参数的文档，请参见[此处](https://docs.chia.net/nft-cli)。
 
-#### Who can I contact if I have any problems or questions? {#who-to-contact}
+**升级到 1.5 后，我丢失了所有钱包交易记录。 如何访问我以前使用 CAT 或 XCH 的交易历史？**
 
-The Chia Network Support Team is available to answer questions and provide assistance through this process in the official Support [Keybase channel](https://keybase.io/team/chia_network.public).
+升级到 1.5 后，将创建一个新的钱包数据库以保留任何以前的钱包数据库副本。 您可以安装以前版本的 Chia 钱包应用程序，该旧客户端将查找您以前的钱包数据库并显示升级到 1.5 之前该钱包中发生的 XCH、CAT 和 NFT 的交易历史
 
+**我如何知道更新的代币何时空投到我的钱包？**
 
-### CAT1 Balance Website {#cat1-balance-website}
+您应该关注您拥有的代币的项目，以便在他们开始运行空投时收到通知。 您还可以监控您的 Chia 钱包应用程序，并在"管理代币列表"下查看是否有新的 CAT2 空投给您。
 
-#### How do I find the pubkey to enter into the website? {#find-pubkey-for-website}
+**为什么我钱包中的余额与网站上报告的余额不匹配？**
 
-From the Chia Wallet GUI:
-  1. Go to the *“Select Key”* screen and click on *“See private key”*
+从网站获取衍生指数，并在 Chia 钱包应用程序中更新衍生指数（derivation index）。 这将确保网站上报告的余额与您钱包中的余额相匹配。
 
-    <img src="/img/cat2/key-selection.png" alt="Key selection screen" />
+**什么是"衍生指数"？**
 
-  2. Copy the *public key* from the list of keys available
+派生索引是一个数值，用于根据最近的交易跟踪使用了多少钱包地址。 这有助于建立一个窗口，用于在区块链上扫描钱包地址，以查找特定钱包拥有的所有可能的硬币。
 
-From the Chia Wallet command line:
-  1. Run `chia keys show`
-  2. Copy the *master public key* from the list of keys available
+**为什么在我的 1.5 钱包中看到多个具有相同价值的代币？**
 
-#### I checked the website (cat1.chia.net) and I don't see any tokens for my wallet, but there should be. What can I do? {#no-tokens-on-website}
+您可能从不同方收到了多个相同的空投。 其中只有一个是真正的 CAT2 代币。 要确定哪个是真实的，请单击"MANAGE TOKEN LIST"，然后单击"Search on Tail Database"。 只有最初的 CAT1 发行者才被允许在 Tail Database 上注册他们的 CAT2 等价物，因此您应该使用它作为命名您的 CAT2 代币的真实来源。
 
-  1. Confirm the pubkey you entered into the website is correct and had a CAT1 token balance, and is for an unhardened key
-  2. Click on the *“Search next 1000”* to see if your balance has been updated
+**如果我有任何问题或疑问，我可以联系谁？**
 
-#### The balance that the website is reporting doesn't match what I expect. What should I do? {#website-balance-doesnt-match}
+Chia Network 团队，可在官方 Support Keybase 频道中提出问题并通过此流程获得帮助
 
-The website scans the first 1000 wallet receive addresses, and if the balance doesn't reflect what you expect, then you should hit the “search next 1000” for the website to scan and update the balance found. We expect most users to get their correct balance from the initial search, but some users might need an expanded search.
+### cat1.chia.net Website questions
 
-#### My CH21 balance is reported incorrectly on the website. What should I do? {#ch21-balance-incorrect}
+**如何找到输入进网站的公钥？**
 
-CH21 tokens were issued to non-observer keys, so they won't show up in the website unless they've been transferred at some point using a wallet without forcing the non-observer key support. The CAT standard was released at the same time as support for observer keys, so generally most CATs and wallets will be supported by the website. Even if your CH21 tokens are not displayed on the website, a CAT2 version will still be airdropped into your 1.5 wallet.
+从 Chia 钱包用户界面：
 
-#### I am running 1.5 and when I view an offer, instead of the CAT token, I see XCH. What's going on? {#see-xch-instead-of-cat}
+1.  转到"选择密钥"屏幕并单击"查看私钥"
 
-You are likely viewing an offer for a CAT1 which will be an invalid offer starting with version 1.5. The reason for this is because tail IDs for CAT1s are no longer recognized by the wallet.
+<img src="/img/cat2/key-selection.png" alt="Key selection screen" />
 
-  <img src="/img/cat2/offer-summary.png" alt="Offer summary screen" />
+2.从可用密钥列表中复制"公钥"
 
+从 Chia 钱包命令行：
 
-### Wallet Developers {#wallet-developers}
+1.  运行`Chia keys show`
 
-#### I am developing a Chia wallet. What changes do I need to make to my code? {#wallet-changes-needed}
+2.  从可用密钥列表中复制"主公钥"
 
-CAT2 inner puzzles do not enforce prepended announcements. If you preprend a coin announcement with `0xca` (which was a requirement for CAT1), then the announcement will fail with `ANNOUNCE_CONSUMED_FAILED`. Instead, do not prepend inner puzzle announcements with anything.
+**我查看了网站 (cat1.chia.net)，我没有看到我的钱包有任何代币，但应该有。 我能做些什么？**
 
-Note that announcements coming from the CAT layer still need to be prepended with `0xcb`. This has not changed in CAT2.
+1.  确认您在网站上输入的公钥是正确的，并且有 CAT1 代币余额，并且是未硬化的密钥
+
+2.  点击"Search next 1000"查看您的余额是否已更新
+
+**该网站报告的余额与我的预期不符。 我应该怎么办？**
+
+网站会扫描前 1000 个钱包接收地址，如果余额不符合您的预期，那么您应该点击"search next 1000"让网站扫描并更新找到的余额。 我们希望大多数用户能够从初始搜索中获得正确的平衡，但有些用户可能需要扩展搜索。
+
+**我的 CH21 余额在网站上有误。 我应该怎么办？**
+
+CH21 代币是颁发给非观察者密钥的，因此它们不会出现在网站上，除非它们在某个时候使用无强制非观察者密钥支持的钱包转移。 CAT 标准是在支持观察者密钥的同时发布的，因此通常大多数 CAT 和钱包都会被网站支持。 即使您的 CH21 代币没有显示在网站上，CAT2 版本仍然会空投到您的 1.5 钱包中。
+
+**我正在运行 1.5，当我查看报价时，我看到的是 XCH，而不是 CAT 令牌。 这是怎么回事？**
+
+您可能正在查看 CAT1 的报价，该报价从 1.5 版开始将是无效报价。 原因是钱包不再识别 CAT1 的尾部 ID。
+
+    <img src="/img/cat2/offer-summary.png" alt="Offer summary screen"/>
+
+## 钱包开发者问题
+
+**我正在开发 Chia 钱包。 我需要对我的代码进行哪些更改？**
+
+- CAT2 的内层 Puzzle 不需要给 announcement 加上固定前缀。 如果您给 announcement 加上了"0xca"前缀（这是 CAT1 的要求），那么公告验证将失败并显示"ANNOUNCE_CONSUMED_FAILED"。 总之，不要给内部 Puzzle 的 announcement 添加任何前缀。
+
+- 请注意，来自 CAT 层的给 announcement 仍然需要在前面加上"0xcb"。 这在 CAT2 中没有改变。
