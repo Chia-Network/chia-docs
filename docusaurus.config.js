@@ -10,8 +10,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
       'The source of truth for Chia documentation. Start here to learn more about Chia. ',
     url: 'https://staging.docs.chia.net',
     baseUrl: '/',
-    onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenLinks: 'ignore',
+    onBrokenMarkdownLinks: 'ignore',
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network', // Usually your GitHub org/user name.
     plugins: [
