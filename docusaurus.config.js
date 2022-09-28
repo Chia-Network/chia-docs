@@ -1,31 +1,22 @@
-const lightCodeTheme = require('prism-react-renderer/themes/nightOwlLight');
-const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
-
-// With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (
   module.exports = {
     title: 'Chia Documentation',
     tagline:
-      'The source of truth for Chia documentation. Start here to learn more about Chia. ',
+      'The source of truth for Chia documentation. Start here to learn more about Chia.',
     url: 'https://staging.docs.chia.net',
     baseUrl: '/',
     onBrokenLinks: 'ignore',
     onBrokenMarkdownLinks: 'ignore',
     favicon: 'img/chia_leaf_green.svg',
-    organizationName: 'Chia-Network', // Usually your GitHub org/user name.
+    organizationName: 'Chia-Network',
+    projectName: '{{ REPOSITORY_NAME }}',
     plugins: [
       [
         require.resolve('@easyops-cn/docusaurus-search-local'),
         {
-          // ... Your options.
-          // `hashed` is recommended as long-term-cache of index file is possible.
           hashed: true,
-          // For Docs using Chinese, The `language` is recommended to set to:
-          // ```
           language: ['en', 'zh'],
-          // ```
-          // When applying `zh` in language, please install `nodejieba` in your project.
         },
       ],
     ],
@@ -43,10 +34,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
             anonymizeIP: true,
           },
           docs: {
+            routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
-            // Please change this to your repo.
             editUrl:
-              'https://github.com/Chia-Network/{{ PROJECT_NAME }}/blob/main/',
+              'https://github.com/Chia-Network/{{ REPOSITORY_NAME }}/blob/main/',
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
@@ -58,28 +49,36 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        announcementBar: {
+          id: 'cat2_launch',
+          content:
+            'CAT2 Standard Released 🌱<a target="_blank" rel="noopener noreferrer" href="/cat2-intro/"> Learn about CAT1 end-of-life and CAT2 reissuance</a>',
+          backgroundColor: '#0d3349',
+          textColor: '#fff',
+          isCloseable: true,
+        },
         image: '/img/og-chia.png',
         navbar: {
           title: ' Chia Docs',
           logo: {
-            alt: 'My Site Logo',
-            src: 'img/chia-docs-icon.svg',
+            alt: 'Chia Logo',
+            src: 'img/chia_leaf_green.svg',
           },
           items: [
             {
-              to: '/docs/01introduction/what-is-chia',
+              to: '/quick-start-guide',
               activeBasePath: 'docs',
               label: 'Docs',
               position: 'left',
             },
             {
-              to: 'https://www.chia.net/',
-              label: 'Chia.net',
+              href: 'https://chia.net',
+              label: 'Chia Network',
               position: 'left',
             },
             {
-              to: 'https://github.com/Chia-Network/',
-              label: 'Chia Github',
+              href: 'https://github.com/Chia-Network/chia-blockchain',
+              label: 'GitHub',
               position: 'left',
             },
             {
@@ -96,7 +95,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               items: [
                 {
                   label: 'White Paper',
-                  to: 'https://www.chia.net/approach',
+                  to: 'https://chia.net/approach',
                 },
               ],
             },
@@ -105,11 +104,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               items: [
                 {
                   label: 'Green Paper',
-                  to: 'https://www.chia.net/greenpaper',
+                  to: 'https://chia.net/greenpaper',
                 },
                 {
                   label: 'Consensus 1.1',
-                  to: 'https://www.chia.net/assets/Chia-New-Consensus-0.9.pdf',
+                  to: 'https://chia.net/assets/Chia-New-Consensus-0.9.pdf',
                 },
               ],
             },
@@ -118,11 +117,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               items: [
                 {
                   label: 'Grants',
-                  to: 'https://www.chia.net/grants',
+                  to: 'https://chia.net/grants',
                 },
                 {
                   label: 'Chialisp',
-                  to: 'https://www.chialisp.com',
+                  to: 'https://chialisp.com',
                 },
               ],
             },
@@ -144,15 +143,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
               ],
             },
           ],
-          copyright: `© ${new Date().getFullYear()} Chia Network Inc., Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://www.chia.net/terms">Terms</a>`,
+          copyright: `© ${new Date().getFullYear()} Chia Network Inc., Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://chia.net/terms">Terms</a>`,
         },
         prism: {
-          theme: lightCodeTheme,
-          darkTheme: darkCodeTheme,
-          additionalLanguages: [
-            'powershell',
-            'lisp',
-          ],
+          darkTheme: require('./src/theme/prism-dark-theme-chialisp'),
+          theme: require('./src/theme/prism-light-theme-chialisp'),
+          additionalLanguages: ['powershell', 'lisp'],
         },
       }),
   }
