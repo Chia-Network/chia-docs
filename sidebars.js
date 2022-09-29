@@ -66,7 +66,7 @@ module.exports = {
         'rpc-reference/offers',
         'rpc-reference/datalayer',
         'rpc-reference/climate-warehouse',
-        'rpc-reference/simulator_rpcs',
+        'rpc-reference/simulator',
       ],
     },
     {
@@ -79,7 +79,7 @@ module.exports = {
         'cli-reference/offers',
         'cli-reference/datalayer',
         'cli-reference/cat-admin',
-        'cli-reference/simulator_cli',
+        'cli-reference/simulator',
       ],
     },
     {
