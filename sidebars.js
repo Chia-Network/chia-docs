@@ -66,6 +66,7 @@ module.exports = {
         'rpc-reference/offers',
         'rpc-reference/datalayer',
         'rpc-reference/climate-warehouse',
+        'rpc-reference/simulator',
       ],
     },
     {
@@ -78,6 +79,7 @@ module.exports = {
         'cli-reference/offers',
         'cli-reference/datalayer',
         'cli-reference/cat-admin',
+        'cli-reference/simulator',
       ],
     },
     {
@@ -211,6 +213,8 @@ module.exports = {
         'resources/chia-farming-workload',
         'resources/climate-warehouse-guide',
         'resources/faq',
+        'resources/simulator_user_guide',
+        'resources/nft-bulk-mint',
       ],
     },
   ],
