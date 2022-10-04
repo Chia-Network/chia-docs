@@ -1,6 +1,7 @@
 ---
-title: Prefarm Custody (English Description)
-slug: /prefarm-custody
+id: custody-tool-description
+title: Custody Tool Description
+sidebar_label: Custody Tool Description
 ---
 
 Chia Network Inc will choose a time at which to move most of the prefarm into two new cold wallets. The custodial rules of both wallets will be identical. This document will describe these arrangements in plain English.

@@ -1,6 +1,7 @@
 ---
-title: Prefarm Custody Testing
-slug: /prefarm-custody-testing
+id: custody-tool-user-guide
+slug: /custody-tool-user-guide
+title: Custody Tool User Guide
 ---
 
 ```mdx-code-block
@@ -10,13 +11,13 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This tutorial will show you how to set up and use Chia's internal custody tool.
+This tutorial will show you how to set up and use Chia's custody tool.
 
 Before continuing, you might want to familiarize yourself with the following documents:
 
-- [Basic description](/resources/custody-tool-description) of how the custody tool works
-- [Flow chart](/img/Chia_Custody_Tool.png) to visualize how the custody tool works
-- [CLI reference](/cli-reference/custody-tool) for all custody commands used in this tutorial
+- [Basic description](resources/custody-tool-description) of how the custody tool works
+- [Flow chart](/img/chia_custody_tool.png) to visualize how the custody tool works
+- [CLI reference](cli-reference/custody-tool) for all custody commands used in this tutorial
 
 There are two basic paths you can take for testing:
 
@@ -97,8 +98,7 @@ You may need to run the following command to upgrade pip:
 
 - `venv/bin/python3 -m pip install --upgrade pip` (if Linux or MacOS)
 - `.\venv\Scripts\python.exe -m pip install --upgrade pip` (if Windows)
-
-:::
+  :::
 
 5. Activate your virtual environment by running:
    - `. ./venv/bin/activate` (if Linux or MacOS)
@@ -170,8 +170,7 @@ Regarding the blockchain:
 
 - Most of the commands from this tutorial will not alter the blockchain
 - Commands that will alter the blockchain are labeled as such
-
-:::
+  :::
 
 ### Create a file with immutable info
 
@@ -200,8 +199,7 @@ The following table lists the arguments for this command that will be used in th
 - The specific time values for this example were chosen to give adequate time to run certain tests where withdrawals and rekeys are attempted before they are allowed. Feel free to shorten or lengthen these times as your own testing requires. Unfortunately, you won't be able to change any of these values later, unless you start over with a new singleton
 - The values listed for `-r` and `-a` assume you're using a custom testnet and possess 21 million TXCH. It will allow the entire singleton (10 million TXCH) to be withdrawn after 1 million seconds (~11.5 days). If you are running on testnet10, you could choose values such as `-r 1` and `-a 1000000` (1 million) to achieve the same timeline, but on a much smaller monetary scale
 - Be sure to update `--date` to a timestamp in the near future (200 seconds from now is probably fine). You can get the current timestamp from [this website](https://www.epochconverter.com/)
-
-:::
+  :::
 
 First, create and `cd` to the directory that will be specified by the `--directory` flag:
 
@@ -560,7 +558,7 @@ The singleton is now set up. Observers can verify that no payments or rekeys are
 
 If, at any point, you want to export your config's public, immutable information to be used by observer nodes, run `cic export_config -p -f <binary file name>`.
 
-For more info, see the [CLI reference](/cli-reference/custody-tool#export_config).
+For more info, see the [CLI reference](cli-reference/custody-tool#export_config).
 
 ### Create another wallet
 

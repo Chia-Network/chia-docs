@@ -80,6 +80,7 @@ module.exports = {
         'cli-reference/datalayer',
         'cli-reference/cat-admin',
         'cli-reference/simulator',
+        'cli-reference/custody-tool',
       ],
     },
     {
@@ -199,10 +200,8 @@ module.exports = {
       label: 'Prefarm Custody',
       items: [
         'prefarm-custody/prefarm-custody-testing',
-        'prefarm-custody/prefarm-cold-custodial-wallets',
         'prefarm-custody/custom-testnet',
         'prefarm-custody/testnet10-configuration',
-        'prefarm-custody/custody-tool-cli-reference',
       ],
     },
     {
@@ -213,8 +212,8 @@ module.exports = {
         'resources/chia-farming-workload',
         'resources/climate-warehouse-guide',
         'resources/faq',
-        'resources/simulator_user_guide',
-        'resources/nft-bulk-mint',
+        'resources/custody-tool-user-guide',
+        'resources/custody-tool-description',
       ],
     },
   ],

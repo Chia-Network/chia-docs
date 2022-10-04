@@ -1,7 +1,10 @@
 ---
+id: custody-tool
 title: Custody Tool CLI Reference
-slug: /custody-tool-cli
+sidebar_label: Custody Tool 
 ---
+
+### Intro
 
 This is a reference guide for the commands available in the [internal-custody repo](https://github.com/Chia-Network/internal-custody/) as well as the HSM commands, which are used generating keys and for secure signing.
 
@@ -10,25 +13,6 @@ The commands listed here can all be found by running `cic`:
 ```powershell
 (venv) PS C:\Users\User\internal-custody> cic -h
 ```
-
-### Commands
-
-- [`audit`](#audit)
-- [`clawback`](#clawback)
-- [`complete`](#complete)
-- [`derive_root`](#derive_root)
-- [`examine_spend`](#examine_spend)
-- [`export_config`](#export_config)
-- [`increase_security_level`](#increase_security_level)
-- [`init`](#init)
-- [`launch_singleton`](#launch_singleton)
-- [`p2_address`](#p2_address)
-- [`payment`](#payment)
-- [`push_tx`](#push_tx)
-- [`show`](#show)
-- [`start_rekey`](#start_rekey)
-- [`sync`](#sync)
-- [`update_config`](#update_config)
 
 ### Reference
 
@@ -42,10 +26,11 @@ Options:
 
 | Short Command | Long Command | Type | Required | Description                                                      |
 | :-----------: | :----------: | :--: | :------: | :--------------------------------------------------------------- |
-|      -db      |  --db-path   | TEXT |   True   | The file path to the sync DB (default: ./sync (**\*\***).sqlite) |
+|      -db      |  --db-path   | TEXT |   True   | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
 |      -f       |  --filepath  | TEXT |   True   | The file path the dump the audit log                             |
-|      -h       |    --help    | None |  False   | Show a help message and exit                                     |
-
+|      -d       |  --diff      | TEXT |  False   | A previous audit log to diff against this one
+|      -h       |  --help      | None |  False   | Show a help message and exit                                     |
+  
 ---
 
 ### `clawback`
@@ -58,7 +43,7 @@ Options:
 
 | Short Command | Long Command | Type | Required | Description                                                       |
 | :-----------: | :----------: | :--: | :------: | :---------------------------------------------------------------- |
-|      -db      |  --db-path   | TEXT |   True   | The file path to the sync DB (default: ./sync (**\*\***).sqlite)  |
+|      -db      |  --db-path   | TEXT |   True   | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite)  |
 |      -f       |  --filename  | TEXT |  False   | The filepath to dump the spend bundle into                        |
 |     -pks      |  --pubkeys   | TEXT |   True   | A comma separated list of pubkeys that will be signing this spend |
 |      -h       |    --help    | None |  False   | Show a help message and exit                                      |
@@ -75,7 +60,7 @@ Options:
 
 | Short Command | Long Command | Type | Required | Description                                                      |
 | :-----------: | :----------: | :--: | :------: | :--------------------------------------------------------------- |
-|      -db      |  --db-path   | TEXT |   True   | The file path to the sync DB (default: ./sync (**\*\***).sqlite) |
+|      -db      |  --db-path   | TEXT |   True   | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
 |      -f       |  --filename  | TEXT |  False   | The filepath to dump the spend bundle into                       |
 |      -h       |    --help    | None |  False   | Show a help message and exit                                     |
 
@@ -92,8 +77,8 @@ Options:
 | Short Command |     Long Command     |  Type   | Required | Description                                                                                                                                                 |
 | :-----------: | :------------------: | :-----: | :------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |      -c       |   --configuration    |  TEXT   |  False   | The configuration file with which to derive the root (or the filepath to create it at if using --db-path) [default: ./Configuration (needs derivation).txt] |
-|      -db      |      --db-path       |  TEXT   |  False   | The file path to the sync DB (default: ./sync (**\*\***).sqlite)                                                                                            |
-|     -pks      |      --pubkeys       |  TEXT   |   True   | A comma separated list of pubkeys that will be signing this spend                                                                                           |
+|      -db      |      --db-path       |  TEXT   |  False   | Optionally specify a DB path to find the configuration from                                                                                                 |
+|     -pks      |      --pubkeys       |  TEXT   |   True   | A comma separated list of pubkey files that will control this money                                                                                         |
 |      -m       | --initial-lock-level |  TEXT   |   True   | The initial number of pubkeys required to do a withdrawal or standard rekey                                                                                 |
 |      -n       | --maximum-lock-level |  TEXT   |  False   | The maximum number of pubkeys required to do a withdrawal or standard rekey                                                                                 |
 |     -min      |    --minimum-pks     | INTEGER |  False   | The minimum number of pubkeys required to initiate a slow rekey [default: 1]                                                                                |
@@ -110,9 +95,11 @@ Usage: `cic examine_spend [OPTIONS] SPEND_FILE`
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description                  |
-| :-----------: | :----------: | :--: | :------: | :--------------------------- |
-|      -h       |    --help    | None |  False   | Show a help message and exit |
+| Short Command | Long Command       | Type    | Required | Description                  |
+| :-----------: | :----------------: | :-----: | :------: | :--------------------------- |
+|               | --qr-density       | INTEGER | False    | The amount of bytes to pack into a single QR code  [default: 250]
+| -va           | --validate-against | TEXT    | False    | A new configuration file to check against requests for rekeys
+| -h            | --help             | None    | False    | Show a help message and exit |
 
 `SPEND_FILE` is an unsigned spend bundle. This command will convert the spend bundle into a QR code and open it into a web browser for printing. You can then scan this QR code, for example using an HSM's QR scanner, for easier signing.
 
@@ -126,12 +113,12 @@ Usage: `cic export_config [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command |  Type   | Required | Description                                                                               |
-| :-----------: | :----------: | :-----: | :------: | :---------------------------------------------------------------------------------------- |
-|      -f       |  --filename  |  TEXT   |  False   | The file path to export the config to (default: ./Configuration Export (**\*\***).sqlite) |
-|      -db      |  --db-path   |  TEXT   |   True   | The file path to initialize/find the sync database at (default: ./sync (**\*\***).sqlite) |
-|      -p       |   --public   | BOOLEAN |  False   | Export the public information only (default: false)                                       |
-|      -h       |    --help    |  None   |  False   | Show a help message and exit                                                              |
+| Short Command | Long Command |  Type   | Required | Description                                                                                   |
+| :-----------: | :----------: | :-----: | :------: | :-------------------------------------------------------------------------------------------- |
+|      -f       |  --filename  |  TEXT   |  False   | The file path to export the config to (default: ./Configuration Export (\*\*\*\*\*\*).sqlite) |
+|      -db      |  --db-path   |  TEXT   |   True   | The file path to initialize/find the sync database at (default: ./sync (\*\*\*\*\*\*).sqlite) |
+|      -p       |   --public   | BOOLEAN |  False   | Export the public information only (default: false)                                           |
+|      -h       |    --help    |  None   |  False   | Show a help message and exit                                                                  |
 
 ---
 
@@ -143,12 +130,12 @@ Usage: `cic increase_security_level [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description                                                                               |
-| :-----------: | :----------: | :--: | :------: | :---------------------------------------------------------------------------------------- |
-|      -db      |  --db-path   | TEXT |   True   | The file path to initialize/find the sync database at (default: ./sync (**\*\***).sqlite) |
-|     -pks      |  --pubkeys   | TEXT |   True   | A comma separated list of pubkeys that will be signing this spend                         |
-|      -f       |  --filename  | TEXT |  False   | The filepath to dump the spend bundle into                                                |
-|      -h       |    --help    | None |  False   | Show a help message and exit                                                              |
+| Short Command | Long Command | Type | Required | Description                                                          |
+| :-----------: | :----------: | :--: | :------: | :------------------------------------------------------------------- |
+|      -db      |  --db-path   | TEXT |   True   | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
+|     -pks      |  --pubkeys   | TEXT |   True   | A comma separated list of pubkeys that will be signing this spend    |
+|      -f       |  --filename  | TEXT |  False   | The filepath to dump the spend bundle into                           |
+|      -h       |    --help    | None |  False   | Show a help message and exit                                         |
 
 ---
 
@@ -163,9 +150,6 @@ Options:
 | Short Command |     Long Command      | Type | Required | Description                                                                                         |
 | :-----------: | :-------------------: | :--: | :------: | :-------------------------------------------------------------------------------------------------- |
 |      -d       |      --directory      | TEXT |  False   | The directory in which to create the configuration file [default: .]                                |
-|      -d       |        --date         | TEXT |   True   | Unix time at which withdrawals become possible [todo there are 2 -ds]                               |
-|      -r       |        --rate         | TEXT |   True   | Mojos that can be withdrawn per second                                                              |
-|      -a       |       --amount        | TEXT |   True   | The initial amount that will be locked in this custody program (in mojos)                           |
 |      -wt      | --withdrawal-timelock | TEXT |   True   | The amount of time where nothing has happened before a withdrawal can be made (in seconds)          |
 |      -pc      |  --payment-clawback   | TEXT |   True   | The amount of time to clawback a payment before it's completed (in seconds)                         |
 |      -rc      |    --rekey-cancel     | TEXT |   True   | The amount of time to cancel a rekey before it's completed (in seconds)                             |
@@ -187,13 +171,26 @@ Options:
 
 | Short Command |   Long Command    |  Type   | Required | Description                                                                                               |
 | :-----------: | :---------------: | :-----: | :------: | :-------------------------------------------------------------------------------------------------------- |
-|      -c       |  --configuration  |  TEXT   |  False   | The configuration file with which to launch the singleton                                                 |
-|      -db      |     --db-path     |  TEXT   |  False   | The file path to initialize the sync database at                                                          |
+|      -c       |  --configuration  |  TEXT   |  True    | The configuration file with which to launch the singleton                                                 |
+|      -db      |     --db-path     |  TEXT   |  True    | The file path to initialize the sync database at                                                          |
 |      -wp      | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml  |
 |      -f       |   --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                        |
 |      -np      |  --node-rpc-port  | INTEGER |  False   | Set the port where the Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml |
 |               |       --fee       | INTEGER |  False   | Fee to use for the launch transaction (in mojos) [default: 0]                                             |
 |      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                              |
+
+  -f, --fingerprint INTEGER       Set the fingerprint to specify which wallet
+                                  to use
+
+  -np, --node-rpc-port INTEGER    Set the port where the Node is hosting the
+                                  RPC interface. See the rpc_port under
+                                  full_node in config.yaml
+
+  --fee INTEGER                   Fee to use for the launch transaction (in
+                                  mojos)
+
+  -h, --help                      Show this message and exit.
+
 
 ---
 
