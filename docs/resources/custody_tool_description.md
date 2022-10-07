@@ -1,88 +1,56 @@
 ---
 id: custody-tool-description
+slug: /custody-tool-description
 title: Custody Tool Description
-sidebar_label: Custody Tool Description
 ---
 
-Chia Network Inc will choose a time at which to move most of the prefarm into two new cold wallets. The custodial rules of both wallets will be identical. This document will describe these arrangements in plain English.
+The majority of Chia Network Inc's prefarm is being held in a cold wallet, secured by a complex set of custodial rules. This document will describe the details of the custodial arrangement. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the custody wallet, see our blog post.
 
-## Distribution Amounts
+Other relevant documents:
 
-- From the prefarm's original size of 21 million XCH,
-  - A yet-to-be-determined amount XCH will be not be subject to the arrangement laid out in this document
-  - Of the remaining XCH, some will be custodied by Chia Network Inc (CNI), and some by CNI's Swiss sister company. The amount custodied in each location may or may not be equal
-
-## Withdrawal Rate
-
-The withdrawal rate is the custodial wallet's principal rule. This rule supersedes all other rules of the wallet. No individual or group may modify this rule. Ever.
-
-Here's how it works:
-
-- CNI's and the Swiss company's portion of the prefarm will each be moved to their respective cold custodial wallets. Each wallet will contain a pre-configured Unix timestamp called `d`, which will be purposely set to a future time, some days or weeks after the wallet's creation
-- From `d` forward, a constant number of mojos become available to be withdrawn with each passing second. This number must be decided in advance of the wallet's creation
-- The amount of available mojos increases linearly, until the entire prefarm has become available. The plan is to configure this rate such that this process will take ten years
-- The number of mojos considered _available_ is based on the time that a withdrawal is _initiated_, as explained later in this document
-- Even after certain mojos have become available, they will not automatically be withdrawn. They will still need to follow the rest of the rules laid out in this document
-- The mojos that are not yet available are frozen. There is no override function
-
-The following formula will calculate how many mojos have been made available to be withdrawn from each wallet:
-
-`num_mojos` = `starting_balance` - (`current_time` - `d`) \* `withdrawal_rate`
-
-Where:
-
-- `num_mojos` is the number of mojos available to be withdrawn
-- `starting_balance` is the initial number of mojos in the custodial wallet
-- `current_time` is the current Unix timestamp
-- `d` is the starting Unix timestamp for the withdrawals from the wallet
-- `withdrawal_rate` is the number of mojos made available with each passing second. This number will be decided before creating the custodial wallets
-
----
+* [Flow chart](/img/chia_custody_tool.png) to visualize how the custody tool works
+* [User guide](/custody-tool-user-guide) to help you get up and running
+* [CLI reference](/custody-tool) for all custody commands used in this tutorial
 
 ## Singleton Structure
 
-Both of the prefarm's custodial wallets use a singleton with five main features:
+The prefarm uses a [singleton](https://chialisp.com/docs/puzzles/singletons "Description of Chia singletons") with five main features:
 
-1. **Withdrawal rate** -- as discussed in the previous section, funds are made available to be withdrawn at a constant rate of some number of mojos per second
-
-2. **Multisig** -- required to perform actions on the singleton, where:
+1. **Multisig** -- required to perform actions on the singleton, where:
 
 - The total number of keys in the multisig is initially set to 5, which will be referred to as `n` for the rest of this document. `n` can be changed with a rekey (explained later)
-- Initially, 3 keys will be required to perform withdrawals and standard rekeys (explained later). This number will be referred to as `m` for the rest of this document. `m` can be thought of as the _security level_ for the wallet. This variable can be modified to be as large as `n`. For the prefarm, it can be as small as 1, though other custodial wallets could set the minimum to a larger number
+- Initially, 3 keys will be required to perform withdrawals and standard rekeys. This number will be referred to as `m` for the rest of this document. `m` can be thought of as the _security level_ for the wallet. This variable can be modified to be as large as `n`. For the prefarm, it can be as small as 1, though other custodial wallets could set the minimum to a larger number
 
-3. **Merkle root** -- Chialisp puzzles representing the `n` keys are stored in a Merkle tree, where:
+2. **Merkle root** -- Chialisp puzzles representing the `n` keys are stored in a Merkle tree, where:
 
 - Puzzles representing every combination of keys, from 1 to `m`, are stored. If the keys are A, B, C, D and E, and `m` is 3, then the combinations to be stored are ABC, ABD, ABE, ACD, ACE, ADE, BCD, BCE, BDE, CDE, AB, AC, AD, AE, BC, BD, BE, CD, CE, DE, A, B, C, D and E
 - The Merkle root of this tree is curried (pre-committed) into the singleton
 - The Merkle root of a tree containing puzzles of all possible combinations for `m` + 1 is also curried into the singleton. This is required in case of a lock level increase (explained later). This root is recursive, in that it contains puzzles that have combinations for `m` + 2 committed to them, leading up to the level where `m` = `n`.
 - In order to spend a coin from this wallet, a node in the Merkle tree, along with a Proof of Inclusion, are required to be passed into the singleton's solution. The Proof of Inclusion must prove the node's existence in the current Merkle root in order for the spend to succeed
 - The Merkle tree is stored in multiple private locations. However, even if a copy is stolen, the thief will not gain access to the wallet because `m` digital signatures are still required (see below for a more detailed analysis)
-- The Merkle tree is generated deterministically, based on the `n` pubkeys. If the Merkle tree is lost, it can be regenerated by using the `n` pubkeys
+- The Merkle tree is generated deterministically, based on the `n` pubkeys. Therefore, if the Merkle tree is lost, it can be regenerated by using the `n` pubkeys
 
-4. **Withdrawal Timelock** -- This is a timelock on initiating a withdrawal, referred to as `wt` for the rest of this document. The value of `wt` is set upon the wallet's creation and can never be changed. It will be explained in detail below. (Note that this is completely separate from the withdrawal rate discussed in 1 above.)
+3. **Withdrawal Timelock** -- This is a timelock on initiating a withdrawal, referred to as `wt` for the rest of this document. The value of `wt` is set upon the wallet's creation and can never be changed. It will be explained in detail below.
 
-5. **Rekey Timelock** -- This is a timelock on initiating a rekey, referred to as `rt` for the rest of this document. The value of `rt` is set upon the wallet's creation and can never be changed. It will be explained in detail below. (Note that this is completely separate from the withdrawal rate discussed in 1 above.)
+4. **Rekey Timelock** -- This is a timelock on initiating a rekey, referred to as `rt` for the rest of this document. The value of `rt` is set upon the wallet's creation and can never be changed. It will be explained in detail below.
 
 ---
 
 ## Singleton Settings
 
-Some of the singleton's settings are fixed (unchangeable), and others are changeable. Each of these settings will be discussed in detail later.
+The singleton comes in two layers -- one permanent and one non-permanent.
 
-### Fixed settings
+### Permanent layer
 
 | Setting | Prefarm Value     | Description                                                                                                                                                                                                                                   |
 | :------ | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `d`     | Unknown           | The [UNIX epoch timestamp](https://www.epochconverter.com/) when the singleton's "amount available" setting will begin to increase. For testing, you can set it to a time in the near future (for example, 100 seconds from now).             |
-| `r`     | Billions of mojos | The number of mojos per second you want to be made available to be withdrawn.                                                                                                                                                                 |
-| `a`     | Millions of XCH   | The initial value of the singleton.                                                                                                                                                                                                           |
-| `wt`    | 30 days           | Withdrawal Timelock -- When attempting to begin a withdrawal, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back.                                                                     |
-| `pc`    | 90 days           | Payment Claw back -- The minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Claw backs are possible during this window.                                                         |
-| `rt`    | 15 days           | Rekey Timelock -- When attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`. |
-| `rc`    | 30 days           | Rekey Claw back -- The minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Claw backs are possible during this window.                                                                     |
+| `wt`    | 30 days           | Withdrawal Timelock -- When attempting to begin a withdrawal, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback.                                                                     |
+| `pc`    | 90 days           | Payment Clawback -- The minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Clawbacks are possible during this window.                                                         |
+| `rt`    | 15 days           | Rekey Timelock -- When attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback. For a slow rekey, this amount gets added for each key less than `m` (in addition to the amount of time that would have been required in a standard rekey). |
+| `rc`    | 30 days           | Rekey Clawback -- The minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Clawbacks are possible during this window.                                                                     |
 | `sp`    | 45 days           | Slow rekey Penalty -- This amount gets added to the Rekey Timelock when a slow rekey is being performed.                                                                                                                                      |
 
-### Changeable settings
+### Non-permanent layer
 
 | Setting | Initial<br/>Value | Description                                                                 |
 | :------ | :---------------- | :-------------------------------------------------------------------------- |
@@ -96,22 +64,17 @@ Three separate actions are allowed on the wallet's singleton: withdrawals, rekey
 
 ### Withdrawal
 
-This action removes money from the wallet
+This action removes money from the wallet. In order for a withdrawal to be initiated, exactly `m` of `n` signatures are required.
 
-:::info Note that the rate limit, as discussed above, must always be followed for all withdrawals
-:::
-
-- In order for a withdrawal to be initiated, exactly `m` of `n` signatures are required
-
-Two phases must be completed to perform a withdrawal, a _withdrawal timelock_ and a _drop coin_.
+Two phases must be completed to perform a withdrawal: a _withdrawal timelock_ and a _drop coin_.
 
 #### Withdrawal Timelock
 
 Even though this is called a _timelock_, it acts more like a _gateway_, which either allows or disallows the singleton to begin the withdrawal process. It has the following rules:
 
-- `wt` seconds must have elapsed since any actions (other than a lock level increase, explained below) have been performed on the singleton
-- The `wt`-second condition either has, or has not, been met
-- The `wt`-second length cannot be modified
+- `wt` seconds must have elapsed since any actions (other than a lock level increase) have been performed on the singleton
+- The `wt` condition either has, or has not, been met
+- `wt` is part of the singleton's permanent layer, so it can never be modified
 
 If the withdrawal timelock condition has not been met, then a withdrawal may not be initiated. If it has been met, then a withdrawal may be initiated. The next phase is the _drop coin_.
 
@@ -123,11 +86,11 @@ Upon entering this phase, the singleton creates a _drop coin_ of the amount of X
 - It has a payment clawback timelock, referred to as `pc` for the rest of this document
 - Because the drop coin cannot be spent for `pc` seconds, it functions as a permissionless escrow
 - The drop coin contains the same Merkle root that was used in the singleton
-- At any point before the drop coin has been spent, _claw back_ is allowed. Claw back has the following features:
+- At any point before the drop coin has been spent, _clawback_ is allowed. Clawback has the following features:
   - It cancels the withdrawal and returns the money to the custodial wallet's singleton. It uses `p2_singleton` to accomplish this, so there is further action needed for the funds to be absorbed into the singleton
   - It requires `m` of `n` signatures
   - The `m` signatures don't have to be the same as the ones that initiated the withdrawal. In other words, different people could claw back the withdrawal than those who initiated it
-- After `pc` seconds, if a claw back has not been performed, _completion_ becomes possible. Completion has the following features:
+- After `pc` seconds, if a clawback has not been performed, _completion_ becomes possible. Completion has the following features:
   - It completes the withdrawal to a pre-specified XCH address
   - **Anyone** is allowed to perform a completion
   - Even though a completion can be performed by anyone, it is secure because the withdrawal address is not changeable
@@ -179,11 +142,11 @@ Upon entering this phase, the singleton creates a _drop coin_ with 0 value. This
 - It has a hard-coded timelock, hereafter referred to as `rc`
 - The same Merkle root that was used in the singleton is curried into the drop coin
 - A new Merkle root is also curried into the drop coin. After the rekey has completed, this will become the Merkle root of the puzzles representing the new keys. Therefore, the new keys, along with the new Merkle tree, must have been generated before the drop coin was created
-- At any point before the drop coin has been spent, _claw back_ is allowed. Claw back has the following features:
+- At any point before the drop coin has been spent, _clawback_ is allowed. Clawback has the following features:
   - It cancels the rekey; the custodial wallet's singleton is left unmodified
   - It requires `k` signatures (the number of keys that initiated the rekey)
   - The `k` signatures don't have to be the same as the ones that initiated the rekey. In other words, different people could claw back the rekey than those who initiated it
-- After `rc` seconds, if a claw back has not been performed, _completion_ becomes possible. Completion has the following features:
+- After `rc` seconds, if a clawback has not been performed, _completion_ becomes possible. Completion has the following features:
   - It spends the drop coin, which creates a puzzle announcement for the singleton to use
   - It also spends the singleton, which asserts the puzzle announcement from the drop coin, and recreates itself with the new Merkle root curried in
   - `m` and/or `n` could be set to different numbers in the new singleton
