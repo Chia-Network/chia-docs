@@ -6,6 +6,8 @@ title: Custody Tool Description
 
 The majority of Chia Network Inc's prefarm is being held in a cold wallet, secured by a complex set of custodial rules. This document will describe the details of the custodial arrangement. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the custody wallet, see our blog post.
 
+[todo: spellcheck]
+
 Other relevant documents:
 
 * [Flow chart](/img/chia_custody_tool.png) to visualize how the custody tool works
@@ -14,7 +16,7 @@ Other relevant documents:
 
 ## Singleton Structure
 
-The prefarm uses a [singleton](https://chialisp.com/docs/puzzles/singletons "Description of Chia singletons") with five main features:
+The prefarm uses a [singleton](https://chialisp.com/docs/puzzles/singletons "Description of Chia singletons") with the following features:
 
 1. **Multisig** -- required to perform actions on the singleton, where:
 
@@ -102,7 +104,7 @@ This action changes the keys associated with the wallet's singleton.
 `k` keys are required for a rekey, where:
 
 - For a _standard_ rekey, `k = m`
-- For a _slow_ rekey, `1 <= k < m`. (A slow rekey could be performed with just one key.)
+- For a _slow_ rekey, `1 <= k < m`. (By default, a slow rekey could be performed with just one key.)
 
 Either type of rekey can also modify `m` and/or `n` if desired. We'll discuss the circumstances where each type of rekey will be performed later in this section.
 
@@ -110,9 +112,9 @@ Two phases must be completed to perform a rekey, an _initiation timelock_ and a 
 
 #### Initiation
 
-Before a rekey can begin, a certain amount of time must have elapsed since the last action (other than a lock level increase, explained below) was performed on the singleton. This is a _de facto_ gateway; the time condition either has, or has not been met.
+Before a rekey can begin, a certain amount of time must have elapsed since the last action (other than a lock level increase) was performed on the singleton. This is a _de facto_ gateway; the time condition either has, or has not been met.
 
-The amount of time before the rekey can begin is not a constant. In order to calculate this time, several factors must be considered:
+The amount of time before the rekey can begin depends on the number of keys used. In order to calculate this time, several factors must be considered:
 
 - Start by calculating `x`, where `x = m - k + 1`
   - If `x` is `1`, then it's a standard rekey (`k = m`)
@@ -179,8 +181,8 @@ Keys have three other possible states:
 
 If a sufficient number of keys are sniffed, stolen or lost, there are three potential catastrophic consequences:
 
-- Deadlocked -- The owners and adversaries each attempt to rekey and claw back those attempts. Neither side obtains the funds until the other side gives up
-- Drained -- Attackers are able to steal the funds
+- Deadlocked -- The owner and adversary each attempt to rekey and claw back those attempts. Neither side obtains the funds until the other side gives up
+- Drained -- An adversary is able to steal the funds
 - Bricked -- Nobody is able to access the funds
 
 Any time one or more keys have been sniffed, stolen or lost, a rekey will be performed if possible.
@@ -201,22 +203,21 @@ The following table lists the action/consequence, given the current value of `m`
 
 ## Source Code
 
+[todo verify links and content]
+
 The source code for the custody solution is in the [internal-custody GitHub repository](https://github.com/Chia-Network/internal-custody 'Chia internal custody solution').
 
-There are two configuration files, one that can be made public (for observers) and one that should be kept private.
+There are two configuration files, one public (for observers) and one private.
 
 ### Public Configuration
 
 An observer can track the prefarm's configuration information from [prefarm_info.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/prefarm_info.py#L8-L18 'public configuration information'), which contains the following variables:
 
 - `launcher_id`: `bytes32` -- This is pre-set; the user cannot change it
-- `start_date`: `uint64` -- On what date are withdrawals allowed to start?
-- `starting_amount`: `uint64` -- How many mojos will the cold wallet start with?
-- `mojos_per_second`: `uint64` -- How many mojos per second will be made available to be withdrawn?
 - `puzzle_root`: `bytes32` -- This is pre-set; the user cannot change it
-- `withdrawal_timelock`: `uint64` -- How long must the singleton remain unspent in order to initiate a withdrawal?
-- `payment_clawback_period`: `uint64` -- How long do signers have to claw back a payment?
-- `rekey_clawback_period`: `uint64` -- How long to claw back a rekey?
+- `withdrawal_timelock`: `uint64` -- For how long must the singleton remain unspent in order to initiate a withdrawal?
+- `payment_clawback_period`: `uint64` -- How much time do signers have to claw back a payment?
+- `rekey_clawback_period`: `uint64` -- How much time do signers have to claw back a rekey?
 - `slow_rekey_timelock`: `uint64` -- What is the penalty P that is applied to the singleton timelock when initiating a slow rekey?
 - `rekey_increments`: `uint64` -- What is the timelock increment for using fewer keys?
 

@@ -18,6 +18,8 @@ For more info, see the following:
 
 ### Reference
 
+[todo verify that these commands can be run with just a synced wallet]
+
 ### `audit`
 
 Functionality: Export a history of the singleton to a CSV

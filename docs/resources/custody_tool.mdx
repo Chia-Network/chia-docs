@@ -11,7 +11,11 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This tutorial will show you how to set up and use Chia's custody tool.
+In 2022, Chia built an internal solution for long-term storage of its prefarm. This tool has since been made public. Yes, you read that right -- you can lock up your coins using the same solution as Chia used to lock up the prefarm!
+
+This guide will show you how to get started.
+
+However, please keep in mind that this tool was _not_ originally developed with the broader ecosystem in mind. For this reason, the tool is provided **as-is**, with no guarantees of functionality, and with no support provided. Proceed with caution.
 
 Before continuing, you might want to familiarize yourself with the following documents:
 
@@ -31,8 +35,8 @@ The custody tool uses many parameters, each of which is important. You are highl
 
 ### Requirements
 
-- A synced [Chia node](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL "Chia installation instructions") (mainnet, testnet, or [simulator](https://devs.chia.net/guides/simulator-user-guide "Simulator user guide"))
-- A synced wallet with some TXCH
+- A synced full node (mainnet, testnet, or [simulator](https://devs.chia.net/guides/simulator-user-guide "Simulator user guide"))
+- A synced [Chia wallet](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL "Chia installation instructions")
 - [Python](https://www.python.org/downloads/ "Python downloads page") 3.9 or greater **(will not work with 3.8.x)**
 - [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "How to install the Git command line tool")
 - [Powershell 6](https://www.howtogeek.com/731885/how-to-check-the-powershell-version-in-windows-10/ "How to check your Powershell version") or greater (Windows only)
@@ -132,7 +136,7 @@ If you get a usage statement, then `cic` (Chia Internal Custody) has been instal
 
 The `cic` commands for generating and signing keys are meant to be run from inside a Hardware Security Module (HSM). Thse commands are labeled as such.
 
-An HSM is a physical/offline security solution used for creating and using cryptographic signatures. While testing the custody tool, it is OK to run these commands from a normal computer. However, for maximum security while running the custody tool on Chia's mainnet, you are recommeded to use an HSM.
+An HSM is a physical/offline security solution used for creating and using cryptographic signatures. While testing the custody tool, it is OK to run these commands from a normal computer. However, for maximum security while running the custody tool on Chia's mainnet, you are recommeded to use an HSM (or a similar solution).
 
 Most of the commands from this tutorial will _not_ alter the blockchain. This includes all of the commands to be run from an HSM. Commands that will alter the blockchain are labeled as such.
 
@@ -143,8 +147,10 @@ Most of the commands from this tutorial will _not_ alter the blockchain. This in
 ## Generate keys
 
 :::note
+
 - These commands will **not** modify the blockchain. They will only create local files
 - These commands **should** be run from an HSM
+
 :::
 
 Before the custody singleton can be created, you must create the associated public/private key pairs.
@@ -153,9 +159,9 @@ For this guide:
 
 - `m` will initially be set to 2. This is security level, or "lock level" of the singleton. In other words, it's the number of keys required to sign for withdrawals and standard rekeys.
 - `n` will initially be set to 3. This is the maximum lock level of the singleton. In other words, it's the total number of keys that will be associated with the singleton.
-- Because `n` will be 3, we will create 3 keys now. `m` and `n` will be used later when setting up the singleton.
+- Because `n` will initially be 3, we will create 3 keys now. `m` and `n` will be used later when setting up the singleton.
 
-When creating and using these keys on mainnet, you should have an HSM for each key. Signing then requires copying an unsigned spend bundle to each individual computer that holds a key. This process is explained in detail later in the guide.
+When creating and using these keys on mainnet, you should only store one key on each computer. Signing then requires copying an unsigned spend bundle to each individual computer that holds a key. This process is explained in detail later in the guide.
 
 However, for this guide, we'll assume you're running an initial test using TXCH (and not actual XCH). In this case, it's OK to store multiple keys on the same computer while you get a feel for how the tool works.
 
@@ -211,14 +217,21 @@ The custody tool uses the Chialisp [singleton](https://chialisp.com/docs/puzzles
 
 ### Create the permanent layer
 
+:::note
+
 - This command will **not** modify the blockchain. It will only create a local file
 - This command should be run from **outside** an HSM
+
+:::
 
 :::warning important
 
 The `cic init` command will initialize the permanent layer of the singleton. **None** of this command's arguments may be changed later.
 
 :::
+
+[todo: remove d from the flow chart]
+[todo: remove a from the flow chart]
 
 For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](/img/chia_custody_tool.png).
 
@@ -234,7 +247,7 @@ For this guide, we'll create an example singleton that uses the values listed in
 :::info notes regarding the above table
 
 - The singleton's time values are relative to when they're confirmed on chain
-- The specific time values for this example were chosen for testing purposes only. In a mainnet custody solution, the values are typically measured in months rather than minutes
+- The specific time values for this example were chosen for testing purposes only. In a mainnet custody solution, the values are typically measured in days rather than minutes
 
 :::
 
@@ -263,7 +276,7 @@ Now that you have keys and an underived configuration, you can run the `derive_r
 - `n` (maximum lock level)
 - The public keys that comprise `n`, expressed as a comma-separated list
 
-This command includes an optional `--configuration` flag to speficy the name and location of the configuration file. By default, the command will look in `./Configuration (needs derivation).txt`.
+This command includes an optional `--configuration` flag to specify the name and location of the configuration file. By default, the command will look in `./Configuration (needs derivation).txt`.
 
 If the `--configuration` flag is not used, the `.pk` (public key) files that you previously created also need to be in the current directory.
 
@@ -295,9 +308,9 @@ The `launch_singleton` command also includes a recommended `--fee` flag to speci
 This fee is completely separate from the actual financing of the singleton, which will occur in a later step. 
 It is also possible to launch the singleton using one wallet and fund it with another -- think of the singleton as a brand new wallet.
 
-Aside from the fees, the `launch_singleton` command includes an optional `--configuration` flag to speficy the name and location of the configuration file. By default, the command will look in `./Configuration (awaiting launch).txt`.
+Aside from the fees, the `launch_singleton` command includes an optional `--configuration` flag to specify the name and location of the configuration file. By default, the command will look in `./Configuration (awaiting launch).txt`.
 
-Because this command modifies the blockchain, a synced wallet is required to run it. To be sure your wallet is still synced, run:
+Because this command modifies the blockchain, a synced wallet is required to run it. To be sure your wallet is synced, run:
 
 ```bash
 chia wallet show
@@ -320,9 +333,11 @@ Singleton successfully launched
 ```
 
 :::note
-The singleton will **not** be funded after running this command. It will have zero value until another command is run (explained later).
+
+The singleton will **not** be funded after running this command. It will have zero value until another command is run.
 
 In addition, your wallet's transaction history will not show the fee being deducted, nor will it show the single mojo being deducted to create the singleton. This is because creating the singleton is not a standard transaction that your wallet will recognize. However, your wallet's Total Balance will show the correct amount after the transaction has been processed.
+
 :::
 
 Congratulations, you have successfully launched the singleton! (You will need to wait for the next transaction block before it's added to the blockchain.) As a result of running this command, the configuration file's name has changed to `Configuration (xxxxxx).txt`, where `xxxxxx` is a hexadecimal value. For example:
@@ -438,6 +453,16 @@ cic p2_address --prefix txch
 
 The response will be a Chia address, prefixed with `txch` in this example.
 
+:::tip
+
+If, at any point in your testing, you receive this error:
+
+`ValueError: No configuration present`
+
+You are likely in the wrong directory. By default, the commands in this tutorial assume you are currently in the directory containing `Configuration (xxxxxx).txt`. If not, change to that directory and try again.
+
+:::
+
 Note that even though this is the address of the singleton, which has a complex set of rules governing how it may be spent, it can still receive payments, just like coins that use the standard puzzle. We'll send money to it in the next step.
 
 ---
@@ -466,16 +491,23 @@ chia wallet send -a 1 -m 0.00001 -t <address>
 
 You should see `'inclusion_status': 'SUCCESS'` in the output.
 
-To get the status of the transaction, run the command indicated at the end out the output. If you added a fee, it should be added to the blockchain within a few minutes. The output of this command should show `Status: Confirmed`. For example:
+To get the status of the transaction, run the command indicated at the end out the output. If you included a fee, it should be added to the blockchain within a few minutes. The output of this command should show `Status: Confirmed`. For example:
 
 ```bash
-~/internal-custody/keys_and_sb$ chia wallet get_transaction -f 394934909 -tx 0x2728390c1b88a1f1b4db8afd314b099182f9fc78d6046877531d72d401d8aaf2
+chia wallet get_transaction -f 394934909 -tx 0x2728390c1b88a1f1b4db8afd314b099182f9fc78d6046877531d72d401d8aaf2
+```
+
+Response:
+
+```bash
 Transaction 2728390c1b88a1f1b4db8afd314b099182f9fc78d6046877531d72d401d8aaf2
 Status: Confirmed
 Amount sent: 1 TXCH
 To address: txch12cr83zr7vax0a7684uxjk7wdearypuk540alx90cy7efkq5448uqu6dd5t
 Created at: 2022-10-07 01:20:55
 ```
+
+[todo: spellcheck]
 
 ---
 
@@ -490,9 +522,16 @@ Created at: 2022-10-07 01:20:55
 
 Even though the amount available to be withdrawn will increase on chain, it won't increase locally until a new `sync` is performed. Just like before, we'll sync and show the config in one command:
 
+[todo look for prefarm]
+[todo look for amount available]
+
 ```bash
 cic sync -s
+```
 
+Response:
+
+```bash
 Current time: 1665085495 (10/07/2022, 03:44:55)
 
 Config up to date: True
@@ -523,445 +562,51 @@ The singleton has now been deployed, configured, and funded. In a real-life scen
 
 ---
 
-## Run the custody tests
+## Custody tool usage
 
-IPS has created several test cases for the custody tool.
+This section will give you a few basic use cases for running the custody tool. If you are going to use this tool with XCH, you should familiarize yourself with its functionality on a testnet.
 
 :::info
-About the [examine_spend](/custody-tool-cli#examine_spend) command:
 
-During any of the following test cases, you can convert an unsigned spend bundle into a QR code by using the command `cic examine_spend <spend bundle>`. You likely won't need this command if you are testing on a local computer, but it will be an important step when making changes to the actual prefarm. Using this command, you can print a QR code and take it into an HSM for signing.
+If you are using an HSM, then it likely comes with a QR scanner, which can scan unsigned spend bundles. This is possible with the custody tool, but usage of QR scanners is beyond the scope of this guide.
+
 :::
 
 ---
 
-### Test 1 - absorb 1
+### Withdrawal
 
-**Title: absorb with no spend**
-
-**Expected result: pass**
-
-In this test, we'll absorb funds into the singleton without creating a payment. The most likely time this will be done is when the singleton is first created. For example, this singleton has been funded, but the funds are still unabsorbed:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\absorb_singleton> cic sync --show
-
-Current time: 1653645401 (05/27/2022, 17:56:41)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 2dcadfa8dd5c0d079c9a59e7284754921c94b4ed2c77d194fe18f1a73a588b07
-  - amount left: 0
-  - amount available: -3045470000000000000
-  //highlight-next-line
-  - amount to claim: 5000000000000000000
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-```
-
-Note that `amount to claim` is greater than 0 and `amount available` is less than 0. This is because the funds have not yet been absorbed. When you make a payment, all unabsorbed funds are typically absorbed. However, what if you don't want to make a payment yet? The most likely time for this to happen is immediately after the prefarm has been funded.
-
-Let's see how to absorb the funds without making a payment.
-
-This test won't go into all of the details. See [Test 4](#test-4---payment-pass) (a typical spend) if you need additional info.
+This test will run through the complete sequence of withdrawing money from the singleton. Be sure to have a singleton already set up and funded before attempting this. We'll use the same configuration here that was set up earlier in this guide.
 
 #### Initiate a payment
 
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-First, create an unsigned spend bundle for a payment **with `-a` (amount) set to `0`**. Note that even though the amount is 0, you still need to enter a receive address:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 0 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-In this example, the command set up the spend bundle to require keys `1` and `2` to sign. The spend bundle was saved to a file called `initial_absorb.unsigned` in the local directory.
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-Note that an HSM can show pubkeys, so you can double-check the keys to sign to make sure they match.
-
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1` and `2`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\2.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 1 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\absorb_singleton> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5506760313450776330625693163544486064624750751419042896437044140993391451166132831368296805741369554835055767042791952577104819097546934735001311945450808586998117461779313497073272179674918340562681461942920826022904379123758407278053063680
-```
-
-Key 2 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\absorb_singleton> cat .\initial_absorb.unsigned | hsms -y --nochunks .\2.se
-waiting for qrint-encoded signing requests
-> 5572104295207790149075075793350701301007253766941957576492015126037802177659411362732632206179915925930717724233713986683508279258264992638490594921647442415902750443194205574706450086374417540556035125798820039341380568713427947253976200192
-```
-
-This command spits out a signature encoded in base-10. On Linux it will also show a QR code (the QR display doesn't work on Windows).
-
-Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character:
-
-Key 1:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\absorb_singleton> echo 5506760313450776330625693163544486064624750751419042896437044140993391451166132831368296805741369554835055767042791952577104819097546934735001311945450808586998117461779313497073272179674918340562681461942920826022904379123758407278053063680 > .\initial_absorb_1.sig
-```
-
-Key 2:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\absorb_singleton> echo 5572104295207790149075075793350701301007253766941957576492015126037802177659411362732632206179915925930717724233713986683508279258264992638490594921647442415902750443194205574706450086374417540556035125798820039341380568713427947253976200192 > .\initial_absorb_2.sig
-```
-
-#### Merge the payment
-
-- This command will **not** modify the blockchain
-- This command should be run from **inside** an HSM
-
-This command will create the signed spend bundle, given the unsigned spend bundle and the individual signature(s).
-
-Note that an arbitrary number of signatures can be passed into this command. We'll use two signatures for this example.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\initial_absorb.unsigned .\initial_absorb_1.sig .\initial_absorb_2.sig > initial_absorb.signed
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-The output of this command is the signed spend bundle, which we've redirected into a text file. This file should be taken out of the HSM to be pushed to the blockchain.
-
-#### Push the transaction to the network
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-The following command will push the signed spend bundle, which sends 0 mojos and absorbs the entire amount:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\absorb_singleton> cic push_tx -b .\initial_absorb.signed
-Wallet keys:
-1)   502984008
-2)   2798912978
-3) * 2447771420 (Synced)
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2447771420):
-{'status': 'SUCCESS', 'success': True}
-```
-
-#### View the payment's status
+:::note
 
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-This will show the new status now that the spend bundle has been pushed successfully:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\absorb_singleton> cic sync --show
-
-Current time: 1653646158 (05/27/2022, 18:09:18)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 2dcadfa8dd5c0d079c9a59e7284754921c94b4ed2c77d194fe18f1a73a588b07
-  - amount left: 5000000000000000000
-  - amount available: 1962100000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-```
-
-The `amount available` is now a positive number, and it's increasing with each second. `amount to claim` is now 0, so the absorb was successful. `amount left` is the original amount, proving that no money was sent.
-
----
-
-### Test 2 - absorb 2
-
-**Title: Test spend from initial absorb with no xch absorbed yet**
-
-**Expected result: pass**
-
-This test will make a payment based only on unabsorbed funds. The only time you can do this is with a brand new singleton that has never sent money. Recall from the setup that the config showed these amounts:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -c
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 0
-  - amount available: -9953550000000000000
-  - amount to claim: 10000000000000000000
-```
-
-`amount available` (absorbed funds) is negative and `amount to claim` (unabsorbed funds) is positive. If you send money at this point, it will automatically pull from the unabsorbed funds, and absorb the rest.
-
-To run this test:
-
-1. Figure out the actual amount available. This can be done by adding `amount available` and `amount to claim`. In this case, it's `46450000000000000`
-2. Run [Test 4](#test-4---payment-pass), using the amount you just calculated as the payment amount (`-a`)
-3. If the payment goes through without issue, then this test passes
-
----
-
-### Test 3 - absorb 3
-
-**Title: Test spend w/ absorb, mixed fund sources**
-
-**Expected result: pass**
-
-:::info
-Even though this is one of the first tests, it's actually a bit complex to get set up. You should probably run a few other tests, such as Test 4 or Test 13, to familiarize yourself with the tool before attempting this one.
 :::
 
-This test is meant to verify that unabsorbed funds can be spent, along with absorbed funds. You can view these amounts by running `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-
-Current time: 1653542249 (05/26/2022, 13:17:29)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 923008000000000000
-  - amount to claim: 1000000000000
-```
-
-In this example, `amount available` (absorbed funds) is quite large, when compared with `amount to claim` (unabsorbed funds). It's better for the `amount to claim` to be much larger. Recall that `amount available` is increasing by 1 trillion mojos per second for this setup. If you simply added the two numbers shown above and tried to spend the sum, it would only take 1 second for `amount available` to contain that amount anyway. So you can't be sure that the funds being sent are actually coming out of `amount to claim` and are not being absorbed after the money has been sent from `amount available`.
-
-The solution here is to make sure `amount to claim` is significantly larger than `amount available`. The easiest way to set this up is to run [test 13](#test-13---clawback-pass-1) (clawback) first, with a couple of small changes:
-
-1. You should wait for a large amount of funds to become available to be spent. Your singleton should have been running for more than `-wt` seconds + 3600 seconds before attempting it, just to be sure.
-2. When you're setting up the withdrawal that you will claw back, make the amount the same as `amount available`. That way you'll claw back a large amount of funds and they'll end up in `amount to claim`.
-
-For this example, here is the singleton's status after running Test 13:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653542753 (05/26/2022, 13:25:53)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9076991000000000000
-  - amount available: 5041000000000000
-  - amount to claim: 923008000000000000
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-```
-
-`amount to claim` is now much larger than `amount available`, so if we withdraw slightly more than `amount to claim`, we can be assured that the funds were actually withdrawn. At this point, we can run a payment similar to Test 4. See that test if you need more details.
-
-#### Initiate a payment
-
-The amount to send is `amount available` + `amount to claim`.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 928049000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the payment
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5504761145355459203101849175525178992114275889428608138903750229195479515472352142731147726846137574720084663254150407383545227467581229275680744293633423051513301470845273483841710677064539360762720416951547595287640293179726174412248146944
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\2.se
-waiting for qrint-encoded signing requests
-> 5449490749007992075521705202886797019062860237437475114504363188924668624607628767020064819097176640639285371584857495958507832770363075136474685715731568570830102812695875426178229751450621842482886354802756212582199880369674657266576668672
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5504761145355459203101849175525178992114275889428608138903750229195479515472352142731147726846137574720084663254150407383545227467581229275680744293633423051513301470845273483841710677064539360762720416951547595287640293179726174412248146944 > .\initial_absorb_1.sig
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5449490749007992075521705202886797019062860237437475114504363188924668624607628767020064819097176640639285371584857495958507832770363075136474685715731568570830102812695875426178229751450621842482886354802756212582199880369674657266576668672 > .\initial_absorb_2.sig
-```
-
-#### Merge the payment
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\initial_absorb.unsigned .\initial_absorb_1.sig .\initial_absorb_2.sig > initial_absorb.signed
-```
-
-#### Push the transaction to the network
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\initial_absorb.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-#### View the payment's status
-
-Here is the status after waiting for the timelock to expire:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653546197 (05/26/2022, 14:23:17)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071950000000000000
-  - amount available: 34440000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 928049000000000000 (Ready)
-  REKEYS:
-```
-
-#### Create a signed spend bundle for the completion
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f complete.signed
-Which actions would you like to complete?:
-
-1) PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 928049000000000000
-(Enter index of action to complete): 1
-Successfully wrote spend to complete.signed
-```
-
-#### Push the completion to the blockchain
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\complete.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-#### View the completion's status
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653546404 (05/26/2022, 14:26:44)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071950000000000000
-  - amount available: 36510000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-```
-
-#### View the recipient wallet
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> chia wallet show
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-Wallet height: 15547
-Sync status: Synced
-Balances, fingerprint: 2798912978
-
-Chia Wallet:
-   -Total Balance:         928050.0 txch (928050000000000000 mojo)
-   -Pending Total Balance: 928050.0 txch (928050000000000000 mojo)
-   -Spendable:             928050.0 txch (928050000000000000 mojo)
-   -Type:                  STANDARD_WALLET
-   -Wallet ID:             1
-```
-
-The amount transferred was `928 049` txch. This is significantly greater than the `amount available` at the beginning of the test of `5041` txch. This proves that the unabsorbed and absorbed funds were spent together.
-
----
-
-### Test 4 - payment pass
-
-**Title: Test basic spend**
-
-**Expected result: pass**
-
-This test will run through the complete sequence of withdrawing money from the singleton.
-
-Keep in mind, the maximum number of mojos able to be withdrawn is shown as `amount available:`, retrieved from the `cic show -c` command. This amount supersedes all other rules for the singleton.
-
-#### Initiate a payment
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-This command generates an unsigned spend bundle which requires specific keys.
-Eventually it will print a QR code, which signers can then scan to obtain their own copy of the spend bundle,
-which they will take to the HSM for signing.
-
-At some point in the future, this step will also assign human readable metadata so that people can know what they're signing before they enter an HSM.
+This command generates an unsigned spend bundle which requires specific keys. Signers can take this spend bundle to an HSM for signing.
 
 To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle.
-For this example, we'll use the following arguments:
+For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment "payment command") for all options):
 
-- `-f` : The name of the file in which to save the unsigned spend bundle
-- `--pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command
-- `-a`: The number of mojos to withdraw
-- `-t`: The recipient address (where to send the money to)
-- `-ap`: Absorb all available payments (could add to transaction costs if more than one payment exists)
-- `-at`: The minimum coin size to absorb, in mojos (ignore anything smaller than this).
-  The default value for this setting is 1 trillion mojos (1 XCH). The prefarm could get dusted, so this command will be helpful as it will ensure that those transactions are ignored.
-  However, while testing, the desired amount to withdraw is often smaller than 1 trillion mojos, so the default will actually cause the intended withdrawal to fail. If you want to absorb all coins, no matter how small, then set the flag to `0`
+- `-f` :  The name of the file in which to save the unsigned spend bundle
+- `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command
+- `-a`:   The number of mojos to withdraw
+- `-t`:   The recipient address (where to send the money to)
+- `-ap`:  Absorb all available payments (could add to transaction costs if more than one payment exists)
 
-Additionally, the following flag will not be modified from its default value here, but it could be useful to change in many contexts:
+We'll sign with keys 1 and 2, and we'll withdraw 1 billion mojos:
 
-- `-mc`: Maximum extra cost while absorbing, taken as an estimated percentage.
-  If someone sends a bunch of payments and you don't want to absorb them all in one transaction,
-  then you'll only pay this much extra in transaction fees. Default is `50` (50%)
+```bash
+cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000 -t <recipient address> -ap
+```
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
+Response:
+
+```bash
 Successfully wrote spend to initial_absorb.unsigned
 ```
 
@@ -969,127 +614,141 @@ In this example, the command set up the spend bundle to require keys `1` and `2`
 
 #### Sign the payment
 
+:::note
+
 - These commands will **not** modify the blockchain
 - These commands should be run from **inside** an HSM
 
+:::
+
 Note that an HSM can show pubkeys, so you can double-check the keys to sign to make sure they match.
 
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1` and `2`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\2.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
+To obtain a signature, you can show the unsigned spend bundle and sign it using each secret exponent. This can all be done in one step per key. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
 
 Key 1 sign:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
+```bash
+cat ./initial_absorb.unsigned | hsms -y --nochunks ./1.se
+```
+
+Response:
+
+```bash
 waiting for qrint-encoded signing requests
-> 5449140665451649053284096202714691505589365577374007143978191719238477924138728005883662232162434514948867447203715240045617130770165403282022693823446338843409368762077191699285534081208295847253913527216165034379061118404584995264580179968
+> 5547654523626261714173624112533133683715952925226504045164577632098258283574049187046232825601458621027122981750092774640100661034682177649762432133608580806862808660897344776713144593910217683389248184948244557142841050155734002508539602944
 ```
 
 Key 2 sign:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\2.se
-waiting for qrint-encoded signing requests
-> 5562136083440889220476123194007748028772506745252267969407877369301599663724642762991158586783630420132355189610554901640702053357066938534730160961964059161490467349960384927960219180153132581064764843327788505287843726328006843878321499136
+```bash
+cat ./initial_absorb.unsigned | hsms -y --nochunks ./2.se
 ```
 
-This command spits out a signature encoded in base-10. On Linux it will also show a QR code (the QR display doesn't work on Windows).
+Response:
 
-Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character:
+```bash
+waiting for qrint-encoded signing requests
+> 5455332514029001283045217337060795248565102176100994026976453525467902615588200815715854582664277247425467234004349390984834806712914358095770913212413836197307868631626262017707255283205002485029295977250812644025408923358550690247700742144
+```
+
+This command outputs a signature encoded in base-10.
+
+Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character (be sure to use the actual signatures you just obtained; **don't copy these lines verbatim**):
 
 Key 1:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5449140665451649053284096202714691505589365577374007143978191719238477924138728005883662232162434514948867447203715240045617130770165403282022693823446338843409368762077191699285534081208295847253913527216165034379061118404584995264580179968 > .\initial_absorb_1.sig
+```bash
+echo 5547654523626261714173624112533133683715952925226504045164577632098258283574049187046232825601458621027122981750092774640100661034682177649762432133608580806862808660897344776713144593910217683389248184948244557142841050155734002508539602944 > ./initial_absorb_1.sig
 ```
 
 Key 2:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5562136083440889220476123194007748028772506745252267969407877369301599663724642762991158586783630420132355189610554901640702053357066938534730160961964059161490467349960384927960219180153132581064764843327788505287843726328006843878321499136 > .\initial_absorb_2.sig
+```bash
+echo 5455332514029001283045217337060795248565102176100994026976453525467902615588200815715854582664277247425467234004349390984834806712914358095770913212413836197307868631626262017707255283205002485029295977250812644025408923358550690247700742144 > ./initial_absorb_2.sig
 ```
 
+This command should have no output. The signatures are now stored in text files.
+
 #### Merge the payment
+
+:::note
 
 - This command will **not** modify the blockchain
 - This command should be run from **inside** an HSM
 
+:::
+
 This command will create the signed spend bundle, given the unsigned spend bundle and the individual signature(s).
 
-Note that an arbitrary number of signatures can be passed into this command. We'll use two signatures for this example.
+It will then redirect the signed spend bundle into its own text file.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\initial_absorb.unsigned .\initial_absorb_1.sig .\initial_absorb_2.sig > initial_absorb.signed
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
+Note that the merging of signatures is possible because Chia uses BLS signatures. For this command, an arbitrary number of signatures can be merged. We'll use two signatures for this example.
+
+```bash
+hsmmerge ./initial_absorb.unsigned ./initial_absorb_1.sig ./initial_absorb_2.sig > initial_absorb.signed
 ```
 
-The output of this command is the signed spend bundle, which we've redirected into a text file. This file should be taken out of the HSM to be pushed to the blockchain.
+The signed spend bundle is now loaded in a file called `initial_absorb.signed`. This file can then be taken out of the HSM to be pushed to the blockchain.
 
 #### Push the transaction to the network
 
+:::note
+
 - This command **will** modify the blockchain
 - This command should be run from **outside** an HSM
+
+:::
 
 A few things to note:
 
-- Even though this command will withdraw from the _singleton_, it still needs a local wallet if you want to add a fee to the spend bundle. If you are using a custom testnet, you won't have any TXCH (other than the prefarm), unless you farm a block or receive some from the IPS infrastructure that is farming. This is OK for most tests because fees aren't required on the custom testnet
+- Even though this command will withdraw from the _singleton_, it still needs a local wallet if you want to include a blockchain fee.
 - The key to be used in this command is a local key, and _not_ a signer's key from the singleton
 - The fee will be added when the `push_tx` command is run; it's not built into the spend bundle
+- This command will fail if `-wt` seconds (from the singleton's permanent layer) have not yet elapsed
+- A synced full node is required to run this command
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\initial_absorb.signed
-Wallet keys:
-1)   502984008
-2)   2798912978
-3) * 2447771420 (Synced)
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2447771420): 2
-{'status': 'SUCCESS', 'success': True}
+Once you have the signed spend bundle on a computer with a synced wallet and some TXCH for a blockchain fee, you can complete the payment. We'll add a fee of 10 million mojos:
+
+```bash
+cic push_tx -b ./initial_absorb.signed -m 10000000
 ```
 
 The withdrawal has now been added to the blockchain. However, the money has not yet reached its final destination.
 Instead, it will now sit in a "drop coin" (escrow) and cannot be withdrawn for at least (`-pc`) seconds, which is built into the singleton and cannot be changed.
-For this example, we used 1200 seconds for this value. The prefarm will set this value to 90 days.
+For this example, we used 1200 seconds for this value.
 
 #### View the payment's status
+
+:::note
 
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
+:::
+
 This will show the new status now that the spend bundle has been pushed successfully:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+```bash
+cic sync --show
+```
 
-Current time: 1653463866 (05/25/2022, 15:31:06)
+Response:
+
+```bash
+Current time: 1665430954 (10/11/2022, 03:42:34)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999999000000000000
-  - amount available: 139179000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 999000000000
   - amount to claim: 0
 
 Outstanding events:
   PAYMENTS:
-- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000 (Ready at: 05/25/2022, 15:50:03)
+- PAYMENT to xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j of amount 1000000000 (Ready at: 10/11/2022, 03:53:09)
   REKEYS:
 ```
-
-The `amount available` is now a positive number, and it's increasing with each second.
 
 As the output of this command shows, there is a new payment outstanding (`PAYMENT to xch...`). A few things to note:
 
@@ -1099,7 +758,7 @@ As the output of this command shows, there is a new payment outstanding (`PAYMEN
 
 In either case, claw backs are allowed until the payment is completed.
 (Even if the withdrawal is in "Ready" state, it can still be clawed back. However, because _anyone_ can
-complete the withdrawal, claw backs should no longer be assumed to be available once they reach the "Ready" state.)
+complete the withdrawal, claw backs should no longer be assumed to be available once the "Ready" state has been reached.)
 
 Note that even when the state is "Ready", the next transaction block will still need to be created before the withdrawal is _actually_ ready.
 
@@ -1107,73 +766,84 @@ Transaction blocks happen every 52 seconds on average.
 
 #### Create a signed spend bundle for the completion
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
+:::
 :::info
+
 The `cic complete` command is valid for both payments and rekeys.
 
 Completion of both payments and rekeys require the same steps.
+
 :::
 
-**Anyone** can run the `cic complete` command. The only argument necessary is the file in which to dump the completion.
+**Anyone** can run the `cic complete` command, therefore there is no need to use an HSM for signing. The only argument necessary is the file in which to dump the completion.
 
-Let's attempt the completion before the drop coin's timelock has expired (this should not work):
+The completion step may only be performed after the timelock has expired. You have to enter the correct payment number, which should be `1` (the only option). There is no default, so pressing `enter` will cause an exception.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f complete.signed
-Which actions would you like to complete?:
-
--) PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000
-No actions can be completed at this time.
+```bash
+cic complete -f complete.signed
 ```
 
-After the time lock has expired, run the same command. You do have to enter the correct payment number. It should be `1` (the only option). There is no default, so pressing `enter` will cause an exception.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f complete.signed
+```bash
 Which actions would you like to complete?:
 
-1) PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000
+1) PAYMENT to xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j of amount 1000000000
 (Enter index of action to complete): 1
 Successfully wrote spend to complete.signed
 ```
 
 #### Push the completion to the blockchain
 
+:::note
+
 - This command **will** modify the blockchain
 - This command should be run from **outside** an HSM
 
-Now that you have a signed spend bundle, you can actually push it to the blockchain. Just like before, it is possible to add a fee (from a regular wallet) by using the `-m` flag. However, as this example uses a custom testnet, it won't add a fee.
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\complete.signed
+The last step is to push the completion spend bundle to the blockchain. Just like before, it is possible to add a fee (from a regular wallet) by using the `-m` flag.
+
+```bash
+cic push_tx -b ./complete.signed -m 10000000
+```
+
+```bash
 Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
+1)   2104826454
+2) * 394934909 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909): 
 {'status': 'SUCCESS', 'success': True}
 ```
 
 #### View the completion's status
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
+:::
+
 After waiting for the next transaction block, the singleton's status should show there are no longer any pending payments or rekeys.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+```bash
+cic sync --show
+```
 
-Current time: 1653465662 (05/25/2022, 16:01:02)
+Response:
+
+```bash
+Current time: 1665444673 (10/11/2022, 07:31:13)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999999000000000000
-  - amount available: 157139000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 999000000000
   - amount to claim: 0
 
 Outstanding events:
@@ -1183,983 +853,109 @@ Outstanding events:
 
 #### View the recipient wallet
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
+
+:::
 
 Finally, you can run `chia wallet show` with the wallet that received the payment. The amount you requested to be withdrawn should now be in that wallet:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> chia wallet show
+```bash
+chia wallet show
+```
+
+```bash
 Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-Wallet height: 11244
+1) * 2104826454 (Synced)
+2)   394934909
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 2104826454): 
+Wallet height: 1645720
 Sync status: Synced
-Balances, fingerprint: 2798912978
+Balances, fingerprint: 2104826454
 
 Chia Wallet:
-   -Total Balance:         1.0 txch (1000000000000 mojo)
-   -Pending Total Balance: 1.0 txch (1000000000000 mojo)
-   -Spendable:             1.0 txch (1000000000000 mojo)
+   -Total Balance:         0.001 txch (1000000000 mojo)
+   -Pending Total Balance: 0.001 txch (1000000000 mojo)
+   -Spendable:             0.001 txch (1000000000 mojo)
    -Type:                  STANDARD_WALLET
    -Wallet ID:             1
-
-Connections:
-Type      IP                                     Ports       NodeID      Last Connect      MiB Up|Dwn
-FULL_NODE 127.0.0.1                              58445/58445 f40100b8... May 25 16:03:03      0.0|0.0
-                                                 -Height: No Info    -Hash: No Info    -Trusted: True
 ```
-
-In this case, the wallet has 1.0 txch, which is the correct amount.
 
 ---
 
-### Test 5 - sign fail 1
+### Clawback
 
-**Title: payment: Test with only 1 key specified in 2 of 3 scheme**
+Next, we'll set up a payment and claw it back before the timelock expires. This procedure is the same, regardless of whether you're clawing back a payment or a rekey.
 
-**Expected result: fail**
+#### Set up the payment
 
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass). We'll attempt to initiate a payment with only 1 signature, which should not be allowed.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Initiate a payment
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle. We'll intentionally specify only 1 key for signing:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the payment
-
-If you have a QR scanner and are running on Linux, then run the following command, which will display a QR code and wait for you to scan it. **This should fail upon scanning the QR code.**
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponent. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once.
-
-**This command is expected to fail:**
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> Traceback (most recent call last):
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\Scripts\hsms.exe\__main__.py", line 7, in <module>
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\hsms\cmds\hsms.py", line 188, in main
-    return hsms(args, parser)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\hsms\cmds\hsms.py", line 134, in hsms
-    signature_info = sign(unsigned_spend, wallet)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\hsms\process\sign.py", line 46, in sign
-    more_sigs = sign_for_coin_spend(
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\hsms\process\sign.py", line 60, in sign_for_coin_spend
-    conditions = conditions_for_coin_spend(coin_spend)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\hsms\process\sign.py", line 27, in conditions_for_coin_spend
-    CONDITIONS_FOR_COIN_SPEND[coin_spend] = coin_spend.puzzle_reveal.run(
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\hsms\streamables\program.py", line 92, in run
-    return self.run_with_cost(args, max_cost, strict)[1]
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\hsms\streamables\program.py", line 82, in run_with_cost
-    cost, r = run_program(
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\clvm\run_program.py", line 182, in run_program
-    cost += f(op_stack, value_stack)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\clvm\run_program.py", line 172, in apply_op
-    additional_cost, r = operator_lookup(op, operand_list)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\clvm\operators.py", line 195, in __call__
-    return f(arguments)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\clvm\core_ops.py", line 49, in op_raise
-    raise EvalError("clvm raise", args)
-clvm.EvalError.EvalError: clvm raise
-```
-
-If you receive a similar error, then this test passes.
-
----
-
-### Test 6 - sign fail 2
-
-**Title: Test spend with 1 of 2 signatures**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass). We'll attempt to initiate a payment with 2 signatures, which is expected. But then we'll create a spend bundle with only 1 signature, which is not allowed.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Initiate a payment
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle. We'll specify 2 keys for signing:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-**For this part of the test, we'll only collect 1 signature.**
-
-If you have a QR scanner and are running on Linux, then run the following command, which will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponent. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 1 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5501541541517338495578471622851116085699274300198783202930807340881517107611904112441943325692516383430726033394972658869357352329472741563894336793609004192249016283573773582621707773417747879985238658502642315785200478072414353521426063360
-```
-
-This command spits out a signature encoded in base-10. On Linux it will also show a QR code (the QR display doesn't work on Windows).
-
-Now you can put the signature into a file:
-
-Key 1:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5501541541517338495578471622851116085699274300198783202930807340881517107611904112441943325692516383430726033394972658869357352329472741563894336793609004192249016283573773582621707773417747879985238658502642315785200478072414353521426063360 > .\initial_absorb_1.sig
-```
-
-#### Merge the payment
-
-- This command will **not** modify the blockchain
-- This command should be run from **inside** an HSM
-
-This command will create a signed spend bundle with only 1 signature. Two signatures are required, but the test will not fail until we try to push the spend bundle to the blockchain.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\initial_absorb.unsigned .\initial_absorb_1.sig > initial_absorb.signed
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-#### Push the transaction to the network
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Now we'll attempt to push the invalid spend bundle to the blockchain. **This step should fail.**
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\initial_absorb.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-Traceback (most recent call last):
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\Scripts\cic.exe\__main__.py", line 7, in <module>
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1938, in main
-    cli()  # pylint: disable=no-value-for-parameter
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 829, in __call__
-    return self.main(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 782, in main
-    rv = self.invoke(ctx)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1259, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1066, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 610, in invoke
-    return callback(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 900, in push_cmd
-    asyncio.get_event_loop().run_until_complete(do_command())
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 642, in run_until_complete
-    return future.result()
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 891, in do_command
-    result = await node_client.push_tx(SpendBundle.aggregate(spends))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\chia\rpc\full_node_rpc_client.py", line 204, in push_tx
-    return await self.fetch("push_tx", {"spend_bundle": spend_bundle.to_json_dict()})
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\chia\rpc\rpc_client.py", line 49, in fetch
-    raise ValueError(res_json)
-ValueError: {'error': 'Failed to include transaction 6b6af057c79186156612b6f51fb47f24441ff59669442ded66a636e890d880fa, error BAD_AGGREGATE_SIGNATURE', 'success': False}
-```
-
-If you receive a similar error **BAD_AGGREGATE_SIGNATURE**, then this test passes.
-
----
-
-### Test 7 - sign fail 3
-
-**Title: Test spends with correct # of sigs, but incorrect combinations: 2 valid signers, but not the signers listed when creating the spendbundle**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass). We'll initiate a payment with 1.pk and 2.pk, which is valid. Then we'll sign a spend bundle with 1.pk and 3.pk. Even though 3.pk is valid with this configuration, pushing this spend bundle to the blockchain should fail because we didn't use 1.pk and 2.pk in the spend bundle.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Initiate a payment
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle. We'll specify 2 keys for signing:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-**In this step, we'll sign with 1.se and 3.se, which is not allowed.**
-
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1` and `3`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\3.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 1 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5501541541517338495578471622851116085699274300198783202930807340881517107611904112441943325692516383430726033394972658869357352329472741563894336793609004192249016283573773582621707773417747879985238658502642315785200478072414353521426063360
-```
-
-Key 3 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\3.se
-waiting for qrint-encoded signing requests
->
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-When attempting to gather a signature for 3.se, there was no output. This is because 3.se was not part of the unsigned spend bundle. There is no signature to collect, so the rest of this test will look just like [Test 6](#test-6---sign-fail-2). From here you can follow that test and push the invalid spend bundle to the blockchain, resulting in a BAD_AGGREGATE_SIGNATURE. At that point, this test will have passed.
-
----
-
-### Test 8 - sign fail 4
-
-**Title: Test spends with correct # of sigs, but incorrect combinations: 1 valid signer not listed in spendbundle, 1 completely random signer**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass).
-
-First we'll create a new key called 1_random.se.
-
-Next we'll initiate a payment with 1.pk and 2.pk, which is valid. Then we'll sign a spend bundle 3.pk and 1_random.pk. Even though 3.pk is valid with this configuration, pushing this spend bundle to the blockchain should fail because we didn't use 1.pk and 2.pk in the spend bundle. On top of that, 1_random.pk is not even a valid key for this configuration.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Create a random key
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmgen > 1_random.se
-```
-
-Next, use the `hsmpk` command to derive a public key from the secret exponent:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat .\1_random.se) > 1_random.pk
-```
-
-#### Initiate a payment
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle. We'll specify 2 keys for signing:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-**In this step, we'll sign with 3.se and 1_random.se, which is not allowed.**
-
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `3` and `1_random`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\3.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1_random.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 3 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\3.se
-waiting for qrint-encoded signing requests
->
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-Key 1_random sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1_random.se
-waiting for qrint-encoded signing requests
->
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-When attempting to gather a signature both of these keys, there was no output. This is because 3.se was not part of the unsigned spend bundle, and 1_random was not even valid in the configuration. There are no signatures to collect, so the rest of this test will look just like [Test 6](#test-6---sign-fail-2). From here you can follow that test and push the invalid spend bundle to the blockchain, resulting in a BAD_AGGREGATE_SIGNATURE. At that point, this test will have passed.
-
----
-
-### Test 9 - sign fail 5
-
-**Title: Test spends with correct # of sigs, but incorrect combinations: 1 valid signer, one random signer**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass).
-
-You'll need a key called 1_random.se, which was created in [Test 8](#test-8---sign-fail-4).
-
-We'll initiate a payment with 1.pk and 2.pk, which is valid. Then we'll sign a spend bundle 1.pk and 1_random.pk. 1_random.pk is not a valid key for this configuration, so pushing this spend bundle to the blockchain should fail.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Initiate a payment
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle. We'll specify 2 keys for signing:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-**In this step, we'll sign with 1.se and 1_random.se, which is not allowed.**
-
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1` and `1_random`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1_random.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 1 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5501541541517338495578471622851116085699274300198783202930807340881517107611904112441943325692516383430726033394972658869357352329472741563894336793609004192249016283573773582621707773417747879985238658502642315785200478072414353521426063360
-```
-
-Key 1_random sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1_random.se
-waiting for qrint-encoded signing requests
->
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-When attempting to gather a signature for 1_random, there was no output. This is because 1_random was not valid in the configuration. There is no signature to collect, so the rest of this test will look just like [Test 6](#test-6---sign-fail-2). From here you can follow that test and push the invalid spend bundle to the blockchain, resulting in a BAD_AGGREGATE_SIGNATURE. At that point, this test will have passed.
-
----
-
-### Test 10 - sign fail 6
-
-**Title: Test spends with correct # of sigs, but incorrect combinations: 2 random signers**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass).
-
-You'll need a key called 1_random.se, which was created in [Test 8](#test-8---sign-fail-4).
-We'll also create another key called called 2_random.se.
-
-We'll initiate a payment with 1.pk and 2.pk, which is valid. Then we'll sign a spend bundle 1_random.se and 2_random.se. Neither of these keys is valid for this configuration, so pushing this spend bundle to the blockchain should fail.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Create a random key
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmgen > 2_random.se
-```
-
-Next, use the `hsmpk` command to derive a public key from the secret exponent:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmpk $(cat .\2_random.se) > 2_random.pk
-```
-
-#### Initiate a payment
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle. We'll specify 2 keys for signing:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-**In this step, we'll sign with 1_random.se and 2_random.se, which is not allowed.**
-
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1_random` and `2_random`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1_random.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\2_random.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 1_random sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1_random.se
-waiting for qrint-encoded signing requests
->
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-Key 2_random sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\2_random.se
-waiting for qrint-encoded signing requests
->
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-Neither of these signing attempts yielded any output. This is because 1_random and 2_random were not valid in the configuration. There is no signature to collect, so the rest of this test will look just like [Test 6](#test-6---sign-fail-2). From here you can follow that test and push the invalid spend bundle to the blockchain, resulting in a BAD_AGGREGATE_SIGNATURE. At that point, this test will have passed.
-
----
-
-### Test 11 - spend bundle fail 1
-
-**Title: Test generating spendbundles with random pub keys: 1 random, 1 correct pubkey**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass).
-
-You'll need a key called 1_random.se, which was created in [Test 8](#test-8---sign-fail-4).
-
-We'll attempt to initiate a payment with 1.pk and 1_random.pk, 1.pk is part of the configuration, but 1_random.pk is not. This should cause an immediate failure.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Initiate a payment
-
-Run the `cic payment` command with 1 invalid key. **This command is expected to fail.**
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,1_random.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Traceback (most recent call last):
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\Scripts\cic.exe\__main__.py", line 7, in <module>
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1938, in main
-    cli()  # pylint: disable=no-value-for-parameter
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 829, in __call__
-    return self.main(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 782, in main
-    rv = self.invoke(ctx)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1259, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1066, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 610, in invoke
-    return callback(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1046, in payments_cmd
-    asyncio.get_event_loop().run_until_complete(do_command())
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 642, in run_until_complete
-    return future.result()
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1005, in do_command
-    singleton_bundle, data_to_sign = get_withdrawal_spend_info(
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\drivers\prefarm.py", line 154, in get_withdrawal_spend_info
-    filter_proof, leaf_proof = (list(proof.items())[0][1] for proof in derivation.get_proofs_of_inclusion(agg_pk))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\drivers\puzzle_root_construction.py", line 58, in get_proofs_of_inclusion
-    raise ValueError("Could not find a puzzle matching the specified pubkey")
-ValueError: Could not find a puzzle matching the specified pubkey
-```
-
-If you received a similar error, then this test passes.
-
----
-
-### Test 12 - spend bundle fail 2
-
-**Title: Test generating spendbundles with random pub keys: 2 random pubkeys**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass).
-
-You'll need a key called 1_random.se, which was created in [Test 8](#test-8---sign-fail-4).
-You'll also need a key called 2_random.se, which was created in [Test 10](#test-10---sign-fail-6).
-
-We'll attempt to initiate a payment with 1_random.pk and 2_random.pk. Neither of these keys are part of the configuration. This should cause an immediate failure.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Initiate a payment
-
-Run the `cic payment` command with 2 invalid keys. **This command is expected to fail.**
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1_random.pk,2_random.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Traceback (most recent call last):
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\Scripts\cic.exe\__main__.py", line 7, in <module>
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1938, in main
-    cli()  # pylint: disable=no-value-for-parameter
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 829, in __call__
-    return self.main(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 782, in main
-    rv = self.invoke(ctx)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1259, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1066, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 610, in invoke
-    return callback(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1046, in payments_cmd
-    asyncio.get_event_loop().run_until_complete(do_command())
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 642, in run_until_complete
-    return future.result()
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1005, in do_command
-    singleton_bundle, data_to_sign = get_withdrawal_spend_info(
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\drivers\prefarm.py", line 154, in get_withdrawal_spend_info
-    filter_proof, leaf_proof = (list(proof.items())[0][1] for proof in derivation.get_proofs_of_inclusion(agg_pk))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\drivers\puzzle_root_construction.py", line 58, in get_proofs_of_inclusion
-    raise ValueError("Could not find a puzzle matching the specified pubkey")
-ValueError: Could not find a puzzle matching the specified pubkey
-```
-
-If you received a similar error, then this test passes.
-
----
-
-### Test 13 - clawback pass 1
-
-**Title: clawback (payment): before clawback expires**
-
-**Expected result: pass**
-
-This test will set up a payment and claw it back.
-
-Keep in mind, the maximum number of mojos able to be withdrawn is shown as `amount available:`, retrieved from the `cic show -c` command. This amount supersedes all other rules for the singleton.
-
-#### Initiate a payment
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-This command generates an unsigned spend bundle which requires specific keys.
-Eventually it will print a QR code, which signers can then scan to obtain their own copy of the spend bundle,
-which they will take to the HSM for signing.
-
-At some point in the future, this step will also assign human readable metadata so that people can know what they're signing before they enter an HSM.
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle.
-For this example, we'll use the following arguments:
-
-- `-f` : The name of the file in which to save the unsigned spend bundle
-- `--pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command
-- `-a`: The number of mojos to withdraw
-- `-t`: The recipient address (where to send the money to)
-- `-ap`: Absorb all available payments (could add to transaction costs if more than one payment exists)
-- `-at`: The minimum coin size to absorb, in mojos (ignore anything smaller than this).
-  The default value for this setting is 1 trillion mojos (1 XCH). The prefarm could get dusted, so this command will be helpful as it will ensure that those transactions are ignored.
-  However, while testing, the desired amount to withdraw is often smaller than 1 trillion mojos, so the default will actually cause the intended withdrawal to fail. If you want to absorb all coins, no matter how small, then set the flag to `0`
-
-Additionally, the following flag will not be modified from its default value here, but it could be useful to change in many contexts:
-
-- `-mc`: Maximum extra cost while absorbing, taken as an estimated percentage.
-  If someone sends a bunch of payments and you don't want to absorb them all in one transaction,
-  then you'll only pay this much extra in transaction fees. Default is `50` (50%)
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f clawback_test.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to clawback_test.unsigned
-```
-
-In this example, the command set up the spend bundle to require keys `1` and `2` to sign. The spend bundle was saved to a file called `clawback_test.unsigned` in the local directory.
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-Note that an HSM can show pubkeys, so you can double-check the keys to sign to make sure they match.
-
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1` and `2`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\2.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 1 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\clawback_test.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5472127595259769624700272313291141996052950924857113076610741554495992119011254960749667050480669480305548405876470602767481810282080179981661010737772387725421731729293622731280244523247244271582141624131940606770107363924272162087952400384
-```
-
-Key 2 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\clawback_test.unsigned | hsms -y --nochunks .\2.se
-waiting for qrint-encoded signing requests
-> 5444445217649174440214246152919408353372706707176144269560546771583582721098966498090776688613846319205565483834891832664136315894504133724968122369642627817370341121459531985264754446159866249757141932375685695182533245475382348602919235584
-```
-
-This command spits out a signature encoded in base-10. On Linux it will also show a QR code (the QR display doesn't work on Windows).
-
-Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character:
-
-Key 1:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5472127595259769624700272313291141996052950924857113076610741554495992119011254960749667050480669480305548405876470602767481810282080179981661010737772387725421731729293622731280244523247244271582141624131940606770107363924272162087952400384 > clawback_test_1.sig
-```
-
-Key 2:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5444445217649174440214246152919408353372706707176144269560546771583582721098966498090776688613846319205565483834891832664136315894504133724968122369642627817370341121459531985264754446159866249757141932375685695182533245475382348602919235584 > clawback_test_2.sig
-```
-
-#### Merge the payment
-
-- This command will **not** modify the blockchain
-- This command should be run from **inside** an HSM
-
-This command will create the signed spend bundle, given the unsigned spend bundle and the individual signature(s).
-
-Note that an arbitrary number of signatures can be passed into this command. We'll use two signatures for this example.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\clawback_test.unsigned .\clawback_test_1.sig .\clawback_test_2.sig > .\clawback_test.signed
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-The output of this command is the signed spend bundle, which we've redirected into a text file. This file should be taken out of the HSM to be pushed to the blockchain.
-
-#### Push the transaction to the network
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-A few things to note:
-
-- Even though this command will withdraw from the _singleton_, it still needs a local wallet if you want to add a fee to the spend bundle. If you are using a custom testnet, you won't have any TXCH (other than the prefarm), unless you farm a block or receive some from the IPS infrastructure that is farming. This is OK for most tests because fees aren't required on the custom testnet
-- The key to be used in this command is a local key, and _not_ a signer's key from the singleton
-- The fee will be added when the `push_tx` command is run; it's not built into the spend bundle
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\clawback_test.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-The withdrawal has now been added to the blockchain. However, the money has not yet reached its final destination.
-Instead, it will now sit in a "drop coin" (escrow) and cannot be withdrawn for at least (`-pc`) seconds, which is built into the singleton and cannot be changed.
-For this example, we used 1200 seconds for this value. The prefarm will set this value to 90 days.
+To set up the payment, first create a payment using the [Withdrawal](#withdrawal) example. Here are the exact steps you need to follow in the initial setup:
+* [Initiate a payment](#initiate-a-payment)
+* [Sign the payment](#sign-the-payment)
+* [Merge the payment](#merge-the-payment)
+* [Push the transaction to the network](#push-the-transaction-to-the-network)
 
 #### View the payment's status
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-#### The following command is used for [Test 17](#test-17---clawback-pass-3) -
+:::
 
-When running `cic sync --show`, if you see a timestamp for `PAYMENT to`, then Test 17 passes:
+Just as with the Withdrawal example, you should have a payment set up:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+```bash
+cic sync --show
+```
 
-Current time: 1653478682 (05/25/2022, 19:38:02)
+Response:
+
+```bash
+Current time: 1665449342 (10/11/2022, 08:49:02)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 287338000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
   - amount to claim: 0
 
 Outstanding events:
   PAYMENTS:
-- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000 (Ready at: 05/25/2022, 19:56:52)
+- PAYMENT to xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j of amount 1000000000 (Ready at: 10/11/2022, 09:06:24)
   REKEYS:
 ```
 
-The `amount available` is now a positive number, and it's increasing with each second.
+Instead of completing the payment, we'll claw it back. If you want to test this feature, be sure to make the value of `-pc` sufficiently large to give yourself plenty of time to perform the clawback. In this example we still have 17 minutes remaining.
 
-As the output of this command shows, there is a new payment outstanding (`PAYMENT to xch...`).
+#### Create an unsigned spend bundle for the clawback
 
-After the timestamp shown by `(Ready at: <mm/dd/yyyy hh:mm:ss>)`, the payment will be ready for completion.
-
-**For this test, you need to claw back the payment before this time.**
-
-However, if you are unable to complete this test in time, fear not. [Test 14](#test-14---clawback-pass-2-todo) is identical to this one, except you need to wait for the timelock to expire before clawing the payment back.
-
-#### Create an unsigned spend bundle
+:::note
 
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-For this test, the claw back will make a payment (p2_singleton) back to the original singleton. The payment must later be absorbed.
+:::
+:::info
 
-Claw back requires the same number of keys that originally signed the payment or rekey. For this test it's OK to use the same keys (1.pk and 2.pk).
+First you must create an unsigned spendbundle. You must use the same number of keys as what was originally used to create the withdrawal, though the keys themselves may be different.
 
-You need to respond with the index number of the payment to claw back, which should be `1`.
+For example:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic clawback -f clawback.unsigned -pks "1.pk,2.pk"
+```bash
+cic clawback -f clawback.unsigned -pks "1.pk,2.pk"
+```
+
+The response will list all current actions and ask you to select the relevant one (there is only one in this case):
+
+```bash
 Which actions would you like to cancel?:
 
-1) PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000
+1) PAYMENT to xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j of amount 1000000000
 (Enter index of action to cancel): 1
 Successfully wrote spend to clawback.unsigned
 ```
@@ -2168,106 +964,144 @@ The output of this command will be a new unsigned spend bundle called `clawback.
 
 #### Sign the claw back spend bundle
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **inside** an HSM
 
-First, obtain a base-64 signature for each secret exponent (it might instead be in base-10):
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\clawback.unsigned | hsms -y --nochunks .\1.se
+First, obtain a base-64 signature for each secret exponent (it might instead be in base-10).
+
+Key 1: 
+
+```bash
+cat ./clawback.unsigned | hsms -y --nochunks ./1.se 
+```
+
+Response:
+
+```bash
 waiting for qrint-encoded signing requests
-> 5452288223536177585645077673145525300036501980511145254073503422535764112057333911271204274097872247045160832790029532455857764558235854188835670998643202123302975844048112116854539244523201007860281417801632194813622278850102057600033554432
+> 5617572660431363787553058817392163812258580313793542655056082446740816880100648794665997086438225603633337515952093150407485675122008233788343094621502437911685372306395928118377859520761458720081340782062961822350448155185721641650067108864
 ```
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\clawback.unsigned | hsms -y --nochunks .\2.se
+Key 2:
+
+```bash
+cat ./clawback.unsigned | hsms -y --nochunks ./2.se 
+```
+
+Response:
+
+```bash
 waiting for qrint-encoded signing requests
-> 5610038955636809163462926683606146326062159892638414582047148228930999956391284285833507059367616481570350590412769330547119147411147944313274258244439839038729813133835994167893237199174883125089758553763754514470482682280102132661023410176
+> 5496141022527413795140392142791749626543641578544867369452281830415553842059214382267267226052143257511876046736609023208076789214741327005454027973933695181445866976555756190935832218493040438492214564090662465704518993609872998672415919104
 ```
 
-Next, put each signature into a text file:
+Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character (be sure to use the actual signatures you just obtained; **don't copy these lines verbatim**):
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5452288223536177585645077673145525300036501980511145254073503422535764112057333911271204274097872247045160832790029532455857764558235854188835670998643202123302975844048112116854539244523201007860281417801632194813622278850102057600033554432 > .\clawback_1.sig
+Key 1:
+
+```bash
+echo 5617572660431363787553058817392163812258580313793542655056082446740816880100648794665997086438225603633337515952093150407485675122008233788343094621502437911685372306395928118377859520761458720081340782062961822350448155185721641650067108864 > ./clawback_1.sig
 ```
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5610038955636809163462926683606146326062159892638414582047148228930999956391284285833507059367616481570350590412769330547119147411147944313274258244439839038729813133835994167893237199174883125089758553763754514470482682280102132661023410176 > .\clawback_2.sig
+Key 2:
+
+```bash
+echo 5496141022527413795140392142791749626543641578544867369452281830415553842059214382267267226052143257511876046736609023208076789214741327005454027973933695181445866976555756190935832218493040438492214564090662465704518993609872998672415919104 > ./clawback_2.sig
 ```
+
+This command should have no output. The signatures are now stored in text files.
 
 Finally, merge the claw back signatures into a signed spend bundle.
 Note that an arbitrary number of signatures can be passed into this command. We'll use two signatures for this example.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\clawback.unsigned .\clawback_1.sig .\clawback_2.sig > clawback.signed
+```bash
+hsmmerge ./clawback.unsigned ./clawback_1.sig ./clawback_2.sig > clawback.signed
 ```
 
 #### Push the claw back to the network
 
+:::note
+
 - This command **will** modify the blockchain
 - This command should be run from **outside** an HSM
 
-Now that you have a signed spend bundle, all that remains is pushing it to the blockchain. If you are running on testnet10, you may want to include a fee by using the `-m` flag and selecting a wallet that has sufficient funds to pay the fee.
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\clawback.signed
+Now that you have a signed spend bundle, all that remains is pushing it to the blockchain. As usual, you can include a blockchain fee by using the `-m` flag and selecting a wallet with sufficient funds.
+
+```bash
+cic push_tx -b ./clawback.signed -m 10000000
+```
+
+```bash
 Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
+1)   2104826454
+2) * 394934909 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909): 
 {'status': 'SUCCESS', 'success': True}
 ```
 
 #### View the claw back's status
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
+:::
+
 If you view the singleton's status right away, you will still see the active PAYMENT. This is because the blockchain has yet to process the clawback:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+```bash
+cic sync --show
+```
 
-Current time: 1653479087 (05/25/2022, 19:44:47)
+Response:
+
+```bash
+Current time: 1665449644 (10/11/2022, 08:54:04)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 291388000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
   - amount to claim: 0
 
 Outstanding events:
   PAYMENTS:
-- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000 (Ready at: 05/25/2022, 19:56:52)
+- PAYMENT to xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j of amount 1000000000 (Ready at: 10/11/2022, 09:06:24)
   REKEYS:
 ```
 
-Take note of the `Current time:` and `Ready at:` timestamps in the output above. This is good -- the clawback was pushed to the blockchain around 12 minutes before the timelock expired.
-
 Wait a few minutes and run the same command again. You'll see that the clawback is now gone and the funds are now in `amount to claim:`
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+```bash
+cic sync --show
+```
 
-Current time: 1653479188 (05/25/2022, 19:46:28)
+Response:
+
+```bash
+Current time: 1665449964 (10/11/2022, 08:59:24)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 292398000000000000
-  - amount to claim: 1000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
 
 Outstanding events:
   PAYMENTS:
   REKEYS:
 ```
 
-Note that `amount to claim:` still has a positive value. This will automatically be absorbed into the singleton with the next spend.
+Note that `amount to claim:` still has a positive value. This will automatically be absorbed into the singleton with the next spend. There is nothing else to do for now. The clawback was successful.
 
 ---
 
@@ -3142,9 +1976,11 @@ Transaction blocks happen every 52 seconds on average.
 - This command should be run from **outside** an HSM
 
 :::info
+
 The `cic complete` command is valid for both payments and rekeys.
 
 Completion of both payments and rekeys require the same steps.
+
 :::
 
 **Anyone** can run the `cic complete` command. The only argument necessary is the file in which to dump the completion.
