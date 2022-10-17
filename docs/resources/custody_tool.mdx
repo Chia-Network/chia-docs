@@ -11,11 +11,15 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-In 2022, Chia built an internal solution for long-term storage of its prefarm. This tool has since been made public. Yes, you read that right -- you can lock up your coins using the same solution as Chia used to lock up the prefarm!
+In 2022, Chia built an internal solution for long-term storage of its prefarm. This tool has since been made public -- you can now lock your coins using the same solution as Chia used to lock its prefarm!
 
 This guide will show you how to get started.
 
-However, please keep in mind that this tool was _not_ originally developed with the broader ecosystem in mind. For this reason, the tool is provided **as-is**, with no guarantees of functionality, and with no support provided. Proceed with caution.
+:::warning warning
+
+This tool was _not_ originally developed with the broader ecosystem in mind. For this reason, the tool is provided **as-is**, with no guarantees of functionality, and with no support provided. Proceed with caution.
+
+:::
 
 Before continuing, you might want to familiarize yourself with the following documents:
 
@@ -134,9 +138,9 @@ If you get a usage statement, then `cic` (Chia Internal Custody) has been instal
 
 :::info A few notes about the commands in this guide
 
-The `cic` commands for generating and signing keys are meant to be run from inside a Hardware Security Module (HSM). Thse commands are labeled as such.
+The `cic` commands for generating and signing keys are meant to be run from inside a Hardware Security Module (HSM). These commands are labeled as such.
 
-An HSM is a physical/offline security solution used for creating and using cryptographic signatures. While testing the custody tool, it is OK to run these commands from a normal computer. However, for maximum security while running the custody tool on Chia's mainnet, you are recommeded to use an HSM (or a similar solution).
+An HSM is a physical/offline security solution for creating and using cryptographic signatures. While testing the custody tool, it is OK to run these commands from a normal computer. However, for maximum security while running the custody tool on Chia's mainnet, you are recommended to use an HSM (or a similar solution).
 
 Most of the commands from this tutorial will _not_ alter the blockchain. This includes all of the commands to be run from an HSM. Commands that will alter the blockchain are labeled as such.
 
@@ -153,7 +157,7 @@ Most of the commands from this tutorial will _not_ alter the blockchain. This in
 
 :::
 
-Before the custody singleton can be created, you must create the associated public/private key pairs.
+Before the custody singleton can be created, you must first create the public/private key pairs to be associated with it.
 
 For this guide:
 
@@ -161,7 +165,7 @@ For this guide:
 - `n` will initially be set to 3. This is the maximum lock level of the singleton. In other words, it's the total number of keys that will be associated with the singleton.
 - Because `n` will initially be 3, we will create 3 keys now. `m` and `n` will be used later when setting up the singleton.
 
-When creating and using these keys on mainnet, you should only store one key on each computer. Signing then requires copying an unsigned spend bundle to each individual computer that holds a key. This process is explained in detail later in the guide.
+When creating and using these keys on mainnet, you should only store one key on each computer. Signing therefore requires copying an unsigned spend bundle to each individual computer that holds a key. This process is explained in detail later in the guide.
 
 However, for this guide, we'll assume you're running an initial test using TXCH (and not actual XCH). In this case, it's OK to store multiple keys on the same computer while you get a feel for how the tool works.
 
@@ -230,9 +234,6 @@ The `cic init` command will initialize the permanent layer of the singleton. **N
 
 :::
 
-[todo: remove d from the flow chart]
-[todo: remove a from the flow chart]
-
 For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](/img/chia_custody_tool.png).
 
 | Flag  | Example<br/>Value | Description                                                                                                                                                                                                                                   |
@@ -247,17 +248,17 @@ For this guide, we'll create an example singleton that uses the values listed in
 :::info notes regarding the above table
 
 - The singleton's time values are relative to when they're confirmed on chain
-- The specific time values for this example were chosen for testing purposes only. In a mainnet custody solution, the values are typically measured in days rather than minutes
+- The specific time values for this example were chosen for testing purposes only. In a mainnet custody solution, the values are typically measured in days (though still expressed in seconds)
 
 :::
 
-Initialize the singleton (run from the `keys_and_sb` folder in this example):
+Begin by initializing the singleton (run from the `keys_and_sb` folder in this example):
 
 ```bash
 cic init -d . -wt 600 -pc 1200 -rt 300 -rc 600 -sp 900
 ```
 
-As a result of running the `init` command, a binary file called `Configuration (needs derivation).txt` will be created in the `-d` location. This file will be used later to derive the root. Nothing has been added to the blockchain yet.
+As a result of running the `cic init` command, a binary file called `Configuration (needs derivation).txt` will be created in the `-d` location. This file will be used later to derive the root. Nothing has been added to the blockchain yet.
 
 ---
 
@@ -310,7 +311,7 @@ It is also possible to launch the singleton using one wallet and fund it with an
 
 Aside from the fees, the `launch_singleton` command includes an optional `--configuration` flag to specify the name and location of the configuration file. By default, the command will look in `./Configuration (awaiting launch).txt`.
 
-Because this command modifies the blockchain, a synced wallet is required to run it. To be sure your wallet is synced, run:
+Because this command modifies the blockchain, a synced wallet is required. To be sure your wallet is synced, run:
 
 ```bash
 chia wallet show
@@ -318,7 +319,7 @@ chia wallet show
 
 If you have multiple fingerprints, select the one you want to use when launching the singleton. This wallet must contain at least 1 mojo, as well as sufficient funds to pay the fee if you are going to specify one.
 
-The output of `chia wallet show` must include `Sync status: Synced`. If this wallet it not yet synced, then you will need to wait for it to finish syncing before continuing.
+The output of `chia wallet show` must include `Sync status: Synced`. If this wallet is not yet synced, then you will need to wait for it to finish syncing before continuing.
 
 Once you have a synced wallet with sufficient funds, you can launch the singleton:
 
@@ -360,7 +361,7 @@ Congratulations, you have successfully launched the singleton! (You will need to
 
 At this point, the singleton should exist on the blockchain. However, it has not yet been funded. For now, let's view it.
 
-Currently your local custody database does not know about the singleton, even though it is on the blockchain. 
+Currently your local custody database does not know about the singleton.
 Therefore, in order to view the singleton, you must first synchronize the localhost with the blockchain by running the `sync` command.
 
 The first time you run the `sync` command, you need to specify the configuration file, which will then be copied into your config database.
@@ -394,10 +395,14 @@ Outstanding events:
   REKEYS:
 ```
 
-For a more detailed output which conains the current config details, run `cic show -c`. For example:
+To view the configuration, run `cic show` and add the `-c` flag.
+To view the derivation info, run `cic show` and add the `-d` flag.
+You can also add both flags.
+
+For example:
 
 ```bash
-~/internal-custody/keys_and_sb$ cic show -c
+~/internal-custody/keys_and_sb$ cic show -c -d
 
 Current time: 1665072285 (10/07/2022, 00:04:45)
 
@@ -417,22 +422,43 @@ Config:
  - withdrawal timelock: 600 seconds
  - payment clawback period: 1200 seconds
  - rekey cancellation period: 600 seconds
+
+Derivation Info:
+ - lock level: 2
+ - max lock level: 3
+ - min keys to rekey: 1
+ - standard rekey timelock: 300 seconds
+ - slow rekey penalty: 900 seconds
+ - pubkeys: 
+    - bls123813p8yljrhgskmgqeukg3x6mszh3xtqwwx35t4g6dt0mk2xecyj7elr0fhhrm8t3w7q5zhdelgjlgdspjqxvs
+    - bls123813uhsu0juw06z8vmtt5ncj6zcexmhtsfemvtj3jhv0vuxh9nqjdar59yh555muzrdpz2uflgzey3sgdnm8y9
+    - bls1238152jm50wh89tf70mwj4ncuukqcq6jqmf7pjgznm55c5qaggrvswzccwvsjgwmy9f4cvlx2j97kmh5uc2es6h
 ```
 
 Here's how to interpret this output:
 
-- Singleton:
-
+- Singleton
   - `launcher ID`: This shows the on-chain ID of your singleton
   - `amount left`: This is the current value of the singleton. For now it is zero because it has not yet been funded
-  - `amount to claim`: This is the number of mojos currently in the process of being withdrawn (aka in a drop coin). The money is effectively sitting in escrow, and will be able to be withdrawn after the withdrawal timelock has been fulfilled
+  - `amount to claim`: This is the number of mojos currently in the process of being withdrawn. The money is effectively sitting in escrow, and will be able to be withdrawn after the withdrawal timelock has been fulfilled
 
-- Outstanding events:
+- Outstanding events
   - `PAYMENTS`: If there were a payment in progress, it would be shown here
   - `REKEYS`: If there were a rekey in progress, it would be shown here
 
-- Config:
-  - This shows the details of the permanent layer of the singleton
+- Config
+  - `current root`: Puzzlehash of the singleton as it is currently configured
+  - `withdrawal timelock`: Number of seconds to wait before a withdrawal may be initiated
+  - `payment clawback period`: Number of seconds to wait before a withdrawal may be completed. During this period, clawback is possible
+  - `rekey cancellation period`: Number of seconds to wait before a rekey may be completed. During this period, cancellation is possible
+
+- Derivation Info
+  - `lock level`: The number of keys required to sign for withdrawals and standard rekeys
+  - `max lock level`: The total number of keys
+  - `min keys to rekey`: The minimum number of keys that must sign for a slow rekey
+  - `standard rekey timelock`: The number of seconds since the last action before a standard rekey can be initiated
+  - `slow rekey penalty`: The number of seconds added as a penalty for all slow rekeys. This is in addition to the standard rekey timelocks that will vary depending on the number of keys signing
+  - `pubkeys`: The keys themselves
 
 ---
 
@@ -485,7 +511,7 @@ A few things to keep in mind:
 - You can optionally add a transaction fee (in XCH/TXCH) by using the `-m` flag. For this guide, we'll send 10 million mojos
 - If your fee is greater than your singleton's value (as it might be if you're running on a testnet), you'll need to add the `--override` flag
 
-```powershell
+```bash
 chia wallet send -a 1 -m 0.00001 -t <address>
 ```
 
@@ -507,8 +533,6 @@ To address: txch12cr83zr7vax0a7684uxjk7wdearypuk540alx90cy7efkq5448uqu6dd5t
 Created at: 2022-10-07 01:20:55
 ```
 
-[todo: spellcheck]
-
 ---
 
 ### Verify the singleton's status
@@ -520,10 +544,7 @@ Created at: 2022-10-07 01:20:55
 
 :::
 
-Even though the amount available to be withdrawn will increase on chain, it won't increase locally until a new `sync` is performed. Just like before, we'll sync and show the config in one command:
-
-[todo look for prefarm]
-[todo look for amount available]
+Even though the blockchain is aware that the singleton has been funded, the `cic` tool won't yet know about said funding until a new `sync` is performed. Just like before, we'll sync and show the config in one command:
 
 ```bash
 cic sync -s
@@ -548,7 +569,7 @@ Outstanding events:
 
 The `amount to claim` now shows the amount with which it was funded.
 
-The singleton is now set up. Observers can verify that no payments or rekeys are currently being performed.
+The singleton is now set up. Observers can also use this command to verify that no payments or rekeys are currently being performed.
 
 ### (Optional) Export config
 
@@ -589,7 +610,7 @@ This test will run through the complete sequence of withdrawing money from the s
 
 This command generates an unsigned spend bundle which requires specific keys. Signers can take this spend bundle to an HSM for signing.
 
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle.
+To begin the payment process, use the `cic payment` command.
 For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment "payment command") for all options):
 
 - `-f` :  The name of the file in which to save the unsigned spend bundle
@@ -601,16 +622,16 @@ For this example, we'll use the following arguments (see the [CLI reference](/cu
 We'll sign with keys 1 and 2, and we'll withdraw 1 billion mojos:
 
 ```bash
-cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000 -t <recipient address> -ap
+cic payment -f withdrawal.unsigned -pks "1.pk,2.pk" -a 1000000000 -t <recipient address> -ap
 ```
 
 Response:
 
 ```bash
-Successfully wrote spend to initial_absorb.unsigned
+Successfully wrote spend to withdrawal.unsigned
 ```
 
-In this example, the command set up the spend bundle to require keys `1` and `2` to sign. The spend bundle was saved to a file called `initial_absorb.unsigned` in the local directory.
+In this example, the command set up the spend bundle to require keys `1` and `2` to sign. The spend bundle was saved to a file called `withdrawal.unsigned` in the local directory.
 
 #### Sign the payment
 
@@ -623,12 +644,12 @@ In this example, the command set up the spend bundle to require keys `1` and `2`
 
 Note that an HSM can show pubkeys, so you can double-check the keys to sign to make sure they match.
 
-To obtain a signature, you can show the unsigned spend bundle and sign it using each secret exponent. This can all be done in one step per key. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
+To obtain a signature, you can show the unsigned spend bundle and sign it using each secret exponent. This can all be done in one step per key. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spend bundle at once:
 
 Key 1 sign:
 
 ```bash
-cat ./initial_absorb.unsigned | hsms -y --nochunks ./1.se
+cat ./withdrawal.unsigned | hsms -y --nochunks ./1.se
 ```
 
 Response:
@@ -641,7 +662,7 @@ waiting for qrint-encoded signing requests
 Key 2 sign:
 
 ```bash
-cat ./initial_absorb.unsigned | hsms -y --nochunks ./2.se
+cat ./withdrawal.unsigned | hsms -y --nochunks ./2.se
 ```
 
 Response:
@@ -658,13 +679,13 @@ Now you can put the signatures into files. Do this by echoing the output of the 
 Key 1:
 
 ```bash
-echo 5547654523626261714173624112533133683715952925226504045164577632098258283574049187046232825601458621027122981750092774640100661034682177649762432133608580806862808660897344776713144593910217683389248184948244557142841050155734002508539602944 > ./initial_absorb_1.sig
+echo 5547654523626261714173624112533133683715952925226504045164577632098258283574049187046232825601458621027122981750092774640100661034682177649762432133608580806862808660897344776713144593910217683389248184948244557142841050155734002508539602944 > ./withdrawal_1.sig
 ```
 
 Key 2:
 
 ```bash
-echo 5455332514029001283045217337060795248565102176100994026976453525467902615588200815715854582664277247425467234004349390984834806712914358095770913212413836197307868631626262017707255283205002485029295977250812644025408923358550690247700742144 > ./initial_absorb_2.sig
+echo 5455332514029001283045217337060795248565102176100994026976453525467902615588200815715854582664277247425467234004349390984834806712914358095770913212413836197307868631626262017707255283205002485029295977250812644025408923358550690247700742144 > ./withdrawal_2.sig
 ```
 
 This command should have no output. The signatures are now stored in text files.
@@ -685,10 +706,10 @@ It will then redirect the signed spend bundle into its own text file.
 Note that the merging of signatures is possible because Chia uses BLS signatures. For this command, an arbitrary number of signatures can be merged. We'll use two signatures for this example.
 
 ```bash
-hsmmerge ./initial_absorb.unsigned ./initial_absorb_1.sig ./initial_absorb_2.sig > initial_absorb.signed
+hsmmerge ./withdrawal.unsigned ./withdrawal_1.sig ./withdrawal_2.sig > withdrawal.signed
 ```
 
-The signed spend bundle is now loaded in a file called `initial_absorb.signed`. This file can then be taken out of the HSM to be pushed to the blockchain.
+The signed spend bundle is now loaded in a file called `withdrawal.signed`. This file can then be taken out of the HSM to be pushed to the blockchain.
 
 #### Push the transaction to the network
 
@@ -701,20 +722,20 @@ The signed spend bundle is now loaded in a file called `initial_absorb.signed`. 
 
 A few things to note:
 
-- Even though this command will withdraw from the _singleton_, it still needs a local wallet if you want to include a blockchain fee.
+- Even though this command will withdraw from the _singleton_, it still needs a local wallet if you want to include a blockchain fee
 - The key to be used in this command is a local key, and _not_ a signer's key from the singleton
 - The fee will be added when the `push_tx` command is run; it's not built into the spend bundle
 - This command will fail if `-wt` seconds (from the singleton's permanent layer) have not yet elapsed
 - A synced full node is required to run this command
 
-Once you have the signed spend bundle on a computer with a synced wallet and some TXCH for a blockchain fee, you can complete the payment. We'll add a fee of 10 million mojos:
+Once you have the signed spend bundle on a synced node with some XCH/TXCH for a blockchain fee, you can complete the payment. We'll add a fee of 10 million mojos:
 
 ```bash
-cic push_tx -b ./initial_absorb.signed -m 10000000
+cic push_tx -b ./withdrawal.signed -m 10000000
 ```
 
 The withdrawal has now been added to the blockchain. However, the money has not yet reached its final destination.
-Instead, it will now sit in a "drop coin" (escrow) and cannot be withdrawn for at least (`-pc`) seconds, which is built into the singleton and cannot be changed.
+Instead, it will now sit in a "drop coin" (aka escrow) and cannot be withdrawn for at least (`-pc`) seconds, which is built into the singleton and cannot be changed.
 For this example, we used 1200 seconds for this value.
 
 #### View the payment's status
@@ -756,7 +777,7 @@ As the output of this command shows, there is a new payment outstanding (`PAYMEN
 - If (`-pc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
 - If (`-pc`) seconds have elapsed, then the output will say `(Ready)`
 
-In either case, claw backs are allowed until the payment is completed.
+In either case, claw backs are allowed until the payment has been completed.
 (Even if the withdrawal is in "Ready" state, it can still be clawed back. However, because _anyone_ can
 complete the withdrawal, claw backs should no longer be assumed to be available once the "Ready" state has been reached.)
 
@@ -828,7 +849,7 @@ Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909):
 
 :::
 
-After waiting for the next transaction block, the singleton's status should show there are no longer any pending payments or rekeys.
+After waiting for the next transaction block, the singleton's status should show that there are no longer any pending payments or rekeys.
 
 ```bash
 cic sync --show
@@ -887,11 +908,11 @@ Chia Wallet:
 
 ### Clawback
 
-Next, we'll set up a payment and claw it back before the timelock expires. This procedure is the same, regardless of whether you're clawing back a payment or a rekey.
+Next, we'll set up a payment and claw it back before the timelock expires. This procedure is the same, regardless of whether you're clawing back a payment or cancelling a rekey.
 
 #### Set up the payment
 
-To set up the payment, first create a payment using the [Withdrawal](#withdrawal) example. Here are the exact steps you need to follow in the initial setup:
+Before attempting a clawback, you will need to have a pending payment set up. You can do this by using the [Withdrawal](#withdrawal) example. Here are the exact steps you need to follow in the initial setup:
 * [Initiate a payment](#initiate-a-payment)
 * [Sign the payment](#sign-the-payment)
 * [Merge the payment](#merge-the-payment)
@@ -906,7 +927,7 @@ To set up the payment, first create a payment using the [Withdrawal](#withdrawal
 
 :::
 
-Just as with the Withdrawal example, you should have a payment set up:
+Just as with the Withdrawal example, you should now have a payment set up:
 
 ```bash
 cic sync --show
@@ -930,7 +951,8 @@ Outstanding events:
   REKEYS:
 ```
 
-Instead of completing the payment, we'll claw it back. If you want to test this feature, be sure to make the value of `-pc` sufficiently large to give yourself plenty of time to perform the clawback. In this example we still have 17 minutes remaining.
+Instead of completing the payment, we'll claw it back. If you want to test this feature, be sure to make the value of `-pc` sufficiently large to give yourself plenty of time to perform the clawback. 
+In this example we still have 17 minutes remaining (`Ready at` minus `Current time` from the above output).
 
 #### Create an unsigned spend bundle for the clawback
 
@@ -940,9 +962,8 @@ Instead of completing the payment, we'll claw it back. If you want to test this 
 - This command should be run from **outside** an HSM
 
 :::
-:::info
 
-First you must create an unsigned spendbundle. You must use the same number of keys as what was originally used to create the withdrawal, though the keys themselves may be different.
+First you must create an unsigned spend bundle. You must use the same number of keys as what was originally used to create the withdrawal, though the keys themselves may be different.
 
 For example:
 
@@ -971,7 +992,7 @@ The output of this command will be a new unsigned spend bundle called `clawback.
 
 :::
 
-First, obtain a base-64 signature for each secret exponent (it might instead be in base-10).
+First, obtain a signature for each secret exponent.
 
 Key 1: 
 
@@ -1101,774 +1122,132 @@ Outstanding events:
   REKEYS:
 ```
 
-Note that `amount to claim:` still has a positive value. This will automatically be absorbed into the singleton with the next spend. There is nothing else to do for now. The clawback was successful.
+Note that `amount to claim:` now has a positive value. This will automatically be absorbed into the singleton with the next spend. There is nothing else to do for now. The clawback was successful.
 
 ---
 
-### Test 14 - clawback pass 2
+### Rekey
 
-**Title: clawback (payment): after clawback expires, but before someone completed the payment**
+In this section, we'll demonstrate how to perform a standard rekey, using `m` keys. We'll provide a brand new set of keys, and we'll switch from the existing 2-of-3 multisig to a 3-of-5 configuration.
 
-**Expected result: pass**
+Note that a slow rekey is also possible. In this case, only use 1 of the 3 keys would need to sign, and there would be a timelock penalty. The steps for completing a slow rekey are the same as those for a standard rekey, other than the number of signatures obtained.
 
-This test is identical to [Test 13](#test-13---clawback-pass-1), but with one key difference. The timelock has to expire before you complete the clawback.
+To perform a rekey, we will need to recreate the non-permanent layer. The permanent layer will remain intact (by definition).
 
-To run this test, follow Test 13, and don't claw back the payment until the `PAYMENT to` line shows `(Ready)` when you run `cic sync --show`. For example:
+As a reminder, here is the status of the configuration before the rekey is initiated:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-...
-Outstanding events:
-  PAYMENTS:
-  // highlight-next-line
-- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 928049000000000000 (Ready)
-  REKEYS:
-```
+```bash
+cic show -c -d
 
-If you are able to claw back the payment from this state, then this test passes.
-
----
-
-### Test 15 - clawback fail 1
-
-**Title: payment: test push tx after clawback completed**
-
-**Expected result: fail**
-
-Before running this test, first run either [Test 13](#test-13---clawback-pass-1) or [Test 14](#test-14---clawback-pass-2).
-
-A payment has been clawed back. The state of the system no longer shows any `Outstanding events`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653479188 (05/25/2022, 19:46:28)
+Current time: 1665969326 (10/17/2022, 09:15:26)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 292398000000000000
-  - amount to claim: 1000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
 
 Outstanding events:
   PAYMENTS:
   REKEYS:
-```
 
-If you attempt to claw back the money again, it should fail:
+Config:
+ - current root: 74905b06591f9d2e615d313d18cfbcbeffcaabe2e70ccdeafda783bacaae52ef
+ - withdrawal timelock: 600 seconds
+ - payment clawback period: 1200 seconds
+ - rekey cancellation period: 600 seconds
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\clawback.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-Traceback (most recent call last):
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\Scripts\cic.exe\__main__.py", line 7, in <module>
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1938, in main
-    cli()  # pylint: disable=no-value-for-parameter
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 829, in __call__
-    return self.main(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 782, in main
-    rv = self.invoke(ctx)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1259, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1066, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 610, in invoke
-    return callback(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 900, in push_cmd
-    asyncio.get_event_loop().run_until_complete(do_command())
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 642, in run_until_complete
-    return future.result()
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 891, in do_command
-    result = await node_client.push_tx(SpendBundle.aggregate(spends))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\chia\rpc\full_node_rpc_client.py", line 204, in push_tx
-    return await self.fetch("push_tx", {"spend_bundle": spend_bundle.to_json_dict()})
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\chia\rpc\rpc_client.py", line 49, in fetch
-    raise ValueError(res_json)
-// highlight-next-line
-ValueError: {'error': 'Failed to include transaction 50ffb65f444769ccf8c21acd3ba825d648ab8ebcf1295330e92487d625ff40e5, error DOUBLE_SPEND', 'success': False}
-```
-
-If you get an error like this one (`error DOUBLE_SPEND`) when you attempt to push the clawback spend bundle, then this test passes.
-
----
-
-### Test 16 - payment fail
-
-**Title: payment: Test new payment before previous payment timelock expires**
-
-**Expected result: fail**
-
-This test will push a payment to the network, then immediately attempt to push another payment to the network, which should fail. We will not go into great detail for each step. If you need a more detailed description, it's a good idea to run [Test 4](#test-4---payment-pass) before running this test.
-
-This test uses a 2-of-3 schema.
-
-#### Initiate a payment
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-In this example, the command set up the spend bundle to require keys `1` and `2` to sign. The spend bundle was saved to a file called `initial_absorb.unsigned` in the local directory.
-
-#### Sign the payment
-
-- These commands will **not** modify the blockchain
-- These commands should be run from **inside** an HSM
-
-Note that an HSM can show pubkeys, so you can double-check the keys to sign to make sure they match.
-
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1` and `2`). They will display a QR code and wait for you to scan it:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\2.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
-
-Key 1 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5465439167650194370445567516186347709257667320701586850042706224332342164797795707663063705653210705950359300257821078615308849719079317457250648413366837681551139990401643083400439337674437351046133761180557260161498662675510174885133828096
-```
-
-Key 2 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\2.se
-waiting for qrint-encoded signing requests
-> 5430322050468819648751371224270203914385302219252422535667031244009189660438443573816440483024960554844740310136378271068083430936539437959025947678730177368743807842511278281534860069295975423567936923825422012496290451354838421036341787648
-```
-
-This command spits out a signature encoded in base-10. On Linux it will also show a QR code (the QR display doesn't work on Windows).
-
-Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character:
-
-Key 1:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5465439167650194370445567516186347709257667320701586850042706224332342164797795707663063705653210705950359300257821078615308849719079317457250648413366837681551139990401643083400439337674437351046133761180557260161498662675510174885133828096 > .\initial_absorb_1.sig
-```
-
-Key 2:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5430322050468819648751371224270203914385302219252422535667031244009189660438443573816440483024960554844740310136378271068083430936539437959025947678730177368743807842511278281534860069295975423567936923825422012496290451354838421036341787648 > .\initial_absorb_2.sig
-```
-
-#### Merge the payment
-
-- This command will **not** modify the blockchain
-- This command should be run from **inside** an HSM
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\initial_absorb.unsigned .\initial_absorb_1.sig .\initial_absorb_2.sig > initial_absorb.signed
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-#### Push the transaction to the network
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\initial_absorb.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-The withdrawal has now been added to the blockchain. In this example, 1200 seconds must elapse before the payment can be completed.
-
-#### View the payment's status
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-After waiting a couple of minutes, the status shows that the spend bundle has been pushed successfully:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653634215 (05/27/2022, 14:50:15)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071949000000000000
-  - amount available: 914619000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-- PAYMENT to xch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs23d2tn of amount 1000000000000 (Ready at: 05/27/2022, 15:07:22)
-  REKEYS:
-```
-
-In order to run this test, you'll need to make a new payment before the timestamp at `(Ready at:)` has been reached. **You should change some details of the new payment to make sure it's actually different.** In this case, we'll use 3.pk instead of 2.pk for signing.
-
-We'll go over those steps here:
-
-#### Initiate a new payment
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,3.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Sign the new payment
-
-Key 1 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5482148897852918527307983566993436541669663168909692607406391602750841500091454881675789091085919906807843756510974913839025389945926518745125328798190704928638108003314882278300777647309521039269610571865395243563605792739115790730201326592
-```
-
-Key 3 sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\initial_absorb.unsigned | hsms -y --nochunks .\3.se
-waiting for qrint-encoded signing requests
-> 5474486153659444742188288144421835404324735579746002684163036829534148134160999615062357628170084876625489326235859762394718312770175475761587933294800581161906083346937000109416213007007481634750127653760041669292794663271665264005771362304
-```
-
-Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character:
-
-Key 1:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5482148897852918527307983566993436541669663168909692607406391602750841500091454881675789091085919906807843756510974913839025389945926518745125328798190704928638108003314882278300777647309521039269610571865395243563605792739115790730201326592 > .\initial_absorb_1.sig
-```
-
-Key 3:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5474486153659444742188288144421835404324735579746002684163036829534148134160999615062357628170084876625489326235859762394718312770175475761587933294800581161906083346937000109416213007007481634750127653760041669292794663271665264005771362304 > .\initial_absorb_2.sig
-```
-
-#### Merge the new payment
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\initial_absorb.unsigned .\initial_absorb_1.sig .\initial_absorb_2.sig > initial_absorb.signed
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
-```
-
-#### Push the new transaction to the network
-
-When you push the new payment to the network, it should fail because the old payment is still there.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\initial_absorb.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-Traceback (most recent call last):
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 197, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\Scripts\cic.exe\__main__.py", line 7, in <module>
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 1938, in main
-    cli()  # pylint: disable=no-value-for-parameter
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 829, in __call__
-    return self.main(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 782, in main
-    rv = self.invoke(ctx)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1259, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 1066, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\click\core.py", line 610, in invoke
-    return callback(*args, **kwargs)
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 900, in push_cmd
-    asyncio.get_event_loop().run_until_complete(do_command())
-  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 642, in run_until_complete
-    return future.result()
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\cic\cli\main.py", line 891, in do_command
-    result = await node_client.push_tx(SpendBundle.aggregate(spends))
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\chia\rpc\full_node_rpc_client.py", line 204, in push_tx
-    return await self.fetch("push_tx", {"spend_bundle": spend_bundle.to_json_dict()})
-  File "C:\Users\User\prefarm_test\internal-custody\venv\lib\site-packages\chia\rpc\rpc_client.py", line 49, in fetch
-    raise ValueError(res_json)
-// highlight-next-line
-ValueError: {'error': 'Failed to include transaction 2eca8c8369d508a9401a679f7d270edd7bdd7c65f32f48238e1d43533bb0eecc, error DOUBLE_SPEND', 'success': False}
-```
-
-If the output contains `error DOUBLE_SPEND`, then this test passes.
-
----
-
-### Test 17 - clawback pass 3
-
-**Title: clawback: Ensure clawback window starts when tx is pushed to chain**
-
-**Expected result: pass**
-
-This test was run as [part of Test 13](#the-following-command-is-used-for-test-17--). If you see the timestamp indicating that the clawback window has started, then this test passes.
-
----
-
-### Test 18 - sign fail 9
-
-**Title: rekey: Push with no signatures**
-
-**Expected result: fail**
-
-For this test, we'll use the same configuration that was used for [Test 4](#test-4---payment-pass). We'll attempt to initiate a payment with 2 signatures, which is expected. But then we'll create a spend bundle without any signatures, which is not allowed.
-
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
-
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
 Derivation Info:
  - lock level: 2
  - max lock level: 3
  - min keys to rekey: 1
  - standard rekey timelock: 300 seconds
  - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
+ - pubkeys: 
+    - bls123813p8yljrhgskmgqeukg3x6mszh3xtqwwx35t4g6dt0mk2xecyj7elr0fhhrm8t3w7q5zhdelgjlgdspjqxvs
+    - bls123813uhsu0juw06z8vmtt5ncj6zcexmhtsfemvtj3jhv0vuxh9nqjdar59yh555muzrdpz2uflgzey3sgdnm8y9
+    - bls1238152jm50wh89tf70mwj4ncuukqcq6jqmf7pjgznm55c5qaggrvswzccwvsjgwmy9f4cvlx2j97kmh5uc2es6h
 ```
-
-The lock level (`m`) is 2 and the max lock level (`n`) is 3. The pubkeys match 1.pk, 2.pk, and 3.pk.
-This is what we want.
-
-#### Initiate a payment
-
-To begin the payment process, use the `cic payment` command to generate an unsigned spend bundle. We'll specify 2 keys for signing:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic payment -f initial_absorb.unsigned -pks "1.pk,2.pk" -a 1000000000000 -t txch1q03d7grhvat0wrv7cxu6kxjksz0n2qng6ruw6src5642kyxyphrs8k2u2q -ap -at 0
-Successfully wrote spend to initial_absorb.unsigned
-```
-
-#### Push the transaction to the network
-
-We're not going to sign the spend bundle. Instead, we'll simply try to push the unsigned spend bundle to the blockchain. **This step should fail.**
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\initial_absorb.unsigned
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-// highlight-next-line
-Spend bundle cannot be recognized.  Please make sure this spend bundle is signed and try again.
-```
-
-If you receive a similar error, then this test passes.
-
----
-
-### Test 19 - rekey clawback pass 1
-
-**Title: clawback (slow rekey): before clawback expires**
-
-**Expected result: pass**
-
-For this test, we'll attempt a slow rekey with only 1 key in a 2-of-3 schema. Before the rekey timelock has completed, we'll claw it back.
-
-This test won't go over all of the details of a rekey. It may help to run [Test 25](#test-25---rekey-pass-1) before attempting to run this one, so you'll be familiar with the process.
-
-We'll start with a 2-of-3 schema, where the keys are 1.pk, 2.p, and 3.pk:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-#### Re-derive the root
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Even though we're going to claw back the payment, we need to attempt to change _something_ that can be clawed back. In this case, let's change `m` to `1`.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic derive_root -db '.\sync (7c75d5).sqlite' -c '.\Configuration (after rekey).txt' -pks "1.pk,2.pk,3.pk" -m 1 -n 3
-Custody rules successfully added to configuration
-```
-
-#### Start the rekey
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Next, create an unsigned spend bundle for the rekey. **We're only indicating one public key here.**
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic start_rekey -f rekey.unsigned -pks "1.pk" -new '.\Configuration (after rekey).txt'
-Successfully wrote spend to rekey.unsigned
-```
-
-The output of this command is the unsigned spend bundle that will be used for the rekey.
-
----
-
-#### Sign the rekey spend bundle
-
-- This command will **not** modify the blockchain
-- This command should be run from **inside** an HSM
-
-This command will sign the spend bundle. This command must be run for each key with which you previously indicated you would sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\rekey.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5465171328751384011968164760459265292619746104034563580063058509150974315733469044618751748783580199579971283661542959162469468445582903357586972934470129259135553161187730735537884035132511483783120848070530235551724629167812103676761218048
-```
-
-Next, put the signature into a text file:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5465171328751384011968164760459265292619746104034563580063058509150974315733469044618751748783580199579971283661542959162469468445582903357586972934470129259135553161187730735537884035132511483783120848070530235551724629167812103676761218048 > .\rekey_1.sig
-```
-
-Finally, merge the rekey signature into a signed spend bundle.
-
-```powershell
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmmerge .\rekey.unsigned .\rekey_1.sig > rekey.signed
-```
-
-**Notice that we only collected one signature. This will initiate a slow rekey.**
-
-#### Push the rekey to the network
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Now that you have a signed spend bundle, you can push it to the blockchain. If you are running on testnet10, you may want to add a fee by using the `-m` flag.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\rekey.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-#### View the rekey's status
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Wait a few minutes for the transaction to be processed, then update the singleton's status to show that the rekey is in progress. This will show the old and new puzzle roots.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653639441 (05/27/2022, 16:17:21)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071949000000000000
-  - amount available: 966879000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-  //highlight-next-line
-- REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to b415d65f000d5ce1612c705cd345048834d71cd7f18421bfdd95bdddba6af90b (Ready at: 05/27/2022, 16:24:52)
-```
-
-As the output of this command shows, there is a new rekey outstanding (`REKEY from...`). **You have until the timestamp indicated to claw back the rekey.**
-
-#### Create an unsigned spend bundle
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-The same number of signatures are needed for a rekey clawback as the number used for the original rekey. In this case, that was one key (1.pk). However, it does not need to be the same key. We'll show this by signing the clawback with 2.pk:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic clawback -f clawback.unsigned -pks "2.pk"
-Which actions would you like to cancel?:
-
-1) REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to b415d65f000d5ce1612c705cd345048834d71cd7f18421bfdd95bdddba6af90b
-(Enter index of action to cancel): 1
-Successfully wrote spend to clawback.unsigned
-```
-
-The output of this command will be a new unsigned spend bundle called `clawback.unsigned` in the current directory.
-
-#### Sign the claw back spend bundle
-
-- This command will **not** modify the blockchain
-- This command should be run from **inside** an HSM
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\clawback.unsigned | hsms -y --nochunks .\2.se
-waiting for qrint-encoded signing requests
-> 5457525899719056590994711111377781938583359632818003915178559434738172147771445847182549680022673213142998503257569666189385441650661166479603184993052587353589010058263522332820039604062836568750891634793199200147942310745456124323489660928
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5457525899719056590994711111377781938583359632818003915178559434738172147771445847182549680022673213142998503257569666189385441650661166479603184993052587353589010058263522332820039604062836568750891634793199200147942310745456124323489660928 > .\clawback_2.sig
-```
-
-Finally, merge the claw back signature into a signed spend bundle.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\clawback.unsigned .\clawback_2.sig > clawback.signed
-```
-
-#### Push the claw back to the network
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Now that you have a signed spend bundle, all that remains is pushing it to the blockchain. If you are running on testnet10, you may want to include a fee by using the `-m` flag and selecting a wallet that has sufficient funds to pay the fee.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\clawback.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-#### View the claw back's status
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-If you view the singleton's status right away, you will still see the active PAYMENT. This is because the blockchain has yet to process the clawback:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653639441 (05/27/2022, 16:17:21)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071949000000000000
-  - amount available: 966879000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-- REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to b415d65f000d5ce1612c705cd345048834d71cd7f18421bfdd95bdddba6af90b (Ready at: 05/27/2022, 16:24:52)
-```
-
-Take note of the `Current time:` and `Ready at:` timestamps in the output above. This is good -- the clawback was pushed to the blockchain around 8 minutes before the timelock expired.
-
-If you were unable to complete the claw back before the timestamp was reached, that's OK -- you have just competed [Test 20](#test-20---rekey-clawback-pass-2).
-
-Wait a few minutes and run the same command again. You'll see that the rekey is now gone:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653639609 (05/27/2022, 16:20:09)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071949000000000000
-  - amount available: 968559000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-```
-
-Finally, to verify that the rekey hasn't changed, run `cic show -d` (recall that the rekey was supposed to change the `lock level` to 1):
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
----
-
-### Test 20 - rekey clawback pass 2
-
-**Title: clawback (slow rekey): after clawback expires, before completed**
-
-**Expected result: pass**
-
-This test is identical to [Test 19](#test-19---rekey-clawback-pass-1) , with one exception: you have to wait for the rekey timelock to finish before clawing it back.
-
----
-
-### Test 21 - rekey clawback fail 1
-
-**Title: clawback (slow rekey): complete after clawed back**
-
-**Expected result: fail**
-
-To run this test, first run [Test 19](#test-19---rekey-clawback-pass-1) or [Test 20](#test-20---rekey-clawback-pass-2). Then attempt a completion of the rekey that no longer exists:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f .\rekey.signed
-No actions outstanding
-```
-
-If you see `No actions outstanding`, then you know that the rekey spend bundle is no longer valid, so the test passes.
-
----
-
-### Test 22 - rekey clawback pass 3
-
-**Title: clawback (normal rekey): before clawback expires**
-
-**Expected result: pass**
-
-This test is identical to [Test 19](#test-19---rekey-clawback-pass-1), except you need to do a normal rekey instead of a slow rekey. For a 2-of-3 config, you'll need to sign with two keys instead of one.
-
----
-
-### Test 23 - rekey clawback pass 4
-
-**Title: clawback (normal rekey): after clawback expires, before completed**
-
-**Expected result: pass**
-
-This test is identical to [Test 19](#test-19---rekey-clawback-pass-1), with two exceptions:
-
-1. You need to do a normal rekey instead of a slow rekey. For a 2-of-3 config, you'll need to sign with two keys instead of one.
-2. You have to wait for the rekey timelock to finish before clawing it back.
-
----
-
-### Test 24 - rekey clawback fail 2
-
-**Title: clawback (normal rekey): complete after clawed back**
-
-**Expected result: fail**
-
-To run this test, first run [Test 22](#test-22---rekey-clawback-pass-3) or [Test 23](#test-23---rekey-clawback-pass-4). Then attempt a completion of the rekey that no longer exists:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f .\rekey.signed
-No actions outstanding
-```
-
-If you see `No actions outstanding`, then you know that the rekey spend bundle is no longer valid, so the test passes.
-
----
-
-### Test 25 - rekey pass 1
-
-**Title: rekey: replace 2 of 3 keys with 2 new keys**
-
-**Expected result: pass**
-
-To do a rekey, you need to re-derive the root (singleton).
-It's not possible to recreate the singleton because it contains immutable info.
-
-For this test, we'll attempt a normal rekey, which requires `m` keys.
 
 #### Create new keys
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-In this example, we'll create 2 new keys:
+:::
 
-```powershell
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmgen > 1_new.se
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmgen > 2_new.se
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmpk $(cat .\1_new.se) > 1_new.pk
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmpk $(cat .\2_new.se) > 2_new.pk
+In this example, we'll create 5 new keys in the folder that contains the configuration. We'll use the same technique as we used earlier in the guide:
+
+```bash
+hsmgen > 1_new.se
+hsmgen > 2_new.se
+hsmgen > 3_new.se
+hsmgen > 4_new.se
+hsmgen > 5_new.se
+hsmpk $(cat ./1_new.se) > 1_new.pk
+hsmpk $(cat ./2_new.se) > 2_new.pk
+hsmpk $(cat ./3_new.se) > 3_new.pk
+hsmpk $(cat ./4_new.se) > 4_new.pk
+hsmpk $(cat ./5_new.se) > 5_new.pk
+```
+
+The old keys, new keys, and root configuration are now stored in the current directory:
+
+```bash
+(venv) ~/internal-custody/keys_and_sb$ ls
+1_new.pk   1_new.se   1.pk   1.se   2_new.pk   2_new.se   2.pk   2.se   3_new.pk   3_new.se   3.pk   3.se   4_new.pk   4_new.se   5_new.pk   5_new.se  'Configuration (74905b).txt'  'sync (b43314).sqlite'
 ```
 
 #### Re-derive the root
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-This command will create a new configuration file. A few things to note:
+:::
+
+Next we'll run `cic derive_root`, which will create a new configuration file. A few things to note about this command's arguments:
 
 - `-pks`, `-m` and `-n` all refer to the values that will be applied to the _next_ root (after the rekey)
-- `3.pk` was in the previous root as well (we've changed 2 out of the 3 keys)
 - `sync (<number>).sqlite` refers to the _current_ database file
 - `Configuration (after rekey).txt` is a new configuration file that will be created as a result of running this command
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic derive_root -db '.\sync (7c75d5).sqlite' -c '.\Configuration (after rekey).txt' -pks "1_new.pk,2_new.pk,3.pk" -m 2 -n 3
+```bash
+cic derive_root -db './sync (<number>).sqlite' -c './Configuration (after rekey).txt' -pks "1_new.pk,2_new.pk,3_new.pk,4_new.pk,5_new.pk" -m 3 -n 5
+```
+
+Response:
+
+```bash
 Custody rules successfully added to configuration
 ```
 
+`Configuration (after rekey).txt` now exists in the current directory.
+
 #### Start the rekey
+
+:::note
 
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-Next, create an unsigned spend bundle for the rekey. Note that in this command,
+:::
+
+Next, run `start_rekey`, which will create an unsigned spend bundle for the rekey. Note that in this command,
 `-pks` refers to the original keys that must sign to allow the rekey to happen.
 The configuration file from the `-new` flag contains all of the new info that will be used after the rekey has completed.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic start_rekey -f rekey.unsigned -pks "1.pk,2.pk" -new '.\Configuration (after rekey).txt'
+```bash
+cic start_rekey -f rekey.unsigned -pks "1.pk,2.pk" -new './Configuration (after rekey).txt'
+```
+
+Response:
+
+```bash
 Successfully wrote spend to rekey.unsigned
 ```
 
@@ -1878,84 +1257,113 @@ The output of this command is the unsigned spend bundle that will be used for th
 
 #### Sign the rekey spend bundle
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **inside** an HSM
 
-This command will sign the spend bundle. This command must be run for each key with which you previously indicated you would sign:
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\rekey.unsigned | hsms -y --nochunks .\1.se
+Next we'll sign the spend bundle. This command must be run for each key with which you previously indicated you would sign (keys 1 and 2 in this case):
+
+```bash
+cat ./rekey.unsigned | hsms -y --nochunks ./1.se
+```
+
+Response:
+
+```
 waiting for qrint-encoded signing requests
-> 5616487008962809716216552727987825138051341426054998553730560496068989646005191054591443973472399076014813695995680279925853787058978851575901708893486574715237405564476437845304494529494675267699103951557957690696955485177170013463372220416
+> 5553916887262475184077140926040792461045541347543213333317025499263094062504028720464429695598620054538757674795116588032781458634437928597593286422775505503911468994161900539301149264496298971717210190554686077072886994338351766552885681152
 ```
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\rekey.unsigned | hsms -y --nochunks .\2.se
+```bash
+cat ./rekey.unsigned | hsms -y --nochunks ./2.se
+```
+
+Response:
+
+```bash
 waiting for qrint-encoded signing requests
-> 5562174267317429243926851056645562097690232252851104411783069127842442639937086101339489507437882976274982883257157067849153345902077749141922781039415482864525148719637012676931598730111535979999540742741406528284356296809937945875972688896
+> 5561137392380018602752549597282386367838345256392677171809614780347764174154608487537742644428466353746831639451621586320322685820178179047514852085991565214608652175820480007073564769669494661900487484133333312104972188050976529086895435776
 ```
 
-Next, put each signature into a text file:
+Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character (be sure to use the actual signatures you just obtained; **don't copy these lines verbatim**):
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5616487008962809716216552727987825138051341426054998553730560496068989646005191054591443973472399076014813695995680279925853787058978851575901708893486574715237405564476437845304494529494675267699103951557957690696955485177170013463372220416 > rekey_1.sig
+```bash
+echo 5553916887262475184077140926040792461045541347543213333317025499263094062504028720464429695598620054538757674795116588032781458634437928597593286422775505503911468994161900539301149264496298971717210190554686077072886994338351766552885681152 > rekey_1.sig
 ```
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5562174267317429243926851056645562097690232252851104411783069127842442639937086101339489507437882976274982883257157067849153345902077749141922781039415482864525148719637012676931598730111535979999540742741406528284356296809937945875972688896 > rekey_2.sig
+```bash
+echo 5561137392380018602752549597282386367838345256392677171809614780347764174154608487537742644428466353746831639451621586320322685820178179047514852085991565214608652175820480007073564769669494661900487484133333312104972188050976529086895435776 > rekey_2.sig
 ```
 
 Finally, merge the rekey signatures into a signed spend bundle.
 Note that an arbitrary number of signatures can be passed into this command.
 For this example, we need to use the two signatures we just calculated:
 
-```powershell
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmmerge .\rekey.unsigned .\rekey_1.sig .\rekey_2.sig > rekey.signed
+```bash
+hsmmerge ./rekey.unsigned ./rekey_1.sig ./rekey_2.sig > rekey.signed
 ```
 
 As a result of running this command, a signed spend bundle will be created for the rekey.
 
 #### Push the rekey to the network
 
+:::note
+
 - This command **will** modify the blockchain
 - This command should be run from **outside** an HSM
 
-Now that you have a signed spend bundle, all that remains is pushing it to the blockchain. If you are running on testnet10, you may want to add a fee by using the `-m` flag.
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\rekey.signed
+Now that you have a signed spend bundle, all that remains is pushing it to the blockchain. As usual, you can add a blockchain fee by using the `-m` flag:
+
+```bash
+cic push_tx -b ./rekey.signed -m 1000000
+```
+
+Response:
+
+```bash
 Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
+1)   2104826454
+2) * 394934909 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909): 
 {'status': 'SUCCESS', 'success': True}
 ```
 
 #### View the rekey's status
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-Wait a few minutes for the transaction to be processed, then update the singleton's status to show that the rekey is in progress. This will show the old and new puzzle roots.
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+Wait a few minutes for the transaction to be processed, then update the singleton's status to show that the rekey is in progress. This will show the old and new puzzle roots:
 
-Current time: 1653482803 (05/25/2022, 20:46:43)
+```bash
+cic sync --show
+```
+
+Response:
+
+```bash
+Current time: 1665980851 (10/17/2022, 12:27:31)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 328548000000000000
-  - amount to claim: 1000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
 
 Outstanding events:
   PAYMENTS:
   REKEYS:
-- REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to 389c0dce676ecc9b6041a93b199aa99410b2c10352192f0061597be2448b2a97 (Ready at: 05/25/2022, 20:55:30)
+- REKEY from 74905b06591f9d2e615d313d18cfbcbeffcaabe2e70ccdeafda783bacaae52ef to 90ba2a1ce4ca7f094aa1d2c64b7281b18a4e211e704b43ed45bf39f61cdd67d2 (Ready at: 10/17/2022, 12:36:19)
 ```
 
 As the output of this command shows, there is a new rekey outstanding (`REKEY from...`).
@@ -1963,17 +1371,21 @@ As the output of this command shows, there is a new rekey outstanding (`REKEY fr
 - If (`-rc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
 - If (`-rc`) seconds have elapsed, then the output will say `(Ready)`
 
-In either case, claw backs are allowed until the rekey is completed.
+In either case, cancellation/clawback is allowed until the rekey is completed.
 (Even if the rekey is in "Ready" state, it can still be clawed back. However, because _anyone_ can
-complete the rekey, claw backs should no longer be assumed to be available once they reach the "Ready" state.)
+complete the rekey, claw backs should no longer be assumed to be available once it reaches the "Ready" state.)
 
 Note that even when the state is "Ready", the next transaction block will still need to be created before the rekey is _actually_ ready.
 Transaction blocks happen every 52 seconds on average.
 
 #### Create a signed spend bundle for the completion
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
+
+:::
 
 :::info
 
@@ -1985,359 +1397,152 @@ Completion of both payments and rekeys require the same steps.
 
 **Anyone** can run the `cic complete` command. The only argument necessary is the file in which to dump the completion.
 
-First, let's attempt the completion before the rekey's timelock has expired (this should not work):
+After the time lock has expired, run `cic complete` to sign the rekey spend bundle. You do have to enter the correct rekey number. It should be `1` (the only option). There is no default, so pressing `enter` will cause an exception.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f .\rekey.signed
-Which actions would you like to complete?:
-
--) REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to 389c0dce676ecc9b6041a93b199aa99410b2c10352192f0061597be2448b2a97
-No actions can be completed at this time.
+```bash
+cic complete -f ./rekey.signed
 ```
 
-Next, after the time lock has expired, run the same command. You do have to enter the correct rekey number. It should be `1` (the only option). There is no default, so pressing `enter` will cause an exception.
+Response:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f .\rekey.signed
+```bash
 Which actions would you like to complete?:
 
-1) REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to 389c0dce676ecc9b6041a93b199aa99410b2c10352192f0061597be2448b2a97
+1) REKEY from 74905b06591f9d2e615d313d18cfbcbeffcaabe2e70ccdeafda783bacaae52ef to 90ba2a1ce4ca7f094aa1d2c64b7281b18a4e211e704b43ed45bf39f61cdd67d2
 (Enter index of action to complete): 1
-Successfully wrote spend to .\rekey.signed
+Successfully wrote spend to ./rekey.signed
 ```
 
 #### Push the completion to the blockchain
 
+:::note
+
 - This command **will** modify the blockchain
 - This command should be run from **outside** an HSM
 
-Now that you have a signed spend bundle, you can actually push it to the blockchain. Just like before, it is possible to add a fee (from a regular wallet) by using the `-m` flag. However, as this example uses a custom testnet, it won't add a fee.
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\rekey.signed
+Now that you have a signed spend bundle, you can actually push it to the blockchain:
+
+```bash
+cic push_tx -b ./rekey.signed -m 1000000
+```
+
+Response:
+
+```bash
 Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
+1)   2104826454
+2) * 394934909 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909): 
 {'status': 'SUCCESS', 'success': True}
 ```
 
+You should receive a `SUCCESS` message, indicating that the transaction has been successfully pushed.
+
 #### View the completion's status
+
+:::note
 
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
+:::
+
 After waiting for the next transaction block, the singleton's status should show there are no longer any pending payments or rekeys.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+```bash
+cic sync --show
+```
+
+Response:
+
+```bash
 Configuration is outdated, please update it with command cic update_config
 
-Current time: 1653483623 (05/25/2022, 21:00:23)
+Current time: 1665983685 (10/17/2022, 13:14:45)
 
 Config up to date: False
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 336748000000000000
-  - amount to claim: 1000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
 
 Outstanding events:
   PAYMENTS:
   REKEYS:
 ```
 
-Note that `amount to claim:` still has a positive value. This will automatically be absorbed into the singleton with the next spend.
+However, take note of this status message: `Config up to date: False`. We'll fix this in the next step.
 
 #### Update the local configuration
 
-At this point, the rekey has completed, but your local config is outdated. Any attempts at creating payments or rekeys will fail. The node is essentially an observer.
+At this point, the rekey has completed, but your local config is outdated. Any attempts at creating payments or rekeys will fail while the config is in this state.
 
-To show this, let's show each of the public keys:
+To demonstrate this, view the details of the config:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 1.pk
-bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 2.pk
-bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 3.pk
-bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 1_new.pk
-bls12381k4cxla3l5aumu62smwtne6sv6rcfkt63sl54rf08jayzfw0phazvxnh8asmt9dj66q4mgzr5vr9xs02lmcl
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 2_new.pk
-bls123815nqnsmc0xtj3upl2gl06r8lu8lj45t4d809w4gnc2etg79gpas3aza5c00zl5c7ulwmuqz8u5qecws6mmdq
+```bash
+cic show -d
 ```
 
-And now let's show the details of the configuration that the custody tool is currently using:
+Response:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
+```bash
+Current time: 1665984049 (10/17/2022, 13:20:49)
+
+Config up to date: False
+
+Singleton:
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
+
+Outstanding events:
+  PAYMENTS:
+  REKEYS:
+
 Derivation Info:
  - lock level: 2
  - max lock level: 3
  - min keys to rekey: 1
  - standard rekey timelock: 300 seconds
  - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
+ - pubkeys: 
+    - bls123813p8yljrhgskmgqeukg3x6mszh3xtqwwx35t4g6dt0mk2xecyj7elr0fhhrm8t3w7q5zhdelgjlgdspjqxvs
+    - bls123813uhsu0juw06z8vmtt5ncj6zcexmhtsfemvtj3jhv0vuxh9nqjdar59yh555muzrdpz2uflgzey3sgdnm8y9
+    - bls1238152jm50wh89tf70mwj4ncuukqcq6jqmf7pjgznm55c5qaggrvswzccwvsjgwmy9f4cvlx2j97kmh5uc2es6h
 ```
 
-The three pubkeys are from the _old_ configuration. This is fixed with the `update_config` command:
+The three pubkeys are from the _old_ configuration. Furthermore, the multisig is still a 2-of-3. To fix this, run the `update_config` command and pass in the new configuration:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic update_config -c '.\Configuration (after rekey).txt'
+```bash
+cic update_config -c './Configuration (after rekey).txt' 
+```
+
+Response:
+
+```bash
 Configuration update successful
 ```
 
 Finally, let's look at the configuration details again:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123815nqnsmc0xtj3upl2gl06r8lu8lj45t4d809w4gnc2etg79gpas3aza5c00zl5c7ulwmuqz8u5qecws6mmdq
-    - bls12381k4cxla3l5aumu62smwtne6sv6rcfkt63sl54rf08jayzfw0phazvxnh8asmt9dj66q4mgzr5vr9xs02lmcl
+```bash
+cic show -d
 ```
 
-The correct keys are now being used.
+Response:
 
-Note that each of the nodes that are allowed to sign should receive a copy of the new configuration.
-
----
-
-### Test 26 - rekey pass 2
-
-**Title: rekey: add additional keys**
-
-**Expected result: pass**
-
-For this test, we'll start with a 2-of-3 config, add two new keys and make it a 3-of-5. Before running this test, it might help if you run [Test 25](#test-25---rekey-pass-1) to familiarize yourself with the rekey process. We won't go into all of the details here.
-
-First, let's show the current config:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
-Derivation Info:
- - lock level: 2
- - max lock level: 3
- - min keys to rekey: 1
- - standard rekey timelock: 300 seconds
- - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-```
-
-Note that `lock level` is `2` and `max lock level` is `3`.
-
-#### Create new keys
-
-```powershell
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmgen > 4.se
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmgen > 5.se
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmpk $(cat .\4.se) > 4.pk
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmpk $(cat .\5.se) > 5.pk
-```
-
-#### Re-derive the root
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-This is where we set up all 5 keys:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic derive_root -db '.\sync (7c75d5).sqlite' -c '.\Configuration (after rekey).txt' -pks "1.pk,2.pk,3.pk,4.pk,5.pk" -m 3 -n 5
-Custody rules successfully added to configuration
-```
-
-#### Start the rekey
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic start_rekey -f rekey.unsigned -pks "1.pk,2.pk" -new '.\Configuration (after rekey).txt'
-Successfully wrote spend to rekey.unsigned
-```
-
-The output of this command is the unsigned spend bundle that will be used for the rekey.
-
----
-
-#### Sign the rekey spend bundle
-
-- This command will **not** modify the blockchain
-- This command should be run from **inside** an HSM
-
-This command will sign the spend bundle. This command must be run for each key with which you previously indicated you would sign:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\rekey.unsigned | hsms -y --nochunks .\1.se
-waiting for qrint-encoded signing requests
-> 5475231066607168730451780990689852589519760472475903651145494804090557982777371654525750961371914713076033461572744058054108121571649695793408377912322191570700379784943797263836367496581486555096044111444260627349423500926694324813120562176
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\rekey.unsigned | hsms -y --nochunks .\2.se
-waiting for qrint-encoded signing requests
-> 5613961531603688463594658033217665759653582469843171331012873649990195759633980518164889165742218886924751008416891979067784381084732467681713019504594073261154327183067881563649354555083015663222809824436001510252413171215937794387583301632
-```
-
-Next, put each signature into a text file:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5475231066607168730451780990689852589519760472475903651145494804090557982777371654525750961371914713076033461572744058054108121571649695793408377912322191570700379784943797263836367496581486555096044111444260627349423500926694324813120562176 > rekey_1.sig
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5613961531603688463594658033217665759653582469843171331012873649990195759633980518164889165742218886924751008416891979067784381084732467681713019504594073261154327183067881563649354555083015663222809824436001510252413171215937794387583301632 > rekey_2.sig
-```
-
-Finally, merge the rekey signatures into a signed spend bundle.
-Note that an arbitrary number of signatures can be passed into this command.
-For this example, we need to use the two signatures we just calculated:
-
-```powershell
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> hsmmerge .\rekey.unsigned .\rekey_1.sig .\rekey_2.sig > rekey.signed
-```
-
-As a result of running this command, a signed spend bundle will be created for the rekey.
-
-#### Push the rekey to the network
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Now that you have a signed spend bundle, all that remains is pushing it to the blockchain. If you are running on testnet10, you may want to add a fee by using the `-m` flag.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\rekey.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-#### View the rekey's status
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-Wait a few minutes for the transaction to be processed, then update the singleton's status to show that the rekey is in progress. This will show the old and new puzzle roots.
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-
-Current time: 1653642512 (05/27/2022, 17:08:32)
+```bash
+Current time: 1665984317 (10/17/2022, 13:25:17)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071949000000000000
-  - amount available: 997589000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-- REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to e8eef096132a616f14d6dfee5db0951e702148e0109aaa3dd2a9a3cb4ed8ce13 (Ready at: 05/27/2022, 17:16:03)
-```
-
-#### Create a signed spend bundle for the completion
-
-- This command will **not** modify the blockchain
-- This command should be run from **outside** an HSM
-
-After the time lock has expired, run `cic complete -f .\rekey.signed`:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic complete -f .\rekey.signed
-Which actions would you like to complete?:
-
-1) REKEY from f71aa173dc57c4a1e77d5386d5c6b9ece1df82b95139af3c26d123fa4d662103 to e8eef096132a616f14d6dfee5db0951e702148e0109aaa3dd2a9a3cb4ed8ce13
-(Enter index of action to complete): 1
-Successfully wrote spend to .\rekey.signed
-```
-
-#### Push the completion to the blockchain
-
-- This command **will** modify the blockchain
-- This command should be run from **outside** an HSM
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\rekey.signed
-Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
-{'status': 'SUCCESS', 'success': True}
-```
-
-#### Update the local configuration
-
-After a few minutes, your config will indicate that it is outdated:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
-//highlight-next-line
-Configuration is outdated, please update it with command cic update_config
-
-Current time: 1653643456 (05/27/2022, 17:24:16)
-
-Config up to date: False
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071949000000000000
-  - amount available: 1007029000000000000
-  - amount to claim: 0
-
-Outstanding events:
-  PAYMENTS:
-  REKEYS:
-```
-
-You still need to update your config:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic update_config -c '.\Configuration (after rekey).txt'
-Configuration update successful
-```
-
-Finally, show your config to see that there are, in fact, now five keys:
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-
-Current time: 1653643478 (05/27/2022, 17:24:38)
-
-Config up to date: True
-
-Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9071949000000000000
-  - amount available: 1007249000000000000
-  - amount to claim: 0
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
 
 Outstanding events:
   PAYMENTS:
@@ -2349,310 +1554,283 @@ Derivation Info:
  - min keys to rekey: 1
  - standard rekey timelock: 300 seconds
  - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813d95ehuavnk2z8zace8n4e4uql3vjzysp0g4f3a7j8f4jkmvzv9ycs2erzwx5j0x45vnmu3f53lcvxcevm6
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-    - bls123814kqrrl67cj9uwe8sy3cjrhgjk6m3deg839wuw59nq582qm6ap7tjul38spn9wey76ef9njwspc9h6wqjuwj
+ - pubkeys: 
+    - bls123813fa002rgts3juyvcx9kfd6027weggz2n9q64uy97j3gvcfmnzwe7lqf28jg8kzslcufjul5zl6g3w6w943u
+    - bls123813hck83sfk4xu7vjt4x30qz4ynyyc8y2mp7wc8xemrk225x2sdx45vpjwvu6gn0n2tf00e3y39y57zhw2e3m
+    - bls12381jxsw44j37vcetuzr4ta7smf33phxj7n4rd9e927vckfx265yma488sfrktnsar7w87t4x6zveulkjshlr7c
+    - bls123815gu3gzkdwyuhd3xyrlwt95ywjgvx7rkwaxqe64pwx2z03njc0s5awk7yqcdafdfdcp2s6lsx89vjkd0wct4
+    - bls1238156rg50emtnt6v5eua2rstgcd4fep8kch9xmcdhepvdqhlea6s3pulre838xxgme3dzur44jxfpcfsu5sq9t
 ```
 
-For reference, here are each of the public keys, stored locally. These keys match those from the config:
+The correct keys are now being used.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 1.pk
-bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 2.pk
-bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat 3.pk
-bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\4.pk
-bls123813d95ehuavnk2z8zace8n4e4uql3vjzysp0g4f3a7j8f4jkmvzv9ycs2erzwx5j0x45vnmu3f53lcvxcevm6
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\5.pk
-bls123814kqrrl67cj9uwe8sy3cjrhgjk6m3deg839wuw59nq582qm6ap7tjul38spn9wey76ef9njwspc9h6wqjuwj
-```
+Note that each of the nodes that are allowed to sign will need to receive a copy of the new configuration.
 
 ---
 
-### Test 27 - lock level increase 1
+### Lock Level Increase
 
-**Title: rekey: increase lock level**
+The final feature of the custody tool is "lock level increase". This feature will increase the security of the singleton by requiring an additional signature to sign withdrawals and rekeys.
 
-**Expected result: pass**
+For this test, we'll start with the same configuration that was used after the rekey in the previous section.
 
-For this test, we'll start with the same configuration that was used for [Test 4](#test-4---payment-pass).
+The current lock level (`m`) is `3` and the total number of keys (`n`) are `5`:
 
-This test won't go into the details for how to set up the configuration. If you need these details, see [the Derive Root](#derive-root) section.
+```bash
+cic show -d
+```
 
-Just to be sure the configuration is set up correctly beforehand, run `cic show -d`:
+Response:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic show -d
-...
+```bash
+Current time: 1665984640 (10/17/2022, 13:30:40)
+
+Config up to date: True
+
+Singleton:
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
+
+Outstanding events:
+  PAYMENTS:
+  REKEYS:
+
 Derivation Info:
- - lock level: 2
- - max lock level: 3
+ - lock level: 3
+ - max lock level: 5
  - min keys to rekey: 1
  - standard rekey timelock: 300 seconds
  - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
+ - pubkeys: 
+    - bls123813fa002rgts3juyvcx9kfd6027weggz2n9q64uy97j3gvcfmnzwe7lqf28jg8kzslcufjul5zl6g3w6w943u
+    - bls123813hck83sfk4xu7vjt4x30qz4ynyyc8y2mp7wc8xemrk225x2sdx45vpjwvu6gn0n2tf00e3y39y57zhw2e3m
+    - bls12381jxsw44j37vcetuzr4ta7smf33phxj7n4rd9e927vckfx265yma488sfrktnsar7w87t4x6zveulkjshlr7c
+    - bls123815gu3gzkdwyuhd3xyrlwt95ywjgvx7rkwaxqe64pwx2z03njc0s5awk7yqcdafdfdcp2s6lsx89vjkd0wct4
+    - bls1238156rg50emtnt6v5eua2rstgcd4fep8kch9xmcdhepvdqhlea6s3pulre838xxgme3dzur44jxfpcfsu5sq9t
 ```
 
-The lock level (`m`) is 2. This is what we want to start with. **This test will increase `m` to 3.**
+This section will show you how to increase the lock level from 3 to 4.
 
-A lock level increase is also known as a _security level_ increase.
-It will increment `m`, the number of keys required to sign withdrawals and normal rekeys.
-`m + 1` keys are required to perform a lock level increase. The change happens instantly; there are no timelocks.
+Note that `m + 1` keys are required to perform a lock level increase. The change happens instantly; there are no timelocks.
 
 #### Create an unsigned spend bundle
+
+:::note
 
 - This command will **not** modify the blockchain
 - This command should be run from **outside** an HSM
 
-We're increasing the lock level to `3`, so 3 signatures are required.
+:::
 
-The following command will create an unsigned spend bundle in the current directory:
+We're increasing the lock level to `4`, so 4 signatures are required.
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic increase_security_level -db '.\sync (7c75d5).sqlite' -pks "1.pk,2.pk,3.pk" -f lock.unsigned
+First, run `increase_security_level` to create an unsigned spend bundle in the current directory (the `-f` flag specifies a name of your choosing for the spend bundle's file):
+
+```bash
+cic increase_security_level -db './sync (b43314).sqlite' -pks "1_new.pk,2_new.pk,3_new.pk,4_new.pk" -f lock.unsigned
+```
+
+```bash
 Successfully wrote spend to lock.unsigned
 ```
 
 #### Obtain the necessary signatures
 
+:::note
+
 - This command will **not** modify the blockchain
 - This command should be run from **inside** an HSM
 
-If you have a QR scanner and are running on Linux, then run the following commands (for keys `1`, `2`, and `3`). They will display a QR code and wait for you to scan it:
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\1.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\2.se
-waiting for qrint-encoded signing requests
->
-```
-
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsms .\3.se
-waiting for qrint-encoded signing requests
->
-```
-
-If you don't have a QR scanner or are running on Windows, you can mimic using a scanner by showing the spend bundle and piping the signed secret exponents. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spendbundle at once:
+To obtain a signature, you can show the unsigned spend bundle and sign it using each secret exponent. This can all be done in one step per key. The `-y` flag will skip confirmations; the `--nochunks` flag will read the whole spend bundle at once:
 
 Key 1 sign:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\lock.unsigned | hsms -y --nochunks .\1.se
+```bash
+cat ./lock.unsigned | hsms -y --nochunks ./1_new.se 
+```
+
+Response:
+
+```bash
 waiting for qrint-encoded signing requests
-> 5543149580043353028764433237761749949004864024864911367928779399935342074364924457382656282424117422204294051824998381684149704755122607611640566142562020887597003449119704065758939440998203777628400000586147747640971539250167608590520093696
+> 5584585057520858257596568434434736468879879030051480798698830066925118374233799120275041845100800744509641108863621118287346338415119167517335089120981537696371131432139277792509432536571981918850999633459839528558573464018115269776291456000
 ```
 
 Key 2 sign:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\lock.unsigned | hsms -y --nochunks .\2.se
+```bash
+cat ./lock.unsigned | hsms -y --nochunks ./2_new.se 
+```
+
+Response:
+
+```bash
 waiting for qrint-encoded signing requests
-> 5574083793927203425636126739737229001129757036285432055649274256196445331353594885881952242437834861076949422114504117486617723800535341871996084904530288371859129189007726935830522469074466139668070296041101734074358697368406279817113539584
+> 5596611223462712820925493669789023509892077063125281932973497767062668243757232230153671518302675106032197417392577895529625567483229164680652892471328071863919254108314305083687045227755330732629257306047484998281765256667290484092751463424
 ```
 
 Key 3 sign:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cat .\lock.unsigned | hsms -y --nochunks .\3.se
-waiting for qrint-encoded signing requests
-> 5514838603659553620246870682895692111246568871270265209023086177993777137935990454939626775217031531177051884390958529881442092513875908185163240456088084449881384538037920097861848343853313700812305595289729964684289915848112333175452595200
+```bash
+cat ./lock.unsigned | hsms -y --nochunks ./3_new.se 
 ```
 
-This command spits out a signature encoded in base-10. On Linux it will also show a QR code (the QR display doesn't work on Windows).
+Response:
 
-Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character:
+```bash
+waiting for qrint-encoded signing requests
+> 5507035678252947832755627112345427198885684297293023719787488450243985548287900050057301009712766271669018549703372277803453181282204806972440692140562175749850514957566952251935126028322521661663226647342503359504131029556224237766358564864
+```
+
+Key 4 sign:
+
+```bash
+cat ./lock.unsigned | hsms -y --nochunks ./4_new.se 
+```
+
+Response:
+
+```bash
+waiting for qrint-encoded signing requests
+> 5483471380171606797033786582612064653552450181239095297578037519743188523667870753537879814000810537979853272471506390417310881058640555024925581663772094055089211664508376733226945171995301040054217933947567022837307451113580673098002732032
+```
+
+This command outputs a signature encoded in base-10.
+
+Now you can put the signatures into files. Do this by echoing the output of the previous commands and redirecting them with the `>` character (be sure to use the actual signatures you just obtained; **don't copy these lines verbatim**):
 
 Key 1:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5543149580043353028764433237761749949004864024864911367928779399935342074364924457382656282424117422204294051824998381684149704755122607611640566142562020887597003449119704065758939440998203777628400000586147747640971539250167608590520093696 > lock_1.sig
+```bash
+echo 5584585057520858257596568434434736468879879030051480798698830066925118374233799120275041845100800744509641108863621118287346338415119167517335089120981537696371131432139277792509432536571981918850999633459839528558573464018115269776291456000 > lock_1.sig
 ```
 
 Key 2:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5574083793927203425636126739737229001129757036285432055649274256196445331353594885881952242437834861076949422114504117486617723800535341871996084904530288371859129189007726935830522469074466139668070296041101734074358697368406279817113539584 > lock_2.sig
+```bash
+echo 5596611223462712820925493669789023509892077063125281932973497767062668243757232230153671518302675106032197417392577895529625567483229164680652892471328071863919254108314305083687045227755330732629257306047484998281765256667290484092751463424 > lock_2.sig
 ```
 
 Key 3:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> echo 5514838603659553620246870682895692111246568871270265209023086177993777137935990454939626775217031531177051884390958529881442092513875908185163240456088084449881384538037920097861848343853313700812305595289729964684289915848112333175452595200 > lock_3.sig
+```bash
+echo 5507035678252947832755627112345427198885684297293023719787488450243985548287900050057301009712766271669018549703372277803453181282204806972440692140562175749850514957566952251935126028322521661663226647342503359504131029556224237766358564864 > lock_3.sig
+```
+
+Key 4:
+
+```bash
+echo 5483471380171606797033786582612064653552450181239095297578037519743188523667870753537879814000810537979853272471506390417310881058640555024925581663772094055089211664508376733226945171995301040054217933947567022837307451113580673098002732032 > lock_4.sig
 ```
 
 #### Merge the spend bundle
 
+:::info
+
 - This command will **not** modify the blockchain
 - This command should be run from **inside** an HSM
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> hsmmerge .\lock.unsigned .\lock_1.sig .\lock_2.sig .\lock_3.sig > lock.signed
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb>
+:::
+
+The `hsmmerge` command will create a signed spend bundle, given an unsigned spend bundle and the individual signature(s).
+
+It will then redirect the signed spend bundle into its own text file.
+
+Note that the merging of signatures is possible because Chia uses BLS signatures. For this command, an arbitrary number of signatures can be merged. We need to use all four of the obtained signatures in this case:
+
+```bash
+hsmmerge ./lock.unsigned ./lock_1.sig ./lock_2.sig ./lock_3.sig ./lock_4.sig > lock.signed
 ```
 
 The output of this command is the signed spend bundle, which we've redirected into a text file. This file should be taken out of the HSM to be pushed to the blockchain.
 
 #### Push the lock level increase to the blockchain
 
+:::info
+
 - This command **will** modify the blockchain
 - This command should be run from **outside** an HSM
 
-Now that we have a signed spend bundle, we can push it to the blockchain. You can add a transaction fee (recommended if you're running on testnet10) by using the `-m` flag.
+:::
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic push_tx -b .\lock.signed
+Now that we have a signed spend bundle, we can push it to the blockchain. You can add a transaction fee by using the `-m` flag:
+
+```bash
+cic push_tx -b ./lock.signed -m 1000000
+```
+
+Response:
+
+```bash
 Wallet keys:
-1)   502984008
-2) * 2798912978 (Synced)
-3)   2447771420
-Choose a wallet key [1-3] ('q' to quit, or Enter to use 2798912978):
+1)   2104826454
+2) * 394934909 (Synced)
+Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909): 
 {'status': 'SUCCESS', 'success': True}
 ```
 
-The lock level increase will be added to the blockchain with the next transaction block. After waiting a few minutes, run `cic sync --show`, which will update your configuration. You should see `Config up to date: True` in the output.
+The lock level increase will be added to the blockchain with the next transaction block. After waiting a few minutes, run `cic sync --show` to update your configuration:
 
-```powershell
-(venv) PS C:\Users\User\prefarm_test\keys_and_sb> cic sync --show
+```bash
+cic sync --show
+```
 
-Current time: 1653538883 (05/26/2022, 12:21:23)
+Response:
+
+```bash
+Current time: 1665986785 (10/17/2022, 14:06:25)
 
 Config up to date: True
 
 Singleton:
-  - launcher ID: 7c75d5abb324c7a93186bcb05b2d8da7dccf4ff5072c28581574649dfdeee0c1
-  - amount left: 9999998000000000000
-  - amount available: 889348000000000000
-  - amount to claim: 1000000000000
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
 
 Outstanding events:
   PAYMENTS:
   REKEYS:
 ```
 
-Finally, run `cic show -d` to display your derivation info:
+You should see `Config up to date: True` in the output of the above command. This should indicate that the lock level increase was successful. To verify this, run `cic show -d`:
 
-```powershell
-(venv) PS C:\Users\User\Documents\Chia\prefarm_test> cic show -d
-...
+```bash
+cic show -d
+```
+
+Response:
+
+```bash
+Current time: 1665986943 (10/17/2022, 14:09:03)
+
+Config up to date: True
+
+Singleton:
+  - launcher ID: b433146cc20ef0e3d962423ddb1c6868cd9691e099ae579ab2518d1cd983885c
+  - amount left: 998000000000
+  - amount to claim: 1000000000
+
+Outstanding events:
+  PAYMENTS:
+  REKEYS:
+
 Derivation Info:
-// highlight-next-line
- - lock level: 3
- - max lock level: 3
+ - lock level: 4
+ - max lock level: 5
  - min keys to rekey: 1
  - standard rekey timelock: 300 seconds
  - slow rekey penalty: 900 seconds
- - pubkeys:
-    - bls12381szculp6dpqmmm6q88y7qltlexcn776g8vjhe6ghg5x857z5vl8k9ge35juym3ruv6q6csn98hmcnqn70taj
-    - bls123813uyfwgn5qqls28hmtyc2877p99h7gflpz3z4t8nlvfamuzrmfmtn8tnll7snjz8tnrry43gvh0l2j4leuql
-    - bls123815p22qpch6d6hcy8sh8c8gn75t0xxjstvp2upkkh5y6mjd40c37ltpx3c4n0nzx3fmqj6ck3sr353ym3m3z2
+ - pubkeys: 
+    - bls123813fa002rgts3juyvcx9kfd6027weggz2n9q64uy97j3gvcfmnzwe7lqf28jg8kzslcufjul5zl6g3w6w943u
+    - bls123813hck83sfk4xu7vjt4x30qz4ynyyc8y2mp7wc8xemrk225x2sdx45vpjwvu6gn0n2tf00e3y39y57zhw2e3m
+    - bls12381jxsw44j37vcetuzr4ta7smf33phxj7n4rd9e927vckfx265yma488sfrktnsar7w87t4x6zveulkjshlr7c
+    - bls123815gu3gzkdwyuhd3xyrlwt95ywjgvx7rkwaxqe64pwx2z03njc0s5awk7yqcdafdfdcp2s6lsx89vjkd0wct4
+    - bls1238156rg50emtnt6v5eua2rstgcd4fep8kch9xmcdhepvdqhlea6s3pulre838xxgme3dzur44jxfpcfsu5sq9t
 ```
 
-If the lock level has been increased to 3, then the test passes. Note that the keys themselves haven't changed. However, all three will now be required to make any payments.
+The lock level is now set to `4`. Note that the keys themselves haven't changed. However, four of the five will now be required to make any payments.
 
----
-
-### Test 28 - misc 1
-
-**Title: misc: Test sending CATs to p2_address, ensure nothing breaks**
-
-**Expected result: pass**
-
----
-
-### Test 29 - misc 2
-
-**Title: misc: Test sending NFTs to p2_address, ensure nothing breaks**
-
-**Expected result: pass**
-
----
-
-### Test 30 - timelock 1
-
-**Title: timelocks: (slow rekey) Ensure can't start within the timelock slow_penalty + (( missing_keys + 1) \* rekey_timelock )**
-
-**Expected result: fail**
-
----
-
-### Test 31 - timelock 2
-
-**Title: timelocks: (normal rekey) Can't start within the timelock (1x delay)**
-
-**Expected result: fail**
-
----
-
-### Test 32 - timelock 3
-
-**Title: timelocks: (withdrawl timelock) Ensure can't start another payment within withdrawl timelock**
-
-**Expected result: fail**
-
----
-
-### Test 33 - timelock 4
-
-**Title: test zero timelock settings on new singleton**
-
-**Expected result: pass**
-
-### Test 34 - ap flag
-
-**Title: test a basic spend without the -ap flag, make sure previous payments aren't absorbed**
-
-**Expected result: pass**
-
----
-
-### Test 35 - dust
-
-**Title: Dust the prefarm wallet, then test a basic spend of a large amount of txch, with -at flag set to 1 billion mojos or something.**
-
-**Expected result: pass**
-
----
-
-### Test 36 - mc flag
-
-**Title: test the -mc flag set to different values with a basic spend**
-
-**Expected result: pass**
-
----
-
-### Test 37 - lock level increase 2
-
-**Title: attempt to increase lock level by 2 levels at once**
-
-**Expected result: pass**
-
----
-
-### Test 38 - timelock 5
-
-**Title: verify correct slow rekey times with various numbers of keys signing. expected result: rekey times should be enforced according to the design**
-
-**Expected result: pass**
-
----
-
-### Test 39 - timelock 6
-
-**Title: attempt to withdraw money immediately after a clawback. This is a test of -wt**
-
-**Expected result: fail**
+The only way to _decrease_ the lock level is with a rekey. Note that it is possible to run a rekey with identical keys, but at least one parameter must change for a rekey to be possible. In this case, you could run a rekey to decrease the lock level and keep all other values the same.

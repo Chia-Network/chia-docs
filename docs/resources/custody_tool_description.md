@@ -6,8 +6,6 @@ title: Custody Tool Description
 
 The majority of Chia Network Inc's prefarm is being held in a cold wallet, secured by a complex set of custodial rules. This document will describe the details of the custodial arrangement. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the custody wallet, see our blog post.
 
-[todo: spellcheck]
-
 Other relevant documents:
 
 * [Flow chart](/img/chia_custody_tool.png) to visualize how the custody tool works
@@ -203,8 +201,6 @@ The following table lists the action/consequence, given the current value of `m`
 
 ## Source Code
 
-[todo verify links and content]
-
 The source code for the custody solution is in the [internal-custody GitHub repository](https://github.com/Chia-Network/internal-custody 'Chia internal custody solution').
 
 There are two configuration files, one public (for observers) and one private.
@@ -223,7 +219,7 @@ An observer can track the prefarm's configuration information from [prefarm_info
 
 ### Private Configuration
 
-The necessary information to spend the prefarm is located in [puzzle_root_construction.py](https://github.com/Chia-Network/internal-custody/blob/627b4155becfadbcd0a565412019297ae2db8b6b/cic/drivers/puzzle_root_construction.py#L24-L32 'private configuration information'). This information is considered private. However, if an attacker obtained this information, it would still be insufficient to spend the prefarm because valid signatures would be required. However, the Merkle tree would be considered sniffed, so a rekey would be required.
+The necessary information to spend the prefarm is located in [puzzle_root_construction.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/puzzle_root_construction.py#L26-L34 'private configuration information'). This information is considered private. However, if an attacker obtained this information, it would still be insufficient to spend the prefarm because valid signatures would be required. However, the Merkle tree would be considered sniffed, so a rekey would be required.
 
 This code contains the following variables:
 
