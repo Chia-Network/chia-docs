@@ -146,6 +146,25 @@ Most of the commands from this tutorial will _not_ alter the blockchain. This in
 
 :::
 
+:::warning warning for windows users
+
+Windows uses different line endings than Linux and MacOS. 
+If you only plan to use Windows for both generating and signing spend bundles, this won't be a problem.
+
+However, if you plan to generate your spend bundles on Windows and sign them using a Linux HSM, then you will need to modify the line endings before signing.
+The easiest way to accomplish this is with `dos2unix`. 
+This is not included with Windows, so you will need to download it from [SourceForge](https://sourceforge.net/projects/dos2unix/).
+
+The command to convert your spend bundles is then:
+
+```powershell
+<path to dos2unix.exe> -o <path to spend bundle>
+```
+
+In general, any time you encounter signing errors, be sure the correct line endings are being used for the OS you are using to sign.
+
+:::
+
 ---
 
 ## Generate keys
