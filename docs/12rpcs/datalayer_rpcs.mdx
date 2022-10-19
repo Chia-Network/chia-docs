@@ -1374,16 +1374,16 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description                                                                              |
-| :--- | :--- | :------- | :--------------------------------------------------------------------------------------- |
-| id   | TEXT | True     | The `coin_id` of the mirror to delete, obtainable by running [get_mirrors](#get_mirrors) |
-| fee  | TEXT | False    | Set the fee for the transaction, in mojos                                                |
+| Flag      | Type | Required | Description                                                                              |
+| :-------- | :--- | :------- | :--------------------------------------------------------------------------------------- |
+| coin_id   | TEXT | True     | The `coin_id` of the mirror to delete, obtainable by running [get_mirrors](#get_mirrors) |
+| fee       | TEXT | False    | Set the fee for the transaction, in mojos                                                |
 
 <details>
 <summary>Example 1</summary>
 
 ```json
-chia rpc data_layer delete_mirror '{"id":"0x9a2132858b81907875a65123e592b7aea80b23724202ac21bba0aedf583f7427"}'
+chia rpc data_layer delete_mirror '{"coin_id":"6d111d5e7e74126cb35fd159c202a9e8f179e3ed2250b73c58804c50719b222d"}'
 ```
 
 Response:
@@ -1402,7 +1402,7 @@ Response:
 If you attempt to delete a mirror you did not create, this will fail:
 
 ```json
-chia rpc data_layer delete_mirror '{"id":"0x83a75913f8222eebfbc047d2ab3bf4b92bd5c37f3acaa336a0bb8b3b3168c879"}'
+chia rpc data_layer delete_mirror '{"coin_id":"0x83a75913f8222eebfbc047d2ab3bf4b92bd5c37f3acaa336a0bb8b3b3168c879"}'
 ```
 
 Response:
