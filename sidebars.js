@@ -45,18 +45,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Primitives',
-      items: [
-        'primitives/standard-transactions',
-        'primitives/singletons',
-        'primitives/cats',
-        'primitives/nfts',
-        'primitives/dids',
-        'primitives/offers',
-      ],
-    },
-    {
-      type: 'category',
       label: 'RPC Reference',
       items: [
         'rpc-reference/rpc',
@@ -88,6 +76,7 @@ module.exports = {
       label: 'Coin Set Model',
       items: [
         'coin-set-model/intro',
+        'coin-set-model/costs',
         'coin-set-model/conditions',
         'coin-set-model/spend-bundles',
         'coin-set-model/addresses',
