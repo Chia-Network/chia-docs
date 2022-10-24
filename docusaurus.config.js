@@ -4,7 +4,7 @@
     title: 'Chia Documentation',
     tagline:
       'The source of truth for Chia documentation. Start here to learn more about Chia.',
-    url: 'https://staging.docs.chia.net',
+    url: 'https://docs.chia.net',
     baseUrl: '/',
     onBrokenLinks: 'ignore',
     onBrokenMarkdownLinks: 'ignore',
