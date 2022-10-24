@@ -370,7 +370,7 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ## Where can I buy Chia?
 
-Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.comhttps://chialisp.com/offers) using the Chia light wallet and [Offers](https://chia.nethttps://chialisp.com/offers).
+Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.com/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
 
 There are also several exchanges that offer XCH. You can see a list of exchanges supporting XCH [here](https://chialinks.com/exchanges/). This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
@@ -434,7 +434,7 @@ A similar (but slightly more complex technique) would be to use a singleton inst
 
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
-- [Technical reference document](https://chialisp.comhttps://chialisp.com/offers)
+- [Technical reference document](https://chialisp.com/offers)
 - [GUI (graphical user interface) tutorial](https://devs.chia.net/guides/offers-gui-tutorial)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
 - [CLI (command line interface) tutorial](https://devs.chia.net/guides/offers-cli-tutorial)
@@ -507,7 +507,7 @@ Non-Fungible Tokens have become extremely popular in the last few years. [This s
 
 ## How do I buy NFTs?
 
-Chia NFTs make use of a unique feature: [Offers](https://chialisp.comhttps://chialisp.com/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click "Create an Offer" and "NFT Offer". We’ll have a more detailed guide that includes all of the options soon.
+Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click "Create an Offer" and "NFT Offer". We’ll have a more detailed guide that includes all of the options soon.
 
 ## How can I make an NFT offer using the CLI?
 
