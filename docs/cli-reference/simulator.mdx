@@ -1,7 +1,7 @@
 ---
 id: simulator
 title: Simulator CLI Reference
-sidebar_label: Simulator 
+sidebar_label: Simulator
 ---
 
 ```mdx-code-block
@@ -16,6 +16,7 @@ The simulator gives you complete control of a private Chia blockchain, including
 This page includes a comprehensive list of Chia's Command Line Interface commands for using the simulator.
 
 For more info, see the following:
+
 - [Simulator User Guide](/simulator_user_guide 'Simulator User Guide')
 - [Simulator RPC API](/rpc-reference/simulator 'Simulator RPC API')
 
@@ -36,7 +37,7 @@ Options:
 | -f            | --fingerprint    | INTEGER | False    | Use your fingerprint to skip the key prompt                                   |
 | -r            | --reward_address | TEXT    | False    | Use this address instead of the default farming address                       |
 | -p            | --plot-directory | TEXT    | False    | Set the directory in which to create/store plots (Default: 'simulator/plots') |
-| -m            | --mnemonic       | TEXT    | False    | Add a new key to the keychain using the specified mnemonic                                   |
+| -m            | --mnemonic       | TEXT    | False    | Add a new key to the keychain using the specified mnemonic                    |
 | -a            | --auto-farm      | BOOLEAN | False    | Enable or Disable auto farming (Default: True)                                |
 | -h            | --help           | None    | False    | Show a help message and exit                                                  |
 
@@ -295,7 +296,6 @@ Genesis block generated, exiting.
 
 </details>
 
-
 ---
 
 ### `autofarm`
@@ -306,9 +306,9 @@ Usage: `cdv sim autofarm [OPTIONS] [on|off]`
 
 Options:
 
-| Short Command | Long Command    | Type    | Required | Description                  |
-| :------------ | :-------------- | :------ | :------- | :--------------------------- |
-| -h            | --help          | None    | False    | Show a help message and exit |
+| Short Command | Long Command | Type | Required | Description                  |
+| :------------ | :----------- | :--- | :------- | :--------------------------- |
+| -h            | --help       | None | False    | Show a help message and exit |
 
 Auto farming is enabled by default. The examples will show you how to disable/enable it.
 
@@ -523,6 +523,7 @@ Block Height is now: 11
 <summary>Example 2</summary>
 
 Revert transactions from three blocks and advance the chain by five blocks:
+
 ```bash
 cdv sim revert -b 3 -n 5
 ```
@@ -564,11 +565,11 @@ Usage: `cdv sim start [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command    | Type | Required | Description                                                                                                        |
-| :------------ | :-------------- | :--- | :------- | :----------------------------------------------------------------------------------------------------------------- |
-| -r            | --restart       | None | False    | Enable to restart running services (Default: disabled)
-| -w            | --wallet        | None | False    | Enable to start wallet (Default: disabled)
-| -h            | --help          | None | False    | Show a help message and exit                                                                                       |
+| Short Command | Long Command | Type | Required | Description                                            |
+| :------------ | :----------- | :--- | :------- | :----------------------------------------------------- |
+| -r            | --restart    | None | False    | Enable to restart running services (Default: disabled) |
+| -w            | --wallet     | None | False    | Enable to start wallet (Default: disabled)             |
+| -h            | --help       | None | False    | Show a help message and exit                           |
 
 <details>
 <summary>Example 1</summary>
@@ -595,7 +596,6 @@ chia_full_node_simulator: started
 Status before this example: Simulator is running and wallet is not running.
 
 Restart the simulator and start the wallet:
-
 
 ```bash
 cdv sim start -r -w
@@ -626,9 +626,9 @@ Options:
 | -f            | --fingerprint     | INTEGER | False    | Get detailed information on this fingerprint.                                                                                            |
 | -k            | --show_key        | None    | False    | Enable to show detailed key information, including seed phrase (Default: disabled)                                                       |
 | -c            | --show_coins      | None    | False    | Enable to show all unspent coins (Default: disabled). When enabled, this does not show reward coins unless used in conjunction with `-i` |
-| -i            | --include_rewards | None    | False    | Enable to show rewards coins (Default: disabled). This option must be used in conjunction with `-c`                                                       |
-| -a            | --show_addresses  | None    | False    | Enable to show the balances of all addresses (Default: disabled)
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                       |
+| -i            | --include_rewards | None    | False    | Enable to show rewards coins (Default: disabled). This option must be used in conjunction with `-c`                                      |
+| -a            | --show_addresses  | None    | False    | Enable to show the balances of all addresses (Default: disabled)                                                                         |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                             |
 
 <details>
 <summary>Example 1</summary>
@@ -694,7 +694,7 @@ First wallet address: txch1v3wjjapxvepyadvr2wgp7272md84lv6kmaxyxm4lq5le2jcc90zqk
 Master private key (m): 38a46d85d64de2a606f26b4abc31ae5afc3fd522df9d88d2f2ab98cae0e5261e
 First wallet secret key (m/12381/8444/2/0): PrivateKey 51d49f53301e068bb941bf93fda9ddd59404a5e5f6a338706f9ad65be277669b
   Mnemonic seed (24 secret words):
-dragon marriage portion employ net stumble grid silk ladder fan dove small noise stick divert transfer since siege fit annual dwarf gate fox garage 
+dragon marriage portion employ net stumble grid silk ladder fan dove small noise stick divert transfer since siege fit annual dwarf gate fox garage
 
 Network: simulator0    Port: 48593   RPC Port: 18406
 Node ID: 6ca9a8ebe8ed4b2cba673666a29a75d18b3c358fee6e29153cde55ee33320261
@@ -764,7 +764,7 @@ Total iterations since the start of the blockchain: 36460
         1 | 2a7df0f20b654d66fa4f77a54060855b5a9532f79b36d12bfd175831a321e6ba
 
 Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2, with a balance of: 21000016.0 TXCH.
-All Coins: 
+All Coins:
 Coin 0x32ee11f63aca323db7e2bdfd71b29968d2605dbefcf2d5aea69b4acb278a6c56
 Wallet Address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2
 Confirmed at block: 9
@@ -825,7 +825,7 @@ Total iterations since the start of the blockchain: 36460
         1 | 2a7df0f20b654d66fa4f77a54060855b5a9532f79b36d12bfd175831a321e6ba
 
 Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2, with a balance of: 21000016.0 TXCH.
-All Addresses: 
+All Addresses:
 Address: txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh has a balance of: 2000000000000 mojo, with a total of: 2 transactions.
 
 Address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2 has a balance of: 21000016000000000000 mojo, with a total of: 18 transactions.
@@ -837,17 +837,17 @@ Address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2 has a b
 
 ### `stop`
 
-Functionality: 
+Functionality:
 
 Usage: `cdv sim stop [OPTIONS]`
 
 Options: Stop running services
 
-| Short Command | Long Command    | Type | Required | Description                                   |
-| :------------ | :-------------- | :--- | :------- | :-------------------------------------------- |
-| -d            | --daemon        | None | False    | Enable to stop the daemon (Default: disabled) |
-| -w            | --wallet        | None | False    | Enable to stop the wallet (Default: disabled) |
-| -h            | --help          | None | False    | Show a help message and exit                  |
+| Short Command | Long Command | Type | Required | Description                                   |
+| :------------ | :----------- | :--- | :------- | :-------------------------------------------- |
+| -d            | --daemon     | None | False    | Enable to stop the daemon (Default: disabled) |
+| -w            | --wallet     | None | False    | Enable to stop the wallet (Default: disabled) |
+| -h            | --help       | None | False    | Show a help message and exit                  |
 
 <details>
 <summary>Example 1</summary>

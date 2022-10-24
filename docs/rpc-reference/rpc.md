@@ -17,6 +17,7 @@ TLS certificates are used to secure the communication.
 - Farmer: 8559
 - Harvester: 8560
 - Wallet: 9256
+- DataLayer: 8562
 
 ### HTTP/JSON
 

@@ -108,7 +108,7 @@
                 },
                 {
                   label: 'Consensus 1.1',
-                  to: 'https://chia.net/assets/Chia-New-Consensus-0.9.pdf',
+                  to: 'https://docs.chia.net/consensus-intro',
                 },
               ],
             },

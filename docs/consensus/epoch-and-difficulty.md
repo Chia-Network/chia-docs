@@ -11,7 +11,7 @@ slug: /epoch-and-difficulty
 
 Every 4608 blocks, the difficulty adjustment is automatically performed. This modifies two parameters: The slot_iterations parameter, and the difficulty parameter.
 
-The sub_slot_iterations parameter is reset so a 300-second slot requires close to slot_iterations many iterations. The reset is done using the values from the last epoch to approximate the iterations-per-second ratio, concretely.
+The sub_slot_iterations parameter is reset so a 600-second slot requires close to slot_iterations many iterations. The reset is done using the values from the last epoch to approximate the iterations-per-second ratio, concretely.
 
 We'll define `epoch$` as the period beginning with the last block that was infused _prior_ to the current epoch, and ending with the last block that was infused _in_ the current epoch. Thus, `epoch$` is a slightly shifted period that occurs for each epoch.
 
@@ -30,7 +30,7 @@ Sub-slot iterations is the total number of iterations per ten-minute sub-slot.
 Signage point interval iterations is sub-slot iterations divided by 64 (the number of signage points per sub-slot).
 
 ```python
-sub slot iterations = iterations per second * 300
+sub slot iterations = iterations per second * 600
 sp interval iterations = floor(sub slot iterations / 64)
 ```
 
@@ -41,7 +41,7 @@ weight/sec of last epoch = (new weight - old weight) / duration of last epoch
                          = (w2 - w1) / (t2 - t1)
 
 new difficulty = (weight/sec * target seconds) / target number of blocks
-               = ((w2 - w1) / (t2 - t1) * (4608/64) * 300) / 4608
+               = ((w2 - w1) / (t2 - t1) * (4608/64) * 600) / 4608
 ```
 
 This can be rearranged to use only one floor division:

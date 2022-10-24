@@ -11,8 +11,9 @@ The simulator gives you complete control of a private Chia blockchain, including
 This page includes a comprehensive list of Chia's Remote Procedure Calls for using the simulator.
 
 For more info, see the following:
-- [Simulator User Guide](/simulator_user_guide 'Simulator User Guide')
-- [Simulator CLI Reference](/cli-reference/simulator 'Simulator CLI Reference')
+
+- [Simulator User Guide](https://devs.chia.net/guides/simulator-user-guide)
+- [Simulator CLI Reference](/cli-reference/simulator)
 
 ---
 
@@ -33,9 +34,10 @@ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
-* "fee" becomes \"fee\"
-* "1000" becomes \"1000\"
-* etc
+
+- "fee" becomes \"fee\"
+- "1000" becomes \"1000\"
+- etc
 
 </details>
 
@@ -165,11 +167,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                   |
-| :-------- | :------- | :-------------------------------------------- |
-| address   | True     | The address to use to farm the block          |
-| guarantee_tx_block | False | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
-| blocks    | False  | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1) |
+| Parameter          | Required | Description                                                                                                                                                                                                          |
+| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address            | True     | The address to use to farm the block                                                                                                                                                                                 |
+| guarantee_tx_block | False    | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
+| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
 
 <details>
 <summary>Example 1</summary>
@@ -184,8 +186,8 @@ Response:
 
 ```json
 {
-    "new_peak_height": 21,
-    "success": true
+  "new_peak_height": 21,
+  "success": true
 }
 ```
 
@@ -204,8 +206,8 @@ Response:
 
 ```json
 {
-    "new_peak_height": 24,
-    "success": true
+  "new_peak_height": 24,
+  "success": true
 }
 ```
 
@@ -228,9 +230,9 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                   |
-| :-------- | :------- | :-------------------------------------------- |
-| auto_farm | True     | Boolean to enable or disable auto farming     |
+| Parameter | Required | Description                               |
+| :-------- | :------- | :---------------------------------------- |
+| auto_farm | True     | Boolean to enable or disable auto farming |
 
 <details>
 <summary>Example 1</summary>
@@ -245,8 +247,8 @@ Response:
 
 ```json
 {
-    "auto_farm_enabled": true,
-    "success": true
+  "auto_farm_enabled": true,
+  "success": true
 }
 ```
 
@@ -265,8 +267,8 @@ Response:
 
 ```json
 {
-    "auto_farm_enabled": false,
-    "success": true
+  "auto_farm_enabled": false,
+  "success": true
 }
 ```
 
@@ -300,8 +302,8 @@ Response:
 
 ```json
 {
-    "auto_farm_enabled": true,
-    "success": true
+  "auto_farm_enabled": true,
+  "success": true
 }
 ```
 
@@ -335,8 +337,8 @@ Response:
 
 ```json
 {
-    "puzzle_hash": "5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740",
-    "success": true
+  "puzzle_hash": "5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740",
+  "success": true
 }
 ```
 
@@ -357,7 +359,7 @@ txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2
 ---
 
 ### `get_all_coins`
-        
+
 Functionality: Get all coins
 
 Usage: chia rpc full_node [OPTIONS] get_all_coins [REQUEST]
@@ -371,8 +373,8 @@ Options:
 
 Request Parameters:
 
-| Parameter           | Required | Description                                   |
-| :------------------ | :------- | :-------------------------------------------- |
+| Parameter           | Required | Description                                                                           |
+| :------------------ | :------- | :------------------------------------------------------------------------------------ |
 | include_spent_coins | False    | Boolean, if `True` then spent coins will be included in the result (Default: `False`) |
 
 <details>
@@ -447,21 +449,18 @@ Response:
 
 ```json
 {
-    "puzzle_hashes": {
-        "000000000000000000000000000000000000000000000000000000000000dead": [
-            6000000000000,
-            6
-        ],
-        "5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740": [
-            21000034000000000000,
-            36
-        ],
-        "645d29742666424eb58353901f2bcadb4f5fb356df4c436ebf053f954b182bc4": [
-            6000000000000,
-            6
-        ]
-    },
-    "success": true
+  "puzzle_hashes": {
+    "000000000000000000000000000000000000000000000000000000000000dead": [
+      6000000000000, 6
+    ],
+    "5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740": [
+      21000034000000000000, 36
+    ],
+    "645d29742666424eb58353901f2bcadb4f5fb356df4c436ebf053f954b182bc4": [
+      6000000000000, 6
+    ]
+  },
+  "success": true
 }
 ```
 
@@ -502,8 +501,8 @@ Response:
 
 ```json
 {
-    "new_peak_height": 23,
-    "success": true
+  "new_peak_height": 23,
+  "success": true
 }
 ```
 
@@ -522,8 +521,8 @@ Response:
 
 ```json
 {
-    "new_peak_height": 1,
-    "success": true
+  "new_peak_height": 1,
+  "success": true
 }
 ```
 
@@ -546,12 +545,12 @@ Options:
 
 Request Parameters:
 
-| Parameter            | Required | Description                                                                                      |
-| :------------------- | :------- | :----------------------------------------------------------------------------------------------- |
-| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                                                     |
-| num_of_new_blocks    | False    | The number of blocks to add (Default: 1)                                                         |
-| revert_all_blocks    | False    | Boolean, set to `True` to fork all blocks (Default: `False`)                                     |
-| random_seed          | False    | String, used to randomize the seed, which will differentiate reorgs                              |
+| Parameter            | Required | Description                                                         |
+| :------------------- | :------- | :------------------------------------------------------------------ |
+| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                        |
+| num_of_new_blocks    | False    | The number of blocks to add (Default: 1)                            |
+| revert_all_blocks    | False    | Boolean, set to `True` to fork all blocks (Default: `False`)        |
+| random_seed          | False    | String, used to randomize the seed, which will differentiate reorgs |
 
 <details>
 <summary>Example 1</summary>
@@ -566,8 +565,8 @@ Response:
 
 ```json
 {
-    "new_peak_height": 16,
-    "success": true
+  "new_peak_height": 16,
+  "success": true
 }
 ```
 
@@ -586,8 +585,8 @@ Response:
 
 ```json
 {
-    "new_peak_height": 18,
-    "success": true
+  "new_peak_height": 18,
+  "success": true
 }
 ```
 
