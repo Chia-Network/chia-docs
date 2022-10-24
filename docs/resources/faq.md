@@ -370,7 +370,7 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ## Where can I buy Chia?
 
-Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.com/puzzles/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
+Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.comhttps://chialisp.com/offers) using the Chia light wallet and [Offers](https://chia.nethttps://chialisp.com/offers).
 
 There are also several exchanges that offer XCH. You can see a list of exchanges supporting XCH [here](https://chialinks.com/exchanges/). This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
@@ -434,14 +434,14 @@ A similar (but slightly more complex technique) would be to use a singleton inst
 
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
-- [Technical reference document](https://chialisp.com/puzzles/offers)
-- [GUI (graphical user interface) tutorial](https://chialisp.com/tutorials/offers_gui_tutorial)
+- [Technical reference document](https://chialisp.comhttps://chialisp.com/offers)
+- [GUI (graphical user interface) tutorial](https://devs.chia.net/guides/offers-gui-tutorial)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
-- [CLI (command line interface) tutorial](https://chialisp.com/tutorials/offers_cli_tutorial)
+- [CLI (command line interface) tutorial](https://devs.chia.net/guides/offers-cli-tutorial)
 
 ## After creating an offer file, why does my spendable balance differ more than the amount specific in the offer?
 
-When you create an offer, [coins are reserved](https://chialisp.com/puzzles/offers#on-chain-vs-off-chain) to ensure that when the offer has been accepted and written on to the blockchain, the transaction can be completed. Chia’s wallet will reserve the largest coin to fulfill an offer, and when that coin is reserved, it will lower the spendable balance by the total coin amount.
+When you create an offer, [coins are reserved](https://chialisp.com/offers#offer-states) to ensure that when the offer has been accepted and written on to the blockchain, the transaction can be completed. Chia’s wallet will reserve the largest coin to fulfill an offer, and when that coin is reserved, it will lower the spendable balance by the total coin amount.
 
 ## I plan on making many offers and I want to ensure that my coins aren’t locked up?
 
@@ -449,7 +449,7 @@ To create smaller coins, send money to your own wallet in smaller denominations.
 
 ## When canceling an offer, when should I check the "cancel on blockchain" checkbox?
 
-You should use this option if the offer file has left your computer. If you don’t use this option, someone who sees your offer could still accept it. See our [reference doc](https://chialisp.com/puzzles/offers#cancellation) for more info.
+You should use this option if the offer file has left your computer. If you don’t use this option, someone who sees your offer could still accept it. See our [reference doc](https://chialisp.com/offers#cancellation) for more info.
 
 ## If I cancel my offer on the blockchain, will other people be able to fulfill it?
 
@@ -457,7 +457,7 @@ No, canceling on the blockchain ensures that your offer can no longer be fulfill
 
 ## I’m accepting an offer, but it shows a Unknown CAT, what should I do?
 
-You should always check the ID of the asset(s) being offered before accepting any offers. First make sure you have a CAT wallet set up for the assets that you are trading for and are getting that information from a reputable source. Second, when you view the offer in the wallet, ensure the amounts and the CATs match up to what you are expecting. For more info, see our [GUI tutorial](https://chialisp.com/tutorials/offers_gui_tutorial#taker-accepts-an-unknown-cat-offer).
+You should always check the ID of the asset(s) being offered before accepting any offers. First make sure you have a CAT wallet set up for the assets that you are trading for and are getting that information from a reputable source. Second, when you view the offer in the wallet, ensure the amounts and the CATs match up to what you are expecting. For more info, see our [GUI tutorial](https://chialisp.com/offers-gui-tutorial#taker-accepts-an-unknown-cat-offer).
 
 ## Where can I share my offers?
 
@@ -507,11 +507,11 @@ Non-Fungible Tokens have become extremely popular in the last few years. [This s
 
 ## How do I buy NFTs?
 
-Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/puzzles/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click "Create an Offer" and "NFT Offer". We’ll have a more detailed guide that includes all of the options soon.
+Chia NFTs make use of a unique feature: [Offers](https://chialisp.comhttps://chialisp.com/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click "Create an Offer" and "NFT Offer". We’ll have a more detailed guide that includes all of the options soon.
 
 ## How can I make an NFT offer using the CLI?
 
-The CLI commands for NFT offers are almost the same as [those for CAT offers](https://chialisp.com/tutorials/offers_cli_tutorial#create-a-single-token-offer). The main difference is that you have to include the NFT singleton's value after the NFT ID (typically this is `:1`). For example, to make an offer, you can run:
+The CLI commands for NFT offers are almost the same as [those for CAT offers](https://chialisp.com/offers-cli-tutorial#create-a-single-token-offer). The main difference is that you have to include the NFT singleton's value after the NFT ID (typically this is `:1`). For example, to make an offer, you can run:
 
 `chia wallet make_offer -o 1:0.1 -r nft1g5gzj3hl9gdyrq83zveepf8wmeet8mxl8zutfyahs0wfkg9mcs9qepc4w5:1 -p test.offer -m 0.001`
 

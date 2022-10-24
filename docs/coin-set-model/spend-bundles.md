@@ -21,7 +21,7 @@ class SpendBundle:
 As you can see in the code sample above, a spend bundle is a group of coin spends, where each coin spend includes the coin being spent, the puzzle program, and the solution program. Each solution is passed into each puzzle and run through the CLVM, where it outputs conditions. Two of the conditions -- `AGG_SIG_ME` and `AGG_SIG_UNSAFE` -- require
 that a signature be present in order for the spend to be valid.
 
-Usually when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
+Usually when making a transaction, a user would combine multiple spends, to achieve the desired value of the transaction. Users can also combine coins that represent [CATs](https://chialisp.com/cats) (Chia Asset Tokens), and send different types of values in the same spend bundle.
 
 ## Aggregate Signatures
 
