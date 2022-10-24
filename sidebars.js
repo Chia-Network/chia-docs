@@ -53,7 +53,6 @@ module.exports = {
         'rpc-reference/nfts',
         'rpc-reference/offers',
         'rpc-reference/datalayer',
-        'rpc-reference/climate-warehouse',
         'rpc-reference/simulator',
       ],
     },
@@ -68,7 +67,6 @@ module.exports = {
         'cli-reference/datalayer',
         'cli-reference/cat-admin',
         'cli-reference/simulator',
-        'cli-reference/custody-tool',
       ],
     },
     {
