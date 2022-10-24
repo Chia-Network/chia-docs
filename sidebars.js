@@ -186,23 +186,11 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Prefarm Custody',
-      items: [
-        'prefarm-custody/prefarm-custody-testing',
-        'prefarm-custody/custom-testnet',
-        'prefarm-custody/testnet10-configuration',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Resources',
       items: [
         'resources/references',
         'resources/chia-farming-workload',
-        'resources/climate-warehouse-guide',
         'resources/faq',
-        'resources/custody-tool-user-guide',
-        'resources/custody-tool-description',
       ],
     },
   ],
