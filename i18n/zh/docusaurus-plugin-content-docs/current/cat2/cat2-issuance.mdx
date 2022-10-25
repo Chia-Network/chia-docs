@@ -1,8 +1,7 @@
 ---
-id: cat2-issuance
 title: CAT2代币重新发配
 sidebar_label: 3. CAT2代币重新发配
-sidebar_position: 3
+slug: /cat2-issuance
 ---
 
 ```mdx-code-block
@@ -12,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info
 **信息**<br />
-[CAT1](https://chialisp.com/docs/puzzles/cats) 将在 2311760 区块高度结束其生命周期，也就是 UTC 时间 2022 年 7 月 26 日 17:00。更多关于结束生命周期的信息可以参考 CAT2 介绍及[FAQ](/docs/cat2/cat2-intro#常见问题).
+[CAT1](https://chialisp.com/cats) 将在 2311760 区块高度结束其生命周期，也就是 UTC 时间 2022 年 7 月 26 日 17:00。更多关于结束生命周期的信息可以参考 CAT2 介绍及[FAQ](/cat2-intro#常见问题).
 :::
 
 本文档将向 CAT1 发行人展示如何：
@@ -21,7 +20,7 @@ import TabItem from '@theme/TabItem';
 2. **生成空投方案**——创建一个与原来 CAT1 代币一样的货币树状结构，他们的金额和所属钱包地址相同
 3. **发放空投**——将新代币空投到准确的地址
 
-在开始本指南之前，您需要一个 CSV 快照，其说明可在[快照生成指南](/docs/cat2/cat2-snapshot)中找到。.
+在开始本指南之前，您需要一个 CSV 快照，其说明可在[快照生成指南](/cat2-snapshot)中找到。.
 :::warning
 **警告**<br />
 新版本的 CAT 管理工具将在 Chia 版本 1.5.0 之后不久发布，大约在生命周期结束时的块高度 (2311760)。 在更新到此版本之前，您不应尝试重新发行代币。
@@ -884,7 +883,7 @@ unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde66
    unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID> --unwind-target-puzzle-hash <PUZZLE-HASH>
    ```
 
-   您可能已经注意到，此命令与[发放全部空投](https://docs.chia.net/docs/cat2/cat2-issuance/#unwind)的命令相同，但添 `--unwind-target-puzzle-hash` 标志，以确保仅将硬币发送到特定地址。
+   您可能已经注意到，此命令与[发放全部空投](/cat2-issuance/#unwind)的命令相同，但添 `--unwind-target-puzzle-hash` 标志，以确保仅将硬币发送到特定地址。
 
    在本例中，展开袋子的命令是：
 
@@ -979,4 +978,4 @@ unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde66
 
    您应该会看到 CSV 文件中每个条目的匹配 `coin_records` 及其对应的值。
 
-   现在您已经测试了发放空投，您可以继续[发放空投的其余部分](/docs/cat2/cat2-issuance/#unwind)。
+   现在您已经测试了发放空投，您可以继续[发放空投的其余部分](/cat2-issuance/#unwind)。
