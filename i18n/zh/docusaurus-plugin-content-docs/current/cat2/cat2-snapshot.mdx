@@ -1,8 +1,7 @@
 ---
-id: cat2-snapshot
 title: CAT1快照生成
 sidebar_label: 2. CAT1快照生成
-sidebar_position: 2
+slug: /cat2-snapshot
 ---
 
 ```mdx-code-block
@@ -30,7 +29,7 @@ CAT1 将在 2311760 区块高度结束其生命周期，也就是 UTC 时间 202
 
 1. 生成其 CAT1 状态的快照。 这将显示 Puzzle 哈希（地址）和每个单独代币在生命周期结束高度的值
 2. 从快照中导出他们所需的数据
-   完成此操作后，CAT 发行人将能够继续进行[代币重新发行指南](/docs/cat2/cat2-issuance/)。
+   完成此操作后，CAT 发行人将能够继续进行[代币重新发行指南](/cat2-issuance)。
 
 ## 生成一个 CAT1 快照
 
@@ -495,7 +494,7 @@ chia init --fix-ssl-permissions
 
 此步骤对于 **Windows** 用户是必需的，对于 Linux/MacOS 用户则不需要。
 
-如果您在 Windows 上运行，CSV 文件将在每行的末尾包含一个额外的 CR（回车）字符。 这将导致[“代币重新发配”](/docs/cat2/cat2-issuance#secure-single)（下一节）失败。 首先，您必须将 CSV 文件转换为使用 UNIX 样式的行尾字符。
+如果您在 Windows 上运行，CSV 文件将在每行的末尾包含一个额外的 CR（回车）字符。 这将导致[“代币重新发配”](/cat2-issuance#secure-single)（下一节）失败。 首先，您必须将 CSV 文件转换为使用 UNIX 样式的行尾字符。
 
 最简单的方法是使用 `dos2unix`。 这不包含在 Windows 中，因此您需要从 Sourceforge 下载它。
 

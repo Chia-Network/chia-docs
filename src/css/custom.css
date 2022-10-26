@@ -65,3 +65,7 @@ div[class^='announcementBarContent'] {
     padding: 6px 30px;
   }
 }
+
+h4 {
+  font-size: 20px;
+}
