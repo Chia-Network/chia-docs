@@ -36,7 +36,7 @@ We also have documented the [DataLayer CLI](/datalayer-cli) commands for interac
 
 By default, the DataLayer RPC API is exposed on port 8562. This is configured in `~/.chia/mainnet/config/config.yaml` under `data_layer:rpc_port`. This port must not be exposed publicly for security concerns.
 
-Commands that modify the blockchain include an optional fee (in mojos). This fee can be specified in two ways:
+Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
 
 1. The "fee" parameter can be configured explicitly in the command, as several of the examples in this document show
 2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
