@@ -62,7 +62,7 @@ Request Parameters:
 | series_total (deprecated)  | False    | Beginning in Chia version 1.5, please use the `edition_count` RPC instead of this one                                                                                                                |
 | edition_number             | False    | If this NFT has multiple editions (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT.                                                               |
 | edition_count              | False    | If this NFT has multiple editions, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `edition_number` parameter was also used |
-| fee                        | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                          |
+| fee                        | False    | The one-time blockchain fee (in mojos) to be used upon minting the NFT                                                                                                                                          |
 
 <details>
 <summary>Example 1 - Mint an NFT without using a DID</summary>
@@ -315,7 +315,7 @@ Request Parameters:
 | wallet_id      | True     | The Wallet ID of the NFT to transfer                                                                                |
 | target_address | True     | The address to transfer the NFT to. For NFT0 this must be an XCH address. For NFT1 this could also be a DID address |
 | nft_coin_id    | True     | The coin ID of the NFT to transfer                                                                                  |
-| fee            | False    | The one-time blockchain fee to be used upon transferring the NFT                                                    |
+| fee            | False    | The one-time blockchain fee (in mojos) to be used upon transferring the NFT                                                    |
 
 <details>
 <summary>Example</summary>
@@ -462,7 +462,7 @@ Request Parameters:
 | nft_coin_id | True     | The coin ID of the NFT on which to add a URI                              |
 | key         | True     | Must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI) |
 | uri         | True     | The URI to add                                                            |
-| fee         | False    | The one-time blockchain fee to be used upon adding a URI                  |
+| fee         | False    | The one-time blockchain fee (in mojos) to be used upon adding a URI                  |
 
 :::info
 
