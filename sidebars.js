@@ -67,6 +67,7 @@ module.exports = {
         'cli-reference/datalayer',
         'cli-reference/cat-admin',
         'cli-reference/simulator',
+        'cli-reference/custody-tool',
       ],
     },
     {
