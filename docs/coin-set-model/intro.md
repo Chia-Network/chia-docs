@@ -12,7 +12,7 @@ The mantra _everything is a coin_ will go a long way in helping you to understan
 
 Coins may only be spent once and anyone can attempt to spend them. However coins are locked with specific rules. They are written in Chialisp, a Turing-complete language with no side effects, allowing for complex functionality, including composability and interoperability between coins.
 
-The [majority of Chia's coins](/standard-transactions) have one simple rule – "Anyone with the right private key can spend me."
+The [majority of Chia's coins](https://chialisp.com/standard-transactions/) have one simple rule – "Anyone with the right private key can spend me."
 
 ## Key Features
 
