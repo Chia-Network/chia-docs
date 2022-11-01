@@ -239,18 +239,18 @@ Node ID: 0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9
 
 2. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows.
 
-Inside the `wallet:` section in config.yaml, you should see `trusted_peers:`. Add a new line with the value of `Node ID`, like this example (do not use this Node ID, use the one from your trusted node):
+Search for the `wallet:` section. It should be near the end of the file. Edit the following values from within this section:
+* `connect_to_unknown_peers` - Default is `true`; change it to `false`
+* `target_peer_count` - Default is `3`; change it to `1` (assuming you only have one trusted full node)
+* `trusted_peers`
+  * Default is `0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9: Does_not_matter`
+  * Change to `<Node ID>: Does_not_matter` 
+  * Note 1: Replace `<Node ID>` with the actual Node ID you obtained above
+  * Note 2: It doesn't matter what you enter on the right side of the colon. The argument will be ignored. Just make sure to enter something
 
-```
-trusted_peers:
-    0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9: Does_not_matter
-```
+3. Restart Chia on the computer you are connecting to the trusted node to pick up the changes.
 
-- **Note 1:** It doesn't matter what you enter on the right side of the colon. The argument will be ignored. Just make sure to enter something
-- **Note 2:** By default, `trusted_node_1` will be listed under `trusted_peers`. You can either keep this line or replace it. It will be ignored if you add a new peer as suggested above
-- **Note 3:** We plan to streamline this process in a future release
-
-3. Finally, restart Chia on the computer you are connecting to the trusted node to pick up the changes.
+4. To verify that the changes are working, run `chia wallet show`. The last line of the output should contain `-Trusted: True`
 
 ## How does light wallet syncing work?
 
