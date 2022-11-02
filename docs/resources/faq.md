@@ -764,6 +764,20 @@ If your NFT is stolen, then unfortunately there’s not much you can do, other t
 
 Chia Network Inc has no ability to censor content on the Chia blockchain. However, the metadata schema that most NFTs use includes a `"sensitive_content"` object, with a default value of `false`. This flag will indicate to wallets and marketplaces whether the NFT contains any sensitive content, which they can then use in deciding whether to display the NFT.
 
+### How do I configure my system to send and receive notifications?
+
+Starting in version 1.6.1, you can send and receive notifications to a specified puzzle hash. This will eventually enable us to support sending an offer to an NFT's owner without having to go through an exchange.
+
+This functionality is disabled by default. It includes two settings in the `wallet:` section of `~/.chia/mainnet/config/config.yaml`:
+* `accept_notifications` - a boolean to specify whether you want to allow notifications to be received. If this setting is missing, it will automatically be set to `false`. Set to `true` to receive notifications
+* `required_notification_amount` - the amount (in mojos) you require to be sent with a notification in order to receive it. If this setting is not specified, the default of `10000000` (10 million) will be used
+
+In order to enable notifications, you can either add these settings manually, or rename `config.yaml` and run `chia init`. A new copy of `config.yaml` will be created which contains the new settings.
+
+Finally, you need to restart Chia for these settings to be picked up. 
+
+Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
+
 ---
 
 ## Support/Miscellaneous
