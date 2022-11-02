@@ -20,11 +20,11 @@ For example, here is a typical RPC command on Linux and MacOS:
 chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
-To run the same command on Windows, you need to escape the quotes, so it looks like this:
+To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-```powershell
-chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
-```
+- "wallet_type" becomes \"wallet_type\"
+- "nft_wallet" becomes \"nft_wallet\"
+- etc
 
 </details>
 
@@ -142,3 +142,275 @@ Cancel an offer with a specific identifier.
 async def cancel_offer(self, trade_id: bytes32, fee=uint64(0), secure: bool = True):
   await self.fetch("cancel_offer", {"trade_id": trade_id.hex(), "secure": secure, "fee": fee})
 ```
+
+---
+
+### `get_notifications`
+
+Functionality: Obtain curent notifications
+
+Usage: chia rpc wallet [OPTIONS] get_notifications [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                                               |
+| :-------- | :------- | :---------------------------------------------------------------------------------------- |
+| ids       | False    | Set to receive notifications only from the specified IDs. [Default: receive from all IDs] |
+| start     | False    | The number corresponding to the first notification to list. [Default: the first notification]
+| end       | False    | The number corresponding to the last notification to list. [Default: the last notification]
+
+<details>
+<summary>Example</summary>
+
+If no parameters are set, then all notifications will be listed from all IDs:
+
+```json
+chia rpc wallet get_notifications
+```
+
+Response:
+
+```json
+{
+    "notifications": [
+        {
+            "amount": 10000000,
+            "id": "f74fb363fbdeef3f6bcf7a0664a8ef76ea3e5f22bb4ffc9a1f9ef23b9329ae28",
+            "message": "fadedcab"
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `delete_notifications`
+
+Functionality: Delete notifications, with the option to specify IDs from which to delete
+
+Usage: chia rpc wallet [OPTIONS] delete_notifications [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                                             |
+| :-------- | :------- | :-------------------------------------------------------------------------------------- |
+| ids       | False    | Set to delete notifications only from the specified IDs. [Default: delete from all IDs] |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet delete_notifications
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `send_notification`
+
+Functionality: Send a notification to a specified puzzle hash
+
+Usage: chia rpc wallet [OPTIONS] send_notification [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                         |
+| :-------- | :------- | :-------------------------------------------------- |
+| target    | True     | The puzzle hash you would like to send a message to |
+| message   | True     | The hex-encoded message you would like to send      |
+| amount    | True     | The number of mojos to include with this message    |
+| fee       | False    | An optional blockchain fee, in mojos                |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet send_notification '{"target": "8c436f983d5bcbdb92d6d029a4113da580f2fc43b943e92ddf06a9f54e5f5003", "message": "fadedcab", "amount": 10000000, "fee": 10000000}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "tx": {
+        "additions": [
+            {
+                "amount": 10000000,
+                "parent_coin_info": "0x7159b046aa0f1af65f561efe6ed1de0beb3341cc28a883892c9bc14d89115ed0",
+                "puzzle_hash": "0x201ef13f780295649cd7e2c8713c575b8dd2568463add6f8d3cfc6b3687d27bd"
+            },
+            {
+                "amount": 249979799998,
+                "parent_coin_info": "0x7159b046aa0f1af65f561efe6ed1de0beb3341cc28a883892c9bc14d89115ed0",
+                "puzzle_hash": "0x970afdde67983d39b55475fa1a6bb24eb23e9ba47681fb693e80dee8c9346a83"
+            }
+        ],
+        "amount": 10000000,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1667386486,
+        "fee_amount": 10000000,
+        "memos": {
+            "f74fb363fbdeef3f6bcf7a0664a8ef76ea3e5f22bb4ffc9a1f9ef23b9329ae28": "fadedcab"
+        },
+        "name": "0x749898b3efcd50882283fb879e80e42cd59340c41943832b4daf896b5e6e80e4",
+        "removals": [
+            {
+                "amount": 249999799998,
+                "parent_coin_info": "0xf634ab1fc513d90d63c7eed840eb49a034f804b2d910418614776333590aab8c",
+                "puzzle_hash": "0x8c436f983d5bcbdb92d6d029a4113da580f2fc43b943e92ddf06a9f54e5f5003"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0xb9db8ff2e29f00ec98b17019e13f11daea890a8ef82d1019b7655308c14623a0c15d37504b1e742d0f29132e6225c7f505a2c75f93ea0940f50615c3b83c2b851c5a76f5f027c8d823c85df7bea57e3dd702f03e2d8997173c1bb4ca64b97b87",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 249999799998,
+                        "parent_coin_info": "0xf634ab1fc513d90d63c7eed840eb49a034f804b2d910418614776333590aab8c",
+                        "puzzle_hash": "0x8c436f983d5bcbdb92d6d029a4113da580f2fc43b943e92ddf06a9f54e5f5003"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0acc98d7c361cb95a6d16a2ee6a5dccb55d3beab9e7dbb52ebd7e4a94a8290166cf8e745d67a6eb36de6687141da09dccff018080",
+                    "solution": "0xff80ffff01ffff33ffa0201ef13f780295649cd7e2c8713c575b8dd2568463add6f8d3cfc6b3687d27bdff8400989680ffffa08c436f983d5bcbdb92d6d029a4113da580f2fc43b943e92ddf06a9f54e5f5003ff84fadedcab8080ffff33ffa0970afdde67983d39b55475fa1a6bb24eb23e9ba47681fb693e80dee8c9346a83ff853a33f509be80ffff34ff840098968080ffff3cffa0ef1272dc555d2fa0b17eb8a2d50dc507ce1f873de3443f3b7e36a3c802b0863b80ffff3dffa0a2d1d50e1bf8bd6f08e02885631ea6cbe7aa91d9de9809b5c37a7858fc0ad94b8080ff8080"
+                },
+                {
+                    "coin": {
+                        "amount": 10000000,
+                        "parent_coin_info": "0x7159b046aa0f1af65f561efe6ed1de0beb3341cc28a883892c9bc14d89115ed0",
+                        "puzzle_hash": "0x201ef13f780295649cd7e2c8713c575b8dd2568463add6f8d3cfc6b3687d27bd"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff06ffff01ff808080ff808080ffff04ffff01ff333cff018080ffff04ffff01a08c436f983d5bcbdb92d6d029a4113da580f2fc43b943e92ddf06a9f54e5f5003ffff04ffff018400989680ff01808080",
+                    "solution": "0x80"
+                }
+            ]
+        },
+        "to_address": "xch1yq00z0mcq22kf8xhuty8z0zhtwxay45yvwkad7xnelrtx6ray77sshkp7r",
+        "to_puzzle_hash": "0x201ef13f780295649cd7e2c8713c575b8dd2568463add6f8d3cfc6b3687d27bd",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 1
+    }
+}
+```
+
+</details>
+
+---
+
+### `sign_message_by_address`
+
+Functionality: Sign a message using an XCH address without incurring an on-chain transaction
+
+Usage: chia rpc wallet [OPTIONS] sign_message_by_address [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                           |
+| :-------- | :------- | :-------------------------------------------------------------------- |
+| address   | True     | The address to use for signing. Must possess the key for this address |
+| message   | True     | The message to include with the signature                             |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet sign_message_by_address '{"address":"xch1q94gd4hd62ecx08d0kuagmp5cr8umrwtcvatfupmd7uyzhuf4c4sy2zd46", "message":"test"}'
+```
+
+Response:
+
+```json
+{
+    "pubkey": "814612ec24a4957cf38ee5f5d5bc544820575375d7997da12c07f3f09215a178cfa76f151edba4c0ae40b66a97a6275e",
+    "signature": "a10234b38cc962f9678882f18885fee23a288c389bc0145588f7000bca12b55fcfaffff0cdd4ef7f136f8aab571ddd2e089b281ae267347fb20225d86490e91fbedad59ba9d38f9308f251070ea1260909dd69133273a49650749cfe6ff96d40",
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `sign_message_by_id`
+
+Functionality: Sign a message using a DID or NFT ID without incurring an on-chain transaction
+
+Usage: chia rpc wallet [OPTIONS] sign_message_by_id [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                            |
+| :-------- | :------- | :--------------------------------------------------------------------- |
+| address   | True     | The DID or NFT ID to use for signing. Must possess the key for this ID |
+| message   | True     | The message to include with the signature                              |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet sign_message_by_id '{"id":"nft12dfld077vn3ywp4vdx9ljg96k89kpr6jlqwkm7lgaf3g8jwn2l4q6eytqs", "message":"test"}'
+```
+
+Response:
+
+```json
+{
+    "pubkey": "a5b35d3370745ae7634022ddd970379b4ed4acdd2d34622f1dfdf2b9923b16ac6e8b317abcf1cc8beb1e882d341e4458",
+    "signature": "843deb871383889bfb8b9b22c0137e9b12cef875e27c998a3def6aa13c9340e2036ae90bbbb9a78894572319bf0fedbc08057849882ca6723834a99bf0e97a5e9f9702c5a02a64434b3550922c488f957036d19af2be2c92eb84c1d5d4f8eba6",
+    "success": true
+}
+```
+
+</details>
+
+---
