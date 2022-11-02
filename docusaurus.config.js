@@ -11,15 +11,6 @@
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
     projectName: '{{ REPOSITORY_NAME }}',
-    plugins: [
-      [
-        require.resolve('@easyops-cn/docusaurus-search-local'),
-        {
-          hashed: true,
-          language: ['en', 'zh'],
-        },
-      ],
-    ],
     i18n: {
       defaultLocale: 'en',
       locales: ['en', 'zh'],
@@ -151,5 +142,18 @@
           additionalLanguages: ['powershell', 'lisp'],
         },
       }),
+      themes: [
+        [
+          "@easyops-cn/docusaurus-search-local",
+          /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+          ({
+            hashed: true,
+            language: ["en", "zh"],
+            highlightSearchTermsOnTargetPage: true,
+            explicitSearchResultPath: true,
+            docsRouteBasePath: "/"
+          }),
+        ],
+      ],
   }
 );

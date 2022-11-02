@@ -19,7 +19,7 @@
     "@docusaurus/core": "^2.1.0",
     "@docusaurus/plugin-google-gtag": "^2.1.0",
     "@docusaurus/preset-classic": "^2.1.0",
-    "@easyops-cn/docusaurus-search-local": "^0.21.4",
+    "@easyops-cn/docusaurus-search-local": "^0.33.5",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^6.5.0",
     "clsx": "^1.1.1",
