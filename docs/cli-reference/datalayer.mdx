@@ -310,7 +310,7 @@ Options:
 
 | Short Command | Long Command    | Type    | Required | Description                                                                                                 |
 | :------------ | :-------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
-| -i            | --id            | TEXT    | True     | The coin_id of the mirror to delete (obtainable from the [get_mirrors](#get_mirrors) command)               |
+| -c            | --coin_id       | TEXT    | True     | The coin_id of the mirror to delete (obtainable from the [get_mirrors](#get_mirrors) command)               |
 | -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                    |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
@@ -319,13 +319,13 @@ Options:
 <summary>Example</summary>
 
 ```bash
-chia data delete_mirror -i b5756487c17fe3a2628e45a9d3d42e89231af718bb1735e6c8441e07ec005f9d -m 0.000001
+chia data delete_mirror -c b5756487c17fe3a2628e45a9d3d42e89231af718bb1735e6c8441e07ec005f9d -m 0.000001
 ```
 
 Response:
 
 ```
-None
+{'success': True}
 ```
 
 </details>
