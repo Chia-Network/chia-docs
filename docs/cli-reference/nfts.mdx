@@ -129,8 +129,8 @@ Options:
 | -ra           | --royalty-address             | TEXT    | False    | Royalty address                                                                                          |
 | -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75% [default: 0]         |
 | -ta           | --target-address              | TEXT    | False    | Target address                                                                                           |
-| -sn           | --series-number               | INTEGER | False    | NFT series number [default: 1]                                                                           |
-| -st           | --series-total                | INTEGER | False    | NFT series total number [default: 1]                                                                     |
+| -en           | --edition-number               | INTEGER | False    | NFT edition number [default: 1]                                                                           |
+| -et           | --edition-total                | INTEGER | False    | NFT edition total number [default: 1]                                                                     |
 | -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default       |
 | -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
@@ -182,7 +182,7 @@ NFT minted Successfully with spend bundle:
    <summary>Example 2 - Mint an NFT that is associated with a DID. Specify all URLs and hashes, along with a royalty of 3%</summary>
 
 ```bash
-chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h -ta txch1z456h8t2wyzhrpzz8mf844zd6jc6tf7stlwggdf57hm3f3mh6cmqf2kzv2 -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -st 1337 -sn 42 -rp 300
+chia wallet nft mint -f 2522319413 -i 2 -ra txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h -ta txch1z456h8t2wyzhrpzz8mf844zd6jc6tf7stlwggdf57hm3f3mh6cmqf2kzv2 -u https://images.pexels.com/photos/12051365/pexels-photo-12051365.jpeg -nh fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f -mu https://metadata_example.com -mh 868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e -lu https://license_example.com -lh 358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82 -et 1337 -en 42 -rp 300
 ```
 
 Response:
@@ -239,8 +239,8 @@ Royalty puzhash:           None
 NFT content hash:          fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f
 Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
 License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
-NFT series total:          1337
-Current NFT number in the series: 42
+NFT edition total:          1337
+Current NFT edition number: 42
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1126632
 Inner puzzle supports DID: False
@@ -339,8 +339,8 @@ Royalty puzhash:           None
 NFT content hash:          fca3e8ddae9bf8dc7d4100f36d15395744650b3751420cc647fcf973243b533f
 Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
 License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
-NFT series total:          1337
-Current NFT number in the series: 42
+NFT edition total:          1337
+Current NFT edition number: 42
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1126632
 Inner puzzle supports DID: False
@@ -379,8 +379,8 @@ Royalty puzhash:           1aaf838ba6d832bb3b80114b3805ddf37f7990dae70df59e031c1
 NFT content hash:          14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
 Metadata hash:             868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e
 License hash:              358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82
-NFT series total:          1337
-Current NFT number in the series: 42
+NFT edition total:          1337
+Current NFT edition number: 42
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1126708
 Inner puzzle supports DID: True
@@ -438,8 +438,8 @@ Royalty puzhash:           None
 NFT content hash:          14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
 Metadata hash:
 License hash:
-NFT series total:          1
-Current NFT number in the series: 1
+NFT edition total:          1
+Current NFT edition number: 1
 Metadata updater puzhash:  fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
 NFT minting block height:  1127233
 Inner puzzle supports DID: False
