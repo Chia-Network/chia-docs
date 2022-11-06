@@ -57,11 +57,9 @@ Request Parameters:
 | license_hash               | False    | The hash of the NFT's license                                                                                                                                                                        |
 | royalty_address            | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                     |
 | royalty_percentage         | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0    |
-| target_address             | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                      |
-| series_number (deprecated) | False    | Beginning in Chia version 1.5, please use the `edition_number` parameter instead of this one                                                                                                         |
-| series_total (deprecated)  | False    | Beginning in Chia version 1.5, please use the `edition_count` RPC instead of this one                                                                                                                |
+| target_address             | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                      |                                                                                                         |
 | edition_number             | False    | If this NFT has multiple editions (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT.                                                               |
-| edition_count              | False    | If this NFT has multiple editions, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `edition_number` parameter was also used |
+| edition_total              | False    | If this NFT has multiple editions, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `edition_number` parameter was also used |
 | fee                        | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                          |
 
 <details>
@@ -136,7 +134,7 @@ chia rpc wallet nft_mint_nft '{
   "royalty_percentage": 300,
   "target_address": "txch1teztz9rd5edgdgrzt3eenrq5mktznuapm7sx27rp4uvc97e8l28sxu0x2d",
   "edition_number": 1,
-  "edition_count": 5
+  "edition_total": 5
 }'
 ```
 
@@ -281,7 +279,7 @@ Response:
             "royalty_percentage": null,
             "royalty_puzzle_hash": null,
             "edition_number": 1,
-            "edition_count": 1,
+            "edition_total": 1,
             "supports_did": false,
             "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
         }
@@ -720,8 +718,8 @@ Request Parameters:
 
 | Parameter | Required | Description                                          |
 | :-------- | :------- | :--------------------------------------------------- |
-| wallet_id | True     | The Wallet ID of the NFT from which to retrieve info |
 | coin_id   | True     | The coin ID of the NFT about which to retrieve info  |
+| wallet_id | False    | The Wallet ID of the NFT from which to retrieve info |
 
 :::info
 `coin_id` can refer to the specific `nft_coin_id` pertaining to this NFT, or to the `launcher_id`, or to the bech32m encoded launcher id
@@ -766,7 +764,7 @@ Response:
         "royalty_percentage": 300,
         "royalty_puzzle_hash": "0x0fe4e859760b755980c9a92c91459b75eb4f02135ace8d2731eca0e89ceef1fb",
         "edition_number": 1,
-        "edition_count": 5,
+        "edition_total": 5,
         "supports_did": true,
         "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
     },
@@ -882,7 +880,7 @@ Response:
             "royalty_percentage": 300,
             "royalty_puzzle_hash": "0x0fe4e859760b755980c9a92c91459b75eb4f02135ace8d2731eca0e89ceef1fb",
             "edition_number": 1,
-            "edition_count": 5,
+            "edition_total": 5,
             "supports_did": true,
             "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
         }
