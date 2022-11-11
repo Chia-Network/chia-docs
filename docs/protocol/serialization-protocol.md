@@ -34,9 +34,9 @@ An item is one of:
 A streamable must be a Tuple at the root level. Iters are serialized in the following way:
 
 1. A tuple of x items is serialized by appending the serialization of each item.
-2. A List is serialized into a 4-byte prefix (number of items) and the serialization of each item.
+2. A List is serialized into a 4-byte prefix (number of items) in big endian followed by the serialization of each item.
 3. An Optional is serialized into a 1-byte prefix of 0x00 or 0x01, and if it's one, it's followed by the serialization of the item.
-4. A Custom item is serialized by calling the .parse method, passing in the stream of bytes into it. And example is a CLVM program.
+4. A Custom item is serialized by calling the .parse method, passing in the stream of bytes into it. An example is a CLVM program, which has its own serialization format.
 
 This format can be implemented very easily, and allows us to hash objects like headers and proofs of space, without complex serialization logic.
 
