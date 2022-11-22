@@ -1205,6 +1205,71 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 ```
 
+---
+
+### `get_fee_estimate`
+
+Functionality: Obtain an estimated fee for one or more targeted times for a transaction to be included in the blockchain. This RPC takes into account the current size of the mempool relative to its maximum size, as well as the fee in mojos per cost (5 by default).
+
+Usage: chia rpc wallet [OPTIONS] get_fee_estimate [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter    | Type           | Required | Description                                                                                                                        |
+| :----------- | :------------- | :------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| spend_bundle | FILENAME       | True*    | The spend bundle file (in json format) for which to estimate the fee (* Exactly one of `spend_bundle` or `cost` must be specified) |
+| cost         | INTEGER        | True*    | The CLVM cost for which to estimate the fee (* Exactly one of `spend_bundle` or `cost` must be specified)                          |
+| target_times | INTEGER ARRAY  | True     | An array of the targeted times for transaction inclusion, in seconds. Each targeted time must be at least 0                        |
+
+If `spend_bundle` is specified, then the cost of that spend bundle will first be obtained, followed by obtaining the estimated fee for that cost. Therefore, it is computationally cheaper to use `cost` than it is to use `spend_bundle`, other other factors being equal.
+
+<details>
+<summary>Example</summary>
+
+Obtain a fee estimate for a spendbundle with a CLVM cost of 20 million. Targeted inclusion times are 1, 5, and 10 minutes.
+
+Note that this example was completed at a time when the mempool was not busy, so the fee estimates are all `0`.
+
+```json
+chia rpc full_node get_fee_estimate '{"cost":20000000, "target_times": [60, 300, 600]}'
+```
+
+Response:
+
+```json
+{
+    "current_fee_rate": 0,
+    "estimates": [
+        0,
+        0,
+        0
+    ],
+    "full_node_synced": true,
+    "last_peak_timestamp": 1669102616,
+    "mempool_max_size": 550000000000,
+    "mempool_size": 252581708,
+    "node_time_utc": 1669102646,
+    "peak_height": 2859331,
+    "success": true,
+    "target_times": [
+        60,
+        300,
+        600
+    ]
+}
+```
+
+</details>
+
+---
+
 ## get_routes
 
 Show all RPC endpoints. This endpoint is lightweight and can be used as a health check. However, a better option may be `healthz` (below).
