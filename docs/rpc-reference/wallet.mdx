@@ -568,44 +568,6 @@ Response:
 
 ---
 
-### `get_initial_freeze_period`
-
-[todo]
-
-Functionality: 
-
-Usage: chia rpc wallet [OPTIONS] get_initial_freeze_period [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
-
-<details>
-<summary>Example</summary>
-
-```json
-
-```
-
-Response:
-
-```json
-
-```
-
-</details>
-
----
-
 ### `get_network_info`
 
 Functionality: Show the current network (eg `mainnet`) and network prefix (eg `XCH`)
@@ -1565,9 +1527,7 @@ Request failed: {'error': 'Transaction for 1000 is greater than spendable balanc
 
 ### `get_spendable_coins`
 
-[todo]
-
-Functionality: 
+Functionality: Get all spendable coins, with various possible filters
 
 Usage: chia rpc wallet [OPTIONS] get_spendable_coins [REQUEST]
 
@@ -2027,9 +1987,7 @@ Response:
 
 ### `verify_signature`
 
-[todo]
-
-Functionality: 
+Functionality: Given a public key, message and signature, verify if it is valid.
 
 Usage: chia rpc wallet [OPTIONS] verify_signature [REQUEST]
 
@@ -2042,24 +2000,14 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag      | Type | Required | Description                                      |
+| :-------- | :--- | :------- | :----------------------------------------------- |
+| pubkey    | TEXT | True     | The public key of the signature to verify        |
+| message   | TEXT | True     | The message to verify                            |
+| signature | TEXT | True     | The signature to verify                          |
+| address   | TEXT | True     | The address, which must be derived from `pubkey` |
 
-<details>
-<summary>Example</summary>
-
-```json
-
-```
-
-Response:
-
-```json
-
-```
-
-</details>
+NOTE: Showing an example for this RPC is still [todo]
 
 ---
 
@@ -2067,9 +2015,7 @@ Response:
 
 ### `cat_set_name`
 
-[todo]
-
-Functionality: 
+Functionality: Rename a CAT wallet
 
 Usage: chia rpc wallet [OPTIONS] cat_set_name [REQUEST]
 
@@ -2082,21 +2028,25 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag      | Type   | Required | Description                                              |
+| :-------- | :----- | :------- | :------------------------------------------------------- |
+| wallet_id | NUMBER | True     | The ID of the wallet whose name you would like to change |
+| name      | TEXT   | True     | The new name for the wallet                              |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet cat_set_name '{"wallet_id": 2, "name": "New CAT Wallet"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true,
+    "wallet_id": 2
+}
 ```
 
 </details>
@@ -2105,9 +2055,7 @@ Response:
 
 ### `cat_asset_id_to_name`
 
-[todo]
-
-Functionality: 
+Functionality: Retrieve a CAT's name from its ID
 
 Usage: chia rpc wallet [OPTIONS] cat_asset_id_to_name [REQUEST]
 
@@ -2120,21 +2068,25 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag     | Type | Required | Description                                                                                                                                 |
+| :------- | :--- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| asset_id | TEXT | True     | The ID of the CAT whose name you would like to retrieve. This CAT must be listed in your `DEFAULT_CATS`, ie the CATs your wallet recognizes |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet cat_asset_id_to_name '{"asset_id": "1f9fd0d4a1221241df986f042e014c056571062c82a5ba9b88c866c92808e1a9"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "name": "New CAT Wallet",
+    "success": true,
+    "wallet_id": 2
+}
 ```
 
 </details>
@@ -2143,9 +2095,7 @@ Response:
 
 ### `cat_get_name`
 
-[todo]
-
-Functionality: 
+Functionality: Get the name of a CAT associated with a wallet ID
 
 Usage: chia rpc wallet [OPTIONS] cat_get_name [REQUEST]
 
@@ -2158,21 +2108,25 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag      | Type   | Required | Description                                                    |
+| :-------- | :----- | :------- | :------------------------------------------------------------- |
+| wallet_id | NUMBER | True     | The wallet ID of the CAT whose name you would like to retrieve |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet cat_get_name '{"wallet_id": 2}'
 ```
 
 Response:
 
 ```json
-
+{
+    "name": "New CAT Wallet",
+    "success": true,
+    "wallet_id": 2
+}
 ```
 
 </details>
@@ -2181,9 +2135,7 @@ Response:
 
 ### `get_stray_cats`
 
-[todo]
-
-Functionality: 
+Functionality: Get a list of all unacknowledged CATs
 
 Usage: chia rpc wallet [OPTIONS] get_stray_cats [REQUEST]
 
@@ -2194,23 +2146,22 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters:
-
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+Request Parameters: None
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet get_stray_cats
 ```
 
 Response:
 
 ```json
-
+{
+    "stray_cats": [],
+    "success": true
+}
 ```
 
 </details>
@@ -2219,9 +2170,7 @@ Response:
 
 ### `cat_spend`
 
-[todo]
-
-Functionality: 
+Functionality: Send CAT funds to another wallet
 
 Usage: chia rpc wallet [OPTIONS] cat_spend [REQUEST]
 
@@ -2234,32 +2183,113 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag                 | Type         | Required | Description                                                                                      |
+| :------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                  |
+| additions            | TEXT ARRAY   | True*    | *Must include either `additions` or `amount`. A list of puzzle hashes and amounts to be included |
+| amount               | NUMBER       | True*    | *Must include either `additions` or `amount`. The number of mojos to send                        |
+| inner_address        | TEXT         | True     | The destination address                                                                          |
+| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                       |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                     |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                     |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                |
+| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                    |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                             |
+
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet cat_spend '{"wallet_id": 7, "amount": 1, "inner_address": "xch19mpn09rnn62nlur7h05naeeq2m6lprdr48f3cgt9j6s8a2h3kk6qdydujd", "fee": 1}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true,
+    "transaction": {
+        "additions": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0x60a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360",
+                "puzzle_hash": "0xfe6329b1d5aa73c22d6f9f3c76e97c9c0b07af5799ff70b023b77ccf87cd0e2c"
+            },
+            {
+                "amount": 999999,
+                "parent_coin_info": "0x60a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360",
+                "puzzle_hash": "0xad5de77c7da1316b9b72708d17dbb8937855d740ebaf85669b8bd925275e8d49"
+            },
+            {
+                "amount": 39261664,
+                "parent_coin_info": "0x12c33763d41055dd71a7a5676ced26bef08e059255c16e59f76033f98dcfedd4",
+                "puzzle_hash": "0x43a21683130c97ed272becd70e02d60f1b86a180fd759e28bf0d94f7eedd0fa5"
+            }
+        ],
+        "amount": 1,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669274635,
+        "fee_amount": 1,
+        "memos": {
+            "18ffd7f3bbadda1017218bb535caf7393190222ecf5fbdf04ed5f6855926d6dd": "2ec33794739e953ff07ebbe93ee72056f5f08da3a9d31c216596a07eaaf1b5b4"
+        },
+        "name": "0xb9df7b15f7a6b8e7b3903ae3834308a8a3d04943da96bff58b39c112e42b73ab",
+        "removals": [
+            {
+                "amount": 1000000,
+                "parent_coin_info": "0xe752c4dadffe6edcb14e83646e6d4d53f7b3d8d74d2c20ed138aa35f8230ceb1",
+                "puzzle_hash": "0x2a161b188eb77baa486653398d8bdc2194ff946f9a9b1d6f55f1ab0017623aa9"
+            },
+            {
+                "amount": 39261665,
+                "parent_coin_info": "0xeb17e80fcb72f15bfb28924f0bcd684df626646dca282bc88098cb0d59ffe1bb",
+                "puzzle_hash": "0x057539dee39ab1deddb31f72602e4a280c27e84c53ab92122735a044916619bb"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0x961224367d0bb9f61c3cdc306266a00141dc10c895a0702a73a690799870657e365f05c629f99acf6ef5081c03e352af0b3d8701e208cbf4603d59b5cb8460f0036729d5c6938898a8f44114f62b75c6db371c8fc857fa8188502ecc4cdd81f2",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 1000000,
+                        "parent_coin_info": "0xe752c4dadffe6edcb14e83646e6d4d53f7b3d8d74d2c20ed138aa35f8230ceb1",
+                        "puzzle_hash": "0x2a161b188eb77baa486653398d8bdc2194ff946f9a9b1d6f55f1ab0017623aa9"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ff5effff04ff02ffff04ffff04ff05ffff04ffff0bff34ff0580ffff04ff0bff80808080ffff04ffff02ff17ff2f80ffff04ff5fffff04ffff02ff2effff04ff02ffff04ff17ff80808080ffff04ffff02ff2affff04ff02ffff04ff82027fffff04ff82057fffff04ff820b7fff808080808080ffff04ff81bfffff04ff82017fffff04ff8202ffffff04ff8205ffffff04ff820bffff80808080808080808080808080ffff04ffff01ffffffff3d46ff02ff333cffff0401ff01ff81cb02ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff7cffff0bff34ff2480ffff0bff7cffff0bff7cffff0bff34ff2c80ff0980ffff0bff7cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ffff02ffff03ff0bffff01ff02ffff03ffff09ffff02ff2effff04ff02ffff04ff13ff80808080ff820b9f80ffff01ff02ff56ffff04ff02ffff04ffff02ff13ffff04ff5fffff04ff17ffff04ff2fffff04ff81bfffff04ff82017fffff04ff1bff8080808080808080ffff04ff82017fff8080808080ffff01ff088080ff0180ffff01ff02ffff03ff17ffff01ff02ffff03ffff20ff81bf80ffff0182017fffff01ff088080ff0180ffff01ff088080ff018080ff0180ff04ffff04ff05ff2780ffff04ffff10ff0bff5780ff778080ffffff02ffff03ff05ffff01ff02ffff03ffff09ffff02ffff03ffff09ff11ff5880ffff0159ff8080ff0180ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff0dffff04ff0bffff04ffff04ff81b9ff82017980ff808080808080ffff01ff02ff7affff04ff02ffff04ffff02ffff03ffff09ff11ff5880ffff01ff04ff58ffff04ffff02ff76ffff04ff02ffff04ff13ffff04ff29ffff04ffff0bff34ff5b80ffff04ff2bff80808080808080ff398080ffff01ff02ffff03ffff09ff11ff7880ffff01ff02ffff03ffff20ffff02ffff03ffff09ffff0121ffff0dff298080ffff01ff02ffff03ffff09ffff0cff29ff80ff3480ff5c80ffff01ff0101ff8080ff0180ff8080ff018080ffff0109ffff01ff088080ff0180ffff010980ff018080ff0180ffff04ffff02ffff03ffff09ff11ff5880ffff0159ff8080ff0180ffff04ffff02ff26ffff04ff02ffff04ff0dffff04ff0bffff04ff17ff808080808080ff80808080808080ff0180ffff01ff04ff80ffff04ff80ff17808080ff0180ffff02ffff03ff05ffff01ff04ff09ffff02ff56ffff04ff02ffff04ff0dffff04ff0bff808080808080ffff010b80ff0180ff0bff7cffff0bff34ff2880ffff0bff7cffff0bff7cffff0bff34ff2c80ff0580ffff0bff7cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ffff04ffff04ff30ffff04ff5fff808080ffff02ff7effff04ff02ffff04ffff04ffff04ff2fff0580ffff04ff5fff82017f8080ffff04ffff02ff26ffff04ff02ffff04ff0bffff04ff05ffff01ff808080808080ffff04ff17ffff04ff81bfffff04ff82017fffff04ffff02ff2affff04ff02ffff04ff8204ffffff04ffff02ff76ffff04ff02ffff04ff09ffff04ff820affffff04ffff0bff34ff2d80ffff04ff15ff80808080808080ffff04ff8216ffff808080808080ffff04ff8205ffffff04ff820bffff808080808080808080808080ff02ff5affff04ff02ffff04ff5fffff04ff3bffff04ffff02ffff03ff17ffff01ff09ff2dffff02ff2affff04ff02ffff04ff27ffff04ffff02ff76ffff04ff02ffff04ff29ffff04ff57ffff04ffff0bff34ff81b980ffff04ff59ff80808080808080ffff04ff81b7ff80808080808080ff8080ff0180ffff04ff17ffff04ff05ffff04ff8202ffffff04ffff04ffff04ff78ffff04ffff0eff5cffff02ff2effff04ff02ffff04ffff04ff2fffff04ff82017fff808080ff8080808080ff808080ffff04ffff04ff20ffff04ffff0bff81bfff5cffff02ff2effff04ff02ffff04ffff04ff15ffff04ffff10ff82017fffff11ff8202dfff2b80ff8202ff80ff808080ff8080808080ff808080ff138080ff80808080808080808080ff018080ffff04ffff01a037bef360ee858133b69d595a906dc45d01af50379dad515eb9518abb7c1d2a7affff04ffff01a00570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08059810f9c69bc54f8aeebafdbb47faca702105ba15f59152a80168944a751a1042a7affb1a09fc5379c4334fcd2d3f0ff018080ff0180808080",
+                    "solution": "0xffff80ffff01ffff33ffa02ec33794739e953ff07ebbe93ee72056f5f08da3a9d31c216596a07eaaf1b5b4ff01ffffa02ec33794739e953ff07ebbe93ee72056f5f08da3a9d31c216596a07eaaf1b5b48080ffff33ffa0ee1d5710dcd99fd96ad38174bb4d0f87f04031abe15dc28d84415a251c67f1b9ff830f423f80ffff3cffa05e300a78dd793d53afb2a59039ea5f9661b9114b6ff006af9a5f9fdd088424948080ff8080ffffa094a128de0450c01d3d9e4b68516a2ec09fd219a3fe371d20ebbc47dd2f092faeffa0bae24162efbd568f89bc7a340798a6118df0189eb9e3f8697bcea27af99f8f79ff830f424080ffa060a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360ffffa0e752c4dadffe6edcb14e83646e6d4d53f7b3d8d74d2c20ed138aa35f8230ceb1ffa02a161b188eb77baa486653398d8bdc2194ff946f9a9b1d6f55f1ab0017623aa9ff830f424080ffffa0e752c4dadffe6edcb14e83646e6d4d53f7b3d8d74d2c20ed138aa35f8230ceb1ffa0b361e26773b161ca94291a54353dfd7e257f18a8e9abbb49ee89718e8c8bfc0bff830f424080ff80ff8080"
+                },
+                {
+                    "coin": {
+                        "amount": 39261665,
+                        "parent_coin_info": "0xeb17e80fcb72f15bfb28924f0bcd684df626646dca282bc88098cb0d59ffe1bb",
+                        "puzzle_hash": "0x057539dee39ab1deddb31f72602e4a280c27e84c53ab92122735a044916619bb"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08ed87f7cda15feadd676e2677f4bc162176c408910dcbf29d79cfe6d1aff1c2f1d2897ab4e29f90cb91f605dc575705aff018080",
+                    "solution": "0xff80ffff01ffff33ffa043a21683130c97ed272becd70e02d60f1b86a180fd759e28bf0d94f7eedd0fa5ff84025715e080ffff34ff0180ffff3cffa09840c31ad16cb371bdcaf0433554ff0e7a648e2517f530d004f2a08fa9e3ee6b80ffff3dffa0469663a0bb12424a04b8b0331c09a7887f23b50e64fd9cca4afac9d920d8246a8080ff8080"
+                }
+            ]
+        },
+        "to_address": "xch19mpn09rnn62nlur7h05naeeq2m6lprdr48f3cgt9j6s8a2h3kk6qdydujd",
+        "to_puzzle_hash": "0x2ec33794739e953ff07ebbe93ee72056f5f08da3a9d31c216596a07eaaf1b5b4",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 7
+    },
+    "transaction_id": "0xb9df7b15f7a6b8e7b3903ae3834308a8a3d04943da96bff58b39c112e42b73ab"
+}
 ```
 
 </details>
 
 ---
-
+   
 ### `cat_get_asset_id`
 
-[todo]
-
-Functionality: 
+Functionality: Retrieve a the asset ID from a CAT wallet
 
 Usage: chia rpc wallet [OPTIONS] cat_get_asset_id [REQUEST]
 
@@ -2272,36 +2302,36 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag      | Type   | Required | Description                                                  |
+| :-------- | :----- | :------- | :----------------------------------------------------------- |
+| wallet_id | NUMBER | True     | The wallet ID of the CAT whose ID you would like to retrieve |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet cat_get_asset_id '{"wallet_id": 2}'
 ```
 
 Response:
 
 ```json
-
+{
+    "asset_id": "1f9fd0d4a1221241df986f042e014c056571062c82a5ba9b88c866c92808e1a9",
+    "success": true,
+    "wallet_id": 2
+}
 ```
 
 </details>
 
 ---
 
+### `create_offer_for_ids`
 
+Functionality: Create a new offer
 
-### `get_offers_count`
-
-[todo]
-
-Functionality: 
-
-Usage: chia rpc wallet [OPTIONS] get_offers_count [REQUEST]
+Usage: chia rpc wallet [OPTIONS] create_offer_for_ids [REQUEST]
 
 Options:
 
@@ -2312,21 +2342,439 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag            | Type    | Required | Description                                                     |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------- |
+| offer           | TEXT    | True     | The offer to create                                             |
+| validate_only   | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false] |
+| driver_dict     | DICT    | True     | A dictionary of keys and values associated with the offer       |
+| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none] |
+| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none] |
+| solver          | TEXT    | False    | A marshalled solver                                             |
+| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                            |
+
+NOTE: Showing an example for this RPC is still [todo]
+
+---
+
+### `get_offer_summary`
+
+Functionality: Show a summary of an offer
+
+Usage: chia rpc wallet [OPTIONS] get_offer_summary [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag     | Type    | Required | Description                                                 |
+| :------- | :------ | :------- | :---------------------------------------------------------- |
+| offer    | TEXT    | True     | The offer for which to retrieve a summary                   |
+| advanced | BOOLEAN | False    | Set to `true` to show a detailed summary [Default: `false`] |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet get_offer_summary '{"offer": "offer1qqzh3wcuu2rykcmqvpsxygqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65y2cmwttg00ht60xnjly6zhduf0h9hmedaq67yh89uafrzctmgrka06llmvv9uhze9tqqpd38v8zcv4x32hhe7wueh4t8vd9cn6uhqk7vejppfygfgtje8usle5c5ukqmlw72va4pv8mweg5ztmcakwex27z9uamchklr2mtk7ax4tadcte8hq98380vuxcnfkjxndkjxrdk68rdk69rdk68ga95mfr2xhump4wrstastammnc2aav3hrd4ej8gexus0gje2urasruamdvrwvas9wm56mykj42pj6cp0vlymr5daw8k9e780kxd46wsh9u4e4tk7dw49w2epylahdz44aq2kj4ypthrsme4qwdncgdnwhlcw2amlhhsl6z0wlca7573y7knevrjjz4kpg80gnrlmlx7q6lh2rdtll6j6kh72t66vmwn25gwh5eqsd6wpqc6yqkn9luteq6nz0hh7yln3r7ct9yqecrfh95lyzace38xayytnu7x2fl4whv40e6etxehv03mwzdlnfttaxckmea7xle3hs0tzvlmdlch7qjzul97gymhjsew40ef2vmf6m8m4ntw0x08ceu7xkxm0fxjut754n9qd2anljlwpk49z4472n65af226w03fha2j7hyshuuh8gdr68z3a67atjcnl07vswj0clutncre6wt4la0au8vdlmxjn7fe8mqald7l8rh2hgls66uxhutuzdqmnr0ljlkyulq5t67rru25jnxjjyxntvllt2n4j244utj7ahu6avas47nlhrah2p5uursd0uteccgjtncy6e62uvn6tathamz0m0rfweuaaq5mevp6klth99dhf0f6hcqksxfpqmvhlpvyrtj2qjmvnwyr96saajuyp8vm70h7vhtw93vkmj7llmquru84g0vv80fd3eg65vhfrlm5yrgzs4pa95el4wa6w9nfkgvvazzek9eef4kd6zr6rjue6culxd8wdg5dglrevft9lc7hfljuc70hx9uq587fl64gp3s467zj58nvdaawuet3lvft8hvynv5j83tlg5phaeteme079hw6xn5dn54tm602ln2vgknvammql8fe7zuqzvfq20gc9s4d4", "advanced": true}'
 ```
 
 Response:
 
 ```json
+{
+    "success": true,
+    "summary": {
+        "fees": 0,
+        "infos": {
+            "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
+                "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
+                "type": "CAT"
+            }
+        },
+        "offered": {
+            "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
+        },
+        "requested": {
+            "xch": 1000000000000
+        }
+    }
+}
+```
 
+</details>
+
+---
+
+### `check_offer_validity`
+
+Functionality: Check if an offer is valid
+
+Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type | Required | Description                        |
+| :---- | :--- | :------- | :--------------------------------- |
+| offer | TEXT | True     | The contents of the offer to check |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet check_offer_validity '{"offer": "offer1qqzh3wcuu2rykcmqvpsxygqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65y2cmwttg00ht60xnjly6zhduf0h9hmedaq67yh89uafrzctmgrka06llmvv9uhze9tqqpd38v8zcv4x32hhe7wueh4t8vd9cn6uhqk7vejppfygfgtje8usle5c5ukqmlw72va4pv8mweg5ztmcakwex27z9uamchklr2mtk7ax4tadcte8hq98380vuxcnfkjxndkjxrdk68rdk69rdk68ga95mfr2xhump4wrstastammnc2aav3hrd4ej8gexus0gje2urasruamdvrwvas9wm56mykj42pj6cp0vlymr5daw8k9e780kxd46wsh9u4e4tk7dw49w2epylahdz44aq2kj4ypthrsme4qwdncgdnwhlcw2amlhhsl6z0wlca7573y7knevrjjz4kpg80gnrlmlx7q6lh2rdtll6j6kh72t66vmwn25gwh5eqsd6wpqc6yqkn9luteq6nz0hh7yln3r7ct9yqecrfh95lyzace38xayytnu7x2fl4whv40e6etxehv03mwzdlnfttaxckmea7xle3hs0tzvlmdlch7qjzul97gymhjsew40ef2vmf6m8m4ntw0x08ceu7xkxm0fxjut754n9qd2anljlwpk49z4472n65af226w03fha2j7hyshuuh8gdr68z3a67atjcnl07vswj0clutncre6wt4la0au8vdlmxjn7fe8mqald7l8rh2hgls66uxhutuzdqmnr0ljlkyulq5t67rru25jnxjjyxntvllt2n4j244utj7ahu6avas47nlhrah2p5uursd0uteccgjtncy6e62uvn6tathamz0m0rfweuaaq5mevp6klth99dhf0f6hcqksxfpqmvhlpvyrtj2qjmvnwyr96saajuyp8vm70h7vhtw93vkmj7llmquru84g0vv80fd3eg65vhfrlm5yrgzs4pa95el4wa6w9nfkgvvazzek9eef4kd6zr6rjue6culxd8wdg5dglrevft9lc7hfljuc70hx9uq587fl64gp3s467zj58nvdaawuet3lvft8hvynv5j83tlg5phaeteme079hw6xn5dn54tm602ln2vgknvammql8fe7zuqzvfq20gc9s4d4"}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "valid": true
+}
+```
+
+</details>
+
+---
+
+### `take_offer`
+
+Functionality: Take an offer
+
+Usage: chia rpc wallet [OPTIONS] take_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag            | Type    | Required | Description                                                            |
+| :-------------- | :------ | :------- | :--------------------------------------------------------------------- |
+| offer           | TEXT    | True     | The offer to create                                                    |
+| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for taking the offer [Default: none] |
+| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for taking the offer [Default: none] |
+| solver          | TEXT    | False    | A marshalled solver                                                    |
+| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                   |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet take_offer '{"offer": "offer1qqzh3wcuu2rykcmqvpsxvgqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65kfq0nl5ef86n4uv9hlnlhhqs4zu99cwjzf6fp675f8gne67qh42lhyhlxuemvtgqtwftqcjr4t524a70nhx9u2emrfwv7h9c94nxvsv2eqz2rujflx87vxp84jxh6hjnh0grq7mk29q6l78drkfjks408w79ahu6x6alhf420fw27fec0mufmmrp2y6d5sqmdksg6dksgcdk3gcdxn60gdx6gz347qcdtjuz7vxl7uu7zhtt50cmdwv32yfh9r7yx2hq7vylhvmrqmn8vrt7uxje4542svkkqtm8cxuar0tea3w0pmaend2n58e09wd2ahnr4ftjx2f8ldmg4d0gz4s4eq2acuz7vurnv7xrue4h7rkh7aaaa87snmh78038yf8447tqvks4dswpm6ycl7me8jxhu65m6al74k44lsj7hnxmy642z4exc8rxssgxx3qp5e0lzugx4hlada38auvlkqefpx2q6vm9c9nmlnjvfqfd3a9zaln6wf7y9hn4289cu9chjjha0wkmejcd56dmlaln80cakqe0jmln0uq58ek2uufhf9enazlz55e4nah0ntxhujdw03tmufvak7z09ckadt7gqj4t9laluraacee9z4ujekmy7e04w7h229nmtnnlul2ntkckge0rnvhvan4e42xtjzz07l7p7wsz8dlwll9mhv734uuj2t7hxlu0hesm6a7h29x7pfmjmrn0xgut0u0lstxcnr7j3vmjd8565g532cn2lwm5ad27vtzuh4dm8h0h29hk7460lcgx8txung0pl7pzxnyjpwhwjhrflj62flk7nkug7f7d8m04kurr09s2tmewvkd6u478yuqz6g75yramlqzsjvxxfxtaqdg5d0vnp5tmsumnlmx6ejudykahm7wm8uup3tn7rpa63d79x9992fhaud82s5dqwqgr5my703zjparwu8e2t6fedl2lvl0gvww3g73s9le8hqh3el00xma08qh3y6cku6vlu4jal0xh204xd07dymgtr0lfdnknmr8nhe0mhwalcj6pa4z2vux3qu3jc8mdhtmxl5uppk256uk6r794af5xfsuhxwp5a6sdcmwexlg5hhkgw3d66ycj42cc6l8lw3w4td8wu330lszmvzklqry5zxm8t34psew5z6g9k70lm0aaxkghx5afmhxqwtl7f9kycy9uhdhmdchlzesfphs89gmsz7c9nref02n4nau8h2hn7hdpg0sm4h0t9zrrnc6ajdev7s88a90lwpj6r2k782sz4kllpdn077hdvr7ua68g5e0e674h6e5008zvzavnra64c6v6p8nf33zkuulxsppk4ywx2wmdj0e66j82a8l5m4e5ajzw67dchhsuua9hafr3y4qcm2m0cthf8wf4ka2ts0m0hst0cjntnkfghphysfjm7egnych2mc3wly2827ln2ltqxv32wwkx7flukf7rg4tr25j38774tpq5lqc8l5tvv3mdjcl4llgyqrnekfxyz26de6"}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "trade_record": {
+        "accepted_at_time": 1669280704,
+        "coins_of_interest": [
+            {
+                "amount": 999999,
+                "parent_coin_info": "0x60a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360",
+                "puzzle_hash": "0xad5de77c7da1316b9b72708d17dbb8937855d740ebaf85669b8bd925275e8d49"
+            },
+            {
+                "amount": 39261664,
+                "parent_coin_info": "0x12c33763d41055dd71a7a5676ced26bef08e059255c16e59f76033f98dcfedd4",
+                "puzzle_hash": "0x43a21683130c97ed272becd70e02d60f1b86a180fd759e28bf0d94f7eedd0fa5"
+            },
+            {
+                "amount": 597987,
+                "parent_coin_info": "0x748a3eea780eabd2caa871783f3ce2ccecb1e3b50e5d4294371cb1075d6d7ab4",
+                "puzzle_hash": "0xc98b1f2aabd519a6318fdeaed832136f14c4517c4e32ae6be403cdec07e3ae1a"
+            }
+        ],
+        "confirmed_at_index": 0,
+        "created_at_time": 1669280704,
+        "is_my_offer": false,
+        "pending": {
+            "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 999999,
+            "unknown": 39261664
+        },
+        "sent": 0,
+        "sent_to": [],
+        "status": "PENDING_CONFIRM",
+        "summary": {
+            "fees": 1,
+            "infos": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
+                    "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
+                    "type": "CAT"
+                }
+            },
+            "offered": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
+            },
+            "requested": {
+                "xch": 100000
+            }
+        },
+        "taken_offer": "0x000000030000000000000000000000000000000000000000000000000000000000000000bae24162efbd568f89bc7a340798a6118df0189eb9e3f8697bcea27af99f8f790000000000000000ff02ffff01ff02ff0affff04ff02ffff04ff03ff80808080ffff04ffff01ffff333effff02ffff03ff05ffff01ff04ffff04ff0cffff04ffff02ff1effff04ff02ffff04ff09ff80808080ff808080ffff02ff16ffff04ff02ffff04ff19ffff04ffff02ff0affff04ff02ffff04ff0dff80808080ff808080808080ff8080ff0180ffff02ffff03ff05ffff01ff04ffff04ff08ff0980ffff02ff16ffff04ff02ffff04ff0dffff04ff0bff808080808080ffff010b80ff0180ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff1effff04ff02ffff04ff09ff80808080ffff02ff1effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffffa02082cd45b4fc0d256e6c360115c05c6ae761c31ad2616f24ad80cf1c9e15b3afffffa0a023dfcc927f2c5f71fb9f4cd81078d478448452c10acac9156e3b51bd7abe63ff830186a0ff8080808060a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360ad5de77c7da1316b9b72708d17dbb8937855d740ebaf85669b8bd925275e8d4900000000000f423fff02ffff01ff02ffff01ff02ff5effff04ff02ffff04ffff04ff05ffff04ffff0bff34ff0580ffff04ff0bff80808080ffff04ffff02ff17ff2f80ffff04ff5fffff04ffff02ff2effff04ff02ffff04ff17ff80808080ffff04ffff02ff2affff04ff02ffff04ff82027fffff04ff82057fffff04ff820b7fff808080808080ffff04ff81bfffff04ff82017fffff04ff8202ffffff04ff8205ffffff04ff820bffff80808080808080808080808080ffff04ffff01ffffffff3d46ff02ff333cffff0401ff01ff81cb02ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff7cffff0bff34ff2480ffff0bff7cffff0bff7cffff0bff34ff2c80ff0980ffff0bff7cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ffff02ffff03ff0bffff01ff02ffff03ffff09ffff02ff2effff04ff02ffff04ff13ff80808080ff820b9f80ffff01ff02ff56ffff04ff02ffff04ffff02ff13ffff04ff5fffff04ff17ffff04ff2fffff04ff81bfffff04ff82017fffff04ff1bff8080808080808080ffff04ff82017fff8080808080ffff01ff088080ff0180ffff01ff02ffff03ff17ffff01ff02ffff03ffff20ff81bf80ffff0182017fffff01ff088080ff0180ffff01ff088080ff018080ff0180ff04ffff04ff05ff2780ffff04ffff10ff0bff5780ff778080ffffff02ffff03ff05ffff01ff02ffff03ffff09ffff02ffff03ffff09ff11ff5880ffff0159ff8080ff0180ffff01818f80ffff01ff02ff26ffff04ff02ffff04ff0dffff04ff0bffff04ffff04ff81b9ff82017980ff808080808080ffff01ff02ff7affff04ff02ffff04ffff02ffff03ffff09ff11ff5880ffff01ff04ff58ffff04ffff02ff76ffff04ff02ffff04ff13ffff04ff29ffff04ffff0bff34ff5b80ffff04ff2bff80808080808080ff398080ffff01ff02ffff03ffff09ff11ff7880ffff01ff02ffff03ffff20ffff02ffff03ffff09ffff0121ffff0dff298080ffff01ff02ffff03ffff09ffff0cff29ff80ff3480ff5c80ffff01ff0101ff8080ff0180ff8080ff018080ffff0109ffff01ff088080ff0180ffff010980ff018080ff0180ffff04ffff02ffff03ffff09ff11ff5880ffff0159ff8080ff0180ffff04ffff02ff26ffff04ff02ffff04ff0dffff04ff0bffff04ff17ff808080808080ff80808080808080ff0180ffff01ff04ff80ffff04ff80ff17808080ff0180ffff02ffff03ff05ffff01ff04ff09ffff02ff56ffff04ff02ffff04ff0dffff04ff0bff808080808080ffff010b80ff0180ff0bff7cffff0bff34ff2880ffff0bff7cffff0bff7cffff0bff34ff2c80ff0580ffff0bff7cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ffff04ffff04ff30ffff04ff5fff808080ffff02ff7effff04ff02ffff04ffff04ffff04ff2fff0580ffff04ff5fff82017f8080ffff04ffff02ff26ffff04ff02ffff04ff0bffff04ff05ffff01ff808080808080ffff04ff17ffff04ff81bfffff04ff82017fffff04ffff02ff2affff04ff02ffff04ff8204ffffff04ffff02ff76ffff04ff02ffff04ff09ffff04ff820affffff04ffff0bff34ff2d80ffff04ff15ff80808080808080ffff04ff8216ffff808080808080ffff04ff8205ffffff04ff820bffff808080808080808080808080ff02ff5affff04ff02ffff04ff5fffff04ff3bffff04ffff02ffff03ff17ffff01ff09ff2dffff02ff2affff04ff02ffff04ff27ffff04ffff02ff76ffff04ff02ffff04ff29ffff04ff57ffff04ffff0bff34ff81b980ffff04ff59ff80808080808080ffff04ff81b7ff80808080808080ff8080ff0180ffff04ff17ffff04ff05ffff04ff8202ffffff04ffff04ffff04ff78ffff04ffff0eff5cffff02ff2effff04ff02ffff04ffff04ff2fffff04ff82017fff808080ff8080808080ff808080ffff04ffff04ff20ffff04ffff0bff81bfff5cffff02ff2effff04ff02ffff04ffff04ff15ffff04ffff10ff82017fffff11ff8202dfff2b80ff8202ff80ff808080ff8080808080ff808080ff138080ff80808080808080808080ff018080ffff04ffff01a037bef360ee858133b69d595a906dc45d01af50379dad515eb9518abb7c1d2a7affff04ffff01a00570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b3d6fcc37f8f49df90876f4c47bc586e1b23c179712a70c18d91e38f0c4932f92b377ff28abaa7e90599db342555d492ff018080ff0180808080ffff80ffff01ffff33ffa0bae24162efbd568f89bc7a340798a6118df0189eb9e3f8697bcea27af99f8f79ff8203e8ffffa0bae24162efbd568f89bc7a340798a6118df0189eb9e3f8697bcea27af99f8f798080ffff33ffa0b0d316e3e4c8c0b4e274d1fae4c7906ed7153988e8d023d77d473c983ab93dbfff830f3e5780ffff3cffa00069a9e7902da7002dea7625379739e68d34d649d1de176ab60dc9a5732f786980ffff3fffa0f79de674786e04b61cbfd722e5487e3aae4fb9d5acb6a159d4c4a6cdeb7c5ad38080ff8080ffffa0e752c4dadffe6edcb14e83646e6d4d53f7b3d8d74d2c20ed138aa35f8230ceb1ffa0b361e26773b161ca94291a54353dfd7e257f18a8e9abbb49ee89718e8c8bfc0bff830f424080ffa0c40219a0d62cd481f2a47fdedc5ef1c936f3dea0d8a751794dba233c8aeac790ffffa060a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360ffa0ad5de77c7da1316b9b72708d17dbb8937855d740ebaf85669b8bd925275e8d49ff830f423f80ffffa060a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360ffa0ee1d5710dcd99fd96ad38174bb4d0f87f04031abe15dc28d84415a251c67f1b9ff830f423f80ff80ff808012c33763d41055dd71a7a5676ced26bef08e059255c16e59f76033f98dcfedd443a21683130c97ed272becd70e02d60f1b86a180fd759e28bf0d94f7eedd0fa500000000025715e0ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b2d6feb2c0b079821e2bf172e9655494ccc3555ec11edb1dec5ba4ec1c8b3aae12127c3d59efe5ae7a5b2d93734f51daff018080ff80ffff01ffff33ffa06856b598c280ba526670dbe6ffdbb56109b2753e99e0e8fe18b16011ddbe9b21ff84025715df80ffff34ff0180ffff3cffa0a5268bc8edca89ebad640e3c2a8d7658c6497c6bd8382ec1f51ff0d4a1252eae80ffff3dffa09bfaeb403bee32c5b2fa892edaac2b8cc96714a89dea68cc528c960172469c9c8080ff8080a228e5069bf88826c5af92f7499c54b945d9a2ecc70e63e228d460260a8e90bbc96d7cda240bf3b1d653ea2aae22442819a0a6fb1d6091a57a0b74f25adbb3f505c01c249c3bdb60fa39e29528aa790207d55d114930e08f3833c53ca7e7abe4",
+        "trade_id": "0xfa1633a15542a9093a17a7dd14c0eafd0151211eba7d10ba7315a9ed2943e632"
+    }
+}
+```
+
+</details>
+
+---
+
+### `get_offer`
+
+Functionality: Show the details of one offer
+
+Usage: chia rpc wallet [OPTIONS] get_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag          | Type | Required | Description                                                                                           |
+| :------------ | :--- | :------- | :---------------------------------------------------------------------------------------------------- |
+| trade_id      | TEXT | True     | The offer's ID                                                                                        |
+| file_contents | TEXT | False    | The contents of the offer. Required if the offer's info is not stored in the database for this wallet |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_offer '{"trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5"}'
+```
+
+Response:
+
+```json
+{
+    "offer": null,
+    "success": true,
+    "trade_record": {
+        "accepted_at_time": null,
+        "coins_of_interest": [
+            {
+                "amount": 998999,
+                "parent_coin_info": "0xc40219a0d62cd481f2a47fdedc5ef1c936f3dea0d8a751794dba233c8aeac790",
+                "puzzle_hash": "0x91362b7593aab3bcc4d3f5c0b3e9952b5eeccd0b22e06d1ce6242d6fce9b6526"
+            },
+            {
+                "amount": 100000,
+                "parent_coin_info": "0x5e0ec48322fff686044e02d159e2679fba716cab80f4fb10fdf42a775f85604a",
+                "puzzle_hash": "0xa023dfcc927f2c5f71fb9f4cd81078d478448452c10acac9156e3b51bd7abe63"
+            }
+        ],
+        "confirmed_at_index": 0,
+        "created_at_time": 1669280986,
+        "is_my_offer": true,
+        "pending": {
+            "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 998999,
+            "unknown": 100000
+        },
+        "sent": 0,
+        "sent_to": [],
+        "status": "PENDING_ACCEPT",
+        "summary": {
+            "fees": 1,
+            "infos": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
+                    "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
+                    "type": "CAT"
+                }
+            },
+            "offered": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
+            },
+            "requested": {
+                "xch": 10000
+            }
+        },
+        "taken_offer": null,
+        "trade_id": "0xc4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5"
+    }
+}
+```
+
+</details>
+
+---
+
+### `get_all_offers`
+
+Functionality: Show the details of all offers for this wallet
+
+Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type    | Required | Description                                                                   |
+| :------------------- | :------ | :------- | :---------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                   |
+| end                  | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                   |
+| exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]               |
+| exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false] |
+| include_completed    | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]         |
+| sort_key             | NUMBER  | False    | Specify the key for sorting [Default: None]                                   |
+| reverse              | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]           |
+| file_contents        | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]          |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_all_offers
+```
+
+Response:
+
+```json
+{
+    "offers": null,
+    "success": true,
+    "trade_records": [
+        {
+            "accepted_at_time": null,
+            "coins_of_interest": [
+                {
+                    "amount": 999999,
+                    "parent_coin_info": "0x60a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360",
+                    "puzzle_hash": "0xad5de77c7da1316b9b72708d17dbb8937855d740ebaf85669b8bd925275e8d49"
+                }
+            ],
+            "confirmed_at_index": 0,
+            "created_at_time": 1669275137,
+            "is_my_offer": true,
+            "pending": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 999999
+            },
+            "sent": 0,
+            "sent_to": [],
+            "status": "PENDING_ACCEPT",
+            "summary": {
+                "fees": 0,
+                "infos": {
+                    "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
+                        "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
+                        "type": "CAT"
+                    }
+                },
+                "offered": {
+                    "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
+                },
+                "requested": {
+                    "xch": 1000000000000
+                }
+            },
+            "taken_offer": null,
+            "trade_id": "0x84d14398c1a38f376953bf8fa76cbee0d3216b382266d38b5612f17e96bcd1de"
+        }
+    ]
+}
+```
+
+</details>
+
+---
+
+### `get_offers_count`
+
+Functionality: Obtain the number of offers from the current wallet
+
+Usage: chia rpc wallet [OPTIONS] get_offers_count [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_offers_count
+```
+
+Response:
+
+```json
+{
+    "my_offers_count": 0,
+    "success": true,
+    "taken_offers_count": 1,
+    "total": 1
+}
+```
+
+</details>
+
+---
+
+### `cancel_offer`
+
+Functionality: Cancel an offer
+
+Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag     | Type    | Required | Description                                                                                                                                                                                    |
+| :------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| secure   | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
+| trade_id | TEXT    | True     | The ID of the offer to cancel                                                                                                                                                                  |
+| fee      | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                           |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet cancel_offer '{"secure": true, "trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5", "fee": 1}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
 ```
 
 </details>
@@ -2335,9 +2783,7 @@ Response:
 
 ### `cancel_offers`
 
-[todo]
-
-Functionality: 
+Functionality: Cancel all offers, with the option to cancel only offers for a specific asset class
 
 Usage: chia rpc wallet [OPTIONS] cancel_offers [REQUEST]
 
@@ -2350,21 +2796,27 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag       | Type    | Required | Description                                                                                                                                                                                    |
+| :--------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| secure     | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
+| batch_fee  | NUMBER  | False    | The fee, in mojos, to add to each batch cancellation [Default: 0]                                                                                                                              |
+| batch_size | NUMBER  | False    | The number of offers to cancel in each batch [Default: 5]                                                                                                                                      |
+| cancel_all | BOOLEAN | False    | Set to `true` to cancel all offers for all assets [Default: `false`]                                                                                                                           |
+| asset_id   | TEXT    | False    | If `cancel_all` is false, then only cancel the specified type of asset [Default: `xch`]                                                                                                        |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet cancel_offers '{"secure": true}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true
+}
 ```
 
 </details>
@@ -2373,9 +2825,7 @@ Response:
 
 ### `get_cat_list`
 
-[todo]
-
-Functionality: 
+Functionality: Return the default CAT list
 
 Usage: chia rpc wallet [OPTIONS] get_cat_list [REQUEST]
 
@@ -2386,23 +2836,45 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters:
-
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+Request Parameters: None
 
 <details>
 <summary>Example</summary>
 
-```json
+Get the default CAT list:
 
+```json
+chia rpc wallet get_cat_list
 ```
 
 Response:
 
 ```json
-
+{
+    "cat_list": [
+        {
+            "asset_id": "a628c1c2c6fcb74d53746157e438e108eab5c0bb3e5c80ff9b1910b3e4832913",
+            "name": "Spacebucks",
+            "symbol": "SBX"
+        },
+        {
+            "asset_id": "8ebf855de6eb146db5602f0456d2f0cbe750d57f821b6f91a8592ee9f1d4cf31",
+            "name": "Marmot",
+            "symbol": "MRMT"
+        },
+        {
+            "asset_id": "6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589",
+            "name": "Stably USD",
+            "symbol": "USDS"
+        },
+        {
+            "asset_id": "509deafe3cd8bbfbb9ccce1d930e3d7b57b40c964fa33379b18d628175eb7a8f",
+            "name": "Chia Holiday 2021 Token",
+            "symbol": "CH21"
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
