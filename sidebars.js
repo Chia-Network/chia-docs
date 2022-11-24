@@ -55,6 +55,7 @@ module.exports = {
         'rpc-reference/datalayer',
         'rpc-reference/cadt',
         'rpc-reference/simulator',
+        'rpc-reference/wallet',
       ],
     },
     {
