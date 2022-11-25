@@ -9,6 +9,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
+This document provides a comprehensive reference to Chia's Wallet RPC API (minus the DID and NFT RPCs, which are documented on their own dedicated pages).
+
 <details>
   <summary>Note about Windows command escaping</summary>
 
@@ -27,8 +29,6 @@ To run the same command on Windows, you need to escape the quotes with backslash
     etc
 
 </details>
-
-## Reference
 
 ## Key management
 
@@ -494,8 +494,6 @@ Response:
 
 ### `push_tx`
 
-[todo]
-
 Functionality: Push a spend bundle (transaction) to the blockchain
 
 Usage: chia rpc wallet [OPTIONS] push_tx [REQUEST]
@@ -509,32 +507,15 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
-
-<details>
-<summary>Example</summary>
-
-```json
-
-```
-
-Response:
-
-```json
-
-```
-
-</details>
+| Flag         | Type | Required | Description                            |
+| :----------- | :--- | :------- | :------------------------------------- |
+| spend_bundle | TEXT | True     | The spend bundle (transaction) to push |
 
 ---
 
 ### `push_transactions`
 
-[todo]
-
-Functionality: 
+Functionality: Push multiple transactions to the blockchain
 
 Usage: chia rpc wallet [OPTIONS] push_transactions [REQUEST]
 
@@ -547,24 +528,9 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
-
-<details>
-<summary>Example</summary>
-
-```json
-
-```
-
-Response:
-
-```json
-
-```
-
-</details>
+| Flag         | Type       | Required | Description                    |
+| :----------- | :--------- | :------- | :----------------------------- |
+| transactions | TEXT ARRAY | True     | A list of transactions to push |
 
 ---
 
@@ -977,9 +943,7 @@ Response:
 
 ### `get_transaction`
 
-[todo]
-
-Functionality: 
+Functionality: Get a transaction's details from its ID
 
 Usage: chia rpc wallet [OPTIONS] get_transaction [REQUEST]
 
@@ -1344,8 +1308,6 @@ Request Parameters:
 | fee         | NUMBER     | False    | An optional blockchain fee, in mojos                       |
 | memos       | TEXT ARRAY | False    | An optional array of memos to be sent with the transaction |
 | additions   | TEXT ARRAY | True     | A list of puzzle hashes and amounts to be included         |
-
-NOTE: Showing an example for this RPC is still [todo]
 
 ---
 
@@ -1715,7 +1677,7 @@ Response:
 
 ### `get_notifications`
 
-Functionality: Obtain curent notifications
+Functionality: Obtain current notifications
 
 Usage: chia rpc wallet [OPTIONS] get_notifications [REQUEST]
 
@@ -2004,8 +1966,6 @@ Request Parameters:
 | message   | TEXT | True     | The message to verify                            |
 | signature | TEXT | True     | The signature to verify                          |
 | address   | TEXT | True     | The address, which must be derived from `pubkey` |
-
-NOTE: Showing an example for this RPC is still [todo]
 
 ---
 
@@ -4106,6 +4066,271 @@ Response:
             "wallet_id": 8
         }
     ]
+}
+```
+
+</details>
+
+---
+
+## Routes and connections
+
+### `get_routes`
+
+Functionality: List all available RPC routes
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_routes
+```
+
+Response:
+
+```json
+{
+    "routes": [
+        "/log_in",
+        "/get_logged_in_fingerprint",
+        "/get_public_keys",
+        "/get_private_key",
+        "/generate_mnemonic",
+        "/add_key",
+        "/delete_key",
+        "/check_delete_key",
+        "/delete_all_keys",
+        "/get_sync_status",
+        "/get_height_info",
+        "/push_tx",
+        "/push_transactions",
+        "/farm_block",
+        "/get_initial_freeze_period",
+        "/get_network_info",
+        "/get_wallets",
+        "/create_new_wallet",
+        "/get_wallet_balance",
+        "/get_transaction",
+        "/get_transactions",
+        "/get_transaction_count",
+        "/get_next_address",
+        "/send_transaction",
+        "/send_transaction_multi",
+        "/get_farmed_amount",
+        "/create_signed_transaction",
+        "/delete_unconfirmed_transactions",
+        "/select_coins",
+        "/get_spendable_coins",
+        "/get_coin_records_by_names",
+        "/get_current_derivation_index",
+        "/extend_derivation_index",
+        "/get_notifications",
+        "/delete_notifications",
+        "/send_notification",
+        "/sign_message_by_address",
+        "/sign_message_by_id",
+        "/verify_signature",
+        "/cat_set_name",
+        "/cat_asset_id_to_name",
+        "/cat_get_name",
+        "/get_stray_cats",
+        "/cat_spend",
+        "/cat_get_asset_id",
+        "/create_offer_for_ids",
+        "/get_offer_summary",
+        "/check_offer_validity",
+        "/take_offer",
+        "/get_offer",
+        "/get_all_offers",
+        "/get_offers_count",
+        "/cancel_offer",
+        "/cancel_offers",
+        "/get_cat_list",
+        "/did_set_wallet_name",
+        "/did_get_wallet_name",
+        "/did_update_recovery_ids",
+        "/did_update_metadata",
+        "/did_get_pubkey",
+        "/did_get_did",
+        "/did_recovery_spend",
+        "/did_get_recovery_list",
+        "/did_get_metadata",
+        "/did_create_attest",
+        "/did_get_information_needed_for_recovery",
+        "/did_get_current_coin_info",
+        "/did_create_backup_file",
+        "/did_transfer_did",
+        "/did_message_spend",
+        "/did_get_info",
+        "/nft_mint_nft",
+        "/nft_get_nfts",
+        "/nft_get_by_did",
+        "/nft_set_nft_did",
+        "/nft_set_nft_status",
+        "/nft_get_wallet_did",
+        "/nft_get_wallets_with_dids",
+        "/nft_get_info",
+        "/nft_transfer_nft",
+        "/nft_add_uri",
+        "/nft_calculate_royalties",
+        "/nft_mint_bulk",
+        "/pw_join_pool",
+        "/pw_self_pool",
+        "/pw_absorb_rewards",
+        "/pw_status",
+        "/create_new_dl",
+        "/dl_track_new",
+        "/dl_stop_tracking",
+        "/dl_latest_singleton",
+        "/dl_singletons_by_root",
+        "/dl_update_root",
+        "/dl_update_multiple",
+        "/dl_history",
+        "/dl_owned_singletons",
+        "/dl_get_mirrors",
+        "/dl_new_mirror",
+        "/dl_delete_mirror",
+        "/get_connections",
+        "/open_connection",
+        "/close_connection",
+        "/stop_node",
+        "/get_routes",
+        "/healthz"
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_connections`
+
+Functionality: Get a list of active connections
+
+Note: Inherited from RPC Server
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_connections
+```
+
+Response: 
+
+```json
+{
+    "connections": [
+        {
+            "bytes_read": 49581235,
+            "bytes_written": 717978,
+            "creation_time": 1669283764.8537369,
+            "last_message_time": 1669358138.7421055,
+            "local_port": 8449,
+            "node_id": "0xcda6b919f90af6f021ccf6ca748a30d03b22622863654b57bd74896dd60c4eca",
+            "peer_host": "127.0.0.1",
+            "peer_port": 8444,
+            "peer_server_port": 8444,
+            "type": 1
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `open_connection`
+
+Functionality: Open a connection to another node
+
+Note: Inherited from RPC Server
+
+Request Parameters:
+
+| Flag    | Type    | Required | Description                                          |
+| :------ | :------ | :------- | :--------------------------------------------------- |
+| host	  | TEXT    | True     | The IP or URL of the node to connect to              |
+| port	  | INTEGER	| True     | The port through which to connect to the remote node |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet open_connection '{"host":"localhost", "port":"8444"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `close_connection`
+
+Functionality: Close an active connection
+
+Note: Inherited from RPC Server
+
+Request Parameters:
+
+| Flag    | Type | Required | Description                                                      |
+| :------ | :--- | :------- | :--------------------------------------------------------------- |
+| node_id | TEXT | True     | The hex ID of the node to close, obtainable from get_connections |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet close_connection '{"node_id":"0x8e961b617579d476419003728d6d71ab1b182f7d962e5db16f61ebfb157d771b"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `stop_node`
+
+Functionality: Stop your local node
+
+Note: Inherited from RPC Server
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet stop_node
+```
+
+Response:
+
+```json
+{
+  "success": true
 }
 ```
 
