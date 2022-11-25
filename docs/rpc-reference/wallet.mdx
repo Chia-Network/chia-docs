@@ -1416,8 +1416,6 @@ Request Parameters:
 | puzzle_announcements | TEXT ARRAY   | False    | A list of puzzle announcements, which includes `puzzle_hash`, `message`, and `morph_bytes` |
 | fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                       |
 
-NOTE: Showing an example for this RPC is still [todo]
-
 ---
 
 ### `delete_unconfirmed_transactions`
@@ -2352,8 +2350,6 @@ Request Parameters:
 | solver          | TEXT    | False    | A marshalled solver                                             |
 | fee             | NUMBER  | False    | An optional blockchain fee, in mojos                            |
 
-NOTE: Showing an example for this RPC is still [todo]
-
 ---
 
 ### `get_offer_summary`
@@ -2901,9 +2897,7 @@ See our [NFT RPC](/nft-rpc) page.
 
 ### `pw_join_pool`
 
-[todo]
-
-Functionality: 
+Functionality: Join a pool
 
 Usage: chia rpc wallet [OPTIONS] pw_join_pool [REQUEST]
 
@@ -2916,21 +2910,135 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag                 | Type   | Required | Description                                                                                    |
+| :------------------- | :----- | :------- | :--------------------------------------------------------------------------------------------- |
+| wallet_id            | NUMBER | True     | The Wallet ID to use to join the pool (must be of type `POOLING_WALLET`)                       |
+| target_puzzlehash    | TEXT   | True     | This is the target of where rewards will be sent to from the singleton. Controlled by the pool |
+| pool_url             | TEXT   | True     | The URL of the pool to join                                                                    |
+| relative_lock_height | NUMBER | True     | The number of blocks required to wait when attempting to leave the pool                        |
+| fee                  | NUMBER | False    | An optional blockchain fee, in mojos                                                           |
 
 <details>
 <summary>Example</summary>
 
-```json
+Join Spacepool:
 
+```json
+chia rpc wallet pw_join_pool '{"wallet_id": 9, "target_puzzlehash": "0x2f2c9ba1b2315d413a92b5f034fa03282ccba1767fd9ae7b14d942b969ed5d57", "pool_url": "https://na1.pool.space", "relative_lock_height": 64, "fee": 2}'
 ```
 
 Response:
 
 ```json
-
+{
+    "fee_transaction": {
+        "additions": [
+            {
+                "amount": 99996,
+                "parent_coin_info": "0x484fdc99478247b0c7d9aa9eae4ebe8230d63de26a67ffc848740c9e114eef39",
+                "puzzle_hash": "0x23dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852"
+            }
+        ],
+        "amount": 0,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669337474,
+        "fee_amount": 2,
+        "memos": [],
+        "name": "0xcd74b0a4c192f7ef6a91be20dfc92938c6f84628d9a1f5a231cdfb6e2076032f",
+        "removals": [
+            {
+                "amount": 99998,
+                "parent_coin_info": "0x0908243d25a95d27a254c46301ae954bf9aca2fe7a18673a3b29dc40401d2416",
+                "puzzle_hash": "0x3b5cc27b4b7241c8111549e469b51a2bcd48a766705c372b15430580ab5207b6"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0x8f7bfcd2f8112f93216f7a802298abc4b9d8784ea9d07288259d9a28286b79cd82da6697c55bed1b64c55ee73daf92df0bab1f8a1bfccbc8171a654a3af80628f87e2af1060193195c5fdf17f659799752f07a9312f26dff429f7b93665d49a5",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 99998,
+                        "parent_coin_info": "0x0908243d25a95d27a254c46301ae954bf9aca2fe7a18673a3b29dc40401d2416",
+                        "puzzle_hash": "0x3b5cc27b4b7241c8111549e469b51a2bcd48a766705c372b15430580ab5207b6"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0884b6aff2ffd2d6e8ad785a6ff12b3eb3155d9da01f15f35ba5872af7e44ba0bb6506f8303015024dc6acd3fa90b7d90ff018080",
+                    "solution": "0xff80ffff01ffff33ffa023dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852ff8301869c80ffff34ff0280ffff3cffa02bc60f97e66f227e9efbc5b02caafdb3dd9ab8668df4cd8e2e511b329254fd468080ff8080"
+                }
+            ]
+        },
+        "to_puzzle_hash": "0xa15fa1f35f8dc2a5f62fc324a62974105ba1068e43f69e86aad6bfb5d7e80b9c",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 1
+    },
+    "success": true,
+    "total_fee": 2,
+    "transaction": {
+        "additions": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0xa7c25e2640c6d009c8d7a02bd06eb103071b1572a23d24cccc5810bb01000160",
+                "puzzle_hash": "0xa5b5a6d6a7f5ac3949f067d8ec1e8e41546756849c05c13f50bd186f877902b2"
+            },
+            {
+                "amount": 99996,
+                "parent_coin_info": "0x484fdc99478247b0c7d9aa9eae4ebe8230d63de26a67ffc848740c9e114eef39",
+                "puzzle_hash": "0x23dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852"
+            }
+        ],
+        "amount": 1,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669337474,
+        "fee_amount": 2,
+        "memos": [],
+        "name": "0xe17ce5987f4b9d5861f6e6cb7fb5d3cf6e06ca4ac3b8ee4a3cb92250e4cf374e",
+        "removals": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0x5b2c9538a5388a47fa213cc71ce59f0f9de35be79b1459443e90506291060a2d",
+                "puzzle_hash": "0x8f068f4e5f3a53bfcd32771a1132e6fbcd8bb56b63844259b8ba7349cbb709c0"
+            },
+            {
+                "amount": 99998,
+                "parent_coin_info": "0x0908243d25a95d27a254c46301ae954bf9aca2fe7a18673a3b29dc40401d2416",
+                "puzzle_hash": "0x3b5cc27b4b7241c8111549e469b51a2bcd48a766705c372b15430580ab5207b6"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0x9462560d18774a3e69a077cd340c85b7787428e12e6a74070a35b6eb8b4a3de4fb21cdf131502e58e50ca8f3bba780fe1068e0c950dbb1fbf845957e38d5d68fafd0fca547946c0d05f17d42eda00191e990f18965ae71d4b3f3b40c1f106a5f",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 1,
+                        "parent_coin_info": "0x5b2c9538a5388a47fa213cc71ce59f0f9de35be79b1459443e90506291060a2d",
+                        "puzzle_hash": "0x8f068f4e5f3a53bfcd32771a1132e6fbcd8bb56b63844259b8ba7349cbb709c0"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fffff010180ffff01ff02ff36ffff04ff02ffff04ff05ffff04ff17ffff04ffff02ff26ffff04ff02ffff04ff0bff80808080ffff04ff2fffff04ff0bffff04ff5fff808080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4602ff3304ffff0101ff02ffff02ffff03ff05ffff01ff02ff5cffff04ff02ffff04ff0dffff04ffff0bff2cffff0bff24ff3880ffff0bff2cffff0bff2cffff0bff24ff3480ff0980ffff0bff2cff0bffff0bff24ff8080808080ff8080808080ffff010b80ff0180ff02ffff03ff0bffff01ff02ff32ffff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ffff02ff2affff04ff02ffff04ffff02ffff03ffff09ff23ff2880ffff0181b3ff8080ff0180ff80808080ff80808080808080ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffffff0bffff0bff17ffff02ff3affff04ff02ffff04ff09ffff04ff2fffff04ffff02ff26ffff04ff02ffff04ff05ff80808080ff808080808080ff5f80ff0bff81bf80ff02ffff03ffff20ffff22ff4fff178080ffff01ff02ff7effff04ff02ffff04ff6fffff04ffff04ffff02ffff03ff4fffff01ff04ff23ffff04ffff02ff3affff04ff02ffff04ff09ffff04ff53ffff04ffff02ff26ffff04ff02ffff04ff05ff80808080ff808080808080ffff04ff81b3ff80808080ffff011380ff0180ffff02ff7cffff04ff02ffff04ff05ffff04ff1bffff04ffff21ff4fff1780ff80808080808080ff8080808080ffff01ff088080ff0180ffff04ffff09ffff18ff05ffff010180ffff010180ffff09ff05ffff01818f8080ff0bff2cffff0bff24ff3080ffff0bff2cffff0bff2cffff0bff24ff3480ff0580ffff0bff2cffff02ff5cffff04ff02ffff04ff07ffff04ffff0bff24ff2480ff8080808080ffff0bff24ff8080808080ffffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff26ffff04ff02ffff04ff09ff80808080ffff02ff26ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ff5effff04ff02ffff04ff05ffff04ff0bffff04ffff02ff3affff04ff02ffff04ff09ffff04ff17ffff04ffff02ff26ffff04ff02ffff04ff05ff80808080ff808080808080ffff04ff17ffff04ff2fffff04ff5fffff04ff81bfff80808080808080808080ffff04ffff04ff20ffff04ff17ff808080ffff02ff7cffff04ff02ffff04ff05ffff04ffff02ff82017fffff04ffff04ffff04ff17ff2f80ffff04ffff04ff5fff81bf80ffff04ff0bff05808080ff8202ff8080ffff01ff80808080808080ffff02ff2effff04ff02ffff04ff05ffff04ff0bffff04ffff02ffff03ff3bffff01ff02ff22ffff04ff02ffff04ff05ffff04ff17ffff04ff13ffff04ff2bffff04ff5bffff04ff5fff808080808080808080ffff01ff02ffff03ffff09ff15ffff0bff13ff1dff2b8080ffff01ff0bff15ff17ff5f80ffff01ff088080ff018080ff0180ffff04ff17ffff04ff2fffff04ff5fffff04ff81bfffff04ff82017fff8080808080808080808080ff02ffff03ff05ffff011bffff010b80ff0180ff018080ffff04ffff01ffa024e044101e57b3d8c908b8a38ad57848afd29d3eecc439dba45f4412df4954fdffa05b2c9538a5388a47fa213cc71ce59f0f9de35be79b1459443e90506291060a2da0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff82017fffff01ff04ffff04ff1cffff04ff5fff808080ffff04ffff04ff12ffff04ff8205ffffff04ff8206bfff80808080ffff04ffff04ff08ffff04ff17ffff04ffff02ff1effff04ff02ffff04ffff04ff8205ffffff04ff8202ffff808080ff80808080ff80808080ff80808080ffff01ff02ff16ffff04ff02ffff04ff05ffff04ff8204bfffff04ff8206bfffff04ff8202ffffff04ffff0bffff19ff2fffff18ffff019100ffffffffffffffffffffffffffffffffff8205ff8080ff0bff8202ff80ff808080808080808080ff0180ffff04ffff01ffff32ff3d52ffff333effff04ffff04ff12ffff04ff0bffff04ff17ff80808080ffff04ffff04ff12ffff04ff05ffff04ff2fff80808080ffff04ffff04ff1affff04ff5fff808080ffff04ffff04ff14ffff04ffff0bff5fffff012480ff808080ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff1effff04ff02ffff04ff09ff80808080ffff02ff1effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01a07b1ede8172c025d85040db053aa1b03115daf3099acb302cc92cd545202137f2ffff04ffff01a0d1a74bf2022d701bee11b17b30118ef16edd258493d16e710fbc984bffc17aa3ffff04ffff01b0a2c2a511421dcc4a88cb523f2c8784050687982c3b22deaee6b2ab0b409fe50660101079619d34f71214d00d650dd88fffff04ffff01a0ccd5bb71183532bff220ba46c268991a00000000000000000000000000000000ffff04ffff0180ff01808080808080ff01808080",
+                    "solution": "0xffffa00908243d25a95d27a254c46301ae954bf9aca2fe7a18673a3b29dc40401d2416ff0180ff01ffff01ffffff70c07101032f2c9ba1b2315d413a92b5f034fa03282ccba1767fd9ae7b14d942b969ed5d57a2c2a511421dcc4a88cb523f2c8784050687982c3b22deaee6b2ab0b409fe50660101079619d34f71214d00d650dd88f010000001668747470733a2f2f6e61312e706f6f6c2e73706163650000004080ffa02454e247cbfe45034c006f1485b74b1bf6e0f87f1addb2c98b7c32fae67a04d78080"
+                },
+                {
+                    "coin": {
+                        "amount": 99998,
+                        "parent_coin_info": "0x0908243d25a95d27a254c46301ae954bf9aca2fe7a18673a3b29dc40401d2416",
+                        "puzzle_hash": "0x3b5cc27b4b7241c8111549e469b51a2bcd48a766705c372b15430580ab5207b6"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0884b6aff2ffd2d6e8ad785a6ff12b3eb3155d9da01f15f35ba5872af7e44ba0bb6506f8303015024dc6acd3fa90b7d90ff018080",
+                    "solution": "0xff80ffff01ffff33ffa023dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852ff8301869c80ffff34ff0280ffff3cffa02bc60f97e66f227e9efbc5b02caafdb3dd9ab8668df4cd8e2e511b329254fd468080ff8080"
+                }
+            ]
+        },
+        "to_puzzle_hash": "0xa5b5a6d6a7f5ac3949f067d8ec1e8e41546756849c05c13f50bd186f877902b2",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 9
+    }
+}
 ```
 
 </details>
@@ -2939,9 +3047,7 @@ Response:
 
 ### `pw_self_pool`
 
-[todo]
-
-Functionality: 
+Functionality: Leave a pool and begin self-pooling
 
 Usage: chia rpc wallet [OPTIONS] pw_self_pool [REQUEST]
 
@@ -2954,21 +3060,138 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag                 | Type   | Required | Description                                                              |
+| :------------------- | :----- | :------- | :----------------------------------------------------------------------- |
+| wallet_id            | NUMBER | True     | The Wallet ID to use for self-pooling (must be of type `POOLING_WALLET`) |
+| fee                  | NUMBER | False    | An optional blockchain fee, in mojos                                     |
+
+:::info
+
+This command will only succeed if `wallet_id` is a member of a pool.
+
+:::
 
 <details>
 <summary>Example</summary>
 
-```json
+Leave Spacepool:
 
+```json
+chia rpc wallet pw_self_pool '{"wallet_id": 9, "fee": 1}'
 ```
 
 Response:
 
 ```json
-
+{
+    "fee_transaction": {
+        "additions": [
+            {
+                "amount": 99995,
+                "parent_coin_info": "0xccf635afe3683362b3432f72ff603860c5fb0f24d0b94ae907360829fcff33a6",
+                "puzzle_hash": "0xb68570fcf52604408589fc101993a6a05e54797974979a7c1e509a1718389ec8"
+            }
+        ],
+        "amount": 0,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669338087,
+        "fee_amount": 1,
+        "memos": [],
+        "name": "0x6c965f910e3c882df8bf5b5d46eeca68293746297c9c28d481f464e0a82f633c",
+        "removals": [
+            {
+                "amount": 99996,
+                "parent_coin_info": "0x484fdc99478247b0c7d9aa9eae4ebe8230d63de26a67ffc848740c9e114eef39",
+                "puzzle_hash": "0x23dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0xaab97ac7d11d363d322501fcd309b69a55413cc51ca4102f8c67cb9f6730c268dc4fd4be26a898fb607fd4087461670e052a62463a44fc52977bd084249d3ec9de7baf3d33f9397bd77451b7346a4b90fa2398ba89580e43724fb861a170d6bf",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 99996,
+                        "parent_coin_info": "0x484fdc99478247b0c7d9aa9eae4ebe8230d63de26a67ffc848740c9e114eef39",
+                        "puzzle_hash": "0x23dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b9d002a400cf027b22d426b0a9e01e93eb463855d3ef8602a8d40089c2bbddd60b6016f5d4b4e7baf9f29c97fcd2273bff018080",
+                    "solution": "0xff80ffff01ffff33ffa0b68570fcf52604408589fc101993a6a05e54797974979a7c1e509a1718389ec8ff8301869b80ffff34ff0180ffff3cffa0829f63f1557ea7f1f14a7e0f454d1784f867bcb2e9180f27b28814807dc0d60a8080ff8080"
+                }
+            ]
+        },
+        "to_puzzle_hash": "0x8cb2ffb35791b7c031986d29d1347f5eb68bfacdd4b5f60f9d0e645423a67d84",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 1
+    },
+    "success": true,
+    "total_fee": 2,
+    "transaction": {
+        "additions": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0xbf8423075ee03a9b9fdedf7049f3203303c2103e17e9140b03a368b29721b332",
+                "puzzle_hash": "0x6f4c43aaec34916147a27cd6882f521b73f5b7a4aff7cc830d9177b28b321dea"
+            },
+            {
+                "amount": 99995,
+                "parent_coin_info": "0xccf635afe3683362b3432f72ff603860c5fb0f24d0b94ae907360829fcff33a6",
+                "puzzle_hash": "0xb68570fcf52604408589fc101993a6a05e54797974979a7c1e509a1718389ec8"
+            }
+        ],
+        "amount": 1,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669338087,
+        "fee_amount": 1,
+        "memos": [],
+        "name": "0x2637178575afc8f7c7e161f50b958642ce41a7633f4a2099e92df540a145555f",
+        "removals": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0xa7c25e2640c6d009c8d7a02bd06eb103071b1572a23d24cccc5810bb01000160",
+                "puzzle_hash": "0xa5b5a6d6a7f5ac3949f067d8ec1e8e41546756849c05c13f50bd186f877902b2"
+            },
+            {
+                "amount": 99996,
+                "parent_coin_info": "0x484fdc99478247b0c7d9aa9eae4ebe8230d63de26a67ffc848740c9e114eef39",
+                "puzzle_hash": "0x23dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0x95dbe277a66d6e35428c85a65cae86c5706a3275162f0b8a8da8450008054a04fde66dff9d8210325bec6aeebf55e80c19f53aeea04d6b0fac3467ef39f5d99b3666730bc4c40ef746ad9c4fe18599701b6b971cb2d8d1c288afc7c289b71594",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 1,
+                        "parent_coin_info": "0xa7c25e2640c6d009c8d7a02bd06eb103071b1572a23d24cccc5810bb01000160",
+                        "puzzle_hash": "0xa5b5a6d6a7f5ac3949f067d8ec1e8e41546756849c05c13f50bd186f877902b2"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fffff010180ffff01ff02ff36ffff04ff02ffff04ff05ffff04ff17ffff04ffff02ff26ffff04ff02ffff04ff0bff80808080ffff04ff2fffff04ff0bffff04ff5fff808080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4602ff3304ffff0101ff02ffff02ffff03ff05ffff01ff02ff5cffff04ff02ffff04ff0dffff04ffff0bff2cffff0bff24ff3880ffff0bff2cffff0bff2cffff0bff24ff3480ff0980ffff0bff2cff0bffff0bff24ff8080808080ff8080808080ffff010b80ff0180ff02ffff03ff0bffff01ff02ff32ffff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ffff02ff2affff04ff02ffff04ffff02ffff03ffff09ff23ff2880ffff0181b3ff8080ff0180ff80808080ff80808080808080ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffffff0bffff0bff17ffff02ff3affff04ff02ffff04ff09ffff04ff2fffff04ffff02ff26ffff04ff02ffff04ff05ff80808080ff808080808080ff5f80ff0bff81bf80ff02ffff03ffff20ffff22ff4fff178080ffff01ff02ff7effff04ff02ffff04ff6fffff04ffff04ffff02ffff03ff4fffff01ff04ff23ffff04ffff02ff3affff04ff02ffff04ff09ffff04ff53ffff04ffff02ff26ffff04ff02ffff04ff05ff80808080ff808080808080ffff04ff81b3ff80808080ffff011380ff0180ffff02ff7cffff04ff02ffff04ff05ffff04ff1bffff04ffff21ff4fff1780ff80808080808080ff8080808080ffff01ff088080ff0180ffff04ffff09ffff18ff05ffff010180ffff010180ffff09ff05ffff01818f8080ff0bff2cffff0bff24ff3080ffff0bff2cffff0bff2cffff0bff24ff3480ff0580ffff0bff2cffff02ff5cffff04ff02ffff04ff07ffff04ffff0bff24ff2480ff8080808080ffff0bff24ff8080808080ffffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff26ffff04ff02ffff04ff09ff80808080ffff02ff26ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ff5effff04ff02ffff04ff05ffff04ff0bffff04ffff02ff3affff04ff02ffff04ff09ffff04ff17ffff04ffff02ff26ffff04ff02ffff04ff05ff80808080ff808080808080ffff04ff17ffff04ff2fffff04ff5fffff04ff81bfff80808080808080808080ffff04ffff04ff20ffff04ff17ff808080ffff02ff7cffff04ff02ffff04ff05ffff04ffff02ff82017fffff04ffff04ffff04ff17ff2f80ffff04ffff04ff5fff81bf80ffff04ff0bff05808080ff8202ff8080ffff01ff80808080808080ffff02ff2effff04ff02ffff04ff05ffff04ff0bffff04ffff02ffff03ff3bffff01ff02ff22ffff04ff02ffff04ff05ffff04ff17ffff04ff13ffff04ff2bffff04ff5bffff04ff5fff808080808080808080ffff01ff02ffff03ffff09ff15ffff0bff13ff1dff2b8080ffff01ff0bff15ff17ff5f80ffff01ff088080ff018080ff0180ffff04ff17ffff04ff2fffff04ff5fffff04ff81bfffff04ff82017fff8080808080808080808080ff02ffff03ff05ffff011bffff010b80ff0180ff018080ffff04ffff01ffa024e044101e57b3d8c908b8a38ad57848afd29d3eecc439dba45f4412df4954fdffa05b2c9538a5388a47fa213cc71ce59f0f9de35be79b1459443e90506291060a2da0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff8202ffffff01ff02ff16ffff04ff02ffff04ff05ffff04ff8204bfffff04ff8206bfffff04ff82017fffff04ffff0bffff19ff2fffff18ffff019100ffffffffffffffffffffffffffffffffff8202ff8080ff0bff82017f80ff8080808080808080ffff01ff04ffff04ff08ffff04ff17ffff04ffff02ff1effff04ff02ffff04ff82017fff80808080ff80808080ffff04ffff04ff1cffff04ff5fffff04ff8206bfff80808080ff80808080ff0180ffff04ffff01ffff32ff3d33ff3effff04ffff04ff1cffff04ff0bffff04ff17ff80808080ffff04ffff04ff1cffff04ff05ffff04ff2fff80808080ffff04ffff04ff0affff04ff5fff808080ffff04ffff04ff14ffff04ffff0bff5fffff012480ff808080ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff1effff04ff02ffff04ff09ff80808080ffff02ff1effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01a02f2c9ba1b2315d413a92b5f034fa03282ccba1767fd9ae7b14d942b969ed5d57ffff04ffff01a0d1a74bf2022d701bee11b17b30118ef16edd258493d16e710fbc984bffc17aa3ffff04ffff01b0a2c2a511421dcc4a88cb523f2c8784050687982c3b22deaee6b2ab0b409fe50660101079619d34f71214d00d650dd88fffff04ffff01a0ccd5bb71183532bff220ba46c268991a00000000000000000000000000000000ffff04ffff01a0cf84b1a3d3164d6620179315fc7987545b73505743ad16b63160aa3065eacd36ff01808080808080ff01808080",
+                    "solution": "0xffffa05b2c9538a5388a47fa213cc71ce59f0f9de35be79b1459443e90506291060a2dffa06ee2686fe894bb776730e127a348bdd8dadb3aee6c63bfc17df25017c7046e48ff0180ff01ffffffff70c07101022f2c9ba1b2315d413a92b5f034fa03282ccba1767fd9ae7b14d942b969ed5d57a2c2a511421dcc4a88cb523f2c8784050687982c3b22deaee6b2ab0b409fe50660101079619d34f71214d00d650dd88f010000001668747470733a2f2f6e61312e706f6f6c2e73706163650000004080ff808080"
+                },
+                {
+                    "coin": {
+                        "amount": 99996,
+                        "parent_coin_info": "0x484fdc99478247b0c7d9aa9eae4ebe8230d63de26a67ffc848740c9e114eef39",
+                        "puzzle_hash": "0x23dff88623d3716910c4804d13a96faf6cfa627039fd0da0f5395478298aa852"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b9d002a400cf027b22d426b0a9e01e93eb463855d3ef8602a8d40089c2bbddd60b6016f5d4b4e7baf9f29c97fcd2273bff018080",
+                    "solution": "0xff80ffff01ffff33ffa0b68570fcf52604408589fc101993a6a05e54797974979a7c1e509a1718389ec8ff8301869b80ffff34ff0180ffff3cffa0829f63f1557ea7f1f14a7e0f454d1784f867bcb2e9180f27b28814807dc0d60a8080ff8080"
+                }
+            ]
+        },
+        "to_puzzle_hash": "0x6f4c43aaec34916147a27cd6882f521b73f5b7a4aff7cc830d9177b28b321dea",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 9
+    }
+}
 ```
 
 </details>
@@ -2977,9 +3200,7 @@ Response:
 
 ### `pw_absorb_rewards`
 
-[todo]
-
-Functionality: 
+Functionality: Absorb unspent coinbase rewards to a pool wallet
 
 Usage: chia rpc wallet [OPTIONS] pw_absorb_rewards [REQUEST]
 
@@ -2992,32 +3213,23 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag                 | Type   | Required | Description                                                                                         |
+| :------------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
+| wallet_id            | NUMBER | True     | The Wallet ID to which to absorb funds (must be of type `POOLING_WALLET`)                           |
+| max_spends_in_tx     | NUMBER | False    | The maximum number of reward transactions to roll into the absorb transaction [Default: no maximum] |
+| fee                  | NUMBER | False    | An optional blockchain fee, in mojos                                                                |
 
-<details>
-<summary>Example</summary>
+:::note
 
-```json
+This RPC will only succeed if the wallet has accumulated unspent coinbase rewards.
 
-```
-
-Response:
-
-```json
-
-```
-
-</details>
+:::
 
 ---
 
 ### `pw_status`
 
-[todo]
-
-Functionality: 
+Functionality: Obtain the status of a pooling wallet
 
 Usage: chia rpc wallet [OPTIONS] pw_status [REQUEST]
 
@@ -3030,21 +3242,45 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag                 | Type   | Required | Description                                                                     |
+| :------------------- | :----- | :------- | :------------------------------------------------------------------------------ |
+| wallet_id            | NUMBER | True     | The Wallet ID for which to obtain the status (must be of type `POOLING_WALLET`) |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet pw_status '{"wallet_id": 9}'
 ```
 
 Response:
 
 ```json
-
+{
+    "state": {
+        "current": {
+            "owner_pubkey": "0xa2c2a511421dcc4a88cb523f2c8784050687982c3b22deaee6b2ab0b409fe50660101079619d34f71214d00d650dd88f",
+            "pool_url": "",
+            "relative_lock_height": 0,
+            "state": 1,
+            "target_puzzle_hash": "0x7b1ede8172c025d85040db053aa1b03115daf3099acb302cc92cd545202137f2",
+            "version": 1
+        },
+        "current_inner": "0xff02ffff01ff02ffff01ff02ffff03ff82017fffff01ff04ffff04ff1cffff04ff5fff808080ffff04ffff04ff12ffff04ff8205ffffff04ff8206bfff80808080ffff04ffff04ff08ffff04ff17ffff04ffff02ff1effff04ff02ffff04ffff04ff8205ffffff04ff8202ffff808080ff80808080ff80808080ff80808080ffff01ff02ff16ffff04ff02ffff04ff05ffff04ff8204bfffff04ff8206bfffff04ff8202ffffff04ffff0bffff19ff2fffff18ffff019100ffffffffffffffffffffffffffffffffff8205ff8080ff0bff8202ff80ff808080808080808080ff0180ffff04ffff01ffff32ff3d52ffff333effff04ffff04ff12ffff04ff0bffff04ff17ff80808080ffff04ffff04ff12ffff04ff05ffff04ff2fff80808080ffff04ffff04ff1affff04ff5fff808080ffff04ffff04ff14ffff04ffff0bff5fffff012480ff808080ff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff1effff04ff02ffff04ff09ff80808080ffff02ff1effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01a07b1ede8172c025d85040db053aa1b03115daf3099acb302cc92cd545202137f2ffff04ffff01a0d1a74bf2022d701bee11b17b30118ef16edd258493d16e710fbc984bffc17aa3ffff04ffff01b0a2c2a511421dcc4a88cb523f2c8784050687982c3b22deaee6b2ab0b409fe50660101079619d34f71214d00d650dd88fffff04ffff01a0ccd5bb71183532bff220ba46c268991a00000000000000000000000000000000ffff04ffff0180ff01808080808080",
+        "launcher_coin": {
+            "amount": 1,
+            "parent_coin_info": "0x0908243d25a95d27a254c46301ae954bf9aca2fe7a18673a3b29dc40401d2416",
+            "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+        },
+        "launcher_id": "0x5b2c9538a5388a47fa213cc71ce59f0f9de35be79b1459443e90506291060a2d",
+        "p2_singleton_puzzle_hash": "0xd1a74bf2022d701bee11b17b30118ef16edd258493d16e710fbc984bffc17aa3",
+        "singleton_block_height": 2871654,
+        "target": null,
+        "tip_singleton_coin_id": "0xa7c25e2640c6d009c8d7a02bd06eb103071b1572a23d24cccc5810bb01000160"
+    },
+    "success": true,
+    "unconfirmed_transactions": []
+}
 ```
 
 </details>
@@ -3055,9 +3291,7 @@ Response:
 
 ### `create_new_dl`
 
-[todo]
-
-Functionality: 
+Functionality: Create a new DataLayer wallet
 
 Usage: chia rpc wallet [OPTIONS] create_new_dl [REQUEST]
 
@@ -3070,21 +3304,137 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag | Type   | Required | Description                             |
+| :--- | :----- | :------- | :-------------------------------------- |
+| root | TEXT   | True     | The root hash of an existing data store |
+| fee  | NUMBER | False    | An optional blockchain fee, in mojos    |
+
+:::info
+
+For more info on creating a new data store and obtaining a root hash, see [the DataLayer RPC reference](/datalayer-rpc#create_data_store).
+
+:::
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet create_new_dl '{"fee": 1, "root": "0x0000000000000000000000000000000000000000000000000000000000000000"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+    "success": true,
+    "transactions": [
+        {
+            "additions": [
+                {
+                    "amount": 1,
+                    "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                    "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+                },
+                {
+                    "amount": 99990,
+                    "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                    "puzzle_hash": "0x7be3f330dd5cbacdee14f124b51ad744d7504cf4426d92b67953a96c9760d869"
+                },
+                {
+                    "amount": 1,
+                    "parent_coin_info": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+                    "puzzle_hash": "0xfddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84"
+                }
+            ],
+            "amount": 1,
+            "confirmed": false,
+            "confirmed_at_height": 0,
+            "created_at_time": 1669340844,
+            "fee_amount": 1,
+            "memos": {},
+            "name": "0x7854ba54c10bfa855a876ee2679b565b89afcd7fe44aac0da4a79c28e3381210",
+            "removals": [
+                {
+                    "amount": 99992,
+                    "parent_coin_info": "0x3089e0080a5b752a0db6fb21dd5fa351743e0266d40b2285c3711ef673b3fb3e",
+                    "puzzle_hash": "0xf9ff3866516f3c2c9861170472bca93763ddfa397796a102e5b2556365941228"
+                },
+                {
+                    "amount": 1,
+                    "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                    "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+                }
+            ],
+            "sent": 10,
+            "sent_to": [],
+            "spend_bundle": {
+                "aggregated_signature": "0xa07b9e756758bfa6128919998bdd5762b6aefdaab1e137c6ffaad10256f281335a9eac6f6650d9eb1dc42ec5bb0f7136101ed8527ff672221b53dd4577464fff3d070a55096394ee6e685abf714f75a6ac8e1e03a84c8ca7ac3977812a5a0abd",
+                "coin_spends": [
+                    {
+                        "coin": {
+                            "amount": 99992,
+                            "parent_coin_info": "0x3089e0080a5b752a0db6fb21dd5fa351743e0266d40b2285c3711ef673b3fb3e",
+                            "puzzle_hash": "0xf9ff3866516f3c2c9861170472bca93763ddfa397796a102e5b2556365941228"
+                        },
+                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b083cfd185d6b15c4f10d5b1e3310fcc8b2287b199ce1f7a47695a2ab19e3b867426c8e67ac027c8060a2a166b2b6ff2edff018080",
+                        "solution": "0xff80ffff01ffff33ffa0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ff0180ffff33ffa07be3f330dd5cbacdee14f124b51ad744d7504cf4426d92b67953a96c9760d869ff8301869680ffff34ff0180ffff3cffa04d9226e507ebb3bdf2fb3c392d20f9ee82e9265d4cbf535e3d125bf594d48ed880ffff3dffa0cca4d8d32569567369d32e18cdef521dcc617fa71a0e9316e0dcfc44fa74f3c38080ff8080"
+                    },
+                    {
+                        "coin": {
+                            "amount": 1,
+                            "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                            "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+                        },
+                        "puzzle_reveal": "0xff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff0affff04ffff02ff0effff04ff02ffff04ffff04ff05ffff04ff0bffff04ff17ff80808080ff80808080ff808080ff808080ffff04ffff01ff33ff3cff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080",
+                        "solution": "0xffa0fddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84ff01ffffa00000000000000000000000000000000000000000000000000000000000000000ffa0d4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a848080"
+                    }
+                ]
+            },
+            "to_address": "xch1qgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqzc0j4g",
+            "to_puzzle_hash": "0x0202020202020202020202020202020202020202020202020202020202020202",
+            "trade_id": null,
+            "type": 0,
+            "wallet_id": 0
+        },
+        {
+            "additions": [
+                {
+                    "amount": 1,
+                    "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                    "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+                },
+                {
+                    "amount": 99990,
+                    "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                    "puzzle_hash": "0x7be3f330dd5cbacdee14f124b51ad744d7504cf4426d92b67953a96c9760d869"
+                }
+            ],
+            "amount": 1,
+            "confirmed": false,
+            "confirmed_at_height": 0,
+            "created_at_time": 1669340844,
+            "fee_amount": 1,
+            "memos": {},
+            "name": "0xf6eb22529bad0f8788dc71cc1e45b81a36893d3106b834daece64a86ac039f45",
+            "removals": [
+                {
+                    "amount": 99992,
+                    "parent_coin_info": "0x3089e0080a5b752a0db6fb21dd5fa351743e0266d40b2285c3711ef673b3fb3e",
+                    "puzzle_hash": "0xf9ff3866516f3c2c9861170472bca93763ddfa397796a102e5b2556365941228"
+                }
+            ],
+            "sent": 0,
+            "sent_to": [],
+            "spend_bundle": null,
+            "to_address": "xch1alc82gjf2psvqehkdue2es480caruum6e296afx35e82fnwp8k5s6vrrej",
+            "to_puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+            "trade_id": null,
+            "type": 1,
+            "wallet_id": 1
+        }
+    ]
+}
 ```
 
 </details>
@@ -3093,9 +3443,7 @@ Response:
 
 ### `dl_track_new`
 
-[todo]
-
-Functionality: 
+Functionality: Begin tracking a DataStore
 
 Usage: chia rpc wallet [OPTIONS] dl_track_new [REQUEST]
 
@@ -3108,21 +3456,23 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+ chia rpc wallet dl_track_new '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true
+}
 ```
 
 </details>
@@ -3131,9 +3481,7 @@ Response:
 
 ### `dl_stop_tracking`
 
-[todo]
-
-Functionality: 
+Functionality: Stop tracking a DataStore
 
 Usage: chia rpc wallet [OPTIONS] dl_stop_tracking [REQUEST]
 
@@ -3146,21 +3494,23 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_stop_tracking '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true
+}
 ```
 
 </details>
@@ -3169,9 +3519,7 @@ Response:
 
 ### `dl_latest_singleton`
 
-[todo]
-
-Functionality: 
+Functionality: Get the singleton record for the latest singleton of a launcher ID
 
 Usage: chia rpc wallet [OPTIONS] dl_latest_singleton [REQUEST]
 
@@ -3184,21 +3532,39 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag           | Type    | Required | Description                                            |
+| :------------- | :------ | :------- | :----------------------------------------------------- |
+| launcher_id    | TEXT    | True     | The launcher ID of the DataLayer wallet                |
+| only_confirmed | BOOLEAN | False    | Only show the latest confirmed record [Default: false] |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_latest_singleton '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "singleton": {
+        "coin_id": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+        "confirmed": true,
+        "confirmed_at_height": 2871924,
+        "generation": 0,
+        "inner_puzzle_hash": "0xd4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a84",
+        "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+        "lineage_proof": {
+            "amount": 1,
+            "inner_puzzle_hash": "0x481d9aabeccd0ab87526a980f6b3389465b6b21cb9255e30175b52114791cd91",
+            "parent_name": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"
+        },
+        "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "timestamp": 1669340887
+    },
+    "success": true
+}
 ```
 
 </details>
@@ -3207,9 +3573,7 @@ Response:
 
 ### `dl_singletons_by_root`
 
-[todo]
-
-Functionality: 
+Functionality: Get the singleton records that contain the specified root
 
 Usage: chia rpc wallet [OPTIONS] dl_singletons_by_root [REQUEST]
 
@@ -3222,21 +3586,41 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
+| root        | TEXT | True     | The root hash of an existing data store |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_singletons_by_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "root": "0x0000000000000000000000000000000000000000000000000000000000000000"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "singletons": [
+        {
+            "coin_id": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+            "confirmed": true,
+            "confirmed_at_height": 2871924,
+            "generation": 0,
+            "inner_puzzle_hash": "0xd4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a84",
+            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0x481d9aabeccd0ab87526a980f6b3389465b6b21cb9255e30175b52114791cd91",
+                "parent_name": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669340887
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
@@ -3245,9 +3629,7 @@ Response:
 
 ### `dl_update_root`
 
-[todo]
-
-Functionality: 
+Functionality: Update the root of a data store to the given new root
 
 Usage: chia rpc wallet [OPTIONS] dl_update_root [REQUEST]
 
@@ -3260,21 +3642,80 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag        | Type   | Required | Description                             |
+| :---------- | :----- | :------- | :-------------------------------------- |
+| launcher_id | TEXT   | True     | The launcher ID of the DataLayer wallet |
+| new_root    | TEXT   | True     | The new root hash of the data store     |
+| fee         | NUMBER | False    | An optional blockchain fee, in mojos    |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_update_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "new_root": "0x0000000000000000000000000000000000000000000000000000000000000000", "fee": 1}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true,
+    "tx_record": {
+        "additions": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+                "puzzle_hash": "0xb4aaf8fffd0fe7cc74fd9c7a5dd519a58775d42b924cab183e8e8a6a48144362"
+            }
+        ],
+        "amount": 1,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669352476,
+        "fee_amount": 1,
+        "memos": {
+            "70e75ede3b9ba91ab4b91bc5efea8946fde60518becdce40e2cf6800ff173245": "607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5"
+        },
+        "name": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+        "removals": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+                "puzzle_hash": "0xfddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84"
+            }
+        ],
+        "sent": 10,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0x990dd3c598b16e245e44e3bed148fa3fb5e5f65bd6b05ed560021c0d46efdbdef18d70346ffe8b3401984b017045ed97169f77a041c8e995b507e00f0496e057630d8d609d7e69857b3122ae440cb2f67ad5d3f5ab8fe84448be414d1107f657",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 1,
+                        "parent_coin_info": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+                        "puzzle_hash": "0xfddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3480ffff01ff04ffff04ff20ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff2affff04ff02ffff04ff27ffff04ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff04ffff02ffff03ff77ffff0181b7ffff015780ff0180ff808080808080ffff04ff77ff808080808080ffff02ff3affff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4947ff0233ffff0401ff0102ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ff0bffff01ff02ffff03ffff02ff26ffff04ff02ffff04ff13ff80808080ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffff02ffff03ffff09ff09ff3880ffff01ff02ffff03ffff18ff2dffff010180ffff01ff0101ff8080ff0180ff8080ff0180ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff30ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa04aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09ea0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff04ff2cff8080808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a0a04d9f57764f54a43e4030befb4d80026e870519aaa66334aef8304f5d0393c2ffff04ffff01ffa0000000000000000000000000000000000000000000000000000000000000000080ffff04ffff01a057bfd1cb0adda3d94315053fda723f2028320faa8338225d99f629e3d46d43a9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0a889344c9bc729cadd340f41d5937a95442767133fd6ca7b5ec865df553b15cc43a0930bdd0a55ffc03edad3dfb62cbdff018080ff018080808080ff01808080",
+                    "solution": "0xffffa0e9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fbff0180ff01ffffff80ffff01ffff33ffa0607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5ff01ffffa04aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09effa00000000000000000000000000000000000000000000000000000000000000000ffa0607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c58080ffff3cff248080ff80808080"
+                },
+                {
+                    "coin": {
+                        "amount": 99990,
+                        "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                        "puzzle_hash": "0x7be3f330dd5cbacdee14f124b51ad744d7504cf4426d92b67953a96c9760d869"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b091f7f25662e59ab551649924abca7b3cb95393038c0161d6a34a3de4ffd2a43788c7b3a08221f430b55eaa417386700eff018080",
+                    "solution": "0xff80ffff01ffff33ffa0f7bf0a56b4883b42f5999fd7237300b33a541f8b92be02868483d073506098e0ff8301869580ffff34ff0180ffff3cffa058a074f99002b5471ceef509c59729ab7dcdffbc3d387597bc67bfec6f81423480ffff3dffa01cabec2e124d3c7c4cca9bd5d25a98e0bdab66690db30185e0b6fe8f74a0f6838080ff8080"
+                }
+            ]
+        },
+        "to_address": "xch1vpasf9ftx97gr6eph2t07hmz4k6cvg0cn407vfq0d6pagw2enrzsey2rsa",
+        "to_puzzle_hash": "0x607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 8
+    }
+}
 ```
 
 </details>
@@ -3283,9 +3724,7 @@ Response:
 
 ### `dl_update_multiple`
 
-[todo]
-
-Functionality: 
+Functionality: Update multiple singletons with new merkle roots
 
 Usage: chia rpc wallet [OPTIONS] dl_update_multiple [REQUEST]
 
@@ -3298,32 +3737,15 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
-
-<details>
-<summary>Example</summary>
-
-```json
-
-```
-
-Response:
-
-```json
-
-```
-
-</details>
+| Flag    | Type       | Required | Description                                 |
+| :------ | :--------- | :------- | :------------------------------------------ |
+| updates | TEXT ARRAY | True     | A list of launcher IDs and hashes to update |
 
 ---
 
 ### `dl_history`
 
-[todo]
-
-Functionality: 
+Functionality: Show the history of a data store
 
 Usage: chia rpc wallet [OPTIONS] dl_history [REQUEST]
 
@@ -3336,21 +3758,59 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag        | Type   | Required | Description                             |
+| :---------- | :----- | :------- | :-------------------------------------- |
+| launcher_id | TEXT   | True     | The launcher ID of the DataLayer wallet |
+| min_generation | NUMBER | False | The first generation of singleton to show [Default: none] |
+| max_generation | NUMBER | False | The last generation of the singleton to show [Default: none] |
+| num_results | NUMBER | False | The number of results to show [Default: show all results] | 
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_history '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "count": 2,
+    "history": [
+        {
+            "coin_id": "0x70e75ede3b9ba91ab4b91bc5efea8946fde60518becdce40e2cf6800ff173245",
+            "confirmed": true,
+            "confirmed_at_height": 2872567,
+            "generation": 1,
+            "inner_puzzle_hash": "0x607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5",
+            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0x60f66f9824d5f96d4025b70b4f7ac3def458cae742fbd2d70343eeeaa5a59c58",
+                "parent_name": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669352585
+        },
+        {
+            "coin_id": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+            "confirmed": true,
+            "confirmed_at_height": 2871924,
+            "generation": 0,
+            "inner_puzzle_hash": "0xd4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a84",
+            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0x481d9aabeccd0ab87526a980f6b3389465b6b21cb9255e30175b52114791cd91",
+                "parent_name": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669340887
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
@@ -3359,9 +3819,7 @@ Response:
 
 ### `dl_owned_singletons`
 
-[todo]
-
-Functionality: 
+Functionality: Get all owned singleton records
 
 Usage: chia rpc wallet [OPTIONS] dl_owned_singletons [REQUEST]
 
@@ -3372,23 +3830,54 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters:
-
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+Request Parameters: None
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_owned_singletons
 ```
 
 Response:
 
 ```json
-
+{
+    "count": 2,
+    "singletons": [
+        {
+            "coin_id": "0x70e75ede3b9ba91ab4b91bc5efea8946fde60518becdce40e2cf6800ff173245",
+            "confirmed": true,
+            "confirmed_at_height": 2872567,
+            "generation": 1,
+            "inner_puzzle_hash": "0x607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5",
+            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0x60f66f9824d5f96d4025b70b4f7ac3def458cae742fbd2d70343eeeaa5a59c58",
+                "parent_name": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669352585
+        },
+        {
+            "coin_id": "0xf9b3b8302919b4adb12a8d3914ed512cbbfed8bfadcf6e6b0e888c9533db5fab",
+            "confirmed": true,
+            "confirmed_at_height": 2871913,
+            "generation": 0,
+            "inner_puzzle_hash": "0x5dd62b0a1883fe7565cc243c830940b541ed219c8a373f50f3cd00e003663fa9",
+            "launcher_id": "0xba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0xd9d049c23a9eea8ddfcc47971479574b5f3c7da9bb7d34f24365a82c944e270e",
+                "parent_name": "0xba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669340703
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
@@ -3397,9 +3886,7 @@ Response:
 
 ### `dl_get_mirrors`
 
-[todo]
-
-Functionality: 
+Functionality: Get all of the mirrors for a specific singleton
 
 Usage: chia rpc wallet [OPTIONS] dl_get_mirrors [REQUEST]
 
@@ -3412,21 +3899,35 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_get_mirrors '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
 ```
 
 Response:
 
 ```json
-
+{
+    "mirrors": [
+        {
+            "amount": 10,
+            "coin_id": "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b",
+            "launcher_id": "4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "ours": true,
+            "urls": [
+                "http://www.example.com:8575",
+                "http://www.example2.com:8575"
+            ]
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
@@ -3435,9 +3936,7 @@ Response:
 
 ### `dl_new_mirror`
 
-[todo]
-
-Functionality: 
+Functionality: Add a new on chain message for a specific singleton
 
 Usage: chia rpc wallet [OPTIONS] dl_new_mirror [REQUEST]
 
@@ -3450,21 +3949,79 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag        | Type       | Required | Description                                                                                                                     |
+| :---------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| launcher_id | TEXT       | True     | The launcher ID of the DataLayer wallet                                                                                         |
+| urls        | TEXT ARRAY | True     | A list of URLs to be used for the mirror                                                                                        |
+| amount      | NUMBER     | True     | The value of the mirror (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
+| fee         | NUMBER     | False    | An optional blockchain fee, in mojos                                                                                            |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_new_mirror '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "urls":["http://www.example.com:8575", "http://www.example2.com:8575"], "amount":10, "fee": 1}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true,
+    "transactions": [
+        {
+            "additions": [
+                {
+                    "amount": 10,
+                    "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
+                    "puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee"
+                },
+                {
+                    "amount": 99978,
+                    "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
+                    "puzzle_hash": "0xecc03bb1f7d2c27f56baa9829630980a2cb2d0db426b09b677b3e5efdf7ce7c2"
+                }
+            ],
+            "amount": 10,
+            "confirmed": false,
+            "confirmed_at_height": 0,
+            "created_at_time": 1669355484,
+            "fee_amount": 1,
+            "memos": {
+                "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b": "687474703a2f2f7777772e6578616d706c65322e636f6d3a38353735"
+            },
+            "name": "0x7f4560f9c058ac0801cf95003f0fc18d3ddb07e2b9d8ce1e4d947494b4b084cd",
+            "removals": [
+                {
+                    "amount": 99989,
+                    "parent_coin_info": "0x5bf3b9607bfa60958b6d2a7f3c6a28f3dcc7f9081a0dd95d361cff3ca970658d",
+                    "puzzle_hash": "0xf7bf0a56b4883b42f5999fd7237300b33a541f8b92be02868483d073506098e0"
+                }
+            ],
+            "sent": 0,
+            "sent_to": [],
+            "spend_bundle": {
+                "aggregated_signature": "0x98cf9cae8b45172d9aeec0aeeffe52fb78530f62f056e140f172e1893d25e2c38e6e2584b912e6b6f7c60a53ccfe21f2034008730a53655beab4d7379f198a43bb337ed332e2a60f1f3dedda459145c2c56f59bf6aa73d993e4cc578706d2f3b",
+                "coin_spends": [
+                    {
+                        "coin": {
+                            "amount": 99989,
+                            "parent_coin_info": "0x5bf3b9607bfa60958b6d2a7f3c6a28f3dcc7f9081a0dd95d361cff3ca970658d",
+                            "puzzle_hash": "0xf7bf0a56b4883b42f5999fd7237300b33a541f8b92be02868483d073506098e0"
+                        },
+                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b326638c42fcc6ebb926ecf1bbd1ea7e12adfdf338a3b2ee5f45711076d27abf3583f8b33d6cad56c8008b95c129d38dff018080",
+                        "solution": "0xff80ffff01ffff33ffa003c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abeeff0affffa04aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09eff9b687474703a2f2f7777772e6578616d706c652e636f6d3a38353735ff9c687474703a2f2f7777772e6578616d706c65322e636f6d3a383537358080ffff33ffa0ecc03bb1f7d2c27f56baa9829630980a2cb2d0db426b09b677b3e5efdf7ce7c2ff8301868a80ffff34ff0180ffff3cffa0cd6be8c3889bc01d161e53c75cf56934c38499725c22cf54f8646bafea0d82648080ff8080"
+                    }
+                ]
+            },
+            "to_address": "xch1q0y2mtu8ukhsusy8ex6jw8l07ngh7vak37agf0cuppr0fejf40hq5u7ds7",
+            "to_puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee",
+            "trade_id": null,
+            "type": 1,
+            "wallet_id": 1
+        }
+    ]
+}
 ```
 
 </details>
@@ -3473,9 +4030,7 @@ Response:
 
 ### `dl_delete_mirror`
 
-[todo]
-
-Functionality: 
+Functionality: Remove an existing mirror for a specific singleton
 
 Usage: chia rpc wallet [OPTIONS] dl_delete_mirror [REQUEST]
 
@@ -3488,21 +4043,70 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-|      | TEXT | True     |             |
+| Flag    | Type   | Required | Description                           |
+| :------ | :----- | :------- | :------------------------------------ |
+| coin_id | TEXT   | True     | The `coin_id` of the mirror to delete |
+| fee     | NUMBER | False    | An optional blockchain fee, in mojos  |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc wallet dl_delete_mirror '{"coin_id": "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b", "fee": 1}'
 ```
 
 Response:
 
 ```json
-
+{
+    "success": true,
+    "transactions": [
+        {
+            "additions": [
+                {
+                    "amount": 9,
+                    "parent_coin_info": "0xa6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b",
+                    "puzzle_hash": "0x23e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749e"
+                }
+            ],
+            "amount": 10,
+            "confirmed": false,
+            "confirmed_at_height": 0,
+            "created_at_time": 1669356270,
+            "fee_amount": 1,
+            "memos": {},
+            "name": "0x92b71646dbcbc713ceb073618e8043d24defc514285aaffaae4037d14e4bd899",
+            "removals": [
+                {
+                    "amount": 10,
+                    "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
+                    "puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee"
+                }
+            ],
+            "sent": 10,
+            "sent_to": [],
+            "spend_bundle": {
+                "aggregated_signature": "0x876c9a74397d4fcec257662eea48d29c10c72dc53ca723313c7be2d447ce8b7b41a30e937827e9def691fe9fca442a1707139c802a47389dd9287b0ab8d60d91917d0f309fcb8661f13239554492a9262ab7b7bafdb6ee8d01f01258010d4547",
+                "coin_spends": [
+                    {
+                        "coin": {
+                            "amount": 10,
+                            "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
+                            "puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee"
+                        },
+                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff04ffff04ff08ffff04ffff02ff0affff04ff02ffff04ff0bffff04ffff02ff05ffff02ff0effff04ff02ffff04ff17ff8080808080ffff04ff2fff808080808080ff808080ffff02ff17ff5f8080ffff04ffff01ffff4720ffff02ffff03ffff22ffff09ffff0dff0580ff0c80ffff09ffff0dff0b80ff0c80ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff0101ff018080",
+                        "solution": "0xffa05bf3b9607bfa60958b6d2a7f3c6a28f3dcc7f9081a0dd95d361cff3ca970658dffff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b326638c42fcc6ebb926ecf1bbd1ea7e12adfdf338a3b2ee5f45711076d27abf3583f8b33d6cad56c8008b95c129d38dff018080ff83018695ffff80ffff01ffff33ffa023e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749eff098080ff808080"
+                    }
+                ]
+            },
+            "to_address": "xch1y05ma9ee233g9agvzr9u6wwrd38jq3f8y85yt3xswa0krav8wj0qlf7xxw",
+            "to_puzzle_hash": "0x23e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749e",
+            "trade_id": null,
+            "type": 1,
+            "wallet_id": 8
+        }
+    ]
+}
 ```
 
 </details>
