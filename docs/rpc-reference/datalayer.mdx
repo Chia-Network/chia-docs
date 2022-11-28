@@ -1654,7 +1654,7 @@ The offer will be contained within the response:
 Because the offer is quite large, your command line might have trouble processing it if you paste it directly. Therefore, you are recommended to do the following:
 
 - Copy the entire response into an editor that can handle JSON formatting
-- Change the last line from `"success": true` to `"fee": <fee amount in mojos>` (for example, `"fee": 10000000`). This is a required transaction fee, paid by the Taker
+- Change the last line from `"success": true` to `"fee": [fee amount in mojos]` (for example, `"fee": 10000000`). This is a required transaction fee, paid by the Taker
 - Save it as a json file (for example, `offer.json`) and send it to the Taker, who will input it in the [take_offer](#take_offer) example
 
 The offer has now been saved as a .json file and been sent to the Taker. See [take_offer](#take_offer) for an example of how to accept the offer.
@@ -2054,6 +2054,50 @@ Response:
 ```json
 {
   "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_sync_status`
+
+Functionality: Obtain the current sync status for a provided data store
+
+Usage: chia rpc data_layer [OPTIONS] get_sync_status [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type | Required | Description              |
+| :--- | :--- | :------- | :----------------------- |
+| id   | TEXT | True     | The hexadecimal store ID |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc data_layer get_sync_status '{"id": "39114b28a3674b6c2c0ed65d3518842fd17f9df46794f49cd223f9f3a463f09d"}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "sync_status": {
+        "generation": 1,
+        "root_hash": "532d8df550bdbdef28c1a7b27eaefc812afb99eabd59b3c041000c7ea352e900",
+        "target_generation": 1,
+        "target_root_hash": "532d8df550bdbdef28c1a7b27eaefc812afb99eabd59b3c041000c7ea352e900"
+    }
 }
 ```
 
