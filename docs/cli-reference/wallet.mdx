@@ -1,0 +1,584 @@
+---
+sidebar_label: Wallet
+title: Wallet CLI
+slug: /wallet-cli
+---
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+This document is a reference for Chia's `wallet` CLI commands. The following `wallet` commands are documented on their own dedicated pages:
+
+* [DIDs](/did-cli) (Decentralized Identifiers)
+* [NFTs](/nft-cli) (Non-Fungible Tokens)
+* [Offers](/offer-cli)
+
+## Reference
+
+## `add_token`
+
+Functionality: Add/Rename a CAT to the wallet by its asset ID
+
+Usage: chia wallet add_token [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -id           | --asset-id        | TEXT    | True     | The Asset ID of the coin you wish to add/rename (the treehash of the TAIL program)                           |
+| -n            | --token-name      | TEXT    | False    | The name you wish to designate to the token                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | The wallet fingerprint you wish to add the token to                                                          |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## coins:
+
+Functionality: Manage your wallet's coins
+
+### `combine`
+
+Functionality: Combine dust coins
+
+Usage: chia wallet coins combine [OPTIONS]
+
+Options:
+
+| Short Command | Long Command            | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -p            | --wallet-rpc-port       | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint           | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i            | --id                    | INTEGER | True     | ID of the wallet to use [default: 1]                                                                         |
+| -a            | --target-coin-amount    | TEXT    | False    | An optional target coin amount, if you want to create a coin with a specific amount                          |
+| -b            | --min-coin-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                      |
+| -e            | --excluded-coin-amounts | TEXT    | False    | Exclude any coins with this amount from being included                                                       |
+| -n            | --number-of-coins       | INTEGER | False    | The number of coins we are combining [default: 500]                                                          |
+| -x            | --max-dust-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units [default: 0.000001000000]                            |
+| -m            | --fee                   | TEXT    | True     | Set the fees for the transaction, in XCH [default: 0]                                                        |
+| -t            | --target_coin_ids       | TEXT    | False    | Only combine coins with these ids                                                                            |
+| -l            | --largest_coins_first   | BOOLEAN | False    | Sort coins from largest to smallest instead of smallest to largest [default: false]                          |
+| -h            | --help                  | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+### `list`
+
+Functionality: List all coins
+
+Usage: chia wallet coins list [OPTIONS]
+
+Options:
+
+| Short Command | Long Command            | Type    | Required | Description                                                                                                       |
+| :------------ | :---------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- |
+| -p            | --wallet-rpc-port       | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml      |
+| -f            | --fingerprint           | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
+| -i            | --id                    | INTEGER | True     | Id of the wallet to use  [default: 1]                                                                             |
+| -u            | --show_unconfirmed      | BOOLEAN | False    | Separately display unconfirmed coins [default: false]                                                             |
+| -a            | --min-coin-amount       | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                         |
+| -l            | --max-coin-amount       | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                         |
+| -e            | --excluded-coin-ids     | TEXT    | False    | Prevent this coin from being included                                                                             |
+| -x            | --excluded-coin-amounts | TEXT    | False    | Exclude any coins with this amount from being included                                                            |
+|               | --paginate              | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
+|               | --no-paginate           | None    | false    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
+| -h            | --help                  | None    | False    | Show a help message and exit                                                                                      |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+### `split`
+
+Functionality: Split up larger coins
+
+Usage: chia wallet coins split [OPTIONS]
+
+Options:
+
+| Short Command | Long Command       | Type    | Required | Description                                                                                                  |
+| :------------ | :----------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -p            | --wallet-rpc-port  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i            | --id               | INTEGER | True     | ID of the wallet to use [default: 1]                                                                         |
+| -n            | --number-of-coins  | INTEGER | False    | The number of coins we are creating                                                                          |
+| -m            | --fee              | TEXT    | True     | Set the fees for the transaction, in XCH [default: 0]                                                        |
+| -a            | --amount-per-coin  | TEXT    | True     | The amount of each newly created coin, in XCH                                                                |
+| -u            | --unique_addresses | None    | False    | Generate a new address for each coin [default: disabled]                                                     |
+| -t            | --target-coin-id   | TEXT    | True     | The coin id of the coin we are splitting                                                                     |
+| -h            | --help             | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `delete_unconfirmed_transactions`
+
+Functionality: Deletes all unconfirmed transactions for this wallet ID
+
+Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -i            | --id              | INTEGER | True     | ID of the wallet to use  [default: 1]                                                                        |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `get_address`
+
+Functionality: Get a wallet receive address
+
+Usage: chia wallet get_address [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -i            | --id              | INTEGER | True     | ID of the wallet to use  [default: 1]                                                                        |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -n            | --new-address     | None    | False    | Create a new wallet receive address [default: disabled]                                                      |
+| -l            | --latest-address  | None    | False    | Show the most recently created wallet receive address  [default: enabled]                                    |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `get_derivation_index`
+
+Functionality: Get the last puzzle hash derivation path index
+
+Usage: chia wallet get_derivation_index [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `get_transaction`
+
+Functionality: Get a transaction
+
+Usage: chia wallet get_transaction [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i,           | --id              | INTEGER | True     | ID of the wallet to use [default: 1]                                                                         |
+| -tx           | --tx_id           | TEXT    | True     | Transaction id to search for                                                                                 |
+| -v            | --verbose         | None    | False    | Show verbose output [default: disabled]                                                                      |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `get_transactions`
+
+Functionality: Get all transactions
+
+Usage: chia wallet get_transactions [OPTIONS]
+
+Options:
+
+| Short Command | Long Command        | Type    | Required | Description                                                                                                       |
+| :------------ | :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port   | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml      |
+| -f            | --fingerprint       | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
+| -i            | --id                | INTEGER | True     | ID of the wallet to use [default: 1]                                                                              |
+| -o            | --offset            | INTEGER | True     | Skip transactions from the beginning of the list [default: 0]                                                     |
+| -l            | --limit             | INTEGER | False    | Max number of transactions to return [default: 4294967295]                                                        |
+| -v            | --verbose           | None    | False    | Show verbose output [default: disabled]                                                                           |
+|               | --paginate          | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
+|               | --no-paginate       | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
+|               | --sort-by-height    | None    | False    | Sort transactions by height [default: disabled]                                                                   |
+|               | --sort-by-relevance | None    | False    | Sort transactions by {confirmed \| height \| time} [default: disabled]                                            |
+|               | --reverse           | None    | False    | Reverse the transaction ordering [default: disabled]                                                              |
+| -h            | --help              | None    | False    | Show a help message and exit                                                                                      |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## notifications:
+
+Functionality: Send/Manage notifications
+
+### `delete`
+
+Functionality: Delete notification(s) that are in your wallet
+
+Usage: chia wallet notifications delete [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i            | --id              | TEXT    | False    | A specific notification ID to delete                                                                         |
+|               | --all             | None    | False    | All notifications can be deleted (they will be recovered during resync) [default: disabled]                  |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+### `get`
+
+Functionality: Get notification(s) that are in your wallet
+
+Usage: chia wallet notifications get [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i            | --id              | TEXT    | False    | The specific notification ID to show                                                                         |
+| -s            | --start           | INTEGER | False    | The number of notifications to skip                                                                          |
+| -e            | --end             | INTEGER | False    | The number of notifications to stop at                                                                       |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+### `send`
+
+Functionality: Send a notification to the owner of an address
+
+Usage: chia wallet notifications send [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -t            | --to-address      | TEXT    | True     | The address to send the notification to                                                                      |
+| -a            | --amount          | TEXT    | True     | The amount to send to get the notification past the recipient's spam filter [default: 0.00001]               |
+| -n            | --message         | TEXT    | True     | The message of the notification                                                                              |
+| -m            | --fee             | TEXT    | False    | The fee for the transaction                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `send`
+
+Functionality: Send chia to another wallet
+
+Usage: chia wallet send [OPTIONS]
+
+Options:
+
+| Short Command | Long Command       | Type    | Required | Description                                                                                                  |
+| :------------ | :----------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i            | --id               | INTEGER | True     | ID of the wallet to use  [default: 1]                                                                        |
+| -a            | --amount           | TEXT    | True     | How much chia to send, in XCH                                                                                |
+| -e            | --memo             | TEXT    | False    | Additional memo for the transaction                                                                          |
+| -m            | --fee              | TEXT    | True     | Set the fees for the transaction, in XCH [default: 0]                                                        |
+| -t            | --address          | TEXT    | True     | Address to send the XCH                                                                                      |
+| -o            | --override         | None    | False    | Submits transaction without checking for unusual values [default: disabled]                                  |
+| -ma           | --min-coin-amount  | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                    |
+| -l            | --max-coin-amount  | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                    |
+| -e            | --exclude-coin-ids | TEXT    | False    | Exclude this coin from being spent                                                                           |
+| -h            | --help             | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `show`
+
+Functionality: Show wallet information
+
+Usage: chia wallet show [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                                                                                                           |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                                                                                                                          |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                                                                                    |
+| -w            | --wallet_type     | TEXT    | False    | Choose a specific wallet type to return, choose from the following: [standard_wallet \| atomic_swap \| authorized_payee \| multi_sig \| custody \| cat \| recoverable \| decentralized_id \| pooling_wallet \| nft \| data_layer \| data_layer_offer] |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                                                                                          |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `sign_message`
+
+Functionality: Sign a message by a derivation address
+
+Usage: chia wallet sign_message [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -a            | --address         | TEXT    | True     | The address you want to use for signing                                                                      |
+| -m            | --hex_message     | TEXT    | True     | The hex message you want sign                                                                                |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---
+
+## `update_derivation_index`
+
+Functionality:  Generate additional derived puzzle hashes starting at the provided index
+
+Usage: chia wallet update_derivation_index [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i            | --index           | INTEGER | True     | Index to set. Must be greater than the current derivation index                                              |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+<details>
+<summary>Example</summary>
+
+```bash
+
+```
+
+Response:
+
+```
+
+```
+
+</details>
+
+---

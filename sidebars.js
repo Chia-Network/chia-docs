@@ -70,6 +70,7 @@ module.exports = {
         'cli-reference/cat-admin',
         'cli-reference/simulator',
         'cli-reference/custody-tool',
+        'cli-reference/wallet',
       ],
     },
     {
