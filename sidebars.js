@@ -53,7 +53,6 @@ module.exports = {
         'rpc-reference/nfts',
         'rpc-reference/offers',
         'rpc-reference/datalayer',
-        'rpc-reference/cadt',
         'rpc-reference/simulator',
         'rpc-reference/wallet',
       ],
