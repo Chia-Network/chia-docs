@@ -3,7 +3,7 @@ title: Light Clients
 slug: /light-clients
 ---
 
-Light client support is another benefit of Proof of Space (PoSpace) when compared with Proof of Stake (PoS). In PoSpace, all proofs can be verified objectively and cryptographically, while maintaining the requirement to control an actual resource at a certain point in time. With Chia's consensus, a candidate chain can be compared to an alternate chain objectively for weight, even after being offline for a long time, without relying on a central authority.
+Light client support is another benefit of Proof of Space and Time (PoST) when compared with Proof of Stake (PoS). In PoST, all proofs can be verified objectively and cryptographically, while maintaining the requirement to control an actual resource at a certain point in time. With Chia's consensus, a candidate chain can be compared to an alternate chain objectively for weight, even after being offline for a long time, without relying on a central authority.
 
 For light clients that want to sync up quickly to the chain (for example, mobile wallets), a full node can create a small-sized proof that can convince the light client that the weight of a chain is close to some value. This is called a proof of weight.
 
