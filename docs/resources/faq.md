@@ -3,6 +3,11 @@ title: FAQ
 slug: /faq
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## General
 
 ### What are harvesters, farmers, full nodes, and timelords?
@@ -429,6 +434,76 @@ Because of the problems listed above, any solutions to making a coin spendable _
 Our current recommendation: First, create `Coin A`, which will run a `CREATE_COIN_ANNOUNCEMENT` condition when it is spent. Next, create `Coin B`, which uses the `ASSERT_COIN_ANNOUNCEMENT` condition for `Coin A`'s announcementID. A spend of `Coin A` will automatically invalidate any attempts to spend `Coin B` forever.
 
 A similar (but slightly more complex technique) would be to use a singleton instead of a standard coin. Updating the singleton automatically would invalidate a coin spend, and the singleton could be reused to invalidate future spends. This technique could also be used to invalidate offers.
+
+### Where is the executable file to start the reference wallet GUI located on Windows?
+
+If you only installed Chia for the current user, the exe will be installed to the following location (be sure to replace `<user ID>` with your actual user ID):
+
+```
+C:\Users\<user ID>\AppData\Local\Programs\Chia\Chia.exe
+```
+
+If you installed Chia for all users, then this is the location of the exe:
+
+```
+C:\Program Files\Chia\Chia.exe
+```
+
+### I installed Chia from the packaged installer. How can I invoke Chia CLI commands?
+
+When you install Chia from the packaged installer (as opposed to when you install from source), there is no virtual environment. In this case, you will need to call the executable file directly.
+
+The easiest way to accomplish this is with an alias. Run the following command(s), which depend on your operating system:
+
+:::info Chia setup
+
+<Tabs
+  defaultValue="windows"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'MacOS', value: 'macos'}
+  ]}>
+  <TabItem value="windows">
+
+Note that this only works if you installed Chia for your local user (_not_ for all users). If you installed to a non-default location, update the following command accordingly:
+
+```powershell
+Set-Alias -Name chia C:\Users\User\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
+```
+
+  </TabItem>
+  <TabItem value="linux">
+
+Alias command is not needed, but you should still run the following:
+
+```bash
+chia init --fix-ssl-permissions
+```
+
+  </TabItem>
+  <TabItem value="macos">
+
+If you installed to a non-default location, update the following command accordingly:
+
+```bash
+alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'
+chia init --fix-ssl-permissions
+```
+
+  </TabItem>
+</Tabs>
+
+:::
+
+After running the above command(s), run `chia version`. You should be shown the correct version. For example:
+
+```
+chia version
+1.6.1
+```
+
+---
 
 ## Offers
 
