@@ -882,6 +882,64 @@ Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/chia-
 
 If you use the GUI, it will migrate from release to release for you. For both the GUI and the command line, your keys are stored on OS specific keychains. If running services from the command line only, `chia init` will migrate your config.yaml and dbs - if appropriate - to the new version. Keys and plots made before Beta 8 are deprecated and useless.
 
+### Where is the executable file to start Chia's reference wallet on Windows?
+
+Windows users can run `C:\Users\<user ID>\AppData\Local\Programs\Chia\Chia.exe` (be sure to replace `<user ID>` with the actual ID) to start the reference wallet GUI. This will also start a full node if that features has been enabled.
+
+### I installed Chia with the packaged installer. How do I run CLI commands?
+
+For power users, it is possible to [install Chia from source](/quick-start-guide#install). In this case, you will run Chia from a virtual environment on the command line.
+
+However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/). 
+
+After installing with the packaged installer, you can run Chia from the command line by invoking the executable file. The easiest way to set this up is by running the `alias` command. The exact command needed depends on your OS:
+
+:::info Chia setup
+
+<Tabs
+  defaultValue="windows"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'MacOS', value: 'macos'}
+  ]}>
+  <TabItem value="windows">
+
+(Be sure to update &lt;username&gt; to match the name of the user that installed Chia.)
+
+```powershell
+Set-Alias -Name chia C:\Users\<username>\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
+```
+
+  </TabItem>
+  <TabItem value="linux">
+
+Alias command is not needed, but you should still run the following:
+
+```bash
+chia init --fix-ssl-permissions
+```
+
+  </TabItem>
+  <TabItem value="macos">
+
+```bash
+alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'
+chia init --fix-ssl-permissions
+```
+
+  </TabItem>
+</Tabs>
+
+:::
+
+To test your setup, run `chia version`. You should be shown the correct version. For example:
+
+```powershell
+chia version
+1.6.1
+```
+
 ### What are the plans for the project and what are its tokenomics?
 
 This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Project FAQ](https://www.chia.net/faq/).
