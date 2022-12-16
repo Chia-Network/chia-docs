@@ -55,6 +55,12 @@ Successfully added Spacebucks with wallet id 3 on key 2121994410
 
 Functionality: List, split, and combine your wallet's coins
 
+:::warning
+
+The following `coin` commands (`combine`, `list`, and `split`) are currently only available in the `main` branch of the codebase. They are not yet supported. Use at your own risk!
+
+:::
+
 ### `combine`
 
 Functionality: Combine coins (typically used for combining dust)
@@ -68,14 +74,15 @@ Options:
 | -p            | --wallet-rpc-port       | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint           | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --id                    | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -a            | --target-coin-amount    | TEXT    | False    | An optional target coin amount, if you want to create a coin with a specific amount                          |
-| -b            | --min-coin-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                      |
-| -e            | --excluded-coin-amounts | TEXT    | False    | Exclude any coins with this amount from being included                                                       |
+| -a            | --target-amount         | TEXT    | False    | An optional target coin amount, if you want to create a coin with a specific amount                          |
+|               | --min-amount            | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                      |
+|               | --exclude-amount        | TEXT    | False    | Exclude any coins with this amount from being included (can be reused)                                                       |
 | -n            | --number-of-coins       | INTEGER | False    | The number of coins we are combining [default: 500]                                                          |
-| -x            | --max-dust-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units [default: 0.000001000000]                            |
+|               | --max-dust-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units [default: 0.000001000000]                            |
 | -m            | --fee                   | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
-| -t            | --target_coin_ids       | TEXT    | False    | Only combine coins with these ids                                                                            |
-| -l            | --largest_coins_first   | BOOLEAN | False    | Sort coins from largest to smallest instead of smallest to largest [default: false]                          |
+|               | --input-coin            | TEXT    | False    | Only combine coins with these ids (can be reused)                                                            |
+|               | --largest-first         | None    | False    | Sort coins from largest to smallest                                                                          |
+|               | --smallest-first        | None    | False    | Sort coins from smallest to largest                                                                          |
 | -h            | --help                  | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
@@ -247,10 +254,10 @@ Options:
 | -f            | --fingerprint           | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
 | -i            | --id                    | INTEGER | False    | Id of the wallet to use  [default: 1]                                                                             |
 | -u            | --show_unconfirmed      | BOOLEAN | False    | Separately display unconfirmed coins [default: false]                                                             |
-| -a            | --min-coin-amount       | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                         |
-| -l            | --max-coin-amount       | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                         |
-| -e            | --excluded-coin-ids     | TEXT    | False    | Prevent this coin from being included                                                                             |
-| -x            | --excluded-coin-amounts | TEXT    | False    | Exclude any coins with this amount from being included                                                            |
+|               | --min-amount            | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                         |
+|               | --max-amount            | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                         |
+|               | --exclude-coin          | TEXT    | False    | Prevent this coin from being included (can be reused to exclude multiple coins)                                   |
+|               | --exclude-amount        | TEXT    | False    | Exclude any coins with this amount from being included (can be reused to exclude multiple amounts)                |
 |               | --paginate              | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
 |               | --no-paginate           | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
 | -h            | --help                  | None    | False    | Show a help message and exit                                                                                      |
@@ -303,7 +310,6 @@ Options:
 | -n            | --number-of-coins  | INTEGER | False    | The number of coins we are creating                                                                          |
 | -m            | --fee              | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
 | -a            | --amount-per-coin  | TEXT    | True     | The amount of each newly created coin, in XCH                                                                |
-| -u            | --unique_addresses | None    | False    | Generate a new address for each coin [default: disabled]                                                     |
 | -t            | --target-coin-id   | TEXT    | True     | The coin id of the coin we are splitting                                                                     |
 | -h            | --help             | None    | False    | Show a help message and exit                                                                                 |
 
@@ -340,7 +346,7 @@ Coin ID: 0x029b8689abda7f4ff4871e1cd69eb32725a0cda8520b751bcf774fb681e19bc5
 Next, split a 1000-mojo coin. Include a 1-mojo fee, and create twenty 10-mojo coins with unique addresses:
 
 ```bash
-chia wallet coins split --fingerprint 2121994410 --id 1 --fee 0.000000000001 --amount-per-coin 0.00000000001 --number-of-coins 20 --unique_addresses --target-coin-id 0x4de8baf19566474a00126b9c0f31d779ccf541529263fc968c572e3ae4fb24cf
+chia wallet coins split --fingerprint 2121994410 --id 1 --fee 0.000000000001 --amount-per-coin 0.00000000001 --number-of-coins 20 --target-coin-id 0x4de8baf19566474a00126b9c0f31d779ccf541529263fc968c572e3ae4fb24cf
 ```
 
 Result:
