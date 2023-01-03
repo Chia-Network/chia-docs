@@ -46,6 +46,14 @@ The CLI one is the one referred to in this document, and for version 1.1.3 it ca
 
 `~\AppData\Local\chia-blockchain\app-1.1.3\resources\app.asar.unpacked\daemon\chia.exe`
 
+In version 1.6.0 and above, if installed for a user, the binary can be found at 
+
+`~\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe`
+
+or if installed for all users, the binary can be found at
+
+`C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe`
+
 # [init](https://github.com/Chia-Network/chia-blockchain/blob/master/src/cmds/init.py)
 
 Command: `chia init`
