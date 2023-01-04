@@ -1,3 +1,9 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #3aac59;
@@ -29,6 +35,35 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .feature-item {
   margin-bottom: 50px;
+}
+
+:root {
+  --docusaurus-announcement-bar-height: auto !important;
+}
+
+div[class^='announcementBar'][role='banner'] {
+  border-bottom-color: var(--deepdark);
+}
+
+div[class^='announcementBarContent'] {
+  line-height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px 30px;
+}
+
+@media only screen and (max-width: 768px) {
+  .announcement {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .announcement {
+    font-size: 15px;
+    line-height: 22px;
+    padding: 6px 30px;
+  }
 }
 
 h4 {
