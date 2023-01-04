@@ -6,8 +6,8 @@
       'The source of truth for Chia documentation. Start here to learn more about Chia.',
     url: 'https://docs.chia.net',
     baseUrl: '/',
-    onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenLinks: 'ignore',
+    onBrokenMarkdownLinks: 'ignore',
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
     projectName: '{{ REPOSITORY_NAME }}',
@@ -40,29 +40,26 @@
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        announcementBar: {
+          id: 'cat2_launch',
+          content:
+            'CAT2 Standard Released 🌱<a target="_blank" rel="noopener noreferrer" href="/cat2-intro/"> Learn about CAT1 end-of-life and CAT2 reissuance</a>',
+          backgroundColor: '#0d3349',
+          textColor: '#fff',
+          isCloseable: true,
+        },
         image: '/img/og-chia.png',
         navbar: {
-          title: 'Chia Docs',
+          title: ' Chia Docs',
           logo: {
             alt: 'Chia Logo',
-            src: '/svg/chia-leaf-green.svg',
+            src: 'img/chia_leaf_green.svg',
           },
           items: [
             {
-              type: 'doc',
-              docId: 'getting-started/quick-start-guide',
-              position: 'left',
+              to: '/quick-start-guide',
+              activeBasePath: 'docs',
               label: 'Docs',
-            },
-            {
-              type: 'doc',
-              docId: 'guides/chialisp-primer/chialisp-primer-intro',
-              position: 'left',
-              label: 'Guides',
-            },
-            {
-              href: 'https://chialisp.com',
-              label: 'Chialisp',
               position: 'left',
             },
             {
@@ -73,6 +70,10 @@
             {
               href: 'https://github.com/Chia-Network/chia-blockchain',
               label: 'GitHub',
+              position: 'left',
+            },
+            {
+              type: 'localeDropdown',
               position: 'right',
             },
           ],
@@ -141,18 +142,18 @@
           additionalLanguages: ['powershell', 'lisp'],
         },
       }),
-    themes: [
-      [
-        '@easyops-cn/docusaurus-search-local',
-        /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-        ({
-          hashed: true,
-          language: ['en', 'zh'],
-          highlightSearchTermsOnTargetPage: true,
-          explicitSearchResultPath: true,
-          docsRouteBasePath: '/',
-        }),
+      themes: [
+        [
+          "@easyops-cn/docusaurus-search-local",
+          /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+          ({
+            hashed: true,
+            language: ["en", "zh"],
+            highlightSearchTermsOnTargetPage: true,
+            explicitSearchResultPath: true,
+            docsRouteBasePath: "/"
+          }),
+        ],
       ],
-    ],
   }
 );

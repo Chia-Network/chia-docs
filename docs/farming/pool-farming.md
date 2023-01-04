@@ -31,7 +31,7 @@ To start, you need to update to Chia 1.2, and sync up your Chia full node and wa
 and in the wallet tab in the top right, it should say `Synced` as well.
 
 <div style={{textAlign: 'center'}}>
- <img src="/img/wallet-sync.png" alt="wallet sync" width="600"/>
+ <img src="/img/wallet_sync.png" alt="wallet sync" width="600"/>
 </div>
 
 IMPORTANT: If you are using the same key (24 words) on more than one computer, you should update both computers to 1.2+ before creating your plot NFT. If you have already created the plot NFT and the second computer is running a version older than 1.2, it will not be able to see the plot NFT. This can be fixed by shutting down the application on the second computer, and deleting the `~/.chia/wallet/db` folder and all files inside of it.
@@ -65,7 +65,7 @@ NFT, and wait for it to be confirmed (click only once). It can take several minu
 You only need 1 plot NFT.
 
 <div style={{textAlign: 'center'}}>
- <img src="/img/join-pool.png" alt="join pool" width="600"/>
+ <img src="/img/join_pool.png" alt="join pool" width="600"/>
 </div>
 
 ### Step 4: Add Plots
@@ -144,8 +144,8 @@ the GUI before a pool switching operation has finalized. Please click "change po
 
 The block reward is divided into two components, the pool portion (7/8 of the total reward) and the farmer portion (1/8).
 
--   The pool portion gets paid out to the pool, which will pay you according to their payout schedule. This is configurable in the Pool tab of the GUI: Click the three dots on the upper-right corner of your plot NFT and click "Edit Payout Instructions." This is also configurable in `config.yaml` in the pool_list section under payout_instructions.
--   The farmer portion will go to your farmer target address, which is the same as the OG plots. This is configurable in the Farm tab of the GUI, or in `config.yaml` under farmer.xch_target_address.
+- The pool portion gets paid out to the pool, which will pay you according to their payout schedule. This is configurable in the Pool tab of the GUI: Click the three dots on the upper-right corner of your plot NFT and click "Edit Payout Instructions." This is also configurable in `config.yaml` in the pool_list section under payout_instructions.
+- The farmer portion will go to your farmer target address, which is the same as the OG plots. This is configurable in the Farm tab of the GUI, or in `config.yaml` under farmer.xch_target_address.
 
 ### Self Pooling
 
@@ -273,10 +273,10 @@ If it's your first time writing pool code, we recommend you look at established 
 
 ## Variable names used in pooling code
 
--   puzzle_hash: an address but in a different format. Addresses are human readable.
--   singleton: a smart coin (contract) that guaranteed to be unique and controlled by the user.
--   launcher_id: unique ID of the singleton.
--   points: represent the amount of farming that a farmer has done. It is calculated by number of proofs submitted, weighted by difficulty. One k32 farms 10 points per day. To accumulate 1000 points you need 10 TiB farming for a day. This is equivalent to shares in PoW pools.
+- puzzle_hash: an address but in a different format. Addresses are human readable.
+- singleton: a smart coin (contract) that guaranteed to be unique and controlled by the user.
+- launcher_id: unique ID of the singleton.
+- points: represent the amount of farming that a farmer has done. It is calculated by number of proofs submitted, weighted by difficulty. One k32 farms 10 points per day. To accumulate 1000 points you need 10 TiB farming for a day. This is equivalent to shares in PoW pools.
 
 ## How does one calculate a farmer's netspace?
 
@@ -299,18 +299,18 @@ Yes, the pool operator will need to write code to keep track of all farmers and 
 
 There are a few things you can do to the singleton:
 
--   Change pool (needs owner signature)
--   Escape pool, this is announcing that you will change pool (needs owner signature)
--   Claim rewards (does not need any signature, it goes to the specified address in the singleton)
+- Change pool (needs owner signature)
+- Escape pool, this is announcing that you will change pool (needs owner signature)
+- Claim rewards (does not need any signature, it goes to the specified address in the singleton)
 
 ## How do pool collect rewards?
 
--   Farmer joins a pool, they will assign their singleton to the pool_puzzle_hash.
--   When a farmer wins a block, the pool rewards will be sent to the p2_singleton_puzzle_hash.
--   Pool will scan blockchain to find new rewards sent to Farmer's singletons.
--   The pool will send a request to claim rewards to the winning Farmer's singleton.
--   Farmer's singleton will send pool rewards XCH to pool_puzzle_hash.
--   Pool will periodically distribute rewards to farmers that have points
+- Farmer joins a pool, they will assign their singleton to the pool_puzzle_hash.
+- When a farmer wins a block, the pool rewards will be sent to the p2_singleton_puzzle_hash.
+- Pool will scan blockchain to find new rewards sent to Farmer's singletons.
+- The pool will send a request to claim rewards to the winning Farmer's singleton.
+- Farmer's singleton will send pool rewards XCH to pool_puzzle_hash.
+- Pool will periodically distribute rewards to farmers that have points
 
 ## How can I tell if the server is receiving enough partials from a particular client?
 

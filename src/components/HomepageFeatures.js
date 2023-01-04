@@ -1,12 +1,12 @@
 import Link from '@docusaurus/Link';
-import clsx from 'clsx';
 import React from 'react';
+import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
 
 const FeatureList = [
   {
     title: 'Chia Docs',
-    Svg: require('@site/static/svg/chia-docs-icon.svg').default,
+    Svg: require('../../static/img/chia-docs-icon.svg').default,
     dest_url: '/quick-start-guide',
     description: (
       <>
@@ -16,7 +16,7 @@ const FeatureList = [
   },
   {
     title: 'Chialisp',
-    Svg: require('@site/static/svg/chialisp-icon.svg').default,
+    Svg: require('../../static/img/chialisp-icon.svg').default,
     dest_url: 'https://chialisp.com',
     description: (
       <>
@@ -28,7 +28,7 @@ const FeatureList = [
   },
   {
     title: 'Chia Blockchain Wiki',
-    Svg: require('@site/static/svg/chia-leaf-green.svg').default,
+    Svg: require('../../static/img/chia_leaf_green.svg').default,
     dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki',
     description: (
       <>
@@ -40,7 +40,7 @@ const FeatureList = [
   },
   {
     title: 'Cultivation Grant Program',
-    Svg: require('@site/static/svg/grant-icon.svg').default,
+    Svg: require('../../static/img/grant_icon.svg').default,
     dest_url: 'https://www.chia.net/grants/',
     description: (
       <>
@@ -51,7 +51,7 @@ const FeatureList = [
   },
   {
     title: 'Chia Technical FAQ',
-    Svg: require('@site/static/svg/technical-faq-icon.svg').default,
+    Svg: require('../../static/img/technical_faq_icon.svg').default,
     dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki/FAQ',
     description: (
       <>
@@ -62,7 +62,7 @@ const FeatureList = [
   },
   {
     title: 'Chia Network Inc. FAQ',
-    Svg: require('@site/static/svg/chia-logo.svg').default,
+    Svg: require('../../static/img/chia_logo.svg').default,
     dest_url: 'https://www.chia.net/faq/',
     description: (
       <>Frequently asked questions about Chia Network Inc., the company.</>
@@ -70,7 +70,7 @@ const FeatureList = [
   },
   {
     title: 'Chia Developer Forums',
-    Svg: require('@site/static/svg/chiadevs-icon.svg').default,
+    Svg: require('../../static/img/chiadevs-icon.svg').default,
     dest_url: 'https://developers.chia.net/',
     description: (
       <>
@@ -98,7 +98,7 @@ function Feature({ Svg, title, description, dest_url }) {
     </div>
   );
 }
-const EmailSvg = require('@site/static/svg/email-icon.svg').default;
+const EmailSvg = require('../../static/img/email_icon.svg').default;
 
 export default function HomepageFeatures() {
   return (
@@ -117,9 +117,9 @@ export default function HomepageFeatures() {
                   method="post"
                   id="mc-embedded-subscribe-form"
                   name="mc-embedded-subscribe-form"
-                  className="validate"
+                  class="validate"
                   target="_blank"
-                  noValidate
+                  novalidate
                 >
                   <div id="mc_embed_signup_scroll">
                     <EmailSvg
@@ -131,19 +131,12 @@ export default function HomepageFeatures() {
                       type="email"
                       name="EMAIL"
                       id="mce-EMAIL"
-                      placeholder="Email address"
+                      placeholder="email address"
                       required
                       className={styles.emailInput}
                     />
-                    <input
-                      type="submit"
-                      value="Subscribe"
-                      name="subscribe"
-                      id="mc-embedded-subscribe"
-                      className={styles.button}
-                    />
                     <div
-                      className="mc-field-group input-group"
+                      class="mc-field-group input-group"
                       style={{ display: 'none' }}
                     >
                       <strong>Interest </strong>
@@ -154,12 +147,10 @@ export default function HomepageFeatures() {
                             value="1"
                             name="group[22233][1]"
                             id="mce-group[22233]-22233-0"
-                            style={{
-                              display: 'none',
-                            }}
+                            style={{ display: 'none' }}
                             checked
                           />
-                          <label htmlFor="mce-group[22233]-22233-0">dev</label>
+                          <label for="mce-group[22233]-22233-0">dev</label>
                         </li>
                         <li>
                           <input
@@ -167,36 +158,40 @@ export default function HomepageFeatures() {
                             value="2"
                             name="group[22233][2]"
                             id="mce-group[22233]-22233-1"
-                            style={{
-                              display: 'none',
-                            }}
+                            style={{ display: 'none' }}
                           />
-                          <label htmlFor="mce-group[22233]-22233-1">chia</label>
+                          <label for="mce-group[22233]-22233-1">chia</label>
                         </li>
                       </ul>
                     </div>
                     <div className={styles.mceResponses}>
                       <div
-                        className="response display_none"
+                        class="response display_none"
                         id="mce-error-response"
                       ></div>
                       <div
-                        className="response display_none"
+                        class="response display_none"
                         id="mce-success-response"
                       ></div>
                     </div>
                     <div
-                      style={{
-                        position: 'absolute',
-                        left: '-5000px',
-                      }}
+                      style={{ position: 'absolute', left: '-5000px' }}
                       aria-hidden="true"
                     >
                       <input
                         type="text"
                         name="b_e4d570ef4efb6250ec4a2d825_bbcb58034c"
-                        tabIndex={-1}
+                        tabindex="-1"
                         value=""
+                      />
+                    </div>
+                    <div class="clear">
+                      <input
+                        type="submit"
+                        value="Subscribe"
+                        name="subscribe"
+                        id="mc-embedded-subscribe"
+                        className={styles.button}
                       />
                     </div>
                   </div>
