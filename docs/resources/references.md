@@ -20,7 +20,6 @@ slug: /references
 
 ## Video
 
-- [Eric Zietlow's 20222 presentation](https://www.youtube.com/watch?v=rZLVziSypnI) for Python developers interested in Chia development at PyChain 2022
 - [Mariano Sorgente's 2019 presentation](https://youtu.be/_075bzQPooU) at MIT on how to achieve Nakamoto consensus with Proof of Space and VDFs
 - [Bram Cohen's 2018 presentation](https://www.youtube.com/watch?v=2Zlcgt8FVz4) at Stanford on Proofs of Space
 - [Bram Cohen's 2018 presentation](https://www.youtube.com/watch?v=iqxkO7C-cyk) at BPASE on the [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space") academic paper ([slides](https://view.publitas.com/chia-network/pbase18slides/page/1) by Hamza Abusalah)

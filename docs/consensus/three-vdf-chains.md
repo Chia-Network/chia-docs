@@ -10,7 +10,7 @@ These types of attacks are called grinding attacks, and they are one of the main
 To mitigate this, the challenges will be based only on the first block to be infused in a slot.
 
 <figure>
-<img src="/img/multiple_chains.png" alt="drawing"/>
+<img src="/img/multiple-chains.png" alt="drawing"/>
 <figcaption>
 Figure 8: The three VDF chains for 1+ challenges.
 
@@ -47,8 +47,8 @@ The only block which affects the challenge chain (and thus the PoSpace lottery) 
 
 An honest farmer who holds the first block (B1) will release it. If an attacker controls the first block (B1), they have two additional options: delay it or withhold it.
 
-- Delay it: In order to know whether the new challenge will benefit them, they will need to execute the VDF all the way up to c2. By that time, their chance to get included in the reward chain is gone, since honest farmers sign only one block per proof of space.
-- Withhold it: This does not provide much benefit to the attacker, since they must release it before sp2 in order to get the farmers on their chain. Farmers will choose the heaviest chain, which is the one with the most (heaviest) reward chain blocks.
+-   Delay it: In order to know whether the new challenge will benefit them, they will need to execute the VDF all the way up to c2. By that time, their chance to get included in the reward chain is gone, since honest farmers sign only one block per proof of space.
+-   Withhold it: This does not provide much benefit to the attacker, since they must release it before sp2 in order to get the farmers on their chain. Farmers will choose the heaviest chain, which is the one with the most (heaviest) reward chain blocks.
 
 Why do we commit to any blocks at all in the challenge chain? If we did not, an attacker with a faster VDF could look ahead, since they would not need the help of honest participants in order to compute the challenge chain into the future. The challenge chain would be totally deterministic. This would enable some advantage by replotting. Furthermore, the challenge chain can be used to probabilistically prove the weight of the reward chain to light clients, without sharing all reward chain blocks (since the challenge chain depends on the "best" block in the slot, you can calculate the number of reward chain blocks).
 
