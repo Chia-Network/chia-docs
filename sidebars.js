@@ -195,4 +195,117 @@ module.exports = {
       ],
     },
   ],
+  guides: [
+    {
+      type: 'category',
+      label: 'Chialisp Primer',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/guides/chialisp-primer',
+        title: 'Chialisp Primer',
+        description:
+          'This guide will teach you the basics of Chialisp, a smart coin language used on the Chia blockchain. You will learn the skills required to write basic programs that can dictate how and when coins (including XCH) can be spent.',
+      },
+      items: [
+        'guides/chialisp-primer/chialisp-primer-intro',
+        'guides/chialisp-primer/chialisp-primer-using-modules',
+        'guides/chialisp-primer/chialisp-primer-testnet-setup',
+        'guides/chialisp-primer/chialisp-primer-first-smart-coin',
+        'guides/chialisp-primer/chialisp-primer-bls-signatures',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Chialisp Concepts',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/guides/chialisp-concepts',
+        title: 'Chialisp Concepts',
+        description:
+          'This guide introduces some key Chialisp concepts. Understanding these concepts will enable you to write Chialisp programs more easily.',
+      },
+      items: [
+        'guides/chialisp-concepts/chialisp-concepts-currying',
+        'guides/chialisp-concepts/chialisp-concepts-inner-puzzles',
+        'guides/chialisp-concepts/chialisp-concepts-condition-morphing',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'NFT Guide',
+      collapsible: true,
+      collapsed: false,
+      link: {
+        type: 'generated-index',
+        slug: '/guides/nft-developer-guide',
+        title: 'NFT Developer Guide',
+        description:
+          "This tutorial will guide you through the process of creating DIDs that conform to Chia's DID standard, as well as minting NFTs that adhere to Chia's NFT standard.",
+      },
+      items: [
+        'guides/nft/nft-intro',
+        'guides/nft/nft-cli',
+        'guides/nft/nft-rpc',
+        'guides/nft/nft-bulk-mint',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'CAT Guide',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/guides/cat-developer-guide',
+        title: 'CAT Developer Guide',
+        description:
+          "These guides will guide you through the process of creating CATs that conform to Chia's CAT standard.",
+      },
+      items: ['guides/cat/cat-creation-tutorial'],
+    },
+    {
+      type: 'category',
+      label: 'Custody Tool',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/custody/custody-tool-description',
+        'guides/custody/custody-tool-user-guide',
+      ],
+    },
+    'guides/datalayer/datalayer-user-guide',
+    'guides/simulator/simulator-user-guide',
+    {
+      type: 'category',
+      label: 'Tutorials',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          'Video Series': [
+            'guides/tutorials/video-series/why-chia-is-great',
+            'guides/tutorials/video-series/developing-applications',
+            'guides/tutorials/video-series/tools-and-setup',
+            'guides/tutorials/video-series/programming-chialisp',
+            'guides/tutorials/video-series/coin-lifecycle-and-testing',
+            'guides/tutorials/video-series/singleton-contracts',
+            'guides/tutorials/video-series/state-coins-announcements',
+            'guides/tutorials/video-series/security-arguments-signing',
+            'guides/tutorials/video-series/announcements-oracles',
+            'guides/tutorials/video-series/single-issuance-cat',
+            'guides/tutorials/video-series/multiple-issuance-cat',
+          ],
+        },
+        'guides/tutorials/custom-puzzle-lock',
+        'guides/tutorials/coin-spend-rpc',
+        'guides/tutorials/application-structure',
+        'guides/tutorials/offers-gui',
+        'guides/tutorials/offers-cli',
+      ],
+    },
+  ],
 };

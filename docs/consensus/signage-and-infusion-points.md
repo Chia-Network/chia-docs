@@ -31,8 +31,8 @@ For both of our [previous example](/consensus-challenges), as well as the next e
 
 :::
 
-- sub-slot_iterations = 100,000,000
-- sp_interval_iterations = `sub-slot_iterations` / 64 = 1,562,500
+-   sub-slot_iterations = 100,000,000
+-   sp_interval_iterations = `sub-slot_iterations` / 64 = 1,562,500
 
 The farmer computes the **required_iterations** for each proof of space. If the required_iterations < sp_interval_iterations, the proof of space is eligible for inclusion into the blockchain. At this point, the farmer fetches the entire proof of space from disk (which requires 64 disk seeks, or 640 ms on a slow HDD), creates an unfinished block, and broadcasts it to the network.
 
@@ -65,7 +65,7 @@ More information on infusion points is available in the [VDFs page](/proof-of-ti
 :::
 
 <figure>
-<img src="/img/signage_points.png" alt="drawing"/>
+<img src="/img/signage-points.png" alt="drawing"/>
 <figcaption>
 Figure 5: timelords create proofs for both the signage point and the infusion point. But they only infuse (change the VDF classgroup) for the latter. Squares symbolize infusions, where a new VDF is started.
 </figcaption>
@@ -82,9 +82,9 @@ In Figure 5, the farmer creates the block at the time of the signage point, `b1�
 
 Recall that in this example,
 
-- sub-slot_iterations = 100M
-- sp_interval_iterations is 1.5625M.
-  Furthermore, let’s say a farmer has a total of 1000 plots.
+-   sub-slot_iterations = 100M
+-   sp_interval_iterations is 1.5625M.
+    Furthermore, let’s say a farmer has a total of 1000 plots.
 
 For each of the 64 signage points, as they are released to the network every 9.375 seconds, or every 1.5625M iterations, the farmer computes the plot filter and sees how many plots pass. For each passing plot, the farmer calculates required_iterations.
 

@@ -4,7 +4,7 @@ slug: /consensus-multiple-blocks
 ---
 
 <figure>
-<img src="/img/multiple_blocks.png" alt="drawing"/>
+<img src="/img/multiple-blocks.png" alt="drawing"/>
 <figcaption>
 Figure 7: multiple blocks. Sp1 = signage point 1
 </figcaption>
@@ -14,9 +14,9 @@ As you can see in Figure 7, multiple blocks can get infused into the same sub-sl
 
 VDF proofs span:
 
-- from the previous infusion point before the current signage point to the current signage point, and
-- from the previous infusion point to the current infusion point.
-  This means that the VDF proofs required for each block can overlap.
+-   from the previous infusion point before the current signage point to the current signage point, and
+-   from the previous infusion point to the current infusion point.
+    This means that the VDF proofs required for each block can overlap.
 
 In the example in Figure 7, B2 contains a VDF proof from B1 to sp2, and from B1 to B2. B3 contains a proof from B1 to sp3, and from B2 to B3. B2 does not depend at all on B3, but B3 depends on B2, since its VDF is from B2’s infusion point.
 
