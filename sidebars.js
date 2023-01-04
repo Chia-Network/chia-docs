@@ -272,6 +272,12 @@ module.exports = {
       label: 'Custody Tool',
       collapsible: true,
       collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/guides/custody-tool-description',
+        title: 'Custody Tool',
+        description: "How to use Chia's Custody Tool to secure your own coins.",
+      },
       items: [
         'guides/custody/custody-tool-description',
         'guides/custody/custody-tool-user-guide',

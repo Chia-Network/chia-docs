@@ -8,7 +8,7 @@ In these videos, Chia developer Matt Hauff covers creating your first smart coin
 
 If you haven't watched [the video on setting up your environment](/guides/tools-and-setup-video-series), do that first.
 
-You can download the piggybank coin example files [here](/files/piggybank-example.zip).
+You can download the piggybank coin example files [here](/files/Piggybank_Example.zip).
 
 ## 2 - Start Writing Your First Smart Coin
 
@@ -27,7 +27,7 @@ You can download the piggybank coin example files [here](/files/piggybank-exampl
 <div class="videoWrapper">
 <iframe width="560" height="315" src="//www.youtube.com/embed/_SBGfMZhRd8" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen ></iframe>
 </div>
-<a href="/files/securing-smart-coin-slides.pdf" download>Video 4 Slides Download</a>
+<a href="/files/tutorials/4-Securing_a_Smart_Coin_Slides-Chialisp.pdf" download>Video 4 Slides Download</a>
 
 ## 5 - Currying
 
