@@ -8,7 +8,7 @@ A plot ID is a 32-byte value that is used as a deterministic seed to create an e
 A plot ID can be generated in one of two ways, depending on the desired farming method of the plot.
 
 <figure>
-<img src="/img/keys/plot_id.png" alt="drawing"/>
+<img src="/img/keys/plot-id.png" alt="drawing"/>
 </figure>
 
 1. Farm to pool public key. This method of farming is desirable if solo farming (no pools). To farm a plot like this, we hash together the pool public key and the plot public key (explained later). When successfully farming a block, the pool private key must sign the reward address. The drawback of this method is that if using a pool, the pool cannot be changed, and the plot is tied to the pool forever.

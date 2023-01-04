@@ -7,26 +7,26 @@ The Chia pool protocol has been designed for security and decentralization. It d
 
 Some of the protocol's highlights:
 
-- The farmer can never steal from the pool by double farming.
-- The farmer does not need collateral to join a pool. They only need a wallet with one mojo (and potentially a transaction fee) to create a singleton.
-- The farmer can easily and securely change pools.
-- The farmer can run a full node (increasing decentralization) on low-end hardware, such as a Raspberry Pi 4.
-- The farmer can start a new full node, using only their 24-word seed phrase to log in to Chia's software, and the pooling configuration is detected, without requiring a central server.
-- The farmer chooses which transactions to include from their full node and creates transaction blocks in a decentralized way.
+-   The farmer can never steal from the pool by double farming.
+-   The farmer does not need collateral to join a pool. They only need a wallet with one mojo (and potentially a transaction fee) to create a singleton.
+-   The farmer can easily and securely change pools.
+-   The farmer can run a full node (increasing decentralization) on low-end hardware, such as a Raspberry Pi 4.
+-   The farmer can start a new full node, using only their 24-word seed phrase to log in to Chia's software, and the pooling configuration is detected, without requiring a central server.
+-   The farmer chooses which transactions to include from their full node and creates transaction blocks in a decentralized way.
 
 ### Customization
 
 Several things can be customized by pool operators, while still adhering to the protocol. These include:
 
-- How long the timeout is for leaving the pool
-- How difficulty adjustment happens
-- Fees to take, and how much to pay in blockchain fees
-- How farmers' points are counted when paying ([PPS, PPLNS,](https://en.bitcoin.it/wiki/Comparison_of_mining_pools) etc)
-- How farmers receive payouts (XCH, BTC, ETH, etc), and how often
-- What store (DB) is used - by default it's an SQLite db. Users can use their own store implementations, based on
-  `AbstractPoolStore`, by supplying them to `pool_server.start_pool_server`
-- What happens (in terms of response) after a successful login
-- The backend architecture of the pool
+-   How long the timeout is for leaving the pool
+-   How difficulty adjustment happens
+-   Fees to take, and how much to pay in blockchain fees
+-   How farmers' points are counted when paying ([PPS, PPLNS,](https://en.bitcoin.it/wiki/Comparison_of_mining_pools) etc)
+-   How farmers receive payouts (XCH, BTC, ETH, etc), and how often
+-   What store (DB) is used - by default it's an SQLite db. Users can use their own store implementations, based on
+    `AbstractPoolStore`, by supplying them to `pool_server.start_pool_server`
+-   What happens (in terms of response) after a successful login
+-   The backend architecture of the pool
 
 However, some things cannot be changed. These are described in our [pool specification](https://github.com/Chia-Network/pool-reference/blob/main/SPECIFICATION.md), and mostly relate to validation, protocol, and the singleton format for smart coins.
 
@@ -77,7 +77,7 @@ A few minutes later, the pool pulls from the queue, and checks that the signage 
 ### Collecting pool rewards
 
 <div style={{textAlign: 'center'}}>
- <img src="/img/Pooling_absorb.png" alt="drawing" width="600"/>
+ <img src="/img/pooling-absorb.png" alt="drawing" width="600"/>
 </div>
 
 The pool periodically searches the blockchain for new pool rewards (according to the [rewards schedule](/block-rewards)) that go to the various `p2_singleton_puzzle_hashes` of each of the farmers. These coins are locked, and can only be spent along with the singleton that they correspond to. The singleton is also locked to a `target_puzzle_hash`. Anyone can spend the singleton and the `p2_singleton_puzzle_hash` coin, as long as it's a block reward, and all conditions are met. Some of these conditions require that the singleton always create exactly one new child singleton with the same launcher ID, and that the coinbase funds are sent to the `target_puzzle_hash`.
@@ -111,18 +111,18 @@ For example, 100 TiB of space should yield approximately 10,000 points per day, 
 
 The following is a simple difficulty adjustment algorithm executed by the pool, provided in the reference implementation:
 
-- Obtain the last successful partial for this launcher id
-- If > 6 hours, divide difficulty by 5
-- If > 45 minutes < 6 hours, divide difficulty by 1.5
-- If < 45 minutes:
-  - If have < 300 partials at this difficulty, maintain same difficulty
-  - Else, multiply the difficulty by (24 \* 3600 / (time taken for 300 partials))
+-   Obtain the last successful partial for this launcher id
+-   If > 6 hours, divide difficulty by 5
+-   If > 45 minutes < 6 hours, divide difficulty by 1.5
+-   If < 45 minutes:
+    -   If have < 300 partials at this difficulty, maintain same difficulty
+    -   Else, multiply the difficulty by (24 \* 3600 / (time taken for 300 partials))
 
 Notes:
 
-- 6 hours is used to handle rare cases where a farmer's storage drops dramatically.
-- The 45 minutes is similar, but for less extreme cases.
-- Finally, the last case of < 45 minutes should properly handle users with increasing space, or slightly decreasing space.
+-   6 hours is used to handle rare cases where a farmer's storage drops dramatically.
+-   The 45 minutes is similar, but for less extreme cases.
+-   Finally, the last case of < 45 minutes should properly handle users with increasing space, or slightly decreasing space.
 
 This algorithm targets 300 partials per day, but different numbers can be used based on
 performance and user preference.

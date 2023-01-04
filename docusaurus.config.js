@@ -45,13 +45,24 @@
           title: 'Chia Docs',
           logo: {
             alt: 'Chia Logo',
-            src: 'img/chia_leaf_green.svg',
+            src: '/svg/chia-leaf-green.svg',
           },
           items: [
             {
-              to: '/quick-start-guide',
-              activeBasePath: 'docs',
+              type: 'doc',
+              docId: 'getting-started/quick-start-guide',
+              position: 'left',
               label: 'Docs',
+            },
+            {
+              type: 'doc',
+              docId: 'guides/chialisp-primer/chialisp-primer-intro',
+              position: 'left',
+              label: 'Guides',
+            },
+            {
+              href: 'https://chialisp.com',
+              label: 'Chialisp',
               position: 'left',
             },
             {
@@ -62,10 +73,6 @@
             {
               href: 'https://github.com/Chia-Network/chia-blockchain',
               label: 'GitHub',
-              position: 'left',
-            },
-            {
-              type: 'localeDropdown',
               position: 'right',
             },
           ],

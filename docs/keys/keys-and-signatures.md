@@ -17,9 +17,9 @@ A 24-word mnemonic phrase is used as entropy in order to generate a private BLS 
 
 In theory, wallet recovery could also be performed from the master private key alone. However, there are some caveats:
 
-- Chia Network Inc has not attempted this, and has no plans to attempt it. In fact, as far as we know, nobody has attempted it, so it is not guaranteed to work. It is not supported, and likely never will be supported. Use at your own risk
-- Because this is not supported, you would need to create your own wallet in order to perform this recovery
-- Even after a successful wallet recovery, you would not be able to recover your 24-word mnemonic phrase. The phrase is used as entropy to generate a private key; a phrase _cannot_ be generated _from_ a private key
+-   Chia Network Inc has not attempted this, and has no plans to attempt it. In fact, as far as we know, nobody has attempted it, so it is not guaranteed to work. It is not supported, and likely never will be supported. Use at your own risk
+-   Because this is not supported, you would need to create your own wallet in order to perform this recovery
+-   Even after a successful wallet recovery, you would not be able to recover your 24-word mnemonic phrase. The phrase is used as entropy to generate a private key; a phrase _cannot_ be generated _from_ a private key
 
 The BLS master private key is stored in the OS keychain, which usually requires password authentication and is encrypted.
 
@@ -36,7 +36,7 @@ When it comes to getting paid, a program is created that uses one of the wallet 
 So an address is analogous to a wallet child BLS public key, the private key of which can be derived from the master seed.
 
 <figure>
-<img src="/img/keys/hd_keys.png" alt="drawing"/>
+<img src="/img/keys/hd-keys.png" alt="drawing"/>
 </figure>
 
 ## Difference between Chia and EIP-2333
