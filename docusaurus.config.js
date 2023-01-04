@@ -6,8 +6,8 @@
       'The source of truth for Chia documentation. Start here to learn more about Chia.',
     url: 'https://docs.chia.net',
     baseUrl: '/',
-    onBrokenLinks: 'ignore',
-    onBrokenMarkdownLinks: 'ignore',
+    onBrokenLinks: 'throw',
+    onBrokenMarkdownLinks: 'warn',
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
     projectName: '{{ REPOSITORY_NAME }}',
@@ -40,17 +40,9 @@
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        announcementBar: {
-          id: 'cat2_launch',
-          content:
-            'CAT2 Standard Released 🌱<a target="_blank" rel="noopener noreferrer" href="/cat2-intro/"> Learn about CAT1 end-of-life and CAT2 reissuance</a>',
-          backgroundColor: '#0d3349',
-          textColor: '#fff',
-          isCloseable: true,
-        },
         image: '/img/og-chia.png',
         navbar: {
-          title: ' Chia Docs',
+          title: 'Chia Docs',
           logo: {
             alt: 'Chia Logo',
             src: 'img/chia_leaf_green.svg',
@@ -142,18 +134,18 @@
           additionalLanguages: ['powershell', 'lisp'],
         },
       }),
-      themes: [
-        [
-          "@easyops-cn/docusaurus-search-local",
-          /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-          ({
-            hashed: true,
-            language: ["en", "zh"],
-            highlightSearchTermsOnTargetPage: true,
-            explicitSearchResultPath: true,
-            docsRouteBasePath: "/"
-          }),
-        ],
+    themes: [
+      [
+        '@easyops-cn/docusaurus-search-local',
+        /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+        ({
+          hashed: true,
+          language: ['en', 'zh'],
+          highlightSearchTermsOnTargetPage: true,
+          explicitSearchResultPath: true,
+          docsRouteBasePath: '/',
+        }),
       ],
+    ],
   }
 );
