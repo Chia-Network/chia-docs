@@ -12,9 +12,9 @@ This page includes a comprehensive list of Chia's Command Line Interface command
 
 For more info, see the following:
 
-* [Basic description](https://devs.chia.net/guides/custody-tool-description) of how the custody tool works
-* [Flow chart](/img/chia_custody_tool.png) to visualize how the custody tool works
-* [User guide](https://devs.chia.net/guides/custody-tool-user-guide) to help you get up and running
+-   [Basic description](https://devs.chia.net/guides/custody-tool-description) of how the custody tool works
+-   [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
+-   [User guide](https://devs.chia.net/guides/custody-tool-user-guide) to help you get up and running
 
 ### Reference
 
@@ -27,9 +27,9 @@ Usage: `cic audit [OPTIONS]`
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                          |
-| :------------ | :----------- | :----| :------- | :------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------- |
 | -db           | --db-path    | TEXT | True     | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
-| -f            | --filepath   | TEXT | False    | The file path the dump the audit log               |
+| -f            | --filepath   | TEXT | False    | The file path the dump the audit log                                 |
 | -d            | --diff       | TEXT | False    | A previous audit log to diff against this one                        |
 | -h            | --help       | None | False    | Show a help message and exit                                         |
 
@@ -39,7 +39,7 @@ Options:
 Request:
 
 ```bash
-cic audit -db './sync (b43314).sqlite' 
+cic audit -db './sync (b43314).sqlite'
 ```
 
 Response:
@@ -47,44 +47,44 @@ Response:
 ```
 [
     {
-        "time": 1665430389, 
-        "action": "HANDLE_PAYMENT", 
+        "time": 1665430389,
+        "action": "HANDLE_PAYMENT",
         "params": {
-            "out_amount": 1000000000, 
-            "recipient_ph": "3377e81d20ad9a3028ffe7e77360c03df48c412f2525aac58035738888adb83d", 
-            "in_amount": 1000000000000, 
-            "completed": true, 
+            "out_amount": 1000000000,
+            "recipient_ph": "3377e81d20ad9a3028ffe7e77360c03df48c412f2525aac58035738888adb83d",
+            "in_amount": 1000000000000,
+            "completed": true,
             "spent_at_height": 1645707
         }
-    }, 
+    },
     {
-        "time": 1665449184, 
-        "action": "HANDLE_PAYMENT", 
+        "time": 1665449184,
+        "action": "HANDLE_PAYMENT",
         "params": {
-            "out_amount": 1000000000, 
-            "recipient_ph": "3377e81d20ad9a3028ffe7e77360c03df48c412f2525aac58035738888adb83d", 
-            "completed": false, 
-            "spent_at_height": 1645981, 
+            "out_amount": 1000000000,
+            "recipient_ph": "3377e81d20ad9a3028ffe7e77360c03df48c412f2525aac58035738888adb83d",
+            "completed": false,
+            "spent_at_height": 1645981,
             "clawback_pubkey": "bls12381jjh08qx6hvucdrkgn8mrkafqrrp4j6sm4azndk0wz3precaa0teeyeamwtltxv435tsmx2tyayrwg8jy3x4"
         }
-    }, 
+    },
     {
-        "time": 1665980779, 
-        "action": "START_REKEY", 
+        "time": 1665980779,
+        "action": "START_REKEY",
         "params": {
-            "from_root": "74905b06591f9d2e615d313d18cfbcbeffcaabe2e70ccdeafda783bacaae52ef", 
-            "to_root": "90ba2a1ce4ca7f094aa1d2c64b7281b18a4e211e704b43ed45bf39f61cdd67d2", 
-            "completed": true, 
+            "from_root": "74905b06591f9d2e615d313d18cfbcbeffcaabe2e70ccdeafda783bacaae52ef",
+            "to_root": "90ba2a1ce4ca7f094aa1d2c64b7281b18a4e211e704b43ed45bf39f61cdd67d2",
+            "completed": true,
             "spent_at_height": 1674754
         }
-    }, 
+    },
     {
-        "time": 1665986686, 
-        "action": "START_REKEY", 
+        "time": 1665986686,
+        "action": "START_REKEY",
         "params": {
-            "from_root": "90ba2a1ce4ca7f094aa1d2c64b7281b18a4e211e704b43ed45bf39f61cdd67d2", 
-            "to_root": "c330a8f9ed6a3fd50953f0b6365019246ea08d854ddbed0da3149dd4006abf1f", 
-            "completed": true, 
+            "from_root": "90ba2a1ce4ca7f094aa1d2c64b7281b18a4e211e704b43ed45bf39f61cdd67d2",
+            "to_root": "c330a8f9ed6a3fd50953f0b6365019246ea08d854ddbed0da3149dd4006abf1f",
+            "completed": true,
             "spent_at_height": 1674940
         }
     }
@@ -92,7 +92,6 @@ Response:
 ```
 
 </details>
-
 
 ---
 
@@ -105,11 +104,11 @@ Usage: `cic clawback [OPTIONS]`
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                          |
-| :------------ | :----------- | :----| :------- | :------------------------------------------------------------------- |
-| -db           | --db-path    | TEXT |   True   | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
-| -f            | --filename   | TEXT |  False   | The filepath to dump the spend bundle into                           |
-| -pks          | --pubkeys    | TEXT |   True   | A comma separated list of pubkeys that will be signing this spend    |
-| -h            | --help       | None |  False   | Show a help message and exit                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------- |
+| -db           | --db-path    | TEXT | True     | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
+| -f            | --filename   | TEXT | False    | The filepath to dump the spend bundle into                           |
+| -pks          | --pubkeys    | TEXT | True     | A comma separated list of pubkeys that will be signing this spend    |
+| -h            | --help       | None | False    | Show a help message and exit                                         |
 
 <details>
 <summary>Example</summary>
@@ -137,7 +136,7 @@ Usage: `cic complete [OPTIONS]`
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                          |
-| :------------ | :----------- | :----| :------- | :------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------- |
 | -db           | --db-path    | TEXT | True     | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
 | -f            | --filename   | TEXT | False    | The filepath to dump the spend bundle into                           |
 | -h            | --help       | None | False    | Show a help message and exit                                         |
@@ -173,7 +172,7 @@ Usage: `cic derive_root [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command         |  Type   | Required | Description                                                                                                                                                 |
+| Short Command | Long Command         | Type    | Required | Description                                                                                                                                                 |
 | :------------ | :------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -c            | --configuration      | TEXT    | False    | The configuration file with which to derive the root (or the filepath to create it at if using --db-path) [default: ./Configuration (needs derivation).txt] |
 | -db           | --db-path            | TEXT    | False    | Optionally specify a DB path to find the configuration from                                                                                                 |
@@ -211,11 +210,11 @@ Usage: `cic examine_spend [OPTIONS] SPEND_FILE`
 
 Options:
 
-| Short Command | Long Command       | Type    | Required | Description                                                       |
-| :------------ | :----------------- | :------ | :------- | :---------------------------------------------------------------- |
-|               | --qr-density       | INTEGER | False    | The amount of bytes to pack into a single QR code  [default: 250] |
-| -va           | --validate-against | TEXT    | False    | A new configuration file to check against requests for rekeys     |
-| -h            | --help             | None    | False    | Show a help message and exit                                      |
+| Short Command | Long Command       | Type    | Required | Description                                                      |
+| :------------ | :----------------- | :------ | :------- | :--------------------------------------------------------------- |
+|               | --qr-density       | INTEGER | False    | The amount of bytes to pack into a single QR code [default: 250] |
+| -va           | --validate-against | TEXT    | False    | A new configuration file to check against requests for rekeys    |
+| -h            | --help             | None    | False    | Show a help message and exit                                     |
 
 `SPEND_FILE` is an unsigned spend bundle. This command will convert the spend bundle into a QR code and open it into a web browser for printing. You can then scan this QR code, for example using an HSM's QR scanner, for easier signing.
 
@@ -225,7 +224,7 @@ Options:
 Request:
 
 ```bash
-cic examine_spend ./rekey.unsigned 
+cic examine_spend ./rekey.unsigned
 ```
 
 Response:
@@ -321,13 +320,13 @@ Options:
 
 | Short Command | Long Command          | Type | Required | Description                                                                                         |
 | :------------ | :-------------------- | :--- | :------- | :-------------------------------------------------------------------------------------------------- |
-| -d            | --directory           | TEXT |  False   | The directory in which to create the configuration file [default: .]                                |
-| -wt           | --withdrawal-timelock | TEXT |  True    | The amount of time where nothing has happened before a withdrawal can be made (in seconds)          |
-| -pc           | --payment-clawback    | TEXT |  True    | The amount of time to clawback a payment before it's completed (in seconds)                         |
-| -rc           | --rekey-cancel        | TEXT |  True    | The amount of time to cancel a rekey before it's completed (in seconds)                             |
-| -rt           | --rekey-timelock      | TEXT |  True    | The amount of time where nothing has happened before a standard rekey can be initiated (in seconds) |
-| -sp           | --slow-penalty        | TEXT |  True    | The time penalty for performing a slow rekey (in seconds)                                           |
-| -h            | --help                | None |  False   | Show a help message and exit                                                                        |
+| -d            | --directory           | TEXT | False    | The directory in which to create the configuration file [default: .]                                |
+| -wt           | --withdrawal-timelock | TEXT | True     | The amount of time where nothing has happened before a withdrawal can be made (in seconds)          |
+| -pc           | --payment-clawback    | TEXT | True     | The amount of time to clawback a payment before it's completed (in seconds)                         |
+| -rc           | --rekey-cancel        | TEXT | True     | The amount of time to cancel a rekey before it's completed (in seconds)                             |
+| -rt           | --rekey-timelock      | TEXT | True     | The amount of time where nothing has happened before a standard rekey can be initiated (in seconds) |
+| -sp           | --slow-penalty        | TEXT | True     | The time penalty for performing a slow rekey (in seconds)                                           |
+| -h            | --help                | None | False    | Show a help message and exit                                                                        |
 
 <details>
 <summary>Example</summary>
@@ -358,13 +357,13 @@ Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                               |
 | :------------ | :---------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
-| -c            | --configuration   | TEXT    |  True    | The configuration file with which to launch the singleton                                                 |
-| -db           | --db-path         | TEXT    |  True    | The file path to initialize the sync database at                                                          |
-| -wp           | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml  |
-| -f            | --fingerprint     | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                        |
-| -np           | --node-rpc-port   | INTEGER |  False   | Set the port where the Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml |
-|               | --fee             | INTEGER |  False   | Fee to use for the launch transaction (in mojos) [default: 0]                                             |
-| -h            | --help            | None    |  False   | Show a help message and exit                                                                              |
+| -c            | --configuration   | TEXT    | True     | The configuration file with which to launch the singleton                                                 |
+| -db           | --db-path         | TEXT    | True     | The file path to initialize the sync database at                                                          |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                        |
+| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml |
+|               | --fee             | INTEGER | False    | Fee to use for the launch transaction (in mojos) [default: 0]                                             |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                              |
 
 <details>
 <summary>Example</summary>
@@ -424,7 +423,7 @@ Usage: `cic payment [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command                |  Type   | Required | Description                                                                                                                            |
+| Short Command | Long Command                | Type    | Required | Description                                                                                                                            |
 | :------------ | :-------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------- |
 | -db           | --db-path                   | TEXT    | True     | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite)                                                                   |
 | -f            | --filename                  | TEXT    | False    | The filepath to dump the spend bundle into                                                                                             |
@@ -465,14 +464,14 @@ Usage: `cic push_tx [OPTIONS]`
 
 Options:
 
-| Short Command |   Long Command    |  Type   | Required | Description                                                                                               |
+| Short Command | Long Command      | Type    | Required | Description                                                                                               |
 | :------------ | :---------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
-| -b            | --spend-bundle    |  TEXT   |   True   | The signed spend bundle                                                                                   |
-| -wp           | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml  |
-| -f            | --fingerprint     | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                        |
-| -np           | --node-rpc-port   | INTEGER |  False   | Set the port where the Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml |
-| -m            | --fee             | INTEGER |  False   | The fee to attach to this spend (in mojos)                                                                |
-| -h            | --help            |  None   |  False   | Show a help message and exit                                                                              |
+| -b            | --spend-bundle    | TEXT    | True     | The signed spend bundle                                                                                   |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                        |
+| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml |
+| -m            | --fee             | INTEGER | False    | The fee to attach to this spend (in mojos)                                                                |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                              |
 
 <details>
 <summary>Example</summary>
@@ -503,11 +502,11 @@ Options:
 
 | Short Command | Long Command | Type | Required | Description                                                                     |
 | :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------------------ |
-| -db           | --db-path    | TEXT | True     | The file path to the sync DB (default: ./sync (******).sqlite)  [required]      |
+| -db           | --db-path    | TEXT | True     | The file path to the sync DB (default: ./sync (**\*\***).sqlite) [required]     |
 | -c            | --config     | None | False    | Enable to display the details of the public config (default: disabled)          |
 | -d            | --derivation | None | False    | Enable to display the private details of the private config (default: disabled) |
 | -h            | --help       | None | False    | Show a help message and exit                                                    |
- 
+
 <details>
 <summary>Example -- show the configuration and derivation</summary>
 
@@ -545,7 +544,7 @@ Derivation Info:
  - min keys to rekey: 1
  - standard rekey timelock: 300 seconds
  - slow rekey penalty: 900 seconds
- - pubkeys: 
+ - pubkeys:
     - bls123813p8yljrhgskmgqeukg3x6mszh3xtqwwx35t4g6dt0mk2xecyj7elr0fhhrm8t3w7q5zhdelgjlgdspjqxvs
     - bls123813uhsu0juw06z8vmtt5ncj6zcexmhtsfemvtj3jhv0vuxh9nqjdar59yh555muzrdpz2uflgzey3sgdnm8y9
     - bls1238152jm50wh89tf70mwj4ncuukqcq6jqmf7pjgznm55c5qaggrvswzccwvsjgwmy9f4cvlx2j97kmh5uc2es6h
@@ -563,13 +562,13 @@ Usage: `cic start_rekey [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command        | Type | Required | Description                                                       |
-| :------------ | :------------------ | :--- | :------- | :------------------------------------------------------------------------------ |
-| -db           | --db-path           | TEXT | True     | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite)  |
-| -f            | --filename          | TEXT | False    | The filepath to dump the spend bundle into                        |
-| -pks          | --pubkeys           | TEXT | True     | A comma separated list of pubkeys that will be signing this spend |
-| -new          | --new-configuration | TEXT | True     | The configuration you would like to rekey the singleton to        |
-| -h            | --help              | None | False    | Show a help message and exit                                      |
+| Short Command | Long Command        | Type | Required | Description                                                          |
+| :------------ | :------------------ | :--- | :------- | :------------------------------------------------------------------- |
+| -db           | --db-path           | TEXT | True     | The file path to the sync DB (default: ./sync (\*\*\*\*\*\*).sqlite) |
+| -f            | --filename          | TEXT | False    | The filepath to dump the spend bundle into                           |
+| -pks          | --pubkeys           | TEXT | True     | A comma separated list of pubkeys that will be signing this spend    |
+| -new          | --new-configuration | TEXT | True     | The configuration you would like to rekey the singleton to           |
+| -h            | --help              | None | False    | Show a help message and exit                                         |
 
 <details>
 <summary>Example</summary>
@@ -644,7 +643,7 @@ Usage: `cic update_config [OPTIONS]`
 
 Options:
 
-| Short Command |  Long Command   | Type | Required | Description                                                                                                   |
+| Short Command | Long Command    | Type | Required | Description                                                                                                   |
 | :------------ | :-------------- | :--- | :------- | :------------------------------------------------------------------------------------------------------------ |
 | -c            | --configuration | TEXT | False    | The configuration file with which to initialize a sync database (default: ./Configuration (\*\*\*\*\*\*).txt) |
 | -db           | --db-path       | TEXT | True     | The file path to initialize/find the sync database at (default: ./sync (\*\*\*\*\*\*).sqlite)                 |
@@ -656,7 +655,7 @@ Options:
 Request:
 
 ```bash
-cic update_config -c './Configuration (after rekey).txt' 
+cic update_config -c './Configuration (after rekey).txt'
 ```
 
 Response:
@@ -691,7 +690,6 @@ Options:
 These commands are to be run from inside the Hardware Security Module or "vault".
 
 This is a physical/offline security solution for generating and signing keys.
-
 
 ### Reference
 

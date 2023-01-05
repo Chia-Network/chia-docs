@@ -52,7 +52,7 @@ Let's say a farmer wants to include 1000 spend bundles into a block. First, they
 In the figure below, you can see a spend bundle that was created by a user. The removals in the spend bundle are coins A, B, and C, and the additions are coins D and E. This is very similar to how the standard transaction script works in `chia-blockchain`.
 
 <figure>
-<img src="/img/spend_bundle.png" alt="drawing"/>
+<img src="/img/spend-bundle.png" alt="drawing"/>
 </figure>
 
 Let's go through the different components in the image. First, let's say Alice wants to send 13 XCH to Bob. Alice looks at her coin database, and selects 3 unspent coins (A, B, and C) that add up to at least 13 XCH. Each one of these coins has an associated CLVM puzzle, which has a public key encoded inside of it. Let's denote these public keys as `pkA`, `pkB`, and `pkC`. Alice needs to generate the puzzle and solution for each of the
