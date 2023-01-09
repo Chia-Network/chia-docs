@@ -403,10 +403,6 @@ If you’ve lost your offer history and want to cancel those offers but can’t 
 
 The wallet no longer automatically adds unknown CATs wallets for CATs that may have been airdropped to your wallet. This is to help ensure that syncing doesn’t slow down with all the additional CATs that could suddenly show up. It is recommended that you use a tail database to look up and add. We understand that this will add some extra work to know which CATs to add wallets for and set them up manually. We do hope to improve upon this experience Soon™
 
-### Why does the 1.3 beta show a version 1.2.12?
-
-This is the way our tools work today. Just make sure when you submit feedback or an issue in Github to use the app version (1.2.12 dev269) when reporting it so we know exactly which version you're running.
-
 ### How can I make a coin that may only be spent until a certain timestamp or block height?
 
 Chialisp does not directly enable this capability. There are only conditions to make a coin that may be spent _after_ a certain timestamp or block height. Coin spends can only become valid; they can never become invalid.
@@ -503,6 +499,56 @@ chia version
 1.6.1
 ```
 
+### What is the dust filter?
+
+In crypto parlance, "dust" refers to coins that have almost no value. In Chia, the smallest denomination is 1 mojo, or 1-trillionth of an XCH. Unsolicited coins of this value certainly count as dust, but even much larger coins, for example 1 million mojos, are still worth a fraction of a penny.
+
+Chia experienced its first "dust storm" in late 2021. The "duster" spammed the blockchain with millions of tiny coins, likely in an attempt to stress-test the network. Chia's blockchain is robust, so it continued without issue. However, many people ended up with thousands of dust coins in their wallets. This proved problematic.
+
+In version 1.2.x, wallets that had received tens of thousands of dust coins were unable to sync. The task of optimizing our wallet was a difficult one, but by version 1.3 we had made significant improvements, and these wallets could finally sync.
+
+However, sync times for dusted wallets were still measured in days, which was unacceptable. We continued making optimizations, and by version 1.5.1, a wallet with over 100,000 coins could sync within a few minutes. But we wanted to reduce those sync times even more.
+
+The dust filter is a new feature, added in version 1.6.0. It is activated whenever there are at least a certain number of unspent dust coins in the wallet. While activated, the filter ignores any coins considered "dust".
+
+Two new settings have been added to `~/.chia/mainnet/config/config.yaml` in the `wallet` section:
+* `spam_filter_after_n_txs: 200`
+* `xch_spam_amount: 1000000`
+
+If you are upgrading an existing Chia installation, these settings won't be added automatically. In this case, you will need to either add them manually or delete `config.yaml` and run `chia init` to generate a new copy.
+
+The default settings essentially say, "If my wallet contains more than 200 coins, ignore all coins after the first 200 that are worth less than 1 million mojos." Note that the filter is not applied for CATs or NFTs.
+
+You can modify these default values to support different functionality. For example:
+* Disable the filter by setting `xch_spam_amount` to `0` (nothing is dust)
+* Enable the filter regardless of your wallet's status by setting `spam_filter_after_n_txs` to `0`
+* Consider coins to be "dust" only if they are smaller than 100 mojos by setting `xch_spam_amount` to `100`
+
+However, we believe the default settings will be sufficient for most users.
+
+Note that if the number of unspent coins in your wallet falls to 200 (by default) or lower, then the dust filter will be deactivated. This could happen if you spend or consolidate some of your coins.
+
+### Why is my wallet's balance inconsistent?
+
+If you have more than two hundred unspent coins (by default) in your wallet, the dust filter will be activated. Depending on which mode your wallet is using, your balance could show slight differences each time you sync. This is because the coins will not necessarily show up in the same order while syncing.
+
+The maximum difference in your balance is `spam_filter_after_n_txs * xch_spam_amount`. However, the actual difference will rarely be more than a few thousand mojos.
+
+There are three potential scenarios:
+
+1. Light wallet only (untrusted mode) -- Your wallet is syncing from multiple remote full nodes. Each time your wallet syncs, it will connect to a new set of nodes, so the coins might not show up in the same order. Different coins could be filtered, so your balance may be slightly different each time you sync.
+
+2. Synced full node (trusted mode) on multiple computers -- If you load the same wallet on different full nodes, the databases will be slightly different due to network latency. Even though the coins themselves all exist, they might not show up in the same order, so different coins could be filtered. In this case, your balance might be slightly different between the two computers.
+
+3. Synced full node (trusted mode) with one computer --  Your trusted database will be the same each time you sync, so the wallet balance will also be the same.
+
+### How do I disable the dust filter?
+
+1. Edit `~/.chia/mainnet/config/config.yaml`
+2. If `xch_spam_amount` doesn't exist, add it
+3. Set the value for `xch_spam_amount` to `0` (nothing is dust)
+4. Restart Chia
+
 ---
 
 ## Offers
@@ -569,10 +615,6 @@ No, Offers are created and stored locally on each machine. Any accepted offers w
 ### Can my coin be spent on another computer with a wallet that uses the same keys, even if I am running two wallets on two different computers and I have an open Offer on one computer?
 
 Yes, the coin can be spent from another computer. Coins are reserved locally on the computer where the offer was created. If that coin is spent from another computer, then the offer will be canceled. In general, it is recommended that you don’t use two machines to access the same wallet that offers are being made from.
-
-### What is the Duck Sauce CAT?
-
-The duck sauce CAT was the internal codename for the Stably USDS token until it was announced. Please be sure you have the correct TAIL for the Stably USDS token:
 
 ---
 
@@ -793,15 +835,11 @@ No. Transfers are conducted without any royalties being paid.
 
 ### What is the Chia Friends project?
 
-Chia Friends is a giveaway of 10,000 NFTs, beginning with the release of Chia version 1.4. While Chia Network Inc will give these NFTs to 10,000 lucky recipients for free, they can later be bought or sold just like any other NFT. There will be a royalty included with these NFTs, 100% of which will automatically be sent to the Marmot Recovery Foundation. For more information, see the [Chia Friends website](https://www.chiafriends.xyz/).
+Chia Friends was an airdrop of 10,000 NFTs. While Chia Network Inc gave these NFTs to 10,000 lucky recipients for free, they currently can be bought or sold just like any other NFT. All sales include a 3% royalty, which goes to the Marmot Recovery Foundation (here's their [wallet address](https://www.spacescan.io/xch/address/xch120ywvwahucfptkeuzzdpdz5v0nnarq5vgw94g247jd5vswkn7rls35y2gc)). For more information, see the [Chia Friends website](https://www.chiafriends.xyz/).
 
 ### Can I donate directly to the Marmot Recovery Foundation?
 
 You sure can! [The Marmot Recovery Foundation website](http://marmots.org/how-you-can-help/donate-now/) lists a variety of ways to donate to the cause of saving the Vancouver Island marmot from extinction.
-
-### Is Chia Friends the same as the Holiday 21 token?
-
-No. It’s a completely different project. The Holiday 21 token giveaway is coming later.
 
 ### Why do I have a Profile in my wallet?
 
