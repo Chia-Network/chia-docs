@@ -48,7 +48,7 @@ You can see some example plot sizes, times to plot, and working space needed bas
 
 The minimum plot size is k=32. There is only one reason why you might want to plot larger than k=32: to maximize the total utilization of a given drive or space. A couple of k=33 plots with a majority of k=32 plots can reduce the amount of leftover unused space on a drive.
 
-The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](https://docs.chia.net/03consensus/consensus_intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
+The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](/consensus-intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
 
 - Note that this attack does not create a winning plot; it only creates a plot that passes the filter.
 
@@ -261,7 +261,7 @@ Search for the `wallet:` section. It should be near the end of the file. Edit th
 
 ### How does light wallet syncing work?
 
-This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](https://docs.chia.net/03consensus/light_clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
+This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](/light-clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
 
 First, a bit about addresses in Chia. A single Chia wallet can use up to four billion (2^32) addresses. Hopefully, you won't need more than that! Using multiple addresses can help provide anonymity. Rather than having to sign up for a new account each time you want to receive money, you can simply click "NEW ADDRESS" and _presto_ -- a new address appears. Additionally, each time you receive change from sending money, a new address is automatically generated. Your wallet keeps track of each of the addresses that have been used. As long as your wallet is synced, it always knows how much money you have.
 
@@ -347,7 +347,7 @@ HD or Hierarchical Deterministic keys are a type of public key/private key schem
 
 ### How many confirmations do I need to trust that a chia transaction is final?
 
-Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](https://docs.chia.net/03consensus/analysis#safety "Safety analysis of Chia's consensus").
+Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](/consensus-analysis#safety "Safety analysis of Chia's consensus").
 
 ### Why is my wallet not synced? Why can I not connect to wallet from the GUI?
 
@@ -660,7 +660,7 @@ Yes. Just as with XCH and CATs, you can send NFTs to an XCH address. If the reci
 
 ### How do I sell my NFTs?
 
-As with buying NFTs, you can also sell them using Offers. Simply create an Offer in your Electron wallet, then send it wherever you want, including to our community galleries and marketplaces such as [MintGarden](https://mintgarden.io/), [Dexie](https://dexie.space/markets), [SkyNFT](https://skynft.org/index.php), and [SpaceScan](https://www.spacescan.io/). If an Offer file is modified, then that copy is no longer valid. This means that you can share your Offers with confidence -- the only thing a "thief" can do with your Offer is accept it.
+As with buying NFTs, you can also sell them using Offers. Simply create an Offer in your Electron wallet, then send it wherever you want, including to our community galleries and marketplaces such as [MintGarden](https://mintgarden.io/), [Dexie](https://dexie.space/markets), and [SpaceScan](https://www.spacescan.io/). If an Offer file is modified, then that copy is no longer valid. This means that you can share your Offers with confidence -- the only thing a "thief" can do with your Offer is accept it.
 
 ### Is there any limitation to which assets I can offer?
 
