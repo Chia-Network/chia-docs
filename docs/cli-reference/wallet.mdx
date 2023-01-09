@@ -63,7 +63,7 @@ The following `coin` commands (`combine`, `list`, and `split`) are currently onl
 
 ### `list`
 
-Functionality: List all coins
+Functionality: List coins in a wallet, with options for filtering
 
 Usage: chia wallet coins list [OPTIONS]
 
@@ -131,7 +131,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 The following examples all use the same coin state that was obtained in Example 1:
 
 <details>
-<summary>Example 2</summary>
+<summary>Example 2: exclude small coins</summary>
 
 Exclude coins smaller than 0.1 XCH:
 
@@ -160,7 +160,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 </details>
 
 <details>
-<summary>Example 3</summary>
+<summary>Example 3: exclude large coins</summary>
 
 Exclude coins larger than 0.00001 XCH. Note that there is one coin of exactly that value. It is included:
 
@@ -192,7 +192,7 @@ Coin ID: 0x2749503fb302b9654fc9f0dabd88787083ad341aaeee4a2bac113feb92ae59fc
 </details>
 
 <details>
-<summary>Example 4</summary>
+<summary>Example 4: exclude specific coins</summary>
 
 Use the `--exclude-coin` flag multiple times to exclude individual coins:
 
@@ -227,7 +227,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 </details>
 
 <details>
-<summary>Example 5</summary>
+<summary>Example 5: exclude specific amounts</summary>
 
 Use the `--exclude-amount` flag multiple times to exclude specific amounts. Note that if multiple coins have the same amount, they will all be excluded:
 
@@ -259,9 +259,9 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 </details>
 
 <details>
-<summary>Example 6</summary>
+<summary>Example 6: disable pagination</summary>
 
-Disable pagination:
+The `--no-paginate` flag will cause _all_ coins to be listed with no additional input from the user:
 
 ```bash
 chia wallet coins list -f 590161281 --no-paginate
@@ -530,7 +530,7 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 </details>
 
 <details>
-<summary>Example 3: combine 2 coins</summary>
+<summary>Example 3: combine the two smallest coins</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -762,7 +762,7 @@ Run the `combine` command with the default settings:
 chia wallet coins combine -f 590161281
 ```
 
-Up to 500 coins will be combined by default. In this case, there are only three coins to combine:
+Up to 500 coins will be combined by default, starting with the smallest coin. In this case, there are only three coins to combine:
 
 ```bash
 Combining 3 coins.
@@ -795,7 +795,7 @@ Coin ID: 0x5dc5106862c7e00b0611b79137dbd7520e4c90da1bbbadb01a4518e3e4ec1797
 
 ### `split`
 
-Functionality: Split up larger coins
+Functionality: Split one coin into one or more new coins
 
 Usage: chia wallet coins split [OPTIONS]
 
@@ -811,6 +811,12 @@ Options:
 | -a            | --amount-per-coin  | TEXT    | True     | The amount of each newly created coin, in XCH                                                                |
 | -t            | --target-coin-id   | TEXT    | True     | The coin id of the coin we are splitting                                                                     |
 | -h            | --help             | None    | False    | Show a help message and exit                                                                                 |
+
+This command requires a single coin to be specified for splitting.
+The maximum number of new coins is 500. These coins will be of equal value, and the original coin must contain sufficient funds for the splitting to occur.
+If any value remains after splitting, this will be stored in a new coin.
+
+The minimum number of new coins is 1. "Splitting" one coin into one new coin could be useful because a second new coin will be created with the remaining value.
 
 <details>
 <summary>Example</summary>
