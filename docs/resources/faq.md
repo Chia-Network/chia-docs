@@ -512,9 +512,9 @@ chia version
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
 - [Technical reference document](https://chialisp.com/offers)
-- [GUI (graphical user interface) tutorial](https://devs.chia.net/guides/offers-gui-tutorial)
+- [GUI (graphical user interface) tutorial](/guides/offers-gui-tutorial)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
-- [CLI (command line interface) tutorial](https://devs.chia.net/guides/offers-cli-tutorial)
+- [CLI (command line interface) tutorial](/guides/offers-cli-tutorial)
 
 ### After creating an offer file, why does my spendable balance differ more than the amount specific in the offer?
 
@@ -681,7 +681,7 @@ No. You can send and receive NFTs from the same address you have used in the pas
 
 ### How do I mint an NFT?
 
-If you are comfortable using a command line interface (CLI), then you can follow our [dev guide](https://devs.chia.net/guides/nft-intro/) to mint an NFT. If you prefer a browser-based minting tool, you can use [SkyNFT](https://skynft.org/login.php) for a nominal fee. Other community-developed marketplaces will also offer minting services soon.
+If you are comfortable using a command line interface (CLI), then you can follow our [dev guide](/guides/nft-intro) to mint an NFT. If you prefer a browser-based minting tool, options include [MintGarden](https://mintgarden.io/mint) and [Omakasea ChiaNFT](https://github.com/OmakaseaNFT/chia-nft-util). Other community-developed marketplaces are listed on [ChiaLinks.com](https://chialinks.com/nfts/).
 
 ### Can I mint an NFT with a URL that includes a comma?
 
@@ -754,7 +754,7 @@ If the mempool is not full, then no fee is needed. If the mempool is full, then 
 - Minting an NFT with a DID: 615 million mojos
 - Transferring/selling an NFT: 335 million mojos
 
-For other scenarios, see [our NFT developer documentation](https://devs.chia.net/guides/nft-intro/).
+For other scenarios, see [our NFT developer documentation](/guides/nft-intro).
 
 ### What happens if exactly the same `nft mint` command is executed twice?
 
@@ -813,15 +813,15 @@ No. NFTs can be left unassigned to a Profile.
 
 ### How do I use the CLI for creating and using DIDs and NFTs?
 
-Our [dev guide](https://devs.chia.net/guides/nft-cli/) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/did-cli) and [NFTs](/nft-cli).
+Our [dev guide](/guides/nft-cli) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/did-cli) and [NFTs](/nft-cli).
 
 ### What RPC functionality is available for DIDs and NFTs?
 
-We also have a [dev guide geared at using RPCs](https://devs.chia.net/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/did-rpc) and [NFTs](/nft-rpc).
+We also have a [dev guide geared at using RPCs](/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/did-rpc) and [NFTs](/nft-rpc).
 
 ### What limitations, if any, are there for NFTs on Chia's blockchain?
 
-Chia's [bulk minting tool](https://devs.chia.net/guides/nft-bulk-mint) allows you to mint 25 NFTs per block. If you attempt to mint more than this, you run the risk of your spend bundle sitting in the mempool for a long time. Additionally, if you don't use the bulk minting tool (or a similar tool), you can only mint one NFT per block.
+Chia's [bulk minting tool](/guides/nft-bulk-mint) allows you to mint 25 NFTs per block. If you attempt to mint more than this, you run the risk of your spend bundle sitting in the mempool for a long time. Additionally, if you don't use the bulk minting tool (or a similar tool), you can only mint one NFT per block.
 
 ### Are there any security concerns I should consider?
 
