@@ -48,7 +48,7 @@ You can see some example plot sizes, times to plot, and working space needed bas
 
 The minimum plot size is k=32. There is only one reason why you might want to plot larger than k=32: to maximize the total utilization of a given drive or space. A couple of k=33 plots with a majority of k=32 plots can reduce the amount of leftover unused space on a drive.
 
-The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](https://docs.chia.net/03consensus/consensus_intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
+The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](/consensus-intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
 
 - Note that this attack does not create a winning plot; it only creates a plot that passes the filter.
 
@@ -261,7 +261,7 @@ Search for the `wallet:` section. It should be near the end of the file. Edit th
 
 ### How does light wallet syncing work?
 
-This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](https://docs.chia.net/03consensus/light_clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
+This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](/light-clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
 
 First, a bit about addresses in Chia. A single Chia wallet can use up to four billion (2^32) addresses. Hopefully, you won't need more than that! Using multiple addresses can help provide anonymity. Rather than having to sign up for a new account each time you want to receive money, you can simply click "NEW ADDRESS" and _presto_ -- a new address appears. Additionally, each time you receive change from sending money, a new address is automatically generated. Your wallet keeps track of each of the addresses that have been used. As long as your wallet is synced, it always knows how much money you have.
 
@@ -347,7 +347,7 @@ HD or Hierarchical Deterministic keys are a type of public key/private key schem
 
 ### How many confirmations do I need to trust that a chia transaction is final?
 
-Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](https://docs.chia.net/03consensus/analysis#safety "Safety analysis of Chia's consensus").
+Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](/consensus-analysis#safety "Safety analysis of Chia's consensus").
 
 ### Why is my wallet not synced? Why can I not connect to wallet from the GUI?
 
@@ -402,10 +402,6 @@ If you’ve lost your offer history and want to cancel those offers but can’t 
 ### Why don’t new CAT tokens automatically show up in my wallet anymore?
 
 The wallet no longer automatically adds unknown CATs wallets for CATs that may have been airdropped to your wallet. This is to help ensure that syncing doesn’t slow down with all the additional CATs that could suddenly show up. It is recommended that you use a tail database to look up and add. We understand that this will add some extra work to know which CATs to add wallets for and set them up manually. We do hope to improve upon this experience Soon™
-
-### Why does the 1.3 beta show a version 1.2.12?
-
-This is the way our tools work today. Just make sure when you submit feedback or an issue in Github to use the app version (1.2.12 dev269) when reporting it so we know exactly which version you're running.
 
 ### How can I make a coin that may only be spent until a certain timestamp or block height?
 
@@ -503,6 +499,56 @@ chia version
 1.6.1
 ```
 
+### What is the dust filter?
+
+In crypto parlance, "dust" refers to coins that have almost no value. In Chia, the smallest denomination is 1 mojo, or 1-trillionth of an XCH. Unsolicited coins of this value certainly count as dust, but even much larger coins, for example 1 million mojos, are still worth a fraction of a penny.
+
+Chia experienced its first "dust storm" in late 2021. The "duster" spammed the blockchain with millions of tiny coins, likely in an attempt to stress-test the network. Chia's blockchain is robust, so it continued without issue. However, many people ended up with thousands of dust coins in their wallets. This proved problematic.
+
+In version 1.2.x, wallets that had received tens of thousands of dust coins were unable to sync. The task of optimizing our wallet was a difficult one, but by version 1.3 we had made significant improvements, and these wallets could finally sync.
+
+However, sync times for dusted wallets were still measured in days, which was unacceptable. We continued making optimizations, and by version 1.5.1, a wallet with over 100,000 coins could sync within a few minutes. But we wanted to reduce those sync times even more.
+
+The dust filter is a new feature, added in version 1.6.0. It is activated whenever there are at least a certain number of unspent dust coins in the wallet. While activated, the filter ignores any coins considered "dust".
+
+Two new settings have been added to `~/.chia/mainnet/config/config.yaml` in the `wallet` section:
+* `spam_filter_after_n_txs: 200`
+* `xch_spam_amount: 1000000`
+
+If you are upgrading an existing Chia installation, these settings won't be added automatically. In this case, you will need to either add them manually or delete `config.yaml` and run `chia init` to generate a new copy.
+
+The default settings essentially say, "If my wallet contains more than 200 coins, ignore all coins after the first 200 that are worth less than 1 million mojos." Note that the filter is not applied for CATs or NFTs.
+
+You can modify these default values to support different functionality. For example:
+* Disable the filter by setting `xch_spam_amount` to `0` (nothing is dust)
+* Enable the filter regardless of your wallet's status by setting `spam_filter_after_n_txs` to `0`
+* Consider coins to be "dust" only if they are smaller than 100 mojos by setting `xch_spam_amount` to `100`
+
+However, we believe the default settings will be sufficient for most users.
+
+Note that if the number of unspent coins in your wallet falls to 200 (by default) or lower, then the dust filter will be deactivated. This could happen if you spend or consolidate some of your coins.
+
+### Why is my wallet's balance inconsistent?
+
+If you have more than two hundred unspent coins (by default) in your wallet, the dust filter will be activated. Depending on which mode your wallet is using, your balance could show slight differences each time you sync. This is because the coins will not necessarily show up in the same order while syncing.
+
+The maximum difference in your balance is `spam_filter_after_n_txs * xch_spam_amount`. However, the actual difference will rarely be more than a few thousand mojos.
+
+There are three potential scenarios:
+
+1. Light wallet only (untrusted mode) -- Your wallet is syncing from multiple remote full nodes. Each time your wallet syncs, it will connect to a new set of nodes, so the coins might not show up in the same order. Different coins could be filtered, so your balance may be slightly different each time you sync.
+
+2. Synced full node (trusted mode) on multiple computers -- If you load the same wallet on different full nodes, the databases will be slightly different due to network latency. Even though the coins themselves all exist, they might not show up in the same order, so different coins could be filtered. In this case, your balance might be slightly different between the two computers.
+
+3. Synced full node (trusted mode) with one computer --  Your trusted database will be the same each time you sync, so the wallet balance will also be the same.
+
+### How do I disable the dust filter?
+
+1. Edit `~/.chia/mainnet/config/config.yaml`
+2. If `xch_spam_amount` doesn't exist, add it
+3. Set the value for `xch_spam_amount` to `0` (nothing is dust)
+4. Restart Chia
+
 ---
 
 ## Offers
@@ -512,9 +558,9 @@ chia version
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
 - [Technical reference document](https://chialisp.com/offers)
-- [GUI (graphical user interface) tutorial](https://devs.chia.net/guides/offers-gui-tutorial)
+- [GUI (graphical user interface) tutorial](/guides/offers-gui-tutorial)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
-- [CLI (command line interface) tutorial](https://devs.chia.net/guides/offers-cli-tutorial)
+- [CLI (command line interface) tutorial](/guides/offers-cli-tutorial)
 
 ### After creating an offer file, why does my spendable balance differ more than the amount specific in the offer?
 
@@ -569,10 +615,6 @@ No, Offers are created and stored locally on each machine. Any accepted offers w
 ### Can my coin be spent on another computer with a wallet that uses the same keys, even if I am running two wallets on two different computers and I have an open Offer on one computer?
 
 Yes, the coin can be spent from another computer. Coins are reserved locally on the computer where the offer was created. If that coin is spent from another computer, then the offer will be canceled. In general, it is recommended that you don’t use two machines to access the same wallet that offers are being made from.
-
-### What is the Duck Sauce CAT?
-
-The duck sauce CAT was the internal codename for the Stably USDS token until it was announced. Please be sure you have the correct TAIL for the Stably USDS token:
 
 ---
 
@@ -660,7 +702,7 @@ Yes. Just as with XCH and CATs, you can send NFTs to an XCH address. If the reci
 
 ### How do I sell my NFTs?
 
-As with buying NFTs, you can also sell them using Offers. Simply create an Offer in your Electron wallet, then send it wherever you want, including to our community galleries and marketplaces such as [MintGarden](https://mintgarden.io/), [Dexie](https://dexie.space/markets), [SkyNFT](https://skynft.org/index.php), and [SpaceScan](https://www.spacescan.io/). If an Offer file is modified, then that copy is no longer valid. This means that you can share your Offers with confidence -- the only thing a "thief" can do with your Offer is accept it.
+As with buying NFTs, you can also sell them using Offers. Simply create an Offer in your Electron wallet, then send it wherever you want, including to our community galleries and marketplaces such as [MintGarden](https://mintgarden.io/), [Dexie](https://dexie.space/markets), and [SpaceScan](https://www.spacescan.io/). If an Offer file is modified, then that copy is no longer valid. This means that you can share your Offers with confidence -- the only thing a "thief" can do with your Offer is accept it.
 
 ### Is there any limitation to which assets I can offer?
 
@@ -681,7 +723,7 @@ No. You can send and receive NFTs from the same address you have used in the pas
 
 ### How do I mint an NFT?
 
-If you are comfortable using a command line interface (CLI), then you can follow our [dev guide](https://devs.chia.net/guides/nft-intro/) to mint an NFT. If you prefer a browser-based minting tool, you can use [SkyNFT](https://skynft.org/login.php) for a nominal fee. Other community-developed marketplaces will also offer minting services soon.
+If you are comfortable using a command line interface (CLI), then you can follow our [dev guide](/guides/nft-intro) to mint an NFT. If you prefer a browser-based minting tool, options include [MintGarden](https://mintgarden.io/mint) and [Omakasea ChiaNFT](https://github.com/OmakaseaNFT/chia-nft-util). Other community-developed marketplaces are listed on [ChiaLinks.com](https://chialinks.com/nfts/).
 
 ### Can I mint an NFT with a URL that includes a comma?
 
@@ -754,7 +796,7 @@ If the mempool is not full, then no fee is needed. If the mempool is full, then 
 - Minting an NFT with a DID: 615 million mojos
 - Transferring/selling an NFT: 335 million mojos
 
-For other scenarios, see [our NFT developer documentation](https://devs.chia.net/guides/nft-intro/).
+For other scenarios, see [our NFT developer documentation](/guides/nft-intro).
 
 ### What happens if exactly the same `nft mint` command is executed twice?
 
@@ -793,15 +835,11 @@ No. Transfers are conducted without any royalties being paid.
 
 ### What is the Chia Friends project?
 
-Chia Friends is a giveaway of 10,000 NFTs, beginning with the release of Chia version 1.4. While Chia Network Inc will give these NFTs to 10,000 lucky recipients for free, they can later be bought or sold just like any other NFT. There will be a royalty included with these NFTs, 100% of which will automatically be sent to the Marmot Recovery Foundation. For more information, see the [Chia Friends website](https://www.chiafriends.xyz/).
+Chia Friends was an airdrop of 10,000 NFTs. While Chia Network Inc gave these NFTs to 10,000 lucky recipients for free, they currently can be bought or sold just like any other NFT. All sales include a 3% royalty, which goes to the Marmot Recovery Foundation (here's their [wallet address](https://www.spacescan.io/xch/address/xch120ywvwahucfptkeuzzdpdz5v0nnarq5vgw94g247jd5vswkn7rls35y2gc)). For more information, see the [Chia Friends website](https://www.chiafriends.xyz/).
 
 ### Can I donate directly to the Marmot Recovery Foundation?
 
 You sure can! [The Marmot Recovery Foundation website](http://marmots.org/how-you-can-help/donate-now/) lists a variety of ways to donate to the cause of saving the Vancouver Island marmot from extinction.
-
-### Is Chia Friends the same as the Holiday 21 token?
-
-No. It’s a completely different project. The Holiday 21 token giveaway is coming later.
 
 ### Why do I have a Profile in my wallet?
 
@@ -813,15 +851,15 @@ No. NFTs can be left unassigned to a Profile.
 
 ### How do I use the CLI for creating and using DIDs and NFTs?
 
-Our [dev guide](https://devs.chia.net/guides/nft-cli/) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/did-cli) and [NFTs](/nft-cli).
+Our [dev guide](/guides/nft-cli) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/did-cli) and [NFTs](/nft-cli).
 
 ### What RPC functionality is available for DIDs and NFTs?
 
-We also have a [dev guide geared at using RPCs](https://devs.chia.net/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/did-rpc) and [NFTs](/nft-rpc).
+We also have a [dev guide geared at using RPCs](/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/did-rpc) and [NFTs](/nft-rpc).
 
 ### What limitations, if any, are there for NFTs on Chia's blockchain?
 
-Chia's [bulk minting tool](https://devs.chia.net/guides/nft-bulk-mint) allows you to mint 25 NFTs per block. If you attempt to mint more than this, you run the risk of your spend bundle sitting in the mempool for a long time. Additionally, if you don't use the bulk minting tool (or a similar tool), you can only mint one NFT per block.
+Chia's [bulk minting tool](/guides/nft-bulk-mint) allows you to mint 25 NFTs per block. If you attempt to mint more than this, you run the risk of your spend bundle sitting in the mempool for a long time. Additionally, if you don't use the bulk minting tool (or a similar tool), you can only mint one NFT per block.
 
 ### Are there any security concerns I should consider?
 
