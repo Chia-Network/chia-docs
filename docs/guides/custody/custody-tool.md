@@ -23,9 +23,9 @@ This tool was _not_ originally developed with the broader ecosystem in mind. For
 
 Before continuing, you might want to familiarize yourself with the following documents:
 
--   [Basic description](/guides/custody-tool-description) of how the custody tool works
--   [Flow chart](https://docs.chia.net/assets/files/chia_custody_tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png) to visualize how the custody tool works
--   [CLI reference](https://docs.chia.net/custody-tool) for all custody commands used in this tutorial
+- [Basic description](/guides/custody-tool-description) of how the custody tool works
+- [Flow chart](https://docs.chia.net/assets/files/chia_custody_tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png) to visualize how the custody tool works
+- [CLI reference](https://docs.chia.net/custody-tool) for all custody commands used in this tutorial
 
 :::info
 
@@ -39,12 +39,12 @@ The custody tool uses many parameters, each of which is important. You are highl
 
 ### Requirements
 
--   A synced full node (mainnet, testnet, or [simulator](https://devs.chia.net/guides/simulator-user-guide 'Simulator user guide'))
--   A synced [Chia wallet](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL 'Chia installation instructions')
--   [Python](https://www.python.org/downloads/ 'Python downloads page') 3.9 or greater **(will not work with 3.8.x)**
--   [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git 'How to install the Git command line tool')
--   [Powershell 6](https://www.howtogeek.com/731885/how-to-check-the-powershell-version-in-windows-10/ 'How to check your Powershell version') or greater (Windows only)
--   Visual C++ Redistributable (Windows only)
+- A synced full node (mainnet, testnet, or [simulator](/guides/simulator-user-guide 'Simulator user guide'))
+- A synced [Chia wallet](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL 'Chia installation instructions')
+- [Python](https://www.python.org/downloads/ 'Python downloads page') 3.9 or greater **(will not work with 3.8.x)**
+- [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git 'How to install the Git command line tool')
+- [Powershell 6](https://www.howtogeek.com/731885/how-to-check-the-powershell-version-in-windows-10/ 'How to check your Powershell version') or greater (Windows only)
+- Visual C++ Redistributable (Windows only)
 
 ### Steps to install
 
@@ -62,47 +62,47 @@ cd internal-custody
 
 3. Create a new virtual environment and then activate it:
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    python -m venv venv
-    .\venv\Scripts\Activate.ps1
-    ```
+   ```powershell
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   ```
 
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash
-    python3 -m venv venv
-    . ./venv/bin/activate
-    ```
+   ```bash
+   python3 -m venv venv
+   . ./venv/bin/activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    python3 -m venv venv
-    . ./venv/bin/activate
-    ```
+   ```bash
+   python3 -m venv venv
+   . ./venv/bin/activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
 4. Install the custody tool:
 
@@ -171,8 +171,8 @@ In general, any time you encounter signing errors, be sure the correct line endi
 
 :::note
 
--   These commands will **not** modify the blockchain. They will only create local files
--   These commands **should** be run from an HSM
+- These commands will **not** modify the blockchain. They will only create local files
+- These commands **should** be run from an HSM
 
 :::
 
@@ -180,9 +180,9 @@ Before the custody singleton can be created, you must first create the public/pr
 
 For this guide:
 
--   `m` will initially be set to 2. This is security level, or "lock level" of the singleton. In other words, it's the number of keys required to sign for withdrawals and standard rekeys.
--   `n` will initially be set to 3. This is the maximum lock level of the singleton. In other words, it's the total number of keys that will be associated with the singleton.
--   Because `n` will initially be 3, we will create 3 keys now. `m` and `n` will be used later when setting up the singleton.
+- `m` will initially be set to 2. This is security level, or "lock level" of the singleton. In other words, it's the number of keys required to sign for withdrawals and standard rekeys.
+- `n` will initially be set to 3. This is the maximum lock level of the singleton. In other words, it's the total number of keys that will be associated with the singleton.
+- Because `n` will initially be 3, we will create 3 keys now. `m` and `n` will be used later when setting up the singleton.
 
 When creating and using these keys on mainnet, you should only store one key on each computer. Signing therefore requires copying an unsigned spend bundle to each individual computer that holds a key. This process is explained in detail later in the guide.
 
@@ -246,8 +246,8 @@ The custody tool uses the Chialisp [singleton](https://chialisp.com/docs/puzzles
 
 :::note
 
--   This command will **not** modify the blockchain. It will only create a local file
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain. It will only create a local file
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -270,8 +270,8 @@ For this guide, we'll create an example singleton that uses the values listed in
 
 :::info notes regarding the above table
 
--   The singleton's time values are relative to when they're confirmed on chain
--   The specific time values for this example were chosen for testing purposes only. In a mainnet custody solution, the values are typically measured in days (though still expressed in seconds)
+- The singleton's time values are relative to when they're confirmed on chain
+- The specific time values for this example were chosen for testing purposes only. In a mainnet custody solution, the values are typically measured in days (though still expressed in seconds)
 
 :::
 
@@ -289,16 +289,16 @@ As a result of running the `cic init` command, a binary file called `Configurati
 
 :::note
 
--   This command will **not** modify the blockchain. It will only create a local file
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain. It will only create a local file
+- This command should be run from **outside** an HSM
 
 :::
 
 Now that you have keys and an underived configuration, you can run the `derive_root` command, which will set up the singleton's non-permanent layer, with the following settings:
 
--   `m` (current lock level)
--   `n` (maximum lock level)
--   The public keys that comprise `n`, expressed as a comma-separated list
+- `m` (current lock level)
+- `n` (maximum lock level)
+- The public keys that comprise `n`, expressed as a comma-separated list
 
 This command includes an optional `--configuration` flag to specify the name and location of the configuration file. By default, the command will look in `./Configuration (needs derivation).txt`.
 
@@ -320,8 +320,8 @@ As a result of running this command, `Configuration (awaiting launch).txt` will 
 
 :::note
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -377,8 +377,8 @@ Congratulations, you have successfully launched the singleton! (You will need to
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -460,31 +460,31 @@ Derivation Info:
 
 Here's how to interpret this output:
 
--   Singleton
+- Singleton
 
-    -   `launcher ID`: This shows the on-chain ID of your singleton
-    -   `amount left`: This is the current value of the singleton. For now it is zero because it has not yet been funded
-    -   `amount to claim`: This is the number of mojos currently in the process of being withdrawn. The money is effectively sitting in escrow, and will be able to be withdrawn after the withdrawal timelock has been fulfilled
+  - `launcher ID`: This shows the on-chain ID of your singleton
+  - `amount left`: This is the current value of the singleton. For now it is zero because it has not yet been funded
+  - `amount to claim`: This is the number of mojos currently in the process of being withdrawn. The money is effectively sitting in escrow, and will be able to be withdrawn after the withdrawal timelock has been fulfilled
 
--   Outstanding events
+- Outstanding events
 
-    -   `PAYMENTS`: If there were a payment in progress, it would be shown here
-    -   `REKEYS`: If there were a rekey in progress, it would be shown here
+  - `PAYMENTS`: If there were a payment in progress, it would be shown here
+  - `REKEYS`: If there were a rekey in progress, it would be shown here
 
--   Config
+- Config
 
-    -   `current root`: Puzzlehash of the singleton as it is currently configured
-    -   `withdrawal timelock`: Number of seconds to wait before a withdrawal may be initiated
-    -   `payment clawback period`: Number of seconds to wait before a withdrawal may be completed. During this period, clawback is possible
-    -   `rekey cancellation period`: Number of seconds to wait before a rekey may be completed. During this period, cancellation is possible
+  - `current root`: Puzzlehash of the singleton as it is currently configured
+  - `withdrawal timelock`: Number of seconds to wait before a withdrawal may be initiated
+  - `payment clawback period`: Number of seconds to wait before a withdrawal may be completed. During this period, clawback is possible
+  - `rekey cancellation period`: Number of seconds to wait before a rekey may be completed. During this period, cancellation is possible
 
--   Derivation Info
-    -   `lock level`: The number of keys required to sign for withdrawals and standard rekeys
-    -   `max lock level`: The total number of keys
-    -   `min keys to rekey`: The minimum number of keys that must sign for a slow rekey
-    -   `standard rekey timelock`: The number of seconds since the last action before a standard rekey can be initiated
-    -   `slow rekey penalty`: The number of seconds added as a penalty for all slow rekeys. This is in addition to the standard rekey timelocks that will vary depending on the number of keys signing
-    -   `pubkeys`: The keys themselves
+- Derivation Info
+  - `lock level`: The number of keys required to sign for withdrawals and standard rekeys
+  - `max lock level`: The total number of keys
+  - `min keys to rekey`: The minimum number of keys that must sign for a slow rekey
+  - `standard rekey timelock`: The number of seconds since the last action before a standard rekey can be initiated
+  - `slow rekey penalty`: The number of seconds added as a penalty for all slow rekeys. This is in addition to the standard rekey timelocks that will vary depending on the number of keys signing
+  - `pubkeys`: The keys themselves
 
 ---
 
@@ -492,8 +492,8 @@ Here's how to interpret this output:
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -523,8 +523,8 @@ Note that even though this is the address of the singleton, which has a complex 
 
 :::note
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -532,10 +532,10 @@ Now that the singleton has been created and you have its address, you can fund i
 
 A few things to keep in mind:
 
--   The `-a` flag is the amount (in XCH/TXCH) to send to the singleton. For this guide, we'll send 1 TXCH
--   The `-t` flag needs to specify the `p2_address` you calculated in the last step. Be sure to replace `<address>` in the example with the actual address
--   You can optionally add a transaction fee (in XCH/TXCH) by using the `-m` flag. For this guide, we'll send 10 million mojos
--   If your fee is greater than your singleton's value (as it might be if you're running on a testnet), you'll need to add the `--override` flag
+- The `-a` flag is the amount (in XCH/TXCH) to send to the singleton. For this guide, we'll send 1 TXCH
+- The `-t` flag needs to specify the `p2_address` you calculated in the last step. Be sure to replace `<address>` in the example with the actual address
+- You can optionally add a transaction fee (in XCH/TXCH) by using the `-m` flag. For this guide, we'll send 10 million mojos
+- If your fee is greater than your singleton's value (as it might be if you're running on a testnet), you'll need to add the `--override` flag
 
 ```bash
 chia wallet send -a 1 -m 0.00001 -t <address>
@@ -565,8 +565,8 @@ Created at: 2022-10-07 01:20:55
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -629,8 +629,8 @@ This test will run through the complete sequence of withdrawing money from the s
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -639,11 +639,11 @@ This command generates an unsigned spend bundle which requires specific keys. Si
 To begin the payment process, use the `cic payment` command.
 For this example, we'll use the following arguments (see the [CLI reference](https://docs.chia.net/custody-tool#payment 'payment command') for all options):
 
--   `-f` : The name of the file in which to save the unsigned spend bundle
--   `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command
--   `-a`: The number of mojos to withdraw
--   `-t`: The recipient address (where to send the money to)
--   `-ap`: Absorb all available payments (could add to transaction costs if more than one payment exists)
+- `-f` : The name of the file in which to save the unsigned spend bundle
+- `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command
+- `-a`: The number of mojos to withdraw
+- `-t`: The recipient address (where to send the money to)
+- `-ap`: Absorb all available payments (could add to transaction costs if more than one payment exists)
 
 We'll sign with keys 1 and 2, and we'll withdraw 1 billion mojos:
 
@@ -663,8 +663,8 @@ In this example, the command set up the spend bundle to require keys `1` and `2`
 
 :::note
 
--   These commands will **not** modify the blockchain
--   These commands should be run from **inside** an HSM
+- These commands will **not** modify the blockchain
+- These commands should be run from **inside** an HSM
 
 :::
 
@@ -720,8 +720,8 @@ This command should have no output. The signatures are now stored in text files.
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **inside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **inside** an HSM
 
 :::
 
@@ -741,18 +741,18 @@ The signed spend bundle is now loaded in a file called `withdrawal.signed`. This
 
 :::note
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
 A few things to note:
 
--   Even though this command will withdraw from the _singleton_, it still needs a local wallet if you want to include a blockchain fee
--   The key to be used in this command is a local key, and _not_ a signer's key from the singleton
--   The fee will be added when the `push_tx` command is run; it's not built into the spend bundle
--   This command will fail if `-wt` seconds (from the singleton's permanent layer) have not yet elapsed
--   A synced full node is required to run this command
+- Even though this command will withdraw from the _singleton_, it still needs a local wallet if you want to include a blockchain fee
+- The key to be used in this command is a local key, and _not_ a signer's key from the singleton
+- The fee will be added when the `push_tx` command is run; it's not built into the spend bundle
+- This command will fail if `-wt` seconds (from the singleton's permanent layer) have not yet elapsed
+- A synced full node is required to run this command
 
 Once you have the signed spend bundle on a synced node with some XCH/TXCH for a blockchain fee, you can complete the payment. We'll add a fee of 10 million mojos:
 
@@ -768,8 +768,8 @@ For this example, we used 1200 seconds for this value.
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -799,9 +799,9 @@ Outstanding events:
 
 As the output of this command shows, there is a new payment outstanding (`PAYMENT to xch...`). A few things to note:
 
--   For this example, we explicitly specified a `txch` address as the recipient. However, the `xch` address is actually correct -- the tool is simply assuming that the recipient's puzzle hash must correspond to an `xch` address. If you check the puzzle hashes that correspond to both the address you specified previously and the address you see here, you'll see that they are the same.
--   If (`-pc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
--   If (`-pc`) seconds have elapsed, then the output will say `(Ready)`
+- For this example, we explicitly specified a `txch` address as the recipient. However, the `xch` address is actually correct -- the tool is simply assuming that the recipient's puzzle hash must correspond to an `xch` address. If you check the puzzle hashes that correspond to both the address you specified previously and the address you see here, you'll see that they are the same.
+- If (`-pc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
+- If (`-pc`) seconds have elapsed, then the output will say `(Ready)`
 
 In either case, claw backs are allowed until the payment has been completed.
 (Even if the withdrawal is in "Ready" state, it can still be clawed back. However, because _anyone_ can
@@ -815,8 +815,8 @@ Transaction blocks happen every 52 seconds on average.
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 :::info
@@ -847,8 +847,8 @@ Successfully wrote spend to complete.signed
 
 :::note
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -870,8 +870,8 @@ Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909):
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -902,8 +902,8 @@ Outstanding events:
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -940,17 +940,17 @@ Next, we'll set up a payment and claw it back before the timelock expires. This 
 
 Before attempting a clawback, you will need to have a pending payment set up. You can do this by using the [Withdrawal](#withdrawal) example. Here are the exact steps you need to follow in the initial setup:
 
--   [Initiate a payment](#initiate-a-payment)
--   [Sign the payment](#sign-the-payment)
--   [Merge the payment](#merge-the-payment)
--   [Push the transaction to the network](#push-the-transaction-to-the-network)
+- [Initiate a payment](#initiate-a-payment)
+- [Sign the payment](#sign-the-payment)
+- [Merge the payment](#merge-the-payment)
+- [Push the transaction to the network](#push-the-transaction-to-the-network)
 
 #### View the payment's status
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -985,8 +985,8 @@ In this example we still have 17 minutes remaining (`Ready at` minus `Current ti
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1014,8 +1014,8 @@ The output of this command will be a new unsigned spend bundle called `clawback.
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **inside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **inside** an HSM
 
 :::
 
@@ -1074,8 +1074,8 @@ hsmmerge ./clawback.unsigned ./clawback_1.sig ./clawback_2.sig > clawback.signed
 
 :::note
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1097,8 +1097,8 @@ Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909):
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1201,8 +1201,8 @@ Derivation Info:
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **inside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **inside** an HSM
 
 :::
 
@@ -1232,16 +1232,16 @@ The old keys, new keys, and root configuration are now stored in the current dir
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
 Next we'll run `cic derive_root`, which will create a new configuration file. A few things to note about this command's arguments:
 
--   `-pks`, `-m` and `-n` all refer to the values that will be applied to the _next_ root (after the rekey)
--   `sync (<number>).sqlite` refers to the _current_ database file
--   `Configuration (after rekey).txt` is a new configuration file that will be created as a result of running this command
+- `-pks`, `-m` and `-n` all refer to the values that will be applied to the _next_ root (after the rekey)
+- `sync (<number>).sqlite` refers to the _current_ database file
+- `Configuration (after rekey).txt` is a new configuration file that will be created as a result of running this command
 
 ```bash
 cic derive_root -db './sync (<number>).sqlite' -c './Configuration (after rekey).txt' -pks "1_new.pk,2_new.pk,3_new.pk,4_new.pk,5_new.pk" -m 3 -n 5
@@ -1259,8 +1259,8 @@ Custody rules successfully added to configuration
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1286,8 +1286,8 @@ The output of this command is the unsigned spend bundle that will be used for th
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **inside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **inside** an HSM
 
 :::
 
@@ -1339,8 +1339,8 @@ As a result of running this command, a signed spend bundle will be created for t
 
 :::note
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1364,8 +1364,8 @@ Choose a wallet key [1-2] ('q' to quit, or Enter to use 394934909):
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1395,8 +1395,8 @@ Outstanding events:
 
 As the output of this command shows, there is a new rekey outstanding (`REKEY from...`).
 
--   If (`-rc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
--   If (`-rc`) seconds have elapsed, then the output will say `(Ready)`
+- If (`-rc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
+- If (`-rc`) seconds have elapsed, then the output will say `(Ready)`
 
 In either case, cancellation/clawback is allowed until the rekey is completed.
 (Even if the rekey is in "Ready" state, it can still be clawed back. However, because _anyone_ can
@@ -1409,8 +1409,8 @@ Transaction blocks happen every 52 seconds on average.
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1444,8 +1444,8 @@ Successfully wrote spend to ./rekey.signed
 
 :::note
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1471,8 +1471,8 @@ You should receive a `SUCCESS` message, indicating that the transaction has been
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1645,8 +1645,8 @@ Note that `m + 1` keys are required to perform a lock level increase. The change
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 
@@ -1666,8 +1666,8 @@ Successfully wrote spend to lock.unsigned
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **inside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **inside** an HSM
 
 :::
 
@@ -1757,8 +1757,8 @@ echo 548347138017160679703378658261206465355245018123909529757803751974318852366
 
 :::note
 
--   This command will **not** modify the blockchain
--   This command should be run from **inside** an HSM
+- This command will **not** modify the blockchain
+- This command should be run from **inside** an HSM
 
 :::
 
@@ -1778,8 +1778,8 @@ The output of this command is the signed spend bundle, which we've redirected in
 
 :::info
 
--   This command **will** modify the blockchain
--   This command should be run from **outside** an HSM
+- This command **will** modify the blockchain
+- This command should be run from **outside** an HSM
 
 :::
 

@@ -247,13 +247,14 @@ Node ID: 0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9
 2. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows.
 
 Search for the `wallet:` section. It should be near the end of the file. Edit the following values from within this section:
-* `connect_to_unknown_peers` - Default is `true`; change it to `false`
-* `target_peer_count` - Default is `3`; change it to `1` (assuming you only have one trusted full node)
-* `trusted_peers`
-  * Default is `0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9: Does_not_matter`
-  * Change to `<Node ID>: Does_not_matter` 
-  * Note 1: Replace `<Node ID>` with the actual Node ID you obtained above
-  * Note 2: It doesn't matter what you enter on the right side of the colon. The argument will be ignored. Just make sure to enter something
+
+- `connect_to_unknown_peers` - Default is `true`; change it to `false`
+- `target_peer_count` - Default is `3`; change it to `1` (assuming you only have one trusted full node)
+- `trusted_peers`
+  - Default is `0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9: Does_not_matter`
+  - Change to `<Node ID>: Does_not_matter`
+  - Note 1: Replace `<Node ID>` with the actual Node ID you obtained above
+  - Note 2: It doesn't matter what you enter on the right side of the colon. The argument will be ignored. Just make sure to enter something
 
 3. Restart Chia on the computer you are connecting to the trusted node to pick up the changes.
 
@@ -458,13 +459,13 @@ The easiest way to accomplish this is with an alias. Run the following command(s
 :::info Chia setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 Note that this only works if you installed Chia for your local user (_not_ for all users). If you installed to a non-default location, update the following command accordingly:
 
@@ -512,9 +513,9 @@ chia version
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
 - [Technical reference document](https://chialisp.com/offers)
-- [GUI (graphical user interface) tutorial](https://devs.chia.net/guides/offers-gui-tutorial)
+- [GUI (graphical user interface) tutorial](/guides/offers-gui-tutorial)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
-- [CLI (command line interface) tutorial](https://devs.chia.net/guides/offers-cli-tutorial)
+- [CLI (command line interface) tutorial](/guides/offers-cli-tutorial)
 
 ### After creating an offer file, why does my spendable balance differ more than the amount specific in the offer?
 
@@ -681,7 +682,7 @@ No. You can send and receive NFTs from the same address you have used in the pas
 
 ### How do I mint an NFT?
 
-If you are comfortable using a command line interface (CLI), then you can follow our [dev guide](https://devs.chia.net/guides/nft-intro/) to mint an NFT. If you prefer a browser-based minting tool, you can use [SkyNFT](https://skynft.org/login.php) for a nominal fee. Other community-developed marketplaces will also offer minting services soon.
+If you are comfortable using a command line interface (CLI), then you can follow our [dev guide](/guides/nft-intro/) to mint an NFT. If you prefer a browser-based minting tool, you can use [SkyNFT](https://skynft.org/login.php) for a nominal fee. Other community-developed marketplaces will also offer minting services soon.
 
 ### Can I mint an NFT with a URL that includes a comma?
 
@@ -754,7 +755,7 @@ If the mempool is not full, then no fee is needed. If the mempool is full, then 
 - Minting an NFT with a DID: 615 million mojos
 - Transferring/selling an NFT: 335 million mojos
 
-For other scenarios, see [our NFT developer documentation](https://devs.chia.net/guides/nft-intro/).
+For other scenarios, see [our NFT developer documentation](/guides/nft-intro/).
 
 ### What happens if exactly the same `nft mint` command is executed twice?
 
@@ -775,11 +776,11 @@ No -- there would be no fair way to assess royalties for NFT-for-NFT offers, so 
 This depends on what assets are included in the offer. A few rules to keep in mind:
 
 1. If more than one NFT is being traded, the royalties will be divided by the number of NFTs. For example:
-    * If 4 NFTs are being traded for 1 XCH, then each NFT will have an assumed price of 0.25 XCH
-      * If the royalty for each NFT is 10%, then each NFT will receive a 0.025 XCH royalty, for a total royalty of 0.1
-      * If the royalties are 10%, 8%, 5%, and 3%, then the NFTs will receive 0.025 XCH, 0.02 XCH, 0.0125 XCH, and 0.0075 XCH, for a total royalty of 0.65 XCH
+   - If 4 NFTs are being traded for 1 XCH, then each NFT will have an assumed price of 0.25 XCH
+     - If the royalty for each NFT is 10%, then each NFT will receive a 0.025 XCH royalty, for a total royalty of 0.1
+     - If the royalties are 10%, 8%, 5%, and 3%, then the NFTs will receive 0.025 XCH, 0.02 XCH, 0.0125 XCH, and 0.0075 XCH, for a total royalty of 0.65 XCH
 2. If the NFTs are being traded for more than one fungible asset, then the royalties will be calculated for each asset individually
-    * For example, if 1 NFT is being traded for both 1 XCH and 1000 SBX and it carries a 10% royalty, then the royalties shall be 0.1 XCH and 100 SBX for this sale
+   - For example, if 1 NFT is being traded for both 1 XCH and 1000 SBX and it carries a 10% royalty, then the royalties shall be 0.1 XCH and 100 SBX for this sale
 3. If multiple NFTs are being traded for multiple fungible assets, then rules 1. and 2. will both be applied
 4. When NFTs are traded for other NFTs, no royalties are exchanged
 
@@ -813,15 +814,15 @@ No. NFTs can be left unassigned to a Profile.
 
 ### How do I use the CLI for creating and using DIDs and NFTs?
 
-Our [dev guide](https://devs.chia.net/guides/nft-cli/) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/did-cli) and [NFTs](/nft-cli).
+Our [dev guide](/guides/nft-cli/) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/did-cli) and [NFTs](/nft-cli).
 
 ### What RPC functionality is available for DIDs and NFTs?
 
-We also have a [dev guide geared at using RPCs](https://devs.chia.net/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/did-rpc) and [NFTs](/nft-rpc).
+We also have a [dev guide geared at using RPCs](/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/did-rpc) and [NFTs](/nft-rpc).
 
 ### What limitations, if any, are there for NFTs on Chia's blockchain?
 
-Chia's [bulk minting tool](https://devs.chia.net/guides/nft-bulk-mint) allows you to mint 25 NFTs per block. If you attempt to mint more than this, you run the risk of your spend bundle sitting in the mempool for a long time. Additionally, if you don't use the bulk minting tool (or a similar tool), you can only mint one NFT per block.
+Chia's [bulk minting tool](/guides/nft-bulk-mint) allows you to mint 25 NFTs per block. If you attempt to mint more than this, you run the risk of your spend bundle sitting in the mempool for a long time. Additionally, if you don't use the bulk minting tool (or a similar tool), you can only mint one NFT per block.
 
 ### Are there any security concerns I should consider?
 
@@ -844,12 +845,13 @@ Chia Network Inc has no ability to censor content on the Chia blockchain. Howeve
 Starting in version 1.6.1, you can send and receive notifications to a specified puzzle hash. This will eventually enable us to support sending an offer to an NFT's owner without having to go through an exchange.
 
 This functionality is disabled by default. It includes two settings in the `wallet:` section of `~/.chia/mainnet/config/config.yaml`:
-* `accept_notifications` - a boolean to specify whether you want to allow notifications to be received. If this setting is missing, it will automatically be set to `false`. Set to `true` to receive notifications
-* `required_notification_amount` - the amount (in mojos) you require to be sent with a notification in order to receive it. If this setting is not specified, the default of `10000000` (10 million) will be used
+
+- `accept_notifications` - a boolean to specify whether you want to allow notifications to be received. If this setting is missing, it will automatically be set to `false`. Set to `true` to receive notifications
+- `required_notification_amount` - the amount (in mojos) you require to be sent with a notification in order to receive it. If this setting is not specified, the default of `10000000` (10 million) will be used
 
 In order to enable notifications, you can either add these settings manually, or rename `config.yaml` and run `chia init`. A new copy of `config.yaml` will be created which contains the new settings.
 
-Finally, you need to restart Chia for these settings to be picked up. 
+Finally, you need to restart Chia for these settings to be picked up.
 
 Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
 
@@ -890,20 +892,20 @@ Windows users can run `C:\Users\<user ID>\AppData\Local\Programs\Chia\Chia.exe` 
 
 For power users, it is possible to [install Chia from source](/quick-start-guide#install). In this case, you will run Chia from a virtual environment on the command line.
 
-However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/). 
+However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/).
 
 After installing with the packaged installer, you can run Chia from the command line by invoking the executable file. The easiest way to set this up is by running the `alias` command. The exact command needed depends on your OS:
 
 :::info Chia setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 (Be sure to update &lt;username&gt; to match the name of the user that installed Chia.)
 

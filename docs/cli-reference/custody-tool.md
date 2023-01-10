@@ -12,9 +12,9 @@ This page includes a comprehensive list of Chia's Command Line Interface command
 
 For more info, see the following:
 
--   [Basic description](https://devs.chia.net/guides/custody-tool-description) of how the custody tool works
--   [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
--   [User guide](https://devs.chia.net/guides/custody-tool-user-guide) to help you get up and running
+- [Basic description](/guides/custody-tool-description) of how the custody tool works
+- [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
+- [User guide](/guides/custody-tool-user-guide) to help you get up and running
 
 ### Reference
 

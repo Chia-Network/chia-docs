@@ -1,7 +1,7 @@
 ---
 title: CAT2 Token Reissuance
 sidebar_label: 3. Token Reissuance
-slug: /cat2-issuance
+slug: /guides/cat2-issuance
 ---
 
 ```mdx-code-block
@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 :::info
 CAT1 will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
 
-For more information on this end-of-life process, see the [Intro and FAQ guide](/cat2-intro).
+For more information on this end-of-life process, see the [Intro and FAQ guide](/guides/cat2-intro).
 :::
 
 This document will show CAT1 issuers how to:
@@ -21,7 +21,7 @@ This document will show CAT1 issuers how to:
 2. "Secure the bag" – create a tree of new coins that are identical to the original CAT1 coins, in both size and destination wallet
 3. "Unwind the bag" – airdrop the coins to the appropriate locations
 
-Before starting this guide, you will need a snapshot CSV, instructions for which can be found in the [Snapshot Generation guide](/cat2-snapshot).
+Before starting this guide, you will need a snapshot CSV, instructions for which can be found in the [Snapshot Generation guide](/guides/cat2-snapshot).
 
 ## Install the CAT Admin Tool
 

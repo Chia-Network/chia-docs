@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 This tutorial is for creating Chia Asset Tokens (CATs). This CAT standard allows you to create fungible tokens on the Chia blockchain. This step-by-step guide will go through creating your own CATs.
 
-Alternatively, if you're looking for non-fungible tokens on Chia, check out our [NFT guide](https://devs.chia.net/guides/nft-intro).
+Alternatively, if you're looking for non-fungible tokens on Chia, check out our [NFT guide](/guides/nft-intro).
 
 ---
 
@@ -22,8 +22,8 @@ This tutorial will help you jump right in and get started with issuing your own 
 
 The [CAT primitive page](https://docs.chia.net/cats) was finalized as of January 2022. However, to minimize your risk of running into unexpected results, we recommend that you do following:
 
--   Generate a new public/private key pair for each CAT you issue. This key pair should be used for issuing one specific CAT **and nothing else**. It should also be the only key pair on your computer while issuing the CAT.
--   Test thoroughly on testnet before issuing your CAT to mainnet.
+- Generate a new public/private key pair for each CAT you issue. This key pair should be used for issuing one specific CAT **and nothing else**. It should also be the only key pair on your computer while issuing the CAT.
+- Test thoroughly on testnet before issuing your CAT to mainnet.
 
 For any questions regarding this tutorial, head over to the #chialisp channel on our [Keybase team](https://keybase.io/team/chia_network.public) forum, where there are lots of friendly folks who can help you.
 
@@ -33,15 +33,15 @@ For any questions regarding this tutorial, head over to the #chialisp channel on
 
 CAT denominations, as well as the rules behind issuance and melting, can take some getting used to. Here are a few things to keep in mind before you issue your CAT:
 
--   Most Chia wallets choose to display their value in XCH. However, this is a purely cosmetic choice because Chia's blockchain only knows about mojos. One XCH is equal to one trillion (1,000,000,000,000) mojos.
--   In a similar vein, Chia Network has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
+- Most Chia wallets choose to display their value in XCH. However, this is a purely cosmetic choice because Chia's blockchain only knows about mojos. One XCH is equal to one trillion (1,000,000,000,000) mojos.
+- In a similar vein, Chia Network has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
 
 :::caution
 Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The official Chia wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
 :::
 
--   The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
--   A token's face value and its melt value are not necessarily correlated, let alone matched.
+- The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
+- A token's face value and its melt value are not necessarily correlated, let alone matched.
 
 With one XCH, you can issue 1 billion CATs. The face value of these tokens could be zero, or multiple XCH, or anywhere in between. This value is decided by the market -- it's worth whatever someone is willing to pay for it. The value of the tokens has nothing to do with the underlying XCH, other than their 1000-mojo melt value.
 
@@ -177,13 +177,13 @@ You might receive an error such as ERROR: Failed building wheel for CAT-admin-to
     
 Your environment should be all set, but let's make sure:
 
--   Run `cats --help`. You should get a usage statement.
+- Run `cats --help`. You should get a usage statement.
 
--   Run `cdv --help`. You should get another usage statement.
+- Run `cdv --help`. You should get another usage statement.
 
--   Verify that **Status: Synced** is showing in the upper right side of the Chia GUI.
+- Verify that **Status: Synced** is showing in the upper right side of the Chia GUI.
 
--   Make sure you have some TXCH in your wallet.
+- Make sure you have some TXCH in your wallet.
 
 Your environment is now set up and you are ready to start issuing CATs!
 

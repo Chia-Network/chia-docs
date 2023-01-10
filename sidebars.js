@@ -2,11 +2,6 @@ module.exports = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'CAT2 Upgrade Guide',
-      items: ['cat2/cat2-intro', 'cat2/cat2-snapshot', 'cat2/cat2-issuance'],
-    },
-    {
-      type: 'category',
       label: 'Getting Started',
       items: [
         'getting-started/quick-start-guide',
@@ -265,7 +260,18 @@ module.exports = {
         description:
           "These guides will guide you through the process of creating CATs that conform to Chia's CAT standard.",
       },
-      items: ['guides/cat/cat-creation-tutorial'],
+      items: [
+        'guides/cat/cat-creation-tutorial',
+        {
+          type: 'category',
+          label: 'CAT2 Upgrade',
+          items: [
+            'guides/cat/cat2-upgrade/cat2-intro',
+            'guides/cat/cat2-upgrade/cat2-snapshot',
+            'guides/cat/cat2-upgrade/cat2-issuance',
+          ],
+        },
+      ],
     },
     {
       type: 'category',
