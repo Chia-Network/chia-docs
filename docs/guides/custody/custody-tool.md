@@ -24,8 +24,8 @@ This tool was _not_ originally developed with the broader ecosystem in mind. For
 Before continuing, you might want to familiarize yourself with the following documents:
 
 -   [Basic description](/guides/custody-tool-description) of how the custody tool works
--   [Flow chart](https://docs.chia.net/assets/files/chia_custody_tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png) to visualize how the custody tool works
--   [CLI reference](https://docs.chia.net/custody-tool) for all custody commands used in this tutorial
+-   [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
+-   [CLI reference](/custody-tool) for all custody commands used in this tutorial
 
 :::info
 
@@ -39,7 +39,7 @@ The custody tool uses many parameters, each of which is important. You are highl
 
 ### Requirements
 
--   A synced full node (mainnet, testnet, or [simulator](https://devs.chia.net/guides/simulator-user-guide 'Simulator user guide'))
+-   A synced full node (mainnet, testnet, or [simulator](/guides/simulator-user-guide 'Simulator user guide'))
 -   A synced [Chia wallet](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL 'Chia installation instructions')
 -   [Python](https://www.python.org/downloads/ 'Python downloads page') 3.9 or greater **(will not work with 3.8.x)**
 -   [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git 'How to install the Git command line tool')
@@ -257,7 +257,7 @@ The `cic init` command will initialize the permanent layer of the singleton. **N
 
 :::
 
-For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](https://docs.chia.net/assets/files/chia_custody_tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png).
+For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](/img/chia-custody-tool.png).
 
 | Flag&nbsp; | Example<br/>Value | Description                                                                                                                                                                                                                                   |
 | :--------- | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -601,7 +601,7 @@ The singleton is now set up. Observers can also use this command to verify that 
 
 If, at any point, you want to export your config's public, immutable information to be used by observer nodes, run `cic export_config -p -f <binary file name>`.
 
-For more info, see the [CLI reference](https://docs.chia.net/custody-tool#export_config).
+For more info, see the [CLI reference](/custody-tool#export_config).
 
 ---
 
@@ -637,7 +637,7 @@ This test will run through the complete sequence of withdrawing money from the s
 This command generates an unsigned spend bundle which requires specific keys. Signers can take this spend bundle to an HSM for signing.
 
 To begin the payment process, use the `cic payment` command.
-For this example, we'll use the following arguments (see the [CLI reference](https://docs.chia.net/custody-tool#payment 'payment command') for all options):
+For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment 'payment command') for all options):
 
 -   `-f` : The name of the file in which to save the unsigned spend bundle
 -   `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command
