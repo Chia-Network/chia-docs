@@ -279,6 +279,7 @@ module.exports = {
     },
     'guides/datalayer/datalayer-user-guide',
     'guides/simulator/simulator-user-guide',
+    'guides/walletconnect/walletconnect-user-guide',
     {
       type: 'category',
       label: 'Tutorials',
