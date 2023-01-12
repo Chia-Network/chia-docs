@@ -616,6 +616,24 @@ No, Offers are created and stored locally on each machine. Any accepted offers w
 
 Yes, the coin can be spent from another computer. Coins are reserved locally on the computer where the offer was created. If that coin is spent from another computer, then the offer will be canceled. In general, it is recommended that you don’t use two machines to access the same wallet that offers are being made from.
 
+### Is there an RPC to list wallet names?
+
+Unfortunately, no. However, to obtain the user-specified wallet names programmatically, you can use the `chia keys label show` CLI command.
+
+Another way to obtain this info is by connecting to the daemon over a websocket by using `wscat`:
+
+```wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://localhost:55400```
+
+From there, you can use the `get_keys` command, similar to the following example (the `request_id` can be any string):
+
+```{"ack": false, "command": "get_keys", "data": {}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
+
+This command will return a payload with all of the pubkeys/fingerprints/labels -- private keys omitted.
+
+If you want the private keys included, pass `"include_secrets":true` in the data object. For example:
+
+```{"ack": false, "command": "get_keys", "data": {"include_secrets":true}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
+
 ---
 
 ## NFTs
