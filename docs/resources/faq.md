@@ -542,6 +542,34 @@ There are three potential scenarios:
 
 3. Synced full node (trusted mode) with one computer --  Your trusted database will be the same each time you sync, so the wallet balance will also be the same.
 
+### Why does my wallet say `Error Can't send more than xxxxxxxx mojos in a single transaction`?
+
+This error can occur when attempting to send XCH, CATs, or NFTs. Unfortunately, the error is vague, so there is a bit of guesswork in determining the cause. In the future, we plan to make this error -- along with the recommended way to fix it -- more specific.
+
+Some of the potential causes include:
+
+1. You don't have enough money in your wallet. Double check your wallet's `Total Balance`.
+2. You have enough money, but one or more of your coins are locked. Chia uses the [coin set model](#what-is-the-coin-model) of accounting, where everything is a coin. If some of your coins are part of either a pending transaction or an [Offer](#offers), they have been temporarily locked. In this case, your `Spendable Balance` is less than your `Total Balance`. In order to unlock these coins, cancel any pending offers and click `Actions` --> `Delete Unconfirmed Transactions` in your wallet's `Summary` panel.
+3. The CLVM cost of your transaction is greater than the maximum cost allowed. In order to add a Chia transaction to the blockchain, a certain amount of processing power is required. This is the transaction's _cost_. When sending a single coin or NFT to another wallet, the cost is low. However, if you are attempting to send hundreds of coins or dozens of NFTs in a single transaction, the total cost could be prohibitively high, thus triggering the error. One way to fix this is to break your large transaction into multiple smaller ones -- try sending only the amount indicated in the error message. Another fix is to [combine your coins](/wallet-cli#combine) by opening a command prompt or terminal window and running `chia wallet coins combine`.
+
+### Is there an RPC to list wallet names?
+
+Unfortunately, no. However, to obtain the user-specified wallet names programmatically, you can use the `chia keys label show` CLI command.
+
+Another way to obtain this info is by connecting to the daemon over a websocket by using `wscat`:
+
+```wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://localhost:55400```
+
+From there, you can use the `get_keys` command, similar to the following example (the `request_id` can be any string):
+
+```{"ack": false, "command": "get_keys", "data": {}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
+
+This command will return a payload with all of the pubkeys/fingerprints/labels -- private keys omitted.
+
+If you want the private keys included, pass `"include_secrets":true` in the data object. For example:
+
+```{"ack": false, "command": "get_keys", "data": {"include_secrets":true}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
+
 ### How do I disable the dust filter?
 
 1. Edit `~/.chia/mainnet/config/config.yaml`
@@ -615,24 +643,6 @@ No, Offers are created and stored locally on each machine. Any accepted offers w
 ### Can my coin be spent on another computer with a wallet that uses the same keys, even if I am running two wallets on two different computers and I have an open Offer on one computer?
 
 Yes, the coin can be spent from another computer. Coins are reserved locally on the computer where the offer was created. If that coin is spent from another computer, then the offer will be canceled. In general, it is recommended that you don’t use two machines to access the same wallet that offers are being made from.
-
-### Is there an RPC to list wallet names?
-
-Unfortunately, no. However, to obtain the user-specified wallet names programmatically, you can use the `chia keys label show` CLI command.
-
-Another way to obtain this info is by connecting to the daemon over a websocket by using `wscat`:
-
-```wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://localhost:55400```
-
-From there, you can use the `get_keys` command, similar to the following example (the `request_id` can be any string):
-
-```{"ack": false, "command": "get_keys", "data": {}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
-
-This command will return a payload with all of the pubkeys/fingerprints/labels -- private keys omitted.
-
-If you want the private keys included, pass `"include_secrets":true` in the data object. For example:
-
-```{"ack": false, "command": "get_keys", "data": {"include_secrets":true}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
 
 ---
 
