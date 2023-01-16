@@ -11,8 +11,8 @@ import TabItem from '@theme/TabItem';
 
 This document will guide you through the process of setting up Chia's DataLayer and running a few basic functions. For additional technical resources, see the following:
 
--   [DataLayer RPC API](https://docs.chia.net/datalayer-rpc/ 'DataLayer RPC API')
--   [DataLayer CLI Reference](https://docs.chia.net/datalayer-cli/ 'DataLayer CLI Reference')
+-   [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+-   [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 
 :::note
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
@@ -20,7 +20,7 @@ Commands that modify the blockchain include an optional fee. This fee can be spe
 1. The `-m` / `--fee` parameter can be specified explicitly in the command, as several of the examples in this document show
 2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
 3. If neither of these options is set, then no fee will be used
-   :::
+:::
 
 ---
 
@@ -459,8 +459,8 @@ Keeping all of this in mind, **it is typically safe to insert data sets of up to
 
 Chia DataLayer doesn't have a GUI. The commands in this tutorial will use the command line interface (CLI). As a reminder, here is the complete reference for the CLI, as well as all available Remote Procedure Calls (RPCs):
 
--   [DataLayer RPC API](https://docs.chia.net/datalayer-rpc/ 'DataLayer RPC API')
--   [DataLayer CLI Reference](https://docs.chia.net/datalayer-cli/ 'DataLayer CLI Reference')
+-   [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+-   [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 
 ### Create a data store
 
@@ -663,7 +663,7 @@ This requires an on-chain transaction.
 
 Use `update_data_store` to modify your singleton. Actions include `insert` and `delete`. These can also be chained together.
 
-For more example of using this command, see the [CLI reference](https://docs.chia.net/docs/13cli/datalayer_cli#update_data_store).
+For more example of using this command, see the [CLI reference](/datalayer-cli#update_data_store).
 
 <details>
 <summary>update_data_store -- insert example</summary>

@@ -17,10 +17,10 @@ This document will guide you through the process of creating DIDs that conform t
 
 For detailed instructions on running each of the commands from this tutorial, see:
 
--   [DID CLI reference](https://docs.chia.net/did-clis)
--   [NFT CLI reference](https://docs.chia.net/nft-clis)
--   [DID RPC reference](https://docs.chia.net/did-rpcs)
--   [NFT RPC reference](https://docs.chia.net/nft-rpcs)
+-   [DID CLI reference](/did-cli)
+-   [NFT CLI reference](/nft-cli)
+-   [DID RPC reference](/did-rpc)
+-   [NFT RPC reference](/nft-rpc)
 
 For more documentation about Chia NFTs and DIDs, see:
 
