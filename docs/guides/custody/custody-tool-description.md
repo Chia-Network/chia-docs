@@ -14,7 +14,7 @@ Other relevant documents:
 
 ## Singleton Structure
 
-The prefarm uses a [singleton](https://chialisp.com/docs/puzzles/singletons 'Description of Chia singletons') with the following features:
+The prefarm uses a [singleton](https://chialisp.com/singletons 'Description of Chia singletons') with the following features:
 
 1. **Multisig** -- required to perform actions on the singleton, where:
 

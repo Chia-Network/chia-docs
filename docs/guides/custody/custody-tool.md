@@ -240,7 +240,7 @@ If you are generating only one key per computer, you will need to copy the .pk (
 
 ## Initialize the singleton
 
-The custody tool uses the Chialisp [singleton](https://chialisp.com/docs/puzzles/singletons 'Your guide to Chialisp singletons') primitive. This section will show you how to set up a custody singleton for testing.
+The custody tool uses the Chialisp [singleton](https://chialisp.com/singletons 'Your guide to Chialisp singletons') primitive. This section will show you how to set up a custody singleton for testing.
 
 ### Create the permanent layer
 

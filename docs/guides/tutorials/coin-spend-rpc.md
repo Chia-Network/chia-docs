@@ -65,7 +65,7 @@ Paste your puzzle in the text area and click **Compile**. The serialized result 
 
 ## Spend a coin with RPC call
 
-To spend your coin, you only need to call [push_tx](https://docs.chia.net/full-node-rpcs#push_tx) RPC (broadcast transaction example) with values specific to your spend.
+To spend your coin, you only need to call [push_tx](/full-node-rpc#push_tx) RPC (broadcast transaction example) with values specific to your spend.
 
 ```bash
 curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key -d '{        "spend_bundle": {
@@ -84,7 +84,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
         }}' -H "Content-Type: application/json" -X POST https://localhost:8555/push_tx
 ```
 
-The [`spend_bundle`](https://docs.chia.net/spend-bundles) object contains an `aggregated_signature`, which we can later assert in the puzzle, and `coin_spends`: a list of objects for all of the coins we are spending. If `aggregated_signature` is not necessary for your puzzle, use 0xc followed by 191 zeros (as in the example above). However, it's worth noting that a puzzle that doesn't use a signature is usually unsafe and should be used only for testing purposes.
+The [`spend_bundle`](/spend-bundles) object contains an `aggregated_signature`, which we can later assert in the puzzle, and `coin_spends`: a list of objects for all of the coins we are spending. If `aggregated_signature` is not necessary for your puzzle, use 0xc followed by 191 zeros (as in the example above). However, it's worth noting that a puzzle that doesn't use a signature is usually unsafe and should be used only for testing purposes.
 
 The `coin_solution` contains information about the `coin` it is spending (`amount`, `parent_coin_info`, and `puzzle_hash`). It also includes a serialized puzzle as a `puzzle_reveal` and serialized `solution`. Note: if this is your time constructing a spend bundle, the `puzzle_hash` is the puzzlehash of the receive address that you wish to send to `coin` to.
 
