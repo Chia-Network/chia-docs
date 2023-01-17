@@ -320,6 +320,45 @@ Response:
 
 ---
 
+### `did_get_pubkey`
+
+Functionality: Get the public key for a DID
+
+Usage: chia rpc wallet [OPTIONS] did_get_pubkey [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                         |
+| :-------- | :------- | :------------------------------------------------------------------ |
+| wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the public key |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet did_get_pubkey '{"wallet_id": 2}'
+```
+
+Response:
+
+```json
+{
+  "pubkey": "886826068778f285c442cfd08a45c7b55ecc9ef870b9b18810e81457c56df9764793686c1756e48a91586839a4abd290",
+  "success": true
+}
+```
+
+</details>
+
+---
+
 ### `did_get_did`
 
 Functionality: Fetch the my_did and coin_id (if applicable) settings for a given wallet
@@ -352,93 +391,6 @@ Response:
 {
   "coin_id": "0xce323237c656693fc2f633f911a589b42fe142f18c70883fbe70f7718538cf66",
   "my_did": "did:chia:17sfqnlhawfu5k5nzp36v67u85qythp7aummt8f4sj2t3rdag2yvskjyqal",
-  "success": true,
-  "wallet_id": 3
-}
-```
-
-</details>
-
----
-
-### `did_get_recovery_list`
-
-Functionality: For a given wallet, fetch the recovery list, as well as the number of IDs required for recovery
-
-Usage: chia rpc wallet [OPTIONS] did_get_recovery_list [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Parameter | Required | Description                                                        |
-| :-------- | :------- | :----------------------------------------------------------------- |
-| wallet_id | True     | The Wallet ID of the DID wallet for which to get the recovery list |
-
-<details>
-<summary>Example:</summary>
-
-```json
-chia rpc wallet did_get_recovery_list '{"wallet_id": 3}'
-```
-
-Response:
-
-```json
-{
-  "num_required": 2,
-  "recovery_list": [
-    "did:chia:1d2x5wnm4sl4j2ena8ka3fyv8x7tzc9v520gstd3zfdu4pf6c2yksk8th4u",
-    "did:chia:1gsarjll9lrd4kwxdglh28cjn3ln6u7ldfzsask9gw4tprzce20vsywwsqs"
-  ],
-  "success": true,
-  "wallet_id": 3
-}
-```
-
-</details>
-
----
-
-### `did_get_metadata`
-
-Functionality: Fetch the metadata for a given wallet
-
-Usage: chia rpc wallet [OPTIONS] did_get_metadata [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Parameter | Required | Description                                                        |
-| :-------- | :------- | :----------------------------------------------------------------- |
-| wallet_id | True     | The Wallet ID of the DID wallet for which to get the metadata list |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet did_get_metadata '{"wallet_id": 3}'
-```
-
-Response:
-
-```json
-{
-  "metadata": {
-    "foo": "bar",
-    "something": 5
-  },
   "success": true,
   "wallet_id": 3
 }
@@ -788,11 +740,11 @@ Profile 1:
 
 ---
 
-### `did_get_pubkey`
+### `did_get_recovery_list`
 
-Functionality: Get the public key for a DID
+Functionality: For a given wallet, fetch the recovery list, as well as the number of IDs required for recovery
 
-Usage: chia rpc wallet [OPTIONS] did_get_pubkey [REQUEST]
+Usage: chia rpc wallet [OPTIONS] did_get_recovery_list [REQUEST]
 
 Options:
 
@@ -803,23 +755,71 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                         |
-| :-------- | :------- | :------------------------------------------------------------------ |
-| wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the public key |
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
+| wallet_id | True     | The Wallet ID of the DID wallet for which to get the recovery list |
 
 <details>
-<summary>Example</summary>
+<summary>Example:</summary>
 
 ```json
-chia rpc wallet did_get_pubkey '{"wallet_id": 2}'
+chia rpc wallet did_get_recovery_list '{"wallet_id": 3}'
 ```
 
 Response:
 
 ```json
 {
-  "pubkey": "886826068778f285c442cfd08a45c7b55ecc9ef870b9b18810e81457c56df9764793686c1756e48a91586839a4abd290",
-  "success": true
+  "num_required": 2,
+  "recovery_list": [
+    "did:chia:1d2x5wnm4sl4j2ena8ka3fyv8x7tzc9v520gstd3zfdu4pf6c2yksk8th4u",
+    "did:chia:1gsarjll9lrd4kwxdglh28cjn3ln6u7ldfzsask9gw4tprzce20vsywwsqs"
+  ],
+  "success": true,
+  "wallet_id": 3
+}
+```
+
+</details>
+
+---
+
+### `did_get_metadata`
+
+Functionality: Fetch the metadata for a given wallet
+
+Usage: chia rpc wallet [OPTIONS] did_get_metadata [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
+| wallet_id | True     | The Wallet ID of the DID wallet for which to get the metadata list |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet did_get_metadata '{"wallet_id": 3}'
+```
+
+Response:
+
+```json
+{
+  "metadata": {
+    "foo": "bar",
+    "something": 5
+  },
+  "success": true,
+  "wallet_id": 3
 }
 ```
 
@@ -1250,6 +1250,64 @@ Response:
     "recovery_list_hash": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a",
     "success": true
 }
+```
+
+</details>
+
+---
+
+### `did_find_lost_did`
+
+Functionality: Recover a missing or unspendable DID wallet by submitting a coin id of the DID
+        
+Usage: chia rpc wallet [OPTIONS] did_find_lost_did [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                                                                                        |
+| :-------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| coin_id   | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID. |
+
+<details>
+<summary>Example 1</summary>
+
+If the DID belongs to the current wallet, the command should succeed:
+
+```json
+chia rpc wallet did_find_lost_did '{"coin_id": "did:chia:1cxw5dqug4gavvgylx88zfkmqv235ryr6j9tvyjwwuga0pa52wjvqavdyar"}'
+```
+
+Response:
+
+```json
+{
+    "latest_coin_id": "fa6a754142a557b0bf3ce5122f0146b5d7d996aadd521cf63b97f49a0e998c53",
+    "success": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+If the DID does not belong to this wallet, the command will fail:
+
+```json
+chia rpc wallet did_find_lost_did '{"coin_id": "fa6a754142a557b0bf3ce5122f0146b5d7d996aadd521cf63b97f49a0e998c53"}'
+```
+
+Response:
+
+```json
+Request failed: {'error': 'This DID c19d468388aa3ac6209f31ce24db6062a341907a9156c249cee23af0f68a7498 is not belong to the connected wallet', 'success': False}
 ```
 
 </details>
