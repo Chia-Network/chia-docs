@@ -88,7 +88,7 @@ In the account model, which is used by Ethereum and many other systems, balances
 ### Benefits of the Account Model
 
 - All logic and state can be stored in one program and one account, simplifying development.
-- It is simple to combine multiple transactions that affect the same dapp in one block.
+- It is simple to combine multiple transactions that affect the same dApp in one block.
 - Users and wallets only have to keep track of one account for all of their balances (although the UTXO model can support this).
 
 ### Benefits of the Coin Set Model
