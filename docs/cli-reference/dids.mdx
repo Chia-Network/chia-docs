@@ -20,10 +20,10 @@ For example, here is a typical RPC command on Linux and MacOS:
 chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
-To run the same command on Windows, you need to escape the quotes, so it looks like this:
+To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
 ```powershell
-chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+chia rpc wallet create_new_wallet '\"wallet_type\": \"nft_wallet\"'
 ```
 
 </details>
@@ -194,6 +194,41 @@ Connections:
 Type      IP                                     Ports       NodeID      Last Connect      MiB Up|Dwn
 FULL_NODE 127.0.0.1                              58444/58444 f40100b8... Jun 15 12:22:02      0.0|1.7
                                                  -Height: No Info    -Hash: No Info    -Trusted: True
+```
+
+</details>
+
+---
+
+### `sign_message`
+
+Functionality: Sign a message using a specified DID ID. This command does not modify the blockchain.
+
+Usage: chia wallet nft sign_message [OPTIONS]
+
+Options:
+
+| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
+| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --did_id                      | TEXT    | True     | DID ID you want to use for signing                                                                       |
+| -m            | --hex_message                 | TEXT    | True     | The message you want to sign                                                                             |
+| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
+
+<details>
+   <summary>Example</summary>
+
+```bash
+chia wallet did sign_message -f 590161281 -i did:chia:1cxw5dqug4gavvgylx88zfkmqv235ryr6j9tvyjwwuga0pa52wjvqavdyar --hex_message "This is a test message."
+```
+
+Response:
+
+```
+Message: This is a test message.
+Public Key: b478c6a0ef7410679831d616d06e9fca856f6e08b8a6f13f344cc9aa20981ab7fe287663584e2fc53e2ac14edab883ca
+Signature: 981ed9b983440c06ae5d9f2f2a0f45c0a00015939d30f512364f44597dc381007ee6911d9320d3c991d5a795823e429f06f35117b1e51c4c30454af19c69f2399e30bff5ea109bc5b95f869f48f2e32d0beccfcbbe72b384903536d3aeed848d
 ```
 
 </details>
