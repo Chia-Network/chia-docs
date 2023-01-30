@@ -8,47 +8,27 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-Chia is a cryptocurrency and blockchain with smart transaction capabilities. Its [PoST consensus](/consensus-intro) is the first (and only) Nakamoto consensus since Proof of Work, and has a much [lower energy consumption](https://chiapower.org/).
+Chia is a cryptocurrency and blockchain with smart transaction capabilities. Its [Proof of Space and Time](/consensus-intro) is the only Nakamoto consensus algorithm since Proof of Work, and has a [much lower energy consumption](https://chiapower.org).
 
-Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives recently launched for [CATs](https://chialisp.com/cats), [Offers](https://chialisp.com/offers), [NFTs](https://chialisp.com/nfts) and [DIDs](https://chialisp.com/dids).
+Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives released for [CATs](https://chialisp.com/cats), [NFTs](https://chialisp.com/nfts), [Offers](https://chialisp.com/offers), and [DIDs](https://chialisp.com/dids).
 
-The Chia software is [easy to install](#install). You can start earning cryptocurrency rewards by storing plot files on your hard drive and leaving the machine running.
+Chia's software is easy to install. You can start earning cryptocurrency rewards by storing plot files on your hard drive and leaving the machine running.
 
-## Install Chia {#install}
+## Installation {#install}
 
-The easiest way to install Chia is to use an installer. However, you can install from source if you want some extra control over the client.
+Installer binaries for each platform can be found on our [official downloads page](https://www.chia.net/downloads), which is the only source that should be trusted. While this is the easiest way to install the Chia client, some may instead prefer to install Chia from source or by using the command line.
 
-For more detailed steps you can follow [these install instructions](/chia-installation-guide) according to your operating system. This software only supports 64 bit operating systems.
-
-### Binaries
+### Using the CLI
 
 ```mdx-code-block
 <Tabs
-  defaultValue="installer"
+  defaultValue="apt"
   groupId="install"
   values={[
-    {label: 'Installer', value: 'installer'},
     {label: 'APT', value: 'apt'},
     {label: 'YUM', value: 'yum'},
     {label: 'DNF', value: 'dnf'},
 ]}>
-<TabItem value="installer">
-```
-
-- [Windows](https://download.chia.net/latest/Setup-Win64.exe)
-- [macOS Apple Silicon](https://download.chia.net/latest/Setup-MacOS-arm64.dmg)
-- [macOS Intel](https://download.chia.net/latest/Setup-MacOS.dmg) _[Catalina 10.15 and later]_
-- [macOS Intel](https://download.chia.net/install/Chia-1.5.0-10.14-intel.dmg) _[Mojave 10.14]_
-- [Ubuntu/Debian](https://download.chia.net/latest/x86_64-Ubuntu-gui)
-- [Ubuntu/Debian ARM](https://download.chia.net/latest/ARM64-Ubuntu-gui)
-- [CentOS/Redhat](https://download.chia.net/latest/x86_64-Redhat-gui)
-
-:::caution
-For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
-:::
-
-```mdx-code-block
-</TabItem>
 <TabItem value="apt">
 ```
 
@@ -107,22 +87,21 @@ sudo dnf install chia-blockchain
 </Tabs>
 ```
 
-### Source
+### From Source
 
 ```mdx-code-block
 <Tabs
-  defaultValue="linux-macos-source"
+  defaultValue="linux-macos"
   groupId="source"
   values={[
-    {label: 'Linux/MacOS Source', value: 'linux-macos-source'},
-    {label: 'Windows Source', value: 'windows-source'},
-    {label: 'Developer Builds', value: 'developer-builds'},
+    {label: 'Linux/MacOS', value: 'linux-macos'},
+    {label: 'Windows', value: 'windows'},
 ]}>
-<TabItem value="linux-macos-source">
+<TabItem value="linux-macos">
 ```
 
 :::note
-Make sure you have Python 3.9 installed.
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
 :::
 
 ```bash
@@ -144,11 +123,11 @@ chia init
 
 ```mdx-code-block
 </TabItem>
-<TabItem value="windows-source">
+<TabItem value="windows">
 ```
 
 :::note
-Make sure you have Python 3.9 and Git installed.
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
 :::
 
 ```bash
@@ -170,123 +149,148 @@ chia init
 
 ```mdx-code-block
 </TabItem>
-<TabItem value="developer-builds">
-```
-
-- [Windows](https://download.chia.net/latest-dev/ChiaSetup-latest-dev.exe) _Dev build_
-- [macOS Apple Silicon](https://download.chia.net/latest-dev/Chia-arm64_latest_dev.dmg) _Dev build_
-- [macOS Intel](https://download.chia.net/latest-dev/Chia-intel_latest_dev.dmg) _Dev build_ _[Catalina 10.15 and later]_
-- [Ubuntu/Debian](https://download.chia.net/latest-dev/chia-blockchain_amd64_latest_dev.deb) _Dev build_
-- [Ubuntu/Debian ARM](https://download.chia.net/latest-dev/chia-blockchain_arm64_latest_dev.deb) _Dev build_
-- [CentOS/Redhat](https://download.chia.net/latest-dev/chia-blockchain-1.x86_64_latest_dev.rpm) _Dev build_
-
-:::caution
-For convenience, direct links are provided to the latest installer builds. However, you should always visit [https://www.chia.net/download/](https://www.chia.net/download/) to verify the checksum of the download.
-:::
-
-```mdx-code-block
-</TabItem>
 </Tabs>
 ```
 
-All configuration data is stored in a directory structure at the `$CHIA_ROOT` environment variable or at `~/.chia/mainnet/`. You can find databases, and logs there. Optionally, you can set `$CHIA_ROOT` to the `.chia` directory in your home directory with `export CHIA_ROOT=~/.chia` and if you add it to your `.bashrc` or `.zshrc` it will remain set across logouts and reboots. If you set `$CHIA_ROOT` you will have to migrate configuration items by hand or unset the variable for `chia init` to work with `unset CHIA_ROOT`.
+## Directory Structure
 
-If you are using the MacOS or Windows builds, your keys are created during the first run. We recommend writing down the mnemonic (24 ordered words).
+All data used by the Chia blockchain is stored at the location set with the `CHIA_ROOT` environment variable, which defaults to `~/.chia/mainnet` if unset.
+
+The blockchain database is stored under the `db` subdirectory. It is possible to copy the database file to use as a backup or put on another machine. To resync the full node from the start, delete the database file and restart the node.
+
+The config file under the `config` subdirectory. Its name is `config.yaml`, and it can be used to find the root cause of problems.
+
+It is possible to configure the `CHIA_ROOT` environment variable to another location. A common use for this would be to switch it to `~/.chia/testnet` to have a separate config for the testnet.
 
 ## CLI Setup
 
-Using the CLI with Chia gives you greater and more precise control. For a more details on the commands, read the [CLI Commands Reference](/cli).
+Using the CLI gives greater and more precise control over the various Chia services such as the full node. For a more details on the commands, read the [CLI Reference](/cli).
 
-```mdx-code-block
+````mdx-code-block
+<Tabs>
+  <TabItem value="MacOS" label="MacOS" default>
+
+The CLI commands are stored in the following location:
+
+```bash
+/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon
+```
+
+To be able to use these commands without going to that directory in the terminal, add it to the path.
+
+This can be done by running the following command:
+
+```bash
+export PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$PATH
+```
+
+To load this on startup, add it to the `.bashrc`, `.bash_profile`, or `.zshrc` file depending on which is used by the shell.
+
+</TabItem>
+<TabItem value="Windows" label="Windows">
+
+The CLI commands are stored in the following location:
+
+```bash
+~\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon
+```
+
+To be able to use these commands without going to that directory in the terminal, add it to the path.
+
+This can be done by doing the following:
+
+- Right-click on the Start menu
+- Click on "System"
+- Click "Advanced system settings"
+- Click "Environment variables"
+- Double-click "Path"
+- Click "Add"
+- Enter the path shown above
+
+</TabItem>
+<TabItem value="Linux" label="Linux">
+
+:::note
+If you installed Chia from source, the CLI will not require any further setup.
+:::
+
+If you installed Chia with the Linux installer files, the CLI commands are stored in one of the following locations:
+
+```bash
+/usr/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia
+/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia
+```
+
+To be able to use these commands without going to that directory in the terminal, add it to the path.
+
+This can be done by running either of the following commands, depending on which path is used:
+
+```bash
+export PATH=/usr/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia:$PATH
+export PATH=/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia:$PATH
+```
+
+To load this on startup, add it to the `.bashrc`, `.bash_profile`, or `.zshrc` file depending on which is used by the shell.
+</TabItem>
+</Tabs>
+````
+
+### Install GUI
+
+The GUI is a simpler method of interacting with Chia, and it can be installed manually from the CLI.
+
+````mdx-code-block
 <Tabs>
   <TabItem value="MacOS / Linux" label="MacOS / Linux" default>
 
-There are commands available in `/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon`.
-
-Try `./chia -h` or `./chia plots -h` for example. You can view your debug.log as it runs in from the terminal with `tail -f ~/.chia/mainnet/log/debug.log`. Additionally, you can open the file with Console application.
-
-A handy trick is to add that directory to your path - `export PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$PATH`. To make it persistent add the same line to your `.bashrc` or `.zshrc` inside of your user directory.
-
-  </TabItem>
-<TabItem value="Windows" label="Windows">
-
-You can learn how to use the Graphical User Interface (GUI) in the [Using the GUI page](/using-the-gui).
-
-You can start with the Command Line Interface (CLI) by checking the commands available in `~\AppData\Local\Chia-Blockchain\app-1.1.5\resources\app.asar.unpacked\daemon\`. Try `.\chia -h` or `.\chia plots -h` for example:
-
-1. Open _PowerShell_
-
-   On start menu type "powershell" and press the enter key.
-
-2. Change Directory with `cd`
-
-   On _PowerShell_ type `cd $env:localAPPDATA\Chia-Blockchain\app-1.1.5\resources\app.asar.unpacked\daemon\` and press the enter key.
-
-3. Read Chia help
-
-   On _PowerShell_ type `.\chia -h` and press the enter key.
-
-For more information you can read the [CLI Commands Reference page](/cli).
-
-You can view your logs by opening `\.chia\mainnet\log\debug.log` with a text editor like _Visual Studio Code_ or see it as it runs in _PowerShell_ by using Get-Content, `Get-Content ~\.chia\mainnet\log\debug.log -wait`.
-
-  </TabItem>
-  <TabItem value="Linux" label="Linux">
-
-If you installed Chia with the Linux installer files, your Chia executable should be in one of the following locations:
-
-`/usr/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia`
-
-`/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia`
-
-If you installed from source (using git), just activate and run `chia` directly.
-
-  </TabItem>
-</Tabs>
+```bash
+. ./install-gui.sh
+cd chia-blockchain-gui
+npm run electron &
 ```
 
-### Migrate or set up configuration files
+</TabItem>
+<TabItem value="Windows" label="Windows">
+
+```bash
+. .\Install-gui.ps1
+cd chia-blockchain-gui
+Start-Process -NoNewWindow npm run electron
+```
+
+</TabItem>
+</Tabs>
+````
+
+### Initial Startup
+
+Whereas the GUI will set everything up automatically, the setup needs to be done manually on the CLI.
+
+First, initialize the Chia configuration files:
 
 ```bash
 chia init
 ```
 
-### Generate keys
-
-Create some keys by running the following script if you don't already have keys:
+Then, generate your keys:
 
 ```bash
 chia keys generate
 ```
 
-### Run a full node + farmer + harvester + wallet
-
-To run a full node on port 8444, and connect to the mainnet, run the following command. Logs are usually at `~/.chia/mainnet/logs/debug.log` or `~\.chia\mainnet\logs\debug.log` on Windows
-
-Headless:
+Finally, start the farmer and its full node:
 
 ```bash
 chia start farmer
 ```
 
-GUI:
-
-```bash
-sh install-gui.sh
-cd chia-blockchain-gui
-npm run electron &
-```
-
-Farmers are entities in the network who use their drive space to try to create
-blocks (like Bitcoin's miners), and earn block rewards.
-
 ## Plotting
 
-Plotting is the process of creating plots to be farmed. Once a plot is created, it can be farmed indefinately. In other words, you do not have to plot forever, just plot until you are out of storage.
+Plotting is the process of creating plots to be farmed. Once a plot is created, it can be farmed indefinitely. In other words, you do not have to plot forever, just plot until you have used the amount of storage you want to farm with.
 
 Reference our [plotting guide](/plotting-basics) for more details.
 
-You can use the command line tools and change the working directories and output directory for plotting, with the `-t` (temp), `-2` (second temp), and `-d` (destination) arguments to the `chia plots create` command. `-n 2` will create two plots of type k=32.
+You can use the command line tools and change the working directories and output directory for plotting, with the `-t` (temp), `-2` (second temp), and `-d` (destination) arguments to the `chia plots create` command. For example, `-n 2` will create two plots of type k=32.
 
 ```bash
 chia plots create -k 32 -n 2
@@ -296,13 +300,9 @@ chia plots check -n 30
 ## Tips
 
 Ubuntu 20.04 LTS or newer, Amazon Linux 2, and CentOS 7.7 or newer are the
-easiest linux install environments.
+easiest Linux install environments.
 
 UPnP is enabled by default to open port 8444 for incoming connections.
 If this causes issues, you can disable it in `config.yaml`. Or you can run this command: `chia configure -upnp false`
 Some routers may require port forwarding, or enabling UPnP
 in the router's configuration.
-
-## RPC Interface
-
-The Node has an [RPC interface](/full-node-rpc). This RPC will allow you to interact with the Chia node through code.
