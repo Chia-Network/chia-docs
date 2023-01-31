@@ -1,6 +1,6 @@
 ---
-title: Quick Start Guide
-slug: /quick-start-guide
+title: Installation
+slug: /installation
 ---
 
 ```mdx-code-block
@@ -283,26 +283,3 @@ Finally, start the farmer and its full node:
 ```bash
 chia start farmer
 ```
-
-## Plotting
-
-Plotting is the process of creating plots to be farmed. Once a plot is created, it can be farmed indefinitely. In other words, you do not have to plot forever, just plot until you have used the amount of storage you want to farm with.
-
-Reference our [plotting guide](/plotting-basics) for more details.
-
-You can use the command line tools and change the working directories and output directory for plotting, with the `-t` (temp), `-2` (second temp), and `-d` (destination) arguments to the `chia plots create` command. For example, `-n 2` will create two plots of type k=32.
-
-```bash
-chia plots create -k 32 -n 2
-chia plots check -n 30
-```
-
-## Tips
-
-Ubuntu 20.04 LTS or newer, Amazon Linux 2, and CentOS 7.7 or newer are the
-easiest Linux install environments.
-
-UPnP is enabled by default to open port 8444 for incoming connections.
-If this causes issues, you can disable it in `config.yaml`. Or you can run this command: `chia configure -upnp false`
-Some routers may require port forwarding, or enabling UPnP
-in the router's configuration.

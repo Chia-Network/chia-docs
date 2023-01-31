@@ -63,7 +63,7 @@ We think you will want to use used Data Center grade NVMe SSD drives to create y
 
 ### Can I plot more than one plot at a time?
 
-Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. You can read the [Quick Start Guide](/quick-start-guide) to learn more. You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
+Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. You can read the [Installation page](/installation) to learn more. You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
 
 ### Can I make plots on one machine and move it to another machine?
 
@@ -117,7 +117,7 @@ First, running more than one node with the same private keys on your home networ
 
 ### Why does my node have no connections? How can I get more connections?
 
-Step 1. Make sure you are running the most recent version of the Chia software. Check out the [Quick Start Guide page](/quick-start-guide).
+Step 1. Make sure you are running the most recent version of the Chia software. Check out the [Installation page](/installation).
 
 Step 2. If your node has no connections, it could be one of many reasons. The most likely reason is that there are no users with space to have new connections, so you cannot connect to them. To solve this, you should try opening port 8444 on your router so other peers can connect to you. Follow the steps in the [Node Syncing page](/node-syncing).
 
@@ -890,7 +890,7 @@ Windows users can run `C:\Users\<user ID>\AppData\Local\Programs\Chia\Chia.exe` 
 
 ### I installed Chia with the packaged installer. How do I run CLI commands?
 
-For power users, it is possible to [install Chia from source](/quick-start-guide#install). In this case, you will run Chia from a virtual environment on the command line.
+For power users, it is possible to [install Chia from source](/installation#from-source). In this case, you will run Chia from a virtual environment on the command line.
 
 However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/).
 

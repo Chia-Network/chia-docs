@@ -1,6 +1,6 @@
 ---
-title: Intro to Chia
-slug: /chia-intro
+title: Introduction
+slug: /introduction
 ---
 
 Chia is a cryptocurrency and blockchain smart transaction platform. Chia was designed from the ground up to make cryptocurrency easier to use -- and harder to lose -- than cash. The PoST consensus has a much [lower energy consumption](https://chiapower.org "Chia's energy consumption statistics") compared to Proof of Work (PoW), and part of Chia's vision involves improving the carbon footprint of the blockchain industry.

@@ -4,15 +4,11 @@ module.exports = {
       type: 'category',
       label: 'Getting Started',
       items: [
-        'getting-started/quick-start-guide',
+        'getting-started/introduction',
+        'getting-started/installation',
         'getting-started/using-the-gui',
         'getting-started/chia-concepts',
       ],
-    },
-    {
-      type: 'category',
-      label: 'About',
-      items: ['about/cryptocurrency-intro', 'about/chia-intro'],
     },
     {
       type: 'category',
@@ -173,7 +169,6 @@ module.exports = {
         'reference-client/chia-seeder-guide',
         'reference-client/directory-structure',
         'reference-client/freebsd-install',
-        'reference-client/openbsd-install',
         'reference-client/logging-reference',
         'reference-client/password-protected-keys',
         'reference-client/raspberry-pi',

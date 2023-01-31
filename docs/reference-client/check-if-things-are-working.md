@@ -3,7 +3,7 @@ title: Check if Things are Working
 slug: /check-if-things-are-working
 ---
 
-This doc assumes you know how to use the CLI. Using the CLI is the best way to troubleshoot (and to do everything Chia too). The [Quick Start Guide page](/quick-start-guide) and the [CLI Commands Reference page](/cli) have useful info to get you familiar with the CLI.
+This doc assumes you know how to use the CLI. Using the CLI is the best way to troubleshoot (and to do everything Chia too). The [Installation page](/installation) and the [CLI Commands Reference page](/cli) have useful info to get you familiar with the CLI.
 
 ## Where to Find Things
 

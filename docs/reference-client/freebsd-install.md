@@ -263,4 +263,4 @@ While you don't absolutely need port 8444 forwarded to your Chia node, it is adv
 
 That's it! Provided the instructions were followed to the T, and the build is a fresh FreeBSD 11.3 or 11.4, either hardware or FreeNAS jailed, you should be good to go! Now go to town with `chia start node` or whatever floats your boat.
 
-More details can be found in the [Chia Quick Start Guide](/quick-start-guide).
+More details can be found on the [Installation page](/installation).
