@@ -13,8 +13,8 @@ import TabItem from '@theme/TabItem';
 
 This document will guide you through the process of setting up Chia's Simulator. For additional technical resources, see the following:
 
--   [Simulator RPC API](https://docs.chia.net/docs/12rpcs/simulator 'Simulator RPC API')
--   [Simulator CLI Reference](https://docs.chia.net/docs/13cli/simulator 'Simulator CLI Reference')
+-   [Simulator RPC API](/rpc-reference/simulator 'Simulator RPC API')
+-   [Simulator CLI Reference](/cli-reference/simulator 'Simulator CLI Reference')
 
 :::note
 
@@ -102,7 +102,7 @@ Several packages will be installed, including a bundled copy of `chia-blockchain
 
 ### Install and configure the simulator
 
-The simulator commands can all be accessed under `cdv sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](https://docs.chia.net/docs/13cli/simulator 'Simulator CLI Reference').
+The simulator commands can all be accessed under `cdv sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/cli-reference/simulator 'Simulator CLI Reference').
 
 1. Install the simulator
 
@@ -256,7 +256,7 @@ Result:
 }
 ```
 
-For more info on this command, see the [RPC documentation](https://docs.chia.net/docs/12rpcs/simulator#farm_block).
+For more info on this command, see the [RPC documentation](/rpc-reference/simulator#farm_block).
 
 5. Show your wallet's status (including the prefarm):
 

@@ -11,11 +11,11 @@ import TabItem from '@theme/TabItem';
 
 This document will show you how to use Chia's NFT bulk minting tool.
 
-First, some background. Chia uses the [coin set](https://docs.chia.net/docs/04coin-set-model/intro) model of accounting. This is similar to Bitcoin's UTXO model. Most other blockchains, however, use an account model to track the system's overall state.
+First, some background. Chia uses the [coin set](coin-set-intro) model of accounting. This is similar to Bitcoin's UTXO model. Most other blockchains, however, use an account model to track the system's overall state.
 
-The coin set model has [many advantages](https://docs.chia.net/docs/04coin-set-model/coin_set_vs_account) over the account model, but there are some tradeoffs. In the case of NFTs, they are implemented as [singletons](https://chialisp.com/docs/puzzles/singletons) instead of a simple array. Because of this, creating multiple related NFTs in the same block can be a cumbersome process.
+The coin set model has [many advantages](/coin-set-vs-account) over the account model, but there are some tradeoffs. In the case of NFTs, they are implemented as [singletons](https://chialisp.com/singletons) instead of a simple array. Because of this, creating multiple related NFTs in the same block can be a cumbersome process.
 
-Enter Chia's bulk minting tool. This tool allows you to mint an arbitrarily large number of NFTs, complete with separate [offers](https://chialisp.com/docs/puzzles/offers) for each of them. Want to automate the minting of your 10,000 PFP collection? You've come to the right place!
+Enter Chia's bulk minting tool. This tool allows you to mint an arbitrarily large number of NFTs, complete with separate [offers](https://chialisp.com/offers) for each of them. Want to automate the minting of your 10,000 PFP collection? You've come to the right place!
 
 :::info
 
@@ -54,7 +54,7 @@ We strongly recommend that you test the bulk minting tool either on the testnet 
 For this guide, we will use the testnet. If you do not already have a synced testnet node, you can safely download a copy of the database. **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
 
 :::note
-At the time of this writing, the file you will download is around 25 GB, compressed. Uncompressed, it will be around 50 GB. However, this file increases in size every day. You may want to double check that you have plenty of free space before proceeding with the download.
+At the time of this writing, the file you will download is around 50 GB, compressed. Uncompressed, it will be around 100 GB. However, this file increases in size every day. You may want to double check that you have plenty of free space before proceeding with the download.
 :::
 
 You may continue with the next steps while the download is in progress.

@@ -8,13 +8,13 @@ The majority of Chia Network Inc's prefarm is being held in a cold wallet, secur
 
 Other relevant documents:
 
--   [Flow chart](https://docs.chia.net/assets/files/chia_custody_tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png) to visualize how the custody tool works
+-   [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
 -   [User guide](/guides/custody-tool-user-guide) to help you get up and running
--   [CLI reference](https://docs.chia.net/custody-tool) for all custody commands used in this tutorial
+-   [CLI reference](/custody-tool) for all custody commands used in this tutorial
 
 ## Singleton Structure
 
-The prefarm uses a [singleton](https://chialisp.com/docs/puzzles/singletons 'Description of Chia singletons') with the following features:
+The prefarm uses a [singleton](https://chialisp.com/singletons 'Description of Chia singletons') with the following features:
 
 1. **Multisig** -- required to perform actions on the singleton, where:
 

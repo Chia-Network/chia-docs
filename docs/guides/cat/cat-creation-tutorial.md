@@ -20,7 +20,7 @@ Welcome to the world of CATs! We're excited to have you here, and we can't wait 
 
 This tutorial will help you jump right in and get started with issuing your own CATs. There are a few things you should know before we begin.
 
-The [CAT primitive page](https://docs.chia.net/cats) was finalized as of January 2022. However, to minimize your risk of running into unexpected results, we recommend that you do following:
+The [CAT primitive page](https://chialisp.com/cats) was finalized as of January 2022. However, to minimize your risk of running into unexpected results, we recommend that you do following:
 
 - Generate a new public/private key pair for each CAT you issue. This key pair should be used for issuing one specific CAT **and nothing else**. It should also be the only key pair on your computer while issuing the CAT.
 - Test thoroughly on testnet before issuing your CAT to mainnet.
@@ -37,7 +37,7 @@ CAT denominations, as well as the rules behind issuance and melting, can take so
 - In a similar vein, Chia Network has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
 
 :::caution
-Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The official Chia wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
+Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
 :::
 
 - The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
@@ -45,7 +45,7 @@ Theoretically, it would be possible to set the CAT:mojo ratio to something other
 
 With one XCH, you can issue 1 billion CATs. The face value of these tokens could be zero, or multiple XCH, or anywhere in between. This value is decided by the market -- it's worth whatever someone is willing to pay for it. The value of the tokens has nothing to do with the underlying XCH, other than their 1000-mojo melt value.
 
-These concepts are discussed in greater detail in our [CAT primitive page](https://docs.chia.net/cats#valuation).
+These concepts are discussed in greater detail in our [CAT primitive page](https://chialisp.com/cats#valuation).
 
 ---
 

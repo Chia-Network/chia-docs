@@ -4,9 +4,9 @@ slug: /guides/chialisp-inner-puzzles
 title: Inner Puzzles
 ---
 
-Sometimes you want the behavior of your puzzles to be composable, so that you can reuse code in multiple ways. An example of this is the [Chia Asset Token](https://chialisp.com/docs/puzzles/cats) puzzle, which allows you to specify an **inner puzzle**.
+Sometimes you want the behavior of your puzzles to be composable, so that you can reuse code in multiple ways. An example of this is the [Chia Asset Token](https://chialisp.com/cats) puzzle, which allows you to specify an **inner puzzle**.
 
-This allows the outer puzzle to enforce certain rules on how it can be spent, while the inner puzzle can do whatever it wants within those rules. In this case, the CAT enforces that it maintains a constant amount in mojos, while the inner puzzle (typically the [Standard Transaction primitive](https://chialisp.com/docs/standard_transaction/)) decides how it can be spent.
+This allows the outer puzzle to enforce certain rules on how it can be spent, while the inner puzzle can do whatever it wants within those rules. In this case, the CAT enforces that it maintains a constant amount in mojos, while the inner puzzle (typically the [Standard Transaction primitive](https://chialisp.com/standard-transactions/)) decides how it can be spent.
 
 This is typically used in combination with a variety of other concepts, which we will talk about later. However, for the purpose of this guide and to make it easier to follow, we will provide a simple example that only incorporates currying and inner puzzles.
 

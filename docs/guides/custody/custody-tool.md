@@ -240,7 +240,7 @@ If you are generating only one key per computer, you will need to copy the .pk (
 
 ## Initialize the singleton
 
-The custody tool uses the Chialisp [singleton](https://chialisp.com/docs/puzzles/singletons 'Your guide to Chialisp singletons') primitive. This section will show you how to set up a custody singleton for testing.
+The custody tool uses the Chialisp [singleton](https://chialisp.com/singletons 'Your guide to Chialisp singletons') primitive. This section will show you how to set up a custody singleton for testing.
 
 ### Create the permanent layer
 
@@ -257,7 +257,7 @@ The `cic init` command will initialize the permanent layer of the singleton. **N
 
 :::
 
-For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](https://docs.chia.net/assets/files/chia_custody_tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png).
+For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](/img/chia-custody-tool.png).
 
 | Flag&nbsp; | Example<br/>Value | Description                                                                                                                                                                                                                                   |
 | :--------- | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -601,7 +601,7 @@ The singleton is now set up. Observers can also use this command to verify that 
 
 If, at any point, you want to export your config's public, immutable information to be used by observer nodes, run `cic export_config -p -f <binary file name>`.
 
-For more info, see the [CLI reference](https://docs.chia.net/custody-tool#export_config).
+For more info, see the [CLI reference](/custody-tool#export_config).
 
 ---
 
@@ -637,7 +637,7 @@ This test will run through the complete sequence of withdrawing money from the s
 This command generates an unsigned spend bundle which requires specific keys. Signers can take this spend bundle to an HSM for signing.
 
 To begin the payment process, use the `cic payment` command.
-For this example, we'll use the following arguments (see the [CLI reference](https://docs.chia.net/custody-tool#payment 'payment command') for all options):
+For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment 'payment command') for all options):
 
 - `-f` : The name of the file in which to save the unsigned spend bundle
 - `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command

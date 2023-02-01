@@ -8,7 +8,7 @@ title: Offers - CLI
 
 This tutorial covers Chia offers using the command line interface.
 
-See also our [GUI tutorial](./offers-gui.md) and our [reference document](https://docs.chia.net/offers).
+See also our [GUI tutorial](/guides/offers-gui-tutorial) and our [reference document](https://chialisp.com/offers).
 
 :::note
 This tutorial occasionally references a token called "CAT King Cole" (CKC). This token is for demonstration purposes only.
@@ -842,7 +842,7 @@ The lesson here is do _not_ use the --insecure flag unless you're certain the of
 
 Under the coin set model, coins can be of any value. When an offer is created, the Maker's wallet must reserve enough coins to meet the requirements of the offer.
 
-The coin set model [has many advantages](https://docs.chia.net/coin-set-intro) over the account model, but it can create some situations that take time to understand.
+The coin set model [has many advantages](/coin-set-intro) over the account model, but it can create some situations that take time to understand.
 
 For example, let's say a Maker has 1 XCH and 0 USDS:
 
@@ -965,6 +965,6 @@ The CAT1 Standard reached its end of life (EOL) with block 2,311,760 in July 202
 ## Further reading
 
 -   [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
--   [Offers reference](https://docs.chia.net/offers)
--   [GUI tutorial](./offers-gui.md)
--   [Info on the coin set model](https://docs.chia.net/coin-set-intro)
+-   [Offers reference](https://chialisp.com/offers)
+-   [GUI tutorial](/guides/offers-gui-tutorial)
+-   [Info on the coin set model](/coin-set-intro)
