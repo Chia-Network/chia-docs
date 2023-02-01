@@ -7,7 +7,6 @@ module.exports = {
         'getting-started/introduction',
         'getting-started/installation',
         'getting-started/using-the-gui',
-        'getting-started/chia-concepts',
       ],
     },
     {
@@ -168,7 +167,6 @@ module.exports = {
         'reference-client/key-management',
         'reference-client/chia-seeder-guide',
         'reference-client/directory-structure',
-        'reference-client/freebsd-install',
         'reference-client/logging-reference',
         'reference-client/password-protected-keys',
         'reference-client/raspberry-pi',

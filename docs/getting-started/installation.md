@@ -8,15 +8,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-Chia is a cryptocurrency and blockchain with smart transaction capabilities. Its [Proof of Space and Time](/consensus-intro) is the only Nakamoto consensus algorithm since Proof of Work, and has a [much lower energy consumption](https://chiapower.org).
+There are various ways to install Chia. The best method depends on what you intend to do.
 
-Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives released for [CATs](https://chialisp.com/cats), [NFTs](https://chialisp.com/nfts), [Offers](https://chialisp.com/offers), and [DIDs](https://chialisp.com/dids).
+If you plan to use Chia as a wallet or to run a farm on a personal computer, we recommend installing the GUI from our [official downloads page](https://www.chia.net/downloads). The best way to install the GUI on Linux is the command line, [as described below](#using-the-cli). The GUI is the simplest way to interact with the Chia client.
 
-Chia's software is easy to install. You can start earning cryptocurrency rewards by storing plot files on your hard drive and leaving the machine running.
+However, if you intend to run a Chia full node on a server and connect to it programatically using the [RPC interface](/rpc), the best method would be to install and run Chia on the command line.
 
-## Installation {#install}
-
-Installer binaries for each platform can be found on our [official downloads page](https://www.chia.net/downloads), which is the only source that should be trusted. While this is the easiest way to install the Chia client, some may instead prefer to install Chia from source or by using the command line.
+Finally, if you plan on making contributions to the source code or doing [Chialisp](https://chialisp.com) development, we recommend installing Chia from source. This gives the highest level of flexibility.
 
 ### Using the CLI
 
