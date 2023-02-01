@@ -161,7 +161,6 @@ module.exports = {
       type: 'category',
       label: 'Reference Client',
       items: [
-        'reference-client/chia-installation-guide',
         'reference-client/check-if-things-are-working',
         'reference-client/node-syncing',
         'reference-client/key-management',

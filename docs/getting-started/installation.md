@@ -16,6 +16,20 @@ However, if you intend to run a Chia full node on a server and connect to it pro
 
 Finally, if you plan on making contributions to the source code or doing [Chialisp](https://chialisp.com) development, we recommend installing Chia from source. This gives the highest level of flexibility.
 
+## System Requirements
+
+The minimum supported specs are that of the Raspberry Pi 4, 4GB model:
+
+- Quad core 1.5Ghz CPU (must be 64 bit)
+- 4 GB RAM
+- Python versions between 3.7 and 3.10 are supported
+
+### Drive Format
+
+Chia plot files are at least 108GB in size (for K32). To plot successfully requires drives formatted to support large files. Formats that will work include NTFS, APFS, exFAT, and ext4. Do not use drives with FAT formatting (for example FAT12, FAT16, and FAT32), or else plotting will fail. Future versions of Chia will check for unsupported drives, but for now it's up to each user to check their drive format.
+
+## Install
+
 ### Using the CLI
 
 ```mdx-code-block
@@ -26,6 +40,7 @@ Finally, if you plan on making contributions to the source code or doing [Chiali
     {label: 'APT', value: 'apt'},
     {label: 'YUM', value: 'yum'},
     {label: 'DNF', value: 'dnf'},
+    {label: 'PIP', value: 'pip'},
 ]}>
 <TabItem value="apt">
 ```
@@ -82,6 +97,32 @@ sudo dnf install chia-blockchain
 
 ```mdx-code-block
 </TabItem>
+<TabItem value="pip">
+```
+
+:::note
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
+:::
+
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+. ./venv/bin/activate # MacOS / Linux
+./venv/Scripts/Activate.ps1 # Windows
+
+# Update pip
+pip install --upgrade pip
+
+# Install chia-blockchain
+pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniupnpc
+```
+
+Chia strives to provide [binary wheels](https://pythonwheels.com) for modern systems. If your system does not have binary wheels, you may need to install development tools to build some Python extensions from source. If you're attempting to install from source, setting the environment variable `BUILD_VDF_CLIENT` to `N` will skip trying to build Timelord components that aren't very cross platform, e.g. `export BUILD_VDF_CLIENT=N`.
+
+```mdx-code-block
+</TabItem>
 </Tabs>
 ```
 
@@ -112,13 +153,46 @@ cd chia-blockchain
 # Install dependencies
 sh install.sh
 
-# Create virtual environment
-python3 -m venv venv
-
 # Activate virtual environment
-. ./venv/bin/activate
+. ./activate
 
 # Initialize
+chia init
+```
+
+The following is how you update to the latest version:
+
+```bash
+# Change directory
+cd chia-blockchain
+
+# Activate the virtual environment
+. ./activate
+
+# Stop running services
+chia stop -d all
+
+# Deactivate the virtual environment
+deactivate
+
+# Pull the latest version
+git fetch
+git checkout latest
+git reset --hard FETCH_HEAD --recurse-submodules
+
+# If you get RELEASE.dev0 then delete the package-lock.json in chia-blockchain-gui and install.sh again
+
+# This should say "nothing to commit, working tree clean"
+# if you have uncommitted changes, RELEASE.dev0 will be reported
+git status
+
+# Install the new version
+sh install.sh
+
+# Activate the virtual environment
+. ./activate
+
+# Initialize the new version
 chia init
 ```
 
@@ -141,14 +215,52 @@ cd chia-blockchain
 # Install dependencies
 ./Install.ps1
 
-# Create virtual environment
-py -m venv venv
-
 # Activate virtual environment
 . ./venv/Scripts/Activate.ps1
 
 # Initialize
 chia init
+```
+
+The following is how you update to the latest version:
+
+```bash
+# Change directory
+cd chia-blockchain
+
+# Activate the virtual environment
+. ./venv/Scripts/Activate.ps1
+
+# Stop running services
+chia stop -d all
+
+# Deactivate the virtual environment
+deactivate
+
+# Pull the latest version
+git fetch
+git checkout latest
+git reset --hard FETCH_HEAD --recurse-submodules
+
+# If you get RELEASE.dev0 then delete the package-lock.json in chia-blockchain-gui and install.sh again
+
+# This should say "nothing to commit, working tree clean"
+# if you have uncommitted changes, RELEASE.dev0 will be reported
+git status
+
+# Install the new version
+./Install.ps1
+
+# Activate the virtual environment
+. ./venv/Scripts/Activate.ps1
+
+# Initialize the new version
+chia init
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="windows">
 ```
 
 ```mdx-code-block
@@ -248,17 +360,68 @@ The GUI is a simpler method of interacting with Chia, and it can be installed ma
   <TabItem value="MacOS / Linux" label="MacOS / Linux" default>
 
 ```bash
+# Install the GUI
 . ./install-gui.sh
+
+# Start the GUI
+sh start-gui.sh
+```
+
+The following is how you update to the latest version:
+
+```bash
+# Change directory into the GUI
 cd chia-blockchain-gui
-npm run electron &
+
+# Pull the latest version
+git fetch
+
+# Change directory
+cd ..
+
+# Change permissions on install script
+chmod +x ./install-gui.sh
+
+# Install the new version of the GUI
+./install-gui.sh
+
+# Start the GUI
+bash start-gui.sh
 ```
 
 </TabItem>
 <TabItem value="Windows" label="Windows">
 
 ```bash
+# Install the GUI
 . .\Install-gui.ps1
+
+# Change directory
 cd chia-blockchain-gui
+
+# Start the GUI
+Start-Process -NoNewWindow npm run electron
+```
+
+The following is how you update to the latest version:
+
+```bash
+# Change directory
+cd chia-blockchain-gui
+
+# Pull the latest version
+git fetch
+
+# Change directory
+cd ..
+
+# Install the new version of the GUI
+./Install-gui.ps1
+
+# Change directory
+cd chia-blockchain-gui
+
+# Start the GUI
 Start-Process -NoNewWindow npm run electron
 ```
 
