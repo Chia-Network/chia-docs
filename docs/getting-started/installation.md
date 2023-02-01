@@ -104,7 +104,10 @@ Make sure you have [Python 3.10](https://www.python.org/downloads/release/python
 
 ```bash
 # Download chia-blockchain
-git clone https://github.com/Chia-Network/chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
+
+# Change directory
+cd chia-blockchain
 
 # Install dependencies
 sh install.sh
@@ -130,7 +133,10 @@ Make sure you have [Python 3.10](https://www.python.org/downloads/release/python
 
 ```bash
 # Download chia-blockchain
-git clone https://github.com/Chia-Network/chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
+
+# Change directory
+cd chia-blockchain
 
 # Install dependencies
 ./Install.ps1
