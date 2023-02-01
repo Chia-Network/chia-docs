@@ -7,6 +7,7 @@ module.exports = {
         'getting-started/introduction',
         'getting-started/installation',
         'getting-started/using-the-gui',
+        'getting-started/cryptocurrency-intro',
       ],
     },
     {

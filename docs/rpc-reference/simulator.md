@@ -13,7 +13,7 @@ This page includes a comprehensive list of Chia's Remote Procedure Calls for usi
 For more info, see the following:
 
 - [Simulator User Guide](/guides/simulator-user-guide)
-- [Simulator CLI Reference](/cli-reference/simulator)
+- [Simulator CLI Reference](/simulator-cli)
 
 ---
 

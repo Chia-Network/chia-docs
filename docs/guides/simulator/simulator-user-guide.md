@@ -13,8 +13,8 @@ import TabItem from '@theme/TabItem';
 
 This document will guide you through the process of setting up Chia's Simulator. For additional technical resources, see the following:
 
--   [Simulator RPC API](/rpc-reference/simulator 'Simulator RPC API')
--   [Simulator CLI Reference](/cli-reference/simulator 'Simulator CLI Reference')
+- [Simulator RPC API](/simulator-rpc)
+- [Simulator CLI Reference](/simulator-cli)
 
 :::note
 
@@ -30,59 +30,59 @@ The simulator is included in the `chia-dev-tools` GitHub repository. If you have
 
 1. Open a new terminal window and run the following to clone the chia-dev-tools repository, using the `main` branch:
 
-    ```bash
-    git clone https://github.com/Chia-Network/chia-dev-tools.git -b main
-    ```
+   ```bash
+   git clone https://github.com/Chia-Network/chia-dev-tools.git -b main
+   ```
 
 2. Change to the cloned repository:
 
-    ```bash
-    cd chia-dev-tools
-    ```
+   ```bash
+   cd chia-dev-tools
+   ```
 
 3. Create and activate a virtual environment:
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    python -m venv venv
-    .\venv\Scripts\Activate.ps1
-    ```
+   ```powershell
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   ```
 
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash
-    python3 -m venv venv
-    . ./venv/bin/activate
-    ```
+   ```bash
+   python3 -m venv venv
+   . ./venv/bin/activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    python3 -m venv venv
-    . ./venv/bin/activate
-    ```
+   ```bash
+   python3 -m venv venv
+   . ./venv/bin/activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
 4. Install `.` (chia-dev-tools):
 
@@ -94,15 +94,15 @@ Several packages will be installed, including a bundled copy of `chia-blockchain
 
 5. `chia-dev-tools` should now be installed and configured properly. To test it, run:
 
-    ```bash
-    cdv --help
-    ```
+   ```bash
+   cdv --help
+   ```
 
-    You should get a usage statement. At this point, you're ready to set up the simulator.
+   You should get a usage statement. At this point, you're ready to set up the simulator.
 
 ### Install and configure the simulator
 
-The simulator commands can all be accessed under `cdv sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/cli-reference/simulator 'Simulator CLI Reference').
+The simulator commands can all be accessed under `cdv sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/simulator-cli).
 
 1. Install the simulator
 
@@ -135,46 +135,46 @@ This command will also install a new version of Chia that contains a config file
 
 2. Now that you have the simulator environment set up, you can set the CHIA_ROOT env var to point to this environment. This will enable you to run the simulator from outside of chia-dev-tools:
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    $env:CHIA_ROOT='~/.chia/simulator/main'
-    ```
+   ```powershell
+   $env:CHIA_ROOT='~/.chia/simulator/main'
+   ```
 
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash
-    export CHIA_ROOT=~/.chia/simulator/main
-    ```
+   ```bash
+   export CHIA_ROOT=~/.chia/simulator/main
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    export CHIA_ROOT=~/.chia/simulator/main
-    ```
+   ```bash
+   export CHIA_ROOT=~/.chia/simulator/main
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
-    Note that by setting CHIA_ROOT to the simulator in the current Powershell/terminal window, this enables you to run the simulator in tandem with a full node running on either the testnet or on mainnet. This is because the simulator uses different ports than a normal full node.
+   Note that by setting CHIA_ROOT to the simulator in the current Powershell/terminal window, this enables you to run the simulator in tandem with a full node running on either the testnet or on mainnet. This is because the simulator uses different ports than a normal full node.
 
 ### Use the simulator
 
@@ -256,7 +256,7 @@ Result:
 }
 ```
 
-For more info on this command, see the [RPC documentation](/rpc-reference/simulator#farm_block).
+For more info on this command, see the [RPC documentation](/simulator-rpc#farm_block).
 
 5. Show your wallet's status (including the prefarm):
 
