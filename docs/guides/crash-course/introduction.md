@@ -44,13 +44,13 @@ Pooling is possible with other major cryptocurrencies, but a major difference is
 
 Essentially:
 
--   Chia is a blockchain that is decentralized.
--   It uses significantly less electricity.
--   It offers dApp capabilities with the Chialisp programming language.
+- Chia is a blockchain that is decentralized.
+- It uses significantly less electricity.
+- It offers dApp capabilities with the Chialisp programming language.
 
 ## Getting Started
 
-You can refer to the [Quick Start Guide page](https://docs.chia.net/quick-start-guide) to download and install the Chia client. The installer is usually the simplest and we will go through how to set up the `chia` command for CLI use.
+You can refer to the [Installation page](/installation) to download and install the Chia client. The installer is usually the simplest and we will go through how to set up the `chia` command for CLI use.
 
 To make the commands as close as possible across operating systems I recommend Windows users [download Git](https://git-scm.com/download/win), which comes with Git bash. You can of course use Windows Command Prompt or PowerShell, but commands may be slightly different.
 

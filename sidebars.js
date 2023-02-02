@@ -2,22 +2,13 @@ module.exports = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'CAT2 Upgrade Guide',
-      items: ['cat2/cat2-intro', 'cat2/cat2-snapshot', 'cat2/cat2-issuance'],
-    },
-    {
-      type: 'category',
       label: 'Getting Started',
       items: [
-        'getting-started/quick-start-guide',
+        'getting-started/introduction',
+        'getting-started/installation',
         'getting-started/using-the-gui',
-        'getting-started/chia-concepts',
+        'getting-started/cryptocurrency-intro',
       ],
-    },
-    {
-      type: 'category',
-      label: 'About',
-      items: ['about/cryptocurrency-intro', 'about/chia-intro'],
     },
     {
       type: 'category',
@@ -171,14 +162,11 @@ module.exports = {
       type: 'category',
       label: 'Reference Client',
       items: [
-        'reference-client/chia-installation-guide',
         'reference-client/check-if-things-are-working',
         'reference-client/node-syncing',
         'reference-client/key-management',
         'reference-client/chia-seeder-guide',
         'reference-client/directory-structure',
-        'reference-client/freebsd-install',
-        'reference-client/openbsd-install',
         'reference-client/logging-reference',
         'reference-client/password-protected-keys',
         'reference-client/raspberry-pi',
@@ -265,7 +253,18 @@ module.exports = {
         description:
           "These guides will guide you through the process of creating CATs that conform to Chia's CAT standard.",
       },
-      items: ['guides/cat/cat-creation-tutorial'],
+      items: [
+        'guides/cat/cat-creation-tutorial',
+        {
+          type: 'category',
+          label: 'CAT2 Upgrade',
+          items: [
+            'guides/cat/cat2-upgrade/cat2-intro',
+            'guides/cat/cat2-upgrade/cat2-snapshot',
+            'guides/cat/cat2-upgrade/cat2-issuance',
+          ],
+        },
+      ],
     },
     {
       type: 'category',

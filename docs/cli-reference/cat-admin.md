@@ -13,9 +13,9 @@ import TabItem from '@theme/TabItem';
 
 This document is a reference guide for Chia's CAT Admin Tool, located in the [CAT-admin-tool](https://github.com/Chia-Network/CAT-admin-tool) repository.
 
-To set up your environment (including installing this tool), follow our [CAT Creation Tutorial](https://devs.chia.net/guides/cat-creation-tutorial).
+To set up your environment (including installing this tool), follow our [CAT Creation Tutorial](/guides/cat-creation-tutorial).
 
-If you want to use this tool to reissue CAT1, then follow our [CAT2 Token Reissuance guide](https://docs.chia.net/docs/cat2/cat2-issuance).
+If you want to use this tool to reissue CAT1, then follow our [CAT2 Token Reissuance guide](/guides/cat2-issuance).
 
 ## Reference
 

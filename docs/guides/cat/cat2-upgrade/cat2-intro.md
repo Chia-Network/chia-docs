@@ -1,7 +1,7 @@
 ---
 title: CAT2 Intro and FAQ
 sidebar_label: 1. Intro and FAQ
-slug: /cat2-intro
+slug: /guides/cat2-intro
 ---
 
 ```mdx-code-block
@@ -14,7 +14,7 @@ CAT1 reachead its end of life at block 2,311,760, which occurred on July 26, 202
 Chia version 1.5.0 was released on July 26, 2022. Since then, CAT1 tokens are not shown in the wallet. Users will only see the newly-issued CAT2 tokens, which will be identical in value to their CAT1 equivalents.
 
 :::tip Are you a CAT issuer?
-Check out the [Snapshot Generation guide](/cat2-snapshot) to get started with issuing your CAT2 tokens.
+Check out the [Snapshot Generation guide](/guides/cat2-snapshot) to get started with issuing your CAT2 tokens.
 :::
 
 ## FAQ {#faq}
@@ -105,7 +105,7 @@ However, the CAT1 issuers do need to perform a complete airdrop of CAT2 tokens. 
 
 #### I am the issuer of a CAT1 token. What should I do? {#cat1-issuer-what-do}
 
-Follow the [Snapshot Generation guide](/cat2-snapshot), which will guide you through the process of reissuing your token as a CAT2.
+Follow the [Snapshot Generation guide](/guides/cat2-snapshot), which will guide you through the process of reissuing your token as a CAT2.
 
 ### Chia App {#chia-app}
 
@@ -120,15 +120,15 @@ No, you didn't do anything wrong. The Chia Wallet app, as of 1.5, only shows you
 2. If your CAT2 balances in the 1.5.0 wallet do not match the CAT1 historical reference, then check what your wallet derivation index is at and compare it to the derivation index shown in the balance on the Tokens screen.
 
 <img
-    src="/img/cat2/wallet-derivation-index.png"
-    alt="Derivation Index in the wallet"
+  src="/img/cat2/wallet-derivation-index.png"
+  alt="Derivation Index in the wallet"
 />
 
 3. If the derivation index in your wallet is less than the highest derivation index found on the website, you will want to update the derivation index in the wallet. To do so, go to Settings -> Derivation index and type in the number that you get from the [cat1.chia.net](https://cat1.chia.net) website.
 
 <img
-    src="/img/cat2/settings-derivation-index.png"
-    alt="Derivation Index in the settings"
+  src="/img/cat2/settings-derivation-index.png"
+  alt="Derivation Index in the settings"
 />
 
 #### I've tried all the recommendations, but the reissuer didn't get my wallet balance correct. What should I do? {#no-reissuance}
@@ -183,7 +183,7 @@ From the Chia Wallet GUI:
 
 1. Go to the _"Select Key"_ screen and click on _"See private key"_
 
-    <img src="/img/cat2/key-selection.png" alt="Key selection screen" />
+   <img src="/img/cat2/key-selection.png" alt="Key selection screen" />
 
 2. Copy the _public key_ from the list of keys available
 

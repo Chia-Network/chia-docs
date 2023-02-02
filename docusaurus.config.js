@@ -7,7 +7,7 @@
     url: 'https://docs.chia.net',
     baseUrl: '/',
     onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenMarkdownLinks: 'throw',
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
     projectName: '{{ REPOSITORY_NAME }}',
@@ -50,7 +50,7 @@
           items: [
             {
               type: 'doc',
-              docId: 'getting-started/quick-start-guide',
+              docId: 'getting-started/introduction',
               position: 'left',
               label: 'Docs',
             },

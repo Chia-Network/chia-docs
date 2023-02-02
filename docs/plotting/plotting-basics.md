@@ -187,8 +187,6 @@ One item to plan for is storage of plots as they fill storage quickly. As more p
 
 ## How to Get Help
 
-- Continue reading these docs! If needed, [start with the basics](/quick-start-guide).
-
 - Get support on the [Chia Keybase chat channels](https://keybase.io/team/chia_network.public). **#beginner** and **#support** is where you can get help
 
 - Get more questions answered in the [plotting FAQ](/plotting-faq).

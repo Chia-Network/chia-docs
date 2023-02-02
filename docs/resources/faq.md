@@ -63,7 +63,7 @@ We think you will want to use used Data Center grade NVMe SSD drives to create y
 
 ### Can I plot more than one plot at a time?
 
-Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. You can read the [Quick Start Guide](/quick-start-guide) to learn more. You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
+Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. You can read the [Installation page](/installation) to learn more. You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
 
 ### Can I make plots on one machine and move it to another machine?
 
@@ -117,7 +117,7 @@ First, running more than one node with the same private keys on your home networ
 
 ### Why does my node have no connections? How can I get more connections?
 
-Step 1. Make sure you are running the most recent version of the Chia software. Check out the [Quick Start Guide page](/quick-start-guide).
+Step 1. Make sure you are running the most recent version of the Chia software. Check out the [Installation page](/installation).
 
 Step 2. If your node has no connections, it could be one of many reasons. The most likely reason is that there are no users with space to have new connections, so you cannot connect to them. To solve this, you should try opening port 8444 on your router so other peers can connect to you. Follow the steps in the [Node Syncing page](/node-syncing).
 
@@ -247,13 +247,14 @@ Node ID: 0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9
 2. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows.
 
 Search for the `wallet:` section. It should be near the end of the file. Edit the following values from within this section:
-* `connect_to_unknown_peers` - Default is `true`; change it to `false`
-* `target_peer_count` - Default is `3`; change it to `1` (assuming you only have one trusted full node)
-* `trusted_peers`
-  * Default is `0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9: Does_not_matter`
-  * Change to `<Node ID>: Does_not_matter` 
-  * Note 1: Replace `<Node ID>` with the actual Node ID you obtained above
-  * Note 2: It doesn't matter what you enter on the right side of the colon. The argument will be ignored. Just make sure to enter something
+
+- `connect_to_unknown_peers` - Default is `true`; change it to `false`
+- `target_peer_count` - Default is `3`; change it to `1` (assuming you only have one trusted full node)
+- `trusted_peers`
+  - Default is `0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9: Does_not_matter`
+  - Change to `<Node ID>: Does_not_matter`
+  - Note 1: Replace `<Node ID>` with the actual Node ID you obtained above
+  - Note 2: It doesn't matter what you enter on the right side of the colon. The argument will be ignored. Just make sure to enter something
 
 3. Restart Chia on the computer you are connecting to the trusted node to pick up the changes.
 
@@ -454,13 +455,13 @@ The easiest way to accomplish this is with an alias. Run the following command(s
 :::info Chia setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 Note that this only works if you installed Chia for your local user (_not_ for all users). If you installed to a non-default location, update the following command accordingly:
 
@@ -512,17 +513,19 @@ However, sync times for dusted wallets were still measured in days, which was un
 The dust filter is a new feature, added in version 1.6.0. It is activated whenever there are at least a certain number of unspent dust coins in the wallet. While activated, the filter ignores any coins considered "dust".
 
 Two new settings have been added to `~/.chia/mainnet/config/config.yaml` in the `wallet` section:
-* `spam_filter_after_n_txs: 200`
-* `xch_spam_amount: 1000000`
+
+- `spam_filter_after_n_txs: 200`
+- `xch_spam_amount: 1000000`
 
 If you are upgrading an existing Chia installation, these settings won't be added automatically. In this case, you will need to either add them manually or delete `config.yaml` and run `chia init` to generate a new copy.
 
 The default settings essentially say, "If my wallet contains more than 200 coins, ignore all coins after the first 200 that are worth less than 1 million mojos." Note that the filter is not applied for CATs or NFTs.
 
 You can modify these default values to support different functionality. For example:
-* Disable the filter by setting `xch_spam_amount` to `0` (nothing is dust)
-* Enable the filter regardless of your wallet's status by setting `spam_filter_after_n_txs` to `0`
-* Consider coins to be "dust" only if they are smaller than 100 mojos by setting `xch_spam_amount` to `100`
+
+- Disable the filter by setting `xch_spam_amount` to `0` (nothing is dust)
+- Enable the filter regardless of your wallet's status by setting `spam_filter_after_n_txs` to `0`
+- Consider coins to be "dust" only if they are smaller than 100 mojos by setting `xch_spam_amount` to `100`
 
 However, we believe the default settings will be sufficient for most users.
 
@@ -540,7 +543,7 @@ There are three potential scenarios:
 
 2. Synced full node (trusted mode) on multiple computers -- If you load the same wallet on different full nodes, the databases will be slightly different due to network latency. Even though the coins themselves all exist, they might not show up in the same order, so different coins could be filtered. In this case, your balance might be slightly different between the two computers.
 
-3. Synced full node (trusted mode) with one computer --  Your trusted database will be the same each time you sync, so the wallet balance will also be the same.
+3. Synced full node (trusted mode) with one computer -- Your trusted database will be the same each time you sync, so the wallet balance will also be the same.
 
 ### Why does my wallet say `Error Can't send more than xxxxxxxx mojos in a single transaction`?
 
@@ -558,17 +561,17 @@ Unfortunately, no. However, to obtain the user-specified wallet names programmat
 
 Another way to obtain this info is by connecting to the daemon over a websocket by using `wscat`:
 
-```wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://localhost:55400```
+`wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://localhost:55400`
 
 From there, you can use the `get_keys` command, similar to the following example (the `request_id` can be any string):
 
-```{"ack": false, "command": "get_keys", "data": {}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
+`{"ack": false, "command": "get_keys", "data": {}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}`
 
 This command will return a payload with all of the pubkeys/fingerprints/labels -- private keys omitted.
 
 If you want the private keys included, pass `"include_secrets":true` in the data object. For example:
 
-```{"ack": false, "command": "get_keys", "data": {"include_secrets":true}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}```
+`{"ack": false, "command": "get_keys", "data": {"include_secrets":true}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}`
 
 ### How do I disable the dust filter?
 
@@ -845,11 +848,11 @@ No -- there would be no fair way to assess royalties for NFT-for-NFT offers, so 
 This depends on what assets are included in the offer. A few rules to keep in mind:
 
 1. If more than one NFT is being traded, the royalties will be divided by the number of NFTs. For example:
-    * If 4 NFTs are being traded for 1 XCH, then each NFT will have an assumed price of 0.25 XCH
-      * If the royalty for each NFT is 10%, then each NFT will receive a 0.025 XCH royalty, for a total royalty of 0.1
-      * If the royalties are 10%, 8%, 5%, and 3%, then the NFTs will receive 0.025 XCH, 0.02 XCH, 0.0125 XCH, and 0.0075 XCH, for a total royalty of 0.65 XCH
+   - If 4 NFTs are being traded for 1 XCH, then each NFT will have an assumed price of 0.25 XCH
+     - If the royalty for each NFT is 10%, then each NFT will receive a 0.025 XCH royalty, for a total royalty of 0.1
+     - If the royalties are 10%, 8%, 5%, and 3%, then the NFTs will receive 0.025 XCH, 0.02 XCH, 0.0125 XCH, and 0.0075 XCH, for a total royalty of 0.65 XCH
 2. If the NFTs are being traded for more than one fungible asset, then the royalties will be calculated for each asset individually
-    * For example, if 1 NFT is being traded for both 1 XCH and 1000 SBX and it carries a 10% royalty, then the royalties shall be 0.1 XCH and 100 SBX for this sale
+   - For example, if 1 NFT is being traded for both 1 XCH and 1000 SBX and it carries a 10% royalty, then the royalties shall be 0.1 XCH and 100 SBX for this sale
 3. If multiple NFTs are being traded for multiple fungible assets, then rules 1. and 2. will both be applied
 4. When NFTs are traded for other NFTs, no royalties are exchanged
 
@@ -910,12 +913,13 @@ Chia Network Inc has no ability to censor content on the Chia blockchain. Howeve
 Starting in version 1.6.1, you can send and receive notifications to a specified puzzle hash. This will eventually enable us to support sending an offer to an NFT's owner without having to go through an exchange.
 
 This functionality is disabled by default. It includes two settings in the `wallet:` section of `~/.chia/mainnet/config/config.yaml`:
-* `accept_notifications` - a boolean to specify whether you want to allow notifications to be received. If this setting is missing, it will automatically be set to `false`. Set to `true` to receive notifications
-* `required_notification_amount` - the amount (in mojos) you require to be sent with a notification in order to receive it. If this setting is not specified, the default of `10000000` (10 million) will be used
+
+- `accept_notifications` - a boolean to specify whether you want to allow notifications to be received. If this setting is missing, it will automatically be set to `false`. Set to `true` to receive notifications
+- `required_notification_amount` - the amount (in mojos) you require to be sent with a notification in order to receive it. If this setting is not specified, the default of `10000000` (10 million) will be used
 
 In order to enable notifications, you can either add these settings manually, or rename `config.yaml` and run `chia init`. A new copy of `config.yaml` will be created which contains the new settings.
 
-Finally, you need to restart Chia for these settings to be picked up. 
+Finally, you need to restart Chia for these settings to be picked up.
 
 Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
 
@@ -954,22 +958,22 @@ Windows users can run `C:\Users\<user ID>\AppData\Local\Programs\Chia\Chia.exe` 
 
 ### I installed Chia with the packaged installer. How do I run CLI commands?
 
-For power users, it is possible to [install Chia from source](/quick-start-guide#install). In this case, you will run Chia from a virtual environment on the command line.
+For power users, it is possible to [install Chia from source](/installation#from-source). In this case, you will run Chia from a virtual environment on the command line.
 
-However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/). 
+However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/).
 
 After installing with the packaged installer, you can run Chia from the command line by invoking the executable file. The easiest way to set this up is by running the `alias` command. The exact command needed depends on your OS:
 
 :::info Chia setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 (Be sure to update &lt;username&gt; to match the name of the user that installed Chia.)
 
