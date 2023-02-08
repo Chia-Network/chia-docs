@@ -580,6 +580,12 @@ If you want the private keys included, pass `"include_secrets":true` in the data
 3. Set the value for `xch_spam_amount` to `0` (nothing is dust)
 4. Restart Chia
 
+### Can I import a 12-word mnemonic seed phrase from another wallet?
+
+Starting in version 1.7.0, Chia's reference wallet will accept both 12- and 24-word mnemonics. This allows you to import a mnemonic from another wallet. Simply click `IMPORT FROM 12 WORD MNEMONIC` when importing your wallet. However, do keep in mind:
+* Chia's reference wallet only allows you to _import_ a 12-word mnemonic. It does not allow you to create a new 12-word mnemonic.
+* Certain wallets use 12-word mnemonics that are not compatible with Chia's reference wallet. As far as we know, this only applies to the Pawket wallet, but there may be others as well. In the case of Pawket, you need to export a 24-word mnemonic from their app in order to use Chia's reference wallet. More info can be found on their [FAQ page](https://info.pawket.app/faq/).
+
 ---
 
 ## Offers
