@@ -1,5 +1,4 @@
 ---
-id: custom-puzzle-lock
 slug: /guides/custom-puzzle-lock-tutorial
 title: Custom Puzzle Lock
 ---

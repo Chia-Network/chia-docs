@@ -1,5 +1,4 @@
 ---
-id: tools-and-setup
 slug: /guides/tools-and-setup-video-series
 title: Tools and Setup
 ---

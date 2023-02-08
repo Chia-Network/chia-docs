@@ -1,5 +1,4 @@
 ---
-id: chialisp-concepts-currying
 slug: /guides/chialisp-currying
 title: Currying
 ---

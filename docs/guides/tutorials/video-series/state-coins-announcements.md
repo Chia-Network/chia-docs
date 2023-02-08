@@ -1,5 +1,4 @@
 ---
-id: state-coins-announcements
 slug: /guides/state-coins-announcements-video-series
 title: State, Coins, Announcements
 ---

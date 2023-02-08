@@ -56,7 +56,7 @@
             },
             {
               type: 'doc',
-              docId: 'guides/chialisp-primer/chialisp-primer-intro',
+              docId: 'guides/chialisp-primer/intro',
               position: 'left',
               label: 'Guides',
             },

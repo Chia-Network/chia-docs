@@ -1,6 +1,6 @@
 ---
-title: Chia Seeder Guide
-slug: /chia-seeder-guide
+title: Seeder User Guide
+slug: /guides/seeder-user-guide
 ---
 
 The Chia Seeder & Crawler is a tool to keep track of the most reliable nodes on the Chia network. Each instance of the Chia Seeder maintains its own separate list of IP addresses of these nodes.

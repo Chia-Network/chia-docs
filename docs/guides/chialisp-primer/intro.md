@@ -1,5 +1,4 @@
 ---
-id: chialisp-primer-intro
 slug: /guides
 title: 1. Intro to Chialisp
 ---

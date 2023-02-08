@@ -1,5 +1,4 @@
 ---
-id: simulator-user-guide
 slug: /guides/simulator-user-guide
 title: Simulator User Guide
 ---

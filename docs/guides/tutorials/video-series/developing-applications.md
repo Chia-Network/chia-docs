@@ -1,5 +1,4 @@
 ---
-id: developing-applications
 slug: /guides/developing-applications-video-series
 title: Developing Applications
 ---

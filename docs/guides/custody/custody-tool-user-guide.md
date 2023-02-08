@@ -1,5 +1,4 @@
 ---
-id: custody-tool-user-guide
 slug: /guides/custody-tool-user-guide
 title: Custody Tool User Guide
 ---

@@ -1,5 +1,4 @@
 ---
-id: singleton-contracts
 slug: /guides/singleton-contracts-video-series
 title: Singleton Contracts
 ---

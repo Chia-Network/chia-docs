@@ -1,5 +1,4 @@
 ---
-id: offers-cli
 slug: /guides/offers-cli-tutorial
 title: Offers - CLI
 ---
@@ -16,16 +15,16 @@ This tutorial occasionally references a token called "CAT King Cole" (CKC). This
 
 ## Contents:
 
--   [Note about Windows](#note-about-windows)
--   [CLI commands and reference](#cli-commands-and-reference)
--   [Add a new CAT wallet](#add-a-new-cat-wallet)
--   [Create a single-token offer](#create-a-single-token-offer)
--   [Accept a single-token offer](#accept-a-single-token-offer)
--   [Cancel an offer](#cancel-an-offer)
--   [Create a multiple-token offer](#create-a-multiple-token-offer)
--   [Accept a multiple-token offer](#accept-a-multiple-token-offer)
--   [Potential issues](#potential-issues)
--   [Further reading](#further-reading)
+- [Note about Windows](#note-about-windows)
+- [CLI commands and reference](#cli-commands-and-reference)
+- [Add a new CAT wallet](#add-a-new-cat-wallet)
+- [Create a single-token offer](#create-a-single-token-offer)
+- [Accept a single-token offer](#accept-a-single-token-offer)
+- [Cancel an offer](#cancel-an-offer)
+- [Create a multiple-token offer](#create-a-multiple-token-offer)
+- [Accept a multiple-token offer](#accept-a-multiple-token-offer)
+- [Potential issues](#potential-issues)
+- [Further reading](#further-reading)
 
 ---
 
@@ -63,10 +62,10 @@ The relevant commands can all be found under the `chia wallet` command:
 
 ### Commands
 
--   [`make_offer`](#make_offer)
--   [`take_offer`](#take_offer)
--   [`cancel_offer`](#cancel_offer)
--   [`get_offers`](#get_offers)
+- [`make_offer`](#make_offer)
+- [`take_offer`](#take_offer)
+- [`cancel_offer`](#cancel_offer)
+- [`get_offers`](#get_offers)
 
 ### Reference
 
@@ -207,16 +206,16 @@ In this example, we'll offer 0.1 XCH in exchange for 10 USDS.
 
 A few assumptions:
 
--   There is only one wallet fingerprint installed locally. (If you have more than one fingerprint, use the `-f` flag to specify which one to use.)
--   Wallet ID 1 is a standard Chia wallet.
--   Wallet ID 2 is a Stably USD wallet.
--   We won't add a fee to the offer (if you want to add a fee, use the `-m` flag).
+- There is only one wallet fingerprint installed locally. (If you have more than one fingerprint, use the `-f` flag to specify which one to use.)
+- Wallet ID 1 is a standard Chia wallet.
+- Wallet ID 2 is a Stably USD wallet.
+- We won't add a fee to the offer (if you want to add a fee, use the `-m` flag).
 
 Three flags are required to create the offer file:
 
--   `-o`: The Wallet ID and amount being offered.
--   `-r`: The Wallet ID and amount being requested.
--   `-p`: The name of the offer file to be created.
+- `-o`: The Wallet ID and amount being offered.
+- `-r`: The Wallet ID and amount being requested.
+- `-p`: The name of the offer file to be created.
 
 Here's the full command and result:
 
@@ -252,10 +251,10 @@ Status: PENDING_ACCEPT
 
 Congratulations! You have created an offer. A few things to note:
 
--   Your wallet has reserved the coin(s) necessary to complete the offer.
--   The blockchain has _not_ recorded this offer.
--   You can distribute the offer file wherever you want.
--   Anyone who sees the offer file can attempt to accept it.
+- Your wallet has reserved the coin(s) necessary to complete the offer.
+- The blockchain has _not_ recorded this offer.
+- You can distribute the offer file wherever you want.
+- Anyone who sees the offer file can attempt to accept it.
 
 ---
 
@@ -538,13 +537,13 @@ This section will detail a non-comprehensive list of issues you might encounter 
 
 ## Contents:
 
--   [Maker doesn't have enough money](#maker-doesnt-have-enough-money)
--   [Taker doesn't have enough money](#taker-doesnt-have-enough-money)
--   [Taker accepts an unknown CAT offer](#taker-accepts-an-unknown-cat-offer)
--   [Taker attempts to accept an invalid offer](#taker-attempts-to-accept-an-invalid-offer)
--   [Maker cancels an offer locally, Taker accepts the offer](#maker-cancels-an-offer-locally-taker-accepts-the-offer)
--   [Whole coins must be reserved](#whole-coins-must-be-reserved)
--   [Offer involving a CAT1 is invalid](#offer-involving-a-cat1-is-invalid)
+- [Maker doesn't have enough money](#maker-doesnt-have-enough-money)
+- [Taker doesn't have enough money](#taker-doesnt-have-enough-money)
+- [Taker accepts an unknown CAT offer](#taker-accepts-an-unknown-cat-offer)
+- [Taker attempts to accept an invalid offer](#taker-attempts-to-accept-an-invalid-offer)
+- [Maker cancels an offer locally, Taker accepts the offer](#maker-cancels-an-offer-locally-taker-accepts-the-offer)
+- [Whole coins must be reserved](#whole-coins-must-be-reserved)
+- [Offer involving a CAT1 is invalid](#offer-involving-a-cat1-is-invalid)
 
 ---
 
@@ -964,7 +963,7 @@ The CAT1 Standard reached its end of life (EOL) with block 2,311,760 in July 202
 
 ## Further reading
 
--   [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
--   [Offers reference](https://chialisp.com/offers)
--   [GUI tutorial](/guides/offers-gui-tutorial)
--   [Info on the coin set model](/coin-set-intro)
+- [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
+- [Offers reference](https://chialisp.com/offers)
+- [GUI tutorial](/guides/offers-gui-tutorial)
+- [Info on the coin set model](/coin-set-intro)

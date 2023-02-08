@@ -1,5 +1,4 @@
 ---
-id: nft-intro
 slug: /guides/nft-intro
 title: NFT Introduction
 ---
@@ -17,24 +16,24 @@ This document will guide you through the process of creating DIDs that conform t
 
 For detailed instructions on running each of the commands from this tutorial, see:
 
--   [DID CLI reference](/did-cli)
--   [NFT CLI reference](/nft-cli)
--   [DID RPC reference](/did-rpc)
--   [NFT RPC reference](/nft-rpc)
+- [DID CLI reference](/did-cli)
+- [NFT CLI reference](/nft-cli)
+- [DID RPC reference](/did-rpc)
+- [NFT RPC reference](/nft-rpc)
 
 For more documentation about Chia NFTs and DIDs, see:
 
--   [Off-chain metadata format for NFT1](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0007.md)
--   [Explanation of NFT puzzles](https://chialisp.com/nfts)
--   [Explanation of DID puzzles](https://chialisp.com/dids)
+- [Off-chain metadata format for NFT1](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0007.md)
+- [Explanation of NFT puzzles](https://chialisp.com/nfts)
+- [Explanation of DID puzzles](https://chialisp.com/dids)
 
 ### Key features
 
 Chia NFTs focus on three key features:
 
--   Marketplace Independence -- you never are required to transfer your NFT to a marketplace in order to sell it. While marketplace custody is allowed, self custody has been standard with Chia NFTs from Day 1.
--   Consistent Provenance -- DIDs enable the tracking of an NFT's complete history. You are highly encouraged to attach your DID to all of the NFTs you create. The DID will later be used to verify the NFTs' authenticity.
--   Digital Permanance -- You can add a list of links to your NFTs' data, metadata, and license. Each link is verified with a hash, which is permanently embedded in the NFT itself. If one link changes or disappears, you can rely on another existing link, or create a new one. Even if all of the links disappear, as long as someone maintains a copy of the original file, the owner can always prepend a new link to the list.
+- Marketplace Independence -- you never are required to transfer your NFT to a marketplace in order to sell it. While marketplace custody is allowed, self custody has been standard with Chia NFTs from Day 1.
+- Consistent Provenance -- DIDs enable the tracking of an NFT's complete history. You are highly encouraged to attach your DID to all of the NFTs you create. The DID will later be used to verify the NFTs' authenticity.
+- Digital Permanance -- You can add a list of links to your NFTs' data, metadata, and license. Each link is verified with a hash, which is permanently embedded in the NFT itself. If one link changes or disappears, you can rely on another existing link, or create a new one. Even if all of the links disappear, as long as someone maintains a copy of the original file, the owner can always prepend a new link to the list.
 
 ### Collections
 
@@ -44,15 +43,15 @@ While some creators may wish to release their NFTs as individual pieces (so-call
 
 "Series" describes a set of _distinct_ NFTs that belong together in a collection. Chia NFTs use two parameters in their _off-chain_ metadata related to series:
 
--   `series_number` is the sequence number of this NFT in the collection. Following the Fruits of the World example, if the collection consists of ten images of distinct types of fruit, these could be labeled "Fruits of the World #1", "Fruits of the World #2", etc. Typically, NFT collections will list the series number in each NFT's title. However, this is not mandatory. It is also possible to include the series number in the off-chain metadata.
--   `series_total` is the total number of NFTs in the series. Creators have the option to either specify the `series_total` upon the collection's initial minting, or to leave this parameter unspecified. In the latter case, potential buyers won't know the total number that will be minted, which could have a negative impact on the price of individual NFTs.
+- `series_number` is the sequence number of this NFT in the collection. Following the Fruits of the World example, if the collection consists of ten images of distinct types of fruit, these could be labeled "Fruits of the World #1", "Fruits of the World #2", etc. Typically, NFT collections will list the series number in each NFT's title. However, this is not mandatory. It is also possible to include the series number in the off-chain metadata.
+- `series_total` is the total number of NFTs in the series. Creators have the option to either specify the `series_total` upon the collection's initial minting, or to leave this parameter unspecified. In the latter case, potential buyers won't know the total number that will be minted, which could have a negative impact on the price of individual NFTs.
 
 #### Edition
 
 "Edition" means multiple NFTs with _identical_ data and metadata. In the NFT1 standard, the NFT's edition is part of the _on-chain_ metadata. This means that it is built into the NFT itself. There are two parmeters related to edition:
 
--   `edition_number` is the sequence number of this NFT's edition. For example, if the collection contains ten identical images of an apple, the NFTs could be labeled `Apple #1 of 10`, `Apple #2 of 10`, etc. The `edition_number` would then be `1`, `2`, etc. If each NFT in a collection is distinct, then the `edition_number` for each NFT is `1`. In this case, most NFT creators will choose not to specify this redundant `edition_number`.
--   `edition_count` is the total number of identical NFTs that are part of this edition. If `edition_number` is specified for an NFT, then `edition_count` is required. In the above example, each NFT that contains an identical apple image would have an `edition_count` of 10. Because this parameter must be specified upon an NFT's minting, it gives prospective buyers confidence that no surprise copies of an NFT will later be minted.
+- `edition_number` is the sequence number of this NFT's edition. For example, if the collection contains ten identical images of an apple, the NFTs could be labeled `Apple #1 of 10`, `Apple #2 of 10`, etc. The `edition_number` would then be `1`, `2`, etc. If each NFT in a collection is distinct, then the `edition_number` for each NFT is `1`. In this case, most NFT creators will choose not to specify this redundant `edition_number`.
+- `edition_count` is the total number of identical NFTs that are part of this edition. If `edition_number` is specified for an NFT, then `edition_count` is required. In the above example, each NFT that contains an identical apple image would have an `edition_count` of 10. Because this parameter must be specified upon an NFT's minting, it gives prospective buyers confidence that no surprise copies of an NFT will later be minted.
 
 ## CLVM Cost
 
@@ -307,33 +306,33 @@ NFT = 10
 
 A few notes about this enum:
 
--   The only types that are supported as of June 2022 are STANDARD_WALLET, DECENTRALIZED_ID, CAT, and NFT
--   Each fingerprint/Wallet Key can support _each_ of the following:
-    -   One `STANDARD_WALLET`
-    -   An unbounded number of `CAT`s
-    -   An unbounded number of `DECENTRALIZED_ID`s
-    -   One `NFT` wallet per `DECENTRALIZED_ID` (where each `NFT` wallet is associated with exactly one `DECENTRALIZED_ID`)
-    -   One additional `NFT` wallet that is not associated a `DECENTRALIZED_ID`
--   If an existing `NFT` wallet is already associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet associated with the same `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
--   If an existing `NFT` wallet is not associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet that is not associated with a `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
--   In addition to a type, each wallet also has a `Wallet ID`. This is simply an integer that increments for each new wallet.
+- The only types that are supported as of June 2022 are STANDARD_WALLET, DECENTRALIZED_ID, CAT, and NFT
+- Each fingerprint/Wallet Key can support _each_ of the following:
+  - One `STANDARD_WALLET`
+  - An unbounded number of `CAT`s
+  - An unbounded number of `DECENTRALIZED_ID`s
+  - One `NFT` wallet per `DECENTRALIZED_ID` (where each `NFT` wallet is associated with exactly one `DECENTRALIZED_ID`)
+  - One additional `NFT` wallet that is not associated a `DECENTRALIZED_ID`
+- If an existing `NFT` wallet is already associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet associated with the same `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
+- If an existing `NFT` wallet is not associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet that is not associated with a `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
+- In addition to a type, each wallet also has a `Wallet ID`. This is simply an integer that increments for each new wallet.
 
 For example, the following setup would be possible to run on a single computer:
 
--   Wallet Key 1 (not synced)
-    -   Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
-    -   Marmot (Type = CAT, Wallet ID = 2)
--   Wallet Key 2 (synced)
-    -   Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
-    -   NFT Wallet (Type = NFT, Wallet ID = 2)
-    -   Marmot (Type = CAT, Wallet ID = 3)
-    -   Spacebucks (Type = CAT, Wallet ID = 4)
--   Wallet Key 3 (synced)
-    -   Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
-    -   NFT Wallet (Type = NFT, Wallet ID = 2, not associated with a DID)
-    -   DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 3)
-    -   DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 4)
-    -   NFT Wallet (Type = NFT, Wallet ID = 5, associated with DID from Wallet ID 3)
+- Wallet Key 1 (not synced)
+  - Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  - Marmot (Type = CAT, Wallet ID = 2)
+- Wallet Key 2 (synced)
+  - Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  - NFT Wallet (Type = NFT, Wallet ID = 2)
+  - Marmot (Type = CAT, Wallet ID = 3)
+  - Spacebucks (Type = CAT, Wallet ID = 4)
+- Wallet Key 3 (synced)
+  - Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  - NFT Wallet (Type = NFT, Wallet ID = 2, not associated with a DID)
+  - DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 3)
+  - DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 4)
+  - NFT Wallet (Type = NFT, Wallet ID = 5, associated with DID from Wallet ID 3)
 
 Under Wallet Key 3 of this setup, it would not be possible to create another NFT wallet that is not associated with a DID, or another DID wallet that is associated with the DID from Wallet ID 3. However, it would be possible to create an NFT wallet that is associated with the DID from WALLET ID 4. It would also be possible to create a new DID within Wallet Key 3.
 
@@ -343,10 +342,10 @@ Under Wallet Key 3 of this setup, it would not be possible to create another NFT
 
 For this guide, we'll obtain four images and hashes to be used for creating NFTs with the following use cases:
 
--   CLI, no DID
--   CLI, with DID
--   RPC, no DID
--   RPC, with DID
+- CLI, no DID
+- CLI, with DID
+- RPC, no DID
+- RPC, with DID
 
 Here's the general technique to obtain images and hashes:
 
@@ -355,21 +354,21 @@ First, find an image to mint as an NFT. For this example, we'll use an image tha
 
 Then, calculate the image's hash. Here are three (of many) options:
 
--   cURL with sha256sum. If you're on Windows, you'll need to run this command from Git Bash.
+- cURL with sha256sum. If you're on Windows, you'll need to run this command from Git Bash.
 
-    ```bash
-    curl -s https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg | sha256sum
-    14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 *-
-    ```
+  ```bash
+  curl -s https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg | sha256sum
+  14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 *-
+  ```
 
--   cURL with shasum. If you're on Windows, you'll need to run this command from Git Bash.
+- cURL with shasum. If you're on Windows, you'll need to run this command from Git Bash.
 
-    ```bash
-    curl -s https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg | shasum -a 256
-    14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 *-
-    ```
+  ```bash
+  curl -s https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg | shasum -a 256
+  14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0 *-
+  ```
 
--   Save the image locally. Visit [https://emn178.github.io/online-tools/sha256_checksum.html](https://emn178.github.io/online-tools/sha256_checksum.html). Upload the image and click the Hash button.
+- Save the image locally. Visit [https://emn178.github.io/online-tools/sha256_checksum.html](https://emn178.github.io/online-tools/sha256_checksum.html). Upload the image and click the Hash button.
 
 In all three cases, the hash for this sample image is `14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0`.
 
@@ -377,33 +376,33 @@ The following is a list of the sample images and hashes this guide will use. For
 
 ### CLI, no DID
 
--   URI: [https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg](https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg)
--   Hash: feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68
+- URI: [https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg](https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg)
+- Hash: feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68
 
 ### CLI, with DID
 
--   URI: [https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg](https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg)
--   Hash: 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
--   Metadata URI 1: https://pastebin.com/raw/PnaQGQiH
--   Metadata URI 2: https://pastebin.com/raw/KTwUQ8hM
--   Metadata Hash: e9e9366f050e90ceb04a4778f2adfa02dfb565327d225eb35101f0de553ac20b
--   License URI: https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE
--   License Hash: 30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6
+- URI: [https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg](https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg)
+- Hash: 14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0
+- Metadata URI 1: https://pastebin.com/raw/PnaQGQiH
+- Metadata URI 2: https://pastebin.com/raw/KTwUQ8hM
+- Metadata Hash: e9e9366f050e90ceb04a4778f2adfa02dfb565327d225eb35101f0de553ac20b
+- License URI: https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE
+- License Hash: 30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6
 
 ### RPC, no DID
 
--   URI: [https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg](https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg)
--   Hash: 995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600
+- URI: [https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg](https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg)
+- Hash: 995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600
 
 ### RPC, with DID
 
--   URI: [https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg](https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg)
--   Hash: 0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4
--   Metadata URI 1: https://pastebin.com/raw/BHZc1suk
--   Metadata URI 2: https://pastebin.com/raw/bnzGwjmB
--   Metadata Hash: 07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51
--   License URI: https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE
--   License Hash: 30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6
+- URI: [https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg](https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg)
+- Hash: 0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4
+- Metadata URI 1: https://pastebin.com/raw/BHZc1suk
+- Metadata URI 2: https://pastebin.com/raw/bnzGwjmB
+- Metadata Hash: 07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51
+- License URI: https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE
+- License Hash: 30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6
 
 ## Where to store images for NFTs
 

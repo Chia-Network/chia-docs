@@ -1,5 +1,4 @@
 ---
-id: coin-lifecycle-and-testing
 slug: /guides/coin-lifecycle-and-testing-video-series
 title: Coin Lifecycle and Testing
 ---

@@ -1,5 +1,4 @@
 ---
-id: chialisp-concepts-inner-puzzles
 slug: /guides/chialisp-inner-puzzles
 title: Inner Puzzles
 ---

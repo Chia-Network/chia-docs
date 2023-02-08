@@ -1,5 +1,4 @@
 ---
-id: chialisp-primer-bls-signatures
 slug: /guides/chialisp-bls-signatures
 title: 5. BLS Signatures
 ---
