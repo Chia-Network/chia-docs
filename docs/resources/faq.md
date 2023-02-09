@@ -929,6 +929,32 @@ Finally, you need to restart Chia for these settings to be picked up.
 
 Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
 
+### How can I sign and verify a message with an NFT?
+
+From the CLI, you can use the `chia wallet nft sign_message` command. See [our CLI documentation](/nft-cli#sign_message) for more details.
+
+From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `Settings` section. Note that as of February 2023, this has not been included in an official build yet. It is only available in the `main` branch of the [chia-blockchain-gui](https://github.com/Chia-Network/chia-blockchain-gui/) repository. Eventually this will be added to an official build, but for now you can use it at your own risk.
+
+1. Click `Settings`, click on the `ADVANCED` tab, and click `CREATE SIGNATURE`:
+
+  ![ADVANCED tab](/img/verify_signature/1_advanced_tab.png)
+
+2. Click `NFT`, enter the message you want to sign, and click `SIGN`:
+
+  ![Sign a message](/img/verify_signature/2_sign_nft_message.png)
+
+3. The message details will appear. Copy these details to the clipboard or save them to a file:
+
+  ![Show the signed message](/img/verify_signature/3_show_message.png)
+
+4. To verify a signature, click `VERIFY SIGNATURE` from the `ADVANCED` tab and enter the signature's details:
+
+  ![Verify the message](/img/verify_signature/4_verify_message.png)
+
+5. If the signature is valid for the details you entered, you will receive a `Valid` message:
+
+  ![Message verified](/img/verify_signature/5_signature_verified.png)
+
 ---
 
 ## Support/Miscellaneous

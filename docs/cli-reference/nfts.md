@@ -357,7 +357,7 @@ Options:
 | -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+   <summary>Example 1: Basic signing</summary>
 
 ```bash
 chia wallet nft sign_message -f 590161281 -i nft12dfld077vn3ywp4vdx9ljg96k89kpr6jlqwkm7lgaf3g8jwn2l4q6eytqs -m "This is a test message."
@@ -369,6 +369,104 @@ Response:
 Message: This is a test message.
 Public Key: a5b35d3370745ae7634022ddd970379b4ed4acdd2d34622f1dfdf2b9923b16ac6e8b317abcf1cc8beb1e882d341e4458
 Signature: 88eb8bacdc6b19614aa7744c3b3809e3c0ff76ba398fe6eebb7eaeb2fcb35452243edf85f31c92bdc17422511cc529fc16c95d62d91b58ec2b01986d6d768fe2a332edab95057b5ed2c1682d5817b2fc6694a6f1ebd3ee9040d5760c4a230c0d
+```
+
+</details>
+
+<details>
+   <summary>Example 2: Obtain and validate a signature</summary>
+
+This example was created on the testnet. For applying these instructions to mainnet, the only material difference is in the prefix of the address (txch/xch).
+
+Start by signing a message:
+
+```bash
+chia wallet nft sign_message -f 52772570 -i nft1srnr973dl9hqlswfl9wz5f2xap27ue8057yf6hw2erav2tf987vs4ql9y2 -m 'happy happy joy joy'
+```
+
+Response:
+
+```
+Message: happy happy joy joy
+Public Key: a563d59587cb79ca4ecd544733955f869e9f0f41d0707bc3ada31058917566defd4a1560b528b2bd6849b7c7f29de308
+Signature: 8b7b6fa8cd7689313df0900a726309f40100020f9a1e6ffdf8c0fd043057c383dbbec76cb091b5943330c215831225570be2bf966a148a334e17d8fc888f36a7a08e71faf4ffb3418a0b18a965fbed4208fa83da02071c7c192a80c8ceb8f2b6
+Signing Mode: BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_
+```
+
+Next, let's say you want to verify whether the above signature came from a specific NFT. Start by obtaining the NFT's information:
+
+```bash
+chia rpc wallet nft_get_info '{"coin_id":"nft1srnr973dl9hqlswfl9wz5f2xap27ue8057yf6hw2erav2tf987vs4ql9y2"}'
+```
+
+Note the `p2_address` in the response:
+
+```bash
+{
+    "nft_info": {
+        "chain_info": "((117 \"https://bafybeibhw4np3amsybmddqohgkkxgcbsl3x7lc2pagckc6u422zhz6liai.ipfs.nftstorage.link/8.png\") (104 . 0x57bab753284cad6800460fddfca94f916a0d98a8b5329318075472a31fa22a74) (28021 \"https://bafybeibhw4np3amsybmddqohgkkxgcbsl3x7lc2pagckc6u422zhz6liai.ipfs.nftstorage.link/8.json\") (27765) (29550 . 1) (29556 . 1) (28008 . 0xf1ae0cd509485cfe8f273163ba6dfdd4a7465de3cd2cc912265c420f3768338a))",
+        "data_hash": "0x57bab753284cad6800460fddfca94f916a0d98a8b5329318075472a31fa22a74",
+        "data_uris": [
+            "https://bafybeibhw4np3amsybmddqohgkkxgcbsl3x7lc2pagckc6u422zhz6liai.ipfs.nftstorage.link/8.png"
+        ],
+        "edition_number": 1,
+        "edition_total": 1,
+        "launcher_id": "0x80e632fa2df96e0fc1c9f95c2a2546e855ee64efa7889d5dcac8fac52d253f99",
+        "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+        "license_hash": "0x",
+        "license_uris": [],
+        "metadata_hash": "0xf1ae0cd509485cfe8f273163ba6dfdd4a7465de3cd2cc912265c420f3768338a",
+        "metadata_uris": [
+                 "https://bafybeibhw4np3amsybmddqohgkkxgcbsl3x7lc2pagckc6u422zhz6liai.ipfs.nftstorage.link/8.json"
+        ],
+        "mint_height": 2130045,
+        "minter_did": null,
+        "nft_coin_id": "0x6cd6c98916e8fcb6ad8c0fcf28cd2ed8b65c8163f7072bf491366a99f26770ce",
+        "off_chain_metadata": null,
+        "owner_did": null,
+        "p2_address": "0x56eaa066a0d202ffa30cf6a9ecc6d13002c32cc16d9507ef83ae9b8972a9700a",
+        "pending_transaction": false,
+        "royalty_percentage": null,
+        "royalty_puzzle_hash": null,
+        "supports_did": false,
+        "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+    },
+    "success": true
+}
+```
+
+Next, convert the `p2_address` to an address. Spacescan.io has a [tool](https://www.spacescan.io/tools/puzzlehashconverter) that will perform this conversion. 
+It is also possible to do this conversion from the command line with the [chia-dev-tools repo](https://github.com/Chia-Network/chia-dev-tools), as shown here:
+
+```bash
+cdv encode --prefix txch 0x56eaa066a0d202ffa30cf6a9ecc6d13002c32cc16d9507ef83ae9b8972a9700a
+```
+
+Note that the `--prefix` flag is only needed if you are not running on mainnet. In this case, the resulting address begins with `txch`:
+
+```bash
+txch12m42qe4q6gp0lgcv7657e3k3xqpvxtxpdk2s0mur46dcju4fwq9qx5g0vx
+```
+
+Finally, call the `verify_signature` wallet RPC and pass in the address you just obtained:
+
+```
+chia rpc wallet verify_signature '{
+  "pubkey": "a563d59587cb79ca4ecd544733955f869e9f0f41d0707bc3ada31058917566defd4a1560b528b2bd6849b7c7f29de308",
+  "signature": "8b7b6fa8cd7689313df0900a726309f40100020f9a1e6ffdf8c0fd043057c383dbbec76cb091b5943330c215831225570be2bf966a148a334e17d8fc888f36a7a08e71faf4ffb3418a0b18a965fbed4208fa83da02071c7c192a80c8ceb8f2b6",
+  "signing_mode": "BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_",
+  "message": "happy happy joy joy",
+  "address": "txch12m42qe4q6gp0lgcv7657e3k3xqpvxtxpdk2s0mur46dcju4fwq9qx5g0vx"
+}'
+```
+
+The result shows that the signature is valid:
+
+```
+{
+    "isValid": true,
+    "success": true
+}
 ```
 
 </details>
