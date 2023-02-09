@@ -9,7 +9,55 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-This document will guide you through the process of setting up Chia's DataLayer and running a few basic functions. For additional technical resources, see the following:
+### Intro
+
+This document will guide you through the process of setting up Chia's DataLayer and running a few basic functions. Before using this guide, you may want to familiarize yourself with DataLayer's structure and function. Our [blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/) announcing DataLayer's launch is a great place to get started.
+
+#### Proof of inclusion
+
+To expand upon a concept that was only covered briefly in the blog post, here is some more info about proof of inclusion:
+
+A proof of inclusion is a way to prove that a key/value pair is being stored, without needing to provide the entire Merke tree from the store. This is accomplished by creating a spend of the DataLayer singleton that accepts two things in its solution:
+1. The hash of a key/value pair from the Merkle tree
+2. Proof that the same key/value pair actually exists in the Merkle tree. This proof is obtained by providing the minimum peer hashes necessary to recalculate the Merkle root that is currently stored on-chain, starting from the leaf obtained from the key/value pair.
+
+When this proof is obtained, the singleton announces the hash that exists in that DataLayer table.  
+
+#### Example 1: Two-party commit
+
+"Two-party commit" is the simplest example of a proof of inclusion. It is an Offer where the owner of one DataLayer table offers to make an update if and only if the owner of another DataLayer table makes a specified update.
+
+A two-party commit uses an Offer that includes six asserts and spends.
+
+In the original Offer, the maker includes:
+
+1. A spend of the maker's DataLayer singleton to make the update to the maker's table
+2. A spend of the maker's DataLayer singleton to announce a proof of inclusion of the updates made
+3. An assert of an announcement from the taker of a proof of inclusion of a required update
+
+To accept the offer, the taker adds:
+
+4. A spend of the taker DataLayer singleton to make the update
+5. A spend of the taker DataLayer singleton to announce the proof of inclusion of the updated data
+6. An assert of the proof of inclusion from the maker
+
+The offer spendbundle only goes through when all of the necessary assertions are satisfied.
+
+Where it gets interesting is what other coins might do with that announcement. Another coin can accept the key and value in its solution, hash them, and assert an announcement from the DataLayer coin of a proof of inclusion of that hash. If the assert succeeds, then the coin can confidently use that data in the key and value as a validated input to whatever it may want to do.
+
+#### Example 2: NFT ratings
+
+A hypothetical example of a proof of inclusion could be NFT ratings. Here's how it would work:
+
+* A critic provides ratings for various NFTs in a DataLayer table, such that people could create offers based on that rating.
+* A prospetive buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
+* To accept the offer, an NFT owner would have to include a proof of inclusion from the rating table that their NFT had that rating.
+
+This example would require anyone-can-spend DataLayer proofs of inclusion (these doesn't exist yet, but would be straightforward to build). The anyone-can-spend proof of inclusion could also generate a payment to the DataLayer table owner to pay RatingWiz for their services.
+
+#### Resources and notes
+
+For additional technical resources, see the following:
 
 -   [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
 -   [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
@@ -29,6 +77,8 @@ Commands that modify the blockchain include an optional fee. This fee can be spe
 If you have already installed Chia version 1.6 or greater and started the reference client, you may skip to the next section: [Configure Chia to run DataLayer](#configure-chia-to-run-datalayer).
 
 :::
+
+## DataLayer Guide
 
 ### Install and Run Chia
 
