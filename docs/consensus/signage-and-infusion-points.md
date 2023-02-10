@@ -31,8 +31,8 @@ For both of our [previous example](/consensus-challenges), as well as the next e
 
 :::
 
--   sub-slot_iterations = 100,000,000
--   sp_interval_iterations = `sub-slot_iterations` / 64 = 1,562,500
+- sub-slot_iterations = 100,000,000
+- sp_interval_iterations = `sub-slot_iterations` / 64 = 1,562,500
 
 The farmer computes the **required_iterations** for each proof of space. If the required_iterations < sp_interval_iterations, the proof of space is eligible for inclusion into the blockchain. At this point, the farmer fetches the entire proof of space from disk (which requires 64 disk seeks, or 640 ms on a slow HDD), creates an unfinished block, and broadcasts it to the network.
 
@@ -73,18 +73,18 @@ Figure 5: timelords create proofs for both the signage point and the infusion po
 
 Figure 5 shows the infusion point as a green square marked `b1`. The first and last blocks of the sub-slot are marked `r1` and `r2`, respectively. For this example, the farmer will create the block at the time of the signage point marked with a red arrow, which we'll call `b1'`.
 
-At `b1`, the farmer's block gets combined with the VDF output for that point. This creates a new input for the VDF from that point on, i.e. we infuse the farmer’s block into the VDF. `b1` is only fully valid after two events have occurred:
+At `b1`, the farmer's block gets combined with the VDF output for that point. This creates a new input for the VDF from that point on, i.e. we infuse the farmer's block into the VDF. `b1` is only fully valid after two events have occurred:
 
 1. infusion_iterations has been reached, and
-2. Two VDF proofs have been included: one from `r1` to the signage point and one from `r1` to `b1`. (Actually it’s more since there are three VDF chains, explained in the [Three VDF Chains page](/three-vdf-chains)).
+2. Two VDF proofs have been included: one from `r1` to the signage point and one from `r1` to `b1`. (Actually it's more since there are three VDF chains, explained in the [Three VDF Chains page](/three-vdf-chains)).
 
-In Figure 5, the farmer creates the block at the time of the signage point, `b1’`. However, `b1’` is not finished yet, since it needs the infusion point VDF. Once the infusion_iterations VDF has been released, it is added to `b1’` to form the finished block at `b1`.
+In Figure 5, the farmer creates the block at the time of the signage point, `b1'`. However, `b1'` is not finished yet, since it needs the infusion point VDF. Once the infusion_iterations VDF has been released, it is added to `b1'` to form the finished block at `b1`.
 
 Recall that in this example,
 
--   sub-slot_iterations = 100M
--   sp_interval_iterations is 1.5625M.
-    Furthermore, let’s say a farmer has a total of 1000 plots.
+- sub-slot_iterations = 100M
+- sp_interval_iterations is 1.5625M.
+  Furthermore, let's say a farmer has a total of 1000 plots.
 
 For each of the 64 signage points, as they are released to the network every 9.375 seconds, or every 1.5625M iterations, the farmer computes the plot filter and sees how many plots pass. For each passing plot, the farmer calculates required_iterations.
 
@@ -130,6 +130,6 @@ This begs the question: why not use even more signage points in the consensus? T
 
 **required_iterations**: A number computed using the quality string, used to choose proofs of space which are eligible to make blocks. The vast majority of proofs of space will have required_iterations which are too high, and thus not eligible for inclusion into the chain. This number is used to compute the infusion point.
 
-**Infusion point**: The point in time at infusion_iterations from the challenge point, for a proof of space with a certain challenge and infusion_iterations. At this point, the farmer’s block gets infused into the reward chain VDF. The infusion point of a block is always between 3 and 4 signage points after the signage point of that block. Computed as signage_point_iterations + 3 \* sp_interval_iterations + required_iterations.
+**Infusion point**: The point in time at infusion_iterations from the challenge point, for a proof of space with a certain challenge and infusion_iterations. At this point, the farmer's block gets infused into the reward chain VDF. The infusion point of a block is always between 3 and 4 signage points after the signage point of that block. Computed as signage_point_iterations + 3 \* sp_interval_iterations + required_iterations.
 
 The delay between the signage point and infusion point has many benefits, including defense against orphaning and selfish farming, decreased forks, and no VDF pauses. This delay of around 28 seconds is given so that farmers have enough time to sign without delaying the slot VDF. Well-behaving farmers sign only one signage point with each proof of space, meaning that attackers cannot easily reorg the chain.

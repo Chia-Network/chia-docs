@@ -159,7 +159,7 @@ In any case, this attack will not become feasible until at least 2026, given pro
 
 With the fastest timelord in the system, an attacker can more effectively perform a long-range attack: they can expand their space while farming in a private chain.
 
-If the attacker does not reach a total of 40.5% of space (with the timelord boosting and extending many chains as above), the usefulness of the faster timelord decreases substantially. This is because inclusion and exclusion of blocks does not depend on how fast you can perform the VDF, but instead depends on whether it’s less than the sub-slot iterations. Furthermore, an attacker needs the space of the rest of the network in order to advance, and therefore must release the challenges to the network.
+If the attacker does not reach a total of 40.5% of space (with the timelord boosting and extending many chains as above), the usefulness of the faster timelord decreases substantially. This is because inclusion and exclusion of blocks does not depend on how fast you can perform the VDF, but instead depends on whether it's less than the sub-slot iterations. Furthermore, an attacker needs the space of the rest of the network in order to advance, and therefore must release the challenges to the network.
 
 In certain cases where blocks come very close together, having a faster timelord can allow an attacker to orphan certain blocks, although this does not increase rewards in the short term (it would hurt others, but not benefit the attacker), and has a risk of undermining the network in the long term (orphaning blocks decreases public trust).
 

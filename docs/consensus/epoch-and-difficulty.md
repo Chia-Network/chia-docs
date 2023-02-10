@@ -34,7 +34,7 @@ sub slot iterations = iterations per second * 600
 sp interval iterations = floor(sub slot iterations / 64)
 ```
 
-Note that we don’t take the iterations and time exactly at the end of an epoch, but at the last infusion point of a block in an epoch (aka `epoch$`), the reason being simply that we only have timestamps available when blocks are infused.
+Note that we don't take the iterations and time exactly at the end of an epoch, but at the last infusion point of a block in an epoch (aka `epoch$`), the reason being simply that we only have timestamps available when blocks are infused.
 
 ```python
 weight/sec of last epoch = (new weight - old weight) / duration of last epoch
@@ -68,6 +68,6 @@ The cost of creating a plot includes the electricity to calculate all of the tab
 
 It is clear that this attack is not worthwhile, and that storing the plots is much cheaper. This is discussed in further detail in the [Attacks and Countermeasures page](/consensus-attacks#replotting).
 
-The above explains why the sub-epoch interval should be kept relatively low. But why can’t we further reduce it to lower than 2 hours to further disincentivize replotting attacks? The reason is that whenever non-canonical data is infused into the challenge chain (which the reward chain contains, see the [Foliage page](/consensus-foliage) for more info), an opportunity for grinding occurs. This means an attacker can possibly choose to include or exclude blocks to manipulate what the challenge will be 2 hours into the future. If this time is too short, they can gain a small space advantage by doing this more often.
+The above explains why the sub-epoch interval should be kept relatively low. But why can't we further reduce it to lower than 2 hours to further disincentivize replotting attacks? The reason is that whenever non-canonical data is infused into the challenge chain (which the reward chain contains, see the [Foliage page](/consensus-foliage) for more info), an opportunity for grinding occurs. This means an attacker can possibly choose to include or exclude blocks to manipulate what the challenge will be 2 hours into the future. If this time is too short, they can gain a small space advantage by doing this more often.
 
 The second (and completely separate) purpose for sub-epochs is to act as checkpoints in a Flyclient-like protocol explained in the [Light Clients page](/light-clients), to increase the efficiency of light clients.
