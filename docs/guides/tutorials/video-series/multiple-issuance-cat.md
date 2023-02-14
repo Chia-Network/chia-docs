@@ -1,5 +1,4 @@
 ---
-id: multiple-issuance-cat
 slug: /guides/multiple-issuance-cat-video-series
 title: Multiple Issuance CAT
 ---

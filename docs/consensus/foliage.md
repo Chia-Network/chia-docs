@@ -13,7 +13,7 @@ In order to include farming rewards, as well as transactions, in the system, we 
 
 **Foliage**: The component of blocks and the blockchain which includes specification of where rewards should go, which transactions should be included, and what the previous foliage block is. This is up to the farmer to decide and is grindable, so it can never be used as input to the challenges.
 
-**Re-org**: A re-org (or reorganization) is when a node’s view of the peak changes, such that the old view contains a block that is not included in the new view (some block has been reversed). Both trunk and foliage re-orgs are possible, but should be rare in practice, and low in depth.
+**Re-org**: A re-org (or reorganization) is when a node's view of the peak changes, such that the old view contains a block that is not included in the new view (some block has been reversed). Both trunk and foliage re-orgs are possible, but should be rare in practice, and low in depth.
 
 In figure 11 below we can see that the foliage is added to blocks to produce an additional chain. This foliage includes a hash of the previous foliage, a reward block hash, and a signature. These foliage pointers are separate from the trunk chain, and are not canonical. That is, farmers could theoretically create a foliage re-org where foliage is replaced, but the exact same trunk (proofs of space and time) are used.
 
@@ -23,7 +23,7 @@ Furthermore, blocks like B3, which come parallel with another foliage block (B2)
 
 :::info
 
-By "coming in parallel", we mean that the second block’s signage point occurs before the first block's infusion point.
+By "coming in parallel", we mean that the second block's signage point occurs before the first block's infusion point.
 
 :::
 

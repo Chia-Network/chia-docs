@@ -1,5 +1,4 @@
 ---
-id: announcements-oracles
 slug: /guides/announcements-oracles-video-series
 title: Announcements, Oracles
 ---

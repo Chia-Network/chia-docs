@@ -1,5 +1,4 @@
 ---
-id: nft-bulk-mint
 slug: /guides/nft-bulk-mint
 title: NFT Bulk Minting Tool
 ---
@@ -87,47 +86,47 @@ cd chia-nft-minting-tool
 
 3. Create a new virtual environment and then activate it:
 
-    ```mdx-code-block
-    <Tabs
-      defaultValue="windows"
-      groupId="os"
-      values={[
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-        {label: 'macOS', value: 'macos'},
-      ]}>
-      <TabItem value="windows">
-    ```
+   ```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
 
-    ```powershell
-    python -m venv venv
-    .\venv\Scripts\Activate.ps1
-    ```
+   ```powershell
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   ```
 
-    ```mdx-code-block
-    </TabItem>
-    <TabItem value="linux">
-    ```
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
 
-    ```bash
-    python3 -m venv venv
-    . ./venv/bin/activate
-    ```
+   ```bash
+   python3 -m venv venv
+   . ./venv/bin/activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-      <TabItem value="macos">
-    ```
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
 
-    ```bash
-    python3 -m venv venv
-    . ./venv/bin/activate
-    ```
+   ```bash
+   python3 -m venv venv
+   . ./venv/bin/activate
+   ```
 
-    ```mdx-code-block
-      </TabItem>
-    </Tabs>
-    ```
+   ```mdx-code-block
+     </TabItem>
+   </Tabs>
+   ```
 
 4. Install the bulk minting tool. This will install a copy of Chia in your virtual environment, as well as all other dependencies for the tool:
 
@@ -155,9 +154,9 @@ When you switch to running on the testnet, the peers listed in this table will t
 Eventually the table will be repopulated with testnet peers, but this can take a long time.
 In order to expedite this process, We recommend that you delete your peers tables:
 
--   `~/.chia/mainnet/db/peers.dat`
--   `~/.chia/mainnet/wallet/db/wallet_peers.dat`
-    :::
+- `~/.chia/mainnet/db/peers.dat`
+- `~/.chia/mainnet/wallet/db/wallet_peers.dat`
+  :::
 
 2. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run:
 
@@ -307,9 +306,9 @@ Successfully created a DID did:chia:15m7n008jrpzatcakz55xx9re3zhkt9avxzvqnjgm308
 
 12. Next, run the command to create an NFT wallet that is associated with the DID. This command has three flags:
 
--   `-f <wallet fingerprint>`
--   `-di <DID ID>`
--   `-n <NFT wallet name`
+- `-f <wallet fingerprint>`
+- `-di <DID ID>`
+- `-n <NFT wallet name`
 
 For example:
 
@@ -383,33 +382,33 @@ NFT = 10
 
 A few notes about this enum:
 
--   The only types that are supported as of June 2022 are STANDARD_WALLET, DECENTRALIZED_ID, CAT, and NFT
--   Each fingerprint/Wallet Key can support _each_ of the following:
-    -   One `STANDARD_WALLET`
-    -   An unbounded number of `CAT`s
-    -   An unbounded number of `DECENTRALIZED_ID`s
-    -   One `NFT` wallet per `DECENTRALIZED_ID` (where each `NFT` wallet is associated with exactly one `DECENTRALIZED_ID`)
-    -   One additional `NFT` wallet that is not associated a `DECENTRALIZED_ID`
--   If an existing `NFT` wallet is already associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet associated with the same `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
--   If an existing `NFT` wallet is not associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet that is not associated with a `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
--   In addition to a type, each wallet also has a `Wallet ID`. This is simply an integer that increments for each new wallet.
+- The only types that are supported as of June 2022 are STANDARD_WALLET, DECENTRALIZED_ID, CAT, and NFT
+- Each fingerprint/Wallet Key can support _each_ of the following:
+  - One `STANDARD_WALLET`
+  - An unbounded number of `CAT`s
+  - An unbounded number of `DECENTRALIZED_ID`s
+  - One `NFT` wallet per `DECENTRALIZED_ID` (where each `NFT` wallet is associated with exactly one `DECENTRALIZED_ID`)
+  - One additional `NFT` wallet that is not associated a `DECENTRALIZED_ID`
+- If an existing `NFT` wallet is already associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet associated with the same `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
+- If an existing `NFT` wallet is not associated with a `DECENTRALIZED_ID`, then an attempt to create a new `NFT` wallet that is not associated with a `DECENTRALIZED_ID` will pass, but it will not actually create the `NFT` wallet because it already exists
+- In addition to a type, each wallet also has a `Wallet ID`. This is simply an integer that increments for each new wallet.
 
 For example, the following setup would be possible to run on a single computer:
 
--   Wallet Key 1 (not synced)
-    -   Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
-    -   Marmot (Type = CAT, Wallet ID = 2)
--   Wallet Key 2 (synced)
-    -   Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
-    -   NFT Wallet (Type = NFT, Wallet ID = 2)
-    -   Marmot (Type = CAT, Wallet ID = 3)
-    -   Spacebucks (Type = CAT, Wallet ID = 4)
--   Wallet Key 3 (synced)
-    -   Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
-    -   NFT Wallet (Type = NFT, Wallet ID = 2, not associated with a DID)
-    -   DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 3)
-    -   DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 4)
-    -   NFT Wallet (Type = NFT, Wallet ID = 5, associated with DID from Wallet ID 3)
+- Wallet Key 1 (not synced)
+  - Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  - Marmot (Type = CAT, Wallet ID = 2)
+- Wallet Key 2 (synced)
+  - Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  - NFT Wallet (Type = NFT, Wallet ID = 2)
+  - Marmot (Type = CAT, Wallet ID = 3)
+  - Spacebucks (Type = CAT, Wallet ID = 4)
+- Wallet Key 3 (synced)
+  - Chia Wallet (Type = STANDARD_WALLET, Wallet ID = 1)
+  - NFT Wallet (Type = NFT, Wallet ID = 2, not associated with a DID)
+  - DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 3)
+  - DID Wallet (Type = DECENTRALIZED_ID, Wallet ID = 4)
+  - NFT Wallet (Type = NFT, Wallet ID = 5, associated with DID from Wallet ID 3)
 
 Under Wallet Key 3 of this setup, it would not be possible to create another NFT wallet that is not associated with a DID, or another DID wallet that is associated with the DID from Wallet ID 3. However, it would be possible to create an NFT wallet that is associated with the DID from WALLET ID 4. It would also be possible to create a new DID within Wallet Key 3.
 
@@ -454,10 +453,10 @@ The easiest way to accomplish this is with `dos2unix`. This is not included with
 
 Steps to convert the CSV file:
 
--   Visit the [SourceForge dos2unix site](https://sourceforge.net/projects/dos2unix/).
--   Click the green _“Download”_ button. After five seconds, the `dos2unix` zip file will be downloaded to your Downloads folder.
--   Unzip the `dos2unix` zip file.
--   From a PowerShell window, run:
+- Visit the [SourceForge dos2unix site](https://sourceforge.net/projects/dos2unix/).
+- Click the green _“Download”_ button. After five seconds, the `dos2unix` zip file will be downloaded to your Downloads folder.
+- Unzip the `dos2unix` zip file.
+- From a PowerShell window, run:
 
 ```powershell
 <path to dos2unix.exe> -o <path to CSV file>
@@ -477,12 +476,12 @@ dos2unix: converting file <CSV file> to Unix format...
 
 3. Create the spend bundles. This command has six inputs:
 
--   `-w`: the wallet ID for the NFT wallet (`3` in this example)
--   `-d`: a boolean indicating whether to use a DID (default is `False`)
--   `-a`: the royalty address for the NFTs (typically this is the artist's address)
--   `-r`: the royalty percentage, in basis points ("300" means 3%)
--   `-t`: a boolean indicating whether the target addresses are included in the metadata csv file (default is `False`)
--   The name of the output file where the spend bundles will be stored (`output.pkl` in this example)
+- `-w`: the wallet ID for the NFT wallet (`3` in this example)
+- `-d`: a boolean indicating whether to use a DID (default is `False`)
+- `-a`: the royalty address for the NFTs (typically this is the artist's address)
+- `-r`: the royalty percentage, in basis points ("300" means 3%)
+- `-t`: a boolean indicating whether the target addresses are included in the metadata csv file (default is `False`)
+- The name of the output file where the spend bundles will be stored (`output.pkl` in this example)
 
 For example:
 
@@ -507,8 +506,8 @@ Note that you may see a warning such as:
 This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
-    - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
-    - `-o`: set this to create a separate offer file for each NFT, using the specified price. In this example, the offer price will be 100 mojos
+   - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
+   - `-o`: set this to create a separate offer file for each NFT, using the specified price. In this example, the offer price will be 100 mojos
 
 ```bash
 chianft submit-spend-bundles -m 10 -o 100 output.pkl
@@ -559,10 +558,10 @@ The easiest way to accomplish this is with `dos2unix`. This is not included with
 
 Steps to convert the CSV file:
 
--   Visit the [SourceForge dos2unix site](https://sourceforge.net/projects/dos2unix/).
--   Click the green _“Download”_ button. After five seconds, the `dos2unix` zip file will be downloaded to your Downloads folder.
--   Unzip the `dos2unix` zip file.
--   From a PowerShell window, run:
+- Visit the [SourceForge dos2unix site](https://sourceforge.net/projects/dos2unix/).
+- Click the green _“Download”_ button. After five seconds, the `dos2unix` zip file will be downloaded to your Downloads folder.
+- Unzip the `dos2unix` zip file.
+- From a PowerShell window, run:
 
 ```powershell
 <path to dos2unix.exe> -o <path to CSV file>
@@ -582,12 +581,12 @@ dos2unix: converting file <CSV file> to Unix format...
 
 3. Create the spend bundles. This command has six inputs:
 
--   `-w`: the wallet ID for the NFT wallet (`3` in this example)
--   `-d`: a boolean indicating whether to use a DID (default is `False`)
--   `-a`: the royalty address for the NFTs (typically this is the artist's address)
--   `-r`: the royalty percentage, in basis points ("300" means 3%)
--   `-t`: a boolean indicating whether the target addresses are included in the metadata csv file (default is `False`; we'll use `True` for this example)
--   The name of the output file where the spend bundles will be stored (`output.pkl` in this example)
+- `-w`: the wallet ID for the NFT wallet (`3` in this example)
+- `-d`: a boolean indicating whether to use a DID (default is `False`)
+- `-a`: the royalty address for the NFTs (typically this is the artist's address)
+- `-r`: the royalty percentage, in basis points ("300" means 3%)
+- `-t`: a boolean indicating whether the target addresses are included in the metadata csv file (default is `False`; we'll use `True` for this example)
+- The name of the output file where the spend bundles will be stored (`output.pkl` in this example)
 
 For example:
 
@@ -610,8 +609,8 @@ You may see a warning such as:
 This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
-    - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
-    - `-o`: set this to create a separate offer file for each NFT, using the specified price. In this example, the offer price will be 100 mojos
+   - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
+   - `-o`: set this to create a separate offer file for each NFT, using the specified price. In this example, the offer price will be 100 mojos
 
 ```bash
 chianft submit-spend-bundles -m 10 output.pkl

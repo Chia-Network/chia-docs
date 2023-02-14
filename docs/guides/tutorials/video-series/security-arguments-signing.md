@@ -1,5 +1,4 @@
 ---
-id: security-arguments-signing
 slug: /guides/security-arguments-signing-video-series
 title: Security, Arguments, Signing
 ---

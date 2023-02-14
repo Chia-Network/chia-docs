@@ -1,5 +1,4 @@
 ---
-id: chialisp-primer-testnet-setup
 slug: /guides/chialisp-testnet-setup
 title: 3. Testnet Setup
 ---

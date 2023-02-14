@@ -1,5 +1,4 @@
 ---
-id: coin-spend-rpc
 slug: /guides/coin-spend-rpc-tutorial
 title: RPC Coin Spend
 ---

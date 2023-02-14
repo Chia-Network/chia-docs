@@ -268,9 +268,107 @@ chia init
 </Tabs>
 ```
 
+### Raspberry Pi 4 {#raspberry-pi}
+
+:::note
+Chia does not support the Raspberry Pi 3, and we do not recommend running the GUI on the 4GB Raspberry Pi 4 model.
+
+It is highly recommended you put the Chia blockchain and wallet database on an SSD or NVMe drive, rather than the SD card.
+:::
+
+#### Swap {#raspberry-pi-swap}
+
+It is suggested that you set up 1024 MiB of swap:
+
+```mdx-code-block
+<Tabs
+  defaultValue="ubuntu"
+  groupId="source"
+  values={[
+    {label: 'Ubuntu 20.04 LTS', value: 'ubuntu'},
+    {label: 'Raspbian 64', value: 'raspbian'},
+]}>
+<TabItem value="ubuntu">
+```
+
+Run the following commands to set up the swap:
+
+```bash
+sudo dd if=/dev/zero of=/swap bs=1M count=1024
+sudo chmod 600 /swap
+sudo mkswap /swap
+sudo swapon /swap
+```
+
+Add this line to `/etc/fstab` so that swap available on reboot:
+
+```bash
+/swap swap swap defaults 0 0
+```
+
+```mdx-code-block
+</TabItem>
+<TabItem value="raspbian">
+```
+
+Here is an excellent [walk-through of increasing swap space](https://pimylifeup.com/raspberry-pi-swap-file/) on Raspbian 64.
+
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+#### Setup {#raspberry-pi-setup}
+
+Run the following commands to prepare for installation:
+
+```bash
+# Requirements to compile the blockchain
+sudo apt-get install -y build-essential python3-dev
+
+# If you are not using Raspbian 64, add this
+export PIP_EXTRA_INDEX_URL=https://www.piwheels.org/simple/
+
+# Make sure you have 64-bit Python between versions 3.7 and 3.10
+python3 -c 'import platform; print(platform.architecture())'
+```
+
+#### Proceed {#raspberry-pi-install}
+
+:::note
+If you run into an error during the build process, make sure you are running a 64-bit version of the OS.
+
+You can check by running `uname -a`. If it says `arm7l`, you need a 64-bit version of the OS. The `uname -a` output should end with `aarch64 GNU/Linux`.
+:::
+
+Finally, follow the typical [from source installation for Linux](#from-source) to continue.
+
+#### Disable Timelord {#raspberry-pi-timelord}
+
+This is not necessary when installing from source.
+
+However, if you install Chia in some other way, disable the timelord build process:
+
+```bash
+export BUILD_VDF_CLIENT=N
+```
+
 ## Directory Structure
 
-All data used by the Chia blockchain is stored at the location set with the `CHIA_ROOT` environment variable, which defaults to `~/.chia/mainnet` if unset.
+```
+.chia/
+└── mainnet/
+      ├─ config/
+      │      ├─ config.yaml
+      │      └─ ssl/
+      ├─ db/
+      ├─ log/
+      │      └─ debug.log
+      ├─ run/
+      └─ wallet/
+```
+
+All data used by the Chia blockchain is stored at the location set with the `CHIA_ROOT` environment variable, which defaults to `~/.chia/mainnet` (the hidden folder `.chia` inside of your home directory) if unset.
 
 The blockchain database is stored under the `db` subdirectory. It is possible to copy the database file to use as a backup or put on another machine. To resync the full node from the start, delete the database file and restart the node.
 

@@ -1,5 +1,4 @@
 ---
-id: chialisp-primer-using-modules
 slug: /guides/chialisp-using-modules
 title: 2. Using Modules
 ---

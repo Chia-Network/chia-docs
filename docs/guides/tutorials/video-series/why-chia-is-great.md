@@ -1,5 +1,4 @@
 ---
-id: why-chia-is-great
 slug: /guides/why-chia-is-great-video-series
 title: Why Chia is Great
 ---

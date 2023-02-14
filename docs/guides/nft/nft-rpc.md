@@ -1,5 +1,4 @@
 ---
-id: nft-rpc
 slug: /guides/nft-rpc
 title: Minting NFTs With RPC
 ---
@@ -88,10 +87,10 @@ That should produce an output similar to this:
 
 ```json
 {
-    "my_did": "did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga",
-    "success": true,
-    "type": 8,
-    "wallet_id": 4
+  "my_did": "did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga",
+  "success": true,
+  "type": 8,
+  "wallet_id": 4
 }
 ```
 
@@ -150,9 +149,9 @@ That should produce an output similar to this:
 
 ```json
 {
-    "success": true,
-    "type": 10,
-    "wallet_id": 5
+  "success": true,
+  "type": 10,
+  "wallet_id": 5
 }
 ```
 
@@ -170,9 +169,9 @@ That should produce an output similar to this:
 
 ```json
 {
-    "success": true,
-    "type": 10,
-    "wallet_id": 6
+  "success": true,
+  "type": 10,
+  "wallet_id": 6
 }
 ```
 
@@ -575,11 +574,11 @@ As a reminder, NFTs contain URI lists for data, metadata, and license. The curre
 
 A few caveats:
 
--   You can only update one type of key in one spend, and you can only add a single URI per spend.
--   The `nft_add_uri` RPC takes one key and one URI. The key must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI).
--   The new URI will be prepended to the existing list.
--   If the new URI is inaccessible, some wallets may not continue to traverse the URI list.
--   Each time you run the `nft_add_uri` RPC, the NFT's coin ID will change. You therefore should run either `nft_get_nfts` or `nft_get_info` to obtain the current coin ID before adding a new URI.
+- You can only update one type of key in one spend, and you can only add a single URI per spend.
+- The `nft_add_uri` RPC takes one key and one URI. The key must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI).
+- The new URI will be prepended to the existing list.
+- If the new URI is inaccessible, some wallets may not continue to traverse the URI list.
+- Each time you run the `nft_add_uri` RPC, the NFT's coin ID will change. You therefore should run either `nft_get_nfts` or `nft_get_info` to obtain the current coin ID before adding a new URI.
 
 ### Add Data URI
 
@@ -654,13 +653,13 @@ That should produce an output similar to this:
 
 ```json
 {
-    "nft_list": [
-        {
-            "nft_coin_id": "0x1b3375608b8baa528a9e2fac3d460af82083e37b7078363513eaf65b17ef88fa"
-        }
-    ],
-    "success": true,
-    "wallet_id": 5
+  "nft_list": [
+    {
+      "nft_coin_id": "0x1b3375608b8baa528a9e2fac3d460af82083e37b7078363513eaf65b17ef88fa"
+    }
+  ],
+  "success": true,
+  "wallet_id": 5
 }
 ```
 
@@ -705,13 +704,13 @@ That should produce an output similar to this:
 
 ```json
 {
-    "nft_list": [
-        {
-            "nft_coin_id": "0xe2487e41652b3aa01f0937423ccd9e5ed3d3442accb71974ad1e5e2b240ac2e2"
-        }
-    ],
-    "success": true,
-    "wallet_id": 5
+  "nft_list": [
+    {
+      "nft_coin_id": "0xe2487e41652b3aa01f0937423ccd9e5ed3d3442accb71974ad1e5e2b240ac2e2"
+    }
+  ],
+  "success": true,
+  "wallet_id": 5
 }
 ```
 
@@ -756,18 +755,18 @@ Which will eventually produce an output similar to this:
 
 ```json
 {
-    "nft_list": [
-        {
-            "data_uris": [
-                "new_datauri.com",
-                "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
-            ],
-            "license_uris": ["new_licenseuri.com"],
-            "metadata_uris": ["new_metadatauri.com"]
-        }
-    ],
-    "success": true,
-    "wallet_id": 5
+  "nft_list": [
+    {
+      "data_uris": [
+        "new_datauri.com",
+        "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
+      ],
+      "license_uris": ["new_licenseuri.com"],
+      "metadata_uris": ["new_metadatauri.com"]
+    }
+  ],
+  "success": true,
+  "wallet_id": 5
 }
 ```
 
@@ -781,28 +780,28 @@ Which will eventually produce an output similar to this:
 
 ```json
 {
-    "nft_list": [
-        {
-            "data_hash": "14836B86A48E1B2B5E857213AF97534704475B4C155D34B2CB83ED4B7CBA2BB0",
-            "data_uris": [
-                "https://newuri.net",
-                "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
-            ],
-            "did_owner": "",
-            "edition_total": 1,
-            "edition_number": 1,
-            "launcher_id": "C2F3F7D54D254381FD33FBE2B6C031E5BE3BA1267215A2FA182E064ED6015FEF",
-            "license_hash": "",
-            "license_uris": [],
-            "metadata_hash": "",
-            "metadata_uris": [],
-            "nft_coin_id": "D7FEC386B6F4A886ED406CAB09A541F85D3313206DA73FACF92B5A45158E3EEF",
-            "royalty": 0,
-            "version": "NFT0"
-        }
-    ],
-    "success": true,
-    "wallet_id": 2
+  "nft_list": [
+    {
+      "data_hash": "14836B86A48E1B2B5E857213AF97534704475B4C155D34B2CB83ED4B7CBA2BB0",
+      "data_uris": [
+        "https://newuri.net",
+        "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
+      ],
+      "did_owner": "",
+      "edition_total": 1,
+      "edition_number": 1,
+      "launcher_id": "C2F3F7D54D254381FD33FBE2B6C031E5BE3BA1267215A2FA182E064ED6015FEF",
+      "license_hash": "",
+      "license_uris": [],
+      "metadata_hash": "",
+      "metadata_uris": [],
+      "nft_coin_id": "D7FEC386B6F4A886ED406CAB09A541F85D3313206DA73FACF92B5A45158E3EEF",
+      "royalty": 0,
+      "version": "NFT0"
+    }
+  ],
+  "success": true,
+  "wallet_id": 2
 }
 ```
 
