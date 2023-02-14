@@ -653,6 +653,14 @@ No, Offers are created and stored locally on each machine. Any accepted offers w
 
 Yes, the coin can be spent from another computer. Coins are reserved locally on the computer where the offer was created. If that coin is spent from another computer, then the offer will be canceled. In general, it is recommended that you don’t use two machines to access the same wallet that offers are being made from.
 
+### Why do I see `Error 6` when attempting to accept an Offer?
+
+Version 1.7.0 of the reference wallet uses a slightly different Offer format than previous versions. If your version of the reference wallet is older than 1.7.0, and the offer was created on version 1.7.0 or later, you will see `Error 6`.
+
+![Error 6](/img/error_6.png)
+
+To fix this, download and install the [latest version](https://www.chia.net/downloads) of the reference wallet and accept the same offer. You should no longer see the error.
+
 ---
 
 ## NFTs
