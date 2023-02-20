@@ -14,7 +14,7 @@ The Proof of Space protocol has three components: plotting, proving/farming, and
 
 ## Plotting
 
-Plotting is the process by which a Prover, who we refer to as a _farmer_, initializes a certain amount of space. To become a farmer, one must have at least 101.4 GiB available to reserve on their computer (the minimum spec is a [Raspberry Pi 4](/chia-on-raspberry-pi)). There is no upper limit to the size of a Chia farm. Several farmers have multi-PiB farms.
+Plotting is the process by which a Prover, who we refer to as a _farmer_, initializes a certain amount of space. To become a farmer, one must have at least 101.4 GiB available to reserve on their computer (the minimum spec is a [Raspberry Pi 4](/installation#raspberry-pi)). There is no upper limit to the size of a Chia farm. Several farmers have multi-PiB farms.
 
 As of Chia 1.2.7, a k32 plot can be created in around five minutes with a high-end machine with 400 GiB of RAM, or six hours with a normal commodity machine, or 12 hours with a slow machine using one CPU core and a few GB of RAM. Opportunities still remain for huge speedups. Furthermore, each plot only needs to be created once; a farmer can farm with the same plots for many years.
 
