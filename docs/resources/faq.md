@@ -938,6 +938,10 @@ Finally, you need to restart Chia for these settings to be picked up.
 
 Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
 
+### How can I use the CLI to send an Offer notification to the owner of an NFT?
+
+This process is documented under `Example 2` of the [send_notification](/wallet-rpc#send_notification) RPC doc.
+
 ### How can I sign and verify a message with an NFT?
 
 From the CLI, you can use the `chia wallet nft sign_message` command. See [our CLI documentation](/nft-cli#sign_message) for more details.
