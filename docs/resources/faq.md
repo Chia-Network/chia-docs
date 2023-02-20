@@ -583,8 +583,9 @@ If you want the private keys included, pass `"include_secrets":true` in the data
 ### Can I import a 12-word mnemonic seed phrase from another wallet?
 
 Starting in version 1.7.0, Chia's reference wallet will accept both 12- and 24-word mnemonics. This allows you to import a mnemonic from another wallet. Simply click `IMPORT FROM 12 WORD MNEMONIC` when importing your wallet. However, do keep in mind:
-* Chia's reference wallet only allows you to _import_ a 12-word mnemonic. It does not allow you to create a new 12-word mnemonic.
-* Certain wallets use 12-word mnemonics that are not compatible with Chia's reference wallet. As far as we know, this only applies to the Pawket wallet, but there may be others as well. In the case of Pawket, you need to export a 24-word mnemonic from their app in order to use Chia's reference wallet. More info can be found on their [FAQ page](https://info.pawket.app/faq/).
+
+- Chia's reference wallet only allows you to _import_ a 12-word mnemonic. It does not allow you to create a new 12-word mnemonic.
+- Certain wallets use 12-word mnemonics that are not compatible with Chia's reference wallet. As far as we know, this only applies to the Pawket wallet, but there may be others as well. In the case of Pawket, you need to export a 24-word mnemonic from their app in order to use Chia's reference wallet. More info can be found on their [FAQ page](https://info.pawket.app/faq/).
 
 ---
 
@@ -945,23 +946,23 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 1. Click `Settings`, click on the `ADVANCED` tab, and click `CREATE SIGNATURE`:
 
-  ![ADVANCED tab](/img/verify_signature/1_advanced_tab.png)
+![ADVANCED tab](/img/verify_signature/1_advanced_tab.png)
 
 2. Click `NFT`, enter the message you want to sign, and click `SIGN`:
 
-  ![Sign a message](/img/verify_signature/2_sign_nft_message.png)
+![Sign a message](/img/verify_signature/2_sign_nft_message.png)
 
 3. The message details will appear. Copy these details to the clipboard or save them to a file:
 
-  ![Show the signed message](/img/verify_signature/3_show_message.png)
+![Show the signed message](/img/verify_signature/3_show_message.png)
 
 4. To verify a signature, click `VERIFY SIGNATURE` from the `ADVANCED` tab and enter the signature's details:
 
-  ![Verify the message](/img/verify_signature/4_verify_message.png)
+![Verify the message](/img/verify_signature/4_verify_message.png)
 
 5. If the signature is valid for the details you entered, you will receive a `Valid` message:
 
-  ![Message verified](/img/verify_signature/5_signature_verified.png)
+![Message verified](/img/verify_signature/5_signature_verified.png)
 
 ---
 
@@ -986,7 +987,7 @@ A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as
 
 ### Can I run this on a Raspberry Pi 3 or 4?
 
-Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/chia-on-raspberry-pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
+Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/installation#raspberry-pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
 
 ### How do I upgrade and keep my keys and plots?
 
