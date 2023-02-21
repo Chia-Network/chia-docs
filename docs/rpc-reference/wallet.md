@@ -1785,7 +1785,7 @@ Request Parameters:
 | fee       | False    | An optional blockchain fee, in mojos                |
 
 <details>
-<summary>Example</summary>
+<summary>Example 1: Send a generic message</summary>
 
 ```json
 chia rpc wallet send_notification '{"target": "8c436f983d5bcbdb92d6d029a4113da580f2fc43b943e92ddf06a9f54e5f5003", "message": "fadedcab", "amount": 10000000, "fee": 10000000}'
@@ -1858,6 +1858,145 @@ Response:
     }
 }
 ```
+
+</details>
+
+<details>
+<summary>Example 2: Send an NFT notification</summary>
+
+In this example, we will use the command line to send an offer directly to the owner of an NFT.
+
+First, create an Offer file. This can be accomplished with the [create_offer_for_ids](/offer-rpc#create_offer_for_ids) RPC. Offers can also be created from the reference wallet's GUI.
+
+Next, post the offer to a URI. In this example, we will use Dexie.
+
+The human-readable offer is located here:
+
+[https://dexie.space/offers/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF](https://dexie.space/offers/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF)
+
+However, the notification command requires a raw offer file, as shown here:
+
+[https://raw.dexie.space/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF](https://raw.dexie.space/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF)
+
+Note that the raw offer file can be posted to any URI; it does not need to be on an exchange.
+
+We will also need the Current Owner address of the NFT. This is obtainable from various block explorers. For this example, the Current Owner is listed as the Recipient on [spacescan.io](https://www.spacescan.io/coin/0x7b7016fcc1209a28005d7201bc4c08fa16a8619c77e3d5bc8f2599004b3cb976). This address will be used as the `target` in the notification command.
+
+Finally, we need to construct a valid message to send. The notification message payload is a JSON object with the following fields:
+- `v`: &lt;number&gt; version of the notification message. Currently `1`.
+- `t`: &lt;number&gt; type of the notification message. Currently `1` for offer.
+- `d`: &lt;object&gt; payload of the notification message. The type of the payload depends on the notification type. For offer, the payload is an object with the following fields:
+  - `u`: &lt;string&gt; offer URL
+  - `ph`: &lt;string, optional&gt; puzzlehash of the notification sender, for sending a response (counter offer). If you want to disable counter offers for this offer, simply omit this flag
+
+The `ph` for the message payload can be any puzzlehash in your key derivation. One way to obtain an address is with the `chia wallet get_address` command. For this example, we'll use:
+
+```json
+xch13cg9pmzrw0ewha76je505thv7pvdppp3zlhsm99cq4mlyvh2ymuq3lux8p
+```
+
+This address still needs to be converted into a puzzlehash. One way to accomplish this is with an online converter, such as the one available from [spacescan](https://www.spacescan.io/tools/puzzlehashconverter). 
+Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository:
+
+```json
+cdv decode xch13cg9pmzrw0ewha76je505thv7pvdppp3zlhsm99cq4mlyvh2ymuq3lux8p
+```
+
+Response:
+
+```json
+8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8
+```
+
+The payload command we will use in this example is:
+
+```json
+{"v":1,"t":1,"d":{"u":"https://raw.dexie.space/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF","ph":"8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8"}}
+```
+
+However, we still need to [convert it to hexadecimal format](https://www.rapidtables.com/convert/number/ascii-to-hex.html) for the RPC command.
+
+The hex equivalent of the payload command is:
+
+```json
+7B2276223A312C2274223A312C2264223A7B2275223A2268747470733A2F2F7261772E64657869652E73706163652F3974566645516A4C6B7659324C764E5637397175617075714C46444C58614A6E5A4147706A4D646E46416546222C227068223A2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227D7D
+```
+
+Having obtained all of this information, we can run the command to send the message:
+
+```json
+chia rpc wallet send_notification '{"target": "0e129efb6e03f55088ccb7275e9c226574645df171d1b956481d6c285b9b08ef", "message": "7B2276223A312C2274223A312C2264223A7B2275223A2268747470733A2F2F7261772E64657869652E73706163652F3974566645516A4C6B7659324C764E5637397175617075714C46444C58614A6E5A4147706A4D646E46416546222C227068223A2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227D7D", "amount": 100000000, "fee": 1}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "tx": {
+        "additions": [
+            {
+                "amount": 100000000,
+                "parent_coin_info": "0x9fb255707c635d643d4e30790ace23a10bb7a5cb76cc66a92ee0e8c5540295ea",
+                "puzzle_hash": "0x4918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0"
+            },
+            {
+                "amount": 3306899991,
+                "parent_coin_info": "0x9fb255707c635d643d4e30790ace23a10bb7a5cb76cc66a92ee0e8c5540295ea",
+                "puzzle_hash": "0xea970d130a2662b0ab745b98d7c487ab8e8dd2d7c41676b97ff1c2e4c13c3779"
+            }
+        ],
+        "amount": 100000000,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1676868989,
+        "fee_amount": 1,
+        "memos": {
+            "61e06f9bf11b3e4a0ca20c7f2863f05c0f8aa5c43a522ae317818d089cf15378": "7b2276223a312c2274223a312c2264223a7b2275223a2268747470733a2f2f7261772e64657869652e73706163652f3974566645516a4c6b7659324c764e5637397175617075714c46444c58614a6e5a4147706a4d646e46416546222c227068223a2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227d7d"
+        },
+        "name": "0x52877e257cdeb53ebb214e18c0e60a58e06950bcabac389dbd78c57b5e4575e8",
+        "removals": [
+            {
+                "amount": 3406899992,
+                "parent_coin_info": "0x03d7227fcecfbea79637c44de5eae70bdb2a9fa705bc1bcc2eb62d93f5ea12d7",
+                "puzzle_hash": "0x8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0xb27911cda4de2450bc7043a19ba152e99ff0729394afbcd3a4d119503877fa84918897683f2cdee09fe6d019a0f00083158776a115f2b10914073f9ab59aad8511d5707c3c9d0a683addbc9ff26e3d9a92bd6e47b1c03072b3d23b7888092693",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 3406899992,
+                        "parent_coin_info": "0x03d7227fcecfbea79637c44de5eae70bdb2a9fa705bc1bcc2eb62d93f5ea12d7",
+                        "puzzle_hash": "0x8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b092cb3d4d31e0b537b17c394143a6231808076e616941d72c011ea5b9c7fc19111327a5f490ecd48c21e187a5649e48d8ff018080",
+                    "solution": "0xff80ffff01ffff33ffa04918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0ff8405f5e100ffffa00e129efb6e03f55088ccb7275e9c226574645df171d1b956481d6c285b9b08efffc0a67b2276223a312c2274223a312c2264223a7b2275223a2268747470733a2f2f7261772e64657869652e73706163652f3974566645516a4c6b7659324c764e5637397175617075714c46444c58614a6e5a4147706a4d646e46416546222c227068223a2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227d7d8080ffff33ffa0ea970d130a2662b0ab745b98d7c487ab8e8dd2d7c41676b97ff1c2e4c13c3779ff8500c51b4a1780ffff34ff0180ffff3cffa0f496259a3a4ec5bba4369d6f6835484e9b1098e8132c85089b9e2ac130a52db280ffff3dffa007f92beb9664a85abe9cfcb846bb67259320a685828b320d36ae1407a68b793a8080ff8080"
+                },
+                {
+                    "coin": {
+                        "amount": 100000000,
+                        "parent_coin_info": "0x9fb255707c635d643d4e30790ace23a10bb7a5cb76cc66a92ee0e8c5540295ea",
+                        "puzzle_hash": "0x4918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff06ffff01ff808080ff808080ffff04ffff01ff333cff018080ffff04ffff01a00e129efb6e03f55088ccb7275e9c226574645df171d1b956481d6c285b9b08efffff04ffff018405f5e100ff01808080",
+                    "solution": "0x80"
+                }
+            ]
+        },
+        "to_address": "xch1fyvtk88zy6cey0jueuxq77eg9fzulkugkz5uay9x7h2gf2hdawcqk0h5en",
+        "to_puzzle_hash": "0x4918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 1
+    }
+}
+```
+
+This command will create a Message Coin on the blockchain. Once it has been confirmed, the current owner of the NFT will receive a notification of the offer in their wallet.
 
 </details>
 
