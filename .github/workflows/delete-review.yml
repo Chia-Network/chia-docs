@@ -1,0 +1,42 @@
+name: Delete Review App
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: ${{ github.event.pull_request.number }}
+
+jobs:
+  delete:
+    runs-on: [k8s-public]
+    container:
+      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3.11.0
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Vault Login
+        uses: Chia-Network/actions/vault/login@main
+        with:
+          vault_url: ${{ secrets.VAULT_URL }}
+          role_name: github-chia-docs
+
+      - name: Get ephemeral aws credentials
+        uses: Chia-Network/actions/vault/aws-sts@main
+        with:
+          vault_url: ${{ secrets.VAULT_URL }}
+          vault_token: ${{ env.VAULT_TOKEN }}
+          role_name: pub-metrics-deploy
+
+      - name: Log in to cluster
+        run: aws eks update-kubeconfig --name pub-metrics --region us-west-2
+
+      - name: Helm Uninstall
+        env:
+          REVIEW_SLUG: ${{ github.event.pull_request.number }}
+        run: |
+          helm uninstall -n "chia-docs" "chia-docs-$REVIEW_SLUG"

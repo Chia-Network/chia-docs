@@ -1,0 +1,17 @@
+image:
+  repository: ghcr.io/chia-network/chia-docs
+  tag: "{{ DOCKER_TAG }}"
+
+service:
+  enabled: true
+
+ingress:
+  enabled: true
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "true"
+  hosts:
+    - host: {{ REVIEW_SLUG }}-docs.chia.net
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tlsEnabled: true
