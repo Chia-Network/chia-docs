@@ -35,15 +35,22 @@ jobs:
           vault_url: ${{ secrets.VAULT_URL }}
           role_name: github-chia-docs
 
-      - name: Get ephemeral aws credentials
-        uses: Chia-Network/actions/vault/aws-sts@main
+      - name: Get secrets from vault
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ secrets.VAULT_URL }}
+          token: ${{ env.VAULT_TOKEN }}
+          secrets: |
+            secret/data/fmt/k8s/fremont-public api_server_url | K8S_API_SERVER_URL;
+
+      - name: Login to k8s cluster
+        uses: Chia-Network/actions/vault/k8s-login@main
         with:
           vault_url: ${{ secrets.VAULT_URL }}
           vault_token: ${{ env.VAULT_TOKEN }}
-          role_name: pub-metrics-deploy
-
-      - name: Log in to cluster
-        run: aws eks update-kubeconfig --name pub-metrics --region us-west-2
+          backend_name: fremont-public
+          role_name: github-actions
+          cluster_url: ${{ env.K8S_API_SERVER_URL }}
 
       - uses: Chia-Network/actions/helm/deploy@main
         env:
