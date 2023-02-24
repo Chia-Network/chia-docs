@@ -45,11 +45,6 @@ jobs:
         with:
           name: build
           path: ./build
-      - name: job debugging
-        run: |
-          pwd
-          ls -al
-          tree .
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
