@@ -44,6 +44,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
+      - name: job debugging
+        run: |
+          pwd
+          ls -al
+          tree .
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
