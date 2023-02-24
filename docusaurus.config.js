@@ -10,7 +10,7 @@
     onBrokenMarkdownLinks: 'throw',
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
-    projectName: '{{ REPOSITORY_NAME }}',
+    projectName: 'chia-docs',
     i18n: {
       defaultLocale: 'en',
       locales: ['en', 'zh'],
@@ -28,7 +28,7 @@
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
             editUrl:
-              'https://github.com/Chia-Network/{{ REPOSITORY_NAME }}/blob/main/',
+              'https://github.com/Chia-Network/chia-docs/blob/main/',
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
