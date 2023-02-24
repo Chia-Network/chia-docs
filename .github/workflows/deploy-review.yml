@@ -22,10 +22,7 @@ jobs:
           apk add python3 make g++ git
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: 'yarn deps'
-        run: |
-          yarn
-      - name: 'yarn deploy'
+      - name: 'npm install and build'
         run: |
           npm ci
           npm install
@@ -41,6 +38,8 @@ jobs:
     needs:
       - build
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Download build from artifacts
         uses: actions/download-artifact@v3
         with:
