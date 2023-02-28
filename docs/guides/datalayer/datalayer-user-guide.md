@@ -263,7 +263,7 @@ We'll create an alias to run the `chia` command from any folder. We'll also fix 
 (Be sure to update &lt;username&gt; and &lt;version&gt; to match the actual folder structure)
 
 ```powershell
-Set-Alias -Name chia C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe
+Set-Alias -Name chia C:\Users\<username>\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
 
   </TabItem>
