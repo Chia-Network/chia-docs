@@ -446,60 +446,6 @@ If you installed Chia for all users, then this is the location of the exe:
 C:\Program Files\Chia\Chia.exe
 ```
 
-### I installed Chia from the packaged installer. How can I invoke Chia CLI commands?
-
-When you install Chia from the packaged installer (as opposed to when you install from source), there is no virtual environment. In this case, you will need to call the executable file directly.
-
-The easiest way to accomplish this is with an alias. Run the following command(s), which depend on your operating system:
-
-:::info Chia setup
-
-<Tabs
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux', value: 'linux'},
-{label: 'MacOS', value: 'macos'}
-]}>
-<TabItem value="windows">
-
-Note that this only works if you installed Chia for your local user (_not_ for all users). If you installed to a non-default location, update the following command accordingly:
-
-```powershell
-Set-Alias -Name chia C:\Users\User\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
-```
-
-  </TabItem>
-  <TabItem value="linux">
-
-Alias command is not needed, but you should still run the following:
-
-```bash
-chia init --fix-ssl-permissions
-```
-
-  </TabItem>
-  <TabItem value="macos">
-
-If you installed to a non-default location, update the following command accordingly:
-
-```bash
-alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'
-chia init --fix-ssl-permissions
-```
-
-  </TabItem>
-</Tabs>
-
-:::
-
-After running the above command(s), run `chia version`. You should be shown the correct version. For example:
-
-```
-chia version
-1.6.1
-```
-
 ### What is the dust filter?
 
 In crypto parlance, "dust" refers to coins that have almost no value. In Chia, the smallest denomination is 1 mojo, or 1-trillionth of an XCH. Unsolicited coins of this value certainly count as dust, but even much larger coins, for example 1 million mojos, are still worth a fraction of a penny.
