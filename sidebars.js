@@ -39,6 +39,7 @@ module.exports = {
       label: 'RPC Reference',
       items: [
         'rpc-reference/rpc',
+        'rpc-reference/farmer',
         'rpc-reference/full-node',
         'rpc-reference/dids',
         'rpc-reference/nfts',
