@@ -1,5 +1,4 @@
 ---
-id: single-issuance-cat
 slug: /guides/single-issuance-cat-video-series
 title: Single Issuance CAT
 ---

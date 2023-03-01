@@ -384,7 +384,7 @@ There are also several exchanges that offer XCH. You can see a list of exchanges
 
 ### I was running the light wallet beta app and I upgraded to the latest beta and my offer history disappeared. How do I get that back?
 
-If you were running the light wallet beta app (v1.2.11 dev 265) and you’ve upgraded to the latest beta (v1.2.12+), you can get your offer history and your CAT wallets back by following these instructions:
+If you were running the light wallet beta app (v1.2.11 dev 265) and you've upgraded to the latest beta (v1.2.12+), you can get your offer history and your CAT wallets back by following these instructions:
 
 1. Close the Chia app
 2. Check the following directory: `~/.chia/mainnet/wallet/db` if it's not empty, then be sure to delete all the .sqlite files that match the key (e.g., `blockchain_wallet_v2_mainnet_1123456789.sqlite`)
@@ -392,17 +392,17 @@ If you were running the light wallet beta app (v1.2.11 dev 265) and you’ve upg
 4. rename the file `~/.chia/mainnet/wallet/db/blockchain_wallet_v1_mainnet_123456789.sqlite_new` to `blockchain_wallet_v2_mainnet_123456789.sqlite`
 5. launch the Chia app
 
-### Why does the wallet tab tell me that it’s synced, but when I look at the full node tab, it still shows that I’m syncing?
+### Why does the wallet tab tell me that it's synced, but when I look at the full node tab, it still shows that I'm syncing?
 
 This is because of the newly integrated light wallet client sync. The wallet will sync through the light wallet sync while the full node syncs up in the background. Once the full node is synced up, then the wallet will sync primarily through the local trusted full node.
 
-### I lost my offer history, and I have open offers. How do I cancel those offers since I can’t access the open offers through the wallet?
+### I lost my offer history, and I have open offers. How do I cancel those offers since I can't access the open offers through the wallet?
 
-If you’ve lost your offer history and want to cancel those offers but can’t access them, then the only way to cancel the offer would be to send yourself a transaction with the CAT tokens that were part of the offer.
+If you've lost your offer history and want to cancel those offers but can't access them, then the only way to cancel the offer would be to send yourself a transaction with the CAT tokens that were part of the offer.
 
-### Why don’t new CAT tokens automatically show up in my wallet anymore?
+### Why don't new CAT tokens automatically show up in my wallet anymore?
 
-The wallet no longer automatically adds unknown CATs wallets for CATs that may have been airdropped to your wallet. This is to help ensure that syncing doesn’t slow down with all the additional CATs that could suddenly show up. It is recommended that you use a tail database to look up and add. We understand that this will add some extra work to know which CATs to add wallets for and set them up manually. We do hope to improve upon this experience Soon™
+The wallet no longer automatically adds unknown CATs wallets for CATs that may have been airdropped to your wallet. This is to help ensure that syncing doesn't slow down with all the additional CATs that could suddenly show up. It is recommended that you use a tail database to look up and add. We understand that this will add some extra work to know which CATs to add wallets for and set them up manually. We do hope to improve upon this experience Soon™
 
 ### How can I make a coin that may only be spent until a certain timestamp or block height?
 
@@ -583,8 +583,9 @@ If you want the private keys included, pass `"include_secrets":true` in the data
 ### Can I import a 12-word mnemonic seed phrase from another wallet?
 
 Starting in version 1.7.0, Chia's reference wallet will accept both 12- and 24-word mnemonics. This allows you to import a mnemonic from another wallet. Simply click `IMPORT FROM 12 WORD MNEMONIC` when importing your wallet. However, do keep in mind:
-* Chia's reference wallet only allows you to _import_ a 12-word mnemonic. It does not allow you to create a new 12-word mnemonic.
-* Certain wallets use 12-word mnemonics that are not compatible with Chia's reference wallet. As far as we know, this only applies to the Pawket wallet, but there may be others as well. In the case of Pawket, you need to export a 24-word mnemonic from their app in order to use Chia's reference wallet. More info can be found on their [FAQ page](https://info.pawket.app/faq/).
+
+- Chia's reference wallet only allows you to _import_ a 12-word mnemonic. It does not allow you to create a new 12-word mnemonic.
+- Certain wallets use 12-word mnemonics that are not compatible with Chia's reference wallet. As far as we know, this only applies to the Pawket wallet, but there may be others as well. In the case of Pawket, you need to export a 24-word mnemonic from their app in order to use Chia's reference wallet. More info can be found on their [FAQ page](https://info.pawket.app/faq/).
 
 ---
 
@@ -601,30 +602,30 @@ Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia b
 
 ### After creating an offer file, why does my spendable balance differ more than the amount specific in the offer?
 
-When you create an offer, [coins are reserved](https://chialisp.com/offers#offer-states) to ensure that when the offer has been accepted and written on to the blockchain, the transaction can be completed. Chia’s wallet will reserve the largest coin to fulfill an offer, and when that coin is reserved, it will lower the spendable balance by the total coin amount.
+When you create an offer, [coins are reserved](https://chialisp.com/offers#offer-states) to ensure that when the offer has been accepted and written on to the blockchain, the transaction can be completed. Chia's wallet will reserve the largest coin to fulfill an offer, and when that coin is reserved, it will lower the spendable balance by the total coin amount.
 
-### I plan on making many offers and I want to ensure that my coins aren’t locked up?
+### I plan on making many offers and I want to ensure that my coins aren't locked up?
 
 To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/puzzles/offers#coin-set-utxo).
 
 ### When canceling an offer, when should I check the "cancel on blockchain" checkbox?
 
-You should use this option if the offer file has left your computer. If you don’t use this option, someone who sees your offer could still accept it. See our [reference doc](https://chialisp.com/offers#cancellation) for more info.
+You should use this option if the offer file has left your computer. If you don't use this option, someone who sees your offer could still accept it. See our [reference doc](https://chialisp.com/offers#cancellation) for more info.
 
 ### If I cancel my offer on the blockchain, will other people be able to fulfill it?
 
 No, canceling on the blockchain ensures that your offer can no longer be fulfilled.
 
-### I’m accepting an offer, but it shows a Unknown CAT, what should I do?
+### I'm accepting an offer, but it shows a Unknown CAT, what should I do?
 
 You should always check the ID of the asset(s) being offered before accepting any offers. First make sure you have a CAT wallet set up for the assets that you are trading for and are getting that information from a reputable source. Second, when you view the offer in the wallet, ensure the amounts and the CATs match up to what you are expecting. For more info, see our [GUI tutorial](https://chialisp.com/offers-gui-tutorial#taker-accepts-an-unknown-cat-offer).
 
 ### Where can I share my offers?
 
-Once you’ve created the offer, you’ll need to find someone who will take the other side of it. You can share your offers through the following methods:
+Once you've created the offer, you'll need to find someone who will take the other side of it. You can share your offers through the following methods:
 
 - Send your offer file directly to another user
-- [HashGreen](https://hash.green/dex) - a decentralized exchange (DEX) that has been built upon Chia’s Offers
+- [HashGreen](https://hash.green/dex) - a decentralized exchange (DEX) that has been built upon Chia's Offers
 - [Offerbin](http://offerbin.io) - an open marketplace for Chia Offers
 - [Keybase - chia_offers](https://keybase.io/team/chia_offers) - #offers-trading channel is a forum where Chia Offers can be posted and accepted
 - [Offerpool.io](https://offerpool.io/) - an open-sourced, decentralized offers database built on top of OrbitDB and IPFS
@@ -637,11 +638,11 @@ Please ensure that you have joined the chia_offers group first before hitting th
 
 Ignore this error as this is a Keybase error, so long as you click on "Join Chia_offers", you will get successfully added to the team to post or view offers.
 
-### Why don’t I see the offers option in my wallet?
+### Why don't I see the offers option in my wallet?
 
 You are probably running the wallet that comes installed with the full node. Be sure to download the standalone lightwallet [here](https://www.chia.net/download/#light-wallet-beta) (and be sure not to install on the same machine as your full node). We will be integrating the new capabilities of the standalone light wallet into the full node so you can farm and use all the new features of the wallet Soon™.
 
-### How do I know if I’m getting the right exchange value for an offer?
+### How do I know if I'm getting the right exchange value for an offer?
 
 Prices in cryptocurrencies fluctuate all the time. You can review any of the existing DEXes like Hashgreen or Offerbin to see what trading pairs are trading for in the open market. Alternatively you can find a reputable website that will give you the currency valuation for more popular and well known currencies like USDS.
 
@@ -651,7 +652,15 @@ No, Offers are created and stored locally on each machine. Any accepted offers w
 
 ### Can my coin be spent on another computer with a wallet that uses the same keys, even if I am running two wallets on two different computers and I have an open Offer on one computer?
 
-Yes, the coin can be spent from another computer. Coins are reserved locally on the computer where the offer was created. If that coin is spent from another computer, then the offer will be canceled. In general, it is recommended that you don’t use two machines to access the same wallet that offers are being made from.
+Yes, the coin can be spent from another computer. Coins are reserved locally on the computer where the offer was created. If that coin is spent from another computer, then the offer will be canceled. In general, it is recommended that you don't use two machines to access the same wallet that offers are being made from.
+
+### Why do I see `Error 6` when attempting to accept an Offer?
+
+Version 1.7.0 of the reference wallet uses a slightly different Offer format than previous versions. If your version of the reference wallet is older than 1.7.0, and the offer was created on version 1.7.0 or later, you will see `Error 6`.
+
+![Error 6](/img/error_6.png)
+
+To fix this, download and install the [latest version](https://www.chia.net/downloads) of the reference wallet and accept the same offer. You should no longer see the error.
 
 ---
 
@@ -663,7 +672,7 @@ Non-Fungible Tokens have become extremely popular in the last few years. [This s
 
 ### How do I buy NFTs?
 
-Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click "Create an Offer" and "NFT Offer". We’ll have a more detailed guide that includes all of the options soon.
+Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/offers). You may already have used Offers to trade XCH and CATs, but to summarize, they enable the trustless, peer-to-peer exchange of assets on Chia's ecosystem, with no involvement from central parties or intermediaries. And now you can use them to buy and sell NFTs, as well. Simply click the Offers button in your Electron wallet, then click "Create an Offer" and "NFT Offer". We'll have a more detailed guide that includes all of the options soon.
 
 ### How can I make an NFT offer using the CLI?
 
@@ -756,7 +765,7 @@ A transfer is where you move an NFT from one address to another. No money is exc
 
 ### Do I need a new wallet address in order to receive NFTs?
 
-No. You can send and receive NFTs from the same address you have used in the past. One caveat is that if you send an NFT to an address that is currently running on a pre-1.4 wallet, your wallet won’t _recognize_ the NFT. However, the NFT will be safely kept inside your wallet, and it will become accessible after you upgrade to version 1.4 or greater.
+No. You can send and receive NFTs from the same address you have used in the past. One caveat is that if you send an NFT to an address that is currently running on a pre-1.4 wallet, your wallet won't _recognize_ the NFT. However, the NFT will be safely kept inside your wallet, and it will become accessible after you upgrade to version 1.4 or greater.
 
 ### How do I mint an NFT?
 
@@ -790,13 +799,13 @@ For security purposes, each NFT contains a hash of the data represented by each 
 
 Because Chia NFTs use a _list_ of URIs (as opposed to a single one), the image can be stored in multiple locations. This is important for preserving an NFT's permanence because a single link could break.
 
-For high-end NFTs, you may even want to store the image offline. Why would you do this? Let’s say each of the online links is broken. As long as you (or anyone else) has a copy of the image, you can upload it and add a new link to the NFT. As long as the image’s hash matches the hash that’s built into the NFT, the new image is guaranteed to be identical to the original, and therefore valid. It is for these reasons that we believe NFTs on Chia will have stronger permanence than on any other blockchain.
+For high-end NFTs, you may even want to store the image offline. Why would you do this? Let's say each of the online links is broken. As long as you (or anyone else) has a copy of the image, you can upload it and add a new link to the NFT. As long as the image's hash matches the hash that's built into the NFT, the new image is guaranteed to be identical to the original, and therefore valid. It is for these reasons that we believe NFTs on Chia will have stronger permanence than on any other blockchain.
 
 The same rules apply for the metadata and license information. They can exist in multiple locations, but their hashes may not be modified after the initial minting. This prevents future owners from modifying this information, even though they can add new links.
 
-The metadata URI can provide a wide variety of information about the NFT, including its title, properties (eg - year created, attributes, colors used, etc), rankings (eg - power: 25 out of 100, etc), collection name, as well as series number (eg - 1 of 100). The NFT’s minter is free to include whatever information they want at the time of minting. The NFT1 spec allows different metadata formats to be developed. At the time of this writing, almost all NFTs use [CHIP-7](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0007.md), which allows marketplaces to parse the metadata more easily.
+The metadata URI can provide a wide variety of information about the NFT, including its title, properties (eg - year created, attributes, colors used, etc), rankings (eg - power: 25 out of 100, etc), collection name, as well as series number (eg - 1 of 100). The NFT's minter is free to include whatever information they want at the time of minting. The NFT1 spec allows different metadata formats to be developed. At the time of this writing, almost all NFTs use [CHIP-7](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0007.md), which allows marketplaces to parse the metadata more easily.
 
-The license URI can provide any relevant information concerning the NFT’s license, such as who owns the Intellectual Property.
+The license URI can provide any relevant information concerning the NFT's license, such as who owns the Intellectual Property.
 
 ### Can I add new links?
 
@@ -841,7 +850,7 @@ Then two separate NFTs will be created. They will have different IDs, but everyt
 
 ### How do royalties work?
 
-An NFT’s royalty percentage and receive address may optionally be included in an NFT upon its minting. After the NFT has been minted, the royalty may never be modified. If an NFT includes a royalty, then every time the NFT is sold, the appropriate percentage of the sale will be paid to the royalty’s receive address (typically the address of the original artist). The amount paid both to the new owner, as well as the royalty address, will be clearly displayed within the Offer.
+An NFT's royalty percentage and receive address may optionally be included in an NFT upon its minting. After the NFT has been minted, the royalty may never be modified. If an NFT includes a royalty, then every time the NFT is sold, the appropriate percentage of the sale will be paid to the royalty's receive address (typically the address of the original artist). The amount paid both to the new owner, as well as the royalty address, will be clearly displayed within the Offer.
 
 On other blockchains, royalties are paid at the discretion of the marketplace on which the NFT is custodied. On Chia, however, the royalties are built directly into the NFT. While under-the-table transfers could still circumvent royalties, they would also introduce counterparty risk for both the buyer and seller. In order to transfer a Chia NFT in a trustless manner, royalties must be paid.
 
@@ -880,7 +889,7 @@ You sure can! [The Marmot Recovery Foundation website](http://marmots.org/how-yo
 
 ### Why do I have a Profile in my wallet?
 
-The Profile in your wallet is a Decentralized Identifier (DID). These can be used for tracking an NFT’s provenance (history). Each NFT can be assigned to one DID. Though not strictly required, most NFTs will use DIDs for their added provenance. You can create a new DID by clicking the Settings button (the gear icon) in the lower left corner of Chia’s Electron wallet.
+The Profile in your wallet is a Decentralized Identifier (DID). These can be used for tracking an NFT's provenance (history). Each NFT can be assigned to one DID. Though not strictly required, most NFTs will use DIDs for their added provenance. You can create a new DID by clicking the Settings button (the gear icon) in the lower left corner of Chia's Electron wallet.
 
 ### Do I need to have a Profile to own/trade an NFT?
 
@@ -900,15 +909,15 @@ Chia's [bulk minting tool](/guides/nft-bulk-mint) allows you to mint 25 NFTs per
 
 ### Are there any security concerns I should consider?
 
-Unfortunately, fraud and outright theft are common in this space. If you take a few basic precautions, you’ll have a much better chance of keeping your NFTs safe:
+Unfortunately, fraud and outright theft are common in this space. If you take a few basic precautions, you'll have a much better chance of keeping your NFTs safe:
 
-- Never give away your wallet’s seed phrase. If anyone asks for it, they are attempting to scam you.
-- When viewing an offer for an NFT, always check its provenance. The links to do this are located below the image when viewing it in an offer. An NFT’s provenance is a complete record of its ownership history. This helps to verify that the NFT is authentic.
+- Never give away your wallet's seed phrase. If anyone asks for it, they are attempting to scam you.
+- When viewing an offer for an NFT, always check its provenance. The links to do this are located below the image when viewing it in an offer. An NFT's provenance is a complete record of its ownership history. This helps to verify that the NFT is authentic.
 - Avoid directly sending someone money in exchange for an NFT. Use offers whenever possible. Occasionally, legitimate projects may require you to send them a token in exchange for an NFT, but the most secure way to buy and sell NFTs is with offers.
 
 ### What recovery options are available if my NFT gets stolen?
 
-If your NFT is stolen, then unfortunately there’s not much you can do, other than offer to buy it back from the thief or the current owner. This is why you should be extra diligent in avoiding theft in the first place, beginning with following the above tips.
+If your NFT is stolen, then unfortunately there's not much you can do, other than offer to buy it back from the thief or the current owner. This is why you should be extra diligent in avoiding theft in the first place, beginning with following the above tips.
 
 ### What is the stance on NSFW NFTs being created?
 
@@ -929,6 +938,10 @@ Finally, you need to restart Chia for these settings to be picked up.
 
 Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
 
+### How can I use the CLI to send an Offer notification to the owner of an NFT?
+
+This process is documented under `Example 2` of the [send_notification](/wallet-rpc#send_notification) RPC doc.
+
 ### How can I sign and verify a message with an NFT?
 
 From the CLI, you can use the `chia wallet nft sign_message` command. See [our CLI documentation](/nft-cli#sign_message) for more details.
@@ -937,23 +950,23 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 1. Click `Settings`, click on the `ADVANCED` tab, and click `CREATE SIGNATURE`:
 
-  ![ADVANCED tab](/img/verify_signature/1_advanced_tab.png)
+![ADVANCED tab](/img/verify_signature/1_advanced_tab.png)
 
 2. Click `NFT`, enter the message you want to sign, and click `SIGN`:
 
-  ![Sign a message](/img/verify_signature/2_sign_nft_message.png)
+![Sign a message](/img/verify_signature/2_sign_nft_message.png)
 
 3. The message details will appear. Copy these details to the clipboard or save them to a file:
 
-  ![Show the signed message](/img/verify_signature/3_show_message.png)
+![Show the signed message](/img/verify_signature/3_show_message.png)
 
 4. To verify a signature, click `VERIFY SIGNATURE` from the `ADVANCED` tab and enter the signature's details:
 
-  ![Verify the message](/img/verify_signature/4_verify_message.png)
+![Verify the message](/img/verify_signature/4_verify_message.png)
 
 5. If the signature is valid for the details you entered, you will receive a `Valid` message:
 
-  ![Message verified](/img/verify_signature/5_signature_verified.png)
+![Message verified](/img/verify_signature/5_signature_verified.png)
 
 ---
 
@@ -978,7 +991,7 @@ A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as
 
 ### Can I run this on a Raspberry Pi 3 or 4?
 
-Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/chia-on-raspberry-pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
+Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/installation#raspberry-pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
 
 ### How do I upgrade and keep my keys and plots?
 

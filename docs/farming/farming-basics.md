@@ -41,4 +41,4 @@ The block reward has a halving every three years starting from mainnet launch. T
 
 By the 13th year, block rewards are forever locked in at an average of 4 XCH every 10 minutes.
 
-As time goes on, the ratio of new XCH to existing XCH goes down. As a result, the inflation rate of Chia will continually decline. Chia’s inflation falls through the 0.50% rate 22 years after mainnet launch.
+As time goes on, the ratio of new XCH to existing XCH goes down. As a result, the inflation rate of Chia will continually decline. Chia's inflation falls through the 0.50% rate 22 years after mainnet launch.

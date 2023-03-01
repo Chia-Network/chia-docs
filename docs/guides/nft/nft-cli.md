@@ -1,5 +1,4 @@
 ---
-id: nft-cli
 slug: /guides/nft-cli
 title: Minting NFTs With CLI
 ---
@@ -295,27 +294,27 @@ That should produce an output similar to this:
 
 ```json
 {
-    "nft_list": [
-        {
-            "data_hash": "14836B86A48E1B2B5E857213AF97534704475B4C155D34B2CB83ED4B7CBA2BB0",
-            "data_uris": [
-                "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
-            ],
-            "did_owner": "",
-            "edition_total": 1,
-            "edition_number": 1,
-            "launcher_id": "C2F3F7D54D254381FD33FBE2B6C031E5BE3BA1267215A2FA182E064ED6015FEF",
-            "license_hash": "",
-            "license_uris": [],
-            "metadata_hash": "",
-            "metadata_uris": [],
-            "nft_coin_id": "4296D4E49E2056DB5AEB62DF849851E61326DAEA4337825BE15410E7F4C07E32",
-            "royalty": 0,
-            "version": "NFT0"
-        }
-    ],
-    "success": true,
-    "wallet_id": 2
+  "nft_list": [
+    {
+      "data_hash": "14836B86A48E1B2B5E857213AF97534704475B4C155D34B2CB83ED4B7CBA2BB0",
+      "data_uris": [
+        "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
+      ],
+      "did_owner": "",
+      "edition_total": 1,
+      "edition_number": 1,
+      "launcher_id": "C2F3F7D54D254381FD33FBE2B6C031E5BE3BA1267215A2FA182E064ED6015FEF",
+      "license_hash": "",
+      "license_uris": [],
+      "metadata_hash": "",
+      "metadata_uris": [],
+      "nft_coin_id": "4296D4E49E2056DB5AEB62DF849851E61326DAEA4337825BE15410E7F4C07E32",
+      "royalty": 0,
+      "version": "NFT0"
+    }
+  ],
+  "success": true,
+  "wallet_id": 2
 }
 ```
 
@@ -491,9 +490,9 @@ The values used in these commands are specific to this guide. Change any values 
 
 Each NFT has three URI lists:
 
--   Data URIs (also simply called "URIs")
--   Metadata URIs
--   License URIs
+- Data URIs (also simply called "URIs")
+- Metadata URIs
+- License URIs
 
 It is _not_ possible to delete these lists or to remove any of their items. However, it is possible to _prepend_ new items to any of these lists. One reason to do this is if a link is broken. But keep in mind that if an invalid item is added, wallets and block explorers may read the invalid new item and not examine subsequent, valid items.
 
@@ -673,9 +672,9 @@ The final step for the CLI portion of this tutorial is to transfer your NFTs to 
 
 For this tutorial, we'll send the NFTs to a commonly-used burn address.
 
--   The original puzzle hash of the burn address is `0x000000000000000000000000000000000000000000000000000000000000dead`
--   For testnet, the corresponding address is `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
--   For mainnet, the corresponding address is `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
+- The original puzzle hash of the burn address is `0x000000000000000000000000000000000000000000000000000000000000dead`
+- For testnet, the corresponding address is `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
+- For mainnet, the corresponding address is `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
 
 The reason these work as a burn address is that there is no known puzzle that matches this puzzle hash. Even if there were, it would have to be spendable. That is an **extremely** unlikely set of conditions to ever occur.
 

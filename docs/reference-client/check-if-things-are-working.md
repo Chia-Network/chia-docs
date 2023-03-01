@@ -48,7 +48,7 @@ You can use the CLI command `chia configure --set-log-level INFO` to set your lo
 
 In `config.yaml` you can set the level of detail for your logs.
 
-Look for this section in `config.yaml`. It’s useful to change the logger setting `log_level` from `WARNING` to `INFO` to get the detail needed to troubleshoot.
+Look for this section in `config.yaml`. It's useful to change the logger setting `log_level` from `WARNING` to `INFO` to get the detail needed to troubleshoot.
 
 ```yaml
 logging: &id001

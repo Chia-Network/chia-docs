@@ -173,7 +173,7 @@ Phases:
 `Proof`: It is found inside the plot. Millions of "excel blocks" with formulas called proofs of space.
 The Chia software is designed to work on a lottery system. A key element to winning the lottery of earning coins is that the more plots you have, the more proofs you have, and therefore the higher chances of winning. Someone with 1% of all the plotted space, will win about 1% of all the blocks. There are about 4608 blocks per day, each rewarding 2 new chia, so 9216 XCH are created per day.
 
-The Chia farming software gets a challenge, lets say 2021. It’s going to look through lookup tables on the front of the plots. Find the closest to 2021 and this is where the time comes into play. That proof (excel block hash) has a certain quality, and only proofs that are of a certain quality or better are eligible for winning.
+The Chia farming software gets a challenge, lets say 2021. It's going to look through lookup tables on the front of the plots. Find the closest to 2021 and this is where the time comes into play. That proof (excel block hash) has a certain quality, and only proofs that are of a certain quality or better are eligible for winning.
 
 What makes Chia different from proof of work blockchains is the consensus algorithm called proof of space and time. Basically as after the farmer creates a proof of space and a block, other computers called timelords add proofs of time to the block, which is a cryptographic proof that says that a certain amount of time (like 30 seconds) has passed. So instead of the whole world mining at the same time, only a few computers are "mining" for each proof of space that won. Since these are all cryptographic proofs, they cannot be forged or broken, making the consensus extremely secure.
 

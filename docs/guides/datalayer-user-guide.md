@@ -1,5 +1,4 @@
 ---
-id: datalayer-user-guide
 slug: /guides/datalayer-user-guide
 title: DataLayer User Guide
 ---
@@ -59,8 +58,8 @@ This example would require anyone-can-spend DataLayer proofs of inclusion (these
 
 For additional technical resources, see the following:
 
--   [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
--   [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 
 :::note
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
@@ -68,7 +67,7 @@ Commands that modify the blockchain include an optional fee. This fee can be spe
 1. The `-m` / `--fee` parameter can be specified explicitly in the command, as several of the examples in this document show
 2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
 3. If neither of these options is set, then no fee will be used
-:::
+   :::
 
 ---
 
@@ -95,13 +94,13 @@ Your firewall might give warnings when installing Chia. This is normal. Allow th
 :::info OS-Specific Instructions
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 <div style={{ textAlign: 'left' }}>
     <img
@@ -144,13 +143,13 @@ Double click the .dmg installer. After the installation completes, drag the Chia
 :::info OS-Specific Instructions
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 The Chia reference wallet GUI will start automatically after the installation completes.
 
@@ -189,13 +188,13 @@ Start Chia from your _Applications_ folder:
 </div>
 <br />
 
--   If you select `Farming Mode`, you will run a full node
-    -   Advantage: your wallet will respond faster than it would in `Wallet Mode`
-    -   Disadvantage: you need to sync the blockchain database, which can take several days if you are starting from the genesis block
--   If you select `Wallet Mode`, you will only run a light wallet
-    -   Advantage: no need to sync a full node
-    -   Disadvantage: slower wallet performance
--   Most users should select `Farming Mode`, in order to gain the long-term performance advantage of running a full node
+- If you select `Farming Mode`, you will run a full node
+  - Advantage: your wallet will respond faster than it would in `Wallet Mode`
+  - Disadvantage: you need to sync the blockchain database, which can take several days if you are starting from the genesis block
+- If you select `Wallet Mode`, you will only run a light wallet
+  - Advantage: no need to sync a full node
+  - Disadvantage: slower wallet performance
+- Most users should select `Farming Mode`, in order to gain the long-term performance advantage of running a full node
 
 5. If you don't already have a Chia private key (wallet), you will need to create one now. If you already have a private key, proceed to step 6.
 
@@ -252,13 +251,13 @@ We'll create an alias to run the `chia` command from any folder. We'll also fix 
 :::info Chia setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 (Be sure to update &lt;username&gt; and &lt;version&gt; to match the actual folder structure)
 
@@ -335,13 +334,13 @@ You are recommended to complete steps 1 and 2 (port forwarding and firewall conf
 :::info Firewall setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 From a PowerShell prompt, run:
 
@@ -432,10 +431,10 @@ sudo pfctl -sr | grep 8575
 
 As shown in the above image:
 
--   Click `Settings` on the lower left side of your wallet
--   Click the `DATA LAYER` menu
--   Click the slider to `Enable Data Layer`
--   A slider titled `Enable File Propagation Server` will appear. Click this to enable it as well
+- Click `Settings` on the lower left side of your wallet
+- Click the `DATA LAYER` menu
+- Click the slider to `Enable Data Layer`
+- A slider titled `Enable File Propagation Server` will appear. Click this to enable it as well
 
 Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. When Chia starts, it will automatically enable both of the DataLayer services.
 
@@ -445,9 +444,9 @@ Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. Wh
 
 Regardless of the status of `FULL NODE`, you may safely proceed with this tutorial:
 
--   Orange dot = full node is syncing
--   Green dot = full node is synced
--   `FULL NODE` is missing = you are running in `Wallet Mode`
+- Orange dot = full node is syncing
+- Green dot = full node is synced
+- `FULL NODE` is missing = you are running in `Wallet Mode`
 
 :::
 
@@ -490,18 +489,18 @@ chia_data_layer_http: started
 
 You may be wondering how much data DataLayer can handle. When testing locally, there are a few important points to consider:
 
--   There is no enforced limit on the length of DataLayer keys or values
--   However, your computer must have enough memory (and other resources) to store the keys and values it downloads. A Raspberry Pi with 4 GB of memory will not be able to support the same size data sets as a server with 512 GB of memory
--   Additionally, when adding a single key/value pair, the total size of the pair must fit into memory (the individual sizes of the key and value don't matter)
--   When running `update_data_store` to add multiple keys, the important metric is the total size of _all_ keys and values in the whole store. Individual keys and values within the same command are unimportant in this context
--   When discussing the lengths of keys and values, we always refer to the _hex_ values _after_ conversion from their original format
--   The amount of data in your request must be smaller than the value of `rpc_server_max_request_body_size`, a parameter located in `~/.chia/mainnet/config/config.yaml`. If you modify this setting, you must restart Chia in order for the change to take effect
+- There is no enforced limit on the length of DataLayer keys or values
+- However, your computer must have enough memory (and other resources) to store the keys and values it downloads. A Raspberry Pi with 4 GB of memory will not be able to support the same size data sets as a server with 512 GB of memory
+- Additionally, when adding a single key/value pair, the total size of the pair must fit into memory (the individual sizes of the key and value don't matter)
+- When running `update_data_store` to add multiple keys, the important metric is the total size of _all_ keys and values in the whole store. Individual keys and values within the same command are unimportant in this context
+- When discussing the lengths of keys and values, we always refer to the _hex_ values _after_ conversion from their original format
+- The amount of data in your request must be smaller than the value of `rpc_server_max_request_body_size`, a parameter located in `~/.chia/mainnet/config/config.yaml`. If you modify this setting, you must restart Chia in order for the change to take effect
 
 Keeping all of this in mind, **it is typically safe to insert data sets of up to 50 MiB** (no guarantees, though). We expect to support larger sizes in future versions. For now, however, we have only done minimal testing on larger data sets. For example, using `curl` to add keys and values to an empty tree required the following lengths of time:
 
--   100 MiB -- 2 to 4 seconds
--   1 GiB -- 45 to 60 seconds
--   2 GiB -- failed to insert
+- 100 MiB -- 2 to 4 seconds
+- 1 GiB -- 45 to 60 seconds
+- 2 GiB -- failed to insert
 
 ---
 
@@ -509,8 +508,8 @@ Keeping all of this in mind, **it is typically safe to insert data sets of up to
 
 Chia DataLayer doesn't have a GUI. The commands in this tutorial will use the command line interface (CLI). As a reminder, here is the complete reference for the CLI, as well as all available Remote Procedure Calls (RPCs):
 
--   [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
--   [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 
 ### Create a data store
 
@@ -844,9 +843,9 @@ We include an HTTP server that can be used out of the box. By default it listens
 
 To "advertise" your mirror on-chain you use the `add_mirror` command. This command takes three arguments:
 
--   `i` -- Your root's ID
--   `u` -- The URL of your mirror. You can reuse this argument, as shown in the example below
--   `a` -- The amount (in mojos) that will be locked into the mirror while it exists. In theory, a system could prioritize mirrors according to how much was spent to create them. The `amount` will be returned to the creator when the mirror is deleted. Minimum `amount` is 0
+- `i` -- Your root's ID
+- `u` -- The URL of your mirror. You can reuse this argument, as shown in the example below
+- `a` -- The amount (in mojos) that will be locked into the mirror while it exists. In theory, a system could prioritize mirrors according to how much was spent to create them. The `amount` will be returned to the creator when the mirror is deleted. Minimum `amount` is 0
 
 <details>
 <summary>add_mirror example</summary>

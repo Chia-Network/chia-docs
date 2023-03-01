@@ -113,9 +113,9 @@ chia wallet get_address
 
 :::
 
-The final line of the output will be `Name: <Coin ID>`. You’ll use the coin ID value in the next step.
+The final line of the output will be `Name: <Coin ID>`. You'll use the coin ID value in the next step.
 
-Run the same command again, this time removing the `--select-coin` flag and adding a new flag, `--curry <Coin ID>`. It’s very important to preface the coin ID with 0x here to make CLVM interpret the value as bytes and not a string. Here’s the full command to run:
+Run the same command again, this time removing the `--select-coin` flag and adding a new flag, `--curry <Coin ID>`. It's very important to preface the coin ID with 0x here to make CLVM interpret the value as bytes and not a string. Here's the full command to run:
 
 ```bash
 cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to <your receive address> --amount <XCH mojos> -m <fee in XCH mojos> --as-bytes --curry 0x<Coin ID>
