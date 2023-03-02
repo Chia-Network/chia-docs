@@ -3,6 +3,8 @@ title: Farmers
 slug: /farmer-architecture
 ---
 
+Demo changes. Ignore PR
+
 Chia's farmers are analogous to Bitcoin's miners. They earn block rewards and fees by finding valid proofs of space inside their stored plots. The farmer processes don't maintain a copy of the blockchain, but they trust a full node to provide updates. The full node and farmer processes communicate with each other using the farmer protocol.
 
 Farmers communicate with harvesters (individual machines, including the farmer machine, that actually store the plots) through the harvester protocol.
