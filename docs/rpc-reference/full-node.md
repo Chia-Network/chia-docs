@@ -1092,11 +1092,13 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
                     },
                     "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b44f24f7dae4af24334870c3f291c8a8e4d370fb935f0c30b6d1fee734c229d351fed2a5a87c059049d205a8ec3c8124ff018080",
                     "solution": "0xff80ffff01ffff33ffa057b09fa466e876fed06a697b0b82e237ad81424fa809df8c7f41fbcfcc7fcc25ff8400bffc7b80ffff33ffa03be9de8637a998987687d6e3f1df95b6bcde6a2cbc7ed96b40fbc9d76bb5033dff8500ec8e78e980ffff3cffa029505509405ab0d47b986bb2456c288dc272b7fecad9a54943db25c26dc03de48080ff8080"
-                }
-            ]
+                    }
+                ]
+            },
+            "spend_bundle_name": "0xed1f8d6bf3be8b4ed07c201b463ce03c3ea2b886f833749562d426d6d905c5d3"
         },
-        "spend_bundle_name": "0xed1f8d6bf3be8b4ed07c201b463ce03c3ea2b886f833749562d426d6d905c5d3"
-    },
+    }
+    "success": true
 }
 ```
 
@@ -1292,7 +1294,7 @@ curl -X POST --insecure \
     "/get_block",
     ...
     "/healthz"],
-    "success": "true"
+    "success": true
 }
 ```
 
@@ -1316,6 +1318,6 @@ curl -X POST --insecure \
 
 // Response
 {
-    "success": "true"
+    "success": true
 }
 ```
