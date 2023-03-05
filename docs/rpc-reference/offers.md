@@ -51,6 +51,19 @@ async def create_offer_for_ids(
   return offer, TradeRecord.from_json_dict_convenience(res["trade_record"], res["offer"])
 ```
 
+sample:
+```json
+{
+  "offer": {
+    "123456789": 100,
+    "987654321": 200,
+    "555555555": 300
+  },
+  "fee": 500,
+  "validate_only": true
+}
+```
+
 ### `get_offer_summary`
 
 Returns the summary of a specific offer. Works for offers in any state.
@@ -61,6 +74,13 @@ Returns the summary of a specific offer. Works for offers in any state.
 async def get_offer_summary(self, offer: Offer) -> Dict[str, Dict[str, int]]:
   res = await self.fetch("get_offer_summary", {"offer": bytes(offer).hex()})
   return res["summary"]
+```
+
+sample:
+```json
+{
+  "offer": "c69a7e9eb1e1fc7a85df169bccb76c1e135620d0f6dd414b476c73798625f8b6"
+}
 ```
 
 ### `check_offer_validity`
@@ -85,6 +105,13 @@ async def check_offer_validity(self, offer: Offer) -> bool:
   return res["valid"]
 ```
 
+sample:
+```json
+{
+  "offer": "c69a7e9eb1e1fc7a85df169bccb76c1e135620d0f6dd414b476c73798625f8b6"
+}
+```
+
 ### `take_offer`
 
 Takes (accepts) a specific offer, with a given fee.
@@ -96,6 +123,14 @@ Takes (accepts) a specific offer, with a given fee.
 async def take_offer(self, offer: Offer, fee=uint64(0)) -> TradeRecord:
   res = await self.fetch("take_offer", {"offer": bytes(offer).hex(), "fee": fee})
   return TradeRecord.from_json_dict_convenience(res["trade_record"])
+```
+
+sample:
+```json
+{
+  "offer": "c69a7e9eb1e1fc7a85df169bccb76c1e135620d0f6dd414b476c73798625f8b6",
+  "fee": 500
+}
 ```
 
 ### `get_offer`
@@ -110,6 +145,14 @@ async def get_offer(self, trade_id: bytes32, file_contents: bool = False) -> Tra
   res = await self.fetch("get_offer", {"trade_id": trade_id.hex(), "file_contents": file_contents})
   offer_str = res["offer"] if file_contents else ""
   return TradeRecord.from_json_dict_convenience(res["trade_record"], offer_str)
+```
+
+sample:
+```json
+{
+  "trade_id": "ae86b9f9b2d3b3f3c16609dc027f40716961fc6c98d50cfba24e344dd9c9d373",
+  "file_contents": true
+}
 ```
 
 ### `get_all_offers`
@@ -130,6 +173,13 @@ async def get_all_offers(self, file_contents: bool = False) -> List[TradeRecord]
   return records
 ```
 
+sample:
+```json
+{
+  "file_contents": true
+}
+```
+
 ### `cancel_offer`
 
 Cancel an offer with a specific identifier.
@@ -141,4 +191,13 @@ Cancel an offer with a specific identifier.
 ```python
 async def cancel_offer(self, trade_id: bytes32, fee=uint64(0), secure: bool = True):
   await self.fetch("cancel_offer", {"trade_id": trade_id.hex(), "secure": secure, "fee": fee})
+```
+
+sample:
+```json
+{
+  "trade_id": "ae86b9f9b2d3b3f3c16609dc027f40716961fc6c98d50cfba24e344dd9c9d373",
+  "fee": 500,
+  "secure": false
+}
 ```
