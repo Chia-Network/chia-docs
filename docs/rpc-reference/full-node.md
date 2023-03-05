@@ -7,38 +7,86 @@ slug: /full-node-rpc
 The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for
 security concerns.
 
-## get_network_info
+---
 
-Retrieves some information about the current network.
+### `get_network_info`
 
+Retrieves information about the current Chia network.
+
+Usage: `chia rpc full_node get_network_info`
+
+Options:
+
+| Short Command | Long Command | Type   | Required | Description                                      |
+| :------------ | :----------- | :----- | :------- | :----------------------------------------------- |
+| -j            | --json-file  | string | False    | JSON file containing the request data (optional) |
+| -h            | --help       | None   | False    | Show help message and exit                       |
+
+Request Parameters:
+
+| Flag | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| N/A  | N/A     | N/A      | No request parameters 
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_network_info '{}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_network_info  | python -m json.tool
+{}
+```
 
-// Response
+#### Response:
+```json
 {
     "network_name": "mainnet",
     "network_prefix": "xch",
     "success": true
 }
 ```
+</details>
 
-## get_blockchain_state
+---
+
+### `get_blockchain_state`
 
 Retrieves a summary of the current state of the blockchain and full node.
 
+Usage: `chia rpc full_node get_blockchain_state`
+
+Options:
+
+| Short Command | Long Command | Type   | Required | Description                                      |
+| :------------ | :----------- | :----- | :------- | :----------------------------------------------- |
+| -j            | --json-file  | string | False    | JSON file containing the request data (optional) |
+| -h            | --help       | None   | False    | Show help message and exit                       |
+
+Request Parameters:
+
+| Flag | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| N/A  | N/A     | N/A      | No request parameters     
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_blockchain_state '{}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_blockchain_state | python -m json.tool
+{}
+```
 
-
-// Response:
+#### Response:
+```
 {
     "blockchain_state": {
         "difficulty": 3008,
@@ -85,24 +133,46 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     "success": true
 }
 ```
+</details>
 
-## get_block
+---
 
-Retrieves an entire block as a FulLBlock by header hash. Note that some blocks are transaction blocks, and some are not
-(like the one below).
+### `get_block`
 
-- **header_hash**: Heaader hash (block identifier) of the block to get.
+Functionality: Retrieves an entire block as a FulLBlock by header hash. Note that some blocks are transaction blocks, and some are not.
 
+Usage: `chia rpc full_node [OPTIONS] get_block [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| header_hash | String | Yes      | The header hash (block identifier) of the block to get.           |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_block '{"header_hash":"0xf42b4e77315d79ddfb3d64becb21e26ebff5408bda4d1b7c3782fd04f49ec0bb"}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"header_hash":"0xf42b4e77315d79ddfb3d64becb21e26ebff5408bda4d1b7c3782fd04f49ec0bb"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_block | python -m json.tool
+{
+    "header_hash":"0xf42b4e77315d79ddfb3d64becb21e26ebff5408bda4d1b7c3782fd04f49ec0bb"
+}
+```
 
-
-// Response
-
+#### Response:
+```
 {
     "block": {
         "challenge_chain_ip_proof": {
@@ -178,52 +248,95 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     },
     "success": true
 }
+```
+</details>
 
+---
+
+### `get_blocks`
+
+Functionality: Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. To find out which one is in the blockchain, use `get_block_record_by_height`.
+
+Usage: 
+`chia rpc full_node get_blocks [OPTIONS] '{"start": INT, "end": INT, "exclude_header_hash": BOOL}'`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                | Type    | Required | Description                                                                     |
+| :------------------ | :------ | :------- | :------------------------------------------------------------------------------ |
+| start               | long | required | The start height.                                                               |
+| end                 | long | required | The end height (non-inclusive).                                                 |
+| exclude_header_hash | boolean | optional | Whether to exclude the header hash in the response (default false).             |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_blocks '{"start": 100, "end": 200, "exclude_header_hash": true}'
 ```
 
-## get_blocks
-
-Gets a list of full blocks by height. Important note: there might be multiple blocks at each height. To find out which
-one is in the blockchain, use `get_block_record_by_height`.
-
-- **start**: The start height.
-- **end**: The end height (non-inclusive).
-- **exclude_header_hash**: whether to exclude the header hash in the response (default false)
-
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"start": 100, "end": 200, "exclude_header_hash": true}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_blocks | python -m json.tool
+{
+    "start": 100,
+    "end": 200,
+    "exclude_header_hash": true
+}
+```
 
-
-// Response
+#### Response:
+```
 {
   "blocks": [list of blocks as described above],
   "success": true
 }
 ```
+</details>
 
-## get_block_count_metrics
+---
 
-Gets various metrics for the blockchain's blocks. Currently shows:
+### `get_block_count_metrics`
 
-- compact blocks
-- hint count
-- uncompact blocks
+Functionality: Get various metrics for the blockchain's blocks
 
+Usage: chia rpc full_node [OPTIONS] get_block_count_metrics [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| N/A  | N/A     | N/A      | No request parameters     |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_block_count_metrics '{}'
+```
+
+#### Request json:
 ```json
-// Request
-$ curl -X POST --insecure \
---cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key  \
--H "Accept: application/json" \
--H "Content-Type: application/json" \
-"https://localhost:8555/get_block_count_metrics" \
--d "{}"
+{}
+```
 
-// Response
+#### Response:
+```
 {
     "metrics": {
         "compact_blocks": 1347047,
@@ -233,21 +346,46 @@ $ curl -X POST --insecure \
     "success": true
 }
 ```
+</details>
 
-## get_block_record_by_height
+---
 
-Retrieves a block record by height (assuming the height <= peak height). Note that not all blocks will have all
-fields set here (depending on transaction block, finishing sub epoch, etc).
+### get_block_record_by_height
 
-- **height**: the height to get
+Functionality: Retrieves a block record by height.
 
+Usage: `chia rpc full_node [OPTIONS] get_block_record_by_height [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                  |
+| :---------- | :----- | :------- | :--------------------------- |
+| height      | ulong    | True     | The height to get           |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_block_record_by_height '{"height": 101}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"height": 101}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record_by_height | python -m json.tool
+{
+    "height": 101
+}
+```
 
-// Reponse
+#### Response:
+```json
 {
     "block_record": {
         "challenge_block_info_hash": "0x08dbc5c9f4676bad4cd2fad9b120afefdc107ffdd4066f73f14baf2a204f13df",
@@ -293,23 +431,45 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     },
     "success": true
 }
-
 ```
+</details>
 
-## get_block_record
+### `get_block_record`
 
 Retrieves a block record by header hash.
 
-- **header_hash**: the block's header_hash
+Usage: `chia rpc full_node get_block_record [OPTIONS] [REQUEST]`
 
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                                                                                         |
+| :---------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
+| header_hash | STRING | Yes      | The hex-encoded header hash of the block record to retrieve.                                         |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_block_record '{"header_hash": "0x3723909a7374c4c88cf00ab9b15365f4988f5bdb2d51bac23f6af939fe40f56c"}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"header_hash": "0x3723909a7374c4c88cf00ab9b15365f4988f5bdb2d51bac23f6af939fe40f56c"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_block_record | python -m json.tool
+{
+    "header_hash": "0x3723909a7374c4c88cf00ab9b15365f4988f5bdb2d51bac23f6af939fe40f56c"
+}
+```
 
-// Response
+#### Response:
+```
 {
     "block_record": {
         "challenge_block_info_hash": "0x08dbc5c9f4676bad4cd2fad9b120afefdc107ffdd4066f73f14baf2a204f13df",
@@ -356,41 +516,93 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     "success": true
 }
 ```
+</details>
 
-## get_block_records
+---
+
+### get_block_records
 
 Retrieves block records in a range.
 
-- **start**: the start height
-- **end**: the end height (non-inclusive)
+Usage: `chia rpc full_node get_block_records '{"start": 5, "end": 7}'
 
+Options:
+
+| Short Command | Long Command | Type   | Required | Description                                               |
+| :------------ | :----------- | :----- | :------- | :-------------------------------------------------------- |
+| -j            | --json-file  | STRING | False    | A file path to a json file containing the request data     |
+| -h            | --help       | None   | False    | Show a help message and exit                              |
+
+Request Parameters:
+
+| Flag   | Type | Required | Description                                                                 |
+| :----- | :--- | :------- | :-------------------------------------------------------------------------- |
+| start | long | True | The start height of the block range. |
+| end | long | True | The end height of the block range (non-inclusive). |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_block_records '{"start": 5, "end": 7}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"start": 5, "end": 7}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_block_records | python -m json.tool
+{
+    "start": 5,
+    "end": 7
+}
+```
 
-// Response
+#### Response:
+```
 {
     "block_records": [list of block records as described above]
     "success": true
 }
 ```
+</details>
 
-## get_block_spends
+---
 
-Retrieves every coin that was spent in a block. Requires the header hash of the block to retrieve. Keep in mind that most blocks do not cointain any transactions. These blocks will simply return "[]" for this request.
+### `get_block_spends`
 
-- **header_hash**: the block's header_hash
+Functionality: Retrieves every coin that was spent in a block.
 
+Usage: chia rpc full_node [OPTIONS] get_block_spends [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag         | Type   | Required | Description                                                        |
+| :----------- | :----- | :------- | :----------------------------------------------------------------- |
+| header_hash  | String | True     | The header hash of the block to retrieve                           |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_block_spends '{"header_hash":"0x2e927dd3c83bf057b0f0144d79a046c6e58229e522dc2d6b9cc41ec96391609e"}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt --key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key -d '{
+{
     "header_hash":"0x2e927dd3c83bf057b0f0144d79a046c6e58229e522dc2d6b9cc41ec96391609e"
-}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_block_spends
+}
+```
 
-// Response
+#### Response:
+```
 {
     "block_spends": [{
         "coin": {
@@ -406,20 +618,44 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     "success": true
 }
 ```
+</details>
 
-## get_unfinished_block_headers
+---
 
-Retrieves recent unfinished header blocks. These blocks might get finished and confirmed soon.
-The height and header hash is unknown, because some of these blocks might not get confirmed, which will affect the
-blocks after it.
+### `get_unfinished_block_headers`
 
+Functionality: Retrieves recent unfinished header blocks, which might get finished and confirmed soon. 
+
+Usage: `chia rpc full_node [OPTIONS] get_unfinished_block_headers [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| N/A  | N/A     | N/A      | No request parameters     |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_unfinished_block_headers '{}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{}' -H "Content-Type: application/json" -X POST https://localhost:8555/get_unfinished_block_headers | python -m json.tool
+{}
+```
 
-// Response
+#### Response:
+```
 {
     "headers": [
         {
@@ -493,47 +729,94 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     ],
     "success": true
 }
+```
+</details>
 
+---
+
+### `get_network_space`
+
+Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes.
+
+Usage: `chia rpc full_node [OPTIONS] get_network_space '{"older_block_header_hash": "0xd780d22c7a87c9e01d98b49a0910f6701c3b95015741316b3fda042e5d7b81d2", "newer_block_header_hash": "0xd3372ec62d3ef2f55a8e3d0e76f6f341212f5e09b4d5112add588262257a8e4e"}'`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                  | Type   | Required | Description                                                                                                                           |
+| :-------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| older_block_header_hash | String | Required | The start header hash.                                                                                                                |
+| newer_block_header_hash | String | Required | The end header hash.                                                                                                                  |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_network_space '{"older_block_header_hash": "0xd780d22c7a87c9e01d98b49a0910f6701c3b95015741316b3fda042e5d7b81d2", "newer_block_header_hash": "0xd3372ec62d3ef2f55a8e3d0e76f6f341212f5e09b4d5112add588262257a8e4e"}'
 ```
 
-## get_network_space
-
-Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes.
-
-- **older_block_header_hash**: the start header hash
-- **newer_block_header_hash**: the end header hash
-
+#### Request:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"older_block_header_hash": "0xd780d22c7a87c9e01d98b49a0910f6701c3b95015741316b3fda042e5d7b81d2", "newer_block_header_hash": "0xd3372ec62d3ef2f55a8e3d0e76f6f341212f5e09b4d5112add588262257a8e4e"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_network_space | python -m json.tool
+{
+    "older_block_header_hash": "0xd780d22c7a87c9e01d98b49a0910f6701c3b95015741316b3fda042e5d7b81d2",
+    "newer_block_header_hash": "0xd3372ec62d3ef2f55a8e3d0e76f6f341212f5e09b4d5112add588262257a8e4e"
+}
+```
 
-// Response
+#### Response:
+```
 {
     "space": 137052209455435968,
     "success": true
 }
 ```
+</details>
 
-## get_additions_and_removals
+---
 
-Retrieves the additions and removals (state transitions) for a certain block.
-Returns coin records for each addition and removal.
-Blocks that are not transaction blocks will have empty removal and addition lists. To get the actual puzzles and solutions
-for spent coins, use the `get_puzzle_and_solution` api.
+### `get_additions_and_removals`
 
-- **header_hash**: header hash of the block
+Functionality: Retrieves the additions and removals (state transitions) for a certain block. Returns coin records for each addition and removal. Blocks that are not transaction blocks will have empty removal and addition lists. To get the actual puzzles and solutions for spent coins, use the `get_puzzle_and_solution` API.
 
+Usage: `chia rpc full_node [OPTIONS] get_additions_and_removals [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| header_hash | STRING | True     | header hash of the block                                           |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_additions_and_removals '{"header_hash": "bc89e52aabf264bd1fe4c11ee8aacfc7c03899a3f2604981000bddaedcc7167d"}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"header_hash": "bc89e52aabf264bd1fe4c11ee8aacfc7c03899a3f2604981000bddaedcc7167d"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_additions_and_removals | python -m json.tool
+{
+    "header_hash": "bc89e52aabf264bd1fe4c11ee8aacfc7c03899a3f2604981000bddaedcc7167d"
+}
+```
 
-// Response
+#### Response:
+```json
 {
     "additions": [
         {
@@ -590,21 +873,46 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 "success": true
 }
 ```
+</details>
 
-## get_coin_record_by_name
+---
 
-Retrieves a coin record by its name/id. The coin id can be obtained by hashing the Coin object.
+### `get_coin_record_by_name`
 
-- **name**: coin id or coin name.
+Functionality: Retrieves a coin record by its name/id. The coin id can be obtained by hashing the Coin object.
 
+Usage: `chia rpc full_node [OPTIONS] get_coin_record_by_name '{"name": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0"}'`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description                 |
+| :---- | :----- | :------- | :--------------------------|
+| name  | string | True     | coin id or coin name        |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_coin_record_by_name '{"name": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0"}'
+```
+
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"name": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_coin_record_by_name | python -m json.tool
+{
+    "name": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0"
+}
+```
 
-// Response
+#### Response:
+```json
 {
     "coin_record": {
         "coin": {
@@ -621,38 +929,55 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     "success": true
 }
 ```
+</details>
 
-## get_coin_records_by_names
+---
 
-Retrieves the coins for given coin IDs, by default returns unspent coins.
+### `get_coin_records_by_names`
 
-Required inputs:
+Functionality: Retrieves the coins for given coin IDs, by default returns unspent coins.
 
-- **names**: A list of coin_ids to examine
+Usage: `chia rpc full_node [OPTIONS] get_coin_records_by_names [REQUEST]`
 
-Optional inputs:
+Options:
 
-- **start_height**: The block height at which to begin the search
-- **end_height**: The block height at which to end the search
-- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
+| Short Command | Long Command | Type   | Required | Description                                                                                         |
+| :------------ | :----------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
+| -j            | --json-file  | String | False    | Optionally instead of REQUEST you can provide a json file containing the request data              |
+| -h            | --help       | None   | False    | Show a help message and exit                                                                       |
 
+Request Parameters:
+
+| Flag                | Type          | Required | Description                                                                 |
+| :------------------ | :------------ | :------- | :-------------------------------------------------------------------------- |
+| `names`             | List[String]  | True     | A list of coin_ids to examine                                                |
+| `start_height`      | int           | False    | The block height at which to begin the search                                |
+| `end_height`        | int           | False    | The block height at which to end the search                                  |
+| `include_spent_coins`| bool          | False    | A boolean indicating whether to include spent coins (default=false)          |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_coin_records_by_names '{"start_height":400000, "end_height":1900000, "include_spent_coins":true, "names":["0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195","0x3a071ea8bb51d724bf3841fae40370ff18fe1e71a890b731ed1e67f026550995"]}'
+```
+
+#### Request json:
 ```json
-// Request
-curl -X POST --insecure \
---cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key  \
--H "Accept: application/json" \
--H "Content-Type: application/json" \
-"https://localhost:8555/get_coin_records_by_names" \
--d '{"start_height":400000,
-     "end_height":1900000,
-     "include_spent_coins":true,
-    "names":[
+{
+    "start_height": 400000,
+    "end_height": 1900000,
+    "include_spent_coins": true,
+    "names": [
         "0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195",
         "0x3a071ea8bb51d724bf3841fae40370ff18fe1e71a890b731ed1e67f026550995"
-    ]}'
+    ]
+}
+```
 
-// Response
+#### Response:
+```json
 {
     "coin_records": [{
         "coin": {
@@ -680,38 +1005,54 @@ curl -X POST --insecure \
     "success": true
 }
 ```
+</details>
 
-## get_coin_records_by_parent_ids
+---
 
-Retrieves the coins for given parent coin IDs, by default returns unspent coins.
+### `get_coin_records_by_parent_ids`
 
-Required inputs:
+Functionality: Retrieves the coins for given parent coin IDs, by default returns unspent coins.
 
-- **parent_ids**: A list of parent IDs to examine
+Usage: `chia rpc full_node [OPTIONS] get_coin_records_by_parent_ids [REQUEST]`
 
-Optional inputs:
+Options:
 
-- **start_height**: The block height at which to begin the search
-- **end_height**: The block height at which to end the search
-- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
+Request Parameters:
+
+| Flag              | Type   | Required | Description                                                          |
+| :---------------- | :----- | :------- | :------------------------------------------------------------------- |
+| parent_ids        | Array  | True     | A list of parent IDs to examine                                       |
+| start_height      | long   | False    | The block height at which to begin the search                         |
+| end_height        | long   | False    | The block height at which to end the search                           |
+| include_spent_coins | bool | False    | A boolean indicating whether to include spent coins (default=false) |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_coin_records_by_parent_ids '{"start_height":4,"end_height":1900000,"include_spent_coins":true,"parent_ids":["0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195","0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000061"]}'
+```
+
+#### Request json:
 ```json
-// Request
-curl -X POST --insecure \
---cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key  \
--H "Accept: application/json" \
--H "Content-Type: application/json" \
-"https://localhost:8555/get_coin_records_by_parent_ids" \
--d '{"start_height":4,
+{"start_height":4,
      "end_height":1900000,
      "include_spent_coins":true,
     "parent_ids":[
         "0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195",
         "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000061"
-    ]}'
+    ]
+}
+```
 
-// Response
+#### Response:
+```json
 {
     "coin_records": [{
         "coin": {
@@ -750,36 +1091,52 @@ curl -X POST --insecure \
     "success": true
 }
 ```
+</details>
 
-## get_coin_records_by_hint
+---
 
-Retrieves coins by hint, by default returns unspent coins.
+### `get_coin_records_by_hint`
 
-Required inputs:
+Functionality: Retrieves coins by hint, by default returns unspent coins.
 
-- **hint**: The hint to examine
+Usage: `chia rpc full_node [OPTIONS] get_coin_records_by_hint [REQUEST]`
 
-Optional inputs:
+Options:
 
-- **start_height**: The block height at which to begin the search
-- **end_height**: The block height at which to end the search
-- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
+Request Parameters:
+
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| hint | str | Yes | The hint to examine |
+| start_height | long | No | The block height at which to begin the search |
+| end_height | long | No | The block height at which to end the search |
+| include_spent_coins | bool | No | A boolean indicating whether to include spent coins (default=false) |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_coin_records_by_hint '{"hint":"0x6916079cc35f377e96fa34af87d14f58ce1f08d864f93e89bbdd04a26f591540", "start_height":400000, "end_height":1900000, "include_spent_coins":true}'
+```
+
+#### Request json:
 ```json
-//Request
-curl -X POST --insecure \
---cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key  \
--H "Accept: application/json" \
--H "Content-Type: application/json" \
-"https://localhost:8555/get_coin_records_by_hint" \
--d '{"start_height":400000,
-     "end_height":1900000,
-     "include_spent_coins":true,
-    "hint":"0x6916079cc35f377e96fa34af87d14f58ce1f08d864f93e89bbdd04a26f591540"
-    }'
+{
+    "hint": "0x6916079cc35f377e96fa34af87d14f58ce1f08d864f93e89bbdd04a26f591540",
+    "start_height": 400000,
+    "end_height": 1900000,
+    "include_spent_coins": true
+}
+```
 
-//Response
+#### Response:
+```json
 {
     "coin_records": [{
         "coin": {
@@ -806,25 +1163,49 @@ curl -X POST --insecure \
     }],
     "success": true
 }
+```
+</details>
 
+---
+
+### `get_puzzle_and_solution`
+
+Functionality: Retrieves a coin's spend record by its coin id, sometimes referred to as coin name. Coin IDs can be calculated by hashing the coin. The puzzle and solution are provided in CLVM format.
+
+Usage: `chia rpc full_node [OPTIONS] get_puzzle_and_solution [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| coin_id     | string    | True     | The coin id or coin name.                                           |
+| height      | long   | True     | The height that the coin was spent.                                 |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_puzzle_and_solution '{"coin_id": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0", "height": 922641}'
 ```
 
-## get_puzzle_and_solution
-
-Retrieves a coin's spend record by its coin id, sometimes referred to as coin name. Coin IDs can be calculated
-by hashing the coin. The puzzle and solution are provided in CLVM format.
-
-- **coin_id**: coin id or coin name.
-- **height**: height that the coin was spent.
-
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"coin_id": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0", "height": 922641}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_puzzle_and_solution | python -m json.tool
+{
+    "coin_id": "0xd78dc3318386f028e090a0f41886983c6e83c7705d1318b93f5309aaa3ddc4b0",
+    "height": 922641
+}
+```
 
-// Response
+#### Response:
+```json
 {
     "coin_solution": {
         "coin": {
@@ -837,35 +1218,99 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     },
     "success": true
 }
+```
+</details>
 
+---
+
+### `get_recent_signage_point_or_eos`
+
+Functionality: Retrieves a recent signage point or end of slot.
+
+Usage: `chia rpc full_node [OPTIONS] get_recent_signage_point_or_eos [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag          | Type   | Required | Description                                                        |
+| :------------ | :----- | :------- | :----------------------------------------------------------------- |
+| sp_hash       | string | False    | The hash of the output for a signage point (if it's in the middle of a sub slot) |
+| challenge_hash| string | False    | The challenge_hash for the subslot (if it's an end of sub slot challenge)|
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_recent_signage_point_or_eos '{"sp_hash": "example_sp_hash", "challenge_hash": "example_challenge_hash"}'
 ```
 
-## get_recent_signage_point_or_eos
-
-Retrieves a recent signage point or end of slot.
-
-Paramaters - one of:
-
-- **sp_hash**: The hash of the output for a signage point (if it's in the middle of a sub slot)
-- **challenge_hash**: The challenge_hash for the subslot (if it's an end of sub slot challenge)
-
-## get_coin_records_by_puzzle_hash
-
-Retrieves a list of coin records with a certain puzzle hash.
-
-- **puzzle_hash**: puzzle hash to search for
-- **start_height** (optional): confirmation start height for search
-- **end_height** (optional): confirmation end height for search
-- **include_spend_coins**: whether to include spent coins too, instead of just unspent, default to false
-
+#### Request json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"puzzle_hash":"b1736654875b1c49b4077b89580c4447f12f1e86fb85d488d7efddd5c6e06be0", "start_height":800000, "end_height":1000000, "include_spent_coins": true}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_coin_records_by_puzzle_hash  | python -m json.tool
+{
+    "sp_hash": "example_sp_hash",
+    "challenge_hash": "example_challenge_hash"
+}
+``
 
-// Response
+#### Response:
+```json
+{
+    example_response_data
+}
+```
+</details>
+
+---
+
+### `get_coin_records_by_puzzle_hash`
+
+Functionality: Retrieves a list of coin records with a certain puzzle hash.
+
+Usage: `chia rpc full_node [OPTIONS] get_coin_records_by_puzzle_hash [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                | Type   | Required | Description                                                                                             |
+| :------------------ | :----- | :------- | :------------------------------------------------------------------------------------------------------ |
+| puzzle_hash         | STRING | True     | The puzzle hash to search for.                                                                          |
+| start_height        | long   | False    | Confirmation start height for search. If not specified, will search from height 0.                      |
+| end_height          | long   | False    | Confirmation end height for search. If not specified, will search to the current height of the blockchain. |
+| include_spent_coins | bool   | False    | Whether to include spent coins in the response. Default is false.                                       |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_coin_records_by_puzzle_hash '{"puzzle_hash":"b1736654875b1c49b4077b89580c4447f12f1e86fb85d488d7efddd5c6e06be0", "start_height":800000, "end_height":1000000, "include_spent_coins": true}'
+```
+
+#### Request json:
+```json
+{
+    "puzzle_hash": "b1736654875b1c49b4077b89580c4447f12f1e86fb85d488d7efddd5c6e06be0",
+    "start_height": 800000,
+    "end_height": 1000000,
+    "include_spent_coins": true
+}
+```
+
+#### Response:
+```json
 {
     "coin_records": [
         {
@@ -883,41 +1328,58 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     ],
     "success": true
 }
+```
+</details>
 
+---
+
+### `get_coin_records_by_puzzle_hashes`
+
+Functionality: Retrieves the coins for a given puzzlehashes, by default returns unspent coins.
+
+Usage: `chia rpc full_node get_coin_records_by_puzzle_hashes [OPTIONS]`
+
+Options:
+
+| Short Command | Long Command | Type   | Required | Description                                                       |
+| :------------ | :----------- | :----- | :------- | :---------------------------------------------------------------- |
+| -j            | --json-file  | STRING | False    | A path to a json file to use as input instead of specifying request data |
+| -h            | --help       | None   | False    | Show help message and exit.                                       |
+
+Request Parameters:
+
+| Flag              | Type    | Required | Description                                                                   |
+| :---------------- | :------ | :------- | :---------------------------------------------------------------------------- |
+| puzzle_hashes     | [str]   | True     | A list of puzzle hashes to examine                                            |
+| start_height      | int     | False    | The block height at which to begin the search. Default is set to 0.           |
+| end_height        | int     | False    | The block height at which to end the search. Default is set to the tip height |
+| include_spent_coins | bool   | False    | A boolean indicating whether to include spent coins. Default is set to False |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+
+```shell
+chia rpc full_node get_coin_records_by_puzzle_hashes '{"start_height": 400000,"end_height": 1900000,"include_spent_coins": false,"puzzle_hashes": ["0x6776391535247e1617ee17cabc6a13932faa3d3f2094a55fe95ccefcbb1a749a","0x37bde5f12f697eac8b4f2093656814ce3f05a485702bd1cbd6e436652d99dd96","0xd51afe647b6cb50f4feaa437c1e51d13ee0019831498f5a01418daece0d20a37"]}'
 ```
 
-## get_coin_records_by_puzzle_hashes
-
-Retrieves the coins for a given puzzlehashes, by default returns unspent coins.
-
-Required inputs:
-
-- **puzzle_hashes**: A list of puzzle hashes to examine
-
-Optional inputs:
-
-- **start_height**: The block height at which to begin the search
-- **end_height**: The block height at which to end the search
-- **include_spent_coins**: A boolean indicating whether to include spent coins (default=false)
-
+#### Request json:
 ```json
-// Request
-curl -X POST --insecure \
---cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key  \
--H "Accept: application/json" \
--H "Content-Type: application/json" \
-"https://localhost:8555/get_coin_records_by_puzzle_hashes" \
--d '{"start_height":400000,
-     "end_height":1900000,
-     "include_spent_coins":false,
-    "puzzle_hashes":[
+{
+    "start_height": 400000,
+    "end_height": 1900000,
+    "include_spent_coins": false,
+    "puzzle_hashes": [
         "0x6776391535247e1617ee17cabc6a13932faa3d3f2094a55fe95ccefcbb1a749a",
         "0x37bde5f12f697eac8b4f2093656814ce3f05a485702bd1cbd6e436652d99dd96",
         "0xd51afe647b6cb50f4feaa437c1e51d13ee0019831498f5a01418daece0d20a37"
-    ]}'
+    ]
+}
+```
 
-// Response
+#### Response:
+```json
 {
     "coin_records": [{
         "coin": {
@@ -945,86 +1407,157 @@ curl -X POST --insecure \
     "success": true
 }
 ```
+</details>
 
-## push_tx
+---
 
-Pushes a transaction / spend bundle to the mempool and blockchain.
-Returns whether the spend bundle was successfully included into the mempool.
+### `push_tx`
 
-`SUCCESS` does not guarantee that the transaction will get confirmed. A transaction may be dropped from the mempool and not
-included if the fee is too low. A transaction may also be combined with other transactions to form different spend
-bundles, so looking up the bundle by ID does not guarantee finding the original transaction. Transaction can be
-resubmitted with a higher fee, as long as the coins spent in the new transaction are a superset of the coins spent in
-the old one.
+Functionality: Push a transaction / spend bundle to the mempool and blockchain. Returns whether the spend bundle was successfully included into the mempool.
 
-To check whether a transaction has been confirmed, use `get_coin_record_by_name` with
-each coin id that should be created by this spend bundle.
+Usage: `chia rpc full_node [OPTIONS] push_tx {"spend_bundle": SPEND_BUNDLE} `
 
-- **spend_bundle**: spend bundle to submit, in JSON
+Options:
 
-The error status can be one of:
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of SPEND_BUNDLE you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-- **SUCCESS**: if the transaction was successfully added to the mempool
-- **PENDING**: if the transaction cannot be included yes due to timelocks or conflicts
-- **FAILED**: transaction was not added to the mempool, and was dropped
+Request Parameters:
 
-```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{
+| Flag          | Type   | Required | Description                                                      |
+| :------------ | :----- | :------- | :--------------------------------------------------------------- |
+| spend_bundle  | JSON   | Required | The spend bundle to submit.                                      |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```curl
+chia rpc full_node push_tx '{
     "spend_bundle": {
-    "aggregated_signature": "0xa5e5ea1f5ae2335a72fe0a7ed7ca39e8f142e2e1f6e37a348482290e88eb9cea2d973acf6145e34d0afeee7ba22f99850641e21a549b2c092bb49aa393acd938825bccca9413c1a268ba44367bc8433cd0fc0eb82e87bebe23817aa695bdb566",
-    "coin_spends": [
-        {
-            "coin": {
-                "amount": 1750000000000,
-                "parent_coin_info": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000004082",
-                "puzzle_hash": "0x94c6db00186900418ef7c1f05e127ee1a647cbe6e514ec3bc57acb7bbe6dfb10"
-            },
-            "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0aec9c2e5984fe928406abca942d55ec6b56340af8315bfefa55889dbaade669b9fd3f330af2af44c2a0626d383e64757ff018080",
-            "solution": "0xff80ffff01ffff33ffa03fa549a708302b401c45cf387f8f03b4f76b7c9eabf567bea974f61dedf721e0ff840098968080ffff33ffa055b9fe4c9ce0cef8ad574bf5a9158dc0db7848b96be1a98ab2806d8f0a376a08ff860197738845808080ff8080"
-        }
-    ]
-  }
-}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/push_tx
-
-// Response
-{"status": "SUCCESS", "success": true}
+        "aggregated_signature": "0xa5e5ea1f5ae2335a72fe0a7ed7ca39e8f142e2e1f6e37a348482290e88eb9cea2d973acf6145e34d0afeee7ba22f99850641e21a549b2c092bb49aa393acd938825bccca9413c1a268ba44367bc8433cd0fc0eb82e87bebe23817aa695bdb566",
+        "coin_spends": [
+            {
+                "coin": {
+                    "amount": 1750000000000,
+                    "parent_coin_info": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000004082",
+                    "puzzle_hash": "0x94c6db00186900418ef7c1f05e127ee1a647cbe6e514ec3bc57acb7bbe6dfb10"
+                },
+                "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0aec9c2e5984fe928406abca942d55ec6b56340af8315bfefa55889dbaade669b9fd3f330af2af44c2a0626d383e64757ff018080",
+                "solution": "0xff80ffff01ffff33ffa03fa549a708302b401c45cf387f8f03b4f76b7c9eabf567bea974f61dedf721e0ff840098968080ffff33ffa055b9fe4c9ce0cef8ad574bf5a9158dc0db7848b96be1a98ab2806d8f0a376a08ff860197738845808080ff8080"
+            }
+        ]
+    }
+}'
 ```
 
-## get_all_mempool_tx_ids
-
-Returns a list of all transaction IDs (spend bundle hashes) in the mempool.
-
+#### Request Json:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_all_mempool_tx_ids  | python -m json.tool
+{
+  "spend_bundle": {
+    "aggregated_signature": "0xa5e5ea1f5ae2335a72fe0a7ed7ca39e8f142e2e1f6e37a348482290e88eb9cea2d973acf6145e34d0afeee7ba22f99850641e21a549b2c092bb49aa393acd938825bccca9413c1a268ba44367bc8433cd0fc0eb82e87bebe23817aa695bdb566",
+    "coin_spends": [
+      {
+        "coin": {
+          "amount": 1750000000000,
+          "parent_coin_info": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000004082",
+          "puzzle_hash": "0x94c6db00186900418ef7c1f05e127ee1a647cbe6e514ec3bc57acb7bbe6dfb10"
+        },
+        "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0aec9c2e5984fe928406abca942d55ec6b56340af8315bfefa55889dbaade669b9fd3f330af2af44c2a0626d383e64757ff018080",
+        "solution": "0xff80ffff01ffff33ffa03fa549a708302b401c45cf387f8f03b4f76b7c9eabf567bea974f61dedf721e0ff840098968080ffff33ffa055b9fe4c9ce0cef8ad574bf5a9158dc0db7848b96be1a98ab2806d8f0a376a08ff860197738845808080ff8080"
+      }
+    ]
+  }
+}
+```
 
-// Response
+#### Response:
+```json
+{"status": "SUCCESS", "success": true}
+```
+</details>
+
+---
+
+### `get_all_mempool_tx_ids`
+
+Functionality: Returns a list of all transaction IDs (spend bundle hashes) in the mempool.
+
+Usage: `chia rpc full_node [OPTIONS] get_all_mempool_tx_ids '{}'`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type    | Required | Description               |
+| :--- | :------ | :------- | :------------------------|
+| N/A  | N/A     | N/A      | No request parameters     |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_all_mempool_tx_ids '{}'
+```
+
+#### Request JSON:
+```json
+{}
+```
+
+#### Response:
+```json
 {
     "success": true,
     "tx_ids": ["0x94c6db00186900418ef7c1f05e127ee1a647cbe6e514ec3bc57acb7bbe6dfb10"]
 }
-
 ```
 
-## get_all_mempool_items
+</details>
 
-Returns all items in the mempool.
+---
 
+### `get_all_mempool_items`
+
+Functionality: Returns all items in the mempool.
+
+Usage: `chia rpc full_node [OPTIONS] get_all_mempool_items [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| N/A  | N/A     | N/A      | No request parameters     |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+chia rpc full_node get_all_mempool_items '{}'
+```
+
+#### Request JSON:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_all_mempool_items  | python -m json.tool
+{}
+```
 
-// Response
+#### Response:
+```json
 {"mempool_items": {
  "ed1f8d6bf3be8b4ed07c201b463ce03c3ea2b886f833749562d426d6d905c5d3": {
         "additions": [
@@ -1101,22 +1634,46 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     "success": true
 }
 ```
+</details>
 
-## get_mempool_item_by_tx_id
+---
 
-Gets a mempool item by tx id.
+### `get_mempool_item_by_tx_id`
 
-- **tx_id**: spend bundle hash
+Functionality: Retrieves a mempool item by transaction ID.
 
+Usage: `chia rpc full_node [OPTIONS] get_mempool_item_by_tx_id [REQUEST]`
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description                         |
+| :---- | :----- | :------- | :---------------------------------- |
+| tx_id | string | True     | The spend bundle hash of the mempool item to retrieve. |
+
+<details>
+<summary>Example</summary>
+
+#### Request:
+```shell
+`chia rpc full_node get_mempool_item_by_tx_id '{"tx_id":"0x85ad9dbb26a72028f5d5810b24b6a59e58be48ee4e0aefb846a83606fcb671b3"}'`
+```
+
+#### Request JSON:
 ```json
-// Request
-curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key \
--d '{"tx_id":"0x85ad9dbb26a72028f5d5810b24b6a59e58be48ee4e0aefb846a83606fcb671b3"}' \
--H "Content-Type: application/json" -X POST https://localhost:8555/get_mempool_item_by_tx_id  | python -m json.tool
+{
+    "tx_id": "0x85ad9dbb26a72028f5d5810b24b6a59e58be48ee4e0aefb846a83606fcb671b3"
+}
+```
 
-// Response
-
+#### Response:
+```json
 {
     "mempool_item": {
         "additions": [
@@ -1204,8 +1761,8 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
     },
     "success": true
 }
-
 ```
+</details>
 
 ---
 
@@ -1213,7 +1770,7 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
 
 Functionality: Obtain an estimated fee for one or more targeted times for a transaction to be included in the blockchain. This RPC takes into account the current size of the mempool relative to its maximum size, as well as the fee in mojos per cost (5 by default).
 
-Usage: chia rpc wallet [OPTIONS] get_fee_estimate [REQUEST]
+Usage: `chia rpc wallet [OPTIONS] get_fee_estimate [REQUEST]`
 
 Options:
 
@@ -1239,12 +1796,18 @@ Obtain a fee estimate for a spendbundle with a CLVM cost of 20 million. Targeted
 
 Note that this example was completed at a time when the mempool was not busy, so the fee estimates are all `0`.
 
-```json
+```shell
 chia rpc full_node get_fee_estimate '{"cost":20000000, "target_times": [60, 300, 600]}'
 ```
 
-Response:
+```json
+{
+    "cost": 20000000,
+    "target_times": [60, 300, 600]
+}
+```
 
+Response:
 ```json
 {
     "current_fee_rate": 0,
@@ -1267,57 +1830,93 @@ Response:
     ]
 }
 ```
-
 </details>
 
 ---
 
-## get_routes
+### `get_routes`
 
-Show all RPC endpoints. This endpoint is lightweight and can be used as a health check. However, a better option may be `healthz` (below).
+Functionality: Show all available RPC endpoints.
 
-Options: none
+Usage: `chia rpc full_node [OPTIONS] get_routes '{}'`
 
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Flag | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| N/A  | N/A     | N/A      | No request parameters     |
+
+<details>
+<summary>Example</summary>
+#### Request:
+```shell
+chia rpc full_node get_routes '{}'
+```
+
+#### Request JSON:
 ```json
-// Request
-curl -X POST --insecure \
---cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key  \
--H "Accept: application/json" \
--H "Content-Type: application/json" \
-"https://localhost:8555/get_routes" \
--d '{}'
+{}
+```
 
-// Response
-{"routes": [
-    "/get_blockchain_state",
-    "/get_block",
-    ...
-    "/healthz"],
+#### Response:
+```json
+{
+    "routes": [
+        "/get_blockchain_state",
+        "/get_block",
+        "/get_unfinished_block_headers",
+        ...
+        "/health_check",
+        "/ping",
+        "/get_routes"
+    ],
     "success": true
 }
 ```
+</details>
 
-## healthz
+---
 
-Verifies that the RPC service is running. This endpoint is lightweight and can be queried often in intervals.
+### `healthz`
 
-Options: none
+Functionality: Verifies that the RPC service is running. This endpoint is lightweight and can be queried often in intervals.
 
-Returns: `200` if successful
+Usage: `chia rpc full_node [OPTIONS] healthz '{}'`
 
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Flag | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| N/A  | N/A     | N/A      | No request parameters     |
+
+<details>
+<summary>Example</summary>
+#### Request:
+```shell
+chia rpc full_node healthz '{}'
+```
+
+#### Request JSON:
 ```json
-// Request
-curl -X POST --insecure \
---cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.crt \
---key ~/.chia/mainnet/config/ssl/full_node/private_full_node.key  \
--H "Accept: application/json" \
--H "Content-Type: application/json" \
-"https://localhost:8555/healthz" \
--d '{}'
+{}
+```
 
-// Response
+#### Response:
+```json
 {
     "success": true
 }
 ```
+</details>
