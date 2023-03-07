@@ -1,6 +1,6 @@
 ---
 slug: /guides/datalayer-user-guide
-title: DataLayer User Guide
+title: DataLayer™ User Guide
 ---
 
 ```mdx-code-block
@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ### Intro
 
-This document will guide you through the process of setting up Chia's DataLayer and running a few basic functions. Before using this guide, you may want to familiarize yourself with DataLayer's structure and function. Our [blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/) announcing DataLayer's launch is a great place to get started.
+This document will guide you through the process of setting up Chia's DataLayer™ and running a few basic functions. Before using this guide, you may want to familiarize yourself with DataLayer's structure and function. Our [blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/) announcing DataLayer's launch is a great place to get started.
 
 #### Proof of inclusion
 
