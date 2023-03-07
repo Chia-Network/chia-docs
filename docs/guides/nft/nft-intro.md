@@ -51,7 +51,7 @@ While some creators may wish to release their NFTs as individual pieces (so-call
 "Edition" means multiple NFTs with _identical_ data and metadata. In the NFT1 standard, the NFT's edition is part of the _on-chain_ metadata. This means that it is built into the NFT itself. There are two parmeters related to edition:
 
 - `edition_number` is the sequence number of this NFT's edition. For example, if the collection contains ten identical images of an apple, the NFTs could be labeled `Apple #1 of 10`, `Apple #2 of 10`, etc. The `edition_number` would then be `1`, `2`, etc. If each NFT in a collection is distinct, then the `edition_number` for each NFT is `1`. In this case, most NFT creators will choose not to specify this redundant `edition_number`.
-- `edition_count` is the total number of identical NFTs that are part of this edition. If `edition_number` is specified for an NFT, then `edition_count` is required. In the above example, each NFT that contains an identical apple image would have an `edition_count` of 10. Because this parameter must be specified upon an NFT's minting, it gives prospective buyers confidence that no surprise copies of an NFT will later be minted.
+- `edition_total` is the total number of identical NFTs that are part of this edition. If `edition_number` is specified for an NFT, then `edition_total` is also recommended to be specified. In the above example, each NFT that contains an identical apple image would have an `edition_total` of 10.
 
 ## CLVM Cost
 
