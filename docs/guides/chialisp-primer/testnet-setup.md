@@ -30,6 +30,16 @@ Now you can set up the wallet and use a faucet to receive Testnet coins to use i
 3. Go to the [Testnet faucet](https://testnet10-faucet.chia.net) and give it your address.
 4. Wait a minute or two and run `chia wallet show` to check your balance.
 
+## Peers
+
+If you were previously running on mainnet, you will have a list of mainnet peers stored in the following file:
+
+`~/.chia/mainnet/db/peers.dat`
+
+Be sure to **rename or delete** this file when you convert your system to running on testnet. If you do not do this, your system will eventually drop its mainnet peers and add new testnet peers, but this could take a long time.
+
+One way to speed up the peer discovery process even more is to run the [add-nodes bash script](https://github.com/wallentx/farm-and-ranch-supply-depot/blob/main/bin/extra/add-nodes). Note that this script won't work on Windows. Your mileage also may vary on Linux and MacOS.
+
 ## Conclusion
 
 You should now be ready to use the Testnet to create and spend smart coins. As always, if you ran into any issues while setting up the Testnet, feel free to ask for support on our [Keybase team](https://keybase.io/team/chia_network.public).
