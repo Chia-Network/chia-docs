@@ -1864,7 +1864,11 @@ Response:
 <details>
 <summary>Example 2: Send an NFT notification</summary>
 
-In this example, we will use the command line to send an offer directly to the owner of an NFT.
+In this example, we will attempt to buy the following NFT:
+
+`nft1dcw9gfx034mxv2xkv568aupaqlc6em5sn3d2y3kzkt5js2gydr0stfd4ek`
+
+We will create an offer for this NFT and use the command line to send an offer directly to its owner.
 
 First, create an Offer file. This can be accomplished with the [create_offer_for_ids](/offer-rpc#create_offer_for_ids) RPC. Offers can also be created from the reference wallet's GUI.
 
@@ -1872,15 +1876,60 @@ Next, post the offer to a URI. In this example, we will use Dexie.
 
 The human-readable offer is located here:
 
-[https://dexie.space/offers/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF](https://dexie.space/offers/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF)
+[https://dexie.space/offers/4xtVpZWkTrpdsZhtJCKSpyRqJoT1qZXsJXy6Hqm8tYjr](https://dexie.space/offers/4xtVpZWkTrpdsZhtJCKSpyRqJoT1qZXsJXy6Hqm8tYjr)
 
-However, the notification command requires a raw offer file, as shown here:
+However, the notification command requires a raw offer file. In Dexie's case, the URI will start with `raw.dexie.space`, as shown here:
 
-[https://raw.dexie.space/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF](https://raw.dexie.space/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF)
+[https://raw.dexie.space/4xtVpZWkTrpdsZhtJCKSpyRqJoT1qZXsJXy6Hqm8tYjr](https://raw.dexie.space/4xtVpZWkTrpdsZhtJCKSpyRqJoT1qZXsJXy6Hqm8tYjr)
 
 Note that the raw offer file can be posted to any URI; it does not need to be on an exchange.
 
-We will also need the Current Owner address of the NFT. This is obtainable from various block explorers. For this example, the Current Owner is listed as the Recipient on [spacescan.io](https://www.spacescan.io/coin/0x7b7016fcc1209a28005d7201bc4c08fa16a8619c77e3d5bc8f2599004b3cb976). This address will be used as the `target` in the notification command.
+We will also need to obtain the Current Owner address of the NFT. This can be obtained from the `nft_get_info` RPC:
+
+```bash
+chia rpc wallet nft_get_info '{"coin_id":"nft1dcw9gfx034mxv2xkv568aupaqlc6em5sn3d2y3kzkt5js2gydr0stfd4ek"}'
+```
+
+Result:
+
+```bash
+{
+    "nft_info": {
+        "chain_info": "((117 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\") (104 . 0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a) (28021 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\") (27765) (29550 . 1) (29556 . 1) (28008 . 0xfdfe889a579916f8f75dcfff809eee44fc844df5fa92aecd2d562578e7e69a24))",
+        "data_hash": "0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a",
+        "data_uris": [
+            "https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg",
+            "ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg"
+        ],
+        "edition_number": 1,
+        "edition_total": 1,
+        "launcher_id": "0x6e1c5424cf8d766628d665347ef03d07f1acee909c5aa246c2b2e928290468df",
+        "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+        "license_hash": "0x",
+        "license_uris": [],
+        "metadata_hash": "0xfdfe889a579916f8f75dcfff809eee44fc844df5fa92aecd2d562578e7e69a24",
+        "metadata_uris": [
+            "https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json",
+            "ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json"
+        ],
+        "mint_height": 2459174,
+        "minter_did": "0x7af52cbf50837fd387b02c60351f8ab9842a8f18b99ced7ab9a16a155c35d400",
+        "nft_coin_id": "0x78a3012f0aa0c837ee1bed53f91c8d4e4897578e7757dee4965fdcd4cff0c94a",
+        "nft_id": "nft1dcw9gfx034mxv2xkv568aupaqlc6em5sn3d2y3kzkt5js2gydr0stfd4ek",
+        "off_chain_metadata": null,
+        "owner_did": null,
+        "p2_address": "0x47e26aa7ee46e7ed3a2f762fda7aa1d63db6be42e14fc3a18e54e13ee509f84b",
+        "pending_transaction": false,
+        "royalty_percentage": 300,
+        "royalty_puzzle_hash": "0x3ed2cab30efeddb0d58c660b380ef0671292e922e1a01cccdff51d390f0473eb",
+        "supports_did": true,
+        "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+    },
+    "success": true
+}
+```
+
+In this case, we need the `p2_address`, which is `47e26aa7ee46e7ed3a2f762fda7aa1d63db6be42e14fc3a18e54e13ee509f84b` (the leading `0x` isn't needed).
 
 Finally, we need to construct a valid message to send. The notification message payload is a JSON object with the following fields:
 - `v`: &lt;number&gt; version of the notification message. Currently `1`.
@@ -1892,26 +1941,26 @@ Finally, we need to construct a valid message to send. The notification message 
 The `ph` for the message payload can be any puzzlehash in your key derivation. One way to obtain an address is with the `chia wallet get_address` command. For this example, we'll use:
 
 ```json
-xch13cg9pmzrw0ewha76je505thv7pvdppp3zlhsm99cq4mlyvh2ymuq3lux8p
+xch1ta7zjqqtaw9wyfnawl3z84a26vexr3qtmp7jq6gx4vpzl792sf9qddsacl
 ```
 
 This address still needs to be converted into a puzzlehash. One way to accomplish this is with an online converter, such as the one available from [spacescan](https://www.spacescan.io/tools/puzzlehashconverter). 
 Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository:
 
 ```json
-cdv decode xch13cg9pmzrw0ewha76je505thv7pvdppp3zlhsm99cq4mlyvh2ymuq3lux8p
+cdv decode xch1ta7zjqqtaw9wyfnawl3z84a26vexr3qtmp7jq6gx4vpzl792sf9qddsacl
 ```
 
 Response:
 
 ```json
-8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8
+5f7c29000beb8ae2267d77e223d7aad33261c40bd87d206906ab022ff8aa824a
 ```
 
 The payload command we will use in this example is:
 
 ```json
-{"v":1,"t":1,"d":{"u":"https://raw.dexie.space/9tVfEQjLkvY2LvNV79quapuqLFDLXaJnZAGpjMdnFAeF","ph":"8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8"}}
+{"v":1,"t":1,"d":{"u":"https://raw.dexie.space/4xtVpZWkTrpdsZhtJCKSpyRqJoT1qZXsJXy6Hqm8tYjr","ph":"5f7c29000beb8ae2267d77e223d7aad33261c40bd87d206906ab022ff8aa824a"}}
 ```
 
 However, we still need to [convert it to hexadecimal format](https://www.rapidtables.com/convert/number/ascii-to-hex.html) for the RPC command.
@@ -1919,13 +1968,13 @@ However, we still need to [convert it to hexadecimal format](https://www.rapidta
 The hex equivalent of the payload command is:
 
 ```json
-7B2276223A312C2274223A312C2264223A7B2275223A2268747470733A2F2F7261772E64657869652E73706163652F3974566645516A4C6B7659324C764E5637397175617075714C46444C58614A6E5A4147706A4D646E46416546222C227068223A2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227D7D
+7B2276223A312C2274223A312C2264223A7B2275223A2268747470733A2F2F7261772E64657869652E73706163652F34787456705A576B54727064735A68744A434B53707952714A6F5431715A58734A58793648716D3874596A72222C227068223A2235663763323930303062656238616532323637643737653232336437616164333332363163343062643837643230363930366162303232666638616138323461227D7D
 ```
 
 Having obtained all of this information, we can run the command to send the message:
 
 ```json
-chia rpc wallet send_notification '{"target": "0e129efb6e03f55088ccb7275e9c226574645df171d1b956481d6c285b9b08ef", "message": "7B2276223A312C2274223A312C2264223A7B2275223A2268747470733A2F2F7261772E64657869652E73706163652F3974566645516A4C6B7659324C764E5637397175617075714C46444C58614A6E5A4147706A4D646E46416546222C227068223A2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227D7D", "amount": 100000000, "fee": 1}'
+chia rpc wallet send_notification '{"target": "47e26aa7ee46e7ed3a2f762fda7aa1d63db6be42e14fc3a18e54e13ee509f84b", "message": "7B2276223A312C2274223A312C2264223A7B2275223A2268747470733A2F2F7261772E64657869652E73706163652F34787456705A576B54727064735A68744A434B53707952714A6F5431715A58734A58793648716D3874596A72222C227068223A2235663763323930303062656238616532323637643737653232336437616164333332363163343062643837643230363930366162303232666638616138323461227D7D", "amount": 100000000, "fee": 1}'
 ```
 
 Response:
@@ -1937,58 +1986,58 @@ Response:
         "additions": [
             {
                 "amount": 100000000,
-                "parent_coin_info": "0x9fb255707c635d643d4e30790ace23a10bb7a5cb76cc66a92ee0e8c5540295ea",
-                "puzzle_hash": "0x4918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0"
+                "parent_coin_info": "0xd5619c0b02a9279edf11ae85407fd8dc7472fe449fe6ab88d4cc480a5d4b24f5",
+                "puzzle_hash": "0xa52a2bcbff9ece1137bbc9199be03b0b32e6406bf377f6dc201be6ee5a4dfd9c"
             },
             {
-                "amount": 3306899991,
-                "parent_coin_info": "0x9fb255707c635d643d4e30790ace23a10bb7a5cb76cc66a92ee0e8c5540295ea",
-                "puzzle_hash": "0xea970d130a2662b0ab745b98d7c487ab8e8dd2d7c41676b97ff1c2e4c13c3779"
+                "amount": 3106899989,
+                "parent_coin_info": "0xd5619c0b02a9279edf11ae85407fd8dc7472fe449fe6ab88d4cc480a5d4b24f5",
+                "puzzle_hash": "0x1732d207b04a03dd7d622cc9f491d43ca0561cf73a1efacdaa0e26e8902c8b73"
             }
         ],
         "amount": 100000000,
         "confirmed": false,
         "confirmed_at_height": 0,
-        "created_at_time": 1676868989,
+        "created_at_time": 1677570233,
         "fee_amount": 1,
         "memos": {
-            "61e06f9bf11b3e4a0ca20c7f2863f05c0f8aa5c43a522ae317818d089cf15378": "7b2276223a312c2274223a312c2264223a7b2275223a2268747470733a2f2f7261772e64657869652e73706163652f3974566645516a4c6b7659324c764e5637397175617075714c46444c58614a6e5a4147706a4d646e46416546222c227068223a2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227d7d"
+            "121a439f242f4e59a871c464a9f324507aa4566d61ad8ec5d717468551e89c5a": "7b2276223a312c2274223a312c2264223a7b2275223a2268747470733a2f2f7261772e64657869652e73706163652f34787456705a576b54727064735a68744a434b53707952714a6f5431715a58734a58793648716d3874596a72222c227068223a2235663763323930303062656238616532323637643737653232336437616164333332363163343062643837643230363930366162303232666638616138323461227d7d"
         },
-        "name": "0x52877e257cdeb53ebb214e18c0e60a58e06950bcabac389dbd78c57b5e4575e8",
+        "name": "0x61c5c10e604c7196a216ec7c39f1a448a222737ee854c85bb6e3dca174656348",
         "removals": [
             {
-                "amount": 3406899992,
-                "parent_coin_info": "0x03d7227fcecfbea79637c44de5eae70bdb2a9fa705bc1bcc2eb62d93f5ea12d7",
-                "puzzle_hash": "0x8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8"
+                "amount": 3206899990,
+                "parent_coin_info": "0x162aea6e661610421def30f3c8b58c4154aef9dc4f847024f757a0b92117d704",
+                "puzzle_hash": "0x035f40ced4483a04d2f677586724af21c868960d94410ac9e595d0944a019842"
             }
         ],
         "sent": 0,
         "sent_to": [],
         "spend_bundle": {
-            "aggregated_signature": "0xb27911cda4de2450bc7043a19ba152e99ff0729394afbcd3a4d119503877fa84918897683f2cdee09fe6d019a0f00083158776a115f2b10914073f9ab59aad8511d5707c3c9d0a683addbc9ff26e3d9a92bd6e47b1c03072b3d23b7888092693",
+            "aggregated_signature": "0xa558eb279ebdf8bd9c58cddd992f38c7b2f48e86b2024917f85eb8beb4b24c7541e5ff8b1a81e3f73c35144f42ba4ce60ef55d36474e078292ddb6b99edb3f039a9f3f9282c1be2102ed811af5080cca37cb450a12039edce9ead563a6ab9740",
             "coin_spends": [
                 {
                     "coin": {
-                        "amount": 3406899992,
-                        "parent_coin_info": "0x03d7227fcecfbea79637c44de5eae70bdb2a9fa705bc1bcc2eb62d93f5ea12d7",
-                        "puzzle_hash": "0x8e1050ec4373f2ebf7da9668fa2eecf058d0843117ef0d94b80577f232ea26f8"
+                        "amount": 3206899990,
+                        "parent_coin_info": "0x162aea6e661610421def30f3c8b58c4154aef9dc4f847024f757a0b92117d704",
+                        "puzzle_hash": "0x035f40ced4483a04d2f677586724af21c868960d94410ac9e595d0944a019842"
                     },
-                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b092cb3d4d31e0b537b17c394143a6231808076e616941d72c011ea5b9c7fc19111327a5f490ecd48c21e187a5649e48d8ff018080",
-                    "solution": "0xff80ffff01ffff33ffa04918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0ff8405f5e100ffffa00e129efb6e03f55088ccb7275e9c226574645df171d1b956481d6c285b9b08efffc0a67b2276223a312c2274223a312c2264223a7b2275223a2268747470733a2f2f7261772e64657869652e73706163652f3974566645516a4c6b7659324c764e5637397175617075714c46444c58614a6e5a4147706a4d646e46416546222c227068223a2238653130353065633433373366326562663764613936363866613265656366303538643038343331313765663064393462383035373766323332656132366638227d7d8080ffff33ffa0ea970d130a2662b0ab745b98d7c487ab8e8dd2d7c41676b97ff1c2e4c13c3779ff8500c51b4a1780ffff34ff0180ffff3cffa0f496259a3a4ec5bba4369d6f6835484e9b1098e8132c85089b9e2ac130a52db280ffff3dffa007f92beb9664a85abe9cfcb846bb67259320a685828b320d36ae1407a68b793a8080ff8080"
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b749d5d97e4e0acd2f5683215470994a04ccaaabdf11f6fa8df3d8e872ef28f86cb5fb98b29ec351d343dd5e447865b4ff018080",
+                    "solution": "0xff80ffff01ffff33ffa0a52a2bcbff9ece1137bbc9199be03b0b32e6406bf377f6dc201be6ee5a4dfd9cff8405f5e100ffffa047e26aa7ee46e7ed3a2f762fda7aa1d63db6be42e14fc3a18e54e13ee509f84bffc0a67b2276223a312c2274223a312c2264223a7b2275223a2268747470733a2f2f7261772e64657869652e73706163652f34787456705a576b54727064735a68744a434b53707952714a6f5431715a58734a58793648716d3874596a72222c227068223a2235663763323930303062656238616532323637643737653232336437616164333332363163343062643837643230363930366162303232666638616138323461227d7d8080ffff33ffa01732d207b04a03dd7d622cc9f491d43ca0561cf73a1efacdaa0e26e8902c8b73ff8500b92f881580ffff34ff0180ffff3cffa087e5e080ce5b080e6e42deaf20d2170a553fdf0ace32cbbce0a88b0c46a4aa0580ffff3dffa0eae0770951a738b72415a06b0a92ba0bcd9c46e2f16e2c545e9eafb9020485768080ff8080"
                 },
                 {
                     "coin": {
                         "amount": 100000000,
-                        "parent_coin_info": "0x9fb255707c635d643d4e30790ace23a10bb7a5cb76cc66a92ee0e8c5540295ea",
-                        "puzzle_hash": "0x4918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0"
+                        "parent_coin_info": "0xd5619c0b02a9279edf11ae85407fd8dc7472fe449fe6ab88d4cc480a5d4b24f5",
+                        "puzzle_hash": "0xa52a2bcbff9ece1137bbc9199be03b0b32e6406bf377f6dc201be6ee5a4dfd9c"
                     },
-                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff06ffff01ff808080ff808080ffff04ffff01ff333cff018080ffff04ffff01a00e129efb6e03f55088ccb7275e9c226574645df171d1b956481d6c285b9b08efffff04ffff018405f5e100ff01808080",
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff04ffff04ff04ffff04ff05ffff04ff0bff80808080ffff04ffff04ff06ffff01ff808080ff808080ffff04ffff01ff333cff018080ffff04ffff01a047e26aa7ee46e7ed3a2f762fda7aa1d63db6be42e14fc3a18e54e13ee509f84bffff04ffff018405f5e100ff01808080",
                     "solution": "0x80"
                 }
             ]
         },
-        "to_address": "xch1fyvtk88zy6cey0jueuxq77eg9fzulkugkz5uay9x7h2gf2hdawcqk0h5en",
-        "to_puzzle_hash": "0x4918bb1ce226b1923e5ccf0c0f7b282a45cfdb88b0a9ce90a6f5d484aaedebb0",
+        "to_address": "xch1554zhjllnm8pzdameyvehcpmpvewvsrt7dmldhpqr0nwukjdlkwqsngqcq",
+        "to_puzzle_hash": "0xa52a2bcbff9ece1137bbc9199be03b0b32e6406bf377f6dc201be6ee5a4dfd9c",
         "trade_id": null,
         "type": 1,
         "wallet_id": 1
@@ -1996,7 +2045,7 @@ Response:
 }
 ```
 
-This command will create a Message Coin on the blockchain. Once it has been confirmed, the current owner of the NFT will receive a notification of the offer in their wallet.
+This command will create a Message Coin on the blockchain. Once it has been confirmed, the current owner of the NFT will receive a notification of the offer in their wallet. The owner can choose to accept the offer, delete the notification, or send a counter offer to the `ph` that was included in the payload.
 
 </details>
 
