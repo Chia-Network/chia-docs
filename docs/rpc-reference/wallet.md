@@ -1777,12 +1777,12 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                         |
-| :-------- | :------- | :-------------------------------------------------- |
-| target    | True     | The puzzle hash you would like to send a message to |
-| message   | True     | The hex-encoded message you would like to send      |
-| amount    | True     | The number of mojos to include with this message    |
-| fee       | False    | An optional blockchain fee, in mojos                |
+| Parameter | TYPE       | Required | Description                                         |
+| :-------- | :--------- | :------- | :-------------------------------------------------- |
+| target    | HEX STRING | True     | The puzzle hash you would like to send a message to |
+| message   | HEX STRING | True     | The hex-encoded message you would like to send      |
+| amount    | NUMBER     | True     | The number of mojos to include with this message    |
+| fee       | NUMBER     | False    | An optional blockchain fee, in mojos                |
 
 <details>
 <summary>Example 1: Send a generic message</summary>
@@ -2066,10 +2066,10 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                           |
-| :-------- | :------- | :-------------------------------------------------------------------- |
-| address   | True     | The address to use for signing. Must possess the key for this address |
-| message   | True     | The message to include with the signature                             |
+| Parameter | TYPE   | Required | Description                                                           |
+| :-------- | :----- | :------- | :-------------------------------------------------------------------- |
+| address   | STRING | True     | The address to use for signing. Must possess the key for this address |
+| message   | STRING | True     | The message to include with the signature                             |
 
 <details>
 <summary>Example</summary>
@@ -2107,10 +2107,10 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                            |
-| :-------- | :------- | :--------------------------------------------------------------------- |
-| address   | True     | The DID or NFT ID to use for signing. Must possess the key for this ID |
-| message   | True     | The message to include with the signature                              |
+| Parameter | TYPE   | Required | Description                                                            |
+| :-------- | :----- | :------- | :--------------------------------------------------------------------- |
+| address   | STRING | True     | The DID or NFT ID to use for signing. Must possess the key for this ID |
+| message   | STRING | True     | The message to include with the signature                              |
 
 <details>
 <summary>Example</summary>
@@ -3906,12 +3906,12 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type   | Required | Description                             |
-| :---------- | :----- | :------- | :-------------------------------------- |
-| launcher_id | TEXT   | True     | The launcher ID of the DataLayer wallet |
-| min_generation | NUMBER | False | The first generation of singleton to show [Default: none] |
-| max_generation | NUMBER | False | The last generation of the singleton to show [Default: none] |
-| num_results | NUMBER | False | The number of results to show [Default: show all results] | 
+| Flag           | Type   | Required | Description                                                  |
+| :------------- | :----- | :------- | :----------------------------------------------------------- |
+| launcher_id    | TEXT   | True     | The launcher ID of the DataLayer wallet                      |
+| min_generation | NUMBER | False    | The first generation of singleton to show [Default: none]    |
+| max_generation | NUMBER | False    | The last generation of the singleton to show [Default: none] |
+| num_results    | NUMBER | False    | The number of results to show [Default: show all results]    | 
 
 <details>
 <summary>Example</summary>
