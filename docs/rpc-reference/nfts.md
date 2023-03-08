@@ -229,6 +229,86 @@ License URIs:
 
 ---
 
+### `nft_count_nfts`
+
+Functionality: Count the number of NFTs in a wallet
+
+Usage: chia rpc wallet [OPTIONS] nft_count_nfts [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                                  |
+| :-------- | :------- | :--------------------------------------------------------------------------- |
+| wallet_id | False    | The ID of the wallet in which to count NFTs [Default: null (count all NFTs)] |
+
+<details>
+<summary>Example 1</summary>
+
+Specify the correct NFT wallet:
+
+```json
+chia rpc wallet nft_count_nfts '{"wallet_id": 2}'
+```
+
+Response:
+
+```json
+{
+    "count": 6,
+    "success": true,
+    "wallet_id": 2
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+If `wallet_id` is not specified, it will be treated as `null`:
+
+```json
+chia rpc wallet nft_count_nfts
+```
+
+Response:
+
+```json
+{
+    "count": 6,
+    "success": true,
+    "wallet_id": null
+}
+```
+
+</details>
+
+<details>
+<summary>Example 3</summary>
+
+If a non-NFT wallet is specified, an error will be thrown:
+
+```json
+chia rpc wallet nft_count_nfts '{"wallet_id": 6}'
+```
+
+Response:
+
+```json
+Request failed: {'error': 'wallet id 6 is of type CATWallet but type NFTWallet is required', 'success': False}
+```
+
+</details>
+
+---
+
 ### `nft_get_nfts`
 
 Functionality: Show all NFTs in a given wallet
