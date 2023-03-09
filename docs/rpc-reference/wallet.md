@@ -420,6 +420,44 @@ Response:
 
 ## Wallet node
 
+### `set_wallet_resync_on_startup`
+
+Functionality: Resync the current logged in wallet. The transaction and offer records will be kept
+
+Usage: chia rpc wallet [OPTIONS] set_wallet_resync_on_startup [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag   | Type    | Required | Description                                      |
+| :----- | :------ | :------- | :----------------------------------------------- |
+| enable | BOOLEAN | False    | Set to `true` to enable resync [Default: `true`] |
+
+<details>
+<summary>Example</summary>
+
+```json
+ chia rpc wallet set_wallet_resync_on_startup
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
 ### `get_sync_status`
 
 Functionality: Show whether the current wallet is syncing or synced
@@ -2157,6 +2195,49 @@ Request Parameters:
 
 ---
 
+### `get_transaction_memo`
+
+Functionality: Obtain the memo for the specified transaction
+
+Usage: chia rpc wallet [OPTIONS] get_transaction_memo [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter      | TYPE   | Required | Description                                              |
+| :------------- | :----- | :------- | :------------------------------------------------------- |
+| transaction_id | STRING | True     | The ID of the transaction for which to retrieve the memo |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_transaction_memo '{"transaction_id": "0x21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171"}'
+```
+
+Response:
+
+```json
+{
+    "21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171": {
+        "21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171": [
+            "f8858363837eaccf1249844dfd200999ebd480b393dd0f7f2022880868ce3bf3"
+        ]
+    },
+    "success": true
+}
+```
+
+</details>
+
+---
+
 ## CATs and trading
 
 ### `cat_set_name`
@@ -3035,7 +3116,7 @@ See our [DID RPC](/did-rpc) page.
 
 ## NFT Wallet
 
-### `Note`
+### `Note2`
 
 See our [NFT RPC](/nft-rpc) page.
 
