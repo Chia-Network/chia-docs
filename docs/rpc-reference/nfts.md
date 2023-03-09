@@ -737,7 +737,9 @@ Request Parameters:
 :::
 
 <details>
-<summary>Example</summary>
+<summary>Example 1</summary>
+
+Get info for an NFT that is owned locally:
 
 ```json
 chia rpc wallet nft_get_info '{
@@ -776,6 +778,56 @@ Response:
         "royalty_puzzle_hash": "0x0fe4e859760b755980c9a92c91459b75eb4f02135ace8d2731eca0e89ceef1fb",
         "edition_number": 1,
         "edition_total": 5,
+        "supports_did": true,
+        "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+    },
+    "success": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+In the case where the NFT is not owned by the local wallet, you can obtain info from its NFT ID:
+
+```json
+chia rpc wallet nft_get_info '{"coin_id":"nft1ks2cqah7u6hjtj2q8vaem9a8e9n6v8rtxlzxzjs6zev8x3djevtq2kd8wn"}'
+```
+
+Response:
+
+```json
+{
+    "nft_info": {
+        "chain_info": "((117 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif\") (104 . 0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b) (28021 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json\") (27765 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf\") (29550 . 1) (29556 . 1) (28008 . 0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b) (27752 . 0x2267456bd2cef8ebc2f22a42947b068bc3b138284a587feda2edfe07a3577f50))",
+        "data_hash": "0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b",
+        "data_uris": [
+            "https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif"
+        ],
+        "edition_number": 1,
+        "edition_total": 1,
+        "launcher_id": "0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16",
+        "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+        "license_hash": "0x2267456bd2cef8ebc2f22a42947b068bc3b138284a587feda2edfe07a3577f50",
+        "license_uris": [
+            "https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf"
+        ],
+        "metadata_hash": "0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b",
+        "metadata_uris": [
+            "https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json"
+        ],
+        "mint_height": 2202579,
+        "minter_did": "0x28131414fed2de3b03cb4b6d851f06492aaa905d9e7aa28ec227c072d839696e",
+        "nft_coin_id": "0x4b79bd1b4ed64bde3c3d33a55390228e4e2b412d87bfa5acf42cced4f825ec3e",
+        "nft_id": "nft1ks2cqah7u6hjtj2q8vaem9a8e9n6v8rtxlzxzjs6zev8x3djevtq2kd8wn",
+        "off_chain_metadata": null,
+        "owner_did": null,
+        "p2_address": "0x5c98e0455b643c3c5007d3bb09623820059388ba6528d41ac17e7f6ba9c4bed6",
+        "pending_transaction": false,
+        "royalty_percentage": 300,
+        "royalty_puzzle_hash": "0x53c8e63bb7e61215db3c109a168a8c7ce7d1828c438b542abe9368c83ad3f0ff",
         "supports_did": true,
         "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
     },
