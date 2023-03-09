@@ -38,6 +38,7 @@ module.exports = {
       type: 'category',
       label: 'RPC Reference',
       items: [
+        'rpc-reference/rpc',
         'rpc-reference/datalayer',
         'rpc-reference/dids',
         'rpc-reference/farmer',
@@ -45,7 +46,6 @@ module.exports = {
         'rpc-reference/harvester',
         'rpc-reference/nfts',
         'rpc-reference/offers',
-        'rpc-reference/rpc',
         'rpc-reference/simulator',
         'rpc-reference/wallet',
       ],
