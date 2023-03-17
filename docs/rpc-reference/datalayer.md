@@ -482,24 +482,36 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description              |
-| :--- | :--- | :------- | :----------------------- |
-| id   | TEXT | True     | The hexadecimal store ID |
-| key  | TEXT | True     | The hexadecimal key      |
+| Flag      | Type | Required | Description                             |
+| :-------- | :--- | :------- | :-------------------------------------- |
+| id        | TEXT | True     | The hexadecimal store ID                |
+| key       | TEXT | True     | The hexadecimal key                     |
+| root_hash | TEXT | False    | The root hash from which to obtain data |
+
+:::info
+
+The `root_hash` parameter is recommended to be used each time you call this RPC. 
+This is because without specifying the `root_hash`, there is no way to guarantee that the latest data is being shown 
+(stale data may be shown instead).
+This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
 
 <details>
 <summary>Example</summary>
 
+Obtain the value for key `0x0001`. Pass in the `root_hash` to ensure the latest value is obtained:
+
 ```json
-chia rpc data_layer get_value '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "key":"0005"}'
+chia rpc data_layer get_value '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7", "key": "0x0001", "root_hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7"}'
 ```
 
 Response:
 
 ```json
 {
-  "success": true,
-  "value": "beadfeed"
+    "success": true,
+    "value": "fadedcab"
 }
 ```
 
@@ -522,23 +534,37 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description              |
-| :--- | :--- | :------- | :----------------------- |
-| id   | TEXT | True     | The hexadecimal store ID |
+| Flag      | Type | Required | Description                             |
+| :-------- | :--- | :------- | :-------------------------------------- |
+| id        | TEXT | True     | The hexadecimal store ID                |
+| root_hash | TEXT | False    | The root hash from which to obtain data |
+
+:::info
+
+The `root_hash` parameter is recommended to be used each time you call this RPC. 
+This is because without specifying the `root_hash`, there is no way to guarantee that the latest data is being shown 
+(stale data may be shown instead).
+This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc data_layer get_keys '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a"}'
+chia rpc data_layer get_keys '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7", "root_hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7"}'
 ```
 
 Response:
 
 ```json
 {
-  "keys": ["0x0002", "0x0001"],
-  "success": true
+    "keys": [
+        "0x0001",
+        "0x0002",
+        "0x0003"
+    ],
+    "success": true
 }
 ```
 
@@ -561,36 +587,103 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description              |
-| :--: | :--: | :------: | :----------------------- |
-|  id  | TEXT |   True   | The hexadecimal store ID |
+| Flag      | Type | Required | Description                             |
+| :-------: | :--: | :------: | :-------------------------------------- |
+| id        | TEXT | True     | The hexadecimal store ID                |
+| root_hash | TEXT | False    | The root hash from which to obtain data |
+
+:::info
+
+The `root_hash` parameter is recommended to be used each time you call this RPC. 
+This is because without specifying the `root_hash`, there is no way to guarantee that the latest data is being shown 
+(stale data may be shown instead).
+This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
 
 <details>
 <summary>Example</summary>
 
+First, we'll show show an example that does not specify the root hash. 
+This will result in stale data being displayed, per the above message. 
+
+**Note: omitting the `root_hash` is not recommended.** 
+Later, we will show the recommended way to call this RPC.
+
 ```json
-chia rpc data_layer get_keys_values '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a"}'
+chia rpc data_layer get_keys_values '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7"}'
 ```
 
 Response:
 
 ```json
 {
-  "keys_values": [
-    {
-      "atom": null,
-      "hash": "0xa03d7ea8e488d6443f51a8b586f11754447fb449dc48af881ee78ff77ec7cdb1",
-      "key": "0x0001",
-      "value": "0xfadedcab"
-    },
-    {
-      "atom": null,
-      "hash": "0x919735911d7f9ca0de316878ddb92e7772c9f39bf9d37e9d84ccab39f5d49a11",
-      "key": "0x0002",
-      "value": "0xcafef00d"
-    }
-  ],
-  "success": true
+    "keys_values": [
+        {
+            "atom": null,
+            "hash": "0xa03d7ea8e488d6443f51a8b586f11754447fb449dc48af881ee78ff77ec7cdb1",
+            "key": "0x0001",
+            "value": "0xfadedcab"
+        },
+        {
+            "atom": null,
+            "hash": "0x919735911d7f9ca0de316878ddb92e7772c9f39bf9d37e9d84ccab39f5d49a11",
+            "key": "0x0002",
+            "value": "0xcafef00d"
+        }
+    ],
+    "success": true
+}
+```
+
+Next, we will obtain the latest `root_hash` value:
+
+```json
+chia rpc data_layer get_root '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7"}'
+```
+
+Response:
+
+```json
+{
+    "confirmed": true,
+    "hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7",
+    "success": true,
+    "timestamp": 1679023336
+}
+```
+
+Finally, we will call the RPC again, this time with the latest `root_hash`:
+
+```json
+chia rpc data_layer get_keys_values '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7", "root_hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7"}'
+```
+
+The result now contains all of theys anf values from the `id`:
+
+```json
+{
+    "keys_values": [
+        {
+            "atom": null,
+            "hash": "0xa03d7ea8e488d6443f51a8b586f11754447fb449dc48af881ee78ff77ec7cdb1",
+            "key": "0x0001",
+            "value": "0xfadedcab"
+        },
+        {
+            "atom": null,
+            "hash": "0x919735911d7f9ca0de316878ddb92e7772c9f39bf9d37e9d84ccab39f5d49a11",
+            "key": "0x0002",
+            "value": "0xcafef00d"
+        },
+        {
+            "atom": null,
+            "hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb",
+            "key": "0x0003",
+            "value": "0xabc123"
+        }
+    ],
+    "success": true
 }
 ```
 
