@@ -186,6 +186,30 @@ module.exports = {
   guides: [
     {
       type: 'category',
+      label: 'Crash Course',
+      collapsible: true,
+      collapsed: false,
+      link: {
+        type: 'generated-index',
+        slug: '/guides/crash-course/introduction',
+        title: 'Chia Introduction',
+        description:
+          'This course is designed to give you an end-to-end introduction to Chia.',
+      },
+      items: [
+        'guides/crash-course/introduction',
+        'guides/crash-course/intro-to-chialisp',
+        'guides/crash-course/smart-coins',
+        'guides/crash-course/signatures',
+        'guides/crash-course/state',
+        'guides/crash-course/inner-puzzles',
+        'guides/crash-course/cats-offers-nfts',
+        'guides/crash-course/chialisp-and-typescript',
+      ],
+    },
+
+    {
+      type: 'category',
       label: 'Chialisp Primer',
       collapsible: true,
       collapsed: true,
@@ -226,7 +250,7 @@ module.exports = {
       type: 'category',
       label: 'NFT Guide',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       link: {
         type: 'generated-index',
         slug: '/guides/nft-developer-guide',

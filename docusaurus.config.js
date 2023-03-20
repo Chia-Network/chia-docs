@@ -56,7 +56,7 @@
             },
             {
               type: 'doc',
-              docId: 'guides/chialisp-primer/intro',
+              docId: 'guides/crash-course/introduction',
               position: 'left',
               label: 'Guides',
             },
