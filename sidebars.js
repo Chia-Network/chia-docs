@@ -56,7 +56,6 @@ module.exports = {
       label: 'CLI Reference',
       items: [
         'cli-reference/cat-admin',
-        'cli-reference/clawback',
         'cli-reference/cli',
         'cli-reference/custody-tool',
         'cli-reference/datalayer',
