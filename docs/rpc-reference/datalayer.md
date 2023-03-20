@@ -482,24 +482,36 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description              |
-| :--- | :--- | :------- | :----------------------- |
-| id   | TEXT | True     | The hexadecimal store ID |
-| key  | TEXT | True     | The hexadecimal key      |
+| Flag      | Type | Required | Description                             |
+| :-------- | :--- | :------- | :-------------------------------------- |
+| id        | TEXT | True     | The hexadecimal store ID                |
+| key       | TEXT | True     | The hexadecimal key                     |
+| root_hash | TEXT | False    | The root hash from which to obtain data |
+
+:::info
+
+The `root_hash` parameter is recommended to be used each time you call this RPC. 
+If `root_hash` is not specified, there is no way to guarantee that the latest data is being shown 
+(stale data may be shown instead).
+This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
 
 <details>
 <summary>Example</summary>
 
+Obtain the value for key `0x0001`. Pass in the `root_hash` to ensure the latest value is obtained:
+
 ```json
-chia rpc data_layer get_value '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "key":"0005"}'
+chia rpc data_layer get_value '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7", "key": "0x0001", "root_hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7"}'
 ```
 
 Response:
 
 ```json
 {
-  "success": true,
-  "value": "beadfeed"
+    "success": true,
+    "value": "fadedcab"
 }
 ```
 
@@ -522,23 +534,37 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description              |
-| :--- | :--- | :------- | :----------------------- |
-| id   | TEXT | True     | The hexadecimal store ID |
+| Flag      | Type | Required | Description                             |
+| :-------- | :--- | :------- | :-------------------------------------- |
+| id        | TEXT | True     | The hexadecimal store ID                |
+| root_hash | TEXT | False    | The root hash from which to obtain data |
+
+:::info
+
+The `root_hash` parameter is recommended to be used each time you call this RPC. 
+If `root_hash` is not specified, there is no way to guarantee that the latest data is being shown 
+(stale data may be shown instead).
+This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc data_layer get_keys '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a"}'
+chia rpc data_layer get_keys '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7", "root_hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7"}'
 ```
 
 Response:
 
 ```json
 {
-  "keys": ["0x0002", "0x0001"],
-  "success": true
+    "keys": [
+        "0x0001",
+        "0x0002",
+        "0x0003"
+    ],
+    "success": true
 }
 ```
 
@@ -561,36 +587,103 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description              |
-| :--: | :--: | :------: | :----------------------- |
-|  id  | TEXT |   True   | The hexadecimal store ID |
+| Flag      | Type | Required | Description                             |
+| :-------: | :--: | :------: | :-------------------------------------- |
+| id        | TEXT | True     | The hexadecimal store ID                |
+| root_hash | TEXT | False    | The root hash from which to obtain data |
+
+:::info
+
+The `root_hash` parameter is recommended to be used each time you call this RPC. 
+If `root_hash` is not specified, there is no way to guarantee that the latest data is being shown 
+(stale data may be shown instead).
+This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
 
 <details>
 <summary>Example</summary>
 
+First, we'll show show an example that does not specify the root hash. 
+This will result in stale data being displayed, per the above message. 
+
+**Note: omitting the `root_hash` is not recommended.** 
+Later, we will show the recommended way to call this RPC.
+
 ```json
-chia rpc data_layer get_keys_values '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a"}'
+chia rpc data_layer get_keys_values '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7"}'
 ```
 
 Response:
 
 ```json
 {
-  "keys_values": [
-    {
-      "atom": null,
-      "hash": "0xa03d7ea8e488d6443f51a8b586f11754447fb449dc48af881ee78ff77ec7cdb1",
-      "key": "0x0001",
-      "value": "0xfadedcab"
-    },
-    {
-      "atom": null,
-      "hash": "0x919735911d7f9ca0de316878ddb92e7772c9f39bf9d37e9d84ccab39f5d49a11",
-      "key": "0x0002",
-      "value": "0xcafef00d"
-    }
-  ],
-  "success": true
+    "keys_values": [
+        {
+            "atom": null,
+            "hash": "0xa03d7ea8e488d6443f51a8b586f11754447fb449dc48af881ee78ff77ec7cdb1",
+            "key": "0x0001",
+            "value": "0xfadedcab"
+        },
+        {
+            "atom": null,
+            "hash": "0x919735911d7f9ca0de316878ddb92e7772c9f39bf9d37e9d84ccab39f5d49a11",
+            "key": "0x0002",
+            "value": "0xcafef00d"
+        }
+    ],
+    "success": true
+}
+```
+
+Next, we will obtain the latest `root_hash` value:
+
+```json
+chia rpc data_layer get_root '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7"}'
+```
+
+Response:
+
+```json
+{
+    "confirmed": true,
+    "hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7",
+    "success": true,
+    "timestamp": 1679023336
+}
+```
+
+Finally, we will call the RPC again, this time with the latest `root_hash`:
+
+```json
+chia rpc data_layer get_keys_values '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7", "root_hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7"}'
+```
+
+The result now contains all of theys anf values from the `id`:
+
+```json
+{
+    "keys_values": [
+        {
+            "atom": null,
+            "hash": "0xa03d7ea8e488d6443f51a8b586f11754447fb449dc48af881ee78ff77ec7cdb1",
+            "key": "0x0001",
+            "value": "0xfadedcab"
+        },
+        {
+            "atom": null,
+            "hash": "0x919735911d7f9ca0de316878ddb92e7772c9f39bf9d37e9d84ccab39f5d49a11",
+            "key": "0x0002",
+            "value": "0xcafef00d"
+        },
+        {
+            "atom": null,
+            "hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb",
+            "key": "0x0003",
+            "value": "0xabc123"
+        }
+    ],
+    "success": true
 }
 ```
 
@@ -659,7 +752,7 @@ Response:
 
 ### `get_root`
 
-Functionality: Get the root hash and timestamp of a given store ID. If the store is remote, this command will return an invalid hash (see example). In this case, use [get_local_root](#get_local_root) instead
+Functionality: Get the root hash and timestamp of a given store ID. If it is a subscribed store, this command will return an invalid hash (see example). In this case, use [get_local_root](#get_local_root) instead
 
 Usage: chia rpc data_layer [OPTIONS] get_root [REQUEST]
 
@@ -679,7 +772,7 @@ Request Parameters:
 <details>
 <summary>Example 1</summary>
 
-Get the root hash of a local store:
+Get the root hash of an owned store:
 
 ```json
 chia rpc data_layer get_root '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a"}'
@@ -701,7 +794,7 @@ Response:
 <details>
 <summary>Example 2</summary>
 
-Get the root hash of a remote store. Notice that an invalid hash is shown:
+Get the root hash of a subscribed store. Notice that an invalid hash is shown:
 
 ```json
 chia rpc data_layer get_root '{"id":"8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d"}'
@@ -724,7 +817,7 @@ Response:
 
 ### `get_local_root`
 
-Functionality: Get the root hash and timestamp of a store ID. Can be used for either local or remote stores
+Functionality: Get the root hash and timestamp of a store ID. Can be used for either owned or subscribed stores
 
 Usage: chia rpc data_layer [OPTIONS] get_local_root [REQUEST]
 
@@ -763,7 +856,7 @@ Response:
 
 ### `get_roots`
 
-Functionality: Get the root hashes and timestamps from a list of stores. Note that an invalid hash will be returned for remote stores. Use [get_local_root](#get_local_root) instead
+Functionality: Get the root hashes and timestamps from a list of stores. Note that an invalid hash will be returned for subscribed stores. Use [get_local_root](#get_local_root) instead
 
 Usage: chia rpc data_layer [OPTIONS] get_roots [REQUEST]
 
@@ -783,7 +876,7 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
-For this example, the first store is remote, so it will return an invalid root hash. The second store is local, so the root hash will be valid:
+For this example, the first store is subscribed, so it will return an invalid root hash. The second store is owned, so the root hash will be valid:
 
 ```json
 chia rpc data_layer get_roots '{"ids":["8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d", "0x1ad0908e248f48cc3e9b3cf8f68c748d2e3c5a2a933765032d3222086231ea5e"]}'
@@ -1001,6 +1094,12 @@ Request Parameters:
 | :--- | :--- | :------- | :-------------------------------------------------------- |
 | id   | TEXT | True     | The hexadecimal ID of the store from which to unsubscribe |
 
+:::warning important
+
+This RPC does not remove any data from the database or the filesystem.
+
+:::
+
 <details>
 <summary>Example</summary>
 
@@ -1102,9 +1201,9 @@ Response:
 
 ### `add_missing_files`
 
-Functionality: Use the database to restore all files for one or more local data stores
+Functionality: Use the database to restore all files for one or more owned data stores
 
-Note: For remote stores, this command will do nothing. Use [unsubscribe](#unsubscribe) and [subscribe](#subscribe) instead
+Note: For subscribed stores, this command will do nothing. Use [unsubscribe](#unsubscribe) and [subscribe](#subscribe) instead
 
 Usage: chia rpc data_layer [OPTIONS] add_missing_files [REQUEST]
 
@@ -1119,14 +1218,14 @@ Request Parameters:
 
 | Flag       | Type    | Required | Description                                                                                                                                  |
 | :--------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| ids        | TEXT    | False    | A list of hexadecimal store IDs to restore (default: all subscribed local stores)                                                            |
+| ids        | TEXT    | False    | A list of hexadecimal store IDs to restore (default: all subscribed stores)                                                            |
 | override   | BOOLEAN | False    | If `True`, will overwrite files that already exist (default: `False`)                                                                        |
 | foldername | TEXT    | False    | The name of the folder where the files to be restored are located (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`) |
 
 <details>
 <summary>Example</summary>
 
-For this example, there is one local store:
+For this example, there is one owned store:
 
 ```json
 ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
@@ -1311,7 +1410,7 @@ Response:
 
 ### `add_mirror`
 
-Functionality: Add a new mirror from a local or remote data store. Triggers a Chia transaction
+Functionality: Add a new mirror from an owned or subscribed data store. Triggers a Chia transaction
 
 Usage: chia rpc data_layer [OPTIONS] add_mirror [REQUEST]
 
@@ -1327,7 +1426,7 @@ Request Parameters:
 | Flag   | Type    | Required | Description                                                                                                      |
 | :----- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
 | id     | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                        |
-| urls   | TEXT    | True     | A list of URLs where the mirror will reside. Can be empty                                                        |
+| urls   | TEXT    | True     | A list of URLs where the mirror will reside                                                                      |
 | amount | INTEGER | True     | The number of mojos to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
 | fee    | TEXT    | False    | Set the fee for the transaction, in mojos                                                                        |
 
