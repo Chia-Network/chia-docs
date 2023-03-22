@@ -230,6 +230,7 @@ Request Parameters:
 | new_list                   | True     | The new recovery ID list. Each item from this list will be appended to the existing list                                            |
 | num_verifications_required | False    | Optionally set the number of IDs required for wallet recovery. If not set, then the entire updated list will be required by default |
 | fee                        | False    | An optional blockchain fee, in mojos                                                                                                |
+| reuse_puzhash              | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -295,11 +296,12 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                      |
-| :-------- | :------- | :--------------------------------------------------------------- |
-| wallet_id | True     | The Wallet ID of the DID wallet for which to update the metadata |
-| metadata  | False    | The updated metadata                                             |
-| fee       | False    | An optional blockchain fee, in mojos                             |
+| Parameter     | Required | Description                                                      |
+| :------------ | :------- | :--------------------------------------------------------------- |
+| wallet_id     | True     | The Wallet ID of the DID wallet for which to update the metadata |
+| metadata      | False    | The updated metadata                                             |
+| fee           | False    | An optional blockchain fee, in mojos                             |
+| reuse_puzhash | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -848,7 +850,6 @@ Request Parameters:
 | coin_name | True     | The coin to use for the attest               |
 | pubkey    | True     | The public key to use for the attest         |
 | puzhash   | True     | The puzzle hash to use for the attest        |
-| fee       | False    | An optional blockchain fee, in mojos         |
 
 <details>
 <summary>Example</summary>
@@ -1083,11 +1084,13 @@ Options:
 
 Request Parameters:
 
-| Parameter     | Required | Description                                                  |
-| :------------ | :------- | :----------------------------------------------------------- |
-| wallet_id     | True     | The Wallet ID of the DID wallet to transfer                  |
-| inner_address | True     | The address of the inner puzzle to which to transfer the DID |
-| fee           | False    | An optional blockchain fee, in mojos                         |
+| Parameter          | Required | Description                                                  |
+| :----------------- | :------- | :----------------------------------------------------------- |
+| wallet_id          | True     | The Wallet ID of the DID wallet to transfer                  |
+| inner_address      | True     | The address of the inner puzzle to which to transfer the DID |
+| fee                | False    | An optional blockchain fee, in mojos                         |
+| with_recovery_info | False    | If `True`, transfer recovery info [Default: `True`]          |
+| reuse_puzhash      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -1170,9 +1173,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description |
-| :-------- | :----- | :------- | :---------- |
-| wallet_id | NUMBER | True     | The Wallet ID of the DID wallet from which to spend the message |
+| Flag                 | Type   | Required | Description                                                     |
+| :------------------- | :----- | :------- | :-------------------------------------------------------------- |
+| wallet_id            | NUMBER | True     | The Wallet ID of the DID wallet from which to spend the message |
+| coin_announcements   | LIST   | False    | A list of coin announcements to include with the spend          |
+| puzzle_announcements | LIST   | False    | A list of puzzle announcements to include with the spend        |
 
 <details>
 <summary>Example</summary>
@@ -1222,9 +1227,9 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                   |
-| :-------- | :----- | :------- | :------------------------------------------------------------ |
-| wallet_id | NUMBER | True     | The Wallet ID of the DID wallet for which to get the DID info |
+| Flag    | Type   | Required | Description                                                   |
+| :------ | :----- | :------- | :------------------------------------------------------------ |
+| coin_id | NUMBER | True     | The Wallet ID of the DID wallet for which to get the DID info |
 
 <details>
 <summary>Example</summary>
@@ -1271,9 +1276,12 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                                                                                        |
-| :-------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| coin_id   | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID. |
+| Parameter          | Type   | Required | Description                                                                                                                        |
+| :----------------- | :----- | :------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| coin_id            | STRING | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID. |
+| recovery_list_hash | STRING | False    | The hash of the recovery list                                                                                                      |
+| num_verification   | NUMBER | False    |
+| metadata           | STRING | False    |
 
 <details>
 <summary>Example 1</summary>
