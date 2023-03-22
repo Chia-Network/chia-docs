@@ -666,9 +666,10 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type    | Required | Description                                                              |
-| :----------- | :------ | :------- | :----------------------------------------------------------------------- |
-| include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`] |
+| Flag         | Type    | Required | Description                                                                                                            |
+| :----------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------- |
+| include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`]                                               |
+| type         | TEXT    | False    | The type of wallet to retrieve. If included, must be one of `cat_wallet`, `did_wallet`, `nft_wallet`, or `pool_wallet` |
 
 <details>
 <summary>Example</summary>
@@ -1105,9 +1106,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                   |
-| :-------- | :----- | :------- | :------------------------------------------------------------ |
-| wallet_id | NUMBER | True     | The Wallet ID of the wallet from which to obtain transactions |
+| Flag       | Type    | Required | Description                                                         |
+| :--------- | :------ | :------- | :------------------------------------------------------------------ |
+| wallet_id  | NUMBER  | True     | The Wallet ID of the wallet from which to obtain transactions       |
+| start      | NUMBER  | False    | The sequence number of the first transaction to show [Default: 0]   |
+| end        | NUMBER  | False    | The sequence number of the last transaction to show [Default: 50]   |
+| sort_key   | NUMBER  | False    | Specify the key for sorting [Default: None]                         |
+| reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false] |
+| to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
+
 
 <details>
 <summary>Example</summary>
@@ -1285,13 +1292,18 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                                                |
-| :---------- | :--------- | :------- | :--------------------------------------------------------- |
-| wallet_id   | TEXT       | True     | The wallet ID for the origin of the transaction            |
-| address     | TEXT       | True     | The destination address                                    |
-| amount      | NUMBER     | True     | The number of mojos to send                                |
-| fee         | NUMBER     | False    | An optional blockchain fee, in mojos                       |
-| memos       | TEXT ARRAY | False    | An optional array of memos to be sent with the transaction |
+| Flag                 | Type         | Required | Description                                                |
+| :------------------- | :----------- | :------- | :--------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction            |
+| address              | TEXT         | True     | The destination address                                    |
+| amount               | NUMBER       | True     | The number of mojos to send                                |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                       |
+| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]               |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]               |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                          |
+| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                              |
+| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -1512,12 +1524,14 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type   | Required | Description                                                          |
-| :-------------- | :----- | :------- | :------------------------------------------------------------------- |
-| wallet_id       | NUMBER | True     | The ID of the wallet from which to select coins                      |
-| amount          | NUMBER | True     | The number of mojos to select                                        |
-| min_coin_amount | NUMBER | False    | The smallest coin to be selected in this query [Default: No minimum] |
-| max_coin_amount | NUMBER | False    | The largest coin to be selected in this query [Default: No maximum]  |
+| Flag                  | Type         | Required | Description                                                          |
+| :-------------------- | :----------- | :------- | :------------------------------------------------------------------- |
+| wallet_id             | NUMBER       | True     | The ID of the wallet from which to select coins                      |
+| amount                | NUMBER       | True     | The number of mojos to select                                        |
+| min_coin_amount       | NUMBER       | False    | The smallest coin to be selected in this query [Default: No minimum] |
+| max_coin_amount       | NUMBER       | False    | The largest coin to be selected in this query [Default: No maximum]  |
+| excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                    |
+| excluded_coins        | TEXT ARRAY   | False    | A list of coins to exclude                                           |
 
 <details>
 <summary>Example 1</summary>
@@ -2188,7 +2202,7 @@ Request Parameters:
 
 | Parameter | TYPE   | Required | Description                                                            |
 | :-------- | :----- | :------- | :--------------------------------------------------------------------- |
-| address   | STRING | True     | The DID or NFT ID to use for signing. Must possess the key for this ID |
+| id        | STRING | True     | The DID or NFT ID to use for signing. Must possess the key for this ID |
 | message   | STRING | True     | The message to include with the signature                              |
 
 <details>
@@ -2451,19 +2465,23 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type         | Required | Description                                                                                      |
-| :------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------------- |
-| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                  |
-| additions            | TEXT ARRAY   | True*    | *Must include either `additions` or `amount`. A list of puzzle hashes and amounts to be included |
-| amount               | NUMBER       | True*    | *Must include either `additions` or `amount`. The number of mojos to send                        |
-| inner_address        | TEXT         | True     | The destination address                                                                          |
-| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                       |
-| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                     |
-| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                     |
-| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                |
-| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                    |
-| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                             |
-
+| Flag                 | Type         | Required | Description                                                                                                     |
+| :------------------- | :----------- | :------- | :-------------------------------------------------------------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                                 |
+| additions            | TEXT ARRAY   | True*    | *Must include either `additions` or `amount`. A list of puzzle hashes and amounts to be included                |
+| amount               | NUMBER       | True*    | *Must include either `additions` or `amount`. The number of mojos to send                                       |
+| inner_address        | TEXT         | True     | The destination address                                                                                         |
+| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                      |
+| coins                | TEXT ARRAY   | False    | A list of coins to include in the spend                                                                         |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                                    |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                                    |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                               |
+| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                   |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                                            |
+| extra_delta          | TEXT         | False*   | The CAT's `extra_delta` parameter; *If specified, then `tail_reveal` and `tail_solution` must also be specified |
+| tail_reveal          | TEXT         | False*   | The CAT's `tail_reveal` parameter; *If specified, then `extra_delta` and `tail_solution` must also be specified |
+| tail_solution        | TEXT         | False*   | The CAT's `tail_solution` parameter; *If specified, then `extra_delta` and `tail_reveal` must also be specified |
+| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -2619,6 +2637,7 @@ Request Parameters:
 | max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none] |
 | solver          | TEXT    | False    | A marshalled solver                                             |
 | fee             | NUMBER  | False    | An optional blockchain fee, in mojos                            |
+| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 ---
 
@@ -2737,6 +2756,7 @@ Request Parameters:
 | max_coin_amount | NUMBER  | False    | The maximum coin amount to select for taking the offer [Default: none] |
 | solver          | TEXT    | False    | A marshalled solver                                                    |
 | fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                   |
+| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -4412,11 +4432,13 @@ Response:
         "/delete_key",
         "/check_delete_key",
         "/delete_all_keys",
+        "/set_wallet_resync_on_startup",
         "/get_sync_status",
         "/get_height_info",
         "/push_tx",
         "/push_transactions",
         "/farm_block",
+        "/get_timestamp_for_height",
         "/get_initial_freeze_period",
         "/get_network_info",
         "/get_wallets",
@@ -4442,6 +4464,7 @@ Response:
         "/sign_message_by_address",
         "/sign_message_by_id",
         "/verify_signature",
+        "/get_transaction_memo",
         "/cat_set_name",
         "/cat_asset_id_to_name",
         "/cat_get_name",
@@ -4474,7 +4497,9 @@ Response:
         "/did_transfer_did",
         "/did_message_spend",
         "/did_get_info",
+        "/did_find_lost_did",
         "/nft_mint_nft",
+        "/nft_count_nfts",
         "/nft_get_nfts",
         "/nft_get_by_did",
         "/nft_set_nft_did",
@@ -4486,6 +4511,8 @@ Response:
         "/nft_add_uri",
         "/nft_calculate_royalties",
         "/nft_mint_bulk",
+        "/nft_set_did_bulk",
+        "/nft_transfer_bulk",
         "/pw_join_pool",
         "/pw_self_pool",
         "/pw_absorb_rewards",
