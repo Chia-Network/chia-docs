@@ -14,40 +14,40 @@ This guide will help developers to create dApps on Chia's blockchain using [Wall
 
 ---
 
-## API permission prompts
+## RPC Calls
 
-The following table shows each API method, its grouping, and whether a single confirmation is required. For methods with `no` in the `Single Confirmation` column, confirmation will be required each time the method is called. Additionally, for some of the methods where a single confirmation is required, the user can manually reset the action, which will then require a new confirmation. The `Manual Reset` column covers whether this is allowed for each method.
+The following table shows each RPC for Chia WalletConnect dApps, along with a description of what each RPC does, and a link to the equivalent Chia RPC:
 
-| Permission           | Group         | Single<br/>Confirmation | Manual<br/>Reset |
-| :------------------- | :------------ | :---------------------- | :--------------- |
-| getTransaction       | Assets        | yes                     | yes              |
-| getWalletBalance     | Assets        | yes                     | yes              |
-| getCATAssetId        | Assets        | yes                     | no               |
-| getNFTs              | Assets        | yes                     | yes              |
-| getNFTInfo           | Assets        | yes                     | no               |
-| getNFTCount          | Assets        | yes                     | no               |
-| LogIn                | Authorization | no                      | N/A              |
-| SignMessageById      | Authorization | no                      | N/A              |
-| SignMessageByAddress | Authorization | no                      | N/A              |
-| CreatNewCATWallet    | Authorization | no                      | N/A              |
-| addCattoken          | Authorization | no                      | N/A              |
-| VerifySignature      | Authorization | yes                     | yes              |
-| getAllOffers         | Offers	       | yes                     | yes              |
-| getOffersCount       | Offers	       | yes                     | no               |
-| checkOfferValidity   | Offers        | yes                     | no               |
-| getOfferSummary      | Offers        | yes                     | no               |
-| getOfferData         | Offers        | yes                     | no               |
-| getOfferRecord       | Offers        | yes                     | no               |
-| transferNFT          | Transaction   | no                      | N/A              |
-| SendTransaction      | Transaction   | no                      | N/A              |
-| waitForConfirmation  | Transaction   | no                      | N/A              |
-| CreateOfferForIDs    | Transaction   | no                      | N/A              |
-| CancelOffer          | Transaction   | no                      | N/A              |
-| CheckOfferValidity   | Transaction   | no                      | N/A              |
-| takeOffer            | Transaction   | no                      | N/A              |
-| SpendCat             | Transaction   | no                      | N/A              |
-| getWallets           | Wallet        | yes                     | yes              |
-| getCurrentAddress    | Wallet        | yes                     | no               |
-| getNextAddress       | Wallet        | yes                     | no               |
-| getSyncStatus        | Wallet        | yes                     | no               |
+| WalletConnect RPC    | Chia Wallet RPC                                                | Description                                                                                                |
+| :------------------- | :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| getTransaction       | [get_transaction](/wallet-rpc#get_transaction)                 | Get a transaction's details from its ID                                                                    |
+| getWalletBalance     | [get_wallet_balance](/wallet-rpc#get_wallet_balance)           | Obtain the balance (and related info) from a wallet                                                        |
+| getCATAssetId        | [cat_get_asset_id](/wallet-rpc#cat_get_asset_id)               | Retrieve a the asset ID from a CAT wallet                                                                  |
+| getNFTs              | [nft_get_nfts](/nft-rpc/#nft_get_nfts)                         | Show all NFTs in a given wallet                                                                            |
+| getNFTInfo           | [nft_get_info](/nft-rpc/#nft_get_info)                         | Get info about an NFT                                                                                      |
+| getNFTCount          | [nft_count_nfts](/nft-rpc/#nft_count_nfts)                     | Count the number of NFTs in a wallet                                                                       |
+| LogIn                | [log_in](/wallet-rpc#log_in)                                   | Log into the wallet with the specified key                                                                 |
+| SignMessageById      | [sign_message_by_id](/wallet-rpc#sign_message_by_id)           | Sign a message using a DID or NFT ID without incurring an on-chain transaction                             |
+| SignMessageByAddress | [sign_message_by_address](/wallet-rpc#sign_message_by_address) | Sign a message using an XCH address without incurring an on-chain transaction                              |
+| CreatNewCATWallet    | [create_new_wallet](/wallet-rpc#create_new_wallet)*            | Create a new wallet for CATs (* for the Chia wallet RPC, you must specify a `wallet_type` of `cat_wallet`) |
+| addCattoken          |                                                                |                                                                                                            |
+| VerifySignature      | [verify_signature](wallet-rpc#verify_signature)                | Given a public key, message and signature, verify if it is valid                                           |
+| getAllOffers         | [get_all_offers](/wallet-rpc#get_all_offers)                   | Show the details of all offers for this wallet                                                             |
+| getOffersCount       | [get_offers_count](/wallet-rpc#get_offers_count)               | Obtain the number of offers from the current wallet                                                        |
+| checkOfferValidity   | [check_offer_validity](/wallet-rpc#check_offer_validity)       | Check if an offer is valid                                                                                 |
+| getOfferSummary      | [get_offer_summary](/wallet-rpc#get_offer_summary)             | Show a summary of an offer                                                                                 |
+| getOfferData         | [get_offer](/wallet-rpc#get_offer)                             | Show the details of one offer                                                                              |
+| getOfferRecord       | [get_all_offers](/wallet-rpc#get_all_offers)                   | Show the details of all offers for this wallet                                                             |
+| transferNFT          | [nft_transfer_nft](/nft-rpc#nft_transfer_nft)                  | Transfer an NFT to a new wallet address                                                                    |
+| SendTransaction      | [send_transaction](/wallet-rpc#send_transaction)               | Send a transaction                                                                                         |
+| waitForConfirmation  |                                                                |                                                                                                            |
+| CreateOfferForIDs    | [create_offer_for_ids](/wallet-rpc#create_offer_for_ids)       | Create a new offer                                                                                         |
+| CancelOffer          | [cancel_offer](/wallet-rpc#cancel_offer)                       | Cancel an offer                                                                                            |
+| CheckOfferValidity   | [check_offer_validity](/wallet-rpc#check_offer_validity)       | Check if an offer is valid                                                                                 |
+| takeOffer            | [take_offer](/wallet-rpc#take_offer)                           | Take an offer                                                                                              |
+| SpendCat             | [cat_spend](/wallet-rpc#cat_spend)                             | Send CAT funds to another wallet                                                                           |
+| getWallets           | [get_wallets](/wallet-rpc#get_wallets)                         | Show all wallets associated with the current fingerprint, including (by default) coin information          |
+| getCurrentAddress    | [get_next_address](/wallet-rpc#get_next_address)*              | Set `new_address` to `false` to use the current address                                                    |
+| getNextAddress       | [get_next_address](/wallet-rpc#get_next_address)*              | Set `new_address` to `true` to create a new address                                                        |
+| getSyncStatus        | [get_sync_status](/wallet-rpc#get_sync_status)                 | Show whether the current wallet is syncing or synced                                                       |
 
