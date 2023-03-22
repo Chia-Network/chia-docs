@@ -300,9 +300,18 @@ module.exports = {
         'guides/custody/custody-tool-user-guide',
       ],
     },
+    {
+      type: 'category',
+      label: 'WalletConnect',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/wallet_connect/walletconnect-user-guide',
+        'guides/wallet_connect/walletconnect-developer-guide',
+      ],
+    },
     'guides/datalayer-user-guide',
     'guides/simulator-user-guide',
-    'guides/walletconnect-user-guide',
     'guides/seeder-user-guide',
     {
       type: 'category',
