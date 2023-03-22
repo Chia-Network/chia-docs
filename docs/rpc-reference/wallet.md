@@ -572,6 +572,47 @@ Request Parameters:
 
 ---
 
+### `get_timestamp_for_height`
+
+Functionality: Show the timestamp for a given block height
+
+Usage: chia rpc wallet [OPTIONS] get_timestamp_for_height [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag   | Type   | Required | Description                                          |
+| :----- | :----- | :------- | :--------------------------------------------------- |
+| height | NUMBER | True     | The block height for which to retrieve the timestamp |
+
+<details>
+<summary>Example</summary>
+
+This example is from testnet10, so the timestamp won't match the equivalent call on mainnet:
+
+```json
+chia rpc wallet get_timestamp_for_height '{"height": 2000000}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "timestamp": 1672215722
+}
+```
+
+</details>
+
+---
+
 ### `get_network_info`
 
 Functionality: Show the current network (eg `mainnet`) and network prefix (eg `XCH`)
