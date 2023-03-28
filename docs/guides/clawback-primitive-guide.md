@@ -15,8 +15,10 @@ This document will show you how to use Chia's clawback primitive. Clawback curre
 - [Clawback CLI Reference](/clawback_cli)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
 
-:::warning
+:::warning some important notes
 
+* The clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
+* Chia Network, Inc will add a user-friendly implementation of the clawback primitive to a future release of the reference wallet.
 * A **synced full node** AND a synced wallet are required to use the clawback primitive.
 * You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use testnet10.
 * The clawback primitive currently only supports XCH/TXCH. It does not support CATs or NFTs. The `-w` flag will be ignored if it points to a non-XCH (or TXCH) wallet.
@@ -373,7 +375,7 @@ Timelock: 60 seconds
 Time left: 0 seconds
 ```
 
-The value of `Time left:` is `0 seconds`, which indicates that the Recipient can now run the [clawback claim](/clawback_cli#claim) command to claim the coin:
+The value of `Time left:` is `0 seconds`. In most cases (see the info box below for more info), the Recipient can now run the [clawback claim](/clawback_cli#claim) command to claim the coin:
 
 ```bash
 clawback claim -c ef4b69e65e99261d6e30c8d2d331a8ed84995f3452b95aaa944f76a0f9af74c5
@@ -384,6 +386,18 @@ Result:
 ```bash
 Submitted spend to claim coin: ef4b69e65e99261d6e30c8d2d331a8ed84995f3452b95aaa944f76a0f9af74c5
 ```
+
+:::info
+
+In most cases, if the output of the `clawback show` command contains `Time left: 0 seconds`, this indicates that the Recipient can proceed with the `claim` call.
+
+However, there is a small window of time where the timer has expired, but a block still hasn't been farmed with a timestamp after the expiry. If the Recipient attempts to make the `claim` call during this window, they will receive the following error:
+
+`You are trying to claim the coin too early`
+
+In this case, the Recipient needs to wait for one more block to be farmed before proceeding with the `claim` call. As a reminder, a new block is farmed every 18.75 seconds, on average.
+
+:::
 
 While the `claim` transaction is being processed, it will show in the `Pending Total Balance:` of the Recipient's wallet:
 

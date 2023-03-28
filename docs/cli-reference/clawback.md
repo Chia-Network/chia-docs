@@ -49,7 +49,7 @@ Options:
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
 | :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -c            | --coin-id         | TEXT    | True     | The coin ID you want to claim                                                                            |
-| -m            | --fee             | INTEGER | False    | The fee in XCH for this transaction                                                                      |
+| -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
 | -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
 | -t            | --target-address  | TEXT    | False    | The address you want to send the coin to                                                                 |
 | -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
@@ -57,6 +57,18 @@ Options:
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                            |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+
+:::info
+
+In most cases, if the output of the `clawback show` command contains `Time left: 0 seconds`, this indicates that the Recipient can proceed with the `claim` call.
+
+However, there is a small window of time where the timer has expired, but a block still hasn't been farmed with a timestamp after the expiry. If the Recipient attempts to make the `claim` call during this window, they will receive the following error:
+
+`You are trying to claim the coin too early`
+
+In this case, the Recipient needs to wait for one more block to be farmed before proceeding with the `claim` call. As a reminder, a new block is farmed every 18.75 seconds, on average.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -220,7 +232,7 @@ Options: Clawback an unclaimed coin
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
 | :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -c            | --coin-id         | TEXT    | True     | The coin ID you want to claw back                                                                        |
-| -m            | --fee             | INTEGER | False    | The fee in XCH for this transaction                                                                      |
+| -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
 | -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
 | -t            | --target-address  | TEXT    | False    | The address you want to sent the clawed back coin to                                                     |
 | -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
@@ -295,7 +307,7 @@ Options:
 | -l            | --timelock        | INTEGER | False    | The timelock to use for the clawback coin you're creating, in seconds. Default is two weeks              |
 | -a            | --amount          | INTEGER | True     | The amount to fund (in XCH)                                                                              |
 | -w            | --wallet-id       | INTEGER | False    | The wallet id to send from                                                                               |
-| -m            | --fee             | INTEGER | False    | The fee in XCH for the funding transaction                                                               |
+| -m            | --fee             | FLOAT   | False    | The fee in XCH for the funding transaction                                                               |
 | -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
