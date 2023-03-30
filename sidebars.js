@@ -57,6 +57,7 @@ module.exports = {
       items: [
         'cli-reference/cat-admin',
         'cli-reference/cli',
+        'cli-reference/clawback',
         'cli-reference/custody-tool',
         'cli-reference/datalayer',
         'cli-reference/dids',
@@ -313,6 +314,7 @@ module.exports = {
     'guides/datalayer-user-guide',
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
+    'guides/clawback-primitive-guide',
     {
       type: 'category',
       label: 'Tutorials',
