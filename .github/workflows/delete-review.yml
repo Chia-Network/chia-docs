@@ -15,7 +15,7 @@ jobs:
   check-secret-access:
     runs-on: ubuntu-latest
     outputs:
-      SECRET_ACCESS: ${{ steps.check-secret.outputs.HAS_SECRET }}
+      HAS_ACCESS: ${{ steps.check-secret.outputs.HAS_SECRET }}
     steps:
       - name: Test for secrets access
         id: check-secret
@@ -34,7 +34,7 @@ jobs:
       image: registry.gitlab.com/cmmarslender/kubectl-helm:v3.11.0
     needs:
       - check-secret-access
-    if: needs.check-secret-access.outputs.SECRET_ACCESS == 'true'
+    if: needs.check-secret-access.outputs.HAS_ACCESS == 'true'
     steps:
       - uses: actions/checkout@v3
 
