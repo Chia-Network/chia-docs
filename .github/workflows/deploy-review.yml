@@ -16,17 +16,17 @@ jobs:
   check-secret-access:
     runs-on: ubuntu-latest
     outputs:
-      HAS_ACCESS: ${{ steps.check-secret.outputs.HAS_SECRET }}
+      allowed: ${{ steps.check-secret.outputs.allowed }}
     steps:
       - name: Test for secrets access
         id: check-secret
         shell: bash
         run: |
-          unset HAS_SECRET
+          unset allowed
           if [ "${{ secrets.TEST_SECRETS_ACCESS }}" != '' ]; then
-            echo "HAS_SECRET=true" >> $GITHUB_OUTPUT;
+            echo "allowed=true" >> $GITHUB_OUTPUT;
           else
-            echo "HAS_SECRET=false" >> $GITHUB_OUTPUT;
+            echo "allowed=false" >> $GITHUB_OUTPUT;
           fi
 
   build:
@@ -54,7 +54,7 @@ jobs:
     needs:
       - build
       - check-secret-access
-    if: needs.check-secret-access.outputs.HAS_ACCESS == 'true'
+    if: needs.check-secret-access.outputs.allowed == 'true'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -94,7 +94,7 @@ jobs:
     needs:
       - package
       - check-secret-access
-    if: needs.check-secret-access.outputs.HAS_ACCESS == 'true'
+    if: needs.check-secret-access.outputs.allowed == 'true'
     runs-on: [k8s-public]
     container:
       image: registry.gitlab.com/cmmarslender/kubectl-helm:v3.11.0
