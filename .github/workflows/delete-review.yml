@@ -12,10 +12,29 @@ concurrency:
   group: ${{ github.event.pull_request.number }}
 
 jobs:
+  check-secret-access:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check-secret.outputs.allowed }}
+    steps:
+      - name: Test for secrets access
+        id: check-secret
+        shell: bash
+        run: |
+          unset allowed
+          if [ "${{ secrets.TEST_SECRETS_ACCESS }}" != '' ]; then
+            echo "allowed=true" >> $GITHUB_OUTPUT;
+          else
+            echo "allowed=false" >> $GITHUB_OUTPUT;
+          fi
+
   delete:
     runs-on: [k8s-public]
     container:
       image: registry.gitlab.com/cmmarslender/kubectl-helm:v3.11.0
+    needs:
+      - check-secret-access
+    if: needs.check-secret-access.outputs.allowed == 'true'
     steps:
       - uses: actions/checkout@v3
 
