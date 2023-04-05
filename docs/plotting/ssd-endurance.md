@@ -5,16 +5,16 @@ slug: /ssd-endurance
 
 ## Estimated SSD wear out, endurance table
 
-There are various approaches to picking a great plotting SSD, and a lot will depend on the physical system it is going into for form factor and interface compatibility (NVMe/PCIe, SATA, or SAS). The one thing in common will be that you need high endurance, due to the fact that it takes almost ~1.3TiB of writes (post 1.0.4 version) per k-32 plot.
+The fastest plot creation is done completely in memory, but requires a server with a large amount of DRAM to perform this. Most consumer plotters are using an SSD as temporary storage to perform plotting. Mainstream SSDs today use NAND flash technology to store data. NAND is high performance, scalable, and low cost - warranting the use in virtually every computing segment from mobile phones, SD cards, consumer laptops, and data centers. However, NAND must be erased before the cell is programmed, a process known as a program erase cycle, and can only be performed a certain amount of times before the NAND cell wears out and can no longer reliably store user data. This is defined generally as an SSD no longer meeting the UBER (uncorrectable bit error rate), retention time (how long the device can store user data safely while powered off, at a given temperature), or functional failure (device can no longer power on). The metrics to measure endurance of an SSD is defined in Terabytes Written, or TBW, at a certain workload. The workload defined is generally the JESD219 workload from JEDEC organization. An SSD can still plot well beyond meeting it's rated TBW limit, because UBER can be measured (when seeing host errors) and retention is not required (Chia plotting requires temporary or ephemeral storage).
 
-Endurance with madMAx plotter is measured at
-
-- -t & -2 on same drive: 1.43TB or 1.31TiB written per k=32 plot
-- -t only (-2 in ramdisk): 396.3 GB, 369.1 GiB (0.36 TiB)
-
-Endurance is how much data can be written to the SSD before it wears out. In Chia this is important because a plotting SSD will generally be at 100% duty cycle and writing all day.
-
-A mixed use or high endurance data center or enterprise SSD is the best choice for plotting. Used SSDs with plenty of endurance can be found for a good value on eBay, Craigslist, or similar.
+| Plotter             | Cache / Ramdisk | Writes per K=32 |
+| ------------------- | --------------- | --------------- |
+| Chiapos beta (2020) | 0               | 1.8 TBW         |
+| Chiapos 2021        | 0               | 1.4 TBW         |
+| madMAx Chia_plot    | 0               | 1.43 TBW        |
+| madMAx Chia_plot    | 110G            | 0.396 TBW       |
+| Bladebit Disk       | 0               | 1.225 TBW       |
+| Bladebit Disk       | \>99G           | 0.381 TBW       |
 
 Consumer NVMe SSDs are generally not recommended due to the lower endurance, and they often employ caching algorithms to faster media (SLC, or single level cell) for great bursty performance. They do not perform well under heavy workload sustained IO.
 There are very high performance consumer NVMe SSDs that will offer great plotting performance, but the lower rated endurance in TBW will result in a faster wearout.
