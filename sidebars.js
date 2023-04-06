@@ -172,6 +172,14 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Green Paper',
+      items: [
+        'green-paper/abstract',
+        'green-paper/introduction',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Resources',
       items: [
         'resources/references',
