@@ -8,11 +8,9 @@ slug: /green-paper-introduction
 
 The **Chia network** ([chia.net](https://chia.net/)) is a permissionless blockchain that was launched on March 19, 2021. Chia is a "longest-chain" blockchain like Bitcoin, but uses disk-space instead of computation as the main resource to achieve consensus. This holds the promise of being much more ecologically and economically sustainable and more decentralized than a proofs of work (PoW) based blockchain like Bitcoin could be. Figure [1](#fig:C4){reference-type="ref" reference="fig:C4"} illustrates one slot of the Chia blockchain. The main aim of this document is to explain the rationale for this rather complicated design.
 
-<figure id="Figflow">
-<div class="center">
-<embed src="/img/green-paper/4chainsX.pdf" />
-</div>
-<figcaption><span id="Figflow" label="Figflow"></span>An illustration of the main security proofs and arguments for the <span>Chia</span> consensus layer.</figcaption>
+<figure>
+	<img src="/img/green-paper/balanceattack.png" alt="Balance attack schematic" />
+	<figcaption>Fig. 6: Snapshot of balance attack in progress on g-greedy protocol with g = 2. The goal of the adversary is to balance the lengths of two chains each tracing the genesis block as their ancestor, consequently creating a deep fork.</figcaption>
 </figure>
 
 As mentioned, Chia is basically what's called a *longest-chain* protocol in the literature [@BrownCohen2019; @Bagaria2019]. This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to

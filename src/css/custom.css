@@ -34,3 +34,18 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 h4 {
   font-size: 20px;
 }
+
+/* Figures and caption */
+
+figure {
+  width: 85%;
+  margin: 0 auto;
+}
+
+figcaption {
+  font-style: italic;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+}
