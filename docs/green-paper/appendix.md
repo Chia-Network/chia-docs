@@ -1,0 +1,149 @@
+---
+title: Appendix - Chia Green Paper
+sidebar_label: Appendix
+slug: /appendix
+---
+
+# Building Blocks: PoSpace, VDFs and Signatures {#sec:proofs}
+
+In this section we sketch the main building blocks used in the Chia blockchain: unique digital signatures, proofs of space [@Dziembowski2015; @Abusalah2017] and verifiable delay functions [@Boneh2018; @Pietrzak2019; @Boneh2018a; @Wesolowski2020]. The definitions are not fully general, but instead tailored to the particular constructions of PoSpace from [@Abusalah2017] and the VDFs [@Pietrzak2019; @Boneh2018a; @Wesolowski2020] based on sequential squaring.
+
+## (Unique) Digital Signatures
+
+A digital signature scheme is specified by three algorithms; a (probabilistic) key-generation algorithm ${{\sf Sig.keygen}}$, a signing algorithm $\mu\gets {{\sf Sig.sign}}(sk,m)$ and a verification algorithm ${{\sf Sig.verify}}$. We assume the standard security notion (unforgeability under chosen message attacks) and perfect completeness, that is, a correctly generated signature will always verify: $$\begin{aligned}
+\forall m,&&
+\Pr[{{\sf Sig.verify}}(pk,m,\mu)={\sf accept}]=1\\
+\textrm{where}&&(pk,sk)\gets{{\sf Sig.keygen}}\ ;\ \mu\gets{{\sf Sig.sign}}(sk,m)~.
+\end{aligned}$$ Chia uses signatures in the foliage (to chain foliage blocks and to bind them to the trunk) and also in the trunk (so only the farmer can compute the challenge). To avoid grinding attacks, the signatures used in the trunk must be unique, that is for every $pk$ (this includes maliciously generated public keys) and message $m$ there can be at most one accepting signature $$\begin{aligned}
+\forall pk,m,\ 
+({{\sf Sig.verify}}(pk,m,\mu)={\sf accept})\wedge 
+({{\sf Sig.verify}}(pk,m,\mu')={\sf accept})\Rightarrow (\mu=\mu')~.
+%\\
+%&&\textrm{where }(pk,sk)\gets{\Sigk}
+\end{aligned}$$
+
+## (Unique) Proofs Of Space {#S:PoS}
+
+### Algorithms for PoSpace {#S:PoSalg}
+
+A proof of space is specified by the four algorithms given below
+
+::: description
+PoSpace.init on input a space parameter $N\in{\cal N}$ (where ${\cal N}\subset \mathbb{Z}^+$ is some set of valid parameters) and a unique identifier $pk$ (we use $pk$ to denote the identifier as in Chia it will be the public key of a signature scheme) outputs[^7]
+
+$$S=(\ S.\Lambda\ ,\ S.N=N\ ,\ S.pk=pk)
+\gets {\sf PoSpace.init}(N,pk)$$ Here $S.\Lambda$ is the large file of size $|S.\Lambda|\approx N$ the prover needs to store. We also keep $N,pk$ as part of $S$ as it will be convenient.
+
+PoSpace.prove on input $S$ and a challenge $c\in \{0,1\}^w$ outputs a proof $$\sigma=(\ \sigma.\pi\ , \sigma\ = \ \sigma.N=S.N\ ,\ \sigma.pk=S.pk\ ,\ \sigma.c=c\ )\ \gets {\sf PoSpace.prove}(S,c)
+%\\
+%&
+%{\color{blue}\textrm{where }\sigma.\gamma\gets \Sigs(S.sk,\sigma.\pi)}$$ Here $\sigma.\pi$ is the actual proof, the other entries in $\sigma$ are just convenient to keep around.
+
+PoSpace.verify on input a proof $\sigma$ outputs ${\sf accept}$ or ${\sf reject}$ $${\sf PoSpace.verify}(\sigma)\in \{{\sf reject},{\sf accept}\}\ .$$
+:::
+
+We assume perfect completeness $$\begin{aligned}
+&&\forall N\in{\cal N},c\in\{0,1\}^w,  \ \Pr[{{\sf PoSpace.verify}}(\sigma)={\sf accept}]=1\textrm{ where }
+\\
+&&S\gets{\sf PoSpace.init}(N,pk) \textrm{ and } \sigma\gets{{\sf PoSpace.prove}}(S,c)
+\end{aligned}$$
+
+### Security of PoSpace
+
+We will not give the formal security definition for PoSpace here, but informally it states that an adversary who stores a file of size significantly less than $N$ bits should not be able to produce a valid proof for a random challenge unless he invests a significant amount of computation (ideally close to what it costs to run the full initialization ${\sf PoSpace.init}(N,pk)$). Moreover it must be impossible to amortize space, that is, initalizing space for $m>1$ different identities must require $m$ times as much space.
+
+To prevent grinding attacks, we need our PoSpace to be unique as defined below.
+
+### Unique PoSpace
+
+A PoSpace is unique if for any identity $pk$ and any challenge $c$ there is exactly one proof, i.e., $$\begin{aligned}
+&\forall N,pk,c,\\
+&\left|\{\sigma\ :\ \left({{\sf PoSpace.verify}}(\sigma)={\sf accept}\right)\wedge \left( (\sigma.N,\sigma.pk,\sigma.c)=(N,pk,c)\right)\}\right|= 1
+\end{aligned}$$ We call a PoSpace *weakly* unique if the *expected* number of proofs is close to $1$, i.e., $$\begin{aligned}
+&\forall N,pk,c,\\
+&{\mathrm E}_{c\gets \{0,1\}^w}\left[|\{\sigma : \left({{\sf PoSpace.verify}}(\sigma)={\sf accept}\}   \right)
+\wedge  \left((\sigma.N,\sigma.pk,\sigma.c)=(N,pk,c)\right)
+|\right]\\
+&\approx 1
+\end{aligned}$$ For weakly unique PoSpace we assume that whenever there is more than one proof for a given challenge which passes verification, ${\sf PoSpace.prove}(S,c)$ outputs all of them.
+
+The [@Abusalah2017] PoSpace used in Chia is only *weakly unique*. To be able to focus on the main challenges, we will nonetheless assume a *unique* PoSpace when analyzing Chia but our analysis can be extended without major difficulties to handle weakly unique PoSpace, things just get a bit more messy.
+
+### The [@Abusalah2017] PoSpace {#S:pospace17}
+
+We give a very high level outline of the PoSpace from [@Abusalah2017]. The space parameter is given implicitly by a value $\ell\in\mathbb{Z}^+$, the actual space required is approximately $N\approx \ell\cdot 2\cdot 2^{\ell}$ bits (e.g. for $\ell=40$ that's $10$ terabytes). Let $L:=\{0,1\}^\ell$ denote the set of $\ell$ bit strings. Below we denote with $X_{|\ell}$ the $\ell$ bit prefix of a string $X$.
+
+The identity $id:=pk$ together with a hash function ${\sf H}$ defines two functions $f: L\rightarrow L, g:L\times L\rightarrow L$ as $$f(x)={\sf H}(id,x)_{|\ell}\quad\textrm{and}\quad g(x,x')={\sf H}(id,x,x')_{|\ell} \ .$$ Note that if we model ${\sf H}$ as a random function, then $f,g$ are also random functions. On a challenge $y\in L$ the prover must answer with a tuple $$id,(x,x')\qquad\textrm{ where }\qquad
+x\neq x', f(x)=f(x'), g(x,x')=y$$ if it exists. In this construction, for roughly a $(1-1/e)\approx 0.632$ fraction of the challenges $y\in L$ there will be at least one proof, and the expected number of proofs is $1$ (so it is a weakly unique PoSpace).
+
+The prover will generate and store two tables so they can efficiently generate proofs. They first compute and store a table with the values $(x,f(x))$ sorted by the 2nd entry. With this table, the prover can now efficiently enumerate all tuples $(x,x')$ where $x\neq x'$ and $f(x)=f(x')$ to generate a table containing all triples $(x,x',y=g(x,x'))$; the expected number of such triples is $|L|=2^\ell$. This table is then sorted by the thrid value. Now given a challenge $y$ one can efficiently look up proofs in the second table as it is sorted by the $y$ values. Storing the second table requires $\approx 3|L|\log(|L|)=2^{\ell+1}\ell$ bits, and this can be brought down to $\approx 2|L|\log(|L|)$ bits by encoding it in a more clever way.
+
+Chia is based on this PoSpace, but to further minimize the effect of time/space trade-offs (where a malicious farmer tries to save on space at the cost of doing more computations), a nested version of this construction is used. We omit the details in this writeup.
+
+## Verifiable Delay Functions {#S:vdf}
+
+The definition of verifiable delay functions (VDFs) given below is not completely general, but makes some additional properties of VDF we'll need in Chia explicit. In particular, we want a VDF where the sequential computation can start before we know the number of sequential steps for which it will run, while still being able to output proofs reasonably fast at any point during the sequential computation. This similar to the functionality provided by continuous VDFs [@Ephraim2020], which require that one can provide proofs for intermediate values almost immediately. We can allow some slack, and thus can use "normal" practical VDF constructions. We'll use the following notation to an (ongoing or finished) VDF computation $\tau$
+
+::: description
+the challenge (usually one or more unpredictable values) used for this VDF
+
+total number of sequential steps performed
+:::
+
+For $i\ :\ 0\ \le i \le \tau.t$ we let $\tau[i]$ denote the state of the VDF after $i$ sequential steps, and
+
+$\tau[i].x\in {\cal X}$ :
+
+:   denotes the value after $i$ steps.
+
+$\tau[i].\pi$ :
+
+:   is a proof certifying that $\tau[i].x$ is correctly computed.
+
+We'll denote the value and proof for the last value as $$\tau.y \stackrel{\scriptsize \sf def}{=}\tau[\tau.t].x\qquad \tau.\pi\stackrel{\scriptsize \sf def}{=}\tau[\tau.t].\pi$$ The functions defining a VDF are
+
+::: description
+VDF.sample on input a challenge $c\in\{0,1\}^*$ samples the initial value $x$ and outputs a partial VDF value $$\tau.{\sf t}:=0\ ,\ \tau[0].{\sf x}:=x\ ,\ \tau.{\sf c}:=c$$
+
+VDF.next: ${\cal X}\rightarrow {\cal X}$ the function doing one step of the sequential computation
+
+VDF.solve on input a challenge $c\in\{0,1\}^*$ and time parameter $t\in\mathbb{Z}^+$ outputs a proof $$\tau=(\ \tau.y\ ,\ \tau.\pi\ ,\ \tau.x\ ,\ \tau.c=c\ ,\ \tau.t=t\ )\gets {\sf VDF.solve}(c,t)$$ and runs in (not much more than) $t$ sequential steps (what a step is depends on the particular VDF). Here $\tau.y$ is the output and $\tau.\pi$ is a proof that $\tau.y$ has been correctly computed. For convenience we also keep $(c,t)$ as part of $\tau$.
+
+VDF.verify on input $\tau$ outputs ${\sf accept}$ or ${\sf reject}$. $${\sf VDF.verify}(\tau)\in \{{\sf reject},{\sf accept}\}$$ Verifying must be possible in $\ll t$ steps, for existing VDFs verification just takes $\log(t)$ [@Pietrzak2019] or even constant [@Wesolowski2020] time.
+:::
+
+We have perfect completeness $$\forall t,c\ :\ {{\sf VDF.verify}}({{\sf VDF.solve}}(c,t))={\sf accept}$$ The two security properties we require are
+
+uniqueness:
+
+:   It is hard to come up with any statement and an accepting proof for a wrong output. More precisely, it is computationally difficult to find any $\tau'$ where for $\tau\gets {\sf VDF.solve}(\tau'.c,\tau'.t)$ we have $${\sf VDF.verify}(\tau')={\sf accept}\quad\textrm{ and }\quad\tau.y\neq \tau'.y\ .$$ Note that we only need $\tau.y$ (but not $\tau.\pi$) to be unique, i.e., the proof $\tau.\pi$ showing that $\tau.y$ is the correct value can be malleable. This seems sufficient for all applications of VDFs, but let us mention that in the [@Pietrzak2019; @Wesolowski2020] VDFs discussed below also $\tau.\pi$ is unique.
+
+sequentialitiy:
+
+:   Informally, sequentiality states that for any $t$, an adversary ${\cal A}$ who makes less than $t$ sequential steps will notfind an accepting proof on a random challenge. I.e., for some tiny $\epsilon$ $$\hspace{-1cm}
+	\Pr[{\sf VDF.verify}(\tau)={\sf accept}\ \wedge \ \tau.c=c\ \wedge\ \tau.t=t \ :\ c\stackrel{rand}{\gets}\{0,1\}^w,\tau\gets{\cal A}(c,t)]\le \epsilon$$ Let us stress that ${\cal A}$ is only bounded by the number of *sequential* steps, but they can use high parallelism. Thus the VDF output cannot be computed faster by adding parallelism beyond what can be used to speed up a single step of the VDF computation.
+
+### The [@Pietrzak2019; @Wesolowski2020] VDFs
+
+The VDFs proposed in [@Pietrzak2019; @Wesolowski2020] (see [@Boneh2018a] for an overview of those constructions) are both based on squaring in a group of unknown order, for concreteness let the group be $\mathbb{Z}_N^*$ where $N=pq$ is the product of two large primes $p,q$. On input ${\sf VDF.solve}(c,t)$ one would first map the challenge $c$ on a group element, say as $x_c:= hash(c)\bmod N$, and the output is $(y,\pi)$ with $y=x_c^{2^t}\bmod N$. This $y$ can be computed by squaring $x_c$ sequentially $t$ times $x_c\rightarrow x_c^2\rightarrow x_c^{2^2}\rightarrow \cdots \rightarrow x_c^{2^t}$, and it is conjectured that there is no shortcut to this computation if one doesn't know the factorization of $N$.
+
+The VDFs from [@Pietrzak2019; @Wesolowski2020] differ in how the proof $\pi$ that certifies that $y=x_c^{2^t}\bmod N$ is defined. The proof in [@Pietrzak2019] is shorter ($1$ vs. $\log(T)$ elements), but soundness of the proof requires an additional assumption (that taking random roots is hard).
+
+If one uses an RSA group as above, a trusted setup or a multiparty computation is needed to sample the modulus $N$ in a way that nobody learns its factorization. As this sampling is expensive, one would then think of $N$ as a public parameter to be used indefinitely.
+
+Wesolowski [@Wesolowski2020] suggests using the class group of an imaginary quadratic field as the underlying group of unknown order. These groups can be obliviously sampled -- this means given random bits one can sample a group without learning its order -- and thus there is no need for a trusted setup. On the other hand, it's somewhat tricky to obliviously sample random group elements in class groups (here obliviously means in a way that does not reveal the discrete log of the element). Thus in the class group setting we can let ${\sf VDF}(c,t)$ sample a fresh group using the challenge $c$, and then exponentiate a fixed easy to find group element (concretely the element (a=2, b=1)). This is the approach taken in Chia.
+:::
+
+[^1]: According to Wikipedia, *delayed gratification* is the resistance to the temptation of an immediate pleasure in the hope of obtaining a valuable and long-lasting reward in the long-term.
+
+[^2]: The crucial observation that makes this possible is the fact that Hellman's attack assumes that $f(.)$ can be efficiently computed in forward direction, while for a PoSpace we just require that the entire function table of $f(.)$ can be computed in time linear in the size of the table.
+
+[^3]: Using the same challenge for $k>1$ blocks has already been suggested in [@Park2018], but this is a different requirement (as the challenge can still depend on all blocks) and adds much less security than correlated randomness for small $k$.
+
+[^4]: []{#foot1 label="foot1"}To achieve such a large fraction we must assume that (1) honest miners follow the (original Bitcoin) rule and in case they learn of two longest chains they always try to extend the one they saw first and (2) that once the selfish miner learns about a block mined by the honest miners, they can release a withheld block such that their block reaches most of the honest miners faster than this honest block. If either of these conditions is not met, selfish mining is much less profitable, and only becomes profitable at all for selfish miners who control a fairly large fraction of the resource [@Sapirshtein2015].
+
+[^5]: A similar proposal, where the honest parties try to extend the first $k$ blocks they see at every depth was proposed in an early proposal for Chia (with $k=3$) [@greenpaper]. This variant achieves the no-slowdown property.
+
+[^6]: If there's an epoch switch at some $t,t_0<t<t_1$ where the difficulty switches from $D_0$ to $D_1$, let $D$ be the weighted average $D=D_0\frac{t-t_0}{t_1-t_0}+D_1\frac{t_1-t}{t_1-t_0}$.
+
+[^7]: The first constructions of PoSpace from [@Dziembowski2015] were based on depth-robust graphs. The initialization phase in these PoSpace was not just a function as it is here, but an interactive protocol. The definition we give here captures the [@Abusalah2017] PoSpace (which was developed for Chia) where the initialization phase is non-interactive, this makes its use in a blockchain design much simpler. The Spacemint [@Park2018] proposal is using graph-based PoSpace and because of that must bootstrap the blockchain itself to make initialization non-interactive: farmers must post a commitment to their space to the blockchain via a special type of transaction before it can be used for farming. Without this, Spacemint would succumb to grinding attacks (on the message send to the verifier during the initialization phase).
