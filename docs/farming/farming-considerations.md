@@ -1,6 +1,6 @@
 ---
 title: Farming Considerations
-slug: /Farming-Considerations
+slug: /farming-considerations
 ---
 
 # Farming Hardware Considerations
