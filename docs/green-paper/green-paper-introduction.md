@@ -9,8 +9,8 @@ slug: /green-paper-introduction
 The **Chia network** ([chia.net](https://chia.net/)) is a permissionless blockchain that was launched on March 19, 2021. Chia is a "longest-chain" blockchain like Bitcoin, but uses disk-space instead of computation as the main resource to achieve consensus. This holds the promise of being much more ecologically and economically sustainable and more decentralized than a proofs of work (PoW) based blockchain like Bitcoin could be. Figure [1](#fig:C4){reference-type="ref" reference="fig:C4"} illustrates one slot of the Chia blockchain. The main aim of this document is to explain the rationale for this rather complicated design.
 
 <figure>
-	<img src="/img/green-paper/balanceattack.png" alt="Balance attack schematic" />
-	<figcaption>Fig. 6: Snapshot of balance attack in progress on g-greedy protocol with g = 2. The goal of the adversary is to balance the lengths of two chains each tracing the genesis block as their ancestor, consequently creating a deep fork.</figcaption>
+	<img src="/img/green-paper/4chainsX.png" alt="Illustration of one slot of the Chia blockchain" />
+	<figcaption>Figure 1: Illustration of one slot (taking around 10 minutes) of the Chia blockchain. For illustration the slot has just 16 (instead 64) signage points and only 4 blocks (the actual chain has a target of 32).</figcaption>
 </figure>
 
 As mentioned, Chia is basically what's called a *longest-chain* protocol in the literature [@BrownCohen2019; @Bagaria2019]. This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to
@@ -25,14 +25,12 @@ No other coordination or communication amongst the parties is required. In parti
 
 Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. In particular, a secure (under dynamic availability) longest-chain protocol based on proofs of space alone does not exist [@BP22], so Chia's *proofs of space and time* (PoST) consensus protocol, apart from farmers providing disk space, additionally relies on so called time lords who evaluate verifiable delay functions (VDFs). Figure [2](#Figflow){reference-type="ref" reference="Figflow"} gives an overview of the formal security proofs and more informal arguments outlined in this document.
 
-<figure id="Figflow">
-<div class="center">
-<embed src="https://chia.net" />
-</div>
-<figcaption><span id="Figflow" label="Figflow"></span>An illustration of the main security proofs and arguments for the <span>Chia</span> consensus layer.</figcaption>
+<figure>
+	<img src="/img/green-paper/chia-flow.png" alt="Flow diagram of Chia security and arguments" />
+	<figcaption>Figure 2: An illustration of the main security proofs and arguments for the Chia consensus layer.</figcaption>
 </figure>
 
-## Security {#S:css}
+## Security
 
 The Bitcoin blockchain is secure [@Garay2015] as long as the hashing power $hash_h$ (measured in hashes per second) contributed by honest parties is larger than the hashing power $hash_a$ available to an adversary, i.e., $$\label{e:btcsecure}
 hash_h > hash_a$$ Similarly, the security of Chia depends on the amount of space $space_h$ and $space_a$ controlled by the honest parties and the adversary, respectively. Additionally, the speed $vdf_h$ and $vdf_a$ (measured in steps per second) of the VDFs run by the fastest honest time lord and the adversary are relevant. With these definitions, $$\label{e:chiasecure}
@@ -71,7 +69,7 @@ The no-slowdown property was identified as a desirable property for longest-chai
 
 The Chia design ensures that proof of space challenges are only revealed once they are needed, and once they're revealed they cannot be influenced any more. This then implies that it's impossible for a selfish farmer to create more blocks by deviating from honest farming, and thus -- like in Bitcoin -- the only thing a selfish farmer can do is prevent other farmers from adding their fair share of blocks in the current epoch (potentially even loosing out on blocks themself). The reason a selfish farmer would do this is in order to enforce a lower difficulty, and thus more rewards for themselves, in the future [@Eyal2018]. We denote chains with this property as having "delayed gratification".[^1] While delayed gratification doesn't prevent selfish mining, it severely limits the type of selfish mining possible, and we don't expect to observe selfish farming in Chia for the same reasons we don't observe selfish mining in Bitcoin. As mentioned above, in combination with the no-slowdown property it even implies a chain-quality as in Bitcoin.
 
-## Farmers and Time lords {#S:FandT}
+## Farmers and Time lords
 
 Constructing a secure blockchain based on proofs of space is significantly more challenging than with proof of work. So the Chia design, as illustrated in Figure [1](#fig:C4){reference-type="ref" reference="fig:C4"} is (arguably necessarily) more sophisticated than Bitcoin or other PoW based blockchains, which are basically just hash chains. Apart from proofs of space and standard cryptographic building blocks like hash functions and signature schemes, the security of Chia crucially relies on verifiable delay functions (VDFs) [@Boneh2018; @Pietrzak2019; @Wesolowski2020]. Informally, VDFs are functions whose computation is inherently sequential and verifiable and thus serve as a "proof of time".
 
@@ -85,7 +83,7 @@ To participate in farming a farmer must first initalize its disk-space, this pro
 
 In Chia only roughly $36\%$ of the blocks will carry transactions, but as a farmer doesn't know whether their block will be a transaction block when creating the block, farmers must always include transactions to the blocks they create.
 
-#### Time lords. {#SS:chain}
+#### Time lords
 
 A time lord runs three VDFs, once every $9.375$ seconds they gossip a "signage point" that serves as a PoSpace challenge for the farmers. They also listen to the network for blocks created by farmers. If a valid block is received in time it gets "infused" into the chain (the infusion is always somewhere from 28.125 to 37.5 seconds after the signage point).
 
@@ -93,9 +91,9 @@ The above only holds for the the time lord which runs the fastest VDFs. Time lor
 
 Unlike farmers, time lords do not receive any rewards in form of block-rewards or transaction fees. One reason is technical, unlike for farmers whose PoSpace contained in the blocks are linked to a signature public-key to which a reward can be given, the computation of the time lords is (and to prevent grinding attacks must be) canonical, they cannot attach a public-key to the values they computed. A second reason is the fact that it's not clear at all how such a reward would be distributed. If the fastest time lord gets the entire reward only they would be incentivized, but not the slower ones we'd like to have as back-ups. If also the slower ones get something then we'd get a PoW type lottery which we want to avoid in the first place. Chia thus relies on a small number of time lords to run fast VDFs without being incentivised by on-chain rewards.
 
-## Difficulty and Chain Selection Rule {#S:DiffCSR}
+## Difficulty and Chain Selection Rule
 
-#### Difficulty.
+#### Difficulty
 
 In Bitcoin a difficulty parameter $D$ controls how many hashes are required in expectation to find a block. This parameter is re-calibrated every 2016 blocks (called an epoch and taking roughly 2 weeks) so blocks arrive roughly every 10 Minutes.
 
@@ -103,7 +101,7 @@ Chia has two parameters, a difficulty parameter $D$ and a time parameter $T$, t
 
 For example if in an epoch the amount of space is $10\%$ higher than anticipated the difficulty for the next epoch would get up $D_{new}:=D_{old}\cdot 1.1$ while the time parameter remains unchanged $T_{new}:=T_{old}$. If the VDF speed in the epoch is $10\%$ higher than anticipated (i.e., the epoch only takes $24/1.1$ instead of $24$ hours) the time parameter goes up $T_{new}:=T_{old}\cdot 1.1$, and even though the space didn't change, the difficulty needs also to go up $D_{new}:=D_{old}\cdot 1.1$ account for the fact that now an epoch has more VDF steps.
 
-#### Chain Selection Rule.
+#### Chain Selection Rule
 
 Bitcoin has a very simple chain selection rule (aka. fork choice rule) which specifies which fork a miner should work on: a miner should always try to extend the "heaviest" chain they are aware of. The weight of a chain is the sum of the blocks, each multiplied by the difficulty parameter used while it was mined. Unless we consider forks which pass an epoch boundary, the heaviest chain is also the chain with the larger number of blocks, hence the name "longest chain" protocol.
 
@@ -133,7 +131,7 @@ A VDF is specified by some inherently sequential function, and a proof system fo
 
 The notion of proofs of space was introduced, and a first construction proposed, in [@Dziembowski2015] (a security proof for their construction in the random oracle model was given in [@Pietrzak2019a]). This construction, which is combinatorial and based on pebbling lower bounds for particular graphs, has the major drawback that the initialization phase is *interactive*. A consequence of this is that if one wants to use this PoSpace in a blockchain, the farmers must first commit to their plots before they can be used for farming (say by recording this commitment on-chain via a special transaction as suggested in Spacemint [@Park2018]). A new PoSpace with a *non-interactive* initialization had to be developed for Chia [@Abusalah2017]. This construction basically just specifies some function $f$, and then stores its function table $(x,f(x))$ sorted by the outputs $f(x)$. On challenge some value $y$, the prover looks up the entry $(x,y)$ (which is efficient as the list is sorted) and replies with the proof $x$, which can be easily verified checking that $y\stackrel{\tiny ?}{=}f(x)$. Unfortunately this simple construction miserably fails to be secure: the prover can store much less than the full function table, while still being able to efficiently find proofs. The reason are Hellman's time-memory trade-offs, a technique proposed in 1980 to break symmetric cryptographic schemes [@Hellman1980]. In [@Abusalah2017] it is shown how this simple construction can be "salvaged" to overcome any time-memory trade-offs.[^2] We'll discuss definition of a PoSpace, and the construction used in Chia in particular, in §[8.2](#S:PoS){reference-type="ref" reference="S:PoS"}.
 
-## A High Level View of the Protocol {#S:high}
+## A High Level View of the Protocol
 
 The design and rationale of the Chia blockchain is explained in the following sections, here we'll just give a very high level view of the chain as illustrated in Figure [1](#fig:C4){reference-type="ref" reference="fig:C4"}. The chain itself consists of four chains, one hash chain and three VDF chains.
 
@@ -183,11 +181,10 @@ The main advantage on using stake to secure a longest-chain protocol is the fact
 
 To prevent such attacks some chain require parties to delete old keys, but it's irrational for a party to delete old keys if they can be valuable in the future, say because one can sell them to an attacker (and this is rational if one holds just little stake, so not selling is unlikely to prevent the attack) or because there's a deep reorg and the old keys suddenly become valuable again. Combining stake with VDFs would make such attacks harder, but not prevent them as we'll discuss in §[7](#S:51){reference-type="ref" reference="S:51"}
 
-### Replotting {#S:replotting}
+### Replotting 
 
 A subtle but important difference between stake and space is the fact that space allows for *replotting* which has no analogue in the stake setting: Given a challenge $c$, a space farmer controlling a plot $S$ of size $N$ can *efficiently* compute *one* proof $\sigma \gets  {\sf PoSpace.prove}(S,c)$. This is analogous to the stake based setting, but unlike in the stake setting, the farmer can *inefficiently* compute *multiple* proofs for challenge $c$ by repeatedly creating fresh plots and computing one proof with each of them.
 
 We refer to attacks exploiting this fact as *replotting attacks*. The most basic design choice to harden a chain against replotting attacks is to make sure that challenges arrive at a sufficiently high rate so that substantial replotting in-between two challenges is not feasible. Moreover the plot filter (which dictates what fraction of plots must be accessed with every challenge) cannot be chosen too aggressively as more aggressive filters makes potential replotting attacks easier.
 
 A fundamental fact about PoSpace that crucially relies on replotting is that *no PoSpace based longest-chain protocol secure under dynamic availability exists* [@BP22], we'll discuss their result in more detail in §[7.2.3](#S:DAspace){reference-type="ref" reference="S:DAspace"}. Chia overcomes this no-go theorem by using VDFs, we discuss security under dynamic availability and healing from malicious majority in the work, stake and space setting in §[7](#S:51){reference-type="ref" reference="S:51"}.
-
