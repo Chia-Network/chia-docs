@@ -31,6 +31,7 @@ module.exports = {
         'farming/pool-farming',
         'farming/checking-farm-health',
         'farming/reference-farming-hardware',
+        'farming/farming-considerations',
         'farming/dual-farming-testnet-mainnet',
         'farming/farming-faq',
       ],
