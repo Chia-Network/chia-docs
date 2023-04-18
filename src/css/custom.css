@@ -49,3 +49,12 @@ figcaption {
   margin-bottom: 30px;
   width: 100%;
 }
+
+.eqnumber {
+  font-style: italic;
+  color:#999999;
+  text-align: center;
+  margin-top:-10px;
+  margin-bottom: 25px;
+  width: 100%;
+}
