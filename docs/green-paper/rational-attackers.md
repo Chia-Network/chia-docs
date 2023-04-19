@@ -4,7 +4,7 @@ sidebar_label: Rational Attackers
 slug: /rational-attackers
 ---
 
-# Rational Attackers {#S:fair}
+# 3. Rational Attackers
 
 <figure id="FigDG">
 <div class="center">
@@ -19,7 +19,7 @@ In analogy to *selfish mining* in Bitcoin, we refer to strategies by which a par
 
 In §[4.1](#S:SM){reference-type="ref" reference="S:SM"} below we first discuss selfish mining and why we don't observe it in Bitcoin even though it's possible in principle. As directly analyzing the security of a longest-chain protocol against selfish mining/farming is very challenging we take a modular approach. In §[4.2](#s:dg){reference-type="ref" reference="s:dg"} we first identify two properties -- *no slowdown* and *delayed gratification* illustrated in Figure [4](#FigDG){reference-type="ref" reference="FigDG"} -- which are satisfied by Bitcoin, and then show in §[4.3](#s:dgprop){reference-type="ref" reference="s:dgprop"} that they imply robustness against selfish mining (through the notion of chain quality) of the level as achieved by Bitcoin. In §[4.4](#s:dgchia){reference-type="ref" reference="s:dgchia"} and §[4.5](#s:nschia){reference-type="ref" reference="s:nschia"} we then sketch how those notions are achieved in Chia.
 
-## Selfish Mining in Bitcoin {#S:SM}
+## 3.1	Selfish Mining in Bitcoin
 
 While Bitcoin prevents double spending assuming a majority of the hashing power is controlled by miners who altruistically follow the protocol, it allows for *selfish mining* [@Eyal2018] by which a miner with a $\alpha<0.5$ fraction of the hashing power can create more than an $\alpha$ fraction of the blocks and thus gets an unfair share of the block rewards. In some settings this fraction can be as large as $\alpha/(1-\alpha)$ (e.g. a $0.33$ fraction for $\alpha=0.25$).[^4] Selfish mining has not been observed in Bitcoin, and there are various reasons why this is the case
 
@@ -29,7 +29,7 @@ While Bitcoin prevents double spending assuming a majority of the hashing power 
 
 3.  delayed gratification as defined below.
 
-## Delayed Gratification and No Slowdown {#s:dg}
+## 3.2	Delayed Gratification and No Slowdown
 
 The Bitcoin blockchain is split in epochs, each with a targeted duration of two weeks, and only at the end of an epoch the difficulty is reset to accommodate for the variation of the hashing power. Assuming the network is reliable, within an epoch, a selfish miner cannot create more blocks than they would get by honest mining. This follows from a crucial property of proofs of work: there's no way to find more proofs of a given difficulty (and thus blocks) in a given time window than simply following the protocol and always working on the known longest chain. The only thing selfish mining does in Bitcoin is to make honest parties waste their hashing power, so after the next difficulty reset (which only happens every 2 weeks) the difficulty is lower than it should be, and only at this point the selfish miner makes some extra profit. Another property of PoW based chains like Bitcoin is that an adversary cannot slow down chain growth. We capture these two desirable properties separately below.
 
@@ -45,7 +45,7 @@ No Slowdown:
 
 :   A chain where an adversary (no matter what fraction of the resource they control) cannot slow down the expected block arrival time by interacting with the chain is said to have the *no slowdown* property.
 
-## Chain Quality {#s:dgprop}
+## 3.3 Chain Quality
 
 A longest-chain blockchain is said to have *chain quality* $\rho$ if the fraction of blocks mined by honest miners is at least $\rho$ (with high probability and considering a sufficiently large number of blocks). Chain quality was introduced in [@Garay2015] as a metric to quantify how susceptible a chain is to selfish mining. Ideally, assuming an adversarial miner who controls an $\alpha$ fraction of the resource, the chain quality should be $\rho=1-\alpha$ as this means that the adversary cannot increase its fraction of blocks by deviating.
 
@@ -62,7 +62,7 @@ By the Proposition below delayed gratification and the no slowdown property impl
 \end{aligned}$$ ◻
 :::
 
-## Delayed Gratification in Chia {#s:dgchia}
+## 3.4	Delayed Gratification in Chia
 
 Having motivated why the no slowdown and delayed gratification properties are useful, in this and the next section we will sketch how they are achieved in Chia. Recall that delayed gratification means a selfish farmer cannot add more blocks into the chain than he could by honestly following the protocol. To achieves this in Chia we ensure that
 
@@ -84,15 +84,15 @@ We will sketch how properties (a)-(c) are achieved in Chia next. To follow the 
 
 (c) We use a variation on the correlated randomness technique from [@Bagaria2019], where we let the challenge depend on every $k$th challenge on average, rather than exactly. This way only the challenge determines whether a plot can produce a winning block, irrespective of what other plots exist.
 
-## No-Slowdown of Chia and other Constructions {#s:nschia}
+## 3.5	No-Slowdown of Chia and other Constructions {#s:nschia}
 
 Recall that the no slowdown property requires that no adversary can slow down the block arrival time by participating.
 
-### No-Slowdown in Bitcoin
+### 3.5.1	No-Slowdown in Bitcoin
 
 In Bitcoin no slowdown holds as whenever an honest miner finds a block, all the honest miners will switch to a heavier chain. An adversary can still kick out this block and replace it with one of his own (and that's what selfish mining is exploiting), but not slow down the growth. Of course here we assume a reliable network, a network level attacker who can increase the latency or even split the network can of course delay chain growth.
 
-### A Non-Example, the G-Greedy-Rule
+### 3.5.2	A Non-Example, the G-Greedy-Rule
 
 One might assume that the no-slowdown property would be achieved by any "natural" longest-chain blockchain even if based on efficient proof systems. Unfortunately this intuition is wrong. A design for which no-slowdown fails to hold is the proof of stake based chain of Fan and Zhou [@Fan2017]. Their chain mimics Bitcoin's Nakamoto consensus using proofs of stake, but to harden the design against (what in this writeup is called) double dipping attacks [@Fan2017] suggest the miners not only extend the longest chain, but instead follow the "$g$-greedy rule": a miner should try to extend all forks they see which are at most $g$ blocks shorter than the longest chain they've seen so far. The rationale behind this rule is that by letting the honest miners do double-dipping to some extent, the advantage an adversary can get by double dipping shrinks.[^5] As shown in [@Bagaria2019], this design has some serious issues as an adversary with relatively small resources can with high probability prevent the chain reaching consensus by strategically releasing blocks and this way keep two forks alive for a long time. An illustration of their attack is in Figure [\[Fig:FF\]](#Fig:FF){reference-type="ref" reference="Fig:FF"}. Interestingly (citing [@Bagaria2019]) *"..the efficacy (of the attack) is primarily achieved by slowing down the growth rate of the honest strategy."*
 
@@ -101,7 +101,7 @@ One might assume that the no-slowdown property would be achieved by any "natural
 <figcaption><span id="Fig:FF" label="Fig:FF"></span>Illustration of the balancing attack against <span class="citation" data-cites="Fan2017"></span> taken from <span class="citation" data-cites="Bagaria2019"></span><span id="Fig:Fan" label="Fig:Fan"></span></figcaption>
 </figure>
 
-### Examples of No-Slowdown.
+### 3.5.3	Examples of No-Slowdown.
 
 The lesson from the example above is that the no-slowdown property is not easy to achieve in longest-chain protocols using efficient proof systems. Moreover the absence of this property can lead to various security issues, not just selfish mining opportunities, but even prevent consensus almost indefinitely as in the example above. Similar attacks were also proposed for BFT type protocol, most notably Ethereum [@SchwarzSchilling2021].
 
@@ -130,4 +130,3 @@ Unlike the chain specification, which can only be changed by a hard fork once th
 Under the additional assumption that an adversary does not control VDFs which are *faster* than the fastest honest time lord, a very simple chain selection rule achieving no-slowdown exists: always follow the chain with accumulated most VDF steps. Of course this rule would be terrible in practice as security completely breaks if the adversary has an even slightly faster VDF than the fastest honest time lord. For example, such an adversary could create an "empty" chain by refusing to infuse any blocks.
 
 A more sensible rule is to simply follow the *heaviest* fork like in Bitcoin. Unfortunately, unlike in Bitcoin, in Chia the heaviest fork is not necessarily the fork which will be heaviest in the future assuming all honest parties adapt it: a fork $A$ might have one more block infused than some fork $B$, but if $B$ is way ahead in the VDF computation extending $B$ might give a better chain (in expectation) in the future. Thus, when using this rule, by releasing $B$ an adversary might slow down the chain. The currently deployed chain selection rule for farmers and time lords is basically to follow the heaviest fork, but with some heuristics to avoid clear cases where switching to a heavier chain is slowing down growth.
-

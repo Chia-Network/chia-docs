@@ -4,9 +4,9 @@ sidebar_label: Constants, Variables and Notation
 slug: /constants-variables-notation
 ---
 
-# Constants, Variables and Notation
+# 0	Constants, Variables and Notation
 
-## Important Constants
+## 0.1	Important Constants
 
 | Constants         | Description                                |
 |-------------------|--------------------------------------------|
@@ -27,14 +27,14 @@ The above imply the following:
 | 18.75 seconds              | **target average block arrival time** is $\frac{10{\sf\ min}}{32}=18.75 {\sf\ sec}$ 						   					       |
 | 9.375 seconds              | **target time between signage points** is $\frac{600}{64}=9.375 {\sf\ sec}$ 						   						   	       |
 
-## Important Variables
+## 0.2	Important Variables
 
 | Variable               | Description   						   						   						   						   		        |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------|
 | $D\in{\mathbb N}$      | difficulty parameter. Re-calibrated once per epoch to meet target of $32$ blocks per slot                                    |
 | $T\in {\mathbb N}$     | time parameter (number of VDF steps for sub-slot). Re-calibrated once per epoch to meet target of $10$ minutes per sub-slot 	|
 
-## Boxes
+## 0.3	Boxes
 
 :::info Objective 0:
 We will use blue boxes like this one to mention key objectives we want the design of Chia to satisfy

@@ -4,15 +4,15 @@ sidebar_label: The Chia Blockchain
 slug: /the-chia-blockchain
 ---
 
-# The Chia Blockchain {#S:CBC}
+# 5 The Chia Blockchain {#S:CBC}
 
 ![[]{#fig:CC label="fig:CC"}The reward, challenge and infused challenge chains. For illustration we only use $8$ not $64$ signage points per sub-slot.](https://chia.net){#fig:CC}
 
 In this section we finally outline the design of the Chia blockchain as illustrated in Figure [1](#fig:C4){reference-type="ref" reference="fig:C4"} from its basic building blocks PoSpace, VDFs and Signatures. These primitives are specified in §[8](#sec:proofs){reference-type="ref" reference="sec:proofs"}. We'll use greek letters $\sigma$ to denote PoSpace, $\tau$ for VDFs and $\mu$ for Signatures.
 
-## Additional Variables and Notation for this Section
+## 5.1  Additional Variables and Notation for this Section
 
-### Variables
+### 5.1.1   Variables
 
 $T_i$ :
 
@@ -26,11 +26,11 @@ $D_i$ :
 
 :   Difficulty parameter of $i$th slot. Recalibrated once per day for 32 blocks per slot target.
 
-### Step to Epoch
+### 5.1.2   Step to Epoch
 
 $\kappa_i$ :Number of sub-slots in $i$th slot. Typically $\kappa_i=1$ but can be larger integer to enforce a $16$ block minimum.
 
-### Notation for Points of Interest
+### 5.1.3   Notation for Points of Interest
 
 To describe the Chia chains it will be convenient to introduce some extra notation. Recall that for a VDF $\tau$ or VDF chain ${\cal V}$ we denote with $\tau[t]$ or ${\cal V}[t]$ the point $t$ steps into the computation. $\tau.{\sf t},{\cal V}.{\sf t}$ is the total number of steps. Sometimes we overload notation and consider $\tau,{\cal V}$ to denote the point at the end of the computation rather than the entire VDF or VDF chain, i.e., $\tau=\tau[\tau.{\sf t}],{\cal V}={\cal V}[{\cal V}.{\sf t}]$.
 
@@ -87,7 +87,7 @@ The *signage point interval* is the number of VDF steps between signage points, 
 %\qquad \textrm{ where }\qquad$. A block in the $i$th slot will be infused 3 to 4 signage point intervals past its signage point $$3\cdot {\sf spi}_i\ <\ 
 {\sf rc\_ip}(\beta_T).{\sf d}\ -\ {\sf rc\_sp}(\beta_T).{\sf d}\ < \ 4\cdot {\sf spi}_i$$ The first signage point in a slot is the last signage point after infusion $${\sf rc\_sp}_{i+1,0}={\sf rc\_sp}_{i,\tau_i\cdot 64}^+$$ The $i$th slot starts at total depth $${\sf rc\_sp}_{i,0}.{\sf D}=\sum_{j=1}^{i-1}T_j\cdot \kappa_j$$
 
-## The Challenge Chain {#S:CC}
+## 5.2  The Challenge Chain {#S:CC}
 
 The challenge chain ${\cal CC}$ is a VDF chain whose data and VDF values we'll denote as $${\cal CC}={\sf ic}_0,  \tau^{{\cal CC}}_1,{\sf ic}_1,\tau^{\cal CC}_2,{\sf ic}_2,\ldots$$ Here $\tau^{\cal CC}_i$ is the VDF computation for the $i$th slot. Usually its number of VDF steps is the current time parameter $T_i$ (and should take 10 minutes to compute), but in exceptional cases it can be an integer multiple $\kappa_i\in\mathbb{N}$ of that as we enforce a 16 block minimum per slot $$\tau^{\cal CC}_i.{\sf t} = \kappa_i\cdot T_i
 \qquad\textrm{typically $\kappa_i=1$}$$
@@ -104,7 +104,7 @@ To get the security gains of correlated randomness, we let our PoSpace challenge
 
 The reward chain ${\cal RC}$ is a VDF chain that the time lords evaluate in parallel to ${\cal CC}$ and also has signage points at the same depth as ${\cal CC}$, i.e., ${\sf rc\_sp}_{i,j}.{\sf d}={\sf cc\_sp}_{i,j}.{\sf d}$. Before we can define ${\cal RC}$ we first need to explain the content of blocks.
 
-## Trunk Blocks {#S:TB}
+## 5.3  Trunk Blocks {#S:TB}
 
 Whenever a farmer receives new signage points ${\sf cc\_sp}_{i,j},{\sf rc\_sp}_{i,j}$ they first check whether this points lie on a heaviest chain (cf. the discussion in §[2.5](#S:DiffCSR){reference-type="ref" reference="S:DiffCSR"}) and their VDF proofs verify. If the this is the case, the farmer checks they can create a winning PoSpace proof. This process will, for a subset of the plots, produce a PoSpace $\sigma$ and some additional value $\sigma.{\sf required\_iterations}$. Whether this PoSpace is a winning proof is now determined by the time parameter $T_i$ as $$\label{e:win}
 \textrm{winning condition : }
@@ -124,7 +124,7 @@ $\mu_{\sf rc\_sp}\gets {{\sf Sig.sign}}(S.sk,{\sf rc\_sp}_{i,j})$,
 
 :   a signature using the secret key of the plot $S$ (so it verifies under the public-key $\sigma.pk$ in the PoSpace) of the signage point in the rewards chain discussed in the next section.
 
-## The Reward Chain
+## 5.4  The Reward Chain
 
 The reward chain ${\cal RC}$ is a VDF chain that time lords compute in parallel to ${\cal CC}$. Like ${\cal CC}$, ${\cal RC}$ can be spilt in a sequence of slots. $${\cal RC}={\cal RC}_1,{\cal RC}_2,\ldots$$ While in ${\cal CC}$ the $i$th slot just contains a VDF $\tau^{\cal CC}_i$ and the value ${\sf ic}_i$ infused at the end, each slot ${\cal RC}_i$ of the ${\cal RC}$ chain$$\label{e:RC}
 {\cal RC}_i=\tau^{\cal RC}_{i,1},\beta_1,\tau^{\cal RC}_{i,2},\beta_2\ldots, \beta_{b_i} \tau^{\cal RC}_{i,b_i+1},({\sf ic}_i,\tau^{\cal CC}_{i}.{\sf y})$$ is a VDF chain with typically around $33$ infused values: around 32 blocks $b_i$ and at the end of the slot also the ${\cal CC}$ and ${\sf i}{\cal CC}$ points at the same depth. The ${\cal RC}$ signage points are $$\label{e:rcsp}
@@ -135,7 +135,7 @@ The reward chain ${\cal RC}$ is a VDF chain that time lords compute in parallel 
 Let $\beta_T=(\sigma,\mu_{{{\sf rc\_sp}}})$ be some valid block for challenge ${\sf cc\_sp}(\beta_T)$, its reward chain infusion point ${\sf rc\_ip}(\beta_T)$ is then at depth $$\label{e:ipc}
 {\sf rc\_ip}(\beta_T).{\sf d}={\sf rc\_sp}(\beta_T).{\sf d}+3\cdot {\sf spi}_i+\sigma.{\sf required\_iterations}$$ As $\sigma.{\sf required\_iterations}$ is at most ${\sf spi}_i$ the infusion point is somewhere between 3 and 4 signage points past the signage point it refers to. That means we have somewhere from 28.125 to 37.5 seconds for a round trip from the time lord who gossips the signage point, to a farmer who computes and gossips a block, back to the time lord who then infuses the block.
 
-## The Infused Challenge Chain {#S:ICC}
+## 5.5  The Infused Challenge Chain {#S:ICC}
 
 Recall that the challenge chain ${\cal CC}$ is used to create PoSpace challenges, and we want these challenges to only depend on one block per slot. For this, at the end of the $i$th slot we infuse the PoSpace $\sigma$ from the first trunk block $\beta_T$ whose signage point is in the $i$th slot into ${\cal CC}$. We don't simply infuse $\sigma$, but to delay revealing the challenge for as long as possible and make sure it's buried deep in the chain when revealed, we run a VDF on top of $\sigma$ to get the infused challenge value ${\sf ic}_i$ to be infused as defined in §[6.2](#S:CC){reference-type="ref" reference="S:CC"}.
 
@@ -166,7 +166,7 @@ To prevent grinding, the only decision that influences the trunk should be wheth
 To limit the impact of double-dipping we use correlated randomness [@Bagaria2019]). For this the challenge chain ${\cal CC}$ should only depend on the first block in every slot. If this was the case, this would allow for long-range replotting attacks. For this reason, once every sub-epoch (approx 2h) the rewards chain is infused to the challenge chain.
 :::
 
-## The Foliage
+## 5.6  The Foliage
 
 Whenever a farmer finds a winning PoSpace they can create a block $\beta=\{\beta_F,\beta_T\}$ which contains the trunk block $\beta_T$ as discussed above, and a foliage block $$\beta_F=\{{\sf data},\mu_F\}$$ which contains the payload of the block ${\sf data}$ (transactions, a time-stamp) and a signature (using the key $S.sk$ as for $mu_{\sf rc\_sp}$, cf.§[6.3](#S:TB){reference-type="ref" reference="S:TB"}) $$\mu_F \gets {{\sf Sig.sign}}(S.sk,(\beta_T,\beta'_F))$$ that links this foliage block to the chain. It signs the (hashes of the) current trunk block $\beta_T$ as well as the foliage block $\beta'_F$ from the last transaction block as discussed below.
 
@@ -184,9 +184,8 @@ Every block of transactions added must refer to the previous block of transactio
 To achieve the above objectives, we let farmers who found a winning PoSpace and can create a block always create a foliage block referring to the last transaction block before the signage point of their block. The time lord will add the foliage of a block -- and thus make this block a *transaction block* -- if no other transaction block was infused between the signage and infusion point of that block.
 :::
 
-## Fraction of Transaction Blocks
+## 5.7  Fraction of Transaction Blocks
 
 With the above rule, we expect one transaction block every $\left(\frac{1}{e^{0.5}-1}+4\right)\approx 5.54$ slots, that's one every $51.95$ seconds and corresponds to $36\%$ of all blocks.
 
 For the interested reader, let us shortly outline how the above is determined. The signage points of consecutive transactions blocks must be at least 4 points apart as a block with signage point ${\sf rc\_sp}_i$ is infused somewhere between ${\sf rc\_sp}_{i+3}$ and ${\sf rc\_sp}_{i+4}$. The gap can be bigger than $4$ points if no block is found in response to ${\sf rc\_sp}_{i+4}$ and potentially more points after that. The expected number of blocks found for each slot is $0.5$ (32 block target for 64 points). The number of blocks found for each slot is Poisson distributed with expectation $0.5$ ($32$ block target for $64$ points). With this distribution, the expected number of consecutive points with no blocks is $\frac{1}{e^{0.5}-1}$.
-

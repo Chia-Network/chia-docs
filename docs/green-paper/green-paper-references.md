@@ -4,132 +4,552 @@ sidebar_label: References
 slug: /green-paper-references
 ---
 
-# Recovering from 51% Attacks and Dynamic Availability {#S:51}
+# References
 
-In this Section we have a look at two closely related security properties of longest-chain blockchains, namely recovery from malicious majority (aka. 51% attacks) and security under dynamic availability. We'll discuss proofs of work, stake and space, for the latter two also looking at how adding VDFs changes the picture.
-
-We discussed in§[3](#S:LCeff){reference-type="ref" reference="S:LCeff"} the main security issues of a PoSpace based longest-chain blockchain arise from the fact that PoSpace is an efficient proof system. PoSpace shares those security challenges with PoStake, and all three countermeasures summarised in Figure [3](#Fig1){reference-type="ref" reference="Fig1"} (namely splitting the chain to prevent grinding, correlated randomness to prevent double-dipping and using VDFs to prevent bootstrapping) can readily be applied in the stake setting, correlated randomness was even originally proposed for stake [@Bagaria2019]. But as we'll discuss below, when it comes to security under dynamic availability or 51% attacks there are fundamental differences between space and stake. In particular, using proofs of space in combination with VDFs one can handle both attacks basically as well as with proofs of work, while proofs of stake cannot, even in combination with VDFs.
-
-::: center
-::: {#T1}
-  -------------------------------------- ---------------- ----------------------------
-										  Recovery from          Security under
-										  $51\%$ Attacks      Dynamic Availability
-					   Proof of **Work**       Yes                    Yes
-								 Bitcoin                  
-					  Proof of **Space**        No                     No
-				   Spacemint [@Park2018]                            [@BP22]
-			   Proof of **Space & Time**       Yes                    Yes
-									Chia                  
-					  Proof of **Stake**        No                  Yes, but
-	Ouroboros Genesis [@Badertscher2018]                        requires careful
-			Sleepy Consensus [@Pass2017]                           modelling
-			   Proof of **Stake & Time**        No                  Yes, but
-						PoSaT [@Deb2021]                   requires careful modelling
-  -------------------------------------- ---------------- ----------------------------
-
-  : Summary of the ability to heal from malicious majority and provide security under dynamic availability of longest-chain protocols based various proof systems.
-:::
-:::
-
-## Recovery from $51\%$ Attacks
-
-A key difference between a PoW based longest-chain protocol and a longest- chain protocol based on an efficient proof system like PoStake or PoSpace is the fact that only the PoW based chains is guaranteed to recover security once an adversary that controls a sufficiently large fraction of the resource, even if it's just for a short period. This is sometimes called "a $51\%$ attack" referring to the fact that in bitcoin an adversary controlling $>50\%$ of the hashing power can break security in pretty much any way they like (they can double spend, get $100\%$ of the block rewards or censor). We'll stick with this expression even though the fraction of the resource required to control a chain can be lower than $50\%$ (as mentioned in §[2.1](#S:css){reference-type="ref" reference="S:css"}, in ${\sf Chia}$ controlling $43\%$ of the space is sufficient).
-
-There's also a key difference between PoStake and PoSpace. By using VDFs in addition to PoSpace as in Chia we get a chain that does have this self- healing property. While we can also augment a PoStake based chain with VDFs [@Deb2021], the resulting chain will not be self-healing.
-
-### Recovering from PoW Majority in Bitcoin {#S:RBB}
-
-While Bitcoin provides no security if more than half of the hashrate is controlled by an adversary, it is "self-healing" in the sense that once the majority of the hashrate is again controlled by honest parties, Bitcoin regains (after some delay) all its security properties.
-
-A bit more formally, let ${\sf PoW}_h(t)$ and ${\sf PoW}_a(t)$ denote the hashing power of the honest and adversarial parties at clock time $t$, respectively. For $t_0<t_1$ let $$%{\cal H}_{PoW}
-{\sf PoW}_h(t_0,t_1)= \int_{t_0}^{t_1}{\sf PoW}_h(t) \,dt
-\quad , \quad
-{\sf PoW}_a(t_0,t_1)= \int_{t_0}^{t_1} {\sf PoW}_a(t) \,dt$$ denote the cumulated hashing power in the time window from $t_0$ to $t_1$. If $D$ is the difficulty in this time window,[^6] then the expected number of blocks found by the honest parties in this time window is ${\sf PoW}_h(t_0,t_1)/D$.
-
-It's instructive to understand when a transaction is trivially insecure: consider a transaction that is contained in a block attached at time $t$, if one waits for $k$ blocks on top before considering the transaction confirmed (for Bitcoin $k=6$ is often suggested), then an adversary can fork the chain in order to double spend this transaction with good probability if for some $t_0,t_1$ with $t_0\le t < t_1$ we have $$\label{e:double}{\sf PoW}_a(t_0,t_1)\ge {\sf PoW}_h(t_0,t_1)\quad\textrm{and}\quad {\sf PoW}_h(t,t_1)/D\ge k$$ If this holds the adversary can simply start at time $t_0$ to mine a chain in private, and release it at time $t_1$. By the first inequality the adversaries chain will be heavier than the honest one with probability at least $0.5$, and by the 2nd the honest block added at time $t$ will be buried by $k$ blocks with probability $0.5$, so both hold and we have a successful double spending attack with probability at least $\approx 0.5^2=0.25$ (it can actually be a bit less than that as the two events are negatively correlated).
-
-To be secure it's not sufficient that no $t_0,t_1$ as in eq.([\[e:double\]](#e:double){reference-type="ref" reference="e:double"}) exist, but one needs to be "sufficiently far" from this situation to guarantee that double spending can only happen with some tiny probability. From the standard Chernoff bound it follows that the probability that a fork starting at a block added at time $t_0$ and being released at time $t_1$ will be successful (i.e., have higher weight than the honest chain) is exponentially small in the number of expected honest blocks ${\sf PoW}_h(t_0,t_1)/D$ and the square of the honest to adversarial advantage, i.e., $$\begin{aligned}
-\nonumber
-&&\Pr[\textrm{fork starting at $t_0$ and released at $t_1$ heavier than honest chain}]\\&\le& -\exp\left(\frac{{\sf PoW}_h(t_0,t_1)}{D} \cdot\left( \frac{{\sf PoW}_h(t_0,t_1)}{{\sf PoW}_a(t_0,t_1)}-1 \right)^2\right)
-\label{e:forkpow}
-\end{aligned}$$
-
-### Recovering from PoStake Majority
-
-This is in stark contrast to PoStake based longest-chain protocols, where once an adversary gets hold of keys controlling a sufficiently large amount of stake, security cannot be recovered by the honest parties without resorting on some external mechanism. The reason is bootstrapping as discussed in §[3.3](#ss:boot){reference-type="ref" reference="ss:boot"}: an adversary who holds keys which at some point in the chain controlled stake $N$, can fork at that point and bootstrap a chain to the present that looks as if they had $N$ stake throughout. The issue is aggravated due to "stake-bleeding" [@Gazi2018], which refers to the fact that the fork can amass additional stake through fees and block-rewards.
-
-### Recovering from PoSpace Majority
-
-A longest-chain protocol using only PoSpace (like Spacemint [@Park2018]) is basically as bad as PoStake based protocols when it comes to healing after an adversary got control of a large amount of the resource. One difference is that in the PoStake case the bootstrapping is only possible while the adversary holds the space resource, while bootstrapping in PoStake just requires keys that were valid at some point in the past but can be worthless (i.e., not hold any stake in the chain currently considered by the honest parties) now. On the positive side, stake-bleeding is not an issues for PoSpace.
-
-### Recovering from Space-Time Majority in Chia {#S:RPOST}
-
-While a pure PoSpace based longest-chain protocol fails to heal from adversarial majority due to bootstrapping, by combining space with time as in Chia we prevent bootstrapping, and get a chain that naturally heals from adversarial majority. Though, what exactly constitutes the resource in a PoST protocol is less obvious than e.g. in the PoW or PoSpace setting. We already shortly touched this issue in §[2.1](#S:css){reference-type="ref" reference="S:css"}. We'll now recap the notion for PoST resources introduced there, but in a more fine-grained manner using a time parameter to reflect that resources can change over time. Let
-
-$space_h(t),space_a(t)$
-
-:   denote the disk space (more precisely, the space with initialised plots) available to the honest and adversarial parties at time $t$, respectively.
-
-$vdf_h(t)$
-
-:   denote the speed of the (three) VDFs available to the fastest honest and online time lord at time $t$.
-
-$vdf_a(t)$
-
-:   denote the speed of the VDFs available to the adversary, the number of VDFs available to the adversary is unbounded.
-
-::: tcolorbox
-$vdf_h$ only considers the fastest honest time lord, as only they matter for the growth of the honest chain. The adversary on the other hand is allowed an unlimited number of VDFs of speed $vdf_a$. Not putting any bound here makes the security statements stronger, but it might seem to give the adversary an unrealistic advantage. This is not really the case as most of the advantage an adversary can get by using many VDFs (trough double dipping) can already be achieved by using a fairly low amount of VDFs. So it would hardly make a quantitative difference if we put a cap on the number of VDFs, say 100, or simply put no cap at all.
-:::
-
-Define the honest and adversarial resource at time time as the product of their space and VDF speed $${\sf PoST}_h(t)=space_h(t)\cdot vdf_h(t)\quad,\quad
-{\sf PoST}_a(t)=space_a(t)\cdot vdf_a(t)
-%\item[${\cal A}_{PoST}$]$$ and analogously to the work setting let the cumulative space-time resource in a window from $t_0$ to $t_1$ be $$%{\cal H}_{PoW}
-{\sf PoST}_h(t_0,t_1)= \int_{t_0}^{t_1}{\sf PoST}_h(t) \,dt
-\quad , \quad
-{\sf PoST}_a(t_0,t_1)= \int_{t_0}^{t_1} {\sf PoST}_a(t) \,dt$$ With these definitions we now get a similar bound on the probability that an adversary can create a fork starting at $t_0$ and being released at time $t_1$ as we did for PoW in eq.([\[e:forkpow\]](#e:forkpow){reference-type="ref" reference="e:forkpow"}) $$\begin{aligned}
-\nonumber
-&&\Pr[\textrm{fork starting at $t_0$ and released at $t_1$ heavier than honest chain}]\\
-&\le& -\exp\left(\frac{{\sf PoST}_h(t_0,t_1)}{D} \cdot\left( \frac{{\sf PoST}_h(t_0,t_1)}{1.47\cdot {\sf PoST}_a(t_0,t_1)}-1 \right)^2\right)
-\label{e:forkpost3}
-\end{aligned}$$ A difference to the PoW setting is the additional $1.47$ factor boosting the adversary's resource which is necessary to account for the fact that they can do some bounded double dipping.
-
-Analogously to the PoW case, a block added at time $t$ can be considered secure even in a setting where the adversary can get temporary majority as long as for all $t_0,t_1,t_0<t<t_1$ where $t_1-t$ is large enough for the block added at time $t$ to be considered confirmed at time $t_1$, the probability in eq.([\[e:forkpost3\]](#e:forkpost3){reference-type="ref" reference="e:forkpost3"}) is small.
-
-## Dynamic Availability
-
-A blockchain based on some resource is *secure under dynamic availability* if it's security properties hold even if the amount of the resource dedicated towards securing the chain varies over time as long as at any point in time the honest parties control sufficiently more of the resource than a potential adversary.
-
-### Dynamic Availability for PoW (Bitcoin)
-
-Using notation from §[7.1.1](#S:RBB){reference-type="ref" reference="S:RBB"}, for a PoW based chain that means that for some $f>1$ (that captures the advantage of the honest parties) and any time $t$ we have $$\label{e:doublex}
-{\sf PoW}_a(t)\le f\cdot {\sf PoW}_h(t)$$ To see that Bitcoin is secure under dynamic availability we can reuse our inequality eq.([\[e:forkpow\]](#e:forkpow){reference-type="ref" reference="e:forkpow"}) which using $\frac{{\sf PoW}_h(t_0,t_1)}{{\sf PoW}_a(t_0,t_1)}\ge f$ simplifies to (recall that $\frac{{\sf PoW}_h(t_0,t_1)}{D}$ is the expected number of honest blocks in the $t_0$ to $t_1$ window) $$\begin{aligned}
-\nonumber
-&&\Pr[\textrm{fork starting at $t_0$ and released at $t_1$ heavier than honest chain}]\\&\le& -\exp\left(\frac{{\sf PoW}_h(t_0,t_1)}{D} \cdot\left(f-1 \right)^2\right)
-\label{e:forkpow2}
-\end{aligned}$$ Which simply means that the probability that an adversary will be able to create any particular a fork decreases exponentially in the length of the fork.
-
-### Dynamic Availability for PoST (Chia)
-
-Analogously to PoW just outlined, and using notation from §[7.1.4](#S:RPOST){reference-type="ref" reference="S:RPOST"} we can define dynamic availability for PoST as used in Chia by requiring that at any time $t$ $$\label{e:doublex}
-{\sf PoST}_a(t)\le f\cdot {\sf PoST}_h(t)$$ With this eq.([\[e:forkpost3\]](#e:forkpost3){reference-type="ref" reference="e:forkpost3"}) becomes $$\begin{aligned}
-\nonumber
-&&\Pr[\textrm{fork starting at $t_0$ and released at $t_1$ heavier than honest chain}]\\
-&\le& -\exp\left(\frac{{\sf PoST}_h(t_0,t_1)}{D} \cdot\left( \frac{f}{1.47}-1 \right)^2\right)
-\label{e:forkpost4}
-\end{aligned}$$ Thus like in Bitcoin, in Chia the probability of a successful fork decreases exponentially fast in the length of the fork.
-
-Unlike for PoW, to guarantee security it's not sufficient that $f>1$, but we need a more substantial gap in the resources of the honest parties and the adversary to account for double dipping, for parameters as in Chia $f>1.47$ is sufficient.
-
-### Dynamic Availability from PoSpace {#S:DAspace}
-
-While in Chia we achieve security under dynamic availability by using space and time as a resource, it's an intriguing question whether a longest-chain blockchain based on proofs of space alone like Spacemint [@Park2018] could be secure under dynamic availability.
-
-Surprisingly, the answer is a resounding no as shown in [@BP22]. They consider a setting where the chain progresses in steps, where a step happens every time a new challenge is picked. The adversary can change the amount of space availably to the honest parties by a factor $1\pm\epsilon$ with every step, and the space available to them is always a factor $f>1$ smaller than what the honest parties have. Moreover the space can be replotted in $R$ steps. Their result states that no matter what chain selection rule is used, in this setting a PoSpace based blockchain can always be successfully forked by an adversary with a fork of length at most $R\cdot \epsilon/f^2$ steps. This bound is tight as a (albeit fairly complicated and thus not practical) chain selection rule achieving this bound exists.
-
-### Dynamic Availability from PoStake
-
-The impossibility from [@BP22] just discussed does not translate to proofs of stake based chain as there's no analogue for replotting in the stake setting. In fact, PoStake based longest-chain protocols secure under dynamic availability do exist [@Badertscher2018]. The Ouroboros genesis chain selection rule from this paper works as follows: given two competing chains, one just compares the chains at a fairly short window right after the fork. Intuitively, the reason such a chain selection rule does not provide security under dynamic availability for space is because an adversary could use replotting to make this short window have large weight, thus create a winning chain even with much less space than the honest partiu.
-
+---
+nocite: "[@*]"
+references:
+- author:
+  - family: Eyal
+	given: Ittay
+  - family: Sirer
+	given: Emin Gün
+  container-title: Commun. ACM
+  doi: 10.1145/3212998
+  id: Eyal2018
+  issue: 7
+  issued: 2018
+  page: 95-102
+  title: "Majority is not enough: Bitcoin mining is vulnerable"
+  title-short: Majority is not enough
+  type: article-journal
+  volume: 61
+- author:
+  - family: Garay
+	given: Juan A.
+  - family: Kiayias
+	given: Aggelos
+  - family: Leonardos
+	given: Nikos
+  collection-title: Lecture notes in computer science
+  container-title: Advances in cryptology - EUROCRYPT 2015 - 34th annual
+	international conference on the theory and applications of
+	cryptographic techniques, sofia, bulgaria, april 26-30, 2015,
+	proceedings, part II
+  doi: 10.1007/978-3-662-46803-6\\\_10
+  editor:
+  - family: Oswald
+	given: Elisabeth
+  - family: Fischlin
+	given: Marc
+  id: Garay2015
+  issued: 2015
+  page: 281-310
+  publisher: Springer
+  title: "The bitcoin backbone protocol: Analysis and applications"
+  title-short: The bitcoin backbone protocol
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-662-46803-6_10"
+  volume: 9057
+- abstract: The Nakamoto longest chain protocol is remarkably simple and
+	has been proven to provide security against any adversary with less
+	than 50
+  author:
+  - family: Bagaria
+	given: Vivek
+  - family: Dembo
+	given: Amir
+  - family: Kannan
+	given: Sreeram
+  - family: Oh
+	given: Sewoong
+  - family: Tse
+	given: David
+  - family: Viswanath
+	given: Pramod
+  - family: Wang
+	given: Xuechao
+  - family: Zeitouni
+	given: Ofer
+  id: Bagaria2019
+  issued: 2019-10-05
+  keyword: cs.CR
+  title: "Proof-of-stake longest chain protocols: Security vs
+	predictability"
+  title-short: Proof-of-stake longest chain protocols
+  type: article-journal
+  url: "https://arxiv.org/abs/1910.02218"
+- author:
+  - family: Brown-Cohen
+	given: Jonah
+  - family: Narayanan
+	given: Arvind
+  - family: Psomas
+	given: Alexandros
+  - family: Weinberg
+	given: S. Matthew
+  container-title: Proceedings of the 2019 ACM conference on economics
+	and computation, EC 2019, phoenix, AZ, USA, june 24-28, 2019
+  doi: 10.1145/3328526.3329567
+  editor:
+  - family: Karlin
+	given: Anna
+  - family: Immorlica
+	given: Nicole
+  - family: Johari
+	given: Ramesh
+  id: BrownCohen2019
+  issued: 2019
+  page: 459-473
+  publisher: ACM
+  title: Formal barriers to longest-chain proof-of-stake protocols
+  type: paper-conference
+- author:
+  - family: Park
+	given: Sunoo
+  - family: Kwon
+	given: Albert
+  - family: Fuchsbauer
+	given: Georg
+  - family: Gazi
+	given: Peter
+  - family: Alwen
+	given: Joël
+  - family: Pietrzak
+	given: Krzysztof
+  collection-title: Lecture notes in computer science
+  container-title: Financial cryptography and data security - 22nd
+	international conference, FC 2018, nieuwpoort, curaçao, february
+	26 - march 2, 2018, revised selected papers
+  doi: 10.1007/978-3-662-58387-6\\\_26
+  editor:
+  - family: Meiklejohn
+	given: Sarah
+  - family: Sako
+	given: Kazue
+  id: Park2018
+  issued: 2018
+  page: 480-499
+  publisher: Springer
+  title: "SpaceMint: A cryptocurrency based on proofs of space"
+  title-short: SpaceMint
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-662-58387-6_26"
+  volume: 10957
+- author:
+  - family: Fan
+	given: Lei
+  - family: Zhou
+	given: Hong-Sheng
+  container-title: IACR Cryptol. ePrint Arch.
+  id: Fan2017
+  issued: 2017
+  page: 656
+  title: "iChing: A scalable proof-of-stake blockchain in the open
+	setting (or, how to mimic nakamoto's design via proof-of-stake)"
+  title-short: iChing
+  type: article-journal
+  url: "http://eprint.iacr.org/2017/656"
+- author:
+  - family: Decker
+	given: Christian
+  - family: Wattenhofer
+	given: Roger
+  container-title: 13th IEEE international conference on peer-to-peer
+	computing, IEEE P2P 2013, trento, italy, september 9-11, 2013,
+	proceedings
+  doi: 10.1109/P2P.2013.6688704
+  id: Decker2013
+  issued: 2013
+  page: 1-10
+  publisher: IEEE
+  title: Information propagation in the bitcoin network
+  type: paper-conference
+- author:
+  - family: Wesolowski
+	given: Benjamin
+  container-title: J. Cryptol.
+  doi: 10.1007/s00145-020-09364-x
+  id: Wesolowski2020
+  issue: 4
+  issued: 2020
+  page: 2113-2147
+  title: Efficient verifiable delay functions
+  type: article-journal
+  volume: 33
+- author:
+  - family: Pietrzak
+	given: Krzysztof
+  collection-title: LIPIcs
+  container-title: 10th innovations in theoretical computer science
+	conference, ITCS 2019, january 10-12, 2019, san diego, california,
+	USA
+  doi: 10.4230/LIPIcs.ITCS.2019.60
+  editor:
+  - family: Blum
+	given: Avrim
+  id: Pietrzak2019
+  issued: 2019
+  page: "60:1-60:15"
+  publisher: Schloss Dagstuhl - Leibniz-Zentrum für Informatik
+  title: Simple verifiable delay functions
+  type: paper-conference
+  volume: 124
+- author:
+  - family: Boneh
+	given: Dan
+  - family: Bonneau
+	given: Joseph
+  - family: Bünz
+	given: Benedikt
+  - family: Fisch
+	given: Ben
+  collection-title: Lecture notes in computer science
+  container-title: Advances in cryptology - CRYPTO 2018 - 38th annual
+	international cryptology conference, santa barbara, CA, USA, august
+	19-23, 2018, proceedings, part I
+  doi: 10.1007/978-3-319-96884-1\\\_25
+  editor:
+  - family: Shacham
+	given: Hovav
+  - family: Boldyreva
+	given: Alexandra
+  id: Boneh2018
+  issued: 2018
+  page: 757-788
+  publisher: Springer
+  title: Verifiable delay functions
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-319-96884-1_25"
+  volume: 10991
+- author:
+  - family: Schwarz-Schilling
+	given: Caspar
+  - family: Neu
+	given: Joachim
+  - family: Monnot
+	given: Barnabé
+  - family: Asgaonkar
+	given: Aditya
+  - family: Tas
+	given: Ertem Nusret
+  - family: Tse
+	given: David
+  container-title: IACR Cryptol. ePrint Arch.
+  id: SchwarzSchilling2021
+  issued: 2021
+  page: 1413
+  title: Three attacks on proof-of-stake ethereum
+  type: article-journal
+  url: "https://eprint.iacr.org/2021/1413"
+- author:
+  - family: Boneh
+	given: Dan
+  - family: Bünz
+	given: Benedikt
+  - family: Fisch
+	given: Ben
+  container-title: IACR Cryptol. ePrint Arch.
+  id: Boneh2018a
+  issued: 2018
+  page: 712
+  title: A survey of two verifiable delay functions
+  type: article-journal
+  url: "https://eprint.iacr.org/2018/712"
+- author:
+  - family: Ephraim
+	given: Naomi
+  - family: Freitag
+	given: Cody
+  - family: Komargodski
+	given: Ilan
+  - family: Pass
+	given: Rafael
+  collection-title: Lecture notes in computer science
+  container-title: Advances in cryptology - EUROCRYPT 2020 - 39th annual
+	international conference on the theory and applications of
+	cryptographic techniques, zagreb, croatia, may 10-14, 2020,
+	proceedings, part III
+  doi: 10.1007/978-3-030-45727-3\\\_5
+  editor:
+  - family: Canteaut
+	given: Anne
+  - family: Ishai
+	given: Yuval
+  id: Ephraim2020
+  issued: 2020
+  page: 125-154
+  publisher: Springer
+  title: Continuous verifiable delay functions
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-030-45727-3_5"
+  volume: 12107
+- author:
+  - family: Carlsten
+	given: Miles
+  - family: Kalodner
+	given: Harry A.
+  - family: Weinberg
+	given: S. Matthew
+  - family: Narayanan
+	given: Arvind
+  container-title: Proceedings of the 2016 ACM SIGSAC conference on
+	computer and communications security, vienna, austria, october
+	24-28, 2016
+  doi: 10.1145/2976749.2978408
+  editor:
+  - family: Weippl
+	given: Edgar R.
+  - family: Katzenbeisser
+	given: Stefan
+  - family: Kruegel
+	given: Christopher
+  - family: Myers
+	given: Andrew C.
+  - family: Halevi
+	given: Shai
+  id: Carlsten2016
+  issued: 2016
+  page: 154-167
+  publisher: ACM
+  title: On the instability of bitcoin without the block reward
+  type: paper-conference
+- author:
+  - family: Dziembowski
+	given: Stefan
+  - family: Faust
+	given: Sebastian
+  - family: Kolmogorov
+	given: Vladimir
+  - family: Pietrzak
+	given: Krzysztof
+  collection-title: Lecture notes in computer science
+  container-title: Advances in cryptology - CRYPTO 2015 - 35th annual
+	cryptology conference, santa barbara, CA, USA, august 16-20, 2015,
+	proceedings, part II
+  doi: 10.1007/978-3-662-48000-7\\\_29
+  editor:
+  - family: Gennaro
+	given: Rosario
+  - family: Robshaw
+	given: Matthew
+  id: Dziembowski2015
+  issued: 2015
+  page: 585-605
+  publisher: Springer
+  title: Proofs of space
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-662-48000-7_29"
+  volume: 9216
+- author:
+  - family: Pietrzak
+	given: Krzysztof
+  collection-title: LIPIcs
+  container-title: 10th innovations in theoretical computer science
+	conference, ITCS 2019, january 10-12, 2019, san diego, california,
+	USA
+  doi: 10.4230/LIPIcs.ITCS.2019.59
+  editor:
+  - family: Blum
+	given: Avrim
+  id: Pietrzak2019a
+  issued: 2019
+  page: "59:1-59:25"
+  publisher: Schloss Dagstuhl - Leibniz-Zentrum für Informatik
+  title: Proofs of catalytic space
+  type: paper-conference
+  volume: 124
+- author:
+  - family: Abusalah
+	given: Hamza
+  - family: Alwen
+	given: Joël
+  - family: Cohen
+	given: Bram
+  - family: Khilko
+	given: Danylo
+  - family: Pietrzak
+	given: Krzysztof
+  - family: Reyzin
+	given: Leonid
+  collection-title: Lecture notes in computer science
+  container-title: Advances in cryptology - ASIACRYPT 2017 - 23rd
+	international conference on the theory and applications of
+	cryptology and information security, hong kong, china, december 3-7,
+	2017, proceedings, part II
+  doi: 10.1007/978-3-319-70697-9\\\_13
+  editor:
+  - family: Takagi
+	given: Tsuyoshi
+  - family: Peyrin
+	given: Thomas
+  id: Abusalah2017
+  issued: 2017
+  page: 357-379
+  publisher: Springer
+  title: Beyond hellman's time-memory trade-offs with applications to
+	proofs of space
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-319-70697-9_13"
+  volume: 10625
+- author:
+  - family: Hellman
+	given: Martin E.
+  container-title: IEEE Trans. Inf. Theory
+  doi: 10.1109/TIT.1980.1056220
+  id: Hellman1980
+  issue: 4
+  issued: 1980
+  page: 401-406
+  title: A cryptanalytic time-memory trade-off
+  type: article-journal
+  volume: 26
+- author:
+  - family: Badertscher
+	given: Christian
+  - family: Gazi
+	given: Peter
+  - family: Kiayias
+	given: Aggelos
+  - family: Russell
+	given: Alexander
+  - family: Zikas
+	given: Vassilis
+  container-title: Proceedings of the 2018 ACM SIGSAC conference on
+	computer and communications security, CCS 2018, toronto, ON, canada,
+	october 15-19, 2018
+  doi: 10.1145/3243734.3243848
+  editor:
+  - family: Lie
+	given: David
+  - family: Mannan
+	given: Mohammad
+  - family: Backes
+	given: Michael
+  - family: Wang
+	given: XiaoFeng
+  id: Badertscher2018
+  issued: 2018
+  page: 913-930
+  publisher: ACM
+  title: "Ouroboros genesis: Composable proof-of-stake blockchains with
+	dynamic availability"
+  title-short: Ouroboros genesis
+  type: paper-conference
+- author:
+  - family: Sapirshtein
+	given: Ayelet
+  - family: Sompolinsky
+	given: Yonatan
+  - family: Zohar
+	given: Aviv
+  container-title: CoRR
+  id: Sapirshtein2015
+  issued: 2015
+  title: Optimal selfish mining strategies in bitcoin
+  type: article-journal
+  url: "http://arxiv.org/abs/1507.06183"
+  volume: abs/1507.06183
+- author:
+  - family: Gazi
+	given: Peter
+  - family: Kiayias
+	given: Aggelos
+  - family: Russell
+	given: Alexander
+  container-title: Crypto valley conference on blockchain technology,
+	CVCBT 2018, zug, switzerland, june 20-22, 2018
+  doi: 10.1109/CVCBT.2018.00015
+  id: Gazi2018
+  issued: 2018
+  page: 85-92
+  publisher: IEEE
+  title: Stake-bleeding attacks on proof-of-stake blockchains
+  type: paper-conference
+- author:
+  - family: Deb
+	given: Soubhik
+  - family: Kannan
+	given: Sreeram
+  - family: Tse
+	given: David
+  collection-title: Lecture notes in computer science
+  container-title: Financial cryptography and data security - 25th
+	international conference, FC 2021, virtual event, march 1-5, 2021,
+	revised selected papers, part II
+  doi: 10.1007/978-3-662-64331-0\\\_6
+  editor:
+  - family: Borisov
+	given: Nikita
+  - family: Diaz
+	given: Claudia
+  id: Deb2021
+  issued: 2021
+  page: 104-128
+  publisher: Springer
+  title: "PoSAT: Proof-of-work availability and unpredictability,
+	without the work"
+  title-short: PoSAT
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-662-64331-0_6"
+  volume: 12675
+- author:
+  - family: Pass
+	given: Rafael
+  - family: Shi
+	given: Elaine
+  collection-title: Lecture notes in computer science
+  container-title: Advances in cryptology - ASIACRYPT 2017 - 23rd
+	international conference on the theory and applications of
+	cryptology and information security, hong kong, china, december 3-7,
+	2017, proceedings, part II
+  doi: 10.1007/978-3-319-70697-9\\\_14
+  editor:
+  - family: Takagi
+	given: Tsuyoshi
+  - family: Peyrin
+	given: Thomas
+  id: Pass2017
+  issued: 2017
+  page: 380-409
+  publisher: Springer
+  title: The sleepy model of consensus
+  type: paper-conference
+  url: "https://doi.org/10.1007/978-3-319-70697-9_14"
+  volume: 10625
+- author:
+  - family: Lewis-Pye
+	given: Andrew
+  - family: Roughgarden
+	given: Tim
+  container-title: "CCS '21: 2021 ACM SIGSAC conference on computer and
+	communications security, virtual event, republic of korea, november
+	15 - 19, 2021"
+  doi: 10.1145/3460120.3484752
+  editor:
+  - family: Kim
+	given: Yongdae
+  - family: Kim
+	given: Jong
+  - family: Vigna
+	given: Giovanni
+  - family: Shi
+	given: Elaine
+  id: LewisPye2021
+  issued: 2021
+  page: 1006-1019
+  publisher: ACM
+  title: How does blockchain security dictate blockchain implementation?
+  type: paper-conference
+- author:
+  - family: Lewis-Pye
+	given: Andrew
+  container-title: CoRR
+  id: LewisPye2021a
+  issued: 2021
+  title: Byzantine generals in the permissionless setting
+  type: article-journal
+  url: "https://arxiv.org/abs/2101.07095"
+  volume: abs/2101.07095
+---
 

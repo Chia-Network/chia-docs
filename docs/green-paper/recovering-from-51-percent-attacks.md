@@ -4,7 +4,7 @@ sidebar_label: Recovering from 51% Attacks and Dynamic Availability
 slug: /recovering-from-51-percent-attacks
 ---
 
-# Recovering from 51% Attacks and Dynamic Availability {#S:51}
+# 6	Recovering from 51% Attacks and Dynamic Availability {#S:51}
 
 In this Section we have a look at two closely related security properties of longest-chain blockchains, namely recovery from malicious majority (aka. 51% attacks) and security under dynamic availability. We'll discuss proofs of work, stake and space, for the latter two also looking at how adding VDFs changes the picture.
 
@@ -32,13 +32,13 @@ We discussed in§[3](#S:LCeff){reference-type="ref" reference="S:LCeff"} the mai
 :::
 :::
 
-## Recovery from $51\%$ Attacks
+## 6.1	Recovery from $51\%$ Attacks
 
 A key difference between a PoW based longest-chain protocol and a longest- chain protocol based on an efficient proof system like PoStake or PoSpace is the fact that only the PoW based chains is guaranteed to recover security once an adversary that controls a sufficiently large fraction of the resource, even if it's just for a short period. This is sometimes called "a $51\%$ attack" referring to the fact that in bitcoin an adversary controlling $>50\%$ of the hashing power can break security in pretty much any way they like (they can double spend, get $100\%$ of the block rewards or censor). We'll stick with this expression even though the fraction of the resource required to control a chain can be lower than $50\%$ (as mentioned in §[2.1](#S:css){reference-type="ref" reference="S:css"}, in ${\sf Chia}$ controlling $43\%$ of the space is sufficient).
 
 There's also a key difference between PoStake and PoSpace. By using VDFs in addition to PoSpace as in Chia we get a chain that does have this self- healing property. While we can also augment a PoStake based chain with VDFs [@Deb2021], the resulting chain will not be self-healing.
 
-### Recovering from PoW Majority in Bitcoin {#S:RBB}
+### 6.1.1	Recovering from PoW Majority in Bitcoin {#S:RBB}
 
 While Bitcoin provides no security if more than half of the hashrate is controlled by an adversary, it is "self-healing" in the sense that once the majority of the hashrate is again controlled by honest parties, Bitcoin regains (after some delay) all its security properties.
 
@@ -55,15 +55,15 @@ To be secure it's not sufficient that no $t_0,t_1$ as in eq.([\[e:double\]](#e:d
 \label{e:forkpow}
 \end{aligned}$$
 
-### Recovering from PoStake Majority
+### 6.1.2	Recovering from PoStake Majority
 
 This is in stark contrast to PoStake based longest-chain protocols, where once an adversary gets hold of keys controlling a sufficiently large amount of stake, security cannot be recovered by the honest parties without resorting on some external mechanism. The reason is bootstrapping as discussed in §[3.3](#ss:boot){reference-type="ref" reference="ss:boot"}: an adversary who holds keys which at some point in the chain controlled stake $N$, can fork at that point and bootstrap a chain to the present that looks as if they had $N$ stake throughout. The issue is aggravated due to "stake-bleeding" [@Gazi2018], which refers to the fact that the fork can amass additional stake through fees and block-rewards.
 
-### Recovering from PoSpace Majority
+### 6.1.3	Recovering from PoSpace Majority
 
 A longest-chain protocol using only PoSpace (like Spacemint [@Park2018]) is basically as bad as PoStake based protocols when it comes to healing after an adversary got control of a large amount of the resource. One difference is that in the PoStake case the bootstrapping is only possible while the adversary holds the space resource, while bootstrapping in PoStake just requires keys that were valid at some point in the past but can be worthless (i.e., not hold any stake in the chain currently considered by the honest parties) now. On the positive side, stake-bleeding is not an issues for PoSpace.
 
-### Recovering from Space-Time Majority in Chia {#S:RPOST}
+### 6.1.4	Recovering from Space-Time Majority in Chia {#S:RPOST}
 
 While a pure PoSpace based longest-chain protocol fails to heal from adversarial majority due to bootstrapping, by combining space with time as in Chia we prevent bootstrapping, and get a chain that naturally heals from adversarial majority. Though, what exactly constitutes the resource in a PoST protocol is less obvious than e.g. in the PoW or PoSpace setting. We already shortly touched this issue in §[2.1](#S:css){reference-type="ref" reference="S:css"}. We'll now recap the notion for PoST resources introduced there, but in a more fine-grained manner using a time parameter to reflect that resources can change over time. Let
 
@@ -97,11 +97,11 @@ Define the honest and adversarial resource at time time as the product of their 
 
 Analogously to the PoW case, a block added at time $t$ can be considered secure even in a setting where the adversary can get temporary majority as long as for all $t_0,t_1,t_0<t<t_1$ where $t_1-t$ is large enough for the block added at time $t$ to be considered confirmed at time $t_1$, the probability in eq.([\[e:forkpost3\]](#e:forkpost3){reference-type="ref" reference="e:forkpost3"}) is small.
 
-## Dynamic Availability
+## 6.2	Dynamic Availability
 
 A blockchain based on some resource is *secure under dynamic availability* if it's security properties hold even if the amount of the resource dedicated towards securing the chain varies over time as long as at any point in time the honest parties control sufficiently more of the resource than a potential adversary.
 
-### Dynamic Availability for PoW (Bitcoin)
+### 6.2.1	Dynamic Availability for PoW (Bitcoin)
 
 Using notation from §[7.1.1](#S:RBB){reference-type="ref" reference="S:RBB"}, for a PoW based chain that means that for some $f>1$ (that captures the advantage of the honest parties) and any time $t$ we have $$\label{e:doublex}
 {\sf PoW}_a(t)\le f\cdot {\sf PoW}_h(t)$$ To see that Bitcoin is secure under dynamic availability we can reuse our inequality eq.([\[e:forkpow\]](#e:forkpow){reference-type="ref" reference="e:forkpow"}) which using $\frac{{\sf PoW}_h(t_0,t_1)}{{\sf PoW}_a(t_0,t_1)}\ge f$ simplifies to (recall that $\frac{{\sf PoW}_h(t_0,t_1)}{D}$ is the expected number of honest blocks in the $t_0$ to $t_1$ window) $$\begin{aligned}
@@ -110,7 +110,7 @@ Using notation from §[7.1.1](#S:RBB){reference-type="ref" reference="S:RBB"}, f
 \label{e:forkpow2}
 \end{aligned}$$ Which simply means that the probability that an adversary will be able to create any particular a fork decreases exponentially in the length of the fork.
 
-### Dynamic Availability for PoST (Chia)
+### 6.2.2	Dynamic Availability for PoST (Chia)
 
 Analogously to PoW just outlined, and using notation from §[7.1.4](#S:RPOST){reference-type="ref" reference="S:RPOST"} we can define dynamic availability for PoST as used in Chia by requiring that at any time $t$ $$\label{e:doublex}
 {\sf PoST}_a(t)\le f\cdot {\sf PoST}_h(t)$$ With this eq.([\[e:forkpost3\]](#e:forkpost3){reference-type="ref" reference="e:forkpost3"}) becomes $$\begin{aligned}
@@ -122,14 +122,12 @@ Analogously to PoW just outlined, and using notation from §[7.1.4](#S:RPOST){re
 
 Unlike for PoW, to guarantee security it's not sufficient that $f>1$, but we need a more substantial gap in the resources of the honest parties and the adversary to account for double dipping, for parameters as in Chia $f>1.47$ is sufficient.
 
-### Dynamic Availability from PoSpace {#S:DAspace}
+### 6.2.3	Dynamic Availability from PoSpace {#S:DAspace}
 
 While in Chia we achieve security under dynamic availability by using space and time as a resource, it's an intriguing question whether a longest-chain blockchain based on proofs of space alone like Spacemint [@Park2018] could be secure under dynamic availability.
 
 Surprisingly, the answer is a resounding no as shown in [@BP22]. They consider a setting where the chain progresses in steps, where a step happens every time a new challenge is picked. The adversary can change the amount of space availably to the honest parties by a factor $1\pm\epsilon$ with every step, and the space available to them is always a factor $f>1$ smaller than what the honest parties have. Moreover the space can be replotted in $R$ steps. Their result states that no matter what chain selection rule is used, in this setting a PoSpace based blockchain can always be successfully forked by an adversary with a fork of length at most $R\cdot \epsilon/f^2$ steps. This bound is tight as a (albeit fairly complicated and thus not practical) chain selection rule achieving this bound exists.
 
-### Dynamic Availability from PoStake
+### 6.2.4	Dynamic Availability from PoStake
 
-The impossibility from [@BP22] just discussed does not translate to proofs of stake based chain as there's no analogue for replotting in the stake setting. In fact, PoStake based longest-chain protocols secure under dynamic availability do exist [@Badertscher2018]. The Ouroboros genesis chain selection rule from this paper works as follows: given two competing chains, one just compares the chains at a fairly short window right after the fork. Intuitively, the reason such a chain selection rule does not provide security under dynamic availability for space is because an adversary could use replotting to make this short window have large weight, thus create a winning chain even with much less space than the honest partiu.
-
-
+The impossibility from [@BP22] just discussed does not translate to proofs of stake based chain as there's no analogue for replotting in the stake setting. In fact, PoStake based longest-chain protocols secure under dynamic availability do exist [@Badertscher2018]. The Ouroboros genesis chain selection rule from this paper works as follows: given two competing chains, one just compares the chains at a fairly short window right after the fork. Intuitively, the reason such a chain selection rule does not provide security under dynamic availability for space is because an adversary could use replotting to make this short window have large weight, thus create a winning chain even with much less space than the honest party.

@@ -4,11 +4,11 @@ sidebar_label: Appendix
 slug: /appendix
 ---
 
-# Building Blocks: PoSpace, VDFs and Signatures {#sec:proofs}
+# A	Building Blocks: PoSpace, VDFs and Signatures
 
 In this section we sketch the main building blocks used in the Chia blockchain: unique digital signatures, proofs of space [@Dziembowski2015; @Abusalah2017] and verifiable delay functions [@Boneh2018; @Pietrzak2019; @Boneh2018a; @Wesolowski2020]. The definitions are not fully general, but instead tailored to the particular constructions of PoSpace from [@Abusalah2017] and the VDFs [@Pietrzak2019; @Boneh2018a; @Wesolowski2020] based on sequential squaring.
 
-## (Unique) Digital Signatures
+## A.1	(Unique) Digital Signatures
 
 A digital signature scheme is specified by three algorithms; a (probabilistic) key-generation algorithm ${{\sf Sig.keygen}}$, a signing algorithm $\mu\gets {{\sf Sig.sign}}(sk,m)$ and a verification algorithm ${{\sf Sig.verify}}$. We assume the standard security notion (unforgeability under chosen message attacks) and perfect completeness, that is, a correctly generated signature will always verify: $$\begin{aligned}
 \forall m,&&
@@ -22,9 +22,9 @@ A digital signature scheme is specified by three algorithms; a (probabilistic) k
 %&&\textrm{where }(pk,sk)\gets{\Sigk}
 \end{aligned}$$
 
-## (Unique) Proofs Of Space {#S:PoS}
+## A.2	(Unique) Proofs Of Space
 
-### Algorithms for PoSpace {#S:PoSalg}
+### A.2.1	Algorithms for PoSpace
 
 A proof of space is specified by the four algorithms given below
 
@@ -48,13 +48,13 @@ We assume perfect completeness $$\begin{aligned}
 &&S\gets{\sf PoSpace.init}(N,pk) \textrm{ and } \sigma\gets{{\sf PoSpace.prove}}(S,c)
 \end{aligned}$$
 
-### Security of PoSpace
+### A.2.2	Security of PoSpace
 
 We will not give the formal security definition for PoSpace here, but informally it states that an adversary who stores a file of size significantly less than $N$ bits should not be able to produce a valid proof for a random challenge unless he invests a significant amount of computation (ideally close to what it costs to run the full initialization ${\sf PoSpace.init}(N,pk)$). Moreover it must be impossible to amortize space, that is, initalizing space for $m>1$ different identities must require $m$ times as much space.
 
 To prevent grinding attacks, we need our PoSpace to be unique as defined below.
 
-### Unique PoSpace
+### A.2.3	Unique PoSpace
 
 A PoSpace is unique if for any identity $pk$ and any challenge $c$ there is exactly one proof, i.e., $$\begin{aligned}
 &\forall N,pk,c,\\
@@ -69,7 +69,7 @@ A PoSpace is unique if for any identity $pk$ and any challenge $c$ there is exac
 
 The [@Abusalah2017] PoSpace used in Chia is only *weakly unique*. To be able to focus on the main challenges, we will nonetheless assume a *unique* PoSpace when analyzing Chia but our analysis can be extended without major difficulties to handle weakly unique PoSpace, things just get a bit more messy.
 
-### The [@Abusalah2017] PoSpace {#S:pospace17}
+### A.2.4	The [@Abusalah2017] PoSpace
 
 We give a very high level outline of the PoSpace from [@Abusalah2017]. The space parameter is given implicitly by a value $\ell\in\mathbb{Z}^+$, the actual space required is approximately $N\approx \ell\cdot 2\cdot 2^{\ell}$ bits (e.g. for $\ell=40$ that's $10$ terabytes). Let $L:=\{0,1\}^\ell$ denote the set of $\ell$ bit strings. Below we denote with $X_{|\ell}$ the $\ell$ bit prefix of a string $X$.
 
@@ -80,7 +80,7 @@ The prover will generate and store two tables so they can efficiently generate p
 
 Chia is based on this PoSpace, but to further minimize the effect of time/space trade-offs (where a malicious farmer tries to save on space at the cost of doing more computations), a nested version of this construction is used. We omit the details in this writeup.
 
-## Verifiable Delay Functions {#S:vdf}
+## A.3	Verifiable Delay Functions
 
 The definition of verifiable delay functions (VDFs) given below is not completely general, but makes some additional properties of VDF we'll need in Chia explicit. In particular, we want a VDF where the sequential computation can start before we know the number of sequential steps for which it will run, while still being able to output proofs reasonably fast at any point during the sequential computation. This similar to the functionality provided by continuous VDFs [@Ephraim2020], which require that one can provide proofs for intermediate values almost immediately. We can allow some slack, and thus can use "normal" practical VDF constructions. We'll use the following notation to an (ongoing or finished) VDF computation $\tau$
 
@@ -123,7 +123,7 @@ sequentialitiy:
 :   Informally, sequentiality states that for any $t$, an adversary ${\cal A}$ who makes less than $t$ sequential steps will notfind an accepting proof on a random challenge. I.e., for some tiny $\epsilon$ $$\hspace{-1cm}
 	\Pr[{\sf VDF.verify}(\tau)={\sf accept}\ \wedge \ \tau.c=c\ \wedge\ \tau.t=t \ :\ c\stackrel{rand}{\gets}\{0,1\}^w,\tau\gets{\cal A}(c,t)]\le \epsilon$$ Let us stress that ${\cal A}$ is only bounded by the number of *sequential* steps, but they can use high parallelism. Thus the VDF output cannot be computed faster by adding parallelism beyond what can be used to speed up a single step of the VDF computation.
 
-### The [@Pietrzak2019; @Wesolowski2020] VDFs
+### A.3.1	The [@Pietrzak2019; @Wesolowski2020] VDFs
 
 The VDFs proposed in [@Pietrzak2019; @Wesolowski2020] (see [@Boneh2018a] for an overview of those constructions) are both based on squaring in a group of unknown order, for concreteness let the group be $\mathbb{Z}_N^*$ where $N=pq$ is the product of two large primes $p,q$. On input ${\sf VDF.solve}(c,t)$ one would first map the challenge $c$ on a group element, say as $x_c:= hash(c)\bmod N$, and the output is $(y,\pi)$ with $y=x_c^{2^t}\bmod N$. This $y$ can be computed by squaring $x_c$ sequentially $t$ times $x_c\rightarrow x_c^2\rightarrow x_c^{2^2}\rightarrow \cdots \rightarrow x_c^{2^t}$, and it is conjectured that there is no shortcut to this computation if one doesn't know the factorization of $N$.
 
