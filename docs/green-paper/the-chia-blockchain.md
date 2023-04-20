@@ -87,16 +87,26 @@ $$
 {\cal CC}={\sf ic}_0,  \tau^{{\cal CC}}_1,{\sf ic}_1,\tau^{\cal CC}_2,{\sf ic}_2,\ldots
 $$ 
 
-Here $\tau^{\cal CC}_i$ is the VDF computation for the $i$th slot. Usually its number of VDF steps is the current time parameter $T_i$ (and should take 10 minutes to compute), but in exceptional cases it can be an integer multiple $\kappa_i\in\mathbb{N}$ of that as we enforce a 16 block minimum per slot $$\tau^{\cal CC}_i.{\sf t} = \kappa_i\cdot T_i
-\qquad\textrm{typically $\kappa_i=1$}$$
+Here $\tau^{\cal CC}_i$ is the VDF computation for the $i$th slot. Usually its number of VDF steps is the current time parameter $T_i$ (and should take 10 minutes to compute), but in exceptional cases it can be an integer multiple $\kappa_i\in\mathbb{N}$ of that as we enforce a 16 block minimum per slot 
 
-The value ${\sf ic}_i$ infused at the beginning of slot $i+1$ depends on the first block in slot $i$, we'll explain how exactly in §[6.5](#S:ICC){reference-type="ref" reference="S:ICC"}.
+$$
+\tau^{\cal CC}_i.{\sf t} = \kappa_i\cdot T_i
+\qquad\textrm{typically $\kappa_i=1$}
+$$
 
-As the VDF $\tau^{\cal CC}_i$ of the $i$th slot is computed by a time lord, they release equidistant points of this computation called the *challenge chain signage points*, one every ${\sf spi}_i=T_i/64$ VDF steps or around $9.375=600/64$ seconds $$\label{e:ccsp}
+The value ${\sf ic}_i$ infused at the beginning of slot $i+1$ depends on the first block in slot $i$, we'll explain how exactly in §5.5.
+
+As the VDF $\tau^{\cal CC}_i$ of the $i$th slot is computed by a time lord, they release equidistant points of this computation called the *challenge chain signage points*, one every ${\sf spi}_i=T_i/64$ VDF steps or around $9.375=600/64$ seconds 
+
+$$
 {\sf cc\_sp}_{i,0},{\sf cc\_sp}_{i,1},\ldots,{\sf cc\_sp}_{i,\tau_i\cdot 64}\quad\textrm{where}\quad {\sf cc\_sp}_{i,j}\stackrel{\scriptsize \sf def}{=}\tau^{\cal CC}_i[j\cdot {\sf spi}_i]
-%\tau^\cc_i[0]\ ,\ \tau^\cc_i[T_i/64]\ , \ \tau^\cc_i[2\cdot T_i/64]\ , \ldots ,\  \tau^\cc_i[ T_i]$$ The point ${\sf cc\_sp}_{i,\tau_i\cdot 64}$ at the end of the slot must also be broadcast as it's required to verify the VDF, but it's not used as a challenge as it's at the same depth as the first signage point ${\sf cc\_sp}_{i+1,0} \gets {\sf VDF.sample}({\sf cc\_sp}_{i,\tau_i\cdot 64},{\sf ic}_i)$ of the next slot.
+%\tau^\cc_i[0]\ ,\ \tau^\cc_i[T_i/64]\ , \ \tau^\cc_i[2\cdot T_i/64]\ , \ldots ,\  \tau^\cc_i[ T_i]
+$$ 
+<div class="eqnumber">eq.(6)</div>
 
-::: tcolorbox
+The point ${\sf cc\_sp}_{i,\tau_i\cdot 64}$ at the end of the slot must also be broadcast as it's required to verify the VDF, but it's not used as a challenge as it's at the same depth as the first signage point ${\sf cc\_sp}_{i+1,0} \gets {\sf VDF.sample}({\sf cc\_sp}_{i,\tau_i\cdot 64},{\sf ic}_i)$ of the next slot.
+
+:::tip Design Choice 1: A Continuous Flow of Challenges
 To get the security gains of correlated randomness, we let our PoSpace challenges depend on only one block (out of around 32) per slot, so there's a fresh challenge every 10 minutes. At the same time, we want a smooth continuous block arrival time (target is 18.75 seconds) and the challenge for each block should be revealed around 30 seconds before the block is infused (not much less to avoid orphan blocks, not much more to limit selfish mining and bribing opportunities). Deriving challenges ${\sf cc\_sp}_{i,1},{\sf cc\_sp}_{i,2},\ldots$ deterministically from one initial challenge ${\sf cc\_sp}_{i,0}$ using a delay function as outline above achieves exactly that.
 :::
 
@@ -108,7 +118,7 @@ Whenever a farmer receives new signage points ${\sf cc\_sp}_{i,j},{\sf rc\_sp}_{
 \textrm{winning condition : }
 \sigma.{\sf required\_iterations} < {\sf spi}_i\quad (=T_i/64)$$
 
-::: tcolorbox
+:::tip Design Choice 2: Why 32 Blocks in Expectation and not Exactly?
 With our winning condition we have 32 blocks per slot *in expectation* depending on a challenge. We could have used a different design to enforce *exactly* 32 challenges, but then it would be impossible to achieve our Objective [\[O:chal\]](#O:chal){reference-type="ref" reference="O:chal"}.(c), which asks that whether a plot wins must depend solely on the challenge.
 :::
 
