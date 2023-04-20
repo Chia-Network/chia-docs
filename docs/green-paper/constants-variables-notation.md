@@ -1,10 +1,10 @@
 ---
 title: Constants, Variables and Notation - Chia Green Paper
-sidebar_label: Constants, Variables and Notation
+sidebar_label: 0 - Constants, Variables and Notation
 slug: /constants-variables-notation
 ---
 
-# 0	Constants, Variables and Notation
+# 0 - Constants, Variables and Notation
 
 ## 0.1	Important Constants
 

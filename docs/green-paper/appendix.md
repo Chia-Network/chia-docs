@@ -1,10 +1,10 @@
 ---
 title: Appendix - Chia Green Paper
-sidebar_label: Appendix
+sidebar_label: A - Appendix
 slug: /appendix
 ---
 
-# A	Building Blocks: PoSpace, VDFs and Signatures
+# A - Building Blocks: PoSpace, VDFs and Signatures
 
 In this section we sketch the main building blocks used in the Chia blockchain: unique digital signatures, proofs of space [@Dziembowski2015; @Abusalah2017] and verifiable delay functions [@Boneh2018; @Pietrzak2019; @Boneh2018a; @Wesolowski2020]. The definitions are not fully general, but instead tailored to the particular constructions of PoSpace from [@Abusalah2017] and the VDFs [@Pietrzak2019; @Boneh2018a; @Wesolowski2020] based on sequential squaring.
 

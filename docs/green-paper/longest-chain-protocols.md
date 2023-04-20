@@ -1,11 +1,10 @@
 ---
 title: Longest-Chain Protocols from Efficient Proof Systems - Chia Green Paper
-sidebar_label: Longest-Chain Protocols from Efficient Proof Systems
+sidebar_label: 2 - Longest-Chain Protocols from Efficient Proof Systems
 slug: /longest-chain-protocols
 ---
 
-
-# 2	Longest-Chain Protocols from Efficient Proof Systems
+# 2 - Longest-Chain Protocols from Efficient Proof Systems
 
 Before we can outline the specification of the $\textrm{{\sf Chia}}$ blockchain and its rationale in more detail, we first must understand the general challenges one faces when constructing a PoSpace based blockchain and some of the relevant literature on how to address these challenges.
 

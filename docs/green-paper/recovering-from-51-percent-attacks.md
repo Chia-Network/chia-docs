@@ -1,10 +1,10 @@
 ---
 title: Recovering from 51% Attacks and Dynamic Availability  - Chia Green Paper
-sidebar_label: Recovering from 51% Attacks and Dynamic Availability 
+sidebar_label: 6 - Recovering from 51% Attacks and Dynamic Availability 
 slug: /recovering-from-51-percent-attacks
 ---
 
-# 6	Recovering from 51% Attacks and Dynamic Availability {#S:51}
+# 6 - Recovering from 51% Attacks and Dynamic Availability {#S:51}
 
 In this Section we have a look at two closely related security properties of longest-chain blockchains, namely recovery from malicious majority (aka. 51% attacks) and security under dynamic availability. We'll discuss proofs of work, stake and space, for the latter two also looking at how adding VDFs changes the picture.
 

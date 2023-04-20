@@ -1,10 +1,10 @@
 ---
 title: Hash and VDF chains - Chia Green Paper
-sidebar_label: Hash and VDF chains
+sidebar_label: 4 - Hash and VDF chains
 slug: /hash-and-vdf-chains
 ---
 
-# 4	Hash and VDF chains {#S:chains}
+# 4 - Hash and VDF chains {#S:chains}
 
 A key ingredient in longest-chain blockchains are hash-chains as discussed in §[5.1](#S:HC){reference-type="ref" reference="S:HC"} below. While Chia also uses a hash-chain (for the foliage chain ${\cal FC}$), for Chia we use a new chaining structure called a VDF chain defined in §[5.2](#S:vdfchain){reference-type="ref" reference="S:vdfchain"} below. []{#s:chains label="s:chains"}
 

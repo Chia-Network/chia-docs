@@ -1,10 +1,10 @@
 ---
 title: The Chia Blockchain - Chia Green Paper
-sidebar_label: The Chia Blockchain
+sidebar_label: 5 - The Chia Blockchain
 slug: /the-chia-blockchain
 ---
 
-# 5 The Chia Blockchain {#S:CBC}
+# 5 - The Chia Blockchain {#S:CBC}
 
 ![[]{#fig:CC label="fig:CC"}The reward, challenge and infused challenge chains. For illustration we only use $8$ not $64$ signage points per sub-slot.](https://chia.net){#fig:CC}
 
