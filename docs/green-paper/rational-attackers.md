@@ -14,9 +14,9 @@ In §3.1 below we first discuss selfish mining and why we don't observe it in Bi
 
 ## 3.1	Selfish Mining in Bitcoin
 
-While Bitcoin prevents double spending assuming a majority of the hashing power is controlled by miners who altruistically follow the protocol, it allows for *selfish mining* [@Eyal2018] by which a miner with a $\alpha<0.5$ fraction of the hashing power can create more than an $\alpha$ fraction of the blocks and thus gets an unfair share of the block rewards. In some settings this fraction can be as large as $\alpha/(1-\alpha)$ (e.g. a $0.33$ fraction for $\alpha=0.25$).[^4] Selfish mining has not been observed in Bitcoin, and there are various reasons why this is the case
+While Bitcoin prevents double spending assuming a majority of the hashing power is controlled by miners who altruistically follow the protocol, it allows for *selfish mining* [@Eyal2018] by which a miner with a $\alpha<0.5$ fraction of the hashing power can create more than an $\alpha$ fraction of the blocks and thus gets an unfair share of the block rewards. In some settings this fraction can be as large as $\alpha/(1-\alpha)$ (e.g. a $0.33$ fraction for $\alpha=0.25$).[^1] Selfish mining has not been observed in Bitcoin, and there are various reasons why this is the case
 
-1.  selfish mining requires either a fairly large fraction of the hashing power or very good control of the network (cf. Footnote [^4]) to be profitable
+1.  selfish mining requires either a fairly large fraction of the hashing power or very good control of the network (cf. Footnote [^1]) to be profitable
 
 2.  the attack would be easily detected and
 
@@ -54,20 +54,20 @@ Having motivated why the no slowdown and delayed gratification properties are us
 :::info Objective 1: Unpredictable and Immutable Challenges
 (a) a challenge is revealed as late as possible.
 
-(b) once it's revealed, it's almost certainly too late for a selfish farmer to influence it in any way.
+(b)) once it's revealed, it's almost certainly too late for a selfish farmer to influence it in any way.
 
-(c) whether a plot can produce a block for a challenge only depends on the plot and the challenge (and not say, on what other plots exist).
+(c)) whether a plot can produce a block for a challenge only depends on the plot and the challenge (and not say, on what other plots exist).
 :::
 
 These properties imply delayed gratification as a selfish farmer cannot do anything to influence challenges in a controlled way due to (a) & (b), and cannot do anything to increase its number of winning blocks for a given challenge due to (c).
 
-We will sketch how properties (a)-(c) are achieved in Chia next. To follow the arguments the reader might want to recap the high level outline in §[2.7](#S:high){reference-type="ref" reference="S:high"} and illustration in Figure [1](#fig:C4){reference-type="ref" reference="fig:C4"}
+We will sketch how properties (a)-(c) are achieved in $\textsf{Chia}$ next. To follow the arguments the reader might want to recap the high level outline in §1.7 and illustration in Figure 1
 
-(a) The only reason for the infused challenge chain ${\sf i}{\cal CC}$ is to make sure that the challenge becomes known as late as possible, in particular when considering an adversary with a faster VDF than the fastest honest time lord.
+**(a)** The only reason for the infused challenge chain ${\sf i}{\cal CC}$ is to make sure that the challenge becomes known as late as possible, in particular when considering an adversary with a faster VDF than the fastest honest time lord.
 
-(b) We infuse the *first* block of each slot into the challenge chain ${\cal CC}$, this way making sure that this block is buried deep in the chain (by $31$ blocks on average) once revealed, and thus almost impossible to revert.
+**(b)** We infuse the *first* block of each slot into the challenge chain ${\cal CC}$, this way making sure that this block is buried deep in the chain (by $31$ blocks on average) once revealed, and thus almost impossible to revert.
 
-(c) We use a variation on the correlated randomness technique from [@Bagaria2019], where we let the challenge depend on every $k$th challenge on average, rather than exactly. This way only the challenge determines whether a plot can produce a winning block, irrespective of what other plots exist.
+**(c)** We use a variation on the correlated randomness technique from [@Bagaria2019], where we let the challenge depend on every $k$th challenge on average, rather than exactly. This way only the challenge determines whether a plot can produce a winning block, irrespective of what other plots exist.
 
 ## 3.5	No-Slowdown of Chia and other Constructions {#s:nschia}
 
@@ -79,11 +79,11 @@ In Bitcoin no slowdown holds as whenever an honest miner finds a block, all the 
 
 ### 3.5.2	A Non-Example, the G-Greedy-Rule
 
-One might assume that the no-slowdown property would be achieved by any "natural" longest-chain blockchain even if based on efficient proof systems. Unfortunately this intuition is wrong. A design for which no-slowdown fails to hold is the proof of stake based chain of Fan and Zhou [@Fan2017]. Their chain mimics Bitcoin's Nakamoto consensus using proofs of stake, but to harden the design against (what in this writeup is called) double dipping attacks [@Fan2017] suggest the miners not only extend the longest chain, but instead follow the "$g$-greedy rule": a miner should try to extend all forks they see which are at most $g$ blocks shorter than the longest chain they've seen so far. The rationale behind this rule is that by letting the honest miners do double-dipping to some extent, the advantage an adversary can get by double dipping shrinks.[^5] As shown in [@Bagaria2019], this design has some serious issues as an adversary with relatively small resources can with high probability prevent the chain reaching consensus by strategically releasing blocks and this way keep two forks alive for a long time. An illustration of their attack is in Figure [\[Fig:FF\]](#Fig:FF){reference-type="ref" reference="Fig:FF"}. Interestingly (citing [@Bagaria2019]) *"..the efficacy (of the attack) is primarily achieved by slowing down the growth rate of the honest strategy."*
+One might assume that the no-slowdown property would be achieved by any "natural" longest-chain blockchain even if based on efficient proof systems. Unfortunately this intuition is wrong. A design for which no-slowdown fails to hold is the proof of stake based chain of Fan and Zhou [@Fan2017]. Their chain mimics Bitcoin's Nakamoto consensus using proofs of stake, but to harden the design against (what in this writeup is called) double dipping attacks [@Fan2017] suggest the miners not only extend the longest chain, but instead follow the "$g$-greedy rule": a miner should try to extend all forks they see which are at most $g$ blocks shorter than the longest chain they've seen so far. The rationale behind this rule is that by letting the honest miners do double-dipping to some extent, the advantage an adversary can get by double dipping shrinks.[^2] As shown in [@Bagaria2019], this design has some serious issues as an adversary with relatively small resources can with high probability prevent the chain reaching consensus by strategically releasing blocks and this way keep two forks alive for a long time. An illustration of their attack is in Figure 5. Interestingly (citing [@Bagaria2019]) *"..the efficacy (of the attack) is primarily achieved by slowing down the growth rate of the honest strategy."*
 
-<figure id="Fig:Fan">
-
-<figcaption><span id="Fig:FF" label="Fig:FF"></span>Illustration of the balancing attack against <span class="citation" data-cites="Fan2017"></span> taken from <span class="citation" data-cites="Bagaria2019"></span><span id="Fig:Fan" label="Fig:Fan"></span></figcaption>
+<figure>
+	<img src="/img/green-paper/balanceattack.png" alt="alt text" />
+	<figcaption>Figure 5: Illustration of the balancing attack against [FZ17] taken from [BDK+ 19]</figcaption>
 </figure>
 
 ### 3.5.3	Examples of No-Slowdown.
@@ -98,22 +98,24 @@ There are longest-chain blockchains from efficient proof systems which do have 
 
 Bagaria et al. [@Bagaria2019] not only prove that $g$-greedy does not have the no-slowdown property, but also suggest a different rule of a similar flavour they call "$D$-distance greedy", for which the no-slowdown property does hold [@Bagaria2019 Lemma 12]. This rule reduces the double-dipping advantage factor towards $1$ as $D$ increases, but already for moderately large $D$ it becomes computationally infeasible for the miners to even determine which chain to follow.
 
-#### Old Chia
+#### Old $\textsf{Chia}$
 
 The first Chia greenpaper [@greenpaper] has a very simple rule where honest farmers try to extend the first $k>1$ ($k=3$ was suggested) chain of any given length they become aware of. For this simple construction the advantage factor of double-dipping goes to $1$ as $k$ increases while it does achieve no-slowdown [@greenpaper Lemma 4].
 
-#### Chia
+#### $\textsf{Chia}$
 
-While the deployed Chia blockchain has many advantages over the old [@greenpaper] proposal, the no-slowdown property is a much tricker issue in the new design. In particular, we do not yet have an analogue of [@greenpaper Lemma 4] which basically states that even an unbounded adversary (unlimited space, unlimited number of arbitrary fast VDFs) cannot slow down chain growth.
+While the deployed $\textsf{Chia}$ blockchain has many advantages over the old [@greenpaper] proposal, the no-slowdown property is a much tricker issue in the new design. In particular, we do not yet have an analogue of [@greenpaper Lemma 4] which basically states that even an unbounded adversary (unlimited space, unlimited number of arbitrary fast VDFs) cannot slow down chain growth.
 
 When analyzing the no-slowdown property, it is useful to distinguish the specification of the chain (i.e., what constitutes a valid chain) and its chain selection rule (aka. fork choice rule), which tells the farmers and time lords on which chains to work should competing forks exist.
 
 For example the difference in the $g$-greedy and the $D$-distance greedy protocols discussed above (only the latter having the no-slowdown property) is only in the chain selection rule, the specification what constitutes an valid chain is the same.
 
-Unlike the chain specification, which can only be changed by a hard fork once the chain is deployed, the chain selection rule can easily be adapted by the farmers and/or time lords even after the launch. Finding a chain-selection rule for the Chia chain which provably achieves no-slowdown is an interesting open problem.
+Unlike the chain specification, which can only be changed by a hard fork once the chain is deployed, the chain selection rule can easily be adapted by the farmers and/or time lords even after the launch. Finding a chain-selection rule for the $\textsf{Chia}$ chain which provably achieves no-slowdown is an interesting open problem.
 
 Under the additional assumption that an adversary does not control VDFs which are *faster* than the fastest honest time lord, a very simple chain selection rule achieving no-slowdown exists: always follow the chain with accumulated most VDF steps. Of course this rule would be terrible in practice as security completely breaks if the adversary has an even slightly faster VDF than the fastest honest time lord. For example, such an adversary could create an "empty" chain by refusing to infuse any blocks.
 
-A more sensible rule is to simply follow the *heaviest* fork like in Bitcoin. Unfortunately, unlike in Bitcoin, in Chia the heaviest fork is not necessarily the fork which will be heaviest in the future assuming all honest parties adapt it: a fork $A$ might have one more block infused than some fork $B$, but if $B$ is way ahead in the VDF computation extending $B$ might give a better chain (in expectation) in the future. Thus, when using this rule, by releasing $B$ an adversary might slow down the chain. The currently deployed chain selection rule for farmers and time lords is basically to follow the heaviest fork, but with some heuristics to avoid clear cases where switching to a heavier chain is slowing down growth.
+A more sensible rule is to simply follow the *heaviest* fork like in Bitcoin. Unfortunately, unlike in Bitcoin, in $\textsf{Chia}$ the heaviest fork is not necessarily the fork which will be heaviest in the future assuming all honest parties adapt it: a fork $A$ might have one more block infused than some fork $B$, but if $B$ is way ahead in the VDF computation extending $B$ might give a better chain (in expectation) in the future. Thus, when using this rule, by releasing $B$ an adversary might slow down the chain. The currently deployed chain selection rule for farmers and time lords is basically to follow the heaviest fork, but with some heuristics to avoid clear cases where switching to a heavier chain is slowing down growth.
 
-[^4]: To achieve such a large fraction we must assume that (1) honest miners follow the (original Bitcoin) rule and in case they learn of two longest chains they always try to extend the one they saw first and (2) that once the selfish miner learns about a block mined by the honest miners, they can release a withheld block such that their block reaches most of the honest miners faster than this honest block. If either of these conditions is not met, selfish mining is much less profitable, and only becomes profitable at all for selfish miners who control a fairly large fraction of the resource [@Sapirshtein2015].
+[^1]: To achieve such a large fraction we must assume that (1) honest miners follow the (original Bitcoin) rule and in case they learn of two longest chains they always try to extend the one they saw first and (2) that once the selfish miner learns about a block mined by the honest miners, they can release a withheld block such that their block reaches most of the honest miners faster than this honest block. If either of these conditions is not met, selfish mining is much less profitable, and only becomes profitable at all for selfish miners who control a fairly large fraction of the resource [@Sapirshtein2015].
+
+[^2]: A similar proposal, where the honest parties try to extend the first $k$ blocks they see at every depth was proposed in an early proposal for $\textsf{Chia}$ (with $k=3$) [@greenpaper]. This variant achieves the no-slowdown property.
