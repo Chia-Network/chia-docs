@@ -4,27 +4,26 @@ sidebar_label: 5 - The Chia Blockchain
 slug: /the-chia-blockchain
 ---
 
-# 5 - The Chia Blockchain {#S:CBC}
+# 5 - The $\textsf{Chia}$ Blockchain
 
-![[]{#fig:CC label="fig:CC"}The reward, challenge and infused challenge chains. For illustration we only use $8$ not $64$ signage points per sub-slot.](https://chia.net){#fig:CC}
+In this section we finally outline the design of the $\textsf{Chia}$ blockchain as illustrated in Figure 1 from its basic building blocks PoSpace, VDFs and Signatures. These primitives are specified in §A. We'll use greek letters $\sigma$ to denote PoSpace, $\tau$ for VDFs and $\mu$ for Signatures.
 
-In this section we finally outline the design of the Chia blockchain as illustrated in Figure [1](#fig:C4){reference-type="ref" reference="fig:C4"} from its basic building blocks PoSpace, VDFs and Signatures. These primitives are specified in §[8](#sec:proofs){reference-type="ref" reference="sec:proofs"}. We'll use greek letters $\sigma$ to denote PoSpace, $\tau$ for VDFs and $\mu$ for Signatures.
+<figure>
+    <img src="/img/green-paper/4chains.png" alt="Challenge chain diagram" />
+    <figcaption>
+        Figure 7: The reward, challenge and infused challenge chains. For illustration we only use 8 not 64 signage points per sub-slot.
+    </figcaption>
+</figure>
 
 ## 5.1  Additional Variables and Notation for this Section
 
 ### 5.1.1   Variables
 
-$T_i$ :
-
-:   Time parameter of $i$th slot (# of VDF steps per sub-slot). Recalibrated once per day for 10 minutes per sub-slot target.
-
-${\sf spi}_i$ 
-
-:   $${\sf spi}_i\stackrel{\scriptsize \sf def}{=}T_i/64$$
-
-$D_i$ :
-
-:   Difficulty parameter of $i$th slot. Recalibrated once per day for 32 blocks per slot target.
+| Variable             | Definition   						   						   						   						   		          |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------|
+| $T_i$                | Time parameter of $i$-th slot (# of VDF steps per sub-slot). Recalibrated once per day for 10 minutes per sub-slot target.   |
+| $\mathsf{spi}_i$     | $$\mathsf{spi}_i \stackrel{\text{\tiny def}}{=} \frac{T_i}{64}$$                                                             |
+| $D_i$                | Difficulty parameter of $i$-th slot. Recalibrated once per day for 32 blocks per slot target                                 |
 
 ### 5.1.2   Step to Epoch
 
@@ -32,64 +31,63 @@ $\kappa_i$ :Number of sub-slots in $i$th slot. Typically $\kappa_i=1$ but can be
 
 ### 5.1.3   Notation for Points of Interest
 
-To describe the Chia chains it will be convenient to introduce some extra notation. Recall that for a VDF $\tau$ or VDF chain ${\cal V}$ we denote with $\tau[t]$ or ${\cal V}[t]$ the point $t$ steps into the computation. $\tau.{\sf t},{\cal V}.{\sf t}$ is the total number of steps. Sometimes we overload notation and consider $\tau,{\cal V}$ to denote the point at the end of the computation rather than the entire VDF or VDF chain, i.e., $\tau=\tau[\tau.{\sf t}],{\cal V}={\cal V}[{\cal V}.{\sf t}]$.
+To describe the $\textsf{Chia}$ chains it will be convenient to introduce some extra notation. Recall that for a VDF $\tau$ or VDF chain ${\cal V}$ we denote with $\tau[t]$ or ${\cal V}[t]$ the point $t$ steps into the computation. $\tau.{\sf t},{\cal V}.{\sf t}$ is the total number of steps. Sometimes we overload notation and consider $\tau,{\cal V}$ to denote the point at the end of the computation rather than the entire VDF or VDF chain, i.e., $\tau=\tau[\tau.{\sf t}],{\cal V}={\cal V}[{\cal V}.{\sf t}]$.
 
 The VDF chains we'll consider (${\cal RC}$ and ${\cal CC}$) will be split into slots where the starting point of a new slot will always be an infusion point. For a point ${\sf point}={\cal V}[t]$ on such a chain we denote with
 
-${\sf point}.{\sf D}$
+| Point                  | Definition   						   						   						   						   		          |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| ${\sf point}.{\sf D}$  | the total depth, i.e., the number of steps of this point since genesis   |
+| ${\sf point}.{\sf d}$  | the depth of this point in the current slot                                                             |
+| ${\sf point}.{\sf t}$  | the depth of this point in its VDF                                 |
+| ${\sf point}.{\sf x}$  | the value of the VDF chain at this point                                 |
+| ${\sf point}.\pi$      | a proof certifying the VDF computation up to this point                                 |
+| ${\sf point}^+$        | If ${\sf point}$ is an infusion point where some value $v$ gets infused, then we denote with ${\sf point}$ the point before infusion, and with $${\sf point}^+ = {\sf VDF.sample}({\sf point}.{\sf x},v)$$ the point after infusion |
 
-:   the total depth, i.e., the number of steps of this point since genesis.
+The following points on the $\textsf{Chia}$ VDF chains will be defined
 
-${\sf point}.{\sf d}$
+| Point                  | Definition   						   						   						        |
+|------------------------|----------------------------------------------------------------------------------------------|
+| ${\sf cc\_sp}_{i,j}$   | The $j$th **challenge chain signage point** in the $i$th slot (eq.(6))                       |
+| ${\sf rc\_sp}_{i,j}$   | The $j$th **reward chain signage point** in the $i$th slot (eq.(9))                          |
+| ${\sf cc\_sp}(\beta)$  | he ${\sf cc\_sp}_{i,j}$ used as challenge to compute the PoSpace $\sigma$ in block $\beta$   |
+| ${\sf rc\_sp}(\beta)$  | The ${\sf rc\_sp}_{i,j}$ whose signature $\mu_{{\sf rc\_sp}}$ is in $\beta$                  |
+| ${\sf rc\_ip}(\beta)$  | The infusion point of $\beta$ into ${\cal RC}$ (eq.(10)                                      |
 
-:   the depth of this point in the current slot.
+The *signage point interval* is the number of VDF steps between signage points, for the $i$th slot it's 
 
-${\sf point}.{\sf t}$
+$$
+{\sf spi}_i \stackrel{\scriptsize \sf def}{=}T_i/64
+$$ 
 
-:   the depth of this point in its VDF.
+so e.g., the depth of the $j$th signage point in the $i$th slot is $\mathsf{rc\_sp}_{i,j}.\mathsf{d} = \mathsf{cc\_sp}_{i,j}.\mathsf{d} = j \cdot \mathsf{spi}_i$. A block in the $i$th slot will be infused 3 to 4 signage point intervals past its signage point.
 
-${\sf point}.{\sf x}$
+$$
+3\cdot {\sf spi}_i\ <\ 
+{\sf rc\_ip}(\beta_T).{\sf d}\ -\ {\sf rc\_sp}(\beta_T).{\sf d}\ < \ 4\cdot {\sf spi}_i
+$$ 
 
-:   the value of the VDF chain at this point.
+The first signage point in a slot is the last signage point after infusion 
 
-${\sf point}.\pi$
+$$
+{\sf rc\_sp}_{i+1,0}={\sf rc\_sp}_{i,\tau_i\cdot 64}^+
+$$ 
 
-:   a proof certifying the VDF computation up to this point.
+The $i$th slot starts at total depth 
 
-${\sf point}^+$.
+$$
+{\sf rc\_sp}_{i,0}.{\sf D}=\sum_{j=1}^{i-1}T_j\cdot \kappa_j
+$$
 
-:   If ${\sf point}$ is an infusion point where some value $v$ gets infused, then we denote with ${\sf point}$ the point before infusion, and with $${\sf point}^+ = {\sf VDF.sample}({\sf point}.{\sf x},v)$$ the point after infusion.
+## 5.2  The Challenge Chain
 
-The following points on the Chia VDF chains will be defined
+The challenge chain ${\cal CC}$ is a VDF chain whose data and VDF values we'll denote as 
 
-${\sf cc\_sp}_{i,j}$ :
+$$
+{\cal CC}={\sf ic}_0,  \tau^{{\cal CC}}_1,{\sf ic}_1,\tau^{\cal CC}_2,{\sf ic}_2,\ldots
+$$ 
 
-:   The $j$th **challenge chain signage point** in the $i$th slot (eq.([\[e:ccsp\]](#e:ccsp){reference-type="ref" reference="e:ccsp"})).
-
-${\sf rc\_sp}_{i,j}$ :
-
-:   The $j$th **reward chain signage point** in the $i$th slot (eq.([\[e:rcsp\]](#e:rcsp){reference-type="ref" reference="e:rcsp"})).
-
-${\sf cc\_sp}(\beta)$ :
-
-:   The ${\sf cc\_sp}_{i,j}$ used as challenge to compute the PoSpace $\sigma$ in block $\beta$.
-
-${\sf rc\_sp}(\beta)$ :
-
-:   The ${\sf rc\_sp}_{i,j}$ whose signature $\mu_{{\sf rc\_sp}}$ is in $\beta$.
-
-${\sf rc\_ip}(\beta)$ :
-
-:   The infusion point of $\beta$ into ${\cal RC}$ (eq.([\[e:ipc\]](#e:ipc){reference-type="ref" reference="e:ipc"}).
-
-The *signage point interval* is the number of VDF steps between signage points, for the $i$th slot it's $${\sf spi}_i \stackrel{\scriptsize \sf def}{=}T_i/64$$ so e.g. the depth of the $j$th signage point in the $i$th slot is ${\sf rc\_sp}_{i,j}.{\sf d}={\sf cc\_sp}_{i,j}.{\sf d}=j\cdot {\sf spi}_i
-%\underbrace{\sum_{k=1}^{i-1} T_k\cdot \kappa_k}_{\textrm{length of first $i-1$ slots}}\hspace{-0.5cm}+j\cdot \spi_i
-%\qquad \textrm{ where }\qquad$. A block in the $i$th slot will be infused 3 to 4 signage point intervals past its signage point $$3\cdot {\sf spi}_i\ <\ 
-{\sf rc\_ip}(\beta_T).{\sf d}\ -\ {\sf rc\_sp}(\beta_T).{\sf d}\ < \ 4\cdot {\sf spi}_i$$ The first signage point in a slot is the last signage point after infusion $${\sf rc\_sp}_{i+1,0}={\sf rc\_sp}_{i,\tau_i\cdot 64}^+$$ The $i$th slot starts at total depth $${\sf rc\_sp}_{i,0}.{\sf D}=\sum_{j=1}^{i-1}T_j\cdot \kappa_j$$
-
-## 5.2  The Challenge Chain {#S:CC}
-
-The challenge chain ${\cal CC}$ is a VDF chain whose data and VDF values we'll denote as $${\cal CC}={\sf ic}_0,  \tau^{{\cal CC}}_1,{\sf ic}_1,\tau^{\cal CC}_2,{\sf ic}_2,\ldots$$ Here $\tau^{\cal CC}_i$ is the VDF computation for the $i$th slot. Usually its number of VDF steps is the current time parameter $T_i$ (and should take 10 minutes to compute), but in exceptional cases it can be an integer multiple $\kappa_i\in\mathbb{N}$ of that as we enforce a 16 block minimum per slot $$\tau^{\cal CC}_i.{\sf t} = \kappa_i\cdot T_i
+Here $\tau^{\cal CC}_i$ is the VDF computation for the $i$th slot. Usually its number of VDF steps is the current time parameter $T_i$ (and should take 10 minutes to compute), but in exceptional cases it can be an integer multiple $\kappa_i\in\mathbb{N}$ of that as we enforce a 16 block minimum per slot $$\tau^{\cal CC}_i.{\sf t} = \kappa_i\cdot T_i
 \qquad\textrm{typically $\kappa_i=1$}$$
 
 The value ${\sf ic}_i$ infused at the beginning of slot $i+1$ depends on the first block in slot $i$, we'll explain how exactly in §[6.5](#S:ICC){reference-type="ref" reference="S:ICC"}.
@@ -114,7 +112,7 @@ Whenever a farmer receives new signage points ${\sf cc\_sp}_{i,j},{\sf rc\_sp}_{
 With our winning condition we have 32 blocks per slot *in expectation* depending on a challenge. We could have used a different design to enforce *exactly* 32 challenges, but then it would be impossible to achieve our Objective [\[O:chal\]](#O:chal){reference-type="ref" reference="O:chal"}.(c), which asks that whether a plot wins must depend solely on the challenge.
 :::
 
-If a farmer has a winning PoSpace $\sigma$ they can produce a block $\beta=(\beta_T,\beta_F)$ which contains the foliage block $\beta_F$ and the trunk block $\beta_T$. The actual Chia blocks are more sophisticated than our description below, but in this writeup we focus on the entries which are absolutely necessary for functionality and security of the chain and ignore entries which are there for efficiency like weight proofs for light clients or pooling. They key entries in a valid trunk block $$\beta_T=(\sigma,\mu_{{{\sf rc\_sp}}})%\ , \beta_F=({\sf transactions},{\sf timestamp},{\sf h},\mu_{\beta})$$ are
+If a farmer has a winning PoSpace $\sigma$ they can produce a block $\beta=(\beta_T,\beta_F)$ which contains the foliage block $\beta_F$ and the trunk block $\beta_T$. The actual $\textsf{Chia}$ blocks are more sophisticated than our description below, but in this writeup we focus on the entries which are absolutely necessary for functionality and security of the chain and ignore entries which are there for efficiency like weight proofs for light clients or pooling. They key entries in a valid trunk block $$\beta_T=(\sigma,\mu_{{{\sf rc\_sp}}})%\ , \beta_F=({\sf transactions},{\sf timestamp},{\sf h},\mu_{\beta})$$ are
 
 $\sigma\gets {\sf PoSpace.prove}(S,{\sf cc\_sp}_{i,j})$, 
 
