@@ -10,7 +10,7 @@ In §2 we discussed how costless simulation opens attack vectors for double spen
 
 In analogy to *selfish mining* in Bitcoin, we refer to strategies by which a party gets more rewards than they would by following the protocol rules as *selfish farming*. To argue that rational parties will behave honestly it's necessary to bound the efficacy of selfish mining/farming strategies.
 
-In §3.1 below we first discuss selfish mining and why we don't observe it in Bitcoin even though it's possible in principle. As directly analyzing the security of a longest-chain protocol against selfish mining/farming is very challenging we take a modular approach. In §3.2 we first identify two properties -- *no slowdown* and *delayed gratification* illustrated in Figure 5 -- which are satisfied by Bitcoin, and then show in §3.3 that they imply robustness against selfish mining (through the notion of chain quality) of the level as achieved by Bitcoin. In §3.4 and §3.5 we then sketch how those notions are achieved in $\textrm{{\sf Chia}}$.
+In §3.1 below we first discuss selfish mining and why we don't observe it in Bitcoin even though it's possible in principle. As directly analyzing the security of a longest-chain protocol against selfish mining/farming is very challenging we take a modular approach. In §3.2 we first identify two properties – *no slowdown* and *delayed gratification* illustrated in Figure 5 – which are satisfied by Bitcoin, and then show in §3.3 that they imply robustness against selfish mining (through the notion of chain quality) of the level as achieved by Bitcoin. In §3.4 and §3.5 we then sketch how those notions are achieved in $\textrm{{\sf Chia}}$.
 
 ## 3.1	Selfish Mining in Bitcoin
 
