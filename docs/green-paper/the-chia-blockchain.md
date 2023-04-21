@@ -123,7 +123,7 @@ $$
 <div class="eqnumber">eq.(7)</div>
 
 :::tip Design Choice 2: Why 32 Blocks in Expectation and not Exactly?
-With our winning condition we have 32 blocks per slot *in expectation* depending on a challenge. We could have used a different design to enforce *exactly* 32 challenges, but then it would be impossible to achieve our Objective [\[O:chal\]](#O:chal){reference-type="ref" reference="O:chal"}.(c), which asks that whether a plot wins must depend solely on the challenge.
+With our winning condition we have 32 blocks per slot *in expectation* depending on a challenge. We could have used a different design to enforce *exactly* 32 challenges, but then it would be impossible to achieve our Objective 1.(c), which asks that whether a plot wins must depend solely on the challenge.
 :::
 
 If a farmer has a winning PoSpace $\sigma$ they can produce a block $\beta=(\beta_T,\beta_F)$ which contains the foliage block $\beta_F$ and the trunk block $\beta_T$. The actual $\textsf{Chia}$ blocks are more sophisticated than our description below, but in this writeup we focus on the entries which are absolutely necessary for functionality and security of the chain and ignore entries which are there for efficiency like weight proofs for light clients or pooling. They key entries in a valid trunk block 
@@ -206,13 +206,13 @@ We only use $\sigma$, not the entire trunk block $\beta_T=(\sigma,\mu_{{{\sf rc\
 :::
 
 :::tip Design Choice 3: Why Infusing the First Block?
-Recall that by our Objective [\[O:chal\]](#O:chal){reference-type="ref" reference="O:chal"}.(a) we want challenges to be only revealed when necessary and (b) to be immutable once revealed.
+Recall that by our Objective 1.(a) we want challenges to be only revealed when necessary and (b) to be immutable once revealed.
 
 While (b) suggest to infuse the first possible block so it's buried once revealed, for (a) it would be better to use the latest possible block. We go with the first block to achieve (b), and by running a VDF on top of the block we also achieve objective (a).
 :::
 
 :::tip Design Choice 4: Upper and Lower Bounds on Blocks per Slot
-The target number of blocks per slot is 32, and there's an upper bound of 64 and lower bound of 16. These bounds make some attacks more difficult. In normal deployment the number of blocks will be close to its expectation, so these bounds should basically never be reached. The lower bound is required to bound the efficacy of double-dipping as sketched in §[3.2](#S:dd){reference-type="ref" reference="S:dd"}, while the upper bound is necessary to prevent replotting attacks as explained in §[2.8.3](#S:replotting){reference-type="ref" reference="S:replotting"}.
+The target number of blocks per slot is 32, and there's an upper bound of 64 and lower bound of 16. These bounds make some attacks more difficult. In normal deployment the number of blocks will be close to its expectation, so these bounds should basically never be reached. The lower bound is required to bound the efficacy of double-dipping as sketched in §2.2, while the upper bound is necessary to prevent replotting attacks as explained in §1.8.3.
 :::
 
 :::info Objective 2: The Trunk is (almost) Ungrindeable
@@ -220,7 +220,7 @@ To prevent grinding, the only decision that influences the trunk should be wheth
 :::
 
 :::info Objective 3: ${\cal CC}$ (almost) only Depends on the First Block
-To limit the impact of double-dipping we use correlated randomness [@Bagaria2019]). For this the challenge chain ${\cal CC}$ should only depend on the first block in every slot. If this was the case, this would allow for long-range replotting attacks. For this reason, once every sub-epoch (approx 2h) the rewards chain is infused to the challenge chain.
+To limit the impact of double-dipping we use correlated randomness [<a href="/green-paper-references/#BDK19">BDK+19</a>]). For this the challenge chain ${\cal CC}$ should only depend on the first block in every slot. If this was the case, this would allow for long-range replotting attacks. For this reason, once every sub-epoch (approx 2h) the rewards chain is infused to the challenge chain.
 :::
 
 ## 5.6  The Foliage

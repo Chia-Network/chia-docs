@@ -6,7 +6,7 @@ slug: /hash-and-vdf-chains
 
 # 4 - Hash and VDF chains
 
-A key ingredient in longest-chain blockchains are hash-chains as discussed in §4.1 below. While $\textsf{Chia}$ also uses a hash-chain (for the foliage chain ${\cal FC}$), for $\textsf{Chia}$ we use a new chaining structure called a VDF chain defined in §4.2 below. []{#s:chains label="s:chains"}
+A key ingredient in longest-chain blockchains are hash-chains as discussed in §4.1 below. While $\textsf{Chia}$ also uses a hash-chain (for the foliage chain ${\cal FC}$), for $\textsf{Chia}$ we use a new chaining structure called a VDF chain defined in §4.2 below.
 
 ## 4.1	Hash chains
 
