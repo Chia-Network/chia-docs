@@ -6,8 +6,8 @@ slug: /abstract
 
 # Abstract
 
- This document outlines the rationale and main design ideas behind the consensus layer of $\textrm{{\sf Chia}}$, a longest-chain blockchain akin to Bitcoin. It achieves comparable security guarantees as Bitcoin's proof of work based Nakamoto consensus, while using proofs of space in combination with verifiable delay functions to achieve Sybil resistance. This makes $\textrm{{\sf Chia}}$ much more sustainable and also more decentralized than a PoW based blockchain could be.
+This document outlines the rationale and main design ideas behind the consensus layer of $\textrm{{\sf Chia}}$, a longest-chain blockchain akin to Bitcoin. It achieves comparable security guarantees as Bitcoin's Proof of Work (PoW) based Nakamoto consensus, while using Proofs of Space in combination with Verifiable Delay Functions (VDFs) to achieve Sybil resistance. This makes $\textrm{{\sf Chia}}$ much more [sustainable](https://chiapower.org/) and also more [decentralized](https://xch.farm/decentralization/) than a PoW based blockchain could be.
 
-We outline the challenges one must solve when replacing proofs of work with an efficient proof system like proofs of space, and how they are addressed in $\textrm{{\sf Chia}}$. Here "efficient" means that once the resource (like space or stake) is available, computing many proofs is basically as cheap as computing one.
+We outline the challenges one must solve when replacing proofs of work with an efficient proof system like proofs of space, and how they are addressed in $\textrm{{\sf Chia}}$. Here _efficient_ means that once the resource (like space or stake) is available, computing many proofs is basically as cheap as computing one.
 
-This document is not a formal specification of $\textrm{{\sf Chia}}$, but aims at readers who want to understand the design choices of $\textrm{{\sf Chia}}$ consensus, and are interested in permissionless longest-chain blockchains from efficient proof systems in general.
+This document is not a formal specification of $\textrm{{\sf Chia}}$. Instead, it aims at readers who want to understand the design choices of $\textrm{{\sf Chia's}}$ consensus, and are interested in permissionless longest-chain blockchains from efficient proof systems in general.
