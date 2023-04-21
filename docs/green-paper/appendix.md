@@ -10,17 +10,25 @@ In this section we sketch the main building blocks used in the Chia blockchain:
 
 ## A.1	(Unique) Digital Signatures
 
-A digital signature scheme is specified by three algorithms; a (probabilistic) key-generation algorithm ${{\sf Sig.keygen}}$, a signing algorithm $\mu\gets {{\sf Sig.sign}}(sk,m)$ and a verification algorithm ${{\sf Sig.verify}}$. We assume the standard security notion (unforgeability under chosen message attacks) and perfect completeness, that is, a correctly generated signature will always verify: $$\begin{aligned}
+A digital signature scheme is specified by three algorithms; a (probabilistic) key-generation algorithm ${{\sf Sig.keygen}}$, a signing algorithm $\mu\gets {{\sf Sig.sign}}(sk,m)$ and a verification algorithm ${{\sf Sig.verify}}$. We assume the standard security notion (unforgeability under chosen message attacks) and perfect completeness, that is, a correctly generated signature will always verify: 
+
+$$\begin{aligned}
 \forall m,&&
 \Pr[{{\sf Sig.verify}}(pk,m,\mu)={\sf accept}]=1\\
 \textrm{where}&&(pk,sk)\gets{{\sf Sig.keygen}}\ ;\ \mu\gets{{\sf Sig.sign}}(sk,m)~.
-\end{aligned}$$ Chia uses signatures in the foliage (to chain foliage blocks and to bind them to the trunk) and also in the trunk (so only the farmer can compute the challenge). To avoid grinding attacks, the signatures used in the trunk must be unique, that is for every $pk$ (this includes maliciously generated public keys) and message $m$ there can be at most one accepting signature $$\begin{aligned}
+\end{aligned}
+$$ 
+
+Chia uses signatures in the foliage (to chain foliage blocks and to bind them to the trunk) and also in the trunk (so only the farmer can compute the challenge). To avoid grinding attacks, the signatures used in the trunk must be unique, that is for every $pk$ (this includes maliciously generated public keys) and message $m$ there can be at most one accepting signature 
+
+$$\begin{aligned}
 \forall pk,m,\ 
 ({{\sf Sig.verify}}(pk,m,\mu)={\sf accept})\wedge 
 ({{\sf Sig.verify}}(pk,m,\mu')={\sf accept})\Rightarrow (\mu=\mu')~.
 %\\
 %&&\textrm{where }(pk,sk)\gets{\Sigk}
-\end{aligned}$$
+\end{aligned}
+$$
 
 ## A.2	(Unique) Proofs Of Space
 

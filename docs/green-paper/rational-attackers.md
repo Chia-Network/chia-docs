@@ -83,7 +83,7 @@ One might assume that the no-slowdown property would be achieved by any "natural
 
 <figure>
 	<img src="/img/green-paper/balanceattack.png" alt="alt text" />
-	<figcaption>Figure 5: Illustration of the balancing attack against [FZ17] taken from [BDK+ 19]</figcaption>
+	<figcaption>Figure 5: Illustration of the balancing attack against [@Fan2017] taken from [@Bagaria2019]</figcaption>
 </figure>
 
 ### 3.5.3	Examples of No-Slowdown.
