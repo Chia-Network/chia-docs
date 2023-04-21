@@ -147,7 +147,7 @@ $$
 &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\
 &\le -\exp\left(\frac{\mathsf{PoST}_h(t_0,t_1)}{D} \cdot\left( \frac{f}{1.47}-1 \right)^2\right)
 \end{aligned}
-$$
+$$ 
 <div class="eqnumber">eq.(17)</div>
 
 Thus like in Bitcoin, in $\textsf{Chia}$ the probability of a successful fork decreases exponentially fast in the length of the fork.

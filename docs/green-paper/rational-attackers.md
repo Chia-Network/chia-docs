@@ -41,15 +41,23 @@ By the Proposition below delayed gratification and the no slowdown property impl
 **Proposition 1** (Delayed Gratification and No Slowdown implies Chain Quality). *Consider a longest-chain protocol which has the delayed gratification and no slowdown property against an adversary who controls an $\alpha$ fraction of the global resource, then the chain quality is $1-\frac{\alpha}{1-\alpha}$ (compared to the ideal $1-\alpha$).*
 
 *Proof.* Consider an adversarial miner ${\cal A}$ with an $\alpha$ fraction of the resource and let $\ell$ denote the (expected) number of blocks to be found if everyone would mine honestly. By the no slowdown property, no matter what ${\cal A}$ does the number of blocks found is at least $\ell'\ge (1-\alpha)\cdot\ell$. By delayed gratification, at most $\alpha\cdot\ell$ of those blocks were created by ${\cal A}$, we get a chain quality of 
-<figure>
-	<img src="/img/green-paper/proposition-1-proof.png" alt="Equations in proof of proposition 1" />
-</figure>
+
+$$
+\begin{aligned}
+\textit{chain quality}&=\frac{\text{honest blocks}}{\text{total blocks}}\\
+&=\frac{\ell' - \alpha \cdot \ell}{\ell'}\\
+&=1-\frac{\alpha\cdot\ell}{\ell'}\\
+&\ge 1-\frac{\alpha\cdot\ell}{(1-\alpha)\cdot \ell}\\
+&=1-\frac{\alpha}{1-\alpha}
+\hspace{10em}\square
+\end{aligned}
+$$ 
 
 ---
 
 ## 3.4	Delayed Gratification in Chia
 
-Having motivated why the no slowdown and delayed gratification properties are useful, in this and the next section we will sketch how they are achieved in Chia. Recall that delayed gratification means a selfish farmer cannot add more blocks into the chain than he could by honestly following the protocol. To achieves this in $\textrm{{\sf Chia}}$ we ensure that
+Having motivated why the no slowdown and delayed gratification properties are useful, in this and the next section we will sketch how they are achieved in Chia. Recall that delayed gratification means a selfish farmer cannot add more blocks into the chain than he could by honestly following the protocol. To achieve this in $\textrm{{\sf Chia}}$ we ensure that
 
 :::info Objective 1: Unpredictable and Immutable Challenges
 (a) a challenge is revealed as late as possible.
