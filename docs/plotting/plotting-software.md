@@ -2,33 +2,54 @@
 title: Plotting Software
 slug: /plotting-software
 ---
+## Software
 
 We are introducing the ability to choose alternative plotters when creating plots both in the Chia GUI and the CLI.
 
-The plotters supported include Bladebit, madMAx, and the original reference chiapos plotter. Each plotter has slightly different hardware requirements and may need slightly different options specified.
+Chia develops the Bladebit suite of plotters, which includes Bladebit cudaplot, ramplot, and diskplot. The reference implementation from mainnet launch is Chiapos, which isn’t used anymore but still exists for reference.
 
-## madMAx
 
-We are packaging a version of madMAx from a Chia Network fork, however, there are no substantial changes in the functionality of this plotter and we do not anticipate making improvements or responding to issues in madMAx. Issues with the madMAx plotter should continue to be addressed through the original madMAx repository on GitHub (https://github.com/madMAx43v3r/chia-plotter). The Chia Network fork serves primarily as a means of generating build artifacts. We are including the madMAx plotter with the express permission of "madMAx43v3r" (https://github.com/madMAx43v3r)
+### Bladebit cudaplot
 
-For details on settings and usage of madMAx please refer to the original madMAx GitHub repository, or run the help command
-`chia plotters madmax -h`
+Status: alpha
 
-The recommended configuration to start at is to set -r to the number of physical CPU cores in the system. The DRAM is set automatically determined by core count and bucket size, with less DRAM being used with larger buckets. The default of 256 is generally recommended for NVMe SSDs, although people can try different combinations to obtain the best plotting speeds.
+[https://downloads.chia.net/bladebit](https://downloads.chia.net/bladebit) 
 
-## Bladebit
+Requirements
 
-Bladebit is a high-performance, RAM-only, k32-only plotter. It has high memory requirements: at least 416 GiB of RAM is required. Typically it is meant for high-end plotting setups. Bladebit is now an official part of Chia and it has been used successfully to produce petabytes worth of plots.
+* OS: Windows and Linux
+* Memory: 256GB of DRAM
+* GPUs: CUDA capability 5.2 (NVIDIA 10 series GPU or higher) with 8GB of GPU VRAM
 
-It was written from scratch with the intention of saturating CPU and memory usage. It can create a single k32 plot in as fast as 3 minutes, 12 seconds on Intel Ice Lake Xeon CPUs.
+Usage
 
-Linux and Windows are both supported, with Linux currently yielding significantly faster plot times. macOS is not supported at this time and bladebit is not available to select in the UI on macOS.
+`bladebit_cuda -f <farmer key> -c <contract address> -n 1 cudaplot /mnt/ssd`
 
-When using Bladebit the typical bottleneck becomes the final write to disk. To ensure uninterrupted plotting, users tend to choose to write the plots temporarily to a set of NVMe drives and then moving them from the NVMe drive to their final destination, whilst the next consecutive plot continues.
 
-```
-chia plotters bladebit -h
-```
+### Bladebit [diskplot](https://www.chia.net/2022/08/08/announcing-bladebit-2-0/)
+
+* Still uses temporary storage to create plots, accessible to the majority of farmers
+* Very low minimum memory requirements (2-4G) for low resource plotting in embedded or entry-level systems
+* Cross-platform and OS compatibility
+* Sequential writes can better take advantage of SSD burst performance and reduce SSD wear by reducing write amplification factor.
+* Can use DRAM write cache to significantly reduce SSD writes and can take advantage of any extra increments (no minimum required)
+* Takes full advantage of increased disk bandwidth from PCIe 4.0
+* Pipelined performance to max out CPU
+
+Usage
+
+Example with temporary SSD mounted to /mnt/ssd1 and destination drive as /mnt/ssd2, and using 100GB of DRAM cache to reduce temporary disk writes
+`bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 diskplot -t1 /mnt/ssd1/ -b 64 --cache 100G -a /mnt/ssd2`
+
+
+### Bladebit ramplot
+Usage
+
+`bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 ramplot /mnt/ssd`
+
+### Additional 3rd party plotters
+
+You can find additional 3rd party plotters on a list at [https://xch.farm/plotting/](https://xch.farm/plotting/) such as madMAx Gigahorse and chia-plotter.
 
 ## How to use in Chia
 

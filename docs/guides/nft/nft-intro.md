@@ -51,7 +51,7 @@ While some creators may wish to release their NFTs as individual pieces (so-call
 "Edition" means multiple NFTs with _identical_ data and metadata. In the NFT1 standard, the NFT's edition is part of the _on-chain_ metadata. This means that it is built into the NFT itself. There are two parmeters related to edition:
 
 - `edition_number` is the sequence number of this NFT's edition. For example, if the collection contains ten identical images of an apple, the NFTs could be labeled `Apple #1 of 10`, `Apple #2 of 10`, etc. The `edition_number` would then be `1`, `2`, etc. If each NFT in a collection is distinct, then the `edition_number` for each NFT is `1`. In this case, most NFT creators will choose not to specify this redundant `edition_number`.
-- `edition_count` is the total number of identical NFTs that are part of this edition. If `edition_number` is specified for an NFT, then `edition_count` is required. In the above example, each NFT that contains an identical apple image would have an `edition_count` of 10. Because this parameter must be specified upon an NFT's minting, it gives prospective buyers confidence that no surprise copies of an NFT will later be minted.
+- `edition_total` is the total number of identical NFTs that are part of this edition. If `edition_number` is specified for an NFT, then `edition_total` is also recommended to be specified. In the above example, each NFT that contains an identical apple image would have an `edition_total` of 10.
 
 ## CLVM Cost
 
@@ -340,11 +340,9 @@ Under Wallet Key 3 of this setup, it would not be possible to create another NFT
 
 ## Obtain images with corresponding hashes
 
-For this guide, we'll obtain four images and hashes to be used for creating NFTs with the following use cases:
+For this guide, we'll obtain two images and hashes to be used for creating NFTs with the following use cases:
 
-- CLI, no DID
 - CLI, with DID
-- RPC, no DID
 - RPC, with DID
 
 Here's the general technique to obtain images and hashes:
@@ -372,12 +370,7 @@ Then, calculate the image's hash. Here are three (of many) options:
 
 In all three cases, the hash for this sample image is `14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0`.
 
-The following is a list of the sample images and hashes this guide will use. For the NFTs with DIDs, we'll specify the metadata and license information. Additionally, we'll use multiple copies of the Metadata URI with these NFTs. For the NFTs without DIDs, we won't specify license or metadata information (this is only for simplicity -- normally you would want to specify this data).
-
-### CLI, no DID
-
-- URI: [https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg](https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg)
-- Hash: feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68
+The following is a list of the sample images and hashes this guide will use, along with the metadata and license information. Additionally, we'll use multiple copies of the Metadata URI with these NFTs.
 
 ### CLI, with DID
 
@@ -388,11 +381,6 @@ The following is a list of the sample images and hashes this guide will use. For
 - Metadata Hash: e9e9366f050e90ceb04a4778f2adfa02dfb565327d225eb35101f0de553ac20b
 - License URI: https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE
 - License Hash: 30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6
-
-### RPC, no DID
-
-- URI: [https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg](https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg)
-- Hash: 995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600
 
 ### RPC, with DID
 

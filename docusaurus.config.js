@@ -12,7 +12,7 @@ const katex = require('rehype-katex');
     onBrokenMarkdownLinks: 'throw',
     favicon: 'img/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
-    projectName: '{{ REPOSITORY_NAME }}',
+    projectName: 'chia-docs',
     i18n: {
       defaultLocale: 'en',
       locales: ['en', 'zh'],
@@ -60,7 +60,7 @@ const katex = require('rehype-katex');
             },
             {
               type: 'doc',
-              docId: 'guides/chialisp-primer/intro',
+              docId: 'guides/crash-course/introduction',
               position: 'left',
               label: 'Guides',
             },

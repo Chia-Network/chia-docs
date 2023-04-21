@@ -146,7 +146,7 @@ Using this path each time can get old, so you have the option of creating an ali
 ```
 
 ```bash
-alias chia=~/AppData/Local/chia-blockchain/app-1.5.1/resources/app.asar.unpacked/daemon/chia.exe
+alias chia=~/AppData/Local/Programs/Chia/resources/app.asar.unpacked/daemon/chia.exe
 ```
 
 ```mdx-code-block
@@ -223,6 +223,20 @@ By managing just a single wallet, all of your chia commands can be simplified by
 If you are already on a testnet, skip to [instructions for the CLI](#cli).
 
 For most dev work on Chia, you'll want to be on the testnet. That way, you're learning with fake Chia and don't put any funds at risk.
+
+:::info
+
+If you were previously running on mainnet, you will have a list of mainnet peers stored in the following file:
+
+`~/.chia/mainnet/db/peers.dat`
+
+Be sure to **rename or delete** this file when you convert your system to running on testnet. If you do not do this, your system will eventually drop its mainnet peers and add new testnet peers, but this could take a long time.
+
+One way to speed up the peer discovery process even more is to run the [add-nodes bash script](https://github.com/wallentx/farm-and-ranch-supply-depot/blob/main/bin/extra/add-nodes). Note that this script won't work on Windows. Your mileage also may vary on Linux and MacOS.
+
+:::
+
+Run the following commands to instruct your node to connect to the testnet:
 
 ```bash
 chia stop all -d

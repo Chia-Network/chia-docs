@@ -25,7 +25,13 @@ Note that additional NFT metadata CHIPs are likely to be released in the future.
 
 ## Create a DID Wallet
 
-An NFT wallet has the option of being associated with a DID. In this section, we'll create a new DID. Later we'll create two NFT wallets -- one that is associated with a DID and one that is not.
+:::note
+
+You are recommended to associate all NFTs with DIDs. This helps to establish the NFT's provenance, among other benefits. This guide will only discuss how to create NFTs in the recommended way, with DIDs.
+
+:::
+
+In this section, we'll create a new DID. Later we'll create an NFT wallet that is associated with the new DID.
 
 To create a new DID using Chia's CLI:
 
@@ -76,22 +82,12 @@ Test DID:
 ## Create an NFT Wallet
 
 :::info
-Each NFT wallet can be anchored to either a DID or a key pair. A key pair can only contain a single NFT wallet, which will act as the "inbox" for all NFTs associated with that key pair. Each DID can also contain a single NFT wallet, which allows for the creation of multiple NFT wallets inside the same wallet key pair.
+
+Each NFT wallet can be anchored to a DID. Likewise, each DID can contain a single NFT wallet.
+
 :::
 
-First, we'll create an NFT wallet that is not associated with a DID:
-
-```bash
-chia wallet nft create
-```
-
-That should produce an output similar to this:
-
-```
-Successfully created an NFT wallet with id 3 on key 2527948602
-```
-
-Next, we'll create a second NFT wallet that is associated with the DID you already created:
+Create an NFT wallet that is associated with the DID you already created:
 
 ```bash
 chia wallet nft create -di did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83 -n "DID-Linked NFT Wallet"
@@ -103,9 +99,9 @@ That should produce an output similar to this:
 Successfully created an NFT wallet with id 4 on key 2527948602
 ```
 
-It will take a few minutes for your new wallets to be confirmed on the blockchain. Once the new wallets show up, take note of the `Wallet ID`s, which are `3` and `4` in this example.
+It will take a few minutes for your new wallet to be confirmed on the blockchain. Once the new wallet shows up, take note of the `Wallet ID` (`4` in this example).
 
-Run the following command to see if these wallets are there yet:
+Run the following command to see if the wallet is there yet:
 
 ```bash
 chia wallet show
@@ -133,13 +129,6 @@ Test DID:
    -DID ID:                did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83
    -Wallet ID:             2
 
-NFT Wallet:
-   -Total Balance:         0.0
-   -Pending Total Balance: 0.0
-   -Spendable:             0.0
-   -Type:                  NFT
-   -Wallet ID:             3
-
 DID-Linked NFT Wallet:
    -Total Balance:         0.0
    -Pending Total Balance: 0.0
@@ -148,62 +137,6 @@ DID-Linked NFT Wallet:
    -DID ID:                did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83
    -Wallet ID:             4
 ```
-
-## Mint an NFT (No DID)
-
-:::warning important
-
-The values used in these commands are specific to this guide. Change any values that are different when you are following this guide such as the wallet id.
-
-:::
-
-For this example, we'll mint an NFT using only the required options:
-
-```bash
-chia wallet nft mint -i 3 -u https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg -nh feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68 -m 0.000265
-```
-
-That should produce an output similar to this:
-
-```js
-NFT minted Successfully with spend bundle:
-{
-  'aggregated_signature': '0xa2a5761bb71cf5c022e2b219a619f679242d3083d78fa19e02b3c908941f4b460f262677bf6eedccc1f4fdcbb757a0ae11f0605b59e934f549f2f3c27746486382fa4f190f8133b935fd11f33703a3ab09462e5898934200cbb0b68e3633f99f',
-  'coin_solutions': [{
-    'coin': {
-      'amount': 69999996,
-      'parent_coin_info': '0xa0dd50f57cf3e1834a45898fc0565664e31f300c358ce821cf6e0d856b69c3be',
-      'puzzle_hash': '0x60bd7cedf9e920e8d3df76ae21cd6528726ce608c6147ee21843d74fc5d59e69'
-    },
-    'puzzle_reveal': ...,
-    'solution': ...
-  }, {
-    'coin': {
-      'amount': 1,
-      'parent_coin_info': '0x7df44ef7a08a497b6bc31fc090fa3e57f6630142f8f123951e2d3b18685e9bd0',
-      'puzzle_hash': '0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9'
-    },
-    'puzzle_reveal': ...,
-    'solution': ...
-  }, {
-    'coin': {
-      'amount': 1,
-      'parent_coin_info': '0xb1ee9a2b717aefcce83c74e5a4a5e3b86f583f1916c34f3eeff8d2f3b9888b40',
-      'puzzle_hash': '0x9ea9c1668efabe5ba66570707539b17dcffff06b0ccc35fe1a377170737f8c79'
-    },
-    'puzzle_reveal': ...,
-    'solution': ...
-  }
-]}
-```
-
-Here is a description of the options used:
-
-| Option | Description                                                   |
-| ------ | ------------------------------------------------------------- |
-| `-i`   | The id of your NFT wallet.                                    |
-| `-u`   | A comma-separated list of URIs where this image may be found. |
-| `-nh`  | The NFT's data hash. Must match to be viewable in the wallet. |
 
 ## Mint an NFT (With DID)
 
@@ -284,43 +217,9 @@ If successful, you will receive a JSON output, including the coin additions and 
 
 Wait a few minutes for your NFT to be confirmed on the blockchain. Eventually, the NFT will show up.
 
-Run the following command to check:
-
-```bash
-chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
-```
-
-That should produce an output similar to this:
-
-```json
-{
-  "nft_list": [
-    {
-      "data_hash": "14836B86A48E1B2B5E857213AF97534704475B4C155D34B2CB83ED4B7CBA2BB0",
-      "data_uris": [
-        "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
-      ],
-      "did_owner": "",
-      "edition_total": 1,
-      "edition_number": 1,
-      "launcher_id": "C2F3F7D54D254381FD33FBE2B6C031E5BE3BA1267215A2FA182E064ED6015FEF",
-      "license_hash": "",
-      "license_uris": [],
-      "metadata_hash": "",
-      "metadata_uris": [],
-      "nft_coin_id": "4296D4E49E2056DB5AEB62DF849851E61326DAEA4337825BE15410E7F4C07E32",
-      "royalty": 0,
-      "version": "NFT0"
-    }
-  ],
-  "success": true,
-  "wallet_id": 2
-}
-```
-
 ## List Your NFTs
 
-We'll list the NFTs from both wallets that were created with the CLI.
+We'll list the NFTs from the wallet that was created with the CLI.
 
 Run the following command to show the list of wallets:
 
@@ -350,13 +249,6 @@ Test DID:
    -DID ID:                did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83
    -Wallet ID:             2
 
-NFT Wallet:
-   -Total Balance:         0.0
-   -Pending Total Balance: 0.0
-   -Spendable:             0.0
-   -Type:                  NFT
-   -Wallet ID:             3
-
 DID-Linked NFT Wallet:
    -Total Balance:         0.0
    -Pending Total Balance: 0.0
@@ -366,46 +258,7 @@ DID-Linked NFT Wallet:
    -Wallet ID:             4
 ```
 
-Next, show the NFT the non-DID-linked wallet (Wallet ID 3). This NFT used a minimum set of options when created.
-
-Run the following command:
-
-```bash
-chia wallet nft list -i 3
-```
-
-That should produce an output similar to this:
-
-```
-NFT identifier: nft1k8hf52m30thue6puwnj6ff0rhph4s0cezmp570h0lrf08wvg3dqq5zsvzp
-Launcher coin ID: b1ee9a2b717aefcce83c74e5a4a5e3b86f583f1916c34f3eeff8d2f3b9888b40
-Launcher puzhash: eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9
-Current NFT coin ID: 11c25eb4f17fccac63a5cf07421258c014592c55766826f28fe8f649ba78fc08
-On-chain data/info: ((117 "https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg") (104 . 0xfeef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68) (28021) (27765) (29550 . 1) (29556 . 1))
-Owner DID: None
-Royalty percentage: None
-Royalty puzhash: None
-NFT content hash: feef1ea09c0f93fcf5a8d7e0018f2511638d317d78e3d3a71462cdb061baad68
-Metadata hash:
-License hash:
-NFT series total: 1
-Current NFT number in the series: 1
-Metadata updater puzhash: fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b
-NFT minting block height: 1145300
-Inner puzzle supports DID: False
-NFT is pending for a transaction: False
-
-URIs:
-https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg
-
-Metadata URIs:
-
-License URIs:
-```
-
-Now we'll show the NFT that used every available option. This NFT was created with a DID.
-
-Run the following command:
+Show the NFT from this tutorial:
 
 ```bash
 chia wallet nft list -i 4
@@ -677,32 +530,6 @@ For this tutorial, we'll send the NFTs to a commonly-used burn address.
 - For mainnet, the corresponding address is `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
 
 The reason these work as a burn address is that there is no known puzzle that matches this puzzle hash. Even if there were, it would have to be spendable. That is an **extremely** unlikely set of conditions to ever occur.
-
-The transfer command is the same for NFTs whether or not they are associated with a DID:
-
-```bash
-chia wallet nft transfer -i 3 -ni 11c25eb4f17fccac63a5cf07421258c014592c55766826f28fe8f649ba78fc08 -ta txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
-```
-
-That should produce an output similar to this:
-
-```
-NFT transferred successfully with spend bundle:
-{
-  'aggregated_signature': '0x9714115a2f074a3787afc90851155e0bb5c8438b4f8b7e48811c6c4afa3fd718dd273d2fe70ef01aa43dd7059b35582d11de7ae071dffb59c8732f21846cdab6ed8fbd777b93bf713b5c294475e2bd7278d4ebcbf42a79e5af3f15a9e7302697',
-  'coin_solutions': [{
-    'coin': {
-      'amount': 1,
-      'parent_coin_info': '0x40a87296fc0840eec777b56539e3545c9d4d6e74a02c6000f8f905eb2e53d799',
-      'puzzle_hash': '0x642e08cc42ebfe314e2d492f2f8d52f6ba5d57ced3ff60bf8c3c3d0f525a5b94'
-    },
-    'puzzle_reveal': ...,
-    'solution': ...
-  }]
-}
-```
-
-And finally:
 
 ```bash
 chia wallet nft transfer -i 6 -ni 3d77d58164db748ff874551af7ee7e5930b53ae63453efd451213e8bac1acb35 -ta txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh

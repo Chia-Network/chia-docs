@@ -139,25 +139,13 @@ Profile 1:
 
 ## Create an NFT Wallet
 
-First, we'll create an NFT wallet that doesn't reference a DID:
+:::note
 
-```bash
-chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet", "name": "My NFT Wallet (RPC/non-DID)", "fee": 10000000}'
-```
+You are recommended to associate all NFTs with DIDs. This helps to establish the NFT's provenance, among other benefits. This guide will only discuss how to create NFTs in the recommended way, with DIDs.
 
-That should produce an output similar to this:
+:::
 
-```json
-{
-  "success": true,
-  "type": 10,
-  "wallet_id": 5
-}
-```
-
-Note that a wallet with a `type` of `10` is an NFT wallet.
-
-Next, we'll create an NFT wallet that references your DID wallet's `Wallet ID`. Be sure to change the `did_id` to your local DID wallet's `Wallet ID`.
+Create an NFT wallet that references your DID wallet's `Wallet ID`. Be sure to change the `did_id` to your local DID wallet's `Wallet ID`.
 
 Run the following command:
 
@@ -175,7 +163,7 @@ That should produce an output similar to this:
 }
 ```
 
-You will now have two DIDs and two NFT wallets, one associated with your DID, and one not.
+You will now have two DIDs and one NFT wallet.
 
 Run the following command periodically so you know when they are added:
 
@@ -213,13 +201,6 @@ Profile 1:
    -DID ID:                did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga
    -Wallet ID:             4
 
-My NFT Wallet (RPC/non-DID):
-   -Total Balance:         0.0
-   -Pending Total Balance: 0.0
-   -Spendable:             0.0
-   -Type:                  NFT
-   -Wallet ID:             5
-
 My NFT Wallet (RPC/DID):
    -Total Balance:         0.0
    -Pending Total Balance: 0.0
@@ -227,112 +208,6 @@ My NFT Wallet (RPC/DID):
    -Type:                  NFT
    -DID ID:                did:chia:19z0ladugc29x36580yejgp0s6czq0axt4tq0w7kr9uk4042asusqvxldga
    -Wallet ID:             6
-```
-
-## Mint an NFT (No DID)
-
-:::warning important
-
-The values used in these commands are specific to this guide. Change any values that are different when you are following this guide such as the wallet id.
-
-:::
-
-You can mint your NFT without a DID like this:
-
-```bash
-chia rpc wallet nft_mint_nft '{"wallet_id": 5, "uris": ["https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"], "hash": "995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600", "fee": 265000000}'
-```
-
-That should produce an output similar to this:
-
-```json
-{
-    "spend_bundle": {
-        "aggregated_signature": "0xb5dee0fd86ccd2c136b173dd8d0b8ee5541365f4266764b6361914a4b1f3b53bc9e0004cc248adc6b9f9a8f8c9a045420b0e4dccaabd6645b4c0dd2d18037b70537f9e653abd438df12471a68c4dc640d95bc4c387c67ea247ad5752f856b092",
-        "coin_solutions": [
-            {
-                "coin": {
-                    "amount": 1,
-                    "parent_coin_info": "0xd2a9c664cb131b4a9516ad4750e49924f77a1f784d43a6544998d5c4beac6d2d",
-                    "puzzle_hash": "0xe15d783a162ff6c5c89e90db2b5d5b142146d52d72fc2b83e39e3d25d4c183bc"
-                },
-                "puzzle_reveal": ...,
-                "solution": ...
-            },
-            {
-                "coin": {
-                    "amount": 999999999998,
-                    "parent_coin_info": "0x1820a1dba8b42b2e622c957ddcdaca7d5d6672428e68958af6e5c26f695ce2f8",
-                    "puzzle_hash": "0xd7e73f55132c92e7c147b477854388b2cfadd5b793717239bfca690031247b21"
-                },
-                "puzzle_reveal": ...,
-                "solution": ...
-            },
-            {
-                "coin": {
-                    "amount": 1,
-                    "parent_coin_info": "0x00a986af4f2aecf5c32c2042c4651a9a3ceedb57fe68646258ab35815b31cefb",
-                    "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
-                },
-                "puzzle_reveal": ...,
-                "solution": ...
-            }
-        ]
-    },
-    "success": true,
-    "wallet_id": 5
-}
-```
-
-Here is a description of the parameters used in the command:
-
-| Parameter   | Description                          |
-| ----------- | ------------------------------------ |
-| "wallet_id" | The ID of your NFT wallet.           |
-| "uris"      | A list of URIs containing the image. |
-| "hash"      | The hash of the image.               |
-| "fee"       | The transaction fee.                 |
-
-Wait a few minutes for your NFT to be confirmed on the blockchain.
-
-Run the following command to check whether it's been minted yet:
-
-```bash
-chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
-```
-
-That should produce an output similar to this:
-
-```json
-{
-    "nft_list": [
-        {
-            "chain_info": "((117 "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg") (104 . 0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600) (28021) (27765) (29550 . 1) (29556 . 1))",
-            "data_hash": "0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600",
-            "data_uris": [
-                "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
-            ],
-            "launcher_id": "0xd2a9c664cb131b4a9516ad4750e49924f77a1f784d43a6544998d5c4beac6d2d",
-            "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
-            "license_hash": "0x",
-            "license_uris": [],
-            "metadata_hash": "0x",
-            "metadata_uris": [],
-            "mint_height": 1150666,
-            "nft_coin_id": "0x8470b7feda2f42459399bba36308449bfd24f46e4842258a25c60a0dfeb3f72c",
-            "owner_did": null,
-            "pending_transaction": false,
-            "royalty_percentage": null,
-            "royalty_puzzle_hash": null,
-            "edition_number": 1,
-            "edition_total": 1,
-            "supports_did": false,
-            "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
-        }
-    ],
-    "success": true,
-    "wallet_id": 5
-}
 ```
 
 ## Mint an NFT (With DID)
@@ -720,7 +595,7 @@ Now add the new license URI:
 chia rpc wallet nft_add_uri '{"wallet_id": 5, "nft_coin_id": "0xe2487e41652b3aa01f0937423ccd9e5ed3d3442accb71974ad1e5e2b240ac2e2", "key": "lu", "uri": "new_licenseuri.com"}'
 ```
 
-Thats hould produce an output similar to this:
+That should produce an output similar to this:
 
 ```json
 {
@@ -854,60 +729,13 @@ Pool public key (m/12381/8444/1/0): b879c9f384a7fc94f3195e613c0b22ff65718da9e056
 First wallet address: txch1nqpall7xesjrk8eggqxxzly2jsntrgv4usfhk5uckg8gsxfmvpxsgjvzz5
 ```
 
-Now you will the coin IDs of each NFT to transfer.
-
-Starting with wallet 5, which has no DID:
-
-```bash
-chia rpc wallet nft_get_nfts '{"wallet_id": 5}'
-```
-
-That should produce an output similar to this:
-
-```json
-{
-    "nft_list": [
-        {
-            "chain_info": "((117 "new_datauri.com" "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg") (104 . 0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600) (28021 "new_metadatauri.com") (27765 "new_licenseuri.com") (29550 . 1) (29556 . 1))",
-            "data_hash": "0x995b5e2837fa68292e88dd5f900ea83953aafcb6bfb7c086f1ba7671946c4600",
-            "data_uris": [
-                "new_datauri.com",
-                "https://images.pexels.com/photos/4812689/pexels-photo-4812689.jpeg"
-            ],
-            "launcher_id": "0xd2a9c664cb131b4a9516ad4750e49924f77a1f784d43a6544998d5c4beac6d2d",
-            "launcher_puzhash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
-            "license_hash": "0x",
-            "license_uris": [
-                "new_licenseuri.com"
-            ],
-            "metadata_hash": "0x",
-            "metadata_uris": [
-                "new_metadatauri.com"
-            ],
-            "mint_height": 1150666,
-            "nft_coin_id": "0x1185a9fd7924b8d38062197ada0cc95d372c05892dfa347440914e0869dd6f01",
-            "owner_did": null,
-            "pending_transaction": false,
-            "royalty_percentage": null,
-            "royalty_puzzle_hash": null,
-            "edition_number": 1,
-            "edition_total": 1,
-            "supports_did": false,
-            "updater_puzhash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
-        }
-    ],
-    "success": true,
-    "wallet_id": 5
-}
-```
-
-Then wallet 6, which has a DID:
+Now you will need the coin ID of the NFT to transfer.
 
 ```bash
 chia rpc wallet nft_get_nfts '{"wallet_id": 6}'
 ```
 
-That should produce an output similar to this:
+That should produce an output similar to this (note the `nft_coin_id` value):
 
 ```json
 {
@@ -948,36 +776,7 @@ That should produce an output similar to this:
 }
 ```
 
-Run the `nft_transfer_nft` RPC for the first NFT:
-
-```bash
-chia rpc wallet nft_transfer_nft '{"wallet_id": 5, "target_address": "txch1nqpall7xesjrk8eggqxxzly2jsntrgv4usfhk5uckg8gsxfmvpxsgjvzz5", "nft_coin_id": "0x1185a9fd7924b8d38062197ada0cc95d372c05892dfa347440914e0869dd6f01"}'
-```
-
-That should produce an output similar to this:
-
-```json
-{
-    "spend_bundle": {
-        "aggregated_signature": "0xa2e00566b404201a2e84eaf130ae7b1a3ee345f4b00b007154ed5f16c2bbd72206876c300942f823f180813d5b08f363029a3cf7a674b65e5b77e0ea9febc9aa354bc0e8a719071331d08bd5a2067f3c89278e43a2f4c3e9800f6e262383528c",
-        "coin_solutions": [
-            {
-                "coin": {
-                    "amount": 1,
-                    "parent_coin_info": "0xe2487e41652b3aa01f0937423ccd9e5ed3d3442accb71974ad1e5e2b240ac2e2",
-                    "puzzle_hash": "0x3690d884e384638122bd2c757a54dce2b2d0ca568a52849ff5a8396fd59431ab"
-                },
-                "puzzle_reveal": ...,
-                "solution": ...
-            }
-        ]
-    },
-    "success": true,
-    "wallet_id": 5
-}
-```
-
-Now run it for the second NFT:
+Run the `nft_transfer_nft` RPC:
 
 ```bash
 chia rpc wallet nft_transfer_nft '{"wallet_id": 6, "target_address": "txch1nqpall7xesjrk8eggqxxzly2jsntrgv4usfhk5uckg8gsxfmvpxsgjvzz5", "nft_coin_id": "0x0ee605a198dca410f4a820d4e2c8186c4d4e779d88330406b5e80579554e2213"}'
