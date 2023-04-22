@@ -1,10 +1,12 @@
 ---
-title: Abstract - $\textrm{{\sf Chia}}$ Green Paper
+title: Abstract - Chia Green Paper
 sidebar_label: Abstract
 slug: /abstract
 ---
 
-# Abstract
+# Green Paper
+
+## Abstract
 
 This document outlines the rationale and main design ideas behind the consensus layer of $\textrm{{\sf Chia}}$, a longest-chain blockchain akin to Bitcoin. It achieves comparable security guarantees as Bitcoin's Proof of Work (PoW) based Nakamoto consensus, while using Proofs of Space in combination with Verifiable Delay Functions (VDFs) to achieve Sybil resistance. This makes $\textrm{{\sf Chia}}$ much more [sustainable](https://chiapower.org/) and also more [decentralized](https://xch.farm/decentralization/) than a PoW based blockchain could be.
 

@@ -6,7 +6,7 @@ slug: /appendix
 
 # A - Building Blocks: PoSpace, VDFs and Signatures
 
-In this section we sketch the main building blocks used in the $\textsf{Chia}$ blockchain: unique digital signatures, proofs of space [<a href="/green-paper-references/#DFKP15">DFKP15</a>; <a href="/green-paper-references/#AAC17">AAC+17</a>] and verifiable delay functions [<a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Wes20">Wes20</a>]. The definitions are not fully general, but instead tailored to the particular constructions of PoSpace from [<a href="/green-paper-references/#AAC17">AAC+17</a>] and the VDFs [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] based on sequential squaring.
+In this section we sketch the main building blocks used in the $\textsf{Chia}$ blockchain: unique digital signatures, proofs of space [<a href="/green-paper-references/#DFKP15">DFKP15</a>; <a href="/green-paper-references/#AAC17">AAC+17</a>] and verifiable delay functions [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Wes20">Wes20</a>]. The definitions are not fully general, but instead tailored to the particular constructions of PoSpace from [<a href="/green-paper-references/#AAC17">AAC+17</a>] and the VDFs [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] based on sequential squaring.
 
 ## A.1	(Unique) Digital Signatures
 

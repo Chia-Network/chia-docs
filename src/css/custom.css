@@ -60,3 +60,9 @@ figcaption {
   margin-bottom: 25px;
   width: 100%;
 }
+
+/* UX */
+
+html {
+  scroll-padding-top: 5rem;
+}
