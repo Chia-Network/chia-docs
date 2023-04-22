@@ -19,7 +19,7 @@ We discussed in §2 the main security issues of a PoSpace based longest-chain b
 
 A key difference between a PoW based longest-chain protocol and a longest- chain protocol based on an efficient proof system like PoStake or PoSpace is the fact that only the PoW based chains is guaranteed to recover security once an adversary that controls a sufficiently large fraction of the resource, even if it's just for a short period. This is sometimes called "a $51\%$ attack" referring to the fact that in bitcoin an adversary controlling $>50\%$ of the hashing power can break security in pretty much any way they like (they can double spend, get $100\%$ of the block rewards or censor). We'll stick with this expression even though the fraction of the resource required to control a chain can be lower than $50\%$ (as mentioned in §1.1, in ${\sf Chia}$ controlling $43\%$ of the space is sufficient).
 
-There's also a key difference between PoStake and PoSpace. By using VDFs in addition to PoSpace as in $\textsf{Chia}$ we get a chain that does have this self- healing property. While we can also augment a PoStake based chain with VDFs [@Deb2021], the resulting chain will not be self-healing.
+There's also a key difference between PoStake and PoSpace. By using VDFs in addition to PoSpace as in $\textsf{Chia}$ we get a chain that does have this self- healing property. While we can also augment a PoStake based chain with VDFs [<a href="/green-paper-references/#DKT21">DKT21</a>], the resulting chain will not be self-healing.
 
 ### 6.1.1	Recovering from PoW Majority in Bitcoin {#S:RBB}
 
@@ -56,7 +56,7 @@ $$
 
 ### 6.1.2	Recovering from PoStake Majority
 
-This is in stark contrast to PoStake based longest-chain protocols, where once an adversary gets hold of keys controlling a sufficiently large amount of stake, security cannot be recovered by the honest parties without resorting on some external mechanism. The reason is bootstrapping as discussed in §2.3: an adversary who holds keys which at some point in the chain controlled stake $N$, can fork at that point and bootstrap a chain to the present that looks as if they had $N$ stake throughout. The issue is aggravated due to "stake-bleeding" [@Gazi2018], which refers to the fact that the fork can amass additional stake through fees and block-rewards.
+This is in stark contrast to PoStake based longest-chain protocols, where once an adversary gets hold of keys controlling a sufficiently large amount of stake, security cannot be recovered by the honest parties without resorting on some external mechanism. The reason is bootstrapping as discussed in §2.3: an adversary who holds keys which at some point in the chain controlled stake $N$, can fork at that point and bootstrap a chain to the present that looks as if they had $N$ stake throughout. The issue is aggravated due to "stake-bleeding" [<a href="/green-paper-references/#GKR18">GKR18</a>], which refers to the fact that the fork can amass additional stake through fees and block-rewards.
 
 ### 6.1.3	Recovering from PoSpace Majority
 

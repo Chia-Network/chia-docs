@@ -114,7 +114,7 @@ The reward chain ${\cal RC}$ is a VDF chain that the time lords evaluate in para
 
 ## 5.3  Trunk Blocks {#S:TB}
 
-Whenever a farmer receives new signage points ${\sf cc\_sp}_{i,j},{\sf rc\_sp}_{i,j}$ they first check whether this points lie on a heaviest chain (cf. the discussion in §[2.5](#S:DiffCSR){reference-type="ref" reference="S:DiffCSR"}) and their VDF proofs verify. If the this is the case, the farmer checks they can create a winning PoSpace proof. This process will, for a subset of the plots, produce a PoSpace $\sigma$ and some additional value $\sigma.{\sf required\_iterations}$. Whether this PoSpace is a winning proof is now determined by the time parameter $T_i$ as 
+Whenever a farmer receives new signage points ${\sf cc\_sp}_{i,j},{\sf rc\_sp}_{i,j}$ they first check whether this points lie on a heaviest chain (cf. the discussion in §1.5) and their VDF proofs verify. If the this is the case, the farmer checks they can create a winning PoSpace proof. This process will, for a subset of the plots, produce a PoSpace $\sigma$ and some additional value $\sigma.{\sf required\_iterations}$. Whether this PoSpace is a winning proof is now determined by the time parameter $T_i$ as 
 
 $$
 \textrm{winning condition : }
