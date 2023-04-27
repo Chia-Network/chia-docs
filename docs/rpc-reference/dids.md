@@ -1276,12 +1276,12 @@ Options:
 
 Request Parameters:
 
-| Parameter          | Type   | Required | Description                                                                                                                        |
-| :----------------- | :----- | :------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| coin_id            | STRING | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID. |
-| recovery_list_hash | STRING | False    | The hash of the recovery list                                                                                                      |
-| num_verification   | NUMBER | False    |
-| metadata           | STRING | False    |
+| Parameter          | Type   | Required | Description                                                                                                                         |
+| :----------------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| coin_id            | STRING | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
+| recovery_list_hash | STRING | False    | Override the recovery list hash of the DID. Only set this if your last DID spend updated the recovery list                          |
+| num_verification   | NUMBER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
+| metadata           | STRING | False    | The new whole metadata in json format                                                                                               |
 
 <details>
 <summary>Example 1</summary>
