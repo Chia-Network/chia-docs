@@ -1,6 +1,6 @@
 ---
 slug: /guides/datalayer-user-guide
-title: DataLayer™ User Guide
+title: DataLayer User Guide
 ---
 
 ```mdx-code-block
@@ -60,6 +60,7 @@ For additional technical resources, see the following:
 
 - [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
 - [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
 
 :::note
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
