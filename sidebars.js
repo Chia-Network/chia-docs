@@ -179,7 +179,7 @@ module.exports = {
       type: 'category',
       label: 'Green Paper',
       items: [
-        'green-paper/abstract',
+        'green-paper/green-paper-abstract',
         'green-paper/constants-variables-notation',
         'green-paper/green-paper-introduction',
         'green-paper/longest-chain-protocols',
@@ -188,7 +188,7 @@ module.exports = {
         'green-paper/the-chia-blockchain',
         'green-paper/recovering-from-51-percent-attacks',
         'green-paper/green-paper-references',
-        'green-paper/appendix',
+        'green-paper/green-paper-appendix',
       ],
     },
     {

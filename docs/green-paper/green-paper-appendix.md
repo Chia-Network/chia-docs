@@ -1,7 +1,7 @@
 ---
 title: Appendix - Chia Green Paper
 sidebar_label: A - Appendix
-slug: /appendix
+slug: /green-paper-appendix
 ---
 
 # A - Building Blocks: PoSpace, VDFs and Signatures
