@@ -27,7 +27,7 @@ This guide will show you how to get started with DataLayer Permissions. Addition
 
 Support for permissions were added to DataLayer in version 1.8.0 of the Chia reference wallet. The permissioning system requires uploader (publisher) and downloader (subscriber) plugins, which function as follows:
 * When you push any changes to your DataLayer singleton, the uploader plugin is called
-* When one your DataLayer's subscribed singletons makes any on-chain changes, the downloader plugin is called
+* When one of your subscribed singletons makes any on-chain changes, the downloader plugin is called
 
 The uploader and downloader plugins take the form of a service that exposes a specific RESTful API that DataLayer will call. This service can be configured in multiple different ways:
 * Uploader only
