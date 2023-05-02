@@ -328,7 +328,16 @@ module.exports = {
         'guides/wallet_connect/walletconnect-developer-guide',
       ],
     },
-    'guides/datalayer-user-guide',
+    {
+      type: 'category',
+      label: 'DataLayer™',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/datalayer/datalayer-user-guide',
+        'guides/datalayer/datalayer-permissions',
+      ],
+    },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/clawback-primitive-guide',
