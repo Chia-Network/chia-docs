@@ -34,3 +34,35 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 h4 {
   font-size: 20px;
 }
+
+/* Figures and caption */
+
+figure {
+  width: 85%;
+  margin: 0 auto;
+}
+
+figcaption {
+  font-style: italic;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+/* Equations */
+
+.eqnumber {
+  font-style: italic;
+  color:#999999;
+  text-align: center;
+  margin-top:-10px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+/* UX */
+
+html {
+  scroll-padding-top: 5rem;
+}

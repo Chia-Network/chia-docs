@@ -177,6 +177,22 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Green Paper',
+      items: [
+        'green-paper/green-paper-abstract',
+        'green-paper/constants-variables-notation',
+        'green-paper/green-paper-introduction',
+        'green-paper/longest-chain-protocols',
+        'green-paper/rational-attackers',
+        'green-paper/hash-and-vdf-chains',
+        'green-paper/the-chia-blockchain',
+        'green-paper/recovering-from-51-percent-attacks',
+        'green-paper/green-paper-references',
+        'green-paper/green-paper-appendix',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Resources',
       items: [
         'resources/references',
