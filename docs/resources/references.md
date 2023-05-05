@@ -11,7 +11,7 @@ slug: /references
 
 ## Chia's Technical Specs
 
-- [Chia's green paper](https://www.chia.net/assets/ChiaGreenPaper.pdf "Chia's Green Paper") -- showcases Proofs of Space and Time
+- [Chia's green paper](https://docs.chia.net/green-paper-abstract "Chia's Green Paper") -- showcases Proofs of Space and Time
 - [Proofs of Space specification](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf)
 - [BLS Signatures](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub")
 - [Verifiable Delay Function (VDF)](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")
