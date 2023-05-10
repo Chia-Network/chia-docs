@@ -70,6 +70,11 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'WalletConnect',
+      items: ['wallet-connect/introduction', 'wallet-connect/commands'],
+    },
+    {
+      type: 'category',
       label: 'Coin Set Model',
       items: [
         'coin-set-model/intro',
@@ -207,13 +212,6 @@ module.exports = {
       label: 'Crash Course',
       collapsible: true,
       collapsed: false,
-      link: {
-        type: 'generated-index',
-        slug: '/guides/crash-course/introduction',
-        title: 'Chia Introduction',
-        description:
-          'This course is designed to give you an end-to-end introduction to Chia.',
-      },
       items: [
         'guides/crash-course/introduction',
         'guides/crash-course/intro-to-chialisp',
