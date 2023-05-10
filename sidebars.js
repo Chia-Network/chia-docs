@@ -56,8 +56,8 @@ module.exports = {
       type: 'category',
       label: 'CLI Reference',
       items: [
-        'cli-reference/cat-admin',
         'cli-reference/cli',
+        'cli-reference/cat-admin',
         'cli-reference/clawback',
         'cli-reference/custody-tool',
         'cli-reference/datalayer',
@@ -71,7 +71,7 @@ module.exports = {
     {
       type: 'category',
       label: 'WalletConnect',
-      items: ['wallet-connect/introduction', 'wallet-connect/commands'],
+      items: ['walletconnect/introduction', 'walletconnect/commands'],
     },
     {
       type: 'category',

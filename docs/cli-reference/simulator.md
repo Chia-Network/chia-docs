@@ -1,5 +1,5 @@
 ---
-sidebar_label: simulator
+sidebar_label: Simulator
 title: Simulator CLI Reference
 slug: /simulator-cli
 ---

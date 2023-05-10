@@ -1,5 +1,5 @@
 ---
-slug: /clawback_cli
+slug: /clawback-cli
 title: Clawback
 ---
 
@@ -223,7 +223,7 @@ The spend is now complete and can no longer be clawed back. The funds are stored
 
 ### `claw`
 
-Functionality: 
+Functionality:
 
 Usage: `clawback claw [OPTIONS]`
 
