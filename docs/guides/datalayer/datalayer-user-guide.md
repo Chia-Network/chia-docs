@@ -16,7 +16,7 @@ This document will guide you through the process of setting up Chia's DataLayerâ
 
 To expand upon a concept that was only covered briefly in the blog post, here is some more info about proof of inclusion:
 
-A proof of inclusion is a way to prove that a key/value pair is being stored, without needing to provide the entire Merke tree from the store. This is accomplished by creating a spend of the DataLayer singleton that accepts two things in its solution:
+A proof of inclusion is a way to prove that a key/value pair is being stored, without needing to provide the entire Merkle tree from the store. This is accomplished by creating a spend of the DataLayer singleton that accepts two things in its solution:
 1. The hash of a key/value pair from the Merkle tree
 2. Proof that the same key/value pair actually exists in the Merkle tree. This proof is obtained by providing the minimum peer hashes necessary to recalculate the Merkle root that is currently stored on-chain, starting from the leaf obtained from the key/value pair.
 
@@ -63,12 +63,14 @@ For additional technical resources, see the following:
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
 
 :::note
+
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
 
 1. The `-m` / `--fee` parameter can be specified explicitly in the command, as several of the examples in this document show
 2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
 3. If neither of these options is set, then no fee will be used
-   :::
+
+:::
 
 ---
 
