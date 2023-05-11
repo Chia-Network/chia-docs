@@ -17,6 +17,7 @@ slug: /references
 - [Verifiable Delay Function (VDF)](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")
 - [Proofs of Space](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub")
 - [Binary Quadratic Forms](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long') -- a white paper by Lipa Long
+- [How to Store a Permutation Compactly](https://hackmd.io/@dabo/rkP8Pcf9t) by Bram Cohen and Dan Boneh
 
 ## Video
 
