@@ -23,90 +23,26 @@ It is possible to run the simulator and either Chia's testnet or mainnet simulta
 
 ---
 
-### Install chia-dev-tools
+### Prerequisites
 
-The simulator is included in the `chia-dev-tools` GitHub repository. If you have already installed the latest version of `chia-dev-tools`, feel free to skip to the [next section](#install-and-configure-the-simulator).
+The simulator is included in the `chia-blockchain` GitHub repository (the same repository that contains Chia's node, and farmer code). To install this repository, see our instructions to [install Chia from source](/installation#from-source).
 
-1. Open a new terminal window and run the following to clone the chia-dev-tools repository, using the `main` branch:
+After you have installed from source and have activated your virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window), you are all set to install the simulator.
 
-   ```bash
-   git clone https://github.com/Chia-Network/chia-dev-tools.git -b main
-   ```
+:::warning
 
-2. Change to the cloned repository:
+If you installed Chia from the binary installation file, you cannot use this installation to run the simulator. Instead, follow the instructions linked above to create a new installation from source, then return to this guide.
 
-   ```bash
-   cd chia-dev-tools
-   ```
-
-3. Create and activate a virtual environment:
-
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
-
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
-
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
-
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
-
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
-
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
-
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
-
-4. Install `.` (chia-dev-tools):
-
-```bash
-pip install .
-```
-
-Several packages will be installed, including a bundled copy of `chia-blockchain`. This process will typically take several minutes.
-
-5. `chia-dev-tools` should now be installed and configured properly. To test it, run:
-
-   ```bash
-   cdv --help
-   ```
-
-   You should get a usage statement. At this point, you're ready to set up the simulator.
+:::
 
 ### Install and configure the simulator
 
-The simulator commands can all be accessed under `cdv sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/simulator-cli).
+The simulator commands can all be accessed under `chia dev sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/simulator-cli).
 
 1. Install the simulator
 
 ```bash
-cdv sim create
+chia dev sim create
 ```
 
 If you do not already have any keys in your OS keychain, you will be prompted to create one:
@@ -130,9 +66,25 @@ Choose a simulator key [1-3] ('q' to quit, or 'g' to generate a new key): 2
 
 This command will create several k-19 plots. These plots are significantly smaller than the k-32 plots used on mainnet (8 MiB vs 100 GiB). They will take less than a minute to create on most computers.
 
-This command will also install a new version of Chia that contains a config file that is already set up for the simulator to run on its own ports.
+This command will also install a new version of Chia that contains a config file that is already set up for the simulator to run on its own ports. The last output of this command should look like the following (the path listed will depend on your user ID and OS):
 
-2. Now that you have the simulator environment set up, you can set the CHIA_ROOT env var to point to this environment. This will enable you to run the simulator from outside of chia-dev-tools:
+```bash
+Configuration Wizard Complete.
+Starting Simulator now...
+
+
+Daemon not started yet
+Starting daemon
+chia_full_node_simulator: started
+Please wait, generating genesis block.
+Farmed 1 Transaction blocks
+Block Height is now: 1
+Genesis block generated, exiting.
+
+Make sure your CHIA_ROOT Environment Variable is set to: C:\Users\<user>\.chia\simulator\main
+```
+
+2. Now that you have the simulator environment set up, you can set the CHIA_ROOT env var to point to this environment. This will enable you to run the simulator from outside of `chia-blockchain`:
 
    ```mdx-code-block
    <Tabs
