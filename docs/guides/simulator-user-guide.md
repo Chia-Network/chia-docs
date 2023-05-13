@@ -101,12 +101,12 @@ Several packages will be installed, including a bundled copy of `chia-blockchain
 
 ### Install and configure the simulator
 
-The simulator commands can all be accessed under `cdv sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/simulator-cli).
+The simulator commands can all be accessed under `chia dev sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/simulator-cli).
 
 1. Install the simulator
 
 ```bash
-cdv sim create
+chia dev sim create
 ```
 
 If you do not already have any keys in your OS keychain, you will be prompted to create one:
@@ -230,7 +230,7 @@ Total iterations since the start of the blockchain: 11942
 There are two ways to farm a new block. The simpler solution is with a CLI call:
 
 ```bash
-cdv sim farm
+chia dev sim farm
 ```
 
 Result:
@@ -294,7 +294,7 @@ The simulator's config is stored in `~/.chia/simulator/main/config/config.yaml`.
 By default, as soon as a new spend bundle enters the mempool, a new block will be farmed. In certain cases this may not be the desired behavior. To disable auto farming, run the following command:
 
 ```bash
-cdv sim autofarm off
+chia dev sim autofarm off
 ```
 
 Result:
@@ -308,7 +308,7 @@ This action will take effect immediately; there is no need to restart the simula
 To enable auto farming, run:
 
 ```bash
-cdv sim autofarm on
+chia dev sim autofarm on
 ```
 
 Result:
