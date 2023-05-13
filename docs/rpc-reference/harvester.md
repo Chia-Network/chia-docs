@@ -31,6 +31,102 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 ---
 
+### `add_plot_directory`
+
+Functionality: Add a new plot directory
+
+Usage: chia rpc harvester [OPTIONS] add_plot_directory [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag    | Type | Required | Description                           |
+| :------ | :--- | :------- | :------------------------------------ |
+| dirname | TEXT | True     | The full path of the directory to add |
+
+:::note
+
+Note that the new directory must already exist on the system
+
+:::
+
+<details>
+<summary>Example</summary>
+
+First, add the directory to the local file system:
+
+```bash
+mkdir /plots_new
+```
+
+Next, add the new directory to the harvester's list:
+
+```json
+chia rpc harvester add_plot_directory '{"dirname": "/plots_new"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `delete_plot`
+
+Functionality: Delete a single plot
+
+Usage: chia rpc harvester [OPTIONS] delete_plot [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag     | Type | Required | Description                         |
+| :------- | :--- | :------- | :---------------------------------- |
+| filename | TEXT | True     | The file name of the plot to delete |
+
+:::note
+
+As long as this command includes the required `filename` flag, it will always output `"success": true`, even if the filename was invalid
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc harvester delete_plot '{"filename": "/plots/plot-k25-2022-07-11-19-22-a2ece0fd13e017f7b88911be5f91aa1e1866c89964c863f743f5c92e07118805.plot"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
 ### `get_plots`
 
 Functionality: List all local plots
@@ -100,142 +196,6 @@ Response:
 
 ---
 
-### `refresh_plots`
-
-Functionality: Refresh all plots from the harvester
-
-Usage: chia rpc harvester [OPTIONS] refresh_plots [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-:::note
-
-If successful, this command will output `"success": true`
-
-:::
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc harvester refresh_plots
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `delete_plot`
-
-Functionality: Delete a single plot
-
-Usage: chia rpc harvester [OPTIONS] delete_plot [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag     | Type | Required | Description                         |
-| :------- | :--- | :------- | :---------------------------------- |
-| filename | TEXT | True     | The file name of the plot to delete |
-
-:::note
-
-As long as this command includes the required `filename` flag, it will always output `"success": true`, even if the filename was invalid
-
-:::
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc harvester delete_plot '{"filename": "/plots/plot-k25-2022-07-11-19-22-a2ece0fd13e017f7b88911be5f91aa1e1866c89964c863f743f5c92e07118805.plot"}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `add_plot_directory`
-
-Functionality: Add a new plot directory
-
-Usage: chia rpc harvester [OPTIONS] add_plot_directory [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag    | Type | Required | Description                           |
-| :------ | :--- | :------- | :------------------------------------ |
-| dirname | TEXT | True     | The full path of the directory to add |
-
-:::note
-
-Note that the new directory must already exist on the system
-
-:::
-
-<details>
-<summary>Example</summary>
-
-First, add the directory to the local file system:
-
-```bash
-mkdir /plots_new
-```
-
-Next, add the new directory to the harvester's list:
-
-```json
-chia rpc harvester add_plot_directory '{"dirname": "/plots_new"}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
 ### `get_plot_directories`
 
 Functionality: List all plot directories
@@ -266,50 +226,6 @@ Response:
         "/plots"
         "/plots_new"
     ],
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `remove_plot_directory`
-
-Functionality: Remove a directory from the harvester's list of plot directories
-
-Usage: chia rpc harvester [OPTIONS] remove_plot_directory [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag    | Type | Required | Description                              |
-| :------ | :--- | :------- | :--------------------------------------- |
-| dirname | TEXT | True     | The full path of the directory to remove |
-
-:::note
-
-As long as this command includes the required `dirname` flag, it will always output `"success": true`, even if the dirname is not in the directory list
-
-:::
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc harvester remove_plot_directory '{"dirname": "/plots_new"}'
-```
-
-Response:
-
-```json
-{
     "success": true
 }
 ```
@@ -363,3 +279,89 @@ chia rpc harvester get_routes
 ```
 
 </details>
+
+---
+
+### `refresh_plots`
+
+Functionality: Refresh all plots from the harvester
+
+Usage: chia rpc harvester [OPTIONS] refresh_plots [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+:::note
+
+If successful, this command will output `"success": true`
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc harvester refresh_plots
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `remove_plot_directory`
+
+Functionality: Remove a directory from the harvester's list of plot directories
+
+Usage: chia rpc harvester [OPTIONS] remove_plot_directory [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag    | Type | Required | Description                              |
+| :------ | :--- | :------- | :--------------------------------------- |
+| dirname | TEXT | True     | The full path of the directory to remove |
+
+:::note
+
+As long as this command includes the required `dirname` flag, it will always output `"success": true`, even if the dirname is not in the directory list
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc harvester remove_plot_directory '{"dirname": "/plots_new"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
