@@ -30,6 +30,149 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 ## Reference
 
+### `cancel_offer`
+
+Functionality: Cancel an offer with a specific identifier
+
+Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Flag     | Type    | Required | Description                                                                                                                   |
+| :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| trade_id | STRING  | True     | The `trade_id` of the offer to cancel. Can be retrieved from an offer file by calling `cdv inspect spendbundles <offer_file>` |
+| fee      | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                                    |
+| secure   | BOOLEAN | False    | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally [Default: `true`]   |
+
+:::note
+
+If you set `secure` to `false`, then the Offer will not be canceled on the blockchain. It could still be taken if a copy of the Offer exists on another computer.
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet cancel_offer '{"trade_id": "0x039492f84708b8a585ddaa0dd44fa8db1a6afdad799b0900e37dfc9097f1f351", "secure": false}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `cancel_offers`
+
+Functionality: Cancel multiple Offers
+
+Usage: chia rpc wallet [OPTIONS] cancel_offers [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Flag       | Type    | Required | Description                                                                                               |
+| :--------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
+| secure     | BOOLEAN | True     | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally |
+| fee        | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                |
+| batch_size | NUMBER  | False    | The number of offers to cancel in one batch [Default: `5`]                                                |
+| cancel_all | BOOLEAN | False    | Cancel all offers [Default: `false`]                                                                      |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet cancel_offers '{"secure": true, "batch_fee": 1, "batch_size": 2}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `check_offer_validity`
+
+Functionality: Checks whether a specific offer is valid (see below for definitions)
+
+Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description                       |
+| :---- | :----- | :------- | :-------------------------------- |
+| offer | STRING | True     | The text of the Offer to validate |
+
+:::note
+
+The offer is considered valid if it is in any of the following states:
+
+  - `PENDING_ACCEPT`
+  - `PENDING_CONFIRM`
+  - `PENDING_CANCEL`
+
+  The offer is no longer valid if it is in any of the following states:
+
+  - `CANCELLED`
+  - `CONFIRMED`
+  - `FAILED`
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet check_offer_validity '{"offer": "offer1qqr83wcuu2rykcmqvpsxzgqq4gnsn0v2w6gchlaawrmeju4af4arrwu5s2kvce6at3nhmsa4v03kvgvc8furkat55swhlsmpwjj86a9ylhljq8mfs7jw6p044wxg9a7lhhuwphnff6my6aujm3m37wvl6q0kzy3tde6nh7w9j6d0nlchdsgk628m7aktm6jfqa47hwwnj705chexjdkhufx3fd9zegkcwhfknvg9auleg2neqcjpcj8mjehmfeks7gazhwlz4ffam6ukt3wwddlya3qah92s4wgqhr73797a5fyq68clmcfmhc85auqtzmuvure07v84jch8vzcwldm0qdf4uwatuj4xtjfxadlp37x8xf8nupxtz7jl7reyvj2fg9q5t057kfe95e2jdftx5etj2f6k2kjfdx48zmjwdx55j4jfwf4xzj24295hnxd7gfz425j72x99jc2kf9py56dxtxu62an2g4lxzkvwsegk5s27hed9j52f0eqhykn206h9vnnxt66mtqvw3ft85cqam9935q4wlmd45q9u7t5t86dl3g37vrrghz8aelwgga99mg3e0uylklaume8alal4xtksxxynga2v2echu8ksx4xnjsym2f5xv56wveex5hn34f0yzzkgadxu27dqvx4wyyssnxdmzcyn5tlsl0v0tnsalqhlwgly708udd0n9ee5q0lqnhm7hul7m8e6cxn3he9u3sz546dwmxtualtc0h5f89knj34tdmkrrvknf0pzat0ju7hm3a7hz7raqqkfalm408a6jtm6xn9a0lhchxu5z4dhf7wandtdah3qjdh844tjanauwj73kjap8ga08qujwarxwljxvalq3w88ll5vcra379zflxglfrvhwa844090t2cc53pafme08pcaa625hmzaw9hf320ekrc9zhdkmw484cr9zp3tclgr4fdrxv52xvegsdlqdefln5a47zuzfu7t8hh7f3y0fd5dcqktrt57ntn30xm6nja58d8kfh8rsct4lypkfyq0npsh2sxwddqvkk4rqdk03c5jz90yfs4glll3w888k40ml09v39n6xhpdhlz85lm9mcdjlsujrck85alr6lceqjgl0etsp9tv98mq48hkmvulalxn9vgn0nht9k6sayee0mdwyfp0wd67ewknh64pxsppf3gprjxwmgsdmrfj4l8ejtukh846a43sh036d6a3e80gkmjdmf3nfu0qr50vxrg0nmezadj5hkku0srmhefz57xxw5re2na6pku46t5neaaq5fzkda9kwcrqzramre95yeayjwnvk7cgqrw7kzddne7778jslravahl4ua8v2tklam7v9x0yc63l7mu7j8xkeu7t4unqs72l9q0th3npxakcgeynt8uaksf2edgpjtc07techllaakccnazlwm9ehu4wc08dhk7ufjn576jkwzem9m88jlhl3l3wtelltvvnvhvgvd5zq543hprajzagvtsamxaxn2vt4lzn83aagcvw8rt65l57a88ua4a0ls70tekewukd805hq9xeuwj9uy89pvgf4zyq053kluthp3d4z7h8vaa4nv75tmwlc5y3duk7l4aylcmwaqrdljzl4gjm62nuxdgftl0lqh9m7xmeaha0t7dc0tp3wrwah94w7xaltkvnq460f8l09atlnd0vueveq3glt7mka5xk28fas8hawnqamaa80nfhdr7jna5qvldunsnhh70ra78ze5ycatyhplvmlhc0xf8skk4fklj2pkwtxh30xwr03qr9ckmz7r97dwe8hlaajk0t6664dahv6y78anx29pmgxkdzmk3zj57am2ngdh05u699ce8k0qrrp5f3eccrkarcssjm4950tv63cfmf8dnh5nl9vp8w7hagjjuwm6udnftt24le2wnd79kadf4jxxrmuh5myxte6vh2sky9vlvnc3j2wjm079msdng0uan048n0t09lmsnn0mfl2teylev3avfgdupa32x57tjxe6t86phk6ypgrk4e2x92kasy447ds0te305gdsrrdvl9d8vurct22gqel9z8dh2pg2y3zdxjpa9t4ga98agazj4s3grz5g2cldpq5zez2jpdevdc7p28mfzrkru7nsk9vgdv9x7jmn9edtf5fn69xw84sxjaacjdemhdfsqaxu49dlzm0aq4rk0ptpxclwncekuk4yu29tgakdl53uwfdkaavr8dnmweljt66csujmjkeeznhecn9cx5aaw9du02wkkp09qkd8kmjyqtqqv6yzy7lk89vq"}'
+```
+
+Response:
+
+```json
+{
+    "id": "0x7cd4ea3988ffe67388b7a12facff0499059000f99b0f9cb8b343c821b422ced9",
+    "success": true,
+    "valid": true
+}
+```
+
+</details>
+
+---
+
 ### `create_offer_for_ids`
 
 Functionality: Creates a new offer
@@ -341,83 +484,11 @@ Response:
 
 ---
 
-### `get_offer_summary`
+### `get_all_offers`
 
-Functionality: Returns the summary of a specific Offer. Works for Offers in any state
+Functionality: Gets multiple offers for the current wallet, depending on the supplied parameters
 
-Usage: chia rpc wallet [OPTIONS] get_offer_summary [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Flag  | Type   | Required | Description                        |
-| :---- | :----- | :------- | :--------------------------------- |
-| offer | STRING | True     | The text of the Offer to summarize |
-
-<details>
-<summary>Example</summary>
-
-The `offer` parameter is the pasted contents of an Offer file:
-
-```json
-chia rpc wallet get_offer_summary '{"offer": "offer1qqr83wcuu2rykcmqvpsxzgqq4gnsn0v2w6gchlaawrmeju4af4arrwu5s2kvce6at3nhmsa4v03kvgvc8furkat55swhlsmpwjj86a9ylhljq8mfs7jw6p044wxg9a7lhhuwphnff6my6aujm3m37wvl6q0kzy3tde6nh7w9j6d0nlchdsgk628m7aktm6jfqa47hwwnj705chexjdkhufx3fd9zegkcwhfknvg9auleg2neqcjpcj8mjehmfeks7gazhwlz4ffam6ukt3wwddlya3qah92s4wgqhr73797a5fyq68clmcfmhc85auqtzmuvure07v84jch8vzcwldm0qdf4uwatuj4xtjfxadlp37x8xf8nupxtz7jl7reyvj2fg9q5t057kfe95e2jdftx5etj2f6k2kjfdx48zmjwdx55j4jfwf4xzj24295hnxd7gfz425j72x99jc2kf9py56dxtxu62an2g4lxzkvwsegk5s27hed9j52f0eqhykn206h9vnnxt66mtqvw3ft85cqam9935q4wlmd45q9u7t5t86dl3g37vrrghz8aelwgga99mg3e0uylklaume8alal4xtksxxynga2v2echu8ksx4xnjsym2f5xv56wveex5hn34f0yzzkgadxu27dqvx4wyyssnxdmzcyn5tlsl0v0tnsalqhlwgly708udd0n9ee5q0lqnhm7hul7m8e6cxn3he9u3sz546dwmxtualtc0h5f89knj34tdmkrrvknf0pzat0ju7hm3a7hz7raqqkfalm408a6jtm6xn9a0lhchxu5z4dhf7wandtdah3qjdh844tjanauwj73kjap8ga08qujwarxwljxvalq3w88ll5vcra379zflxglfrvhwa844090t2cc53pafme08pcaa625hmzaw9hf320ekrc9zhdkmw484cr9zp3tclgr4fdrxv52xvegsdlqdefln5a47zuzfu7t8hh7f3y0fd5dcqktrt57ntn30xm6nja58d8kfh8rsct4lypkfyq0npsh2sxwddqvkk4rqdk03c5jz90yfs4glll3w888k40ml09v39n6xhpdhlz85lm9mcdjlsujrck85alr6lceqjgl0etsp9tv98mq48hkmvulalxn9vgn0nht9k6sayee0mdwyfp0wd67ewknh64pxsppf3gprjxwmgsdmrfj4l8ejtukh846a43sh036d6a3e80gkmjdmf3nfu0qr50vxrg0nmezadj5hkku0srmhefz57xxw5re2na6pku46t5neaaq5fzkda9kwcrqzramre95yeayjwnvk7cgqrw7kzddne7778jslravahl4ua8v2tklam7v9x0yc63l7mu7j8xkeu7t4unqs72l9q0th3npxakcgeynt8uaksf2edgpjtc07techllaakccnazlwm9ehu4wc08dhk7ufjn576jkwzem9m88jlhl3l3wtelltvvnvhvgvd5zq543hprajzagvtsamxaxn2vt4lzn83aagcvw8rt65l57a88ua4a0ls70tekewukd805hq9xeuwj9uy89pvgf4zyq053kluthp3d4z7h8vaa4nv75tmwlc5y3duk7l4aylcmwaqrdljzl4gjm62nuxdgftl0lqh9m7xmeaha0t7dc0tp3wrwah94w7xaltkvnq460f8l09atlnd0vueveq3glt7mka5xk28fas8hawnqamaa80nfhdr7jna5qvldunsnhh70ra78ze5ycatyhplvmlhc0xf8skk4fklj2pkwtxh30xwr03qr9ckmz7r97dwe8hlaajk0t6664dahv6y78anx29pmgxkdzmk3zj57am2ngdh05u699ce8k0qrrp5f3eccrkarcssjm4950tv63cfmf8dnh5nl9vp8w7hagjjuwm6udnftt24le2wnd79kadf4jxxrmuh5myxte6vh2sky9vlvnc3j2wjm079msdng0uan048n0t09lmsnn0mfl2teylev3avfgdupa32x57tjxe6t86phk6ypgrk4e2x92kasy447ds0te305gdsrrdvl9d8vurct22gqel9z8dh2pg2y3zdxjpa9t4ga98agazj4s3grz5g2cldpq5zez2jpdevdc7p28mfzrkru7nsk9vgdv9x7jmn9edtf5fn69xw84sxjaacjdemhdfsqaxu49dlzm0aq4rk0ptpxclwncekuk4yu29tgakdl53uwfdkaavr8dnmweljt66csujmjkeeznhecn9cx5aaw9du02wkkp09qkd8kmjyqtqqv6yzy7lk89vq"}'
-```
-
-Response:
-
-```json
-{
-    "id": "0x7cd4ea3988ffe67388b7a12facff0499059000f99b0f9cb8b343c821b422ced9",
-    "success": true,
-    "summary": {
-        "fees": 10000,
-        "infos": {
-            "b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16": {
-                "also": {
-                    "also": {
-                        "owner": "()",
-                        "transfer_program": {
-                            "launcher_id": "0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16",
-                            "royalty_address": "0x53c8e63bb7e61215db3c109a168a8c7ce7d1828c438b542abe9368c83ad3f0ff",
-                            "royalty_percentage": "300",
-                            "type": "royalty transfer program"
-                        },
-                        "type": "ownership"
-                    },
-                    "metadata": "((117 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif\") (104 . 0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b) (28021 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json\") (27765 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf\") (29550 . 1) (29556 . 1) (28008 . 0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b) (27752 . 0x2267456bd2cef8ebc2f22a42947b068bc3b138284a587feda2edfe07a3577f50))",
-                    "type": "metadata",
-                    "updater_hash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
-                },
-                "launcher_id": "0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16",
-                "launcher_ph": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
-                "type": "singleton"
-            }
-        },
-        "offered": {
-            "xch": 100000000000
-        },
-        "requested": {
-            "b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16": 1
-        }
-    }
-}
-```
-
-</details>
-
----
-
-### `check_offer_validity`
-
-Functionality: Checks whether a specific offer is valid (see below for definitions)
-
-Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
+Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
 
 Options:
 
@@ -428,136 +499,86 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type   | Required | Description                       |
-| :---- | :----- | :------- | :-------------------------------- |
-| offer | STRING | True     | The text of the Offer to validate |
-
-:::note
-
-The offer is considered valid if it is in any of the following states:
-
-  - `PENDING_ACCEPT`
-  - `PENDING_CONFIRM`
-  - `PENDING_CANCEL`
-
-  The offer is no longer valid if it is in any of the following states:
-
-  - `CANCELLED`
-  - `CONFIRMED`
-  - `FAILED`
-
-:::
+| Flag                 | Type    | Required | Description                                                                                                      |
+| :------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                             |
+| end                  | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                             |
+| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show offers that originated from this wallet [Default: `false`]                                 |
+| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any offers with a status of `CONFIRMED` [Default: `false`]                                 |
+| include_completed    | BOOLEAN | False    | If `true`, show completed offers [Default: `false`]                                                              |
+| sort_key             | STRING  | False    | Optionally change the sort order of the results [Default: none]                                                  |
+| reverse              | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                |
+| file_contents        | BOOLEAN | False    | If `true`, return a summary for the offer. If `false`, only return the offer's basic metadata [Default: `false`] |
 
 <details>
 <summary>Example</summary>
 
+Show the first Offer:
+
 ```json
-chia rpc wallet check_offer_validity '{"offer": "offer1qqr83wcuu2rykcmqvpsxzgqq4gnsn0v2w6gchlaawrmeju4af4arrwu5s2kvce6at3nhmsa4v03kvgvc8furkat55swhlsmpwjj86a9ylhljq8mfs7jw6p044wxg9a7lhhuwphnff6my6aujm3m37wvl6q0kzy3tde6nh7w9j6d0nlchdsgk628m7aktm6jfqa47hwwnj705chexjdkhufx3fd9zegkcwhfknvg9auleg2neqcjpcj8mjehmfeks7gazhwlz4ffam6ukt3wwddlya3qah92s4wgqhr73797a5fyq68clmcfmhc85auqtzmuvure07v84jch8vzcwldm0qdf4uwatuj4xtjfxadlp37x8xf8nupxtz7jl7reyvj2fg9q5t057kfe95e2jdftx5etj2f6k2kjfdx48zmjwdx55j4jfwf4xzj24295hnxd7gfz425j72x99jc2kf9py56dxtxu62an2g4lxzkvwsegk5s27hed9j52f0eqhykn206h9vnnxt66mtqvw3ft85cqam9935q4wlmd45q9u7t5t86dl3g37vrrghz8aelwgga99mg3e0uylklaume8alal4xtksxxynga2v2echu8ksx4xnjsym2f5xv56wveex5hn34f0yzzkgadxu27dqvx4wyyssnxdmzcyn5tlsl0v0tnsalqhlwgly708udd0n9ee5q0lqnhm7hul7m8e6cxn3he9u3sz546dwmxtualtc0h5f89knj34tdmkrrvknf0pzat0ju7hm3a7hz7raqqkfalm408a6jtm6xn9a0lhchxu5z4dhf7wandtdah3qjdh844tjanauwj73kjap8ga08qujwarxwljxvalq3w88ll5vcra379zflxglfrvhwa844090t2cc53pafme08pcaa625hmzaw9hf320ekrc9zhdkmw484cr9zp3tclgr4fdrxv52xvegsdlqdefln5a47zuzfu7t8hh7f3y0fd5dcqktrt57ntn30xm6nja58d8kfh8rsct4lypkfyq0npsh2sxwddqvkk4rqdk03c5jz90yfs4glll3w888k40ml09v39n6xhpdhlz85lm9mcdjlsujrck85alr6lceqjgl0etsp9tv98mq48hkmvulalxn9vgn0nht9k6sayee0mdwyfp0wd67ewknh64pxsppf3gprjxwmgsdmrfj4l8ejtukh846a43sh036d6a3e80gkmjdmf3nfu0qr50vxrg0nmezadj5hkku0srmhefz57xxw5re2na6pku46t5neaaq5fzkda9kwcrqzramre95yeayjwnvk7cgqrw7kzddne7778jslravahl4ua8v2tklam7v9x0yc63l7mu7j8xkeu7t4unqs72l9q0th3npxakcgeynt8uaksf2edgpjtc07techllaakccnazlwm9ehu4wc08dhk7ufjn576jkwzem9m88jlhl3l3wtelltvvnvhvgvd5zq543hprajzagvtsamxaxn2vt4lzn83aagcvw8rt65l57a88ua4a0ls70tekewukd805hq9xeuwj9uy89pvgf4zyq053kluthp3d4z7h8vaa4nv75tmwlc5y3duk7l4aylcmwaqrdljzl4gjm62nuxdgftl0lqh9m7xmeaha0t7dc0tp3wrwah94w7xaltkvnq460f8l09atlnd0vueveq3glt7mka5xk28fas8hawnqamaa80nfhdr7jna5qvldunsnhh70ra78ze5ycatyhplvmlhc0xf8skk4fklj2pkwtxh30xwr03qr9ckmz7r97dwe8hlaajk0t6664dahv6y78anx29pmgxkdzmk3zj57am2ngdh05u699ce8k0qrrp5f3eccrkarcssjm4950tv63cfmf8dnh5nl9vp8w7hagjjuwm6udnftt24le2wnd79kadf4jxxrmuh5myxte6vh2sky9vlvnc3j2wjm079msdng0uan048n0t09lmsnn0mfl2teylev3avfgdupa32x57tjxe6t86phk6ypgrk4e2x92kasy447ds0te305gdsrrdvl9d8vurct22gqel9z8dh2pg2y3zdxjpa9t4ga98agazj4s3grz5g2cldpq5zez2jpdevdc7p28mfzrkru7nsk9vgdv9x7jmn9edtf5fn69xw84sxjaacjdemhdfsqaxu49dlzm0aq4rk0ptpxclwncekuk4yu29tgakdl53uwfdkaavr8dnmweljt66csujmjkeeznhecn9cx5aaw9du02wkkp09qkd8kmjyqtqqv6yzy7lk89vq"}'
+chia rpc wallet get_all_offers '{"start": 0, "end": 1}'
 ```
 
 Response:
 
 ```json
 {
-    "id": "0x7cd4ea3988ffe67388b7a12facff0499059000f99b0f9cb8b343c821b422ced9",
+    "offers": null,
     "success": true,
-    "valid": true
-}
-```
-
-</details>
-
-### `take_offer`
-
-Functionality: Takes (accepts) a specific offer, with a given fee
-
-Usage: chia rpc wallet [OPTIONS] take_offer [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Flag  | Type      | Required | Description                                                           |
-| :---- | :-------- | :------- | :-------------------------------------------------------------------- |
-| offer | FILE PATH | True     | The text of the Offer to take (must be in the `PENDING_ACCEPT` state) |
-| fee   | NUMBER    | False    | An optional fee (in mojos) to include with the offer [Default: `0`]   |
-
-<details>
-<summary>Example</summary>
-
-To take an Offer, paste its contents in the RPC call:
-
-```json
-chia rpc wallet take_offer '{"offer": "offer1qqr83wcuu2rykcmqvpsxygqqemhmlaekcenaz02ma6hs5w600dhjlvfjn477nkwz369h88kll73h37fefnwk3qqnz8s0lle0jqgnkufaeg779ex0w04aumuva4g99wdwdvkh9d2cgpek4ul7tyxmhq24e6ptqt2vf6ajyyc0y3ujn897dhm06xtld7uw0znt2tu7kl7vmjw357056nl4d3kwzsnqdvp4q7h5au3snr9r3qdpalygc77m9umvexwyljmflc2e2lq0g3ch8mkm6ghtluachjm4k6g7d3kdxvn7j9sutz5krd02e2y3f33tal2wkaced6t8kqvd84r93appphuc6n55338fflqln55pnqsnykgtf0dq0624ru87hvt3lhpmehymd62wjta7ugl8z0azxnrzckkkufalmpfr8lllstmdh2g2fa6rkwn0hmx6442678kk8u7xa82lcyhelw2pmam246fa7t4eur7cw539e7qggqmfmlegm4sutf0xwe2ht366577aj29uhlykns7k3wcjdg2h9cf38g758xcyxqar6vmu5anuqzt7cypdl70pvhlzzjlvrsx0dl0kd4sv56m8j4wt2txevnws7qlltrnvnpmqlx30flup3zxf9y5zvg4hmldycj6wegk5en2x9v75ug6w8y4vjj7gefy5ste9g5mr6vjw8l92yj3l9jhv43228hx2etftehxyktzvfdy2et60gshnet9y90wvs26x90dukjfw9yhu5tz0g49annxtcm9qtvepvn864qf8k43e7wg0nrde77wm0f6cd5fen9peuw5dfqgsqmwsljww8780el7ljj9u6y0xn92utz0fchrdn3kx8x55tw0ej5u5vj244x2nn30ecc5jt7dxgkv7d2feskyj24d9092nnff9cev7n9vehqwdr9qrkjspajvze2jdfnyvs27g5vkn3txvfry2hj9vfz35jw4dfd9yhn92ychnaj32ynxnu2wwf0xzls7080xuetefeq4us2pp9vu22jkpd69mzhj60f6h4gdpn79es5qyn87vun2tecj5yr9nr0fgx56nwdd0gjhjqfgduj8wy0xs0p3hzzvgenx4svxl9kzajwltmc6clrfhu2dzwfgkj5wnwt7nlq5uacr0jgt7a72ka5gzcthlw4ulh2f00g6vh4l7lzumjs24ka8emkd4dhk7yzfku7k4wtk0h36t6x6tcyun5wv8jgl5vfl8gcn7wz9cull73equk8c5f87f89ydjam57k4u4adtrzjy84809uu8rhhf2jlvt4ckax9flxc0q52akmd657hqv42kcqw4fdhv6hj8txexjnv6eerytgg302z3a0tfvwzdec5aul426zkzjky2erg5nvx3fxc2zvqf760uu8dsqkhmsqjyr4hpu7rr9gmlrt5snlnghtqlye46uhul2am0rfvzk6t2xdmydgpe3gt4gr8gxwcs944smkmd99sgxd6v3jx4aahjhtl02jg0ws60uepl87w47lrhkwt7en6nadd9k0m9z50a064caq040ul2zx9uj46r9x86kpsmvzjkvqe27hlllq4mhm4ax7rvtq836vj70z5fam2qh002hk22r270870zqg6wufe00k2lzl6pmgwxual4e3pj0l8mamcneyy2pfxnthmhg8ua9j47f0unjy56dk4nmsfwqwxnaqgap3ktaqgckpcm6pvycewzzkgpmz8j82qjvsurr3hakllmls8cknp34pcrj6ep4pnm8q8yaa0jl639nsn4e33kk2ll49a00t5gxdmkqwdkhhnln4ys0uk08w4h9hk4a06nv6sadm5225kxks49g4he0amhf6mu79p2nge7ljg2r68g53j4w5hldannpn49h4mh45th4378j4tnya74rvx3022gc70gspm7000nx4tsy64w394dz244eg57u5kfmtsjwv5m9tqgqqetra9fvjhn79", "fee": 1}'
-```
-
-Response:
-
-```json
-{
-    "success": true,
-    "trade_record": {
-        "accepted_at_time": 1678342997,
-        "coins_of_interest": [
-            {
-                "amount": 1,
-                "parent_coin_info": "0xc1d5924830950190008ec498deb7d1809c9203ed8f00e68a5097e2d0f2bdd41d",
-                "puzzle_hash": "0x4ffb6a0a459b3229b1b399922d70c0a9283aaad4c86401d4ee277fba31b31ee8"
+    "trade_records": [
+        {
+            "accepted_at_time": null,
+            "coins_of_interest": [
+                {
+                    "amount": 1,
+                    "parent_coin_info": "0xe2824e6ce7df1fc29aeba24ee7d4d3bfadad2360430391f249a0ed50f745d547",
+                    "puzzle_hash": "0xffdea0260e14e73ab4489772c63b75d65b5b070da5c260b2682bfd83d2ca0d6c"
+                }
+            ],
+            "confirmed_at_index": 0,
+            "created_at_time": 1676509124,
+            "is_my_offer": true,
+            "pending": {
+                "afefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6": 1
             },
-            {
-                "amount": 6848692931,
-                "parent_coin_info": "0xe9e107f7df52376652a92ea4c136e9ac179e09d81550d6a430fa3cf7490f47cd",
-                "puzzle_hash": "0x9aaeae85798cbc29c7c63a325db036613ea2949546869556d94b0a59a236e398"
-            }
-        ],
-        "confirmed_at_index": 0,
-        "created_at_time": 1678342997,
-        "is_my_offer": false,
-        "pending": {
-            "87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719": 1
-        },
-        "sent": 0,
-        "sent_to": [],
-        "status": "PENDING_CONFIRM",
-        "summary": {
-            "fees": 0,
-            "infos": {
-                "87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719": {
-                    "also": {
+            "sent": 0,
+            "sent_to": [],
+            "status": "PENDING_ACCEPT",
+            "summary": {
+                "fees": 0,
+                "infos": {
+                    "afefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6": {
                         "also": {
-                            "owner": "0x700b5276a6ea93aeb290763ca90902a85e51287d468661961e425f3f95129a94",
-                            "transfer_program": {
-                                "launcher_id": "0x87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719",
-                                "royalty_address": "0xea0a501540d9c0ec351e91dd124e29e86af834acd7d79e76d1e9202b2a414b58",
-                                "royalty_percentage": "300",
-                                "type": "royalty transfer program"
+                            "also": {
+                                "owner": "()",
+                                "transfer_program": {
+                                    "launcher_id": "0xafefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6",
+                                    "royalty_address": "0xb185af1a299b92ac0f5de04d12e86d3e08dac37af59565f45d1555d8941b6e82",
+                                    "royalty_percentage": "200",
+                                    "type": "royalty transfer program"
+                                },
+                                "type": "ownership"
                             },
-                            "type": "ownership"
+                            "metadata": "((117 \"https://nftstorage.link/ipfs/bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.gif\" \"ipfs://bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.gif\") (104 . 0x7b4981aba8d8e9dd25c40d6c696cb32eb7e281cb5629b29af64a2dd36495beb1) (28021 \"https://nftstorage.link/ipfs/bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.json\" \"ipfs://bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.json\") (27765 \"https://nftstorage.link/ipfs/bafybeidgtm4uobrog5kc7pn7bsmusdasf5w3drzqiitdjb3wragqrb7ola/LICENSE%20AGREEMENT.png\") (29550 . 1) (29556 . 1) (28008 . 0x9b40e3ed1d6b767886e6e8841aa1f6b60f8dc02cb98b2b876576c8dffc41995b) (27752 . 0x8e20454114197f82c7f50324df80170951fa3dfffd3b8860290207fb1e73743e))",
+                            "type": "metadata",
+                            "updater_hash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
                         },
-                        "metadata": "((117 \"https://bafkreies6esf3tjdnhbdpwe535b3ozb2wykje2myyunmavaafxyggq7yyq.ipfs.nftstorage.link\") (104 . 0x92f1245dcd2369c237d89ddf43b7643ab614926998c51ac054002df06343f8c4) (28021 \"https://bafkreie7izsags3k33lermoyl2bzeylso3dto5ri7elqatzunzlut3jgyi.ipfs.nftstorage.link\") (27765 \"https://bafybeihpnxv5xiahxnxaxf4zefbnyrs7krri5slcnqon7nmywlpnppt6xe.ipfs.nftstorage.link/Froggy%20NFT%20License%20Agreement.pdf\") (29550 . 1) (29556 . 1) (28008 . 0x9f4664034b6aded648b1d85e8392617276c7377628f917004f346e5749ed26c2))",
-                        "type": "metadata",
-                        "updater_hash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
-                    },
-                    "launcher_id": "0x87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719",
-                    "launcher_ph": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
-                    "type": "singleton"
+                        "launcher_id": "0xafefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6",
+                        "launcher_ph": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+                        "type": "singleton"
+                    }
+                },
+                "offered": {
+                    "afefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6": 1
+                },
+                "requested": {
+                    "xch": 2000000000000
                 }
             },
-            "offered": {
-                "87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719": 1
-            },
-            "requested": {
-                "xch": 6600000000
-            }
-        },
-        "taken_offer": "0x000000020000000000000000000000000000000000000000000000000000000000000000cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e70000000000000000ff02ffff01ff02ff0affff04ff02ffff04ff03ff80808080ffff04ffff01ffff333effff02ffff03ff05ffff01ff04ffff04ff0cffff04ffff02ff1effff04ff02ffff04ff09ff80808080ff808080ffff02ff16ffff04ff02ffff04ff19ffff04ffff02ff0affff04ff02ffff04ff0dff80808080ff808080808080ff8080ff0180ffff02ffff03ff05ffff01ff02ffff03ffff15ff29ff8080ffff01ff04ffff04ff08ff0980ffff02ff16ffff04ff02ffff04ff0dffff04ff0bff808080808080ffff01ff088080ff0180ffff010b80ff0180ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff1effff04ff02ffff04ff09ff80808080ffff02ff1effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffffa01c16c8d75a4758c9f9ceaeefb15d882224d72d3b14d57310299583bf9a80bb13ffffa056b40242ba5961c0624a20cbdb36f7e60f8d5749a8d61a6faff899bb6559c5caff850189640200ff80808080c1d5924830950190008ec498deb7d1809c9203ed8f00e68a5097e2d0f2bdd41d4ffb6a0a459b3229b1b399922d70c0a9283aaad4c86401d4ee277fba31b31ee80000000000000001ff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3480ffff01ff04ffff04ff20ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff2affff04ff02ffff04ff27ffff04ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff04ffff02ffff03ff77ffff0181b7ffff015780ff0180ff808080808080ffff04ff77ff808080808080ffff02ff3affff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4947ff0233ffff0401ff0102ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ff0bffff01ff02ffff03ffff02ff26ffff04ff02ffff04ff13ff80808080ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffff02ffff03ffff09ff09ff3880ffff01ff02ffff03ffff18ff2dffff010180ffff01ff0101ff8080ff0180ff8080ff0180ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff30ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa087db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff04ff2cff8080808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a0a04d9f57764f54a43e4030befb4d80026e870519aaa66334aef8304f5d0393c2ffff04ffff01ffff75ffc05868747470733a2f2f6261666b72656965733665736633746a646e68626470776535333562336f7a623277796b6a65326d7979756e6d61766161667879676771377979712e697066732e6e667473746f726167652e6c696e6b80ffff68a092f1245dcd2369c237d89ddf43b7643ab614926998c51ac054002df06343f8c4ffff826d75ffc05868747470733a2f2f6261666b7265696537697a73616773336b33336c65726d6f796c32627a65796c736f3364746f35726937656c7161747a756e7a6c7574336a6779692e697066732e6e667473746f726167652e6c696e6b80ffff826c75ffc07f68747470733a2f2f6261667962656968706e78763578696168786e78617866347a6566626e797273376b72726935736c636e716f6e376e6d79776c706e7070743678652e697066732e6e667473746f726167652e6c696e6b2f46726f6767792532304e46542532304c6963656e736525323041677265656d656e742e70646680ffff82736e01ffff82737401ffff826d68a09f4664034b6aded648b1d85e8392617276c7377628f917004f346e5749ed26c280ffff04ffff01a0fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78bffff04ffff01ff02ffff01ff02ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff17ffff04ff0bffff04ffff02ff2fff5f80ff80808080808080ffff04ffff01ffffff82ad4cff0233ffff3e04ff81f601ffffff0102ffff02ffff03ff05ffff01ff02ff2affff04ff02ffff04ff0dffff04ffff0bff32ffff0bff3cff3480ffff0bff32ffff0bff32ffff0bff3cff2280ff0980ffff0bff32ff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ff04ffff04ff38ffff04ffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ffff02ff2effff04ff02ffff04ffff02ffff03ff81afffff0181afffff010b80ff0180ff80808080ffff04ffff0bff3cff4f80ffff04ffff0bff3cff0580ff8080808080808080ff378080ff82016f80ffffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff2fffff01ff80ff808080808080808080ff0bff32ffff0bff3cff2880ffff0bff32ffff0bff32ffff0bff3cff2280ff0580ffff0bff32ffff02ff2affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff5fffff01ff02ffff03ffff09ff82011fff3880ffff01ff02ffff03ffff09ffff18ff82059f80ff3c80ffff01ff02ffff03ffff20ff81bf80ffff01ff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff82019fffff04ff82017fff80808080808080808080ffff01ff088080ff0180ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff808080808080808080808080ff0180ffff01ff02ffff03ffff09ff82011fff2c80ffff01ff02ffff03ffff20ff82017f80ffff01ff04ffff04ff24ffff04ffff0eff10ffff02ff2effff04ff02ffff04ff82019fff8080808080ff808080ffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ffff02ff0bffff04ff17ffff04ff2fffff04ff82019fff8080808080ff8080808080808080808080ffff01ff088080ff0180ffff01ff02ffff03ffff09ff82011fff2480ffff01ff02ffff03ffff20ffff02ffff03ffff09ffff0122ffff0dff82029f8080ffff01ff02ffff03ffff09ffff0cff82029fff80ffff010280ff1080ffff01ff0101ff8080ff0180ff8080ff018080ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff8080808080808080808080ffff01ff088080ff0180ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff808080808080808080808080ff018080ff018080ff0180ffff01ff02ff3affff04ff02ffff04ff05ffff04ff0bffff04ff81bfffff04ffff02ffff03ff82017fffff0182017fffff01ff02ff0bffff04ff17ffff04ff2fffff01ff808080808080ff0180ff8080808080808080ff0180ff018080ffff04ffff01a0c5abea79afaa001b5427dfa0c8cf42ca6f38f5841b78f9b3c252733eb2de2726ffff04ffff01a0700b5276a6ea93aeb290763ca90902a85e51287d468661961e425f3f95129a94ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff81bfffff01ff04ff82013fffff04ff80ffff04ffff02ffff03ffff22ff82013fffff20ffff09ff82013fff2f808080ffff01ff04ffff04ff10ffff04ffff0bffff02ff2effff04ff02ffff04ff09ffff04ff8205bfffff04ffff02ff3effff04ff02ffff04ffff04ff09ffff04ff82013fff1d8080ff80808080ff808080808080ff1580ff808080ffff02ff16ffff04ff02ffff04ff0bffff04ff17ffff04ff8202bfffff04ff15ff8080808080808080ffff01ff02ff16ffff04ff02ffff04ff0bffff04ff17ffff04ff8202bfffff04ff15ff8080808080808080ff0180ff80808080ffff01ff04ff2fffff01ff80ff80808080ff0180ffff04ffff01ffffff3f02ff04ff0101ffff822710ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff2cff1480ffff0bff2affff0bff2affff0bff2cff3c80ff0980ffff0bff2aff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ff17ffff01ff04ffff04ff10ffff04ffff0bff81a7ffff02ff3effff04ff02ffff04ffff04ff2fffff04ffff04ff05ffff04ffff05ffff14ffff12ff47ff0b80ff128080ffff04ffff04ff05ff8080ff80808080ff808080ff8080808080ff808080ffff02ff16ffff04ff02ffff04ff05ffff04ff0bffff04ff37ffff04ff2fff8080808080808080ff8080ff0180ffff0bff2affff0bff2cff1880ffff0bff2affff0bff2affff0bff2cff3c80ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff3effff04ff02ffff04ff09ff80808080ffff02ff3effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa087db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01a0ea0a501540d9c0ec351e91dd124e29e86af834acd7d79e76d1e9202b2a414b58ffff04ffff0182012cff0180808080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0915d5ba6e9d72fd792e02c28fc6be7cb6f73ddb34a1df9caae8585f26a73c72a88d14f5e7ceae20434f5311a48d530b0ff018080ff018080808080ff018080808080ff01808080ffffa0dd4daf660c3c05c2c233a1c27f06c0872eea9b22280d9f0e5e5028df63a5ea68ffa0669c0b472769c2c84f8ede0ce01a5a556537bed023d2a98ed26f6c182986ab49ff0180ff01ffffffff80ffff01ffff81f6ff80ffffff850189640200ffa0cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e78080ff8080ffff33ffa0cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e7ff01ffffa0cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e78080ffff3fffa033cb40ac40c0391d2831bc08c1954a4bf429740ac648b5850fca7f478a58ccdc8080ff8080808080878ce79554fe049e8bb6a58bafb91ca12abb78aa04ac551b15db778f89973f6912729c9ee4a80c08788125274a0787ce0027b5af8aaf12ee0e0a6e749daaec28441a59418c58e04ebdef02780961242d76aa1679a4276a431b67245cd2597672",
-        "trade_id": "0x0958db8393a63dab6b2afa78abbfe91a0487e5b06e25174ec8c49d383f18afc0"
-    }
+            "taken_offer": null,
+            "trade_id": "0x039492f84708b8a585ddaa0dd44fa8db1a6afdad799b0900e37dfc9097f1f351"
+        }
+    ]
 }
 ```
 
@@ -662,11 +683,11 @@ Response:
 
 ---
 
-### `get_all_offers`
+### `get_offer_summary`
 
-Functionality: Gets multiple offers for the current wallet, depending on the supplied parameters
+Functionality: Returns the summary of a specific Offer. Works for Offers in any state
 
-Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
+Usage: chia rpc wallet [OPTIONS] get_offer_summary [REQUEST]
 
 Options:
 
@@ -677,174 +698,157 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type    | Required | Description                                                                                                      |
-| :------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
-| start                | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                             |
-| end                  | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                             |
-| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show offers that originated from this wallet [Default: `false`]                                 |
-| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any offers with a status of `CONFIRMED` [Default: `false`]                                 |
-| include_completed    | BOOLEAN | False    | If `true`, show completed offers [Default: `false`]                                                              |
-| sort_key             | STRING  | False    | Optionally change the sort order of the results [Default: none]                                                  |
-| reverse              | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                |
-| file_contents        | BOOLEAN | False    | If `true`, return a summary for the offer. If `false`, only return the offer's basic metadata [Default: `false`] |
+| Flag  | Type   | Required | Description                        |
+| :---- | :----- | :------- | :--------------------------------- |
+| offer | STRING | True     | The text of the Offer to summarize |
 
 <details>
 <summary>Example</summary>
 
-Show the first Offer:
+The `offer` parameter is the pasted contents of an Offer file:
 
 ```json
-chia rpc wallet get_all_offers '{"start": 0, "end": 1}'
+chia rpc wallet get_offer_summary '{"offer": "offer1qqr83wcuu2rykcmqvpsxzgqq4gnsn0v2w6gchlaawrmeju4af4arrwu5s2kvce6at3nhmsa4v03kvgvc8furkat55swhlsmpwjj86a9ylhljq8mfs7jw6p044wxg9a7lhhuwphnff6my6aujm3m37wvl6q0kzy3tde6nh7w9j6d0nlchdsgk628m7aktm6jfqa47hwwnj705chexjdkhufx3fd9zegkcwhfknvg9auleg2neqcjpcj8mjehmfeks7gazhwlz4ffam6ukt3wwddlya3qah92s4wgqhr73797a5fyq68clmcfmhc85auqtzmuvure07v84jch8vzcwldm0qdf4uwatuj4xtjfxadlp37x8xf8nupxtz7jl7reyvj2fg9q5t057kfe95e2jdftx5etj2f6k2kjfdx48zmjwdx55j4jfwf4xzj24295hnxd7gfz425j72x99jc2kf9py56dxtxu62an2g4lxzkvwsegk5s27hed9j52f0eqhykn206h9vnnxt66mtqvw3ft85cqam9935q4wlmd45q9u7t5t86dl3g37vrrghz8aelwgga99mg3e0uylklaume8alal4xtksxxynga2v2echu8ksx4xnjsym2f5xv56wveex5hn34f0yzzkgadxu27dqvx4wyyssnxdmzcyn5tlsl0v0tnsalqhlwgly708udd0n9ee5q0lqnhm7hul7m8e6cxn3he9u3sz546dwmxtualtc0h5f89knj34tdmkrrvknf0pzat0ju7hm3a7hz7raqqkfalm408a6jtm6xn9a0lhchxu5z4dhf7wandtdah3qjdh844tjanauwj73kjap8ga08qujwarxwljxvalq3w88ll5vcra379zflxglfrvhwa844090t2cc53pafme08pcaa625hmzaw9hf320ekrc9zhdkmw484cr9zp3tclgr4fdrxv52xvegsdlqdefln5a47zuzfu7t8hh7f3y0fd5dcqktrt57ntn30xm6nja58d8kfh8rsct4lypkfyq0npsh2sxwddqvkk4rqdk03c5jz90yfs4glll3w888k40ml09v39n6xhpdhlz85lm9mcdjlsujrck85alr6lceqjgl0etsp9tv98mq48hkmvulalxn9vgn0nht9k6sayee0mdwyfp0wd67ewknh64pxsppf3gprjxwmgsdmrfj4l8ejtukh846a43sh036d6a3e80gkmjdmf3nfu0qr50vxrg0nmezadj5hkku0srmhefz57xxw5re2na6pku46t5neaaq5fzkda9kwcrqzramre95yeayjwnvk7cgqrw7kzddne7778jslravahl4ua8v2tklam7v9x0yc63l7mu7j8xkeu7t4unqs72l9q0th3npxakcgeynt8uaksf2edgpjtc07techllaakccnazlwm9ehu4wc08dhk7ufjn576jkwzem9m88jlhl3l3wtelltvvnvhvgvd5zq543hprajzagvtsamxaxn2vt4lzn83aagcvw8rt65l57a88ua4a0ls70tekewukd805hq9xeuwj9uy89pvgf4zyq053kluthp3d4z7h8vaa4nv75tmwlc5y3duk7l4aylcmwaqrdljzl4gjm62nuxdgftl0lqh9m7xmeaha0t7dc0tp3wrwah94w7xaltkvnq460f8l09atlnd0vueveq3glt7mka5xk28fas8hawnqamaa80nfhdr7jna5qvldunsnhh70ra78ze5ycatyhplvmlhc0xf8skk4fklj2pkwtxh30xwr03qr9ckmz7r97dwe8hlaajk0t6664dahv6y78anx29pmgxkdzmk3zj57am2ngdh05u699ce8k0qrrp5f3eccrkarcssjm4950tv63cfmf8dnh5nl9vp8w7hagjjuwm6udnftt24le2wnd79kadf4jxxrmuh5myxte6vh2sky9vlvnc3j2wjm079msdng0uan048n0t09lmsnn0mfl2teylev3avfgdupa32x57tjxe6t86phk6ypgrk4e2x92kasy447ds0te305gdsrrdvl9d8vurct22gqel9z8dh2pg2y3zdxjpa9t4ga98agazj4s3grz5g2cldpq5zez2jpdevdc7p28mfzrkru7nsk9vgdv9x7jmn9edtf5fn69xw84sxjaacjdemhdfsqaxu49dlzm0aq4rk0ptpxclwncekuk4yu29tgakdl53uwfdkaavr8dnmweljt66csujmjkeeznhecn9cx5aaw9du02wkkp09qkd8kmjyqtqqv6yzy7lk89vq"}'
 ```
 
 Response:
 
 ```json
 {
-    "offers": null,
+    "id": "0x7cd4ea3988ffe67388b7a12facff0499059000f99b0f9cb8b343c821b422ced9",
     "success": true,
-    "trade_records": [
-        {
-            "accepted_at_time": null,
-            "coins_of_interest": [
-                {
-                    "amount": 1,
-                    "parent_coin_info": "0xe2824e6ce7df1fc29aeba24ee7d4d3bfadad2360430391f249a0ed50f745d547",
-                    "puzzle_hash": "0xffdea0260e14e73ab4489772c63b75d65b5b070da5c260b2682bfd83d2ca0d6c"
-                }
-            ],
-            "confirmed_at_index": 0,
-            "created_at_time": 1676509124,
-            "is_my_offer": true,
-            "pending": {
-                "afefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6": 1
-            },
-            "sent": 0,
-            "sent_to": [],
-            "status": "PENDING_ACCEPT",
-            "summary": {
-                "fees": 0,
-                "infos": {
-                    "afefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6": {
-                        "also": {
-                            "also": {
-                                "owner": "()",
-                                "transfer_program": {
-                                    "launcher_id": "0xafefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6",
-                                    "royalty_address": "0xb185af1a299b92ac0f5de04d12e86d3e08dac37af59565f45d1555d8941b6e82",
-                                    "royalty_percentage": "200",
-                                    "type": "royalty transfer program"
-                                },
-                                "type": "ownership"
-                            },
-                            "metadata": "((117 \"https://nftstorage.link/ipfs/bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.gif\" \"ipfs://bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.gif\") (104 . 0x7b4981aba8d8e9dd25c40d6c696cb32eb7e281cb5629b29af64a2dd36495beb1) (28021 \"https://nftstorage.link/ipfs/bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.json\" \"ipfs://bafybeiciasr5ifxl73lq6mv5otyaukrvb6326nk6cgcsny2x4wcjxxis3q/356.json\") (27765 \"https://nftstorage.link/ipfs/bafybeidgtm4uobrog5kc7pn7bsmusdasf5w3drzqiitdjb3wragqrb7ola/LICENSE%20AGREEMENT.png\") (29550 . 1) (29556 . 1) (28008 . 0x9b40e3ed1d6b767886e6e8841aa1f6b60f8dc02cb98b2b876576c8dffc41995b) (27752 . 0x8e20454114197f82c7f50324df80170951fa3dfffd3b8860290207fb1e73743e))",
-                            "type": "metadata",
-                            "updater_hash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+    "summary": {
+        "fees": 10000,
+        "infos": {
+            "b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16": {
+                "also": {
+                    "also": {
+                        "owner": "()",
+                        "transfer_program": {
+                            "launcher_id": "0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16",
+                            "royalty_address": "0x53c8e63bb7e61215db3c109a168a8c7ce7d1828c438b542abe9368c83ad3f0ff",
+                            "royalty_percentage": "300",
+                            "type": "royalty transfer program"
                         },
-                        "launcher_id": "0xafefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6",
-                        "launcher_ph": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
-                        "type": "singleton"
-                    }
+                        "type": "ownership"
+                    },
+                    "metadata": "((117 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif\") (104 . 0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b) (28021 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json\") (27765 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf\") (29550 . 1) (29556 . 1) (28008 . 0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b) (27752 . 0x2267456bd2cef8ebc2f22a42947b068bc3b138284a587feda2edfe07a3577f50))",
+                    "type": "metadata",
+                    "updater_hash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
                 },
-                "offered": {
-                    "afefeea01a615487ccfc2e3d70db69eceb5b715a81deba9e6b72b78067e61de6": 1
-                },
-                "requested": {
-                    "xch": 2000000000000
+                "launcher_id": "0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16",
+                "launcher_ph": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+                "type": "singleton"
+            }
+        },
+        "offered": {
+            "xch": 100000000000
+        },
+        "requested": {
+            "b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16": 1
+        }
+    }
+}
+```
+
+</details>
+
+---
+
+### `take_offer`
+
+Functionality: Takes (accepts) a specific offer, with a given fee
+
+Usage: chia rpc wallet [OPTIONS] take_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Flag  | Type      | Required | Description                                                           |
+| :---- | :-------- | :------- | :-------------------------------------------------------------------- |
+| offer | FILE PATH | True     | The text of the Offer to take (must be in the `PENDING_ACCEPT` state) |
+| fee   | NUMBER    | False    | An optional fee (in mojos) to include with the offer [Default: `0`]   |
+
+<details>
+<summary>Example</summary>
+
+To take an Offer, paste its contents in the RPC call:
+
+```json
+chia rpc wallet take_offer '{"offer": "offer1qqr83wcuu2rykcmqvpsxygqqemhmlaekcenaz02ma6hs5w600dhjlvfjn477nkwz369h88kll73h37fefnwk3qqnz8s0lle0jqgnkufaeg779ex0w04aumuva4g99wdwdvkh9d2cgpek4ul7tyxmhq24e6ptqt2vf6ajyyc0y3ujn897dhm06xtld7uw0znt2tu7kl7vmjw357056nl4d3kwzsnqdvp4q7h5au3snr9r3qdpalygc77m9umvexwyljmflc2e2lq0g3ch8mkm6ghtluachjm4k6g7d3kdxvn7j9sutz5krd02e2y3f33tal2wkaced6t8kqvd84r93appphuc6n55338fflqln55pnqsnykgtf0dq0624ru87hvt3lhpmehymd62wjta7ugl8z0azxnrzckkkufalmpfr8lllstmdh2g2fa6rkwn0hmx6442678kk8u7xa82lcyhelw2pmam246fa7t4eur7cw539e7qggqmfmlegm4sutf0xwe2ht366577aj29uhlykns7k3wcjdg2h9cf38g758xcyxqar6vmu5anuqzt7cypdl70pvhlzzjlvrsx0dl0kd4sv56m8j4wt2txevnws7qlltrnvnpmqlx30flup3zxf9y5zvg4hmldycj6wegk5en2x9v75ug6w8y4vjj7gefy5ste9g5mr6vjw8l92yj3l9jhv43228hx2etftehxyktzvfdy2et60gshnet9y90wvs26x90dukjfw9yhu5tz0g49annxtcm9qtvepvn864qf8k43e7wg0nrde77wm0f6cd5fen9peuw5dfqgsqmwsljww8780el7ljj9u6y0xn92utz0fchrdn3kx8x55tw0ej5u5vj244x2nn30ecc5jt7dxgkv7d2feskyj24d9092nnff9cev7n9vehqwdr9qrkjspajvze2jdfnyvs27g5vkn3txvfry2hj9vfz35jw4dfd9yhn92ychnaj32ynxnu2wwf0xzls7080xuetefeq4us2pp9vu22jkpd69mzhj60f6h4gdpn79es5qyn87vun2tecj5yr9nr0fgx56nwdd0gjhjqfgduj8wy0xs0p3hzzvgenx4svxl9kzajwltmc6clrfhu2dzwfgkj5wnwt7nlq5uacr0jgt7a72ka5gzcthlw4ulh2f00g6vh4l7lzumjs24ka8emkd4dhk7yzfku7k4wtk0h36t6x6tcyun5wv8jgl5vfl8gcn7wz9cull73equk8c5f87f89ydjam57k4u4adtrzjy84809uu8rhhf2jlvt4ckax9flxc0q52akmd657hqv42kcqw4fdhv6hj8txexjnv6eerytgg302z3a0tfvwzdec5aul426zkzjky2erg5nvx3fxc2zvqf760uu8dsqkhmsqjyr4hpu7rr9gmlrt5snlnghtqlye46uhul2am0rfvzk6t2xdmydgpe3gt4gr8gxwcs944smkmd99sgxd6v3jx4aahjhtl02jg0ws60uepl87w47lrhkwt7en6nadd9k0m9z50a064caq040ul2zx9uj46r9x86kpsmvzjkvqe27hlllq4mhm4ax7rvtq836vj70z5fam2qh002hk22r270870zqg6wufe00k2lzl6pmgwxual4e3pj0l8mamcneyy2pfxnthmhg8ua9j47f0unjy56dk4nmsfwqwxnaqgap3ktaqgckpcm6pvycewzzkgpmz8j82qjvsurr3hakllmls8cknp34pcrj6ep4pnm8q8yaa0jl639nsn4e33kk2ll49a00t5gxdmkqwdkhhnln4ys0uk08w4h9hk4a06nv6sadm5225kxks49g4he0amhf6mu79p2nge7ljg2r68g53j4w5hldannpn49h4mh45th4378j4tnya74rvx3022gc70gspm7000nx4tsy64w394dz244eg57u5kfmtsjwv5m9tqgqqetra9fvjhn79", "fee": 1}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "trade_record": {
+        "accepted_at_time": 1678342997,
+        "coins_of_interest": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0xc1d5924830950190008ec498deb7d1809c9203ed8f00e68a5097e2d0f2bdd41d",
+                "puzzle_hash": "0x4ffb6a0a459b3229b1b399922d70c0a9283aaad4c86401d4ee277fba31b31ee8"
+            },
+            {
+                "amount": 6848692931,
+                "parent_coin_info": "0xe9e107f7df52376652a92ea4c136e9ac179e09d81550d6a430fa3cf7490f47cd",
+                "puzzle_hash": "0x9aaeae85798cbc29c7c63a325db036613ea2949546869556d94b0a59a236e398"
+            }
+        ],
+        "confirmed_at_index": 0,
+        "created_at_time": 1678342997,
+        "is_my_offer": false,
+        "pending": {
+            "87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719": 1
+        },
+        "sent": 0,
+        "sent_to": [],
+        "status": "PENDING_CONFIRM",
+        "summary": {
+            "fees": 0,
+            "infos": {
+                "87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719": {
+                    "also": {
+                        "also": {
+                            "owner": "0x700b5276a6ea93aeb290763ca90902a85e51287d468661961e425f3f95129a94",
+                            "transfer_program": {
+                                "launcher_id": "0x87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719",
+                                "royalty_address": "0xea0a501540d9c0ec351e91dd124e29e86af834acd7d79e76d1e9202b2a414b58",
+                                "royalty_percentage": "300",
+                                "type": "royalty transfer program"
+                            },
+                            "type": "ownership"
+                        },
+                        "metadata": "((117 \"https://bafkreies6esf3tjdnhbdpwe535b3ozb2wykje2myyunmavaafxyggq7yyq.ipfs.nftstorage.link\") (104 . 0x92f1245dcd2369c237d89ddf43b7643ab614926998c51ac054002df06343f8c4) (28021 \"https://bafkreie7izsags3k33lermoyl2bzeylso3dto5ri7elqatzunzlut3jgyi.ipfs.nftstorage.link\") (27765 \"https://bafybeihpnxv5xiahxnxaxf4zefbnyrs7krri5slcnqon7nmywlpnppt6xe.ipfs.nftstorage.link/Froggy%20NFT%20License%20Agreement.pdf\") (29550 . 1) (29556 . 1) (28008 . 0x9f4664034b6aded648b1d85e8392617276c7377628f917004f346e5749ed26c2))",
+                        "type": "metadata",
+                        "updater_hash": "0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b"
+                    },
+                    "launcher_id": "0x87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719",
+                    "launcher_ph": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+                    "type": "singleton"
                 }
             },
-            "taken_offer": null,
-            "trade_id": "0x039492f84708b8a585ddaa0dd44fa8db1a6afdad799b0900e37dfc9097f1f351"
-        }
-    ]
+            "offered": {
+                "87db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719": 1
+            },
+            "requested": {
+                "xch": 6600000000
+            }
+        },
+        "taken_offer": "0x000000020000000000000000000000000000000000000000000000000000000000000000cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e70000000000000000ff02ffff01ff02ff0affff04ff02ffff04ff03ff80808080ffff04ffff01ffff333effff02ffff03ff05ffff01ff04ffff04ff0cffff04ffff02ff1effff04ff02ffff04ff09ff80808080ff808080ffff02ff16ffff04ff02ffff04ff19ffff04ffff02ff0affff04ff02ffff04ff0dff80808080ff808080808080ff8080ff0180ffff02ffff03ff05ffff01ff02ffff03ffff15ff29ff8080ffff01ff04ffff04ff08ff0980ffff02ff16ffff04ff02ffff04ff0dffff04ff0bff808080808080ffff01ff088080ff0180ffff010b80ff0180ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff1effff04ff02ffff04ff09ff80808080ffff02ff1effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffffa01c16c8d75a4758c9f9ceaeefb15d882224d72d3b14d57310299583bf9a80bb13ffffa056b40242ba5961c0624a20cbdb36f7e60f8d5749a8d61a6faff899bb6559c5caff850189640200ff80808080c1d5924830950190008ec498deb7d1809c9203ed8f00e68a5097e2d0f2bdd41d4ffb6a0a459b3229b1b399922d70c0a9283aaad4c86401d4ee277fba31b31ee80000000000000001ff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3480ffff01ff04ffff04ff20ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff2affff04ff02ffff04ff27ffff04ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff04ffff02ffff03ff77ffff0181b7ffff015780ff0180ff808080808080ffff04ff77ff808080808080ffff02ff3affff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4947ff0233ffff0401ff0102ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ff0bffff01ff02ffff03ffff02ff26ffff04ff02ffff04ff13ff80808080ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffff02ffff03ffff09ff09ff3880ffff01ff02ffff03ffff18ff2dffff010180ffff01ff0101ff8080ff0180ff8080ff0180ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff30ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa087db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff04ff2cff8080808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a0a04d9f57764f54a43e4030befb4d80026e870519aaa66334aef8304f5d0393c2ffff04ffff01ffff75ffc05868747470733a2f2f6261666b72656965733665736633746a646e68626470776535333562336f7a623277796b6a65326d7979756e6d61766161667879676771377979712e697066732e6e667473746f726167652e6c696e6b80ffff68a092f1245dcd2369c237d89ddf43b7643ab614926998c51ac054002df06343f8c4ffff826d75ffc05868747470733a2f2f6261666b7265696537697a73616773336b33336c65726d6f796c32627a65796c736f3364746f35726937656c7161747a756e7a6c7574336a6779692e697066732e6e667473746f726167652e6c696e6b80ffff826c75ffc07f68747470733a2f2f6261667962656968706e78763578696168786e78617866347a6566626e797273376b72726935736c636e716f6e376e6d79776c706e7070743678652e697066732e6e667473746f726167652e6c696e6b2f46726f6767792532304e46542532304c6963656e736525323041677265656d656e742e70646680ffff82736e01ffff82737401ffff826d68a09f4664034b6aded648b1d85e8392617276c7377628f917004f346e5749ed26c280ffff04ffff01a0fe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78bffff04ffff01ff02ffff01ff02ffff01ff02ff26ffff04ff02ffff04ff05ffff04ff17ffff04ff0bffff04ffff02ff2fff5f80ff80808080808080ffff04ffff01ffffff82ad4cff0233ffff3e04ff81f601ffffff0102ffff02ffff03ff05ffff01ff02ff2affff04ff02ffff04ff0dffff04ffff0bff32ffff0bff3cff3480ffff0bff32ffff0bff32ffff0bff3cff2280ff0980ffff0bff32ff0bffff0bff3cff8080808080ff8080808080ffff010b80ff0180ff04ffff04ff38ffff04ffff02ff36ffff04ff02ffff04ff05ffff04ff27ffff04ffff02ff2effff04ff02ffff04ffff02ffff03ff81afffff0181afffff010b80ff0180ff80808080ffff04ffff0bff3cff4f80ffff04ffff0bff3cff0580ff8080808080808080ff378080ff82016f80ffffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff2fffff01ff80ff808080808080808080ff0bff32ffff0bff3cff2880ffff0bff32ffff0bff32ffff0bff3cff2280ff0580ffff0bff32ffff02ff2affff04ff02ffff04ff07ffff04ffff0bff3cff3c80ff8080808080ffff0bff3cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff5fffff01ff02ffff03ffff09ff82011fff3880ffff01ff02ffff03ffff09ffff18ff82059f80ff3c80ffff01ff02ffff03ffff20ff81bf80ffff01ff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff82019fffff04ff82017fff80808080808080808080ffff01ff088080ff0180ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff808080808080808080808080ff0180ffff01ff02ffff03ffff09ff82011fff2c80ffff01ff02ffff03ffff20ff82017f80ffff01ff04ffff04ff24ffff04ffff0eff10ffff02ff2effff04ff02ffff04ff82019fff8080808080ff808080ffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ffff02ff0bffff04ff17ffff04ff2fffff04ff82019fff8080808080ff8080808080808080808080ffff01ff088080ff0180ffff01ff02ffff03ffff09ff82011fff2480ffff01ff02ffff03ffff20ffff02ffff03ffff09ffff0122ffff0dff82029f8080ffff01ff02ffff03ffff09ffff0cff82029fff80ffff010280ff1080ffff01ff0101ff8080ff0180ff8080ff018080ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff8080808080808080808080ffff01ff088080ff0180ffff01ff04ff819fffff02ff3effff04ff02ffff04ff05ffff04ff0bffff04ff17ffff04ff2fffff04ff81dfffff04ff81bfffff04ff82017fff808080808080808080808080ff018080ff018080ff0180ffff01ff02ff3affff04ff02ffff04ff05ffff04ff0bffff04ff81bfffff04ffff02ffff03ff82017fffff0182017fffff01ff02ff0bffff04ff17ffff04ff2fffff01ff808080808080ff0180ff8080808080808080ff0180ff018080ffff04ffff01a0c5abea79afaa001b5427dfa0c8cf42ca6f38f5841b78f9b3c252733eb2de2726ffff04ffff01a0700b5276a6ea93aeb290763ca90902a85e51287d468661961e425f3f95129a94ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff81bfffff01ff04ff82013fffff04ff80ffff04ffff02ffff03ffff22ff82013fffff20ffff09ff82013fff2f808080ffff01ff04ffff04ff10ffff04ffff0bffff02ff2effff04ff02ffff04ff09ffff04ff8205bfffff04ffff02ff3effff04ff02ffff04ffff04ff09ffff04ff82013fff1d8080ff80808080ff808080808080ff1580ff808080ffff02ff16ffff04ff02ffff04ff0bffff04ff17ffff04ff8202bfffff04ff15ff8080808080808080ffff01ff02ff16ffff04ff02ffff04ff0bffff04ff17ffff04ff8202bfffff04ff15ff8080808080808080ff0180ff80808080ffff01ff04ff2fffff01ff80ff80808080ff0180ffff04ffff01ffffff3f02ff04ff0101ffff822710ff02ff02ffff03ff05ffff01ff02ff3affff04ff02ffff04ff0dffff04ffff0bff2affff0bff2cff1480ffff0bff2affff0bff2affff0bff2cff3c80ff0980ffff0bff2aff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ff17ffff01ff04ffff04ff10ffff04ffff0bff81a7ffff02ff3effff04ff02ffff04ffff04ff2fffff04ffff04ff05ffff04ffff05ffff14ffff12ff47ff0b80ff128080ffff04ffff04ff05ff8080ff80808080ff808080ff8080808080ff808080ffff02ff16ffff04ff02ffff04ff05ffff04ff0bffff04ff37ffff04ff2fff8080808080808080ff8080ff0180ffff0bff2affff0bff2cff1880ffff0bff2affff0bff2affff0bff2cff3c80ff0580ffff0bff2affff02ff3affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff3effff04ff02ffff04ff09ff80808080ffff02ff3effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa087db6520e42d8889d9ed6a7d2aa8f6f183b1977b0f186fbe2341bd29ae1fb719a0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01a0ea0a501540d9c0ec351e91dd124e29e86af834acd7d79e76d1e9202b2a414b58ffff04ffff0182012cff0180808080ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0915d5ba6e9d72fd792e02c28fc6be7cb6f73ddb34a1df9caae8585f26a73c72a88d14f5e7ceae20434f5311a48d530b0ff018080ff018080808080ff018080808080ff01808080ffffa0dd4daf660c3c05c2c233a1c27f06c0872eea9b22280d9f0e5e5028df63a5ea68ffa0669c0b472769c2c84f8ede0ce01a5a556537bed023d2a98ed26f6c182986ab49ff0180ff01ffffffff80ffff01ffff81f6ff80ffffff850189640200ffa0cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e78080ff8080ffff33ffa0cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e7ff01ffffa0cfbfdeed5c4ca2de3d0bf520b9cb4bb7743a359bd2e6a188d19ce7dffc21d3e78080ffff3fffa033cb40ac40c0391d2831bc08c1954a4bf429740ac648b5850fca7f478a58ccdc8080ff8080808080878ce79554fe049e8bb6a58bafb91ca12abb78aa04ac551b15db778f89973f6912729c9ee4a80c08788125274a0787ce0027b5af8aaf12ee0e0a6e749daaec28441a59418c58e04ebdef02780961242d76aa1679a4276a431b67245cd2597672",
+        "trade_id": "0x0958db8393a63dab6b2afa78abbfe91a0487e5b06e25174ec8c49d383f18afc0"
+    }
 }
 ```
 
 </details>
 
 ---
-
-### `cancel_offer`
-
-Functionality: Cancel an offer with a specific identifier
-
-Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Flag     | Type    | Required | Description                                                                                                                   |
-| :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------- |
-| trade_id | STRING  | True     | The `trade_id` of the offer to cancel. Can be retrieved from an offer file by calling `cdv inspect spendbundles <offer_file>` |
-| fee      | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                                    |
-| secure   | BOOLEAN | False    | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally [Default: `true`]   |
-
-:::note
-
-If you set `secure` to `false`, then the Offer will not be canceled on the blockchain. It could still be taken if a copy of the Offer exists on another computer.
-
-:::
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet cancel_offer '{"trade_id": "0x039492f84708b8a585ddaa0dd44fa8db1a6afdad799b0900e37dfc9097f1f351", "secure": false}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `cancel_offers`
-
-Functionality: Cancel multiple Offers
-
-Usage: chia rpc wallet [OPTIONS] cancel_offers [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Flag       | Type    | Required | Description                                                                                               |
-| :--------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
-| secure     | BOOLEAN | True     | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally |
-| fee        | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                |
-| batch_size | NUMBER  | False    | The number of offers to cancel in one batch [Default: `5`]                                                |
-| cancel_all | BOOLEAN | False    | Cancel all offers [Default: `false`]                                                                      |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet cancel_offers '{"secure": true, "batch_fee": 1, "batch_size": 2}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
