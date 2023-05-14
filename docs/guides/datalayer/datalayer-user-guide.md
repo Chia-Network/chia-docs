@@ -8,19 +8,25 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-### Intro
+This document will guide you through the process of setting up Chia's DataLayer™ and running a few basic functions.
 
-This document will guide you through the process of setting up Chia's DataLayer™ and running a few basic functions. Before using this guide, you may want to familiarize yourself with DataLayer's structure and function. Our [blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/) announcing DataLayer's launch is a great place to get started.
+### About DataLayer
+
+As a decentralized database, the Chia DataLayer allows users to store the original data locally. The hash of that data is then saved in a [singleton](https://chialisp.com/singletons) (a coin with a unique ID that can be spent and recreated many times) with updated properties each time it is recreated. The on-chain component of Chia DataLayer is also a singleton. If the original data’s hash matches the hash stored on-chain, then the original data is guaranteed to be accurate.
+
+At the basic level, the Chia DataLayer provides a shared data network with no central authority. Nodes in this network can subscribe to data from other nodes and receive updates whenever the data changes.
+
+The real magic of DataLayer is the ability to use the data in smart contract transactions. Specifically, Chialisp code can directly process records stored in Chia DataLayer, opening up a new world of functionality for Chialisp programmers not available on any other blockchain. It starts with the concept of a "proof of inclusion."
 
 #### Proof of inclusion
-
-To expand upon a concept that was only covered briefly in the blog post, here is some more info about proof of inclusion:
 
 A proof of inclusion is a way to prove that a key/value pair is being stored, without needing to provide the entire Merkle tree from the store. This is accomplished by creating a spend of the DataLayer singleton that accepts two things in its solution:
 1. The hash of a key/value pair from the Merkle tree
 2. Proof that the same key/value pair actually exists in the Merkle tree. This proof is obtained by providing the minimum peer hashes necessary to recalculate the Merkle root that is currently stored on-chain, starting from the leaf obtained from the key/value pair.
 
 When this proof is obtained, the singleton announces the hash that exists in that DataLayer table.  
+
+Proofs of inclusion are the basis for accessing DataLayer data from Chialisp because once the data is proven, it can be used to drive other functionality, starting with the two-party commit, and moving beyond to include oracles and off-chain contracts.
 
 #### Example 1: Two-party commit
 
@@ -61,6 +67,7 @@ For additional technical resources, see the following:
 - [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
 - [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
+- [DataLayer blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/)
 
 :::note
 
@@ -84,172 +91,11 @@ If you have already installed Chia version 1.6 or greater and started the refere
 
 ### Install and Run Chia
 
-:::note
+DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/installation#from-source) or [run the packaged installer](https://www.chia.net/downloads/). 
 
-Your firewall might give warnings when installing Chia. This is normal. Allow the installation to continue.
+1. **If you installed from source**, be sure you have activated a virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window).
 
-:::
-
-1. Download the latest [Chia installer](https://www.chia.net/download/)
-
-2. Install Chia
-
-:::info OS-Specific Instructions
-
-<Tabs
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux', value: 'linux'},
-{label: 'MacOS', value: 'macos'}
-]}>
-<TabItem value="windows">
-
-<div style={{ textAlign: 'left' }}>
-    <img
-        src="/img/data_layer/01_downloads_windows.png"
-        alt="Chia installation file"
-    />
-</div>
-
-Double click the .exe installer. The installation process will take less than 30 seconds on most computers.
-
-  </TabItem>
-  <TabItem value="linux">
-
-For Debian/Ubuntu Linux distributions, run:
-
-```bash
-sudo dpkg -i chia-blockchain_<version>_<arch>.deb
-```
-
-For other distributions, see [the install Wiki](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL).
-
-  </TabItem>
-  <TabItem value="macos">
-
-<div style={{ textAlign: 'left' }}>
-    <img
-        src="/img/data_layer/02_downloads_mac.png"
-        alt="Chia installation file"
-    />
-</div>
-
-Double click the .dmg installer. After the installation completes, drag the Chia icon to the Applications folder.
-
-  </TabItem>
-</Tabs>
-:::
-
-3. Run the Chia reference wallet GUI:
-
-:::info OS-Specific Instructions
-
-<Tabs
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux', value: 'linux'},
-{label: 'MacOS', value: 'macos'}
-]}>
-<TabItem value="windows">
-
-The Chia reference wallet GUI will start automatically after the installation completes.
-
-  </TabItem>
-  <TabItem value="linux">
-
-Open a terminal window and run:
-
-```bash
-chia-blockchain &
-```
-
-  </TabItem>
-  <TabItem value="macos">
-
-Start Chia from your _Applications_ folder:
-
-<div style={{ textAlign: 'left' }}>
-    <img
-        src="/img/data_layer/03_start_chia_mac.png"
-        alt="Choose Farming Mode"
-    />
-</div>
-
-  </TabItem>
-</Tabs>
-:::
-
-4. If this is your first time installing Chia on this machine, the `Select Your Client Mode` dialog will appear:
-
-<div style={{ textAlign: 'center' }}>
-    <img
-        src="/img/data_layer/04_wallet_farming_mode.png"
-        alt="Choose Farming Mode"
-    />
-</div>
-<br />
-
-- If you select `Farming Mode`, you will run a full node
-  - Advantage: your wallet will respond faster than it would in `Wallet Mode`
-  - Disadvantage: you need to sync the blockchain database, which can take several days if you are starting from the genesis block
-- If you select `Wallet Mode`, you will only run a light wallet
-  - Advantage: no need to sync a full node
-  - Disadvantage: slower wallet performance
-- Most users should select `Farming Mode`, in order to gain the long-term performance advantage of running a full node
-
-5. If you don't already have a Chia private key (wallet), you will need to create one now. If you already have a private key, proceed to step 6.
-
-<div style={{ textAlign: 'center' }}>
-    <img
-        src="/img/data_layer/05_create_private_key.png"
-        alt="Create a private key"
-    />
-</div>
-<br />
-
-You will be shown a list of 24 words. Copy these words to a private location. Order is important.
-
-:::warning important
-
-Your seed phrase is all that is required to recover your wallet. If you lose your seed phrase, recovery will not be possible. If a bad actor gains access to your seed phrase, they'll be able to steal your Chia. Do not take a picture of your seed phrase or store it on a computer.
-
-:::
-
-<div style={{ textAlign: 'center' }}>
-    <img src="/img/data_layer/06_seed_phrase.png" alt="24-word seed phrase" />
-    <figcaption>
-        <em>
-            Carefully copy your mnemonic seed phrase for future wallet recovery.
-        </em>
-    </figcaption>
-</div>
-<br />
-
-6. The `Select Key` dialog will appear. If you see multiple keys, select one that has some XCH (if possible).
-
-<div style={{ textAlign: 'center' }}>
-    <img src="/img/data_layer/07_choose_key.png" alt="Select Key dialog" />
-    <figcaption>
-        <em>If the Select Key dialog appears, choose your primary key.</em>
-    </figcaption>
-</div>
-<br />
-
-7. Your wallet will begin syncing. "WALLET" will appear in the upper right corner. The orange dot indicates that the wallet is syncing. You may proceed to the next step while syncing is in progress.
-
-<div style={{ textAlign: 'center' }}>
-    <img src="/img/data_layer/08_not_synced.png" alt="Not synced" />
-    <figcaption>
-        <em>The wallet is syncing.</em>
-    </figcaption>
-</div>
-<br />
-
-8. Open PowerShell on Windows, or Terminal on Linux and MacOS.
-
-We'll create an alias to run the `chia` command from any folder. We'll also fix any SSL permissions issues. Run the following command(s):
+2. **If you installed the packaged installer**, you will need to create an alias to access the `chia` command:
 
 :::info Chia setup
 
@@ -290,14 +136,14 @@ chia init --fix-ssl-permissions
 
 :::
 
-9. Run `chia version`. You should be shown the correct version. For example:
+3. Run `chia version`. You should be shown the correct version. For example:
 
 ```powershell
 chia version
-1.6.0
+1.8.0
 ```
 
-10. (optional) Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING:
+4. (optional) Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING:
 
 ```bash
 chia configure --set-log-level INFO
