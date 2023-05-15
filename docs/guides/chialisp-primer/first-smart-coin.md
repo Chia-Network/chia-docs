@@ -160,7 +160,7 @@ Finally, run the following command to push the transaction to the Testnet:
 cdv rpc pushtx spendbundle.json
 ```
 
-If all went well, this should spend the coin! Otherwise, retrace your steps carefully to try to find what went wrong. If you still can't figure it out, don't hesitate to ask us on our [Keybase team](https://keybase.io/team/chia_network.public) and we will answer as soon as we can.
+If all went well, this should spend the coin! Otherwise, retrace your steps carefully to try to find what went wrong. If you still can't figure it out, don't hesitate to ask us on our join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel and we will answer as soon as we can.
 
 ## Potential Questions
 
