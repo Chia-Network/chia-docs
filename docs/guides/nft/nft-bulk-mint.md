@@ -289,7 +289,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-11. In order to run the bulk minting tool, you will need to have an NFT wallet that is associated with a DID. You will need to have some TXCH in order to create this wallet. If your requested TXCH has not yet arrived, post your address on the #dev channel on Keybase. Someone might be able to send some to you.
+11. In order to run the bulk minting tool, you will need to have an NFT wallet that is associated with a DID. You will need to have some TXCH in order to create this wallet. If your requested TXCH has not yet arrived, post your address on the #chia-development channel on Discord. Someone might be able to send some to you.
 
 In order to create a DID, run the following command (`-n` is for the name of the DID, which can be anything):
 
