@@ -226,9 +226,9 @@ If you have experience writing pool server code for another crypto, adapting tha
 
 A crypto community site lists all upcoming Chia pools: https://miningpoolstats.stream/chia
 
-## Can I advertise my pool in Keybase?
+## Can I advertise my pool in Discord?
 
-You can only advertise your pool in Keybase @chia_network.public#pools once a day. If you're spammy, mods will warn you and then ban you if you persist.
+You can only advertise your pool in Discord #Promote-community-projects once a day. If you're spammy, mods will warn you and then ban you if you persist.
 
 ## Why shouldn't I join the original Hpool pool?
 
@@ -248,9 +248,9 @@ No, Chia's pooling protocol is designed where the blocks are farmed by individua
 
 ## I have more questions, where do I ask?
 
-Join our dedicated Keybase room: @chia_network.public#pools
+Join our dedicated [Discord](https://discord.gg/chia)
 
-Friendly reminder: do NOT at `@` or Direct Message (DM) developers or mods. Just post your questions in Keybase and we will answer when we have a moment.
+Friendly reminder: do NOT at `@` or Direct Message (DM) developers or mods. Just post your questions in Discord and we will answer when we have a moment.
 
 # Technical FAQ
 
