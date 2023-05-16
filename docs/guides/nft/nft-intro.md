@@ -277,7 +277,7 @@ Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291c
 Current Blockchain Status: Full Node Synced
 ```
 
-Once you have a synced wallet and some TXCH, you may proceed to the next section. If your requested TXCH has not yet arrived, post your address on the #dev channel on Keybase. Someone might be able to send some to you.
+Once you have a synced wallet and some TXCH, you may proceed to the next section. If your requested TXCH has not yet arrived, post your address on the #dev channel on Discord. Someone might be able to send some to you.
 
 <details>
   <summary>Note about Chia wallets</summary>

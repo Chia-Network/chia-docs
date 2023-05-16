@@ -42,4 +42,4 @@ One way to speed up the peer discovery process even more is to run the [add-node
 
 ## Conclusion
 
-You should now be ready to use the Testnet to create and spend smart coins. As always, if you ran into any issues while setting up the Testnet, feel free to ask for support on our [Keybase team](https://keybase.io/team/chia_network.public).
+You should now be ready to use the Testnet to create and spend smart coins. As always, if you ran into any issues while setting up the Testnet, feel free to ask for support on our [Discord](https://discord.gg/chia).

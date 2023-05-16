@@ -25,7 +25,7 @@ The [CAT primitive page](https://chialisp.com/cats) was finalized as of January 
 - Generate a new public/private key pair for each CAT you issue. This key pair should be used for issuing one specific CAT **and nothing else**. It should also be the only key pair on your computer while issuing the CAT.
 - Test thoroughly on testnet before issuing your CAT to mainnet.
 
-For any questions regarding this tutorial, head over to the #chialisp channel on our [Keybase team](https://keybase.io/team/chia_network.public) forum, where there are lots of friendly folks who can help you.
+For any questions regarding this tutorial, head over to the #chialisp channel on our [Discord](https://discord.gg/chia) chatroom, where there are lots of friendly folks who can help you.
 
 ---
 
