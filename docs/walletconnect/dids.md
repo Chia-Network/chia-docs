@@ -21,11 +21,11 @@ Creates a new DID wallet.
 
 #### Response Data
 
-| Parameter   | Type     | Description                          |
-| ----------- | -------- | ------------------------------------ |
-| `type`      | `number` | The type of the wallet (8 for DIDs). |
-| `my_did`    | `string` | The bech32m encoded DID address.     |
-| `wallet_id` | `number` | The newly created wallet id.         |
+| Parameter  | Type     | Description                          |
+| ---------- | -------- | ------------------------------------ |
+| `type`     | `number` | The type of the wallet (8 for DIDs). |
+| `myDid`    | `string` | The bech32m encoded DID address.     |
+| `walletId` | `number` | The newly created wallet id.         |
 
 ### `chia_setDIDName`
 
@@ -40,9 +40,9 @@ Sets the name of a DID wallet.
 
 #### Response Data
 
-| Parameter   | Type     | Description           |
-| ----------- | -------- | --------------------- |
-| `wallet_id` | `number` | The id of the wallet. |
+| Parameter  | Type     | Description           |
+| ---------- | -------- | --------------------- |
+| `walletId` | `number` | The id of the wallet. |
 
 ### `chia_setNFTDID`
 
@@ -50,17 +50,16 @@ Sets the DID of an NFT.
 
 #### Request Parameters
 
-| Parameter       | Type       | Description                      |
-| --------------- | ---------- | -------------------------------- |
-| `walletId`      | `number`   | The id of the wallet.            |
-| `nftLauncherId` | `string`   | The launcher id of the NFT.      |
-| `nftCoinIds`    | `string[]` | Coin ids of the NFT.             |
-| `did`           | `string`   | The bech32m encoded DID address. |
-| `fee`           | `number`   | The transaction fee in mojos.    |
+| Parameter    | Type       | Description                      |
+| ------------ | ---------- | -------------------------------- |
+| `walletId`   | `number`   | The id of the wallet.            |
+| `nftCoinIds` | `string[]` | Coin ids of the NFT.             |
+| `did`        | `string`   | The bech32m encoded DID address. |
+| `fee`        | `number`   | The transaction fee in mojos.    |
 
 #### Response Data
 
-| Parameter      | Type                            | Description                 |
-| -------------- | ------------------------------- | --------------------------- |
-| `wallet_id`    | `number`                        | The id of the wallet.       |
-| `spend_bundle` | [`SpendBundle`](/spend-bundles) | The generated spend bundle. |
+| Parameter     | Type                                                 | Description                 |
+| ------------- | ---------------------------------------------------- | --------------------------- |
+| `walletId`    | `number`                                             | The id of the wallet.       |
+| `spendBundle` | [`SpendBundle`](/walletconnect-commands#spendbundle) | The generated spend bundle. |
