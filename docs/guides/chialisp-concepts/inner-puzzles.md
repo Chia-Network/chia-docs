@@ -98,4 +98,4 @@ Now the inner puzzle and outer puzzle have been combined together.
 
 ## Conclusion
 
-The concept of inner puzzles allows for the composition of puzzles. This is commonly used in the wallet, where CATs, DIDs, and NFTs wrap the standard transaction. That way they have the ability to be transferred, yet also have their own set of rules that control their use. If you have any questions about inner puzzles, feel free to ask on our [Keybase team](https://keybase.io/team/chia_network.public).
+The concept of inner puzzles allows for the composition of puzzles. This is commonly used in the wallet, where CATs, DIDs, and NFTs wrap the standard transaction. That way they have the ability to be transferred, yet also have their own set of rules that control their use. If you have any questions about inner puzzles, feel free to ask on our [Discord](https://discord.gg/chia).

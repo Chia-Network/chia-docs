@@ -55,4 +55,4 @@ If the result is `True`, it is valid. Otherwise, either the public key, signatur
 
 ## Conclusion
 
-This was just a primer on BLS signatures, and in practice it can be a bit more complicated. They will be put to good use in future guides, and it's a good idea to understand how they work before you dive into them. If you have any questions about BLS signature, feel free to ask on our [Keybase team](https://keybase.io/team/chia_network.public)!
+This was just a primer on BLS signatures, and in practice it can be a bit more complicated. They will be put to good use in future guides, and it's a good idea to understand how they work before you dive into them. If you have any questions about BLS signature, feel free to ask on our [Discord](https://discord.gg/chia)!

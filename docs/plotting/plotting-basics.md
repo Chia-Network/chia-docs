@@ -70,6 +70,6 @@ Network drives can work but could congest your local network or be too slow to r
 
 ## How to Get Help
 
-- Get support on the [Chia Keybase chat channels](https://keybase.io/team/chia_network.public). **#beginner** and **#support** is where you can get help
+- Get support on the [Discord](https://discord.gg/chia). **#beginner** and **#support** is where you can get help
 
 - Get more questions answered in the [plotting FAQ](/plotting-faq).

@@ -133,4 +133,4 @@ Now the inner puzzle and outer puzzle have been combined together.
 
 ## Conclusion
 
-This combined puzzle would allow you to spend coins created with it with your public key, but any create coin conditions would have their amounts doubled in the output. Feel free to ask questions you may have on our [Keybase team](https://keybase.io/team/chia_network.public).
+This combined puzzle would allow you to spend coins created with it with your public key, but any create coin conditions would have their amounts doubled in the output. Feel free to ask questions you may have on our [Discord](https://discord.gg/chia).

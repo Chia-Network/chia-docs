@@ -28,7 +28,7 @@ For more info, see the following:
 
 Functionality: Set up a Chia Simulator
 
-Usage: `cdv sim create [OPTIONS]`
+Usage: `chia dev sim create [OPTIONS]`
 
 Options:
 
@@ -49,7 +49,7 @@ Use all default values, with no keys present on the local machine.
 In this case, a new key will be created, along with several k-19 plots. Finally, the simulator will be started and the genesis block will be farmed:
 
 ```bash
-cdv sim create
+chia dev sim create
 ```
 
 Response:
@@ -177,7 +177,7 @@ Genesis block generated, exiting.
 Use all default values, with a key and plots already generated:
 
 ```bash
-cdv sim create
+chia dev sim create
 ```
 
 Response:
@@ -217,7 +217,7 @@ Add a mnemonic seed for a key that does not yet exist on this machine.
 In this case, the key will be added and plots will be generated:
 
 ```bash
-cdv sim create --mnemonic "use scrap doll sugar october repair color owner know click awkward tragic skate bleak great jeans clean marriage wheat concert pudding sketch horse quick"
+chia dev sim create --mnemonic "use scrap doll sugar october repair color owner know click awkward tragic skate bleak great jeans clean marriage wheat concert pudding sketch horse quick"
 ```
 
 Response:
@@ -302,7 +302,7 @@ Genesis block generated, exiting.
 
 Functionality: Enable or disable auto farming on transaction submission
 
-Usage: `cdv sim autofarm [OPTIONS] [on|off]`
+Usage: `chia dev sim autofarm [OPTIONS] [on|off]`
 
 Options:
 
@@ -318,7 +318,7 @@ Auto farming is enabled by default. The examples will show you how to disable/en
 Disable auto farming:
 
 ```bash
-cdv sim autofarm off
+chia dev sim autofarm off
 ```
 
 Response:
@@ -335,7 +335,7 @@ Auto farming is now off
 Enable auto farming:
 
 ```bash
-cdv sim autofarm on
+chia dev sim autofarm on
 ```
 
 Response:
@@ -352,7 +352,7 @@ Auto farming is now on
 
 Functionality: Farm one or more blocks
 
-Usage: `cdv sim farm [OPTIONS]`
+Usage: `chia dev sim farm [OPTIONS]`
 
 Options:
 
@@ -369,7 +369,7 @@ Options:
 Farm one transaction block using the default values:
 
 ```bash
-cdv sim farm
+chia dev sim farm
 ```
 
 Response:
@@ -387,7 +387,7 @@ Block Height is now: 2
 Farm multiple transaction blocks:
 
 ```bash
-cdv sim farm -b 3
+chia dev sim farm -b 3
 ```
 
 Response:
@@ -405,7 +405,7 @@ Block Height is now: 5
 Farm multiple blocks (transaction or non-transaction):
 
 ```bash
-cdv sim farm -b 3 -n
+chia dev sim farm -b 3 -n
 ```
 
 Response:
@@ -449,7 +449,7 @@ Chia Wallet:
 Next, farm the block. For this example we'll send the reward to the burn address:
 
 ```bash
-cdv sim farm -a txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
+chia dev sim farm -a txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
 ```
 
 Response:
@@ -488,7 +488,7 @@ Chia Wallet:
 
 Functionality: Revert existing transactions and advance the chain with the reverted state intact
 
-Usage: `cdv sim revert [OPTIONS]`
+Usage: `chia dev sim revert [OPTIONS]`
 
 Options:
 
@@ -507,7 +507,7 @@ Options:
 Revert the transactions from one block and advance the chain by one block:
 
 ```bash
-cdv sim revert
+chia dev sim revert
 ```
 
 Response:
@@ -525,7 +525,7 @@ Block Height is now: 11
 Revert transactions from three blocks and advance the chain by five blocks:
 
 ```bash
-cdv sim revert -b 3 -n 5
+chia dev sim revert -b 3 -n 5
 ```
 
 The chain was on block 12 prior to this command. Blocks 9 and above will have their transactions reverted, and the chain will advance to block 17:
@@ -543,7 +543,7 @@ Block Height is now: 17
 Revert all transactions in the blockchain (note that this could take several minutes):
 
 ```bash
-cdv sim revert -r
+chia dev sim revert -r
 ```
 
 Response:
@@ -561,7 +561,7 @@ Block Height is now: 18
 
 Functionality: Start service groups
 
-Usage: `cdv sim start [OPTIONS]`
+Usage: `chia dev sim start [OPTIONS]`
 
 Options:
 
@@ -577,7 +577,7 @@ Options:
 Use the default values. This will start the daemon and the simulator, but not the wallet:
 
 ```bash
-cdv sim start
+chia dev sim start
 ```
 
 Response:
@@ -598,7 +598,7 @@ Status before this example: Simulator is running and wallet is not running.
 Restart the simulator and start the wallet:
 
 ```bash
-cdv sim start -r -w
+chia dev sim start -r -w
 ```
 
 Response:
@@ -617,7 +617,7 @@ chia_wallet: started
 
 Functionality: Get information about the state of the simulator.
 
-Usage: `cdv sim status [OPTIONS]`
+Usage: `chia dev sim status [OPTIONS]`
 
 Options:
 
@@ -636,7 +636,7 @@ Options:
 Show the status using the default values:
 
 ```bash
-cdv sim status
+chia dev sim status
 ```
 
 Response:
@@ -678,7 +678,7 @@ Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4ua
 Include key info with the status (CAUTION: this includes the key's seed phrase):
 
 ```bash
-cdv sim status -k
+chia dev sim status -k
 ```
 
 Response:
@@ -732,7 +732,7 @@ Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4ua
 Show all coins, including reward coins:
 
 ```bash
-cdv sim status -c -i
+chia dev sim status -c -i
 ```
 
 Response:
@@ -793,7 +793,7 @@ Created at: 2022-09-27 23:50:07
 Show the balance of each address:
 
 ```bash
-cdv sim status -a
+chia dev sim status -a
 ```
 
 Response:
@@ -839,7 +839,7 @@ Address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2 has a b
 
 Functionality:
 
-Usage: `cdv sim stop [OPTIONS]`
+Usage: `chia dev sim stop [OPTIONS]`
 
 Options: Stop running services
 
@@ -855,7 +855,7 @@ Options: Stop running services
 Stop the simulator with the default values:
 
 ```bash
-cdv sim stop
+chia dev sim stop
 ```
 
 Response:
@@ -885,7 +885,7 @@ The response shows that the daemon and wallet are still running:
 Stop the simulator, daemon, and wallet:
 
 ```bash
-cdv sim stop -d -w
+chia dev sim stop -d -w
 ```
 
 Response:

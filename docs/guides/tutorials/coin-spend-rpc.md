@@ -93,4 +93,4 @@ If your puzzle requires an aggregated signature, stay tuned for more tutorials.
 
 ---
 
-If you have further questions, join our [Keybase team](https://keybase.io/team/chia_network.public) and ask in the _#chialisp_ channel.
+If you have further questions, join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel.

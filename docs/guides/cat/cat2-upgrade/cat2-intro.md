@@ -173,7 +173,7 @@ It is possible that you have received multiple identical airdrops from different
 
 #### Who can I contact if I have any problems or questions? {#who-to-contact}
 
-The Chia Network Support Team is available to answer questions and provide assistance through this process in the official Support [Keybase channel](https://keybase.io/team/chia_network.public).
+The Chia Network Support Team is available to answer questions and provide assistance through this process in the official Support [Discord](https://discord.gg/chia).
 
 ### CAT1 Balance Website {#cat1-balance-website}
 
