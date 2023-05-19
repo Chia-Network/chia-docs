@@ -10,7 +10,7 @@ slug: /walletconnect-dids
 
 Creates a new DID wallet.
 
-#### Request Parameters
+#### Request
 
 | Parameter              | Type       | Description                                |
 | ---------------------- | ---------- | ------------------------------------------ |
@@ -19,7 +19,7 @@ Creates a new DID wallet.
 | `backupDids`           | `string[]` | The associated backup DIDs.                |
 | `numOfBackupIdsNeeded` | `number`   | The number of backup DIDs needed.          |
 
-#### Response Data
+#### Response
 
 | Parameter  | Type     | Description                          |
 | ---------- | -------- | ------------------------------------ |
@@ -31,14 +31,14 @@ Creates a new DID wallet.
 
 Sets the name of a DID wallet.
 
-#### Request Parameters
+#### Request
 
 | Parameter  | Type     | Description                 |
 | ---------- | -------- | --------------------------- |
 | `walletId` | `number` | The id of the wallet.       |
 | `name`     | `string` | The new name of the wallet. |
 
-#### Response Data
+#### Response
 
 | Parameter  | Type     | Description           |
 | ---------- | -------- | --------------------- |
@@ -48,7 +48,7 @@ Sets the name of a DID wallet.
 
 Sets the DID of an NFT.
 
-#### Request Parameters
+#### Request
 
 | Parameter    | Type       | Description                      |
 | ------------ | ---------- | -------------------------------- |
@@ -57,7 +57,7 @@ Sets the DID of an NFT.
 | `did`        | `string`   | The bech32m encoded DID address. |
 | `fee`        | `number`   | The transaction fee in mojos.    |
 
-#### Response Data
+#### Response
 
 | Parameter     | Type                                                 | Description                 |
 | ------------- | ---------------------------------------------------- | --------------------------- |

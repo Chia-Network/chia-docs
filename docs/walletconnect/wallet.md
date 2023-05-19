@@ -10,13 +10,13 @@ slug: /walletconnect-commands
 
 Prompts the user to login into the wallet corresponding to the provided fingerprint.
 
-#### Request Parameters
+#### Request
 
 | Parameter     | Type     | Description                    |
 | ------------- | -------- | ------------------------------ |
 | `fingerprint` | `number` | The fingerprint of the wallet. |
 
-#### Response Data
+#### Response
 
 | Parameter     | Type     | Description                    |
 | ------------- | -------- | ------------------------------ |
@@ -26,13 +26,13 @@ Prompts the user to login into the wallet corresponding to the provided fingerpr
 
 Requests a complete listing of the wallets associated with the current wallet key.
 
-#### Request Parameters
+#### Request
 
 | Parameter     | Type      | Description                                |
 | ------------- | --------- | ------------------------------------------ |
 | `includeData` | `boolean` | Whether or not to include wallet metadata. |
 
-#### Response Data
+#### Response
 
 | Parameter     | Type                          | Description                   |
 | ------------- | ----------------------------- | ----------------------------- |
@@ -43,13 +43,13 @@ Requests a complete listing of the wallets associated with the current wallet ke
 
 Requests details for a specific transaction.
 
-#### Request Parameters
+#### Request
 
 | Parameter       | Type     | Description         |
 | --------------- | -------- | ------------------- |
 | `transactionId` | `string` | The transaction id. |
 
-#### Response Data
+#### Response
 
 | Parameter       | Type                                | Description             |
 | --------------- | ----------------------------------- | ----------------------- |
@@ -60,13 +60,13 @@ Requests details for a specific transaction.
 
 Requests the asset balance for a specific wallet.
 
-#### Request Parameters
+#### Request
 
 | Parameter  | Type     | Description                                         |
 | ---------- | -------- | --------------------------------------------------- |
 | `walletId` | `number` | The associated wallet id (defaults to main wallet). |
 
-#### Response Data
+#### Response
 
 | Parameter       | Type                        | Description         |
 | --------------- | --------------------------- | ------------------- |
