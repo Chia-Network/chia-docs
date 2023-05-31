@@ -62,9 +62,9 @@ Requests the asset balance for a specific wallet.
 
 #### Request
 
-| Parameter  | Type     | Description                                         |
-| ---------- | -------- | --------------------------------------------------- |
-| `walletId` | `number` | The associated wallet id (defaults to main wallet). |
+| Parameter  | Type     | Description               |
+| ---------- | -------- | ------------------------- |
+| `walletId` | `number` | The associated wallet id. |
 
 #### Response
 
@@ -73,6 +73,16 @@ Requests the asset balance for a specific wallet.
 | `walletBalance` | [`Balance`](#walletbalance) | The wallet balance. |
 
 ### `chia_getCurrentAddress`
+
+| Parameter  | Type     | Description               |
+| ---------- | -------- | ------------------------- |
+| `walletId` | `number` | The associated wallet id. |
+
+#### Response
+
+| Parameter | Type     | Description                         |
+| --------- | -------- | ----------------------------------- |
+| `address` | `string` | The bech32m encoded wallet address. |
 
 ### `chia_sendTransaction`
 
