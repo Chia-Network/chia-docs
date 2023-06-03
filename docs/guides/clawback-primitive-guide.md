@@ -17,11 +17,11 @@ This document will show you how to use Chia's clawback primitive. Clawback curre
 
 :::warning some important notes
 
-* The clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
-* Chia Network, Inc will add a user-friendly implementation of the clawback primitive to a future release of the reference wallet.
-* A **synced full node** AND a synced wallet are required to use the clawback primitive.
-* You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use testnet10.
-* The clawback primitive currently only supports XCH/TXCH. It does not support CATs or NFTs. The `-w` flag will be ignored if it points to a non-XCH (or TXCH) wallet.
+- The clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
+- Chia Network, Inc will add a user-friendly implementation of the clawback primitive to a future release of the reference wallet.
+- A **synced full node** AND a synced wallet are required to use the clawback primitive.
+- You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use testnet10.
+- The clawback primitive currently only supports XCH/TXCH. It does not support CATs or NFTs. The `-w` flag will be ignored if it points to a non-XCH (or TXCH) wallet.
 
 :::
 
@@ -32,6 +32,7 @@ This document will show you how to use Chia's clawback primitive. Clawback curre
 The clawback primitive was designed to guard against sending Chia assets to an incorrect address. The principal behind clawback is simple: it is an intermediate coin that cannot be sent to the destination address until a timelock has expired. In the meantime, the Sender can "claw back" the coin, returning it to their wallet in the form of standard XCH.
 
 An Alice-Bob will demonstrate this:
+
 - Alice wants to send 1 XCH to Bob, and she wants to verify that she has entered Bob's address correctly in her wallet.
 - With this in mind, Alice creates a clawback coin with the following features:
   - It exists on Chia's blockchain
@@ -47,6 +48,7 @@ An Alice-Bob will demonstrate this:
   - Note that the coin's clawback logic is in place for the life of the coin. This means that until the coin is spent, Alice is able to claw it back. This is true regardless of the coin's age. Because of this, after the timelock expires, Bob must spend the clawback coin in order to receive the XCH in his wallet. After this spend has completed, the clawback coin no longer exists, and the spend is final.
 
 This guide will show you how to perform the logic outlined above:
+
 - Create a clawback coin
 - Claw back the coin
 - Claim the clawback coin
@@ -393,7 +395,9 @@ In most cases, if the output of the `clawback show` command contains `Time left:
 
 However, there is a small window of time where the timer has expired, but a block still hasn't been farmed with a timestamp after the expiry. If the Recipient attempts to make the `claim` call during this window, they will receive the following error:
 
-`You are trying to claim the coin too early`
+```
+You are trying to claim the coin too early
+```
 
 In this case, the Recipient needs to wait for one more block to be farmed before proceeding with the `claim` call. As a reminder, a new block is farmed every 18.75 seconds, on average.
 
@@ -451,7 +455,7 @@ So far, we have shown the standard clawback and completion spends. There are als
 
 #### Sender performs a clawback after the timelock
 
-After the timelock expires, the Recipient may claim the clawback coin. Until this is done, the Sender can still claw back the coin. 
+After the timelock expires, the Recipient may claim the clawback coin. Until this is done, the Sender can still claw back the coin.
 
 Let's say the Sender's wallet contains 7.899175 TXCH:
 
@@ -503,7 +507,7 @@ Time left: 0 seconds
 At this point, the Recipient could claim this coin. However, the Sender also can claw back this coin:
 
 ```bash
-clawback claw -c 
+clawback claw -c
 ```
 
 Result: 5024cdd687a70d8a1340e774a9e29c3dc2aa1e3726eaae40700f2859db5fdd1e
@@ -745,7 +749,7 @@ Result:
 Submitted spend to claw back coin: 73e062705a7b44ffc92e7e79dcae8b365363fb2f7d0cf2e983905544f99a6a47
 ```
 
-Note that the wallet address specified in the `claw` command does not need to be associated with the Sender's wallet. 
+Note that the wallet address specified in the `claw` command does not need to be associated with the Sender's wallet.
 In this case, the address belongs to a separate wallet. After the clawback completes, the new wallet has received the clawback coin:
 
 ```bash

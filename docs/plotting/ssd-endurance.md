@@ -3,8 +3,6 @@ title: SSD Endurance
 slug: /ssd-endurance
 ---
 
-## Estimated SSD wear out, endurance table
-
 The fastest plot creation is done completely in memory, but requires a server with a large amount of DRAM to perform this. Most consumer plotters are using an SSD as temporary storage to perform plotting. Mainstream SSDs today use NAND flash technology to store data. NAND is high performance, scalable, and low cost - warranting the use in virtually every computing segment from mobile phones, SD cards, consumer laptops, and data centers. However, NAND must be erased before the cell is programmed, a process known as a program erase cycle, and can only be performed a certain amount of times before the NAND cell wears out and can no longer reliably store user data. This is defined generally as an SSD no longer meeting the UBER (uncorrectable bit error rate), retention time (how long the device can store user data safely while powered off, at a given temperature), or functional failure (device can no longer power on). The metrics to measure endurance of an SSD is defined in Terabytes Written, or TBW, at a certain workload. The workload defined is generally the JESD219 workload from JEDEC organization. An SSD can still plot well beyond meeting it's rated TBW limit, because UBER can be measured (when seeing host errors) and retention is not required (Chia plotting requires temporary or ephemeral storage).
 
 | Plotter             | Cache / Ramdisk | Writes per K=32 |
@@ -21,7 +19,7 @@ There are very high performance consumer NVMe SSDs that will offer great plottin
 
 Here are some [endurance examples](https://docs.google.com/spreadsheets/d/1mNUYRWeJUaijEZXupwP5k6IuATZGj1FB/edit#gid=1857251151).
 
-You can learn more about [SSD endurance from this SNIA whitepaper from JM](https://www.snia.org/forums/cmsi/ssd-endurance).
+You can learn more about SSD endurance from this [SNIA whitepaper from JM](https://www.snia.org/forums/cmsi/ssd-endurance).
 
 ## Math
 
@@ -38,55 +36,71 @@ You can learn more about [SSD endurance from this SNIA whitepaper from JM](https
 
 ### NVMe
 
-https://github.com/linux-nvme/nvme-cli
+You can learn more about the NVMe CLI on the [NVMe CLI GitHub repository](https://github.com/linux-nvme/nvme-cli) or [NVMe CLI blog post](https://nvmexpress.org/open-source-nvme-management-utility-nvme-command-line-interface-nvme-cli).
 
-https://nvmexpress.org/open-source-nvme-management-utility-nvme-command-line-interface-nvme-cli/
+You can read total endurance used with the following NVMe CLI command:
 
-Reading endurance with NVMe-CLI - this is the gas gauge that shows total endurance used
+```bash
+sudo nvme smart-log /dev/nvme0 | grep percentage_used
+```
 
-`sudo nvme smart-log /dev/nvme0 | grep percentage_used`
-Reading amount of writes that the drive have actually done
+This is how to reading the amount of writes that the drive has actually done:
 
-`sudo nvme smart-log /dev/nvme0 | grep data_units_written`
+```bash
+sudo nvme smart-log /dev/nvme0 | grep data_units_written
+```
+
 Bytes written = output _ 1000 _ 512B
 
 TBW = output _ 1000 _ 512B / (1000^4) or (1024^4)
 
 To find out NAND writes, you will have use the vendor plugins for NVMe-CLI.
 
-`sudo nvme <vendor name> help`
+```bash
+sudo nvme <vendor name> help
+```
 
 Example with an Intel SSD
 
-`sudo nvme intel smart-log-add /dev/nvme0`
+```bash
+sudo nvme intel smart-log-add /dev/nvme0
+```
 
 ### SATA
 
 In SATA you can use the following commands
 
-`sudo apt install smartmontools`
+```bash
+sudo apt install smartmontools
+```
 
-`sudo smartctl -x /dev/sda | grep Logical`
+```bash
+sudo smartctl -x /dev/sda | grep Logical
+```
 
-`sudo smartctl -a /dev/sda`
+```bash
+sudo smartctl -a /dev/sda
+```
 
 looking for Media_Wearout_Indicator
 
 note this does also work for NVMe for basic SMART health info
 
-`sudo smartctl -a /dev/nvme0`
+```bash
+sudo smartctl -a /dev/nvme0
+```
 
 ### SAS
 
-`sg_logs /dev/sg1 --page=0x11`
+```bash
+sg_logs /dev/sg1 --page=0x11
+```
 
-look for
+Look for
 
-`Percentage used endurance indicator: 0%`
+```
+Percentage used endurance indicator: 0%
+```
 
-overview of SSD endurance testing from JEDEC industry standard here
+Overview of SSD endurance testing from JEDEC industry standard here
 https://www.jedec.org/sites/default/files/Alvin_Cox%20%5BCompatibility%20Mode%5D_0.pdf
-
-## Adding new models
-
-Please add your model string below if you want me to put it into my calculator and add to the list!

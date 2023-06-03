@@ -3,42 +3,37 @@ title: Plotting Basics
 slug: /plotting-basics
 ---
 
-# Plotting Basics
+The plotting process involves generating and storing unique cryptographic data, called plots, on a user's storage device. Plot files prove to the network that a user is storing data, and are used in the Chia consensus for Proof of Space and Time. Here is a high-level overview of the Chia plotting process
 
-The plotting process involves generating and storing unique cryptographic data, called plots, on a user's storage device. Plot files prove to the network that a user is storing data, and are used in the Chia consensus for Proof of Space and Time. Here's a high-level overview of the Chia plotting process
-
-In practical terms, plotting is the initialization phase of Chia. The Chia plotting process is computationally intensive, but it must only be performed once per plot. During this process, the user's CPU, RAM, and storage devices (such as SSDs) are heavily utilized. However, once the plot is created and stored, the farming process is significantly less resource-intensive, with minimal impact on the user's hardware. Once a plot is created, farming only requires a small amount of disk io to check and submit proofs of space in response to network challenges.
-
+In practical terms, plotting is the initialization of a Chia farm. The Chia plotting process is computationally intensive, but it must only be performed once per plot. During this process, the user's CPU, RAM, and storage devices (such as SSDs) are heavily utilized. However, once the plot is created and stored, the farming process is significantly less resource-intensive, with minimal impact on the user's hardware. Once a plot is created, farming only requires a small amount of disk io to check and submit proofs of space in response to network challenges.
 
 ## Requirements
 
-
 ### K value
 
-The minimum K value for Chia is k=32 at 108.8GB. K=32 is the most common size on the network accounting for 98% of the Netspace. The sizes of uncompressed and compressed k values can be found [here](/k-sizes)
-
+The minimum K value for Chia is k=32 at 108.8GB. K=32 is the most common size on the network accounting for 98% of the Netspace. The sizes of uncompressed and compressed k values can be found on the [K Sizes page](/k-sizes)
 
 ### Keys
 
 To create plots a farmer must know their **Farmer Public Key** and either a **Pool Public Key** or **Pool Contract Address**. Most farmers will want the flexibility to solo farm or farm with a pool and will want to use a Pool Contract Address. A farmer must create a plotnft first to have a pool contract address.
 
-These can be found with
+These can be found with the following commands:
 
-`chia keys show`
-
-`chia plotnft show`
-
+```bash
+chia keys show
+chia plotnft show
+```
 
 ## Hardware
 
 Plotting requires compute - the more compute, the faster the plot time. Chia farmers generally want to plot reasonably fast to get their storage space earning rewards faster. If you are using any of the disk methods, you will need an SSD with high endurance and sustained write performance, more details can be found in the endurance section.
 
-| Plotter Type        | CPU  | GPU  | Temporary Storage | Memory   | Plot times    | Energy Efficiency |
-| ------------------- | ---- | ---- | ----------------- | -------- | ------------- | ----------------- |
-| GPU in-memory       | low  | high | none              | 256GB    | 1-3 minutes   | highest           |
-| GPU / Disk plotting | low  | high | 256GB             | 64-128GB | 3-5 minutes   | high              |
-| CPU in-memory       | high | none | none              | 416GiB   | 2-5 minutes   | high              |
-| CPU disk            | High | none | 256-512GB         | 4GB      | 15-60 minutes | medium            |
+| Plotter Type        | CPU  | GPU  | Temporary Storage | Memory    | Plot times    | Energy Efficiency |
+| ------------------- | ---- | ---- | ----------------- | --------- | ------------- | ----------------- |
+| GPU In-Memory       | Low  | High | None              | 256 GB    | 1-3 Minutes   | Highest           |
+| GPU / Disk Plotting | Low  | High | 256 GB            | 64-128 GB | 3-5 Minutes   | High              |
+| CPU In-Memory       | High | None | None              | 416 GiB   | 2-5 Minutes   | High              |
+| CPU Disk            | High | None | 256-512 GB        | 4 GB      | 15-60 Minutes | Medium            |
 
 ## GUI Plotting
 

@@ -228,7 +228,9 @@ For most dev work on Chia, you'll want to be on the testnet. That way, you're le
 
 If you were previously running on mainnet, you will have a list of mainnet peers stored in the following file:
 
-`~/.chia/mainnet/db/peers.dat`
+```
+~/.chia/mainnet/db/peers.dat
+```
 
 Be sure to **rename or delete** this file when you convert your system to running on testnet. If you do not do this, your system will eventually drop its mainnet peers and add new testnet peers, but this could take a long time.
 
