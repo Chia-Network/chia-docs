@@ -33,7 +33,7 @@ Chia NFTs focus on three key features:
 
 - Marketplace Independence -- you never are required to transfer your NFT to a marketplace in order to sell it. While marketplace custody is allowed, self custody has been standard with Chia NFTs from Day 1.
 - Consistent Provenance -- DIDs enable the tracking of an NFT's complete history. You are highly encouraged to attach your DID to all of the NFTs you create. The DID will later be used to verify the NFTs' authenticity.
-- Digital Permanance -- You can add a list of links to your NFTs' data, metadata, and license. Each link is verified with a hash, which is permanently embedded in the NFT itself. If one link changes or disappears, you can rely on another existing link, or create a new one. Even if all of the links disappear, as long as someone maintains a copy of the original file, the owner can always prepend a new link to the list.
+- Digital Permanence -- You can add a list of links to your NFTs' data, metadata, and license. Each link is verified with a hash, which is permanently embedded in the NFT itself. If one link changes or disappears, you can rely on another existing link, or create a new one. Even if all of the links disappear, as long as someone maintains a copy of the original file, the owner can always prepend a new link to the list.
 
 ### Collections
 
@@ -48,7 +48,7 @@ While some creators may wish to release their NFTs as individual pieces (so-call
 
 #### Edition
 
-"Edition" means multiple NFTs with _identical_ data and metadata. In the NFT1 standard, the NFT's edition is part of the _on-chain_ metadata. This means that it is built into the NFT itself. There are two parmeters related to edition:
+"Edition" means multiple NFTs with _identical_ data and metadata. In the NFT1 standard, the NFT's edition is part of the _on-chain_ metadata. This means that it is built into the NFT itself. There are two parameters related to edition:
 
 - `edition_number` is the sequence number of this NFT's edition. For example, if the collection contains ten identical images of an apple, the NFTs could be labeled `Apple #1 of 10`, `Apple #2 of 10`, etc. The `edition_number` would then be `1`, `2`, etc. If each NFT in a collection is distinct, then the `edition_number` for each NFT is `1`. In this case, most NFT creators will choose not to specify this redundant `edition_number`.
 - `edition_total` is the total number of identical NFTs that are part of this edition. If `edition_number` is specified for an NFT, then `edition_total` is also recommended to be specified. In the above example, each NFT that contains an identical apple image would have an `edition_total` of 10.
@@ -152,7 +152,7 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
 
 ### Installing from source
 
-To install Chia from source, follow our [installation wiki](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL), which includes instructions for intalling on all supported operating systems.
+To install Chia from source, follow our [installation wiki](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL), which includes instructions for installing on all supported operating systems.
 
 ### Switching to testnet
 
@@ -397,7 +397,7 @@ In theory you can use any hosting site to host your NFT images. However, do make
 
 Certain decentralized services such as IPFS can be slow. The first time a user attempts to view an NFT in their wallet (before caching), it might take a long time to load.
 
-Chia NFTs use a list to store image URIs, so it is possible to add multiple locations to increase permanance. However, do make sure each image's hash is the same as the data hash.
+Chia NFTs use a list to store image URIs, so it is possible to add multiple locations to increase permanence. However, do make sure each image's hash is the same as the data hash.
 
 ## NFT Metadata Standards
 
