@@ -74,7 +74,7 @@ Having an open-source ASIC Timelord that everyone can buy inexpensively is the C
 
 ## Timelords and Attacks
 
-One of the things that is great about [Chia's new consensus](/consensus-intro) is that it makes it almost impossible for a Farmer with a maliciously faster Timelord to selfishly Farm. Due to the way the new consensus works, a Farmer with a faster Timelord is basically compelled to prove time for all the farmers winning blocks around him also. Malicously running a faster Timelord can give a benefit when attempting to 51% attack the network, so it is still important that over time we push the Timelord speeds as close to the maximum speeds of the silicon processes available. We expect to have the time and the resources to do that right and make open-source hardware versions widely available.
+One of the things that is great about [Chia's new consensus](/consensus-intro) is that it makes it almost impossible for a Farmer with a maliciously faster Timelord to selfishly Farm. Due to the way the new consensus works, a Farmer with a faster Timelord is basically compelled to prove time for all the farmers winning blocks around him also. Maliciously running a faster Timelord can give a benefit when attempting to 51% attack the network, so it is still important that over time we push the Timelord speeds as close to the maximum speeds of the silicon processes available. We expect to have the time and the resources to do that right and make open-source hardware versions widely available.
 
 ## Terminology
 

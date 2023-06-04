@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-CAT1 reachead its end of life at block 2,311,760, which occurred on July 26, 2022 at around 17:00 UTC. This was the final block where CAT1 was valid. At this block height, a snapshot was taken of all CAT1 tokens, along with the addresses of where they were being held. CAT1 issuers are now able to issue new CAT2 tokens and airdrop them to the same addresses where the CAT1 tokens were held.
+CAT1 reached its end of life at block 2,311,760, which occurred on July 26, 2022 at around 17:00 UTC. This was the final block where CAT1 was valid. At this block height, a snapshot was taken of all CAT1 tokens, along with the addresses of where they were being held. CAT1 issuers are now able to issue new CAT2 tokens and airdrop them to the same addresses where the CAT1 tokens were held.
 
 Chia version 1.5.0 was released on July 26, 2022. Since then, CAT1 tokens are not shown in the wallet. Users will only see the newly-issued CAT2 tokens, which will be identical in value to their CAT1 equivalents.
 
