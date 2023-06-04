@@ -55,7 +55,7 @@ Where it gets interesting is what other coins might do with that announcement. A
 A hypothetical example of a proof of inclusion could be NFT ratings. Here's how it would work:
 
 * A critic provides ratings for various NFTs in a DataLayer table, such that people could create offers based on that rating.
-* A prospetive buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
+* A prospective buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
 * To accept the offer, an NFT owner would have to include a proof of inclusion from the rating table that their NFT had that rating.
 
 This example would require anyone-can-spend DataLayer proofs of inclusion (these doesn't exist yet, but would be straightforward to build). The anyone-can-spend proof of inclusion could also generate a payment to the DataLayer table owner to pay RatingWiz for their services.
