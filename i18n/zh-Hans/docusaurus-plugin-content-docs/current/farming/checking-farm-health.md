@@ -5,19 +5,19 @@ slug: /checking-farm-health
 
 # Is my farm healthy? (\*NIX and Linux Headless Edition)
 
-Alot of smaller farmers are concerned about the health of their farm when they can't find any proofs for days at a time. This document was created to provide metrics to smaller farmers so they can ensure their farm is working, even without finding any proofs.
+A lot of smaller farmers are concerned about the health of their farm when they can't find any proofs for days at a time. This document was created to provide metrics to smaller farmers so they can ensure their farm is working, even without finding any proofs.
 
 ## Check if your farm thinks its farming
 
 Before going further, please make sure wether your farm actually considers itself to be farming. Theres a good chance that you might not since you are still syncing blocks.
 
-To check the status of your farm, `../activate` as usual and then type `chia farm summary`. If the first line of the ouput looks like like this:
+To check the status of your farm, `../activate` as usual and then type `chia farm summary`. If the first line of the output looks like like this:
 
 ```
 Farming status: Farming
 ```
 
-..then you know no broader errors have occured.
+..then you know no broader errors have occurred.
 
 ## Change the log level output
 
@@ -74,7 +74,7 @@ It means that plots are passing the plot filter and your farm seems to work as i
 
 ## Checking for proofs
 
-If you have had elligible plots in the past, theres a chance that you might have already found a proof, but it didn't get accepted by the network.
+If you have had eligible plots in the past, theres a chance that you might have already found a proof, but it didn't get accepted by the network.
 
 **Please keep in mind that finding a proof does not constitute to winning a plot (getting a payout). Even if you find a proof, it needs to compete with other proofs and win to actually receive a reward.**
 
