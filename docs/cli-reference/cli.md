@@ -167,7 +167,7 @@ Command: `chia plots create [add flags and parameters]`
 
 `-p` [pool pk]: This is your "Pool Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full Chia account access. To find your Chia Pool Public Key use the following command: `chia keys show`
 
-`-c` [pool contract address]: This is your "Pool Contract Address". This replaces your Pool Public Key used previously in OG plots. This is used to point a plot to a plotNFT, which allows you to switch plots from local farming to pooling. To find your PlotNFT Contract Addres use the following command: `chia plotnft show`
+`-c` [pool contract address]: This is your "Pool Contract Address". This replaces your Pool Public Key used previously in OG plots. This is used to point a plot to a plotNFT, which allows you to switch plots from local farming to pooling. To find your PlotNFT Contract Address use the following command: `chia plotnft show`
 
 `-a` [fingerprint]: This is the key Fingerprint used to select both the Farmer and Pool Public Keys to use. Utilize this when you want to select one key out of several in your keychain. To find your Chia Key Fingerprint use the following command: `chia keys show`
 
