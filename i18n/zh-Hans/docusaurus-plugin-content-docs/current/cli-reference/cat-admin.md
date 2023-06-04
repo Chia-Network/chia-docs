@@ -94,7 +94,7 @@ After pushing the transaction, the new ID and Eve Coin (singleton parent coin) w
 
 ### `secure_the_bag`
 
-Functionality: Create a tree of coins from a .csv file contianing puzzlehash:amount pairs. Useful for setting up CAT airdrops.
+Functionality: Create a tree of coins from a .csv file containing puzzlehash:amount pairs. Useful for setting up CAT airdrops.
 
 Usage: secure_the_bag [OPTIONS]
 
