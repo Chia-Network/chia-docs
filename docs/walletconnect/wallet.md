@@ -237,7 +237,7 @@ Gets the current sync status of the wallet.
 | `feeAmount`         | `number`                                             | The transaction fee in mojos.          |
 | `confirmed`         | `boolean`                                            | Whether the tx was confirmed.          |
 | `sent`              | `number`                                             | Number of peers the tx was sent to.    |
-| `sentTo`            | `string[]`                                           | The peers the tx has been sent to.     |
+| `sentTo`            | [`Peer[]`](#peer)                                    | The peers the tx has been sent to.     |
 | `spendBundle`       | <code>[SpendBundle](#spendbundle) &#124; null</code> | The associated spend bundle.           |
 | `additions`         | [`Coin[]`](#coin)                                    | Created coins in the block.            |
 | `removals`          | [`Coin[]`](#coin)                                    | Spent coins in the block.              |
@@ -247,6 +247,28 @@ Gets the current sync status of the wallet.
 | `type`              | [`TransactionType`](#transactiontype)                | The type of transaction.               |
 | `name`              | `string`                                             | The transaction's id.                  |
 | `memos`             | [`Memo[]`](#memo)                                    | The memos associated with the tx.      |
+
+### Peer
+
+:::note
+This is a tuple with the following parameters.
+:::
+
+---
+
+| Parameter                    | Type                                  | Description                |
+| ---------------------------- | ------------------------------------- | -------------------------- |
+| `peerId` _(item 1)_          | `string`                              | Peer id.                   |
+| `inclusionStatus` _(item 2)_ | [`InclusionStatus`](#inclusionStatus) | Inclusion status.          |
+| `errorMessage` _(item 3)_    | <code>string &#124; null</code>       | Error message, if present. |
+
+### InclusionStatus
+
+| Name      | Value |
+| --------- | ----- |
+| `SUCCESS` | 1     |
+| `PENDING` | 2     |
+| `FAILED`  | 3     |
 
 ### SpendBundle
 
