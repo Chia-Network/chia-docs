@@ -1,6 +1,6 @@
 ---
 sidebar_label: Wallet
-title: Wallet Commands
+title: General Commands
 slug: /walletconnect-commands
 ---
 
@@ -8,93 +8,181 @@ slug: /walletconnect-commands
 
 ### `chia_logIn`
 
-Prompts the user to login into the wallet corresponding to the provided fingerprint.
+Logs in to a wallet key (account), as identified by its fingerprint.
 
-#### Request
+| Parameter     | Type     | Description         |
+| ------------- | -------- | ------------------- |
+| `fingerprint` | `number` | Wallet fingerprint. |
 
-| Parameter     | Type     | Description                    |
-| ------------- | -------- | ------------------------------ |
-| `fingerprint` | `number` | The fingerprint of the wallet. |
+#### Output Data
 
-#### Response
-
-| Parameter     | Type     | Description                    |
-| ------------- | -------- | ------------------------------ |
-| `fingerprint` | `number` | The fingerprint of the wallet. |
+| Parameter     | Type      | Description             |
+| ------------- | --------- | ----------------------- |
+| `fingerprint` | `number`  | Wallet fingerprint.     |
+| `success`     | `boolean` | Backend success status. |
 
 ### `chia_getWallets`
 
-Requests a complete listing of the wallets associated with the current wallet key.
+Gets a list of wallet ids associated with the current account.
 
-#### Request
+| Parameter     | Type      | Description                  |
+| ------------- | --------- | ---------------------------- |
+| `includeData` | `boolean` | Whether to include metadata. |
 
-| Parameter     | Type      | Description                                |
-| ------------- | --------- | ------------------------------------------ |
-| `includeData` | `boolean` | Whether or not to include wallet metadata. |
+#### Output Data
 
-#### Response
-
-| Parameter     | Type                          | Description                   |
-| ------------- | ----------------------------- | ----------------------------- |
-| `fingerprint` | `number`                      | Logged in wallet fingerprint. |
-| `wallets`     | [`WalletInfo[]`](#walletinfo) | The wallet list.              |
+The output is a value of type <code>[WalletInfo](#walletinfo)[]</code>.
 
 ### `chia_getTransaction`
 
-Requests details for a specific transaction.
+Gets a transaction record by its id.
 
-#### Request
+| Parameter       | Type     | Description     |
+| --------------- | -------- | --------------- |
+| `transactionId` | `string` | Transaction id. |
 
-| Parameter       | Type     | Description         |
-| --------------- | -------- | ------------------- |
-| `transactionId` | `string` | The transaction id. |
+#### Output Data
 
-#### Response
-
-| Parameter       | Type                                | Description             |
-| --------------- | ----------------------------------- | ----------------------- |
-| `transaction`   | [`TransactionRecord`](#transaction) | The transaction record. |
-| `transactionId` | `string`                            | The transaction id.     |
+The output is a value of type [`TransactionRecord`](#transactionrecord).
 
 ### `chia_getWalletBalance`
 
-Requests the asset balance for a specific wallet.
+Gets the various wallet balances for a given wallet id, as shown in the GUI.
 
-#### Request
+| Parameter                | Type     | Description                      |
+| ------------------------ | -------- | -------------------------------- |
+| `walletId?` _(optional)_ | `number` | Wallet id to get the balance of. |
 
-| Parameter  | Type     | Description               |
-| ---------- | -------- | ------------------------- |
-| `walletId` | `number` | The associated wallet id. |
+#### Output Data
 
-#### Response
-
-| Parameter       | Type                        | Description         |
-| --------------- | --------------------------- | ------------------- |
-| `walletBalance` | [`Balance`](#walletbalance) | The wallet balance. |
+The output is a value of type [`WalletBalance`](#walletbalance).
 
 ### `chia_getCurrentAddress`
 
-| Parameter  | Type     | Description               |
-| ---------- | -------- | ------------------------- |
-| `walletId` | `number` | The associated wallet id. |
+Gets the address of the current derivation index.
 
-#### Response
+| Parameter                | Type     | Description                      |
+| ------------------------ | -------- | -------------------------------- |
+| `walletId?` _(optional)_ | `number` | Wallet id to get the address of. |
 
-| Parameter | Type     | Description                         |
-| --------- | -------- | ----------------------------------- |
-| `address` | `string` | The bech32m encoded wallet address. |
+#### Output Data
 
-### `chia_sendTransaction`
-
-### `chia_signMessageById`
-
-### `chia_signMessageByAddress`
-
-### `chia_verifySignature`
+The output is a bech32m encoded address of type `string`.
 
 ### `chia_getNextAddress`
 
+Gets the address of the next derivation index.
+
+| Parameter                  | Type      | Description                           |
+| -------------------------- | --------- | ------------------------------------- |
+| `walletId?` _(optional)_   | `number`  | Wallet id to get the address of.      |
+| `newAddress?` _(optional)_ | `boolean` | Whether to increase derivation index. |
+
+#### Output Data
+
+The output is a bech32m encoded address of type `string`.
+
+### `chia_sendTransaction`
+
+Sends an amount of mojos in a given wallet to a recipient address.
+
+| Parameter                           | Type       | Description                               |
+| ----------------------------------- | ---------- | ----------------------------------------- |
+| `amount`                            | `number`   | Amount in mojos.                          |
+| `fee`                               | `number`   | Transaction fee in mojos.                 |
+| `address`                           | `string`   | Bech32m encoded recipient address.        |
+| `walletId?` _(optional)_            | `number`   | Wallet id to use coins from.              |
+| `waitForConfirmation?` _(optional)_ | `boolean`  | Whether to wait for inclusion in a block. |
+| `memos?` _(optional)_               | `string[]` | A list of coin memos (such as hint).      |
+
+#### Output Data
+
+| Parameter       | Type                                      | Description             |
+| --------------- | ----------------------------------------- | ----------------------- |
+| `transaction`   | [`TransactionRecord`](#transactionrecord) | Transaction record.     |
+| `transactionId` | `string`                                  | Transaction id.         |
+| `success`       | `boolean`                                 | Backend success status. |
+
+### `chia_signMessageById`
+
+Signs a message with the private key of a given DID.
+
+:::note
+In order to ensure the message being signed isn't a transaction, the message is the tree hash of `"Chia Signed Message"` and the raw message. You can learn more about this in [CHIP-0002, the dApp protocol](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md#signmessage).
+:::
+
+---
+
+| Parameter | Type     | Description                              |
+| --------- | -------- | ---------------------------------------- |
+| `message` | `string` | Message to sign.                         |
+| `id`      | `string` | DID to sign the message with the key of. |
+
+#### Output Data
+
+| Parameter      | Type      | Description                      |
+| -------------- | --------- | -------------------------------- |
+| `latestCoinId` | `string`  | Latest DID singleton coin id.    |
+| `pubkey`       | `string`  | Hex encoded DID public key.      |
+| `signature`    | `string`  | Hex encoded BLS12-381 signature. |
+| `signingMode`  | `string`  | Signing mode used.               |
+| `success`      | `boolean` | Backend success status.          |
+
+### `chia_signMessageByAddress`
+
+Signs a message with the private key of a given address.
+
+:::note
+In order to ensure the message being signed isn't a transaction, the message is the tree hash of `"Chia Signed Message"` and the raw message. You can learn more about this in [CHIP-0002, the dApp protocol](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md#signmessage).
+:::
+
+---
+
+| Parameter | Type     | Description                                  |
+| --------- | -------- | -------------------------------------------- |
+| `message` | `string` | Message to sign.                             |
+| `address` | `string` | Address to sign the message with the key of. |
+
+#### Output Data
+
+| Parameter     | Type      | Description                      |
+| ------------- | --------- | -------------------------------- |
+| `pubkey`      | `string`  | Hex encoded address public key.  |
+| `signature`   | `string`  | Hex encoded BLS12-381 signature. |
+| `signingMode` | `string`  | Signing mode used.               |
+| `success`     | `boolean` | Backend success status.          |
+
+### `chia_verifySignature`
+
+Verifies a signature over a message from a given public key.
+
+| Parameter                   | Type     | Description                      |
+| --------------------------- | -------- | -------------------------------- |
+| `message`                   | `string` | Message to verify.               |
+| `pubkey`                    | `string` | Hex encoded public key.          |
+| `signature`                 | `string` | Hex encoded BLS12-381 signature. |
+| `address?` _(optional)_     | `string` | Address used for signing.        |
+| `signingMode?` _(optional)_ | `string` | Signing mode used.               |
+
+#### Output Data
+
+| Parameter | Type      | Description                     |
+| --------- | --------- | ------------------------------- |
+| `isValid` | `boolean` | Whether the signature is valid. |
+| `success` | `boolean` | Backend success status.         |
+
 ### `chia_getSyncStatus`
+
+Gets the current sync status of the wallet.
+
+#### Output Data
+
+| Parameter            | Type      | Description                              |
+| -------------------- | --------- | ---------------------------------------- |
+| `genesisInitialized` | `boolean` | Whether the genesis is initialized.      |
+| `synced`             | `boolean` | Whether the wallet is fully synced.      |
+| `syncing`            | `boolean` | Whether the wallet is currently syncing. |
+| `success`            | `boolean` | Backend success status.                  |
 
 ## Types
 
@@ -106,6 +194,20 @@ Requests the asset balance for a specific wallet.
 | `name`    | `string`                    | The name of the wallet.                  |
 | `type`    | [`WalletType`](#wallettype) | The type of the wallet.                  |
 | `data`    | `any`                       | Extra info (unused for standard wallet). |
+| `meta`    | `any`                       | Metadata specific to each wallet type.   |
+
+#### CAT Metadata
+
+| Parameter | Type     | Description   |
+| --------- | -------- | ------------- |
+| `assetId` | `string` | Asset id.     |
+| `name`    | `string` | Display name. |
+
+#### NFT Metadata
+
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| `did`     | `string` | Owner DID.  |
 
 ### WalletType
 
@@ -124,7 +226,7 @@ Requests the asset balance for a specific wallet.
 | `NFT`              | 10    |
 | `DATA_LAYER`       | 11    |
 
-### Transaction
+### TransactionRecord
 
 | Parameter           | Type                                                 | Description                            |
 | ------------------- | ---------------------------------------------------- | -------------------------------------- |
