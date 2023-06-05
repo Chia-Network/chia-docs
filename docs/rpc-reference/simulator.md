@@ -45,6 +45,69 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 ## Reference
 
+### `farm_block`
+
+Functionality: Farm one or more blocks. Can ensure farming a transaction block if required
+
+Usage: chia rpc full_node [OPTIONS] farm_block [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter          | Required | Description                                                                                                                                                                                                          |
+| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address            | True     | The address to use to farm the block                                                                                                                                                                                 |
+| guarantee_tx_block | False    | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
+| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
+
+<details>
+<summary>Example 1</summary>
+
+Farm a single block:
+
+```json
+chia rpc full_node farm_block '{"address": "txch1v3wjjapxvepyadvr2wgp7272md84lv6kmaxyxm4lq5le2jcc90zqkxhgv6"}'
+```
+
+Response:
+
+```json
+{
+  "new_peak_height": 21,
+  "success": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+Farm three transaction blocks:
+
+```json
+chia rpc full_node farm_block '{"address": "txch1v3wjjapxvepyadvr2wgp7272md84lv6kmaxyxm4lq5le2jcc90zqkxhgv6", "guarantee_tx_block": "True", "blocks": 3}'
+```
+
+Response:
+
+```json
+{
+  "new_peak_height": 24,
+  "success": true
+}
+```
+
+</details>
+
+---
+
 ### `get_all_blocks`
 
 Functionality: Return a list of all blocks in the blockhain
@@ -146,212 +209,6 @@ Response (abbreviated):
     ],
     "success": true
 }
-```
-
-</details>
-
----
-
-### `farm_block`
-
-Functionality: Farm one or more blocks. Can ensure farming a transaction block if required
-
-Usage: chia rpc full_node [OPTIONS] farm_block [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Parameter          | Required | Description                                                                                                                                                                                                          |
-| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| address            | True     | The address to use to farm the block                                                                                                                                                                                 |
-| guarantee_tx_block | False    | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
-| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
-
-<details>
-<summary>Example 1</summary>
-
-Farm a single block:
-
-```json
-chia rpc full_node farm_block '{"address": "txch1v3wjjapxvepyadvr2wgp7272md84lv6kmaxyxm4lq5le2jcc90zqkxhgv6"}'
-```
-
-Response:
-
-```json
-{
-  "new_peak_height": 21,
-  "success": true
-}
-```
-
-</details>
-
-<details>
-<summary>Example 2</summary>
-
-Farm three transaction blocks:
-
-```json
-chia rpc full_node farm_block '{"address": "txch1v3wjjapxvepyadvr2wgp7272md84lv6kmaxyxm4lq5le2jcc90zqkxhgv6", "guarantee_tx_block": "True", "blocks": 3}'
-```
-
-Response:
-
-```json
-{
-  "new_peak_height": 24,
-  "success": true
-}
-```
-
-</details>
-
----
-
-### `set_auto_farming`
-
-Functionality: Set whether to auto farm (Boolean)
-
-Usage: chia rpc full_node [OPTIONS] set_auto_farming [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Parameter | Required | Description                               |
-| :-------- | :------- | :---------------------------------------- |
-| auto_farm | True     | Boolean to enable or disable auto farming |
-
-<details>
-<summary>Example 1</summary>
-
-Enable auto farming:
-
-```json
-chia rpc full_node set_auto_farming '{"auto_farm": true}'
-```
-
-Response:
-
-```json
-{
-  "auto_farm_enabled": true,
-  "success": true
-}
-```
-
-</details>
-
-<details>
-<summary>Example 2</summary>
-
-Disable auto farming:
-
-```json
-chia rpc full_node set_auto_farming '{"auto_farm": false}'
-```
-
-Response:
-
-```json
-{
-  "auto_farm_enabled": false,
-  "success": true
-}
-```
-
-</details>
-
----
-
-### `get_auto_farming`
-
-Functionality: Returns a Boolean to indicate whether auto farming is enabled
-
-Usage: chia rpc full_node [OPTIONS] get_auto_farming [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc full_node get_auto_farming
-```
-
-Response:
-
-```json
-{
-  "auto_farm_enabled": true,
-  "success": true
-}
-```
-
-</details>
-
----
-
-### `get_farming_ph`
-
-Functionality: Get the puzzle hash used by the farmer
-
-Usage: chia rpc full_node [OPTIONS] get_farming_ph [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc full_node get_farming_ph
-```
-
-Response:
-
-```json
-{
-  "puzzle_hash": "5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740",
-  "success": true
-}
-```
-
-You can then use `cdv encode` to convert this puzzle hash to an address:
-
-```bash
-cdv encode --prefix txch 5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740
-```
-
-Response:
-
-```bash
-txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2
 ```
 
 </details>
@@ -468,11 +325,11 @@ Response:
 
 ---
 
-### `revert_blocks`
+### `get_auto_farming`
 
-Functionality: Revert a customizable number of blocks
+Functionality: Returns a Boolean to indicate whether auto farming is enabled
 
-Usage: chia rpc full_node [OPTIONS] revert_blocks [REQUEST]
+Usage: chia rpc full_node [OPTIONS] get_auto_farming [REQUEST]
 
 Options:
 
@@ -481,49 +338,69 @@ Options:
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
-Request Parameters:
-
-| Parameter         | Required | Description                                                    |
-| :---------------- | :------- | :------------------------------------------------------------- |
-| num_of_blocks     | False    | The number of blocks to revert (Default: 1)                    |
-| delete_all_blocks | False    | Boolean, set to `True` to revert all blocks (Default: `False`) |
+Request Parameters: None
 
 <details>
-<summary>Example 1</summary>
-
-Revert a single block:
+<summary>Example</summary>
 
 ```json
-chia rpc full_node revert_blocks
+chia rpc full_node get_auto_farming
 ```
 
 Response:
 
 ```json
 {
-  "new_peak_height": 23,
+  "auto_farm_enabled": true,
   "success": true
 }
 ```
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+---
 
-Delete all blocks -- this will reset the blockchain:
+### `get_farming_ph`
+
+Functionality: Get the puzzle hash used by the farmer
+
+Usage: chia rpc full_node [OPTIONS] get_farming_ph [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
 
 ```json
-chia rpc full_node revert_blocks '{"delete_all_blocks": "True"}'
+chia rpc full_node get_farming_ph
 ```
 
 Response:
 
 ```json
 {
-  "new_peak_height": 1,
+  "puzzle_hash": "5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740",
   "success": true
 }
+```
+
+You can then use `cdv encode` to convert this puzzle hash to an address:
+
+```bash
+cdv encode --prefix txch 5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740
+```
+
+Response:
+
+```bash
+txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2
 ```
 
 </details>
@@ -586,6 +463,129 @@ Response:
 ```json
 {
   "new_peak_height": 18,
+  "success": true
+}
+```
+
+</details>
+
+---
+
+### `revert_blocks`
+
+Functionality: Revert a customizable number of blocks
+
+Usage: chia rpc full_node [OPTIONS] revert_blocks [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter         | Required | Description                                                    |
+| :---------------- | :------- | :------------------------------------------------------------- |
+| num_of_blocks     | False    | The number of blocks to revert (Default: 1)                    |
+| delete_all_blocks | False    | Boolean, set to `True` to revert all blocks (Default: `False`) |
+
+<details>
+<summary>Example 1</summary>
+
+Revert a single block:
+
+```json
+chia rpc full_node revert_blocks
+```
+
+Response:
+
+```json
+{
+  "new_peak_height": 23,
+  "success": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+Delete all blocks -- this will reset the blockchain:
+
+```json
+chia rpc full_node revert_blocks '{"delete_all_blocks": "True"}'
+```
+
+Response:
+
+```json
+{
+  "new_peak_height": 1,
+  "success": true
+}
+```
+
+</details>
+
+---
+
+### `set_auto_farming`
+
+Functionality: Set whether to auto farm (Boolean)
+
+Usage: chia rpc full_node [OPTIONS] set_auto_farming [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                               |
+| :-------- | :------- | :---------------------------------------- |
+| auto_farm | True     | Boolean to enable or disable auto farming |
+
+<details>
+<summary>Example 1</summary>
+
+Enable auto farming:
+
+```json
+chia rpc full_node set_auto_farming '{"auto_farm": true}'
+```
+
+Response:
+
+```json
+{
+  "auto_farm_enabled": true,
+  "success": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+Disable auto farming:
+
+```json
+chia rpc full_node set_auto_farming '{"auto_farm": false}'
+```
+
+Response:
+
+```json
+{
+  "auto_farm_enabled": false,
   "success": true
 }
 ```

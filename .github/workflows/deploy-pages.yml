@@ -5,6 +5,9 @@ on:
     branches:
       - 'main'
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,6 +23,9 @@ jobs:
           yarn
       - name: 'yarn deploy'
         run: |
+          # postBuffer documented at: https://git-scm.com/docs/git-config#Documentation/git-config.txt-httppostBuffer
+          # Needed due to commit/push errors over https related to the remote hanging up unexpectedly
+          git config --global http.postBuffer 10000000
           git config --global user.name 'ChiaAutomation'
           git config --global user.email 'automation@chia.net'
           GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy

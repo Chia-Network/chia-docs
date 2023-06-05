@@ -112,4 +112,4 @@ Use the Chia GUI or CLI to send a transaction as you would typically do with the
 
 ---
 
-If you have further questions, join our [Keybase team](https://keybase.io/team/chia_network.public) and ask in the _#chialisp_ channel.
+If you have further questions, join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel.

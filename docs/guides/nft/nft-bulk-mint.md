@@ -50,7 +50,7 @@ daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination
 
 We strongly recommend that you test the bulk minting tool either on the testnet or by using the [simulator](/guides/simulator-user-guide) before attempting to use it on mainnet. In addition, you will need to run a fully synced node in order to use this tool (this is true for testnet, mainnet and the simulator).
 
-For this guide, we will use the testnet. If you do not already have a synced testnet node, you can safely download a copy of the database. **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
+For this guide, we will use the testnet. If you do not already have a synced testnet node, you can safely [download a copy of the database](https://www.chia.net/downloads/#database-checkpoint). **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
 
 :::note
 At the time of this writing, the file you will download is around 50 GB, compressed. Uncompressed, it will be around 100 GB. However, this file increases in size every day. You may want to double check that you have plenty of free space before proceeding with the download.
@@ -289,7 +289,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-11. In order to run the bulk minting tool, you will need to have an NFT wallet that is associated with a DID. You will need to have some TXCH in order to create this wallet. If your requested TXCH has not yet arrived, post your address on the #dev channel on Keybase. Someone might be able to send some to you.
+11. In order to run the bulk minting tool, you will need to have an NFT wallet that is associated with a DID. You will need to have some TXCH in order to create this wallet. If your requested TXCH has not yet arrived, post your address on the #chia-development channel on Discord. Someone might be able to send some to you.
 
 In order to create a DID, run the following command (`-n` is for the name of the DID, which can be anything):
 

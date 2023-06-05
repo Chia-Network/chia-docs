@@ -83,4 +83,4 @@ Writing parameters like this doesn't change anything in how they function, but r
 
 ## Conclusion
 
-This is very useful for writing reusable and composable puzzles in Chialisp. It is also commonly used in tandem with [inner puzzles](/guides/chialisp-inner-puzzles). However, currying can be a pretty confusing topic, so if you have any further questions, feel free to ask them on our [Keybase team](https://keybase.io/team/chia_network.public).
+This is very useful for writing reusable and composable puzzles in Chialisp. It is also commonly used in tandem with [inner puzzles](/guides/chialisp-inner-puzzles). However, currying can be a pretty confusing topic, so if you have any further questions, feel free to ask them on our [Discord](https://discord.gg/chia).

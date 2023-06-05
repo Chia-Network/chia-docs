@@ -32,232 +32,6 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 ## Key management
 
-### `log_in`
-
-Functionality: Log into the wallet with the specified key
-
-Usage: chia rpc wallet [OPTIONS] log_in [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag        | Type   | Required | Description                                                        |
-| :---------- | :----- | :------- | :----------------------------------------------------------------- |
-| fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet log_in '{"fingerprint": 2818719465}'
-```
-
-Response:
-
-```json
-{
-    "fingerprint": 2818719465,
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_logged_in_fingerprint`
-
-Functionality: Obtain the fingerprint of the wallet that is currently logged in
-
-Usage: chia rpc wallet [OPTIONS] get_logged_in_fingerprint [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_logged_in_fingerprint
-```
-
-Response:
-
-```json
-{
-    "fingerprint": 2818719465,
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_public_keys`
-
-Functionality: Show all public key fingerprints stored in the OS keyring. Note that the keyring must be unlocked in order to run this RPC
-
-Usage: chia rpc wallet [OPTIONS] get_public_keys [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_public_keys
-```
-
-Response:
-
-```json
-{
-    "public_key_fingerprints": [
-        2104826454,
-        3792481086,
-        2818719465,
-        2121994410
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_private_key`
-
-Functionality: Show public and private info about a key
-
-Usage: chia rpc wallet [OPTIONS] get_private_key [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag        | Type   | Required | Description                                                        |
-| :---------- | :----- | :------- | :----------------------------------------------------------------- |
-| fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
-
-:::warning
-
-This RPC will show the private key and seed phrase for the given fingerprint. Use with caution.
-
-:::
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_private_key '{"fingerprint": 2473794447}'
-```
-
-Response:
-
-```json
-{
-    "private_key": {
-        "farmer_pk": "8c65856685323f149a651e6cbe068ece36f87a84efa16246b0eef65ac586a30fb678878bd4364d52c432fbb77838cbf6",
-        "fingerprint": 2473794447,
-        "pk": "b73cf2471b10a7ba839616aff0ab1cb319d9d3a77ee26ff88ec1c8e645468eb0b7653518b85e5dd0df7cf50d8612b978",
-        "pool_pk": "845ff087376ffecf83950485d63ffed1cc73f36daf018deb4fbd2f05e7198b07521486274d82ecc4f5a2eaae63dfd0a7",
-        "seed": "arrest legend bounce attend rebel blade palace bean dry shell nice bubble coil cook token nerve visa december hero garment grid attend nerve certain",
-        "sk": "0665913196501420c0fe2de6b5ce7b25f749d52dcbf997b069bb2ea8438c6c3c"
-    },
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `generate_mnemonic`
-
-Functionality: Generates a random 24-word mnemonic seed phrase
-
-Usage: chia rpc wallet [OPTIONS] generate_mnemonic [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet generate_mnemonic
-```
-
-Response:
-
-```json
-{
-    "mnemonic": [
-        "hint",
-        "dice",
-        "session",
-        "fun",
-        "budget",
-        "strong",
-        "album",
-        "lava",
-        "tackle",
-        "sudden",
-        "garage",
-        "people",
-        "bundle",
-        "federal",
-        "chest",
-        "process",
-        "vicious",
-        "behave",
-        "nephew",
-        "zero",
-        "vital",
-        "ocean",
-        "artist",
-        "lawsuit"
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
 ### `add_key`
 
 Functionality: Create a new key (wallet/fingerprint) from a given mnemonic seed phrase
@@ -289,44 +63,6 @@ Response:
 ```json
 {
     "fingerprint": 874731676,
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `delete_key`
-
-Functionality: Delete a key, based on its wallet fingerprint
-
-Usage: chia rpc wallet [OPTIONS] delete_key [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag        | Type   | Required | Description                                                        |
-| :---------- | :----- | :------- | :----------------------------------------------------------------- |
-| fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet delete_key '{"fingerprint": 874731676}'
-```
-
-Response:
-
-```json
-{
     "success": true
 }
 ```
@@ -418,13 +154,11 @@ Response:
 
 ---
 
-## Wallet node
+### `delete_key`
 
-### `set_wallet_resync_on_startup`
+Functionality: Delete a key, based on its wallet fingerprint
 
-Functionality: Resync the current logged in wallet. The transaction and offer records will be kept
-
-Usage: chia rpc wallet [OPTIONS] set_wallet_resync_on_startup [REQUEST]
+Usage: chia rpc wallet [OPTIONS] delete_key [REQUEST]
 
 Options:
 
@@ -435,21 +169,320 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                      |
-| :----- | :------ | :------- | :----------------------------------------------- |
-| enable | BOOLEAN | False    | Set to `true` to enable resync [Default: `true`] |
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
 
 <details>
 <summary>Example</summary>
 
 ```json
- chia rpc wallet set_wallet_resync_on_startup
+chia rpc wallet delete_key '{"fingerprint": 874731676}'
 ```
 
 Response:
 
 ```json
 {
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `generate_mnemonic`
+
+Functionality: Generates a random 24-word mnemonic seed phrase
+
+Usage: chia rpc wallet [OPTIONS] generate_mnemonic [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet generate_mnemonic
+```
+
+Response:
+
+```json
+{
+    "mnemonic": [
+        "hint",
+        "dice",
+        "session",
+        "fun",
+        "budget",
+        "strong",
+        "album",
+        "lava",
+        "tackle",
+        "sudden",
+        "garage",
+        "people",
+        "bundle",
+        "federal",
+        "chest",
+        "process",
+        "vicious",
+        "behave",
+        "nephew",
+        "zero",
+        "vital",
+        "ocean",
+        "artist",
+        "lawsuit"
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_logged_in_fingerprint`
+
+Functionality: Obtain the fingerprint of the wallet that is currently logged in
+
+Usage: chia rpc wallet [OPTIONS] get_logged_in_fingerprint [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_logged_in_fingerprint
+```
+
+Response:
+
+```json
+{
+    "fingerprint": 2818719465,
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_private_key`
+
+Functionality: Show public and private info about a key
+
+Usage: chia rpc wallet [OPTIONS] get_private_key [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
+
+:::warning
+
+This RPC will show the private key and seed phrase for the given fingerprint. Use with caution.
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_private_key '{"fingerprint": 2473794447}'
+```
+
+Response:
+
+```json
+{
+    "private_key": {
+        "farmer_pk": "8c65856685323f149a651e6cbe068ece36f87a84efa16246b0eef65ac586a30fb678878bd4364d52c432fbb77838cbf6",
+        "fingerprint": 2473794447,
+        "pk": "b73cf2471b10a7ba839616aff0ab1cb319d9d3a77ee26ff88ec1c8e645468eb0b7653518b85e5dd0df7cf50d8612b978",
+        "pool_pk": "845ff087376ffecf83950485d63ffed1cc73f36daf018deb4fbd2f05e7198b07521486274d82ecc4f5a2eaae63dfd0a7",
+        "seed": "arrest legend bounce attend rebel blade palace bean dry shell nice bubble coil cook token nerve visa december hero garment grid attend nerve certain",
+        "sk": "0665913196501420c0fe2de6b5ce7b25f749d52dcbf997b069bb2ea8438c6c3c"
+    },
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_public_keys`
+
+Functionality: Show all public key fingerprints stored in the OS keyring. Note that the keyring must be unlocked in order to run this RPC
+
+Usage: chia rpc wallet [OPTIONS] get_public_keys [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_public_keys
+```
+
+Response:
+
+```json
+{
+    "public_key_fingerprints": [
+        2104826454,
+        3792481086,
+        2818719465,
+        2121994410
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `log_in`
+
+Functionality: Log into the wallet with the specified key
+
+Usage: chia rpc wallet [OPTIONS] log_in [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet log_in '{"fingerprint": 2818719465}'
+```
+
+Response:
+
+```json
+{
+    "fingerprint": 2818719465,
+    "success": true
+}
+```
+
+</details>
+
+---
+
+## Wallet node
+
+### `get_height_info`
+
+Functionality: Show the block height to which the current wallet is synced
+
+Usage: chia rpc wallet [OPTIONS] get_height_info [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_height_info
+```
+
+Response:
+
+```json
+{
+    "height": 2863319,
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_network_info`
+
+Functionality: Show the current network (eg `mainnet`) and network prefix (eg `XCH`)
+
+Usage: chia rpc wallet [OPTIONS] get_network_info [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_network_info
+```
+
+Response:
+
+```json
+{
+    "network_name": "mainnet",
+    "network_prefix": "xch",
     "success": true
 }
 ```
@@ -495,83 +528,6 @@ Response:
 
 ---
 
-### `get_height_info`
-
-Functionality: Show the block height to which the current wallet is synced
-
-Usage: chia rpc wallet [OPTIONS] get_height_info [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_height_info
-```
-
-Response:
-
-```json
-{
-    "height": 2863319,
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `push_tx`
-
-Functionality: Push a spend bundle (transaction) to the blockchain
-
-Usage: chia rpc wallet [OPTIONS] push_tx [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag         | Type | Required | Description                            |
-| :----------- | :--- | :------- | :------------------------------------- |
-| spend_bundle | TEXT | True     | The spend bundle (transaction) to push |
-
----
-
-### `push_transactions`
-
-Functionality: Push multiple transactions to the blockchain
-
-Usage: chia rpc wallet [OPTIONS] push_transactions [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag         | Type       | Required | Description                    |
-| :----------- | :--------- | :------- | :----------------------------- |
-| transactions | TEXT ARRAY | True     | A list of transactions to push |
-
----
-
 ### `get_timestamp_for_height`
 
 Functionality: Show the timestamp for a given block height
@@ -613,49 +569,11 @@ Response:
 
 ---
 
-### `get_network_info`
+### `push_transactions`
 
-Functionality: Show the current network (eg `mainnet`) and network prefix (eg `XCH`)
+Functionality: Push multiple transactions to the blockchain
 
-Usage: chia rpc wallet [OPTIONS] get_network_info [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_network_info
-```
-
-Response:
-
-```json
-{
-    "network_name": "mainnet",
-    "network_prefix": "xch",
-    "success": true
-}
-```
-
-</details>
-
----
-
-## Wallet management
-
-### `get_wallets`
-
-Functionality: Show all wallets associated with the current fingerprint, including (by default) coin information
-
-Usage: chia rpc wallet [OPTIONS] get_wallets [REQUEST]
+Usage: chia rpc wallet [OPTIONS] push_transactions [REQUEST]
 
 Options:
 
@@ -666,38 +584,72 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type    | Required | Description                                                                                                            |
-| :----------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------- |
-| include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`]                                               |
-| type         | TEXT    | False    | The type of wallet to retrieve. If included, must be one of `cat_wallet`, `did_wallet`, `nft_wallet`, or `pool_wallet` |
+| Flag         | Type       | Required | Description                    |
+| :----------- | :--------- | :------- | :----------------------------- |
+| transactions | TEXT ARRAY | True     | A list of transactions to push |
+
+---
+
+### `push_tx`
+
+Functionality: Push a spend bundle (transaction) to the blockchain
+
+Usage: chia rpc wallet [OPTIONS] push_tx [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag         | Type | Required | Description                            |
+| :----------- | :--- | :------- | :------------------------------------- |
+| spend_bundle | TEXT | True     | The spend bundle (transaction) to push |
+
+---
+
+### `set_wallet_resync_on_startup`
+
+Functionality: Resync the current logged in wallet. The transaction and offer records will be kept
+
+Usage: chia rpc wallet [OPTIONS] set_wallet_resync_on_startup [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag   | Type    | Required | Description                                      |
+| :----- | :------ | :------- | :----------------------------------------------- |
+| enable | BOOLEAN | False    | Set to `true` to enable resync [Default: `true`] |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet get_wallets '{"include_data": false}'
+ chia rpc wallet set_wallet_resync_on_startup
 ```
 
 Response:
 
 ```json
 {
-    "fingerprint": 874731676,
-    "success": true,
-    "wallets": [
-        {
-            "data": "",
-            "id": 1,
-            "name": "Chia Wallet",
-            "type": 0
-        }
-    ]
+    "success": true
 }
 ```
 
 </details>
 
 ---
+
+## Wallet management
 
 ### `create_new_wallet`
 
@@ -969,13 +921,11 @@ Response:
 
 ---
 
-## Wallet
+### `get_wallets`
 
-### `get_wallet_balance`
+Functionality: Show all wallets associated with the current fingerprint, including (by default) coin information
 
-Functionality: Obtain the balance (and related info) from a wallet
-
-Usage: chia rpc wallet [OPTIONS] get_wallet_balance [REQUEST]
+Usage: chia rpc wallet [OPTIONS] get_wallets [REQUEST]
 
 Options:
 
@@ -986,34 +936,459 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                  |
-| :-------- | :----- | :------- | :----------------------------------------------------------- |
-| wallet_id | NUMBER | True     | The Wallet ID of the wallet from which to obtain the balance |
+| Flag         | Type    | Required | Description                                                                                                            |
+| :----------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------- |
+| include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`]                                               |
+| type         | TEXT    | False    | The type of wallet to retrieve. If included, must be one of `cat_wallet`, `did_wallet`, `nft_wallet`, or `pool_wallet` |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet get_wallet_balance '{"wallet_id": 1}'
+chia rpc wallet get_wallets '{"include_data": false}'
 ```
 
 Response:
 
 ```json
 {
+    "fingerprint": 874731676,
     "success": true,
-    "wallet_balance": {
-        "confirmed_wallet_balance": 999999799,
-        "fingerprint": 874731676,
-        "max_send_amount": 999999799,
-        "pending_change": 0,
-        "pending_coin_removal_count": 0,
-        "spendable_balance": 999999799,
-        "unconfirmed_wallet_balance": 999999799,
-        "unspent_coin_count": 1,
-        "wallet_id": 1,
-        "wallet_type": 0
-    }
+    "wallets": [
+        {
+            "data": "",
+            "id": 1,
+            "name": "Chia Wallet",
+            "type": 0
+        }
+    ]
+}
+```
+
+</details>
+
+---
+
+## Wallet
+
+### `create_signed_transaction`
+
+Functionality: Create a signed transaction from the given wallet
+
+Usage: chia rpc wallet [OPTIONS] create_signed_transaction [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type         | Required | Description                                                                                |
+| :------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                            |
+| additions            | TEXT ARRAY   | True     | A list of puzzle hashes and amounts to be included                                         |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                               |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                               |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                          |
+| coins                | TEXT ARRAY   | True     | A list of coins to include                                                                 |
+| exclude_coins        | TEXT ARRAY   | True     | A list of coins to exclude                                                                 |
+| coin_announcements   | TEXT ARRAY   | False    | A list of coin announcements, which includes `coin_id`, `message`, and `morph_bytes`       |
+| puzzle_announcements | TEXT ARRAY   | False    | A list of puzzle announcements, which includes `puzzle_hash`, `message`, and `morph_bytes` |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                       |
+
+---
+
+### `delete_notifications`
+
+Functionality: Delete notifications, with the option to specify IDs from which to delete
+
+Usage: chia rpc wallet [OPTIONS] delete_notifications [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                                             |
+| :-------- | :------- | :-------------------------------------------------------------------------------------- |
+| ids       | False    | Set to delete notifications only from the specified IDs. [Default: delete from all IDs] |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet delete_notifications
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `delete_unconfirmed_transactions`
+
+Functionality: Delete all transactions that have yet to be confirmed on the blockchain from the given wallet
+
+Usage: chia rpc wallet [OPTIONS] delete_unconfirmed_transactions [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag      | Type   | Required | Description                                            |
+| :-------- | :----- | :------- | :----------------------------------------------------- |
+| wallet_id | NUMBER | True     | The ID of the wallet from which to delete transactions |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet delete_unconfirmed_transactions '{"wallet_id": 2}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `extend_derivation_index`
+
+Functionality: Increase the derivation index
+
+Usage: chia rpc wallet [OPTIONS] extend_derivation_index [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description                                                      |
+| :---- | :----- | :------- | :--------------------------------------------------------------- |
+| index | NUMBER | True     | The new derivation index. Must be larger than the previous index |
+
+Note: The derivation index is the minimum number of addresses the wallet will examine. It's not possible to decrease this number.
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet extend_derivation_index '{"index": 436}'
+```
+
+Response:
+
+```json
+{
+    "index": 436,
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_coin_records_by_names`
+
+Functionality: Obtain coin records from a list of coin names
+
+Usage: chia rpc wallet [OPTIONS] get_coin_records_by_names [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                | Type       | Required | Description                                         |
+| :------------------ | :--------- | :------- | :-------------------------------------------------- |
+| names               | TEXT ARRAY | True     | A list of coin names from which to retrieve records |
+| start_height        | NUMBER     | False    | The block height at which to start the query        |
+| end_height          | NUMBER     | False    | The block height at which to end the query          |
+| include_spent_coins | BOOLEAN    | False    | Include spent coins in the result [Default: false]  |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_coin_records_by_names '{"names": ["0xeb17e80fcb72f15bfb28924f0bcd684df626646dca282bc88098cb0d59ffe1bb"]}'
+```
+
+Response:
+
+```json
+{
+    "coin_records": [
+        {
+            "coin": {
+                "amount": 999996796,
+                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
+                "puzzle_hash": "0x138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722"
+            },
+            "coinbase": false,
+            "confirmed_block_index": 2867783,
+            "spent_block_index": 0,
+            "timestamp": 1669261898
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_current_derivation_index`
+
+Functionality: Obtain the current derivation index for the current wallet
+
+Usage: chia rpc wallet [OPTIONS] get_current_derivation_index [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_current_derivation_index
+```
+
+Response:
+
+```json
+{
+    "index": 435,
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_farmed_amount`
+
+Functionality: Show the total amount that has been farmed
+
+Usage: chia rpc wallet [OPTIONS] get_farmed_amount [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_farmed_amount
+```
+
+Response:
+
+```json
+{
+    "farmed_amount": 0,
+    "farmer_reward_amount": 0,
+    "fee_amount": 0,
+    "last_height_farmed": 0,
+    "pool_reward_amount": 0,
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_next_address`
+
+Functionality: Get the next address in the HD tree, with the option to show the latest address
+
+Usage: chia rpc wallet [OPTIONS] get_next_address [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type    | Required | Description                                                                    |
+| :---------- | :------ | :------- | :----------------------------------------------------------------------------- |
+| wallet_id   | TEXT    | True     | The ID of the wallet from which to obtain the next address                     |
+| new_address | BOOLEAN | True     | If `true`, then create a new address, else display the latest existing address |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_next_address '{"wallet_id": 2, "new_address": false}'
+```
+
+Response:
+
+```json
+{
+    "address": "xch1jxe8yfq8xem0e8ty5dq9hp86ududys96n6ugy2q4fextr0pplw9qwpfru9",
+    "success": true,
+    "wallet_id": 2
+}
+```
+
+</details>
+
+---
+
+### `get_notifications`
+
+Functionality: Obtain current notifications
+
+Usage: chia rpc wallet [OPTIONS] get_notifications [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Parameter | Required | Description                                                                               |
+| :-------- | :------- | :---------------------------------------------------------------------------------------- |
+| ids       | False    | Set to receive notifications only from the specified IDs. [Default: receive from all IDs] |
+| start     | False    | The number corresponding to the first notification to list. [Default: the first notification]
+| end       | False    | The number corresponding to the last notification to list. [Default: the last notification]
+
+<details>
+<summary>Example</summary>
+
+If no parameters are set, then all notifications will be listed from all IDs:
+
+```json
+chia rpc wallet get_notifications
+```
+
+Response:
+
+```json
+{
+    "notifications": [
+        {
+            "amount": 10000000,
+            "id": "f74fb363fbdeef3f6bcf7a0664a8ef76ea3e5f22bb4ffc9a1f9ef23b9329ae28",
+            "message": "fadedcab"
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_spendable_coins`
+
+Functionality: Get all spendable coins, with various possible filters
+
+Usage: chia rpc wallet [OPTIONS] get_spendable_coins [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                  | Type         | Required | Description                                                          |
+| :-------------------- | :----------- | :------- | :------------------------------------------------------------------- |
+| wallet_id             | NUMBER       | True     | The ID of the wallet from which to display coins                     |
+| min_coin_amount       | NUMBER       | False    | The smallest coin to be selected in this query [Default: No minimum] |
+| max_coin_amount       | NUMBER       | False    | The largest coin to be selected in this query [Default: No maximum]  |
+| excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                    |
+| excluded_coins        | TEXT ARRAY   | False    | A list of coins to exclude                                           |
+| excluded_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                        |
+
+<details>
+<summary>Example</summary>
+
+List all unspent coins from wallet 1:
+
+```json
+chia rpc wallet get_spendable_coins '{"wallet_id": 1}'
+```
+
+Response:
+
+```json
+{
+    "confirmed_records": [
+        {
+            "coin": {
+                "amount": 999996796,
+                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
+                "puzzle_hash": "0x138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722"
+            },
+            "coinbase": false,
+            "confirmed_block_index": 2867783,
+            "spent_block_index": 0,
+            "timestamp": 1669261898
+        }
+    ],
+    "success": true,
+    "unconfirmed_additions": [],
+    "unconfirmed_removals": []
 }
 ```
 
@@ -1236,203 +1611,41 @@ Response:
 
 ---
 
-### `get_next_address`
+### `get_transaction_memo`
 
-Functionality: Get the next address in the HD tree, with the option to show the latest address
+Functionality: Obtain the memo for the specified transaction
 
-Usage: chia rpc wallet [OPTIONS] get_next_address [REQUEST]
+Usage: chia rpc wallet [OPTIONS] get_transaction_memo [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag        | Type    | Required | Description                                                                    |
-| :---------- | :------ | :------- | :----------------------------------------------------------------------------- |
-| wallet_id   | TEXT    | True     | The ID of the wallet from which to obtain the next address                     |
-| new_address | BOOLEAN | True     | If `true`, then create a new address, else display the latest existing address |
+| Parameter      | TYPE   | Required | Description                                              |
+| :------------- | :----- | :------- | :------------------------------------------------------- |
+| transaction_id | STRING | True     | The ID of the transaction for which to retrieve the memo |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet get_next_address '{"wallet_id": 2, "new_address": false}'
+chia rpc wallet get_transaction_memo '{"transaction_id": "0x21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171"}'
 ```
 
 Response:
 
 ```json
 {
-    "address": "xch1jxe8yfq8xem0e8ty5dq9hp86ududys96n6ugy2q4fextr0pplw9qwpfru9",
-    "success": true,
-    "wallet_id": 2
-}
-```
-
-</details>
-
----
-
-### `send_transaction`
-
-Functionality: Send a transaction
-
-Usage: chia rpc wallet [OPTIONS] send_transaction [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag                 | Type         | Required | Description                                                |
-| :------------------- | :----------- | :------- | :--------------------------------------------------------- |
-| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction            |
-| address              | TEXT         | True     | The destination address                                    |
-| amount               | NUMBER       | True     | The number of mojos to send                                |
-| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                       |
-| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction |
-| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]               |
-| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]               |
-| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                          |
-| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                              |
-| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet send_transaction '{"wallet_id": 1, "address": "xch1fev2qaclwpcue9kx4p39dzfxpzaavvcz5v3lhx77cxha7f0tjjlsngh5k0", "amount": 1000, "fee": 1, "memos":["memo1"]}'
-```
-
-Response:
-
-```json
-{
-    "success": true,
-    "transaction": {
-        "additions": [
-            {
-                "amount": 1000,
-                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
-                "puzzle_hash": "0x4e58a0771f7071cc96c6a86256892608bbd63302a323fb9bdec1afdf25eb94bf"
-            },
-            {
-                "amount": 999996796,
-                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
-                "puzzle_hash": "0x138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722"
-            }
-        ],
-        "amount": 1000,
-        "confirmed": false,
-        "confirmed_at_height": 0,
-        "created_at_time": 1669261889,
-        "fee_amount": 1,
-        "memos": {
-            "029b8689abda7f4ff4871e1cd69eb32725a0cda8520b751bcf774fb681e19bc5": "6d656d6f31"
-        },
-        "name": "0x94a6b6a2353a8f49b6dc30d7141272df14bc82727fd0d82a18680605b2a90051",
-        "removals": [
-            {
-                "amount": 999997797,
-                "parent_coin_info": "0x81d6dac68bb566d696a62629e1e08edd5b684d35c3ee8c7164b1c3a457514203",
-                "puzzle_hash": "0xd84faa841550d718863fc1139ff880c8366a546ab7dc567a672a14c7ddf5b4b7"
-            }
-        ],
-        "sent": 0,
-        "sent_to": [],
-        "spend_bundle": {
-            "aggregated_signature": "0xa95fba5e9e310d1c096bb44e27d98b070b7591be29d3f174ac42bcad39ec5e8a356747851c3df456973c96f55884dbb913247000368b0d1fa3518f11dae0ed45cb8f0961899aa7ee2102c58265d9460a31c33bd896ce9a2ef377bbc6419343b0",
-            "coin_spends": [
-                {
-                    "coin": {
-                        "amount": 999997797,
-                        "parent_coin_info": "0x81d6dac68bb566d696a62629e1e08edd5b684d35c3ee8c7164b1c3a457514203",
-                        "puzzle_hash": "0xd84faa841550d718863fc1139ff880c8366a546ab7dc567a672a14c7ddf5b4b7"
-                    },
-                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0a5abd588cc5a2c873ee37809ea33432b7a87aaf8370eba7f9806bc1eac517034b3850cc7a4f2550f108b8a124d3dbbc3ff018080",
-                    "solution": "0xff80ffff01ffff33ffa04e58a0771f7071cc96c6a86256892608bbd63302a323fb9bdec1afdf25eb94bfff8203e8ffff856d656d6f318080ffff33ffa0138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722ff843b9abd7c80ffff34ff0180ffff3cffa086ec6c5fe3716c6e0b39c0049a3d164f491c3347c4fd36196ecc561b5cf347da8080ff8080"
-                }
-            ]
-        },
-        "to_address": "xch1fev2qaclwpcue9kx4p39dzfxpzaavvcz5v3lhx77cxha7f0tjjlsngh5k0",
-        "to_puzzle_hash": "0x4e58a0771f7071cc96c6a86256892608bbd63302a323fb9bdec1afdf25eb94bf",
-        "trade_id": null,
-        "type": 1,
-        "wallet_id": 1
+    "21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171": {
+        "21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171": [
+            "f8858363837eaccf1249844dfd200999ebd480b393dd0f7f2022880868ce3bf3"
+        ]
     },
-    "transaction_id": "0x94a6b6a2353a8f49b6dc30d7141272df14bc82727fd0d82a18680605b2a90051"
-}
-```
-
-</details>
-
----
-
-### `send_transaction_multi`
-
-Functionality: Send multiple transactions from a given wallet
-
-Usage: chia rpc wallet [OPTIONS] send_transaction_multi [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag        | Type       | Required | Description                                                |
-| :---------- | :--------- | :------- | :--------------------------------------------------------- |
-| wallet_id   | TEXT       | True     | The wallet ID for the origin of the transaction            |
-| address     | TEXT       | True     | The destination address                                    |
-| amount      | NUMBER     | True     | The number of mojos to send                                |
-| fee         | NUMBER     | False    | An optional blockchain fee, in mojos                       |
-| memos       | TEXT ARRAY | False    | An optional array of memos to be sent with the transaction |
-| additions   | TEXT ARRAY | True     | A list of puzzle hashes and amounts to be included         |
-
----
-
-### `get_farmed_amount`
-
-Functionality: Show the total amount that has been farmed
-
-Usage: chia rpc wallet [OPTIONS] get_farmed_amount [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_farmed_amount
-```
-
-Response:
-
-```json
-{
-    "farmed_amount": 0,
-    "farmer_reward_amount": 0,
-    "fee_amount": 0,
-    "last_height_farmed": 0,
-    "pool_reward_amount": 0,
     "success": true
 }
 ```
@@ -1441,41 +1654,11 @@ Response:
 
 ---
 
-### `create_signed_transaction`
+### `get_wallet_balance`
 
-Functionality: Create a signed transaction from the given wallet
+Functionality: Obtain the balance (and related info) from a wallet
 
-Usage: chia rpc wallet [OPTIONS] create_signed_transaction [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag                 | Type         | Required | Description                                                                                |
-| :------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------- |
-| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                            |
-| additions            | TEXT ARRAY   | True     | A list of puzzle hashes and amounts to be included                                         |
-| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                               |
-| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                               |
-| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                          |
-| coins                | TEXT ARRAY   | True     | A list of coins to include                                                                 |
-| exclude_coins        | TEXT ARRAY   | True     | A list of coins to exclude                                                                 |
-| coin_announcements   | TEXT ARRAY   | False    | A list of coin announcements, which includes `coin_id`, `message`, and `morph_bytes`       |
-| puzzle_announcements | TEXT ARRAY   | False    | A list of puzzle announcements, which includes `puzzle_hash`, `message`, and `morph_bytes` |
-| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                       |
-
----
-
-### `delete_unconfirmed_transactions`
-
-Functionality: Delete all transactions that have yet to be confirmed on the blockchain from the given wallet
-
-Usage: chia rpc wallet [OPTIONS] delete_unconfirmed_transactions [REQUEST]
+Usage: chia rpc wallet [OPTIONS] get_wallet_balance [REQUEST]
 
 Options:
 
@@ -1486,22 +1669,34 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                            |
-| :-------- | :----- | :------- | :----------------------------------------------------- |
-| wallet_id | NUMBER | True     | The ID of the wallet from which to delete transactions |
+| Flag      | Type   | Required | Description                                                  |
+| :-------- | :----- | :------- | :----------------------------------------------------------- |
+| wallet_id | NUMBER | True     | The Wallet ID of the wallet from which to obtain the balance |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet delete_unconfirmed_transactions '{"wallet_id": 2}'
+chia rpc wallet get_wallet_balance '{"wallet_id": 1}'
 ```
 
 Response:
 
 ```json
 {
-    "success": true
+    "success": true,
+    "wallet_balance": {
+        "confirmed_wallet_balance": 999999799,
+        "fingerprint": 874731676,
+        "max_send_amount": 999999799,
+        "pending_change": 0,
+        "pending_coin_removal_count": 0,
+        "spendable_balance": 999999799,
+        "unconfirmed_wallet_balance": 999999799,
+        "unspent_coin_count": 1,
+        "wallet_id": 1,
+        "wallet_type": 0
+    }
 }
 ```
 
@@ -1572,283 +1767,6 @@ Response:
 
 ```json
 Request failed: {'error': 'Transaction for 1000 is greater than spendable balance of 0. There may be other transactions pending or our minimum coin amount is too high.', 'success': False}
-```
-
-</details>
-
----
-
-### `get_spendable_coins`
-
-Functionality: Get all spendable coins, with various possible filters
-
-Usage: chia rpc wallet [OPTIONS] get_spendable_coins [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag                  | Type         | Required | Description                                                          |
-| :-------------------- | :----------- | :------- | :------------------------------------------------------------------- |
-| wallet_id             | NUMBER       | True     | The ID of the wallet from which to display coins                     |
-| min_coin_amount       | NUMBER       | False    | The smallest coin to be selected in this query [Default: No minimum] |
-| max_coin_amount       | NUMBER       | False    | The largest coin to be selected in this query [Default: No maximum]  |
-| excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                    |
-| excluded_coins        | TEXT ARRAY   | False    | A list of coins to exclude                                           |
-| excluded_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                        |
-
-<details>
-<summary>Example</summary>
-
-List all unspent coins from wallet 1:
-
-```json
-chia rpc wallet get_spendable_coins '{"wallet_id": 1}'
-```
-
-Response:
-
-```json
-{
-    "confirmed_records": [
-        {
-            "coin": {
-                "amount": 999996796,
-                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
-                "puzzle_hash": "0x138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722"
-            },
-            "coinbase": false,
-            "confirmed_block_index": 2867783,
-            "spent_block_index": 0,
-            "timestamp": 1669261898
-        }
-    ],
-    "success": true,
-    "unconfirmed_additions": [],
-    "unconfirmed_removals": []
-}
-```
-
-</details>
-
----
-
-### `get_coin_records_by_names`
-
-Functionality: Obtain coin records from a list of coin names
-
-Usage: chia rpc wallet [OPTIONS] get_coin_records_by_names [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag                | Type       | Required | Description                                         |
-| :------------------ | :--------- | :------- | :-------------------------------------------------- |
-| names               | TEXT ARRAY | True     | A list of coin names from which to retrieve records |
-| start_height        | NUMBER     | False    | The block height at which to start the query        |
-| end_height          | NUMBER     | False    | The block height at which to end the query          |
-| include_spent_coins | BOOLEAN    | False    | Include spent coins in the result [Default: false]  |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_coin_records_by_names '{"names": ["0xeb17e80fcb72f15bfb28924f0bcd684df626646dca282bc88098cb0d59ffe1bb"]}'
-```
-
-Response:
-
-```json
-{
-    "coin_records": [
-        {
-            "coin": {
-                "amount": 999996796,
-                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
-                "puzzle_hash": "0x138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722"
-            },
-            "coinbase": false,
-            "confirmed_block_index": 2867783,
-            "spent_block_index": 0,
-            "timestamp": 1669261898
-        }
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_current_derivation_index`
-
-Functionality: Obtain the current derivation index for the current wallet
-
-Usage: chia rpc wallet [OPTIONS] get_current_derivation_index [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_current_derivation_index
-```
-
-Response:
-
-```json
-{
-    "index": 435,
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `extend_derivation_index`
-
-Functionality: Increase the derivation index
-
-Usage: chia rpc wallet [OPTIONS] extend_derivation_index [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag  | Type   | Required | Description                                                      |
-| :---- | :----- | :------- | :--------------------------------------------------------------- |
-| index | NUMBER | True     | The new derivation index. Must be larger than the previous index |
-
-Note: The derivation index is the minimum number of addresses the wallet will examine. It's not possible to decrease this number.
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet extend_derivation_index '{"index": 436}'
-```
-
-Response:
-
-```json
-{
-    "index": 436,
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_notifications`
-
-Functionality: Obtain current notifications
-
-Usage: chia rpc wallet [OPTIONS] get_notifications [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Parameter | Required | Description                                                                               |
-| :-------- | :------- | :---------------------------------------------------------------------------------------- |
-| ids       | False    | Set to receive notifications only from the specified IDs. [Default: receive from all IDs] |
-| start     | False    | The number corresponding to the first notification to list. [Default: the first notification]
-| end       | False    | The number corresponding to the last notification to list. [Default: the last notification]
-
-<details>
-<summary>Example</summary>
-
-If no parameters are set, then all notifications will be listed from all IDs:
-
-```json
-chia rpc wallet get_notifications
-```
-
-Response:
-
-```json
-{
-    "notifications": [
-        {
-            "amount": 10000000,
-            "id": "f74fb363fbdeef3f6bcf7a0664a8ef76ea3e5f22bb4ffc9a1f9ef23b9329ae28",
-            "message": "fadedcab"
-        }
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `delete_notifications`
-
-Functionality: Delete notifications, with the option to specify IDs from which to delete
-
-Usage: chia rpc wallet [OPTIONS] delete_notifications [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Parameter | Required | Description                                                                             |
-| :-------- | :------- | :-------------------------------------------------------------------------------------- |
-| ids       | False    | Set to delete notifications only from the specified IDs. [Default: delete from all IDs] |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet delete_notifications
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
 ```
 
 </details>
@@ -2144,6 +2062,131 @@ This command will create a Message Coin on the blockchain. Once it has been conf
 
 ---
 
+### `send_transaction`
+
+Functionality: Send a transaction
+
+Usage: chia rpc wallet [OPTIONS] send_transaction [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type         | Required | Description                                                |
+| :------------------- | :----------- | :------- | :--------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction            |
+| address              | TEXT         | True     | The destination address                                    |
+| amount               | NUMBER       | True     | The number of mojos to send                                |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                       |
+| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]               |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]               |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                          |
+| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                              |
+| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet send_transaction '{"wallet_id": 1, "address": "xch1fev2qaclwpcue9kx4p39dzfxpzaavvcz5v3lhx77cxha7f0tjjlsngh5k0", "amount": 1000, "fee": 1, "memos":["memo1"]}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "transaction": {
+        "additions": [
+            {
+                "amount": 1000,
+                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
+                "puzzle_hash": "0x4e58a0771f7071cc96c6a86256892608bbd63302a323fb9bdec1afdf25eb94bf"
+            },
+            {
+                "amount": 999996796,
+                "parent_coin_info": "0xfecaf9d1cffe1b71f00aee7816ea90562b18307d4461757e23f097703340beb7",
+                "puzzle_hash": "0x138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722"
+            }
+        ],
+        "amount": 1000,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669261889,
+        "fee_amount": 1,
+        "memos": {
+            "029b8689abda7f4ff4871e1cd69eb32725a0cda8520b751bcf774fb681e19bc5": "6d656d6f31"
+        },
+        "name": "0x94a6b6a2353a8f49b6dc30d7141272df14bc82727fd0d82a18680605b2a90051",
+        "removals": [
+            {
+                "amount": 999997797,
+                "parent_coin_info": "0x81d6dac68bb566d696a62629e1e08edd5b684d35c3ee8c7164b1c3a457514203",
+                "puzzle_hash": "0xd84faa841550d718863fc1139ff880c8366a546ab7dc567a672a14c7ddf5b4b7"
+            }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0xa95fba5e9e310d1c096bb44e27d98b070b7591be29d3f174ac42bcad39ec5e8a356747851c3df456973c96f55884dbb913247000368b0d1fa3518f11dae0ed45cb8f0961899aa7ee2102c58265d9460a31c33bd896ce9a2ef377bbc6419343b0",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 999997797,
+                        "parent_coin_info": "0x81d6dac68bb566d696a62629e1e08edd5b684d35c3ee8c7164b1c3a457514203",
+                        "puzzle_hash": "0xd84faa841550d718863fc1139ff880c8366a546ab7dc567a672a14c7ddf5b4b7"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0a5abd588cc5a2c873ee37809ea33432b7a87aaf8370eba7f9806bc1eac517034b3850cc7a4f2550f108b8a124d3dbbc3ff018080",
+                    "solution": "0xff80ffff01ffff33ffa04e58a0771f7071cc96c6a86256892608bbd63302a323fb9bdec1afdf25eb94bfff8203e8ffff856d656d6f318080ffff33ffa0138373343443d3cdf6bd033244f32d904dd93e1ad2772f120955c0d8d761b722ff843b9abd7c80ffff34ff0180ffff3cffa086ec6c5fe3716c6e0b39c0049a3d164f491c3347c4fd36196ecc561b5cf347da8080ff8080"
+                }
+            ]
+        },
+        "to_address": "xch1fev2qaclwpcue9kx4p39dzfxpzaavvcz5v3lhx77cxha7f0tjjlsngh5k0",
+        "to_puzzle_hash": "0x4e58a0771f7071cc96c6a86256892608bbd63302a323fb9bdec1afdf25eb94bf",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 1
+    },
+    "transaction_id": "0x94a6b6a2353a8f49b6dc30d7141272df14bc82727fd0d82a18680605b2a90051"
+}
+```
+
+</details>
+
+---
+
+### `send_transaction_multi`
+
+Functionality: Send multiple transactions from a given wallet
+
+Usage: chia rpc wallet [OPTIONS] send_transaction_multi [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type       | Required | Description                                                |
+| :---------- | :--------- | :------- | :--------------------------------------------------------- |
+| wallet_id   | TEXT       | True     | The wallet ID for the origin of the transaction            |
+| address     | TEXT       | True     | The destination address                                    |
+| amount      | NUMBER     | True     | The number of mojos to send                                |
+| fee         | NUMBER     | False    | An optional blockchain fee, in mojos                       |
+| memos       | TEXT ARRAY | False    | An optional array of memos to be sent with the transaction |
+| additions   | TEXT ARRAY | True     | A list of puzzle hashes and amounts to be included         |
+
+---
+
 ### `sign_message_by_address`
 
 Functionality: Sign a message using an XCH address without incurring an on-chain transaction
@@ -2250,56 +2293,13 @@ Request Parameters:
 
 ---
 
-### `get_transaction_memo`
-
-Functionality: Obtain the memo for the specified transaction
-
-Usage: chia rpc wallet [OPTIONS] get_transaction_memo [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
-
-Request Parameters:
-
-| Parameter      | TYPE   | Required | Description                                              |
-| :------------- | :----- | :------- | :------------------------------------------------------- |
-| transaction_id | STRING | True     | The ID of the transaction for which to retrieve the memo |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_transaction_memo '{"transaction_id": "0x21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171"}'
-```
-
-Response:
-
-```json
-{
-    "21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171": {
-        "21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171": [
-            "f8858363837eaccf1249844dfd200999ebd480b393dd0f7f2022880868ce3bf3"
-        ]
-    },
-    "success": true
-}
-```
-
-</details>
-
----
-
 ## CATs and trading
 
-### `cat_set_name`
+### `cancel_offer`
 
-Functionality: Rename a CAT wallet
+Functionality: Cancel an offer
 
-Usage: chia rpc wallet [OPTIONS] cat_set_name [REQUEST]
+Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
 
 Options:
 
@@ -2310,24 +2310,66 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                              |
-| :-------- | :----- | :------- | :------------------------------------------------------- |
-| wallet_id | NUMBER | True     | The ID of the wallet whose name you would like to change |
-| name      | TEXT   | True     | The new name for the wallet                              |
+| Flag     | Type    | Required | Description                                                                                                                                                                                    |
+| :------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| secure   | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
+| trade_id | TEXT    | True     | The ID of the offer to cancel                                                                                                                                                                  |
+| fee      | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                           |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet cat_set_name '{"wallet_id": 2, "name": "New CAT Wallet"}'
+chia rpc wallet cancel_offer '{"secure": true, "trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5", "fee": 1}'
 ```
 
 Response:
 
 ```json
 {
-    "success": true,
-    "wallet_id": 2
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `cancel_offers`
+
+Functionality: Cancel all offers, with the option to cancel only offers for a specific asset class
+
+Usage: chia rpc wallet [OPTIONS] cancel_offers [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag       | Type    | Required | Description                                                                                                                                                                                    |
+| :--------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| secure     | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
+| batch_fee  | NUMBER  | False    | The fee, in mojos, to add to each batch cancellation [Default: 0]                                                                                                                              |
+| batch_size | NUMBER  | False    | The number of offers to cancel in each batch [Default: 5]                                                                                                                                      |
+| cancel_all | BOOLEAN | False    | Set to `true` to cancel all offers for all assets [Default: `false`]                                                                                                                           |
+| asset_id   | TEXT    | False    | If `cancel_all` is false, then only cancel the specified type of asset [Default: `xch`]                                                                                                        |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet cancel_offers '{"secure": true}'
+```
+
+Response:
+
+```json
+{
+    "success": true
 }
 ```
 
@@ -2366,6 +2408,46 @@ Response:
 ```json
 {
     "name": "New CAT Wallet",
+    "success": true,
+    "wallet_id": 2
+}
+```
+
+</details>
+
+---
+
+### `cat_get_asset_id`
+
+Functionality: Retrieve a the asset ID from a CAT wallet
+
+Usage: chia rpc wallet [OPTIONS] cat_get_asset_id [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag      | Type   | Required | Description                                                  |
+| :-------- | :----- | :------- | :----------------------------------------------------------- |
+| wallet_id | NUMBER | True     | The wallet ID of the CAT whose ID you would like to retrieve |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet cat_get_asset_id '{"wallet_id": 2}'
+```
+
+Response:
+
+```json
+{
+    "asset_id": "1f9fd0d4a1221241df986f042e014c056571062c82a5ba9b88c866c92808e1a9",
     "success": true,
     "wallet_id": 2
 }
@@ -2415,11 +2497,11 @@ Response:
 
 ---
 
-### `get_stray_cats`
+### `cat_set_name`
 
-Functionality: Get a list of all unacknowledged CATs
+Functionality: Rename a CAT wallet
 
-Usage: chia rpc wallet [OPTIONS] get_stray_cats [REQUEST]
+Usage: chia rpc wallet [OPTIONS] cat_set_name [REQUEST]
 
 Options:
 
@@ -2428,21 +2510,26 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: None
+Request Parameters:
+
+| Flag      | Type   | Required | Description                                              |
+| :-------- | :----- | :------- | :------------------------------------------------------- |
+| wallet_id | NUMBER | True     | The ID of the wallet whose name you would like to change |
+| name      | TEXT   | True     | The new name for the wallet                              |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet get_stray_cats
+chia rpc wallet cat_set_name '{"wallet_id": 2, "name": "New CAT Wallet"}'
 ```
 
 Response:
 
 ```json
 {
-    "stray_cats": [],
-    "success": true
+    "success": true,
+    "wallet_id": 2
 }
 ```
 
@@ -2572,12 +2659,12 @@ Response:
 </details>
 
 ---
-   
-### `cat_get_asset_id`
 
-Functionality: Retrieve a the asset ID from a CAT wallet
+### `check_offer_validity`
 
-Usage: chia rpc wallet [OPTIONS] cat_get_asset_id [REQUEST]
+Functionality: Check if an offer is valid
+
+Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
 
 Options:
 
@@ -2588,24 +2675,23 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                  |
-| :-------- | :----- | :------- | :----------------------------------------------------------- |
-| wallet_id | NUMBER | True     | The wallet ID of the CAT whose ID you would like to retrieve |
+| Flag  | Type | Required | Description                        |
+| :---- | :--- | :------- | :--------------------------------- |
+| offer | TEXT | True     | The contents of the offer to check |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet cat_get_asset_id '{"wallet_id": 2}'
+chia rpc wallet check_offer_validity '{"offer": "offer1qqzh3wcuu2rykcmqvpsxygqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65y2cmwttg00ht60xnjly6zhduf0h9hmedaq67yh89uafrzctmgrka06llmvv9uhze9tqqpd38v8zcv4x32hhe7wueh4t8vd9cn6uhqk7vejppfygfgtje8usle5c5ukqmlw72va4pv8mweg5ztmcakwex27z9uamchklr2mtk7ax4tadcte8hq98380vuxcnfkjxndkjxrdk68rdk69rdk68ga95mfr2xhump4wrstastammnc2aav3hrd4ej8gexus0gje2urasruamdvrwvas9wm56mykj42pj6cp0vlymr5daw8k9e780kxd46wsh9u4e4tk7dw49w2epylahdz44aq2kj4ypthrsme4qwdncgdnwhlcw2amlhhsl6z0wlca7573y7knevrjjz4kpg80gnrlmlx7q6lh2rdtll6j6kh72t66vmwn25gwh5eqsd6wpqc6yqkn9luteq6nz0hh7yln3r7ct9yqecrfh95lyzace38xayytnu7x2fl4whv40e6etxehv03mwzdlnfttaxckmea7xle3hs0tzvlmdlch7qjzul97gymhjsew40ef2vmf6m8m4ntw0x08ceu7xkxm0fxjut754n9qd2anljlwpk49z4472n65af226w03fha2j7hyshuuh8gdr68z3a67atjcnl07vswj0clutncre6wt4la0au8vdlmxjn7fe8mqald7l8rh2hgls66uxhutuzdqmnr0ljlkyulq5t67rru25jnxjjyxntvllt2n4j244utj7ahu6avas47nlhrah2p5uursd0uteccgjtncy6e62uvn6tathamz0m0rfweuaaq5mevp6klth99dhf0f6hcqksxfpqmvhlpvyrtj2qjmvnwyr96saajuyp8vm70h7vhtw93vkmj7llmquru84g0vv80fd3eg65vhfrlm5yrgzs4pa95el4wa6w9nfkgvvazzek9eef4kd6zr6rjue6culxd8wdg5dglrevft9lc7hfljuc70hx9uq587fl64gp3s467zj58nvdaawuet3lvft8hvynv5j83tlg5phaeteme079hw6xn5dn54tm602ln2vgknvammql8fe7zuqzvfq20gc9s4d4"}'
 ```
 
 Response:
 
 ```json
 {
-    "asset_id": "1f9fd0d4a1221241df986f042e014c056571062c82a5ba9b88c866c92808e1a9",
     "success": true,
-    "wallet_id": 2
+    "valid": true
 }
 ```
 
@@ -2638,6 +2724,267 @@ Request Parameters:
 | solver          | TEXT    | False    | A marshalled solver                                             |
 | fee             | NUMBER  | False    | An optional blockchain fee, in mojos                            |
 | reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+
+---
+
+### `get_all_offers`
+
+Functionality: Show the details of all offers for this wallet
+
+Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type    | Required | Description                                                                   |
+| :------------------- | :------ | :------- | :---------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                   |
+| end                  | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                   |
+| exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]               |
+| exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false] |
+| include_completed    | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]         |
+| sort_key             | NUMBER  | False    | Specify the key for sorting [Default: None]                                   |
+| reverse              | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]           |
+| file_contents        | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]          |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_all_offers
+```
+
+Response:
+
+```json
+{
+    "offers": null,
+    "success": true,
+    "trade_records": [
+        {
+            "accepted_at_time": null,
+            "coins_of_interest": [
+                {
+                    "amount": 999999,
+                    "parent_coin_info": "0x60a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360",
+                    "puzzle_hash": "0xad5de77c7da1316b9b72708d17dbb8937855d740ebaf85669b8bd925275e8d49"
+                }
+            ],
+            "confirmed_at_index": 0,
+            "created_at_time": 1669275137,
+            "is_my_offer": true,
+            "pending": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 999999
+            },
+            "sent": 0,
+            "sent_to": [],
+            "status": "PENDING_ACCEPT",
+            "summary": {
+                "fees": 0,
+                "infos": {
+                    "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
+                        "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
+                        "type": "CAT"
+                    }
+                },
+                "offered": {
+                    "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
+                },
+                "requested": {
+                    "xch": 1000000000000
+                }
+            },
+            "taken_offer": null,
+            "trade_id": "0x84d14398c1a38f376953bf8fa76cbee0d3216b382266d38b5612f17e96bcd1de"
+        }
+    ]
+}
+```
+
+</details>
+
+---
+
+### `get_cat_list`
+
+Functionality: Return the default CAT list
+
+Usage: chia rpc wallet [OPTIONS] get_cat_list [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+Get the default CAT list:
+
+```json
+chia rpc wallet get_cat_list
+```
+
+Response:
+
+```json
+{
+    "cat_list": [
+        {
+            "asset_id": "a628c1c2c6fcb74d53746157e438e108eab5c0bb3e5c80ff9b1910b3e4832913",
+            "name": "Spacebucks",
+            "symbol": "SBX"
+        },
+        {
+            "asset_id": "8ebf855de6eb146db5602f0456d2f0cbe750d57f821b6f91a8592ee9f1d4cf31",
+            "name": "Marmot",
+            "symbol": "MRMT"
+        },
+        {
+            "asset_id": "6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589",
+            "name": "Stably USD",
+            "symbol": "USDS"
+        },
+        {
+            "asset_id": "509deafe3cd8bbfbb9ccce1d930e3d7b57b40c964fa33379b18d628175eb7a8f",
+            "name": "Chia Holiday 2021 Token",
+            "symbol": "CH21"
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_offer`
+
+Functionality: Show the details of one offer
+
+Usage: chia rpc wallet [OPTIONS] get_offer [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag          | Type | Required | Description                                                                                           |
+| :------------ | :--- | :------- | :---------------------------------------------------------------------------------------------------- |
+| trade_id      | TEXT | True     | The offer's ID                                                                                        |
+| file_contents | TEXT | False    | The contents of the offer. Required if the offer's info is not stored in the database for this wallet |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_offer '{"trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5"}'
+```
+
+Response:
+
+```json
+{
+    "offer": null,
+    "success": true,
+    "trade_record": {
+        "accepted_at_time": null,
+        "coins_of_interest": [
+            {
+                "amount": 998999,
+                "parent_coin_info": "0xc40219a0d62cd481f2a47fdedc5ef1c936f3dea0d8a751794dba233c8aeac790",
+                "puzzle_hash": "0x91362b7593aab3bcc4d3f5c0b3e9952b5eeccd0b22e06d1ce6242d6fce9b6526"
+            },
+            {
+                "amount": 100000,
+                "parent_coin_info": "0x5e0ec48322fff686044e02d159e2679fba716cab80f4fb10fdf42a775f85604a",
+                "puzzle_hash": "0xa023dfcc927f2c5f71fb9f4cd81078d478448452c10acac9156e3b51bd7abe63"
+            }
+        ],
+        "confirmed_at_index": 0,
+        "created_at_time": 1669280986,
+        "is_my_offer": true,
+        "pending": {
+            "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 998999,
+            "unknown": 100000
+        },
+        "sent": 0,
+        "sent_to": [],
+        "status": "PENDING_ACCEPT",
+        "summary": {
+            "fees": 1,
+            "infos": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
+                    "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
+                    "type": "CAT"
+                }
+            },
+            "offered": {
+                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
+            },
+            "requested": {
+                "xch": 10000
+            }
+        },
+        "taken_offer": null,
+        "trade_id": "0xc4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5"
+    }
+}
+```
+
+</details>
+
+---
+
+### `get_offers_count`
+
+Functionality: Obtain the number of offers from the current wallet
+
+Usage: chia rpc wallet [OPTIONS] get_offers_count [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_offers_count
+```
+
+Response:
+
+```json
+{
+    "my_offers_count": 0,
+    "success": true,
+    "taken_offers_count": 1,
+    "total": 1
+}
+```
+
+</details>
 
 ---
 
@@ -2695,11 +3042,11 @@ Response:
 
 ---
 
-### `check_offer_validity`
+### `get_stray_cats`
 
-Functionality: Check if an offer is valid
+Functionality: Get a list of all unacknowledged CATs
 
-Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
+Usage: chia rpc wallet [OPTIONS] get_stray_cats [REQUEST]
 
 Options:
 
@@ -2708,25 +3055,21 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters:
-
-| Flag  | Type | Required | Description                        |
-| :---- | :--- | :------- | :--------------------------------- |
-| offer | TEXT | True     | The contents of the offer to check |
+Request Parameters: None
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet check_offer_validity '{"offer": "offer1qqzh3wcuu2rykcmqvpsxygqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65y2cmwttg00ht60xnjly6zhduf0h9hmedaq67yh89uafrzctmgrka06llmvv9uhze9tqqpd38v8zcv4x32hhe7wueh4t8vd9cn6uhqk7vejppfygfgtje8usle5c5ukqmlw72va4pv8mweg5ztmcakwex27z9uamchklr2mtk7ax4tadcte8hq98380vuxcnfkjxndkjxrdk68rdk69rdk68ga95mfr2xhump4wrstastammnc2aav3hrd4ej8gexus0gje2urasruamdvrwvas9wm56mykj42pj6cp0vlymr5daw8k9e780kxd46wsh9u4e4tk7dw49w2epylahdz44aq2kj4ypthrsme4qwdncgdnwhlcw2amlhhsl6z0wlca7573y7knevrjjz4kpg80gnrlmlx7q6lh2rdtll6j6kh72t66vmwn25gwh5eqsd6wpqc6yqkn9luteq6nz0hh7yln3r7ct9yqecrfh95lyzace38xayytnu7x2fl4whv40e6etxehv03mwzdlnfttaxckmea7xle3hs0tzvlmdlch7qjzul97gymhjsew40ef2vmf6m8m4ntw0x08ceu7xkxm0fxjut754n9qd2anljlwpk49z4472n65af226w03fha2j7hyshuuh8gdr68z3a67atjcnl07vswj0clutncre6wt4la0au8vdlmxjn7fe8mqald7l8rh2hgls66uxhutuzdqmnr0ljlkyulq5t67rru25jnxjjyxntvllt2n4j244utj7ahu6avas47nlhrah2p5uursd0uteccgjtncy6e62uvn6tathamz0m0rfweuaaq5mevp6klth99dhf0f6hcqksxfpqmvhlpvyrtj2qjmvnwyr96saajuyp8vm70h7vhtw93vkmj7llmquru84g0vv80fd3eg65vhfrlm5yrgzs4pa95el4wa6w9nfkgvvazzek9eef4kd6zr6rjue6culxd8wdg5dglrevft9lc7hfljuc70hx9uq587fl64gp3s467zj58nvdaawuet3lvft8hvynv5j83tlg5phaeteme079hw6xn5dn54tm602ln2vgknvammql8fe7zuqzvfq20gc9s4d4"}'
+chia rpc wallet get_stray_cats
 ```
 
 Response:
 
 ```json
 {
-    "success": true,
-    "valid": true
+    "stray_cats": [],
+    "success": true
 }
 ```
 
@@ -2824,349 +3167,6 @@ Response:
 
 ---
 
-### `get_offer`
-
-Functionality: Show the details of one offer
-
-Usage: chia rpc wallet [OPTIONS] get_offer [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag          | Type | Required | Description                                                                                           |
-| :------------ | :--- | :------- | :---------------------------------------------------------------------------------------------------- |
-| trade_id      | TEXT | True     | The offer's ID                                                                                        |
-| file_contents | TEXT | False    | The contents of the offer. Required if the offer's info is not stored in the database for this wallet |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_offer '{"trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5"}'
-```
-
-Response:
-
-```json
-{
-    "offer": null,
-    "success": true,
-    "trade_record": {
-        "accepted_at_time": null,
-        "coins_of_interest": [
-            {
-                "amount": 998999,
-                "parent_coin_info": "0xc40219a0d62cd481f2a47fdedc5ef1c936f3dea0d8a751794dba233c8aeac790",
-                "puzzle_hash": "0x91362b7593aab3bcc4d3f5c0b3e9952b5eeccd0b22e06d1ce6242d6fce9b6526"
-            },
-            {
-                "amount": 100000,
-                "parent_coin_info": "0x5e0ec48322fff686044e02d159e2679fba716cab80f4fb10fdf42a775f85604a",
-                "puzzle_hash": "0xa023dfcc927f2c5f71fb9f4cd81078d478448452c10acac9156e3b51bd7abe63"
-            }
-        ],
-        "confirmed_at_index": 0,
-        "created_at_time": 1669280986,
-        "is_my_offer": true,
-        "pending": {
-            "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 998999,
-            "unknown": 100000
-        },
-        "sent": 0,
-        "sent_to": [],
-        "status": "PENDING_ACCEPT",
-        "summary": {
-            "fees": 1,
-            "infos": {
-                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
-                    "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
-                    "type": "CAT"
-                }
-            },
-            "offered": {
-                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
-            },
-            "requested": {
-                "xch": 10000
-            }
-        },
-        "taken_offer": null,
-        "trade_id": "0xc4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5"
-    }
-}
-```
-
-</details>
-
----
-
-### `get_all_offers`
-
-Functionality: Show the details of all offers for this wallet
-
-Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag                 | Type    | Required | Description                                                                   |
-| :------------------- | :------ | :------- | :---------------------------------------------------------------------------- |
-| start                | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                   |
-| end                  | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                   |
-| exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]               |
-| exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false] |
-| include_completed    | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]         |
-| sort_key             | NUMBER  | False    | Specify the key for sorting [Default: None]                                   |
-| reverse              | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]           |
-| file_contents        | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]          |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_all_offers
-```
-
-Response:
-
-```json
-{
-    "offers": null,
-    "success": true,
-    "trade_records": [
-        {
-            "accepted_at_time": null,
-            "coins_of_interest": [
-                {
-                    "amount": 999999,
-                    "parent_coin_info": "0x60a8b06515aaefe74236eb234130d769a1b65c99706414901277926fe29c3360",
-                    "puzzle_hash": "0xad5de77c7da1316b9b72708d17dbb8937855d740ebaf85669b8bd925275e8d49"
-                }
-            ],
-            "confirmed_at_index": 0,
-            "created_at_time": 1669275137,
-            "is_my_offer": true,
-            "pending": {
-                "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 999999
-            },
-            "sent": 0,
-            "sent_to": [],
-            "status": "PENDING_ACCEPT",
-            "summary": {
-                "fees": 0,
-                "infos": {
-                    "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": {
-                        "tail": "0x0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4",
-                        "type": "CAT"
-                    }
-                },
-                "offered": {
-                    "0570076f3c2cd8d6e65f9b56f96ab92079d3ce7ab7372c751e1c19fdb42b25d4": 1000
-                },
-                "requested": {
-                    "xch": 1000000000000
-                }
-            },
-            "taken_offer": null,
-            "trade_id": "0x84d14398c1a38f376953bf8fa76cbee0d3216b382266d38b5612f17e96bcd1de"
-        }
-    ]
-}
-```
-
-</details>
-
----
-
-### `get_offers_count`
-
-Functionality: Obtain the number of offers from the current wallet
-
-Usage: chia rpc wallet [OPTIONS] get_offers_count [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_offers_count
-```
-
-Response:
-
-```json
-{
-    "my_offers_count": 0,
-    "success": true,
-    "taken_offers_count": 1,
-    "total": 1
-}
-```
-
-</details>
-
----
-
-### `cancel_offer`
-
-Functionality: Cancel an offer
-
-Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag     | Type    | Required | Description                                                                                                                                                                                    |
-| :------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| secure   | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
-| trade_id | TEXT    | True     | The ID of the offer to cancel                                                                                                                                                                  |
-| fee      | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                           |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet cancel_offer '{"secure": true, "trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5", "fee": 1}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `cancel_offers`
-
-Functionality: Cancel all offers, with the option to cancel only offers for a specific asset class
-
-Usage: chia rpc wallet [OPTIONS] cancel_offers [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag       | Type    | Required | Description                                                                                                                                                                                    |
-| :--------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| secure     | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
-| batch_fee  | NUMBER  | False    | The fee, in mojos, to add to each batch cancellation [Default: 0]                                                                                                                              |
-| batch_size | NUMBER  | False    | The number of offers to cancel in each batch [Default: 5]                                                                                                                                      |
-| cancel_all | BOOLEAN | False    | Set to `true` to cancel all offers for all assets [Default: `false`]                                                                                                                           |
-| asset_id   | TEXT    | False    | If `cancel_all` is false, then only cancel the specified type of asset [Default: `xch`]                                                                                                        |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet cancel_offers '{"secure": true}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_cat_list`
-
-Functionality: Return the default CAT list
-
-Usage: chia rpc wallet [OPTIONS] get_cat_list [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-Get the default CAT list:
-
-```json
-chia rpc wallet get_cat_list
-```
-
-Response:
-
-```json
-{
-    "cat_list": [
-        {
-            "asset_id": "a628c1c2c6fcb74d53746157e438e108eab5c0bb3e5c80ff9b1910b3e4832913",
-            "name": "Spacebucks",
-            "symbol": "SBX"
-        },
-        {
-            "asset_id": "8ebf855de6eb146db5602f0456d2f0cbe750d57f821b6f91a8592ee9f1d4cf31",
-            "name": "Marmot",
-            "symbol": "MRMT"
-        },
-        {
-            "asset_id": "6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589",
-            "name": "Stably USD",
-            "symbol": "USDS"
-        },
-        {
-            "asset_id": "509deafe3cd8bbfbb9ccce1d930e3d7b57b40c964fa33379b18d628175eb7a8f",
-            "name": "Chia Holiday 2021 Token",
-            "symbol": "CH21"
-        }
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
 ## DID Wallet
 
 ### `Note`
@@ -3184,6 +3184,35 @@ See our [NFT RPC](/nft-rpc) page.
 ---
 
 ## Pool Wallet
+
+### `pw_absorb_rewards`
+
+Functionality: Absorb unspent coinbase rewards to a pool wallet
+
+Usage: chia rpc wallet [OPTIONS] pw_absorb_rewards [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type   | Required | Description                                                                                         |
+| :------------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
+| wallet_id            | NUMBER | True     | The Wallet ID to which to absorb funds (must be of type `POOLING_WALLET`)                           |
+| max_spends_in_tx     | NUMBER | False    | The maximum number of reward transactions to roll into the absorb transaction [Default: no maximum] |
+| fee                  | NUMBER | False    | An optional blockchain fee, in mojos                                                                |
+
+:::note
+
+This RPC will only succeed if the wallet has accumulated unspent coinbase rewards.
+
+:::
+
+---
 
 ### `pw_join_pool`
 
@@ -3488,35 +3517,6 @@ Response:
 
 ---
 
-### `pw_absorb_rewards`
-
-Functionality: Absorb unspent coinbase rewards to a pool wallet
-
-Usage: chia rpc wallet [OPTIONS] pw_absorb_rewards [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag                 | Type   | Required | Description                                                                                         |
-| :------------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
-| wallet_id            | NUMBER | True     | The Wallet ID to which to absorb funds (must be of type `POOLING_WALLET`)                           |
-| max_spends_in_tx     | NUMBER | False    | The maximum number of reward transactions to roll into the absorb transaction [Default: no maximum] |
-| fee                  | NUMBER | False    | An optional blockchain fee, in mojos                                                                |
-
-:::note
-
-This RPC will only succeed if the wallet has accumulated unspent coinbase rewards.
-
-:::
-
----
-
 ### `pw_status`
 
 Functionality: Obtain the status of a pooling wallet
@@ -3731,49 +3731,11 @@ Response:
 
 ---
 
-### `dl_track_new`
+### `dl_delete_mirror`
 
-Functionality: Begin tracking a DataStore
+Functionality: Remove an existing mirror for a specific singleton
 
-Usage: chia rpc wallet [OPTIONS] dl_track_new [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
-| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
-
-<details>
-<summary>Example</summary>
-
-```json
- chia rpc wallet dl_track_new '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `dl_stop_tracking`
-
-Functionality: Stop tracking a DataStore
-
-Usage: chia rpc wallet [OPTIONS] dl_stop_tracking [REQUEST]
+Usage: chia rpc wallet [OPTIONS] dl_delete_mirror [REQUEST]
 
 Options:
 
@@ -3784,165 +3746,16 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
-| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
+| Flag    | Type   | Required | Description                           |
+| :------ | :----- | :------- | :------------------------------------ |
+| coin_id | TEXT   | True     | The `coin_id` of the mirror to delete |
+| fee     | NUMBER | False    | An optional blockchain fee, in mojos  |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet dl_stop_tracking '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `dl_latest_singleton`
-
-Functionality: Get the singleton record for the latest singleton of a launcher ID
-
-Usage: chia rpc wallet [OPTIONS] dl_latest_singleton [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag           | Type    | Required | Description                                            |
-| :------------- | :------ | :------- | :----------------------------------------------------- |
-| launcher_id    | TEXT    | True     | The launcher ID of the DataLayer wallet                |
-| only_confirmed | BOOLEAN | False    | Only show the latest confirmed record [Default: false] |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet dl_latest_singleton '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
-```
-
-Response:
-
-```json
-{
-    "singleton": {
-        "coin_id": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
-        "confirmed": true,
-        "confirmed_at_height": 2871924,
-        "generation": 0,
-        "inner_puzzle_hash": "0xd4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a84",
-        "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
-        "lineage_proof": {
-            "amount": 1,
-            "inner_puzzle_hash": "0x481d9aabeccd0ab87526a980f6b3389465b6b21cb9255e30175b52114791cd91",
-            "parent_name": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"
-        },
-        "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "timestamp": 1669340887
-    },
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `dl_singletons_by_root`
-
-Functionality: Get the singleton records that contain the specified root
-
-Usage: chia rpc wallet [OPTIONS] dl_singletons_by_root [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
-| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
-| root        | TEXT | True     | The root hash of an existing data store |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet dl_singletons_by_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "root": "0x0000000000000000000000000000000000000000000000000000000000000000"}'
-```
-
-Response:
-
-```json
-{
-    "singletons": [
-        {
-            "coin_id": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
-            "confirmed": true,
-            "confirmed_at_height": 2871924,
-            "generation": 0,
-            "inner_puzzle_hash": "0xd4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a84",
-            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
-            "lineage_proof": {
-                "amount": 1,
-                "inner_puzzle_hash": "0x481d9aabeccd0ab87526a980f6b3389465b6b21cb9255e30175b52114791cd91",
-                "parent_name": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"
-            },
-            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
-            "timestamp": 1669340887
-        }
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `dl_update_root`
-
-Functionality: Update the root of a data store to the given new root
-
-Usage: chia rpc wallet [OPTIONS] dl_update_root [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag        | Type   | Required | Description                             |
-| :---------- | :----- | :------- | :-------------------------------------- |
-| launcher_id | TEXT   | True     | The launcher ID of the DataLayer wallet |
-| new_root    | TEXT   | True     | The new root hash of the data store     |
-| fee         | NUMBER | False    | An optional blockchain fee, in mojos    |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet dl_update_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "new_root": "0x0000000000000000000000000000000000000000000000000000000000000000", "fee": 1}'
+chia rpc wallet dl_delete_mirror '{"coin_id": "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b", "fee": 1}'
 ```
 
 Response:
@@ -3950,61 +3763,52 @@ Response:
 ```json
 {
     "success": true,
-    "tx_record": {
-        "additions": [
-            {
-                "amount": 1,
-                "parent_coin_info": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
-                "puzzle_hash": "0xb4aaf8fffd0fe7cc74fd9c7a5dd519a58775d42b924cab183e8e8a6a48144362"
-            }
-        ],
-        "amount": 1,
-        "confirmed": false,
-        "confirmed_at_height": 0,
-        "created_at_time": 1669352476,
-        "fee_amount": 1,
-        "memos": {
-            "70e75ede3b9ba91ab4b91bc5efea8946fde60518becdce40e2cf6800ff173245": "607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5"
-        },
-        "name": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
-        "removals": [
-            {
-                "amount": 1,
-                "parent_coin_info": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
-                "puzzle_hash": "0xfddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84"
-            }
-        ],
-        "sent": 10,
-        "sent_to": [],
-        "spend_bundle": {
-            "aggregated_signature": "0x990dd3c598b16e245e44e3bed148fa3fb5e5f65bd6b05ed560021c0d46efdbdef18d70346ffe8b3401984b017045ed97169f77a041c8e995b507e00f0496e057630d8d609d7e69857b3122ae440cb2f67ad5d3f5ab8fe84448be414d1107f657",
-            "coin_spends": [
+    "transactions": [
+        {
+            "additions": [
                 {
-                    "coin": {
-                        "amount": 1,
-                        "parent_coin_info": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
-                        "puzzle_hash": "0xfddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84"
-                    },
-                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3480ffff01ff04ffff04ff20ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff2affff04ff02ffff04ff27ffff04ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff04ffff02ffff03ff77ffff0181b7ffff015780ff0180ff808080808080ffff04ff77ff808080808080ffff02ff3affff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4947ff0233ffff0401ff0102ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ff0bffff01ff02ffff03ffff02ff26ffff04ff02ffff04ff13ff80808080ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffff02ffff03ffff09ff09ff3880ffff01ff02ffff03ffff18ff2dffff010180ffff01ff0101ff8080ff0180ff8080ff0180ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff30ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa04aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09ea0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff04ff2cff8080808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a0a04d9f57764f54a43e4030befb4d80026e870519aaa66334aef8304f5d0393c2ffff04ffff01ffa0000000000000000000000000000000000000000000000000000000000000000080ffff04ffff01a057bfd1cb0adda3d94315053fda723f2028320faa8338225d99f629e3d46d43a9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0a889344c9bc729cadd340f41d5937a95442767133fd6ca7b5ec865df553b15cc43a0930bdd0a55ffc03edad3dfb62cbdff018080ff018080808080ff01808080",
-                    "solution": "0xffffa0e9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fbff0180ff01ffffff80ffff01ffff33ffa0607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5ff01ffffa04aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09effa00000000000000000000000000000000000000000000000000000000000000000ffa0607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c58080ffff3cff248080ff80808080"
-                },
-                {
-                    "coin": {
-                        "amount": 99990,
-                        "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
-                        "puzzle_hash": "0x7be3f330dd5cbacdee14f124b51ad744d7504cf4426d92b67953a96c9760d869"
-                    },
-                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b091f7f25662e59ab551649924abca7b3cb95393038c0161d6a34a3de4ffd2a43788c7b3a08221f430b55eaa417386700eff018080",
-                    "solution": "0xff80ffff01ffff33ffa0f7bf0a56b4883b42f5999fd7237300b33a541f8b92be02868483d073506098e0ff8301869580ffff34ff0180ffff3cffa058a074f99002b5471ceef509c59729ab7dcdffbc3d387597bc67bfec6f81423480ffff3dffa01cabec2e124d3c7c4cca9bd5d25a98e0bdab66690db30185e0b6fe8f74a0f6838080ff8080"
+                    "amount": 9,
+                    "parent_coin_info": "0xa6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b",
+                    "puzzle_hash": "0x23e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749e"
                 }
-            ]
-        },
-        "to_address": "xch1vpasf9ftx97gr6eph2t07hmz4k6cvg0cn407vfq0d6pagw2enrzsey2rsa",
-        "to_puzzle_hash": "0x607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5",
-        "trade_id": null,
-        "type": 1,
-        "wallet_id": 8
-    }
+            ],
+            "amount": 10,
+            "confirmed": false,
+            "confirmed_at_height": 0,
+            "created_at_time": 1669356270,
+            "fee_amount": 1,
+            "memos": {},
+            "name": "0x92b71646dbcbc713ceb073618e8043d24defc514285aaffaae4037d14e4bd899",
+            "removals": [
+                {
+                    "amount": 10,
+                    "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
+                    "puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee"
+                }
+            ],
+            "sent": 10,
+            "sent_to": [],
+            "spend_bundle": {
+                "aggregated_signature": "0x876c9a74397d4fcec257662eea48d29c10c72dc53ca723313c7be2d447ce8b7b41a30e937827e9def691fe9fca442a1707139c802a47389dd9287b0ab8d60d91917d0f309fcb8661f13239554492a9262ab7b7bafdb6ee8d01f01258010d4547",
+                "coin_spends": [
+                    {
+                        "coin": {
+                            "amount": 10,
+                            "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
+                            "puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee"
+                        },
+                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff04ffff04ff08ffff04ffff02ff0affff04ff02ffff04ff0bffff04ffff02ff05ffff02ff0effff04ff02ffff04ff17ff8080808080ffff04ff2fff808080808080ff808080ffff02ff17ff5f8080ffff04ffff01ffff4720ffff02ffff03ffff22ffff09ffff0dff0580ff0c80ffff09ffff0dff0b80ff0c80ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff0101ff018080",
+                        "solution": "0xffa05bf3b9607bfa60958b6d2a7f3c6a28f3dcc7f9081a0dd95d361cff3ca970658dffff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b326638c42fcc6ebb926ecf1bbd1ea7e12adfdf338a3b2ee5f45711076d27abf3583f8b33d6cad56c8008b95c129d38dff018080ff83018695ffff80ffff01ffff33ffa023e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749eff098080ff808080"
+                    }
+                ]
+            },
+            "to_address": "xch1y05ma9ee233g9agvzr9u6wwrd38jq3f8y85yt3xswa0krav8wj0qlf7xxw",
+            "to_puzzle_hash": "0x23e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749e",
+            "trade_id": null,
+            "type": 1,
+            "wallet_id": 8
+        }
+    ]
 }
 ```
 
@@ -4012,11 +3816,11 @@ Response:
 
 ---
 
-### `dl_update_multiple`
+### `dl_get_mirrors`
 
-Functionality: Update multiple singletons with new merkle roots
+Functionality: Get all of the mirrors for a specific singleton
 
-Usage: chia rpc wallet [OPTIONS] dl_update_multiple [REQUEST]
+Usage: chia rpc wallet [OPTIONS] dl_get_mirrors [REQUEST]
 
 Options:
 
@@ -4027,9 +3831,38 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type       | Required | Description                                 |
-| :------ | :--------- | :------- | :------------------------------------------ |
-| updates | TEXT ARRAY | True     | A list of launcher IDs and hashes to update |
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet dl_get_mirrors '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
+```
+
+Response:
+
+```json
+{
+    "mirrors": [
+        {
+            "amount": 10,
+            "coin_id": "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b",
+            "launcher_id": "4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "ours": true,
+            "urls": [
+                "http://www.example.com:8575",
+                "http://www.example2.com:8575"
+            ]
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
 
 ---
 
@@ -4107,78 +3940,11 @@ Response:
 
 ---
 
-### `dl_owned_singletons`
+### `dl_latest_singleton`
 
-Functionality: Get all owned singleton records
+Functionality: Get the singleton record for the latest singleton of a launcher ID
 
-Usage: chia rpc wallet [OPTIONS] dl_owned_singletons [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet dl_owned_singletons
-```
-
-Response:
-
-```json
-{
-    "count": 2,
-    "singletons": [
-        {
-            "coin_id": "0x70e75ede3b9ba91ab4b91bc5efea8946fde60518becdce40e2cf6800ff173245",
-            "confirmed": true,
-            "confirmed_at_height": 2872567,
-            "generation": 1,
-            "inner_puzzle_hash": "0x607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5",
-            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
-            "lineage_proof": {
-                "amount": 1,
-                "inner_puzzle_hash": "0x60f66f9824d5f96d4025b70b4f7ac3def458cae742fbd2d70343eeeaa5a59c58",
-                "parent_name": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f"
-            },
-            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
-            "timestamp": 1669352585
-        },
-        {
-            "coin_id": "0xf9b3b8302919b4adb12a8d3914ed512cbbfed8bfadcf6e6b0e888c9533db5fab",
-            "confirmed": true,
-            "confirmed_at_height": 2871913,
-            "generation": 0,
-            "inner_puzzle_hash": "0x5dd62b0a1883fe7565cc243c830940b541ed219c8a373f50f3cd00e003663fa9",
-            "launcher_id": "0xba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401",
-            "lineage_proof": {
-                "amount": 1,
-                "inner_puzzle_hash": "0xd9d049c23a9eea8ddfcc47971479574b5f3c7da9bb7d34f24365a82c944e270e",
-                "parent_name": "0xba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401"
-            },
-            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
-            "timestamp": 1669340703
-        }
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `dl_get_mirrors`
-
-Functionality: Get all of the mirrors for a specific singleton
-
-Usage: chia rpc wallet [OPTIONS] dl_get_mirrors [REQUEST]
+Usage: chia rpc wallet [OPTIONS] dl_latest_singleton [REQUEST]
 
 Options:
 
@@ -4189,33 +3955,37 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
-| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
+| Flag           | Type    | Required | Description                                            |
+| :------------- | :------ | :------- | :----------------------------------------------------- |
+| launcher_id    | TEXT    | True     | The launcher ID of the DataLayer wallet                |
+| only_confirmed | BOOLEAN | False    | Only show the latest confirmed record [Default: false] |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet dl_get_mirrors '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
+chia rpc wallet dl_latest_singleton '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
 ```
 
 Response:
 
 ```json
 {
-    "mirrors": [
-        {
-            "amount": 10,
-            "coin_id": "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b",
-            "launcher_id": "4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
-            "ours": true,
-            "urls": [
-                "http://www.example.com:8575",
-                "http://www.example2.com:8575"
-            ]
-        }
-    ],
+    "singleton": {
+        "coin_id": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+        "confirmed": true,
+        "confirmed_at_height": 2871924,
+        "generation": 0,
+        "inner_puzzle_hash": "0xd4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a84",
+        "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+        "lineage_proof": {
+            "amount": 1,
+            "inner_puzzle_hash": "0x481d9aabeccd0ab87526a980f6b3389465b6b21cb9255e30175b52114791cd91",
+            "parent_name": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"
+        },
+        "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "timestamp": 1669340887
+    },
     "success": true
 }
 ```
@@ -4318,11 +4088,78 @@ Response:
 
 ---
 
-### `dl_delete_mirror`
+### `dl_owned_singletons`
 
-Functionality: Remove an existing mirror for a specific singleton
+Functionality: Get all owned singleton records
 
-Usage: chia rpc wallet [OPTIONS] dl_delete_mirror [REQUEST]
+Usage: chia rpc wallet [OPTIONS] dl_owned_singletons [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet dl_owned_singletons
+```
+
+Response:
+
+```json
+{
+    "count": 2,
+    "singletons": [
+        {
+            "coin_id": "0x70e75ede3b9ba91ab4b91bc5efea8946fde60518becdce40e2cf6800ff173245",
+            "confirmed": true,
+            "confirmed_at_height": 2872567,
+            "generation": 1,
+            "inner_puzzle_hash": "0x607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5",
+            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0x60f66f9824d5f96d4025b70b4f7ac3def458cae742fbd2d70343eeeaa5a59c58",
+                "parent_name": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669352585
+        },
+        {
+            "coin_id": "0xf9b3b8302919b4adb12a8d3914ed512cbbfed8bfadcf6e6b0e888c9533db5fab",
+            "confirmed": true,
+            "confirmed_at_height": 2871913,
+            "generation": 0,
+            "inner_puzzle_hash": "0x5dd62b0a1883fe7565cc243c830940b541ed219c8a373f50f3cd00e003663fa9",
+            "launcher_id": "0xba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0xd9d049c23a9eea8ddfcc47971479574b5f3c7da9bb7d34f24365a82c944e270e",
+                "parent_name": "0xba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669340703
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `dl_singletons_by_root`
+
+Functionality: Get the singleton records that contain the specified root
+
+Usage: chia rpc wallet [OPTIONS] dl_singletons_by_root [REQUEST]
 
 Options:
 
@@ -4333,16 +4170,170 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type   | Required | Description                           |
-| :------ | :----- | :------- | :------------------------------------ |
-| coin_id | TEXT   | True     | The `coin_id` of the mirror to delete |
-| fee     | NUMBER | False    | An optional blockchain fee, in mojos  |
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
+| root        | TEXT | True     | The root hash of an existing data store |
 
 <details>
 <summary>Example</summary>
 
 ```json
-chia rpc wallet dl_delete_mirror '{"coin_id": "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b", "fee": 1}'
+chia rpc wallet dl_singletons_by_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "root": "0x0000000000000000000000000000000000000000000000000000000000000000"}'
+```
+
+Response:
+
+```json
+{
+    "singletons": [
+        {
+            "coin_id": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+            "confirmed": true,
+            "confirmed_at_height": 2871924,
+            "generation": 0,
+            "inner_puzzle_hash": "0xd4580b76e486b061812848a710bd7d4116b34e2c56fc4357cf8ff4ca63106a84",
+            "launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+            "lineage_proof": {
+                "amount": 1,
+                "inner_puzzle_hash": "0x481d9aabeccd0ab87526a980f6b3389465b6b21cb9255e30175b52114791cd91",
+                "parent_name": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"
+            },
+            "root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "timestamp": 1669340887
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `dl_stop_tracking`
+
+Functionality: Stop tracking a DataStore
+
+Usage: chia rpc wallet [OPTIONS] dl_stop_tracking [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet dl_stop_tracking '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `dl_track_new`
+
+Functionality: Begin tracking a DataStore
+
+Usage: chia rpc wallet [OPTIONS] dl_track_new [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type | Required | Description                             |
+| :---------- | :--- | :------- | :-------------------------------------- |
+| launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
+
+<details>
+<summary>Example</summary>
+
+```json
+ chia rpc wallet dl_track_new '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `dl_update_multiple`
+
+Functionality: Update multiple singletons with new merkle roots
+
+Usage: chia rpc wallet [OPTIONS] dl_update_multiple [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag    | Type       | Required | Description                                 |
+| :------ | :--------- | :------- | :------------------------------------------ |
+| updates | TEXT ARRAY | True     | A list of launcher IDs and hashes to update |
+
+---
+
+### `dl_update_root`
+
+Functionality: Update the root of a data store to the given new root
+
+Usage: chia rpc wallet [OPTIONS] dl_update_root [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                             |
+| :---------- | :----- | :------- | :-------------------------------------- |
+| launcher_id | TEXT   | True     | The launcher ID of the DataLayer wallet |
+| new_root    | TEXT   | True     | The new root hash of the data store     |
+| fee         | NUMBER | False    | An optional blockchain fee, in mojos    |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet dl_update_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "new_root": "0x0000000000000000000000000000000000000000000000000000000000000000", "fee": 1}'
 ```
 
 Response:
@@ -4350,52 +4341,61 @@ Response:
 ```json
 {
     "success": true,
-    "transactions": [
-        {
-            "additions": [
+    "tx_record": {
+        "additions": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+                "puzzle_hash": "0xb4aaf8fffd0fe7cc74fd9c7a5dd519a58775d42b924cab183e8e8a6a48144362"
+            }
+        ],
+        "amount": 1,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1669352476,
+        "fee_amount": 1,
+        "memos": {
+            "70e75ede3b9ba91ab4b91bc5efea8946fde60518becdce40e2cf6800ff173245": "607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5"
+        },
+        "name": "0xc2347b264b412bde5893f4e1369adab3a6c61496845c10f8ec98bc35f9e1429f",
+        "removals": [
+            {
+                "amount": 1,
+                "parent_coin_info": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+                "puzzle_hash": "0xfddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84"
+            }
+        ],
+        "sent": 10,
+        "sent_to": [],
+        "spend_bundle": {
+            "aggregated_signature": "0x990dd3c598b16e245e44e3bed148fa3fb5e5f65bd6b05ed560021c0d46efdbdef18d70346ffe8b3401984b017045ed97169f77a041c8e995b507e00f0496e057630d8d609d7e69857b3122ae440cb2f67ad5d3f5ab8fe84448be414d1107f657",
+            "coin_spends": [
                 {
-                    "amount": 9,
-                    "parent_coin_info": "0xa6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b",
-                    "puzzle_hash": "0x23e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749e"
-                }
-            ],
-            "amount": 10,
-            "confirmed": false,
-            "confirmed_at_height": 0,
-            "created_at_time": 1669356270,
-            "fee_amount": 1,
-            "memos": {},
-            "name": "0x92b71646dbcbc713ceb073618e8043d24defc514285aaffaae4037d14e4bd899",
-            "removals": [
+                    "coin": {
+                        "amount": 1,
+                        "parent_coin_info": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e",
+                        "puzzle_hash": "0xfddfe3a8ded6d3327204e1a4c8b3ac39725082b53556526f788250cf2b541c84"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff18ff2fff3480ffff01ff04ffff04ff20ffff04ff2fff808080ffff04ffff02ff3effff04ff02ffff04ff05ffff04ffff02ff2affff04ff02ffff04ff27ffff04ffff02ffff03ff77ffff01ff02ff36ffff04ff02ffff04ff09ffff04ff57ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ffff011d80ff0180ffff04ffff02ffff03ff77ffff0181b7ffff015780ff0180ff808080808080ffff04ff77ff808080808080ffff02ff3affff04ff02ffff04ff05ffff04ffff02ff0bff5f80ffff01ff8080808080808080ffff01ff088080ff0180ffff04ffff01ffffffff4947ff0233ffff0401ff0102ffffff20ff02ffff03ff05ffff01ff02ff32ffff04ff02ffff04ff0dffff04ffff0bff3cffff0bff34ff2480ffff0bff3cffff0bff3cffff0bff34ff2c80ff0980ffff0bff3cff0bffff0bff34ff8080808080ff8080808080ffff010b80ff0180ffff02ffff03ffff22ffff09ffff0dff0580ff2280ffff09ffff0dff0b80ff2280ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ff0bffff01ff02ffff03ffff02ff26ffff04ff02ffff04ff13ff80808080ffff01ff02ffff03ffff20ff1780ffff01ff02ffff03ffff09ff81b3ffff01818f80ffff01ff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff808080808080ffff01ff04ffff04ff23ffff04ffff02ff36ffff04ff02ffff04ff09ffff04ff53ffff04ffff02ff2effff04ff02ffff04ff05ff80808080ff808080808080ff738080ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff34ff8080808080808080ff0180ffff01ff088080ff0180ffff01ff04ff13ffff02ff3affff04ff02ffff04ff05ffff04ff1bffff04ff17ff8080808080808080ff0180ffff01ff02ffff03ff17ff80ffff01ff088080ff018080ff0180ffffff02ffff03ffff09ff09ff3880ffff01ff02ffff03ffff18ff2dffff010180ffff01ff0101ff8080ff0180ff8080ff0180ff0bff3cffff0bff34ff2880ffff0bff3cffff0bff3cffff0bff34ff2c80ff0580ffff0bff3cffff02ff32ffff04ff02ffff04ff07ffff04ffff0bff34ff3480ff8080808080ffff0bff34ff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ffff21ff17ffff09ff0bff158080ffff01ff04ff30ffff04ff0bff808080ffff01ff088080ff0180ff018080ffff04ffff01ffa07faa3253bfddd1e0decb0906b2dc6247bbc4cf608f58345d173adb63e8b47c9fffa04aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09ea0eff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9ffff04ffff01ff02ffff01ff02ffff01ff02ff3effff04ff02ffff04ff05ffff04ffff02ff2fff5f80ffff04ff80ffff04ffff04ffff04ff0bffff04ff17ff808080ffff01ff808080ffff01ff8080808080808080ffff04ffff01ffffff0233ff04ff0101ffff02ff02ffff03ff05ffff01ff02ff1affff04ff02ffff04ff0dffff04ffff0bff12ffff0bff2cff1480ffff0bff12ffff0bff12ffff0bff2cff3c80ff0980ffff0bff12ff0bffff0bff2cff8080808080ff8080808080ffff010b80ff0180ffff0bff12ffff0bff2cff1080ffff0bff12ffff0bff12ffff0bff2cff3c80ff0580ffff0bff12ffff02ff1affff04ff02ffff04ff07ffff04ffff0bff2cff2c80ff8080808080ffff0bff2cff8080808080ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff2effff04ff02ffff04ff09ff80808080ffff02ff2effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff0bffff01ff02ffff03ffff09ff23ff1880ffff01ff02ffff03ffff18ff81b3ff2c80ffff01ff02ffff03ffff20ff1780ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff33ffff04ff2fffff04ff5fff8080808080808080ffff01ff088080ff0180ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff0180ffff01ff02ffff03ffff09ff23ffff0181e880ffff01ff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ffff02ffff03ffff22ffff09ffff02ff2effff04ff02ffff04ff53ff80808080ff82014f80ffff20ff5f8080ffff01ff02ff53ffff04ff818fffff04ff82014fffff04ff81b3ff8080808080ffff01ff088080ff0180ffff04ff2cff8080808080808080ffff01ff04ff13ffff02ff3effff04ff02ffff04ff05ffff04ff1bffff04ff17ffff04ff2fffff04ff5fff80808080808080808080ff018080ff0180ffff01ff04ffff04ff18ffff04ffff02ff16ffff04ff02ffff04ff05ffff04ff27ffff04ffff0bff2cff82014f80ffff04ffff02ff2effff04ff02ffff04ff818fff80808080ffff04ffff0bff2cff0580ff8080808080808080ff378080ff81af8080ff0180ff018080ffff04ffff01a0a04d9f57764f54a43e4030befb4d80026e870519aaa66334aef8304f5d0393c2ffff04ffff01ffa0000000000000000000000000000000000000000000000000000000000000000080ffff04ffff01a057bfd1cb0adda3d94315053fda723f2028320faa8338225d99f629e3d46d43a9ffff04ffff01ff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0a889344c9bc729cadd340f41d5937a95442767133fd6ca7b5ec865df553b15cc43a0930bdd0a55ffc03edad3dfb62cbdff018080ff018080808080ff01808080",
+                    "solution": "0xffffa0e9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fbff0180ff01ffffff80ffff01ffff33ffa0607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5ff01ffffa04aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09effa00000000000000000000000000000000000000000000000000000000000000000ffa0607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c58080ffff3cff248080ff80808080"
+                },
                 {
-                    "amount": 10,
-                    "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
-                    "puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee"
+                    "coin": {
+                        "amount": 99990,
+                        "parent_coin_info": "0xe9158d9c2f0769c00cb0cbccfa90536b99253aebf4a0dfecd5d8298ff4ec55fb",
+                        "puzzle_hash": "0x7be3f330dd5cbacdee14f124b51ad744d7504cf4426d92b67953a96c9760d869"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b091f7f25662e59ab551649924abca7b3cb95393038c0161d6a34a3de4ffd2a43788c7b3a08221f430b55eaa417386700eff018080",
+                    "solution": "0xff80ffff01ffff33ffa0f7bf0a56b4883b42f5999fd7237300b33a541f8b92be02868483d073506098e0ff8301869580ffff34ff0180ffff3cffa058a074f99002b5471ceef509c59729ab7dcdffbc3d387597bc67bfec6f81423480ffff3dffa01cabec2e124d3c7c4cca9bd5d25a98e0bdab66690db30185e0b6fe8f74a0f6838080ff8080"
                 }
-            ],
-            "sent": 10,
-            "sent_to": [],
-            "spend_bundle": {
-                "aggregated_signature": "0x876c9a74397d4fcec257662eea48d29c10c72dc53ca723313c7be2d447ce8b7b41a30e937827e9def691fe9fca442a1707139c802a47389dd9287b0ab8d60d91917d0f309fcb8661f13239554492a9262ab7b7bafdb6ee8d01f01258010d4547",
-                "coin_spends": [
-                    {
-                        "coin": {
-                            "amount": 10,
-                            "parent_coin_info": "0x33a7cfa39f9dd223833df0f1f35f2dc17d922b094395b1b9dfe7c0eae3150c1d",
-                            "puzzle_hash": "0x03c8adaf87e5af0e4087c9b5271feff4d17f33b68fba84bf1c0846f4e649abee"
-                        },
-                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff04ffff04ff08ffff04ffff02ff0affff04ff02ffff04ff0bffff04ffff02ff05ffff02ff0effff04ff02ffff04ff17ff8080808080ffff04ff2fff808080808080ff808080ffff02ff17ff5f8080ffff04ffff01ffff4720ffff02ffff03ffff22ffff09ffff0dff0580ff0c80ffff09ffff0dff0b80ff0c80ffff15ff17ffff0181ff8080ffff01ff0bff05ff0bff1780ffff01ff088080ff0180ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff0effff04ff02ffff04ff09ff80808080ffff02ff0effff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff0101ff018080",
-                        "solution": "0xffa05bf3b9607bfa60958b6d2a7f3c6a28f3dcc7f9081a0dd95d361cff3ca970658dffff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b326638c42fcc6ebb926ecf1bbd1ea7e12adfdf338a3b2ee5f45711076d27abf3583f8b33d6cad56c8008b95c129d38dff018080ff83018695ffff80ffff01ffff33ffa023e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749eff098080ff808080"
-                    }
-                ]
-            },
-            "to_address": "xch1y05ma9ee233g9agvzr9u6wwrd38jq3f8y85yt3xswa0krav8wj0qlf7xxw",
-            "to_puzzle_hash": "0x23e9be9739546282f50c10cbcd39c36c4f20452721e845c4d0775f61f587749e",
-            "trade_id": null,
-            "type": 1,
-            "wallet_id": 8
-        }
-    ]
+            ]
+        },
+        "to_address": "xch1vpasf9ftx97gr6eph2t07hmz4k6cvg0cn407vfq0d6pagw2enrzsey2rsa",
+        "to_puzzle_hash": "0x607b04952b317c81eb21ba96ff5f62adb58621f89d5fe6240f6e83d4395998c5",
+        "trade_id": null,
+        "type": 1,
+        "wallet_id": 8
+    }
 }
 ```
 
@@ -4404,6 +4404,78 @@ Response:
 ---
 
 ## Routes and connections
+
+### `close_connection`
+
+Functionality: Close an active connection
+
+Note: Inherited from RPC Server
+
+Request Parameters:
+
+| Flag    | Type | Required | Description                                                      |
+| :------ | :--- | :------- | :--------------------------------------------------------------- |
+| node_id | TEXT | True     | The hex ID of the node to close, obtainable from get_connections |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet close_connection '{"node_id":"0x8e961b617579d476419003728d6d71ab1b182f7d962e5db16f61ebfb157d771b"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_connections`
+
+Functionality: Get a list of active connections
+
+Note: Inherited from RPC Server
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_connections
+```
+
+Response: 
+
+```json
+{
+    "connections": [
+        {
+            "bytes_read": 49581235,
+            "bytes_written": 717978,
+            "creation_time": 1669283764.8537369,
+            "last_message_time": 1669358138.7421055,
+            "local_port": 8449,
+            "node_id": "0xcda6b919f90af6f021ccf6ca748a30d03b22622863654b57bd74896dd60c4eca",
+            "peer_host": "127.0.0.1",
+            "peer_port": 8444,
+            "peer_server_port": 8444,
+            "type": 1
+        }
+    ],
+    "success": true
+}
+```
+
+</details>
+
+---
 
 ### `get_routes`
 
@@ -4544,47 +4616,6 @@ Response:
 
 ---
 
-### `get_connections`
-
-Functionality: Get a list of active connections
-
-Note: Inherited from RPC Server
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet get_connections
-```
-
-Response: 
-
-```json
-{
-    "connections": [
-        {
-            "bytes_read": 49581235,
-            "bytes_written": 717978,
-            "creation_time": 1669283764.8537369,
-            "last_message_time": 1669358138.7421055,
-            "local_port": 8449,
-            "node_id": "0xcda6b919f90af6f021ccf6ca748a30d03b22622863654b57bd74896dd60c4eca",
-            "peer_host": "127.0.0.1",
-            "peer_port": 8444,
-            "peer_server_port": 8444,
-            "type": 1
-        }
-    ],
-    "success": true
-}
-```
-
-</details>
-
----
-
 ### `open_connection`
 
 Functionality: Open a connection to another node
@@ -4603,37 +4634,6 @@ Request Parameters:
 
 ```json
 chia rpc wallet open_connection '{"host":"localhost", "port":"8444"}'
-```
-
-Response:
-
-```json
-{
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `close_connection`
-
-Functionality: Close an active connection
-
-Note: Inherited from RPC Server
-
-Request Parameters:
-
-| Flag    | Type | Required | Description                                                      |
-| :------ | :--- | :------- | :--------------------------------------------------------------- |
-| node_id | TEXT | True     | The hex ID of the node to close, obtainable from get_connections |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc wallet close_connection '{"node_id":"0x8e961b617579d476419003728d6d71ab1b182f7d962e5db16f61ebfb157d771b"}'
 ```
 
 Response:
