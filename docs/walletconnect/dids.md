@@ -8,58 +8,36 @@ slug: /walletconnect-dids
 
 ### `chia_createNewDIDWallet`
 
-Creates a new DID wallet.
+Creates a new DID profile.
 
-#### Request
+| Parameter              | Type       | Description                   |
+| ---------------------- | ---------- | ----------------------------- |
+| `amount`               | `number`   | Amount in mojos.              |
+| `fee`                  | `number`   | Transaction fee in mojos.     |
+| `backupDids`           | `string[]` | Associated backup DIDs.       |
+| `numOfBackupIdsNeeded` | `number`   | Number of backup DIDs needed. |
 
-| Parameter              | Type       | Description                                |
-| ---------------------- | ---------- | ------------------------------------------ |
-| `amount`               | `number`   | Amount to create the wallet with in mojos. |
-| `fee`                  | `number`   | The transaction fee in mojos.              |
-| `backupDids`           | `string[]` | The associated backup DIDs.                |
-| `numOfBackupIdsNeeded` | `number`   | The number of backup DIDs needed.          |
+#### Output Data
 
-#### Response
-
-| Parameter  | Type     | Description                          |
-| ---------- | -------- | ------------------------------------ |
-| `type`     | `number` | The type of the wallet (8 for DIDs). |
-| `myDid`    | `string` | The bech32m encoded DID address.     |
-| `walletId` | `number` | The newly created wallet id.         |
+| Parameter  | Type                                               | Description                  |
+| ---------- | -------------------------------------------------- | ---------------------------- |
+| `type`     | [`WalletType`](/walletconnect-commands#wallettype) | Type of wallet (8 for DIDs). |
+| `myDid`    | `string`                                           | Bech32m encoded DID address. |
+| `walletId` | `number`                                           | Created wallet id.           |
+| `success`  | `boolean`                                          | Backend success status.      |
 
 ### `chia_setDIDName`
 
 Sets the name of a DID wallet.
 
-#### Request
+| Parameter  | Type     | Description  |
+| ---------- | -------- | ------------ |
+| `walletId` | `number` | Wallet id.   |
+| `name`     | `string` | Wallet name. |
 
-| Parameter  | Type     | Description                 |
-| ---------- | -------- | --------------------------- |
-| `walletId` | `number` | The id of the wallet.       |
-| `name`     | `string` | The new name of the wallet. |
+#### Output Data
 
-#### Response
-
-| Parameter  | Type     | Description           |
-| ---------- | -------- | --------------------- |
-| `walletId` | `number` | The id of the wallet. |
-
-### `chia_setNFTDID`
-
-Sets the DID of an NFT.
-
-#### Request
-
-| Parameter    | Type       | Description                      |
-| ------------ | ---------- | -------------------------------- |
-| `walletId`   | `number`   | The id of the wallet.            |
-| `nftCoinIds` | `string[]` | Coin ids of the NFT.             |
-| `did`        | `string`   | The bech32m encoded DID address. |
-| `fee`        | `number`   | The transaction fee in mojos.    |
-
-#### Response
-
-| Parameter     | Type                                                 | Description                 |
-| ------------- | ---------------------------------------------------- | --------------------------- |
-| `walletId`    | `number`                                             | The id of the wallet.       |
-| `spendBundle` | [`SpendBundle`](/walletconnect-commands#spendbundle) | The generated spend bundle. |
+| Parameter  | Type      | Description             |
+| ---------- | --------- | ----------------------- |
+| `walletId` | `number`  | Wallet id.              |
+| `success`  | `boolean` | Backend success status. |

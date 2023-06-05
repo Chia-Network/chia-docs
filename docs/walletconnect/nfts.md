@@ -8,69 +8,81 @@ slug: /walletconnect-nfts
 
 ### `chia_getNFTs`
 
-Requests a full or paginated listing of NFTs.
+Requests a full or paginated list of NFTs.
 
-#### Request
+| Parameter    | Type       | Description                      |
+| ------------ | ---------- | -------------------------------- |
+| `walletIds`  | `number[]` | NFT wallet ids.                  |
+| `num`        | `number`   | Number of NFTs to fetch.         |
+| `startIndex` | `number`   | Index to start from in the list. |
 
-| Parameter    | Type       | Description                          |
-| ------------ | ---------- | ------------------------------------ |
-| `walletIds`  | `number[]` | The NFT wallet ids.                  |
-| `num`        | `number`   | The number of NFTs to fetch.         |
-| `startIndex` | `number`   | The index to start from in the list. |
+#### Output data
 
-#### Response
-
-The response is an object with keys equal to the individual `walletIds` provided in the request.
-
-| Type                                    | Description              |
-| --------------------------------------- | ------------------------ |
-| [`Record<string, NftInfo[]>`](#nftinfo) | List of NFTs per wallet. |
+The output is an object of type [`Record<string, NFTInfo[]>`](#nftinfo), where the keys are wallet ids.
 
 ### `chia_getNFTInfo`
 
 Gets information about a specific NFT.
 
-#### Request
+| Parameter | Type     | Description      |
+| --------- | -------- | ---------------- |
+| `coinId`  | `string` | NFT launcher id. |
 
-| Parameter | Type     | Description          |
-| --------- | -------- | -------------------- |
-| `coinId`  | `string` | The NFT launcher id. |
+#### Output Data
 
-#### Response
-
-The response is an [`NftInfo`](#nftinfo) object.
+The output is an object of type [`NftInfo`](#nftinfo).
 
 ### `chia_transferNFT`
 
-#### Request
+| Parameter       | Type       | Description                             |
+| --------------- | ---------- | --------------------------------------- |
+| `walletId`      | `number`   | NFT wallet id.                          |
+| `launcherId`    | `string`   | NFT launcher id.                        |
+| `nftCoinIds`    | `string[]` | NFT coin ids.                           |
+| `targetAddress` | `string`   | Bech32m encoded address to transfer to. |
+| `fee`           | `number`   | Transaction fee in mojos.               |
 
-| Parameter       | Type       | Description                                 |
-| --------------- | ---------- | ------------------------------------------- |
-| `walletId`      | `number`   | The NFT wallet id.                          |
-| `nftCoinIds`    | `string[]` | The NFT coin ids.                           |
-| `targetAddress` | `string`   | The bech32m encoded address to transfer to. |
-| `fee`           | `number`   | The network fee in mojos.                   |
+#### Output Data
 
-#### Response
-
-| Parameter            | Type                                                 | Description                                           |
-| -------------------- | ---------------------------------------------------- | ----------------------------------------------------- |
-| `walletId`           | <code>number &#124; number[]</code>                  | The NFT wallet id or NFT wallet ids.                  |
-| `spendBundle`        | [`SpendBundle`](/walletconnect-commands#spendbundle) | The spend bundle for the transaction.                 |
-| `txNum` _(optional)_ | `number`                                             | The transaction number, if multiple were transferred. |
+| Parameter             | Type                                                 | Description           |
+| --------------------- | ---------------------------------------------------- | --------------------- |
+| `walletId`            | <code>number &#124; number[]</code>                  | NFT wallet id(s).     |
+| `spendBundle`         | [`SpendBundle`](/walletconnect-commands#spendbundle) | Created spend bundle. |
+| `txNum?` _(optional)_ | `number`                                             | Transaction number.   |
 
 ### `chia_getNFTsCount`
 
-| Parameter  | Type     | Description        |
-| ---------- | -------- | ------------------ |
-| `walletId` | `number` | The NFT wallet id. |
+| Parameter   | Type       | Description     |
+| ----------- | ---------- | --------------- |
+| `walletIds` | `number[]` | NFT wallet ids. |
 
-#### Response
+#### Output Data
 
-| Parameter  | Type     | Description         |
-| ---------- | -------- | ------------------- |
-| `walletId` | `number` | The NFT wallet id.  |
-| `count`    | `number` | The number of NFTs. |
+The output is an object of type `Record<string, number>`, where the keys are wallet ids. It has the following additional key:
+
+| Parameter | Type     | Description           |
+| --------- | -------- | --------------------- |
+| `total`   | `number` | Total number of NFTs. |
+
+### `chia_setNFTDID`
+
+Sets the owner DID associated with a given NFT.
+
+| Parameter       | Type       | Description                  |
+| --------------- | ---------- | ---------------------------- |
+| `walletId`      | `number`   | Wallet id.                   |
+| `nftLauncherId` | `string`   | NFT launcher id.             |
+| `nftCoinIds`    | `string[]` | NFT coin ids.                |
+| `did`           | `string`   | Bech32m encoded DID address. |
+| `fee`           | `number`   | Transaction fee in mojos.    |
+
+#### Output Data
+
+| Parameter     | Type                                                 | Description             |
+| ------------- | ---------------------------------------------------- | ----------------------- |
+| `walletId`    | `number`                                             | Wallet id.              |
+| `spendBundle` | [`SpendBundle`](/walletconnect-commands#spendbundle) | Created spend bundle.   |
+| `success`     | `boolean`                                            | Backend success status. |
 
 ## Types
 

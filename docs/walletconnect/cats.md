@@ -23,12 +23,12 @@ CAT amounts are displayed on a 1 to 1,000 scale with XCH. To create 1 of a CAT, 
 
 #### Output Data
 
-| Parameter  | Type                                               | Description                         |
-| ---------- | -------------------------------------------------- | ----------------------------------- |
-| `assetId`  | `string`                                           | Created asset id.                   |
-| `type`     | [`WalletType`](/walletconnect-commands#wallettype) | Type of wallet, which is 6 for CAT. |
-| `walletId` | `number`                                           | Created wallet id.                  |
-| `success`  | `boolean`                                          | Backend success status.             |
+| Parameter  | Type                                               | Description                  |
+| ---------- | -------------------------------------------------- | ---------------------------- |
+| `assetId`  | `string`                                           | Created asset id.            |
+| `type`     | [`WalletType`](/walletconnect-commands#wallettype) | Type of wallet (6 for CATs). |
+| `walletId` | `number`                                           | Created wallet id.           |
+| `success`  | `boolean`                                          | Backend success status.      |
 
 ### `chia_getCATWalletInfo`
 
