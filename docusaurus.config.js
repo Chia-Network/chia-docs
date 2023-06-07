@@ -10,7 +10,7 @@ const katex = require('rehype-katex');
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'throw',
-    favicon: 'img/chia_leaf_green.svg',
+    favicon: './static/svg/chia_leaf_green.svg',
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
     i18n: {
