@@ -8,7 +8,6 @@ service:
 ingress:
   enabled: true
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-cf"
     ingress.kubernetes.io/ssl-redirect: "true"
   hosts:
     - host: {{ REVIEW_SLUG }}.docs.chia.net
