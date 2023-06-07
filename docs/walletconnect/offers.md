@@ -137,7 +137,7 @@ Creates an offer for wallet ids.
 
 | Parameter                             | Type      | Description                         |
 | ------------------------------------- | --------- | ----------------------------------- |
-| `walletIdsAndAmounts`                 | `any`     | Wallet ids and amounts object.      |
+| `offer`                               | `any`     | Offered asset amounts.              |
 | `driverDict`                          | `any`     | Driver dict object.                 |
 | `validateOnly?` _(optional)_          | `boolean` | Whether to only validate the offer. |
 | `disableJSONFormatting?` _(optional)_ | `boolean` | Whether to disable JSON formatting. |

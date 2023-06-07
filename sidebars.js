@@ -72,8 +72,7 @@ module.exports = {
       type: 'category',
       label: 'WalletConnect',
       items: [
-        'walletconnect/introduction',
-        'walletconnect/wallet',
+        'walletconnect/general',
         'walletconnect/cats',
         'walletconnect/nfts',
         'walletconnect/dids',
