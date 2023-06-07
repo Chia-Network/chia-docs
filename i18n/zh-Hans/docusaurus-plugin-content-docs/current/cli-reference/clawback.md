@@ -1,5 +1,5 @@
 ---
-slug: /clawback_cli
+slug: /clawback-cli
 title: Clawback
 ---
 
