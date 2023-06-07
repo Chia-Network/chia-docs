@@ -12,16 +12,16 @@ import TabItem from '@theme/TabItem';
 
 This document will show you how to use Chia's clawback primitive. Clawback currently is implemented as a command-line tool only. Wallet developers are welcome to integrate it into their GUI wallets. For additional technical resources, see the following:
 
-- [Clawback CLI Reference](/clawback_cli)
+- [Clawback CLI Reference](/clawback-cli)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
 
 :::warning some important notes
 
-* The clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
-* Chia Network, Inc will add a user-friendly implementation of the clawback primitive to a future release of the reference wallet.
-* A **synced full node** AND a synced wallet are required to use the clawback primitive.
-* You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use testnet10.
-* The clawback primitive currently only supports XCH/TXCH. It does not support CATs or NFTs. The `-w` flag will be ignored if it points to a non-XCH (or TXCH) wallet.
+- The clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
+- Chia Network, Inc will add a user-friendly implementation of the clawback primitive to a future release of the reference wallet.
+- A **synced full node** AND a synced wallet are required to use the clawback primitive.
+- You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use testnet10.
+- The clawback primitive currently only supports XCH/TXCH. It does not support CATs or NFTs. The `-w` flag will be ignored if it points to a non-XCH (or TXCH) wallet.
 
 :::
 
@@ -32,6 +32,7 @@ This document will show you how to use Chia's clawback primitive. Clawback curre
 The clawback primitive was designed to guard against sending Chia assets to an incorrect address. The principal behind clawback is simple: it is an intermediate coin that cannot be sent to the destination address until a timelock has expired. In the meantime, the Sender can "claw back" the coin, returning it to their wallet in the form of standard XCH.
 
 An Alice-Bob will demonstrate this:
+
 - Alice wants to send 1 XCH to Bob, and she wants to verify that she has entered Bob's address correctly in her wallet.
 - With this in mind, Alice creates a clawback coin with the following features:
   - It exists on Chia's blockchain
@@ -47,6 +48,7 @@ An Alice-Bob will demonstrate this:
   - Note that the coin's clawback logic is in place for the life of the coin. This means that until the coin is spent, Alice is able to claw it back. This is true regardless of the coin's age. Because of this, after the timelock expires, Bob must spend the clawback coin in order to receive the XCH in his wallet. After this spend has completed, the clawback coin no longer exists, and the spend is final.
 
 This guide will show you how to perform the logic outlined above:
+
 - Create a clawback coin
 - Claw back the coin
 - Claim the clawback coin
@@ -172,7 +174,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-To create the clawback coin from the Sender's wallet, run the [clawback create](/clawback_cli#create) command. The `-t` (Recipient's address) and `-a` (amount in XCH/TXCH) flags are required. By default, the clawback coin will be locked for two weeks. For this demo, we will override the default by using the `-t` flag to specify a timelock period of 600 seconds. We will also use the `-m` flag to include a fee of 0.000275 TXCH.
+To create the clawback coin from the Sender's wallet, run the [clawback create](/clawback-cli#create) command. The `-t` (Recipient's address) and `-a` (amount in XCH/TXCH) flags are required. By default, the clawback coin will be locked for two weeks. For this demo, we will override the default by using the `-t` flag to specify a timelock period of 600 seconds. We will also use the `-m` flag to include a fee of 0.000275 TXCH.
 
 :::info
 
@@ -195,7 +197,7 @@ Created Coin with ID: 29056b320b380c0fc4834578ca30318ae9c1d1cddbe39a91197870c4dc
 Coin { parent_coin_info: dcedd4d573679302ee3f2a54fb51c437b8156e8cd5b1c3c08d25cadf83292c3d, puzzle_hash: 13cb7ce11775a5b42754fb382eb94c846e4be677e6d55bf665b23c075a54e930, amount: 100000000000 }
 ```
 
-As a result of running this command, a new clawback coin has been created on the blockchain, the details of which are shown above. To view this coin, along with other clawback coins created by this wallet, run the [clawback show](/clawback_cli#show) command:
+As a result of running this command, a new clawback coin has been created on the blockchain, the details of which are shown above. To view this coin, along with other clawback coins created by this wallet, run the [clawback show](/clawback-cli#show) command:
 
 ```bash
 clawback show
@@ -236,7 +238,7 @@ Time left: 518 seconds
 
 The same public/private key pair that created this coin must be used to claw it back.
 
-The Sender will use the [clawback claw](/clawback_cli#claw) command, passing in the ID of the coin to claw back:
+The Sender will use the [clawback claw](/clawback-cli#claw) command, passing in the ID of the coin to claw back:
 
 ```bash
 clawback claw -c 29056b320b380c0fc4834578ca30318ae9c1d1cddbe39a91197870c4dc474532 -m 0.000275
@@ -375,7 +377,7 @@ Timelock: 60 seconds
 Time left: 0 seconds
 ```
 
-The value of `Time left:` is `0 seconds`. In most cases (see the info box below for more info), the Recipient can now run the [clawback claim](/clawback_cli#claim) command to claim the coin:
+The value of `Time left:` is `0 seconds`. In most cases (see the info box below for more info), the Recipient can now run the [clawback claim](/clawback-cli#claim) command to claim the coin:
 
 ```bash
 clawback claim -c ef4b69e65e99261d6e30c8d2d331a8ed84995f3452b95aaa944f76a0f9af74c5
@@ -503,7 +505,7 @@ Time left: 0 seconds
 At this point, the Recipient could claim this coin. However, the Sender also can claw back this coin:
 
 ```bash
-clawback claw -c 
+clawback claw -c
 ```
 
 Result: 5024cdd687a70d8a1340e774a9e29c3dc2aa1e3726eaae40700f2859db5fdd1e
