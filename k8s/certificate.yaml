@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: chia-docs-star
+  namespace: chia-docs
+  labels:
+    app: chia-docs
+spec:
+  secretName: chia-docs-star-tls
+  dnsNames:
+    - "*.docs.chia.net"
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-cf
