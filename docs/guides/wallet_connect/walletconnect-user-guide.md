@@ -141,7 +141,7 @@ Open a browser and navigate to [http://localhost:3000](http://localhost:3000) (u
 
 :::info
 
-If you see an error message such as `An error as occured`, the most likely cause is that you are running an ad blocker that is interfering with the dApp.
+If you see an error message such as `An error as occurred`, the most likely cause is that you are running an ad blocker that is interfering with the dApp.
 Either disable the ad blocker or try a different browser.
 
 :::
@@ -231,7 +231,7 @@ If you used this guide to set up the sample dApp, this was the link you obtained
 </div>
 <br />
 
-7. Chooose which public key(s) to connect and click `CONTINUE`
+7. Choose which public key(s) to connect and click `CONTINUE`
 
 While you may choose more than one key to connect with the dApp, we will use a single key for this example:
 

@@ -56,8 +56,8 @@ module.exports = {
       type: 'category',
       label: 'CLI Reference',
       items: [
-        'cli-reference/cat-admin',
         'cli-reference/cli',
+        'cli-reference/cat-admin',
         'cli-reference/clawback',
         'cli-reference/custody-tool',
         'cli-reference/datalayer',
@@ -66,6 +66,17 @@ module.exports = {
         'cli-reference/offers',
         'cli-reference/simulator',
         'cli-reference/wallet',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'WalletConnect',
+      items: [
+        'walletconnect/general',
+        'walletconnect/cats',
+        'walletconnect/nfts',
+        'walletconnect/dids',
+        'walletconnect/offers',
       ],
     },
     {
@@ -207,13 +218,6 @@ module.exports = {
       label: 'Crash Course',
       collapsible: true,
       collapsed: false,
-      link: {
-        type: 'generated-index',
-        slug: '/guides/crash-course/introduction',
-        title: 'Chia Introduction',
-        description:
-          'This course is designed to give you an end-to-end introduction to Chia.',
-      },
       items: [
         'guides/crash-course/introduction',
         'guides/crash-course/intro-to-chialisp',

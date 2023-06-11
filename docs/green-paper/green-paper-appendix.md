@@ -153,8 +153,8 @@ $$
 
 Note that we only need $\tau.y$ (but not $\tau.\pi$) to be unique, i.e., the proof $\tau.\pi$ showing that $\tau.y$ is the correct value can be malleable. This seems sufficient for all applications of VDFs, but let us mention that in the [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] VDFs discussed below also $\tau.\pi$ is unique.
 
-**sequentialitiy:**
-Informally, sequentiality states that for any $t$, an adversary ${\cal A}$ who makes less than $t$ sequential steps will notfind an accepting proof on a random challenge. I.e., for some tiny $\epsilon$ 
+**sequentiality:**
+Informally, sequentiality states that for any $t$, an adversary ${\cal A}$ who makes less than $t$ sequential steps will not find an accepting proof on a random challenge. I.e., for some tiny $\epsilon$ 
 
 $$
 \hspace{-1cm}

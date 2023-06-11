@@ -286,7 +286,7 @@ MNEMONIC=...
 GENESIS=d25b25b897564035695996922aa0f9ff9d611bd38cd2ecd0d2383a99a70dfc15
 ```
 
-You can retrieve your network's Genesis challenege in the terminal with:
+You can retrieve your network's Genesis challenge in the terminal with:
 
 ```
 chia show -s
@@ -358,7 +358,7 @@ chia wallet send --amount 0.01 --fee 0.00005 --address txch14gxuvfmw2xdxqnws5agt
 
 ## Retrieve the Coin Record
 
-We will need to give adequate time for the coin go sucesfully go to the mempool and then for it to be included by a full node. Because of this, we will issue the creation code separate from the retrieval code.
+We will need to give adequate time for the coin go successfully go to the mempool and then for it to be included by a full node. Because of this, we will issue the creation code separate from the retrieval code.
 
 ```typescript
 async function spend() {

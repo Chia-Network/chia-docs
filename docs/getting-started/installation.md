@@ -12,7 +12,7 @@ There are various ways to install Chia. The best method depends on what you inte
 
 If you plan to use Chia as a wallet or to run a farm on a personal computer, we recommend installing the GUI from our [official downloads page](https://www.chia.net/downloads). The best way to install the GUI on Linux is the command line, [as described below](#using-the-cli). The GUI is the simplest way to interact with the Chia client.
 
-However, if you intend to run a Chia full node on a server and connect to it programatically using the [RPC interface](/rpc), the best method would be to install and run Chia on the command line.
+However, if you intend to run a Chia full node on a server and connect to it programmatically using the [RPC interface](/rpc), the best method would be to install and run Chia on the command line.
 
 Finally, if you plan on making contributions to the source code or doing [Chialisp](https://chialisp.com) development, we recommend installing Chia from source. This gives the highest level of flexibility.
 
