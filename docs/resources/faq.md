@@ -620,18 +620,9 @@ You should always check the ID of the asset(s) being offered before accepting an
 Once you've created the offer, you'll need to find someone who will take the other side of it. You can share your offers through the following methods:
 
 - Send your offer file directly to another user
-- [HashGreen](https://hash.green/dex) - a decentralized exchange (DEX) that has been built upon Chia's Offers
 - [Offerbin](http://offerbin.io) - an open marketplace for Chia Offers
-- [Keybase - chia_offers](https://keybase.io/team/chia_offers) - #offers-trading channel is a forum where Chia Offers can be posted and accepted
 - [Offerpool.io](https://offerpool.io/) - an open-sourced, decentralized offers database built on top of OrbitDB and IPFS
-
-### Why am I seeing the following error when trying to share an offer to Keybase: "Failed to upload offer to Keybase:..."?
-
-Please ensure that you have joined the chia_offers group first before hitting the "share" button.
-
-### Why do I see this error in Keybase when I click to Join Chia_Offers - "This team does not exist or it has no public information available"?
-
-Ignore this error as this is a Keybase error, so long as you click on "Join Chia_offers", you will get successfully added to the team to post or view offers.
+- [dexie.space](https://dexie.space/markets) - a decentralized exchange for Chia offers supporting Chia tokens (CATs) and NFTs
 
 ### Why don't I see the offers option in my wallet?
 
