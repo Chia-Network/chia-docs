@@ -610,7 +610,7 @@ This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
    - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
-   - `-o`: set this to create a separate offer file for each NFT, using the specified price. In this example, the offer price will be 100 mojos
+   - `-o`: *Not set.* In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are not the owner.
 
 ```bash
 chianft submit-spend-bundles -m 10 output.pkl
