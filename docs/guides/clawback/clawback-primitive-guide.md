@@ -10,15 +10,18 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This document will show you how to use Chia's clawback primitive. Clawback currently is implemented as a command-line tool only. Wallet developers are welcome to integrate it into their GUI wallets. For additional technical resources, see the following:
+This document will show you how to use Chia's standalone clawback primitive. Wallet developers are welcome to integrate it into their GUI wallets.
+
+For additional technical resources, see the following:
 
 - [Clawback CLI Reference](/clawback-cli)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
+- [Clawback user guide](/guides/clawback-user-guide)
 
 :::warning some important notes
 
-- The clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
-- Chia Network, Inc will add a user-friendly implementation of the clawback primitive to a future release of the reference wallet.
+- The standalone clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
+- Chia Network, Inc has added a user-friendly implementation of the clawback primitive to version 1.8.2 of the reference wallet.
 - A **synced full node** AND a synced wallet are required to use the clawback primitive.
 - You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use testnet10.
 - The clawback primitive currently only supports XCH/TXCH. It does not support CATs or NFTs. The `-w` flag will be ignored if it points to a non-XCH (or TXCH) wallet.
