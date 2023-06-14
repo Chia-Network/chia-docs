@@ -916,6 +916,153 @@ Coin ID: 0x27049c58aad594bdb83a0f191098f438218cbd7066700342034709afb2470c0d
 
 ---
 
+## `clawback`
+
+Functionality: Claim or revert a Clawback transaction
+
+Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
+
+Options:
+
+| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -i            | --id              | INTEGER | False    | ID of the wallet to use  [default: 1]                                                                        |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -ids          | --tx_ids          | TEXT    | True     | IDs of the Clawback transactions you want to revert or claim. Separate multiple IDs by comma (,)             |
+| -m            | --fee             | TEXT    | False    | A fee to add to the offer when it gets taken, in XCH  [default: 0]                                           |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+
+Note that wallet will automatically detect whether the transactions should be reverted (clawed back) or claimed.
+
+<details>
+<summary>Example 1: clawback</summary>
+
+First, create the clawback. This is a normal `send` command, with an extra `--clawback` timer:
+
+```bash
+chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 3600
+```
+
+Response:
+
+```
+Submitting transaction...
+Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
+Run 'chia wallet get_transaction -f 4045726944 -tx 0x5a41dbe755a7a44b827b61cfa384e79bef5f79370f63fa7ffe1ea29212a26bf6' to get status
+```
+
+After the above transaction has been confirmed on-chain, obtain the ID for the clawback transaction:
+
+```bash
+chia wallet get_transactions -f 4045726944 -l 1 --clawback
+```
+
+Response:
+
+```bash
+Transaction 0661d157b33597c33e5dc2027f07a1f0cbdc72fa950ca9617e08af326ceb7c81
+Status: Pending
+Amount received in clawback as sender: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 13:14:16
+Recipient claimable time: 2023-06-14 14:14:16
+```
+
+Next, claw back the transaction:
+
+```bash
+chia wallet clawback -f 4045726944 -ids 0661d157b33597c33e5dc2027f07a1f0cbdc72fa950ca9617e08af326ceb7c81 -m 0.0001
+```
+
+Response:
+
+```bash
+{'success': True, 'transaction_ids': ['a8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff']}
+```
+
+Finally, show the clawback transaction to verify that it was confirmed:
+
+```bash
+chia wallet get_transaction -f 4045726944 -tx 0xa8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff
+```
+
+```bash
+Transaction a8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff
+Status: Confirmed
+Amount claim/clawback: 1 TXCH
+To address: txch1dmdj4ee0ss3m7zunaymz47kdejv2pfwxdhcdjh6zffg935yqmvlsqpvvjq
+Created at: 2023-06-14 13:17:33
+```
+
+</details>
+
+<details>
+<summary>Example 2: claim</summary>
+
+Set up a clawback send transaction with a 60-second clawback window:
+
+```bash
+chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 60-second clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 60
+```
+
+Response:
+
+```bash
+Submitting transaction...
+Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
+Run 'chia wallet get_transaction -f 4045726944 -tx 0x3ca82042aba188d47a80b663523847fa6050a21e04647c7b31ad3aa9d8d5450f' to get status
+```
+
+Get the status of the latest clawback transaction:
+
+```bash
+chia wallet get_transactions -f 4045726944 -l 1 --clawback
+```
+
+Response:
+
+```bash
+Transaction d4d29b6381e4248fc7361abb900a154e14d3120f6ecc01e7aaccaf9d984ed2f3
+Status: Pending
+Amount received in clawback as sender: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 13:28:38
+Recipient claimable time: 2023-06-14 13:29:38
+```
+
+From the receiver's wallet, claim the transaction after the claimable time has elapsed:
+
+```bash
+chia wallet clawback -f 2457176934 -ids d4d29b6381e4248fc7361abb900a154e14d3120f6ecc01e7aaccaf9d984ed2f3 -m 0.0001
+```
+
+Response:
+
+```bash
+{'success': True, 'transaction_ids': ['e969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb']}
+```
+
+Finally, show the last transaction's status:
+
+```bash
+chia wallet get_transaction -f 2457176934 -tx 0xe969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb
+```
+
+Response:
+
+```bash
+Transaction e969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb
+Status: Confirmed
+Amount claim/clawback: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 13:33:10
+```
+
+</details>
+
+---
+
 ## `delete_unconfirmed_transactions`
 
 Functionality: Deletes all unconfirmed transactions for this wallet ID
@@ -1074,6 +1221,7 @@ Options:
 |               | --sort-by-height    | None    | False    | Sort transactions by height [default: disabled]                                                                   |
 |               | --sort-by-relevance | None    | False    | Sort transactions by {confirmed \| height \| time} [default: disabled]                                            |
 |               | --reverse           | None    | False    | Reverse the transaction ordering [default: disabled]                                                              |
+|               | --clawback          | None    | False    | Only show clawback transactions [default: disabled]                                                               |
 | -h            | --help              | None    | False    | Show a help message and exit                                                                                      |
 
 <details>
@@ -1249,11 +1397,13 @@ Options:
 | -o            | --override         | None    | False    | Submits transaction without checking for unusual values [default: disabled]                                  |
 | -ma           | --min-coin-amount  | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                    |
 | -l            | --max-coin-amount  | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                    |
-| -e            | --exclude-coin-ids | TEXT    | False    | Exclude this coin from being spent                                                                           |
+|               | --exclude-coin     | TEXT    | False    | Exclude this coin from being spent                                                                           |
+|               | --reuse            | None    | False    | Set this flag to reuse an existing address for the change [default: not set]                                 |
+|               | --clawback_time    | INTEGER | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature   |
 | -h            | --help             | None    | False    | Show a help message and exit                                                                                 |
 
 <details>
-<summary>Example</summary>
+<summary>Example 1: send with memo</summary>
 
 Send 1000 mojos with a test memo:
 
@@ -1267,6 +1417,61 @@ Response:
 Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'cda6b919f90af6f021ccf6ca748a30d03b22622863654b57bd74896dd60c4eca', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 3792481086 -tx 0x6fbac9409dbdef3cfa8a8fd82be88caef5be4547fe882c12d5b1ef0cbd17ecfe' to get status
+```
+
+</details>
+
+<details>
+<summary>Example 2: clawback</summary>
+
+Send 1 TXCH and include a 3600-second (1 hour) clawback:
+
+```bash
+chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 3600
+```
+
+Response:
+
+```
+Submitting transaction...
+Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
+Run 'chia wallet get_transaction -f 4045726944 -tx 0x3012893bf84b66c849f54b1c4bd893000188a7f728e439d3d6634048e8474482' to get status
+```
+
+View the transaction's status:
+
+```bash
+chia wallet get_transaction -f 4045726944 -tx 0x3012893bf84b66c849f54b1c4bd893000188a7f728e439d3d6634048e8474482
+```
+
+Response:
+
+```bash
+Transaction 3012893bf84b66c849f54b1c4bd893000188a7f728e439d3d6634048e8474482
+Status: Confirmed
+Amount sent: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 10:07:51
+```
+
+Note that the status is `Confirmed` even though it is a pending clawback transaction.
+This is because the original transaction _has_ been confirmed and a new pending clawback transaction has been created.
+
+To view the pending clawback transaction, call `get_transactions` and include the `--clawback` flag (`-l 1` is used here to show only the latest transaction):
+
+```bash
+chia wallet get_transactions -f 4045726944 -l 1 --clawback
+```
+
+The response shows the time at which the transaction will be claimable:
+
+```bash
+Transaction fdee443b5588dff2eb5471d18dee51617749849ed29583e2315481f52dad98cc
+Status: Pending
+Amount received in clawback as sender: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 10:08:44
+Recipient claimable time: 2023-06-14 11:08:44
 ```
 
 </details>

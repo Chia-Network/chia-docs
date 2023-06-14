@@ -7,10 +7,22 @@ title: Clawback
 
 This page includes a comprehensive list of Chia's Command Line Interface commands for using the clawback primitive.
 
+:::warning
+
+These commands are only relevant for the clawback primitive, which is located in the [chia-clawback-primitive](https://github.com/Chia-Network/chia-clawback-primitive) repository.
+
+In order to view the commands that are built into the CLI for Chia's reference wallet, see the following `wallet` commands:
+* [clawback](/wallet-cli#clawback)
+* [get_transactions](/wallet-cli#get_transactions)
+* [send](/wallet-cli#send-1)
+
+:::
+
 For more info, see the following:
 
 - [Clawback primitive guide](/guides/clawback-primitive-guide)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
+- [Clawback user guide](/guides/clawback-user-guide)
 
 ## Reference
 
