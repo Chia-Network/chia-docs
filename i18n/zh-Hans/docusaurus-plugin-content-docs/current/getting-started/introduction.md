@@ -21,7 +21,7 @@ Because of this process of farming (analogous to mining), Chia has become the mo
 
 Chia uses the coin set model to keep track of the network's state. In this model, a coin is a first-class object on the blockchain. Each coin is locked with a serialized [CLVM](https://chialisp.com/clvm) program called a **puzzle**, which is then hashed to create a **puzzle hash** (which can be converted to an address). The coin's id is a hash of its parent coin's id, its puzzlehash, and its amount.
 
-Each transaction in Chia must contain at least one coin spend. 为了花费一枚硬币，必须提供原始谜语、有效谜底和可选的聚合签名。 Multiple coins can require each other be spent in the same transaction by using **announcements**.
+Each transaction in Chia must contain at least one coin spend. In order to spend a coin, one must provide the original puzzle, as well as a valid solution, and an optional aggregated signature. Multiple coins can require each other be spent in the same transaction by using **announcements**.
 
 :::info
 For more information, check out the [Coin Set Intro page](/coin-set-intro) and the [Chialisp.com](https://chialisp.com) website.
