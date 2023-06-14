@@ -87,6 +87,7 @@ The first step is to curry the puzzle with the password's hash and get the puzzl
 
 ```bash
 opc -H "$(cdv clsp curry password.clsp --args "$(run "(sha256 'password')")")"
+opc "$(cdv clsp curry password.clsp --args "$(run "(sha256 'password')")")"
 ```
 
 Write down both values this produces, the first one being the puzzle hash, and the second being the puzzle reveal.
