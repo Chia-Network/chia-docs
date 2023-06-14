@@ -1,5 +1,5 @@
 ---
-title: 钱包
+title: Wallets
 slug: /wallet-architecture
 ---
 
