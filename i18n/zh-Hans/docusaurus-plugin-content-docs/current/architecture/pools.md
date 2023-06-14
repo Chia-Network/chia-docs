@@ -1,5 +1,5 @@
 ---
-title: 矿池
+title: Pools
 slug: /pool-architecture
 ---
 
