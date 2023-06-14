@@ -49,7 +49,7 @@ If a node does not receive any message from a peer for a certain period of time,
 
 ## Introducer
 
-For a new peer to join the decentralized network, they must choose a subset of all online nodes to connect to.
+When a new node joins the network, it randomly connects to existing nodes on the network.
 
 To facilitate this process, a number of introducer nodes will temporarily be run by Chia and other users, which will crawl the network and support one protocol message: get_peers_introducer. The introducer will then return a random subset of known recent peers that the calling node will attempt to connect to.
 
