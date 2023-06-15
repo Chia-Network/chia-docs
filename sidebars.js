@@ -328,8 +328,8 @@ module.exports = {
       collapsible: true,
       collapsed: true,
       items: [
-        'guides/wallet_connect/walletconnect-user-guide',
-        'guides/wallet_connect/walletconnect-developer-guide',
+        'guides/walletconnect/walletconnect-user-guide',
+        'guides/walletconnect/walletconnect-developer-guide',
       ],
     },
     {
