@@ -19,27 +19,43 @@ Consider either checking them individually or verifying that the hashes are inde
 
 :::
 
+:::warning
+
+`ASSERT_COIN_ANNOUNCEMENT` and `ASSERT_PUZZLE_ANNOUNCEMENT` should only be used in a puzzle's _solution_, and not in the puzzle itself. 
+This is especially important when using the `ASSERT_COIN_ANNOUNCEMENT` condition because it refers to a specific coin. 
+
+To illustrate the danger, let's say `coin A` uses this condition in its puzzle, and it asserts a coin announcement from `coin B`. 
+In this case, `coin A` requires `coin B` to be spent in the same block as it is spent.
+If `coin B` is spent before `coin A`, then `coin A` can _never_ be spent.
+
+However, if this condition is instead used in the _solution_ for `coin A`, and `coin B` has already been spent, then `coin A` can still be spent later, albeit with a different solution.
+
+It is somewhat less dangerous to use `ASSERT_PUZZLE_ANNOUNCEMENT` in a coin's puzzle because it only relies on a coin with a specific puzzle, and many such coins might exist. 
+However, it is still best practice to only use this condition in a coin's solution.
+
+:::
+
 This is an extensive list of each condition allowed on the Chia blockchain.
 
-| Condition                  | Format                            | Description                                                 |
-| -------------------------- | --------------------------------- | ----------------------------------------------------------- |
-| REMARK                     | `(1)`                             | Always valid. Can be used to pass data to outer puzzles.    |
-| AGG_SIG_UNSAFE             | `(49 public_key message)`         | Requires a signature for the message. Prefer `AGG_SIG_ME`.  |
-| AGG_SIG_ME                 | `(50 public_key message)`         | Requires a signature for the message specific to this coin. |
-| CREATE_COIN                | `(51 puzzle_hash amount (memos))` | Creates a new coin. The memo field is optional.             |
-| RESERVE_FEE                | `(52 amount)`                     | Requires a fee of at least the amount given.                |
-| CREATE_COIN_ANNOUNCEMENT   | `(60 message)`                    | Creates a block announcement specific to this coin.         |
-| ASSERT_COIN_ANNOUNCEMENT   | `(61 announcement_id)`            | Requires a coin specific block announcement by its id.      |
-| CREATE_PUZZLE_ANNOUNCEMENT | `(62 message)`                    | Creates a block announcement specific to this puzzle.       |
-| ASSERT_PUZZLE_ANNOUNCEMENT | `(63 announcement_id)`            | Requires a puzzle specific block announcement by its id.    |
-| ASSERT_MY_COIN_ID          | `(70 coin_id)`                    | Requires the coin id match a value.                         |
-| ASSERT_MY_PARENT_ID        | `(71 parent_id)`                  | Requires the parent coin id match a value.                  |
-| ASSERT_MY_PUZZLEHASH       | `(72 puzzle_hash)`                | Requires the puzzle hash match a value.                     |
-| ASSERT_MY_AMOUNT           | `(73 amount)`                     | Requires the amount match a value.                          |
-| ASSERT_SECONDS_RELATIVE    | `(80 seconds_passed)`             | Requires seconds to have passed since coin creation.        |
-| ASSERT_SECONDS_ABSOLUTE    | `(81 seconds)`                    | Requires the block timestamp to match a value.              |
-| ASSERT_HEIGHT_RELATIVE     | `(82 block_height_passed)`        | Requires blocks to have passed since coin creation.         |
-| ASSERT_HEIGHT_ABSOLUTE     | `(83 block_height)`               | Requires the block height to match a value.                 |
+| Condition                  | Format                            | Description                                                                                |
+| -------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------ |
+| REMARK                     | `(1)`                             | Always valid. Can be used to pass data to outer puzzles.                                   |
+| AGG_SIG_UNSAFE             | `(49 public_key message)`         | Requires a signature for the message. Prefer `AGG_SIG_ME`.                                 |
+| AGG_SIG_ME                 | `(50 public_key message)`         | Requires a signature for the message specific to this coin.                                |
+| CREATE_COIN                | `(51 puzzle_hash amount (memos))` | Creates a new coin. The memo field is optional.                                            |
+| RESERVE_FEE                | `(52 amount)`                     | Requires a fee of at least the amount given.                                               |
+| CREATE_COIN_ANNOUNCEMENT   | `(60 message)`                    | Creates a block announcement specific to this coin.                                        |
+| ASSERT_COIN_ANNOUNCEMENT   | `(61 announcement_id)`            | Requires a coin specific block announcement by its id. (see above warning)                 |
+| CREATE_PUZZLE_ANNOUNCEMENT | `(62 message)`                    | Creates a block announcement specific to this puzzle.                                      |
+| ASSERT_PUZZLE_ANNOUNCEMENT | `(63 announcement_id)`            | Requires a puzzle specific block announcement by its id. (see above warning)               |
+| ASSERT_MY_COIN_ID          | `(70 coin_id)`                    | Requires the coin id match a value.                                                        |
+| ASSERT_MY_PARENT_ID        | `(71 parent_id)`                  | Requires the parent coin id match a value.                                                 |
+| ASSERT_MY_PUZZLEHASH       | `(72 puzzle_hash)`                | Requires the puzzle hash match a value.                                                    |
+| ASSERT_MY_AMOUNT           | `(73 amount)`                     | Requires the amount match a value.                                                         |
+| ASSERT_SECONDS_RELATIVE    | `(80 seconds_passed)`             | Requires at least `seconds_passed` seconds to have passed since this coin's creation.      |
+| ASSERT_SECONDS_ABSOLUTE    | `(81 seconds)`                    | Requires the current block's timestamp to be at least `seconds`.                           |
+| ASSERT_HEIGHT_RELATIVE     | `(82 block_height_passed)`        | Requires more than `block_height_passed` blocks to have passed since this coin's creation. |
+| ASSERT_HEIGHT_ABSOLUTE     | `(83 block_height)`               | Requires the current block's height to be at least `block_height`.                         |
 
 ## Condition Costs {#costs}
 

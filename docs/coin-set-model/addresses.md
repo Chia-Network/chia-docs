@@ -23,14 +23,14 @@ Spacescan.io has a handy bi-directional [bech32m <\> puzzle hash converter](http
 
 # Chia Burn Address
 
-The Chia burn address is `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`. You can send unwanted tokens to this address to make them unspendable.
+You can send unwanted tokens to this addresses to make them unspendable:
+* Mainnet burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
+* Testnet10 burn address: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
 
 :::warning
-Do not send anything to this address unless you want it to be inaccessible forever.
+Do not send anything to these addresses unless you want it to be inaccessible forever.
 :::
 
-A traditional bech32m puzzle hash for a burn address is all zeros ending in "dead": `0x000000000000000000000000000000000000000000000000000000000000dead`
-
-Converting this to an address, you end up with the burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
+A traditional bech32m puzzle hash for a burn address is all zeros ending in "dead": `0x000000000000000000000000000000000000000000000000000000000000dead`. Converting this to an address, you end up with the burn addresses above.
 
 You can use a [puzzle hash converter](https://explorer.space/address-puzzlehash-converter) to verify for yourself.

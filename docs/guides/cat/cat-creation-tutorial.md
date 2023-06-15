@@ -22,10 +22,10 @@ This tutorial will help you jump right in and get started with issuing your own 
 
 The [CAT primitive page](https://chialisp.com/cats) was finalized as of January 2022. However, to minimize your risk of running into unexpected results, we recommend that you do following:
 
--   Generate a new public/private key pair for each CAT you issue. This key pair should be used for issuing one specific CAT **and nothing else**. It should also be the only key pair on your computer while issuing the CAT.
--   Test thoroughly on testnet before issuing your CAT to mainnet.
+- Generate a new public/private key pair for each CAT you issue. This key pair should be used for issuing one specific CAT **and nothing else**. It should also be the only key pair on your computer while issuing the CAT.
+- Test thoroughly on testnet before issuing your CAT to mainnet.
 
-For any questions regarding this tutorial, head over to the #chialisp channel on our [Keybase team](https://keybase.io/team/chia_network.public) forum, where there are lots of friendly folks who can help you.
+For any questions regarding this tutorial, head over to the #chialisp channel on our [Discord](https://discord.gg/chia) chatroom, where there are lots of friendly folks who can help you.
 
 ---
 
@@ -33,15 +33,15 @@ For any questions regarding this tutorial, head over to the #chialisp channel on
 
 CAT denominations, as well as the rules behind issuance and melting, can take some getting used to. Here are a few things to keep in mind before you issue your CAT:
 
--   Most Chia wallets choose to display their value in XCH. However, this is a purely cosmetic choice because Chia's blockchain only knows about mojos. One XCH is equal to one trillion (1,000,000,000,000) mojos.
--   In a similar vein, Chia Network has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
+- Most Chia wallets choose to display their value in XCH. However, this is a purely cosmetic choice because Chia's blockchain only knows about mojos. One XCH is equal to one trillion (1,000,000,000,000) mojos.
+- In a similar vein, Chia Network has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
 
 :::caution
 Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
 :::
 
--   The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
--   A token's face value and its melt value are not necessarily correlated, let alone matched.
+- The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
+- A token's face value and its melt value are not necessarily correlated, let alone matched.
 
 With one XCH, you can issue 1 billion CATs. The face value of these tokens could be zero, or multiple XCH, or anywhere in between. This value is decided by the market -- it's worth whatever someone is willing to pay for it. The value of the tokens has nothing to do with the underlying XCH, other than their 1000-mojo melt value.
 
@@ -177,13 +177,13 @@ You might receive an error such as ERROR: Failed building wheel for CAT-admin-to
     
 Your environment should be all set, but let's make sure:
 
--   Run `cats --help`. You should get a usage statement.
+- Run `cats --help`. You should get a usage statement.
 
--   Run `cdv --help`. You should get another usage statement.
+- Run `cdv --help`. You should get another usage statement.
 
--   Verify that **Status: Synced** is showing in the upper right side of the Chia GUI.
+- Verify that **Status: Synced** is showing in the upper right side of the Chia GUI.
 
--   Make sure you have some TXCH in your wallet.
+- Make sure you have some TXCH in your wallet.
 
 Your environment is now set up and you are ready to start issuing CATs!
 
@@ -213,9 +213,9 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to <your receiv
 We recommend that you include a fee with your transaction. This fee will ensure that your transaction is processed in front of any dust in the mempool. Whether you're running on testnet or mainnet, the recommended fee amount is 100 million mojos (`-m 100000000`). Even though you will run the `cats` command multiple times, the fee will only be applied once when the transaction is pushed to the network.
 :::
 
-The `--select-coin` flag will choose a coin from your wallet for issuing your tokens. The final line of the output will be `Name: <Coin ID>`. You’ll use the coin ID value in the next step.
+The `--select-coin` flag will choose a coin from your wallet for issuing your tokens. The final line of the output will be `Name: <Coin ID>`. You'll use the coin ID value in the next step.
 
-Run the same command again, this time removing the `--select-coin` flag and adding a new flag, `--curry <Coin ID>`. It’s very important to preface the coin ID with `0x` here to make CLVM interpret the value as bytes and not a string. Here’s the full command to run:
+Run the same command again, this time removing the `--select-coin` flag and adding a new flag, `--curry <Coin ID>`. It's very important to preface the coin ID with `0x` here to make CLVM interpret the value as bytes and not a string. Here's the full command to run:
 
 ```bash
 cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to <your receive address> --amount <mojos> -m <fee in mojos> --as-bytes --curry 0x<Coin ID>`
@@ -239,9 +239,9 @@ Next, jump to [Add a CAT to Your Wallet](#add-a-cat-to-your-wallet).
 
 If you're a visual learner, please see our [Multiple Issuance CAT video tutorial](/guides/multiple-issuance-cat-video-series).
 
-Next we’ll create a CAT capable of issuing tokens multiple times. This CAT uses a delegated TAIL, which is much more flexible than the previous one. As long as you sign a puzzle hash that you specify, you can issue new tokens using whatever TAIL you want. This allows for features such as rebate offers and distributed issuing and retiring of tokens.
+Next we'll create a CAT capable of issuing tokens multiple times. This CAT uses a delegated TAIL, which is much more flexible than the previous one. As long as you sign a puzzle hash that you specify, you can issue new tokens using whatever TAIL you want. This allows for features such as rebate offers and distributed issuing and retiring of tokens.
 
-We’ll set up this CAT to delegate the same TAIL we set up previously. What this means is that nobody else can issue new tokens until you allow it. Keep in mind that this is only one of many possible implementations of a delegated TAIL.
+We'll set up this CAT to delegate the same TAIL we set up previously. What this means is that nobody else can issue new tokens until you allow it. Keep in mind that this is only one of many possible implementations of a delegated TAIL.
 
 First, we will find a coin to issue, and create a new spendbundle:
 
@@ -261,7 +261,7 @@ After confirming you are within the admin tool directory, run:
 cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x<Master public key> --send-to <wallet address> -a <XCH mojos> -m <fee in XCH mojos> --as-bytes --select-coin
 ```
 
-The `--select-coin` flag will choose a coin from your wallet to issue the CAT from. The final line of the output will be `Name: <Coin ID>`. You’ll use the **coin ID** in the next step.
+The `--select-coin` flag will choose a coin from your wallet to issue the CAT from. The final line of the output will be `Name: <Coin ID>`. You'll use the **coin ID** in the next step.
 
 Now that you have a coin, you can create a full delegated TAIL. In our case, the TAIL it delegates will be of the single-issuance variety.
 
@@ -271,7 +271,7 @@ Run
 cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x<Coin ID>
 ```
 
-Keep in mind the 0x before the coin ID is necessary. The result of this command will be a **delegated puzzle**, which you’ll pass in as part of the solution to your main TAIL.
+Keep in mind the 0x before the coin ID is necessary. The result of this command will be a **delegated puzzle**, which you'll pass in as part of the solution to your main TAIL.
 
 Run the same command again, with the additional `--treehash` flag. This will give you the **treehash** of the puzzle you just created:
 
@@ -334,7 +334,7 @@ The key pair you are about to use will control the issuing and retirement of the
 
 The only way to nullify an attack would be to keep track of illegitimate issuances (luckily all of this is fully visible on the public ledger), issue a new CAT, and then offer an exchange of legitimate old CATs for the new CAT type.
 
-This would be a complex and time-consuming process that would likely result in people being sold counterfeit CATs at some point. It’s very important to **keep your private key secret**.
+This would be a complex and time-consuming process that would likely result in people being sold counterfeit CATs at some point. It's very important to **keep your private key secret**.
 :::
 
 :::tip

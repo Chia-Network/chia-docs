@@ -25,7 +25,7 @@ An attacker can manipulate the reward chain results but this has no effect on c2
 
 There is a lot going on in this diagram! Let's break it down.
 
-There are 4 **blocks**: B1, B2, B3, and B4. Farmers create these blocks. The blocks have pointers (the arrows), and the data the pointers are pointing to is all contained within the blocks themselves. At least 16 blocks have been created in the diagram's sub-slot, but we don’t draw all of them due to space constraints.
+There are 4 **blocks**: B1, B2, B3, and B4. Farmers create these blocks. The blocks have pointers (the arrows), and the data the pointers are pointing to is all contained within the blocks themselves. At least 16 blocks have been created in the diagram's sub-slot, but we don't draw all of them due to space constraints.
 
 The challenge chain and the reward chain each create 64 signage points, released every 9.375 seconds (on average) by timelords. Blocks must include the signage point VDFs (which mark the signage points) for both chains.
 
@@ -47,8 +47,8 @@ The only block which affects the challenge chain (and thus the PoSpace lottery) 
 
 An honest farmer who holds the first block (B1) will release it. If an attacker controls the first block (B1), they have two additional options: delay it or withhold it.
 
--   Delay it: In order to know whether the new challenge will benefit them, they will need to execute the VDF all the way up to c2. By that time, their chance to get included in the reward chain is gone, since honest farmers sign only one block per proof of space.
--   Withhold it: This does not provide much benefit to the attacker, since they must release it before sp2 in order to get the farmers on their chain. Farmers will choose the heaviest chain, which is the one with the most (heaviest) reward chain blocks.
+- Delay it: In order to know whether the new challenge will benefit them, they will need to execute the VDF all the way up to c2. By that time, their chance to get included in the reward chain is gone, since honest farmers sign only one block per proof of space.
+- Withhold it: This does not provide much benefit to the attacker, since they must release it before sp2 in order to get the farmers on their chain. Farmers will choose the heaviest chain, which is the one with the most (heaviest) reward chain blocks.
 
 Why do we commit to any blocks at all in the challenge chain? If we did not, an attacker with a faster VDF could look ahead, since they would not need the help of honest participants in order to compute the challenge chain into the future. The challenge chain would be totally deterministic. This would enable some advantage by replotting. Furthermore, the challenge chain can be used to probabilistically prove the weight of the reward chain to light clients, without sharing all reward chain blocks (since the challenge chain depends on the "best" block in the slot, you can calculate the number of reward chain blocks).
 
@@ -60,7 +60,7 @@ For a block to be considered valid, it has to provide VDFs for the challenge cha
 
 **Reward chain**: The VDF chain that contains infusions of all blocks. This chain pulls in the challenge chain, and optionally, the infused challenge chain at the end of each sub-slot.
 
-**Infused challenge chain**: A VDF chain which starts at the first block infused in a slot (which is not based on the previous slot’s challenge, this is called the challenge block) and ends at the end of the slot.
+**Infused challenge chain**: A VDF chain which starts at the first block infused in a slot (which is not based on the previous slot's challenge, this is called the challenge block) and ends at the end of the slot.
 This increases security by preventing VDF lookahead attacks.
 
 **Sub-slot**: a period of time for which a timelord must run a VDF. The number of calculations the timelord must perform (sub-slot_iterations) to complete the sub-slot are adjusted periodically (and automatically) to take around 10 minutes. During this time, 64 signage points will be released and the entire network will submit an average of 32 valid proofs of space.

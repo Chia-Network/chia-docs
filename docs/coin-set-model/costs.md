@@ -19,7 +19,7 @@ Additionally, any conditions that a CLVM program outputs have a cost associated 
 
 Finally, each byte of data that gets added to the blockchain has a cost of 12,000. Spend bundles are created using a serialized format of CLVM programs, calculated by running [opc](https://chialisp.com/commands#serialize) on the original CLVM program. Each two-digit pair of this format is equivalent to one byte, which costs 12,000 to store on the blockchain.
 
-Aside from cost, the maximum number of atoms and pairs (counted separately) in a CLVM program is 2^31 apiece. If this threshold is exceeded, the program will terminate. However, this is likely a moot point, since it'd extremely unlikely to write a program with this many atoms or pairs without exceeding the maximum cost per block.
+Aside from cost, the maximum number of atoms and pairs (counted separately) in a CLVM program is 2^31 apiece. If this threshold is exceeded, the program will terminate. However, this is likely a moot point, since it's extremely unlikely to write a program with this many atoms or pairs without exceeding the maximum cost per block.
 
 ## Minimum Specs - Farming {#farming-spec}
 

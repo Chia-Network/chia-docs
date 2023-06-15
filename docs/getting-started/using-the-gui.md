@@ -31,13 +31,13 @@ Enabling a passphrase is a recommended step for protecting your funds, but it on
 
 ## Syncing
 
-Upon opening Chia, your client will need to sync. You'll need to see a **sycned** status in the top corner before seeing any tokens you have.
+Upon opening Chia, your client will need to sync. You'll need to see a **synced** status in the top corner before seeing any tokens you have.
 
 <p align='center'>
   <img alt='synced' src='/img/synced.png' width='300' />
 </p>
 
-All transactions on the Chia blockchain are added to blocks. Theese blocks are downloaded sequentially as your client syncs. If someone has sent you Chia (or any other tokens on the Chia blockchain), your node doesn't know the transaction exists until you've synced past that block.
+All transactions on the Chia blockchain are added to blocks. These blocks are downloaded sequentially as your client syncs. If someone has sent you Chia (or any other tokens on the Chia blockchain), your node doesn't know the transaction exists until you've synced past that block.
 
 ## Tokens
 
@@ -49,7 +49,7 @@ When you open the Tokens tab for the first time, it will look this:
   <img alt='tokens tab' src='/img/tokens-tab.png' width='700' />
 </p>
 
-We have no Chia and no tokens. You can see a list of other tokens that can be aquired within the **manage token list** section.
+We have no Chia and no tokens. You can see a list of other tokens that can be acquired within the **manage token list** section.
 
 <p align='center'>
   <img alt='tokens' src='/img/tokens.png' width='300' />
@@ -67,7 +67,7 @@ Additionally, you can send tokens to any other address.
   <img alt='sending XCH' src='/img/send-xch.png' width='600' />
 </p>
 
-Upon sending the transaction, it will be broadcasted to full nodes in the network. The fee will help push your transaction through to the blockchain after it reaches the mempool of a full node. Farmers get not only block rewards but also transaction fees, so transactions with fees are prioritized. We recommend a fee of atleast .000005 XCH.
+Upon sending the transaction, it will be broadcasted to full nodes in the network. The fee will help push your transaction through to the blockchain after it reaches the mempool of a full node. Farmers get not only block rewards but also transaction fees, so transactions with fees are prioritized. We recommend a fee of at least .000005 XCH.
 
 ## Plotting and Farming
 
@@ -144,13 +144,13 @@ Upon opening your NFTs for the first time, you'll only be met with a message to 
 
 One way to get NFTs is to find them in a marketplace such as [Dexie](https://dexie.space/nft).
 
-In the next section we will learn about offers which can be used to aquire NFTs in a decentralized way.
+In the next section we will learn about offers which can be used to acquire NFTs in a decentralized way.
 
 [Read more about NFTs](https://chialisp.com/nfts).
 
 ## Offers
 
-When aquiring NFTs or tokens, you may need to make an offer for them. Offers are a form of decentralized exchange. Using offers you can trade one asset for another with no middleman.
+When acquiring NFTs or tokens, you may need to make an offer for them. Offers are a form of decentralized exchange. Using offers you can trade one asset for another with no middleman.
 
 <p align='center'>
   <img alt='offers' src='/img/offers.png' width='800' />

@@ -1,5 +1,4 @@
 ---
-id: announcements-oracles
 slug: /guides/announcements-oracles-video-series
 title: Announcements, Oracles
 ---
@@ -11,4 +10,4 @@ In this video, Adam Kelly discusses announcements and oracles.
 </div>
 ---
 
-If you have further questions, join our [Keybase team](https://keybase.io/team/chia_network.public) and ask in the _#chialisp_ channel.
+If you have further questions, join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel.

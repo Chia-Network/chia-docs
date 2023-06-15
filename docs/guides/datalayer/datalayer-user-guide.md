@@ -1,5 +1,4 @@
 ---
-id: datalayer-user-guide
 slug: /guides/datalayer-user-guide
 title: DataLayer User Guide
 ---
@@ -9,17 +8,75 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-This document will guide you through the process of setting up Chia's DataLayer and running a few basic functions. For additional technical resources, see the following:
+This document will guide you through the process of setting up Chia's DataLayer™ and running a few basic functions.
 
--   [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
--   [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+### About DataLayer
+
+As a decentralized database, the Chia DataLayer allows users to store the original data locally. The hash of that data is then saved in a [singleton](https://chialisp.com/singletons) (a coin with a unique ID that can be spent and recreated many times) with updated properties each time it is recreated. The on-chain component of Chia DataLayer is also a singleton. If the original data’s hash matches the hash stored on-chain, then the original data is guaranteed to be accurate.
+
+At the basic level, the Chia DataLayer provides a shared data network with no central authority. Nodes in this network can subscribe to data from other nodes and receive updates whenever the data changes.
+
+The real magic of DataLayer is the ability to use the data in smart contract transactions. Specifically, Chialisp code can directly process records stored in Chia DataLayer, opening up a new world of functionality for Chialisp programmers not available on any other blockchain. It starts with the concept of a "proof of inclusion."
+
+#### Proof of inclusion
+
+A proof of inclusion is a way to prove that a key/value pair is being stored, without needing to provide the entire Merkle tree from the store. This is accomplished by creating a spend of the DataLayer singleton that accepts two things in its solution:
+1. The hash of a key/value pair from the Merkle tree
+2. Proof that the same key/value pair actually exists in the Merkle tree. This proof is obtained by providing the minimum peer hashes necessary to recalculate the Merkle root that is currently stored on-chain, starting from the leaf obtained from the key/value pair.
+
+When this proof is obtained, the singleton announces the hash that exists in that DataLayer table.  
+
+Proofs of inclusion are the basis for accessing DataLayer data from Chialisp because once the data is proven, it can be used to drive other functionality, starting with the two-party commit, and moving beyond to include oracles and off-chain contracts.
+
+#### Example 1: Two-party commit
+
+"Two-party commit" is the simplest example of a proof of inclusion. It is an Offer where the owner of one DataLayer table offers to make an update if and only if the owner of another DataLayer table makes a specified update.
+
+A two-party commit uses an Offer that includes six asserts and spends.
+
+In the original Offer, the maker includes:
+
+1. A spend of the maker's DataLayer singleton to make the update to the maker's table
+2. A spend of the maker's DataLayer singleton to announce a proof of inclusion of the updates made
+3. An assert of an announcement from the taker of a proof of inclusion of a required update
+
+To accept the offer, the taker adds:
+
+4. A spend of the taker DataLayer singleton to make the update
+5. A spend of the taker DataLayer singleton to announce the proof of inclusion of the updated data
+6. An assert of the proof of inclusion from the maker
+
+The offer spendbundle only goes through when all of the necessary assertions are satisfied.
+
+Where it gets interesting is what other coins might do with that announcement. Another coin can accept the key and value in its solution, hash them, and assert an announcement from the DataLayer coin of a proof of inclusion of that hash. If the assert succeeds, then the coin can confidently use that data in the key and value as a validated input to whatever it may want to do.
+
+#### Example 2: NFT ratings
+
+A hypothetical example of a proof of inclusion could be NFT ratings. Here's how it would work:
+
+* A critic provides ratings for various NFTs in a DataLayer table, such that people could create offers based on that rating.
+* A prospective buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
+* To accept the offer, an NFT owner would have to include a proof of inclusion from the rating table that their NFT had that rating.
+
+This example would require anyone-can-spend DataLayer proofs of inclusion (these doesn't exist yet, but would be straightforward to build). The anyone-can-spend proof of inclusion could also generate a payment to the DataLayer table owner to pay RatingWiz for their services.
+
+#### Resources and notes
+
+For additional technical resources, see the following:
+
+- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
+- [DataLayer blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/)
 
 :::note
+
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
 
 1. The `-m` / `--fee` parameter can be specified explicitly in the command, as several of the examples in this document show
 2. If the fee option is not explicitly specified, then the `data_layer:fee` setting in `~/.chia/mainnet/config/config.yaml` will be used. By default, this is set to 1 billion mojos (0.001 XCH)
 3. If neither of these options is set, then no fee will be used
+
 :::
 
 ---
@@ -30,190 +87,31 @@ If you have already installed Chia version 1.6 or greater and started the refere
 
 :::
 
+## DataLayer Guide
+
 ### Install and Run Chia
 
-:::note
+DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/installation#from-source) or [run the packaged installer](https://www.chia.net/downloads/). 
 
-Your firewall might give warnings when installing Chia. This is normal. Allow the installation to continue.
+1. **If you installed from source**, be sure you have activated a virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window).
 
-:::
-
-1. Download the latest [Chia installer](https://www.chia.net/download/)
-
-2. Install Chia
-
-:::info OS-Specific Instructions
-
-<Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
-
-<div style={{ textAlign: 'left' }}>
-    <img
-        src="/img/data_layer/01_downloads_windows.png"
-        alt="Chia installation file"
-    />
-</div>
-
-Double click the .exe installer. The installation process will take less than 30 seconds on most computers.
-
-  </TabItem>
-  <TabItem value="linux">
-
-For Debian/Ubuntu Linux distributions, run:
-
-```bash
-sudo dpkg -i chia-blockchain_<version>_<arch>.deb
-```
-
-For other distributions, see [the install Wiki](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL).
-
-  </TabItem>
-  <TabItem value="macos">
-
-<div style={{ textAlign: 'left' }}>
-    <img
-        src="/img/data_layer/02_downloads_mac.png"
-        alt="Chia installation file"
-    />
-</div>
-
-Double click the .dmg installer. After the installation completes, drag the Chia icon to the Applications folder.
-
-  </TabItem>
-</Tabs>
-:::
-
-3. Run the Chia reference wallet GUI:
-
-:::info OS-Specific Instructions
-
-<Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
-
-The Chia reference wallet GUI will start automatically after the installation completes.
-
-  </TabItem>
-  <TabItem value="linux">
-
-Open a terminal window and run:
-
-```bash
-chia-blockchain &
-```
-
-  </TabItem>
-  <TabItem value="macos">
-
-Start Chia from your _Applications_ folder:
-
-<div style={{ textAlign: 'left' }}>
-    <img
-        src="/img/data_layer/03_start_chia_mac.png"
-        alt="Choose Farming Mode"
-    />
-</div>
-
-  </TabItem>
-</Tabs>
-:::
-
-4. If this is your first time installing Chia on this machine, the `Select Your Client Mode` dialog will appear:
-
-<div style={{ textAlign: 'center' }}>
-    <img
-        src="/img/data_layer/04_wallet_farming_mode.png"
-        alt="Choose Farming Mode"
-    />
-</div>
-<br />
-
--   If you select `Farming Mode`, you will run a full node
-    -   Advantage: your wallet will respond faster than it would in `Wallet Mode`
-    -   Disadvantage: you need to sync the blockchain database, which can take several days if you are starting from the genesis block
--   If you select `Wallet Mode`, you will only run a light wallet
-    -   Advantage: no need to sync a full node
-    -   Disadvantage: slower wallet performance
--   Most users should select `Farming Mode`, in order to gain the long-term performance advantage of running a full node
-
-5. If you don't already have a Chia private key (wallet), you will need to create one now. If you already have a private key, proceed to step 6.
-
-<div style={{ textAlign: 'center' }}>
-    <img
-        src="/img/data_layer/05_create_private_key.png"
-        alt="Create a private key"
-    />
-</div>
-<br />
-
-You will be shown a list of 24 words. Copy these words to a private location. Order is important.
-
-:::warning important
-
-Your seed phrase is all that is required to recover your wallet. If you lose your seed phrase, recovery will not be possible. If a bad actor gains access to your seed phrase, they'll be able to steal your Chia. Do not take a picture of your seed phrase or store it on a computer.
-
-:::
-
-<div style={{ textAlign: 'center' }}>
-    <img src="/img/data_layer/06_seed_phrase.png" alt="24-word seed phrase" />
-    <figcaption>
-        <em>
-            Carefully copy your mnemonic seed phrase for future wallet recovery.
-        </em>
-    </figcaption>
-</div>
-<br />
-
-6. The `Select Key` dialog will appear. If you see multiple keys, select one that has some XCH (if possible).
-
-<div style={{ textAlign: 'center' }}>
-    <img src="/img/data_layer/07_choose_key.png" alt="Select Key dialog" />
-    <figcaption>
-        <em>If the Select Key dialog appears, choose your primary key.</em>
-    </figcaption>
-</div>
-<br />
-
-7. Your wallet will begin syncing. "WALLET" will appear in the upper right corner. The orange dot indicates that the wallet is syncing. You may proceed to the next step while syncing is in progress.
-
-<div style={{ textAlign: 'center' }}>
-    <img src="/img/data_layer/08_not_synced.png" alt="Not synced" />
-    <figcaption>
-        <em>The wallet is syncing.</em>
-    </figcaption>
-</div>
-<br />
-
-8. Open PowerShell on Windows, or Terminal on Linux and MacOS.
-
-We'll create an alias to run the `chia` command from any folder. We'll also fix any SSL permissions issues. Run the following command(s):
+2. **If you installed the packaged installer**, you will need to create an alias to access the `chia` command:
 
 :::info Chia setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 (Be sure to update &lt;username&gt; and &lt;version&gt; to match the actual folder structure)
 
 ```powershell
-Set-Alias -Name chia C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe
+Set-Alias -Name chia C:\Users\<username>\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
 
   </TabItem>
@@ -238,14 +136,14 @@ chia init --fix-ssl-permissions
 
 :::
 
-9. Run `chia version`. You should be shown the correct version. For example:
+3. Run `chia version`. You should be shown the correct version. For example:
 
 ```powershell
 chia version
-1.6.0
+1.8.0
 ```
 
-10. (optional) Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING:
+4. (optional) Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING:
 
 ```bash
 chia configure --set-log-level INFO
@@ -285,13 +183,13 @@ You are recommended to complete steps 1 and 2 (port forwarding and firewall conf
 :::info Firewall setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 From a PowerShell prompt, run:
 
@@ -382,10 +280,10 @@ sudo pfctl -sr | grep 8575
 
 As shown in the above image:
 
--   Click `Settings` on the lower left side of your wallet
--   Click the `DATA LAYER` menu
--   Click the slider to `Enable Data Layer`
--   A slider titled `Enable File Propagation Server` will appear. Click this to enable it as well
+- Click `Settings` on the lower left side of your wallet
+- Click the `DATA LAYER` menu
+- Click the slider to `Enable Data Layer`
+- A slider titled `Enable File Propagation Server` will appear. Click this to enable it as well
 
 Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. When Chia starts, it will automatically enable both of the DataLayer services.
 
@@ -395,9 +293,9 @@ Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. Wh
 
 Regardless of the status of `FULL NODE`, you may safely proceed with this tutorial:
 
--   Orange dot = full node is syncing
--   Green dot = full node is synced
--   `FULL NODE` is missing = you are running in `Wallet Mode`
+- Orange dot = full node is syncing
+- Green dot = full node is synced
+- `FULL NODE` is missing = you are running in `Wallet Mode`
 
 :::
 
@@ -440,18 +338,18 @@ chia_data_layer_http: started
 
 You may be wondering how much data DataLayer can handle. When testing locally, there are a few important points to consider:
 
--   There is no enforced limit on the length of DataLayer keys or values
--   However, your computer must have enough memory (and other resources) to store the keys and values it downloads. A Raspberry Pi with 4 GB of memory will not be able to support the same size data sets as a server with 512 GB of memory
--   Additionally, when adding a single key/value pair, the total size of the pair must fit into memory (the individual sizes of the key and value don't matter)
--   When running `update_data_store` to add multiple keys, the important metric is the total size of _all_ keys and values in the whole store. Individual keys and values within the same command are unimportant in this context
--   When discussing the lengths of keys and values, we always refer to the _hex_ values _after_ conversion from their original format
--   The amount of data in your request must be smaller than the value of `rpc_server_max_request_body_size`, a parameter located in `~/.chia/mainnet/config/config.yaml`. If you modify this setting, you must restart Chia in order for the change to take effect
+- There is no enforced limit on the length of DataLayer keys or values
+- However, your computer must have enough memory (and other resources) to store the keys and values it downloads. A Raspberry Pi with 4 GB of memory will not be able to support the same size data sets as a server with 512 GB of memory
+- Additionally, when adding a single key/value pair, the total size of the pair must fit into memory (the individual sizes of the key and value don't matter)
+- When running `update_data_store` to add multiple keys, the important metric is the total size of _all_ keys and values in the whole store. Individual keys and values within the same command are unimportant in this context
+- When discussing the lengths of keys and values, we always refer to the _hex_ values _after_ conversion from their original format
+- The amount of data in your request must be smaller than the value of `rpc_server_max_request_body_size`, a parameter located in `~/.chia/mainnet/config/config.yaml`. If you modify this setting, you must restart Chia in order for the change to take effect
 
 Keeping all of this in mind, **it is typically safe to insert data sets of up to 50 MiB** (no guarantees, though). We expect to support larger sizes in future versions. For now, however, we have only done minimal testing on larger data sets. For example, using `curl` to add keys and values to an empty tree required the following lengths of time:
 
--   100 MiB -- 2 to 4 seconds
--   1 GiB -- 45 to 60 seconds
--   2 GiB -- failed to insert
+- 100 MiB -- 2 to 4 seconds
+- 1 GiB -- 45 to 60 seconds
+- 2 GiB -- failed to insert
 
 ---
 
@@ -459,8 +357,8 @@ Keeping all of this in mind, **it is typically safe to insert data sets of up to
 
 Chia DataLayer doesn't have a GUI. The commands in this tutorial will use the command line interface (CLI). As a reminder, here is the complete reference for the CLI, as well as all available Remote Procedure Calls (RPCs):
 
--   [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
--   [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 
 ### Create a data store
 
@@ -794,9 +692,9 @@ We include an HTTP server that can be used out of the box. By default it listens
 
 To "advertise" your mirror on-chain you use the `add_mirror` command. This command takes three arguments:
 
--   `i` -- Your root's ID
--   `u` -- The URL of your mirror. You can reuse this argument, as shown in the example below
--   `a` -- The amount (in mojos) that will be locked into the mirror while it exists. In theory, a system could prioritize mirrors according to how much was spent to create them. The `amount` will be returned to the creator when the mirror is deleted. Minimum `amount` is 0
+- `i` -- Your root's ID
+- `u` -- The URL of your mirror. You can reuse this argument, as shown in the example below
+- `a` -- The amount (in mojos) that will be locked into the mirror while it exists. In theory, a system could prioritize mirrors according to how much was spent to create them. The `amount` will be returned to the creator when the mirror is deleted. Minimum `amount` is 0
 
 <details>
 <summary>add_mirror example</summary>

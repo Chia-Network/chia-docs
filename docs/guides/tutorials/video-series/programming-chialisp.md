@@ -1,5 +1,4 @@
 ---
-id: programming-chialisp
 slug: /guides/programming-chialisp-video-series
 title: Programming in Chialisp
 ---
@@ -8,13 +7,13 @@ This video is an exercise in using fundamental Chialisp commands to print out th
 
 You will learn Chialisp basics, including:
 
--   print
--   calling functions
--   using modules
--   looping over data
--   [cons](https://en.wikipedia.org/wiki/Cons)
--   building lists
--   recursion
+- print
+- calling functions
+- using modules
+- looping over data
+- [cons](https://en.wikipedia.org/wiki/Cons)
+- building lists
+- recursion
 
 <div class="videoWrapper">
 <iframe src="//www.youtube.com/embed/JcC1_igwSmA" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen width="560" height="315"></iframe>
@@ -38,4 +37,4 @@ nodes on the net. Go out of town, your server goes down,
 
 ---
 
-If you have further questions, join our [Keybase team](https://keybase.io/team/chia_network.public) and ask in the _#chialisp_ channel.
+If you have further questions, join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel.

@@ -3,37 +3,68 @@ title: Moving Plots
 slug: /moving-plots
 ---
 
-Plots are _just_ a static file. Plots can be moved from one folder/directory to another, and even to another machine (of a different operating system). It may also be mounted from an external USB drive or over the network.
+Plots are stored in files. They can be moved from one directory to another, and even to another machine (the operating system doesn't matter). It may also be mounted from an external USB drive or over the network.
 
-# Moving plots within the same machine
+## New Directory
 
-1. Move the plot file
-2. Add the new plot directory
-   - For command line: do `chia plots add -d '/Users/example/folder'`
-   - For GUI: go to the `Farmer` tab and click `Add plots`, and select the new directory.
+:::tip
+To prevent the harvester seeing a large plot as incomplete while it is being moved, append `-mv` to the file extension before moving the file. After it has been moved, rename it back to the original file extension.
+:::
 
-A trick is to rename a plot file from _.plot to _.plot-mv, copy/move it, and rename it back. This way the harvester will not see it as bad if the copy hasn't completed yet.
+Once a plot is moved to a new directory, it will have to be added to the config.
 
-# Moving plots to a different machine
+If you are using the command line, run the following command to add the directory:
 
-Pre-requisite: You'd need to have the same keys on the new machine.
+```bash
+chia plots add -d '/path/to/directory'
+```
 
-1. Install Chia on the new machine
-2. Find your private keys using `chia keys show --show-mnemonic-seed` on the old machine, or on the UI by clicking on "Keys".
-3. Copy the 24 mnemonic words (this is your private key) and add them to the new machine using `chia keys add`
-4. Move the plot file
-5. Add the new plot directory
-   - For command line: do `chia plots add -d '/Users/example/folder'`
-   - For GUI: go to the `Farmer` tab and click `Add plots`, and select the new directory.
+On the GUI, you can do this by going to the **Farmer** tab and clicking **Add Plots**. Select the new directory to add it.
 
 After following these steps, and restarting your farmer, the new plots should be visible.
 
-# Plots checking
+## New Machine
 
-It's good to check your plots periodically to ensure that it is not corrupted for whatever reason.
+:::note
+This will not work unless the farmer on the new machine has access to the same keys.
+:::
 
-You can check if they are working by running `chia plots check` or using the UI and checking if the plots are visible.
+Once Chia is installed on the new machine, you will need to import the same keys used by the previous farmer.
 
-# Farming from multiple source plots
+If you are using the command line, run the following command to get the mnemonic phrase:
 
-If you would like to farm on many machines, but only run one full node and farmer (to save disk space, bandwidth, and keep private keys safer), you should [run one harvester per machine](/farming-on-many-machines).
+```bash
+chia keys show --show-mnemonic-seed
+```
+
+On the GUI, you can do this by logging out and clicking the options button on your wallet. Click **Details** and reveal the seed phrase.
+
+Next, import the mnemonic phrase on the new machine through the GUI or by using the following command:
+
+```bash
+chia keys add 'mnemonic'
+```
+
+Finally, you will need to move the plot file to the new machine and add the directory to the config.
+
+If you are using the command line, run the following command to add the directory:
+
+```bash
+chia plots add -d '/path/to/directory'
+```
+
+On the GUI, you can do this by going to the **Farmer** tab and clicking **Add Plots**. Select the new directory to add it.
+
+After following these steps, and restarting your farmer, the new plots should be visible.
+
+## Checking Plots
+
+It's a good idea to periodically check plots to ensure that they are not corrupted.
+
+You can check if they are working by running the following command:
+
+```bash
+chia plots check
+```
+
+This can also be done in the GUI by checking if the plots are visible in the list.

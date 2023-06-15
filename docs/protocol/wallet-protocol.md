@@ -174,7 +174,7 @@ class RejectRemovalsRequest(Streamable):
 ## request_additions
 
 A request from the wallet to the full node for the additions (added coins) of a certain block. If `puzzle_hashes` is
-None, we are requesting all additions in the block. Otherwise, we are requeting only additions which have this puzzle hash.
+None, we are requesting all additions in the block. Otherwise, we are requesting only additions which have this puzzle hash.
 
 ```python
 class RequestAdditions(Streamable):

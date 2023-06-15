@@ -1,5 +1,4 @@
 ---
-id: chialisp-primer-first-smart-coin
 slug: /guides/chialisp-first-smart-coin
 title: 4. First Smart Coin
 ---
@@ -60,15 +59,15 @@ In this example, the curried in `PASSWORD_HASH` represents the hash of the passw
 
 A condition consists of a condition number followed by its arguments. They can do a variety of things, from the creation of new coins and requiring other spends to happen at the same time, to various assertions related to the state of the blockchain.
 
-A complete list of conditions can be found on the [Conditions page](/conditions), but we will only be using one in this tutorial: condition `51`, or `CREATE_COIN`, creates a new coin with the given `puzzle_hash` and `amount` if the spend is valid. It is used to send money to another puzzle hash (which is analagous to an address).
+A complete list of conditions can be found on the [Conditions page](/conditions), but we will only be using one in this tutorial: condition `51`, or `CREATE_COIN`, creates a new coin with the given `puzzle_hash` and `amount` if the spend is valid. It is used to send money to another puzzle hash (which is analogous to an address).
 
 ## Coins
 
 Everything on the Chia Blockchain, including the standard transactions used to move money between wallets, is a coin. Coins are identified by their id, which is just a [sha256 hashed](https://en.wikipedia.org/wiki/Cryptographic_hash_function) representation of the following three components:
 
--   `parent_coin_id`, which is the id of the coin that created this one.
--   `puzzle_hash`, which is the hash of the puzzle used to spend the coin.
--   `amount`, which is the amount of money locked with the coin, in mojos (a trillionth of an XCH).
+- `parent_coin_id`, which is the id of the coin that created this one.
+- `puzzle_hash`, which is the hash of the puzzle used to spend the coin.
+- `amount`, which is the amount of money locked with the coin, in mojos (a trillionth of an XCH).
 
 Multiple coins can have the same puzzle hash, and a coin can create multiple children. The only limitation is that no two coins can have the same parent, puzzle hash, and amount, as their ids would be the same.
 
@@ -140,18 +139,18 @@ Write the following in a file named `spendbundle.json`:
 
 ```json title="spendbundle.json"
 {
-    "coin_spends": [
-        {
-            "coin": {
-                "amount": 10000000000,
-                "parent_coin_info": "0xParentCoinInfo",
-                "puzzle_hash": "0xPuzzleHash"
-            },
-            "puzzle_reveal": "PuzzleReveal",
-            "solution": "Solution"
-        }
-    ],
-    "aggregated_signature": "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  "coin_spends": [
+    {
+      "coin": {
+        "amount": 10000000000,
+        "parent_coin_info": "0xParentCoinInfo",
+        "puzzle_hash": "0xPuzzleHash"
+      },
+      "puzzle_reveal": "PuzzleReveal",
+      "solution": "Solution"
+    }
+  ],
+  "aggregated_signature": "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
 }
 ```
 
@@ -161,7 +160,7 @@ Finally, run the following command to push the transaction to the Testnet:
 cdv rpc pushtx spendbundle.json
 ```
 
-If all went well, this should spend the coin! Otherwise, retrace your steps carefully to try to find what went wrong. If you still can't figure it out, don't hesitate to ask us on our [Keybase team](https://keybase.io/team/chia_network.public) and we will answer as soon as we can.
+If all went well, this should spend the coin! Otherwise, retrace your steps carefully to try to find what went wrong. If you still can't figure it out, don't hesitate to ask us on our join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel and we will answer as soon as we can.
 
 ## Potential Questions
 

@@ -1,5 +1,4 @@
 ---
-id: why-chia-is-great
 slug: /guides/why-chia-is-great-video-series
 title: Why Chia is Great
 ---
@@ -16,4 +15,4 @@ Watch the following videos to learn more about the mindset and basic skills need
 
 ---
 
-If you have further questions, join our [Keybase team](https://keybase.io/team/chia_network.public) and ask in the _#chialisp_ channel.
+If you have further questions, join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel.

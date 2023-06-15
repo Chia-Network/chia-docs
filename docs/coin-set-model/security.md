@@ -19,7 +19,7 @@ Sometimes, it is necessary to have solution values that logistically cannot be s
 
 Signing is how you prevent nodes from messing with your own spends, but sometimes you want to create coins that will be traded around with specific rules. As a result, you don't know who will be spending the coin, and you don't know if they will be honest.
 
-Using [inner puzzles](https://devs.chia.net/guides/chialisp-inner-puzzles), you can enforce rules on your child coins by [currying](https://devs.chia.net/guides/chialisp-currying) and wrapping tree hashes. However, there are times when you also want to enforce truths about yourself or your parent.
+Using [inner puzzles](/guides/chialisp-inner-puzzles), you can enforce rules on your child coins by [currying](/guides/chialisp-currying) and wrapping tree hashes. However, there are times when you also want to enforce truths about yourself or your parent.
 
 This is where the `ASSERT_MY_*` family of condition opcodes comes in. When you need information (`parent_coin_info`, `puzzle_hash`, `amount`) about your coin to use in the puzzle, it cannot always be curried in by an honest party. Sometimes, it will need to be passed in through the solution.
 

@@ -1,5 +1,4 @@
 ---
-id: chialisp-primer-using-modules
 slug: /guides/chialisp-using-modules
 title: 2. Using Modules
 ---
@@ -114,4 +113,4 @@ Everything that would normally be written using iteration in an imperative langu
 
 Modules allow you to use functional programming in Chialisp, which makes writing it feel more natural. It also allows you to reuse your code and express it in a more clear way.
 
-If you have any questions about modules, or anything else, remember to come ask questions on our [Keybase team](https://keybase.io/team/chia_network.public).
+If you have any questions about modules, or anything else, remember to come ask questions on our [Discord](https://discord.gg/chia).

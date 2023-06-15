@@ -1,5 +1,4 @@
 ---
-id: coin-lifecycle-and-testing
 slug: /guides/coin-lifecycle-and-testing-video-series
 title: Coin Lifecycle and Testing
 ---
@@ -61,4 +60,4 @@ You can download the piggybank coin example files [here](/files/piggybank-exampl
 
 ---
 
-If you have further questions, join our [Keybase team](https://keybase.io/team/chia_network.public) and ask in the _#chialisp_ channel.
+If you have further questions, join our [Discord](https://discord.gg/chia) and ask in the #chialisp channel.

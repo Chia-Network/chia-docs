@@ -1,6 +1,19 @@
-# Website
+![chiadocs-01](https://github.com/Chia-Network/chia-docs/assets/1146050/30eabb47-1c10-489c-858d-522fb1623f98)
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+
+This is the website for Chia Docs, the source of truth for Chia documentation.
+
+## Localization (Translation)
+
+[![Crowdin](https://badges.crowdin.net/e/0bcec1c3702f37ddf7fcbdc5eba92ec3/localized.svg)](https://chia.crowdin.com/chia-docs) 
+
+If you would like to contribute localization translations, please visit our [Crowdin](https://chia.crowdin.com/chia-docs) and sign up to be a contributor.
+  
+  
+
+## Website
+
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator, and deployed with Github Pages.
 
 ### Installation
 
@@ -23,11 +36,3 @@ $ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-```
-$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

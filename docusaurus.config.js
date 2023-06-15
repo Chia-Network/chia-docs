@@ -1,3 +1,5 @@
+const math = require('remark-math');
+const katex = require('rehype-katex');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (
   module.exports = {
@@ -7,10 +9,10 @@
     url: 'https://docs.chia.net',
     baseUrl: '/',
     onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/chia_leaf_green.svg',
+    onBrokenMarkdownLinks: 'throw',
+    favicon: '/svg/chia-leaf-green.svg',
     organizationName: 'Chia-Network',
-    projectName: '{{ REPOSITORY_NAME }}',
+    projectName: 'chia-docs',
     i18n: {
       defaultLocale: 'en',
       locales: ['en', 'zh'],
@@ -27,8 +29,9 @@
           docs: {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
-            editUrl:
-              'https://github.com/Chia-Network/{{ REPOSITORY_NAME }}/blob/main/',
+            editUrl: 'https://github.com/Chia-Network/chia-docs/blob/main/',
+            remarkPlugins: [math],
+            rehypePlugins: [katex],
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
@@ -50,13 +53,13 @@
           items: [
             {
               type: 'doc',
-              docId: 'getting-started/quick-start-guide',
+              docId: 'getting-started/introduction',
               position: 'left',
               label: 'Docs',
             },
             {
               type: 'doc',
-              docId: 'guides/chialisp-primer/chialisp-primer-intro',
+              docId: 'guides/crash-course/introduction',
               position: 'left',
               label: 'Guides',
             },
@@ -153,6 +156,15 @@
           docsRouteBasePath: '/',
         }),
       ],
+    ],
+    stylesheets: [
+      {
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+        type: 'text/css',
+        integrity:
+          'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+        crossorigin: 'anonymous',
+      },
     ],
   }
 );
