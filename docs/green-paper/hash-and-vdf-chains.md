@@ -77,8 +77,8 @@ $$
 {\cal V}'=z'_0,\tau'_1,z'_1,\tau'_2,z'_2,\ldots,\tau'_{\ell'}
 $$
 
-_where the last VDF outputs collide, i.e., $\tau_\ell.{\sf y}=\tau'_{\ell'}.{\sf y}$. Here different means that either they have different length $\ell\neq \ell'$ and neither is a prefix of the other. Or (if $\ell=\ell'$) there exists an $i$ s.t. either $z_i\neq z'_i$ or $\tau_i.{\sf y}\neq \tau'_i.{\sf y}$ or $\tau.{\sf t}\neq \tau'.{\sf t}$. Note that we ignore the proofs $\tau.\pi$ when comparing chains (we just use them to determine whether the chain is valid) as they must not be unique._
+where the last VDF outputs collide, i.e., $\tau_\ell.{\sf y}=\tau'_{\ell'}.{\sf y}$. Here different means that either they have different length $\ell\neq \ell'$ and neither is a prefix of the other. Or (if $\ell=\ell'$) there exists an $i$ s.t. either $z_i\neq z'_i$ or $\tau_i.{\sf y}\neq \tau'_i.{\sf y}$ or $\tau.{\sf t}\neq \tau'.{\sf t}$. Note that we ignore the proofs $\tau.\pi$ when comparing chains (we just use them to determine whether the chain is valid) as they must not be unique.
 
-*Moreover a VDF chain is *sequential*, meaning that not only the individual VDFs must be computed sequentially (which follows from the security definition of VDFs), but also the VDFs in the chain were computed sequentially. I.e., computing a chain ${\cal V}$ as above requires $\sum_{i=1}^\ell \tau_i.{\sf t}$ sequential steps.*
+Moreover a VDF chain is _sequential_, meaning that not only the individual VDFs must be computed sequentially (which follows from the security definition of VDFs), but also the VDFs in the chain were computed sequentially. I.e., computing a chain ${\cal V}$ as above requires $\sum_{i=1}^\ell \tau_i.{\sf t}$ sequential steps.
 
 ---
