@@ -177,7 +177,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-To create the clawback coin from the Sender's wallet, run the [clawback create](/clawback-cli#create) command. The `-t` (Recipient's address) and `-a` (amount in XCH/TXCH) flags are required. By default, the clawback coin will be locked for two weeks. For this demo, we will override the default by using the `-t` flag to specify a timelock period of 600 seconds. We will also use the `-m` flag to include a fee of 0.000275 TXCH.
+To create the clawback coin from the Sender's wallet, run the [clawback create](/clawback-cli#create) command. The `-t` (Recipient's address) and `-a` (amount in XCH/TXCH) flags are required. By default, the clawback coin will be locked for two weeks. For this demo, we will override the default by using the `-l` flag to specify a timelock period of 600 seconds. We will also use the `-m` flag to include a fee of 0.000275 TXCH.
 
 :::info
 
@@ -400,7 +400,7 @@ However, there is a small window of time where the timer has expired, but a bloc
 
 `You are trying to claim the coin too early`
 
-In this case, the Recipient needs to wait for one more block to be farmed before proceeding with the `claim` call. As a reminder, a new block is farmed every 18.75 seconds, on average.
+In this case, the Recipient needs to wait for one more transaction block to be farmed before proceeding with the `claim` call. As a reminder, a new transaction block is farmed every 52 seconds, on average.
 
 :::
 

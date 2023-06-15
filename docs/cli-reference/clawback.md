@@ -243,7 +243,7 @@ Options: Clawback an unclaimed coin
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
 | :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -c            | --coin-id         | TEXT    | True     | The coin ID you want to claw back                                                                        |
+| -c            | --coin-id         | TEXT    | True     | The coin ID for the clawback coin to inspect                                                             |
 | -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
 | -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
 | -t            | --target-address  | TEXT    | False    | The address you want to sent the clawed back coin to                                                     |
@@ -408,7 +408,7 @@ Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
 | :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -c            | --coin-id         | TEXT    | False    | The coin ID you want to claw back                                                                        |
+| -c            | --coin-id         | TEXT    | False    | The coin ID for the clawback coin to inspect                                                             |
 | -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
