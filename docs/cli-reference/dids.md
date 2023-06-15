@@ -367,7 +367,7 @@ Options:
 | -ta           | --target-address              | TEXT    | True     | Target recipient wallet address                                                                          |
 | -r            | --reset_recovery              | None    | False    | Set this flag if you want to reset the recovery DID settings (they will not be transferred with the DID) |
 | -m            | --fee                         | TEXT    | False    | An optional transaction fee, in XCH                                                                      |
-| -r            | --reuse                       | None    | False    | Reuse existing address for the change                                                                    |
+|               | --reuse                       | None    | False    | Reuse existing address for the change                                                                    |
 | -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -442,7 +442,7 @@ Options:
 | -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id                          | INTEGER | True     | ID of the DID wallet to use                                                                              |
 | -m            | --metadata                    | TEXT    | True     | The new whole metadata in json format                                                                    |
-| -r            | --reuse                       | None    | False    | Set this flag to reuse existing address for the change                                                   |
+|               | --reuse                       | None    | False    | Set this flag to reuse existing address for the change                                                   |
 | -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
 
 ---
