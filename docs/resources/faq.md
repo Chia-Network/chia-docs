@@ -537,9 +537,10 @@ Starting in version 1.7.0, Chia's reference wallet will accept both 12- and 24-w
 
 ### How can I configure Chia to reuse the same receive address?
 
-By default, Chia will update your receive address for every new transaction. This is done for privacy reasons -- it is more difficult to associate multiple transactions with the same wallet if each transaction uses a different address. 
+By default, Chia will update your receive address for every new transaction. This is done for privacy reasons -- it is more difficult to associate multiple transactions with the same wallet if each transaction uses a different address.
 
 However, there are some downsides to using multiple addresses:
+
 - It can be more difficult to track the history of your own transactions. For example, block explorers cannot associate multiple addresses with the same wallet. (Note, however, that the reference wallet _will_ show you a complete history.)
 - Some wallets only search a limited number of addresses for a given key, so they may not display your full balance.
 - Wallet performance can degrade after a large number of addresses have been used. This is because the wallet must search for transactions for each address in the derivation index.
@@ -547,39 +548,47 @@ However, there are some downsides to using multiple addresses:
 Starting in version 1.7.1, Chia's reference wallet will allow you to keep the same receive address with each transaction. If you change this setting, each of the above issues will be mitigated, at the expense of reduced privacy.
 
 To set up your wallet to reuse the same receive address:
+
 1. Edit `~/.chia/mainnet/config/config.yaml`
 2. Search for `reuse_public_key_for_change:`
-  
-  If this parameter doesn't exist, you can add it manually. Under `wallet:` add the following two lines:
-  ```bash
-  reuse_public_key_for_change:
-    '2999502625': false
-  ```
-3. `2999502625` is a dummy fingerprint that is added by default. You will need to obtain your wallet's fingerprint actual by running `chia keys show`. For example, 
-  ```bash
-  $ chia keys show
-  Showing all public keys derived from your master seed and private key:
 
-  Label: Testnet1
-  Fingerprint: 2104826454
-  ```
+If this parameter doesn't exist, you can add it manually. Under `wallet:` add the following two lines:
+
+```bash
+reuse_public_key_for_change:
+  '2999502625': false
+```
+
+3. `2999502625` is a dummy fingerprint that is added by default. You will need to obtain your wallet's fingerprint actual by running `chia keys show`. For example,
+
+```bash
+$ chia keys show
+Showing all public keys derived from your master seed and private key:
+
+Label: Testnet1
+Fingerprint: 2104826454
+```
+
 4. Change the dummy fingerprint to your wallet's actual fingerprint, and update the value to `true`. For example,
-  ```
-  reuse_public_key_for_change:
-    '2104826454': true
-  ```
+
+```
+reuse_public_key_for_change:
+  '2104826454': true
+```
+
 5. If you wish to specify the behavior for more than one fingerprint, you can add additional fingerprints to new lines. If a fingerprint is not listed, the default value of `false` will be used.
 6. Restart Chia for the changes to take effect. Your wallet will now reuse the same receive address for every transaction.
 
 To verify that the same address is being reused:
+
 1. Run `chia wallet get_address -f <fingerprint>`.
-    * Replace `<fingerprint>` with the fingerprint you would like to test
-    * This command will give you the latest address for that fingerprint
+   - Replace `<fingerprint>` with the fingerprint you would like to test
+   - This command will give you the latest address for that fingerprint
 2. Run `chia wallet send -f <fingerprint> -t <address> -a 0.000000000001 -m 0.000000000001 --override`. Some notes:
-    * Replace `<fingerprint>` with fingerprint you used in step 1
-    * Replace `<address>` with the address you retrieved from step 1
-    * This command will send 1 mojo to your latest address, and attach a 1 mojo fee. Feel free to adjust these amounts accordingly. (You can also send money from the GUI.)
-    * The `--override` flag is needed because the amounts to send are considered unusual
+   - Replace `<fingerprint>` with fingerprint you used in step 1
+   - Replace `<address>` with the address you retrieved from step 1
+   - This command will send 1 mojo to your latest address, and attach a 1 mojo fee. Feel free to adjust these amounts accordingly. (You can also send money from the GUI.)
+   - The `--override` flag is needed because the amounts to send are considered unusual
 3. After the transaction has completed, run `chia wallet get_address -f <fingerprint>`. You should receive the same address as you received in step 1. If you received a different address, `reuse_public_key_for_change` was not set to `true` for the specified fingerprint.
 
 ---
