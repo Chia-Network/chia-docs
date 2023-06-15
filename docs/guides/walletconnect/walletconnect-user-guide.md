@@ -150,7 +150,6 @@ The sample dApp should display a list of testnet projects.
 
 8. Click `Chia Testnet`, then click `Connect`:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/01_dapp.png" alt="Click Connect" />
 </div>
@@ -158,7 +157,6 @@ The sample dApp should display a list of testnet projects.
 
 9. A QR code will be displayed. Click `Copy to clipboard`:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/02_dapp.png" alt="Click Copy to clipboard" />
 </div>
@@ -190,7 +188,6 @@ After your system has been configured to use the testnet, you can start your Chi
 
 The icon is located on the upper-right side of the reference wallet GUI, as shown here:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img
     src="/img/walletconnect/01_walletconnect.png"
@@ -201,7 +198,6 @@ The icon is located on the upper-right side of the reference wallet GUI, as show
 
 4. Click `ENABLE WALLETCONNECT`
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img
     src="/img/walletconnect/02_walletconnect.png"
@@ -212,7 +208,6 @@ The icon is located on the upper-right side of the reference wallet GUI, as show
 
 5. Click `ADD CONNECTION`
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img
     src="/img/walletconnect/03_walletconnect.png"
@@ -225,7 +220,6 @@ The icon is located on the upper-right side of the reference wallet GUI, as show
 
 If you used this guide to set up the sample dApp, this was the link you obtained with the last step of the previous section:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/03_dapp.png" alt="Paste and click CONTINUE" />
 </div>
@@ -235,7 +229,6 @@ If you used this guide to set up the sample dApp, this was the link you obtained
 
 While you may choose more than one key to connect with the dApp, we will use a single key for this example:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img
     src="/img/walletconnect/04_walletconnect.png"
@@ -248,7 +241,6 @@ While you may choose more than one key to connect with the dApp, we will use a s
 
 You will be shown the key(s) to connect to the dApp. If this looks OK, click `CLOSE`. To start over, click `DISCONNECT`:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/05_walletconnect.png" alt="Click CLOSE" />
 </div>
@@ -258,7 +250,6 @@ You will be shown the key(s) to connect to the dApp. If this looks OK, click `CL
 
 To show info on which dApp(s) are paired to which keys(s), click the WalletConnect icon, click the three dots, and click `More Info`:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/06_walletconnect.png" alt="Click More Info" />
 </div>
@@ -266,7 +257,6 @@ To show info on which dApp(s) are paired to which keys(s), click the WalletConne
 
 You will be shown the Pair Information for your dApp:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img
     src="/img/walletconnect/07_walletconnect.png"
@@ -289,7 +279,6 @@ You will be shown a list of available methods. If you opted to connect multiple 
 
 For this example, we'll call `chia_getNextAddress`:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/04_dapp.png" alt="Run chia_getNextAddress" />
 </div>
@@ -297,7 +286,6 @@ For this example, we'll call `chia_getNextAddress`:
 
 At this point, the sample dApp will wait for confirmation from your wallet:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/05_dapp.png" alt="Pending JSON-RPC Request" />
 </div>
@@ -307,7 +295,6 @@ At this point, the sample dApp will wait for confirmation from your wallet:
 
 Switch back to your Chia reference wallet. You should now see a confirmation dialog with the requested method. Click `CONFIRM`:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/08_walletconnect.png" alt="Confirm request" />
 </div>
@@ -316,12 +303,10 @@ Switch back to your Chia reference wallet. You should now see a confirmation dia
 
 Returning to the sample dApp, a new dialog with the response will appear. In this example, a new address will be shown:
 
-{' '}
 <div style={{ textAlign: 'center' }}>
   <img src="/img/walletconnect/06_dapp.png" alt="Showing next address" />
 </div>
-<br />{' '}
-
+<br />
 You have now installed, configured, and used the sample dApp. Feel free to test the other functions, as well as create your own!
 
 ---
