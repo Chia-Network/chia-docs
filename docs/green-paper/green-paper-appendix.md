@@ -26,8 +26,6 @@ $$
 \forall pk,m,\
 ({{\sf Sig.verify}}(pk,m,\mu)={\sf accept})\wedge
 ({{\sf Sig.verify}}(pk,m,\mu')={\sf accept})\Rightarrow (\mu=\mu')~.
-%\\
-%&&\textrm{where }(pk,sk)\gets{\Sigk}
 $$
 
 ## A.2 (Unique) Proofs Of Space
@@ -42,7 +40,7 @@ A proof of space is specified by the four algorithms given below
 
 ##### $\textsf{PoSpace.prove}$
 
-> on input $S$ and a challenge $c\in \{0,1\}^w$ outputs a proof <br /><br /> $$\sigma=(\ \sigma.\pi\ , \sigma\ = \ \sigma.N=S.N\ ,\ \sigma.pk=S.pk\ ,\ \sigma.c=c\ )\ \gets {\sf PoSpace.prove}(S,c)%\\%&%{\color{blue}\textrm{where }\sigma.\gamma\gets \Sigs(S.sk,\sigma.\pi)}$$ <br /><br />Here $\sigma.\pi$ is the actual proof, the other entries in $\sigma$ are just convenient to keep around.
+> on input $S$ and a challenge $c\in \{0,1\}^w$ outputs a proof <br /><br /> $$\sigma=(\ \sigma.\pi\ , \sigma\ = \ \sigma.N=S.N\ ,\ \sigma.pk=S.pk\ ,\ \sigma.c=c\ )\ \gets {\sf PoSpace.prove}(S,c)$$ <br /><br />Here $\sigma.\pi$ is the actual proof, the other entries in $\sigma$ are just convenient to keep around.
 
 ##### $\textsf{PoSpace.verify}$
 

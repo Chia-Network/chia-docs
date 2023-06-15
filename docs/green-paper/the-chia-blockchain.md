@@ -100,7 +100,6 @@ As the VDF $\tau^{\cal CC}_i$ of the $i$th slot is computed by a time lord, they
 
 $$
 {\sf cc\_sp}_{i,0},{\sf cc\_sp}_{i,1},\ldots,{\sf cc\_sp}_{i,\tau_i\cdot 64}\quad\textrm{where}\quad {\sf cc\_sp}_{i,j}\stackrel{\scriptsize \sf def}{=}\tau^{\cal CC}_i[j\cdot {\sf spi}_i]
-%\tau^\cc_i[0]\ ,\ \tau^\cc_i[T_i/64]\ , \ \tau^\cc_i[2\cdot T_i/64]\ , \ldots ,\  \tau^\cc_i[ T_i]
 $$
 
 <div class="eqnumber">eq.(6)</div>
@@ -131,7 +130,7 @@ With our winning condition we have 32 blocks per slot _in expectation_ depending
 If a farmer has a winning PoSpace $\sigma$ they can produce a block $\beta=(\beta_T,\beta_F)$ which contains the foliage block $\beta_F$ and the trunk block $\beta_T$. The actual $\textsf{Chia}$ blocks are more sophisticated than our description below, but in this writeup we focus on the entries which are absolutely necessary for functionality and security of the chain and ignore entries which are there for efficiency like weight proofs for light clients or pooling. They key entries in a valid trunk block
 
 $$
-\beta_T=(\sigma,\mu_{{{\sf rc\_sp}}})%\ , \beta_F=({\sf transactions},{\sf timestamp},{\sf h},\mu_{\beta})
+\beta_T=(\sigma,\mu_{{{\sf rc\_sp}}})
 $$
 
 are
@@ -198,7 +197,7 @@ now the challenge $x$ is derived from the PoSpace in this block and the value of
 
 $$
 \quad
-x\gets {\sf VDF.sample}(\sigma,{\cal CC}[{\sf rc\_ip}(\beta_T).{\sf D}].{\sf y})%\quad t:= \kappa_i\cdot T_i - \beta_j.t
+x\gets {\sf VDF.sample}(\sigma,{\cal CC}[{\sf rc\_ip}(\beta_T).{\sf D}].{\sf y})
 $$
 
 the number of steps $t$ is the the remaining number of VDF steps in the slot, so the value ${\sf ic}_i$ will be available at the end of the slot when it's required, but not earlier

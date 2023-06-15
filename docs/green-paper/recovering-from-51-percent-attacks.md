@@ -83,7 +83,6 @@ Define the honest and adversarial resource at time time as the product of their 
 $$
 {\sf PoST}_h(t)=space_h(t)\cdot vdf_h(t)\quad,\quad
 {\sf PoST}_a(t)=space_a(t)\cdot vdf_a(t)
-%\item[${\cal A}_{PoST}$]
 $$
 
 and analogously to the work setting let the cumulative space-time resource in a window from $t_0$ to $t_1$ be
