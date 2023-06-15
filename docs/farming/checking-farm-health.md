@@ -57,9 +57,11 @@ username@chia-farmer:~/.chia/mainnet/log$ tree
 
 Each logfile contains log information about all the services ran by Chia. If you're running a full node, these can be convoluted. We're only interested wether or not plots pass the plot filter. We can check this, by running a command like:
 
-` cat debug.log | grep "[0-9] plots were eligible for farming"`
+```bash
+cat debug.log | grep "[0-9] plots were eligible for farming"
+```
 
-`cat` is a \*nix program to get content of a file. With the pipe operator `|`we "pipe" the output to another program called `grep`which can filter textual input. We filter for `"[0-9] plots were eligible for farming"` to see if we already had eligible plots.
+The `cat` command is a \*nix program to get content of a file. With the pipe operator `|`we "pipe" the output to another program called `grep`which can filter textual input. We filter for `"[0-9] plots were eligible for farming"` to see if we already had eligible plots.
 
 Example output may look like this:
 
@@ -81,7 +83,9 @@ If you have had eligible plots in the past, theres a chance that you might have 
 
 To check wether you have already found proofs, you can run the same command as before, but with a different filter:
 
-`cat debug.log | grep "Found [1-9] proofs"`
+```bash
+cat debug.log | grep "Found [1-9] proofs"
+```
 
 A possible result may look like this:
 

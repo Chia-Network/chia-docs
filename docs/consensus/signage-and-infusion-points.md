@@ -17,11 +17,15 @@ The challenge at the start of the sub-slot is also a valid signage point. As eac
 
 Farmers receive these signage points and compute a hash for each plot, at each signage point. If the hash starts with nine zeros, the plot passes the filter for that signage point, and can proceed. This disqualifies around 511/512 of all plot files in the network, for that signage point. The formula to compute the filter hash is:
 
-`plot filter bits = sha256(plot id + sub slot challenge + cc signage point)`
+```
+plot filter bits = sha256(plot id + sub slot challenge + cc signage point)
+```
 
 The proof of space challenge is computed as the hash of the plot filter bits:
 
-`PoSpace challenge = sha256(plot filter bits)`
+```
+PoSpace challenge = sha256(plot filter bits)
+```
 
 Using this challenge, the farmers fetch quality strings for each plot that made it past the filter. Recall that this process requires around seven random disk seeks, which takes around 70 ms on a slow HDD. The quality string is a hash derived from part of the proof of space (but the whole proof of space has yet to be retrieved).
 
@@ -56,7 +60,9 @@ For consensus purposes, the `expected_plot_size` is `((2 * k) + 1) * (2 ** (k - 
 
 The **infusion_iterations** is the number of iterations from the start of the sub-slot at which the block with at least the required quality can be included into the blockchain. This is calculated as:
 
-`infusion_iterations = ( signage_point_iterations + 3 * sp_interval_iterations + required_iterations) % sub-slot_iterations`
+```
+infusion_iterations = ( signage_point_iterations + 3 * sp_interval_iterations + required_iterations) % sub-slot_iterations
+```
 
 Therefore, infusion_iterations will be between 3 and 4 signage points after the current signage point. Farmers must submit their proofs and blocks before the infusion point is reached. The modulus is there to allow overflows into the next sub-slot, if the signage point is near the end of the sub-slot. This is expanded on in the [Overflow Blocks and Weight page](/overflow-blocks).
 
