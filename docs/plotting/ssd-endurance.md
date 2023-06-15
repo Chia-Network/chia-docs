@@ -44,7 +44,7 @@ You can read total endurance used with the following NVMe CLI command:
 sudo nvme smart-log /dev/nvme0 | grep percentage_used
 ```
 
-This is how to reading the amount of writes that the drive has actually done:
+This is how to read the amount of writes that the drive has actually done:
 
 ```bash
 sudo nvme smart-log /dev/nvme0 | grep data_units_written
