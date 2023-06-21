@@ -249,7 +249,7 @@ Message Spend Bundle:
 
 ### `set_name`
 
-Functionality: Get the DID and Coin ID for a DID wallet
+Functionality: Set the name for a DID wallet
 
 Usage: chia wallet did get_did [OPTIONS]
 
