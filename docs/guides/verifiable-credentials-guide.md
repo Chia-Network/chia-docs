@@ -241,13 +241,25 @@ To address: txch1dlyh9rwd9y6clt3pjjs3gh25ck9vlfx7qwqvvru27dmhgtn80z9s2rruam
 Created at: 2023-06-15 10:15:28
 ```
 
-After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included by running the [get](/vc-cli#get) command:
+After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included. First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example:
+
+```bash
+chia wallet vcs add_proof_reveal --proof test_proof1 --proof test_proof2
+```
+
+Response:
+
+```bash
+Proofs added to DB successfully!
+```
+
+Next, the credential holder can run the [get](/vc-cli#get) command:
 
 ```bash
 chia wallet vcs get
 ```
 
-Result:
+In this case, one VC is shown, along with the proof hash and both proofs. If the proofs were not manually added to the local database, they would not show in this command, and the GUI would show the VC as invalid.
 
 ```bash
 Proofs:
@@ -760,7 +772,21 @@ The response includes the spend bundle used to spend the VC:
 }
 ```
 
-After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included by running the [vc_get](/vc-rpc#vc_get) RPC:
+After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included. First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example:
+
+```json
+chia rpc wallet vc_add_proofs '{"proofs": {"example_proof_1": "example_value_1", "example_proof_2": "example_value_2"}}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+Next, the credential holder can run the [vc_get](/vc-rpc#vc_get) RPC:
 
 ```json
 chia rpc wallet vc_get '{"vc_id": "0x75ea50e79d6020c655306bc27208fc454d656c3d45246763146a626cca17871d"}'
