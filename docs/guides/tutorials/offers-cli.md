@@ -167,10 +167,12 @@ Wallet ID 1 type STANDARD_WALLET Chia Wallet
 In order to create an offer, you must have a wallet for any Chia Asset Tokens (CATs) you want to acquire.
 
 The asset IDs for Chia's main CATs are stored in
-`chia-blockchain/chia/wallet/cc_wallet/cat_constants.py`
 
-The ID for Stably USD (USDS), which we'll use for this example, is
-`6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589`
+```
+chia-blockchain/chia/wallet/cc_wallet/cat_constants.py
+```
+
+The asset ID for Stably USD (USDS), which we'll use for this example, is `6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589`.
 
 Here's the command to add a Stably USD wallet:
 

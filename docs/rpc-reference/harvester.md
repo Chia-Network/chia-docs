@@ -75,7 +75,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -119,7 +119,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -145,6 +145,7 @@ Request Parameters: None
 :::note
 
 The plots will be grouped into three categories:
+
 - `failed_to_open_filenames` - plots that the harvester was unable to open; these plots may be incomplete, corrupted or otherwise damaged
 - `not_found_filenames` - typically these are plots that exist and are readable, but were created under a different key than the current one
 - `plots` - a listing of all valid plots that were created with the current key used by the harvester
@@ -162,33 +163,33 @@ Response:
 
 ```json
 {
-    "failed_to_open_filenames": [],
-    "not_found_filenames": [
-        "/plots/plot-k25-2022-07-11-21-33-4c01531e1b09b758705d1f12c77028e81cafb79c091330453eb249b089e46471.plot",
-    ],
-    "plots": [
-        {
-            "file_size": 674281385,
-            "filename": "/plots/plot-k25-2023-03-01-14-52-160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a_2.plot",
-            "plot_id": "0x160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a",
-            "plot_public_key": "0xa82069430a7ef8a6491f8b3a5ec64553a33b86e0a713ad03106879231ae77161a0b860df659dbfbb1cc07b6343e95d62",
-            "pool_contract_puzzle_hash": "0xf5daa5a0d83c6a628782a386aa1f94ff041e29c4da4b9b97f91f4d46563d8e9b",
-            "pool_public_key": null,
-            "size": 25,
-            "time_modified": 1677653720
-        },
-        {
-            "file_size": 674281385,
-            "filename": "/plots/plot-k25-2023-03-01-14-52-160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a.plot",
-            "plot_id": "0x160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a",
-            "plot_public_key": "0xa82069430a7ef8a6491f8b3a5ec64553a33b86e0a713ad03106879231ae77161a0b860df659dbfbb1cc07b6343e95d62",
-            "pool_contract_puzzle_hash": "0xf5daa5a0d83c6a628782a386aa1f94ff041e29c4da4b9b97f91f4d46563d8e9b",
-            "pool_public_key": null,
-            "size": 25,
-            "time_modified": 1677653720
-        }
-    ],
-    "success": true
+  "failed_to_open_filenames": [],
+  "not_found_filenames": [
+    "/plots/plot-k25-2022-07-11-21-33-4c01531e1b09b758705d1f12c77028e81cafb79c091330453eb249b089e46471.plot"
+  ],
+  "plots": [
+    {
+      "file_size": 674281385,
+      "filename": "/plots/plot-k25-2023-03-01-14-52-160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a_2.plot",
+      "plot_id": "0x160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a",
+      "plot_public_key": "0xa82069430a7ef8a6491f8b3a5ec64553a33b86e0a713ad03106879231ae77161a0b860df659dbfbb1cc07b6343e95d62",
+      "pool_contract_puzzle_hash": "0xf5daa5a0d83c6a628782a386aa1f94ff041e29c4da4b9b97f91f4d46563d8e9b",
+      "pool_public_key": null,
+      "size": 25,
+      "time_modified": 1677653720
+    },
+    {
+      "file_size": 674281385,
+      "filename": "/plots/plot-k25-2023-03-01-14-52-160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a.plot",
+      "plot_id": "0x160798793b22b998133bbf5b2021ed70d24feb0e20d040668c685df2c7caf76a",
+      "plot_public_key": "0xa82069430a7ef8a6491f8b3a5ec64553a33b86e0a713ad03106879231ae77161a0b860df659dbfbb1cc07b6343e95d62",
+      "pool_contract_puzzle_hash": "0xf5daa5a0d83c6a628782a386aa1f94ff041e29c4da4b9b97f91f4d46563d8e9b",
+      "pool_public_key": null,
+      "size": 25,
+      "time_modified": 1677653720
+    }
+  ],
+  "success": true
 }
 ```
 
@@ -254,21 +255,21 @@ Request Parameters: None
 
 ```json
 {
-    "routes": [
-        "/get_plots",
-        "/refresh_plots",
-        "/delete_plot",
-        "/add_plot_directory",
-        "/get_plot_directories",
-        "/remove_plot_directory",
-        "/get_connections",
-        "/open_connection",
-        "/close_connection",
-        "/stop_node",
-        "/get_routes",
-        "/healthz"
-    ],
-    "success": true
+  "routes": [
+    "/get_plots",
+    "/refresh_plots",
+    "/delete_plot",
+    "/add_plot_directory",
+    "/get_plot_directories",
+    "/remove_plot_directory",
+    "/get_connections",
+    "/open_connection",
+    "/close_connection",
+    "/stop_node",
+    "/get_routes",
+    "/healthz"
+  ],
+  "success": true
 }
 ```
 
@@ -314,7 +315,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -358,7 +359,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 

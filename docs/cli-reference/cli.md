@@ -28,15 +28,19 @@ As with the rest of this project, this doc is a work-in-progress. Feel free to b
 
 If you installed `Chia.app` in your `/Applications` directory, you can find the `chia` binary at `/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia`.
 
-Do a sanity check in `Terminal.app` with
+Do a sanity check in `Terminal.app` with the following command:
 
-`/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia -h`
+```bash
+/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia -h
+```
 
-You can use that if you augment your `PATH` with
+You can use that if you augment your `PATH` with the following command:
 
-`PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$PATH`
+```bash
+PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$PATH
+```
 
-and then `chia -h` should work.
+Then, running the `chia -h` command should work.
 
 ## Windows
 
@@ -44,7 +48,9 @@ There is more than one `chia.exe` binary; the GUI is `Chia.exe` (two of these!) 
 
 The CLI one is the one referred to in this document, and for version 1.1.3 it can be found at
 
-`~\AppData\Local\chia-blockchain\app-1.1.3\resources\app.asar.unpacked\daemon\chia.exe`
+```bash
+~\AppData\Local\chia-blockchain\app-1.1.3\resources\app.asar.unpacked\daemon\chia.exe
+```
 
 # [init](https://github.com/Chia-Network/chia-blockchain/blob/master/src/cmds/init.py)
 
@@ -122,7 +128,9 @@ optional arguments:
 
 ## bladebit
 
-`chia plotters bladebit -h`
+```bash
+chia plotters bladebit -h
+```
 
 ```
 usage: chia plotters bladebit [-h] [-r THREADS] [-n COUNT] [-f FARMERKEY] [-p POOL_KEY] [-c CONTRACT] [-i ID] [-w] [-m] [-d FINALDIR] [-v]
@@ -167,7 +175,7 @@ Command: `chia plots create [add flags and parameters]`
 
 `-p` [pool pk]: This is your "Pool Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full Chia account access. To find your Chia Pool Public Key use the following command: `chia keys show`
 
-`-c` [pool contract address]: This is your "Pool Contract Address". This replaces your Pool Public Key used previously in OG plots. This is used to point a plot to a plotNFT, which allows you to switch plots from local farming to pooling. To find your PlotNFT Contract Addres use the following command: `chia plotnft show`
+`-c` [pool contract address]: This is your "Pool Contract Address". This replaces your Pool Public Key used previously in OG plots. This is used to point a plot to a plotNFT, which allows you to switch plots from local farming to pooling. To find your PlotNFT Contract Address use the following command: `chia plotnft show`
 
 `-a` [fingerprint]: This is the key Fingerprint used to select both the Farmer and Pool Public Keys to use. Utilize this when you want to select one key out of several in your keychain. To find your Chia Key Fingerprint use the following command: `chia keys show`
 
@@ -189,15 +197,21 @@ Command: `chia plots create [add flags and parameters]`
 
 Example below will create a k32 plot and use 4GB (note - not GiB) of memory.
 
-`chia plots create -k 32 -b 4000 -t /path/to/temporary/directory -d /path/to/final/directory`
+```bash
+chia plots create -k 32 -b 4000 -t /path/to/temporary/directory -d /path/to/final/directory
+```
 
 Example 2 below will create a k34 plot and use 8GB of memory, 2 threads and 64 buckets
 
-`chia plots create -k 34 -e -b 8000 -r 2 -u 64 -t /path/to/temporary/directory -d /path/to/final/directory`
+```bash
+chia plots create -k 34 -e -b 8000 -r 2 -u 64 -t /path/to/temporary/directory -d /path/to/final/directory
+```
 
 Example 3 below will create five k32 plots (`-n 5`) one at a time using 4GB `-b 4000` (note - not GiB) of memory and uses a secondary temp directory (`-2 /path/to/secondary/temp/directory`).
 
-`chia plots create -k 32 -b 4000 -n 5 -t /path/to/temporary/directory -2 /path/to/secondary/temp/directory -d /path/to/final/directory`
+```bash
+chia plots create -k 32 -b 4000 -n 5 -t /path/to/temporary/directory -2 /path/to/secondary/temp/directory -d /path/to/final/directory
+```
 
 **Additional Plotting Notes**
 

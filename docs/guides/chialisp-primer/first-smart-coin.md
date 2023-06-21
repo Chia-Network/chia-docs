@@ -59,7 +59,7 @@ In this example, the curried in `PASSWORD_HASH` represents the hash of the passw
 
 A condition consists of a condition number followed by its arguments. They can do a variety of things, from the creation of new coins and requiring other spends to happen at the same time, to various assertions related to the state of the blockchain.
 
-A complete list of conditions can be found on the [Conditions page](/conditions), but we will only be using one in this tutorial: condition `51`, or `CREATE_COIN`, creates a new coin with the given `puzzle_hash` and `amount` if the spend is valid. It is used to send money to another puzzle hash (which is analagous to an address).
+A complete list of conditions can be found on the [Conditions page](/conditions), but we will only be using one in this tutorial: condition `51`, or `CREATE_COIN`, creates a new coin with the given `puzzle_hash` and `amount` if the spend is valid. It is used to send money to another puzzle hash (which is analogous to an address).
 
 ## Coins
 
@@ -87,6 +87,7 @@ The first step is to curry the puzzle with the password's hash and get the puzzl
 
 ```bash
 opc -H "$(cdv clsp curry password.clsp --args "$(run "(sha256 'password')")")"
+opc "$(cdv clsp curry password.clsp --args "$(run "(sha256 'password')")")"
 ```
 
 Write down both values this produces, the first one being the puzzle hash, and the second being the puzzle reveal.

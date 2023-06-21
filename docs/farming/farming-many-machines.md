@@ -130,7 +130,9 @@ Your reward address for Chia rewards should be a separate key as well, kept in a
 
 ### Using CLI
 
-`chia keys show`
+```bash
+chia keys show
+```
 
 ### Using the GUI
 

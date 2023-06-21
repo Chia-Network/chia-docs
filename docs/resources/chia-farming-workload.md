@@ -3,7 +3,7 @@ title: Storage - Chia Farming Workload Analysis
 slug: /chia-farming-workload
 ---
 
-Jonmichael Hands, VP Storage, Chia Network. For comments and questions reach out to @storage_jm on [keybase](https://keybase.io/team/chia_network.public), or [@LebanonJon](https://twitter.com/LebanonJon) on Twitter
+Jonmichael Hands, VP Storage, Chia Network. For comments and questions reach out to @LebanonJon on [Discord](https://discorg.gg/chia), or [@LebanonJon](https://twitter.com/LebanonJon) on Twitter
 
 [Model](https://docs.google.com/spreadsheets/d/1AJP8j673qfbxxju87SjGs174DMVFpzjS/edit?usp=sharing&ouid=108662600751303250659&rtpof=true&sd=true) in Excel
 

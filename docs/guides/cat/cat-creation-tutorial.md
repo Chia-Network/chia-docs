@@ -223,7 +223,9 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to <your receiv
 
 If everything's good so far, this command will give the following output:
 
-`The transaction has been created, would you like to push it to the network? (Y/N)`
+```
+The transaction has been created, would you like to push it to the network? (Y/N)
+```
 
 Enter `Y`.
 

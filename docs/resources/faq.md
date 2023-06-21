@@ -317,7 +317,9 @@ Yes you can. Please check the [Pool Farming page](/pool-farming).
 
 ### I have heard that it's recommended that a winning plot be deleted on mainnet?
 
-There is a possible attack where an attacker who can co-ordinate N deep from the tip of the chain can try to coerce a winning farmer to re-write a historical transaction block. This attack is much more difficult and thus less of a risk in new consensus and thus we only recommend deleting and re-plotting a plot to farmers with in excess of 1PB of farm size. Anyone smaller than that would be difficult for an attacker to locate and can more safely continue to farm plots that have already won. We plan to have the software automate the process up to and including kicking off a remote plotting process if the current hardware that a farmer or harvester are on is not up to the task of re-plotting. But to repeat, deleting winning plots is, and will always be, totally optional.
+This was our advice in 2020, long before the launch of mainnet. However, we no longer advise anyone to delete their winning plots.
+
+Some background: The consensus Chia originally used during the testnet phase contained the possibility of an [attack](https://docs.chia.net/consensus-attacks#bribe-trunk) where an attacker who could co-ordinate N deep from the tip of the chain could try to coerce a winning farmer to re-write a historical transaction block. However, before the launch of mainnet, the consensus was updated; this attack is no longer viable. See the link for more details.
 
 ### Do my plots "wear out" or "go bad"/"go stale" over time? Will I have to regularly re-plot?
 
@@ -507,17 +509,37 @@ Unfortunately, no. However, to obtain the user-specified wallet names programmat
 
 Another way to obtain this info is by connecting to the daemon over a websocket by using `wscat`:
 
-`wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://localhost:55400`
+```bash
+wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://localhost:55400
+```
 
 From there, you can use the `get_keys` command, similar to the following example (the `request_id` can be any string):
 
-`{"ack": false, "command": "get_keys", "data": {}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}`
+```json
+{
+  "ack": false,
+  "command": "get_keys",
+  "data": {},
+  "destination": "daemon",
+  "origin": "client",
+  "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"
+}
+```
 
 This command will return a payload with all of the pubkeys/fingerprints/labels -- private keys omitted.
 
 If you want the private keys included, pass `"include_secrets":true` in the data object. For example:
 
-`{"ack": false, "command": "get_keys", "data": {"include_secrets":true}, "destination": "daemon", "origin": "client", "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"}`
+```json
+{
+  "ack": false,
+  "command": "get_keys",
+  "data": { "include_secrets": true },
+  "destination": "daemon",
+  "origin": "client",
+  "request_id": "43dc226cef76963ddd56c7068972947f373918c24b0fdf5bfa767a1340271da6"
+}
+```
 
 ### How do I disable the dust filter?
 
@@ -535,9 +557,10 @@ Starting in version 1.7.0, Chia's reference wallet will accept both 12- and 24-w
 
 ### How can I configure Chia to reuse the same receive address?
 
-By default, Chia will update your receive address for every new transaction. This is done for privacy reasons -- it is more difficult to associate multiple transactions with the same wallet if each transaction uses a different address. 
+By default, Chia will update your receive address for every new transaction. This is done for privacy reasons -- it is more difficult to associate multiple transactions with the same wallet if each transaction uses a different address.
 
 However, there are some downsides to using multiple addresses:
+
 - It can be more difficult to track the history of your own transactions. For example, block explorers cannot associate multiple addresses with the same wallet. (Note, however, that the reference wallet _will_ show you a complete history.)
 - Some wallets only search a limited number of addresses for a given key, so they may not display your full balance.
 - Wallet performance can degrade after a large number of addresses have been used. This is because the wallet must search for transactions for each address in the derivation index.
@@ -545,39 +568,47 @@ However, there are some downsides to using multiple addresses:
 Starting in version 1.7.1, Chia's reference wallet will allow you to keep the same receive address with each transaction. If you change this setting, each of the above issues will be mitigated, at the expense of reduced privacy.
 
 To set up your wallet to reuse the same receive address:
+
 1. Edit `~/.chia/mainnet/config/config.yaml`
 2. Search for `reuse_public_key_for_change:`
-  
-  If this parameter doesn't exist, you can add it manually. Under `wallet:` add the following two lines:
-  ```bash
-  reuse_public_key_for_change:
-    '2999502625': false
-  ```
-3. `2999502625` is a dummy fingerprint that is added by default. You will need to obtain your wallet's fingerprint actual by running `chia keys show`. For example, 
-  ```bash
-  $ chia keys show
-  Showing all public keys derived from your master seed and private key:
 
-  Label: Testnet1
-  Fingerprint: 2104826454
-  ```
+If this parameter doesn't exist, you can add it manually. Under `wallet:` add the following two lines:
+
+```bash
+reuse_public_key_for_change:
+  '2999502625': false
+```
+
+3. `2999502625` is a dummy fingerprint that is added by default. You will need to obtain your wallet's fingerprint actual by running `chia keys show`. For example,
+
+```bash
+$ chia keys show
+Showing all public keys derived from your master seed and private key:
+
+Label: Testnet1
+Fingerprint: 2104826454
+```
+
 4. Change the dummy fingerprint to your wallet's actual fingerprint, and update the value to `true`. For example,
-  ```
-  reuse_public_key_for_change:
-    '2104826454': true
-  ```
+
+```
+reuse_public_key_for_change:
+  '2104826454': true
+```
+
 5. If you wish to specify the behavior for more than one fingerprint, you can add additional fingerprints to new lines. If a fingerprint is not listed, the default value of `false` will be used.
 6. Restart Chia for the changes to take effect. Your wallet will now reuse the same receive address for every transaction.
 
 To verify that the same address is being reused:
+
 1. Run `chia wallet get_address -f <fingerprint>`.
-    * Replace `<fingerprint>` with the fingerprint you would like to test
-    * This command will give you the latest address for that fingerprint
+   - Replace `<fingerprint>` with the fingerprint you would like to test
+   - This command will give you the latest address for that fingerprint
 2. Run `chia wallet send -f <fingerprint> -t <address> -a 0.000000000001 -m 0.000000000001 --override`. Some notes:
-    * Replace `<fingerprint>` with fingerprint you used in step 1
-    * Replace `<address>` with the address you retrieved from step 1
-    * This command will send 1 mojo to your latest address, and attach a 1 mojo fee. Feel free to adjust these amounts accordingly. (You can also send money from the GUI.)
-    * The `--override` flag is needed because the amounts to send are considered unusual
+   - Replace `<fingerprint>` with fingerprint you used in step 1
+   - Replace `<address>` with the address you retrieved from step 1
+   - This command will send 1 mojo to your latest address, and attach a 1 mojo fee. Feel free to adjust these amounts accordingly. (You can also send money from the GUI.)
+   - The `--override` flag is needed because the amounts to send are considered unusual
 3. After the transaction has completed, run `chia wallet get_address -f <fingerprint>`. You should receive the same address as you received in step 1. If you received a different address, `reuse_public_key_for_change` was not set to `true` for the specified fingerprint.
 
 ---
@@ -618,18 +649,9 @@ You should always check the ID of the asset(s) being offered before accepting an
 Once you've created the offer, you'll need to find someone who will take the other side of it. You can share your offers through the following methods:
 
 - Send your offer file directly to another user
-- [HashGreen](https://hash.green/dex) - a decentralized exchange (DEX) that has been built upon Chia's Offers
 - [Offerbin](http://offerbin.io) - an open marketplace for Chia Offers
-- [Keybase - chia_offers](https://keybase.io/team/chia_offers) - #offers-trading channel is a forum where Chia Offers can be posted and accepted
 - [Offerpool.io](https://offerpool.io/) - an open-sourced, decentralized offers database built on top of OrbitDB and IPFS
-
-### Why am I seeing the following error when trying to share an offer to Keybase: "Failed to upload offer to Keybase:..."?
-
-Please ensure that you have joined the chia_offers group first before hitting the "share" button.
-
-### Why do I see this error in Keybase when I click to Join Chia_Offers - "This team does not exist or it has no public information available"?
-
-Ignore this error as this is a Keybase error, so long as you click on "Join Chia_offers", you will get successfully added to the team to post or view offers.
+- [dexie.space](https://dexie.space/markets) - a decentralized exchange for Chia offers supporting Chia tokens (CATs) and NFTs
 
 ### Why don't I see the offers option in my wallet?
 
@@ -671,7 +693,9 @@ Chia NFTs make use of a unique feature: [Offers](https://chialisp.com/offers). Y
 
 The CLI commands for NFT offers are almost the same as [those for CAT offers](https://chialisp.com/offers-cli-tutorial#create-a-single-token-offer). The main difference is that you have to include the NFT singleton's value after the NFT ID (typically this is `:1`). For example, to make an offer, you can run:
 
-`chia wallet make_offer -o 1:0.1 -r nft1g5gzj3hl9gdyrq83zveepf8wmeet8mxl8zutfyahs0wfkg9mcs9qepc4w5:1 -p test.offer -m 0.001`
+```bash
+chia wallet make_offer -o 1:0.1 -r nft1g5gzj3hl9gdyrq83zveepf8wmeet8mxl8zutfyahs0wfkg9mcs9qepc4w5:1 -p test.offer -m 0.001
+```
 
 The result is:
 
@@ -691,7 +715,9 @@ Use chia wallet get_offers --id 55314ee65db39c173de05873138440c48525eac39fd4a622
 
 To view your new offer, run the `get_offers` command that was output upon the offer's creation. Using the above example:
 
-`chia wallet get_offers --id 55314ee65db39c173de05873138440c48525eac39fd4a622fd766b3bb4ab02ff -f 2118200991`
+```bash
+chia wallet get_offers --id 55314ee65db39c173de05873138440c48525eac39fd4a622fd766b3bb4ab02ff -f 2118200991
+```
 
 The result is:
 

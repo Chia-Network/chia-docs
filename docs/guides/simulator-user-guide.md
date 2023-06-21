@@ -47,11 +47,15 @@ chia dev sim create
 
 If you do not already have any keys in your OS keychain, you will be prompted to create one:
 
-`No keys in keychain. Press 'q' to quit, or press any other key to generate a new key.`
+```
+No keys in keychain. Press 'q' to quit, or press any other key to generate a new key.
+```
 
 After pressing any key (other than `q`), a new public/private key pair will be generated:
 
-`Generating private key`
+```
+Generating private key
+```
 
 If you already have one or more keys installed, you will be prompted to select one:
 

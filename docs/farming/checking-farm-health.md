@@ -5,20 +5,20 @@ slug: /checking-farm-health
 
 # Is my farm healthy? (\*NIX and Linux Headless Edition)
 
-Alot of smaller farmers are concerned about the health of their farm when they can't find any proofs for days at a time.
+A lot of smaller farmers are concerned about the health of their farm when they can't find any proofs for days at a time.
 This document was created to provide metrics to smaller farmers so they can ensure their farm is working, even without finding any proofs.
 
 ## Check if your farm thinks its farming
 
 Before going further, please make sure wether your farm actually considers itself to be farming. Theres a good chance that you might not since you are still syncing blocks.
 
-To check the status of your farm, `../activate` as usual and then type `chia farm summary`. If the first line of the ouput looks like like this:
+To check the status of your farm, `../activate` as usual and then type `chia farm summary`. If the first line of the output looks like like this:
 
 ```
 Farming status: Farming
 ```
 
-..then you know no broader errors have occured.
+..then you know no broader errors have occurred.
 
 ## Change the log level output
 
@@ -57,9 +57,11 @@ username@chia-farmer:~/.chia/mainnet/log$ tree
 
 Each logfile contains log information about all the services ran by Chia. If you're running a full node, these can be convoluted. We're only interested wether or not plots pass the plot filter. We can check this, by running a command like:
 
-` cat debug.log | grep "[0-9] plots were eligible for farming"`
+```bash
+cat debug.log | grep "[0-9] plots were eligible for farming"
+```
 
-`cat` is a \*nix program to get content of a file. With the pipe operator `|`we "pipe" the output to another program called `grep`which can filter textual input. We filter for `"[0-9] plots were eligible for farming"` to see if we already had eligible plots.
+The `cat` command is a \*nix program to get content of a file. With the pipe operator `|`we "pipe" the output to another program called `grep`which can filter textual input. We filter for `"[0-9] plots were eligible for farming"` to see if we already had eligible plots.
 
 Example output may look like this:
 
@@ -75,13 +77,15 @@ It means that plots are passing the plot filter and your farm seems to work as i
 
 ## Checking for proofs
 
-If you have had elligible plots in the past, theres a chance that you might have already found a proof, but it didn't get accepted by the network.
+If you have had eligible plots in the past, theres a chance that you might have already found a proof, but it didn't get accepted by the network.
 
 **Please keep in mind that finding a proof does not constitute to winning a plot (getting a payout). Even if you find a proof, it needs to compete with other proofs and win to actually receive a reward.**
 
 To check wether you have already found proofs, you can run the same command as before, but with a different filter:
 
-`cat debug.log | grep "Found [1-9] proofs"`
+```bash
+cat debug.log | grep "Found [1-9] proofs"
+```
 
 A possible result may look like this:
 

@@ -100,7 +100,7 @@ jobs:
       image: registry.gitlab.com/cmmarslender/kubectl-helm:v3.11.0
     environment:
       name: Review ${{ github.event.pull_request.number }}
-      url: https://${{ github.event.pull_request.number }}-docs.chia.net
+      url: https://${{ github.event.pull_request.number }}.docs.chia.net
     steps:
       - uses: actions/checkout@v3
 
@@ -126,6 +126,10 @@ jobs:
           backend_name: fremont-public
           role_name: github-actions
           cluster_url: ${{ env.K8S_API_SERVER_URL }}
+
+      - name: Install certificate
+        run: |
+          kubectl apply -n chia-docs -f ./k8s/certificate.yaml
 
       - uses: Chia-Network/actions/helm/deploy@main
         env:

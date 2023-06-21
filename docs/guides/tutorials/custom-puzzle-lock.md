@@ -96,7 +96,10 @@ You can also use Chialisp itself to get the hash of the Chialisp puzzle. The puz
 A solution to this puzzle then needs to contain the compiled puzzle we want to hash in the first position (wrap the compiled puzzle with parentheses and provide it as a solution).
 
 **Example solution for the password-locked coin:**
-`((a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824)) (q 4 (c 2 (c 11 (c 23 ()))) ()) (q 8)) 1) (c (q . 51) 1)))`
+
+```chialisp
+((a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824)) (q 4 (c 2 (c 11 (c 23 ()))) ()) (q 8)) 1) (c (q . 51) 1)))
+```
 
 The resulting hash for this example puzzle is again `0x4843c869bba5f65aa1e806cd372dae5668ca3b69640d067e86837ca96b324e71`.
 
