@@ -49,6 +49,7 @@ module.exports = {
         'rpc-reference/nfts',
         'rpc-reference/offers',
         'rpc-reference/simulator',
+        'rpc-reference/vcs',
         'rpc-reference/wallet',
       ],
     },
@@ -65,6 +66,7 @@ module.exports = {
         'cli-reference/nfts',
         'cli-reference/offers',
         'cli-reference/simulator',
+        'cli-reference/vcs',
         'cli-reference/wallet',
       ],
     },
@@ -341,6 +343,7 @@ module.exports = {
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/clawback-primitive-guide',
+    'guides/verifiable-credentials-guide',
     {
       type: 'category',
       label: 'Tutorials',
