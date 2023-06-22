@@ -162,5 +162,12 @@ const katex = require('rehype-katex');
         crossorigin: 'anonymous',
       },
     ],
+    scripts: [
+      {
+        src: '/js/matomo.js',
+        async: true,
+        defer: true,
+      },
+    ],
   }
 );
