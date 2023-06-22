@@ -22,10 +22,6 @@ const katex = require('rehype-katex');
         '@docusaurus/preset-classic',
         /** @type {import('@docusaurus/preset-classic').Options} */
         ({
-          gtag: {
-            trackingID: 'G-6HSSLLPE6Q',
-            anonymizeIP: true,
-          },
           docs: {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
