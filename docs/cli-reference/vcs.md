@@ -242,7 +242,7 @@ Revoke the proofs from a VC. A few notes:
 * The `-p` parameter is the `Coin ID:` of the VC, which was obtainable when the VC was first minted
 
 ```bash
-chia wallet vcs revoke -f 2108245669 -p 72e522fecc64b539f8979b89e4cf2ffbcf8ba985faf4b701bcc882c6aec9e040 -m 0.0001
+chia wallet vcs revoke -p 0x420f69cc8b541be7a0bf1d94ec028a8b2a875ee2cd6721f5316cf1b02519d13a -m 0.0001
 ```
 
 Response:
@@ -251,29 +251,29 @@ Response:
 VC successfully revoked!
 Relevant TX records:
 
-Transaction e7c3b6b0bfff5d379cceef9533ed2739c4af7da669c0ffc7c6926ab11bc9cbef
+Transaction 286cc31575aa167c4b34cbc0a768a162caefb6afea77560db0693934ac3fbf1e
 Status: Pending
 Amount sent: 1E-12 XCH
-To address: txch1dlyh9rwd9y6clt3pjjs3gh25ck9vlfx7qwqvvru27dmhgtn80z9s2rruam
-Created at: 2023-06-15 10:45:25
+To address: txch1ehkl33dypc7mg820c7j94zfg8pz5j5lqtx7253nmxft52ryvzw8stx7czc
+Created at: 2023-06-23 13:33:50
 
-Transaction 9b9de87a5aa626f5256397c4779810b8118f01f20d9d09938d2fc9159f5118da
+Transaction ae6378e84742ab6abb07df666291093938ec9e06ae8e2b4066d7386d94289ba3
 Status: Pending
 Amount sent: 0 XCH
-To address: txch15f3f69ye5jfupw7qx5qmhatuqdhrmt4ked28g5k22qck3lsw59qqx2k9qj
+To address: txch1mahlm65l8q9frcqcfveekx3a29cd74w6gfajqy05ukz2afrzg03syqkz3p
+Created at: 2023-06-23 13:33:50
 ```
 
 After the transactions have completed, the holder of the VC can now show that the VC does not contain any proofs:
 
 ```bash
-chia wallet vcs get -f 2053849171
+chia wallet vcs get
 ```
 
 Response:
 
 ```bash
-[todo show resulting vc with no proofs]
-[potentially need to redo the revoke command due to bug]
+Proofs:
 ```
 
 </details>
