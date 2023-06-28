@@ -33,7 +33,7 @@
     "remark-math": "^3.0.1",
     "url-loader": "^4.1.1",
     "wait-file": "^1.0.5",
-    "yarn": "1.22.18"
+    "yarn": "2.4.3"
   },
   "browserslist": {
     "production": [
