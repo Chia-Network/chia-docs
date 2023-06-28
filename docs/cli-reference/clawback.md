@@ -76,7 +76,9 @@ In most cases, if the output of the `clawback show` command contains `Time left:
 
 However, there is a small window of time where the timer has expired, but a block still hasn't been farmed with a timestamp after the expiry. If the Recipient attempts to make the `claim` call during this window, they will receive the following error:
 
-`You are trying to claim the coin too early`
+```
+You are trying to claim the coin too early
+```
 
 In this case, the Recipient needs to wait for one more block to be farmed before proceeding with the `claim` call. As a reminder, a new block is farmed every 18.75 seconds, on average.
 

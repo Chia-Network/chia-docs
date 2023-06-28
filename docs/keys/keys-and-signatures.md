@@ -41,13 +41,23 @@ So an address is analogous to a wallet child BLS public key, the private key of 
 
 ## Difference between Chia and EIP-2333
 
-Chia committed to its final plot format in July 2020. This format uses keys compliant with IETF BLS version 2, as specified in the [IRTF CFRG BLS standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/).
+Chia's plot format uses keys compliant with the [IRTF CFRG BLS standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/). After Chia had already committed to this standard, a new optional change was introduced to the salt format.
 
-IETF BLS version 4 introduced some optional changes, one of which was not backwards compatible with version 2. Because of this incompatibility, Chia will continue to use keys as specified in version 2. These keys are compliant with version 4, though they differ from the recommended method of generation.
+Chia uses the following salt:
 
-**IETF BLS Version 2 and 4 are both secure.**
+`"BLS-SIG-KEYGEN-SALT-" (i.e., an ASCII string comprising 20 octets)`
 
-Here is the incompatible change:
+Whereas the optional change uses a slightly different salt:
+
+`H("BLS-SIG-KEYGEN-SALT-") (i.e., the hash of an ASCII string comprising 20 octets)`
+
+Both of these salts are described in the [BLS signature specification](https://www.ietf.org/archive/id/draft-irtf-cfrg-bls-signature-05.html), which states:
+
+`For compatibility with prior versions of this document, implementations SHOULD allow applications to choose the salt value.`
+
+Therefore, the salt Chia uses is compatible with this specification.
+
+For your reference, here is the change that was introduced after Chia's plot format had been finalized:
 
 ```
   Procedure:

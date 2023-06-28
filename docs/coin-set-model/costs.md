@@ -25,15 +25,15 @@ Aside from cost, the maximum number of atoms and pairs (counted separately) in a
 
 The minimum spec machine to run a full node is the Raspberry Pi 4. How do we know if this machine can stay synced? The worst case scenario occurs when multiple full transaction blocks are created with the minimum amount of time between them. This will temporarily put maximum load on the system. If the Pi can stay synced in this scenario, then it easily should be able to stay synced under normal load.
 
-The first question we must answer is how much time elapses between transaction blocks. Chia's consensus mandates that at least three signage points must be reached before infusion_iterations may occur, so the minimum time between blocks is
+The first question we must answer is how much time elapses between transaction blocks. Chia's consensus mandates that at least three signage points must be reached before infusion_iterations may occur, so the minimum time between blocks is the following:
 
-`3 signage points * signage point time`, which equals
+```
+3 signage points * signage point time
+3 signage points * (600 seconds per sub-slot / 64 signage points per sub-slot)
+3 signage points * 9.375 seconds per signage point
+```
 
-`3 signage points * (600 seconds per sub-slot / 64 signage points per sub-slot)`, which equals
-
-`3 signage points * 9.375 seconds per signage point`, which equals
-
-`28.125 seconds`
+Which is 28.125 seconds.
 
 :::note
 The **average** time between transaction blocks is [51.95 seconds](/consensus-foliage#transaction-block-time). The lower a given time interval between transaction blocks (down to 28.125 seconds), the lower the probability of a transaction block being created in that time interval.

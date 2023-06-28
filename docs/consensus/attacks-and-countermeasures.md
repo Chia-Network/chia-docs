@@ -54,19 +54,27 @@ In addition to `DD`, we'll use the following variables in our calculations:
 
 Using these variables, the formula to calculate when an attacker is able to create a chain at the same speed as the honest chain is:
 
-`SH * VH = SA * VA * DD`
+```
+SH * VH = SA * VA * DD
+```
 
 If we normalize the network's honest space and fastest timelord to equal 1, then in order for the attack to succeed, the product of the attacker's space, timelord speed, and double-dip advantage must be at least 1:
 
-`SA * VA * DD >= 1`
+```
+SA * VA * DD >= 1
+```
 
 The formula to calculate the minimum `SA` then becomes:
 
-`SA = 1 / (VA * DD)`
+```
+SA = 1 / (VA * DD)
+```
 
 Finally, the formula to calculate the minimum netspace percentage required for the attack is:
 
-`% = (SA / (1 + SA)) * 100`
+```
+% = (SA / (1 + SA)) * 100
+```
 
 The following table shows the minimum required proportion of the total netspace an attacker must have in order to succeed in a majority attack. This table is valid for attacks lasting any amount of time, though sometimes it's overly conservative for attacks lasting more than one epoch. It uses fixed values for the first two columns.
 

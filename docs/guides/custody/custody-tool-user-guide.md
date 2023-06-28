@@ -309,7 +309,9 @@ cic derive_root -pks "1.pk,2.pk,3.pk" -m 2 -n 3
 
 You should receive the following response:
 
-`Custody rules successfully added to configuration`
+```
+Custody rules successfully added to configuration
+```
 
 As a result of running this command, `Configuration (awaiting launch).txt` will be created. The configuration now includes both the permanent and non-permanent layers.
 
@@ -508,7 +510,9 @@ The response will be a Chia address, prefixed with `txch` in this example.
 
 If, at any point in your testing, you receive this error:
 
-`ValueError: No configuration present`
+```
+ValueError: No configuration present
+```
 
 You are likely in the wrong directory. By default, the commands in this tutorial assume you are currently in the directory containing `Configuration (xxxxxx).txt`. If not, change to that directory and try again.
 

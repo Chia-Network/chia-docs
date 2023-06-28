@@ -10,7 +10,7 @@ const katex = require('rehype-katex');
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'throw',
-    favicon: 'img/chia_leaf_green.svg',
+    favicon: '/svg/chia-leaf-green.svg',
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
     i18n: {
@@ -22,10 +22,6 @@ const katex = require('rehype-katex');
         '@docusaurus/preset-classic',
         /** @type {import('@docusaurus/preset-classic').Options} */
         ({
-          gtag: {
-            trackingID: 'G-6HSSLLPE6Q',
-            anonymizeIP: true,
-          },
           docs: {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
@@ -164,6 +160,13 @@ const katex = require('rehype-katex');
         integrity:
           'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
         crossorigin: 'anonymous',
+      },
+    ],
+    scripts: [
+      {
+        src: '/js/matomo.js',
+        async: true,
+        defer: true,
       },
     ],
   }

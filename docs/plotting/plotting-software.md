@@ -2,50 +2,56 @@
 title: Plotting Software
 slug: /plotting-software
 ---
+
 ## Software
 
 We are introducing the ability to choose alternative plotters when creating plots both in the Chia GUI and the CLI.
 
 Chia develops the Bladebit suite of plotters, which includes Bladebit cudaplot, ramplot, and diskplot. The reference implementation from mainnet launch is Chiapos, which isn’t used anymore but still exists for reference.
 
-
 ### Bladebit cudaplot
 
 Status: alpha
 
-[https://downloads.chia.net/bladebit](https://downloads.chia.net/bladebit) 
+[https://downloads.chia.net/bladebit](https://downloads.chia.net/bladebit)
 
 Requirements
 
-* OS: Windows and Linux
-* Memory: 256GB of DRAM
-* GPUs: CUDA capability 5.2 (NVIDIA 10 series GPU or higher) with 8GB of GPU VRAM
+- OS: Windows and Linux
+- Memory: 256GB of DRAM
+- GPUs: CUDA capability 5.2 (NVIDIA 10 series GPU or higher) with 8GB of GPU VRAM
 
 Usage
 
-`bladebit_cuda -f <farmer key> -c <contract address> -n 1 cudaplot /mnt/ssd`
-
+```bash
+bladebit_cuda -f <farmer key> -c <contract address> -n 1 cudaplot /mnt/ssd
+```
 
 ### Bladebit [diskplot](https://www.chia.net/2022/08/08/announcing-bladebit-2-0/)
 
-* Still uses temporary storage to create plots, accessible to the majority of farmers
-* Very low minimum memory requirements (2-4G) for low resource plotting in embedded or entry-level systems
-* Cross-platform and OS compatibility
-* Sequential writes can better take advantage of SSD burst performance and reduce SSD wear by reducing write amplification factor.
-* Can use DRAM write cache to significantly reduce SSD writes and can take advantage of any extra increments (no minimum required)
-* Takes full advantage of increased disk bandwidth from PCIe 4.0
-* Pipelined performance to max out CPU
+- Still uses temporary storage to create plots, accessible to the majority of farmers
+- Very low minimum memory requirements (2-4G) for low resource plotting in embedded or entry-level systems
+- Cross-platform and OS compatibility
+- Sequential writes can better take advantage of SSD burst performance and reduce SSD wear by reducing write amplification factor.
+- Can use DRAM write cache to significantly reduce SSD writes and can take advantage of any extra increments (no minimum required)
+- Takes full advantage of increased disk bandwidth from PCIe 4.0
+- Pipelined performance to max out CPU
 
 Usage
 
 Example with temporary SSD mounted to /mnt/ssd1 and destination drive as /mnt/ssd2, and using 100GB of DRAM cache to reduce temporary disk writes
-`bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 diskplot -t1 /mnt/ssd1/ -b 64 --cache 100G -a /mnt/ssd2`
 
+```bash
+bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 diskplot -t1 /mnt/ssd1/ -b 64 --cache 100G -a /mnt/ssd2
+```
 
 ### Bladebit ramplot
+
 Usage
 
-`bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 ramplot /mnt/ssd`
+```bash
+bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 ramplot /mnt/ssd
+```
 
 ### Additional 3rd party plotters
 
