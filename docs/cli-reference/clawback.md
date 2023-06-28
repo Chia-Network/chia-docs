@@ -7,10 +7,22 @@ title: Clawback
 
 This page includes a comprehensive list of Chia's Command Line Interface commands for using the clawback primitive.
 
+:::warning
+
+These commands are only relevant for the clawback primitive, which is located in the [chia-clawback-primitive](https://github.com/Chia-Network/chia-clawback-primitive) repository.
+
+In order to view the commands that are built into the CLI for Chia's reference wallet, see the following `wallet` commands:
+* [clawback](/wallet-cli#clawback)
+* [get_transactions](/wallet-cli#get_transactions)
+* [send](/wallet-cli#send-1)
+
+:::
+
 For more info, see the following:
 
 - [Clawback primitive guide](/guides/clawback-primitive-guide)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
+- [Clawback user guide](/guides/clawback-user-guide)
 
 ## Reference
 
@@ -233,7 +245,7 @@ Options: Clawback an unclaimed coin
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
 | :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -c            | --coin-id         | TEXT    | True     | The coin ID you want to claw back                                                                        |
+| -c            | --coin-id         | TEXT    | True     | The coin ID for the clawback coin to inspect                                                             |
 | -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
 | -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
 | -t            | --target-address  | TEXT    | False    | The address you want to sent the clawed back coin to                                                     |
@@ -398,7 +410,7 @@ Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
 | :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -c            | --coin-id         | TEXT    | False    | The coin ID you want to claw back                                                                        |
+| -c            | --coin-id         | TEXT    | False    | The coin ID for the clawback coin to inspect                                                             |
 | -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |

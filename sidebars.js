@@ -344,9 +344,18 @@ module.exports = {
         'guides/datalayer/datalayer-permissions',
       ],
     },
+    {
+      type: 'category',
+      label: 'Clawback',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/clawback/clawback-user-guide',
+        'guides/clawback/clawback-primitive-guide',
+      ],
+    },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
-    'guides/clawback-primitive-guide',
     'guides/verifiable-credentials-guide',
     {
       type: 'category',
