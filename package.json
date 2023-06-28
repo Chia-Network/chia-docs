@@ -20,7 +20,7 @@
     "@docusaurus/plugin-google-gtag": "^2.4.1",
     "@docusaurus/preset-classic": "^2.4.1",
     "@easyops-cn/docusaurus-search-local": "^0.33.5",
-    "@mdx-js/react": "^1.6.21",
+    "@mdx-js/react": "^2.3.0",
     "@svgr/webpack": "^6.5.0",
     "clsx": "^1.1.1",
     "file-loader": "^6.2.0",
