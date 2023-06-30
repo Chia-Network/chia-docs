@@ -1222,6 +1222,60 @@ Response:
 
 ---
 
+### `get_coin_records`
+
+Functionality: Obtain all coin records for the current wallet
+
+Usage: chia rpc wallet [OPTIONS] get_coin_records [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_coin_records
+```
+
+Response:
+
+```json
+{
+    "coin_records": [
+        {
+            "amount": 100,
+            "coinbase": false,
+            "confirmed_height": 3879053,
+            "id": "0x8c8518c23670a37287063951761e6f23348918b887762d9a8fc7f2217bd44c04",
+            "metadata": null,
+            "parent_coin_info": "0x6b17387014afbdc661bec74438cc49e44889861b5ddd13ae2113807e82f9df08",
+            "puzzle_hash": "0x59714c1cebe4a747bb90b607bce5cc589df6b612ee7f742c79f6d070a50e9083",
+            "spent_height": 0,
+            "type": 0,
+            "wallet_identifier": {
+                "id": 1,
+                "type": 0
+            }
+        }
+    ],
+    "success": true,
+    "total_count": null
+}
+```
+
+</details>
+
+---
+
 ### `get_coin_records_by_names`
 
 Functionality: Obtain coin records from a list of coin names
@@ -1800,6 +1854,72 @@ Response:
     "wallet_id": 1,
     "wallet_type": 0
   }
+}
+```
+
+</details>
+
+---
+
+### `get_wallet_balances`
+
+Functionality: Obtain the balance (and related info) from one or more wallets
+
+Usage: chia rpc wallet [OPTIONS] get_wallet_balance [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag       | Type | Required  | Description                                                                                |
+| :--------- | :--- | :-------- | :----------------------------------------------------------------------------------------- |
+| wallet_ids | LIST | False     | A list of Wallet IDs from which to obtain the balance [Default: list info for all wallets] |
+
+<details>
+<summary>Example</summary>
+
+Get the balance and other info for wallets 1 and 2:
+
+```json
+chia rpc wallet get_wallet_balances '{"wallet_ids": [1,2]}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "wallet_balances": {
+        "1": {
+            "confirmed_wallet_balance": 249908082013,
+            "fingerprint": 3792481086,
+            "max_send_amount": 249908082013,
+            "pending_change": 0,
+            "pending_coin_removal_count": 0,
+            "spendable_balance": 249908082013,
+            "unconfirmed_wallet_balance": 249908082013,
+            "unspent_coin_count": 19,
+            "wallet_id": 1,
+            "wallet_type": 0
+        },
+        "2": {
+            "confirmed_wallet_balance": 0,
+            "fingerprint": 3792481086,
+            "max_send_amount": 0,
+            "pending_change": 0,
+            "pending_coin_removal_count": 0,
+            "spendable_balance": 0,
+            "unconfirmed_wallet_balance": 0,
+            "unspent_coin_count": 6,
+            "wallet_id": 2,
+            "wallet_type": 10
+        }
+    }
 }
 ```
 
@@ -4860,121 +4980,133 @@ Response:
 
 ```json
 {
-  "routes": [
-    "/log_in",
-    "/get_logged_in_fingerprint",
-    "/get_public_keys",
-    "/get_private_key",
-    "/generate_mnemonic",
-    "/add_key",
-    "/delete_key",
-    "/check_delete_key",
-    "/delete_all_keys",
-    "/set_wallet_resync_on_startup",
-    "/get_sync_status",
-    "/get_height_info",
-    "/push_tx",
-    "/push_transactions",
-    "/farm_block",
-    "/get_timestamp_for_height",
-    "/get_initial_freeze_period",
-    "/get_network_info",
-    "/get_wallets",
-    "/create_new_wallet",
-    "/get_wallet_balance",
-    "/get_transaction",
-    "/get_transactions",
-    "/get_transaction_count",
-    "/get_next_address",
-    "/send_transaction",
-    "/send_transaction_multi",
-    "/get_farmed_amount",
-    "/create_signed_transaction",
-    "/delete_unconfirmed_transactions",
-    "/select_coins",
-    "/get_spendable_coins",
-    "/get_coin_records_by_names",
-    "/get_current_derivation_index",
-    "/extend_derivation_index",
-    "/get_notifications",
-    "/delete_notifications",
-    "/send_notification",
-    "/sign_message_by_address",
-    "/sign_message_by_id",
-    "/verify_signature",
-    "/get_transaction_memo",
-    "/cat_set_name",
-    "/cat_asset_id_to_name",
-    "/cat_get_name",
-    "/get_stray_cats",
-    "/cat_spend",
-    "/cat_get_asset_id",
-    "/create_offer_for_ids",
-    "/get_offer_summary",
-    "/check_offer_validity",
-    "/take_offer",
-    "/get_offer",
-    "/get_all_offers",
-    "/get_offers_count",
-    "/cancel_offer",
-    "/cancel_offers",
-    "/get_cat_list",
-    "/did_set_wallet_name",
-    "/did_get_wallet_name",
-    "/did_update_recovery_ids",
-    "/did_update_metadata",
-    "/did_get_pubkey",
-    "/did_get_did",
-    "/did_recovery_spend",
-    "/did_get_recovery_list",
-    "/did_get_metadata",
-    "/did_create_attest",
-    "/did_get_information_needed_for_recovery",
-    "/did_get_current_coin_info",
-    "/did_create_backup_file",
-    "/did_transfer_did",
-    "/did_message_spend",
-    "/did_get_info",
-    "/did_find_lost_did",
-    "/nft_mint_nft",
-    "/nft_count_nfts",
-    "/nft_get_nfts",
-    "/nft_get_by_did",
-    "/nft_set_nft_did",
-    "/nft_set_nft_status",
-    "/nft_get_wallet_did",
-    "/nft_get_wallets_with_dids",
-    "/nft_get_info",
-    "/nft_transfer_nft",
-    "/nft_add_uri",
-    "/nft_calculate_royalties",
-    "/nft_mint_bulk",
-    "/nft_set_did_bulk",
-    "/nft_transfer_bulk",
-    "/pw_join_pool",
-    "/pw_self_pool",
-    "/pw_absorb_rewards",
-    "/pw_status",
-    "/create_new_dl",
-    "/dl_track_new",
-    "/dl_stop_tracking",
-    "/dl_latest_singleton",
-    "/dl_singletons_by_root",
-    "/dl_update_root",
-    "/dl_update_multiple",
-    "/dl_history",
-    "/dl_owned_singletons",
-    "/dl_get_mirrors",
-    "/dl_new_mirror",
-    "/dl_delete_mirror",
-    "/get_connections",
-    "/open_connection",
-    "/close_connection",
-    "/stop_node",
-    "/get_routes",
-    "/healthz"
-  ],
-  "success": true
+    "routes": [
+        "/log_in",
+        "/get_logged_in_fingerprint",
+        "/get_public_keys",
+        "/get_private_key",
+        "/generate_mnemonic",
+        "/add_key",
+        "/delete_key",
+        "/check_delete_key",
+        "/delete_all_keys",
+        "/set_wallet_resync_on_startup",
+        "/get_sync_status",
+        "/get_height_info",
+        "/push_tx",
+        "/push_transactions",
+        "/farm_block",
+        "/get_timestamp_for_height",
+        "/set_auto_claim",
+        "/get_auto_claim",
+        "/get_initial_freeze_period",
+        "/get_network_info",
+        "/get_wallets",
+        "/create_new_wallet",
+        "/get_wallet_balance",
+        "/get_wallet_balances",
+        "/get_transaction",
+        "/get_transactions",
+        "/get_transaction_count",
+        "/get_next_address",
+        "/send_transaction",
+        "/send_transaction_multi",
+        "/spend_clawback_coins",
+        "/get_coin_records",
+        "/get_farmed_amount",
+        "/create_signed_transaction",
+        "/delete_unconfirmed_transactions",
+        "/select_coins",
+        "/get_spendable_coins",
+        "/get_coin_records_by_names",
+        "/get_current_derivation_index",
+        "/extend_derivation_index",
+        "/get_notifications",
+        "/delete_notifications",
+        "/send_notification",
+        "/sign_message_by_address",
+        "/sign_message_by_id",
+        "/verify_signature",
+        "/get_transaction_memo",
+        "/cat_set_name",
+        "/cat_asset_id_to_name",
+        "/cat_get_name",
+        "/get_stray_cats",
+        "/cat_spend",
+        "/cat_get_asset_id",
+        "/create_offer_for_ids",
+        "/get_offer_summary",
+        "/check_offer_validity",
+        "/take_offer",
+        "/get_offer",
+        "/get_all_offers",
+        "/get_offers_count",
+        "/cancel_offer",
+        "/cancel_offers",
+        "/get_cat_list",
+        "/did_set_wallet_name",
+        "/did_get_wallet_name",
+        "/did_update_recovery_ids",
+        "/did_update_metadata",
+        "/did_get_pubkey",
+        "/did_get_did",
+        "/did_recovery_spend",
+        "/did_get_recovery_list",
+        "/did_get_metadata",
+        "/did_create_attest",
+        "/did_get_information_needed_for_recovery",
+        "/did_get_current_coin_info",
+        "/did_create_backup_file",
+        "/did_transfer_did",
+        "/did_message_spend",
+        "/did_get_info",
+        "/did_find_lost_did",
+        "/nft_mint_nft",
+        "/nft_count_nfts",
+        "/nft_get_nfts",
+        "/nft_get_by_did",
+        "/nft_set_nft_did",
+        "/nft_set_nft_status",
+        "/nft_get_wallet_did",
+        "/nft_get_wallets_with_dids",
+        "/nft_get_info",
+        "/nft_transfer_nft",
+        "/nft_add_uri",
+        "/nft_calculate_royalties",
+        "/nft_mint_bulk",
+        "/nft_set_did_bulk",
+        "/nft_transfer_bulk",
+        "/pw_join_pool",
+        "/pw_self_pool",
+        "/pw_absorb_rewards",
+        "/pw_status",
+        "/create_new_dl",
+        "/dl_track_new",
+        "/dl_stop_tracking",
+        "/dl_latest_singleton",
+        "/dl_singletons_by_root",
+        "/dl_update_root",
+        "/dl_update_multiple",
+        "/dl_history",
+        "/dl_owned_singletons",
+        "/dl_get_mirrors",
+        "/dl_new_mirror",
+        "/dl_delete_mirror",
+        "/vc_mint",
+        "/vc_get",
+        "/vc_get_list",
+        "/vc_spend",
+        "/vc_add_proofs",
+        "/vc_get_proofs_for_root",
+        "/vc_revoke",
+        "/get_connections",
+        "/open_connection",
+        "/close_connection",
+        "/stop_node",
+        "/get_routes",
+        "/healthz"
+    ],
+    "success": true
 }
 ```
 
