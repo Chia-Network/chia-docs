@@ -313,7 +313,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 ### `combine`
 
-Functionality: Combine coins (typically used for combining dust).
+Functionality: Combine coins (typically used for combining dust). The maximum number of coins that can be combined within a single transaction is 500.
 
 Usage: chia wallet coins combine [OPTIONS]
 
