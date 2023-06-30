@@ -21,41 +21,49 @@ Consider either checking them individually or verifying that the hashes are inde
 
 :::warning
 
-`ASSERT_COIN_ANNOUNCEMENT` and `ASSERT_PUZZLE_ANNOUNCEMENT` should only be used in a puzzle's _solution_, and not in the puzzle itself. 
-This is especially important when using the `ASSERT_COIN_ANNOUNCEMENT` condition because it refers to a specific coin. 
+`ASSERT_COIN_ANNOUNCEMENT` and `ASSERT_PUZZLE_ANNOUNCEMENT` should typically only be used in a puzzle's _solution_, and not in the puzzle itself. This is especially important when using `ASSERT_COIN_ANNOUNCEMENT`, because it refers to a specific coin.
 
-To illustrate the danger, let's say `coin A` uses this condition in its puzzle, and it asserts a coin announcement from `coin B`. 
+To illustrate the danger, let's say `coin A` uses this condition in its puzzle, and it asserts a coin announcement from `coin B`.
 In this case, `coin A` requires `coin B` to be spent in the same block as it is spent.
 If `coin B` is spent before `coin A`, then `coin A` can _never_ be spent.
 
 However, if this condition is instead used in the _solution_ for `coin A`, and `coin B` has already been spent, then `coin A` can still be spent later, albeit with a different solution.
 
-It is somewhat less dangerous to use `ASSERT_PUZZLE_ANNOUNCEMENT` in a coin's puzzle because it only relies on a coin with a specific puzzle, and many such coins might exist. 
+It is somewhat less dangerous to use `ASSERT_PUZZLE_ANNOUNCEMENT` in a coin's puzzle because it only relies on a coin with a specific puzzle, and many such coins might exist.
 However, it is still best practice to only use this condition in a coin's solution.
 
 :::
 
 This is an extensive list of each condition allowed on the Chia blockchain.
 
-| Condition                  | Format                            | Description                                                                                |
-| -------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------ |
-| REMARK                     | `(1)`                             | Always valid. Can be used to pass data to outer puzzles.                                   |
-| AGG_SIG_UNSAFE             | `(49 public_key message)`         | Requires a signature for the message. Prefer `AGG_SIG_ME`.                                 |
-| AGG_SIG_ME                 | `(50 public_key message)`         | Requires a signature for the message specific to this coin.                                |
-| CREATE_COIN                | `(51 puzzle_hash amount (memos))` | Creates a new coin. The memo field is optional.                                            |
-| RESERVE_FEE                | `(52 amount)`                     | Requires a fee of at least the amount given.                                               |
-| CREATE_COIN_ANNOUNCEMENT   | `(60 message)`                    | Creates a block announcement specific to this coin.                                        |
-| ASSERT_COIN_ANNOUNCEMENT   | `(61 announcement_id)`            | Requires a coin specific block announcement by its id. (see above warning)                 |
-| CREATE_PUZZLE_ANNOUNCEMENT | `(62 message)`                    | Creates a block announcement specific to this puzzle.                                      |
-| ASSERT_PUZZLE_ANNOUNCEMENT | `(63 announcement_id)`            | Requires a puzzle specific block announcement by its id. (see above warning)               |
-| ASSERT_MY_COIN_ID          | `(70 coin_id)`                    | Requires the coin id match a value.                                                        |
-| ASSERT_MY_PARENT_ID        | `(71 parent_id)`                  | Requires the parent coin id match a value.                                                 |
-| ASSERT_MY_PUZZLEHASH       | `(72 puzzle_hash)`                | Requires the puzzle hash match a value.                                                    |
-| ASSERT_MY_AMOUNT           | `(73 amount)`                     | Requires the amount match a value.                                                         |
-| ASSERT_SECONDS_RELATIVE    | `(80 seconds_passed)`             | Requires at least `seconds_passed` seconds to have passed since this coin's creation.      |
-| ASSERT_SECONDS_ABSOLUTE    | `(81 seconds)`                    | Requires the current block's timestamp to be at least `seconds`.                           |
-| ASSERT_HEIGHT_RELATIVE     | `(82 block_height_passed)`        | Requires more than `block_height_passed` blocks to have passed since this coin's creation. |
-| ASSERT_HEIGHT_ABSOLUTE     | `(83 block_height)`               | Requires the current block's height to be at least `block_height`.                         |
+| Condition                      | Format                            | Description                                                                                                         |
+| ------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| REMARK                         | `(1)`                             | Always a valid condition.                                                                                           |
+| AGG_SIG_UNSAFE                 | `(49 public_key message)`         | Verifies a signature by its `public_key` and `message`. Usually `AGG_SIG_ME` is safer.                              |
+| AGG_SIG_ME                     | `(50 public_key message)`         | Like `AGG_SIG_UNSAFE`, but including the coin id and genesis id to prevent replay attacks.                          |
+| CREATE_COIN                    | `(51 puzzle_hash amount (memos))` | Creates a coin with a given `puzzle_hash`, `amount`, and optional `memo` (first is a hint).                         |
+| RESERVE_FEE                    | `(52 amount)`                     | Requires a given `amount` to be remaining in the transaction as a fee.                                              |
+| CREATE_COIN_ANNOUNCEMENT       | `(60 message)`                    | Creates an announcement with a given `message`, tied to this coin.                                                  |
+| ASSERT_COIN_ANNOUNCEMENT       | `(61 announcement_id)`            | Asserts a coin announcement was created within this transaction by its `announcement_id`.                           |
+| CREATE_PUZZLE_ANNOUNCEMENT     | `(62 message)`                    | Creates an announcement with a given `message`, tied to this puzzle.                                                |
+| ASSERT_PUZZLE_ANNOUNCEMENT     | `(63 announcement_id)`            | Asserts a puzzle announcement was created within this transaction by its `announcement_id`.                         |
+| ASSERT_CONCURRENT_SPEND        | `(64 coin_id)`                    | Asserts that this coin is spent in the same block as a given `coin_id`.                                             |
+| ASSERT_CONCURRENT_PUZZLE       | `(65 puzzle_hash)`                | Asserts that this coin is spent in the same block as a coin with a given `puzzle_hash`.                             |
+| ASSERT_MY_COIN_ID              | `(70 coin_id)`                    | Asserts that the coin's id matches the given `coin_id`.                                                             |
+| ASSERT_MY_PARENT_ID            | `(71 parent_id)`                  | Asserts that the coin's parent id matches the given `parent_id`.                                                    |
+| ASSERT_MY_PUZZLEHASH           | `(72 puzzle_hash)`                | Asserts that the coin's puzzle hash matches the given `puzzle_hash`.                                                |
+| ASSERT_MY_AMOUNT               | `(73 amount)`                     | Asserts that the coin's amount matches the given `amount`.                                                          |
+| ASSERT_MY_BIRTH_SECONDS        | `(74 seconds)`                    | Asserts that the coin was created with a timestamp of `seconds`.                                                    |
+| ASSERT_MY_BIRTH_HEIGHT         | `(75 block_height)`               | Asserts that the coin was created on a given `block_height`.                                                        |
+| ASSERT_EPHEMERAL               | `(76)`                            | Asserts that the coin was both created and spent on the current block.                                              |
+| ASSERT_SECONDS_RELATIVE        | `(80 seconds_passed)`             | Asserts that the previous transaction block's timestamp was at least `seconds_passed` seconds after coin creation.  |
+| ASSERT_SECONDS_ABSOLUTE        | `(81 seconds)`                    | Asserts that the previous transaction block's timestamp was at least `seconds`.                                     |
+| ASSERT_HEIGHT_RELATIVE         | `(82 block_height_passed)`        | Asserts that the previous transaction block's height was at least `block_height_passed` after coin creation.        |
+| ASSERT_HEIGHT_ABSOLUTE         | `(83 block_height)`               | Asserts that the previous transaction block's height was at least `block_height`.                                   |
+| ASSERT_BEFORE_SECONDS_RELATIVE | `(84 seconds_passed)`             | Asserts that the previous transaction block's timestamp was less than `seconds_passed` seconds after coin creation. |
+| ASSERT_BEFORE_SECONDS_ABSOLUTE | `(85 seconds)`                    | Asserts that the previous transaction block's timestamp was less than `seconds`.                                    |
+| ASSERT_BEFORE_HEIGHT_RELATIVE  | `(86 block_height_passed)`        | Asserts that the previous transaction block's height was less than `seconds_passed` after coin creation.            |
+| ASSERT_BEFORE_HEIGHT_ABSOLUTE  | `(87 block_height)`               | Asserts that the previous transaction block's height was less than `block_height`.                                  |
 
 ## Condition Costs {#costs}
 
@@ -69,18 +77,14 @@ Conditions not listed here do not have a cost associated with them.
 
 ## Hinting
 
-A hint is another word for memo. It's an extra value linked to coins that gets indexed by full nodes. Given a hint, a wallet can discover all coins which include that hint. Additionally, once a wallet has found a coin that includes a hint, it will have another piece of information to determine how it should be spent.
+When creating a coin, there is an optional `memos` parameter in addition to the `puzzle_hash` and `amount`. Wallets use the first memo parameter to discover assets (by hinting the corresponding `puzzle_hash` of the address it was sent to). This hint value is then stored in the blockchain database for easy lookup.
 
-Typically, a hint is the coin's inner puzzle hash. When a wallet sees a hint, it fetches the parent coin spend and attempts to use the hint to figure out the coin's type. For example, if the coin is a CAT, the wallet can determine the CAT's TAIL, and therefore its type, without additional input from an end user.
+A wallet will typically look up each of its addresses by hint to get a record for every coin. It can then find the puzzle reveal from its parent coin's spend, which is then used to identify and validate the coin. This info can then be used to spend the coin later on.
 
-Thus, hints are powerful because they enable wallets to auto-discover CATs and NFTs associated with that wallet. If hints didn't exist, end users would have to tell their wallets which CATs or NFTs to look for. In the case of an airdrop, if there were no hinting, the wallet's owner might not even know about an asset, so it would never be discovered.
-
-When creating a coin, you can pass it a list of 32 byte hints. This field is optional, and will be ignored if missing or invalid.
-
-Currently, only one hint is used and the rest are completely ignored, but in the future multiple may be used for something.
+Without hinting, a wallet would have to either look at millions of coins to figure out which of them it owns. Hints are a powerful and flexible way to optimize this lookup.
 
 ## Announcements
 
-Announcements are ephemeral, meaning that they don't last forever. They are only accessible within the block they are created. Their purpose is to allow interaction between coins. You can require that one spend happen in order for another to happen, and vice versa.
+Announcements are ephemeral, meaning that they don't last forever. They can only be asserted within the block they are created. Their purpose is to ensure multiple coins are spent together, either for fees, verification, or as a security measure.
 
-For coin announcements, the id is the coin id and message sha256 hashed together. Likewise, for puzzle announcements, it's the puzzle hash and message sha256 hashed together.
+For coin announcements, the id is the `coin_id` and `message` sha256 hashed together. Likewise, for puzzle announcements, it's the `puzzle_hash` and `message` sha256 hashed together.
