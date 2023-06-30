@@ -535,11 +535,11 @@ Response:
 ```
 {
     'store_ids': [
-        '39114b28a3674b6c2c0ed65d3518842fd17f9df46794f49cd223f9f3a463f09d', 
-        '5d8f5c88f27804f5c387e070403faece14acb74460bbf7d47739178a3774eff3', 
-        '77e9c21be435dded6e8c9b32e93b2b880665f5b34f860a642f22d3fa500ce457', 
+        '39114b28a3674b6c2c0ed65d3518842fd17f9df46794f49cd223f9f3a463f09d',
+        '5d8f5c88f27804f5c387e070403faece14acb74460bbf7d47739178a3774eff3',
+        '77e9c21be435dded6e8c9b32e93b2b880665f5b34f860a642f22d3fa500ce457',
         '9d0c65e77c750eac28b3fa78e57cdcec59fe53448eb59bdfbfa694d89f262b4b'
-    ], 
+    ],
     'success': True
 }
 ```
@@ -670,14 +670,14 @@ Response:
 ```
 {
     'store_ids': [
-        'ba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401', 
-        '9d0c65e77c750eac28b3fa78e57cdcec59fe53448eb59bdfbfa694d89f262b4b', 
-        '39114b28a3674b6c2c0ed65d3518842fd17f9df46794f49cd223f9f3a463f09d', 
-        '77e9c21be435dded6e8c9b32e93b2b880665f5b34f860a642f22d3fa500ce457', 
-        '5d8f5c88f27804f5c387e070403faece14acb74460bbf7d47739178a3774eff3', 
-        'a101396917a68f79e9119eaef738162d73e23b43e952561f21bdb1a1c171df89', 
+        'ba934d7f4ad47c34cb1a99d3c57adacb1883cff5528cca67c34f724f3560e401',
+        '9d0c65e77c750eac28b3fa78e57cdcec59fe53448eb59bdfbfa694d89f262b4b',
+        '39114b28a3674b6c2c0ed65d3518842fd17f9df46794f49cd223f9f3a463f09d',
+        '77e9c21be435dded6e8c9b32e93b2b880665f5b34f860a642f22d3fa500ce457',
+        '5d8f5c88f27804f5c387e070403faece14acb74460bbf7d47739178a3774eff3',
+        'a101396917a68f79e9119eaef738162d73e23b43e952561f21bdb1a1c171df89',
         '0f2257618880bf2a6d8d3c223147e06fa547520802e44a5359d240cdf0b9dbe7'
-    ], 
+    ],
     'success': True
 }
 ```
@@ -713,11 +713,11 @@ Response:
 
 ```
 {
-    'success': True, 
+    'success': True,
     'sync_status': {
-        'generation': 1, 
-        'root_hash': '532d8df550bdbdef28c1a7b27eaefc812afb99eabd59b3c041000c7ea352e900', 
-        'target_generation': 1, 
+        'generation': 1,
+        'root_hash': '532d8df550bdbdef28c1a7b27eaefc812afb99eabd59b3c041000c7ea352e900',
+        'target_generation': 1,
         'target_root_hash': '532d8df550bdbdef28c1a7b27eaefc812afb99eabd59b3c041000c7ea352e900'
     }
 }
