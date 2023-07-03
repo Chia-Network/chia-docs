@@ -611,6 +611,29 @@ To verify that the same address is being reused:
    - The `--override` flag is needed because the amounts to send are considered unusual
 3. After the transaction has completed, run `chia wallet get_address -f <fingerprint>`. You should receive the same address as you received in step 1. If you received a different address, `reuse_public_key_for_change` was not set to `true` for the specified fingerprint.
 
+### What is identical spend aggregation?
+
+Identical spend aggregation is a mempool feature that allows multiple different spend bundles to spend the same coin. It is being introduced in version 1.8.2.
+
+There are two requirements for identical spend aggregation to be successful:
+1. The puzzle of the coin being spent must not contain any `AGG_SIG_ME` or `AGG_SIG_UNSAFE` conditions
+2. Each of the spend bundles that spend the coin must have identical solutions for spending that particular coin
+
+In cases where both of these requirements are met, when a farmer creates a block, it will choose one of the identical spends from the mempool as the "winner", based on which transaction pays the highest fee-per-cost. The remaining copies of that spend will then be deduplicated against the winner (they will be aggregated into a single spend). Any announcements the coin makes will then be available for any other spend to assert within the same block.
+
+### Which mempool feature does identical spend aggregation introduce?
+
+In Chia versions prior to 1.8.2, two key features were not supported by the mempool:
+
+1. The ability of a transaction to spend the output of another mempool item (i.e. inter-transaction ephemeral spends)
+2. The ability to assert an announcement made by another mempool item (i.e. inter-transaction announcements)
+
+These features both would necessitate the creation of dependency graphs, which a farmer would need to solve (and ideally optimize) when creating a block.
+
+Regarding feature 1, the only ephemeral spends that are currently supported must come from the same spend bundle. _Inter-transaction_ ephemeral spends are not yet supported as of version 1.8.2.
+
+Chia version 1.8.2 introduces identical spend aggregation, which addresses some of the use cases of Feature 2. Spends that make use of this feature are still restricted by the lack of `AGG_SIG_*` conditions, which means that anyone who needs to assert an announcement from an aggregated spend could also have spent the coin. However, this version brings Chia one step closer to offering full support for inter-transaction announcements.
+
 ---
 
 ## Offers

@@ -415,6 +415,46 @@ Response:
 
 ## Wallet node
 
+### `get_auto_claim`
+
+Functionality: Show the auto claim settings for all types of claims, including clawback
+
+Usage: chia rpc wallet [OPTIONS] get_auto_claim [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+Note that the auto claim settings are configurable in `~/.chia/mainnet/config/config.yaml` in the `auto_claim:` section.
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_auto_claim
+```
+
+Response:
+
+```json
+{
+    "batch_size": 50,
+    "enabled": false,
+    "min_amount": 0,
+    "success": true,
+    "tx_fee": 0
+}
+```
+
+</details>
+
+---
+
 ### `get_height_info`
 
 Functionality: Show the block height to which the current wallet is synced
@@ -603,6 +643,73 @@ Request Parameters:
 | Flag         | Type | Required | Description                            |
 | :----------- | :--- | :------- | :------------------------------------- |
 | spend_bundle | TEXT | True     | The spend bundle (transaction) to push |
+
+---
+
+### `set_auto_claim`
+
+Functionality: Set the auto claim settings for all types of claims, including clawback
+
+Usage: chia rpc wallet [OPTIONS] set_auto_claim [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag       | Type    | Required | Description                                                              |
+| :--------- | :------ | :------- | :----------------------------------------------------------------------- |
+| enabled    | BOOLEAN | TRUE     | Set to `true` to enable auto claim, or `false` to disable it             |
+| tx_fee     | NUMBER  | TRUE     | The default transaction fee to be used for claims, in mojos              |
+| min_amount | NUMBER  | TRUE     | The minimum value, in mojos, of a claim to be included in the auto claim |
+| batch_size | NUMBER  | TRUE     | The maximum number of claims to process in one spend bundle              |
+
+If one or more flags is missing, this RPC will succeed and set the missing flag back to the default value.
+
+<details>
+<summary>Example</summary>
+
+Start by obtaining a baseline:
+
+```json
+chia rpc wallet get_auto_claim
+```
+
+Response:
+
+```json
+{
+    "batch_size": 50,
+    "enabled": false,
+    "min_amount": 0,
+    "success": true,
+    "tx_fee": 0
+}
+```
+
+Next, change all of these settings:
+
+```json
+chia rpc wallet set_auto_claim '{"enabled": true, "tx_fee": 1, "min_amount": 1, "batch_size": 1}'
+```
+
+Response:
+
+```json
+{
+    "batch_size": 1,
+    "enabled": true,
+    "min_amount": 1,
+    "success": true,
+    "tx_fee": 1
+}
+```
+
+</details>
 
 ---
 
@@ -1108,6 +1215,60 @@ Response:
 {
   "index": 436,
   "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_coin_records`
+
+Functionality: Obtain all coin records for the current wallet
+
+Usage: chia rpc wallet [OPTIONS] get_coin_records [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_coin_records
+```
+
+Response:
+
+```json
+{
+    "coin_records": [
+        {
+            "amount": 100,
+            "coinbase": false,
+            "confirmed_height": 3879053,
+            "id": "0x8c8518c23670a37287063951761e6f23348918b887762d9a8fc7f2217bd44c04",
+            "metadata": null,
+            "parent_coin_info": "0x6b17387014afbdc661bec74438cc49e44889861b5ddd13ae2113807e82f9df08",
+            "puzzle_hash": "0x59714c1cebe4a747bb90b607bce5cc589df6b612ee7f742c79f6d070a50e9083",
+            "spent_height": 0,
+            "type": 0,
+            "wallet_identifier": {
+                "id": 1,
+                "type": 0
+            }
+        }
+    ],
+    "success": true,
+    "total_count": null
 }
 ```
 
@@ -1700,6 +1861,72 @@ Response:
 
 ---
 
+### `get_wallet_balances`
+
+Functionality: Obtain the balance (and related info) from one or more wallets
+
+Usage: chia rpc wallet [OPTIONS] get_wallet_balance [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag       | Type | Required  | Description                                                                                |
+| :--------- | :--- | :-------- | :----------------------------------------------------------------------------------------- |
+| wallet_ids | LIST | False     | A list of Wallet IDs from which to obtain the balance [Default: list info for all wallets] |
+
+<details>
+<summary>Example</summary>
+
+Get the balance and other info for wallets 1 and 2:
+
+```json
+chia rpc wallet get_wallet_balances '{"wallet_ids": [1,2]}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "wallet_balances": {
+        "1": {
+            "confirmed_wallet_balance": 249908082013,
+            "fingerprint": 3792481086,
+            "max_send_amount": 249908082013,
+            "pending_change": 0,
+            "pending_coin_removal_count": 0,
+            "spendable_balance": 249908082013,
+            "unconfirmed_wallet_balance": 249908082013,
+            "unspent_coin_count": 19,
+            "wallet_id": 1,
+            "wallet_type": 0
+        },
+        "2": {
+            "confirmed_wallet_balance": 0,
+            "fingerprint": 3792481086,
+            "max_send_amount": 0,
+            "pending_change": 0,
+            "pending_coin_removal_count": 0,
+            "spendable_balance": 0,
+            "unconfirmed_wallet_balance": 0,
+            "unspent_coin_count": 6,
+            "wallet_id": 2,
+            "wallet_type": 10
+        }
+    }
+}
+```
+
+</details>
+
+---
+
 ### `select_coins`
 
 Functionality: Select coins from a given wallet that add up to at least the specified amount
@@ -2269,6 +2496,262 @@ Response:
   "signature": "843deb871383889bfb8b9b22c0137e9b12cef875e27c998a3def6aa13c9340e2036ae90bbbb9a78894572319bf0fedbc08057849882ca6723834a99bf0e97a5e9f9702c5a02a64434b3550922c488f957036d19af2be2c92eb84c1d5d4f8eba6",
   "success": true
 }
+```
+
+</details>
+
+---
+
+### `spend_clawback_coins`
+
+Functionality: Spend clawback coins that were sent (to claw them back) or received (to claim them)
+
+Usage: chia rpc wallet [OPTIONS] spend_clawback_coins [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters:
+
+| Flag       | Type         | Required | Description                                                                                                        |
+| :--------- | :----------- | :------- |:------------------------------------------------------------------------------------------------------------------ |
+| coin_ids   | STRING ARRAY | True     | List of coin IDs to be spent                                                                                       |
+| batch_size | NUMBER       | False    | The number of coins to spend per bundle, [Default: `batch_size` obtainable from [get_auto_claim](#get_auto_claim)] |
+| fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                               |
+
+When examing the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
+
+<details>
+<summary>Example</summary>
+
+First, list a clawback transaction. For this example, we will specify the `to_address`.
+
+Alternatively, you could search for coins with `"type": 6` (receive) or `"type": 7` (send), and `"spent": false`.
+
+```json
+chia rpc wallet get_transactions '{"wallet_id": 1, "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy"}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "transactions": [
+        {
+            "additions": [
+                {
+                    "amount": 1000000000000,
+                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+                    "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
+                },
+                {
+                    "amount": 999700000000,
+                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+                    "puzzle_hash": "0x80877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963"
+                }
+            ],
+            "amount": 1000000000000,
+            "confirmed": true,
+            "confirmed_at_height": 2765989,
+            "created_at_time": 1686643350,
+            "fee_amount": 100000000,
+            "memos": {
+                "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
+            },
+            "name": "0x199415953fb4f1fea1131a0a44a30f78d456b970bdb16ac300d2d7ec81897c42",
+            "removals": [
+                {
+                    "amount": 1999800000000,
+                    "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+                    "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+                }
+            ],
+            "sent": 3,
+            "sent_to": [
+                [
+                    "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
+                    1,
+                    null
+                ],
+                [
+                    "5d00527d8db1c5ba8043fbe565d065ff1a0933e84b69a1e74b5f2e9c6b07b375",
+                    1,
+                    null
+                ],
+                [
+                    "a9e061dec18380f16afc72df7a580a5291eaf26175c0089c25f72a6d5be71773",
+                    3,
+                    "ALREADY_INCLUDING_TRANSACTION"
+                ]
+            ],
+            "spend_bundle": {
+                "aggregated_signature": "0x807a93c48e191a940738f1d886ade121a99901cd3f57d989cf014c5d09d8179507e5c36161974585c19b5c6b7578f06211742e5439e6d4e9eae69b8f8987898abe3f60e0925aa564e8d4f44b1591743649e61d043347af30f52bfa78d57f2166",
+                "coin_spends": [
+                    {
+                        "coin": {
+                            "amount": 1999800000000,
+                            "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+                            "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+                        },
+                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b1d8407fee30b01e66ab0baa86d1dcb67f41a91bc9aca70867dba877ec7276174344afc58adaf65c6e3ee7e483b39e8bff018080",
+                        "solution": "0xff80ffff01ffff01ff02ffc04e00010000004800000000000002587414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f80ffff33ffa0501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8ff8600e8d4a51000ffffa0c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f8080ffff33ffa080877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963ff8600e8c2c36d0080ffff34ff8405f5e10080ffff3cffa0cd929a98aba31bcee901d852a568089fb3ab7bbc8830eda7dba733692af3ffb58080ff8080"
+                    }
+                ]
+            },
+            "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
+            "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+            "trade_id": null,
+            "type": 1,
+            "wallet_id": 1
+        },
+        {
+            "additions": [
+                {
+                    "amount": 1000000000000,
+                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+                    "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
+                }
+            ],
+            "amount": 1000000000000,
+            "confirmed": false,
+            "confirmed_at_height": 2765989,
+            "created_at_time": 1686643386,
+            "fee_amount": 0,
+            "memos": {
+                "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
+            },
+            "metadata": {
+                "coin_id": "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
+                "recipient_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+                "sender_puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43",
+                "spent": false,
+                "time_lock": 600
+            },
+            "name": "0x97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
+            "removals": [
+                {
+                    "amount": 1999800000000,
+                    "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+                    "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+                }
+            ],
+            "sent": 0,
+            "sent_to": [],
+            "spend_bundle": null,
+            "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
+            "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+            "trade_id": null,
+            "type": 7,
+            "wallet_id": 1
+        }
+    ],
+    "wallet_id": 1
+}
+```
+
+This coin is `"type": 7`, so it is being sent from this wallet. This RPC can be used to claw back this coin as long as it has yet to be spent by the recipient wallet:
+
+```json
+chia rpc wallet spend_clawback_coins '{"wallet_id": 1, "coin_ids": ["97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea"], "fee": 100000000}'
+```
+
+Result:
+
+```json
+{
+    "success": true,
+    "transaction_ids": [
+        "66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd"
+    ]
+}
+```
+
+If you would like to see the result, call the `get_transaction` RPC:
+
+```json
+chia rpc wallet get_transaction '{"transaction_id": "66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd"}'
+```
+
+```json
+{
+    "success": true,
+    "transaction": {
+        "additions": [
+            {
+                "amount": 1000000000000,
+                "parent_coin_info": "0x97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
+                "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+            },
+            {
+                "amount": 999600000000,
+                "parent_coin_info": "0xc06eb268becfb157b92baecced9685db66b048fd7bb8900cabedd14eef773a46",
+                "puzzle_hash": "0x258815e9a6a41d3dacc4d8959630fda6a0db14364751e58719b84c78df971b3b"
+            }
+        ],
+        "amount": 1000000000000,
+        "confirmed": true,
+        "confirmed_at_height": 2766056,
+        "created_at_time": 1686644367,
+        "fee_amount": 100000000,
+        "memos": {
+            "feeedc3b56a7ed6cb96e34c7492cd6fcba07363d6861cd0094d3975734a275f9": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
+        },
+        "name": "0x66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd",
+        "removals": [
+            {
+                "amount": 1000000000000,
+                "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+                "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
+            },
+            {
+                "amount": 999700000000,
+                "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+                "puzzle_hash": "0x80877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963"
+            }
+        ],
+        "sent": 1,
+        "sent_to": [
+            [
+                "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
+                1,
+                null
+            ]
+        ],
+        "spend_bundle": {
+            "aggregated_signature": "0xb7a57e1e3c2e93d36c611cac4bc39d6c2f1a9c78dbfc6ec14603c3c7c662a95dffe7295ddaf92f4328c7f2a7f374094007b4b63f5a5f116d63200e4f79e59f249dafd5492d7a09d5c0c0fcfc7af8950c8bd006ee8681e65b96eb98bd21862fdf",
+            "coin_spends": [
+                {
+                    "coin": {
+                        "amount": 1000000000000,
+                        "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+                        "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ffff09ff05ffff02ff06ffff04ff02ffff04ffff0bffff0101ffff02ff04ffff04ff02ffff04ff17ff8080808080ffff04ff0bff808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff04ffff01ffff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff04ffff04ff02ffff04ff09ff80808080ffff02ff04ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff02ffff03ff1bffff01ff02ff06ffff04ff02ffff04ffff02ffff03ffff18ffff0101ff1380ffff01ff0bffff0102ff2bff0580ffff01ff0bffff0102ff05ff2b8080ff0180ffff04ffff04ffff17ff13ffff0181ff80ff3b80ff8080808080ffff010580ff0180ff018080ffff04ffff01a0f917921d94014f9e85421e22cebd5e9e48ee95ba1c7cd80ca85f3f8a46156fd6ff018080",
+                    "solution": "0xffff01ffa0d7dcfd3463b023bd7d49ef029780c011f40a246fbeb5f5313232caf1c15a3b3780ffff02ffff01ff02ffff01ff02ffff03ffff09ff05ffff02ff02ffff04ff02ffff04ff0bff8080808080ffff01ff02ff0bff1780ffff01ff088080ff0180ffff04ffff01ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff02ffff04ff02ffff04ff09ff80808080ffff02ff02ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01a07414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43ff018080ffffff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b1d8407fee30b01e66ab0baa86d1dcb67f41a91bc9aca70867dba877ec7276174344afc58adaf65c6e3ee7e483b39e8bff018080ffff80ffff01ffff33ffa07414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43ff8600e8d4a51000ffffa0c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f8080ffff3cffa047dd5ceefbabf716dab535e57ad057fbfbb080165ccdc985429dde676efbf7498080ff80808080"
+                },
+                {
+                    "coin": {
+                        "amount": 999700000000,
+                        "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+                        "puzzle_hash": "0x80877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963"
+                    },
+                    "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0918b9dfaeb883c0addc43329396f6a18ab862989b0885f4fed046cf7f04b47bdc849f158be97c6b08e38e46e75c99843ff018080",
+                    "solution": "0xff80ffff01ffff33ffa0258815e9a6a41d3dacc4d8959630fda6a0db14364751e58719b84c78df971b3bff8600e8bccd8c0080ffff34ff8405f5e10080ffff3cffa0ac7c3aeb418ff77a35fdb1d9e8fe97424c8757ffbfcee8f649385f5b4cf9244f80ffff3dffa088e357cca82523bd860af625729fa6bd31b05a7f837c0bbb1ebbe4193e2baf8f8080ff8080"
+                }
+            ]
+        },
+        "to_address": "txch1ws2tsf74njjy07pd65dzvu4sewc6e7xcr82cwa9kycstgcxeedpsqf5r2a",
+        "to_puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43",
+        "trade_id": null,
+        "type": 8,
+        "wallet_id": 1
+    },
+    "transaction_id": "0x66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd"
 ```
 
 </details>
@@ -4497,121 +4980,133 @@ Response:
 
 ```json
 {
-  "routes": [
-    "/log_in",
-    "/get_logged_in_fingerprint",
-    "/get_public_keys",
-    "/get_private_key",
-    "/generate_mnemonic",
-    "/add_key",
-    "/delete_key",
-    "/check_delete_key",
-    "/delete_all_keys",
-    "/set_wallet_resync_on_startup",
-    "/get_sync_status",
-    "/get_height_info",
-    "/push_tx",
-    "/push_transactions",
-    "/farm_block",
-    "/get_timestamp_for_height",
-    "/get_initial_freeze_period",
-    "/get_network_info",
-    "/get_wallets",
-    "/create_new_wallet",
-    "/get_wallet_balance",
-    "/get_transaction",
-    "/get_transactions",
-    "/get_transaction_count",
-    "/get_next_address",
-    "/send_transaction",
-    "/send_transaction_multi",
-    "/get_farmed_amount",
-    "/create_signed_transaction",
-    "/delete_unconfirmed_transactions",
-    "/select_coins",
-    "/get_spendable_coins",
-    "/get_coin_records_by_names",
-    "/get_current_derivation_index",
-    "/extend_derivation_index",
-    "/get_notifications",
-    "/delete_notifications",
-    "/send_notification",
-    "/sign_message_by_address",
-    "/sign_message_by_id",
-    "/verify_signature",
-    "/get_transaction_memo",
-    "/cat_set_name",
-    "/cat_asset_id_to_name",
-    "/cat_get_name",
-    "/get_stray_cats",
-    "/cat_spend",
-    "/cat_get_asset_id",
-    "/create_offer_for_ids",
-    "/get_offer_summary",
-    "/check_offer_validity",
-    "/take_offer",
-    "/get_offer",
-    "/get_all_offers",
-    "/get_offers_count",
-    "/cancel_offer",
-    "/cancel_offers",
-    "/get_cat_list",
-    "/did_set_wallet_name",
-    "/did_get_wallet_name",
-    "/did_update_recovery_ids",
-    "/did_update_metadata",
-    "/did_get_pubkey",
-    "/did_get_did",
-    "/did_recovery_spend",
-    "/did_get_recovery_list",
-    "/did_get_metadata",
-    "/did_create_attest",
-    "/did_get_information_needed_for_recovery",
-    "/did_get_current_coin_info",
-    "/did_create_backup_file",
-    "/did_transfer_did",
-    "/did_message_spend",
-    "/did_get_info",
-    "/did_find_lost_did",
-    "/nft_mint_nft",
-    "/nft_count_nfts",
-    "/nft_get_nfts",
-    "/nft_get_by_did",
-    "/nft_set_nft_did",
-    "/nft_set_nft_status",
-    "/nft_get_wallet_did",
-    "/nft_get_wallets_with_dids",
-    "/nft_get_info",
-    "/nft_transfer_nft",
-    "/nft_add_uri",
-    "/nft_calculate_royalties",
-    "/nft_mint_bulk",
-    "/nft_set_did_bulk",
-    "/nft_transfer_bulk",
-    "/pw_join_pool",
-    "/pw_self_pool",
-    "/pw_absorb_rewards",
-    "/pw_status",
-    "/create_new_dl",
-    "/dl_track_new",
-    "/dl_stop_tracking",
-    "/dl_latest_singleton",
-    "/dl_singletons_by_root",
-    "/dl_update_root",
-    "/dl_update_multiple",
-    "/dl_history",
-    "/dl_owned_singletons",
-    "/dl_get_mirrors",
-    "/dl_new_mirror",
-    "/dl_delete_mirror",
-    "/get_connections",
-    "/open_connection",
-    "/close_connection",
-    "/stop_node",
-    "/get_routes",
-    "/healthz"
-  ],
-  "success": true
+    "routes": [
+        "/log_in",
+        "/get_logged_in_fingerprint",
+        "/get_public_keys",
+        "/get_private_key",
+        "/generate_mnemonic",
+        "/add_key",
+        "/delete_key",
+        "/check_delete_key",
+        "/delete_all_keys",
+        "/set_wallet_resync_on_startup",
+        "/get_sync_status",
+        "/get_height_info",
+        "/push_tx",
+        "/push_transactions",
+        "/farm_block",
+        "/get_timestamp_for_height",
+        "/set_auto_claim",
+        "/get_auto_claim",
+        "/get_initial_freeze_period",
+        "/get_network_info",
+        "/get_wallets",
+        "/create_new_wallet",
+        "/get_wallet_balance",
+        "/get_wallet_balances",
+        "/get_transaction",
+        "/get_transactions",
+        "/get_transaction_count",
+        "/get_next_address",
+        "/send_transaction",
+        "/send_transaction_multi",
+        "/spend_clawback_coins",
+        "/get_coin_records",
+        "/get_farmed_amount",
+        "/create_signed_transaction",
+        "/delete_unconfirmed_transactions",
+        "/select_coins",
+        "/get_spendable_coins",
+        "/get_coin_records_by_names",
+        "/get_current_derivation_index",
+        "/extend_derivation_index",
+        "/get_notifications",
+        "/delete_notifications",
+        "/send_notification",
+        "/sign_message_by_address",
+        "/sign_message_by_id",
+        "/verify_signature",
+        "/get_transaction_memo",
+        "/cat_set_name",
+        "/cat_asset_id_to_name",
+        "/cat_get_name",
+        "/get_stray_cats",
+        "/cat_spend",
+        "/cat_get_asset_id",
+        "/create_offer_for_ids",
+        "/get_offer_summary",
+        "/check_offer_validity",
+        "/take_offer",
+        "/get_offer",
+        "/get_all_offers",
+        "/get_offers_count",
+        "/cancel_offer",
+        "/cancel_offers",
+        "/get_cat_list",
+        "/did_set_wallet_name",
+        "/did_get_wallet_name",
+        "/did_update_recovery_ids",
+        "/did_update_metadata",
+        "/did_get_pubkey",
+        "/did_get_did",
+        "/did_recovery_spend",
+        "/did_get_recovery_list",
+        "/did_get_metadata",
+        "/did_create_attest",
+        "/did_get_information_needed_for_recovery",
+        "/did_get_current_coin_info",
+        "/did_create_backup_file",
+        "/did_transfer_did",
+        "/did_message_spend",
+        "/did_get_info",
+        "/did_find_lost_did",
+        "/nft_mint_nft",
+        "/nft_count_nfts",
+        "/nft_get_nfts",
+        "/nft_get_by_did",
+        "/nft_set_nft_did",
+        "/nft_set_nft_status",
+        "/nft_get_wallet_did",
+        "/nft_get_wallets_with_dids",
+        "/nft_get_info",
+        "/nft_transfer_nft",
+        "/nft_add_uri",
+        "/nft_calculate_royalties",
+        "/nft_mint_bulk",
+        "/nft_set_did_bulk",
+        "/nft_transfer_bulk",
+        "/pw_join_pool",
+        "/pw_self_pool",
+        "/pw_absorb_rewards",
+        "/pw_status",
+        "/create_new_dl",
+        "/dl_track_new",
+        "/dl_stop_tracking",
+        "/dl_latest_singleton",
+        "/dl_singletons_by_root",
+        "/dl_update_root",
+        "/dl_update_multiple",
+        "/dl_history",
+        "/dl_owned_singletons",
+        "/dl_get_mirrors",
+        "/dl_new_mirror",
+        "/dl_delete_mirror",
+        "/vc_mint",
+        "/vc_get",
+        "/vc_get_list",
+        "/vc_spend",
+        "/vc_add_proofs",
+        "/vc_get_proofs_for_root",
+        "/vc_revoke",
+        "/get_connections",
+        "/open_connection",
+        "/close_connection",
+        "/stop_node",
+        "/get_routes",
+        "/healthz"
+    ],
+    "success": true
 }
 ```
 
