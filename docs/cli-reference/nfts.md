@@ -487,7 +487,7 @@ Options:
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
 |               | --num             | INTEGER | False    | Number of NFTs to return                                                                                 |
-|               | --start-index     | INTEGER | False    | Which starting index to list NFTs from, used in pagination                                               |
+|               | --start-index     | INTEGER | False    | Which starting index to start listing NFTs from                                                          |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
