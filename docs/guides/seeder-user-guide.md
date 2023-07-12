@@ -146,7 +146,7 @@ You must have an ICANN registered domain name. Your seeder host must support IPv
 
 We ask that you commit to a monthly uptime of 99.9% which is available enough to be reliable but also leaves flexibility to not need to run a cluster and gives you time for a reboot once in a while to keep up with things like security patches. We will be monitoring all of the seeders listed in the most recent version of `initial-config.yaml`. We highly recommend that you enable monitoring of your seeder as well. We are heavy users of [Uptime Robot](https://uptimerobot.com/) but anything similar will do.
 
-Being a known community member - the better you're known (pseudonymously is fine) - the more likely you are to be added. You should be on [Keybase](https://keybase.io/team/chia_network.public) and we will need to know your Keybase handle as you will be added to a seeder operator's closed channel.
+Being a known community member - the better you're known (pseudonymously is fine) - the more likely you are to be added. You should have an account on [Keybase](https://keybase.io/) and we will need to know your Keybase handle, as you will be added to a seeder operator's private channel.
 
 The final criteria is geographical dispersion. If you are hosting in a region where we don't have a seeder, you are more likely to be added. We will want to know what country (and region if it's a large country e.g. North West US) - generally - your seeder will reside in to facilitate this.
 
