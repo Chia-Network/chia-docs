@@ -14,7 +14,7 @@ There are various ways to install Chia, with the best method depending on what y
 
 - If you intend to run a dedicated Chia full node on a server and connect to it programmatically using the [RPC interface](/rpc), the best method would be to install and run Chia via the command line on a proper server environment.
 
-- If you inded to do [Chialisp](https://chialisp.com) development or build projects that leverage Chia, you have the options of either using an installer (the recomended pattern), or installing from source.
+- If you intend to do [Chialisp](https://chialisp.com) development or build projects that leverage Chia, you have the options of either using an installer (the recommended pattern), or installing from source.
 
 - Lastly, if you plan on making contributions to the source code, then installing Chia from source would be your path.
 
@@ -389,7 +389,7 @@ It is possible to configure the `CHIA_ROOT` environment variable to another loca
 
 ## CLI
 
-Using the CLI gives greater and more precise control over the various Chia services such as the full node. As of 1.8.2, when installing from an installer or package CLI commands will be automatically added to your path for Windows and Linux. For a more details on the commands, read the [CLI Reference](/cli).
+Using the CLI gives greater and more precise control over the various Chia services such as the full node. As of 1.8.2, when installing from an installer or package CLI commands will be automatically added to your path for Windows and Linux. For more details on the commands, read the [CLI Reference](/cli).
 
 ````mdx-code-block
 <Tabs>
