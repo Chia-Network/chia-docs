@@ -188,10 +188,6 @@ Response (abbreviated):
                         "infused_challenge_chain_sub_slot_hash": null
                     }
                 },
-
-...
-...
-
                 "reward_claims_incorporated": [
                     {
                         "amount": 1750000000000,
@@ -205,7 +201,6 @@ Response (abbreviated):
                     }
                 ]
             }
-        }
     ],
     "success": true
 }

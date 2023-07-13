@@ -110,7 +110,7 @@ Response:
 {
     "nft_list": [
         {
-            "chain_info": "((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 "https://new_metadata_uri.com" "https://metadata_example.com", "https://metadata_example2.com") (27765 "https://license_example.com", "https://license_example2.com") (29550 . 1) (29556 . 5) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))",
+            "chain_info": "((117 \"https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg\") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 \"https://new_metadata_uri.com\" \"https://metadata_example.com\", \"https://metadata_example2.com\") (27765 \"https://license_example.com\", \"https://license_example2.com\") (29550 . 1) (29556 . 5) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))",
             "data_hash": "0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0",
             "data_uris": [
                 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
@@ -414,7 +414,7 @@ Response:
 ```json
 {
     "nft_info": {
-        "chain_info": "((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 "https://metadata_example.com", "https://metadata_example2.com") (27765 "https://license_example.com", "https://license_example2.com") (29550 . 1) (29556 . 5) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))",
+        "chain_info": "((117 \"https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg\") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021 \"https://metadata_example.com\", \"https://metadata_example2.com\") (27765 \"https://license_example.com\", \"https://license_example2.com\") (29550 . 1) (29556 . 5) (28008 . 0x868463c2ae6f8a9585156c9ad9f4b9b01eeacc56fec82aa629c97135ff21823e) (27752 . 0x358d4eb4aedefbec22824036299eff24216d213a95c8f986f862f0a89a250a82))",
         "data_hash": "0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0",
         "data_uris": [
             "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"
@@ -535,7 +535,7 @@ Response:
 {
     "nft_list": [
         {
-            "chain_info": "((117 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021) (27765) (29550 . 1) (29556 . 1))",
+            "chain_info": "((117 \"https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg\") (104 . 0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0) (28021) (27765) (29550 . 1) (29556 . 1))",
             "data_hash": "0x14836b86a48e1b2b5e857213af97534704475b4c155d34b2cb83ed4b7cba2bb0",
             "data_uris": [
                 "https://images.pexels.com/photos/11053072/pexels-photo-11053072.jpeg"

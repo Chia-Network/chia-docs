@@ -22,11 +22,18 @@ ___In summary, unless you already knew before reading this page that you should 
 
 ## System Requirements
 
-The minimum supported specs are that of the Raspberry Pi 4, 4GB model:
+The minimum supported hardware specs are equal to that of a Raspberry Pi 4, 4GB model:
 
-- Quad core 1.5Ghz CPU (must be 64 bit)
-- 4 GB RAM
-- Python versions between 3.7 and 3.10 are supported
+- Quad core 1.5Ghz CPU (_must_ be 64 bit)
+- 4 GB RAM (8GB suggest for Raspberry Pi if running the GUI)
+- Python versions between 3.8.1 or higher
+
+For operating systems, our software officially supports:
+- Windows 10 or higher
+- macOS 11 or higher
+- Ubuntu 20.04 or higher
+
+Using other flavors of Linux are possible, but know your mileage may vary and you may need to [install from source](#from-source) as a last resort.
 
 ### Drive Format
 
@@ -37,7 +44,7 @@ Chia plot files are at least 108GB in size (for K32). To plot successfully requi
 ## Install
 
 ### Using the CLI
-_This method is intended for linux environments_
+_This method is intended for Linux environments_
 
 ```mdx-code-block
 <Tabs
