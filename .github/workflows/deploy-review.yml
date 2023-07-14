@@ -97,7 +97,7 @@ jobs:
     if: needs.check-secret-access.outputs.allowed == 'true'
     runs-on: [k8s-public]
     container:
-      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3.11.0
+      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3
     environment:
       name: Review ${{ github.event.pull_request.number }}
       url: https://${{ github.event.pull_request.number }}.docs.chia.net
