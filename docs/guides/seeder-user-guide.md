@@ -80,9 +80,11 @@ For a local DNS server setup, you will need control of a top-level domain (TLD) 
 Note that while it may be possible to use an existing domain, it is recommended to register a new domain name to specifically run the Chia Seeder address.
 :::
 
-Proceed by logging into your domain registrar and navigating to the section pertaining to managing DNS records for your domain. Next, click or activate the button or mechanism for creating a new DNS record. Finally, create a new DNS record of type "A", along with another new DNS record of type "NS".
+Proceed by logging into your domain registrar and navigating to the section pertaining to managing DNS records for your domain. Next, click or activate the button or mechanism for creating a new DNS record. Finally, create new type "A" and "AAAA" DNS record(s) for `vps.example.com`, which point at the ipv4 and ipv6 address(s) of the server running the seeder along with another new DNS record of type "NS" at `my-chia-seeder.example.com` with the nameserver set to the servers hostname, `vps.example.com`. 
 
-For instance, if you want to run a Chia Seeder's DNS server on `my-chia-seeder.example.com`, an authoritative NS record in `example.com`'s domain record will be required, which might point, e.g., to `vps.example.com`. 
+:::note
+Note that these names are examples, and as long as the "NS" record points at the hostname of the server, the seeder will work.
+:::
 
 You can check that this is the case by running the following command (please ensure that you have `dig` on your system by installing the `dnsutils` or `bind9-dnsutils` package; for instance, on Ubuntu, `$ sudo apt install dnsutils` or `$ sudo apt install bind9-dnsutils`):
 ```bash
