@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@cmfcmf/docusaurus-search-local": "^0.9.2",
+    "@cmfcmf/docusaurus-search-local": "^1.1.0",
     "@crowdin/cli": "^3.7.7",
     "@docusaurus/core": "^2.4.1",
     "@docusaurus/plugin-google-gtag": "^2.4.1",
