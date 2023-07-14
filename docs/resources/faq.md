@@ -1097,6 +1097,24 @@ chia version
 1.6.1
 ```
 
+### How can I use PFX certificates for .NET development on Windows?
+
+By default, Chia will install `.crt` certificates in `~/.chia/mainnet/config/ssl`. If you are a .NET developer who is developing an application that connects to a full node, it is much easier to do this with `.pfx` certificates. This is because the TLS layer on Windows requires that the private key be written to disk (in a particular way). The PEM-based certificate loading doesn't do that, only PFX-loading does.
+
+We plan to add `.pfx` certificates by default in a future version of Chia. However, for now there is an easy workaround -- export the certificates to `.pfx` and immediately reimport them. The command to do this in c# is:
+
+```
+cert = new X509Certificate2(cert.Export(X509ContentType.Pfx))
+```
+
+See [this stackoverflow thread](https://stackoverflow.com/questions/72096812/loading-x509certificate2-from-pem-file-results-in-no-credentials-are-available) for more info.
+
+:::info
+
+This issue only affects developers of Windows .NET applications. It does not affect Chia users on Windows, nor does it affect users or developers on other Operating Systems.
+
+:::
+
 ### What are the plans for the project and what are its tokenomics?
 
 This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Project FAQ](https://www.chia.net/faq/).
