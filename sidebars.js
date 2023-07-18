@@ -358,6 +358,7 @@ module.exports = {
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/verifiable-credentials-guide',
+    'guides/restricted-CATs-guide',
     {
       type: 'category',
       label: 'Tutorials',
