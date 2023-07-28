@@ -48,19 +48,62 @@ The sizes of uncompressed and compressed k values can be found on the [K Sizes p
 
 #### History
 
-Chia plots consist of seven tables, the format of which was defined in mid-2020. The plots are compressed -- they consist almost entirely of random cryptographic data, and therefore cannot be compressed using lossless techniques such as "zipping". When Chia's mainnet was launched in March 2021, all new and existing plots were stored on disk in their final formats.
+Chia plots consist of seven tables, the format of which was defined in mid-2020. The plots are already compressed -- they consist almost entirely of random cryptographic data, so they cannot be made much smaller using lossless techniques. When Chia's mainnet was launched in March 2021, all new and existing plots were stored on disk in their final formats.
 
 By the end of 2022, it had become apparent that a form of "lossy" plot compression was possible. A few different competing techniques were being devised that involved removing one or two tables, or some data held  within. The result was in incomplete plot that could be farmed by adding in the missing data in real-time.
 
-Using these techniques, "compressed" plots could be created that were 20-30% smaller than their uncompressed brethren, depending on the level of compression used. These plots contained the same number of proofs as the full-size plots, and they earned the same rewards. But because they were smaller, more of them could fit on a disk, which meant that the farmer would earn extra income compared with using uncompressed plots.
+:::info
+
+There are two basic types of compression -- lossless and lossy. For a brief overview of the differences, see [this article](https://www.howtogeek.com/744381/lossy-vs-lossless-compression-whats-the-difference/). While Chia compressed plots don't actually use lossy compression, it still can serve as a useful analogy to how it works.
+
+:::
+
+Using these techniques, "compressed" plots could be created that were 20-30% smaller than their uncompressed brethren, depending on how much data was left incomplete at the time of plotting.
+
+This form of "compression" is possible because the data contained within a plot is deterministic. A plot's ID is a hash, which determines its contents. If you create a plot twice on two different computers, starting with the same ID and k value, the resulting plots will be identical. It is therefore possible to generate some of this data only when it is needed. Other techniques, such as brute-forcing a small number of bits, results in the plots being smaller, while requiring only a small amount of extra computational resources.
+
+By mid-2023, most new Chia plots were being created using these "compression" techniques. Each individual plot earns the same rewards as an equivalent uncompressed plot. However, because the compressed plots are smaller, more of them fit on each disk. Farmers therefore earn extra income compared with using uncompressed plots.
 
 #### Tradeoffs
 
-As with most technologies, compressed plots come with tradeoffs, namely that they require more energy for farming than uncompressed plots. For C1-4, the extra energy is small, and a Raspberry Pi can still be used for farming. C8 and C9 plots are missing the first two tables, which require more energy to reconstruct. These plot compression levels therefore require a GPU for farming.
+As with most technologies, compressed plots come with tradeoffs. The fact that they are left incomplete upon being created means that they require more energy to be "completed" while farming. Luckily, lower levels of compression only require a small amount of extra energy while yielding 15% or more in extra rewards. On the other hand, the highest levels of compression require more energy to reconstruct, and they also require a GPU for farming.
 
-Higher compression levels might be possible, but they will not likely be beneficial to farmers. At a hypothetical C10 compression level, a plot almost needs to be entirely recreated while farming, effectively turning Chia's Proof of Space and Time consensus into Proof of Work.
+Chia's plot format was designed such that higher compression levels would yield linear gains in size, at a cost of an exponential increase in required computational power. Because of this tradeoff, it is unlikely that better techniques will emerge to compress plots by more than a few percent beyond their current levels.
 
-The plot format was designed such that higher compression levels would yield linear gains in size, at a cost of an exponential increase in computational power required to create the plot. Because of this tradeoff, it is unlikely that better techniques will emerge to compress plots by more than a few percent beyond their current levels.
+#### Plot Sizes
+
+The level of compression you choose will be highly dependant on your farming setup. The following table lists the size of a k32 plot created with the Bladebit plotter, at each level of compression. The final column will give you a general idea of the type of farmer you will need at each level:
+
+| <br />Level | Size <br />(GiB) | Relative <br />Size | Reward <br />Increase | Farm <br /> With |
+| :---------- | :--------------- | :------------------ | :-------------------- | :--------------- |
+| C0          | 101.4 		     | 100%                | 0%                    | Pi 4             |
+| C1          | 87.5             | 86.3%               | 15.9%                 | Pi 4             |
+| C2          | 86.0             | 84.8%               | 17.9%                 | Pi 4             |
+| C3          | 84.5             | 83.3%               | 20.0%                 | Desktop CPU      |
+| C4          |	82.9             | 81.8%               | 22.3%                 | Desktop CPU      |
+| C5          | 81.3             | 80.2%               | 24.7%                 | Desktop CPU      |
+| C6          | 79.6             | 78.5%               | 27.4%                 | Fast CPU         |
+| C7          | 78.0             | 76.9%               | 29.8%                 | GPU              |
+| C9          | 75.2             | 74.2%               | 34.8%                 | GPU              |
+
+In this table:
+
+* `Pi 4` refers to our minimum spec hardware, the [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 4 GB of RAM for CLI farming, or 8 GB for GUI farming.
+* `Desktop CPU` refers to a power-sipping computer such as the [ASUS Chromebox](https://www.androidcentral.com/best-chromebox).
+* `Fast CPU` refers to a computer with a higher-end CPU such as an Intel Core i9. [todo verify]
+* `GPU` refers to a computer with an Nvidia CUDA-class GPU with 8 GB of VRAM
+
+Note that there is some cross-over at certain compression levels. For example, a Pi 4 _might_ be able to keep in sync with a few C3 or C4 plots. The more plots your farm has, the higher-end your farming computer needs to be, all other factors being equal. However, most farming computers can handle 500 GB of plots without issue.
+
+### Bladebit Simulate
+
+The Bladebit plotter includes a "Simulator" to give you an estimate of your farm's maximum capacity.
+
+### TCO table
+
+[todo this is good but doesn't really belong here]
+
+A great place to estimate your farm's TCO (Total Cost of Ownership) is with [this spreadsheet](https://docs.google.com/spreadsheets/d/1k6c-OBDtggXqnEfOPdMmq3646puzvOD7dWojwCH2v3c). Simply make a copy of it, then fill in the constants according to your farm. 
 
 ### Keys
 
