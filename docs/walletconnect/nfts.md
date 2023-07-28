@@ -32,6 +32,35 @@ Gets information about a specific NFT.
 
 The output is an object of type [`NftInfo`](#nftinfo).
 
+### `chia_mintNFT`
+
+| Parameter                        | Type                            | Description                             |
+| -------------------------------- | ------------------------------- | --------------------------------------- |
+| `walletId`                       | `number`                        | NFT wallet id.                          |
+| `royaltyAddress` _(optional)_    | <code>string &#124; null</code> | Address royalty is sent to.             |
+| `royaltyPercentage` _(optional)_ | <code>number &#124; null</code> | Creator royalty percent. (1000 = 1%)    |
+| `targetAddress` _(optional)_     | <code>string &#124; null</code> | Address NFT is sent to upon mint.       |
+| `uris`                           | `string[]`                      | List of NFT content URIs.               |
+| `hash`                           | `string`                        | Hash of the NFT content.                |
+| `metaUris`                       | `string[]`                      | List of metadata URIs.                  |
+| `metaHash` _(optional)_          | <code>string &#124; null</code> | Hash of the metadata.                   |
+| `licenseUris`                    | `string[]`                      | List of the license URIs.               |
+| `licenseHash` _(optional)_       | <code>string &#124; null</code> | Hash of the license.                    |
+| `editionNumber` _(optional)_     | <code>number &#124; null</code> | Number of the current NFT in edition.   |
+| `editionTotal` _(optional)_      | <code>number &#124; null</code> | How many NFTs in the current edition.   |
+| `didId` _(optional)_             | <code>string &#124; null</code> | The DID used during an NFT mint.        |
+| `fee` _(optional)_               | <code>number &#124; null</code> | Transaction fee in mojos.               |
+
+#### Output Data
+
+| Parameter             | Type                                                 | Description             |
+| --------------------- | ---------------------------------------------------- | ----------------------- |
+| `nftId`               | `string`                                             | The NFT id.             |
+| `spendBundle`         | [`SpendBundle`](/walletconnect-commands#spendbundle) | Created spend bundle.   |
+| `success`             | `boolean`                                            | Backend success status. |
+| `walletId`            | `number`                                             | NFT wallet id.          |
+
+
 ### `chia_transferNFT`
 
 | Parameter       | Type       | Description                             |
@@ -97,10 +126,12 @@ Sets the owner DID associated with a given NFT.
 | `ownerDid`                  | <code>string &#124; null</code> | The owner DID.                         |
 | `royaltyPercentage`         | <code>number &#124; null</code> | Creator royalty percent. (1000 = 1%)   |
 | `royaltyPuzzleHash`         | <code>string &#124; null</code> | Puzzle hash royalty is sent to.        |
-| `dataUris`                  | `string[]`                      | List of content URIs.                  |
-| `dataHash`                  | `string`                        | Hash of the content.                   |
-| `metadataUris`              | `string[]`                      | List of metadata URIs.                 |
-| `metadataHash`              | `string`                        | Hash of the metadata.                  |
+| `royaltyAddress`            | `string`                        | Address royalty is sent to.            |
+| `targetAddress`             | `string`                        | Address NFT is sent to upon mint.      |
+| `uris`                      | `string[]`                      | List of NFT content URIs.              |
+| `hash`                      | `string`                        | Hash of the NFT content.               |
+| `metaUris`                  | `string[]`                      | List of metadata URIs.                 |
+| `metaHash`                  | `string`                        | Hash of the metadata.                  |
 | `licenseUris`               | `string[]`                      | List of the license URIs.              |
 | `licenseHash`               | `string`                        | Hash of the license.                   |
 | `editionTotal`              | `number`                        | How many NFTs in the current edition.  |
@@ -111,6 +142,7 @@ Sets the owner DID associated with a given NFT.
 | `supportsDid`               | `boolean`                       | Whether the inner puzzle supports DID. |
 | `p2Address`                 | `string`                        | The innermost puzzle hash of the NFT.  |
 | `pendingTransaction`        | `boolean`                       | Whether the NFT is pending for a tx.   |
+| `didId`                     | <code>string &#124; null</code> | The DID used during an NFT mint.       |
 | `minterDid`                 | <code>string &#124; null</code> | The minter DID.                        |
 | `launcherPuzhash`           | `string`                        | Singleton launcher puzzle hash.        |
 | `offChainMetadata`          | <code>string &#124; null</code> | Serialized off-chain metadata.         |
