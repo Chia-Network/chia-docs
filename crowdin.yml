@@ -1,10 +1,12 @@
-project_id_env: 'CROWDIN_PROJECT_ID'
-api_token_env: 'CROWDIN_TOKEN'
-preserve_hierarchy: true
-files: [
-    # Docs Markdown files
-    {
-      source: '/docs/**/*',
-      translation: '/i18n/%osx_locale%/docusaurus-plugin-content-docs/current/**/%original_file_name%',
-    },
-  ]
+project_id_env: CROWDIN_PROJECT_ID
+api_token_env: CROWDIN_TOKEN
+preserve_hierarchy: 1
+files:
+  - source: /docs/**/*
+    translation: /i18n/%osx_locale%/docusaurus-plugin-content-docs/current/**/%original_file_name%
+targets:
+  - name: English
+    sources:
+      - /i18n/en/*
+    file: /i18n/%two_letters_code%/%original_file_name%
+    format: xliff

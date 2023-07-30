@@ -8,14 +8,14 @@ const katex = require('rehype-katex');
       'The source of truth for Chia documentation. Start here to learn more about Chia.',
     url: 'https://docs.chia.net',
     baseUrl: '/',
-    onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'throw',
+    onBrokenLinks: 'ignore',
+    onBrokenMarkdownLinks: 'warn',
     favicon: '/svg/chia-leaf-green.svg',
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
     i18n: {
       defaultLocale: 'en',
-      locales: ['en', 'zh'],
+      locales: ['en', 'zh-Hans'],
     },
     presets: [
       [
@@ -67,6 +67,10 @@ const katex = require('rehype-katex');
             {
               href: 'https://chia.net',
               label: 'Chia Network',
+              position: 'left',
+            },
+            {
+              type: 'localeDropdown',
               position: 'left',
             },
             {

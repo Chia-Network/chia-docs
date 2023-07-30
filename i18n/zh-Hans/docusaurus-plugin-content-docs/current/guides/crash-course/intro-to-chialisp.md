@@ -1,5 +1,5 @@
 ---
-slug: /guides/crash-course/chialisp
+slug: /guides/crash-course/intro-to-chialisp
 title: Chialisp
 ---
 
@@ -9,6 +9,16 @@ import TabItem from '@theme/TabItem';
 ```
 
 For this section of the course, you will learn how to set up your development environment, write Chialisp code, and execute it on the command-line.
+
+:::note
+If you are using PowerShell, make sure to install the PowerShell 7.3 preview version:
+
+```bash
+winget install --id Microsoft.Powershell.Preview --source winget
+```
+
+This version fixes nested quoting, which is required for many of the commands on this page.
+:::
 
 ## Dev Tools
 
@@ -35,20 +45,7 @@ pip install chia-dev-tools
 cdv --version
 ```
 
-  </TabItem>
-  <TabItem value="linux-macos">
-
-```bash
-mkdir learning
-cd learning
-python3 -m venv venv
-. ./venv/bin/activate
-pip install chia-dev-tools
-cdv --version
-```
-
-  </TabItem>
-</Tabs>
+  </TabItem> <TabItem value="linux-macos"> ```bash mkdir learning cd learning python3 -m venv venv . ./venv/bin/activate pip install chia-dev-tools cdv --version ``` </TabItem> </Tabs>
 
 This will install the Chia Dev Tools within your activated virtual environment. You'll want to make sure this virtual environment is activated before working on Chialisp. You'll see a `(venv)` on the left of your terminal prompt.
 
@@ -126,7 +123,7 @@ Which should produce the following output:
 42
 ```
 
-So Chialisp can calculate the [meaning of life](<https://en.wikipedia.org/wiki/42_(number)#The_Hitchhiker's_Guide_to_the_Galaxy>)!
+So Chialisp can calculate the [meaning of life](https://en.wikipedia.org/wiki/42_(number)#The_Hitchhiker's_Guide_to_the_Galaxy)!
 
 ---
 
@@ -270,7 +267,7 @@ You may need to click the dropdown in the editor to install the prerelease versi
 
 We will be storing Chialisp code in files, then building and running the files on the command line using Chia Dev Tools. There are a few commands that we can use more effectively after setting up a project in this way.
 
-### Convention
+### Conventions
 
 The following file extensions are used for Chialisp:
 
@@ -281,3 +278,116 @@ The following file extensions are used for Chialisp:
 | `.clvm.hex` | Serialized CLVM bytecode        |
 | `.clsp.hex` | Generated CLVM bytecode         |
 | `.sym`      | Generated Chialisp symbol table |
+
+You will be writing code in `.clsp` files.
+
+## Putting it Together
+
+Using a text editor and files allows us to format our code nicely.
+
+Put the following in a file named `first.clsp`:
+
+```chialisp title="first.clsp"
+(mod (arg1 arg2)
+    (if (> (+ arg1 arg2) 100) 'large' 'small')
+)
+```
+
+Now, we can execute the file by name:
+
+```bash
+run first.clsp
+```
+
+This output will be exactly the same as before, but our code is a bit easier to manage.
+
+We will still execute the output like so:
+
+```bash
+brun '(a (i (> (+ 2 5) (q . 100)) (q 1 . "large") (q 1 . "small")) 1)' '(50 51)'
+```
+
+And, using nesting, `$()` will execute anything within `()` first. We can simplify further with:
+
+```bash
+brun "$(run first.clsp)" "(50 51)"
+```
+
+## Defining Functions
+
+A function will give a name to some lines of code, often taking an input and returning a result. Let's create a new file to practice functions inside of Chialisp.
+
+Create a file named `sum.clsp`:
+
+```chialisp title="sum.clsp"
+(mod (arg1 arg2)
+    (defun sum (s1 s2)
+        (+ s1 s2)
+    )
+
+    (sum arg1 arg2)
+)
+```
+
+This example is silly because we are just adding two numbers, but it shows that we can define a function with parameters. Now, while our solution parameters are still `arg1` and `arg2`, we've introduced `s1` and `s2`. We define the function following this structure:
+
+```chialisp
+(defun function_name (parameters)
+    function body)
+)
+```
+
+We can then refer to this function by name later on in our code body:
+
+```chialisp
+(function_name arguments)
+```
+
+## More Complicated Function
+
+Now that we have a basic function, we can build on this to create a sum function to add all values from a list.
+
+```chialisp
+(mod (items)
+  (defun sum (items)
+    (if items
+      (+ (f items) (sum (r items)))
+      0
+    )
+  )
+
+  (sum items)
+)
+```
+
+Chialisp will use a lot of recursion. In this example, we will use `(f items)` to refer to the first element in the list, and `(r items)` to refer to the rest of the items in the list. By saying `+ (f items) (sum (r items)))`, we are adding the first element with a recursive call to the sum of the rest of the elements. This will repeat until items is empty, returning 0.
+
+Imagine passing in a list `(10 5 3 7)`, we would have a call stack like this:
+
+```chialisp
+(+ 10 (sum (list 5 3 7)))
+        ↪ (+ 5 (sum (list 3 7)))
+                 ↪ (+ 3 (sum (list 7)))
+                          ↪ (+ 7 (sum (list)))
+                                   ↪ 0
+```
+
+We make our way through these calls until we return (0). We then work our way back up adding 0 with 7, 7 with 3, 10 with 5, and finally 15 with 10.
+
+Because we need to stop the recursive calls when the list is empty, we check if the `items` has a value. This can be done with `if items`.
+
+### Invoking our Code
+
+We now have just a single parameter called `items`. This is expected to be a list, so we will pass a solution that is a list. We would normally pass a solution in `()` and a list is surrounded with `()`, so it may look like `"((10 5 3 7))"`:
+
+```
+
+brun "$(run sum.clsp)" "((10 5 3 7))"
+
+```
+
+Response:
+
+```
+25
+```
