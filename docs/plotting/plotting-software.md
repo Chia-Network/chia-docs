@@ -11,15 +11,16 @@ Chia develops the Bladebit suite of plotters, which includes Bladebit cudaplot, 
 
 ### Bladebit cudaplot
 
-Status: alpha
+Status: beta
 
 [https://downloads.chia.net/bladebit](https://downloads.chia.net/bladebit)
 
 Requirements
 
-- OS: Windows and Linux
+- OS: Windows 11 and Debian/Ubuntu Linux are currently supported
 - Memory: 256GB of DRAM
 - GPUs: CUDA capability 5.2 (NVIDIA 10 series GPU or higher) with 8GB of GPU VRAM
+- Software: CUDA toolkit version 11.8 or later
 
 Usage
 

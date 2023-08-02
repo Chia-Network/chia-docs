@@ -9,19 +9,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-[todo Building bladebit needs cuda toolkit ≥ 11.8]
-
-At the center of every Chia farm is a software process call a _farmer_, as well as at least one process called  a _harvester_. Each harvester keeps track of one or more _plots_ on the same computer. This section will give an overview of plots: what they are, how to create them, how to maintain them, etc. Later we'll delve deeper into the details.
+At the center of every Chia farm is a _farmer_, as well as at least one _harvester_. Each harvester keeps track of one or more _plots_ on the same computer. This section will give an overview of plots: what they are, how to create them, how to maintain them, etc. Later we'll delve deeper into the details.
 
 :::info
 
-The full node, farmer, and harvester processes can all be run from the same computer.
+The full node, farmer, and harvester processes can all be run from the same computer. This is the recommended setup for those new to Chia farming. Later, plots can be added or moved to remote harvester machines as needed.
 
 :::
 
+## Description
+
 Plots are files that consist almost entirely of cryptographic data. These files prove to the network that a user is storing data, and are used in the Chia Proof of Space consensus.
 
-The Chia plotting process is computationally intensive. Depending on a number of factors, the plotting computer, CPU, GPU, RAM, and/or storage devices (such as SSDs) are heavily utilized. However, this process is only performed when _creating_ the plot. Afterward, plots can typically be farmed for many years, during which the farming computer, as well as the HDDs that store the plots, will remain mostly idle. For this reason, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/installation#raspberry-pi) with 4 GB of RAM.
+The Chia plotting process is computationally intensive. Depending on a number of factors, the plotting computer, CPU, GPU, RAM, and/or storage devices (such as SSDs) are heavily utilized. However, this process is only performed when _creating_ a plot. Afterward, plots can typically be _farmed_ for many years, during which the farming computer, as well as the HDDs that store the plots, will remain mostly idle. While it is possible to run a Chia farm from a high-end plotting machine, many farmers choose to use low-end systems in order to save money on electricity. For example, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/installation#raspberry-pi) with 4 GB of RAM.
 
 :::info
 
@@ -29,48 +29,54 @@ It is possible to run a node without any plots. Your node will validate the netw
 
 :::
 
+## Compressed plots
 
-## Requirements
+In 2023, some major changes were made to the plotting process, mostly due to the introduction "compressed" plots.
 
-### k value
+:::info
 
-_k_, as detailed in the [plotting](/proof-of-space#plotting) section, is a constant value that describes the size of each plot. The minimum k value for Chia is 32. For uncompressed plots (C0), the size of a k32 plot is 108.8 GB (101.4 GiB). It is also possible to farm with compressed plots (C1-9), which will be discussed in more detail later. With each increase in k value, the plot size is approximately doubled, as are the resources required for creating the plot. For this reason, k=32 is the most common size on the network, accounting for 98% of the Netspace.
+Technically, **all** Chia plots are compressed -- they consist almost entirely of random cryptographic data, so they cannot be made much smaller using lossless techniques. However, in order to simplify the decriptions, we'll use the following terms for the different types of plots:
+* **Uncompressed** -- Plots that are complete upon being created. Plotters that create uncompressed plots include the original ChiaPos, madMAx, and BladeBit RAM and disk. Nearly all plots created prior to 2023 are uncompressed.
+* **Compressed** -- Plots that are incomplete upon being created. Plotters that create uncompressed plots include BladeBit CUDA and GigaHorse. Compressed plots were introduced to official Chia software in version 2.0.
+
+:::
+
+### History
+
+Chia plots consist of seven tables, the format of which was defined in mid-2020. The reference plotter included with version 1.0 was ChiaPoS, which only used one CPU core, and which produced uncompressed plots. When Chia's mainnet was launched in March 2021, all Chia plots were created with the ChiaPoS plotter.
+
+Later in 2021, the madMAx and BladBit plotters were developed independantly. These plotters fully utilized a plotting machine's resources, so they were significantly faster than the ChiaPoS plotter. For the first time, it became possible to create a plot entirely in RAM, eliminiating the need for an enterprise SSD. However, these second-generation plotters still exclusively created uncompressed plots.
+
+By the end of 2022, it had become apparent that a form of "lossy" plot compression was possible. A few different competing techniques were being devised that involved omitting one or two tables, or some data held  within, during the plotting process. The result was an incomplete plot, where the missing data could be added during the farming process. These techniques allowed plots to be 20-30% smaller than their uncompressed brethren, depending on how much data was omitted at the time of plotting.
+
+:::info
+
+There are two basic types of compression -- lossless and lossy. For a brief overview of the differences, see [this article](https://www.howtogeek.com/744381/lossy-vs-lossless-compression-whats-the-difference/). While compressed Chia plots don't actually use lossy compression, it still can serve as a useful analogy to how it works.
+
+:::
+
+This form of "compression" is possible because the data contained within a plot is deterministic. A plot's ID -- a 32-byte hash -- is all that is needed to determine the entirity of its contents. In other words, if you use the same ID (and k-value, as will be discussed later) to create plots on two different computers, the plots will be identical. It is therefore possible to generate any missing data on the fly. This, combined with other techniques such as brute-forcing a small number of bits, results in the plots being smaller.
+
+By mid-2023, most new Chia plots were being created using these "compression" techniques. Each individual plot earns the same rewards as an equivalent uncompressed plot. However, because the compressed plots are smaller, more of them fit on each disk. Farmers therefore earn extra income compared with using uncompressed plots.
+
+### Tradeoffs
+
+As with most technologies, compressed plots come with tradeoffs. The fact that they are left incomplete upon being created means that they require more energy to be "completed" while farming. Luckily, the lower levels of compression only require a small amount of extra energy, while yielding 15% or more in extra rewards. On the other hand, plots using the highest levels of compression require more energy to complete while farming, thus necessitating the use of a GPU.
+
+Chia's plot format was designed such that higher compression levels would yield linear gains in size, at a cost of an exponential increase in required computational power. Because of this tradeoff, it is unlikely that better techniques will emerge to compress plots by more than a few percent beyond their current levels. For deeper levels of compression to become viable, another table would need to be omitted. At that point, it would take longer for a farmer to finish a compressed plot than it would for a plotter to create an entire uncompressed plot.
+
+## K Sizes
+_k_, as detailed in the [plotting](/proof-of-space#plotting) section, is a constant value that describes the size of each plot. The minimum k value for Chia is 32, which corresponds to 108.8 GB (101.4 GiB) for uncompressed plots. With each increase in k value, the plot size is approximately doubled, as are the resources required for creating the plot. For this reason, k32 is the most common size on the network, accounting for 98% of the Netspace.
 
 Note that the minimum k value could be increased in the future in order to mitigate against [plot grinding](/consensus-attacks#replotting). However, there are currently no plans to do so. If any such plans were adopted, all users would likely be given a 1-year notice to upgrade their farms.
 
 :::info
-
-The sizes of uncompressed and compressed k values can be found on the [K Sizes page](/k-sizes).
-
+**k=32 is the minimum plot size** eligible for farming on Chia's mainnet. If you want to test plotting and/or farming on a testnet, then it is also possible to use k=25. These plots are only around 660 MB apiece, so they can be created quickly on a laptop or another low-end machine.
 :::
 
-### Compressed plots
+Although not required, plots larger than k32 may be created. There is not a great benefit to using larger plot sizes as the chance of winning is proportional to final plot file size. There are advanced tactics to using a larger `k` value to reduce unused storage space or optimize drive idle states, but these are not recommended for the majority of people.
 
-#### History
-
-Chia plots consist of seven tables, the format of which was defined in mid-2020. The plots are already compressed -- they consist almost entirely of random cryptographic data, so they cannot be made much smaller using lossless techniques. When Chia's mainnet was launched in March 2021, all new and existing plots were stored on disk in their final formats.
-
-By the end of 2022, it had become apparent that a form of "lossy" plot compression was possible. A few different competing techniques were being devised that involved removing one or two tables, or some data held  within. The result was in incomplete plot that could be farmed by adding in the missing data in real-time.
-
-:::info
-
-There are two basic types of compression -- lossless and lossy. For a brief overview of the differences, see [this article](https://www.howtogeek.com/744381/lossy-vs-lossless-compression-whats-the-difference/). While Chia compressed plots don't actually use lossy compression, it still can serve as a useful analogy to how it works.
-
-:::
-
-Using these techniques, "compressed" plots could be created that were 20-30% smaller than their uncompressed brethren, depending on how much data was left incomplete at the time of plotting.
-
-This form of "compression" is possible because the data contained within a plot is deterministic. A plot's ID is a hash, which determines its contents. If you create a plot twice on two different computers, starting with the same ID and k value, the resulting plots will be identical. It is therefore possible to generate some of this data only when it is needed. Other techniques, such as brute-forcing a small number of bits, results in the plots being smaller, while requiring only a small amount of extra computational resources.
-
-By mid-2023, most new Chia plots were being created using these "compression" techniques. Each individual plot earns the same rewards as an equivalent uncompressed plot. However, because the compressed plots are smaller, more of them fit on each disk. Farmers therefore earn extra income compared with using uncompressed plots.
-
-#### Tradeoffs
-
-As with most technologies, compressed plots come with tradeoffs. The fact that they are left incomplete upon being created means that they require more energy to be "completed" while farming. Luckily, lower levels of compression only require a small amount of extra energy while yielding 15% or more in extra rewards. On the other hand, the highest levels of compression require more energy to reconstruct, and they also require a GPU for farming.
-
-Chia's plot format was designed such that higher compression levels would yield linear gains in size, at a cost of an exponential increase in required computational power. Because of this tradeoff, it is unlikely that better techniques will emerge to compress plots by more than a few percent beyond their current levels.
-
-#### Plot Sizes
+### Compression Levels
 
 The level of compression you choose will be highly dependant on your farming setup. The following table lists the size of a k32 plot created with the Bladebit plotter, at each level of compression. The final column will give you a general idea of the type of farmer you will need at each level:
 
@@ -88,24 +94,24 @@ The level of compression you choose will be highly dependant on your farming set
 
 In this table:
 
-* `Pi 4` refers to our minimum spec hardware, the [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 4 GB of RAM for CLI farming, or 8 GB for GUI farming.
+* `Pi 4` refers to Chia's minimum spec hardware, the [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 4 GB of RAM for CLI farming, or 8 GB for GUI farming.
 * `Desktop CPU` refers to a power-sipping computer such as the [ASUS Chromebox](https://www.androidcentral.com/best-chromebox).
 * `Fast CPU` refers to a computer with a higher-end CPU such as an Intel Core i9. [todo verify]
-* `GPU` refers to a computer with an Nvidia CUDA-class GPU with 8 GB of VRAM
+* `GPU` refers to a computer with an Nvidia CUDA-class GPU with at least 8 GB of VRAM.
 
 Note that there is some cross-over at certain compression levels. For example, a Pi 4 _might_ be able to keep in sync with a few C3 or C4 plots. The more plots your farm has, the higher-end your farming computer needs to be, all other factors being equal. However, most farming computers can handle 500 GB of plots without issue.
 
-### Bladebit Simulate
+## Bladebit Simulate
 
 The Bladebit plotter includes a "Simulator" to give you an estimate of your farm's maximum capacity.
 
-### TCO table
+## TCO table
 
 [todo this is good but doesn't really belong here]
 
 A great place to estimate your farm's TCO (Total Cost of Ownership) is with [this spreadsheet](https://docs.google.com/spreadsheets/d/1k6c-OBDtggXqnEfOPdMmq3646puzvOD7dWojwCH2v3c). Simply make a copy of it, then fill in the constants according to your farm. 
 
-### Keys
+## Keys
 
 To create plots, a farmer must know their **Farmer Public Key** and **Pool Contract Address**.
 

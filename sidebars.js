@@ -15,8 +15,8 @@ module.exports = {
       label: 'Plotting',
       items: [
         'plotting/plotting-basics',
+        'plotting/plotting-hardware',
         'plotting/plotting-software',
-        'plotting/k-sizes',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
         'plotting/plotting-faq',
