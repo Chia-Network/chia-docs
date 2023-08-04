@@ -32,7 +32,7 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 ### `cancel_offer`
 
-Functionality: Cancel an offer with a specific identifier
+Functionality: Cancel an Offer with a specific identifier
 
 Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
 
@@ -47,7 +47,7 @@ Request Parameters:
 
 | Flag     | Type    | Required | Description                                                                                                                   |
 | :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------- |
-| trade_id | STRING  | True     | The `trade_id` of the offer to cancel. Can be retrieved from an offer file by calling `cdv inspect spendbundles <offer_file>` |
+| trade_id | STRING  | True     | The `trade_id` of the Offer to cancel. Can be retrieved from an Offer file by calling `cdv inspect spendbundles <offer_file>` |
 | fee      | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                                    |
 | secure   | BOOLEAN | False    | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally [Default: `true`]   |
 
@@ -95,8 +95,8 @@ Request Parameters:
 | :--------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
 | secure     | BOOLEAN | True     | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally |
 | fee        | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                |
-| batch_size | NUMBER  | False    | The number of offers to cancel in one batch [Default: `5`]                                                |
-| cancel_all | BOOLEAN | False    | Cancel all offers [Default: `false`]                                                                      |
+| batch_size | NUMBER  | False    | The number of Offers to cancel in one batch [Default: `5`]                                                |
+| cancel_all | BOOLEAN | False    | Cancel all Offers [Default: `false`]                                                                      |
 
 <details>
 <summary>Example</summary>
@@ -119,7 +119,7 @@ Response:
 
 ### `check_offer_validity`
 
-Functionality: Checks whether a specific offer is valid (see below for definitions)
+Functionality: Checks whether a specific Offer is valid (see below for definitions)
 
 Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
 
@@ -138,13 +138,13 @@ Request Parameters:
 
 :::note
 
-The offer is considered valid if it is in any of the following states:
+The Offer is considered valid if it is in any of the following states:
 
 - `PENDING_ACCEPT`
 - `PENDING_CONFIRM`
 - `PENDING_CANCEL`
 
-The offer is no longer valid if it is in any of the following states:
+The Offer is no longer valid if it is in any of the following states:
 
 - `CANCELLED`
 - `CONFIRMED`
@@ -175,7 +175,7 @@ Response:
 
 ### `create_offer_for_ids`
 
-Functionality: Creates a new offer
+Functionality: Creates a new Offer
 
 Usage: chia rpc wallet [OPTIONS] create_offer_for_ids [REQUEST]
 
@@ -190,18 +190,18 @@ Request Parameters:
 
 | Flag            | Type    | Required | Description                                                                                                          |
 | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------- |
-| offer           | OBJECT  | True     | A dictionary `[str, int]` of the offer to create (see the examples below for specifics)                              |
-| fee             | NUMBER  | False    | An optional fee (in mojos) to include with the offer [Default: `0`]                                                  |
-| validate_only   | BOOLEAN | False    | Set to `true` to verify the validity of a potential offer, rather than actually creating an offer [Default: `false`] |
+| offer           | OBJECT  | True     | A dictionary `[str, int]` of the Offer to create (see the examples below for specifics)                              |
+| fee             | NUMBER  | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]                                                  |
+| validate_only   | BOOLEAN | False    | Set to `true` to verify the validity of a potential Offer, rather than actually creating an Offer [Default: `false`] |
 | driver_dict     | OBJECT  | False    | A dictionary `[str, Any]` containing metadata of the asset being requested, for example an NFT's on-chain metadata   |
-| min_coin_amount | NUMBER  | False    | The minimum coin size to be included in the offer [Default: `0`]                                                     |
-| max_coin_amount | NUMBER  | False    | The maximum coin size to be included in the offer [Default: `0`]                                                     |
+| min_coin_amount | NUMBER  | False    | The minimum coin size to be included in the Offer [Default: `0`]                                                     |
+| max_coin_amount | NUMBER  | False    | The maximum coin size to be included in the Offer [Default: `0`]                                                     |
 | solver          |         | False    | Default: None                                                                                                        |
 
 <details>
-<summary>Example 1</summary>
+<summary>Example 1: sell an NFT</summary>
 
-This example will create an Offer to sell an NFT. First, list the NFTs in the local wallet:
+This example will create an Offer to sell an NFT. First, list the NFTs in the local wallet. For example:
 
 ```json
 chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
@@ -249,14 +249,16 @@ Response:
 }
 ```
 
-Note the value of `launcher_id`, which is `0x93c7f48778b5758254bf8dcf6ce50bf203841e30735979d3a075b49342276d0d`. This will be used for creating the Offer.
+Note the value of `launcher_id`, which in this case is `0x93c7f48778b5758254bf8dcf6ce50bf203841e30735979d3a075b49342276d0d`. This will be needed momentarily.
 
 Next, create the Offer. A few things to note:
 
 - "1" is the Wallet ID of the `STANDARD_WALLET` (the local XCH wallet)
 - If a value is positive, it is being requested
-- Therefore, this offer will request 1000000000000 mojos (1 XCH)
+- Therefore, this Offer will request 1000000000000 mojos (1 XCH)
 - If a value is negative, it is being offered
+
+Normally it's a good idea to set `validate_only` to `true` in order to make sure the Offer is valid. If everything looks OK, you can rerun the command with `validate_only` set to `false`, which is the case in the following example command:
 
 ```json
 chia rpc wallet create_offer_for_ids '{"offer":{"1":1000000000000,"93c7f48778b5758254bf8dcf6ce50bf203841e30735979d3a075b49342276d0d":-1},"fee":10000000,"driver_dict":{},"validate_only":false}'
@@ -329,12 +331,18 @@ Response:
 }
 ```
 
+The Offer itself is the value of `offer`, at the top of the response. 
+It is possible to copy this string and paste it into the `Offers` dialog of the GUI.
+You can also send the Offer directly in an email, direct message, etc. 
+It does not contain any sensitive information. A "thief" only has two options: accept the Offer or ignore it.
+
 </details>
 
 <details>
-<summary>Example 2</summary>
+<summary>Example 2: buy an NFT</summary>
 
-This example will create an Offer to buy an NFT. First, obtain the NFT's info based on its NFT ID:
+This example will create an Offer to buy an NFT. By definition, the NFT cannot be in your wallet,
+so you first need to query the blockchain to obtain an NFT's info based on its ID alone:
 
 ```json
 chia rpc wallet nft_get_info '{"coin_id":"nft1ks2cqah7u6hjtj2q8vaem9a8e9n6v8rtxlzxzjs6zev8x3djevtq2kd8wn"}'
@@ -379,8 +387,15 @@ Response:
 }
 ```
 
-The information from this RPC call is all that is needed to construct an Offer to buy the NFT.
-For example, to offer 0.1 XCH + a fee of ten thousand mojos for this NFT, use the following command:
+The next step is to create a valid Offer that wallets will recognize. 
+This includes creating a `driver_dict`, without which the Offer will be valid but wallets won't know how to interpret.
+The response from the above RPC call will include the information necessary to create the `driver_dict`,
+and the reference wallet uses a specific format for Offers.
+
+The following is an example RPC call that includes all of the necessary information. 
+However, it is formatted with multiple lines, so it will be difficult to copy/paste into a terminal.
+
+We'll give a few single-line, OS-specific examples afterward.
 
 ```json
 chia rpc wallet create_offer_for_ids '{
@@ -414,7 +429,7 @@ chia rpc wallet create_offer_for_ids '{
 }'
 ```
 
-Response:
+Just as in Example 1, the response includes the Offer itself at the top of the JSON output. Copy the string beginning with `offer1` and paste it into the reference wallet to verify its validity:
 
 ```json
 {
@@ -481,13 +496,29 @@ Response:
 }
 ```
 
+In Windows, quotes need to be escaped with backslashes. 
+The following is the equivalent command, formatted for Windows, using a single line. 
+Note that for the quotes surrounding URIs _three_ backslashes are required:
+
+```json
+chia rpc wallet create_offer_for_ids '{ \"offer\":{ \"1\":-100000000000,\"b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16\":1 }, \"fee\":10000, \"driver_dict\":{ \"b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16\":{ \"type\":\"singleton\", \"launcher_id\":\"0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16\", \"launcher_ph\":\"0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9\", \"also\":{ \"type\":\"metadata\", \"metadata\":\"((117 \\\"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif\\\") (104 . 0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b) (28021 \\\"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json\\\") (27765 \\\"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf\\\") (29550 . 1) (29556 . 1) (28008 . 0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b) (27752 . 0x2267456bd2cef8ebc2f22a42947b068bc3b138284a587feda2edfe07a3577f50))\", \"updater_hash\":\"0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b\", \"also\":{ \"type\":\"ownership\", \"owner\":\"()\", \"transfer_program\":{ \"type\":\"royalty transfer program\", \"launcher_id\":\"0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16\", \"royalty_address\":\"0x53c8e63bb7e61215db3c109a168a8c7ce7d1828c438b542abe9368c83ad3f0ff\", \"royalty_percentage\":\"300\" } } } } }, \"validate_only\":false }'
+```
+
+In Linux and MacOS, the backslashes are generally not needed. Note, however, that one backslash is still needed in front of the quotes surrounding URIs.
+
+The following command is equivalent to the one above, but formatted for Linux and MacOS:
+
+```json
+chia rpc wallet create_offer_for_ids '{ "offer":{ "1":-100000000000,"b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16":1 }, "fee":10000, "driver_dict":{ "b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16":{ "type":"singleton", "launcher_id":"0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16", "launcher_ph":"0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9", "also":{ "type":"metadata", "metadata":"((117 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif\") (104 . 0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b) (28021 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json\") (27765 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf\") (29550 . 1) (29556 . 1) (28008 . 0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b) (27752 . 0x2267456bd2cef8ebc2f22a42947b068bc3b138284a587feda2edfe07a3577f50))", "updater_hash":"0xfe8a4b4e27a2e29a4d3fc7ce9d527adbcaccbab6ada3903ccf3ba9a769d2d78b", "also":{ "type":"ownership", "owner":"()", "transfer_program":{ "type":"royalty transfer program", "launcher_id":"0xb4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16", "royalty_address":"0x53c8e63bb7e61215db3c109a168a8c7ce7d1828c438b542abe9368c83ad3f0ff", "royalty_percentage":"300" } } } } }, "validate_only":false }'
+```
+
 </details>
 
 ---
 
 ### `get_all_offers`
 
-Functionality: Gets multiple offers for the current wallet, depending on the supplied parameters
+Functionality: Gets multiple Offers for the current wallet, depending on the supplied parameters
 
 Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
 
@@ -504,12 +535,12 @@ Request Parameters:
 | :------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
 | start                | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                             |
 | end                  | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                             |
-| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show offers that originated from this wallet [Default: `false`]                                 |
-| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any offers with a status of `CONFIRMED` [Default: `false`]                                 |
-| include_completed    | BOOLEAN | False    | If `true`, show completed offers [Default: `false`]                                                              |
+| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show Offers that originated from this wallet [Default: `false`]                                 |
+| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any Offers with a status of `CONFIRMED` [Default: `false`]                                 |
+| include_completed    | BOOLEAN | False    | If `true`, show completed Offers [Default: `false`]                                                              |
 | sort_key             | STRING  | False    | Optionally change the sort order of the results [Default: none]                                                  |
 | reverse              | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                |
-| file_contents        | BOOLEAN | False    | If `true`, return a summary for the offer. If `false`, only return the offer's basic metadata [Default: `false`] |
+| file_contents        | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`] |
 
 <details>
 <summary>Example</summary>
@@ -758,7 +789,7 @@ Response:
 
 ### `take_offer`
 
-Functionality: Takes (accepts) a specific offer, with a given fee
+Functionality: Takes (accepts) a specific Offer, with a given fee
 
 Usage: chia rpc wallet [OPTIONS] take_offer [REQUEST]
 
@@ -774,7 +805,7 @@ Request Parameters:
 | Flag  | Type      | Required | Description                                                           |
 | :---- | :-------- | :------- | :-------------------------------------------------------------------- |
 | offer | FILE PATH | True     | The text of the Offer to take (must be in the `PENDING_ACCEPT` state) |
-| fee   | NUMBER    | False    | An optional fee (in mojos) to include with the offer [Default: `0`]   |
+| fee   | NUMBER    | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]   |
 
 <details>
 <summary>Example</summary>

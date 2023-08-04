@@ -56,12 +56,6 @@ Successfully added Spacebucks with wallet id 3 on key 2121994410
 
 Functionality: List, split, and combine your wallet's coins
 
-:::warning
-
-The following `coin` commands (`combine`, `list`, and `split`) are currently only available in the `main` branch of the codebase. They are not yet supported. Use at your own risk!
-
-:::
-
 ### `list`
 
 Functionality: List coins in a wallet, with options for filtering

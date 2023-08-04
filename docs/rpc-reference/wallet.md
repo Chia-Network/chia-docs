@@ -1040,13 +1040,35 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type    | Required | Description                                                                                                            |
-| :----------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------- |
-| include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`]                                               |
-| type         | TEXT    | False    | The type of wallet to retrieve. If included, must be one of `cat_wallet`, `did_wallet`, `nft_wallet`, or `pool_wallet` |
+| Flag         | Type    | Required | Description                                                              |
+| :----------- | :------ | :------- | :----------------------------------------------------------------------- |
+| include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`] |
+| type         | INTEGER | False    | The type of wallet to retrieve. See below for valid types                |
+
+Valid wallet types (the `type` parameter) include the following integers:
+
+| Name             | type |
+| :--------------- | ---: |
+| STANDARD_WALLET  | 0    |
+| ATOMIC_SWAP      | 2    |
+| AUTHORIZED_PAYEE | 3    |
+| MULTI_SIG        | 4    |
+| CUSTODY          | 5    |
+| CAT              | 6    |
+| RECOVERABLE      | 7    |
+| DECENTRALIZED_ID | 8    |
+| POOLING_WALLET   | 9    |
+| NFT              | 10   |
+| DATA_LAYER       | 11   |
+| DATA_LAYER_OFFER | 12   |
+| VC               | 13   |
+
+More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
 
 <details>
-<summary>Example</summary>
+<summary>Example 1</summary>
+
+Get all info for all wallets:
 
 ```json
 chia rpc wallet get_wallets '{"include_data": false}'
@@ -1066,6 +1088,40 @@ Response:
       "type": 0
     }
   ]
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
+
+Get NFT wallet info (NFT type = 10):
+
+```json
+chia rpc wallet get_wallets '{"type": 10}'
+```
+
+Response:
+
+```json
+{
+    "fingerprint": 2104826454,
+    "success": true,
+    "wallets": [
+        {
+            "data": "{"did_id": "0xb08c01ace955ce180ce2e0b332b4c8d98d46469078e5191351f025d9cf9117f3"}",
+            "id": 3,
+            "name": "NFT Wallet",
+            "type": 10
+        },
+        {
+            "data": "{"did_id": null}",
+            "id": 4,
+            "name": "NFT Wallet",
+            "type": 10
+        }
+    ]
 }
 ```
 

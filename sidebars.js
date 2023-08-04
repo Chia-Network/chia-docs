@@ -144,6 +144,7 @@ module.exports = {
         'consensus/timelords',
         'consensus/attacks-and-countermeasures',
         'consensus/analysis',
+        'consensus/forks',
       ],
     },
     {

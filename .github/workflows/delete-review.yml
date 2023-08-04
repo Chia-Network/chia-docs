@@ -31,7 +31,7 @@ jobs:
   delete:
     runs-on: [k8s-public]
     container:
-      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3.11.0
+      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3
     needs:
       - check-secret-access
     if: needs.check-secret-access.outputs.allowed == 'true'
