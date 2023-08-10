@@ -1,5 +1,5 @@
 ---
-sidebar_label: Plotting Basics
+sidebar_label: Basics
 title: Plotting Basics
 slug: /plotting-basics
 ---
@@ -37,7 +37,7 @@ In 2023, some major changes were made to the plotting process, mostly due to the
 
 Technically, **all** Chia plots are compressed -- they consist almost entirely of random cryptographic data, so they cannot be made much smaller using lossless techniques. However, in order to simplify the decriptions, we'll use the following terms for the different types of plots:
 * **Uncompressed** -- Plots that are complete upon being created. Plotters that create uncompressed plots include the original ChiaPos, madMAx, and BladeBit RAM and disk. Nearly all plots created prior to 2023 are uncompressed.
-* **Compressed** -- Plots that are incomplete upon being created. Plotters that create uncompressed plots include BladeBit CUDA and GigaHorse. Compressed plots were introduced to official Chia software in version 2.0.
+* **Compressed** -- Plots that are incomplete upon being created. Plotters that create uncompressed plots include BladeBit CUDA and GigaHorse. Compressed plots were introduced to the official Chia software in version 2.0.
 
 :::
 
@@ -66,6 +66,7 @@ As with most technologies, compressed plots come with tradeoffs. The fact that t
 Chia's plot format was designed such that higher compression levels would yield linear gains in size, at a cost of an exponential increase in required computational power. Because of this tradeoff, it is unlikely that better techniques will emerge to compress plots by more than a few percent beyond their current levels. For deeper levels of compression to become viable, another table would need to be omitted. At that point, it would take longer for a farmer to finish a compressed plot than it would for a plotter to create an entire uncompressed plot.
 
 ## K Sizes
+
 _k_, as detailed in the [plotting](/proof-of-space#plotting) section, is a constant value that describes the size of each plot. The minimum k value for Chia is 32, which corresponds to 108.8 GB (101.4 GiB) for uncompressed plots. With each increase in k value, the plot size is approximately doubled, as are the resources required for creating the plot. For this reason, k32 is the most common size on the network, accounting for 98% of the Netspace.
 
 Note that the minimum k value could be increased in the future in order to mitigate against [plot grinding](/consensus-attacks#replotting). However, there are currently no plans to do so. If any such plans were adopted, all users would likely be given a 1-year notice to upgrade their farms.
@@ -101,72 +102,8 @@ In this table:
 
 Note that there is some cross-over at certain compression levels. For example, a Pi 4 _might_ be able to keep in sync with a few C3 or C4 plots. The more plots your farm has, the higher-end your farming computer needs to be, all other factors being equal. However, most farming computers can handle 500 GB of plots without issue.
 
-## Bladebit Simulate
-
-The Bladebit plotter includes a "Simulator" to give you an estimate of your farm's maximum capacity.
-
-## TCO table
-
-[todo this is good but doesn't really belong here]
-
-A great place to estimate your farm's TCO (Total Cost of Ownership) is with [this spreadsheet](https://docs.google.com/spreadsheets/d/1k6c-OBDtggXqnEfOPdMmq3646puzvOD7dWojwCH2v3c). Simply make a copy of it, then fill in the constants according to your farm. 
-
-## Keys
-
-To create plots, a farmer must know their **Farmer Public Key** and **Pool Contract Address**.
-
-[todo demo how to create a public key]
-[todo demo how to create a contract address]
-A farmer must create a plotnft first to have a pool contract address.
-
-These can be found with the following commands:
-
-```bash
-chia keys show
-chia plotnft show
-```
-
-## Hardware
-
-Plotting requires compute - the more compute, the faster the plot time. Chia farmers generally want to plot reasonably fast to get their storage space earning rewards faster. If you are using any of the disk methods, you will need an SSD with high endurance and sustained write performance, more details can be found in the endurance section.
-
-| Plotter Type        | CPU  | GPU  | Temporary Storage | Memory    | Plot times    | Energy Efficiency |
-| ------------------- | ---- | ---- | ----------------- | --------- | ------------- | ----------------- |
-| GPU In-Memory       | Low  | High | None              | 256 GB    | 1-3 Minutes   | Highest           |
-| GPU / Disk Plotting | Low  | High | 256 GB            | 64-128 GB | 3-5 Minutes   | High              |
-| CPU In-Memory       | High | None | None              | 416 GiB   | 2-5 Minutes   | High              |
-| CPU Disk            | High | None | 256-512 GB        | 4 GB      | 15-60 Minutes | Medium            |
-
-## GUI Plotting
-
-Start the process by clicking the green button saying **Add a Plot**.
-
-1. You will choose a plotting software. Getting started plotting with Bladebit Disk is the easiest.
-
-2. Starting size plot is k=32 (101 GiB)
-
-3. Chose number of plots. If you're just learning, get started by creating just a single plot.
-
-4. Select a temporary directory. You need a temp storage location of at least 500GB. If you only have 256GB you can use madMAx chia-plotter. This is where the temp space is filled and a lot of writing will be done. For many plots it is not recommended to use the same SSD as your primary.
-
-5. Input number of threads (recommended system threads - 1), bucket count (recommended 64), and optional amount of additional ram cache, and select the alternating method
-
-:::info
-Enterprise and data center SSDs offer higher endurance and sustained write performance vs consumer drives, and can be found inexpensively second hand. Read more about recommendations at [SSD Endurance](/ssd-endurance).
-:::
-
-6. Select a final directory. This is where the final plot file will be copied to. Once the plot is created it will go to this location to be farmed to earn XCH. Storage will fill quickly due to the size of plots. Storage can be internal or usb connected drives.
-
-:::info
-Network drives can work but could congest your local network or be too slow to respond for rewards (the max is 30 seconds, but under 5 is ideal). It is recommended that you set the first `log_level` to `INFO` in `config.yaml` which will allow you to see extra information in `debug.log`.
-:::
-
-7. Join a pool - this will give you the option to select the plotnft you have already created.
-
-8. Click **create** to start process.
-
 ## How to Get Help
 
-- Get support on the [Discord](https://discord.gg/chia). **#beginner** and **#support** is where you can get help
+- Get help on CNI's official [Discord](https://discord.gg/chia), in the `#farming-and-plotting` and `#support` channels.
 
 - Get more questions answered in the [plotting FAQ](/plotting-faq).

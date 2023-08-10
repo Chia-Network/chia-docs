@@ -14,9 +14,11 @@ module.exports = {
       type: 'category',
       label: 'Plotting',
       items: [
+        'plotting/plotting-beginner',
         'plotting/plotting-basics',
         'plotting/plotting-hardware',
-        'plotting/plotting-software',
+        'plotting/plotting-plotters',
+        'plotting/plotting-how-to',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
         'plotting/plotting-faq',
