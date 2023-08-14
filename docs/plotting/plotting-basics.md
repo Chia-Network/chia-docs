@@ -9,6 +9,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
+:::note
+
+The [Beginner's Guide to Farming](/farming-guide) will walk you through the steps required to install Chia and create your first plot. You are recommended to follow it prior to getting into the concepts introduced in this section.
+
+:::
+
 At the center of every Chia farm is a _farmer_, as well as at least one _harvester_. Each harvester keeps track of one or more _plots_ on the same computer. This section will give an overview of plots: what they are, how to create them, how to maintain them, etc. Later we'll delve deeper into the details.
 
 :::info
@@ -19,9 +25,11 @@ The full node, farmer, and harvester processes can all be run from the same comp
 
 ## Description
 
-Plots are files that consist almost entirely of cryptographic data. These files prove to the network that a user is storing data, and are used in the Chia Proof of Space consensus.
+Plots are files that consist almost entirely of cryptographic data. These files prove to the network that a computer is storing data, and are used in the Chia Proof of Space consensus.
 
-The Chia plotting process is computationally intensive. Depending on a number of factors, the plotting computer, CPU, GPU, RAM, and/or storage devices (such as SSDs) are heavily utilized. However, this process is only performed when _creating_ a plot. Afterward, plots can typically be _farmed_ for many years, during which the farming computer, as well as the HDDs that store the plots, will remain mostly idle. While it is possible to run a Chia farm from a high-end plotting machine, many farmers choose to use low-end systems in order to save money on electricity. For example, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/installation#raspberry-pi) with 4 GB of RAM.
+The Chia plotting process is computationally intensive. Depending on a number of factors, the plotting computer, CPU, GPU, RAM, and/or storage devices (such as SSDs) are heavily utilized. However, this process is only performed when _creating_ a plot. Afterward, plots can typically be _farmed_ for many years, during which the farming computer, as well as the HDDs that store the plots, will remain mostly idle.
+
+While it is possible to run a Chia farm from a high-end plotting machine, many farmers choose to use low-end systems in order to save money on electricity. For example, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/installation#raspberry-pi) with 4 GB of RAM. As a result of these low energy requirements, Chia consumes less than 1% as much energy as Bitcoin, while preserving the same level of security. For more details, see [chiapower.org](https://chiapower.org/).
 
 :::info
 
@@ -61,7 +69,7 @@ By mid-2023, most new Chia plots were being created using these "compression" te
 
 ### Tradeoffs
 
-As with most technologies, compressed plots come with tradeoffs. The fact that they are left incomplete upon being created means that they require more energy to be "completed" while farming. Luckily, the lower levels of compression only require a small amount of extra energy, while yielding 15% or more in extra rewards. On the other hand, plots using the highest levels of compression require more energy to complete while farming, thus necessitating the use of a GPU.
+As with most technologies, compressed plots come with tradeoffs. The fact that they are left incomplete upon being created means that they require more energy to be "completed" while farming. Luckily, the lower levels of compression only require a small amount of extra energy, while yielding 15% more rewards. On the other hand, plots using the highest levels of compression require more energy to complete while farming, thus necessitating the use of a GPU.
 
 Chia's plot format was designed such that higher compression levels would yield linear gains in size, at a cost of an exponential increase in required computational power. Because of this tradeoff, it is unlikely that better techniques will emerge to compress plots by more than a few percent beyond their current levels. For deeper levels of compression to become viable, another table would need to be omitted. At that point, it would take longer for a farmer to finish a compressed plot than it would for a plotter to create an entire uncompressed plot.
 
@@ -79,30 +87,47 @@ Although not required, plots larger than k32 may be created. There is not a grea
 
 ### Compression Levels
 
-The level of compression you choose will be highly dependant on your farming setup. The following table lists the size of a k32 plot created with the Bladebit plotter, at each level of compression. The final column will give you a general idea of the type of farmer you will need at each level:
+The level of compression you choose will be highly dependant on your farming setup. The following table lists the size of a k32 plot created with the Bladebit plotter, at each level of compression. The final column will give you a general idea of the type of harvester you will need at each level:
 
-| <br />Level | Size <br />(GiB) | Relative <br />Size | Reward <br />Increase | Farm <br /> With |
-| :---------- | :--------------- | :------------------ | :-------------------- | :--------------- |
-| C0          | 101.4 		     | 100%                | 0%                    | Pi 4             |
-| C1          | 87.5             | 86.3%               | 15.9%                 | Pi 4             |
-| C2          | 86.0             | 84.8%               | 17.9%                 | Pi 4             |
-| C3          | 84.5             | 83.3%               | 20.0%                 | Desktop CPU      |
-| C4          |	82.9             | 81.8%               | 22.3%                 | Desktop CPU      |
-| C5          | 81.3             | 80.2%               | 24.7%                 | Desktop CPU      |
-| C6          | 79.6             | 78.5%               | 27.4%                 | Fast CPU         |
-| C7          | 78.0             | 76.9%               | 29.8%                 | GPU              |
-| C9          | 75.2             | 74.2%               | 34.8%                 | GPU              |
+| <br />Level | Size <br />(GiB) | Relative <br />Size | Reward <br />Increase | Min Spec <br /> Harvester |
+| :---------- | :--------------- | :------------------ | :-------------------- | :------------------------ |
+| C0          | 101.4 		     | 100%                | 0%                    | Pi 4                      |
+| C1          | 87.5             | 86.3%               | 15.9%                 | Pi 4                      |
+| C2          | 86.0             | 84.8%               | 17.9%                 | Pi 4                      |
+| C3          | 84.5             | 83.3%               | 20.0%                 | Pi 4                      |
+| C4          |	82.9             | 81.8%               | 22.3%                 | Desktop CPU               |
+| C5          | 81.3             | 80.2%               | 24.7%                 | Fast CPU                  |
+| C6          | 79.6             | 78.5%               | 27.4%                 | Fast CPU                  |
+| C7          | 78.0             | 76.9%               | 29.8%                 | GPU                       |
+| C9          | 75.2             | 74.2%               | 34.8%                 | GPU                       |
 
 In this table:
 
 * `Pi 4` refers to Chia's minimum spec hardware, the [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 4 GB of RAM for CLI farming, or 8 GB for GUI farming.
 * `Desktop CPU` refers to a power-sipping computer such as the [ASUS Chromebox](https://www.androidcentral.com/best-chromebox).
-* `Fast CPU` refers to a computer with a higher-end CPU such as an Intel Core i9. [todo verify]
+* `Fast CPU` refers to a computer with a higher-end CPU such as an Intel Xeon.
 * `GPU` refers to a computer with an Nvidia CUDA-class GPU with at least 8 GB of VRAM.
 
-Note that there is some cross-over at certain compression levels. For example, a Pi 4 _might_ be able to keep in sync with a few C3 or C4 plots. The more plots your farm has, the higher-end your farming computer needs to be, all other factors being equal. However, most farming computers can handle 500 GB of plots without issue.
+:::note
+
+There is some cross-over at certain compression levels. For example, a Pi 4 _might_ be able to keep in sync with a few C4 plots.
+
+:::
+
+:::info
+
+A few things to keep in mind regarding these recommendations:
+* The above table is meant as a general overview; it therefore assumes that your farm is somewhere from 500-1000 TiB.
+* The more plots your farm has, the higher-end your harvester needs to be, all other factors being equal.
+* Starting in June 2024, the plot filter will be reduced from `512` to `256`. When this happens, the computational load on your harvester will be doubled. To help you plan for this event, we have created a [simulator tool](/plotting-plotters#bladebit-simulate) that will show what your harvester's maximum capacity is at each compression level, as well as with different plot filter levels.
+
+:::
+
+The next page will go into much detail regarding the various types of harware that can be used for creating Chia plots.
 
 ## How to Get Help
+
+If you are stumped about some aspect of plotting, farming, or Chia generally, we're here to help!
 
 - Get help on CNI's official [Discord](https://discord.gg/chia), in the `#farming-and-plotting` and `#support` channels.
 

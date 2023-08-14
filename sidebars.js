@@ -5,16 +5,15 @@ module.exports = {
       label: 'Getting Started',
       items: [
         'getting-started/introduction',
+        'getting-started/farming-guide',
         'getting-started/installation',
         'getting-started/using-the-gui',
-        'getting-started/cryptocurrency-intro',
       ],
     },
     {
       type: 'category',
       label: 'Plotting',
       items: [
-        'plotting/plotting-beginner',
         'plotting/plotting-basics',
         'plotting/plotting-hardware',
         'plotting/plotting-plotters',
@@ -211,6 +210,7 @@ module.exports = {
       type: 'category',
       label: 'Resources',
       items: [
+        'resources/cryptocurrency-intro',
         'resources/references',
         'resources/chia-farming-workload',
         'resources/faq',

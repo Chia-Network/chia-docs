@@ -1,7 +1,7 @@
 ---
-sidebar_label: Beginner Guide
-title: Beginner Guide
-slug: /plotting-beginner
+sidebar_label: Farming Guide
+title: Beginner's Guide to Farming
+slug: /farming-guide
 ---
 
 ```mdx-code-block
