@@ -1221,34 +1221,146 @@ Options:
 | -h            | --help              | None    | False    | Show a help message and exit                                                                                      |
 
 <details>
-<summary>Example</summary>
+<summary>Example 1: Show a single XCH transaction</summary>
 
-Skip the first five transactions don't paginate:
+Start by showing all wallets associated with the current fingerprint:
 
 ```bash
-chia wallet get_transactions --fingerprint 2121994410 --offset 5 --no-paginate
+chia wallet show
+```
+
+Response (truncated):
+
+```bash
+Wallet height: 3045395
+Sync status: Synced
+Balances, fingerprint: 2104826454
+
+Chia Wallet:
+   -Total Balance:         35.683924454174 txch (35683924454174 mojo)
+   -Pending Total Balance: 35.683924454174 txch (35683924454174 mojo)
+   -Spendable:             35.084802204177 txch (35084802204177 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+NFT Wallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  NFT
+   -Wallet ID:             2
+
+```
+
+Next, obtain a single transaction from wallet `1`, a `STANDARD_WALLET`, by including the `-o` (offset) and `-l` (limit) flags:
+
+```bash
+chia wallet get_transactions -i 1 -o 2 -l 1
 ```
 
 Response:
 
+```bash
+Transaction 1a4a2c93e32fd2a5a19b85e6a2114c6a2b972b4ed7d203dc23a1574d6a1383a1
+Status: Confirmed
+Amount sent: 5 TXCH
+To address: txch1z2gtnmph3jp9cz28phchztylrkqhf8c4ckgtjg3ew7ducztxl8gsfqttlc
+Created at: 2023-08-01 19:55:51
 ```
-Transaction 72ad2d9898be2c6c6f10790239f50ca1dcdb00aff73592d22a163ed965bf5b1b
-Status: Confirmed
-Amount received: 0.196499999999 XCH
-To address: xch1fev2qaclwpcue9kx4p39dzfxpzaavvcz5v3lhx77cxha7f0tjjlsngh5k0
-Created at: 2022-11-14 17:58:13
 
-Transaction b04d739fd6a2735662e5741c94a526202e7ce695f1b720b912e575928ede0fc7
-Status: Confirmed
-Amount sent: 0.1035 XCH
-To address: xch1ht3yzch0h4tglzdu0g6q0x9xzxxlqxy7h83ls6tme63847vl3ausarq3ma
-Created at: 2022-11-14 17:58:13
+</details>
 
-Transaction eb3d20f16f8f2b3661058fe0c4658abb95b440ab380a273ba4f867af255f2ca7
+<details>
+<summary>Example 2: Show all transactions from a CAT</summary>
+
+Start by showing all wallets associated with the current fingerprint:
+
+```bash
+chia wallet show
+```
+
+Response:
+
+```bash
+Wallet height: 3045482
+Sync status: Synced
+Balances, fingerprint: 2104826454
+
+Chia Wallet:
+   -Total Balance:         35.683924454174 txch (35683924454174 mojo)
+   -Pending Total Balance: 35.683924454174 txch (35683924454174 mojo)
+   -Spendable:             35.084802204177 txch (35084802204177 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+
+NFT Wallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  NFT
+   -Wallet ID:             2
+
+DID did:chia:1kzxqrt8f2h8psr8zuzen9dxgmxx5v35s0rj3jy637qjannu3zlesds0el5:
+   -Total Balance:         1.0
+   -Pending Total Balance: 1.0
+   -Spendable:             1.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1kzxqrt8f2h8psr8zuzen9dxgmxx5v35s0rj3jy637qjannu3zlesds0el5
+   -Wallet ID:             3
+
+NFT Wallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  NFT
+   -DID ID:                did:chia:1kzxqrt8f2h8psr8zuzen9dxgmxx5v35s0rj3jy637qjannu3zlesds0el5
+   -Wallet ID:             4
+
+DataLayer Wallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  DATA_LAYER
+   -Wallet ID:             5
+
+CAT f17f88130c635228...:
+   -Total Balance:         0.034  (34 mojo)
+   -Pending Total Balance: 0.034  (34 mojo)
+   -Spendable:             0.034  (34 mojo)
+   -Type:                  CAT
+   -Asset ID:              f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d
+   -Wallet ID:             6
+
+CAT aaee6b63bcbc4aef...:
+   -Total Balance:         10.0  (10000 mojo)
+   -Pending Total Balance: 10.0  (10000 mojo)
+   -Spendable:             10.0  (10000 mojo)
+   -Type:                  CAT
+   -Asset ID:              aaee6b63bcbc4aef0a005d31119ad65e5228b0ddff18c5c563fd7a4db54fb084
+   -Wallet ID:             7
+
+Pool wallet:
+   -Total Balance:         0.0  (0 mojo)
+   -Pending Total Balance: 0.0  (0 mojo)
+   -Spendable:             0.0  (0 mojo)
+   -Type:                  POOLING_WALLET
+   -Wallet ID:             11
+```
+
+Next, show all transactions from `Wallet ID` `7`, a CAT wallet:
+
+```bash
+chia wallet get_transactions -i 7
+```
+
+Response:
+
+```bash
+Transaction 38306b461975741641d397330bb34c01681bb242119bd4aa457c06e2080cf257
 Status: Confirmed
-Amount received: 0.3 XCH
-To address: xch1aqg54tdk0lqxp8yhq2jlqyce3heevltpztm8939w5xvpwt8tyfkschugt0
-Created at: 2022-11-14 17:44:03
+Amount received: 10 CAT aaee6b63bcbc4aef...
+To address: txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s
+Created at: 2022-12-14 00:40:39
 ```
 
 </details>
