@@ -208,10 +208,7 @@ Coin ID: 72e522fecc64b539f8979b89e4cf2ffbcf8ba985faf4b701bcc882c6aec9e040
 Inner Address: txch1at35qwx6djmadnh9v77a72z8vcaxsle36ke3dj26gcpt2fnh654qsqecnj
 ```
 
-It is recommended that you save the result of this command:
-* The `Launcher ID` will be required in order to add/update proofs.
-* The `Coin ID` will be required in case the proofs need to be revoked later.
-* The `Inner Address` is less important but could be used to fund the VC.
+It is recommended that you save the `Launcher ID` because it will be needed if the VC needs to be revoked later.
 
 No proofs have been added yet. This is accomplished with the [update_proofs](#update_proofs) command.
 
@@ -231,7 +228,8 @@ Options:
 | :------------ | :--------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
 | -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                             |
-| -p            | --parent-coin-id       | TEXT    | True     | The ID of the parent coin of the VC                                                                                                                                         |
+| -p            | --parent-coin-id       | TEXT    | True*    | The ID of the parent coin of the VC (*optional if VC ID is used)                                                                                                            |
+| -l            | --vc-id TEXT           | TEXT    | True*    | The launcher ID of the VC to revoke (must be tracked by wallet) (*optional if Parent ID is used)                                                                            |
 | -m            | --fee                  | TEXT    | False    | Blockchain fee for revocation transaction, in XCH                                                                                                                           |
 |               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
 |               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
@@ -243,10 +241,9 @@ Options:
 Revoke the proofs from a VC. A few notes:
 
 - The only wallet authorized to call this command is the wallet that contains the DID that created the VC
-- The `-p` parameter is the `Coin ID:` of the VC, which was obtainable when the VC was first minted
 
 ```bash
-chia wallet vcs revoke -p 0x420f69cc8b541be7a0bf1d94ec028a8b2a875ee2cd6721f5316cf1b02519d13a -m 0.0001
+chia wallet vcs revoke -l 0x420f69cc8b541be7a0bf1d94ec028a8b2a875ee2cd6721f5316cf1b02519d13a -m 0.0001
 ```
 
 Response:
