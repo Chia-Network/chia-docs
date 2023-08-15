@@ -16,7 +16,7 @@ module.exports = {
       items: [
         'plotting/plotting-basics',
         'plotting/plotting-hardware',
-        'plotting/plotting-plotters',
+        'plotting/plotting-software',
         'plotting/plotting-how-to',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
