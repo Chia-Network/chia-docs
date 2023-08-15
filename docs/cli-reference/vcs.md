@@ -160,7 +160,7 @@ Options:
 <details>
 <summary>Example</summary>
 
-A DID is required in order to mint a new VC. If the proof provider does not already have a DID, use the `did create` command to create one:
+A DID is required in order to mint a new VC. If the proof provider does not already have a DID, use the `did create` command to create one. For example:
 
 ```bash
 chia wallet did create -f 2108245669 -n Provider_DID -m 0.0001
@@ -173,7 +173,7 @@ Successfully created a DID wallet with name Provider_DID and id 2 on key 2108245
 Successfully created a DID did:chia:1n2s77g7rer2v62xzrvd0at6tgx8m4g8t6encghs375r64lc6e5mssdkap3 in the newly created DID wallet
 ```
 
-Next, mint a new VC. Note that the DID specified with `-d` must be owned by the fingerprint specified with `-f` (or the one selected if `-f` is not used):
+Next, mint a new VC. Note that the DID specified with `-d` must be owned by the fingerprint specified with `-f` (or the one selected if `-f` is not used). For example:
 
 ```bash
 chia wallet vcs mint -f 2108245669 -d did:chia:1n2s77g7rer2v62xzrvd0at6tgx8m4g8t6encghs375r64lc6e5mssdkap3 -m 0.0001
@@ -208,7 +208,10 @@ Coin ID: 72e522fecc64b539f8979b89e4cf2ffbcf8ba985faf4b701bcc882c6aec9e040
 Inner Address: txch1at35qwx6djmadnh9v77a72z8vcaxsle36ke3dj26gcpt2fnh654qsqecnj
 ```
 
-It is recommended that you save the result of this command. The `Coin ID:` will be required in case the proofs need to be revoked later.
+It is recommended that you save the result of this command:
+* The `Launcher ID` will be required in order to add/update proofs.
+* The `Coin ID` will be required in case the proofs need to be revoked later.
+* The `Inner Address` is less important but could be used to fund the VC.
 
 No proofs have been added yet. This is accomplished with the [update_proofs](#update_proofs) command.
 
