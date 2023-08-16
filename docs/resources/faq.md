@@ -284,6 +284,16 @@ How does your wallet know it has the correct info for each address? It polls one
 
 If you believe your balance is incorrect, changing `initial_num_public_keys` is unlikely to fix the problem. If at all possible, you should sync a full node, stop Chia, delete your wallet database, and start Chia again. This time, Chia will sync based on your own node alone. If this is not an option, then resyncing from untrustred nodes might fix the problem as well.
 
+### Why do I see TIMESTAMP_TOO_FAR_IN_FUTURE in my logs?
+
+You may occasionally notice a `TIMESTAMP_TOO_FAR_IN_FUTURE` message in your logs. This is typically not an issue and can be a red herring while debugging other problems. There are a few potential reasons for this message to appear.
+
+One common cause is that your node's clock is wrong. To fix it, simply set your node's clock to the correct time in your current timezone. A related reason is that one or more of your peers has set their clock incorrectly. It isn't realistically possible to determine which peer's clock is wrong. However, you can safely ignore the messages in this case.
+
+Another common cause is that either your node or one of your peers is running a Chia version older than 1.8.0. Prior to that version, full nodes would propagate blocks with timestamps up to five minutes in the future. However, as part of the [soft fork](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md) from 1.8.0, that amount of time was reduced to two minutes. If you are running a pre-1.8.0 version of Chia, be sure to upgrade to the latest version. Otherwise, the consensus will automatically sort out the propagation of blocks.
+
+In summary, this error can be safely ignored as long as your node's clock is correctly and you are running version 1.8.0 or later.
+
 ## Farming
 
 ### How do I tell if I'm farming correctly?
