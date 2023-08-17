@@ -64,6 +64,7 @@ module.exports = {
         'cli-reference/dids',
         'cli-reference/nfts',
         'cli-reference/offers',
+        'cli-reference/plotters',
         'cli-reference/simulator',
         'cli-reference/vcs',
         'cli-reference/wallet',

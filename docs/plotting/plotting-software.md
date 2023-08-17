@@ -14,7 +14,7 @@ Several Chia plotters are now available. The output (a plot) will be nearly iden
 The three families of plotters include:
 * BladeBit -- developed by Chia Network, Inc. 
 * madMAx -- developed external to CNI
-* Chiapos -- the original plotter, developed by CNI
+* ChiaPoS -- the original plotter, developed by CNI
 
 This page provides details about the plotters that exist within each of these families.
 
@@ -41,12 +41,16 @@ More info
 - The fastest Chia plotter for most hardware architectures that meet the minimum specs
 - The 256 GiB version creates plots entirely in memory, so no temp disk is needed
 - Open-source, freely available, no dev fee
+- Can also be installed as a [standalone build](#bladebit-standalone)
 
-CLI usage
+[CLI documentation](/plotters-cli#cudaplot)
+
+**Example command**
+
+The following command will create a single plot with a compression level of 7. It will use the specified keys and contract address in case the farmer is located on a different machine. It will use the defaults for the remaining parameters:
 
 ```bash
-[todo verify] bladebit_cuda -f <farmer key> -c <contract address> -n 1 cudaplot /mnt/ssd
-[todo plot compression level parameter?]
+chia plotters bladebit cudaplot -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -n 1 --compress 7
 ```
 
 ### BladeBit RAM
@@ -70,12 +74,16 @@ More info
 - Creates plots entirely in memory, so no temp disk is needed
 - Typically not as fast as BladeBit CUDA
 - Open-source, freely available, no dev fee
+- Can also be installed as a [standalone build](#bladebit-standalone)
 
-CLI usage
+[CLI documentation](/plotters-cli#ramplot)
+
+**Example command**
+
+The following command will create a single plot with a compression level of 7. It will use the specified keys and contract address in case the farmer is located on a different machine. It will use the defaults for the remaining parameters:
 
 ```bash
-[todo verify] bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 ramplot /mnt/ssd
-[todo plot compression level parameter?]
+chia plotters bladebit ramplot -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -n 1 --compress 7
 ```
 
 ### Bladebit Disk
@@ -83,7 +91,7 @@ CLI usage
 #### A disk-based (HDD or SSD) CPU plotter, included with Chia 2.0
 
 Plot capabilities
-- Type: Uncompressed only
+- Type: Uncompressed only in Chia 2.0, Compressed beginning in 2.1
 - Size: k32 only
 
 Requirements
@@ -96,19 +104,23 @@ Requirements
 
 More info
 - Designed to be used in embedded or entry-level systems
-- Can only create uncompressed plots (C0, 101.4 GiB)
+- Can only create uncompressed plots (C0, 101.4 GiB) in Chia version 2.0
+- Support for compressed plots with 64 GB and 128 GB of RAM is in beta and will be added in Chia 2.1
 - The use of temporary HDD or SSD storage makes it accessible to the majority of farmers
 - Sequential writes can better take advantage of SSD burst performance and reduce SSD wear by reducing write amplification factor
 - Can use DRAM write cache to significantly reduce SSD writes and can take advantage of any extra increments (no minimum required)
 - Takes full advantage of increased disk bandwidth from PCIe 4.0
 - Pipelined performance to max out CPU
+- Can also be installed as a [standalone build](#bladebit-standalone)
 
-CLI usage
+[CLI documentation](/plotters-cli#diskplot)
 
-Example with temporary SSD mounted to /mnt/ssd1 and destination drive as /mnt/ssd2, and using 100GB of DRAM cache to reduce temporary disk writes
+**Example command**
+
+The following command will create a single uncompressed plot (plot compression is disabled in Chia version 2.0.0). It will use the specified keys and contract address in case the farmer is located on a different machine. It will allocate 32 GiB of DRAM cache, and it will use the specified temporary drive (typically an SSD) and destination drive. It will use the defaults for the remaining parameters:
 
 ```bash
-bladebit -t <system threads - 1> -f <farmer key> -c <contract address> -n 1 diskplot -t1 /mnt/ssd1/ -b 64 --cache 100G -a /mnt/ssd2
+chia plotters bladebit diskplot -t <temp dir> -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> --cache 32G -n 1 --compress 0
 ```
 
 ### Gigahorse
@@ -146,7 +158,15 @@ More info
 - The use of temporary HDD or SSD storage makes it accessible to the majority of farmers
 - Pipelined performance to max out CPU
 
-### Chiapos
+[CLI documentation](/plotters-cli#madmax)
+
+**Example command**
+
+```bash
+chia plotters madmax -t <temp dir> -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -k <size> -n <number of plots>
+```
+
+### ChiaPoS
 
 #### The original Chia CPU-based plotter
 
@@ -170,6 +190,48 @@ More info
 - The use of temporary HDD or SSD storage makes it accessible to the majority of farmers
 - Not optimized for performance
 
+[CLI documentation](/plotters-cli#chiapos)
+
+**Example command**
+
+```bash
+chia plotters chiapos -t <temp dir> -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -k <size> -n <number of plots>
+```
+
+### BladeBit (standalone)
+
+While BladeBit does come installed with Chia version 2.0, there are several reasons you might want to run the standalone version instead:
+- You want to run the `simulate` command, to determine your farm's maximum size
+- You want to run BladeBit CUDA, but you have less than 256 GB of RAM (128 GB and 64 GB versions are currently in beta in the standalone build)
+- You want to test features that have not yet been released in the embedded version
+
+**Complete instructions** for downloading and installing BladeBit are available on the [BladeBit GitHub page](https://github.com/Chia-Network/bladebit/).
+
+Abbreviated installation instructions:
+
+1. Install [cmake](https://cmake.org)
+2. Clone BladeBit:
+```
+git clone https://github.com/Chia-Network/bladebit.git && cd bladebit
+```
+3. Create and enter a build directory:
+```
+mkdir -p build && cd build
+```
+4. Generate config files:
+```
+cmake ..
+```
+5. Build BladeBit:
+```
+cmake --build . --target bladebit --config Release
+```
+
+After the installation has completed, the `bladebit` command will be available from the `Release` directory. For example, to obtain a list of options, run:
+```
+./Release/bladebit -h
+```
+
 ## Choosing a plotter
 
 With so many plotters available, the decision of which one to choose may seem daunting. However, your hardware setup will often make the choice for you. If you have:
@@ -190,7 +252,7 @@ It is always possible, and indeed recommended, to create a plot with a few diffe
 
 ## CLI usage
 
-There is a new `chia` command for creating plots called `plotters`. For compatibility, the original command for creating plots `chia plots create` remains in place, however, this will always use the reference chiapos plotter. In order to use the other plotters, you must use the new `chia plotters` command. Command line options differ with each plotter, so be sure to check the available options using `chia plotters <plotter> -h`. Available plotter values include "chiapos", "bladebit", and "madmax".
+There is a new `chia` command for creating plots called `plotters`. For compatibility, the original command for creating plots `chia plots create` remains in place, however, this will always use the reference ChiaPoS plotter. In order to use the other plotters, you must use the new `chia plotters` command. Command line options differ with each plotter, so be sure to check the available options using `chia plotters <plotter> -h` or by reading the online [CLI documentation](/plotters-cli). Available plotter values include "chiapos", "bladebit", and "madmax".
 
 The UI also has new functionality to support selecting a plotter.
 

@@ -285,13 +285,6 @@ If you previously created a plot NFT, it will show up now. In this case, it is c
 </div>
 <br />
 
-The details of your current pool will also be given:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/17.png" alt="Pool details" />
-</div>
-<br />
-
 Next, you will need to choose a plotter. When creating a single plot, `Chia Proof of Space` and `madMAx` both will work on almost all hardware. The plot from this example was created with `madMAx` because it requires the smallest amount of temporary disk space.
 
 :::info

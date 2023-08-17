@@ -56,16 +56,15 @@ CPUs and GPUs are both supported for plotting, with GPUs typically being faster.
 
 The **BladeBit CUDA** plotter requires an NVIDIA GPU with CUDA capability 5.2 and up, with at least 8GB of vRAM. It is supported on **Windows and Linux only.** MacOS support may be added in the future, but is not guaranteed.
 
-The following table lists the general plotter types, along with their requirements, for creating k32 plots. 
-The second column (Can Plot >C0) refers to "compressed" plots, which are C1-9, depending on their level of compression:
+The following table lists the general plotter types, along with their requirements, for creating k32 plots:
 
-| Processor +<br/>Storage | Plotter Name                  | Can<br/>Plot<br/>>C0? | CPU<br/>Usage | GPU<br/>Usage | Temp<br/>Disk<br/>(GiB) | RAM<br/>(GiB) | Plot<br/>Times<br/>(minutes) |
-| :---------------------- | :---------------------------- | :-------------------- | :------------ | :------------ | :---------------------- | :------------ | :--------------------------- |
-| **GPU +<br/> RAM**      | BladeBit CUDA                 | Yes                   | Low           | High          | None                    | 256           | 1-3                          |
-| **GPU +<br/> SSD**      | BladeBit CUDA                 | Yes                   | Low           | High          | 256                     | 64-128        | 3-5                          |
-| **CPU +<br/> RAM**      | BladeBit RAM                  | Yes                   | High          | None          | None                    | 416           | 2-5                          |
-| **CPU +<br/> SSD**      | Bladebit Disk <br/> or madMAx | No                    | High          | None          | 256-512                 | 2             | 15-60                        |
-| **CPU +<br/> HDD**      | Bladebit Disk <br/> or madMAx | No                    | HIgh          | None          | 256-512                 | 2             | > 60                         |
+| Processor +<br/>Storage | Plotter <br/> Name(s)                    | Chia <br/> Version | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GiB) | RAM<br/>(GiB) | Plot<br/>Times<br/>(min.) |
+| :---------------------- | :--------------------------------------- | :----------------- | :-------------- | :------ | :---------------------- | :------------ | :------------------------ |
+| **GPU +<br/> RAM**      | BladeBit CUDA                            | 2.0                | Yes             | GPU     | None                    | 256           | 1-3                       |
+| **GPU +<br/> SSD**      | BladeBit CUDA                            | 2.1                | Yes             | GPU     | 180                     | 64, <br/> 128 | 3-5                       |
+| **CPU +<br/> RAM**      | BladeBit RAM                             | 2.0                | Yes             | CPU     | None                    | 416           | 2-5                       |
+| **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                     | 4             | 15-60                     |
+| **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                     | 4             | > 60                      |
 
 :::note
 
@@ -86,11 +85,27 @@ The rest of this page will list a few decent configurations, depending on your b
 
 ## Recommended plotting systems
 
-### Best all-around setup
+### Low budget plotters
 
-### Low budget compressed plotters
+* CPU:
+* GPU:
+* RAM:
+* SSD:
+* Motherboard: 
+
+Total Cost: 
+Estimated plot times:
 
 ### High-end plotters
+
+* CPU:
+* GPU:
+* RAM:
+* SSD:
+* Motherboard: 
+
+Total Cost: 
+Estimated plot times:
 
 ## Uncompressed plotters
 

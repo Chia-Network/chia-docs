@@ -1,5 +1,5 @@
 ---
-sidebar_label: Compression Levels
+sidebar_label: Choosing a Compression Level
 title: Choosing a compression level
 slug: /plotting-compression
 ---
@@ -9,13 +9,17 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-If you do choose to create compressed plots, the biggest (and arguably most important) decision to make will be the level of compression.
+If you opt to create compressed plots, you will need to decide on the level of compression.
 
-The only plotter supported by CNI that is capable of creating compressed plots is BladeBit CUDA. (Many people have also used the third-party [GigaHorse](https://github.com/madMAx43v3r/chia-gigahorse) plotter by madMAx.) 
+:::info
 
-As of Chia version 2.0, BladeBit CUDA requires 256 GiB of system memory. This is an all-memory plotter that does not require any temporary disk storage. We are also currently building 128 GiB and 64 GiB versions of BladeBit that will require some temporary storage.
+You can mix and match plots with different compression levels. For example, you could have some C0, C3, and C7 plots on the same machine. Your harvester will handle this without issue. However, most users will likely choose to convert all of their plots to the same compression level.
 
-The next sections list three tools to determine the compression level that will work best for your farm, starting with the most general and ending with the most specific for your own hardware.
+:::
+
+As a reminder, BladeBit CUDA and BladeBit RAM are plotters supported by CNI that are capable of creating compressed plots. Whenever we mention compression levels, we are referring to those defined by BladeBit. (Many people have also used the third-party [GigaHorse](https://github.com/madMAx43v3r/chia-gigahorse) plotter by madMAx. This plotter uses a similar nomenclature for its compression levels, but they have different definitions.) 
+
+The next sections list three methods to determine the compression level that will work best for your farm, starting with the most general and ending with the most specific for your own hardware.
 
 ### Compression table
 
@@ -51,7 +55,7 @@ There is some cross-over at certain compression levels. For example, a Pi 4 _mig
 A few things to keep in mind regarding these recommendations:
 * The above table is meant as a general overview; it therefore assumes that your farm is somewhere from 500-1000 TiB.
 * The more plots your farm has, the higher-end your harvester needs to be, all other factors being equal.
-* Starting in June 2024, the plot filter will be reduced from `512` to `256`. When this happens, the computational load on your harvester will be doubled. To help you plan for this event, we have created a [simulator tool](/plotting-plotters#bladebit-simulate) that will show what your harvester's maximum capacity is at each compression level, as well as with different plot filter levels.
+* In June 2024, the plot filter will be reduced from `512` to `256`. When this happens, the computational load on your harvester will be doubled. To help you plan for this event, we have created a [simulator tool](/plotting-plotters#bladebit-simulate) that will show what your harvester's maximum capacity is at each compression level, as well as with different plot filter levels. See below for more info.
 
 :::
 
@@ -59,7 +63,52 @@ A few things to keep in mind regarding these recommendations:
 
 In order to calculate your potential profits from farming at various compression levels, you can use [this spreadsheet](https://docs.google.com/spreadsheets/d/1k6c-OBDtggXqnEfOPdMmq3646puzvOD7dWojwCH2v3c). Simply make a copy of it, then fill in the constants according to your farm. As you will see from the spreadsheet, the compression level you will ultimately choose will depend on a number of factors, such as electricity cost and the size of your farm.
 
-### Bladebit Simulate
+### Max farm size estimator
 
-[start here]
+The third-party website [xch.farm](https://xch.farm/max-farm-size) has tables for estimating your farm's maximum capacity depending on your CPU/GPU setup. Be sure to pay attention to the `June 2024` column when planning your farm. If your harvester is capable of handling your desired number of plots listed in this column, you should be good to go until 2027 or later.
 
+### BladeBit Simulate
+
+The [standalone version of BladeBit](/plotting-software#bladebit-standalone) comes with a simulator that will determine the maximum size of your farm. The basic idea is that you pass in a compressed plot (C1-C9) and it will calculate the maximum number of plots/space your current harvester can handle.
+
+See the [CLI reference](/plotters-cli#simulate) for a list of options using the simulator.
+
+:::info
+
+The simulator's default values are typically fine, other than the filter size. For context, starting in June 2024 the plot filter will be reduced from 512 to 256. At this point, twice as many plots will pass the filter, so your harvester's workload will effectively double. You are recommended to use `-f 256` with the simulator to prepare for this event. For more information on the plot filter, see our [FAQ](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it).
+
+:::
+
+:::note
+
+It is a good idea to create plots of various sizes (for example, one C3, one C7, and one C9) and then run the simulator against each of them. This will help you to plan for how many harvesters to use, the type of hardware to acquire, etc.
+
+:::
+
+The simulator's default mode will decompress your plot and then extrapolate your farm's maximum size, which should only take a few seconds.
+
+Example command using the default mode and a filter size of 256:
+
+```bash
+bladebit simulate -f 256 <path to plot file>
+```
+
+:::info
+
+The simulator will only work with compressed plots.
+
+:::
+
+The simulator can also be configured to run a real-time simulation against a farm of any given size. This will give you a much better idea of how your system will perform in the real world. To activate this mode, use the following flags:
+* `--power <time>` -- The number of seconds the simulation will run
+* `--size <size>` -- The size of the farm to simulate
+
+Every 9.375 seconds, a new simulated signage point will be received, and a number of simulated plots will be decompressed based on the value of `--size`. For example, the following command will simulate running a 1 PB farm for ten minutes:
+
+```bash
+bladebit simulate --power 600 --size 1PB -f 256 <path to plot file>
+```
+
+At the end of the simulation, a number of statistics will be shown. It is a good idea to keep the maximum lookup time at around five seconds in order to avoid missing any signage points. If the maximum time is greater than ten seconds, then you are advised to either reduce the number of plots on your harvester, use a lower level of compression, or use a faster CPU or GPU for harvesting.
+
+For a detailed analysis of how the tool works and how you should be thinking about plot compression, see [this video demonstration](https://www.youtube.com/watch?v=cZfptl66TLE) by JM.
