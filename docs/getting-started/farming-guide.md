@@ -289,7 +289,7 @@ Next, you will need to choose a plotter. When creating a single plot, `Chia Proo
 
 :::info
 
-When building a larger farm, the plotter you choose will depend greatly on your available hardware. It may help to experiment with multiple plotters to get a feel for which ones work best for your setup. For details on each of the available plotters, see our [todo](todo) section.
+When building a larger farm, the plotter you choose will depend greatly on your available hardware. It may help to experiment with multiple plotters to get a feel for which ones work best for your setup. For details on each of the available plotters, see our [Plotting Software](/plotting-software) section.
 
 :::
 
@@ -317,7 +317,7 @@ Due to advancements in technology, the minimum `k` value will likely need to be 
 
 :::
 
-Certain plotters are also capable of creating compressed plots, which are discussed in great detail in the [todo](todo) section. If the `Compression Level` dropdown appears, fee free to select `3`. This is a modest level of compression that even low-power systems can harvest. Most farmers will want to create compressed plots, but for now we just want to get a feel for creating a single plot. A C0 (uncompressed) plot is fine for accomplishing this goal.
+Certain plotters are also capable of creating compressed plots, which are discussed in great detail in the [Plotting Basics](/plotting-basics) section. If the `Compression Level` dropdown appears, fee free to select `3`. This is a modest level of compression that even low-power systems can harvest. Most farmers will want to create compressed plots, but for now we just want to get a feel for creating a single plot. A C0 (uncompressed) plot is fine for accomplishing this goal.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/20.png" alt="Choose K value" />
@@ -385,13 +385,15 @@ There is still a lot to learn, but you already have the basic knowledge needed t
 
 ## Next steps
 
-[todo explain and add links]
 Once you have a small farm up and running, you can decide whether to expand, and how to do so. The following pages will show you:
-* Some basic details of Chia plots, including "compressed" versus "uncompressed" plots
-* How to select the optimal computer for plotting
-* How to set up, and expand, a farming computer and harvester network
-* Some of the pitfalls of Chia farming
-* A list of Frequently Asked Questions
+* [Basic details of Chia plots](/plotting-basics), including "compressed" versus "uncompressed" plots
+* [How to select the optimal computer for plotting](/plotting-hardware)
+* [List of Chia plotting software](/plotting-software)
+* [How to choose a plot compression level](/plotting-compression)
+* [How to create Chia plots](/plotting-how-to)
+* [Notes about SSD encurance](/ssd-endurance)
+* [How to move plots](/moving-plots) to their final destinations
+* [Frequently Asked Questions](/plotting-faq)
 
 ## How to Get Help
 

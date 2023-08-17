@@ -43,7 +43,7 @@ In 2023, some major changes were made to the plotting process, mostly due to the
 
 :::info
 
-Technically, **all** Chia plots are compressed -- they consist almost entirely of random cryptographic data, so they cannot be made much smaller using lossless techniques. However, in order to simplify the decriptions, we'll use the following terms for the different types of plots:
+Technically, **all** Chia plots are compressed -- they consist almost entirely of random cryptographic data, so they cannot be made much smaller using lossless techniques. However, in order to simplify the descriptions, we'll use the following terms for the different types of plots:
 * **Uncompressed** -- Plots that are complete upon being created. Plotters that create uncompressed plots include the original ChiaPos, madMAx, and BladeBit RAM and disk. Nearly all plots created prior to 2023 are uncompressed.
 * **Compressed** -- Plots that are incomplete upon being created. Plotters that create compressed plots include BladeBit CUDA and GigaHorse. Compressed plots were introduced to the official Chia software in version 2.0.
 
@@ -53,7 +53,7 @@ Technically, **all** Chia plots are compressed -- they consist almost entirely o
 
 Chia plots consist of seven tables, the format of which was defined in mid-2020. The reference plotter included with version 1.0 was ChiaPoS, which only used one CPU core, and which produced uncompressed plots. When Chia's mainnet was launched in March 2021, all Chia plots were created with the ChiaPoS plotter.
 
-Later in 2021, the madMAx and BladBit plotters were developed independantly. These plotters fully utilized a plotting machine's resources, so they were significantly faster than the ChiaPoS plotter. For the first time, it became possible to create a plot entirely in RAM, eliminiating the need for an enterprise SSD. However, these second-generation plotters still exclusively created uncompressed plots.
+Later in 2021, the madMAx and BladeBit plotters were developed independently. These plotters fully utilized a plotting machine's resources, so they were significantly faster than the ChiaPoS plotter. For the first time, it became possible to create a plot entirely in RAM, eliminating the need for an enterprise SSD. However, these second-generation plotters still exclusively created uncompressed plots.
 
 By the end of 2022, it had become apparent that a form of "lossy" plot compression was possible. A few different competing techniques were being devised that involved omitting one or two tables, or some data held  within, during the plotting process. The result was an incomplete plot, where the missing data could be added during the farming process. These techniques allowed plots to be 20-30% smaller than their uncompressed brethren, depending on how much data was omitted at the time of plotting.
 
@@ -63,7 +63,7 @@ There are two basic types of compression -- lossless and lossy. For a brief over
 
 :::
 
-This form of "compression" is possible because the data contained within a plot is deterministic. A plot's ID -- a 32-byte hash -- is all that is needed to determine the entirity of its contents. In other words, if you use the same ID (and k-value, as will be discussed later) to create plots on two different computers, the plots will be identical. It is therefore possible to generate any missing data on the fly. This, combined with other techniques such as brute-forcing a small number of bits, results in the plots being smaller.
+This form of "compression" is possible because the data contained within a plot is deterministic. A plot's ID -- a 32-byte hash -- is all that is needed to determine the entirety of its contents. In other words, if you use the same ID (and k-value, as will be discussed later) to create plots on two different computers, the plots will be identical. It is therefore possible to generate any missing data on the fly. This, combined with other techniques such as brute-forcing a small number of bits, results in the plots being smaller.
 
 By mid-2023, most new Chia plots were being created using these "compression" techniques. Each individual plot earns the same rewards as an equivalent uncompressed plot. However, because the compressed plots are smaller, more of them fit on each disk. Farmers therefore earn extra income compared with using uncompressed plots.
 
@@ -87,11 +87,11 @@ Although not required, plots larger than k32 may be created. There is not a grea
 
 ### Compression Levels
 
-The level of compression you choose will be highly dependant on your farming setup. The good news is that even those using a Raspberry Pi for their harvesters will be able to take advantage of the lower levels of compression. Additionally, each step up in compression level requires an exponential increase in computing power, while yielding a linear decrease in plot size. For these reasons, those who are farming with a Raspberry Pi can yield 20% higher rewards by using compressed plots, while those using the most powerful GPUs will see a modest increase over the benefits obtained by the Pi. Namely, C9 plots yield 35% higher rewards than C0 plots.
+The level of compression you choose will be highly dependent on your farming setup. The good news is that even those using a Raspberry Pi for their harvesters will be able to take advantage of the lower levels of compression. Additionally, each step up in compression level requires an exponential increase in computing power, while yielding a linear decrease in plot size. For these reasons, those who are farming with a Raspberry Pi can yield 20% higher rewards by using compressed plots, while those using the most powerful GPUs will see a modest increase over the benefits obtained by the Pi. Namely, C9 plots yield 35% higher rewards than C0 plots.
 
 Later, we'll go over the details of each compression level, including the hardware required to yield each increase in farming rewards.
 
-The next page will go into much detail regarding the various types of harware that can be used for creating Chia plots.
+The next page will go into much detail regarding the various types of hardware that can be used for creating Chia plots.
 
 ## How to Get Help
 

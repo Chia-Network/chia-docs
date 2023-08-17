@@ -238,11 +238,11 @@ With so many plotters available, the decision of which one to choose may seem da
 - At least 256 GiB of RAM **and** a CUDA-class GPU with at least 8 GiB of VRAM
   - You will likely want BladeBit CUDA
   - Gigahorse will also work
-  - Other plotters will underperform
+  - Other plotters will under-perform
 - At least 64 GiB of RAM (but less than 256 GiB) **and** a CUDA-class GPU with at least 8 GiB of VRAM, **and** a 256 GB or larger SSD (ideally enterprise NVMe)
   - The beta version of BladeBit CUDA will likely work
   - Gigahorse will also work
-  - Other plotters will underperform
+  - Other plotters will under-perform
 - 416 GiB of RAM but no GPU
   - BladeBit RAM is easily your best choice
 - Less than 64 GiB of RAM and don't mind creating uncompressed plots
