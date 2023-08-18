@@ -215,6 +215,7 @@ module.exports = {
         'resources/cryptocurrency-intro',
         'resources/references',
         'resources/chia-farming-workload',
+        'resources/k-sizes',
         'resources/faq',
       ],
     },
