@@ -85,21 +85,37 @@ The rest of this page will list a few decent configurations, depending on your b
 
 ## Recommended plotting systems
 
+JM has created an excellent [plotting build guide](https://chiadecentral.com/gpu-plotting-build-guide/) with advice on which equipment provides the best performance for the money. 
+This guide is well worth a visit if you are interested in creating compressed plots with BladeBit CUDA.
+
+We'll also list two recommendations here, which assume you will use pre-owned components wherever possible. eBay and Amazon are good places to shop around.
+
 ### Budget
 
-Details:
+* Model: HPE Z440
+* CPU: Xeon v4
+* RAM: 256 GB DDR4 ECC 2133
+* GPU: 2070
 
-Total Cost: 
+Total Cost: $500-600
 
-Estimated plot times:
+Estimated plot times (k32): 170-200 seconds
 
-### High-end plotters
+Daily plot capability: 40-50 TB
 
-Details:
+### Workstation
 
-Total Cost: 
+* Model: Lenovo P620
+* CPU: Threadripper Pro 5945 WX
+* GPU: 3080
+* Bus: PCIe 4.0 x 16
+* RAM: 256 GB DDR4 ECC 3200
 
-Estimated plot times:
+Total Cost: $1300-1500 
+
+Estimated plot times: 90-150 seconds
+
+Daily plot capacity: 60-95 TB
 
 ## Uncompressed plotters
 
