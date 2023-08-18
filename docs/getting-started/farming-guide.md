@@ -19,11 +19,11 @@ Chia plotting and farming can seem daunting at first, but it's a relatively stra
 4. [Create a plot](#create-a-plot)
 5. [Start farming](#start-farming)
 
-This guide will take you through each of these steps. We will set up a Chia farm, including a full node and a single plot. This will take anywhere from an hour to several days, depending on a number of factors. But don't worry -- most of this time will not require you to be active on your computer.
+This guide will take you through each of these steps. We will set up a Chia farm, which includes syncing a full node and creating your first plot. This will take anywhere from an hour to several days, depending on a number of factors. But don't worry -- most of this time will not require you to be active on your computer.
 
 :::info
 
-This guide is intentionally light on technical details. It is only intended to help new users set up a basic farm. Other pages on this website will go into the concepts introduced in this guide in much greater detail.
+This guide is intentionally light on technical details. It is only intended to help new users set up a basic farm, ideally using equipment they already own. Subsequent pages on this website will go into the concepts introduced in this guide in much greater detail.
 
 :::
 
@@ -31,13 +31,13 @@ Ready? Let's get started!
 
 ## Obtain hardware
 
-You may already have everything you need, but let's make sure.
+You may already have everything you need, but let's make sure. (All you need for this tutorial is the minimum requirements. We'll cover more optimized setups later.)
 
 ### Computer
 
 Most computers made after 2010 can be used for farming, as long as they have a 64-bit CPU. Windows, Linux, and Mac OS are supported. This entire guide was created from a Windows laptop.
 
-_Farming_ does not require a fast computer. The minimum spec is a Raspberry Pi4 with 4 GiB of RAM for a CLI farm, or 8 GiB for a GUI farm. (This guide will show you how to set up a GUI farm.) Many farmers choose a Pi because it consumes very little electricity.
+_Farming_ does not require a fast computer. The minimum spec is a Raspberry Pi4 with 4 GB of RAM for a CLI farm, or 8 GB for a GUI farm. (This guide will show you how to set up a GUI farm.) Many farmers choose a Pi because it consumes very little electricity.
 
 _Plotting_, on the other hand, is resource-intensive. Luckily, once a plot has been created, it can be farmed for many years. A Pi _can_ be used for plotting, but it will be quite slow. As will a laptop. Long-term, these are not great options.
 
@@ -51,7 +51,7 @@ For this guide, we will create a single plot. This will require:
 * 275 GB of temporary storage
   * An HDD will work, but it will be slow
   * An SSD will be much faster; it's a good option for this tutorial
-  * RAM is the fastest option (If you don't have 275 GB of RAM, don't worry about it for now.)
+  * RAM is the fastest option (the minimum for RAM plotting is 256 GB; if you don't have that much, don't worry about it for now)
 * 108.8 GB of free space where the plot will live
   * An SSD will work, but is overkill
   * The vast majority of plots are stored on HDDs
@@ -60,12 +60,12 @@ A laptop or desktop with 400 GB of free space will satisfy these requirements. A
 
 ### Database SSD
 
-In order to store the blockchain database, an SSD with at least 520 MB/s read/write speeds is required (HDDs aren't fast enough). As of mid-2023 the database is ~130 GB; a 256 GB SSD will likely be usable until 2025. External and internal SSDs are both fine.
+In order to store the blockchain database, an SSD with at least 520 MB/s read/write speeds is required (it doesn't need to be a high-speed NVMe SSD, but unfortunately HDDs aren't fast enough). As of mid-2023 the database is ~130 GB; a 256 GB SSD will likely be usable until 2025. External and internal SSDs are both fine.
 
 :::info
 
 Let's say you have a computer without much free space. If you add a 1024-GB external SSD, it will be sufficient to create and store a plot, as well as to store the blockchain database. This will not be an ideal setup for 
-creating a larger farm. But if you already have this equipment, you can set up a small farm without spending any money, and you will end up with a much better idea of what equipment to buy going forward.
+creating a larger farm. But if you already have this equipment, you can set up a small farm without spending any money.
 
 :::
 
@@ -75,7 +75,7 @@ Once you have the required hardware, it's time to install Chia.
 
 Head to [the official download page](https://www.chia.net/downloads/); download and run the installer for your Operating System. The default settings are fine for most setups.
 
-Two check boxes will be shown on the last screen after the install has completed. It's a good idea to check both of them. Doing so will enable you to type `chia` in a terminal window without requiring the full path, and it will automatically start the application.
+Two check boxes will be shown on the last screen after the install has completed. It's a good idea to check both of them. Doing so will allow you to type `chia` in a terminal window without requiring the full path, and it will automatically start the application.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/01.png" alt="Check both boxes" width="50%"/>
@@ -106,7 +106,7 @@ You can also choose a custom name for your wallet. Click `NEXT` when you are fin
 
 :::warning
 
-If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to your recovery phrase in a safe place.
+If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place.
 
 :::
 
@@ -136,7 +136,7 @@ If you think you will ever want to join a pool (recommended for small and medium
 Copy your receive address (it will begin with `xch`) and head to our [faucet page](https://faucet.chia.net/). Paste your address, click the "I'm not a robot" check box, and click `Submit`:
 
 <div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/07.png" alt="Faucet" />
+  <img src="/img/first_plot/07.png" alt="Faucet"  width="75%"/>
 </div>
 <br />
 
@@ -147,8 +147,13 @@ Within a few minutes, your wallet's balance should increase:
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/08.png" alt="Wallet with 100 mojos" />
 </div>
+<br />
+
+:::info
 
 You can continue with this guide while waiting for your 100 mojos to arrive.
+
+:::
 
 ### Sync your node
 
@@ -160,10 +165,10 @@ Click the `Full Node` icon on the left side of your wallet:
 <br />
 
 This screen shows your node's syncing status. In order to farm Chia, your node needs to be fully synced. You have two options to achieve this:
-1. Sync from genesis -- this image above shows this happening. Your node will connect with up to 80 peers and download information for each block. This is the most secure way to sync a node, and the only way to be sure that the information is accurate. However, it will take at least a few days, and possibly a week or more to sync from genesis, depending on your node's speed, your internet connection, and the quality of the peers to which you connect.
+1. Sync from genesis -- the above image shows this happening. Your node will connect with up to 80 peers and download information for each block. This is the most secure way to sync a node, and the only way to be sure that the information is accurate. However, it will take at least a few days, and possibly a week or more to sync from genesis, depending on your node's speed, your internet connection, and the quality of the peers to which you connect.
 2. Download a checkpoint database -- this option will allow you to sync much faster, but you have to trust that the information is accurate. For most users, this will be a worthwhile tradeoff.
     * Head to our official [checkpoint download page](https://www.chia.net/downloads/#database-checkpoint) and click the `Torrent` link for the mainnet Database.
-    * When your download has completed, use [BitTorrent](https://www.bittorrent.com/) to open it, and be sure to verify it with the checksum listed on the download page.
+    * When your download has completed, use [BitTorrent](https://www.bittorrent.com/) to open it; be sure to verify it with the checksum listed on the download page.
     * Move the database to the appropriate destination (see below).
 
 :::warning
@@ -192,9 +197,11 @@ Regardless of which method you choose for syncing, you can continue with this gu
 
 Over the long term, your reward for farming will be directly proportional to the total space on the network (AKA netspace). For example, if your farm controls 1% of the netspace, it will win 1% of the rewards, on average.
 
-Over the short-to-medium term, luck can play a large factor in your winnings. Small farms _could_ get lucky an win an outsized number of rewards very quickly, but they are equally likely to be unlucky.
+Over the short-to-medium term, luck can play a large factor in your winnings. Small farms _could_ get lucky and win an outsized number of rewards very quickly, but they are equally likely to be unlucky.
 
-For this tutorial, we are creating a single plot, the smallest farm possible. As of this writing, a single-plot farm will only collect a reward once every 161 years! So why even bother trying?
+For this tutorial, we are creating a single plot, the smallest farm possible. As of this writing, a single-plot farm will only collect a reward once every 161 years!
+
+So why even bother trying?
 
 That's where pooling becomes valuable. Pools, well, _pool_ their farming resources. When one member of a pool wins a reward, it is split among all participants according to the amount of space they contributed. The effect is a smoothing out of one's rewards over time, resulting in a consistent payout. Most users with small farms (and even some with large farms) join a pool.
 
@@ -207,7 +214,7 @@ Click the `Pooling` icon on the left side of your wallet, and click `JOIN A POOL
 
 Before you can join a pool, you will need to create a plot NFT. This will allow you to easily change pools later.
 
-Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with Chialinks).
+Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 
@@ -215,7 +222,7 @@ If you don't want to join a pool, select `Self pool`. This will assign you to a 
 
 :::
 
-Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. If you used the faucet as recommended, you will now have 100 mojos. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
+Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. If you used the faucet, you will now have 100 mojos. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/11.png" alt="Create a plot NFT" />
@@ -278,7 +285,7 @@ From the Chia application, click the `Farm` icon and click `ADD A PLOT`:
 </div>
 <br />
 
-If you previously created a plot NFT, it will show up now. In this case, it is called "Harlequin Koala". The plots you create will be associated with this NFT. It is important that you associate all of your plots to the same NFT because it will allow you to farm to a pool, as well as to change pools easily if desired. As long as your plot NFT shows up here, there is no need to change it:
+If you previously created a plot NFT, it will show up now. The plots you create will be associated with this NFT. It is important that you associate all of your plots to the same NFT in order to farm to a pool, as well as to be able to change pools easily if desired. As long as your plot NFT shows up here, there is no need to change it:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/16.png" alt="Plot NFT" />
@@ -309,11 +316,11 @@ Next, you will need to choose a `k` value, and possibly a compression level.
 
 `k` is a constant that dictates the size of the plot. The minimum `k` for Chia's mainnet is 32. This is also the most common size used, by far. With each increment in this value, all of a plot's associated parameters are doubled. For example, a k33 plot is twice as large as a k32 plot, and it requires twice the memory, temporary storage, and time to be created.
 
-For this tutorial, we'll choose k32. Note that some plotters are only capable of creating k32 plots, so there won't be any other options.
+For this tutorial, we'll choose k32. Note that some plotters are only capable of creating k32 plots, so you might not see any other options.
 
 :::info
 
-Due to advancements in technology, the minimum `k` value will likely need to be increased at some point. This would require you to replot all k32 plots. However, there are currently no plans to increase the minimum `k`, and we will likely give you at least a one-year advanced notice if any such plans are made.
+Due to advancements in technology, the minimum `k` value will likely need to be increased at some point. This would require you to replot all k32 plots. However, there are currently no plans to increase the minimum `k`, and we will do our best to give you at least a one-year notice if any such plans are made.
 
 :::
 
@@ -325,7 +332,7 @@ Certain plotters are also capable of creating compressed plots, which are discus
 <br />
 
 Next, you need to select the temporary and final directories for your plot. The medium for temporary storage will greatly affect the speed at which your plot is created:
-* **RAM** -- For plots to be created entirely in RAM, there is no temporary storage. RAM plotters can typically create k32 plots in a few minutes, but they also require a significant amount.
+* **RAM** -- For plots created entirely in RAM, there is no temporary storage. RAM plotters can typically create k32 plots in a few minutes, but they also require a significant amount of memory (256 GB - 416 GB, depending on the plotter).
 * **SSD** -- Most farmers choose to use an enterprise NVMe SSD for the temporary storage. These SSDs can handle large amounts of reads and writes in their lifetimes.
 * **HDD** -- If you don't mind plotting slowly, you can choose a directory located on an HDD.
 
@@ -355,7 +362,7 @@ The amount of time required to create this plot is highly dependent on your hard
 
 :::info
 
-Some of the available plotters can create k25 plots. These plots are significantly smaller than k32, so they can be created quickly. However, they are for testing purpose only. Any proof of space taken from a plot smaller than k32 on mainnet will be rejected.
+Some of the available plotters can create k25 plots. These plots are significantly smaller than k32, so they can be created quickly. However, they are for testing purposes only. Any proof of space taken from a plot smaller than k32 on mainnet will be rejected.
 
 :::
   
@@ -377,7 +384,7 @@ Your node is now synced. If your plot has finished being created, you are also f
 </div>
 <br />
 
-You will be shown a number of different details of your farm. As long as the `Farm Health` section has all green icons, everything is working as expected.
+You will be shown a number of details about your farm. As long as the `Farm Health` section has all green icons, everything is working as expected.
 
 **Congratulations! You have become a Chia farmer.**
 
@@ -393,7 +400,6 @@ Once you have a small farm up and running, you can decide whether to expand, and
 * [How to create Chia plots](/plotting-how-to)
 * [Notes about SSD encurance](/ssd-endurance)
 * [How to move plots](/moving-plots) to their final destinations
-* [Frequently Asked Questions](/plotting-faq)
 
 ## How to Get Help
 

@@ -44,18 +44,11 @@ The right column (Min Spec Harvester) shows the minimum type of computer require
 * `Fast CPU` refers to a computer with a higher-end CPU such as an Intel Xeon.
 * `GPU` refers to a computer with an Nvidia CUDA-class GPU with at least 8 GB of VRAM.
 
-:::note
-
-There is some cross-over at certain compression levels. For example, a Pi 4 _might_ be able to keep in sync with a few C4 plots.
-
-:::
-
 :::info
 
 A few things to keep in mind regarding these recommendations:
 * The above table is meant as a general overview; it therefore assumes that your farm is somewhere from 500-1000 TiB.
 * The more plots your farm has, the higher-end your harvester needs to be, all other factors being equal.
-* In June 2024, the plot filter will be reduced from `512` to `256`. When this happens, the computational load on your harvester will be doubled. To help you plan for this event, we have created a [simulator tool](/plotting-plotters#bladebit-simulate) that will show what your harvester's maximum capacity is at each compression level, as well as with different plot filter levels. See below for more info.
 
 :::
 
@@ -99,7 +92,7 @@ The simulator will only work with compressed plots.
 
 :::
 
-The simulator can also be configured to run a real-time simulation against a farm of any given size. This will give you a much better idea of how your system will perform in the real world. To activate this mode, use the following flags:
+The simulator can also be configured to run a real-time simulation against a farm of any given size. This will give you a much better idea of how your system will perform on mainnet. To activate this mode, use the following flags:
 * `--power <time>` -- The number of seconds the simulation will run
 * `--size <size>` -- The size of the farm to simulate
 

@@ -30,16 +30,16 @@ Plot capabilities
 
 Requirements
 - OS: Windows 11 or Debian/Ubuntu Linux (MacOS and other flavors of Linux will likely be supported in the future)
-- Memory: 256 GiB of DRAM (128 GiB and 64 GiB versions are in development)
-- Temporary Disk: Not used for 256 GiB version
+- Memory: 256 GB of DRAM (128 GB and 64 GB versions are in development)
+- Temporary Disk: Not used for 256 GB version
 - GPU: CUDA capability 5.2 (NVIDIA 10 series GPU or higher) with 8GB of GPU VRAM
 - Software: CUDA toolkit version 11.8 or later
 
 More info
 - The newest BladeBit plotter, designed to work with CUDA-class GPUs
-- Creates compressed plots, up to C9 (75.2 GiB)
+- Creates compressed plots, up to C9 (75.2 GB)
 - The fastest Chia plotter for most hardware architectures that meet the minimum specs
-- The 256 GiB version creates plots entirely in memory, so no temp disk is needed
+- The 256 GB version creates plots entirely in memory, so no temp disk is needed
 - Open-source, freely available, no dev fee
 - Can also be installed as a [standalone build](#bladebit-standalone)
 
@@ -64,7 +64,7 @@ Plot capabilities
 
 Requirements
 - OS: Windows, Mac, or Linux OS (64-bit is required); Intel and ARM (Apple Silicon) are both supported.
-- Memory: 416 GiB of available RAM
+- Memory: 416 GB of available RAM
 - Temporary Disk: Not used
 - GPU: Not used
 
@@ -96,8 +96,8 @@ Plot capabilities
 
 Requirements
 - OS: Windows, Mac, or Linux OS (64-bit is required); Intel and ARM (Apple Silicon) are both supported.
-- Memory: Minimum 2 GiB of available RAM, with lower bucket counts requiring up to 12 GiB
-- Temporary Disk: 480 GiB in default mode, or 390 GiB with `--alternate` mode enabled; can be HDD or SSD:
+- Memory: Minimum 2 GB of available RAM, with lower bucket counts requiring up to 12 GB
+- Temporary Disk: 480 GB in default mode, or 390 GB with `--alternate` mode enabled; can be HDD or SSD:
   - SSD: fast (NVMe is supported) but consumer-grade SSDs wear out over time, enterprise-grade is recommended
   - HDD: slow, but won't wear out; can plot directly to the final disk
 - GPU: Not used
@@ -117,7 +117,7 @@ More info
 
 **Example command**
 
-The following command will create a single uncompressed plot (plot compression is disabled in Chia version 2.0.0). It will use the specified keys and contract address in case the farmer is located on a different machine. It will allocate 32 GiB of DRAM cache, and it will use the specified temporary drive (typically an SSD) and destination drive. It will use the defaults for the remaining parameters:
+The following command will create a single uncompressed plot (plot compression is disabled in Chia version 2.0.0). It will use the specified keys and contract address in case the farmer is located on a different machine. It will allocate 32 GB of DRAM cache, and it will use the specified temporary drive (typically an SSD) and destination drive. It will use the defaults for the remaining parameters:
 
 ```bash
 chia plotters bladebit diskplot -t <temp dir> -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> --cache 32G -n 1 --compress 0
@@ -146,7 +146,7 @@ Plot capabilities
 
 Requirements
 - OS: Windows, Mac, or Linux OS (64-bit is required); Intel and ARM (Apple Silicon) are both supported.
-- Memory: Depends on setup, minimum 0.5 GiB if single-threaded
+- Memory: Depends on setup, minimum 0.5 GB if single-threaded
 - Temporary Disk: SSD and HDD are supported
   - SSD: fast (NVMe is supported) but consumer-grade SSDs wear out over time, enterprise-grade is recommended
   - HDD: slow, but won't wear out; can plot directly to the final disk
@@ -176,7 +176,7 @@ Plot capabilities
 
 Requirements
 - OS: Windows, Mac, or Linux OS (64-bit is required); Intel and ARM (Apple Silicon) are both supported.
-- Memory: 2 GiB min
+- Memory: 2 GB min
 - Temporary Disk: SSD and HDD are supported
   - SSD: fast (NVMe is supported) but consumer-grade SSDs wear out over time, enterprise-grade is recommended
   - HDD: slow, but won't wear out; can plot directly to the final disk
@@ -235,17 +235,17 @@ After the installation has completed, the `bladebit` command will be available f
 ## Choosing a plotter
 
 With so many plotters available, the decision of which one to choose may seem daunting. However, your hardware setup will often make the choice for you. If you have:
-- At least 256 GiB of RAM **and** a CUDA-class GPU with at least 8 GiB of VRAM
+- At least 256 GB of RAM **and** a CUDA-class GPU with at least 8 GB of VRAM
   - You will likely want BladeBit CUDA
   - Gigahorse will also work
   - Other plotters will under-perform
-- At least 64 GiB of RAM (but less than 256 GiB) **and** a CUDA-class GPU with at least 8 GiB of VRAM, **and** a 256 GB or larger SSD (ideally enterprise NVMe)
+- At least 64 GB of RAM (but less than 256 GB) **and** a CUDA-class GPU with at least 8 GB of VRAM, **and** a 256 GB or larger SSD (ideally enterprise NVMe)
   - The beta version of BladeBit CUDA will likely work
   - Gigahorse will also work
   - Other plotters will under-perform
-- 416 GiB of RAM but no GPU
+- 416 GB of RAM but no GPU
   - BladeBit RAM is easily your best choice
-- Less than 64 GiB of RAM and don't mind creating uncompressed plots
+- Less than 64 GB of RAM and don't mind creating uncompressed plots
   - BladeBit Disk and madMAx are both good options
 
 It is always possible, and indeed recommended, to create a plot with a few different plotters to understand how well your system will perform. Once you have a feel for using the different plotters, you can begin plotting in earnest.

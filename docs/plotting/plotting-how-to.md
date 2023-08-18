@@ -29,7 +29,7 @@ chia keys generate
 
 You will be prompted to add a human-readable name to your wallet. This name is only used locally (it is not stored on the blockchain). If you do not enter a name, a number called a _fingerprint_ will be used instead. It is possible to change this name later.
 
-For example:
+Example response:
 
 ```bash
 Generating private key
@@ -65,13 +65,13 @@ If you do not have a key, you will need to create one:
 </div>
 <br />
 
-You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
+You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is important.
 
 You can also choose a custom name for your wallet. Click `NEXT` when you are finished.
 
 :::warning
 
-If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to your recovery phrase in a safe place.
+If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place.
 
 :::
 
@@ -108,7 +108,7 @@ In order to obtain a pool contract address, you will need to create a Plot NFT.
 
 First, you will need to decide whether to join a pool. For this example, we will use `-s pool` to join a pool. If you want to solo farm, use `-s local` instead. (Later, you can change pools, using the plot NFT you are about to create.)
 
-If you choose to join a pool, you will need to add the URL by adding the `-u` flag. For this example, we will join OpenChia, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with Chialinks).
+If you choose to join a pool, you will need to add the URL by adding the `-u` flag. For this example, we will join OpenChia, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 Finally, you have the option of adding a blockchain fee with the `-m` flag. We will add a one-mojo fee for this example, which typically is sufficient to complete your transaction within a few minutes.
 
@@ -177,7 +177,7 @@ Open your wallet, click the `Pooling` icon in the lower-left corner, and click `
 
 Select either option:
 * `Self pool` -- Select this if you are a solo farmer. Technically, you will be joining a "pool" where you are the only member.
-* `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with Chialinks).
+* `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 
