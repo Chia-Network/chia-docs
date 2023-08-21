@@ -7,6 +7,13 @@ The fastest plot creation is done completely in memory, but requires a server wi
 
 Mainstream SSDs today use NAND flash technology to store data. NAND is high performance, scalable, and low cost - warranting the use in virtually every computing segment from mobile phones, SD cards, consumer laptops, and data centers. However, NAND must be erased before the cell is programmed, a process known as a program erase cycle. This can only be performed a certain amount of times before the NAND cell wears out and can no longer reliably store user data. This is defined generally as an SSD no longer meeting the UBER (uncorrectable bit error rate), retention time (how long the device can store user data safely while powered off, at a given temperature), or functional failure (device can no longer power on).
 
+<div style={{ textAlign: 'left' }}>
+  <img src="/img/ssd-endurance/tbw_dwpd.png" alt="TBW versus DWPD" />
+  <figcaption style={{ textAlign: 'left' }}>
+    <em>Meme credit: Scrutinous</em>
+  </figcaption>
+</div>
+
 The metrics to measure endurance of an SSD is defined in Terabytes Written, or TBW, at a certain workload. The workload defined is generally the JESD219 workload from JEDEC organization. An SSD can still plot well beyond meeting its rated TBW limit, because UBER can be measured (when seeing host errors) and retention is not required (Chia plotting requires temporary or ephemeral storage).
 
 | Plotter             | Cache / Ramdisk | Writes per K=32 |

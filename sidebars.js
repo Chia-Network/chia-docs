@@ -29,6 +29,7 @@ module.exports = {
       label: 'Farming',
       items: [
         'farming/farming-basics',
+        'farming/farming-compressed-plots',
         'farming/farming-many-machines',
         'farming/pool-farming',
         'farming/checking-farm-health',
