@@ -31,7 +31,7 @@ In the future, we plan to enable decompression at the farmer level. This means t
   </div>
 
 3. Slide the `Enable compressed plot support` slider to the right, as shown in the above image.
-4. The default value for `Parallel Decompressor Count` is `1`. This means that on a harvester with more than one CPU, only one of the CPUs will be used for decompressing plots. This setting is fine for most machines. However, feel free to increase it to `2` if you want to use multiple CPUs for decompression.
+4. The default value for `Parallel Decompressor Count` is `1`. This means that on a harvester with more than one CPU, only one of the CPUs will be used for decompressing plots. This setting is fine for most machines, and is the recommended value for GPU harvesting. However, feel free to increase it if you want to use CPU decompression and you want to dedicate multiple CPUs to compressed harvesting.
 4. The default value for `Decompressor Thread Count` is `0`. This is the number of threads that will participate in decompressing plots. This number, multiplied by `Parallel Decompressor Count`, needs to less than or equal to the total number of harvester cores.
 
   For example, if your harvester has one CPU with eight cores, you might use the following settings:
@@ -54,7 +54,7 @@ If you have never installed Chia on this harvester, `config.yaml` won't exist. I
 chia init
 ```
 
-If you have prevously installed Chia on this computer, then `config.yaml` likely already exists. In this case, you will need to add several new settings. However,
+If you have previously installed Chia on this computer, then `config.yaml` likely already exists. In this case, you will need to add several new settings. However,
 
 * If you run `chia init` when the config file already exists, Chia won't make any modifications.
 * If you delete `config.yaml` and run `chia init`, the new settings will be added, but you will lose any custom changes you previously made.
@@ -78,13 +78,13 @@ In the case where `config.yaml` already exists, you therefore are recommended to
 
 At this point, regardless of whether you are upgrading or running a new build of Chia on this harvester, your copy of `config.yaml` contains all of the latest settings. Their definitions and recommended values are as follows:
 
-* `parallel_decompressor_count`: The number of CPUs to be used for decompressing plots. If you want to use a GPU for harvesting, then set this value to `0`.
+* `parallel_decompressor_count`: The number of CPUs to be used for decompressing plots. If this is set to `0`, then harvesting of compressed plots will be disabled. For GPU harvesting, set this value to `1`. For CPU harvesting, set it to the number of CPUs you want to use for decompression (typically `1`).
 * `decompressor_thread_count`: The number of CPU threads that will participate in decompressing plots. This number multiplied by `Parallel Decompressor Count` needs to less than or equal to the total number of CPU cores.
 * `use_gpu_harvesting`: Set to `true` to enable harvesting with a GPU. Note that in order to use this setting, your harvester must have an NVIDIA GPU with CUDA capability 5.2 and up, with at least 8GB of vRAM.
 * `gpu_index`: If your harvester has multiple GPUs, use this setting to choose which one to use. If your harvester only has one GPU, then leave this set to `0`.
 * `enforce_gpu_index`: Set to `true` if your harvester has more than one GPU and you want to use one other than the default of `0`.
 * `decompressor_timeout`: The number of seconds for your decompressor to time out. The default value of `20` is typically fine.
-* `disable_cpu_affinity`: false
+* `disable_cpu_affinity`: This should typically be `false`. When it is `false`, when using multiple CPU decompressors, each with multiple threads, the threads for each decompressor will be assigned to different physical CPUs. This prevents them for competing over compute time. If it is set to `true`, the threads for each decompressor will be assigned to the same CPU.
 * `max_compression_level_allowed`: The highest level of compression your harvester will support. In Chia version 2.0, the maximum level is `7`. This will likely be increased in the future, but for now, you cannot increase it beyond the default. You can, however, set it to a lower number if desired.
 
 After you have finished making these updates, save `config.yaml` and restart your harvester by running the following command:
