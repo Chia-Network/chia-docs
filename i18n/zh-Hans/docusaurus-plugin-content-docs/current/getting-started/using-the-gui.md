@@ -31,7 +31,7 @@ Enabling a passphrase is a recommended step for protecting your funds, but it on
 
 ## Syncing
 
-Upon opening Chia, your client will need to sync. You'll need to see a **synced** status in the top corner before seeing any tokens you have.
+Upon opening Chia, your wallet will need to sync. You'll need to see a green checkmark next to the **WALLET** label in the upper-right corner before seeing any tokens you have.
 
 <p align='center'>
   <img alt='synced' src='/img/synced.png' width='300' />
@@ -68,68 +68,6 @@ Additionally, you can send tokens to any other address.
 </p>
 
 Upon sending the transaction, it will be broadcasted to full nodes in the network. The fee will help push your transaction through to the blockchain after it reaches the mempool of a full node. Farmers get not only block rewards but also transaction fees, so transactions with fees are prioritized. We recommend a fee of at least .000005 XCH.
-
-## Plotting and Farming
-
-When you launch the GUI in farming mode you're given a **full node** tab. This will summarize your sync status, recent blocks, and the overall stats for the Chia blockchain.
-
-<p align='center'>
-  <img alt='full node' src='/img/full-node.png' width='800' />
-</p>
-
-You can create plots from the **plots** tab. By default you will have one harvester (computer) farming and no plots.
-
-<p align='center'>
-  <img alt='plots' src='/img/plots.png' width='800' />
-</p>
-
-You can add a plot from this tab or from the farming tab.
-
-<p align='center'>
-  <img alt='farming' src='/img/farming.png' width='800' />
-</p>
-
-### Your First Plot
-
-Let's go ahead and add a plot!
-
-<p align='center'>
-  <img alt='add a plot' src='/img/add-a-plot.png' width='1000' />
-</p>
-
-I recommend **madMAx Plotter** as the plotting software of choice. This allows you to easily create plots in serial without much setup. Start off by just creating a single plot. Once you understand how it works, you can create many more. If you wish to create many plots It is important to understand [SSD endurance](/ssd-endurance).
-
-When creating a plot, you're given the option to join a pool. This is the recommend approach (even if you choose to _self-pool_). With Chia's unique approach to pooling, farming rewards are consistent without a sacrifice in decentralization of the network. To make pooling work you create your plots to be associated with a Plot NFT. This is a unique token controlling your membership to any pool.
-
-<p align='center'>
-  <img alt='pooling' src='/img/pooling.png' width='500' />
-</p>
-
-### Creating a Plot NFT
-
-Creating the Plot NFT is a transaction on the blockchain and requires a small amount of (free) Chia which can be retrieved from a [faucet](https://faucet.chia.net).
-
-<p align='center'>
-  <img alt='join a pool faucet' src='/img/join-a-pool-faucet.png' width='500' />
-</p>
-
-This will take you to the official faucet which allows you to paste your address and get sent some Chia.
-
-<p align='center'>
-  <img alt='faucet' src='/img/faucet.png' width='500' />
-</p>
-
-If everything is done correctly, you should get a confirmation.
-
-<p align='center'>
-  <img alt='faucet accepted' src='/img/faucet-accepted.png' width='500' />
-</p>
-
-:::info
-You'll need your wallet to be synced to see the free XCH or to create the plot NFT.
-
-Plot NFTs are distinctly different than standard NFTs discussed in the next section.
-:::
 
 ## NFTs
 
