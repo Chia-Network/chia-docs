@@ -8,9 +8,9 @@ slug: /checking-farm-health
 A lot of smaller farmers are concerned about the health of their farm when they can't find any proofs for days at a time.
 This document was created to provide metrics to smaller farmers so they can ensure their farm is working, even without finding any proofs.
 
-## Check if your farm thinks its farming
+## Check if your farm thinks it's farming
 
-Before going further, please make sure wether your farm actually considers itself to be farming. Theres a good chance that you might not since you are still syncing blocks.
+Before going further, please make sure whether your farm actually considers itself to be farming. There's a good chance that you might not since you are still syncing blocks.
 
 To check the status of your farm, `../activate` as usual and then type `chia farm summary`. If the first line of the output looks like like this:
 
@@ -95,7 +95,7 @@ A possible result may look like this:
 
 If you do this for all your logfiles and get a result, **great!** This means your farm is 100% working as expected. You might not have won a block yet, but you already came very close once, or a few times!
 
-## Can a Double NAT scenario impact my farms ability to send valid proofs to the network?
+## Can a Double NAT scenario impact my farm's ability to send valid proofs to the network?
 
 Yes and no. Double NAT, while quirky, should work due to Chias uPnP support. You likely won't be able to seed blocks to other nodes this way though. A "Double NAT" scenario occurs, when a client (harvester or node) is inside a network that is NAT'ed two times.
 It usually involves a client being behind two routers, instead of one and looks like this:

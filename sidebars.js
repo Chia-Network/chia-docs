@@ -5,9 +5,9 @@ module.exports = {
       label: 'Getting Started',
       items: [
         'getting-started/introduction',
+        'getting-started/farming-guide',
         'getting-started/installation',
         'getting-started/using-the-gui',
-        'getting-started/cryptocurrency-intro',
       ],
     },
     {
@@ -15,8 +15,10 @@ module.exports = {
       label: 'Plotting',
       items: [
         'plotting/plotting-basics',
+        'plotting/plotting-hardware',
         'plotting/plotting-software',
-        'plotting/k-sizes',
+        'plotting/plotting-compression',
+        'plotting/plotting-how-to',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
         'plotting/plotting-faq',
@@ -27,6 +29,7 @@ module.exports = {
       label: 'Farming',
       items: [
         'farming/farming-basics',
+        'farming/farming-compressed-plots',
         'farming/farming-many-machines',
         'farming/pool-farming',
         'farming/checking-farm-health',
@@ -62,6 +65,7 @@ module.exports = {
         'cli-reference/dids',
         'cli-reference/nfts',
         'cli-reference/offers',
+        'cli-reference/plotters',
         'cli-reference/simulator',
         'cli-reference/vcs',
         'cli-reference/wallet',
@@ -209,8 +213,10 @@ module.exports = {
       type: 'category',
       label: 'Resources',
       items: [
+        'resources/cryptocurrency-intro',
         'resources/references',
         'resources/chia-farming-workload',
+        'resources/k-sizes',
         'resources/faq',
       ],
     },

@@ -5,7 +5,7 @@ slug: /plotting-faq
 
 ## If power goes out what happens?
 
-Any pots that were partially made will be invalid. This will likely leave many `.tmp` files that can be removed. In many cases, temp files will be automatically deleted, but this is one case where you'll likely need to remove the files manually. This does not harm any existing plots that have already been completed.
+Any plots that were partially made will be invalid. This will likely leave many `.tmp` files that can be removed. In many cases, temp files will be automatically deleted, but this is one case where you'll likely need to remove the files manually. This does not harm any existing plots that have already been completed.
 
 ## Can I use USB 3.0 cable connected to SSD/NVME running the Temp files?
 
