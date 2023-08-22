@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Installation Details
 slug: /installation
 ---
 
@@ -7,6 +7,12 @@ slug: /installation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
+
+:::info
+
+This page will go into the details of the various different ways to install Chia. If you already installed Chia as part of the Farming Guide, then feel free to skip ahead to the [Plotting Basics](/plotting-basics) page.
+
+:::
 
 There are various ways to install Chia, with the best method depending on what you intend to do:
 
