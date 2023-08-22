@@ -7,9 +7,9 @@ slug: /checking-farm-health
 
 许多小规模农民（smaller farmers）在连续几天内找不到任何证明（proofs）时会对农场的健康状况感到担忧。 本文档旨在为小规模农民提供一些指标，以确保他们的农场正常运行，即使在未找到任何证明的情况下也可以保持工作状态。
 
-## 请检查您的农场（farm）是否认为正在进行耕种（farming）。
+## Check if your farm thinks it's farming
 
-在继续之前，请确保您的农场实际上认为自己正在进行耕种。 有很大的可能性尚未进行耕种，因为仍在同步区块。
+Before going further, please make sure whether your farm actually considers itself to be farming. There's a good chance that you might not since you are still syncing blocks.
 
 要检查您农场的状态，请像往常一样运行 `../activate` 命令（译注：仅通过源码方式安装才需要输入此命令），然后输入 `chia farm summary`。 如果输出的第一行看起来像这样：
 
@@ -96,7 +96,7 @@ cat debug.log | grep "Found [1-9] proofs"
 
 如果对所有的日志文件都进行了相同的操作并得到了类似结果，**太棒了！ **这意味着您的农场完全按预期工作。 可能还没有赢得一个区块，但已经接近成功了一次或多次！
 
-## 双重NAT场景会影响我的农场向网络发送有效的证明吗？
+## Can a Double NAT scenario impact my farm's ability to send valid proofs to the network?
 
 是也不是。 双重NAT虽然有点古怪，但由于Chia支持uPnP（Universal Plug and Play），它应该可以正常工作。 然而，您可能无法通过这种方式将区块发送给其他节点。 "双重NAT"场景发生在客户端（收割机或节点）位于进行了两次NAT的网络内。 通常涉及客户端位于两个路由器后面，而不是一个，如下图所示：
 
