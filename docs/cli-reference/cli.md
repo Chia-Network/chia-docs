@@ -316,7 +316,7 @@ Command: `chia db upgrade [add flags and parameters]`
 - You do not need to stop your Chia node while performing the upgrade.
 - The new database file will be written to the same folder as the original. The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly_. After the version 2 file has been created, you can stop Chia and move/delete your version 1 file, which will free up enough space to move your version 2 file to the original folder. Finally, update the references in config.yaml to point to your version 2 file.
 - After the upgrade has completed, run `chia start farmer -r`. This will restart your farmer, and begin using your new database. Note that it will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
-- For more information on the new database version, see our [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-new-database').
+- For more information on the new database version, see our [FAQ](https://help.chia.net/hc/en-us/articles/8373126278423-What-is-the-new-database-As-of-1-3-).
 
 # keys
 

@@ -31,7 +31,7 @@ Figure 2: Structure of a plot file. The 64 red x-values represent the proof, the
 
 Once the Prover has initialized 101.4 GiB, they are ready to receive a challenge and create a proof. One attractive property of this scheme is that it is non-interactive unless the farmer chooses [plot NFT style pooling](/pool-architecture): no registration or online connection is required to create a plot using the original plot format. Nothing hits the blockchain until a reward is won, similar to PoW. For pool portable plots, a farmer only needs a few mojos to create a plot NFT before plotting and then everything has the same characteristics from there.
 
-See the [Plotting FAQ page](/plotting-faq) for more info.
+See the [Help site](https://help.chia.net/hc/en-us/sections/8356235528599-Plotting) for more info.
 
 ## Farming
 

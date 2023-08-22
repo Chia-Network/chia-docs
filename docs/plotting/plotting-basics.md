@@ -46,8 +46,9 @@ In 2023, some major changes were made to the plotting process, mostly due to the
 :::info
 
 Technically, **all** Chia plots are compressed -- they consist almost entirely of random cryptographic data, so they cannot be made much smaller using lossless techniques. However, in order to simplify the descriptions, we'll use the following terms for the different types of plots:
-* **Uncompressed** -- Plots that are complete upon being created. Software capable of creating uncompressed plots includes the original ChiaPos, madMAx, and BladeBit RAM and disk. Nearly all plots created prior to 2023 are uncompressed.
-* **Compressed** -- Plots that are incomplete upon being created. Software capable of creating compressed plots includes BladeBit CUDA and GigaHorse. Compressed plots were introduced to the official Chia software in version 2.0.
+
+- **Uncompressed** -- Plots that are complete upon being created. Software capable of creating uncompressed plots includes the original ChiaPos, madMAx, and BladeBit RAM and disk. Nearly all plots created prior to 2023 are uncompressed.
+- **Compressed** -- Plots that are incomplete upon being created. Software capable of creating compressed plots includes BladeBit CUDA and GigaHorse. Compressed plots were introduced to the official Chia software in version 2.0.
 
 :::
 
@@ -57,7 +58,7 @@ Chia plots consist of seven tables, the format of which was defined in mid-2020.
 
 Later in 2021, the madMAx and BladeBit plotters were developed independently. These plotters fully utilized a plotting machine's resources, so they were significantly faster than the ChiaPoS plotter. For the first time, it became possible to create a plot entirely in RAM, thus eliminating the need for an enterprise SSD. However, these second-generation plotters still exclusively created uncompressed plots.
 
-By the end of 2022, it had become apparent that a form of "lossy" plot compression was possible. A few different competing techniques were being devised that involved omitting one or two tables, or some data held  within, during the plotting process. The result was an incomplete plot, where the missing data could be added during the farming process. These techniques allowed plots to be 20-30% smaller than their uncompressed brethren, depending on how much data was omitted at the time of plotting.
+By the end of 2022, it had become apparent that a form of "lossy" plot compression was possible. A few different competing techniques were being devised that involved omitting one or two tables, or some data held within, during the plotting process. The result was an incomplete plot, where the missing data could be added during the farming process. These techniques allowed plots to be 20-30% smaller than their uncompressed brethren, depending on how much data was omitted at the time of plotting.
 
 :::info
 
@@ -91,11 +92,10 @@ The level of compression you choose will be highly dependent on your farming set
 
 The next page will detail the various types of hardware that can be used for creating Chia plots. Later, we'll discuss the specific compression levels, including the hardware required to yield each increase in farming rewards.
 
-
 ## How to Get Help
 
 If you are stumped about some aspect of plotting, farming, or Chia generally, we're here to help!
 
 - Get help on CNI's official [Discord](https://discord.gg/chia), in the `#farming-and-plotting` and `#support` channels.
 
-- Get more questions answered in the [plotting FAQ](/plotting-faq).
+- Get more questions answered in the [Help site](https://help.chia.net/hc/en-us/sections/8356235528599-Plotting).
