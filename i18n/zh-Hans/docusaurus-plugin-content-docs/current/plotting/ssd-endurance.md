@@ -3,7 +3,18 @@ title: SSD的耐久性
 slug: /ssd-endurance
 ---
 
-最快的生成地块方式是完全在内存中完成，但需要服务器具有大量DRAM才能执行此操作。 大多数消费者地块生成程序将SSD用作临时存储以执行生成地块。 当今的主流SSD使用NAND闪存技术来存储数据。 NAND具有高性能、可扩展性和低成本，适用于几乎所有的计算领域，包括手机、SD卡、消费级笔记本电脑和数据中心。 然而，在将数据编程到cell之前，NAND必须被擦除，这个过程被称为编程擦除周期，而且只能在NAND cell耗尽之前进行一定次数的操作，否则NAND cell就会磨损，无法再可靠地存储用户数据。 一般来说，这被定义为SSD不再满足UBER(不可纠正位错误率)、保持时间(在给定温度下，设备在关机状态下可以安全地存储用户数据的时间)或功能故障(设备不能再开机)的条件。 衡量SSD耐久性的度量标准是以一定的工作负载为基础的写入总量，即TBW。 一般来说，工作负载是根据JEDEC组织的JESD219工作负载来定义的。 一个SSD在超出其额定TBW限制后仍然可以很好的生成地块，因为可以测量UBER(当看到主机错误时)并且不需要保留(Chia生成地块过程中需要临时或短暂的存储)。
+The fastest plot creation is done completely in memory, but requires a server with a large amount of DRAM (256 GB for BladeBit CUDA, or 416 GB for BladeBit RAM). Most consumer motherboards don't support this much memory, so temporary storage must be used. This typically comes in the form of an SSD.
+
+当今的主流SSD使用NAND闪存技术来存储数据。 NAND具有高性能、可扩展性和低成本，适用于几乎所有的计算领域，包括手机、SD卡、消费级笔记本电脑和数据中心。 However, NAND must be erased before the cell is programmed, a process known as a program erase cycle. This can only be performed a certain amount of times before the NAND cell wears out and can no longer reliably store user data. 一般来说，这被定义为SSD不再满足UBER(不可纠正位错误率)、保持时间(在给定温度下，设备在关机状态下可以安全地存储用户数据的时间)或功能故障(设备不能再开机)的条件。
+
+<div style={{ textAlign: 'left' }}>
+  <img src="/img/ssd-endurance/tbw_dwpd.png" alt="TBW versus DWPD" />
+  <figcaption style={{ textAlign: 'left' }}>
+    <em>Meme credit: Scrutinous</em>
+  </figcaption>
+</div>
+
+衡量SSD耐久性的度量标准是以一定的工作负载为基础的写入总量，即TBW。 一般来说，工作负载是根据JEDEC组织的JESD219工作负载来定义的。 An SSD can still plot well beyond meeting its rated TBW limit, because UBER can be measured (when seeing host errors) and retention is not required (Chia plotting requires temporary or ephemeral storage).
 
 | 地块生成程序              | 缓存/内存磁盘 | K=32的写入次数 |
 | ------------------- | ------- | --------- |
@@ -14,7 +25,7 @@ slug: /ssd-endurance
 | Bladebit Disk       | 0       | 1.225 TBW |
 | Bladebit Disk       | \>99G  | 0.381 TBW |
 
-由于耐用性较低，通常不推荐消费类 NVMe SSD，并且它们通常采用缓存算法来更快的介质(SLC, single level cell)以获得出色的突发性能。 它们在大负载持续IO下的表现不佳。 虽然有一些高性能的消费级NVMe SSD可以提供出色的生成地块性能，但较低的TBW将导致更快的磨损。
+Consumer NVMe SSDs are generally not recommended due to their lower endurance, and they often employ caching algorithms to faster media (SLC, or single level cell) for great bursty performance. They do not perform well under heavy workload sustained I/O. 虽然有一些高性能的消费级NVMe SSD可以提供出色的生成地块性能，但较低的TBW将导致更快的磨损。
 
 这里有一些[耐久性示例](https://docs.google.com/spreadsheets/d/1mNUYRWeJUaijEZXupwP5k6IuATZGj1FB/edit#gid=1857251151)。
 
