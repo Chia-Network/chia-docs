@@ -21,7 +21,6 @@ module.exports = {
         'plotting/plotting-how-to',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
-        'plotting/plotting-faq',
       ],
     },
     {
@@ -36,7 +35,6 @@ module.exports = {
         'farming/reference-farming-hardware',
         'farming/farming-considerations',
         'farming/dual-farming-testnet-mainnet',
-        'farming/farming-faq',
       ],
     },
     {
@@ -217,7 +215,6 @@ module.exports = {
         'resources/references',
         'resources/chia-farming-workload',
         'resources/k-sizes',
-        'resources/faq',
       ],
     },
   ],
