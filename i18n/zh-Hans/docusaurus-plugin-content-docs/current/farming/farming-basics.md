@@ -3,42 +3,46 @@ title: Farming Basics
 slug: /farming-basics
 ---
 
-耕种（Farming）是[生成地块](/plotting-basics)(/plotting-basics)（plotting）后的下一步。 一旦生成了一个地块，只要该地块文件添加到正在运行的Chia软件，就有机会赢得Chia。
+耕种（Farming）是[生成地块](/plotting-basics)(/plotting-basics)（plotting）后的下一步。 Once a plot has been created, you have a chance of winning Chia as long as the file is being stored and the Chia farming software is running.
 
-在耕种过程中，为了赢得Chia而放弃一定的存储空间。 拥有的地块越多，赢得Chia的机会就越大。
+When farming, you allocate a certain amount of storage space in order to have a chance at winning Chia. The more plots you have, the higher your chances of winning.
 
-维护地块（plots）就像参与一场抽奖。 每个地块都代表着赢得每个新区块的机会。 由于平均每天有4608个区块产生，将有很多机会赢得Chia。
+Farming is similar to a lottery. Each plot acts like a lottery ticket, where a new drawing is performed every 9 seconds or so. If you win the lottery, you earn the right to create a new block, and you will be rewarded with Chia. With an average of 4608 blocks a day, you'll have many chances to win.
+
+Our [consensus](/consensus-intro) section has the technical details of how this "lottery" system works.
 
 ## 预计获得奖励时间
 
-可以从Chia软件的**耕种**（Farming）选项卡中找到获得奖励的估计时间。 需要注意的是，这只是**一个预估**。 如果运气不好，实际时间可能会是这个估计的2-3倍，如果运气够好，可能会是这个估计的0.5倍。
+可以从Chia软件的**耕种**（Farming）选项卡中找到获得奖励的估计时间。 需要注意的是，这只是**一个预估**。 The real time could be 2-5x greater than -- or less than -- this estimation, depending on luck.
 
 :::info
-之前的获得奖励次数（或缺乏获得奖励次数）并不决定新的获得奖励。 如果预计获得奖励的时间是一周，但已经过去了三个月，那么离获得奖励并没有更近，与开始时相同。
+Prior wins (or lack thereof) do not determine new wins. 如果预计获得奖励的时间是一周，但已经过去了三个月，那么离获得奖励并没有更近，与开始时相同。
 :::
 
 ## 使用联合耕种池来应对
 
-为了应对不频繁/不稳定性获得区块奖励，可以[加入联合耕种池（pool）](/pool-farming)。 这将降低您的区块奖励，但会给您稳定的小额支付。 从长远来看，联合耕种和独自挖矿（也称为**自己组建联合耕种池（self-pooling）**）应该会得到相同的结果（减去耕种池费用），但加入联合耕种池更加可预测，适合普通的农民（farmer）。
+To combat the infrequency and inconsistency of winning, you can [join a pool](/pool-farming). It works similar to a lottery pool. Instead of occasionally earning a large reward, you will frequently earn a small payment. In the long run, pooling and solo-farming (aka **self-pooling**) will yield the same result (minus any pool fee), but pooling is much more predictable, and recommended for most farmers.
 
-联合耕种池的另一个好处是即时反馈，让您知道您的耕种是否正常运行。 如果是独自耕种，可能会不确定自己是否真的能赢得一个区块。
+An additional benefit of pooling is instant feedback as to whether your farm is running properly. 如果是独自耕种，可能会不确定自己是否真的能赢得一个区块。
 
-Chia设计了官方的联合耕种协议（pooling protocol），以一种其他加密货币从未尝试过的方式引入了矿池。 这样可以在不损害去中心化的前提下获得官方支持的可预测性。
+Chia设计了官方的联合耕种协议（pooling protocol），以一种其他加密货币从未尝试过的方式引入了矿池。 This allows for officially-supported predictability without compromising on decentralization.
 
 ## 区块奖励
 
-每个新的区块产生时，一定数量的Chia会作为奖励分配给农民。 Chia刚开始发布时，每个区块的奖励是两个Chia。 这意味着每10分钟会产生64个Chia的奖励。
+With each new block, a certain amount of Chia is rewarded to the farmer that created it. Chia launched with a block reward of 2 XCH per block. This comes out to 64 XCH distributed every 10 minutes.
 
-区块奖励在主网启动后的每三年进行一次减半。 这意味着在主网启动三年后，区块奖励减半为1个Chia。 再过三年后，奖励减半为0.5个Chia，以此类推。 以下是完整的区块奖励计划：
+Every three years, there is a scheduled halving of the block reward. This means that three years after mainnet launch, the block reward is cut in half, to 1 XCH.
 
-| 年份    | 区块奖励      | 数量/10分钟 |
-| ----- | --------- | ------- |
-| 1-3   | 2.0 XCH   | 64      |
-| 4-6   | 1.0 XCH   | 32      |
-| 7-9   | 0.5 XCH   | 16      |
-| 10-12 | 0.25 XCH  | 8       |
-| 13+   | 0.125 XCH | 4       |
+以下是完整的区块奖励计划：
 
-到了第13年，区块奖励将永久锁定在每10分钟平均4个XCH。
+| 年份    | 区块奖励      | XCH / 10 mins |
+| ----- | --------- | ------------- |
+| 1-3   | 2.0 XCH   | 64            |
+| 4-6   | 1.0 XCH   | 32            |
+| 7-9   | 0.5 XCH   | 16            |
+| 10-12 | 0.25 XCH  | 8             |
+| 13+   | 0.125 XCH | 4             |
 
-随着时间的推移，新产生的XCH相对于现有XCH的比例将下降。 因此，Chia的通货膨胀率将持续下降。 在主网启动后的22年，Chia的通货膨胀率将降至0.50%以下。
+Starting with year 13, block rewards are forever locked in at an average of 4 XCH every 10 minutes.
+
+随着时间的推移，新产生的XCH相对于现有XCH的比例将下降。 因此，Chia的通货膨胀率将持续下降。 Chia's inflation falls through 0.5% 22 years after mainnet launch.
