@@ -2975,12 +2975,27 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type | Required | Description                                      |
-|:--------- |:---- |:-------- |:------------------------------------------------ |
-| pubkey    | TEXT | True     | The public key of the signature to verify        |
-| message   | TEXT | True     | The message to verify                            |
-| signature | TEXT | True     | The signature to verify                          |
-| address   | TEXT | True     | The address, which must be derived from `pubkey` |
+| Flag         | Type | Required | Description                                                                                       |
+|:------------ |:---- |:-------- |:------------------------------------------------------------------------------------------------- |
+| signing_mode | TEXT | False    | Specify the type of signature to verify \[Default: BLS with hex input\] (see below for more info) |
+| pubkey       | TEXT | True     | The public key of the signature to verify                                                         |
+| message      | TEXT | True     | The message to verify                                                                             |
+| signature    | TEXT | True     | The signature to verify                                                                           |
+| address      | TEXT | True     | The address, which must be derived from `pubkey`                                                  |
+
+The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include:
+* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
+  * Default signing mode
+  * Describes the standard BLS signatures used by Chia
+  * Uses a hex input
+  * Taken from [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-sign)
+  * Cipher suites used for BLS signatures are also defined at [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-ciphersuites)
+* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:utf8input_`
+  * Same as above, but uses UTF-8 instead of hex
+* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
+  * [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
+
+
 
 ---
 
