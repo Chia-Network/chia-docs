@@ -346,8 +346,14 @@ If it's your first time writing pool code, we recommend you look at established 
 
 ### How does one calculate a farmer's netspace?
 
-A farmer's netspace can be estimated by the number of points submitted over each unit of time, or points/second. Each k32 gets on average 10 points per day. So `10 / 86400 = 0.0001157 points/second` for each plot. Per byte, that is `L = 0.0001157 / 106364865085 = 1.088 * 10^-15`. To calculate total space `S`, take the total number of points found `P`, and the time period in seconds `T` and do `S = P / (L*T)`.  
-For example for 340 points in 6 hours, use `P=340, T=21600, L=1.088e-15`, `S = 340/(21600*1.088e-15) = 14465621651619 bytes`. Dividing by `1024^4` we get `13.15 TiB`.
+A farmer's netspace can be estimated by the number of points submitted over each unit of time, or points/second. Each k32 gets on average 10 points per day. So `10 / 86400 = 0.0001157 points/second` for each plot. Per byte, that is `L = 0.0001157 / 108884400275 = 1.06259482265 * 10^-15`. To calculate total space `S`, take the total number of points found `P`, and the time period in seconds `T` and do `S = P / (L*T)`.  
+For example for 340 points in 6 hours, use `P=340, T=21600, L=1.06259482265e-15`, `S = 340/(21600*1.06259482265e-15) = 14,813,492,786,900 bytes`. Dividing by `1024^4` we get `13.4727932044 TiB`.
+
+:::info
+
+Note that this calculation is based on the new constant space factor estimation of 0.78005, as detailed in the [space factor table](/k-sizes#new-constant-space-factor).
+
+:::
 
 ### How does difficulty affect farmer's netspace calculation?
 

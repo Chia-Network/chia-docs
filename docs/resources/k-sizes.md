@@ -24,6 +24,26 @@ When planning on how much plotting space is required, only calculate the tempora
 
 If stagger plotting, disk size requirement may change depending on which Phase the plotting is at.
 
+## New constant space factor
+
+For a given _k_, the plot size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005`. 
+In previous versions of Chia's documentation and code, the constant at the end of this equation was estimated to be 0.762. 
+Our documentation and code now use a closer estimation of 0.78005.
+
+The following table shows the old size estimation of C0 plots, along with the new estimations:
+
+| k  | Old est. size (GB) | New est. size (GB) |
+| -: | -----------------: | -----------------: |
+| 32 | 106.3648651        | 108.8844003        |
+| 33 | 219.2752603        | 224.469379         |
+| 34 | 451.641581         | 462.339915         |
+| 35 | 929.4652826        | 951.4821439        |
+| 36 | 1911.294806        | 1956.568916        |
+| 37 | 3927.318095        | 4020.347087        |
+| 38 | 8064.093156        | 8255.112685        |
+| 39 | 16547.10024        | 16939.06239        |
+
+
 ## Plots larger than k=32
 
-Although not required, plots larger than k=32 may be created. There is not a great benefit to using larger plot sizes as the chance of winning is proportional to final plot file size. There are advanced tactics to using a larger `k` value to reduce unused storage space or optimize drive idle states, but these are not recommended for the majority of people
+Although not required, plots larger than k=32 may be created. There is not a great benefit to using larger plot sizes as the chance of winning is proportional to final plot file size. There are advanced tactics to using a larger `k` value to reduce unused storage space or optimize drive idle states, but these are not recommended for the majority of people.
