@@ -1,6 +1,6 @@
 ---
 title: 架构概览
-slug: 架构概览
+slug: /架构概览
 ---
 
 ![chia架构](/img/chia-network-architecture.png)
