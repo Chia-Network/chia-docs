@@ -80,6 +80,64 @@ If you want to create compressed plots, you will need to choose either `GPU + RA
 
 The rest of this page will list a few decent configurations, depending on your budget and goals.
 
+## Compressed plotting systems
+
+### Required
+
+The following hardware and software components are required for creating compressed plots:
+
+##### 硬件
+
+For BladeBit CUDA plotting:
+* NVIDIA GPU with CUDA capability 5.2 and up
+* At least 8GB of vRAM
+* At least 256 GB of system RAM
+* A 64-bit CPU (Intel x86, AMD x86, or arm64)
+
+For BladeBit Disk plotting:
+* At least 416 GB of system RAM
+* A 64-bit CPU (Intel x86, AMD x86, or arm64)
+
+##### 生成地块软件
+
+64-bit Linux or Windows (MacOS is not supported)
+
+### Most tested
+
+A wide range of hardware and software configurations that meet the above requirements could potentially be used for creating compressed plots. The following setups have received the most testing scruitiny. The further your system strays from these setups, the more likely you are to encounter problems. Unfortunately, we may not be able to offer support if your machine does not fall within these parameters.
+
+Operating Systems
+* Ubuntu 20.04.6 LTS
+* Ubuntu 22.04.02 LTS
+* Ubuntu 23.04
+* RHEL 7.4
+* RHEL 8.7
+* RHEL 9.1
+* Windows 10 version 22H2
+* Windows 11 version 21H2
+* Windows 11 version 22H2
+* Windows Server 2022
+* Windows Server 2019 (version 1809)
+
+Systems
+* Intel x86
+* AMD x86
+* arm64
+
+Platforms
+* Desktop
+* Workstation
+* Server
+
+GPUs
+* 1060
+* 2060
+* 3060 Ti
+* 3090
+* 4060
+* Tesla P4
+* A4000
+
 ## Recommended plotting systems
 
 JM has created an excellent [plotting build guide](https://chiadecentral.com/gpu-plotting-build-guide/) with advice on which equipment provides the best performance for the money. This guide is well worth a visit if you are interested in creating compressed plots with BladeBit CUDA.
