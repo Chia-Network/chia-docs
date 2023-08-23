@@ -24,6 +24,24 @@ slug: /k-sizes
 
 如果是进行交替生成地块，磁盘大小要求可能会根据生成地块处于不同阶段而有所改变。
 
+## New constant space factor
+
+For a given _k_, the plot size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005`. In previous versions of Chia's documentation and code, the constant at the end of this equation was estimated to be 0.762. Our documentation and code now use a closer estimation of 0.78005.
+
+The following table shows the old size estimation of C0 plots, along with the new estimations:
+
+|  k | Old est. size (GB) | New est. size (GB) |
+| --:| ------------------:| ------------------:|
+| 32 |        106.3648651 |        108.8844003 |
+| 33 |        219.2752603 |         224.469379 |
+| 34 |         451.641581 |         462.339915 |
+| 35 |        929.4652826 |        951.4821439 |
+| 36 |        1911.294806 |        1956.568916 |
+| 37 |        3927.318095 |        4020.347087 |
+| 38 |        8064.093156 |        8255.112685 |
+| 39 |        16547.10024 |        16939.06239 |
+
+
 ## 大于k=32的地块
 
-虽然不是必需的，但可以创建大于k=32的地块。 使用更大的地块并没有太大的好处，因为获胜的机会与最终地块文件的大小成比例。 虽然有一些高级策略可以使用更大的`k`值来减少未使用的存储空间或优化驱动器的空闲状态，但这不适用于大多数人。
+虽然不是必需的，但可以创建大于k=32的地块。 使用更大的地块并没有太大的好处，因为获胜的机会与最终地块文件的大小成比例。 There are advanced tactics to using a larger `k` value to reduce unused storage space or optimize drive idle states, but these are not recommended for the majority of people.
