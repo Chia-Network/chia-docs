@@ -321,13 +321,20 @@ Python
 -   launcher_id: singleton的唯一标识
 -   points: 积分（points）表示农民所完成的工作量。 它是通过提交的证明数量按难度加权计算得出的。 一个k32地块每天可以10个积分（points）。 要累积1000积分，需要在一天内完成 10 TiB 的耕种量。 这相当于PoW矿池中的份额。
 
-### 如何计算农民的网络算力（netspace）？
+### How does one calculate a farmer's space?
 
-农民的网络算力（netspace）可以通过在每个时间单位内提交的积分（points）数量来估算，或者以 points/second（每秒积分数量）为单位。 每个k32地块平均每天获得10个积分（points）。 所以每个地块的算力为 `10 / 86400 = 0.0001157 points/second`。 每个字节对应的算力为 `L = 0.0001157 / 106364865085 = 1.088 * 10^-15`。 农民的网络算力可以通过计算总共找到的积分（points）数量 `P`，和时间周期（以秒为单位）`T`，然后进行 `S = P / (L * T)` 计算来得到。 例如，对于6小时内找到的340个积分（points），使用 `P=340, T=21600, L=1.088e-15`，`S = 340/(21600*1.088e-15) = 14465621651619 字节`。 将其除以 `1024^4` 得到 `13.15 TiB`。
+A farmer's space can be estimated by the number of points submitted over each unit of time, or points/second. 每个k32地块平均每天获得10个积分（points）。 所以每个地块的算力为 `10 / 86400 = 0.0001157 points/second`。 Per byte, that is `L = 0.0001157 / 108884400275 = 1.06259482265 * 10^-15`. To calculate total space `S`, take the total number of points found `P`, and the time period in seconds `T` and do `S = P / (L*T)`.  
+For example for 340 points in 6 hours, use `P=340, T=21600, L=1.06259482265e-15`, `S = 340/(21600*1.06259482265e-15) = 14,813,492,786,900 bytes`. Dividing by `1024^4` we get `13.4727932044 TiB`.
 
-### 难度是如何影响农民网络算力计算的？
+:::info
 
-随着难度的增加，农民进行的查找次数减少，找到的证明（proof）数量也减少，但每个单位时间内收到的积分（points） 数量不会增加。 想象一下这种情况：在难度为1的情况下，每个k32地块每天获得 10个证明（proof），而在难度为 10 的情况下，每天只能获得1个证明（proof）。 作为一个矿池服务器，您更喜欢每个k32地块每天获得难度为10的1个证明（proof）。 因此，我们允许矿池服务器设置最低难度级别，以减少每个农民需要发送的证明（proof）数量来证明其网络算力。
+Note that this calculation is based on the new constant space factor estimation of 0.78005, as detailed in the [space factor table](/k-sizes#new-constant-space-factor).
+
+:::
+
+### How does difficulty affect farmer's space calculation?
+
+随着难度的增加，农民进行的查找次数减少，找到的证明（proof）数量也减少，但每个单位时间内收到的积分（points） 数量不会增加。 想象一下这种情况：在难度为1的情况下，每个k32地块每天获得 10个证明（proof），而在难度为 10 的情况下，每天只能获得1个证明（proof）。 作为一个矿池服务器，您更喜欢每个k32地块每天获得难度为10的1个证明（proof）。 This is why we allow pool servers to set a minimum difficulty level to reduce the number of proofs each farmer needs to send to prove their space.
 
 ### 如何识别提交了部分证明（partial proofs）的农民？
 
