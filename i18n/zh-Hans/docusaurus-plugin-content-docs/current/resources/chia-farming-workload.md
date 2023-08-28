@@ -7,7 +7,7 @@ Jonmichael Hands, VP Storage, Chia Network. For comments and questions reach out
 
 [Model](https://docs.google.com/spreadsheets/d/1AJP8j673qfbxxju87SjGs174DMVFpzjS/edit?usp=sharing&ouid=108662600751303250659&rtpof=true&sd=true) in Excel
 
-## Abstract
+## 摘要
 
 Chia uses a consensus called proof of space and time, in which participants prove to the network that they are storing a certain amount of data through a process called farming.
 
