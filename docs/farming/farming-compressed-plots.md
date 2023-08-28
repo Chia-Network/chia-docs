@@ -39,7 +39,7 @@ In the future, we plan to enable decompression at the farmer level. This means t
     * `Decompressor Thread Count`: `6`
   
   This would instruct the harvester process to use six of the eight cores for decompressing plots, and to use the remaining cores to run the OS, etc.
-5. If you want to use a GPU for harvesting, slide the `Enable GPU Harvesting` slider to the right, as shown in the above image. Note that in order to use this setting, your harvester must have an NVIDIA GPU with CUDA capability 5.2 and up, with at least 8GB of vRAM.
+5. If you want to use a GPU for harvesting, slide the `Enable GPU Harvesting` slider to the right, as shown in the above image. Note that in order to use this setting, your harvester must have an NVIDIA CUDA-class GPU. For harvesting C7 plots, 600-700 MB of DRAM is required.
 6. If your harvester has multiple GPUs, you can use `GPU Device Index` to choose which one to use. If your harvester only has one GPU, then leave this set to `0`.
 
 After all of these settings have been properly set, click the red `RESTART LOCAL HARVESTER TO APPLY CHANGES` button. After your harvester restarts, it will use the updated settings.

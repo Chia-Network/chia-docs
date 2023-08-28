@@ -42,7 +42,7 @@ The right column (Min Spec Harvester) shows the minimum type of computer require
 * `Pi 4` refers to Chia's minimum spec hardware, the [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 4 GB of RAM for CLI farming, or 8 GB for GUI farming.
 * `Desktop CPU` refers to a power-sipping computer such as the [ASUS Chromebox](https://www.androidcentral.com/best-chromebox).
 * `Fast CPU` refers to a computer with a higher-end CPU such as an Intel Xeon.
-* `GPU` refers to a computer with an Nvidia CUDA-class GPU with at least 8 GB of VRAM.
+* `GPU` refers to a computer with an Nvidia CUDA-class GPU. The minimum amount of DRAM required is around 600-700 MB for C7 harvesting. For example, a GTX 1060 will work.
 
 :::info
 
