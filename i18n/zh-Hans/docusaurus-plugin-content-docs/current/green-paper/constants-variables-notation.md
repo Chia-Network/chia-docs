@@ -1,48 +1,48 @@
 ---
-title: Constants, Variables and Notation - Chia Green Paper
-sidebar_label: 0 - Constants, Variables and Notation
+title: 常数、变量和符号 - Chia绿皮书
+sidebar_label: 0 - 常数、变量和符号
 slug: /constants-variables-notation
 ---
 
-# 0 - Constants, Variables and Notation
+# 0 - 常数、变量和符号
 
-## 0.1 Important Constants
+## 0.1 重要常数
 
-| Constants         | Description                                |
-| ----------------- | ------------------------------------------ |
-| 10 minutes        | target **duration of a sub-slot**          |
-| 32 blocks         | target **number of blocks per sub-slot**   |
-| 16/64 blocks      | minimum/maximum number of blocks in a slot |
-| 4608 blocks       | average number of **blocks per epoch**     |
-| 384 blocks        | average number of **blocks per sub-epoch** |
-| 64 signage points | number of **signage points per sub-slot**  |
+| 常数       | Description                 |
+| -------- | --------------------------- |
+| 10分钟     | 目标 **子时隙（sub-slot）的间隔时长**   |
+| 32个区块    | 每个目标 **子时隙的区块数量**           |
+| 16/64个区块 | 每个时隙的最小/最大区块数量              |
+| 4608个区块  | 平均每个**纪元（epoch）的区块**数量      |
+| 384个区块   | 平均每个**子纪元（sub-epoch）的区块**数量 |
+| 64个签名点   | 每个**子时隙的签名点**数量             |
 
-The above imply the following:
+由上可得以下结论：
 
-| Implied Constants | Description                                                                                                                                     |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 day             | **target time of an epoch** is $$10 {\ \sf min}\cdot\frac{4608{\ \sf blocks}}{32\ \sf blocks}=1440{\ \sf min}\quad (=1{ \sf day})$$ |
-| 2 hours           | **target time of sub-epoch**                                                                                                                    |
-| 18.75 seconds     | **target average block arrival time** is $\frac{10{\sf\ min}}{32}=18.75 {\sf\ sec}$                                                        |
-| 9.375 seconds     | **target time between signage points** is $\frac{600}{64}=9.375 {\sf\ sec}$                                                                  |
+| 隐含的常数  | Description                                                                                                                   |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| 1天     | **一个纪元的时长**为 $$10 {\ \sf min}\cdot\frac{4608{\ \sf blocks}}{32\ \sf blocks}=1440{\ \sf min}\quad (=1{ \sf day})$$ |
+| 2小时    | **目标**子纪元的时长****                                                                                                          |
+| 18.75秒 | 平均**完成一个区块的时长**为 $\frac{10{\sf\ min}}{32}=18.75 {\sf\ sec}$                                                              |
+| 9.375秒 | **签名点之间的时长**为 $\frac{600}{64}=9.375 {\sf\ sec}$                                                                            |
 
-## 0.2 Important Variables
+## 0.2 重要变量
 
-| Variable             | Description                                                                                                                 |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| $D\in{\mathbb N}$  | difficulty parameter. Re-calibrated once per epoch to meet target of $32$ blocks per slot                                   |
-| $T\in {\mathbb N}$ | time parameter (number of VDF steps for sub-slot). Re-calibrated once per epoch to meet target of $10$ minutes per sub-slot |
+| 变量                   | Description                                 |
+| -------------------- | ------------------------------------------- |
+| $D\in{\mathbb N}$  | 难度参数。 每个纪元重新校准一次，以满足每个时隙（slot）32个区块的目标      |
+| $T\in {\mathbb N}$ | 时间参数（子时隙的VDF步数）。 每个纪元重新校准一次，以满足每个子时隙10分钟的目标 |
 
-## 0.3 Boxes
+## 0.3 提示
 
-:::info Objective 0:
-We will use blue boxes like this one to mention key objectives we want the design of Chia to satisfy
+:::info 目标 0:
+我们将使用像这样的蓝色方框来提及我们希望Chia设计满足的关键目标
 :::
 
-:::tip Design Choice 0:
-Green boxes like this are used to highlight important design choices, which often will refer to objectives.
+:::tip 设计选择 0:
+像这样的绿色方框用于突出重要的设计选择，通常会涉及到目标。
 :::
 
-:::danger Security Notice 0:
-A red box stresses some important aspects required for the security of Chia, and will typically refer to some design choice.
+:::danger 安全提示 0:
+红色方框强调了Chia安全所需的一些重要方面，通常会涉及到某些设计选择。
 :::
