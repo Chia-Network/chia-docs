@@ -58,6 +58,21 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Daemon RPCs',
+      items: [
+        'daemon-rpc-reference/daemon-overview',
+        'daemon-rpc-reference/daemon',
+        'daemon-rpc-reference/daemon-crawler',
+        'daemon-rpc-reference/daemon-data_layer',
+        'daemon-rpc-reference/daemon-farmer',
+        'daemon-rpc-reference/daemon-full_node',
+        'daemon-rpc-reference/daemon-harvester',
+        'daemon-rpc-reference/daemon-timelord',
+        'daemon-rpc-reference/daemon-wallet',
+      ],
+    },
+    {
+      type: 'category',
       label: 'CLI Reference',
       items: [
         'cli-reference/cli',
