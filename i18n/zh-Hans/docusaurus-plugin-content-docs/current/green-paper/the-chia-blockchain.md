@@ -19,7 +19,7 @@ In this section we finally outline the design of the $\textsf{Chia}$ blockchain
 
 ### 5.1.1 Variables
 
-| Variable          | Definition                                                                                                                 |
+| 变量                | Definition                                                                                                                 |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | $T_i$             | Time parameter of $i$-th slot (# of VDF steps per sub-slot). Recalibrated once per day for 10 minutes per sub-slot target. |
 | $\mathsf{spi}_i$ | $$\mathsf{spi}_i \stackrel{\text{\tiny def}}{=} \frac{T_i}{64}$$                                                    |
