@@ -44,6 +44,7 @@ module.exports = {
       label: 'RPC Reference',
       items: [
         'rpc-reference/rpc',
+        'rpc-reference/daemon',
         'rpc-reference/datalayer',
         'rpc-reference/dids',
         'rpc-reference/nfts',
@@ -54,21 +55,6 @@ module.exports = {
         'rpc-reference/farmer',
         'rpc-reference/full-node',
         'rpc-reference/harvester',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Daemon RPCs',
-      items: [
-        'daemon-rpc-reference/daemon-overview',
-        'daemon-rpc-reference/daemon',
-        'daemon-rpc-reference/daemon-crawler',
-        'daemon-rpc-reference/daemon-data_layer',
-        'daemon-rpc-reference/daemon-farmer',
-        'daemon-rpc-reference/daemon-full_node',
-        'daemon-rpc-reference/daemon-harvester',
-        'daemon-rpc-reference/daemon-timelord',
-        'daemon-rpc-reference/daemon-wallet',
       ],
     },
     {

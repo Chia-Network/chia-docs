@@ -29,6 +29,105 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 </details>
 
+### wscat usage
+
+This reference constains examples that make RPC calls directly from a terminal window on a running node.
+
+You can also make the same RPC calls to the daemon over a websocket. To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running:
+
+```bash
+npm install -g wscat
+```
+
+Once wscat is installed, you can open a connection to the daemon. The command to run depends on your OS:
+
+```mdx-code-block
+   <Tabs
+     defaultValue="windows"
+     groupId="os"
+     values={[
+       {label: 'Windows', value: 'windows'},
+       {label: 'Linux', value: 'linux'},
+       {label: 'macOS', value: 'macos'},
+     ]}>
+     <TabItem value="windows">
+   ```
+   Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.
+
+   ```powershell
+   wscat -n --cert C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.crt --key C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.key -c wss://0.0.0.0:55400
+   ```
+
+   ```mdx-code-block
+   </TabItem>
+   <TabItem value="linux">
+   ```
+
+   ```bash
+   wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
+   ```
+
+   ```mdx-code-block
+     </TabItem>
+     <TabItem value="macos">
+   ```
+
+   ```bash
+   wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
+   ```
+
+```mdx-code-block
+  </TabItem>
+</Tabs>
+```
+
+---
+
+Once connected, you will see a `>` prompt from wscat.
+
+To submit a request, run something like the following command, which calls `get_wallet_addresses`, with request parameters contained inside the `data` parameter:
+
+```bash
+{"ack": false, "command": "get_wallet_addresses", "data": {"fingerprints":[2104826454], "index": 100, "count": 2}, "destination": "daemon", "origin": "whatever", "request_id": "also_whatever"}
+```
+
+Response:
+
+```bash
+{"ack": true, "command": "get_wallet_addresses", "data": {"success": true, "wallet_addresses": {"2104826454": [{"address": "xch12yjgrn6m4eyszt9e3v3thczn2d6jlzvh2zjhnp0ar4kxhll8942sqq4s93", "hd_path": "m/12381/8444/2/100"}, {"address": "xch12hqq8g35gprs5r4vz366sf4r0mcvpmcy28a4tcfyda75avur4sas5vzvuj", "hd_path": "m/12381/8444/2/101"}]}}, "destination": "whatever", "origin": "daemon", "request_id": "also_whatever"}
+```
+
+You can also use this websocket connection with the daemon to call RPCs on other services via the daemon.
+This is how the Chia GUI operates. It only has a websocket connection open to the daemon -- all other RPCs are dispatched by the daemon and routed back to the `wallet_ui` service (the service name for the Chia GUI).
+
+To make this work, there's an extra step. You need to first call the `register_service` command to give your websocket connection a name.
+
+For example, to register the websocket connect with the service name `my_fancy_service`, run:
+
+```bash
+{"ack": false, "command": "register_service", "data": {"service": "my_fancy_service"}, "destination": "daemon", "origin": "my_fancy_service", "request_id": "abc123"}
+```
+
+Response:
+
+```bash
+{"ack": true, "command": "register_service", "data": {"success": true}, "destination": "my_fancy_service", "origin": "daemon", "request_id": "abc123"}
+```
+
+At this point, you can call other service RPCs:
+
+```bash
+{"ack": false, "command": "get_blockchain_state", "data": {}, "destination": "chia_full_node", "origin": "my_fancy_service", "request_id": "def456"}
+```
+
+Response:
+
+```bash
+{"ack": true, "command": "get_blockchain_state", "data": {"blockchain_state": {"average_block_time": 18, "block_max_cost": 11000000000, "difficulty": 2528, "genesis_challenge_initialized": true, "mempool_cost": 129478906, "mempool_fees": 100000, "mempool_max_total_cost": 550000000000, "mempool_min_fees": {"cost_5000000": 0}, "mempool_size": 3, "node_id": "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab", "peak": {"challenge_block_info_hash": "0x5b489143d48665e38ea306b1998f2873a6caa9113dc7374b55c5b7c17cf24936", "challenge_vdf_output": {"data": "0x02007d3c3fe1a93f60c475d5627a78358eb704f14002fc1862ec9746793ae4f4416ddaac8fe09c5a7fdbb71432be9bfbb41c4b383754889a55ae9b4d12dab4dac920676e873d2785860b054a2a618d8ee07a866c6bebab1338fa419d3c6bcea4e9000201"}, "deficit": 0, "farmer_puzzle_hash": "0x780c9bf0c48ea993c59ed0fd7687417be48233d916827c63157bd6a867d930aa", "fees": null, "finished_challenge_slot_hashes": null, "finished_infused_challenge_slot_hashes": null, "finished_reward_slot_hashes": null, "header_hash": "0x76fdf9c8090985de6bb537ba4d429462dffc5673cfe963dbe5369e95661d6a7a", "height": 4154084, "infused_challenge_vdf_output": {"data": "0x0000ee9f4f1b5f8c5d4c56a0c8f4977a091aef061f190cac00d80ef449d9221f2c46c22dc5f7ba30f0f9eeef2ee68d347f1765c6e44101aa4fc33ae968698e997d0095c5ddd4bc5dcdc23b54dd909fac3d03285df19ebffc5a9ef2e5442935d302040500"}, "overflow": false, "pool_puzzle_hash": "0x95023147c517f9be14037dbbeb105adb48942e036e0df8ab2962d53800a4b925", "prev_hash": "0x2283b7875556deedbc4ca7a874476ae6930769c18a7f6e1b3bdb2c04b9a1a4ce", "prev_transaction_block_hash": null, "prev_transaction_block_height": 4154081, "required_iters": 1092462, "reward_claims_incorporated": null, "reward_infusion_new_challenge": "0xfffc3371c8521a13c97e75e0412186bb6e53424ef807272d6fdda5f57e591254", "signage_point_index": 25, "sub_epoch_summary_included": null, "sub_slot_iters": 147849216, "timestamp": null, "total_iters": 17563259743086, "weight": 8641556544}, "space": 33037817585788604416, "sub_slot_iters": 147849216, "sync": {"sync_mode": false, "sync_progress_height": 0, "sync_tip_height": 0, "synced": true}}, "success": true}, "destination": "my_fancy_service", "origin": "chia_full_node", "request_id": "def456"}
+```
+
+Note that if you skip the `register_service` step and attempt to make such a call, the call will go through, but you won't see the response.
+
 ---
 
 ### `exit`
@@ -563,7 +662,27 @@ Request Parameters:
 | current_passphrase | STRING | True     | The current passphrase; if entered correctly, it will be removed from the keyring |
 
 <details>
-<summary>Example</summary>
+<summary>Example 1</summary>
+
+Remove the real passphrase:
+
+```json
+chia rpc daemon remove_keyring_passphrase '{"current_passphrase": "12345678"}'
+```
+
+Response:
+
+```json
+{
+    "error": null,
+    "success": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2</summary>
 
 Attempt to remove a fake passphrase:
 
@@ -640,14 +759,32 @@ Options:
 
 Request Parameters:
 
-| Flag               | Type    | Required | Description                                                       |
-| :----------------- | :------ | :------- | :---------------------------------------------------------------- |
-| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)             | 
-| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long |
-| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                        |
-| save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase [Default: False]               |
+| Flag               | Type    | Required | Description                                                                                                                                                                 |
+| :----------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)                                                                                                                       |
+| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long                                                                                                           |
+| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                  |
+| save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. [Default: False] |
 
 ---
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc daemon set_keyring_passphrase '{"current_passphrase": "", "new_passphrase": "12345678", "passphrase_hint": "It has eight characters"}'
+```
+
+Response:
+
+```json
+{
+    "error": null,
+    "success": true
+}
+```
+
+</details>
 
 ### `start_plotting`
 
@@ -825,11 +962,29 @@ Request Parameters:
 | :--- | :----- | :------- | :-------------------------------- |
 | key  | STRING | False    | The key to unlock [Default: None] |
 
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc daemon unlock_keyring '{"key": "12345678"}'
+```
+
+Response:
+
+```json
+{
+    "error": null,
+    "success": true
+}
+```
+
+</details>
+
 ---
 
 ### `validate_keyring_passphrase`
 
-Functionality: Ensure that the keyring's passphrase is valid
+Functionality: Verify whether the input passphrase is correct
 
 Usage: chia rpc daemon [OPTIONS] validate_keyring_passphrase [REQUEST]
 
@@ -842,8 +997,26 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description                      |
-| :--- | :----- | :------- | :------------------------------- |
-| key  | STRING | False    | The key to check [Default: None] |
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+| key  | STRING | True     | The key to check |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc daemon validate_keyring_passphrase '{"key": "12345678"}'
+```
+
+Response:
+
+```json
+{
+    "error": null,
+    "success": true
+}
+```
+
+</details>
 
 ---
