@@ -44,6 +44,7 @@ module.exports = {
       label: 'RPC Reference',
       items: [
         'rpc-reference/rpc',
+        'rpc-reference/daemon',
         'rpc-reference/datalayer',
         'rpc-reference/dids',
         'rpc-reference/nfts',
