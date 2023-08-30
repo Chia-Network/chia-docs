@@ -1027,8 +1027,7 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 ### What versions of Python are supported?
 
-- Starting with Chia version 1.3.5, Python versions 3.7-3.10 are supported
-- For Chia versions prior to 1.3.5, Python 3.10 is _not_ supported. Only versions 3.7-3.9 are supported
+- Chia supports all versions of Python that have not reached their end-of-life. Starting with Chia version 2.0.0, the minimum version of Python supported is 3.8. See the [official Python version list](https://devguide.python.org/versions/) for more info.
 
 ### Can I use a fast SAS HDD for storing the blockchain's database?
 
