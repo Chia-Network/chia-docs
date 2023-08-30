@@ -42,6 +42,7 @@ More info
 - The 256 GB version creates plots entirely in memory, so no temp disk is needed
 - Open-source, freely available, no dev fee
 - Can also be installed as a [standalone build](#bladebit-standalone)
+- A detailed analysis of BladeBit CUDA's performance was undertaken by [scienceofmining.com](https://scienceofmining.com/20230828-BladeBit/BladeBit%20CUDA%20Performance%20Analysis-1.html)
 
 [CLI documentation](/plotters-cli#cudaplot)
 
