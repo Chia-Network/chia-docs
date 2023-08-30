@@ -59,7 +59,7 @@ We'll start with installing Chia's testnet.
 If you already have Chia version 1.3+ installed, you can switch to testnet and then skip to the [CAT admin tool](#cat-admin-tool). If you are currently running on the mainnet, you can switch to testnet with `chia configure -t true`.
 :::
 
-Ensure that you have a Python version between 3.7 and 3.9 installed by running `python3 --version`.
+Ensure that you are running Python 3.8 or later by running `python3 --version`.
 
 First, we will install Chia.
 

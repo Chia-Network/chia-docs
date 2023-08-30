@@ -32,7 +32,7 @@ The minimum supported specs are that of the Raspberry Pi 4, 4GB model:
 
 - Quad core 1.5Ghz CPU (must be 64 bit)
 - 4 GB RAM
-- Python versions between 3.7 and 3.10 are supported
+- As of Chia version 2.0, Python versions 3.8 and later are supported
 
 ### Drive Format
 
@@ -342,7 +342,7 @@ sudo apt-get install -y build-essential python3-dev
 # If you are not using Raspbian 64, add this
 export PIP_EXTRA_INDEX_URL=https://www.piwheels.org/simple/
 
-# Make sure you have 64-bit Python between versions 3.7 and 3.10
+# Make sure you have 64-bit Python 3.8 or later
 python3 -c 'import platform; print(platform.architecture())'
 ```
 
