@@ -32,6 +32,7 @@ slug: /references
 ## External
 
 - [Chia's power consumption](https://chiapower.org "Chia's energy consumption statistics")
+- [BladeBit CUDA Performance Analysis](https://scienceofmining.com/20230828-BladeBit/BladeBit%20CUDA%20Performance%20Analysis-1.html), by scienceofmining.com
 - [A Survey of Two Verifiable Delay Functions](https://eprint.iacr.org/2018/712.pdf 'The underlying technology of Proof of Time'), by our advisors Dan Boneh, Benedikt Bünz, and Ben Fisch
 - [Simple Verifiable Delay Functions](https://eprint.iacr.org/2018/627.pdf 'The basis for Proof of Time'), by our advisor Krzysztof Pietrzak
 - [History of Cryptography](https://cs.stanford.edu/people/eroberts/courses/soco/projects/public-key-cryptography/history.html#:~:text=The%20idea%20of%20public%20key,known%20as%20the%20knapsack%20problem), from Stanford University
