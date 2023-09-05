@@ -192,6 +192,7 @@ module.exports = {
         'reference-client/logging-reference',
         'reference-client/password-protected-keys',
         'reference-client/headless-node',
+        'reference-client/coin-selection',
       ],
     },
     {
