@@ -31,7 +31,14 @@ In the future, we plan to enable decompression at the farmer level. This means t
   </div>
 
 3. Slide the `Enable compressed plot support` slider to the right, as shown in the above image.
-4. The default value for `Parallel Decompressor Count` is `1`. This means that on a harvester with more than one CPU, only one of the CPUs will be used for decompressing plots. This setting is fine for most machines, and is the recommended value for GPU harvesting. However, feel free to increase it if you want to use CPU decompression and you want to dedicate multiple CPUs to compressed harvesting.
+4. For `Parallel Decompressor Count`, the default value of `1` will be fine for most users. Here are some details:
+    * This number _only_ affects the amount of memory used for decompression.
+    * The amount memory required will vary according to the level of compression. For example, if `Parallel Decompressor Count` is set to `1`, around 600-700 MB of memory will be consumed while decompressing a single C7 plot.
+    * The amount of memory required will scale linearly, so setting it to `2` will double the required memory. 
+    
+    If your harvester has sufficient memory, as well as a high CPU core count, you can increase this number. For example, `2` might be optimal for a 16-core CPU, or `4` for dual 32-core CPUs.
+    
+    However, the generation and speed of your CPU will also have a large impact on the optimal setting. If you do increase `Parallel Decompressor Count`, be sure to monitor your harvester's performance as there is no one-size-fits-all solution.
 4. The default value for `Decompressor Thread Count` is `0`. This is the number of threads that will participate in decompressing plots. This number, multiplied by `Parallel Decompressor Count`, needs to less than or equal to the total number of harvester cores.
 
   For example, if your harvester has one CPU with eight cores, you might use the following settings:
