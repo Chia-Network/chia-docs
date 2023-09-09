@@ -29,7 +29,7 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 </details>
 
-### wscat usage
+## wscat usage
 
 This reference constains examples that make RPC calls directly from a terminal window on a running node.
 
@@ -129,6 +129,8 @@ Response:
 Note that if you skip the `register_service` step and attempt to make such a call, the call will go through, but you won't see the response.
 
 ---
+
+## Daemon Server RPCs
 
 ### `exit`
 
@@ -1015,6 +1017,538 @@ Response:
     "error": null,
     "success": true
 }
+```
+
+</details>
+
+---
+
+## Keychain Server RPCs
+
+### `add_private_key`
+
+Functionality: Add a new private key from a mnemonic word list
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag     | Type   | Required | Description                                      |
+| :------- | :----- | :------- | :----------------------------------------------- |
+| mnemonic | STRING | True     | The mnemonic word list (see below for details)   |
+| label    | STRING | False    | The label to assign for this key [Default: None] |
+
+Requirements for the mnemonic word list:
+* Must be input as a single string
+* Order is important
+* Must be delineated by spaces
+* Must be either 12 or 24 words long
+* Each word must be in the [BIP-39 word list](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt)
+* The mnemonic must form a valid private key
+
+<details>
+<summary>Example 1: success</summary>
+
+The following example adheres to each of the above rules:
+
+```json
+chia rpc daemon add_private_key '{"mnemonic": "concert tooth egg defy journey lottery deposit market share lion diesel hand", "label": "Example Key"}'
+```
+
+Response:
+
+```json
+{
+    "fingerprint": 1542304282,
+    "success": true
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2: invalid length</summary>
+
+The mnemonic must be either 12 or 24 words. Else, an error will be returned. For example:
+
+```json
+chia rpc daemon add_private_key '{"mnemonic": "1 2 3 4 5 6 7 8 9 10 11 12 13", "label": "Example Key"}'
+```
+
+Response:
+
+```json
+{
+    "error": "Invalid mnemonic length",
+    "success": false
+}
+```
+
+</details>
+
+<details>
+<summary>Example 3: invalid word</summary>
+
+Each word must be in the BIP-39 word list. Else, an error will be returned. For example:
+
+```json
+chia rpc daemon add_private_key '{"mnemonic": "1 2 3 4 5 6 7 8 9 10 11 12", "label": "Example Key"}'
+```
+
+Response:
+
+```json
+{
+    "error": "'1' is not in the mnemonic dictionary; may be misspelled",
+    "success": false
+}
+```
+
+</details>
+
+<details>
+<summary>Example 4: Invalid word order</summary>
+
+If the mnemonic is 12 or 24 words, and each word is in the BIP-39 word list, the final check is that the words form a valid mnemonic phrase. For example:
+
+```json
+chia rpc daemon add_private_key '{"mnemonic": "you can test this example word list because they tell you stuff", "label": "Example Key"}'
+```
+
+Response:
+
+```json
+{
+    "error": "Invalid order of mnemonic words",
+    "success": false
+}
+```
+
+</details>
+
+---
+
+### `check_keys`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `delete_all_keys`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `delete_key_by_fingerprint`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `get_all_private_keys`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `get_first_private_key`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `get_key_for_fingerprint`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `get_key`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `get_keys`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `get_public_key`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `get_public_keys`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `set_label`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
+```
+
+</details>
+
+---
+
+### `delete_label`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type   | Required | Description      |
+| :--- | :----- | :------- | :--------------- |
+
+
+<details>
+<summary>Example</summary>
+
+```json
+
+```
+
+Response:
+
+```json
 ```
 
 </details>
