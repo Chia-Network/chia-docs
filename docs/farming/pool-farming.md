@@ -296,10 +296,6 @@ A crypto community site lists all upcoming Chia pools: https://miningpoolstats.s
 
 You can only advertise your pool in Discord #Promote-community-projects once a day. If you're spammy, mods will warn you and then ban you if you persist.
 
-### Why shouldn't I join Hpool?
-
-Hpool initially created their own version of Chia client that has no source code released with it. There is no telling what kind of malicious activity that client can do. Chia Network Inc discourages everyone from joining any pool that requires custom closed source clients.
-
 ### Why doesn't Chia run their own official pool?
 
 We want there to be a healthy ecosystem of competing pools with no privileged official one having an unfair advantage over the others.
