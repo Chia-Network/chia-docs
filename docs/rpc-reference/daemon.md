@@ -31,7 +31,7 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 ## wscat usage
 
-This reference constains examples that make RPC calls directly from a terminal window on a running node.
+This reference contains examples that make RPC calls directly from a terminal window on a running node.
 
 You can also make the same RPC calls to the daemon over a websocket. To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running:
 
@@ -164,105 +164,6 @@ Response:
         "chia_farmer",
         "chia_harvester"
     ],
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_keys_for_plotting`
-
-Functionality: Show the `farmer_public_key` and `pool_public_key` for one or more wallet fingerprints
-
-Usage: chia rpc daemon [OPTIONS] get_keys_for_plotting [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters:
-
-| Flag         | Type   | Required | Description                                                                                 |
-| :----------- | :----- | :------- | :------------------------------------------------------------------------------------------ |
-| fingerprints | NUMBER | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
-
-<details>
-<summary>Example</summary>
-
-Show the keys for one specific fingerprint:
-
-```json
-chia rpc daemon get_keys_for_plotting '{"fingerprints":[2104826454]}'
-```
-
-Response:
-
-```json
-{
-    "keys": {
-        "2104826454": {
-            "farmer_public_key": "82e79f17419e953da439bb9f5c40df4a26c0bbe2c1124178855a24067a6b8f3af8070dade09ca4c75fe3ba100e94fde6",
-            "pool_public_key": "a3ef6951a9351239bdfff028825e4c2f659487eb3d0f25e50da6f1801bca9ab0c2e6a07a7f4e58b82ffd6c75be05e75f"
-        }
-    },
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `get_plotters`
-
-Functionality: List all available plotters
-
-Usage: chia rpc daemon [OPTIONS] get_plotters [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: None
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc daemon get_plotters
-```
-
-Response:
-
-```json
-{
-    "plotters": {
-        "bladebit": {
-            "bladebit_memory_warning": "BladeBit requires at least 416 GiB of RAM to operate",
-            "cuda_support": true,
-            "display_name": "BladeBit Plotter",
-            "installed": true,
-            "version": "3.0.0"
-        },
-        "chiapos": {
-            "display_name": "Chia Proof of Space",
-            "installed": true,
-            "version": "2.0.2"
-        },
-        "madmax": {
-            "display_name": "madMAx Plotter",
-            "installed": true,
-            "version": "1.1.6-2092041"
-        }
-    },
     "success": true
 }
 ```
@@ -768,8 +669,6 @@ Request Parameters:
 | passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                  |
 | save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. [Default: False] |
 
----
-
 <details>
 <summary>Example</summary>
 
@@ -787,39 +686,6 @@ Response:
 ```
 
 </details>
-
-### `start_plotting`
-
-Functionality: Create one or more plots with the desired plotter
-
-Usage: chia rpc daemon [OPTIONS] start_plotting [REQUEST]
-
-Options:
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: 
-
-| Flag      | Type    | Required | Description                                                            |
-| :-------- | :------ | :------- | :--------------------------------------------------------------------- |
-| service   | STRING  | True     | The plotting service to use                                            |
-| plotter   | STRING  | False    | The plotter to use [Default: "chiapos"]                                |
-| delay     | INTEGER | False    | The number of seconds to delay before starting to plot [Default: 0]    |
-| parallel  | BOOLEAN | False    | Set to create multiple plots in parallel [Default: false]              |
-| k         | INTEGER | True     | The k-size of the plot to create                                       |
-| overrideK | BOOLEAN | True     | Set to `true` to create a plot smaller than k-32                       |
-| r         | INTEGER | True     | The number of threads to use for creating the plot(s)                  |
-| b         | INTEGER | True     | Size of the buffer, in MB                                              |
-| u         | INTEGER | True     | Number of buckets                                                      |
-| e         | BOOLEAN | True     | Set to `true` to disable bitfield                                      |
-| t         | STRING  | True     | The temporary directory where the plot will be created                 | 
-| d         | STRING  | True     | The destination where the plot will be moved after it has been created |
-| x         | BOOLEAN | True     | Set to `true` to skip moving the plot after it has been created        |
-| n         | INTEGER | False    | The number of plots to create [Default: 1]                             |
-| queue     | STRING  | False    | The type of plotting queue [Default: "default"]                        |
 
 ---
 
@@ -858,44 +724,6 @@ Response:
 {
     "error": null,
     "service": "chia_wallet",
-    "success": true
-}
-```
-
-</details>
-
----
-
-### `stop_plotting`
-
-Functionality: 
-
-Usage: chia rpc daemon [OPTIONS] stop_plotting [REQUEST]
-
-Options: Stop creating a plot
-
-| Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
-| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
-| -h            | --help       | None     | False    | Show a help message and exit                                                          |
-
-Request Parameters: 
-
-| Flag | Type    | Required | Description                         |
-| :--- | :------ | :------- | :---------------------------------- |
-| id   | STRING  | True     | The ID of the plot to stop creating |
-
-<details>
-<summary>Example</summary>
-
-```json
-chia rpc daemon stop_plotting '{"id": "68607640-4dfc-4946-9a0d-186beec3b8f8"}'
-```
-
-Response:
-
-```json
-{
     "success": true
 }
 ```
@@ -1023,13 +851,187 @@ Response:
 
 ---
 
+## Plotter RPCs
+
+### `get_keys_for_plotting`
+
+Functionality: Show the `farmer_public_key` and `pool_public_key` for one or more wallet fingerprints
+
+Usage: chia rpc daemon [OPTIONS] get_keys_for_plotting [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag         | Type   | Required | Description                                                                                 |
+| :----------- | :----- | :------- | :------------------------------------------------------------------------------------------ |
+| fingerprints | NUMBER | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
+
+<details>
+<summary>Example</summary>
+
+Show the keys for one specific fingerprint:
+
+```json
+chia rpc daemon get_keys_for_plotting '{"fingerprints":[2104826454]}'
+```
+
+Response:
+
+```json
+{
+    "keys": {
+        "2104826454": {
+            "farmer_public_key": "82e79f17419e953da439bb9f5c40df4a26c0bbe2c1124178855a24067a6b8f3af8070dade09ca4c75fe3ba100e94fde6",
+            "pool_public_key": "a3ef6951a9351239bdfff028825e4c2f659487eb3d0f25e50da6f1801bca9ab0c2e6a07a7f4e58b82ffd6c75be05e75f"
+        }
+    },
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_plotters`
+
+Functionality: List all available plotters
+
+Usage: chia rpc daemon [OPTIONS] get_plotters [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc daemon get_plotters
+```
+
+Response:
+
+```json
+{
+    "plotters": {
+        "bladebit": {
+            "bladebit_memory_warning": "BladeBit requires at least 416 GiB of RAM to operate",
+            "cuda_support": true,
+            "display_name": "BladeBit Plotter",
+            "installed": true,
+            "version": "3.0.0"
+        },
+        "chiapos": {
+            "display_name": "Chia Proof of Space",
+            "installed": true,
+            "version": "2.0.2"
+        },
+        "madmax": {
+            "display_name": "madMAx Plotter",
+            "installed": true,
+            "version": "1.1.6-2092041"
+        }
+    },
+    "success": true
+}
+```
+
+</details>
+
+---
+
+### `start_plotting`
+
+Functionality: Create one or more plots with the desired plotter
+
+Usage: chia rpc daemon [OPTIONS] start_plotting [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag      | Type    | Required | Description                                                            |
+| :-------- | :------ | :------- | :--------------------------------------------------------------------- |
+| service   | STRING  | True     | The plotting service to use                                            |
+| plotter   | STRING  | False    | The plotter to use [Default: "chiapos"]                                |
+| delay     | INTEGER | False    | The number of seconds to delay before starting to plot [Default: 0]    |
+| parallel  | BOOLEAN | False    | Set to create multiple plots in parallel [Default: false]              |
+| k         | INTEGER | True     | The k-size of the plot to create                                       |
+| overrideK | BOOLEAN | True     | Set to `true` to create a plot smaller than k-32                       |
+| r         | INTEGER | True     | The number of threads to use for creating the plot(s)                  |
+| b         | INTEGER | True     | Size of the buffer, in MB                                              |
+| u         | INTEGER | True     | Number of buckets                                                      |
+| e         | BOOLEAN | True     | Set to `true` to disable bitfield                                      |
+| t         | STRING  | True     | The temporary directory where the plot will be created                 | 
+| d         | STRING  | True     | The destination where the plot will be moved after it has been created |
+| x         | BOOLEAN | True     | Set to `true` to skip moving the plot after it has been created        |
+| n         | INTEGER | False    | The number of plots to create [Default: 1]                             |
+| queue     | STRING  | False    | The type of plotting queue [Default: "default"]                        |
+
+---
+
+### `stop_plotting`
+
+Functionality: 
+
+Usage: chia rpc daemon [OPTIONS] stop_plotting [REQUEST]
+
+Options: Stop creating a plot
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: 
+
+| Flag | Type    | Required | Description                         |
+| :--- | :------ | :------- | :---------------------------------- |
+| id   | STRING  | True     | The ID of the plot to stop creating |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc daemon stop_plotting '{"id": "68607640-4dfc-4946-9a0d-186beec3b8f8"}'
+```
+
+Response:
+
+```json
+{
+    "success": true
+}
+```
+
+</details>
+
+---
+
 ## Keychain Server RPCs
 
 ### `add_private_key`
 
 Functionality: Add a new private key from a mnemonic word list
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] add_private_key [REQUEST]
 
 Options:
 
@@ -1139,7 +1141,7 @@ Response:
 
 Functionality: 
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] check_keys [REQUEST]
 
 Options:
 
@@ -1150,31 +1152,17 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
-
-<details>
-<summary>Example</summary>
-
-```json
-
-```
-
-Response:
-
-```json
-```
-
-</details>
+| Flag      | Type   | Required |
+| :-------- | :----- | :------- |
+| root_path | STRING | True     | 
 
 ---
 
 ### `delete_all_keys`
 
-Functionality: 
+Functionality: Delete all keys
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] delete_all_keys [REQUEST]
 
 Options:
 
@@ -1183,33 +1171,23 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters: None
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
+Note that this command will fail if the OS key ring is locked.
 
+:::warning
 
-<details>
-<summary>Example</summary>
+This command will delete all of your local Chia keys. Use with caution.
 
-```json
-
-```
-
-Response:
-
-```json
-```
-
-</details>
+:::
 
 ---
 
 ### `delete_key_by_fingerprint`
 
-Functionality: 
+Functionality: Delete the key corresponding to the input fingerprint
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] delete_key_by_fingerprint [REQUEST]
 
 Options:
 
@@ -1220,20 +1198,43 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
+| Flag        | Type    | Required | Description                                  |
+| :---------- | :------ | :------- | :------------------------------------------- |
+| fingerprint | INTEGER | True     | The fingerprint whose key you want to delete |
 
+Note that this command will fail if the OS key ring is locked.
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon delete_key_by_fingerprint '{"fingerprint": 1542304282}'
 ```
 
 Response:
 
 ```json
+{
+    "success": true
+}
+```
+
+To verify that the key was deleted, you can call `get_public_key`. For example:
+
+```json
+chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
+```
+
+Response:
+
+```json
+{
+    "error": "key not found",
+    "error_details": {
+        "fingerprint": 1542304282
+    },
+    "success": false
+}
 ```
 
 </details>
@@ -1242,9 +1243,9 @@ Response:
 
 ### `get_all_private_keys`
 
-Functionality: 
+Functionality: List all private keys, along with their respective entropies
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] get_all_private_keys [REQUEST]
 
 Options:
 
@@ -1253,22 +1254,33 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters: None
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+Note that this command will fail if the OS key ring is locked.
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon get_all_private_keys
 ```
 
 Response:
 
 ```json
+{
+    "private_keys": [
+        {
+            "entropy": "2ebc991b1cd787080ec441c53044f634",
+            "pk": "a2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+        }
+        {
+            "entropy": "entropy of pk2",
+            "pk": "pk2"
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
@@ -1277,9 +1289,9 @@ Response:
 
 ### `get_first_private_key`
 
-Functionality: 
+Functionality: Obtain the first private key, along with its entropy
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] get_first_private_key [REQUEST]
 
 Options:
 
@@ -1288,22 +1300,25 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters: None
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+Note that this command will fail if the OS key ring is locked.
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon get_first_private_key
 ```
 
 Response:
 
 ```json
+{
+    "entropy": "2ebc991b1cd787080ec441c53044f634",
+    "pk": "a2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+    "success": true
+}
 ```
 
 </details>
@@ -1312,9 +1327,9 @@ Response:
 
 ### `get_key_for_fingerprint`
 
-Functionality: 
+Functionality: Given a fingerprint, list the corresponding private key and entropy
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] get_key_for_fingerprint [REQUEST]
 
 Options:
 
@@ -1325,20 +1340,25 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+| Flag      | Type    | Required | Description                                             |
+| :-------- | :------ | :------- | :------------------------------------------------------ |
+| fingerprint | INTEGER | False    | The fingerprint to look up [Default: get the first key] |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon get_key_for_fingerprint '{"fingerprint": 1542304282}'
 ```
 
 Response:
 
 ```json
+{
+    "entropy": "2ebc991b1cd787080ec441c53044f634",
+    "pk": "a2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+    "success": true
+}
 ```
 
 </details>
@@ -1347,9 +1367,9 @@ Response:
 
 ### `get_key`
 
-Functionality: 
+Functionality: Given a fingerprint, retrieve the corresponding key
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] get_key [REQUEST]
 
 Options:
 
@@ -1360,20 +1380,30 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+| Flag            | Type    | Required | Description                                                         |
+| :-------------- | :------ | :------- | :------------------------------------------------------------------ |
+| fingerprint     | INTEGER | True     | The fingerprint whose key you want to look up                       |
+| include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon get_key '{"fingerprint": 1542304282}'
 ```
 
 Response:
 
 ```json
+{
+    "key": {
+        "fingerprint": 1542304282,
+        "label": "Example Key",
+        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+        "secrets": null
+    },
+    "success": true
+}
 ```
 
 </details>
@@ -1382,9 +1412,9 @@ Response:
 
 ### `get_keys`
 
-Functionality: 
+Functionality: Get all public keys, with the option of including secrets
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] get_keys [REQUEST]
 
 Options:
 
@@ -1395,20 +1425,31 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+| Flag            | Type    | Required | Description                                                         |
+| :-------------- | :------ | :------- | :------------------------------------------------------------------ |
+| include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon get_keys
 ```
 
 Response:
 
 ```json
+{
+    "keys": [
+        {
+            "fingerprint": 1542304282,
+            "label": "Example Key",
+            "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+            "secrets": null
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
@@ -1417,9 +1458,9 @@ Response:
 
 ### `get_public_key`
 
-Functionality: 
+Functionality: Get the public key from a specified fingerprint
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] get_public_key [REQUEST]
 
 Options:
 
@@ -1430,20 +1471,28 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+| Flag            | Type    | Required | Description                                   |
+| :-------------- | :------ | :------- | :-------------------------------------------- |
+| fingerprint     | INTEGER | True     | The fingerprint whose key you want to look up |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
 ```
 
 Response:
 
 ```json
+{
+    "key": {
+        "fingerprint": 1542304282,
+        "label": "Example Key",
+        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+    },
+    "success": true
+}
 ```
 
 </details>
@@ -1452,9 +1501,9 @@ Response:
 
 ### `get_public_keys`
 
-Functionality: 
+Functionality: Get all public keys
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] get_public_keys [REQUEST]
 
 Options:
 
@@ -1463,22 +1512,29 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
-
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+Request Parameters: None
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon get_public_keys
 ```
 
 Response:
 
 ```json
+{
+    "keys": [
+
+        {
+            "fingerprint": 1542304282,
+            "label": "Example Key",
+            "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+        }
+    ],
+    "success": true
+}
 ```
 
 </details>
@@ -1487,9 +1543,9 @@ Response:
 
 ### `set_label`
 
-Functionality: 
+Functionality: Set the label for the specified key
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] set_label [REQUEST]
 
 Options:
 
@@ -1500,20 +1556,43 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+| Flag            | Type    | Required | Description                                 |
+| :-------------- | :------ | :------- | :------------------------------------------ |
+| fingerprint     | INTEGER | True     | The fingerprint whose label you want to set |
+| label           | STRING  | True     | The new label                               |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon set_label '{"fingerprint": 1542304282, "label": "New Label"}'
 ```
 
 Response:
 
 ```json
+{
+    "success": true
+}
+```
+
+To verify that the label was set, you can call `get_public_key`. For example:
+
+```json
+chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
+```
+
+Response:
+
+```json
+{
+    "key": {
+        "fingerprint": 1542304282,
+        "label": "New Label",
+        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+    },
+    "success": true
+}
 ```
 
 </details>
@@ -1522,9 +1601,9 @@ Response:
 
 ### `delete_label`
 
-Functionality: 
+Functionality: Delete the label for the specified fingerprint
 
-Usage: chia rpc daemon [OPTIONS]  [REQUEST]
+Usage: chia rpc daemon [OPTIONS] delete_label [REQUEST]
 
 Options:
 
@@ -1535,20 +1614,42 @@ Options:
 
 Request Parameters: 
 
-| Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
-
+| Flag            | Type    | Required | Description                                    |
+| :-------------- | :------ | :------- | :--------------------------------------------- |
+| fingerprint     | INTEGER | True     | The fingerprint whose label you want to delete |
 
 <details>
 <summary>Example</summary>
 
 ```json
-
+chia rpc daemon delete_label '{"fingerprint": 1542304282}'
 ```
 
 Response:
 
 ```json
+{
+    "success": true
+}
+```
+
+To verify that the label was set, you can call `get_public_key`. For example:
+
+```json
+chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
+```
+
+Response:
+
+```json
+{
+    "key": {
+        "fingerprint": 1542304282,
+        "label": null,
+        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+    },
+    "success": true
+}
 ```
 
 </details>
