@@ -69,10 +69,10 @@ const katex = require('rehype-katex');
               label: 'Chia Network',
               position: 'left',
             },
-            // {
-            //   type: 'localeDropdown',
-            //   position: 'left',
-            // },
+            {
+              type: 'localeDropdown',
+              position: 'left',
+            },
             {
               href: 'https://github.com/Chia-Network/chia-blockchain',
               label: 'GitHub',
