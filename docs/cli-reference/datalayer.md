@@ -993,7 +993,7 @@ Options:
 | -store        | --id            | TEXT    | True     | The hexadecimal ID of the store to which you would like to unsubscribe                                  |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
-|               | --retain        | None    | False    | Retain .dat files                                                                                       |
+|               | --retain        | None    | False    | Retain local .dat files [Default: false (don't retain data)]                                            |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                            |
 
 Example:

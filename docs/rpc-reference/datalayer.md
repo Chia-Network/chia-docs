@@ -2079,15 +2079,10 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description                                               |
-| :--- | :--- | :------- | :-------------------------------------------------------- |
-| id   | TEXT | True     | The hexadecimal ID of the store from which to unsubscribe |
-
-:::warning important
-
-This RPC does not remove any data from the database or the filesystem.
-
-:::
+| Flag   | Type    | Required | Description                                                                               |
+| :----- | :------ | :------- | :---------------------------------------------------------------------------------------- |
+| id     | TEXT    | True     | The hexadecimal ID of the store from which to unsubscribe                                 |
+| retain | BOOLEAN | False    | Whether to retain the local data after unsubscribing [Default: false (delete local data)] |
 
 <details>
 <summary>Example</summary>
