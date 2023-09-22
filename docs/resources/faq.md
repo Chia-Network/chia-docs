@@ -38,7 +38,13 @@ XCH is the currency symbol for Chia. TXCH is the currency symbol currently being
 
 ### What is k?
 
-"k" is the space parameter that controls the size of plots. It is an integer for the following equation: `plot_size_bytes = C1 * 2^k(k + C2)` where C1 is constant 1 and C2 is constant 2. In practice this means that final size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.762` though that constant is estimated. You can examine the [Space Required section](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf#page=15) of the [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) for the calculation of how much space is required for a given k.
+"k" is the space parameter that controls the size of plots. It is an integer for the following equation: `plot_size_bytes = C1 * 2^k(k + C2)` where C1 is constant 1 and C2 is constant 2. In practice this means that final size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005` though that constant is estimated. You can examine the [Space Required section](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf#page=15) of the [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) for the calculation of how much space is required for a given k.
+
+:::note
+
+Prior to Chia 2.0, the estimated space constant factor of 0.762 slightly incorrect. This led to a netspace calculation that was lower than the actual netspace. To correct this, we have [updated the constant factor](https://github.com/Chia-Network/chia-blockchain/pull/15771) to 0.78005.
+
+:::
 
 ### How big are plot sizes (k)?
 
@@ -1024,8 +1030,7 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 ### What versions of Python are supported?
 
-- Starting with Chia version 1.3.5, Python versions 3.7-3.10 are supported
-- For Chia versions prior to 1.3.5, Python 3.10 is _not_ supported. Only versions 3.7-3.9 are supported
+- Chia supports all versions of Python that have not reached their end-of-life. Starting with Chia version 2.0.0, the minimum version of Python supported is 3.8. See the [official Python version list](https://devguide.python.org/versions/) for more info.
 
 ### Can I use a fast SAS HDD for storing the blockchain's database?
 

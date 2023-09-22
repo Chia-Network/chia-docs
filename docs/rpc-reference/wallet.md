@@ -1705,78 +1705,223 @@ Request Parameters:
 | to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
 
 <details>
-<summary>Example</summary>
+<summary>Example 1: List a single XCH transaction</summary>
 
-Get all transactions from a CAT wallet:
+Start by listing all wallets associated with the currently synced fingerprint:
+
+```bash
+chia rpc wallet get_wallets
+```
+
+Response:
+
+```bash
+{
+    "fingerprint": 2104826454,
+    "success": true,
+    "wallets": [
+        {
+            "data": "",
+            "id": 1,
+            "name": "Chia Wallet",
+            "type": 0
+        },
+        {
+            "data": "{\"did_id\": null}",
+            "id": 2,
+            "name": "NFT Wallet",
+            "type": 10
+        },
+        {
+            "data": "{\"did_id\": \"0xb08c01ace955ce180ce2e0b332b4c8d98d46469078e5191351f025d9cf9117f3\"}",
+            "id": 4,
+            "name": "NFT Wallet",
+            "type": 10
+        },
+        {
+            "data": "",
+            "id": 5,
+            "name": "DataLayer Wallet",
+            "type": 11
+        },
+        {
+            "data": "f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d00",
+            "id": 6,
+            "name": "CAT f17f88130c635228...",
+            "type": 6
+        },
+        {
+            "data": "aaee6b63bcbc4aef0a005d31119ad65e5228b0ddff18c5c563fd7a4db54fb08400",
+            "id": 7,
+            "name": "CAT aaee6b63bcbc4aef...",
+            "type": 6
+        },
+        {
+            "data": "",
+            "id": 11,
+            "name": "Pool wallet",
+            "type": 9
+        }
+    ]
+}
+```
+
+In this case, we are interested in the `Chia Wallet`, of type `0`. This has an `id` of `1`.
+
+Next, list only the transaction from that wallet with an index of `3`:
+
+```bash
+chia rpc wallet get_transactions '{"wallet_id": 1, "start": 3, "end": 4}'
+```
+
+```bash
+{
+    "success": true,
+    "transactions": [
+        {
+            "additions": [
+                {
+                    "amount": 999999999,
+                    "parent_coin_info": "0x4346c6f866ce790ef0c48c5afe472751a9f09ee926a1bb60cb4cb6ab7c845377",
+                    "puzzle_hash": "0xe4c9f6dd30498ae0e19d9bdba2eeaa54296d91a5b8ccbb4b9b748034f9525253"
+                },
+                {
+                    "amount": 1,
+                    "parent_coin_info": "0x4346c6f866ce790ef0c48c5afe472751a9f09ee926a1bb60cb4cb6ab7c845377",
+                    "puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9"
+                }
+            ],
+            "amount": 1,
+            "confirmed": true,
+            "confirmed_at_height": 1688205,
+            "created_at_time": 1666232735,
+            "fee_amount": 0,
+            "memos": {},
+            "name": "0x8d1a6db10aa69a8aceff700596bfd736b87a133d73e394c15c13152633e729d0",
+            "removals": [
+                {
+                    "amount": 1000000000,
+                    "parent_coin_info": "0x73336c365fdcae474f672b0f35950369fb12b1dac0289aa2f5b702e731098447",
+                    "puzzle_hash": "0x3377e81d20ad9a3028ffe7e77360c03df48c412f2525aac58035738888adb83d"
+                }
+            ],
+            "sent": 0,
+            "sent_to": [],
+            "spend_bundle": null,
+            "to_address": "txch1alc82gjf2psvqehkdue2es480caruum6e296afx35e82fnwp8k5shty4cp",
+            "to_puzzle_hash": "0xeff07522495060c066f66f32acc2a77e3a3e737aca8baea4d1a64ea4cdc13da9",
+            "trade_id": null,
+            "type": 1,
+            "wallet_id": 1
+        }
+    ],
+    "wallet_id": 1
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2: List all transactions for a CAT</summary>
+
+Start by listing all wallets associated with the currently synced fingerprint:
+
+```bash
+chia rpc wallet get_wallets
+```
+
+Response:
+
+```bash
+{
+    "fingerprint": 2104826454,
+    "success": true,
+    "wallets": [
+        {
+            "data": "",
+            "id": 1,
+            "name": "Chia Wallet",
+            "type": 0
+        },
+        {
+            "data": "{\"did_id\": null}",
+            "id": 2,
+            "name": "NFT Wallet",
+            "type": 10
+        },
+        {
+            "data": "{\"did_id\": \"0xb08c01ace955ce180ce2e0b332b4c8d98d46469078e5191351f025d9cf9117f3\"}",
+            "id": 4,
+            "name": "NFT Wallet",
+            "type": 10
+        },
+        {
+            "data": "",
+            "id": 5,
+            "name": "DataLayer Wallet",
+            "type": 11
+        },
+        {
+            "data": "f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d00",
+            "id": 6,
+            "name": "CAT f17f88130c635228...",
+            "type": 6
+        },
+        {
+            "data": "aaee6b63bcbc4aef0a005d31119ad65e5228b0ddff18c5c563fd7a4db54fb08400",
+            "id": 7,
+            "name": "CAT aaee6b63bcbc4aef...",
+            "type": 6
+        },
+        {
+            "data": "",
+            "id": 11,
+            "name": "Pool wallet",
+            "type": 9
+        }
+    ]
+}
+```
+
+For this example, we'll use the wallet with ID `7`. This wallet is type `6` (CAT):
 
 ```json
-chia rpc wallet get_transactions '{"wallet_id": 2}'
+chia rpc wallet get_transactions '{"wallet_id": 7}'
 ```
 
 Response:
 
 ```json
 {
-  "success": true,
-  "transactions": [
-    {
-      "additions": [
+    "success": true,
+    "transactions": [
         {
-          "amount": 100,
-          "parent_coin_info": "0xabbb6c6859db74e8e627f21263c078893383131bcf22faec68b2de914d03e59f",
-          "puzzle_hash": "0xb4a41bbce457745b006181ab99e34a0cbd8c83c196bc74fc98eb3aec882ed784"
+            "additions": [
+                {
+                    "amount": 10000,
+                    "parent_coin_info": "0x5104073950bccd17a7ea57ca9f13c5546f88a048e3165069d0e255d3018faeed",
+                    "puzzle_hash": "0x5e5073dab71209426358624462fac281431f87571ad40009d7ec731784154a1c"
+                }
+            ],
+            "amount": 10000,
+            "confirmed": true,
+            "confirmed_at_height": 1932515,
+            "created_at_time": 1670949639,
+            "fee_amount": 0,
+            "memos": {},
+            "name": "0x38306b461975741641d397330bb34c01681bb242119bd4aa457c06e2080cf257",
+            "removals": [],
+            "sent": 0,
+            "sent_to": [],
+            "spend_bundle": null,
+            "to_address": "txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s",
+            "to_puzzle_hash": "0x82e6a78ee8dde8e66c844c9595b42d0fa29ff5e8ed49b5c332169ef6c0498955",
+            "trade_id": null,
+            "type": 0,
+            "wallet_id": 7
         }
-      ],
-      "amount": 100,
-      "confirmed": true,
-      "confirmed_at_height": 2863494,
-      "created_at_time": 1669182237,
-      "fee_amount": 0,
-      "memos": {},
-      "name": "0x43f6811a4daf18622fc7f132f5166a1246056b4a983b7befccb7e4b2e2c57f3b",
-      "removals": [
-        {
-          "amount": 100,
-          "parent_coin_info": "0x9c0083d8da8733c899787e4dcf18a56bc944f49ed668808e20890f01cbc35f37",
-          "puzzle_hash": "0xb4a41bbce457745b006181ab99e34a0cbd8c83c196bc74fc98eb3aec882ed784"
-        }
-      ],
-      "sent": 10,
-      "sent_to": [],
-      "spend_bundle": null,
-      "to_address": "xch1kmk3jx30sqv57j07x05mjf2xgt9fgthzslaweg4yta9edfwqsadqagh96h",
-      "to_puzzle_hash": "0xb6ed191a2f80194f49fe33e9b9254642ca942ee287faeca2a45f4b96a5c0875a",
-      "trade_id": null,
-      "type": 0,
-      "wallet_id": 2
-    },
-    {
-      "additions": [
-        {
-          "amount": 100,
-          "parent_coin_info": "0x9c0083d8da8733c899787e4dcf18a56bc944f49ed668808e20890f01cbc35f37",
-          "puzzle_hash": "0xb4a41bbce457745b006181ab99e34a0cbd8c83c196bc74fc98eb3aec882ed784"
-        }
-      ],
-      "amount": 100,
-      "confirmed": true,
-      "confirmed_at_height": 2863494,
-      "created_at_time": 1669182326,
-      "fee_amount": 0,
-      "memos": {},
-      "name": "0x8ee001c7106dc8543724139069a7a22a1492eb7f6005f1da6ba99d5949aead49",
-      "removals": [],
-      "sent": 0,
-      "sent_to": [],
-      "spend_bundle": null,
-      "to_address": "xch1kmk3jx30sqv57j07x05mjf2xgt9fgthzslaweg4yta9edfwqsadqagh96h",
-      "to_puzzle_hash": "0xb6ed191a2f80194f49fe33e9b9254642ca942ee287faeca2a45f4b96a5c0875a",
-      "trade_id": null,
-      "type": 0,
-      "wallet_id": 2
-    }
-  ],
-  "wallet_id": 2
+    ],
+    "wallet_id": 7
 }
 ```
 
@@ -2829,12 +2974,27 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type | Required | Description                                      |
-| :-------- | :--- | :------- | :----------------------------------------------- |
-| pubkey    | TEXT | True     | The public key of the signature to verify        |
-| message   | TEXT | True     | The message to verify                            |
-| signature | TEXT | True     | The signature to verify                          |
-| address   | TEXT | True     | The address, which must be derived from `pubkey` |
+| Flag         | Type | Required | Description                                                                                     |
+| :----------- | :--- | :------- | :---------------------------------------------------------------------------------------------- |
+| signing_mode | TEXT | False    | Specify the type of signature to verify [Default: BLS with hex input] (see below for more info) |
+| pubkey       | TEXT | True     | The public key of the signature to verify                                                       |
+| message      | TEXT | True     | The message to verify                                                                           |
+| signature    | TEXT | True     | The signature to verify                                                                         |
+| address      | TEXT | True     | The address, which must be derived from `pubkey`                                                |
+
+The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include:
+* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
+  * Default signing mode
+  * Describes the standard BLS signatures used by Chia
+  * Uses a hex input
+  * Taken from [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-sign)
+  * Cipher suites used for BLS signatures are also defined at [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-ciphersuites)
+* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:utf8input_`
+  * Same as above, but uses UTF-8 instead of hex
+* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
+  * [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
+
+
 
 ---
 
