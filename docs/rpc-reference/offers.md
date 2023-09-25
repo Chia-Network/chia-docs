@@ -715,6 +715,43 @@ Response:
 
 ---
 
+### `get_offers_count`
+
+Functionality: Obtain a count of the number of offers created and taken with this wallet
+
+Usage: chia rpc wallet [OPTIONS] get_offers_count [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```bash
+chia rpc wallet get_offers_count
+```
+
+Response:
+
+```bash
+{
+    "my_offers_count": 2,
+    "success": true,
+    "taken_offers_count": 0,
+    "total": 2
+}
+```
+
+</details>
+
+---
+
 ### `get_offer_summary`
 
 Functionality: Returns the summary of a specific Offer. Works for Offers in any state
