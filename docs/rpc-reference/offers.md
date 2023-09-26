@@ -97,6 +97,7 @@ Request Parameters:
 | fee        | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                |
 | batch_size | NUMBER  | False    | The number of Offers to cancel in one batch [Default: `5`]                                                |
 | cancel_all | BOOLEAN | False    | Cancel all Offers [Default: `false`]                                                                      |
+| asset_id   | STRING  | False    | The ID of the asset to cancel; only used when `cancel_all` is `false` [Default: `xch`]                    |
 
 <details>
 <summary>Example</summary>
@@ -144,7 +145,7 @@ The Offer is considered valid if it is in any of the following states:
 - `PENDING_CONFIRM`
 - `PENDING_CANCEL`
 
-The Offer is no longer valid if it is in any of the following states:
+The Offer is not valid if it is in any of the following states:
 
 - `CANCELLED`
 - `CONFIRMED`
@@ -204,14 +205,15 @@ Request Parameters:
 
 :::note
 
-As of Chia 2.1.0, relative time lock flags are included in the Offer file. However, the RPC API does not yet support them. These unsupported flags include:
-* max_blocks_after_created
-* max_secs_after_created
-* min_blocks_since_created
-* min_secs_since_created
+Although relative time lock flags are included in Offer files, the RPC API does not yet support them. The unsupported flags include:
+* `max_blocks_after_created`
+* `max_secs_after_created`
+* `min_blocks_since_created`
+* `min_secs_since_created`
 
 In addition, of the four absolute time lock flags, the reference wallet will only recognize `max_time`. 
-The other three (`min_height`, `min_time`, and `max_height`) are each enforced on the blockchain, but the reference wallet will not currently understand that the time locks need to be applied until it submits the Offer spendbundle to the mempool. 
+
+The other three **(**`min_height`, `min_time`, and `max_height`**)** are each enforced on the blockchain, but the reference wallet will not currently understand that the time locks need to be applied until it submits the Offer spendbundle to the mempool. 
 For this reason, if you use the reference wallet to accept an Offer that uses any of these three flags, the transaction will be initiated, but will fail. 
 Your log file will contain `ASSERT_SECONDS_ABSOLUTE_FAILED` in this case, but the GUI will continue to show the pending transaction as if it were still valid.
 
@@ -608,6 +610,8 @@ Response:
 <details>
 <summary>Example 4: Offer in time window</summary>
 
+**Per the above note, this example will create a valid Offer, but the reference wallet currently (as of 2.1.0) will not be able to read it.**
+
 In this example, we will offer 12.345 CATs (`Launcher ID: 91aa...004r`) in exchange for 1 TXCH (`Wallet ID: 1`). The offer will not be valid until UNIX timestamp `1700000000`, and it will expire after timestamp `1705000000`:
 
 ```bash
@@ -930,12 +934,13 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type   | Required | Description                        |
-| :---- | :----- | :------- | :--------------------------------- |
-| offer | STRING | True     | The text of the Offer to summarize |
+| Flag     | Type    | Required | Description                                                           |
+| :------- | :------ | :------- | :-------------------------------------------------------------------- |
+| offer    | STRING  | True     | The text of the Offer to summarize                                    |
+| advanced | BOOLEAN | False    | Show advanced information, including expiration time [Default: false] |
 
 <details>
-<summary>Example</summary>
+<summary>Example 1</summary>
 
 The `offer` parameter is the pasted contents of an Offer file:
 
@@ -980,6 +985,47 @@ Response:
       "b4158076fee6af25c9403b3b9d97a7c967a61c6b37c4614a1a16587345b2cb16": 1
     }
   }
+}
+```
+
+</details>
+
+<details>
+<summary>Example 2: with advanced details</summary>
+
+This example will show the Offer's expiration timestamp (`max_time`):
+
+```bash
+chia rpc wallet get_offer_summary '{"advanced": true, "offer": "offer1qqr83wcuu2rykcmqvpsxvgqqemhmlaekcenaz02ma6hs5w600dhjlvfjn477nkwz369h88kll73h37fefnwk3qqnz8s0lle0xp70k7vrwmdq0sfnsf7jns276kh4lah7ark8fkc5kmjeav0nkkmyms8jvnq5t0mqjhhtmddtm6wfqwm7gh2wda5rqa3f0g4h032gk0asdrxcu0tal8lakxz7t3vj4sqqkmrn5a57k967jggwe5hkk0j5p057lh4qld7lw6mxmwnl08k4lew2xg982gg0j5m6vw8tej4md8jc74je0uyhjlevt8kdnd9xm0lqcrx7q56un76qw9nnm6c58nlyvkm05wkm05wkmd5wkmd57krfa8jxtdhlg6aasy9lwp0xlvlz00rtd56dud3hxf4y9m53trr02q0xw0tsd3hdpnkd5hfr4d2s24fkwx260q0avh2lxrv6vlufu05uwk7wlvrd3fk0y4j7ac2ezp4n3gvheg24q4eq2duuzlsczrw7kzumd38rd205a6dvdaq4vtt0h79l77dlfadjfk62u65gvcz9g0fuxt2tqwp4hm4frmamfd45a65dsymm8hvqqtkgqzctnl6rl7m6gnhznvqwgx8ltaq2sx0c8ljn7c29p5gt8f32eydemw0xzvarkcvaux8mknp9rv9d8gswruexuks4437uuank67a07twkkd8va720tqsus0ymlu9ng07kac4ksv4u6nm78azt4x9u7lm0nda90zwttpmt4r5puryk70d35rusr7llpv6p4e6dhw57scwdl8u0hfecjumddflnlh3g8a798kww7ljcheefh6qyfqh0n0lqvzpe4nudkq0fxmfhpaymwd89xrkttmewh877ejqmq6857ye00vafl74lcrvutkrgw8efrmd88yza2du78raets0vl66xtem04el94udjlhsh5wgxjra57vf5l303pdfq6n6d0vnmqk808wgjfe7lyek7h4jwkl8elx26vt8m5ac9tmm7ng8tfr2s70kl7qjzp5ufsmwynpjm3jl60nu46afk2msjn9spmw337afw0f0adnl74nalmuvf7wpdcq3xc8xqypg9c72pt7f8ndv6vudt7m5k20rakamlmjlhlun4szfn2lrjs0w7r54te607lx36zxtkt58mhsh8na7tsnw803f5au03ff8gl9glrf3596mxgs4qpku4vfe5aa67resljmh8j53jh73ztm0l3g40h94hw3fdf03a0knmwdjpjkanfaelahjmldadjht064yv0cs7xk2ue6y082kecstq4kgqcp7vrtk8kylmulya2hr0257l43jw0p0xehayllkz6r8hjmcak08m6x7e3z0h074as89ralq5pafxlad3sejvs0nqpdanrd6aj4n3hnmf7yq7cca0xr8tr0m30m5tq3ngftl4vtllj6k37vw2q2kmlu97a0w6r6a5alk3k8h2a9dnkd6ljd2mv6kmthhh9zl0f67p2z5at5kkx8swqknd77s5uegxeufarnelr58my9t5vskrc7hm4t3lhsrtkw0m7yqv4hu82jwze8ek47dr9y9ltmzzy70ezwxg28alnnr7eaj7yl36j0t7juawpfat8au3glr8m7dkc2xatk74z2tkfnuktnpktgeea7sfssn03a8uwrflqqk0v5jh9kt2e7"}'
+```
+
+Response:
+
+```bash
+{
+    "id": "0xd630d959269906f89ced378dc5402e3c3aa1c472e97bb5492e7ce37744187a2d",
+    "success": true,
+    "summary": {
+        "fees": 10000000,
+        "infos": {
+            "91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d": {
+                "tail": "0x91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d",
+                "type": "CAT"
+            }
+        },
+        "offered": {
+            "91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d": 100
+        },
+        "requested": {
+            "xch": 1000000000000
+        },
+        "valid_times": {
+            "max_height": null,
+            "max_time": 1704070800,
+            "min_height": null,
+            "min_time": null
+        }
+    }
 }
 ```
 
