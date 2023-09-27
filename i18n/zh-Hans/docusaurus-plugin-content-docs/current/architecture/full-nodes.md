@@ -1,6 +1,6 @@
 ---
 title: 全节点
-slug: /全节点架构
+slug: /full-node-architecture
 ---
 
 Chia点对点系统的核心由全节点组成。 全节点有以下几项责任：
