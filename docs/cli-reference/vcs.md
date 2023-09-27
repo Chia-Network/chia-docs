@@ -160,7 +160,7 @@ Options:
 <details>
 <summary>Example</summary>
 
-A DID is required in order to mint a new VC. If the proof provider does not already have a DID, use the `did create` command to create one:
+A DID is required in order to mint a new VC. If the proof provider does not already have a DID, use the `did create` command to create one. For example:
 
 ```bash
 chia wallet did create -f 2108245669 -n Provider_DID -m 0.0001
@@ -173,7 +173,7 @@ Successfully created a DID wallet with name Provider_DID and id 2 on key 2108245
 Successfully created a DID did:chia:1n2s77g7rer2v62xzrvd0at6tgx8m4g8t6encghs375r64lc6e5mssdkap3 in the newly created DID wallet
 ```
 
-Next, mint a new VC. Note that the DID specified with `-d` must be owned by the fingerprint specified with `-f` (or the one selected if `-f` is not used):
+Next, mint a new VC. Note that the DID specified with `-d` must be owned by the fingerprint specified with `-f` (or the one selected if `-f` is not used). For example:
 
 ```bash
 chia wallet vcs mint -f 2108245669 -d did:chia:1n2s77g7rer2v62xzrvd0at6tgx8m4g8t6encghs375r64lc6e5mssdkap3 -m 0.0001
@@ -208,7 +208,7 @@ Coin ID: 72e522fecc64b539f8979b89e4cf2ffbcf8ba985faf4b701bcc882c6aec9e040
 Inner Address: txch1at35qwx6djmadnh9v77a72z8vcaxsle36ke3dj26gcpt2fnh654qsqecnj
 ```
 
-It is recommended that you save the result of this command. The `Coin ID:` will be required in case the proofs need to be revoked later.
+It is recommended that you save the `Launcher ID` because it will be needed if the VC needs to be revoked later.
 
 No proofs have been added yet. This is accomplished with the [update_proofs](#update_proofs) command.
 
@@ -228,7 +228,8 @@ Options:
 | :------------ | :--------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
 | -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                             |
-| -p            | --parent-coin-id       | TEXT    | True     | The ID of the parent coin of the VC                                                                                                                                         |
+| -p            | --parent-coin-id       | TEXT    | True*    | The ID of the parent coin of the VC (*optional if VC ID is used)                                                                                                            |
+| -l            | --vc-id TEXT           | TEXT    | True*    | The launcher ID of the VC to revoke (must be tracked by wallet) (*optional if Parent ID is used)                                                                            |
 | -m            | --fee                  | TEXT    | False    | Blockchain fee for revocation transaction, in XCH                                                                                                                           |
 |               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
 |               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
@@ -240,10 +241,9 @@ Options:
 Revoke the proofs from a VC. A few notes:
 
 - The only wallet authorized to call this command is the wallet that contains the DID that created the VC
-- The `-p` parameter is the `Coin ID:` of the VC, which was obtainable when the VC was first minted
 
 ```bash
-chia wallet vcs revoke -p 0x420f69cc8b541be7a0bf1d94ec028a8b2a875ee2cd6721f5316cf1b02519d13a -m 0.0001
+chia wallet vcs revoke -l 0x420f69cc8b541be7a0bf1d94ec028a8b2a875ee2cd6721f5316cf1b02519d13a -m 0.0001
 ```
 
 Response:

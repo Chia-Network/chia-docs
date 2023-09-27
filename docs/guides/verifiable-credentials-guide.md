@@ -214,7 +214,8 @@ Coin ID: 8942dc321387287084a92e6451a01505e6771df81daa86937679eb1ef67abb4a
 Inner Address: txch1wrr3hew9nr8ukenv3nwq0fg78h4uh5pm9shyqjl4rmfz9nuqcyxqcy8lth
 ```
 
-This command shows the `Launcher ID` (the VC's ID), which you will need for the next command.
+This command shows the `Launcher ID` (the VC's ID), which you will need for the next command. 
+In addition, the `Coin ID` will be required in case the proofs need to be revoked later.
 
 Previously, you added your desired proofs to the local database and calculated the root hash. The next step is to add this root hash to the VC, and simultaneously send it to the new holder. This is accomplished by spending the VC.
 
