@@ -83,7 +83,7 @@ Options:
 | -i            | --ids           | TEXT    | True     | The hexadecimal store id(s)                                                                                                                  |
 | -o            | --override      | None    | False    | If set, will overwrite files that already exist (default: not set)                                                                           |
 | -n            | --no-override   | None    | False    | If set, will not overwrite files that already exist (default: set)                                                                           |
-| -f            | --foldername    | TEXT    | False    | The name of the folder where the files to be restored are located (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`) |
+| -d            | --directory     | TEXT    | False    | If specified, use a non-default directory to write the files (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`)      |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml                                  |
 | -f            | --fingerprint   | INTEGER | False    | Fingerprint of the wallet to use                                                                                                             |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                 |
