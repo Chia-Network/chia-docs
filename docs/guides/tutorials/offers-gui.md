@@ -348,6 +348,23 @@ This example will continue with the same NFT-NFT Offer from the last section.
   </div>
   <br/>
 
+---
+
+## Default expiration time
+
+By default, all Offers will expire seven days after being created. However, you can modify the expiration time on individual Offers, and you can also modify the default expiration time. From the `GENERAL` tab in the `Settings` menu, scroll down to `Offer Expiration Time`. From here, you can modify the default, or even disable expiring Offers altogether:
+
+<div style={{ textAlign: 'center' }}>
+  <img src="/img/offers_img/gui2/39_offers.png" alt="Change default from general settings"/>
+</div>
+<br/>
+
+You can also access this setting from the `Offer Builder` menu by clicking `Change default timing`:
+
+<div style={{ textAlign: 'center' }}>
+  <img src="/img/offers_img/gui2/40_offers.png" alt="Access default settings from Offer creation"/>
+</div>
+<br/>
 
 ---
 
