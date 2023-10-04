@@ -5,9 +5,9 @@ module.exports = {
       label: 'Getting Started',
       items: [
         'getting-started/introduction',
+        'getting-started/farming-guide',
         'getting-started/installation',
         'getting-started/using-the-gui',
-        'getting-started/cryptocurrency-intro',
       ],
     },
     {
@@ -15,8 +15,10 @@ module.exports = {
       label: 'Plotting',
       items: [
         'plotting/plotting-basics',
+        'plotting/plotting-hardware',
         'plotting/plotting-software',
-        'plotting/k-sizes',
+        'plotting/plotting-compression',
+        'plotting/plotting-how-to',
         'plotting/ssd-endurance',
         'plotting/moving-plots',
         'plotting/plotting-faq',
@@ -27,6 +29,7 @@ module.exports = {
       label: 'Farming',
       items: [
         'farming/farming-basics',
+        'farming/farming-compressed-plots',
         'farming/farming-many-machines',
         'farming/pool-farming',
         'farming/checking-farm-health',
@@ -41,6 +44,7 @@ module.exports = {
       label: 'RPC Reference',
       items: [
         'rpc-reference/rpc',
+        'rpc-reference/daemon',
         'rpc-reference/datalayer',
         'rpc-reference/dids',
         'rpc-reference/nfts',
@@ -62,6 +66,7 @@ module.exports = {
         'cli-reference/dids',
         'cli-reference/nfts',
         'cli-reference/offers',
+        'cli-reference/plotters',
         'cli-reference/simulator',
         'cli-reference/vcs',
         'cli-reference/wallet',
@@ -187,6 +192,7 @@ module.exports = {
         'reference-client/logging-reference',
         'reference-client/password-protected-keys',
         'reference-client/headless-node',
+        'reference-client/coin-selection',
       ],
     },
     {
@@ -209,8 +215,10 @@ module.exports = {
       type: 'category',
       label: 'Resources',
       items: [
+        'resources/cryptocurrency-intro',
         'resources/references',
         'resources/chia-farming-workload',
+        'resources/k-sizes',
         'resources/faq',
       ],
     },
@@ -347,6 +355,16 @@ module.exports = {
         'guides/clawback/clawback-primitive-guide',
       ],
     },
+    {
+      type: 'category',
+      label: 'Offers',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/tutorials/offers-gui',
+        'guides/tutorials/offers-cli',
+      ],
+    },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/verifiable-credentials-guide',
@@ -374,8 +392,6 @@ module.exports = {
         'guides/tutorials/custom-puzzle-lock',
         'guides/tutorials/coin-spend-rpc',
         'guides/tutorials/application-structure',
-        'guides/tutorials/offers-gui',
-        'guides/tutorials/offers-cli',
       ],
     },
   ],

@@ -254,6 +254,17 @@ Gets the current sync status of the wallet.
 | `name`              | `string`                                             | The transaction's id.                  |
 | `memos`             | [`Memo[]`](#memo)                                    | The memos associated with the tx.      |
 
+### TransactionType
+
+| Name               | Value |
+| ------------------ | ----- |
+| `Incoming`         | 0     |
+| `Outgoing`         | 1     |
+| `CoinbaseReward`   | 2     |
+| `FeeReward`        | 3     |
+| `IncomingTrade`    | 4     |
+| `OutgoingTrade`    | 5     |
+
 ### Peer
 
 :::note

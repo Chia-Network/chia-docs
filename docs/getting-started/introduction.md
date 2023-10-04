@@ -1,4 +1,5 @@
 ---
+sidebar_label: Intro to Chia
 title: Introduction
 slug: /introduction
 ---
@@ -10,6 +11,8 @@ Chia is a cryptocurrency and blockchain with smart transaction capabilities. It 
 Its [Proof of Space and Time](/consensus-intro) is the only Nakamoto consensus algorithm since Proof of Work, while also having a [much lower energy consumption](https://chiapower.org). Part of Chia's vision involves improving the carbon footprint of the blockchain industry.
 
 Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives released for [CATs](https://chialisp.com/cats), [NFTs](https://chialisp.com/nfts), [Offers](https://chialisp.com/offers), and [DIDs](https://chialisp.com/dids).
+
+This page will give a brief overview of Chia and its various components. If you are interested in becoming a Chia farmer, feel free to skip ahead to the [Beginner's Guide to Farming](/farming-guide).
 
 ## Proof of Space and Time
 

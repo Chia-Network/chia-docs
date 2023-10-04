@@ -34,54 +34,599 @@ However, it is still best practice to only use this condition in a coin's soluti
 
 :::
 
-This is an extensive list of each condition allowed on the Chia blockchain.
+### 1 `REMARK` {#remark}
 
-| Condition                      | Format                            | Description                                                                                                         |
-| ------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| REMARK                         | `(1)`                             | Always a valid condition.                                                                                           |
-| AGG_SIG_UNSAFE                 | `(49 public_key message)`         | Verifies a signature by its `public_key` and `message`. Usually `AGG_SIG_ME` is safer.                              |
-| AGG_SIG_ME                     | `(50 public_key message)`         | Like `AGG_SIG_UNSAFE`, but including the coin id and genesis id to prevent replay attacks.                          |
-| CREATE_COIN                    | `(51 puzzle_hash amount (memos))` | Creates a coin with a given `puzzle_hash`, `amount`, and optional `memo` (first is a hint).                         |
-| RESERVE_FEE                    | `(52 amount)`                     | Requires a given `amount` to be remaining in the transaction as a fee.                                              |
-| CREATE_COIN_ANNOUNCEMENT       | `(60 message)`                    | Creates an announcement with a given `message`, tied to this coin.                                                  |
-| ASSERT_COIN_ANNOUNCEMENT       | `(61 announcement_id)`            | Asserts a coin announcement was created within this transaction by its `announcement_id`.                           |
-| CREATE_PUZZLE_ANNOUNCEMENT     | `(62 message)`                    | Creates an announcement with a given `message`, tied to this puzzle.                                                |
-| ASSERT_PUZZLE_ANNOUNCEMENT     | `(63 announcement_id)`            | Asserts a puzzle announcement was created within this transaction by its `announcement_id`.                         |
-| ASSERT_CONCURRENT_SPEND        | `(64 coin_id)`                    | Asserts that this coin is spent in the same block as a given `coin_id`.                                             |
-| ASSERT_CONCURRENT_PUZZLE       | `(65 puzzle_hash)`                | Asserts that this coin is spent in the same block as a coin with a given `puzzle_hash`.                             |
-| ASSERT_MY_COIN_ID              | `(70 coin_id)`                    | Asserts that the coin's id matches the given `coin_id`.                                                             |
-| ASSERT_MY_PARENT_ID            | `(71 parent_id)`                  | Asserts that the coin's parent id matches the given `parent_id`.                                                    |
-| ASSERT_MY_PUZZLEHASH           | `(72 puzzle_hash)`                | Asserts that the coin's puzzle hash matches the given `puzzle_hash`.                                                |
-| ASSERT_MY_AMOUNT               | `(73 amount)`                     | Asserts that the coin's amount matches the given `amount`.                                                          |
-| ASSERT_MY_BIRTH_SECONDS        | `(74 seconds)`                    | Asserts that the coin was created with a timestamp of `seconds`.                                                    |
-| ASSERT_MY_BIRTH_HEIGHT         | `(75 block_height)`               | Asserts that the coin was created on a given `block_height`.                                                        |
-| ASSERT_EPHEMERAL               | `(76)`                            | Asserts that the coin was both created and spent on the current block.                                              |
-| ASSERT_SECONDS_RELATIVE        | `(80 seconds_passed)`             | Asserts that the previous transaction block's timestamp was at least `seconds_passed` seconds after coin creation.  |
-| ASSERT_SECONDS_ABSOLUTE        | `(81 seconds)`                    | Asserts that the previous transaction block's timestamp was at least `seconds`.                                     |
-| ASSERT_HEIGHT_RELATIVE         | `(82 block_height_passed)`        | Asserts that the previous transaction block's height was at least `block_height_passed` after coin creation.        |
-| ASSERT_HEIGHT_ABSOLUTE         | `(83 block_height)`               | Asserts that the previous transaction block's height was at least `block_height`.                                   |
-| ASSERT_BEFORE_SECONDS_RELATIVE | `(84 seconds_passed)`             | Asserts that the previous transaction block's timestamp was less than `seconds_passed` seconds after coin creation. |
-| ASSERT_BEFORE_SECONDS_ABSOLUTE | `(85 seconds)`                    | Asserts that the previous transaction block's timestamp was less than `seconds`.                                    |
-| ASSERT_BEFORE_HEIGHT_RELATIVE  | `(86 block_height_passed)`        | Asserts that the previous transaction block's height was less than `seconds_passed` after coin creation.            |
-| ASSERT_BEFORE_HEIGHT_ABSOLUTE  | `(87 block_height)`               | Asserts that the previous transaction block's height was less than `block_height`.                                  |
+Format: `(1)`
 
-## Condition Costs {#costs}
+This condition is always considered valid by the mempool.
 
-Conditions not listed here do not have a cost associated with them.
+This condition has no parameters.
 
-| Condition      | Cost    |
-| -------------- | ------- |
-| CREATE_COIN    | 1800000 |
-| AGG_SIG_UNSAFE | 1200000 |
-| AGG_SIG_ME     | 1200000 |
+---
 
-## Hinting
+### 43 `AGG_SIG_PARENT` {#agg-sig-parent}
 
-When creating a coin, there is an optional `memos` parameter in addition to the `puzzle_hash` and `amount`. Wallets use the first memo parameter to discover assets (by hinting the corresponding `puzzle_hash` of the address it was sent to). This hint value is then stored in the blockchain database for easy lookup.
+:::info
+This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md), and will be available at block height 5,496,000.
+:::
 
-A wallet will typically look up each of its addresses by hint to get a record for every coin. It can then find the puzzle reveal from its parent coin's spend, which is then used to identify and validate the coin. This info can then be used to spend the coin later on.
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
 
-Without hinting, a wallet would have to either look at millions of coins to figure out which of them it owns. Hints are a powerful and flexible way to optimize this lookup.
+Format: `(43 public_key message)`
+
+Verifies a signature for a given message which is concatenated with the following values:
+
+- The parent coin id of the coin being spent.
+- The domain string, `sha256(genesis_id + 43)`.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 44 `AGG_SIG_PUZZLE` {#agg-sig-puzzle}
+
+:::info
+This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md), and will be available at block height 5,496,000.
+:::
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
+
+Format: `(44 public_key message)`
+
+Verifies a signature for a given message which is concatenated with the following values:
+
+- The puzzle hash of the coin being spent.
+- The domain string, `sha256(genesis_id + 44)`.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 45 `AGG_SIG_AMOUNT` {#agg-sig-amount}
+
+:::info
+This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md), and will be available at block height 5,496,000.
+:::
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
+
+Format: `(45 public_key message)`
+
+Verifies a signature for a given message which is concatenated with the following values:
+
+- The amount of the coin being spent.
+- The domain string, `sha256(genesis_id + 45)`.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 46 `AGG_SIG_PUZZLE_AMOUNT` {#agg-sig-puzzle-amount}
+
+:::info
+This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md), and will be available at block height 5,496,000.
+:::
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
+
+Format: `(46 public_key message)`
+
+Verifies a signature for a given message which is concatenated with the following values:
+
+- The puzzle hash of the coin being spent.
+- The amount of the coin being spent.
+- The domain string, `sha256(genesis_id + 46)`.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 47 `AGG_SIG_PARENT_AMOUNT` {#agg-sig-parent-amount}
+
+:::info
+This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md), and will be available at block height 5,496,000.
+:::
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
+
+Format: `(47 public_key message)`
+
+Verifies a signature for a given message which is concatenated with the following values:
+
+- The parent coin id of the coin being spent.
+- The amount of the coin being spent.
+- The domain string, `sha256(genesis_id + 47)`.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 48 `AGG_SIG_PARENT_PUZZLE` {#agg-sig-parent-puzzle}
+
+:::info
+This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md), and will be available at block height 5,496,000.
+:::
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
+
+Format: `(48 public_key message)`
+
+Verifies a signature for a given message which is concatenated with the following values:
+
+- The parent coin id of the coin being spent.
+- The puzzle hash of the coin being spent.
+- The domain string, `sha256(genesis_id + 48)`.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 49 `AGG_SIG_UNSAFE` {#agg-sig-unsafe}
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
+
+Format: `(49 public_key message)`
+
+Verifies a signature for a given message. For [security reasons](https://github.com/Chia-Network/post-mortem/blob/main/2023-05/2023-05-08-AGG_SIG_UNSAFE-can-mimic-AGG_SIG_ME-condition.md), domain strings are not permitted at the end of `AGG_SIG_UNSAFE` messages.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 50 `AGG_SIG_ME` {#agg-sig-me}
+
+:::tip
+In most cases, `AGG_SIG_ME` is the recommended condition for requiring signatures. Signatures created for a specific coin spend will only be valid for that exact coin, which prevents an attacker from reusing the signature for other spends.
+:::
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+:::
+
+Format: `(50 public_key message)`
+
+Verifies a signature for a given message which is concatenated with the following values:
+
+- The id of the coin being spent.
+- The domain string, `genesis_id`.
+
+The following parameters are expected:
+
+| Name         | Type      |
+| ------------ | --------- |
+| `public_key` | G1Element |
+| `message`    | Bytes     |
+
+---
+
+### 51 `CREATE_COIN` {#create-coin}
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) of 1,800,000.
+:::
+
+Format: `(51 puzzle_hash amount (...memos)?)`
+
+Creates a new coin output with a given puzzle hash and amount. This coin is its parent.
+
+For more information on the `memos` parameter, see the section on [Memos and Hinting](#memos).
+
+The following parameters are expected:
+
+| Name                 | Type         |
+| -------------------- | ------------ |
+| `puzzle_hash`        | Bytes32      |
+| `amount`             | Unsigned Int |
+| `memos` _(optional)_ | Bytes32 List |
+
+---
+
+### 52 `RESERVE_FEE` {#reserve-fee}
+
+Format: `(52 amount)`
+
+Requires that the total amount remaining in the transaction after all outputs have been created is no less than the reserved fee amount.
+
+The following parameters are expected:
+
+| Name     | Type         |
+| -------- | ------------ |
+| `amount` | Unsigned Int |
+
+---
+
+### 60 `CREATE_COIN_ANNOUNCEMENT` {#create-coin-announcement}
+
+Format: `(60 message)`
+
+Creates an announcement of a given message, tied to this coin's id. For more details, see the section on [Announcements](#announcements).
+
+The following parameters are expected:
+
+| Name      | Type  |
+| --------- | ----- |
+| `message` | Bytes |
+
+---
+
+### 61 `ASSERT_COIN_ANNOUNCEMENT` {#assert-coin-announcement}
+
+Format: `(61 announcement_id)`
+
+Asserts an announcement with a given id, which is calculated as `sha256(coin_id + message)`. For more details, see the section on [Announcements](#announcements).
+
+The following parameters are expected:
+
+| Name              | Type    |
+| ----------------- | ------- |
+| `announcement_id` | Bytes32 |
+
+---
+
+### 62 `CREATE_PUZZLE_ANNOUNCEMENT` {#create-puzzle-announcement}
+
+Format: `(62 message)`
+
+Creates an announcement of a given message, tied to this coin's puzzle hash. For more details, see the section on [Announcements](#announcements).
+
+The following parameters are expected:
+
+| Name      | Type  |
+| --------- | ----- |
+| `message` | Bytes |
+
+---
+
+### 63 `ASSERT_PUZZLE_ANNOUNCEMENT` {#assert-puzzle-announcement}
+
+Format: `(63 announcement_id)`
+
+Asserts an announcement with a given id, which is calculated as `sha256(puzzle_hash + message)`. For more details, see the section on [Announcements](#announcements).
+
+The following parameters are expected:
+
+| Name              | Type    |
+| ----------------- | ------- |
+| `announcement_id` | Bytes32 |
+
+---
+
+### 64 `ASSERT_CONCURRENT_SPEND` {#assert-concurrent-spend}
+
+Format: `(64 coin_id)`
+
+Asserts that this coin is spent within the same block as the spend of a given coin.
+
+The following parameters are expected:
+
+| Name      | Type    |
+| --------- | ------- |
+| `coin_id` | Bytes32 |
+
+---
+
+### 65 `ASSERT_CONCURRENT_PUZZLE` {#assert-concurrent-puzzle}
+
+Format: `(65 puzzle_hash)`
+
+Asserts that this coin is in the same block as the spend of another coin with a given puzzle hash.
+
+The following parameters are expected:
+
+| Name          | Type    |
+| ------------- | ------- |
+| `puzzle_hash` | Bytes32 |
+
+---
+
+### 70 `ASSERT_MY_COIN_ID` {#assert-my-coin-id}
+
+Format: `(70 coin_id)`
+
+Asserts that id of this coin matches a given value.
+
+The following parameters are expected:
+
+| Name      | Type    |
+| --------- | ------- |
+| `coin_id` | Bytes32 |
+
+---
+
+### 71 `ASSERT_MY_PARENT_ID` {#assert-my-parent-id}
+
+Format: `(71 parent_id)`
+
+Asserts that the parent id of this coin matches a given value.
+
+The following parameters are expected:
+
+| Name        | Type    |
+| ----------- | ------- |
+| `parent_id` | Bytes32 |
+
+---
+
+### 72 `ASSERT_MY_PUZZLE_HASH` {#assert-my-puzzle-hash}
+
+Format: `(72 puzzle_hash)`
+
+Asserts that the puzzle hash of this coin matches a given value.
+
+The following parameters are expected:
+
+| Name          | Type    |
+| ------------- | ------- |
+| `puzzle_hash` | Bytes32 |
+
+---
+
+### 73 `ASSERT_MY_AMOUNT` {#assert-my-amount}
+
+Format: `(73 amount)`
+
+Asserts that the amount of this coin matches a given value.
+
+The following parameters are expected:
+
+| Name     | Type         |
+| -------- | ------------ |
+| `amount` | Unsigned Int |
+
+---
+
+### 74 `ASSERT_MY_BIRTH_SECONDS` {#assert-my-birth-seconds}
+
+Format: `(74 seconds)`
+
+Asserts that this coin was created at a given timestamp.
+
+The following parameters are expected:
+
+| Name      | Type         |
+| --------- | ------------ |
+| `seconds` | Unsigned Int |
+
+---
+
+### 75 `ASSERT_MY_BIRTH_HEIGHT` {#assert-my-birth-height}
+
+Format: `(75 block_height)`
+
+Asserts that this coin was created at a given block height.
+
+The following parameters are expected:
+
+| Name           | Type         |
+| -------------- | ------------ |
+| `block_height` | Unsigned Int |
+
+---
+
+### 76 `ASSERT_EPHEMERAL` {#assert-ephemeral}
+
+Format: `(76)`
+
+Asserts that this coin was created within the current block.
+
+This condition has no parameters.
+
+---
+
+### 80 `ASSERT_SECONDS_RELATIVE` {#assert-seconds-relative}
+
+Format: `(80 seconds_passed)`
+
+Asserts that the previous transaction block was created at least a given number of seconds after this coin was created.
+
+The following parameters are expected:
+
+| Name             | Type         |
+| ---------------- | ------------ |
+| `seconds_passed` | Unsigned Int |
+
+---
+
+### 81 `ASSERT_SECONDS_ABSOLUTE` {#assert-seconds-absolute}
+
+Format: `(81 seconds)`
+
+Asserts that the previous transaction block was created at at least a given timestamp, in seconds.
+
+The following parameters are expected:
+
+| Name      | Type         |
+| --------- | ------------ |
+| `seconds` | Unsigned Int |
+
+---
+
+### 82 `ASSERT_HEIGHT_RELATIVE` {#assert-height-relative}
+
+Format: `(82 block_height_passed)`
+
+Asserts that the previous transaction block was created at least a given number of blocks after this coin was created.
+
+The following parameters are expected:
+
+| Name                  | Type         |
+| --------------------- | ------------ |
+| `block_height_passed` | Unsigned Int |
+
+---
+
+### 83 `ASSERT_HEIGHT_ABSOLUTE` {#assert-height-absolute}
+
+Format: `(83 block_height)`
+
+Asserts that the previous transaction block was created at at least a given height.
+
+The following parameters are expected:
+
+| Name           | Type         |
+| -------------- | ------------ |
+| `block_height` | Unsigned Int |
+
+---
+
+### 84 `ASSERT_BEFORE_SECONDS_RELATIVE` {#assert-before-seconds-relative}
+
+Format: `(84 seconds_passed)`
+
+Asserts that the previous transaction block was created at least a given number of seconds before this coin was created.
+
+The following parameters are expected:
+
+| Name             | Type         |
+| ---------------- | ------------ |
+| `seconds_passed` | Unsigned Int |
+
+---
+
+### 85 `ASSERT_BEFORE_SECONDS_ABSOLUTE` {#assert-before-seconds-absolute}
+
+Format: `(85 seconds)`
+
+Asserts that the previous transaction block was created before a given timestamp, in seconds.
+
+The following parameters are expected:
+
+| Name      | Type         |
+| --------- | ------------ |
+| `seconds` | Unsigned Int |
+
+---
+
+### 86 `ASSERT_BEFORE_HEIGHT_RELATIVE` {#assert-before-height-relative}
+
+Format: `(86 block_height_passed)`
+
+Asserts that the previous transaction block was created at least a given number of blocks before this coin was created.
+
+The following parameters are expected:
+
+| Name                  | Type         |
+| --------------------- | ------------ |
+| `block_height_passed` | Unsigned Int |
+
+---
+
+### 87 `ASSERT_BEFORE_HEIGHT_ABSOLUTE` {#assert-before-height-absolute}
+
+Format: `(87 block_height)`
+
+Asserts that the previous transaction block was created before a given height.
+
+The following parameters are expected:
+
+| Name           | Type         |
+| -------------- | ------------ |
+| `block_height` | Unsigned Int |
+
+---
+
+### 90 `SOFTFORK` {#softfork}
+
+:::info
+This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md), and will be available at block height 5,496,000.
+:::
+
+:::note
+This condition adds an additional [CLVM cost](/coin-set-costs) equal to whatever the value of the first argument is.
+:::
+
+Format: `(90 cost ...args)`
+
+Allows future conditions with non-zero CLVM costs to be added as soft forks. This functionality was previously only possible as a hard fork.
+
+The cost of the condition is specified in ten-thousands, and further arguments are not specified (the soft-forked condition defines these). The reason to scale the cost by 10,000 is to make the argument smaller. For example, a cost of 100 in this condition would equate to an actual cost of 1 million (1,000,000). The cost argument is two bytes, with a maximum size of 65,535 (an actual cost of 655,350,000).
+
+The following parameters are expected:
+
+| Name      | Type         |
+| --------- | ------------ |
+| `cost`    | Unsigned Int |
+| `...args` | Any          |
+
+## Memos and Hinting {#memos}
+
+When a coin uses one or more outer puzzles that change their puzzle hash, it's challenging for wallets to know which coins they have the ability to spend. The memos field allows you to hint the inner puzzle hash of created coins, which consequently lets the wallet know that the coin belongs to it. Coins can be looked up by the inner puzzle hash rather than the outer puzzle hash.
+
+The `CREATE_COIN` condition is defined as a list containing the opcode `51` and the following arguments:
+
+```chialisp
+; The third parameter is optional.
+(51 puzzle_hash amount (...memos))
+```
+
+The `memos` parameter is an optional list, which must be null terminated.
+
+If `memos` is present, and the first memo is exactly 32 bytes long, it's used as the hint and the rest of the list are memos. Otherwise, values in the entire list are memos.
+
+As an example, the following inner solution for the [standard transaction](https://chialisp.com/standard-transactions) would create an unhinted coin:
+
+```chialisp
+(() (q . ((51 target_puzzle_hash amount))) ())
+```
+
+The following solution would instead create a coin with the hint matching the inner puzzle hash:
+
+```chialisp
+(() (q . ((51 target_puzzle_hash amount (target_puzzle_hash)))) ())
+```
+
+This `CREATE_COIN` condition creates the same coin as before, but now it specifies the hint with which the receiving wallet can look up to find this coin.
+
+Hints are only necessary for outer puzzles, of which the inner puzzle hash matches the hint. For example, coins using the standard transaction itself with no outer puzzle do not need a hint.
 
 ## Announcements
 

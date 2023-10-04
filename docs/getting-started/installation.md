@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Installation Details
 slug: /installation
 ---
 
@@ -7,6 +7,12 @@ slug: /installation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
+
+:::info
+
+This page will go into the details of the various different ways to install Chia. If you already installed Chia as part of the Farming Guide, then feel free to skip ahead to the [Plotting Basics](/plotting-basics) page.
+
+:::
 
 There are various ways to install Chia, with the best method depending on what you intend to do:
 
@@ -26,7 +32,7 @@ The minimum supported specs are that of the Raspberry Pi 4, 4GB model:
 
 - Quad core 1.5Ghz CPU (must be 64 bit)
 - 4 GB RAM
-- Python versions between 3.7 and 3.10 are supported
+- As of Chia version 2.0, Python versions 3.8 and later are supported
 
 ### Drive Format
 
@@ -336,7 +342,7 @@ sudo apt-get install -y build-essential python3-dev
 # If you are not using Raspbian 64, add this
 export PIP_EXTRA_INDEX_URL=https://www.piwheels.org/simple/
 
-# Make sure you have 64-bit Python between versions 3.7 and 3.10
+# Make sure you have 64-bit Python 3.8 or later
 python3 -c 'import platform; print(platform.architecture())'
 ```
 

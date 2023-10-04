@@ -201,7 +201,9 @@ Your environment is now set up and you are ready to start issuing CATs!
 To get started, you will create a single-issuance CAT. This is the default way to issue a CAT. It's also the simplest. It contains a TAIL that only allows the CAT to issue tokens once.
 
 :::note
+
 A TAIL is a Chialisp program that defines the rules for issuing and melting tokens. Learn more about the [Token and Asset Issuance Limitations program](https://chialisp.com/cats/#tail).
+
 :::
 
 A CAT with a single-issuance TAIL will be useful for anyone who wants to create a token with a guaranteed fixed supply.
