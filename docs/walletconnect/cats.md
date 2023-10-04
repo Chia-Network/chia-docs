@@ -6,30 +6,6 @@ slug: /walletconnect-cats
 
 ## Commands
 
-### `chia_createNewCATWallet`
-
-Creates a new single issuance CAT.
-
-:::note
-CAT amounts are displayed on a 1 to 1,000 scale with XCH. To create 1 of a CAT, you will need an amount of 1,000 mojos.
-:::
-
----
-
-| Parameter | Type     | Description               |
-| --------- | -------- | ------------------------- |
-| `amount`  | `number` | Amount in mojos.          |
-| `fee`     | `number` | Transaction fee in mojos. |
-
-#### Output Data
-
-| Parameter  | Type                                               | Description                  |
-| ---------- | -------------------------------------------------- | ---------------------------- |
-| `assetId`  | `string`                                           | Created asset id.            |
-| `type`     | [`WalletType`](/walletconnect-commands#wallettype) | Type of wallet (6 for CATs). |
-| `walletId` | `number`                                           | Created wallet id.           |
-| `success`  | `boolean`                                          | Backend success status.      |
-
 ### `chia_getCATWalletInfo`
 
 Gets the wallet name and id of a given CAT, by its asset id.
