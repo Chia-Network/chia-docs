@@ -232,6 +232,8 @@ The [plotters CLI documentation](/plotters-cli) will guide you through using eac
 
 #### BladeBit CUDA
 
+**Be sure to add `--disk-128` or `--disk-16` if you have 128 GB or less of RAM.** See the plotters CLI documentation for more details.
+
 ```bash
 chia plotters bladebit cudaplot -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -n <number of plots> --compress <compression level>
 ```
