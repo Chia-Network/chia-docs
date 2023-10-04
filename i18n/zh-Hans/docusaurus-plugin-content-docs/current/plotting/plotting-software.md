@@ -32,7 +32,7 @@ Requirements
 - OS: Windows 11 or Debian/Ubuntu Linux (MacOS and other flavors of Linux will likely be supported in the future)
 - Memory:
   - For 100% in-memory plotting: 256 GB of DRAM
-  - For RAM + disk plotting: 16 GB (Linux only) or 128 GB (Windows or Linux)
+  - For RAM + disk plotting: 16 GB (experimental) or 128 GB (supported as of Chia 2.1.0)
 - Temporary Disk:
   - Not used for 256 GB version
   - SSD required for <= 128 GB of RAM
@@ -242,7 +242,7 @@ With so many plotters available, the decision of which one to choose may seem da
   - You will likely want BladeBit CUDA
   - Gigahorse will also work
   - Other plotters will under-perform
-- At least 16 GB of RAM (Linux only) or at least 128 GB (Windows or Linux), but less than 256 GB **and** a CUDA-class GPU with at least 8 GB of VRAM, **and** a 256 GB or larger SSD (ideally enterprise NVMe)
+- At least 16 GB of RAM (experimental) or at least 128 GB, but less than 256 GB **and** a CUDA-class GPU with at least 8 GB of VRAM, **and** a 256 GB or larger SSD (ideally enterprise NVMe)
   - You will likely want BladeBit CUDA
   - Gigahorse will also work
   - Other plotters will under-perform
