@@ -8,42 +8,41 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## Intro
-
 This document will guide you through the process of setting up Chia's Simulator. 有关其他技术资源，请参阅以下内容：
 
 - [Simulator RPC API](/simulator-rpc)
 - [Simulator CLI Reference](/simulator-cli)
 
 :::note
-
 It is possible to run the simulator and either Chia's testnet or mainnet simultaneously. This is because the simulator will use its own ports and directories.
-
 :::
 
 ---
 
-### 先决条件
+## 先决条件
 
 The simulator is included in the `chia-blockchain` GitHub repository (the same repository that contains Chia's node, and farmer code). To install this repository, see our instructions to [install Chia from source](/installation#from-source).
 
-After you have installed from source and have activated your virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window), you are all set to install the simulator.
+After you have installed from source and have activated your virtual environment (you should see `(venv)` on the left side of your command prompt), you are all set to install the simulator.
 
 :::warning
-
 If you installed Chia from the binary installation file, you cannot use this installation to run the simulator. Instead, follow the instructions linked above to create a new installation from source, then return to this guide.
-
 :::
 
-### Install and configure the simulator
+## Setup instructions
 
 The simulator commands can all be accessed under `chia dev sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/simulator-cli).
 
-1. Install the simulator
+### Create the simulator
+
+Run the following command and follow the prompts to create the simulator:
 
 ```bash
 chia dev sim create
 ```
+
+<details>
+  <summary>Detailed command instructions</summary>
 
 If you do not already have any keys in your OS keychain, you will be prompted to create one:
 
@@ -88,88 +87,85 @@ Genesis block generated, exiting.
 Make sure your CHIA_ROOT Environment Variable is set to: C:\Users\<user>\.chia\simulator\main
 ```
 
-2. Now that you have the simulator environment set up, you can set the CHIA_ROOT env var to point to this environment. This will enable you to run the simulator from outside of `chia-blockchain`:
+</details>
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+### Configure the environment
 
-   ```powershell
-   $env:CHIA_ROOT='~/.chia/simulator/main'
-   ```
+Now that you have created the simulator, you can set the `CHIA_ROOT` environment variable to point to the simulator's installation directory. This will enable you to run the simulator from outside of `chia-blockchain`:
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+```mdx-code-block
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux / MacOS', value: 'linux/macos'},
+  ]}>
+  <TabItem value="windows">
+```
 
-   ```bash
-   export CHIA_ROOT=~/.chia/simulator/main
-   ```
+```powershell
+$env:CHIA_ROOT='~/.chia/simulator/main'
+```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+```mdx-code-block
+</TabItem>
+<TabItem value="linux/macos">
+```
 
-   ```bash
-   export CHIA_ROOT=~/.chia/simulator/main
-   ```
+```bash
+export CHIA_ROOT='~/.chia/simulator/main'
+```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+```mdx-code-block
+  </TabItem>
+</Tabs>
+```
 
-   Note that by setting CHIA_ROOT to the simulator in the current Powershell/terminal window, this enables you to run the simulator in tandem with a full node running on either the testnet or on mainnet. This is because the simulator uses different ports than a normal full node.
+:::note
+By setting the `CHIA_ROOT` path to the simulator in the current shell window (rather than globally), this enables you to run the simulator in tandem with a full node running on either the testnet or on mainnet. This is because the simulator uses different ports than a normal full node.
+:::
 
-### Use the simulator
+## Usage instructions
 
 This section will cover the basic commands for using the simulator.
 
-1. Start the simulator:
+### Start the simulator
+
+Run the following command to start the simulator:
 
 ```bash
-chia start simulator
-```
-
-Result:
-
-```bash
-Daemon not started yet
-Starting daemon
-chia_full_node_simulator: started
+chia dev sim start
 ```
 
 This command is the equivalent of `chia start node` on testnet and mainnet.
 
-2. Start your Chia wallet:
+### Start your Chia wallet
+
+:::note
+You will need to have your `CHIA_ROOT` set before using this command, otherwise it will try to connect to your mainnet or testnet node.
+:::
+
+Run the following command to start the wallet:
 
 ```bash
 chia start wallet
 ```
 
-Result:
+### Show node status
 
-```bash
-chia_wallet: started
-```
-
-3. Verify that the Chia simulator is running and synced:
+Run the following command to verify that the Chia node is running and synced:
 
 ```bash
 chia show -s
 ```
 
-The result will show that the network is `simulator0` and the block height is 1:
+When connected to the simulator, the result will show that the network is `simulator0` (and if newly created, the block height is 1).
+
+This is an example of what the output should look like:
+
+<details>
+  <summary>Detailed command output</summary>
 
 ```bash
 Network: simulator0    Port: 50127   RPC Port: 16872
@@ -188,10 +184,22 @@ Current VDF sub_slot_iters: 1024
         1 | b60936d7c4c7583ccbb4ddb173cefcb50ca10f8d49cee1c9bfc2f55337449b66
 ```
 
-4. To obtain the status of the network, along with your farming address and balance (21 million TXCH from the prefarm)
+</details>
+
+### Show simulator status
+
+Run the following command to obtain the status of the network, along with your farming address and balance (21 million TXCH from the prefarm):
 
 ```bash
 chia dev sim status
+```
+
+This is an example of what the output should look like:
+
+<details>
+  <summary>Detailed command output</summary>
+
+```bash
 Network: simulator0    Port: 50127   RPC Port: 16872
 Node ID: 5e4775f1f7d7db43d9d4b5685a15959b52042e40918112053c5e99f59cb8afb7
 Genesis Challenge: eb8c4d20b322be8d9fddbf9412016bdffe9a2901d7edb0e364e94266d0e095f7
@@ -210,43 +218,35 @@ Current VDF sub_slot_iters: 1024
 Current Farming address: txch1wn0jp4q6n3eafeee2qj4khw8svdqnvj4hxvzffl9pjrv5wvzf5gsvyz908, with a balance of: 21000000.0 TXCH.
 ```
 
-5. Farm a new block
+</details>
 
-There are two ways to farm a new block. The simpler solution is with a CLI call:
+### Farm a new block
+
+You can farm a new block with the following command:
 
 ```bash
 chia dev sim farm
 ```
 
-Result:
+You can also send the farming reward to a specific address:
 
 ```bash
-Farmed 1 Transaction blocks
-Block Height is now: 2
+chia dev sim farm --target-address <address>
 ```
 
-If you want to direct the farming rewards to a specific address, you can call the RPC:
+And farm multiple blocks at once:
 
 ```bash
-chia rpc full_node farm_block '{"address":"<farming reward address>"}'
+chia dev sim farm --blocks 5
 ```
 
-Result:
+For more info on this command, see the [CLI documentation](/simulator-cli#farm).
 
-```bash
-{
-    "new_peak_height": 3,
-    "success": true
-}
-```
-
-For more info on this command, see the [RPC documentation](/simulator-rpc#farm_block).
-
-6. Edit the simulator's configuration
+### Edit the configuration
 
 The simulator's config is stored in `~/.chia/simulator/main/config/config.yaml`. Just as with mainnet and testnet, if you make changes to this config, you will need to restart the simulator for the changes to take effect. This will not affect your regular Chia node.
 
-7. Enable/disable auto farming
+### Manage auto farming
 
 By default, as soon as a new spend bundle enters the mempool, a new block will be farmed. In certain cases this may not be the desired behavior. To disable auto farming, run the following command:
 
@@ -254,22 +254,10 @@ By default, as soon as a new spend bundle enters the mempool, a new block will b
 chia dev sim autofarm off
 ```
 
-Result:
+This action will take effect immediately, and there is no need to restart the simulator.
 
-```bash
-Auto farming is now off
-```
-
-This action will take effect immediately; there is no need to restart the simulator.
-
-To enable auto farming, run:
+Similarly, you can turn auto farming back on:
 
 ```bash
 chia dev sim autofarm on
-```
-
-Result:
-
-```bash
-Auto farming is now on
 ```
