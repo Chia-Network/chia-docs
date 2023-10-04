@@ -936,6 +936,15 @@ Options:
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                            |
 
+:::info
+
+The `unsubscribe` command may or may not delete any data, depending on which version of Chia you are running:
+* Prior to version 2.1, the command did not delete the .dat files, nor did it delete from the database.
+* As of version 2.1, the command deletes the .dat files, but does not delete from the database.
+* In a future release, the command will also delete from the database.
+
+:::
+
 Example:
 
 <details>
