@@ -106,8 +106,19 @@ Options:
 |               | --compress            | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                               |
 |               | --device              | INTEGER | False    | The CUDA device index (typically 0 or 1), set if more than one GPU is installed [Default: 0]   |
 |               | --disk-128            | None    | False    | Enable hybrid disk plotting, requires 128 GB of system RAM [Default: disabled]                 |
-|               | --disk-16             | None    | False    | Enable hybrid disk plotting, requires at least 16 GB of system RAM [Default: disabled]         |
+|               | --disk-16*            | None    | False    | Enable hybrid disk plotting, requires at least 16 GB of system RAM [Default: disabled] ***SEE WARNING BELOW**         |
 | -h            | --help                | None    | False    | Show a help message and exit                                                                   |
+
+:::warning warning
+
+A few notes about the `disk-16` option:
+* As of BladeBit 3.0.1 (Chia 2.1.0), `disk-16` is experimental.
+* This option has been disabled in the Chia 2.1.0 release. It is currently only available from the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit.
+* Plots created with this option on Linux with direct I/O disabled appear to work, but more testing is still needed.
+* Plots created with this option on Windows are more likely to encounter issues.
+* Be sure to check all plots created with this option, as they could be invalid even if the plotter appeared to succeed.
+
+:::
 
 :::info
 
@@ -118,15 +129,9 @@ In this case, plotting will be performed entirely in memory.
 Computers with at least 128 GB of system memory (but less than 256 GB) should use the `disk-128`, `tmp_dir`, and `tmp_dir2` options. 
 In this case, most of the plotting will be done in memory, and some will be done on disk.
 
-Linux computers with at least 16 GB of system memory (but less than 128 GB) should use the `disk-16`, `tmp_dir`, and `tmp_dir2` options. 
+Linux computers with at least 16 GB of system memory (but less than 128 GB) can use the `disk-16`, `tmp_dir`, and `tmp_dir2` options. 
+However, **do so at your own risk**. (See the above warning for details.) 
 In this case, as much of the plotting as possible will be done in memory, and the rest will be done on disk.
-
-:::
-
-:::warning
-
-As of BladeBit 3.0.1 (Chia 2.1.0), `disk-16` is only supported on Linux. 
-If you use this option on Windows, you will likely end up with invalid plots.
 
 :::
 
