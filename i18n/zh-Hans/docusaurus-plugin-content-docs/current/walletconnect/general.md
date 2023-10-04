@@ -27,6 +27,20 @@ Logs in to a wallet key (account), as identified by its fingerprint.
 | `fingerprint` | `number`  | Wallet fingerprint.     |
 | `success`     | `boolean` | Backend success status. |
 
+### `chia_getPublicKey`
+
+Gets the wallet's master public key.
+
+| Parameter     | Type     | Description         |
+| ------------- | -------- | ------------------- |
+| `fingerprint` | `number` | Wallet fingerprint. |
+
+#### Output Data
+
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| `pubkey`  | `string` | Hex encoded master public key. |
+
 ### `chia_getWallets`
 
 Gets a list of wallet ids associated with the current account.
