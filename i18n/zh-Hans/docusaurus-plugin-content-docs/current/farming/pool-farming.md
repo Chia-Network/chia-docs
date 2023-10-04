@@ -274,10 +274,6 @@ Chia has three major differences from most other crypto pooling protocol:
 
 您只能在Discord的#Promote-community-projects频道中每天宣传您的耕种池一次。 如果您频繁发送广告或垃圾信息，管理员会警告您，并且如果您继续这样做，可能会将您禁止。
 
-### Why shouldn't I join Hpool?
-
-Hpool最初创建了自己的Chia客户端版本，但并没有公开其源代码。 这样的客户端可能会进行各种恶意活动，无法预知其可能造成的危害。 Chia Network Inc discourages everyone from joining any pool that requires custom closed source clients.
-
 ### 为什么Chia不运营自己的官方耕种池？
 
 我们希望有一个健康的、相互竞争且没有官方特权耕种池生态。
