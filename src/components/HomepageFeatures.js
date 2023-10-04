@@ -32,7 +32,7 @@ const FeatureList = [
     dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki',
     description: (
       <>
-        Community-run wiki containing instructions and information about best
+        GitHub wiki containing instructions and information about best
         practices regarding setup, hardware, farming, plotting, security,
         timelords, and more.
       </>

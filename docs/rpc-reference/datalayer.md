@@ -2079,10 +2079,18 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                                                               |
-| :----- | :------ | :------- | :---------------------------------------------------------------------------------------- |
-| id     | TEXT    | True     | The hexadecimal ID of the store from which to unsubscribe                                 |
-| retain | BOOLEAN | False    | Whether to retain the local data after unsubscribing [Default: false (delete local data)] |
+| Flag | Type | Required | Description                                               |
+| :--- | :--- | :------- | :-------------------------------------------------------- |
+| id   | TEXT | True     | The hexadecimal ID of the store from which to unsubscribe |
+
+:::info
+
+The `unsubscribe` RPC may or may not delete any data, depending on which version of Chia you are running:
+* Prior to version 2.1, the command did not delete the .dat files, nor did it delete from the database.
+* As of version 2.1, the command deletes the .dat files, but does not delete from the database.
+* In a future release, the command will also delete from the database.
+
+:::
 
 <details>
 <summary>Example</summary>
