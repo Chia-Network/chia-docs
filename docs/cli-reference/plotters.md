@@ -105,8 +105,30 @@ Options:
 | -d            | --final_dir           | TEXT    | True     | Final directory after plot has been created                                                    |
 |               | --compress            | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                               |
 |               | --device              | INTEGER | False    | The CUDA device index (typically 0 or 1), set if more than one GPU is installed [Default: 0]   |
-|               | --no-direct-downloads | None    | False    | Set to disable allocation of host tables using pinned buffers [Default: enabled]               |
+|               | --disk-128            | None    | False    | Enable hybrid disk plotting, requires 128 GB of system RAM [Default: disabled]                 |
+|               | --disk-16             | None    | False    | Enable hybrid disk plotting, requires at least 16 GB of system RAM [Default: disabled]         |
 | -h            | --help                | None    | False    | Show a help message and exit                                                                   |
+
+:::info
+
+Computers with at least 256 GB of system memory should not use either the `disk-128` or `disk-16` options. 
+They should also not use `tmp_dir` or `tmp_dir2`.
+In this case, plotting will be performed entirely in memory.
+
+Computers with at least 128 GB of system memory (but less than 256 GB) should use the `disk-128`, `tmp_dir`, and `tmp_dir2` options. 
+In this case, most of the plotting will be done in memory, and some will be done on disk.
+
+Linux computers with at least 16 GB of system memory (but less than 128 GB) should use the `disk-16`, `tmp_dir`, and `tmp_dir2` options. 
+In this case, as much of the plotting as possible will be done in memory, and the rest will be done on disk.
+
+:::
+
+:::warning
+
+As of BladeBit 3.0.1 (Chia 2.1.0), `disk-16` is only supported on Linux. 
+If you use this option on Windows, you will likely end up with invalid plots.
+
+:::
 
 ---
 
