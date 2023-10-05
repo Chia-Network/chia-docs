@@ -14,7 +14,6 @@ This guide will show you how to use [WalletConnect](https://walletconnect.com/) 
 
 :::note a few notes
 
-- Support for WalletConnect was introduced in Chia version 1.6.2. If you are running an earlier version, be sure to upgrade to the latest version. See our [download page](https://www.chia.net/downloads/) for more info.
 - Generally speaking, you only need to have a synced light wallet to use WalletConnect. A full node is not required. However, depending on your dApp, a full node may be required to run certain commands.
 - WalletConnect is supported on every operating system supported by the Chia reference wallet, including Windows, Linux, and MacOS.
 - WalletConnect is supported on Chia's testnet, as well as its mainnet.
@@ -26,246 +25,166 @@ This guide will show you how to use [WalletConnect](https://walletconnect.com/) 
 
 ## Install the sample dApp
 
-In order to help you get started with WalletConnect, we have created a sample dApp.
+In order to help you get started with WalletConnect, we have created a sample dApp to run Chia wallet RPCs.
 In this section, we'll install and run the dApp locally. We'll also obtain a link to connect the dApp to a Chia reference wallet.
 
 If you would like to connect your Chia reference wallet to a different dApp, then feel free to skip ahead to the [next section](#configure-walletconnect).
 
-1. Run this command to clone the sample dApp's [GitHub repo](https://github.com/Chia-Network/chia-wallet-connect-dapp-test):
+1. Run this command to clone the sample dApp's [GitHub repo](https://github.com/Chia-Network/walletconnect-rpcs-dapp):
 
-```bash
-git clone https://github.com/Chia-Network/chia-wallet-connect-dapp-test.git -b main
-```
+  ```bash
+  git clone https://github.com/Chia-Network/walletconnect-rpcs-dapp -b main
+  ```
 
 2. Change to the sample dApp's directory:
 
-```bash
-cd chia-wallet-connect-dapp-test
-```
+  ```bash
+  cd walletconnect-rpcs-dapp
+  ```
 
-3. Use `yarn` to install the sample dApp ([more info about yarn](https://classic.yarnpkg.com/lang/en/docs/cli/)):
+3. Install the sample dApp using NPM:
 
-```bash
-yarn
-```
+  ```bash
+  npm install
+  ```
 
-Example result:
+4. Start the sample dApp:
 
-```bash
-yarn install v1.22.17
-warning ..\..\..\..\package.json: No license field
-[1/4] Resolving packages...
-[2/4] Fetching packages...
-[3/4] Linking dependencies...
-warning " > @polkadot/util-crypto@10.1.14" has unmet peer dependency "@polkadot/util@10.1.14".
-warning " > styled-components@5.3.6" has unmet peer dependency "react-is@>= 16.8.0".
-[4/4] Building fresh packages...
-Done in 213.31s.
-```
+  ```bash
+  npm run dev
+  ```
 
-:::info
-`yarn` will also install the needed dependencies for the sample dApp. Depending on which dependencies were already installed, this could add several minutes to the installation time. In this example, the installation took 3.5 minutes.
-:::
+  Example result:
 
-4. Set up your local environment variables by copying the example into your own `.env.local` file:
+  ```bash
+  ➜  Local:   http://127.0.0.1:5173/
+    ➜  Network: use --host to expose
+    ➜  press h to show help
+  ```
 
-```bash
-cp .env.local.example .env.local
-```
+  In this example, the dApp was started locally on port 5173. This is the default port; your dApp may need to use a different port if 5173 is already being used for something else.
 
-Your copy of `.env.local` now contains the following environment variables:
+5. Access the sample dApp:
 
-    * `NEXT_PUBLIC_PROJECT_ID` (placeholder) - You can generate your own ProjectId at https://cloud.walletconnect.com
-    * `NEXT_PUBLIC_RELAY_URL` (already set)
+  Open a browser and navigate to [http://127.0.0.1:5173/](http://127.0.0.1:5173/) (unless a different port was used)
 
-5. Use `yarn` to build the sample dApp:
+  :::info
 
-```bash
-yarn next build
-```
+  If you see an error message such as `An error as occurred`, the most likely cause is that you are running an ad blocker that is interfering with the dApp.
+  Either disable the ad blocker or try a different browser.
 
-Example result:
+  :::
 
-```bash
-yarn run v1.22.17
-warning ..\..\..\..\package.json: No license field
-$ C:\Users\User\Documents\GitHub\chia\chia-wallet-connect-dapp-test\node_modules\.bin\next build
-info  - Loaded env from C:\Users\User\Documents\GitHub\chia\chia-wallet-connect-dapp-test\.env.local
-info  - SWC minify release candidate enabled. https://nextjs.link/swcmin
-info  - Linting and checking validity of types ..warn  - No ESLint configuration detected. Run next lint to begin setup
-info  - Linting and checking validity of types
-info  - Creating an optimized production build
-info  - Compiled successfully
-info  - Collecting page data
-info  - Generating static pages (3/3)
-info  - Finalizing page optimization
+6. The `WalletConnect Example` screen should be displayed. Click `Link Wallet`:
 
-Page                                       Size     First Load JS
-┌ ○ / (2385 ms)                            8.97 kB        1.52 MB
-├   /_app                                  0 B            1.51 MB
-└ ○ /404 (2305 ms)                         277 B          1.51 MB
-  First Load JS shared by all              1.51 MB
-  ├ chunks/framework-b892d1ba2d9bbbff.js   42.5 kB
-  ├ chunks/main-2ad31211114520a4.js        30.8 kB
-  ├ chunks/pages/_app-478d778bda06be1e.js  1.43 MB
-  ├ chunks/webpack-c83969435574458d.js     1.06 kB
-  └ css/ab44ce7add5c3d11.css               247 B
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/01_dapp.png" alt="Click Connect" />
+  </div>
+  <br />
 
-○  (Static)  automatically rendered as static HTML (uses no initial props)
+7. A QR code will be displayed. Click the "Copy" button:
 
-Done in 25.63s.
-```
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/02_dapp.png" alt="Click Copy to clipboard" />
+  </div>
+  <br />
 
-6. Start the sample dApp:
-
-```bash
-yarn start
-```
-
-Example result:
-
-```bash
-yarn run v1.22.17
-warning ..\..\..\..\package.json: No license field
-$ next start
-ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-info  - Loaded env from C:\Users\User\Documents\GitHub\chia\chia-wallet-connect-dapp-test\.env.local
-info  - SWC minify release candidate enabled. https://nextjs.link/swcmin
-```
-
-In this example, the dApp was started locally on port 3000. This is the default port; your dApp may need to use a different port if 3000 is already being used for something else.
-
-7. Access the sample dApp:
-
-Open a browser and navigate to [http://localhost:3000](http://localhost:3000) (unless a different port was used)
-
-:::info
-
-If you see an error message such as `An error as occurred`, the most likely cause is that you are running an ad blocker that is interfering with the dApp.
-Either disable the ad blocker or try a different browser.
-
-:::
-
-The sample dApp should display a list of testnet projects.
-
-8. Click `Chia Testnet`, then click `Connect`:
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/01_dapp.png" alt="Click Connect" />
-</div>
-<br />
-
-9. A QR code will be displayed. Click `Copy to clipboard`:
-
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/02_dapp.png" alt="Click Copy to clipboard" />
-</div>
-<br />
-
-The link has been copied, so you are ready to set up WalletConnect in Chia's reference wallet. Keep this browser window open in case you need to copy the link again.
+  The link has been copied, so you are ready to set up WalletConnect in Chia's reference wallet. Keep this browser window open in case you need to copy the link again.
 
 ---
 
 ## Configure WalletConnect
 
-1. [Download and install](https://www.chia.net/downloads/) Chia version 1.6.2 or greater
-
-:::info
-
-If you installed Chia with a packaged installer, you can set up an alias to run `chia` commands. See our [FAQ](https://docs.chia.net/faq?_highlight=execu#i-installed-chia-with-the-packaged-installer-how-do-i-run-cli-commands) for more info.
-
-:::
+1. [Download and install](https://www.chia.net/downloads/) the latest version of Chia's reference wallet
 
 2. Set up Chia's testnet
 
-While it's possible to use WalletConnect on Chia's mainnet, this example will use the testnet.
-The primary command to convert your system to use the testnet is `chia configure -t true`.
-See our [testnet setup guide](https://github.com/Chia-Network/chia-blockchain/wiki/How-to-connect-to-the-Testnet) for more info.
+  While it's possible to use WalletConnect on Chia's mainnet, this example will use the testnet. 
+  The primary command to convert your system to use the testnet is `chia configure -t true`.
+  See our [testnet setup guide](/guides/chialisp-testnet-setup) for more info.
 
-After your system has been configured to use the testnet, you can start your Chia reference wallet.
+  After your system has been configured to use the testnet, you can start your Chia reference wallet.
 
 3. Click the WalletConnect icon
 
-The icon is located on the upper-right side of the reference wallet GUI, as shown here:
+  The icon is located on the upper-right side of the reference wallet GUI, as shown here:
 
-<div style={{ textAlign: 'center' }}>
-  <img
-    src="/img/walletconnect/01_walletconnect.png"
-    alt="Click the WalletConnect icon"
-  />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src="/img/walletconnect/01_walletconnect.png"
+      alt="Click the WalletConnect icon"
+    />
+  </div>
+  <br />
 
 4. Click `ENABLE WALLETCONNECT`
 
-<div style={{ textAlign: 'center' }}>
-  <img
-    src="/img/walletconnect/02_walletconnect.png"
-    alt="Click ENABLE WALLETCONNECT"
-  />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src="/img/walletconnect/02_walletconnect.png"
+      alt="Click ENABLE WALLETCONNECT"
+    />
+  </div>
+  <br />
 
 5. Click `ADD CONNECTION`
 
-<div style={{ textAlign: 'center' }}>
-  <img
-    src="/img/walletconnect/03_walletconnect.png"
-    alt="Click ADD CONNECTION"
-  />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src="/img/walletconnect/03_walletconnect.png"
+      alt="Click ADD CONNECTION"
+    />
+  </div>
+  <br />
 
 6. Paste the link to your sample dApp and click `CONTINUE`
 
-If you used this guide to set up the sample dApp, this was the link you obtained with the last step of the previous section:
+  If you used this guide to set up the sample dApp, this was the link you obtained with the last step of the previous section:
 
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/03_dapp.png" alt="Paste and click CONTINUE" />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/03_dapp.png" alt="Paste and click CONTINUE" />
+  </div>
+  <br />
 
-7. Choose which public key(s) to connect and click `CONTINUE`
+7. By default, the wallet that is currently synced will be selected (in the red circle below). Click the `Select Keys` dropdown if you want to connect other wallets, then click `CONTINUE`:
 
-While you may choose more than one key to connect with the dApp, we will use a single key for this example:
-
-<div style={{ textAlign: 'center' }}>
-  <img
-    src="/img/walletconnect/04_walletconnect.png"
-    alt="Select wallets and click CONTINUE"
-  />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src="/img/walletconnect/04_walletconnect.png"
+      alt="Select wallets and click CONTINUE"
+    />
+  </div>
+  <br />
 
 8. Confirm your connection
 
-You will be shown the key(s) to connect to the dApp. If this looks OK, click `CLOSE`. To start over, click `DISCONNECT`:
+  You will be shown the key(s) to connect to the dApp. If this looks OK, click `CLOSE`. To start over, click `DISCONNECT`:
 
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/05_walletconnect.png" alt="Click CLOSE" />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/05_walletconnect.png" alt="Click CLOSE" />
+  </div>
+  <br />
 
 9. Show more info
 
-To show info on which dApp(s) are paired to which keys(s), click the WalletConnect icon, click the three dots, and click `More Info`:
+  To show info on which dApp(s) are paired to which keys(s), click the WalletConnect icon, click the three dots, and click `More Info`:
 
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/06_walletconnect.png" alt="Click More Info" />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/06_walletconnect.png" alt="Click More Info" />
+  </div>
+  <br />
 
-You will be shown the Pair Information for your dApp:
+  You will be shown the Pair Information for your dApp:
 
-<div style={{ textAlign: 'center' }}>
-  <img
-    src="/img/walletconnect/07_walletconnect.png"
-    alt="Paired keys are showing"
-  />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src="/img/walletconnect/07_walletconnect.png"
+      alt="Paired keys are showing"
+    />
+  </div>
+  <br />
 
-Your wallet has been successfully paired with the sample dApp. In the next section, we'll show you how to interact with your wallet from the dApp.
+  Your wallet has been successfully paired with the sample dApp. In the next section, we'll show you how to interact with your wallet from the dApp.
 
 ---
 
@@ -273,41 +192,48 @@ Your wallet has been successfully paired with the sample dApp. In the next secti
 
 1. View the sample dApp in a web browser
 
-Recall that by default, the dApp will run on [http://localhost:3000](http://localhost:3000).
+  Recall that by default, the dApp will run on [http://127.0.0.1:5173](http://127.0.0.1:5173).
 
-You will be shown a list of available methods. If you opted to connect multiple keys to the sample dApp, these methods will be listed for each key.
+  You will be shown a dropdown list of available methods. The default method is `chia_logIn`, but we'll call a different method for this example.
 
-For this example, we'll call `chia_getNextAddress`:
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/04_dapp.png" alt="Dropdown menu" />
+  </div>
+  <br />
 
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/04_dapp.png" alt="Run chia_getNextAddress" />
-</div>
-<br />
+2. Select `chia_getNextAddress`:
 
-At this point, the sample dApp will wait for confirmation from your wallet:
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/05_dapp.png" alt="Run chia_getNextAddress" />
+  </div>
+  <br />
 
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/05_dapp.png" alt="Pending JSON-RPC Request" />
-</div>
-<br />
+3. For this example, we will choose wallet ID `1` (the XCH wallet), and select `New Address`:
 
-2. Confirm the request
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/06_dapp.png" alt="Wallet ID 1" />
+  </div>
+  <br />
 
-Switch back to your Chia reference wallet. You should now see a confirmation dialog with the requested method. Click `CONFIRM`:
+4. Confirm the request
 
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/08_walletconnect.png" alt="Confirm request" />
-</div>
-<br />
-3. View the response
+  Switch back to your Chia reference wallet. You should now see a confirmation dialog with the requested method. Click `CONFIRM`:
 
-Returning to the sample dApp, a new dialog with the response will appear. In this example, a new address will be shown:
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/08_walletconnect.png" alt="Confirm request" />
+  </div>
+  <br />
 
-<div style={{ textAlign: 'center' }}>
-  <img src="/img/walletconnect/06_dapp.png" alt="Showing next address" />
-</div>
-<br />
-You have now installed, configured, and used the sample dApp. Feel free to test the other functions, as well as create your own!
+5. View the response
+
+  Returning to the sample dApp, a new dialog with the response will appear. In this example, a new address will be shown:
+
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/walletconnect/07_dapp.png" alt="Showing next address" />
+  </div>
+  <br />
+  
+  You have now installed, configured, and used the sample dApp. Feel free to test the other functions, as well as create your own!
 
 ---
 
@@ -317,18 +243,18 @@ By default, you can only run dApp methods against the wallet key that is current
 This was not an issue in the above example because we only selected one public key to pair with the sample dApp.
 However, if you want your dApp to be able to interact with multiple keys, you will need to enable an additional setting in the reference wallet.
 
-Click the gear icon in the lower left corner of the reference wallet, then click the `INTEGRATION` tab. As of version 1.6.2, two new settings will appear:
+Click the gear icon in the lower left corner of the reference wallet, then click the `INTEGRATION` tab. Two switches will appear at the top of this panel:
 
-- `Enable` -- This setting was activated when you enabled WalletConnect earlier in the guide
-- `Allow requests that require switching to a different wallet key` -- If you activate this setting, your dApp will be able to switch between multiple wallet keys. The selected wallet will need to sync whenever you switch between keys.
+- `Enable WalletConnect` -- This setting was activated when you enabled WalletConnect earlier in the guide.
+- `Key Switching` -- If you activate this setting, your dApp will be able to switch between multiple wallet keys. The selected wallet will need to sync whenever you switch between keys.
 
-<div style={{ textAlign: 'center' }}>
-  <img
-    src="/img/walletconnect/09_walletconnect.png"
-    alt="Allow requests that require switching keys"
-  />
-</div>
-<br />
+  <div style={{ textAlign: 'center' }}>
+    <img
+      src="/img/walletconnect/09_walletconnect.png"
+      alt="Allow requests that require switching keys"
+    />
+  </div>
+  <br />
 
 To configure the commands that are provided to dApps, you can edit (locally) [chia-blockchain-gui/blob/main/packages/gui/src/constants/WalletConnectCommands.tsx](https://github.com/Chia-Network/chia-blockchain-gui/blob/main/packages/gui/src/constants/WalletConnectCommands.tsx).
 This file acts as a middle layer between the wallet and the dApp. It can also be used to control privacy settings.
@@ -343,23 +269,16 @@ WalletConnect allows end users to connect their wallet to a dApp.
 
 ### What WalletConnect functionality might be enabled in the future?
 
-WalletConnect is currently supported in Chia's reference wallet.
+WalletConnect is currently supported in Chia's reference wallet. 
+It is also used in [Chia TCG](https://www.chiatcg.com), a trading card game that uses Chia NFTs.
 
-In the future, it could also be supported in other Chia wallets.
-
-It could also be enabled for mobile- and web-based dApps. For example, mobile wallet providers will be able to integrate with WalletConnect to connect directly to dApp providers.
+In the future, it could also be supported in other Chia wallets, as well as in other mobile- and web-based dApps. For example, mobile wallet providers will be able to integrate with WalletConnect to connect directly to dApp providers.
 
 WalletConnect will aslo be used for initiating signing requests from within a dApp. This will enable interactions with all types of assets on Chia, including XCH, CATs, and NFTs. It will aslo enable using Chia Offers.
 
 ### What is the difference between WalletConnect and CHIP-2?
 
 WalletConnect is generalized to allow any dApp to connect to any Chia wallet. [CHIP-2](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) (dApp protocol) is specific to browser extensions.
-
-### Will the wallet SDK support WalletConnect in the future?
-
-No -- the wallet SDK and WalletConnect exist on different parts of the tech stack.
-Whereas WalletConnect gives end users a way to connect their wallet to dApps, the wallet SDK will allow
-developers to provide wallet functionality inside their dApps.
 
 ### How can WalletConnect connect to remote wallets?
 

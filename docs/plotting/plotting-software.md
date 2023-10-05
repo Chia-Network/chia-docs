@@ -22,7 +22,7 @@ This page provides details about the plotters that exist within each of these fa
 
 ### BladeBit CUDA
 
-#### An all-memory GPU plotter, included with Chia 2.0
+#### A GPU plotter, included with Chia 2.0
 
 Plot capabilities
 - Type: Compressed or uncompressed
@@ -30,8 +30,12 @@ Plot capabilities
 
 Requirements
 - OS: Windows 11 or Debian/Ubuntu Linux (MacOS and other flavors of Linux will likely be supported in the future)
-- Memory: 256 GB of DRAM (128 GB and 64 GB versions are in development)
-- Temporary Disk: Not used for 256 GB version
+- Memory:
+  - For 100% in-memory plotting: 256 GB of DRAM
+  - For RAM + disk plotting: 16 GB (experimental) or 128 GB (supported as of Chia 2.1.0)
+- Temporary Disk:
+  - Not used for 256 GB version
+  - SSD required for <= 128 GB of RAM
 - GPU: CUDA capability 5.2 (NVIDIA 10 series GPU or higher) with 8GB of GPU VRAM
 - Software: CUDA toolkit version 11.8 or later
 
@@ -106,7 +110,6 @@ Requirements
 More info
 - Designed to be used in embedded or entry-level systems
 - Can only create uncompressed plots (C0, 101.4 GiB) in Chia version 2.0
-- Support for compressed plots with 64 GB and 128 GB of RAM is in beta and will be added in Chia 2.1
 - The use of temporary HDD or SSD storage makes it accessible to the majority of farmers
 - Sequential writes can better take advantage of SSD burst performance and reduce SSD wear by reducing write amplification factor
 - Can use DRAM write cache to significantly reduce SSD writes and can take advantage of any extra increments (no minimum required)
@@ -201,9 +204,8 @@ chia plotters chiapos -t <temp dir> -d <destination dir> -f <farmer key> -p <poo
 
 ### BladeBit (standalone)
 
-While BladeBit does come installed with Chia version 2.0, there are several reasons you might want to run the standalone version instead:
+While BladeBit does come installed with Chia version 2.0, there are a few reasons you might want to run the standalone version instead:
 - You want to run the `simulate` command, to determine your farm's maximum size
-- You want to run BladeBit CUDA, but you have less than 256 GB of RAM (128 GB and 64 GB versions are currently in beta in the standalone build)
 - You want to test features that have not yet been released in the embedded version
 
 **Complete instructions** for downloading and installing BladeBit are available on the [BladeBit GitHub page](https://github.com/Chia-Network/bladebit/).
@@ -240,13 +242,13 @@ With so many plotters available, the decision of which one to choose may seem da
   - You will likely want BladeBit CUDA
   - Gigahorse will also work
   - Other plotters will under-perform
-- At least 64 GB of RAM (but less than 256 GB) **and** a CUDA-class GPU with at least 8 GB of VRAM, **and** a 256 GB or larger SSD (ideally enterprise NVMe)
-  - The beta version of BladeBit CUDA will likely work
+- At least 16 GB of RAM (experimental) or at least 128 GB, but less than 256 GB **and** a CUDA-class GPU with at least 8 GB of VRAM, **and** a 256 GB or larger SSD (ideally enterprise NVMe)
+  - You will likely want BladeBit CUDA
   - Gigahorse will also work
   - Other plotters will under-perform
 - 416 GB of RAM but no GPU
   - BladeBit RAM is easily your best choice
-- Less than 64 GB of RAM and don't mind creating uncompressed plots
+- Less than 16 GB of RAM and don't mind creating uncompressed plots
   - BladeBit Disk and madMAx are both good options
 
 It is always possible, and indeed recommended, to create a plot with a few different plotters to understand how well your system will perform. Once you have a feel for using the different plotters, you can begin plotting in earnest.

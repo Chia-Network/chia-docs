@@ -61,7 +61,7 @@ The following table lists the general plotter types, along with their requiremen
 | Processor +<br/>Storage | Plotter <br/> Name(s)                    | Chia <br/> Version | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GB) | RAM<br/>(GB) | Plot<br/>Times<br/>(min.) |
 | :---------------------- | :--------------------------------------- | :----------------- | :-------------- | :------ | :---------------------- | :------------ | :------------------------ |
 | **GPU +<br/> RAM**      | BladeBit CUDA                            | 2.0                | Yes             | GPU     | None                    | 256           | 1-3                       |
-| **GPU +<br/> SSD**      | BladeBit CUDA                            | 2.1                | Yes             | GPU     | 180                     | 64, <br/> 128 | 3-5                       |
+| **GPU +<br/> SSD**      | BladeBit CUDA                            | 2.1                | Yes             | GPU     | 180                     | 128           | 3-5                       |
 | **CPU +<br/> RAM**      | BladeBit RAM                             | 2.0                | Yes             | CPU     | None                    | 416           | 2-5                       |
 | **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                     | 4             | 15-60                     |
 | **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                     | 4             | > 60                      |
@@ -94,8 +94,11 @@ The following hardware and software components are required for creating compres
 For BladeBit CUDA plotting:
 * NVIDIA GPU with CUDA capability 5.2 and up
 * At least 8GB of vRAM
-* At least 256 GB of system RAM
 * A 64-bit CPU (Intel x86, AMD x86, or arm64)
+* System RAM
+  * **Experimental** RAM + disk plotting: at least 16 GB (only available with the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit)
+  * Fully supported RAM + disk plotting: at least 128 GB
+  * RAM only: at least 256 GB
 
 For BladeBit Disk plotting:
 * At least 416 GB of system RAM

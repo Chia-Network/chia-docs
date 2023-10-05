@@ -312,15 +312,7 @@ module.exports = {
       },
       items: [
         'guides/cat/cat-creation-tutorial',
-        {
-          type: 'category',
-          label: 'CAT2 Upgrade',
-          items: [
-            'guides/cat/cat2-upgrade/cat2-intro',
-            'guides/cat/cat2-upgrade/cat2-snapshot',
-            'guides/cat/cat2-upgrade/cat2-issuance',
-          ],
-        },
+        'guides/cat/cr-cat-tutorial',
       ],
     },
     {
@@ -363,6 +355,16 @@ module.exports = {
         'guides/clawback/clawback-primitive-guide',
       ],
     },
+    {
+      type: 'category',
+      label: 'Offers',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/tutorials/offers-gui',
+        'guides/tutorials/offers-cli',
+      ],
+    },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/verifiable-credentials-guide',
@@ -390,8 +392,6 @@ module.exports = {
         'guides/tutorials/custom-puzzle-lock',
         'guides/tutorials/coin-spend-rpc',
         'guides/tutorials/application-structure',
-        'guides/tutorials/offers-gui',
-        'guides/tutorials/offers-cli',
       ],
     },
   ],

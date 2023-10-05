@@ -223,6 +223,19 @@ The [plotters CLI documentation](/plotters-cli) will guide you through using eac
 
 #### BladeBit CUDA
 
+**Be sure to add `--disk-128` if you have at least 128 GB of RAM, but less than 256 GB.** See the [plotters CLI documentation](/plotters-cli) for more details.
+
+:::info
+
+As of Chia 2.1, plotting with at least 16 GB of RAM (but less than 128 GB) is still experimental. A few notes:
+* The `--disk-16` option has been disabled in the Chia 2.1.0 release. It is currently only available from the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit.
+* Plots created with this option on Linux with direct I/O disabled appear to work, but more testing is still needed.
+* Plots created with this option on Windows are more likely to encounter issues.
+* Be sure to check all plots created with this option, as they could be invalid even if the plotter appeared to succeed.
+* **Use `--disk-16` at your own risk!**
+
+:::
+
 ```bash
 chia plotters bladebit cudaplot -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -n <number of plots> --compress <compression level>
 ```
