@@ -37,11 +37,11 @@ If you somehow are able to open up your port 8444 you will quickly have peers co
 
 If you would like to speed up connecting to other nodes and syncing, add one of these introducer nodes:
 
-- North Asia `introducer-apne.chia.net:8444`
-- South Asia `introducer-apse.chia.net:8444`
-- Western North America: `introducer-or.chia.net:8444`
-- Eastern North America `introducer-va.chia.net:8444`
-- Europe: `introducer-eu.chia.net:8444`
+- North Asia `introducer-ap-northeast-1.chia.net:8444`
+- South Asia `introducer-ap-southeast-1.chia.net:8444`
+- Western North America: `introducer-us-west-2.chia.net:8444`
+- Eastern North America `introducer-us-east-1.chia.net:8444`
+- Europe: `introducer-eu-west-2.chia.net:8444`
 
 There is a public node share the available 8444 peers every hour.
 
