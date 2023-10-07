@@ -15,12 +15,6 @@ Chia Asset Tokens (CATs) are fungible assets on Chia's blockchain. In Chia parla
 
 ## Add a new CAT
 
-:::warning
-
-The Chia reference wallet comes embedded with a few CATs by default, but most CATs will need to be entered manually. CATs are distinguished by their TAILs. When mapping a TAIL to a CAT, one source of truth (though not the only one) is [taildatabase.com](https://www.taildatabase.com). Whenever you add a new CAT, be sure to verify that you have the correct TAIL in order to avoid obtaining a fake (and worthless) CAT.
-
-:::
-
 1. If you would like to acquire a CAT from an Offer, your wallet will need to recognize the CAT first. Click `MANAGE TOKEN LIST` in the lower-left corner of the reference wallet GUI:
 
   <div style={{ textAlign: 'center' }}>
@@ -29,7 +23,7 @@ The Chia reference wallet comes embedded with a few CATs by default, but most CA
 
   <br/>
 
-2. If you want to add one of the included tokens, click the slider next to the token you would like to add. Otherwise, click the `+` button:
+2. The Chia reference wallet comes with a few included CATs, but most will need to be entered manually. If you want to add one of the included CATs, click the slider next to the CAT you would like to add. Otherwise, click the `+` button:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/02_offers.png" alt="add token"/>
@@ -37,7 +31,50 @@ The Chia reference wallet comes embedded with a few CATs by default, but most CA
 
   <br/>
 
-3. Enter the name and asset ID (TAIL) for your new CAT, then click `ADD`:
+3. If your new CAT is not included in the reference wallet, you will need to obtain its Asset ID (TAIL). There are multiple websites that provide a listing of CATs and their IDs. One such site is [spacescan.io](https://www.spacescan.io). Simply browse to the website, then search for your CAT. For example, here is a search for "dexie bucks":
+
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/offers_img/gui2/spacescan_1.png" alt="search for dexie bucks"/>
+  </div>
+
+  <br/>
+
+  In addition to CATs, Spacescan provides a listing of NFTs. In certain cases, such as with Dexie Bucks, there are CAT _and_ NFT collections with the same name. In this case, be sure to click on `CAT2`, as in the above image.
+
+  The result will show you the details of the CAT you selected, including its ID. Copy this ID by clicking the icon as shown here:
+
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/offers_img/gui2/spacescan_2.png" alt="copy dexie bucks ID"/>
+  </div>
+
+  <br/>
+
+  It is recommended that you check with another source of truth to make sure you have the correct ID. Another website that provides a listing of CATs and their IDs is [taildatabse.com](https://www.taildatabase.com/). Browse to this site, click the `Explore` menu, and search for your CAT. The name should appear in the search results:
+
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/offers_img/gui2/taildatabase_1.png" alt="taildatabase dexie bucks search"/>
+  </div>
+
+  <br/>
+
+  Some information about the CAT will appear, including its Asset ID, as highlighted here:
+
+  <div style={{ textAlign: 'center' }}>
+    <img src="/img/offers_img/gui2/taildatabase_2.png" alt="taildatabase dexie bucks asset ID"/>
+  </div>
+
+  <br/>
+
+  Copy this ID and continue to the next step.
+
+  :::warning
+
+  If someone sends you an Asset ID (TAIL), do not assume it is correct. Instead, double-check with [spacescan.io](https://www.spacescan.io) or [taildatabse.com](https://www.taildatabase.com/) (or preferably both) to verify that you have the correct ID.
+
+
+:::
+
+3. Enter the name and asset ID for your new CAT, then click `ADD`:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/03_offers.png" alt="One Meeellion CATs"/>
