@@ -392,7 +392,7 @@ module.exports = {
         'guides/tutorials/custom-puzzle-lock',
         'guides/tutorials/coin-spend-rpc',
         'guides/tutorials/application-structure',
-        'guides/tutorials/prefarm-audit-tutorial',
+        'guides/tutorials/prefarm-audit',
       ],
     },
   ],
