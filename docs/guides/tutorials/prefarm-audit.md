@@ -1,6 +1,6 @@
 ---
-slug: /guides/custody-tool-description
-title: Custody Tool Description
+slug: /guides/prefarm-audit-tutorial
+title: Prefarm Audit Tutorial
 ---
 
 Chia Network Inc's prefarm is being secured by a complex set of custodial rules. This document will describe how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/).
