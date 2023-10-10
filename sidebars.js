@@ -323,6 +323,7 @@ module.exports = {
       items: [
         'guides/custody/custody-tool-description',
         'guides/custody/custody-tool-user-guide',
+        'guides/custody/prefarm-audit',
       ],
     },
     {
@@ -392,7 +393,6 @@ module.exports = {
         'guides/tutorials/custom-puzzle-lock',
         'guides/tutorials/coin-spend-rpc',
         'guides/tutorials/application-structure',
-        'guides/tutorials/prefarm-audit',
       ],
     },
   ],

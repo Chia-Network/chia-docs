@@ -1,5 +1,5 @@
 ---
-slug: /guides/prefarm-audit-tutorial
+slug: /custody/prefarm-audit-tutorial
 title: Prefarm Audit Tutorial
 ---
 
