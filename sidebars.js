@@ -323,6 +323,7 @@ module.exports = {
       items: [
         'guides/custody/custody-tool-description',
         'guides/custody/custody-tool-user-guide',
+        'guides/custody/prefarm-audit',
       ],
     },
     {
