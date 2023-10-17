@@ -131,6 +131,18 @@ Install the tool:
 pip install .
 ```
 
+Install chia dev tools:
+
+```bash
+pip install chia-dev-tools --no-deps
+```
+
+Install pytest:
+
+```bash
+pip install pytest
+```
+
 </TabItem>
 
 <TabItem value="windows" label="Windows">
@@ -155,6 +167,12 @@ python -m venv venv
 
 ```bash
 .\venv\Scripts\Activate.ps1
+```
+
+Install the prerequisites:
+
+```bash
+pip install --upgrade pip setuptools wheel
 ```
 
 Install the tool:
