@@ -313,9 +313,9 @@ module.exports = {
       items: [
         {
           'CAT2 Upgrade': [
-            'guides/cat2-intro',
-            'guides/cat2-snapshot',
-            'guides/cat2-issuance',
+            'guides/cat/cat2-upgrade/cat2-intro',
+            'guides/cat/cat2-upgrade/cat2-snapshot',
+            'guides/cat/cat2-upgrade/cat2-issuance',
           ],
         },
         'guides/cat/cat-creation-tutorial',
