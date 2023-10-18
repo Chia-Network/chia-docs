@@ -313,6 +313,15 @@ module.exports = {
       items: [
         'guides/cat/cat-creation-tutorial',
         'guides/cat/cr-cat-tutorial',
+        {
+          type: 'category',
+          label: 'CAT2 Upgrade',
+          items: [
+            'guides/cat2-intro',
+            'guides/cat2-snapshot',
+            'guides/cat2-issuance',
+          ],
+        },
       ],
     },
     {
