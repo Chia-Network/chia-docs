@@ -25,7 +25,7 @@ Check out the [Snapshot Generation guide](/guides/cat2-snapshot) to get started 
 
 A CAT is a Chia Asset Token. CATs are fungible tokens that are issued on the Chia blockchain. The CAT1 standard was finalized in January 2022. You can read more about the [CAT primitive](https://chialisp.com/cats). Some examples of CATs include Stably USD (USDS), Spacebucks (SBX), and Marmot (MRMT).
 
-#### Why is this change happening with CATs? {#why-cat2}
+#### Why were CATs transitioned to CAT2? {#why-cat2}
 
 The CAT standard was upgraded to CAT2 based on a security vulnerability found by an outside security audit. This resulted in an upgrade to the latest Chia wallet app as well as updates that will require all original issuers of CAT1 tokens to reissue their tokens on the CAT2 standard and end-of-life support for CAT1. Chia is working with community members to make this process as seamless as possible.
 
