@@ -311,6 +311,13 @@ module.exports = {
           "These guides will guide you through the process of creating CATs that conform to Chia's CAT standard.",
       },
       items: [
+        {
+          'CAT2 Upgrade': [
+            'guides/cat/cat2-upgrade/cat2-intro',
+            'guides/cat/cat2-upgrade/cat2-snapshot',
+            'guides/cat/cat2-upgrade/cat2-issuance',
+          ],
+        },
         'guides/cat/cat-creation-tutorial',
         'guides/cat/cr-cat-tutorial',
       ],
