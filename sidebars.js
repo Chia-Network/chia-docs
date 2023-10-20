@@ -370,10 +370,7 @@ module.exports = {
       label: 'Offers',
       collapsible: true,
       collapsed: true,
-      items: [
-        'guides/tutorials/offers-gui',
-        'guides/tutorials/offers-cli',
-      ],
+      items: ['guides/tutorials/offers-gui', 'guides/tutorials/offers-cli'],
     },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
@@ -418,9 +415,7 @@ module.exports = {
         description:
           'Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain technology. In an age characterized by rapid digital transformation, this institution offers a comprehensive exploration of the Chia blockchain, dissecting its technical intricacies, real-world applications, and the nuances of its secure data handling. The Chia blockchain, created by Bram Cohen, stands out from traditional cryptocurrencies with its unique Proof of Space and Time (PoST) model, which contrasts with the energy-intensive Proof of Work model (PoW) used by Bitcoin. This innovation is notable for its eco-friendly approach to blockchain. As a Chia Academy student, you will dive into the core concepts and functionalities of the Chia blockchain, including:',
       },
-      items: [
-        'academy/academy-intro/academy-overview',
-      ],
+      items: ['academy/academy-intro/academy-overview'],
     },
     {
       type: 'category',
@@ -434,9 +429,7 @@ module.exports = {
         description:
           'These lessons cover the basics of Chialisp, the smart coin language used on the Chia blockchain.',
       },
-      items: [
-        'academy/chialisp/chialisp-intro',
-      ],
+      items: ['academy/chialisp/chialisp-intro'],
     },
   ],
 };
