@@ -499,7 +499,7 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
 3. Copy the database file(s) you want to move to their new location.
 4. Update the applicable config.yaml parameters from the table below.
    - Config file: `~/.chia/mainnet/config/config.yaml`  
-   - 
+
 | Database              | Config.yaml Parameter      | Default                                             | New Location                                                            |
 |-----------------------|----------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | Blockchain            | 	full_node: database_path: | db/blockchain_v1_CHALLENGE.sqlite                   | 	<NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite                  |
