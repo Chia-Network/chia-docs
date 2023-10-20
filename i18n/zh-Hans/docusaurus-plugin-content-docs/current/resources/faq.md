@@ -450,7 +450,7 @@ The Chia database (db) is located in the `db/` directory inside the `.chia/mainn
 - mainnet database filename: `blockchain_v2_mainnet.sqlite`
 - testnet database filename: `blockchain_v2_testnet10.sqlite`
 
-Windows Systems
+#### Windows Systems
 
 :::info
 
@@ -464,7 +464,7 @@ C:\Users\<YOURUSERNAME>
     └── mainnet/
        └─ db/
 ```
-macOS and Linux Systems
+#### macOS and Linux Systems
 
 :::info
 
@@ -478,6 +478,149 @@ To show hidden files on Mac finder click "COMMAND"+"SHIFT"+"." (period), on linu
     └── mainnet/
        └─ db/
 ```
+
+### How do I move the Chia blockchain database to another drive?
+
+The Chia blockchain database will continue to grow as new blocks are farmed creating the ever-growing need for additional space. In some cases this requires users to move their database to a different drive.
+
+:::warning
+
+We strongly urge using a fast ssd to store the blockchain database. Using a slow drive can create issues with maintaining sync with the network.
+
+:::
+
+1. Stop all chia processes.
+2. Locate the database file you want to move.
+   - Blockchain db: `~/.chia/mainnet/db/blockchain_v2_CHALLENGE.sqlite`
+   - Wallet db: `~/.chia/mainnet/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite`  
+     **Note:** `CHALLENGE` will either be mainnet or testnet based on your selected network.  
+     **Note:** `KEY` will be the fingerprint of your wallet.
+3. Copy the database file(s) you want to move to their new location.
+4. Update the applicable config.yaml parameters from the table below.
+   - Config file: `~/.chia/mainnet/config/config.yaml`
+
+<table spaces-before="0">
+  <tr>
+    <th>
+      Database
+    </th>
+    
+    <th>
+      Config.yaml Parameter
+    </th>
+    
+    <th>
+      Default
+    </th>
+    
+    <th>
+      New Location
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Blockchain
+    </td>
+    
+    <td>
+      full_node: database_path:
+    </td>
+    
+    <td>
+      db/blockchain_v1_CHALLENGE.sqlite
+    </td>
+    
+    <td>
+      <NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Blockchain peer table
+    </td>
+    
+    <td>
+      full_node: peer_db_path:
+    </td>
+    
+    <td>
+      db/peer_table_node.sqlite
+    </td>
+    
+    <td>
+      <NEW_LOCATION_PATH>/db/peer_table_node.sqlite
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Wallet
+    </td>
+    
+    <td>
+      wallet: database_path:
+    </td>
+    
+    <td>
+      wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
+    </td>
+    
+    <td>
+      <NEW_LOCATION_PATH>/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Wallet peer table
+    </td>
+    
+    <td>
+      wallet: wallet_peers_path:
+    </td>
+    
+    <td>
+      wallet/db/wallet_peers.sqlite
+    </td>
+    
+    <td>
+      <NEW_LOCATION_PATH>/wallet/db/wallet_peers.sqlite
+    </td>
+  </tr>
+</table>
+
+**Note:** This information has been adapted from the [Spacefarmers guide](https://wiki.spacefarmers.io/guides/farming/movedb).
+
+:::info
+
+Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. Please refer to the [upgrade instructions](/faq#how-do-i-upgrade-my-version-1-blockchain-database-to-version-2) if your database is version 1.
+
+:::
+
+### How do I upgrade my version 1 blockchain database to version 2?
+
+Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. There are two method for updating the database to version 2, either using the upgrade cli command or downloading the [official database snapshot torrent](https://www.chia.net/downloads/#database-checkpoint).
+
+#### CLI command:
+1. Stop the chia client (this can be done while chia is running but stopping the client saves from any potential issues).
+2. Run the command `chia db upgrade` (you do not need the input or output paths if these are still default). [Upgrade command context](https://docs.chia.net/cli#upgrade).
+   - This process will take some time and requires additional space as the v1 db is compacted into the v2 db which leaves the v1 db intact.
+   - Remove any `-wal` or `-shm` files that are present in the directory (these are temporary files that should only be removed when all chia processes are stopped).
+3. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2)
+4. After the above completes start the chia client.
+5. If all loads up properly (might take ~5-10 minutes to load) then you can safely delete the v1 db found here `~\.chia\mainnet\db\blockchain_v1_mainnet.sqlite`.
+
+#### Official torrent:
+1. Download the torrent file from the [official database snapshot torrent](https://www.chia.net/downloads/#database-checkpoint).
+2. Use a torrent client to download the full db. [Bittorrent](https://www.bittorrent.com/) is recommended but any torrent client will work.
+3. Unpack/reassemble the torrent file that was downloaded (on windows one can use [7zip](https://7-zip.org/), Mac and linux have built in tools that work for this).
+4. Stop all chia processes if you have not already.
+5. Move the db to the correct folder ``~\.chia\mainnet\db\` and update the name to``blockchain_v2_mainnet.sqlite` (removing the date information in the name).
+   - Remove any `-wal` or `-shm` files that are present in the directory (these are temporary files that should only be removed when all chia processes are stopped).
+6. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2).
+7. Launch chia and wait for a bit (the height to hash, sub-epoch, and peers files need to be built so this can take 5-10 minutes).
 
 ## Farming
 
