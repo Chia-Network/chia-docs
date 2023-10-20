@@ -1704,6 +1704,9 @@ Request Parameters:
 | reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false] |
 | to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
 
+Note: By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination. 
+If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
+
 <details>
 <summary>Example 1: List a single XCH transaction</summary>
 
