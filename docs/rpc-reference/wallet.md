@@ -1625,9 +1625,9 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type | Required | Description                                                                                                          |
-| :------------- | :--- | :------- | :------------------------------------------------------------------------------------------------------------------- |
-| transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [transactions](#transactions) RPC |
+| Flag           | Type | Required | Description                                                                                                                  |
+| :------------- | :--- | :------- |:-----------------------------------------------------------------------------------------------------------------------------|
+| transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
 
 <details>
 <summary>Example</summary>
