@@ -404,7 +404,7 @@ module.exports = {
       collapsed: false,
       link: {
         type: 'generated-index',
-        slug: '/academy/academy-intro',
+        slug: '/academy-intro',
         title: 'Chia Academy Intro',
         description:
           'Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain technology. In an age characterized by rapid digital transformation, this institution offers a comprehensive exploration of the Chia blockchain, dissecting its technical intricacies, real-world applications, and the nuances of its secure data handling. The Chia blockchain, created by Bram Cohen, stands out from traditional cryptocurrencies with its unique Proof of Space and Time (PoST) model, which contrasts with the energy-intensive Proof of Work (PoW) used by Bitcoin. This innovation is notable for its eco-friendly approach to blockchain. As a Chia Academy student, you will dive into the core concepts and functionalities of the Chia blockchain, including:',
