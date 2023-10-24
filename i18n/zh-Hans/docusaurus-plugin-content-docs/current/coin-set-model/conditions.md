@@ -13,9 +13,9 @@ There are two kinds of conditions. Some require something to be true (such as ti
 
 :::warning
 
-Be vigilant when using `ASSERT_MY_COIN_ID` as a shortcut for validating the parent coin id, puzzle hash, and amount. If they are passed into the solution separately, then validated all at once by hashing them together, it is possible to shift the bytes to the left or right and manipulate the values.
+Be vigilant when using `ASSERT_MY_COIN_ID` as a shortcut for validating the parent coin ID, puzzle hash, and amount. If they are passed into the solution separately, then validated all at once by hashing them together, it is possible to shift the bytes to the left or right and manipulate the values.
 
-Consider either checking them individually or verifying that the hashes are indeed 32 bytes in length.
+You are recommended to use the `coinid` operator when computing coin IDs. This operator was introduced with [CHIP-11](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md). It verifies that hashes are indeed 32 bytes in length, at no extra CLVM cost versus verifying the parent ID, puzzle hash, and amount individually. The `coinid` operator, as well as the other CHIP-11 operators, are described on [chialisp.com](https://chialisp.com/operators#chip-0011-operators).
 
 :::
 
@@ -519,7 +519,7 @@ The following parameters are expected:
 
 Format: `(84 seconds_passed)`
 
-Asserts that the previous transaction block was created at least a given number of seconds before this coin was created.
+Asserts that the previous transaction block was created before a given number of seconds after this coin was created.
 
 The following parameters are expected:
 
@@ -547,7 +547,7 @@ The following parameters are expected:
 
 Format: `(86 block_height_passed)`
 
-Asserts that the previous transaction block was created at least a given number of blocks before this coin was created.
+Asserts that the previous transaction block was created before a given number of blocks after this coin was created.
 
 The following parameters are expected:
 
