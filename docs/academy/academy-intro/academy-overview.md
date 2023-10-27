@@ -3,6 +3,8 @@ title: Academy Overview
 slug: /academy-overview
 ---
 
+import Runnable from '../../../src/components/Runnable.tsx';
+
 The lesson pages in Chia Academy are thoughtfully designed to enhance the learning experience for students. Each lesson is organized in a user-friendly and visually appealing manner. The structure typically includes:
 
 ---
