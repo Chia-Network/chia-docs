@@ -400,7 +400,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Chia Academy Intro',
-      collapsible: false,
+      collapsible: true,
       collapsed: false,
       link: {
         type: 'generated-index',

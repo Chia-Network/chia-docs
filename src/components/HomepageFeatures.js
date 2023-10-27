@@ -68,17 +68,6 @@ const FeatureList = [
       <>Frequently asked questions about Chia Network Inc., the company.</>
     ),
   },
-  {
-    title: 'Chia Developer Forums',
-    Svg: require('@site/static/svg/chiadevs-icon.svg').default,
-    dest_url: 'https://developers.chia.net/',
-    description: (
-      <>
-        Discuss all things development related: Chialisp, CATs, applications,
-        NFTs, and more.
-      </>
-    ),
-  },
 ];
 
 function Feature({ Svg, title, description, dest_url }) {

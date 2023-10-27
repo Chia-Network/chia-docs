@@ -19,7 +19,6 @@ const prismIncludeLanguages = (PrismObject) => {
 
     require("./prism-chialisp");
 
-    delete window.Prism;
   }
 };
 
