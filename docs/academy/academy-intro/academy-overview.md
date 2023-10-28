@@ -23,7 +23,7 @@ A set of specific learning objectives is provided at the beginning of the lesson
 ---
 
 ## Content
-The core content in each lesson is conveyed through structured short format videos followed by scripts. This hybrid visual and text approach ensures accessibility and caters to diverse learning preferences.  
+The core content in each lesson is conveyed through structured, short format videos followed by scripts. This hybrid visual and text approach ensures accessibility and caters to diverse learning preferences.  
 
 ---
 
@@ -53,7 +53,7 @@ While lessons are thoughtfully designed to facilitate learning, there are some c
 ---
 
 ## Knowledge check
-Each lesson contains a brief self-assessment quiz designed to gauge learners' comprehension and retention of the video material. These assessments reinforce key concepts and help learners self-asses their understanding.  
+Each lesson contains a brief self-assessment quiz designed to gauge learners' comprehension and retention of the video material. These assessments reinforce key concepts and help learners self-assess their understanding.  
   
 The quiz section has two components, questions and answers.  The questions contain lesson applicable questions and the answers contain the corresponding answers.  
   
