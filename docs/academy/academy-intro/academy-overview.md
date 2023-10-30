@@ -53,9 +53,9 @@ While lessons are thoughtfully designed to facilitate learning, there are some c
 ## Knowledge check
 Each lesson contains a brief self-assessment quiz designed to gauge learners' comprehension and retention of the video material. These assessments reinforce key concepts and help learners self-assess their understanding.  
   
-The quiz section has two components, questions and answers.  The questions contain lesson applicable questions and the answers contain the corresponding answers.  
+The quiz section has two components, questions and answers.  The questions contain lesson-applicable questions and the answers contain the corresponding answers.  
   
-Since this is a self assessment, you can of course skip the questions and go straight to the answers; but we strongly recommend that you take the time to solve the question on your own before checking the answer.  
+Since this is a self assessment, you can of course skip the questions and go straight to the answers; but, we strongly recommend that you take the time to solve the question on your own before checking the answer.  
 
 :::tip Question 1
 
@@ -73,7 +73,7 @@ What format is used for timestamps in the content scripts?
 
 :::tip Question 2
 
-What is the serialized form of this chialisp puzzle?
+What is the serialized form of this Chialisp puzzle?
 
 ```chialisp
 (mod (arg1 arg2) (+ arg1 arg2))
@@ -93,7 +93,7 @@ What is the serialized form of this chialisp puzzle?
 
 :::tip Question 3
 
-What is the chialisp puzzle for squaring a passed argument?
+What is the Chialisp puzzle for squaring a passed argument?
 
 :::
 

@@ -11,7 +11,7 @@ slug: /chialisp-intro
 ---
 
 ## Content
-In this lesson, we review the basics of Chialisp including syntax & structure, inequalities and if statements, and setting up a development environment.
+In this lesson, we review the basics of Chialisp including syntax and structure, inequalities and if statements, and setting up a development environment.
 
 <div class="videoWrapper">
 <iframe width="896" height="504" src="https://www.youtube.com/embed/W9QK4PFIIpA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -72,9 +72,9 @@ In future videos we'll talk about smart coins signatures and inner puzzles. Than
 
 ## Common gotchas
 
-- **run vs brun:** Run is used to serialize and run chialisp puzzles while brun is used to run clvm serialized puzzles generally when passing arguments.  
-- **Parentheses:** Chialisp is part of the fully parenthesized prefix notation programming language family tracing their [origins](https://en.wikipedia.org/wiki/Lisp_(programming_language)) to LISP 1 from the 1950s. One highly apparent aspect of these languages is their use of parenthesis to denote lists. It is recommended to use an IDE with proper syntax highlighting when writing these languages to ensure that all parenthesis are in the proper places. To help with this here is a [Chialisp language server extension](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp) for Visual Studio.  
-- **Prefix Notation:** Chialisp being part of the LISP family uses prefix notation. This means that the functions or operators appears first with their arguments following.  
+- **run vs brun:** Run is used to serialize and run Chialisp puzzles, while brun is used to run clvm serialized puzzles generally when passing arguments.  
+- **Parentheses:** Chialisp is part of the fully parenthesized prefix notation programming language family, tracing their [origins](https://en.wikipedia.org/wiki/Lisp_(programming_language)) to LISP 1 from the 1950s. One highly apparent aspect of these languages is their use of parenthesis to denote lists. It is recommended to use an IDE with proper syntax highlighting when writing these languages to ensure that all parenthesis are in the proper places. To help with this, here is a [Chialisp language server extension](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp) for Visual Studio.  
+- **Prefix Notation:** Chialisp being part of the LISP family uses prefix notation. This means that the functions or operators appear first with their arguments following.  
 
 ---
 
@@ -82,7 +82,7 @@ In future videos we'll talk about smart coins signatures and inner puzzles. Than
 
 :::tip Question 1 - Subtraction
 
-What is a chialisp puzzle for subtracting two arguments?
+What is a Chialisp puzzle for subtracting two arguments?
 
 :::
 
@@ -100,7 +100,7 @@ What is a chialisp puzzle for subtracting two arguments?
 
 :::tip Question 2 - Comparison
 
-What is the serialized form of this chialisp puzzle?
+What is the serialized form of this Chialisp puzzle?
 
 ```chialisp
 (mod (arg1 arg2) 
@@ -171,9 +171,9 @@ What is a Chialisp puzzle that performs the following?
 
 ### Links
 
-- General [chialisp concepts](https://docs.chia.net/guides/chialisp-concepts): overviews of currying, inner puzzles, and morphing conditions.
-- Guided [chialisp walkthroughs](https://docs.chia.net/guides/): guides for installation, creating smart coins, and working with BLS signatures.  
-- Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.  
+- General [Chialisp concepts](https://docs.chia.net/guides/chialisp-concepts): overviews of currying, inner puzzles, and morphing conditions.
+- Guided [Chialisp walkthroughs](https://docs.chia.net/guides/): guides for installation, creating smart coins, and working with BLS signatures.  
+- Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of Chialisp.  
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.  
 
 --- 
