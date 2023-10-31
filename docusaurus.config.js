@@ -60,6 +60,12 @@ const katex = require('rehype-katex');
               label: 'Guides',
             },
             {
+              type: 'doc',
+              docId: '/academy-intro',
+              position: 'left',
+              label: 'Chia Academy',
+            },
+            {
               href: 'https://chialisp.com',
               label: 'Chialisp',
               position: 'left',
