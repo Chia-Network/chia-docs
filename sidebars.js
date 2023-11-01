@@ -7,6 +7,7 @@ module.exports = {
         'getting-started/introduction',
         'getting-started/farming-guide',
         'getting-started/installation',
+        'getting-started/testnets',
         'getting-started/using-the-gui',
       ],
     },
