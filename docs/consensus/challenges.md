@@ -42,3 +42,27 @@ class ChallengeChainSubSlot(Streamable):
 As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in detail in the [Three VDF Chains page](/three-vdf-chains).
 
 In the networking protocol, the three VDF proofs are usually passed around together, in what is called an _end of sub-slot bundle_.
+
+## Genesis Challenge
+
+The genesis challenge is the first challenge on a network that uses the Proof of Space and Time consensus. The timelords use this challenge to calculate and broadcast the very first signage point. Chia's mainnet, testnets and simulated networks each have their own unique _genesis challenge_.
+
+The genesis challenge is created arbitrarily, by hashing a preimage. In the case of Chia's mainnet, the preimage included the hash of Bitcoin block [675317](https://www.blockchain.com/explorer/blocks/btc/675317), which was mined shortly prior to the launch of Chia's network. It also included the following message from Bram:
+
+`"Operational error causes Fed payment system to crash" We stand on the shoulders of giants, now let's get farming!`
+
+The exact text of the preimage for Chia's mainnet is:
+
+```
+bitcoin_hash:0000000000000000000942b19f16b83a316acfa31e067c0b766c4dda034dc37f,bram_message:"Operational error causes Fed payment system to crash" We stand on the shoulders of giants, now let's get farming!
+```
+
+The SHA256 hash of this preimage is:
+
+```
+ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb
+```
+
+This hash is the genesis challenge for Chia's mainnet. The complete JSON data for the genesis challenge is located [here](https://download.chia.net/notify/mainnet_alert.txt). The first block on Chia's mainnet ([block 0](https://www.spacescan.io/block/0)) was created at signage point `2`; it points to the genesis challenge as its previous block. The prefarm was then distributed in [block 1](https://www.spacescan.io/block/1), at signage point `7`.
+
+The genesis challenge for other networks can be found opening `config.yaml` (located in `~/.chia/mainnet/config` for Chia's mainnet and testnets) and searching for `GENESIS_CHALLENGE:` in the section corresponding to the desired network.
