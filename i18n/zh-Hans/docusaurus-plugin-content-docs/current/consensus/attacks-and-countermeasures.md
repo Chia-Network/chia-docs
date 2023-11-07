@@ -98,7 +98,7 @@ Note that if we continue to increase `VA`, `DD` will always remain at 1.4678 for
 
 It is reasonable to assume that if a majority attack were attempted, the attacker's timelord wouldn't be significantly faster than the fastest honest timelord. Furthermore, it is unlikely that the attacker could gain access to an unbounded number of timeords, so the attacker would not gain the double-dip advantage. Therefore, Chia uses a base line assumption of 51% of the netspace required for a majority attack to have a chance at succeeding.
 
-To reduce the possibility of an attacker gaining access to a fast timelord, Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security).
+To reduce the possibility of an attacker gaining access to a fast timelord, Chia network has [developed and distributed ASIC timelord](https://www.chia.net/2023/10/26/asic-timelords-faster-than-fast-chia-network/) globally.
 
 ## Extending Many Chains {#many-chains}
 
