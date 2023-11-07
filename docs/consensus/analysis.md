@@ -21,7 +21,7 @@ If you want to be nearly certain that even a successful foliage re-org attack wo
 
 It's worth noting that the 54% requirement only pertains to _non-colluding_ space, rather than _honest_ farming space. Profit-seeking farmers gain very little by deviating from the protocol.
 
-There is the added assumption that at least one fast timelord must be connected to the non-colluding portion of the network, and that the attacker's timelord is not significantly faster. Chia plans to release and open source an ASIC timelord, which should ensure that it is extremely difficult to obtain a significantly faster timelord.
+There is the added assumption that at least one fast timelord must be connected to the non-colluding portion of the network, and that the attacker's timelord is not significantly faster. A redundant set of ASIC timelords have been distributed globally. It will extremely difficult and costly to build a significantly faster timelord.
 
 ## Liveness
 
