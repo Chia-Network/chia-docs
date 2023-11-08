@@ -89,7 +89,7 @@ Although not required, plots larger than k32 may be created. There is not a grea
 
 The level of compression you choose will be highly dependent on your farming setup. The good news is that even those using a Raspberry Pi for their harvesters will be able to take advantage of the lower levels of compression. Additionally, each step up in compression level requires an exponential increase in computing power, while yielding a linear decrease in plot size. For these reasons, those who are farming with a Raspberry Pi can yield 20% higher rewards by using compressed plots, while those using the most powerful GPUs will see a modest increase over the benefits obtained by the Pi. Namely, C9 plots yield 35% higher rewards than C0 plots.
 
-The next page will detail the various types of hardware that can be used for creating Chia plots. Later, we'll discuss the specific compression levels, including the hardware required to yield each increase in farming rewards.
+The next page will detail the various types of hardware that can be used for creating Chia plots. Later, we'll discuss the specific compression levels, including the hardware required to yield each increase in farming rewards and the actual file sizes broken down by [k-size with compression levels](https://docs.chia.net/k-sizes).
 
 
 ## How to Get Help
