@@ -697,7 +697,7 @@ NOTE: if you need to disable UPnP - a protocol which automatically sets up port-
 sed -i .bak 's/enable_upnp: True/enable_upnp: False' ~/.chia/mainnet/config/config.yaml
 ```
 
-While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://github.com/Chia-Network/chia-blockchain/wiki/Farming-on-many-machines)).
+While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://docs.chia.net/farming-on-many-machines/).
 
 ***
 
@@ -705,7 +705,7 @@ While you don't absolutely need port 8444 forwarded to your Chia node, it is adv
 
 That's it! Provided the instructions were followed to the T, and the build is a fresh FreeBSD 11.3 or 11.4, either hardware or FreeNAS jailed, you should be good to go! Now go to town with `chia start node` or whatever floats your boat.
 
-More details can be found in the [Chia Quick Start Guide](https://github.com/Chia-Network/chia-blockchain/wiki/Quick-Start-Guide).
+More details can be found in the [Chia Introduction](https://docs.chia.net/introduction).
 
 
 </TabItem>
