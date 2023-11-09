@@ -27,40 +27,6 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Chia Blockchain Wiki',
-    Svg: require('@site/static/svg/chia-leaf-green.svg').default,
-    dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki',
-    description: (
-      <>
-        GitHub wiki containing instructions and information about best
-        practices regarding setup, hardware, farming, plotting, security,
-        timelords, and more.
-      </>
-    ),
-  },
-  {
-    title: 'Cultivation Grant Program',
-    Svg: require('@site/static/svg/grant-icon.svg').default,
-    dest_url: 'https://www.chia.net/grants/',
-    description: (
-      <>
-        Our Cultivation Grant Program is designed to enable and expand promising
-        new projects that are being built on the Chia blockchain.
-      </>
-    ),
-  },
-  {
-    title: 'Chia Technical FAQ',
-    Svg: require('@site/static/svg/technical-faq-icon.svg').default,
-    dest_url: 'https://github.com/Chia-Network/chia-blockchain/wiki/FAQ',
-    description: (
-      <>
-        Frequently asked questions regarding the Chia blockchain and its
-        function.
-      </>
-    ),
-  },
-  {
     title: 'Chia Network Inc. FAQ',
     Svg: require('@site/static/svg/chia-logo.svg').default,
     dest_url: 'https://www.chia.net/faq/',

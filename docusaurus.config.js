@@ -105,10 +105,6 @@ const katex = require('rehype-katex');
               title: 'Developers',
               items: [
                 {
-                  label: 'Grants',
-                  to: 'https://chia.net/grants',
-                },
-                {
                   label: 'Chialisp',
                   to: 'https://chialisp.com',
                 },
