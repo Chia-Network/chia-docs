@@ -221,6 +221,7 @@ module.exports = {
         'resources/chia-farming-workload',
         'resources/k-sizes',
         'resources/faq',
+        'resources/storage-benchmarks',
       ],
     },
   ],
