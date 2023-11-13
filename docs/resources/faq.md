@@ -614,6 +614,20 @@ As long as the plot passes the filter, and do not have any internal file errors,
 
 Please note that the speed of your lookups when passing the plot filter should be below 5 and preferably below 2 seconds. When you actually win a reward, your drive will have to do more lookups than these, so it's important that the the lookups are happening fast.
 
+### Why does my Chia farm say `Missing signage points`?
+
+This means that your harvester did not respond to one or more signage points in time to be eligible to win a reward. However, if you miss fewer than 100 signage points per day, it is not a serious issue.
+
+On average there are 9216 signage points per day, or one every 9.375 seconds. If your harvester misses 9 signage points per day, then your farm was operational 99.9% of the time. This would be considered normal, even for a farm with a stable internet connection. If you are consistently missing more than 1% of the signage points, or around 100 per day, then it is probably worth investigating the cause.
+
+Some reasons your harvester might miss more than 100 signage points per day:
+* Your harvester can't handle its required compute load -- typically this will happen if you are farming with compressed plots. However, even with uncompressed plots, if your harvester sometimes requires more than five seconds to perform its lookups, it may miss some signage points. See our [plotting documentation](/plotting-compression) for more info on how determine the maximum number of plots your harvesters can handle.
+* Lost connections to peers -- check your peer count by clicking the `FULL NODE` icon in the upper right corner of your farmer GUI. If you only have a few peers, your local network might have a [UPNP issue](#what-is-this-upnp-error). See our question on [obtaining more peer connections](#why-does-my-node-have-no-connections-how-can-i-get-more-connections).
+* Changed external IP address -- some ISPs will change the IP address of their customers frequently and without warning. This may be happening to your home network. Your ISP might be able to provide you with more info. Unfortunately, if this is happening, often the only recourse is to pay for a dedicated IP address.
+* Changed internal IP address -- your home network might also have changed the IP address of your harvester(s). Your router's settings might provide you with more info.
+* Temporary loss of internet -- you don't need a fast internet connection to run a Chia node. But you do need a stable one. If your local network loses internet connectivity for a few seconds, you might miss a signage point.
+* Bad wifi connection -- we recommend that you run your farmer with a wired internet connection. If you need to use wifi, try to keep your farmer as close to your router as possible. While wifi tends to be consistent enough to run a Chia farm, if your farmer is in a different room than your router, you might occasionally miss a signage point.
+
 ### Can I join a farming pool?
 
 Yes you can. Please check the [Pool Farming page](/pool-farming).
