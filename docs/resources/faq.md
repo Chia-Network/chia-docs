@@ -39,7 +39,6 @@ XCH is the currency symbol for Chia. TXCH is the currency symbol currently being
 - **mojo** - a trillionth of an XCH.
 - **chia** - lowercase chia refers to the Chia token, XCH. Similarly, mojos are lowercase.
 
-
 ### How do I sign up for the Chia email newsletter? 
 
 You can sign up for the Chia email newsletter by following [this link](http://eepurl.com/hQDvIn).
@@ -186,6 +185,44 @@ Chia was incorporated in August of 2017 to develop an improved blockchain and sm
 
 From time to time, Chia Network may release NFTs for a variety of reasons, such as our inaugural Chia Friends collection. Any NFTs minted by Chia Network will use our official DID: `did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2`. Always check the provenance of an NFT purportedly to be official from us by looking for this DID as the minter. Fortunately, the majority of 3rd party platforms are designed to automatically show the Chia Network name and/or logo with these NFTs, but it never hurts to double check!
 
+What makes Chia different from proof of work blockchains?
+
+One core difference is the consensus algorithm called proof of space and proof of time. Basically as after the farmer creates a proof of space and a block, other computers called timelords add proofs of time to the block, which is a cryptographic proof that says that a certain amount of time (like 30 seconds) has passed. So instead of the whole world mining at the same time, only a few computers are "mining" for each proof of space that won. Since these are all cryptographic proofs, they cannot be forged or broken, making the consensus extremely secure.
+
+In Chia, the only electricity required is the electricity to create the plots, and to run the hard drives, which is on the order of 10 watts to power, plus CPU power required to run a full node (which is very light). In comparison Blockchains like Bitcoin and Ethereum rely on huge farms of GPUs ( 300W each GPU), or ASICs (hundreds or thousands of watts per machine) to secure the blockchain. You can think of proof of work, as millions of computers "making" lottery tickets by using electricity, but each ticket can only be used once. Chia will use vastly less electricity as each plot will last over 5 years, and the only electricity required is the initial setup (plotting) and 10W for farming a drive.
+
+For more information on the power utilization of Chia please read through the [Chia power site](https://chiapower.org/).
+
+### What is Chia's burn address?
+
+#### Mainnet Burn Address 
+```
+xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy
+```
+
+#### Testnet Burn Address
+```
+txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
+```
+
+#### The Burn Address Explained
+
+[Chia addresses](https://docs.chia.net/docs/04coin-set-model/addresses) are puzzle hashes encoded into the "xch" prefix address format using the [bech32m encoding scheme](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki).
+
+A traditional bech32m puzzle hash for a burn address is all zeros ending in "dead": `0x000000000000000000000000000000000000000000000000000000000000dead`
+
+Converting this to an address, you end up with the burn address for mainnet: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
+
+The testnet burn address is different: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
+
+You can use a puzzle hash converter to verify these burn addresses for yourself. 
+
+#### What is a burn address?
+
+A burn address is an address whose private key (24 words) is unobtainable. There's no feasible way to determine the key for the above burn addresses. This means anything sent to a burn address is inaccessible forever, aka "burned."
+
+Thank you to [r/chia](https://www.reddit.com/r/chia/) member [juraj](https://www.reddit.com/r/chia/comments/q88yi8/does_chia_have_a_dead_address/hqolhgn/) for this information.
+
 ## Plotting
 
 ### What is k?
@@ -258,6 +295,10 @@ Yes.
 ### How do I know if my plots are OK?
 
 Run `chia plots check -n 30` to try 30 sample challenges for each plot. Each of your plots should return a number around 30, which means it found around 100% of the attempted proofs of space. If you're still worried try `-n 100` as more random attempts will give you a more valid assessment that the plots is fine. It really is ok if your plot is within 80%-120%. If some of your plots are missing for some reason you may need to add the directory they are in to your config.yaml file. That can be done in the GUI with the MANAGE PLOT DIRECTORIES button or on the command line with `chia plots add -d [directory]`.
+
+### Can I use USB 3.0 cable connected to SSD/NVME running the Temp files?
+
+On Windows, it has not worked well since the communication speed is not fast enough, sometimes the usb turns off, then the plot is not valid. It's possible to run 1 plot, but limiting when trying to process multiple plots. Most are installing PCIe adapters to SSC/NVME and that solves the issue. The mac has very fast communication to do the first plot, many others are saying that they can do 2 plots but process time increases dramatically. Technology is constantly changing so continue to do research and ask in the chat rooms.
 
 ## Full Node
 
@@ -588,7 +629,7 @@ Some background: The consensus Chia originally used during the testnet phase con
 No, your plots are virtually unaffected by the passage of time, aside from hardware errors. Even in the presence of bit flips due to aging hardware, plots remain mostly effective. The only cases where you would need to re-plot are: 1. if you are using solo plots (not NFT plots) and wish to join a pool (please see note below) or 2. if hardware speeds advance to the point of a certain k value becoming obsolete (e.g., `k=32` becomes too fast to plot and we ban them, forcing you to replace them with `k≧33` plots). For case 1., you are free to have any mix of solo plots and pool plots if you do not want to re-plot. For case 2., `k=32` is not expected to become outdated until sometime between 2026-2031.
 
 - Note on case 1:
-  We have added a Pooling Protocol that replaces the hard-coded "Pool Public Key" of a plot, with a plotNFT's "Pool Contract Address" - more on this subject can be read here: https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-FAQ
+  We have added a Pooling Protocol that replaces the hard-coded "Pool Public Key" of a plot, with a plotNFT's "Pool Contract Address" - more on this subject can be read here: https://docs.chia.net/pool-farming/#pooling-faq
 
 ### Is it possible to have a proof but not get a reward?
 
@@ -1329,6 +1370,7 @@ For example:
 ```
 shasum -a 256 ~/Downloads/chia-blockchain_1.1.7_amd64.deb
 ```
+
 ### Can I use a fast SAS HDD for storing the blockchain's database?
 
 A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as stated above. It can be an external SSD, connected via USB. The database is always growing, but 256 GB should be sufficient until at least 1H 2024.
