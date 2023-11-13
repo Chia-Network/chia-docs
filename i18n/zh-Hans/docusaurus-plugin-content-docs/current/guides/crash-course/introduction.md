@@ -179,7 +179,7 @@ To gain more experience in Chia and to be more comfortable with troubleshooting 
 madMAx is a software created as an alternative way of creating plots for Chia. The software performed great and was ultimately brought in to the official software. This is the easiest way to get started created plots with Chia.
 :::
 
-The instructions to use the CLI depends on the operating system, you can get the exact instructions in [this document](https://github.com/Chia-Network/chia-blockchain/wiki/CLI-Commands-Reference).
+The instructions to use the CLI depends on the operating system, you can get the exact instructions in [this document](https://docs.chia.net/cli).
 
 So the goal is to be able to use the `chia` command from the terminal. On mac, you can issue `/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia`.
 
