@@ -7,6 +7,12 @@ slug: /farming-on-many-machines
 
 # 如何在其它不是主要设备的机器上进行收割
 
+:::tip
+
+Always make sure to protect yourself from malicious actors by [securing your chia and making yourself a hard target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/)
+
+:::
+
 This guide will show you how to run a harvester on each machine in your network. This architecture is composed of one main machine which runs the farmer, full node, and wallet, and other machines which run only the harvester. 只有主机将连接到Chia网络。
 
 This is the recommended setup for all Chia farms that use more than one computer. It uses less bandwidth, space and CPU versus running a full node on each computer. It also keeps your keys safer because they will only need to be stored on one computer. Finally, it makes your overall farm quicker and more efficient when replying to challenges.
