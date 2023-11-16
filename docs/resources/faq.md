@@ -725,31 +725,7 @@ The wallet no longer automatically adds unknown CATs wallets for CATs that may h
 
 ### How can I make a coin that may only be spent until a certain timestamp or block height?
 
-Chialisp does not directly enable this capability. There are only conditions to make a coin that may be spent _after_ a certain timestamp or block height. Coin spends can only become valid; they can never become invalid.
-
-There are at least 4 reasons for this:
-
-1. **To keep CLVM separate from the mempool** -- When a block is farmed, the local node executes the CLVM from all of the coin spends in that block. The mempool only contains the output of this execution. Thus, the CLVM code execution is kept separate from the mempool, and the CLVM does not need to examine the blockchain's state in order to execute. If coin spends could become invalid, then the CLVM would need to examine the blockchain's state, which would require special handling in the mempool (and possibly cause other problems).
-
-2. **To preserve mempool efficiency** -- If a coin spend depended on determining the timestamp or height of the last confirmed block, as would be required if coin spends could become invalid with time, then the output of the CLVM from this spend would need to be executed with each block, in order to determine if it is still valid. If the mempool became full of such transactions, then the entire mempool would need to be re-calculated with each block. This would be extremely inefficient and a potential attack vector.
-
-As it stands with CLVM's implementation, coin spends only need to be executed once. The mempool can safely assume that the spend has not become invalid simply because time has passed, so there is no need to re-execute the code.
-
-3. **To keep reorg logic simple** -- Small reorgs are rare in Chia, but still possible. If coin spends could become invalid with time, then they also could become invalid in a reorg. Any coin spends that depended on the original would then be invalidated. Sorting through the ripple effects of this behavior would require messy logic that would invalidate other spends, potentially even if they were only distantly related to the original.
-
-Note that this problem doesn't exist when coin spends can only become _valid_ with time. In a reorg, an invalid spend could become valid; any resulting coin spends would also remain valid. As a result, there would be nothing to unwind.
-
-4. **To prevent censorship** -- If someone attempts to spend a coin that is about to be made invalid, the farmer of the next transaction block could refuse to include that coin spend, thus making the coin unspendable _forever_. This is a slippery slope -- any coin spend that will become invalid in the future could be censored until the final valid timestamp or block has been reached. The only way to guarantee that such a coin is spendable would be for the owner to farm the block in which it is spent.
-
-A related problem would occur if the coin spend didn't add a large enough fee to be included in the next block. This could be avoided by adding a larger fee, but the problem that a valid coin spend could become invalid still would exist.
-
-**Recommended Solution**
-
-Because of the problems listed above, any solutions to making a coin spendable _until_ a certain timestamp or block height would need to come from outside the core CLVM implementation.
-
-Our current recommendation: First, create `Coin A`, which will run a `CREATE_COIN_ANNOUNCEMENT` condition when it is spent. Next, create `Coin B`, which uses the `ASSERT_COIN_ANNOUNCEMENT` condition for `Coin A`'s announcementID. A spend of `Coin A` will automatically invalidate any attempts to spend `Coin B` forever.
-
-A similar (but slightly more complex technique) would be to use a singleton instead of a standard coin. Updating the singleton automatically would invalidate a coin spend, and the singleton could be reused to invalidate future spends. This technique could also be used to invalidate offers.
+This capability is available by using the `ASSERT_BEFORE_*` conditions, originally added in [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md). In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](/conditions#assert-before-seconds-relative) for more info.
 
 ### Where is the executable file to start the reference wallet GUI located on Windows?
 
@@ -950,6 +926,10 @@ These features both would necessitate the creation of dependency graphs, which a
 Regarding feature 1, the only ephemeral spends that are currently supported must come from the same spend bundle. _Inter-transaction_ ephemeral spends are not yet supported as of version 1.8.2.
 
 Chia version 1.8.2 introduces identical spend aggregation, which addresses some of the use cases of Feature 2. Spends that make use of this feature are still restricted by the lack of `AGG_SIG_*` conditions, which means that anyone who needs to assert an announcement from an aggregated spend could also have spent the coin. However, this version brings Chia one step closer to offering full support for inter-transaction announcements.
+
+### Why do I see `INVALID_FEE_TOO_CLOSE_TO_ZERO` in my log file?
+
+This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/mempool#fee-required-for-inclusion).
 
 ---
 
