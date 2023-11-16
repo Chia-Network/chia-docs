@@ -927,6 +927,10 @@ Regarding feature 1, the only ephemeral spends that are currently supported must
 
 Chia version 1.8.2 introduces identical spend aggregation, which addresses some of the use cases of Feature 2. Spends that make use of this feature are still restricted by the lack of `AGG_SIG_*` conditions, which means that anyone who needs to assert an announcement from an aggregated spend could also have spent the coin. However, this version brings Chia one step closer to offering full support for inter-transaction announcements.
 
+### Why do I see `INVALID_FEE_TOO_CLOSE_TO_ZERO` in my log file?
+
+This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/mempool#fee-required-for-inclusion).
+
 ---
 
 ## Offers
