@@ -8,7 +8,7 @@ A Proof of Space protocol is one in which:
 - A Verifier can send a challenge to a Prover.
 - The Prover can demonstrate to the Verifier that the Prover is reserving a specific amount of storage space at that precise time.
 
-The Proof of Space protocol has three components: plotting, proving/farming, and verifying. For more info, see our [Details of the chiapos specification](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf), and [reference implementation](https://github.com/Chia-Network/chiapos).
+The Proof of Space protocol has three components: plotting, proving/farming, and verifying. For more info, see our [Details of the chiapos specification](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf), and [reference implementation](https://github.com/Chia-Network/chiapos).
 
 ![chia架构](/img/pospace.png)
 
