@@ -28,7 +28,7 @@ import TabItem from '@theme/TabItem';
     1. 或者，您可以手动编辑`config.yaml`中的端口
 2. 运行以下命令：
   ```bash
-  export CHIA_ROOT ~/.chia/testnet
+  export CHIA_ROOT=~/.chia/testnet
   ```
 3. 运行以下命令：
   ```bash
