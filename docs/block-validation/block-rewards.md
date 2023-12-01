@@ -49,10 +49,12 @@ The second coin, with 7/8 of the value, is called the _pool coin_. This coin can
 
 As detailed in the [Business white paper](https://www.chia.net/whitepaper), the network's emissions schedule is as follows:
 
-| Years   | Last Block   | Last Month<br/>(Approx.) | Block Reward<br/>(total) | Pool<br/>Reward | Farmer<br/>Reward |
-| ------: | -----------: | -----------------------: |------------------------: | --------------: | ----------------: |
+| Years   | Final<br/>Block   | Final Month<br/>(Approx.) | Block Reward<br/>(total) | Pool<br/>Reward | Farmer<br/>Reward |
+| ------: | ------------: | ------------------------: |------------------------: | --------------: | ----------------: |
 | 1 - 3   | `5 045 760`  | March 2024               | 2 XCH                    | 1.75 XCH        | 0.25 XCH          |
 | 4 - 6   | `10 091 520` | March 2027               | 1 XCH                    | 0.785 XCH       | 0.125 XCH         |
 | 7 - 9   | `15 137 280` | March 2030               | 0.5 XCH                  | 0.4375 XCH      | 0.0625 XCH        |
 | 10 - 12 | `20 183 040` | March 2033               | 0.25 XCH                 | 0.21875 XCH     | 0.03125 XCH       |
 | 13 - ∞  | ∞            | ∞                        | 0.125 XCH                | 0.109375 XCH    | 0.015625 XCH      |
+
+Note that the rewards are adjusted according to a block height, not a timestamp. The `Final Block` column is therefore accurate as the last block before the rewards are modified. The months and years are only estimates based on when the block heights are likely to be reached.
