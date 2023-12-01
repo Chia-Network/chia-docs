@@ -28,7 +28,7 @@ For the mainnet installation, we will stick with the default ports and `CHIA_ROO
     1. Alternatively, you can manually edit the ports in `config.yaml`
 2. Run this command:
   ```bash
-  export CHIA_ROOT ~/.chia/testnet
+  export CHIA_ROOT=~/.chia/testnet
   ```
 3. Run this command:
   ```bash
