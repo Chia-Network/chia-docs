@@ -4,6 +4,11 @@ title: CLI Overview
 slug: /cli
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 # CLI Commands Reference
 
 This page should provide additional high-level documentation and explanation beyond just `chia -h`.
@@ -83,7 +88,7 @@ Command: `chia start {service}`
 - Service `node` will start only the full node.
 - Service `farmer` will start the farmer, harvester, a full node, and the wallet.
 - positional arguments:
-  {all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
+  \{all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
 
 **Flags**
 

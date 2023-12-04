@@ -18,10 +18,10 @@ Here is a summary of the instructions:
 
 ```mdx-code-block
 <Tabs groupId="OS"
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux/MacOS', value: 'linux-macos'},
+  defaultValue="windows"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux/MacOS', value: 'linux-macos'},
 ]}>
 <TabItem value="windows">
 ```
@@ -35,8 +35,10 @@ pip install chia-dev-tools
 cdv --version
 ```
 
-  </TabItem>
-  <TabItem value="linux-macos">
+```mdx-code-block
+</TabItem>
+<TabItem value="linux-macos">
+```
 
 ```bash
 mkdir learning
@@ -47,8 +49,10 @@ pip install chia-dev-tools
 cdv --version
 ```
 
+```mdx-code-block
   </TabItem>
 </Tabs>
+```
 
 This will install the Chia Dev Tools within your activated virtual environment. You'll want to make sure this virtual environment is activated before working on Chialisp. You'll see a `(venv)` on the left of your terminal prompt.
 

@@ -18,14 +18,16 @@ jobs:
           apk add python3 make g++ git
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: 'yarn deps'
+      - name: 'npm install and build'
         run: |
-          yarn
-      - name: 'yarn deploy'
+          npm ci
+          npm install
+          npm run build
+      - name: 'npm deploy'
         run: |
           # postBuffer documented at: https://git-scm.com/docs/git-config#Documentation/git-config.txt-httppostBuffer
           # Needed due to commit/push errors over https related to the remote hanging up unexpectedly
           git config --global http.postBuffer 10000000
           git config --global user.name 'ChiaAutomation'
           git config --global user.email 'automation@chia.net'
-          GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} yarn deploy
+          GIT_USER=ChiaAutomation GIT_PASS=${{ github.token }} npm run deploy
