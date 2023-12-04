@@ -78,15 +78,15 @@ Usage: `chia data add_missing_files [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command    | Type    | Required | Description                                                                                                                                  |
-| :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| -i            | --ids           | TEXT    | True     | The hexadecimal store id(s)                                                                                                                  |
-| -o            | --override      | None    | False    | If set, will overwrite files that already exist (default: not set)                                                                           |
-| -n            | --no-override   | None    | False    | If set, will not overwrite files that already exist (default: set)                                                                           |
-| -d            | --directory     | TEXT    | False    | If specified, use a non-default directory to write the files (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`)      |
-| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml                                  |
-| -f            | --fingerprint   | INTEGER | False    | Fingerprint of the wallet to use                                                                                                             |
-| -h            | --help          | None    | False    | Show a help message and exit                                                                                                                 |
+| Short Command | Long Command    | Type    | Required | Description                                                                                                                             |
+| :------------ | :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| -i            | --ids           | TEXT    | True     | The hexadecimal store id(s)                                                                                                             |
+| -o            | --override      | None    | False    | If set, will overwrite files that already exist (default: not set)                                                                      |
+| -n            | --no-override   | None    | False    | If set, will not overwrite files that already exist (default: set)                                                                      |
+| -d            | --directory     | TEXT    | False    | If specified, use a non-default directory to write the files (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`) |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml                             |
+| -f            | --fingerprint   | INTEGER | False    | Fingerprint of the wallet to use                                                                                                        |
+| -h            | --help          | None    | False    | Show a help message and exit                                                                                                            |
 
 <details>
 <summary>Example</summary>
@@ -167,7 +167,6 @@ Options:
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
-
 
 <details>
 <summary>Example</summary>
@@ -360,7 +359,7 @@ Options:
 | -c            | --coin_id       | TEXT    | True     | The coin_id of the mirror to delete (obtainable from the [get_mirrors](#get_mirrors) command)               |
 | -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                    |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
-| -f            | --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                          |
+| -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
 
 <details>
@@ -830,9 +829,9 @@ Commands: `check` (Calls the plugin_info endpoint on all configured plugins)
 
 Options:
 
-| Short Command | Long Command    | Type    | Required | Description                                                                                                 |
-| :------------ | :-------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
-| -h            | --help          | None    | False    | Show a help message and exit                                                                                |
+| Short Command | Long Command | Type | Required | Description                  |
+| :------------ | :----------- | :--- | :------- | :--------------------------- |
+| -h            | --help       | None | False    | Show a help message and exit |
 
 Note that currently `check` is the only sub-command under the `plugins` command. This command is shown in the example.
 
@@ -999,9 +998,10 @@ Options:
 :::info
 
 The `unsubscribe` command may or may not delete any data, depending on which version of Chia you are running:
-* Prior to version 2.1, the command did not delete the .dat files, nor did it delete from the database.
-* As of version 2.1, the command deletes the .dat files, but does not delete from the database.
-* In a future release, the command will also delete from the database.
+
+- Prior to version 2.1, the command did not delete the .dat files, nor did it delete from the database.
+- As of version 2.1, the command deletes the .dat files, but does not delete from the database.
+- In a future release, the command will also delete from the database.
 
 :::
 
@@ -1183,8 +1183,7 @@ Response:
 </details>
 
 <details>
-<summary>Example 6 -- Show a key/value pair that was inserted into the Climate Warehouse
-</summary>
+<summary>Example 6 -- Show a key/value pair that was inserted into the Climate Warehouse</summary>
 
 ```bash
 [{"action":"insert","key":"70726f6a6563747c37353339656336392d636238652d343464362d383832332d653062313135303162643433","value":"7b2263757272656e745265676973747279223a2243756c7469766f222c2272656769737472794f664f726967696e223a2243756c7469766f222c226f726967696e50726f6a6563744964223a224d6163546573743135222c2270726f6772616d223a224d6163546573743135222c2270726f6a6563744964223a224d6163546573743135222c2270726f6a6563744e616d65223a224d6163546573743135222c2270726f6a6563744c696e6b223a224d6163546573743135222c2270726f6a656374446576656c6f706572223a224d6163546573743135222c22736563746f72223a22456e6572677920646973747269627574696f6e222c2270726f6a65637454797065223a224f7a6f6e65204465706c6574696e67205375627374616e636573222c22636f766572656442794e4443223a224f757473696465204e4443222c226e6463496e666f726d6174696f6e223a224d6163546573743135222c2270726f6a656374537461747573223a22436f6d706c65746564222c22756e69744d6574726963223a2274434f3265222c226d6574686f646f6c6f6779223a22426173656c696e65204d6574686f646f6c6f677920666f72206465636f6d706f736974696f6e206f66204e324f2066726f6d206578697374696e672061646970696320616369642070726f64756374696f6e20706c616e7473202d2d2d2056657273696f6e20332e30222c2270726f6a65637454616773223a224d6163546573743135222c2276616c69646174696f6e426f6479223a22436172626f6e20436865636b2028496e646961292050726976617465204c74642e222c2270726f6a65637453746174757344617465223a22323032302d30332d32385430303a30303a30302e3030305a222c2276616c69646174696f6e44617465223a22323032322d30332d30315430303a30303a30302e3030305a222c2277617265686f75736550726f6a6563744964223a2237353339656336392d636238652d343464362d383832332d653062313135303162643433222c2274696d65537461676564223a313634363639343630322c226f7267556964223a2230623039643861653437626665323731366263323532383231333463653661613931616333646364663933363335616338656436626362333031626234636238227d"}]
