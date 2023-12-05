@@ -152,11 +152,11 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
 
 ### Installing from source
 
-To install Chia from source, follow our [installation wiki](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL), which includes instructions for installing on all supported operating systems.
+To install Chia from source, follow our [installation guide](https://docs.chia.net/installation), which includes instructions for installing on all supported operating systems.
 
 ### Switching to testnet
 
-By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our wiki guide](https://github.com/Chia-Network/chia-blockchain/wiki/How-to-Connect-to-the-Testnet).
+By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/testnets).
 
 ## Configuration
 

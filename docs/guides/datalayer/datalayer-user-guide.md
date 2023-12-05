@@ -95,55 +95,14 @@ DataLayer can be activated or deactivated from Chia's reference wallet GUI. Howe
 
 1. **If you installed from source**, be sure you have activated a virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window).
 
-2. **If you installed the packaged installer**, you will need to create an alias to access the `chia` command:
-
-:::info Chia setup
-
-<Tabs
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux', value: 'linux'},
-{label: 'MacOS', value: 'macos'}
-]}>
-<TabItem value="windows">
-
-(Be sure to update &lt;username&gt; and &lt;version&gt; to match the actual folder structure)
-
-```powershell
-Set-Alias -Name chia C:\Users\<username>\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
-```
-
-  </TabItem>
-  <TabItem value="linux">
-
-Alias command is not needed, but you should still run the following:
-
-```bash
-chia init --fix-ssl-permissions
-```
-
-  </TabItem>
-  <TabItem value="macos">
-
-```bash
-alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'
-chia init --fix-ssl-permissions
-```
-
-  </TabItem>
-</Tabs>
-
-:::
-
-3. Run `chia version`. You should be shown the correct version. For example:
+2. Run `chia version`. You should be shown the correct version. For example:
 
 ```powershell
 chia version
 1.8.0
 ```
 
-4. (optional) Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING:
+3. (optional) Run `chia configure --set-log-level INFO`. This will instruct your Chia installation to log more info than it would have with the default level of WARNING:
 
 ```bash
 chia configure --set-log-level INFO
@@ -158,7 +117,7 @@ Restart any running chia services for changes to take effect
 
 (You will restart Chia later in this guide.)
 
-11. Acquire some XCH. 0.01 XCH is a sufficient amount to get started.
+4. Acquire some XCH. 0.01 XCH is a sufficient amount to get started.
 
 :::tip
 
@@ -182,6 +141,7 @@ You are recommended to complete steps 1 and 2 (port forwarding and firewall conf
 
 :::info Firewall setup
 
+```mdx-code-block
 <Tabs
 defaultValue="windows"
 values={[
@@ -190,6 +150,7 @@ values={[
 {label: 'MacOS', value: 'macos'}
 ]}>
 <TabItem value="windows">
+```
 
 From a PowerShell prompt, run:
 
@@ -206,8 +167,10 @@ netsh advfirewall firewall add rule name="allowDataServerOut" dir=out action=all
 
 Each of these commands should give a response of `Ok.` Once you have successfully run the commands, exit the Administrator PowerShell window.
 
+```mdx-code-block
   </TabItem>
   <TabItem value="linux">
+```
 
 Assuming you use iptables, which is installed on most distributions by default, run:
 
@@ -228,8 +191,10 @@ For CentOS, Red Hat, and Fedora, run:
 /sbin/service iptables save
 ```
 
+```mdx-code-block
   </TabItem>
   <TabItem value="macos">
+```
 
 Open /etc/pf.conf in a text editor. You will need administrative privileges. For example:
 
@@ -258,12 +223,36 @@ To verify that the changes are active, run:
 sudo pfctl -sr | grep 8575
 ```
 
+```mdx-code-block
   </TabItem>
 </Tabs>
+```
 
 :::
 
-3. Start the DataLayer services from the GUI:
+3. (optional) If you are going to use a DataLayer as a Service (DLaaS) plugin, you can add custom headers to `~/.chia/mainnet/config/config.yaml`. For example, you might update the config as follows:
+
+```yaml
+data_layer:
+  client_timeout: 15
+  database_path: data_layer/db/data_layer_CHALLENGE.sqlite
+  downloaders:
+    - url: http://localhost:9456
+      headers:
+        x-api-key: your-api-key-here
+    - url: http://localhost:3145
+      headers:
+        x-api-key: your-api-key-here
+...
+  uploaders:
+    - url: https://plugin.datalayer.storage
+      headers:
+        x-api-key: your-api-key-here
+```
+
+For more information on this feature, see the description in the relevant [GitHub issue](https://github.com/Chia-Network/issue-tracker/issues/483).
+
+4. Start the DataLayer services from the GUI:
 
 (For CLI instructions, skip ahead to step 5.)
 
@@ -287,7 +276,7 @@ As shown in the above image:
 
 Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. When Chia starts, it will automatically enable both of the DataLayer services.
 
-4. If the dot to the left of `WALLET` is green (indicating that your wallet is synced), then you may proceed. If it is still orange, then you need to wait for it turn green before continuing.
+5. If the dot to the left of `WALLET` is green (indicating that your wallet is synced), then you may proceed. If it is still orange, then you need to wait for it turn green before continuing.
 
 :::info
 
@@ -304,7 +293,7 @@ Regardless of the status of `FULL NODE`, you may safely proceed with this tutori
 </div>
 <br />
 
-5. Start the DataLayer services from the CLI
+6. Start the DataLayer services from the CLI
 
 (You can safely skip this step if you already started the DataLayer services from the GUI.)
 

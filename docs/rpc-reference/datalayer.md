@@ -459,6 +459,50 @@ Response:
 
 ---
 
+### `clear_pending_roots`
+
+Functionality: Clear pending roots that will not be published, associated data may not be recoverable
+
+Usage: chia rpc data_layer [OPTIONS] clear_pending_roots [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag     | Type | Required | Description              |
+| :------- | :--- | :------- | :----------------------- |
+| store_id | TEXT | True     | The hexadecimal store ID |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc data_layer clear_pending_roots '{"store_id":"2772c8108e19f9fa98ff7bc7d4bafd821319bc90af6b610d086b85f4c21fa816"}'
+```
+
+Response:
+
+```json
+{
+    "root": {
+        "generation": 2,
+        "node_hash": "ab8da7d5adec29fe1d12888fec462d0b18d72cec975599e178f98037cf3b8d13",
+        "status": 1,
+        "tree_id": "2772c8108e19f9fa98ff7bc7d4bafd821319bc90af6b610d086b85f4c21fa816"
+    },
+    "success": true
+}
+```
+
+</details>
+
+---
+
 ### `create_data_store`
 
 Functionality: Create a data store. Triggers a Chia transaction
@@ -2039,9 +2083,12 @@ Request Parameters:
 | :--- | :--- | :------- | :-------------------------------------------------------- |
 | id   | TEXT | True     | The hexadecimal ID of the store from which to unsubscribe |
 
-:::warning important
+:::info
 
-This RPC does not remove any data from the database or the filesystem.
+The `unsubscribe` RPC may or may not delete any data, depending on which version of Chia you are running:
+* Prior to version 2.1, the command did not delete the .dat files, nor did it delete from the database.
+* As of version 2.1, the command deletes the .dat files, but does not delete from the database.
+* In a future release, the command will also delete from the database.
 
 :::
 
@@ -2120,6 +2167,42 @@ Response:
 
 ```json
 Request failed: {'error': 'non-hexadecimal number found in fromhex() arg at position 18699', 'success': False}
+```
+
+</details>
+
+---
+
+### `wallet_log_in`
+
+Functionality: Request that the wallet service be logged in to the specified fingerprint
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag        | Type   | Required | Description                          |
+| :---------- | :----- | :------- | :----------------------------------- |
+| fingerprint | STRING | True     | The fingerprint of the wallet to use |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc data_layer wallet_log_in '{"fingerprint":"3404181419"}'
+```
+
+Response:
+
+```json
+{
+  "success": true
+}
 ```
 
 </details>

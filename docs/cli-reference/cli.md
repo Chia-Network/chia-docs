@@ -4,13 +4,18 @@ title: CLI Overview
 slug: /cli
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 # CLI Commands Reference
 
 This page should provide additional high-level documentation and explanation beyond just `chia -h`.
 
 This is not meant to be comprehensive, because often the `-h` (help) text is clear enough. We recommend fully investigating with the `-h` switch before looking elsewhere.
 
-If want to know what a command's options are, append `-h` at the end to see options and explanations.
+To better understand what a command's options are, append `-h` at the end to see options and explanations.
 
 Some examples:
 
@@ -46,10 +51,16 @@ Then, running the `chia -h` command should work.
 
 There is more than one `chia.exe` binary; the GUI is `Chia.exe` (two of these!) and the CLI is `chia.exe`. They are found in different places. Note the big C versus the little c.
 
-The CLI one is the one referred to in this document, and for version 1.1.3 it can be found at
+The CLI one is the one referred to in this document, and for version 2.1.0 installed for the user it can be found at
 
 ```bash
-~\AppData\Local\chia-blockchain\app-1.1.3\resources\app.asar.unpacked\daemon\chia.exe
+~\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
+```
+
+If installed for all users it can be found at
+
+```bash
+C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
 
 # [init](https://github.com/Chia-Network/chia-blockchain/blob/master/src/cmds/init.py)
@@ -77,7 +88,7 @@ Command: `chia start {service}`
 - Service `node` will start only the full node.
 - Service `farmer` will start the farmer, harvester, a full node, and the wallet.
 - positional arguments:
-  {all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
+  \{all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
 
 **Flags**
 
@@ -85,143 +96,8 @@ Command: `chia start {service}`
 
 # plotters
 
-In 1.2.11 the option to use different plotters was introduced. The plotters supported include [Bladebit](https://github.com/Chia-Network/bladebit), [madMAx](https://github.com/madMAx43v3r/chia-plotter), and the original reference chiapos plotter. Each plotter has slightly different hardware requirements and may need slightly different options specified. Learn more about the alternative plotters in the [Alternative Plotters page](/plotting-software).
-
-## madmax
-
-For details on settings and usage of madMAx please refer to the original [madMAx Github repository](https://github.com/madMAx43v3r/chia-plotter), or run the help command `chia plotters madmax -h`.
-
-```
-usage: chia plotters madmax [-h] [-k SIZE] [-n COUNT] [-r THREADS] [-u BUCKETS] [-v BUCKETS3] [-t TMPDIR] [-2 TMPDIR2] [-d FINALDIR] [-w]
-                   [-p POOL_KEY] [-f FARMERKEY] [-c CONTRACT] [-G] [-K RMULTI2]
-
-Madmax Plotter
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -k SIZE, --size SIZE  K value.
-  -n COUNT, --count COUNT
-                        Number of plots to create (default = 1)
-  -r THREADS, --threads THREADS
-                        Num threads.
-  -u BUCKETS, --buckets BUCKETS
-                        Number of buckets.
-  -v BUCKETS3, --buckets3 BUCKETS3
-                        Number of buckets for phase 3+4 (default = 256)
-  -t TMPDIR, --tmp_dir TMPDIR
-                        Temporary directory 1.
-  -2 TMPDIR2, --tmp_dir2 TMPDIR2
-                        Temporary directory 2.
-  -d FINALDIR, --final_dir FINALDIR
-                        Final directory.
-  -w, --waitforcopy     Wait for copy to start next plot
-  -p POOL_KEY, --pool-key POOL_KEY
-                        Pool Public Key (48 bytes)
-  -f FARMERKEY, --farmerkey FARMERKEY
-                        Farmer Public Key (48 bytes)
-  -c CONTRACT, --contract CONTRACT
-                        Pool Contract Address (64 chars)
-  -G, --tmptoggle       Alternate tmpdir/tmpdir2 (default = false)
-  -K RMULTI2, --rmulti2 RMULTI2
-                        Thread multiplier for P2 (default = 1)
-```
-
-## bladebit
-
-```bash
-chia plotters bladebit -h
-```
-
-```
-usage: chia plotters bladebit [-h] [-r THREADS] [-n COUNT] [-f FARMERKEY] [-p POOL_KEY] [-c CONTRACT] [-i ID] [-w] [-m] [-d FINALDIR] [-v]
-
-Bladebit Plotter
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -r THREADS, --threads THREADS
-                        Num threads.
-  -n COUNT, --count COUNT
-                        Number of plots to create (default = 1)
-  -f FARMERKEY, --farmerkey FARMERKEY
-                        Farmer Public Key (48 bytes)
-  -p POOL_KEY, --pool-key POOL_KEY
-                        Pool Public Key (48 bytes)
-  -c CONTRACT, --contract CONTRACT
-                        Pool Contract Address (64 chars)
-  -i ID, --id ID        Plot id
-  -w, --warmstart       Warm start
-  -m, --nonuma          Disable numa
-  -d FINALDIR, --final_dir FINALDIR
-                        Final directory.
-  -v, --verbose         Set verbose
-```
-
-# plots
-
-## [create](https://github.com/Chia-Network/chia-blockchain/blob/master/src/plotting/create_plots.py)
-
-Command: `chia plots create [add flags and parameters]`
-
-**Flags**
-
-`-k` [size]: Define the size of the plot(s). For a list of k-sizes and creation times on various systems check out: [k-Sizes](/plotting-basics)
-
-`-n` [number of plots]: The number of plots that will be made, in sequence. Once a plot is finished, it will be moved to the final location `-d`, before starting the next plot in the sequence.
-
-`-b` [memory buffer size MiB]: Define memory/RAM usage. Default is 4608 (4.6 GiB). More RAM will marginally increase speed of plot creation. Please bear in mind that this is what is allocated to the plotting algorithm alone. Code, container, libraries etc. will require additional RAM from your system.
-
-`-f` [farmer pk]: This is your "Farmer Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full Chia account access. To find your Chia Farmer Public Key use the following command: `chia keys show`
-
-`-p` [pool pk]: This is your "Pool Public Key". Utilise this when you want to create plots on other machines for which you do not want to give full Chia account access. To find your Chia Pool Public Key use the following command: `chia keys show`
-
-`-c` [pool contract address]: This is your "Pool Contract Address". This replaces your Pool Public Key used previously in OG plots. This is used to point a plot to a plotNFT, which allows you to switch plots from local farming to pooling. To find your PlotNFT Contract Address use the following command: `chia plotnft show`
-
-`-a` [fingerprint]: This is the key Fingerprint used to select both the Farmer and Pool Public Keys to use. Utilize this when you want to select one key out of several in your keychain. To find your Chia Key Fingerprint use the following command: `chia keys show`
-
-`-t` [tmp dir]: Define the temporary directory for plot creation. This is where Plotting Phase 1 (Forward Propagation) and Phase 2 (Backpropagation) both occur. The `-t` dir requires the largest working space: normally about 2.5 times the size of the final plot.
-
-`-2` [tmp dir 2]: Define a secondary temporary directory for plot creation. This is where Plotting Phase 3 (Compression) and Phase 4 (Checkpoints) occur. Depending on your OS, `-2` might default to either `-t` or `-d`. Therefore, if either `-t` or `-d` are running low on space, it's recommended to set `-2` manually. The `-2` dir requires an equal amount of working space as the final size of the plot.
-
-`-d` [final dir]: Define the final location for plot(s). Of course, `-d` should have enough free space as the final size of the plot. This directory is automatically added to your `~/.chia/VERSION/config/config.yaml` file. You can use `chia plots remove -d` to remove a final directory from the configuration.
-
-`-r` [number of threads]: 2 is usually optimal. Multithreading is only in phase 1 currently.
-
-`-u` [number of buckets]: More buckets require less RAM but more random seeks to disk. With spinning disks you want less buckets and with NVMe more buckets. There is no significant benefit from using smaller buckets - just use 128.
-
-`-e` [bitfield plotting]: Using the `-e` flag will disable the bitfield plotting algorithm, and revert back to the older b17 plotting style. After 1.0.4 it's better to use bitfield for most cases (not using `-e`). Before 1.0.4 (obsolete) using the `-e` flag (bitfield disabled) lowers memory requirement, but also writes about 12% more data during creation of the plot. For now, SSD temp space will likely plot faster with `-e` (bitfield back propagation disabled) and for slower spinning disks, i.e SATA 5400/7200 rpm, **not** using `-e` (bitfield enabled) is a better option.
-
-`-x` [exclude final dir]: Skips adding [final dir] to harvester for farming.
-
-### Example Plotting Commands
-
-Example below will create a k32 plot and use 4GB (note - not GiB) of memory.
-
-```bash
-chia plots create -k 32 -b 4000 -t /path/to/temporary/directory -d /path/to/final/directory
-```
-
-Example 2 below will create a k34 plot and use 8GB of memory, 2 threads and 64 buckets
-
-```bash
-chia plots create -k 34 -e -b 8000 -r 2 -u 64 -t /path/to/temporary/directory -d /path/to/final/directory
-```
-
-Example 3 below will create five k32 plots (`-n 5`) one at a time using 4GB `-b 4000` (note - not GiB) of memory and uses a secondary temp directory (`-2 /path/to/secondary/temp/directory`).
-
-```bash
-chia plots create -k 32 -b 4000 -n 5 -t /path/to/temporary/directory -2 /path/to/secondary/temp/directory -d /path/to/final/directory
-```
-
-**Additional Plotting Notes**
-
-- During plotting, Phase 1 (Forward Propagation) and Phase 3 (Compression) tend to take the most time. Therefore, to maximize plotting speed, `-t` and `-2` should be on your fastest drives, and `-d` can be on a slow drive.
-
-- There are 4 major phases to plotting. Phase 1 of plotting can utilize multi-threading. Phases 2-3 do not. You can better optimize your plotting by using the `-r` flag in your command and setting it to greater than 2, e.g,. `-r 2`. Above 4 threads there are diminishing returns. Many Chia users have determined it's more efficient to plot in parallel, rather than series. You can do this by just having multiple plotting instances open but staggering when they start 30min or more.
-
-- It's objectively faster to plot on SSD's instead of HDD's. However, SSD's have significantly more limited lifespans, and early Chia testing has seemed to indicate that plotting on SSD's wears them out pretty quickly. Therefore, many Chia users have decided it's more "green" to plot in parallel on many HDD's at once.
-
-- Plotting is designed to be as efficient as possible. However, to prevent grinding attacks, farmers should not be able to create a plot within the average block interval. That's why the minimum k-size is k32 on mainnet.
+In 2.1.0 the option to use different plotters including compressed plotter was introduced. Each plotter has slightly different hardware requirements and may need slightly different options specified.
+The cli reference for all plotters can be found in the [Plotters CLI Page](/plotters-cli). Learn more about the alternative plotters in the [Alternative Plotters page](/plotting-software).
 
 ## plotnft
 
@@ -250,7 +126,7 @@ To create a Plot NFT, use `chia plotnft create -u https://poolnamehere.com`, ent
 To switch pools, you can use `chia plotnft join`, and to leave a pool (switch to self farming), use `chia plotnft leave`.
 The `show` command can be used to check your current points balance. CLI plotting with `create_plots` is the same as before, but the `-p` is replaced with `-c`, and the pool contract address from `chia plotnft show` should be used here.
 
-## [check](https://github.com/Chia-Network/chia-blockchain/blob/master/src/plotting/check_plots.py)
+## [Plots check](https://github.com/Chia-Network/chia-blockchain/blob/master/src/plotting/check_plots.py)
 
 Command: `chia plots check -n [num checks] -l -g [substring]`
 
@@ -288,12 +164,12 @@ For more detail, you can read about the DiskProver commands in [chiapos](https:/
 **What does the ratio of full proofs vs expected proofs mean?**
 
 - If the ratio is >1, your plot was relatively lucky for this run of challenges.
-- If the ratio is <1, your plot was relatively unlucky.
-  - This shouldn't really concern you unless your ratio is <0.70 # If so, do a more thorough `chia plots check` by increasing your `-n`
+- If the ratio is \<1, your plot was relatively unlucky.
+  - This shouldn't really concern you unless your ratio is \<0.70 # If so, do a more thorough `chia plots check` by increasing your `-n`
 
-The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio << 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be << 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge. "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge".
+The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio \<< 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be \<< 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge. "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge".
 
-**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio << 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
+**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio \<< 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
 
 # db
 
@@ -316,7 +192,40 @@ Command: `chia db upgrade [add flags and parameters]`
 - You do not need to stop your Chia node while performing the upgrade.
 - The new database file will be written to the same folder as the original. The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly_. After the version 2 file has been created, you can stop Chia and move/delete your version 1 file, which will free up enough space to move your version 2 file to the original folder. Finally, update the references in config.yaml to point to your version 2 file.
 - After the upgrade has completed, run `chia start farmer -r`. This will restart your farmer, and begin using your new database. Note that it will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
-- For more information on the new database version, see our [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-new-database').
+- For more information on the new database version, see our [FAQ](https://docs.chia.net/faq/#what-is-the-new-database).
+
+## [backup](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+
+Command: `chia db backup [add flags and parameters]`
+
+**Flags**
+
+`--backup_file [PATH]`: (optional) Specifies the backup file and location. Default will create the backup in the same directory as the database.
+
+`--no_indexes`: (optional) Create backup without indexes.
+
+**Database backup notes**
+
+- This will vacuum (compress) and backup your database and may take several hours to complete. Use at your own leisure.
+- You do not need to stop your Chia node while performing the upgrade.
+- The new database file will be written to the same folder as the original with "vacuumed\_" prepended to the name.
+- To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove "vacuumed\_", and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file.
+
+## [validate](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+
+Command: `chia db validate [add flags and parameters]`
+
+**Flags**
+
+`--db [PATH]`: (optional) Specifies which database file to validate. Default will use the default database and path.
+
+`--validate-blocks`: (optional) Validate consistency of properties of the encoded blocks and block records. Note this will increase the validation time.
+
+**Database validate notes**
+
+- This will validate your database and may take several hours to complete. Use at your own leisure.
+- You do not need to stop your Chia node while performing the upgrade.
+- This will start by processing the latest block and traverse to the first block.
 
 # keys
 
@@ -423,27 +332,41 @@ See our [official NFT reference](/nft-cli).
 
 ---
 
-# Other commands (not yet documented)
+# Other commands (not all are fully documented)
 
 ```sh
 $ chia
 
 Options:
-  --root-path PATH  Config file root  [default: /home/mariano/.chia/mainnet]
-  -h, --help        Show this message and exit.
+  --root-path PATH            Config file root
+                              [default: ~\.chia\mainnet]
+  --keys-root-path PATH       Keyring file root
+                              [default: ~\.chia_keys]
+  --passphrase-file FILENAME  File or descriptor to read the keyring
+                              passphrase from
+  -h, --help                  Show this message and exit.
 
 Commands:
+  completion  Generate shell completion
   configure   Modify configuration
+  data        Manage your data
+  db          Manage the blockchain database
+  dev         Developer commands and tools
   farm        Manage your farm
   init        Create or migrate the configuration
   keys        Manage your keys
   netspace    Estimate total farmed space on the network
+  passphrase  Manage your keyring passphrase
+  peer        Show, or modify peering connections
+  plotnft     Manage your plot NFTs
   plots       Manage your plots
-  run_daemon  Runs Chia daemon
+  plotters    Advanced plotting options
+  rpc         RPC Client
+  run_daemon  Runs chia daemon
   show        Show node information
   start       Start service groups
   stop        Stop services
-  version     Show Chia version
+  version     Show chia version
   wallet      Manage your wallet
 
 ```

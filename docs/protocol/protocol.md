@@ -7,9 +7,9 @@ The Chia protocol is composed of a few different sub-protocols. All protocol mes
 
 The protocol is asynchronous and bidirectional, that is, each end of the connection can send messages, and receive a response, multiple responses, or no response for each message.
 
-1. Harvester protocol (harvester <-> farmer)
-2. Farmer protocol (farmer <-> full node)
-3. Timelord protocol (timelord <-> full node)
-4. Peer protocol (full node <-> full node)
-5. Pool protocol (pool <-> farmer)
-6. Wallet protocol (wallet/light client <-> full node)
+1. Harvester protocol (harvester \<-> farmer)
+2. Farmer protocol (farmer \<-> full node)
+3. Timelord protocol (timelord \<-> full node)
+4. Peer protocol (full node \<-> full node)
+5. Pool protocol (pool \<-> farmer)
+6. Wallet protocol (wallet/light client \<-> full node)

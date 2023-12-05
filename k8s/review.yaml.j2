@@ -13,6 +13,6 @@ ingress:
     - host: {{ REVIEW_SLUG }}.docs.chia.net
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tlsEnabled: true
   tlsSecretName: "chia-docs-star-tls"

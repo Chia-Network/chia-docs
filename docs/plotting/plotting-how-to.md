@@ -8,10 +8,12 @@ slug: /plotting-how-to
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
+
 To create plots, you must have:
-* **A farmer public key** -- created upon creating a new wallet
-* **A pool public key** -- created upon creating a new wallet
-* **A pool contract address** -- created upon creating a new plot NFT
+
+- **A farmer public key** -- created upon creating a new wallet
+- **A pool public key** -- created upon creating a new wallet
+- **A pool contract address** -- created upon creating a new plot NFT
 
 This page will give a basic overview of how to obtain these values. For a detailed description, see the [Beginner's Guide to Farming](/farming-guide).
 
@@ -176,8 +178,9 @@ Open your wallet, click the `Pooling` icon in the lower-left corner, and click `
 <br />
 
 Select either option:
-* `Self pool` -- Select this if you are a solo farmer. Technically, you will be joining a "pool" where you are the only member.
-* `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
+
+- `Self pool` -- Select this if you are a solo farmer. Technically, you will be joining a "pool" where you are the only member.
+- `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 
@@ -222,6 +225,20 @@ If you are unsure which plotter to use, the [Plotting Software](/plotting-softwa
 The [plotters CLI documentation](/plotters-cli) will guide you through using each of the plotters included with Chia. The basic commands to use are as follows:
 
 #### BladeBit CUDA
+
+**Be sure to add `--disk-128` if you have at least 128 GB of RAM, but less than 256 GB.** See the [plotters CLI documentation](/plotters-cli) for more details.
+
+:::info
+
+As of Chia 2.1, plotting with at least 16 GB of RAM (but less than 128 GB) is still experimental. A few notes:
+
+- The `--disk-16` option has been disabled in the Chia 2.1.0 release. It is currently only available from the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit.
+- Plots created with this option on Linux with direct I/O disabled appear to work, but more testing is still needed.
+- Plots created with this option on Windows are more likely to encounter issues.
+- Be sure to check all plots created with this option, as they could be invalid even if the plotter appeared to succeed.
+- **Use `--disk-16` at your own risk!**
+
+:::
 
 ```bash
 chia plotters bladebit cudaplot -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -n <number of plots> --compress <compression level>
@@ -300,7 +317,7 @@ The final directory is where the plot will be copied after it has been created. 
 <br />
 
 You will also need to choose how many plots to create.
-  
+
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/17.png" alt="Number of plots" />
 </div>

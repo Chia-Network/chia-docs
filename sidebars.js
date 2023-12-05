@@ -7,6 +7,7 @@ module.exports = {
         'getting-started/introduction',
         'getting-started/farming-guide',
         'getting-started/installation',
+        'getting-started/testnets',
         'getting-started/using-the-gui',
       ],
     },
@@ -220,6 +221,7 @@ module.exports = {
         'resources/chia-farming-workload',
         'resources/k-sizes',
         'resources/faq',
+        'resources/storage-benchmarks',
       ],
     },
   ],
@@ -311,16 +313,15 @@ module.exports = {
           "These guides will guide you through the process of creating CATs that conform to Chia's CAT standard.",
       },
       items: [
-        'guides/cat/cat-creation-tutorial',
         {
-          type: 'category',
-          label: 'CAT2 Upgrade',
-          items: [
+          'CAT2 Upgrade': [
             'guides/cat/cat2-upgrade/cat2-intro',
             'guides/cat/cat2-upgrade/cat2-snapshot',
             'guides/cat/cat2-upgrade/cat2-issuance',
           ],
         },
+        'guides/cat/cat-creation-tutorial',
+        'guides/cat/cr-cat-tutorial',
       ],
     },
     {
@@ -331,6 +332,7 @@ module.exports = {
       items: [
         'guides/custody/custody-tool-description',
         'guides/custody/custody-tool-user-guide',
+        'guides/custody/prefarm-audit',
       ],
     },
     {
@@ -363,6 +365,16 @@ module.exports = {
         'guides/clawback/clawback-primitive-guide',
       ],
     },
+    {
+      type: 'category',
+      label: 'Offers',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/tutorials/offers-gui',
+        'guides/tutorials/offers-cli',
+      ],
+    },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/verifiable-credentials-guide',
@@ -390,8 +402,40 @@ module.exports = {
         'guides/tutorials/custom-puzzle-lock',
         'guides/tutorials/coin-spend-rpc',
         'guides/tutorials/application-structure',
-        'guides/tutorials/offers-gui',
-        'guides/tutorials/offers-cli',
+      ],
+    },
+  ],
+  academy: [
+    {
+      type: 'category',
+      label: 'Chia Academy Intro',
+      collapsible: true,
+      collapsed: false,
+      link: {
+        type: 'generated-index',
+        slug: '/academy-intro',
+        title: 'Chia Academy Intro',
+        description:
+          'Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain technology. In an age characterized by rapid digital transformation, this institution offers a comprehensive exploration of the Chia blockchain, dissecting its technical intricacies, real-world applications, and the nuances of its secure data handling. The Chia blockchain, created by Bram Cohen, stands out from traditional cryptocurrencies with its unique Proof of Space and Time (PoST) model, which contrasts with the energy-intensive Proof of Work model (PoW) used by Bitcoin. This innovation is notable for its eco-friendly approach to blockchain. As a Chia Academy student, you will dive into the core concepts and functionalities of the Chia blockchain, including:',
+      },
+      items: [
+        'academy/academy-intro/academy-overview',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Chialisp Overview',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/chialisp',
+        title: 'Chialisp Overview',
+        description:
+          'These lessons cover the basics of Chialisp, the smart coin language used on the Chia blockchain.',
+      },
+      items: [
+        'academy/chialisp/chialisp-intro',
       ],
     },
   ],

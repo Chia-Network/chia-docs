@@ -1215,7 +1215,7 @@ Options:
 |               | --paginate          | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
 |               | --no-paginate       | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
 |               | --sort-by-height    | None    | False    | Sort transactions by height [default: disabled]                                                                   |
-|               | --sort-by-relevance | None    | False    | Sort transactions by {confirmed \| height \| time} [default: disabled]                                            |
+|               | --sort-by-relevance | None    | False    | Sort transactions by \{confirmed \| height \| time\} [default: disabled]                                          |
 |               | --reverse           | None    | False    | Reverse the transaction ordering [default: disabled]                                                              |
 |               | --clawback          | None    | False    | Only show clawback transactions [default: disabled]                                                               |
 | -h            | --help              | None    | False    | Show a help message and exit                                                                                      |

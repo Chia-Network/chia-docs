@@ -13,19 +13,6 @@ See also our [GUI tutorial](/guides/offers-gui-tutorial) and our [reference docu
 This tutorial occasionally references a token called "CAT King Cole" (CKC). This token is for demonstration purposes only.
 :::
 
-## Contents:
-
-- [Note about Windows](#note-about-windows)
-- [CLI commands and reference](#cli-commands-and-reference)
-- [Add a new CAT wallet](#add-a-new-cat-wallet)
-- [Create a single-token offer](#create-a-single-token-offer)
-- [Accept a single-token offer](#accept-a-single-token-offer)
-- [Cancel an offer](#cancel-an-offer)
-- [Create a multiple-token offer](#create-a-multiple-token-offer)
-- [Accept a multiple-token offer](#accept-a-multiple-token-offer)
-- [Potential issues](#potential-issues)
-- [Further reading](#further-reading)
-
 ---
 
 ## Note about Windows
@@ -54,151 +41,9 @@ For more info, see [this issue on GitHub](https://github.com/aio-libs/aiohttp/is
 
 Chia's command line interface provides a set of commands to make, take, cancel, and list offers. To use offers on the command line, make sure you are using a virtual environment.
 
-The relevant commands can all be found under the `chia wallet` command:
-
-```bash
-(venv) $ chia wallet -h
-```
-
-### Commands
-
-- [`make_offer`](#make_offer)
-- [`take_offer`](#take_offer)
-- [`cancel_offer`](#cancel_offer)
-- [`get_offers`](#get_offers)
-
-### Reference
-
-### `make_offer`
-
-Functionality: Create an offer of XCH/CATs for XCH/CATs.
-
-Usage: `chia wallet make_offer [OPTIONS]`
-
-Options:
-
-| Short Command |   Long Command    |  Type   | Required | Description                                                                                              |
-| :-----------: | :---------------: | :-----: | :------: | :------------------------------------------------------------------------------------------------------- |
-|      -wp      | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-|      -f       |   --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                       |
-|      -o       |      --offer      |  TEXT   |   True   | A wallet id to offer and the amount to offer (formatted like wallet_id:amount)                           |
-|      -r       |     --request     |  TEXT   |   True   | A wallet id of an asset to receive and the amount you wish to receive (formatted like wallet_id:amount)  |
-|      -p       |    --filepath     |  TEXT   |   True   | The path to write the generated offer file to                                                            |
-|      -m       |       --fee       |  TEXT   |  False   | A fee to add to the offer when it gets taken                                                             |
-|      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                             |
-
----
-
-### **`take_offer`**
-
-Functionality: Examine or take an offer.
-
-Usage: `chia wallet take_offer [OPTIONS] PATH_OR_HEX`
-
-Options:
-
-| Short Command |   Long Command    |  Type   | Required | Description                                                                                              |
-| :-----------: | :---------------: | :-----: | :------: | :------------------------------------------------------------------------------------------------------- |
-|      -wp      | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-|      -f       |   --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                       |
-|      -e       |  --examine-only   |  None   |  False   | Print the summary of the offer file but do not take it                                                   |
-|      -m       |       --fee       |  TEXT   |  False   | The fee to use when pushing the completed offer                                                          |
-|      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                             |
-
----
-
-### **`cancel_offer`**
-
-Functionality: Cancel an existing offer. Must be the offer's Maker.
-
-Usage: `chia wallet cancel_offer [OPTIONS]`
-
-Options:
-
-| Short Command |   Long Command    |  Type   | Required | Description                                                                                              |
-| :-----------: | :---------------: | :-----: | :------: | :------------------------------------------------------------------------------------------------------- |
-|      -wp      | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-|      -f       |   --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                       |
-|      -id      |       --id        |  TEXT   |   True   | The offer ID that you wish to cancel                                                                     |
-|      N/A      |    --insecure     |  None   |  False   | Don't make an on-chain transaction, simply mark the offer as canceled                                    |
-|      -m       |       --fee       |  TEXT   |  False   | The fee to use when canceling the offer securely                                                         |
-|      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                             |
-
----
-
-### **`get_offers`**
-
-Functionality: Get the status of existing offers.
-
-Usage: `chia wallet get_offers [OPTIONS]`
-
-Options:
-
-| Short Command |      Long Command      |  Type   | Required | Description                                                                                              |
-| :-----------: | :--------------------: | :-----: | :------: | :------------------------------------------------------------------------------------------------------- |
-|      -wp      |   --wallet-rpc-port    | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-|      -f       |     --fingerprint      | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                       |
-|      -id      |          --id          |  TEXT   |  False   | The ID of the offer that you wish to examine                                                             |
-|      -p       |       --filepath       |  TEXT   |  False   | The path to rewrite the offer file to (must be used in conjunction with --id)                            |
-|      -em      |  --exclude-my-offers   |  None   |  False   | Exclude your own offers from the output                                                                  |
-|      -et      | --exclude-taken-offers |  None   |  False   | Exclude offers that you've accepted from the output                                                      |
-|      -ic      |  --include-completed   |  None   |  False   | Include offers that have already been confirmed/canceled or failed                                       |
-|      -s       |      --summaries       |  None   |  False   | Show the assets being offered and requested for each offer                                               |
-|      -r       |       --reverse        |  None   |  False   | Reverse the order of the output                                                                          |
-|      -h       |         --help         |  None   |  False   | Show a help message and exit                                                                             |
-
----
-
-## Add a new CAT wallet
-
-For this example, we'll start with a standard Chia wallet.
-
-```bash
-(venv) $ chia wallet show
-Wallet height: 1332820
-Sync status: Synced
-Balances, fingerprint: 123456789
-Wallet ID 1 type STANDARD_WALLET Chia Wallet
-   -Total Balance: 0.2 xch (200000000000 mojo)
-   -Pending Total Balance: 0.2 xch (200000000000 mojo)
-   -Spendable: 0.2 xch (200000000000 mojo)
-```
-
-In order to create an offer, you must have a wallet for any Chia Asset Tokens (CATs) you want to acquire.
-
-The asset IDs for Chia's main CATs are stored in
-
-```
-chia-blockchain/chia/wallet/cc_wallet/cat_constants.py
-```
-
-The asset ID for Stably USD (USDS), which we'll use for this example, is `6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589`.
-
-Here's the command to add a Stably USD wallet:
-
-```bash
-(venv) $ chia wallet add_token -n "Stably USD" -id 6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589
-Successfully added Stably USD with wallet id 2 on key 123456789
-```
-
-To see your new wallet, run `chia wallet show`:
-
-```bash
-(venv) $ chia wallet show
-Wallet height: 1335386
-Sync status: Synced
-Balances, fingerprint: 123456789
-Wallet ID 1 type STANDARD_WALLET Chia Wallet
-   -Total Balance: 0.2 xch (200000000000 mojo)
-   -Pending Total Balance: 0.2 xch (200000000000 mojo)
-   -Spendable: 0.2 xch (200000000000 mojo)
-Wallet ID 2 type COLOURED_COIN Stably USD (Asset ID: 6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589)
-   -Total Balance: 0.0  (0 mojo)
-   -Pending Total Balance: 0.0  (0 mojo)
-   -Spendable: 0.0  (0 mojo)
-```
-
-You should have a Stably USD wallet, in addition to your standard Chia wallet.
+For more info, see our comprehensive Offers references:
+* [CLI](/offer-cli)
+* [RPC](/offer-rpc)
 
 ---
 
@@ -529,6 +374,77 @@ Wallet ID 4 type COLOURED_COIN CAT King Cole (Asset ID: 1121996b75cce3c746369ace
    -Total Balance: 10000.0  (10000 mojo)
    -Pending Total Balance: 10000.0  (10000 mojo)
    -Spendable: 10000.0  (10000 mojo)
+```
+
+---
+
+## Create an expiring Offer (RPC)
+
+In this example, we will offer 0.1 CATs (`Launcher ID: 91aa...004r`) in exchange for 1 TXCH (`Wallet ID: 1`). In addition, we will add an expiry timestamp so that this Offer will expire on Jan. 1, 2024. This is accomplished with the `max_time` flag:
+
+```bash
+chia rpc wallet create_offer_for_ids '{"offer":{"1":1000000000000,"91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d":-100},"fee":10000000,"driver_dict":{},"validate_only":false, "max_time": 1704070800}'
+```
+
+Response:
+
+```bash
+{
+    "offer": "offer1qqr83wcuu2rykcmqvpsxvgqqemhmlaekcenaz02ma6hs5w600dhjlvfjn477nkwz369h88kll73h37fefnwk3qqnz8s0lle0xp70k7vrwmdq0sfnsf7jns276kh4lah7ark8fkc5kmjeav0nkkmyms8jvjqcrgd9jd46wvwh568qn8qlklu95fmvv060rwr0h4c8r55hwwal5y32l7mnr09ckf2gqqtv3a67c0rra0fyx8y6tlt8e2qk6t0m6s0hl0hd0n9kflhnm2lah9ryzn49yre20axxr3ue2a7neg06mvh7zte0uk9jmzekjndhl5v330qtd2f00q0zeeadv2tcljxmdhjxtdh68tdh68tdk68tp57nmrdkmm5dw7srzlhqhn8h04883476dz7x6mny6jzdcga33n4s8n884cxcekcemz6mk3jk4v925m8z9f8s877t4tn3kdx07q7h6w8t0r0krkc5m8j2m0xu9v3q6es4x0uy92c2us9xuwp0cgp3h0rpwdkcn37486waykwls2k94hn7zlllxl5lkeytd9wv2yxurz5x56r4h9sxq6mac5ea7e5k66wa2xcj0an6kqq4eyqpvpellpl7dayem3phq8yrrl4lspgr8urleflu9zs6ypnxm0e77awkul4mh05cu4qwekejhwru43ztcv7wj4yan0lur7dvkyp4ualchadvjdeluy6kpqevlehlqtxcld0mp2dqctl4l5u065h2utealkaxme27yv5knkhxxgrc7fd57trg0mq0alcz7yu76yexf3mfear3424luwmt87cjqkuw9jmjn26h7xz96yrlyufp6rxfyhl3w8rv2remjywkvwewme3paxt2v8yxhhmd6fdhnuwhnslq7957ye20uafl79echvvpkt2w86e06d985ravvym8huef3hvlkmk0enw4fu44ad3ltshuwqrjlu5cdphlpw3pdpy6led8dt7qwyl90s4ffl0vewuhdjwj70al622xtlc54m4d6n7nsxmpz647l405p2qpq7ec6x9np3m4n8e0h74ua3328nznycrm7j3uu300e0adn8m4hulnuu27jpduqfyctxs2pcyckg307epnev6xa4f7hkx20mlk4ellnlhlqs4kreh2rzju0w6rs5ma60mlxs6v8thtv9tl3lynp7m7nxr0eg5nuhkfaxclysmrf35dmrzgq4stk5nvem5aajer9n07m0rjv3z4l38trd0lgdthakh2setfl3d8kmuw933khanfem0hk66l97a7htg6a9vdegaxjgvl65d8j5es3tq4jtscqkwrgm789ux074amv0r3lqdwcv8t72et85hddwm7mkas2hh6464rx60yk6llk79v6v06rcx9gmljh7zkr335dq89q9flazmz67dwctlv4n8npld5lw3s8wkhj7v57h67rj0nsvw8tn3hesq24vhahlsda2ldk847g8caa0h95wfmtwt4lvm96edwklv0uf9m78svj4dz6mgaqv82a2fl8hn8u7f484yy9uzpe67jnmfea7d6ytj08da0jkkz96t2fv4fdc9ht06ulzf86g43y0pdj7nw3dlcjfwl37550wn5vda70zavknx4h5xxnfhjpy9slrkwcpvxt7704adwslkh8lfp76at40dd0ny6zg4dgjwlkrcphtgy7lsx3jccq",
+    "success": true,
+    "trade_record": {
+        "accepted_at_time": null,
+        "coins_of_interest": [
+            {
+                "amount": 1000000000,
+                "parent_coin_info": "0x3b5d9e333b75c20829f4acf07b122fbbb02df7bbeb033de5dee67df9ac201e24",
+                "puzzle_hash": "0x7059f91bb16c1f24ee9677e2aa3bf454efc66316e69682db4f00004b707c63be"
+            },
+            {
+                "amount": 97119866323,
+                "parent_coin_info": "0x0894a86fc98304960b258e2e68e5eebdafe9efff903a13037b5c22e3bb5513b2",
+                "puzzle_hash": "0xdfcfc555683e8ae18a579fc9e1b62c37b26c73c7790948a9f0815c557e985920"
+            }
+        ],
+        "confirmed_at_index": 0,
+        "created_at_time": 1695625850,
+        "is_my_offer": true,
+        "pending": {
+            "91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d": 1000000000,
+            "unknown": 97119866323
+        },
+        "sent": 0,
+        "sent_to": [],
+        "status": "PENDING_ACCEPT",
+        "summary": {
+            "fees": 10000000,
+            "infos": {
+                "91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d": {
+                    "tail": "0x91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d",
+                    "type": "CAT"
+                }
+            },
+            "offered": {
+                "91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d": 100
+            },
+            "requested": {
+                "xch": 1000000000000
+            }
+        },
+        "taken_offer": null,
+        "trade_id": "0x0561bd8ab330bdc1c12231c6ddd75c4cda2d6e1ae5188274b228a77ff35efb35",
+        "valid_times": {
+            "max_blocks_after_created": null,
+            "max_height": null,
+            "max_secs_after_created": null,
+            "max_time": 1704070800,
+            "min_blocks_since_created": null,
+            "min_height": null,
+            "min_secs_since_created": null,
+            "min_time": null
+        }
+    }
+}
 ```
 
 ---

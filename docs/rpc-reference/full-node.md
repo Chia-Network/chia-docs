@@ -1563,9 +1563,9 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                |
-| :----- | :------ | :------- | :----------------------------------------- |
-| height | INTEGER | True     | The height to get (must be <= peak height) |
+| Flag   | Type    | Required | Description                                 |
+| :----- | :------ | :------- | :------------------------------------------ |
+| height | INTEGER | True     | The height to get (must be \<= peak height) |
 
 :::note
 

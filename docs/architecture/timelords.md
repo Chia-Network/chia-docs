@@ -15,10 +15,6 @@ A timelord is required to connect to exactly one full node, typically on the sam
 
 Timelords do not directly earn rewards. Furthermore, only the fastest timelord on the network will broadcast proofs at any given time. Therefore, only one timelord is required to keep the network running, and most farmers will not feel compelled to run one. However, farmers with multi-PiB farms may want to run a timelord, both for redundancy and for protection against temporary local latency issues.
 
-:::info
-Chia network is currently [developing an ASIC timelord](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security). This will add redundancy to the network, while reducing the possibility of an attacker creating their own timelord that is significantly faster than anyone else's.
-:::
-
 If someone controls the fastest timelord in the world, it doesn't give them much of an advantage at winning rewards. However, they could potentially orphan or censor other farmers, depending on how much faster their timelord is.
 
 Furthermore, an attacker with a significantly faster timelord than anyone else could potentially run a long-range attack against the network with less than 42.7% of the total netspace. For security purposes, it is very important to maintain open designs of VDF hardware.
@@ -70,7 +66,11 @@ Once you build the Timelord with `sh install-timelord.sh` in the virtual envir
 
 ## The Future of Timelords
 
-Having an open-source ASIC Timelord that everyone can buy inexpensively is the Company's goal. We had originally expected that we would proceed from general-purpose CPUs to FPGAs and then ASICs. It turns out that squaring in class groups of unknown order at 1024 bit widths is both FPGA hard and slightly ASIC hard. It also was a pleasant surprise that Intel's AVX-512 IFMA was almost perfectly created for this application. As such, we will be fostering ASIC efforts over the medium term.
+In 2023, CNI received its first batch of ASIC timelords. When run as a cluster of three VDFs, these timelords could hit upwards of one million IPS. This was approximately four times the speed of the fastest non-ASIC timelords. After installing several timelords in strategic locations globally, and after thorough testing on private testnets, the company added the ASICs to the biggest public testnet -- testnet10. Finally, after [years of designing](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security) the ASICs and months of testing them, they were activated on mainnet in October 2023.
+
+The next step is to distribute some of the remaining ASIC timelords to a select list of applicants, as detailed in a [blog post](https://www.chia.net/2023/10/26/asic-timelords-faster-than-fast-chia-network/). This process will ensure a high amount of global redundancy on this critical network infrastructure.
+
+Of course, as technology improves, the ASIC design will need to be updated. However, this process is extremely costly, and the current generation is already pushing upon the limits imposed by the laws of physics. We expect the current crop to remain the fastest timelords in the world for years to come.
 
 ## Timelords and Attacks
 

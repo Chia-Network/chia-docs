@@ -134,6 +134,33 @@ print(json.dumps(response, indent=4, sort_keys=True))
 A javascript client can be found here: https://github.com/Chia-Mine/chia-agent.
 There is also another client here: https://github.com/freddiecoleman/chia-client.
 
+#### C# Example (courtesy of [Kryptomine](https://www.nuget.org/profiles/Kryptomine.ch))
+
+A C# Client can be found on Nuget/Github: https://www.nuget.org/packages/Chia-Client-API
+
+```C#
+using System;
+using Chia_Client_API.WalletAPI_NS;
+using CHIA_RPC.General_NS;
+using CHIA_RPC.Wallet_NS.Wallet_NS;
+
+namespace ChiaExamples
+{
+    internal class Program
+    {
+        private static Wallet_RPC_Client Wallet = new Wallet_RPC_Client(reportResponseErrors: false);
+
+        public static void Main()
+        {
+            WalletID_RPC walletID_RPC = new WalletID_RPC(1);
+            GetWalletBalance_Response response = Wallet.GetWalletBalance_Sync(walletID_RPC);
+            Console.WriteLine(response.wallet_balance.confirmed_wallet_balance_in_xch);
+            Console.ReadKey();
+        }
+    }
+}
+```
+
 ## Services
 
 The service RPC APIs are documented in the following sections:

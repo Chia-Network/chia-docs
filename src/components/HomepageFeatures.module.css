@@ -19,7 +19,7 @@
   border-radius: 4px;
   letter-spacing: 0.03em;
   color: #fff;
-  background-color: #3aac59;
+  background-color: #53c371;
   box-sizing: border-box;
   height: 32px;
   line-height: 32px;
@@ -64,12 +64,12 @@ form {
 }
 
 .emailInput:focus {
-  border-color: #3aac59;
+  border-color: #53c371;
   outline: none;
 }
 
 h3 {
-  color: #3aac59;
+  color: #53c371;
 }
 
 label {
@@ -80,7 +80,7 @@ label {
 }
 
 #mc_embed_signup.h3 {
-  color: #3aac59;
+  color: #5ece71;
 }
 
 .mceResponses {
@@ -108,7 +108,7 @@ div.response {
 }
 
 #mce-success-response {
-  color: #3aac59;
+  color: #5ece71;
   display: none;
 }
 

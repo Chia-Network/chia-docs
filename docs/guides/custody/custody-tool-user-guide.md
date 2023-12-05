@@ -39,7 +39,7 @@ The custody tool uses many parameters, each of which is important. You are highl
 ### Requirements
 
 - A synced full node (mainnet, testnet, or [simulator](/guides/simulator-user-guide 'Simulator user guide'))
-- A synced [Chia wallet](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL 'Chia installation instructions')
+- A synced [Chia wallet](https://docs.chia.net/installation 'Chia installation instructions')
 - [Python](https://www.python.org/downloads/ 'Python downloads page') 3.9 or greater **(will not work with 3.8.x)**
 - [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git 'How to install the Git command line tool')
 - [Powershell 6](https://www.howtogeek.com/731885/how-to-check-the-powershell-version-in-windows-10/ 'How to check your Powershell version') or greater (Windows only)
