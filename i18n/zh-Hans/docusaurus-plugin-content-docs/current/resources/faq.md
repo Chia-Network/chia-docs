@@ -196,11 +196,13 @@ For more information on the power utilization of Chia please read through the [C
 ### What is Chia's burn address?
 
 #### Mainnet Burn Address
+
 ```
 xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy
 ```
 
 #### Testnet Burn Address
+
 ```
 txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
 ```
@@ -455,6 +457,7 @@ Search for the `wallet:` section. It should be near the end of the file. Edit th
   - Note 2: It doesn't matter what you enter on the right side of the colon. The argument will be ignored. Just make sure to enter something
 
 Optional (this setting ensures the node is automatically used while starting the client)
+
 - `full_node_peer:` the default `host:` is `localhost`. Change this to the IP address of the trusted full node (local IP if the node is on the same LAN and public IP if it is not).
   - Note 3: The IP address can be found by reviewing your full nodes network connection information (local IP) or by searching "What's my IP" in your favorite search engine.
 
@@ -509,6 +512,7 @@ C:\Users\<YOURUSERNAME>
     └── mainnet/
        └─ db/
 ```
+
 #### macOS and Linux Systems
 
 :::info
@@ -577,7 +581,7 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
     </td>
     
     <td>
-      <NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite
+      \<NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite
     </td>
   </tr>
   
@@ -595,7 +599,7 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
     </td>
     
     <td>
-      <NEW_LOCATION_PATH>/db/peer_table_node.sqlite
+      \<NEW_LOCATION_PATH>/db/peer_table_node.sqlite
     </td>
   </tr>
   
@@ -613,7 +617,7 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
     </td>
     
     <td>
-      <NEW_LOCATION_PATH>/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
+      \<NEW_LOCATION_PATH>/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
     </td>
   </tr>
   
@@ -631,7 +635,7 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
     </td>
     
     <td>
-      <NEW_LOCATION_PATH>/wallet/db/wallet_peers.sqlite
+      \<NEW_LOCATION_PATH>/wallet/db/wallet_peers.sqlite
     </td>
   </tr>
 </table>
@@ -649,6 +653,7 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. There are two method for updating the database to version 2, either using the upgrade cli command or downloading the [official database snapshot torrent](https://www.chia.net/downloads/#database-checkpoint).
 
 #### CLI command:
+
 1. Stop the chia client (this can be done while chia is running but stopping the client saves from any potential issues).
 2. Run the command `chia db upgrade` (you do not need the input or output paths if these are still default). [Upgrade command context](https://docs.chia.net/cli#upgrade).
    - This process will take some time and requires additional space as the v1 db is compacted into the v2 db which leaves the v1 db intact.
@@ -658,6 +663,7 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 5. If all loads up properly (might take ~5-10 minutes to load) then you can safely delete the v1 db found here `~\.chia\mainnet\db\blockchain_v1_mainnet.sqlite`.
 
 #### Official torrent:
+
 1. Download the torrent file from the [official database snapshot torrent](https://www.chia.net/downloads/#database-checkpoint).
 2. Use a torrent client to download the full db. [Bittorrent](https://www.bittorrent.com/) is recommended but any torrent client will work.
 3. Unpack/reassemble the torrent file that was downloaded (on windows one can use [7zip](https://7-zip.org/), Mac and linux have built in tools that work for this).
@@ -704,12 +710,13 @@ This means that your harvester did not respond to one or more signage points in 
 On average there are 9216 signage points per day, or one every 9.375 seconds. If your harvester misses 9 signage points per day, then your farm was operational 99.9% of the time. This would be considered normal, even for a farm with a stable internet connection. If you are consistently missing more than 1% of the signage points, or around 100 per day, then it is probably worth investigating the cause.
 
 Some reasons your harvester might miss more than 100 signage points per day:
-* Your harvester can't handle its required compute load -- typically this will happen if you are farming with compressed plots. However, even with uncompressed plots, if your harvester sometimes requires more than five seconds to perform its lookups, it may miss some signage points. See our [plotting documentation](/plotting-compression) for more info on how determine the maximum number of plots your harvesters can handle.
-* Lost connections to peers -- check your peer count by clicking the `FULL NODE` icon in the upper right corner of your farmer GUI. If you only have a few peers, your local network might have a [UPNP issue](#what-is-this-upnp-error). See our question on [obtaining more peer connections](#why-does-my-node-have-no-connections-how-can-i-get-more-connections).
-* Changed external IP address -- some ISPs will change the IP address of their customers frequently and without warning. This may be happening to your home network. Your ISP might be able to provide you with more info. Unfortunately, if this is happening, often the only recourse is to pay for a dedicated IP address.
-* Changed internal IP address -- your home network might also have changed the IP address of your harvester(s). Your router's settings might provide you with more info.
-* Temporary loss of internet -- you don't need a fast internet connection to run a Chia node. But you do need a stable one. If your local network loses internet connectivity for a few seconds, you might miss a signage point.
-* Bad wifi connection -- we recommend that you run your farmer with a wired internet connection. If you need to use wifi, try to keep your farmer as close to your router as possible. While wifi tends to be consistent enough to run a Chia farm, if your farmer is in a different room than your router, you might occasionally miss a signage point.
+
+- Your harvester can't handle its required compute load -- typically this will happen if you are farming with compressed plots. However, even with uncompressed plots, if your harvester sometimes requires more than five seconds to perform its lookups, it may miss some signage points. See our [plotting documentation](/plotting-compression) for more info on how determine the maximum number of plots your harvesters can handle.
+- Lost connections to peers -- check your peer count by clicking the `FULL NODE` icon in the upper right corner of your farmer GUI. If you only have a few peers, your local network might have a [UPNP issue](#what-is-this-upnp-error). See our question on [obtaining more peer connections](#why-does-my-node-have-no-connections-how-can-i-get-more-connections).
+- Changed external IP address -- some ISPs will change the IP address of their customers frequently and without warning. This may be happening to your home network. Your ISP might be able to provide you with more info. Unfortunately, if this is happening, often the only recourse is to pay for a dedicated IP address.
+- Changed internal IP address -- your home network might also have changed the IP address of your harvester(s). Your router's settings might provide you with more info.
+- Temporary loss of internet -- you don't need a fast internet connection to run a Chia node. But you do need a stable one. If your local network loses internet connectivity for a few seconds, you might miss a signage point.
+- Bad wifi connection -- we recommend that you run your farmer with a wired internet connection. If you need to use wifi, try to keep your farmer as close to your router as possible. While wifi tends to be consistent enough to run a Chia farm, if your farmer is in a different room than your router, you might occasionally miss a signage point.
 
 ### Can I join a farming pool?
 
@@ -729,7 +736,7 @@ No, your plots are virtually unaffected by the passage of time, aside from hardw
 
 ### Is it possible to have a proof but not get a reward?
 
-It is unlikely, but it is possible. There are multiple reasons why this might be the case. The most common is that due to network delay, or drive speed delay (for example using a slow NAS), you missed the time for inclusion into the blockchain, which is 28 seconds. This time is from when the timelords create the signage points, to when the timelords infuse your block. Check to make sure that you are connected and synced to multiple peers, and that your quality lookup are fast (<2 seconds, definitely less than 5). Another reason might be that the signage point where you won did not get included into the blockchain. This can sometimes happen, since timelords may publish signage points that don't end up on chain.
+It is unlikely, but it is possible. There are multiple reasons why this might be the case. The most common is that due to network delay, or drive speed delay (for example using a slow NAS), you missed the time for inclusion into the blockchain, which is 28 seconds. This time is from when the timelords create the signage points, to when the timelords infuse your block. Check to make sure that you are connected and synced to multiple peers, and that your quality lookup are fast (\<2 seconds, definitely less than 5). Another reason might be that the signage point where you won did not get included into the blockchain. This can sometimes happen, since timelords may publish signage points that don't end up on chain.
 
 ## Wallet
 
@@ -991,6 +998,7 @@ To verify that the same address is being reused:
 Identical spend aggregation is a mempool feature that allows multiple different spend bundles to spend the same coin. It is being introduced in version 1.8.2.
 
 There are two requirements for identical spend aggregation to be successful:
+
 1. The puzzle of the coin being spent must not contain any `AGG_SIG_ME` or `AGG_SIG_UNSAFE` conditions
 2. Each of the spend bundles that spend the coin must have identical solutions for spending that particular coin
 
@@ -1418,30 +1426,41 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 Use the instructions below to verify Chia download integrity in a command line. Windows – Verify Checksum
 
 Run the following command:
+
 ```
 certutil -hashfile [location of file] SHA256
 ```
+
 For example:
+
 ```
 certutil -hashfile C:\Users\%USERNAME%\Downloads\Setup-Win64.exe SHA256
 ```
+
 macOS – Verify Checksum
 
 Run the following command:
+
 ```
 shasum -a 256 [location of file]
 ```
+
 For example:
+
 ```
 shasum -a 256 ~/Downloads/Setup-MacOS.dmg
 ```
+
 Linux – Verify Checksum
 
 Run the following command:
+
 ```
 shasum -a 256 [location of file]
 ```
+
 For example:
+
 ```
 shasum -a 256 ~/Downloads/chia-blockchain_1.1.7_amd64.deb
 ```
@@ -1472,6 +1491,7 @@ After installing with the packaged installer, you can run Chia from the command 
 
 :::info Chia setup
 
+```mdx-code-block
 <Tabs
 defaultValue="windows"
 values={[
@@ -1480,21 +1500,26 @@ values={[
 {label: 'MacOS', value: 'macos'}
 ]}>
 <TabItem value="windows">
+```
 
 (Be sure to use powershell and update &lt;username&gt; to match the name of the user that installed Chia.)
 
 If installed just for your user:
+
 ```powershell
 Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe"
 ```
 
 If installed for all users:
+
 ```powershell
 Set-Alias -Name chia "C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe"
 ```
 
+```mdx-code-block
   </TabItem>
   <TabItem value="linux">
+```
 
 Alias command is not needed, but you should still run the following:
 
@@ -1502,16 +1527,20 @@ Alias command is not needed, but you should still run the following:
 chia init --fix-ssl-permissions
 ```
 
+```mdx-code-block
   </TabItem>
   <TabItem value="macos">
+```
 
 ```bash
 alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'
 chia init --fix-ssl-permissions
 ```
 
+```mdx-code-block
   </TabItem>
 </Tabs>
+```
 
 :::
 
@@ -1525,11 +1554,14 @@ chia version
 ### Where are the config and log files stored?
 
 Linux & macOS
+
 ```
 Chia config: ~/.chia/mainnet/config/config.yaml
 Chia logs: ~/.chia/mainnet/log/
 ```
+
 Windows
+
 ```
 Chia config: C:\Users\%USERNAME%\.chia\mainnet\config\config.yaml
 Chia logs: C:\Users\%USERNAME%\.chia\mainnet\log\
@@ -1544,6 +1576,7 @@ You can use the CLI command chia configure --set-log-level INFO to set your log 
 In `config.yaml` you can set the level of detail for your logs.
 
 Look for this section in `config.yaml`. It’s useful to change the logger setting `log_level` from `WARNING` to `INFO` to get the detail needed to troubleshoot.
+
 ```
 logging:&id001
 log_filename: log/debug.log
@@ -1555,13 +1588,14 @@ log_stdout:false
 
 You can run `grep` (Linux, macOS) or `Select-String` (Windows) to search through your logs for relevant information.
 
-
 Linux & macOS
+
 ```
 cat ~/.chia/mainnet/log/debug.log | grep -i 'error'
 ```
 
 Windows
+
 ```
 Get-Content -Path "~\.chia\mainnet\log\debug.log" | Select-String -Pattern "error"
 ```
@@ -1573,16 +1607,20 @@ The time it takes to do a proof challenge should be below 30 seconds. If you see
 Here are some example commands you can use to examine `debug.log` for problems.
 
 Linux & macOS
+
 ```
 tail ~/.chia/mainnet/log/debug.log | grep eligible
 ```
+
 Windows
+
 ```
 Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "eligible"
 Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Found [^0] proof"
 Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Farmed unfinished_block"
 Get-Content -Path "~\.chia\mainnet\log\debug.log" -Wait | Select-String -Pattern "found"
 ```
+
 ### What is the difference between chia and Chia (chia capitalization)?
 
 Chia - depending on context, this can refer to Chia Network the company, the Chia software (Chia client), or the Chia blockchain chia - lowercase chia refers to the Chia token, XCH. Similarly, mojos are lowercase.
