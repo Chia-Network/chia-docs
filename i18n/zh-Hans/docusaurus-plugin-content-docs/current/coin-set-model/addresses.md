@@ -19,13 +19,14 @@ bech32m addresses have several features which make them attractive:
 
 The blockchain consensus code does not operate with addresses; addresses are only used in user facing applications.
 
-Spacescan.io has a handy bi-directional [bech32m <\> puzzle hash converter](https://www.spacescan.io/xch/tools/puzzlehashconvertor).
+Spacescan.io has a handy bi-directional [bech32m \<\> puzzle hash converter](https://www.spacescan.io/xch/tools/puzzlehashconvertor).
 
 # Chia Burn Address
 
 You can send unwanted tokens to this addresses to make them unspendable:
-* Mainnet burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
-* Testnet10 burn address: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
+
+- Mainnet burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
+- Testnet10 burn address: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
 
 :::warning
 Do not send anything to these addresses unless you want it to be inaccessible forever.
