@@ -207,8 +207,10 @@ We will use three separate Chia wallets, which have been created beforehand usin
 
 CR-CATS are issued from the CAT-admin-tool repository. Follow the instructions below to install it for your specific OS:
 
+```mdx-code-block
 <Tabs groupId='os'>
 <TabItem value="mac" label="Linux/macOS">
+```
 
 Clone the repository:
 ```bash
@@ -245,9 +247,11 @@ Install the CAT admin tool:
 pip install .
 ```
 
+```mdx-code-block
 </TabItem>
 
 <TabItem value="windows" label="Windows">
+```
 
 Clone the repository:
 ```bash
@@ -284,9 +288,11 @@ Install the CAT admin tool:
 pip install .
 ```
 
+```mdx-code-block
 </TabItem>
 
 </Tabs>
+```
 
 Your environment should be all set, but let's make sure:
 
