@@ -141,6 +141,7 @@ You are recommended to complete steps 1 and 2 (port forwarding and firewall conf
 
 :::info Firewall setup
 
+```mdx-code-block
 <Tabs
 defaultValue="windows"
 values={[
@@ -149,6 +150,7 @@ values={[
 {label: 'MacOS', value: 'macos'}
 ]}>
 <TabItem value="windows">
+```
 
 From a PowerShell prompt, run:
 
@@ -165,8 +167,10 @@ netsh advfirewall firewall add rule name="allowDataServerOut" dir=out action=all
 
 Each of these commands should give a response of `Ok.` Once you have successfully run the commands, exit the Administrator PowerShell window.
 
+```mdx-code-block
   </TabItem>
   <TabItem value="linux">
+```
 
 Assuming you use iptables, which is installed on most distributions by default, run:
 
@@ -187,8 +191,10 @@ For CentOS, Red Hat, and Fedora, run:
 /sbin/service iptables save
 ```
 
+```mdx-code-block
   </TabItem>
   <TabItem value="macos">
+```
 
 Open /etc/pf.conf in a text editor. You will need administrative privileges. For example:
 
@@ -217,8 +223,10 @@ To verify that the changes are active, run:
 sudo pfctl -sr | grep 8575
 ```
 
+```mdx-code-block
   </TabItem>
 </Tabs>
+```
 
 :::
 
