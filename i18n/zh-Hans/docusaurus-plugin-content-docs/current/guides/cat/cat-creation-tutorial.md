@@ -90,8 +90,10 @@ Once you have a synced wallet and some TXCH, you are ready to run the CAT admin 
 
 Now we will set up the CAT admin tool, which will help you to issue your CATs:
 
+```mdx-code-block
 <Tabs groupId='os'>
 <TabItem value="mac" label="Linux/macOS">
+```
 
 Your Linux installation may not come with Python's development tools installed by default. To be sure that these tools are installed, run:
 
@@ -145,9 +147,11 @@ Install pytest:
 pip install pytest
 ```
 
+```mdx-code-block
 </TabItem>
 
 <TabItem value="windows" label="Windows">
+```
 
 Next, clone the tool's GitHub repository:
 
@@ -197,11 +201,13 @@ pip install pytest
 
 :::note
 You might receive an error such as ERROR: Failed building wheel for CAT-admin-tool. This is likely safe to ignore. As long as you can run cats --help without errors, the tool has been installed properly.
-:::  
+:::
 
+```mdx-code-block
 </TabItem>
 
 </Tabs>
+```
 
 ---
 <br/>
