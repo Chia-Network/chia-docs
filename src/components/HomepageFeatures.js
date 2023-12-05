@@ -34,6 +34,14 @@ const FeatureList = [
       <>Frequently asked questions about Chia Network Inc., the company.</>
     ),
   },
+  {
+    title: 'Chia Discord Server',
+    Svg: require('@site/static/svg/discord-icon.svg').default,
+    dest_url: 'https://discord.gg/chia',
+    description: (
+      <>Chia Official discord server, join for support and to interact with the community.</>
+    ),
+  },
 ];
 
 function Feature({ Svg, title, description, dest_url }) {
