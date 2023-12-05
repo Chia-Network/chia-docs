@@ -12,16 +12,18 @@ import TabItem from '@theme/TabItem';
 ## Cost/time tradeoffs
 
 生成地块需要计算资源，计算资源越多，生成地块时间越快。 With that in mind, it may be tempting to run out and buy the fastest computer you can find for plotting. But first, you should consider a few important points, and answer some related questions:
-* Most computers made within the last decade can be used to create Chia plots.
-  * Do you already own a computer that is not being heavily used?
-* Plotting is a one-time activity.
-  * What will you do with your plotting machine after you have finished plotting?
-* Farming is a long-term endeavor.
-  * If you do buy a plotting computer, will the time saved on plotting justify its cost?
+
+- Most computers made within the last decade can be used to create Chia plots.
+  - Do you already own a computer that is not being heavily used?
+- Plotting is a one-time activity.
+  - What will you do with your plotting machine after you have finished plotting?
+- Farming is a long-term endeavor.
+  - If you do buy a plotting computer, will the time saved on plotting justify its cost?
 
 Everyone needs to decide for themselves what makes the most economic sense. With plotting, often it comes down a simple tradeoff of either:
-* Spend money on a computer, plot faster, and earn rewards sooner, or
-* Don't spend money, plot slower, and earn rewards later
+
+- Spend money on a computer, plot faster, and earn rewards sooner, or
+- Don't spend money, plot slower, and earn rewards later
 
 [ChiaCalculator.com](https://chiacalculator.com/) will help you to understand this tradeoff, along with more nuanced factors. Many farmers find that they will make more money by using the equipment they already own.
 
@@ -32,21 +34,22 @@ When looking for a plotting machine, the main components to consider are the tem
 ## Temporary storage
 
 While a Chia plot is being created, a significant amount of temporary data must be written, either entirely in memory, or mostly on disk (HDD or SSD). There are tradeoffs to using RAM, HDDs, and SSDs for plotting, including durability, speed, and cost:
+
 - **RAM**
-  * Doesn't wear out from Chia plotting
-  * Faster than SSDs; significantly faster than HDDs
-  * Requires a high-end workstation or a server
-  * **Typically only makes economic sense for large farms (>1 PiB)** <br/><br/>
+  - Doesn't wear out from Chia plotting
+  - Faster than SSDs; significantly faster than HDDs
+  - Requires a high-end workstation or a server
+  - **Typically only makes economic sense for large farms (>1 PiB)** <br/><br/>
 - **HDD**
-  * Doesn't wear out from Chia plotting
-  * Significantly slower than RAM and SSDs
-  * Works on most computers
-  * **Cheap and effective for small farms (<100 TiB), but typically too slow for larger farms** <br><br/>
+  - Doesn't wear out from Chia plotting
+  - Significantly slower than RAM and SSDs
+  - Works on most computers
+  - **Cheap and effective for small farms (\<100 TiB), but typically too slow for larger farms** <br/><br/>
 - **SSD**
-  * Does wear out over time; a high-endurance enterprise NVMe SSD is recommended
-  * Slower than RAM, but much faster than HDDs
-  * Works on most computers
-  * **A good option for farms of most sizes, especially if it means you don't have to buy a high-end workstation**
+  - Does wear out over time; a high-endurance enterprise NVMe SSD is recommended
+  - Slower than RAM, but much faster than HDDs
+  - Works on most computers
+  - **A good option for farms of most sizes, especially if it means you don't have to buy a high-end workstation**
 
 ## Processor type
 
@@ -89,17 +92,19 @@ The following hardware and software components are required for creating compres
 ##### 硬件
 
 For BladeBit CUDA plotting:
-* NVIDIA GPU with CUDA capability 5.2 and up
-* At least 8GB of vRAM
-* A 64-bit CPU (Intel x86, AMD x86, or arm64)
-* System RAM
-  * **Experimental** RAM + disk plotting: at least 16 GB (only available with the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit)
-  * Fully supported RAM + disk plotting: at least 128 GB
-  * RAM only: at least 256 GB
+
+- NVIDIA GPU with CUDA capability 5.2 and up
+- At least 8GB of vRAM
+- A 64-bit CPU (Intel x86, AMD x86, or arm64)
+- System RAM
+  - **Experimental** RAM + disk plotting: at least 16 GB (only available with the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit)
+  - Fully supported RAM + disk plotting: at least 128 GB
+  - RAM only: at least 256 GB
 
 For BladeBit Disk plotting:
-* At least 416 GB of system RAM
-* A 64-bit CPU (Intel x86, AMD x86, or arm64)
+
+- At least 416 GB of system RAM
+- A 64-bit CPU (Intel x86, AMD x86, or arm64)
 
 ##### 生成地块软件
 
@@ -110,36 +115,40 @@ For BladeBit Disk plotting:
 A wide range of hardware and software configurations that meet the above requirements could potentially be used for creating compressed plots. The following setups have received the most testing scruitiny. The further your system strays from these setups, the more likely you are to encounter problems. Unfortunately, we may not be able to offer support if your machine does not fall within these parameters.
 
 Operating Systems
-* Ubuntu 20.04.6 LTS
-* Ubuntu 22.04.02 LTS
-* Ubuntu 23.04
-* RHEL 7.4
-* RHEL 8.7
-* RHEL 9.1
-* Windows 10 version 22H2
-* Windows 11 version 21H2
-* Windows 11 version 22H2
-* Windows Server 2022
-* Windows Server 2019 (version 1809)
+
+- Ubuntu 20.04.6 LTS
+- Ubuntu 22.04.02 LTS
+- Ubuntu 23.04
+- RHEL 7.4
+- RHEL 8.7
+- RHEL 9.1
+- Windows 10 version 22H2
+- Windows 11 version 21H2
+- Windows 11 version 22H2
+- Windows Server 2022
+- Windows Server 2019 (version 1809)
 
 Systems
-* Intel x86
-* AMD x86
-* arm64
+
+- Intel x86
+- AMD x86
+- arm64
 
 Platforms
-* Desktop
-* Workstation
-* Server
+
+- Desktop
+- Workstation
+- Server
 
 GPUs
-* 1060
-* 2060
-* 3060 Ti
-* 3090
-* 4060
-* Tesla P4
-* A4000
+
+- 1060
+- 2060
+- 3060 Ti
+- 3090
+- 4060
+- Tesla P4
+- A4000
 
 ## Recommended plotting systems
 
@@ -149,10 +158,10 @@ We'll also list two recommendations here, which assume you will use pre-owned co
 
 ### Budget
 
-* Model: HPE Z440
-* CPU: Xeon v4
-* RAM: 256 GB DDR4 ECC 2133
-* GPU: 2070
+- Model: HPE Z440
+- CPU: Xeon v4
+- RAM: 256 GB DDR4 ECC 2133
+- GPU: 2070
 
 Total Cost: $500-600
 
@@ -162,11 +171,11 @@ Daily plot capability: 40-50 TB
 
 ### Workstation
 
-* Model: Lenovo P620
-* CPU: Threadripper Pro 5945 WX
-* GPU: 3080
-* Bus: PCIe 4.0 x 16
-* RAM: 256 GB DDR4 ECC 3200
+- Model: Lenovo P620
+- CPU: Threadripper Pro 5945 WX
+- GPU: 3080
+- Bus: PCIe 4.0 x 16
+- RAM: 256 GB DDR4 ECC 3200
 
 Total Cost: $1300-1500
 
@@ -177,9 +186,10 @@ Daily plot capacity: 60-95 TB
 ## Uncompressed plotters
 
 Most Chia farmers will want to create compressed plots. However, some will opt for uncompressed plots, including those who:
-* Intend to keep their farm small
-* Are not be primarily motivated by profit
-* Do not want to spend any money on plotting hardware
-* Pay a high amount for electricity, such that creating compressed plots is not economically justifiable
+
+- Intend to keep their farm small
+- Are not be primarily motivated by profit
+- Do not want to spend any money on plotting hardware
+- Pay a high amount for electricity, such that creating compressed plots is not economically justifiable
 
 In these cases, and potentially others, most hardware running the ChiaPoS, madMAx, and BladeBit plotters will also work.
