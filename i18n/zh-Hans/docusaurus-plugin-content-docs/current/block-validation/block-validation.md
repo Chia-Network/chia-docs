@@ -123,7 +123,7 @@ The following sections list all of the required checks to ensure validity of a b
    - The generator ref list length must be less than or equal to MAX_GENERATOR_REF_LIST_SIZE entries
    - The generator ref list must not point to a height >= this block's height
    - If we have a generator reference list, we must have a generator
-   - Check that cost <= MAX_BLOCK_COST_CLVM
+   - Check that cost \<= MAX_BLOCK_COST_CLVM
    - The CLVM program must not return any errors
 9. Check that the correct cost is in the transactions info
 10. Check additions for max coin amount (be careful to check for 64 bit overflows in other languages. This is the max 64 bit unsigned integer)
@@ -132,9 +132,9 @@ The following sections list all of the required checks to ensure validity of a b
 13. Check for duplicate outputs in additions.
 14. Check for duplicate spends inside block.
 15. Check if removals exist and were not previously spent. (coin_db up to the fork point + fork block + this_block). Be careful with forks and with ephemeral coins (added and removed in same block).
-16. Check that the total coin amount for added is <= removed.
-17. Check that the assert fee sum <= fees, and that each reserved fee is non-negative.
-18. Check that the fee amount + farmer reward < maximum coin amount.
+16. Check that the total coin amount for added is \<= removed.
+17. Check that the assert fee sum \<= fees, and that each reserved fee is non-negative.
+18. Check that the fee amount + farmer reward \< maximum coin amount.
 19. Check that the computed fees are equal to the fees in the block header.
 20. Verify that removed coin puzzle_hashes match with calculated puzzle_hashes.
 21. Verify CLVM conditions.
