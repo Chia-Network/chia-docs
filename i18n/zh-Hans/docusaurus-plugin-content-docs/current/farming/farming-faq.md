@@ -37,11 +37,11 @@ _07:02:41.663 harvester src.harvester.harvester : INFO 1 plots were eligible for
 
 ---
 
-_9:32:00.322 full_node full_node_server : INFO <- new_signage_point_or_end_of_sub_slot from peer 68b376e5846696df3510822ea527d0899ac6183f261e8858119235cd24903720 193.91.103.92._-
+_9:32:00.322 full_node full_node_server : INFO \<- new_signage_point_or_end_of_sub_slot from peer 68b376e5846696df3510822ea527d0899ac6183f261e8858119235cd24903720 193.91.103.92._-
 
 ---
 
-_9:32:00.278 farmer farmer_server : INFO <- new_signage_point from peer 62d37909657e183dcd702b66d0e694474f907361f5981eceaba00878e84419c4 127.0.0.1._
+_9:32:00.278 farmer farmer_server : INFO \<- new_signage_point from peer 62d37909657e183dcd702b66d0e694474f907361f5981eceaba00878e84419c4 127.0.0.1._
 
 ---
 
@@ -53,7 +53,7 @@ _09:32:08.063 full_node full_node_server : INFO -> request_signage_point_or_end_
 
 ---
 
-_09:32:08.202 harvester harvester_server : INFO <- new_signage_point_harvester from peer 5bfd9af9bc76270cf76746255db9a435dca56b9adb37f5d1daec71e3c699c807 192.168.0.44._
+_09:32:08.202 harvester harvester_server : INFO \<- new_signage_point_harvester from peer 5bfd9af9bc76270cf76746255db9a435dca56b9adb37f5d1daec71e3c699c807 192.168.0.44._
 
 ---
 
