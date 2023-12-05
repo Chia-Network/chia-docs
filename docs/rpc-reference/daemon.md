@@ -51,30 +51,31 @@ Once wscat is installed, you can open a connection to the daemon. The command to
        {label: 'macOS', value: 'macos'},
      ]}>
      <TabItem value="windows">
-   ```
-   Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.
+```
 
-   ```powershell
-   wscat -n --cert C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.crt --key C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.key -c wss://0.0.0.0:55400
-   ```
+Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+```powershell
+wscat -n --cert C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.crt --key C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.key -c wss://0.0.0.0:55400
+```
 
-   ```bash
-   wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
-   ```
+```mdx-code-block
+</TabItem>
+<TabItem value="linux">
+```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+```bash
+wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
+```
 
-   ```bash
-   wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
-   ```
+```mdx-code-block
+  </TabItem>
+  <TabItem value="macos">
+```
+
+```bash
+wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
+```
 
 ```mdx-code-block
   </TabItem>
@@ -158,13 +159,13 @@ Response:
 
 ```json
 {
-    "services_stopped": [
-        "chia_wallet",
-        "chia_full_node",
-        "chia_farmer",
-        "chia_harvester"
-    ],
-    "success": true
+  "services_stopped": [
+    "chia_wallet",
+    "chia_full_node",
+    "chia_farmer",
+    "chia_harvester"
+  ],
+  "success": true
 }
 ```
 
@@ -198,29 +199,29 @@ Response:
 
 ```json
 {
-    "routes": [
-        "start_service",
-        "start_plotting",
-        "stop_plotting",
-        "stop_service",
-        "is_running",
-        "running_services",
-        "is_keyring_locked",
-        "keyring_status",
-        "unlock_keyring",
-        "validate_keyring_passphrase",
-        "set_keyring_passphrase",
-        "remove_keyring_passphrase",
-        "exit",
-        "register_service",
-        "get_status",
-        "get_version",
-        "get_plotters",
-        "get_routes",
-        "get_wallet_addresses",
-        "get_keys_for_plotting"
-    ],
-    "success": true
+  "routes": [
+    "start_service",
+    "start_plotting",
+    "stop_plotting",
+    "stop_service",
+    "is_running",
+    "running_services",
+    "is_keyring_locked",
+    "keyring_status",
+    "unlock_keyring",
+    "validate_keyring_passphrase",
+    "set_keyring_passphrase",
+    "remove_keyring_passphrase",
+    "exit",
+    "register_service",
+    "get_status",
+    "get_version",
+    "get_plotters",
+    "get_routes",
+    "get_wallet_addresses",
+    "get_keys_for_plotting"
+  ],
+  "success": true
 }
 ```
 
@@ -254,8 +255,8 @@ Response:
 
 ```json
 {
-    "genesis_initialized": true,
-    "success": true
+  "genesis_initialized": true,
+  "success": true
 }
 ```
 
@@ -289,8 +290,8 @@ Response:
 
 ```json
 {
-    "success": true,
-    "version": "2.0.0"
+  "success": true,
+  "version": "2.0.0"
 }
 ```
 
@@ -311,7 +312,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag                    | Type    | Required | Description                                                                                 |
 | :---------------------- | :------ | :------- | :------------------------------------------------------------------------------------------ |
@@ -333,21 +334,21 @@ Response:
 
 ```json
 {
-    "success": true,
-    "wallet_addresses": {
-        "2104826454": [
-            {
-                "address": "xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j",
-                "hd_path": "m/12381/8444/2/0"
-            }
-        ],
-        "3792481086": [
-            {
-                "address": "xch1a99ua7jp6kegtxm74yhk3ggttnat9kcjq8dtt7g2mlkd3rl9an9q5xgt35",
-                "hd_path": "m/12381/8444/2/0"
-            }
-        ]
-    }
+  "success": true,
+  "wallet_addresses": {
+    "2104826454": [
+      {
+        "address": "xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j",
+        "hd_path": "m/12381/8444/2/0"
+      }
+    ],
+    "3792481086": [
+      {
+        "address": "xch1a99ua7jp6kegtxm74yhk3ggttnat9kcjq8dtt7g2mlkd3rl9an9q5xgt35",
+        "hd_path": "m/12381/8444/2/0"
+      }
+    ]
+  }
 }
 ```
 
@@ -366,19 +367,19 @@ Response:
 
 ```json
 {
-    "success": true,
-    "wallet_addresses": {
-        "2104826454": [
-            {
-                "address": "xch12yjgrn6m4eyszt9e3v3thczn2d6jlzvh2zjhnp0ar4kxhll8942sqq4s93",
-                "hd_path": "m/12381/8444/2/100"
-            },
-            {
-                "address": "xch12hqq8g35gprs5r4vz366sf4r0mcvpmcy28a4tcfyda75avur4sas5vzvuj",
-                "hd_path": "m/12381/8444/2/101"
-            }
-        ]
-    }
+  "success": true,
+  "wallet_addresses": {
+    "2104826454": [
+      {
+        "address": "xch12yjgrn6m4eyszt9e3v3thczn2d6jlzvh2zjhnp0ar4kxhll8942sqq4s93",
+        "hd_path": "m/12381/8444/2/100"
+      },
+      {
+        "address": "xch12hqq8g35gprs5r4vz366sf4r0mcvpmcy28a4tcfyda75avur4sas5vzvuj",
+        "hd_path": "m/12381/8444/2/101"
+      }
+    ]
+  }
 }
 ```
 
@@ -412,8 +413,8 @@ Response:
 
 ```json
 {
-    "is_keyring_locked": false,
-    "success": true
+  "is_keyring_locked": false,
+  "success": true
 }
 ```
 
@@ -423,7 +424,7 @@ Response:
 
 ### `is_running`
 
-Functionality: 
+Functionality:
 
 Usage: chia rpc daemon [OPTIONS] is_running [REQUEST]
 
@@ -434,10 +435,10 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
+| Flag    | Type   | Required | Description                                                                                                                                                                                                                                                                                                             |
+| :------ | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | service | STRING | TRUE     | The service to query; valid examples include, but are not limited to, "chia_data_layer", "chia_data_layer_http", "chia_wallet", "chia_full_node", "chia_harvester", "chia_farmer", "chia_introducer", "chia_timelord", "chia_timelord_launcher", "chia_full_node_simulator", "chia_seeder", "chia_crawler", "wallet_ui" |
 
 <details>
@@ -453,9 +454,9 @@ Response:
 
 ```json
 {
-    "is_running": true,
-    "service_name": "chia_wallet",
-    "success": true
+  "is_running": true,
+  "service_name": "chia_wallet",
+  "success": true
 }
 ```
 
@@ -489,16 +490,16 @@ Response:
 
 ```json
 {
-    "can_save_passphrase": true,
-    "can_set_passphrase_hint": true,
-    "is_keyring_locked": false,
-    "passphrase_hint": "",
-    "passphrase_requirements": {
-        "is_optional": true,
-        "min_length": 8
-    },
-    "success": true,
-    "user_passphrase_is_set": true
+  "can_save_passphrase": true,
+  "can_set_passphrase_hint": true,
+  "is_keyring_locked": false,
+  "passphrase_hint": "",
+  "passphrase_requirements": {
+    "is_optional": true,
+    "min_length": 8
+  },
+  "success": true,
+  "user_passphrase_is_set": true
 }
 ```
 
@@ -525,7 +526,6 @@ Request Parameters:
 | :------ | :----- | :------- | :---------------------------------- |
 | service | STRING | TRUE     | The name of the service to register |
 
-
 <details>
 <summary>Example</summary>
 
@@ -537,7 +537,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -558,7 +558,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag               | Type   | Required | Description                                                                       |
 | :----------------- | :----- | :------- | :-------------------------------------------------------------------------------- |
@@ -577,8 +577,8 @@ Response:
 
 ```json
 {
-    "error": null,
-    "success": true
+  "error": null,
+  "success": true
 }
 ```
 
@@ -597,8 +597,8 @@ Response:
 
 ```json
 {
-    "error": "current passphrase is invalid",
-    "success": false
+  "error": "current passphrase is invalid",
+  "success": false
 }
 ```
 
@@ -632,14 +632,14 @@ Response:
 
 ```json
 {
-    "running_services": [
-        "chia_full_node",
-        "chia_farmer",
-        "chia_harvester",
-        "chia_wallet",
-        "wallet_ui"
-    ],
-    "success": true
+  "running_services": [
+    "chia_full_node",
+    "chia_farmer",
+    "chia_harvester",
+    "chia_wallet",
+    "wallet_ui"
+  ],
+  "success": true
 }
 ```
 
@@ -649,7 +649,7 @@ Response:
 
 ### `set_keyring_passphrase`
 
-Functionality: 
+Functionality:
 
 Usage: chia rpc daemon [OPTIONS] set_keyring_passphrase [REQUEST]
 
@@ -680,8 +680,8 @@ Response:
 
 ```json
 {
-    "error": null,
-    "success": true
+  "error": null,
+  "success": true
 }
 ```
 
@@ -702,12 +702,12 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag      | Type    | Required | Description                                                   |
-| :-------- | :------ | :------- | :------------------------------------------------------------ |
-| service   | STRING  | True     | The service to start                                          |
-| testing   | Boolean | False    | If `true`, then test the start_service RPC [Default: `false`] |
+| Flag    | Type    | Required | Description                                                   |
+| :------ | :------ | :------- | :------------------------------------------------------------ |
+| service | STRING  | True     | The service to start                                          |
+| testing | Boolean | False    | If `true`, then test the start_service RPC [Default: `false`] |
 
 <details>
 <summary>Example</summary>
@@ -722,9 +722,9 @@ Response:
 
 ```json
 {
-    "error": null,
-    "service": "chia_wallet",
-    "success": true
+  "error": null,
+  "service": "chia_wallet",
+  "success": true
 }
 ```
 
@@ -745,11 +745,11 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag      | Type    | Required | Description         |
-| :-------- | :------ | :------- | :------------------ |
-| service   | STRING  | True     | The service to stop |
+| Flag    | Type   | Required | Description         |
+| :------ | :----- | :------- | :------------------ |
+| service | STRING | True     | The service to stop |
 
 <details>
 <summary>Example</summary>
@@ -764,8 +764,8 @@ Response:
 
 ```json
 {
-    "service_name": "chia_wallet",
-    "success": true
+  "service_name": "chia_wallet",
+  "success": true
 }
 ```
 
@@ -786,7 +786,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag | Type   | Required | Description                       |
 | :--- | :----- | :------- | :-------------------------------- |
@@ -803,8 +803,8 @@ Response:
 
 ```json
 {
-    "error": null,
-    "success": true
+  "error": null,
+  "success": true
 }
 ```
 
@@ -825,7 +825,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag | Type   | Required | Description      |
 | :--- | :----- | :------- | :--------------- |
@@ -842,8 +842,8 @@ Response:
 
 ```json
 {
-    "error": null,
-    "success": true
+  "error": null,
+  "success": true
 }
 ```
 
@@ -885,13 +885,13 @@ Response:
 
 ```json
 {
-    "keys": {
-        "2104826454": {
-            "farmer_public_key": "82e79f17419e953da439bb9f5c40df4a26c0bbe2c1124178855a24067a6b8f3af8070dade09ca4c75fe3ba100e94fde6",
-            "pool_public_key": "a3ef6951a9351239bdfff028825e4c2f659487eb3d0f25e50da6f1801bca9ab0c2e6a07a7f4e58b82ffd6c75be05e75f"
-        }
-    },
-    "success": true
+  "keys": {
+    "2104826454": {
+      "farmer_public_key": "82e79f17419e953da439bb9f5c40df4a26c0bbe2c1124178855a24067a6b8f3af8070dade09ca4c75fe3ba100e94fde6",
+      "pool_public_key": "a3ef6951a9351239bdfff028825e4c2f659487eb3d0f25e50da6f1801bca9ab0c2e6a07a7f4e58b82ffd6c75be05e75f"
+    }
+  },
+  "success": true
 }
 ```
 
@@ -925,26 +925,26 @@ Response:
 
 ```json
 {
-    "plotters": {
-        "bladebit": {
-            "bladebit_memory_warning": "BladeBit requires at least 416 GiB of RAM to operate",
-            "cuda_support": true,
-            "display_name": "BladeBit Plotter",
-            "installed": true,
-            "version": "3.0.0"
-        },
-        "chiapos": {
-            "display_name": "Chia Proof of Space",
-            "installed": true,
-            "version": "2.0.2"
-        },
-        "madmax": {
-            "display_name": "madMAx Plotter",
-            "installed": true,
-            "version": "1.1.6-2092041"
-        }
+  "plotters": {
+    "bladebit": {
+      "bladebit_memory_warning": "BladeBit requires at least 416 GiB of RAM to operate",
+      "cuda_support": true,
+      "display_name": "BladeBit Plotter",
+      "installed": true,
+      "version": "3.0.0"
     },
-    "success": true
+    "chiapos": {
+      "display_name": "Chia Proof of Space",
+      "installed": true,
+      "version": "2.0.2"
+    },
+    "madmax": {
+      "display_name": "madMAx Plotter",
+      "installed": true,
+      "version": "1.1.6-2092041"
+    }
+  },
+  "success": true
 }
 ```
 
@@ -965,7 +965,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag      | Type    | Required | Description                                                            |
 | :-------- | :------ | :------- | :--------------------------------------------------------------------- |
@@ -979,7 +979,7 @@ Request Parameters:
 | b         | INTEGER | True     | Size of the buffer, in MB                                              |
 | u         | INTEGER | True     | Number of buckets                                                      |
 | e         | BOOLEAN | True     | Set to `true` to disable bitfield                                      |
-| t         | STRING  | True     | The temporary directory where the plot will be created                 | 
+| t         | STRING  | True     | The temporary directory where the plot will be created                 |
 | d         | STRING  | True     | The destination where the plot will be moved after it has been created |
 | x         | BOOLEAN | True     | Set to `true` to skip moving the plot after it has been created        |
 | n         | INTEGER | False    | The number of plots to create [Default: 1]                             |
@@ -989,7 +989,7 @@ Request Parameters:
 
 ### `stop_plotting`
 
-Functionality: 
+Functionality:
 
 Usage: chia rpc daemon [OPTIONS] stop_plotting [REQUEST]
 
@@ -1000,11 +1000,11 @@ Options: Stop creating a plot
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag | Type    | Required | Description                         |
-| :--- | :------ | :------- | :---------------------------------- |
-| id   | STRING  | True     | The ID of the plot to stop creating |
+| Flag | Type   | Required | Description                         |
+| :--- | :----- | :------- | :---------------------------------- |
+| id   | STRING | True     | The ID of the plot to stop creating |
 
 <details>
 <summary>Example</summary>
@@ -1017,7 +1017,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -1040,7 +1040,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag     | Type   | Required | Description                                      |
 | :------- | :----- | :------- | :----------------------------------------------- |
@@ -1048,12 +1048,13 @@ Request Parameters:
 | label    | STRING | False    | The label to assign for this key [Default: None] |
 
 Requirements for the mnemonic word list:
-* Must be input as a single string
-* Order is important
-* Must be delineated by spaces
-* Must be either 12 or 24 words long
-* Each word must be in the [BIP-39 word list](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt)
-* The mnemonic must form a valid private key
+
+- Must be input as a single string
+- Order is important
+- Must be delineated by spaces
+- Must be either 12 or 24 words long
+- Each word must be in the [BIP-39 word list](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt)
+- The mnemonic must form a valid private key
 
 <details>
 <summary>Example 1: success</summary>
@@ -1068,8 +1069,8 @@ Response:
 
 ```json
 {
-    "fingerprint": 1542304282,
-    "success": true
+  "fingerprint": 1542304282,
+  "success": true
 }
 ```
 
@@ -1088,8 +1089,8 @@ Response:
 
 ```json
 {
-    "error": "Invalid mnemonic length",
-    "success": false
+  "error": "Invalid mnemonic length",
+  "success": false
 }
 ```
 
@@ -1108,8 +1109,8 @@ Response:
 
 ```json
 {
-    "error": "'1' is not in the mnemonic dictionary; may be misspelled",
-    "success": false
+  "error": "'1' is not in the mnemonic dictionary; may be misspelled",
+  "success": false
 }
 ```
 
@@ -1128,8 +1129,8 @@ Response:
 
 ```json
 {
-    "error": "Invalid order of mnemonic words",
-    "success": false
+  "error": "Invalid order of mnemonic words",
+  "success": false
 }
 ```
 
@@ -1139,7 +1140,7 @@ Response:
 
 ### `check_keys`
 
-Functionality: 
+Functionality:
 
 Usage: chia rpc daemon [OPTIONS] check_keys [REQUEST]
 
@@ -1150,11 +1151,11 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag      | Type   | Required |
 | :-------- | :----- | :------- |
-| root_path | STRING | True     | 
+| root_path | STRING | True     |
 
 ---
 
@@ -1196,7 +1197,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag        | Type    | Required | Description                                  |
 | :---------- | :------ | :------- | :------------------------------------------- |
@@ -1215,7 +1216,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -1229,11 +1230,11 @@ Response:
 
 ```json
 {
-    "error": "key not found",
-    "error_details": {
-        "fingerprint": 1542304282
-    },
-    "success": false
+  "error": "key not found",
+  "error_details": {
+    "fingerprint": 1542304282
+  },
+  "success": false
 }
 ```
 
@@ -1315,9 +1316,9 @@ Response:
 
 ```json
 {
-    "entropy": "2ebc991b1cd787080ec441c53044f634",
-    "pk": "a2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
-    "success": true
+  "entropy": "2ebc991b1cd787080ec441c53044f634",
+  "pk": "a2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+  "success": true
 }
 ```
 
@@ -1338,10 +1339,10 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag      | Type    | Required | Description                                             |
-| :-------- | :------ | :------- | :------------------------------------------------------ |
+| Flag        | Type    | Required | Description                                             |
+| :---------- | :------ | :------- | :------------------------------------------------------ |
 | fingerprint | INTEGER | False    | The fingerprint to look up [Default: get the first key] |
 
 <details>
@@ -1355,9 +1356,9 @@ Response:
 
 ```json
 {
-    "entropy": "2ebc991b1cd787080ec441c53044f634",
-    "pk": "a2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
-    "success": true
+  "entropy": "2ebc991b1cd787080ec441c53044f634",
+  "pk": "a2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+  "success": true
 }
 ```
 
@@ -1378,7 +1379,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag            | Type    | Required | Description                                                         |
 | :-------------- | :------ | :------- | :------------------------------------------------------------------ |
@@ -1396,13 +1397,13 @@ Response:
 
 ```json
 {
-    "key": {
-        "fingerprint": 1542304282,
-        "label": "Example Key",
-        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
-        "secrets": null
-    },
-    "success": true
+  "key": {
+    "fingerprint": 1542304282,
+    "label": "Example Key",
+    "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+    "secrets": null
+  },
+  "success": true
 }
 ```
 
@@ -1423,7 +1424,7 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
 | Flag            | Type    | Required | Description                                                         |
 | :-------------- | :------ | :------- | :------------------------------------------------------------------ |
@@ -1440,15 +1441,15 @@ Response:
 
 ```json
 {
-    "keys": [
-        {
-            "fingerprint": 1542304282,
-            "label": "Example Key",
-            "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
-            "secrets": null
-        }
-    ],
-    "success": true
+  "keys": [
+    {
+      "fingerprint": 1542304282,
+      "label": "Example Key",
+      "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263",
+      "secrets": null
+    }
+  ],
+  "success": true
 }
 ```
 
@@ -1469,11 +1470,11 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag            | Type    | Required | Description                                   |
-| :-------------- | :------ | :------- | :-------------------------------------------- |
-| fingerprint     | INTEGER | True     | The fingerprint whose key you want to look up |
+| Flag        | Type    | Required | Description                                   |
+| :---------- | :------ | :------- | :-------------------------------------------- |
+| fingerprint | INTEGER | True     | The fingerprint whose key you want to look up |
 
 <details>
 <summary>Example</summary>
@@ -1486,12 +1487,12 @@ Response:
 
 ```json
 {
-    "key": {
-        "fingerprint": 1542304282,
-        "label": "Example Key",
-        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
-    },
-    "success": true
+  "key": {
+    "fingerprint": 1542304282,
+    "label": "Example Key",
+    "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+  },
+  "success": true
 }
 ```
 
@@ -1525,15 +1526,14 @@ Response:
 
 ```json
 {
-    "keys": [
-
-        {
-            "fingerprint": 1542304282,
-            "label": "Example Key",
-            "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
-        }
-    ],
-    "success": true
+  "keys": [
+    {
+      "fingerprint": 1542304282,
+      "label": "Example Key",
+      "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+    }
+  ],
+  "success": true
 }
 ```
 
@@ -1554,12 +1554,12 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag            | Type    | Required | Description                                 |
-| :-------------- | :------ | :------- | :------------------------------------------ |
-| fingerprint     | INTEGER | True     | The fingerprint whose label you want to set |
-| label           | STRING  | True     | The new label                               |
+| Flag        | Type    | Required | Description                                 |
+| :---------- | :------ | :------- | :------------------------------------------ |
+| fingerprint | INTEGER | True     | The fingerprint whose label you want to set |
+| label       | STRING  | True     | The new label                               |
 
 <details>
 <summary>Example</summary>
@@ -1572,7 +1572,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -1586,12 +1586,12 @@ Response:
 
 ```json
 {
-    "key": {
-        "fingerprint": 1542304282,
-        "label": "New Label",
-        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
-    },
-    "success": true
+  "key": {
+    "fingerprint": 1542304282,
+    "label": "New Label",
+    "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+  },
+  "success": true
 }
 ```
 
@@ -1612,11 +1612,11 @@ Options:
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
-Request Parameters: 
+Request Parameters:
 
-| Flag            | Type    | Required | Description                                    |
-| :-------------- | :------ | :------- | :--------------------------------------------- |
-| fingerprint     | INTEGER | True     | The fingerprint whose label you want to delete |
+| Flag        | Type    | Required | Description                                    |
+| :---------- | :------ | :------- | :--------------------------------------------- |
+| fingerprint | INTEGER | True     | The fingerprint whose label you want to delete |
 
 <details>
 <summary>Example</summary>
@@ -1629,7 +1629,7 @@ Response:
 
 ```json
 {
-    "success": true
+  "success": true
 }
 ```
 
@@ -1643,12 +1643,12 @@ Response:
 
 ```json
 {
-    "key": {
-        "fingerprint": 1542304282,
-        "label": null,
-        "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
-    },
-    "success": true
+  "key": {
+    "fingerprint": 1542304282,
+    "label": null,
+    "public_key": "0xa2cc00aff448432ef72e7c60ef4ef6f39ce72748c91f1ec15262821cf7f56bcf0a509c9354ec5104604ebbe276511263"
+  },
+  "success": true
 }
 ```
 

@@ -4,6 +4,11 @@ title: CLI Overview
 slug: /cli
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 # CLI Commands Reference
 
 This page should provide additional high-level documentation and explanation beyond just `chia -h`.
@@ -83,7 +88,7 @@ Command: `chia start {service}`
 - Service `node` will start only the full node.
 - Service `farmer` will start the farmer, harvester, a full node, and the wallet.
 - positional arguments:
-  {all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
+  \{all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
 
 **Flags**
 
@@ -91,7 +96,7 @@ Command: `chia start {service}`
 
 # plotters
 
-In 2.1.0 the option to use different plotters including compressed plotter was introduced. Each plotter has slightly different hardware requirements and may need slightly different options specified. 
+In 2.1.0 the option to use different plotters including compressed plotter was introduced. Each plotter has slightly different hardware requirements and may need slightly different options specified.
 The cli reference for all plotters can be found in the [Plotters CLI Page](/plotters-cli). Learn more about the alternative plotters in the [Alternative Plotters page](/plotting-software).
 
 ## plotnft
@@ -159,12 +164,12 @@ For more detail, you can read about the DiskProver commands in [chiapos](https:/
 **What does the ratio of full proofs vs expected proofs mean?**
 
 - If the ratio is >1, your plot was relatively lucky for this run of challenges.
-- If the ratio is <1, your plot was relatively unlucky.
-  - This shouldn't really concern you unless your ratio is <0.70 # If so, do a more thorough `chia plots check` by increasing your `-n`
+- If the ratio is \<1, your plot was relatively unlucky.
+  - This shouldn't really concern you unless your ratio is \<0.70 # If so, do a more thorough `chia plots check` by increasing your `-n`
 
-The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio << 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be << 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge. "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge".
+The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio \<< 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be \<< 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge. "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge".
 
-**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio << 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
+**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio \<< 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
 
 # db
 
@@ -203,8 +208,8 @@ Command: `chia db backup [add flags and parameters]`
 
 - This will vacuum (compress) and backup your database and may take several hours to complete. Use at your own leisure.
 - You do not need to stop your Chia node while performing the upgrade.
-- The new database file will be written to the same folder as the original with "vacuumed_" prepended to the name.
-- To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove "vacuumed_", and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file.
+- The new database file will be written to the same folder as the original with "vacuumed\_" prepended to the name.
+- To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove "vacuumed\_", and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file.
 
 ## [validate](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
 
@@ -333,9 +338,9 @@ See our [official NFT reference](/nft-cli).
 $ chia
 
 Options:
-  --root-path PATH            Config file root  
+  --root-path PATH            Config file root
                               [default: ~\.chia\mainnet]
-  --keys-root-path PATH       Keyring file root  
+  --keys-root-path PATH       Keyring file root
                               [default: ~\.chia_keys]
   --passphrase-file FILENAME  File or descriptor to read the keyring
                               passphrase from
