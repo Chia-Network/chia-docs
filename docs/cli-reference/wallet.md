@@ -4,10 +4,8 @@ title: Wallet CLI
 slug: /wallet-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document is a reference for Chia's `wallet` CLI commands. The following `wallet` commands are documented on their own dedicated pages:
 

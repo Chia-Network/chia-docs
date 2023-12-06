@@ -3,10 +3,8 @@ slug: /guides/crash-course/introduction
 title: Introduction
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This course is designed to give you an end-to-end introduction to Chia. We'll start off with a foundational understanding of the Chia blockchain. This includes what blockchains are for and what makes Chia different from other options. Once you understand the basics, we'll learn about plotting and farming. Finally, we'll cover many of the DeFi possibilities including fungible tokens (CATs), non-fungible tokens (NFTs), and writing custom coins in Chialisp.
 
@@ -58,7 +56,6 @@ Before we get started using the CLI, we need to be able to issue the `chia` comm
 
 Use this line in Git Bash / terminal:
 
-```mdx-code-block
 <Tabs groupId="OS"
   defaultValue="windows (Git Bash)"
   values={[
@@ -66,25 +63,20 @@ Use this line in Git Bash / terminal:
     {label: 'Linux/MacOS', value: 'nix'},
   ]}>
   <TabItem value="windows (Git Bash)">
-```
 
 ```bash
 ~/AppData/Local/chia-blockchain/app-1.5.1/resources/app.asar.unpacked/daemon/chia.exe
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="nix">
-```
 
 ```bash
 /Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 Response:
 
@@ -135,7 +127,6 @@ Commands:
 
 Using this path each time can get old, so you have the option of creating an alias or environment variable.
 
-```mdx-code-block
 <Tabs groupId="OS"
   defaultValue="windows (Git Bash)"
   values={[
@@ -143,25 +134,20 @@ Using this path each time can get old, so you have the option of creating an ali
     {label: 'Linux/MacOS', value: 'nix'},
   ]}>
   <TabItem value="windows (Git Bash)">
-```
 
 ```bash
 alias chia=~/AppData/Local/Programs/Chia/resources/app.asar.unpacked/daemon/chia.exe
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="nix">
-```
 
 ```bash
 alias chia=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 Now, you can just say:
 

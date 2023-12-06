@@ -3,10 +3,8 @@ title: Dual Farming
 slug: dual-farming-testnet-mainnet
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 :::info
 

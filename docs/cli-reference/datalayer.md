@@ -4,10 +4,8 @@ title: DataLayer CLI
 slug: /datalayer-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the DataLayer.
 

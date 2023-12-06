@@ -3,10 +3,8 @@ slug: /guides/custody-tool-user-guide
 title: Custody Tool User Guide
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 
@@ -61,47 +59,39 @@ cd internal-custody
 
 3. Create a new virtual environment and then activate it:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
 4. Install the custody tool:
 

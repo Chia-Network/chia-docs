@@ -4,10 +4,8 @@ title: Compressed Plot Farming
 slug: /farming-compressed-plots
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 As detailed in the [plotting](/plotting-basics) section, compressed plots are supported for both plotting and harvesting as of Chia version 2.0. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist.
 

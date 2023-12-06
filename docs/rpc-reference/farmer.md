@@ -4,10 +4,8 @@ title: Farmer RPC
 slug: /farmer-rpc
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document provides a comprehensive reference to Chia's Farmer RPC API.
 

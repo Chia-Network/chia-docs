@@ -4,10 +4,8 @@ title: How To Plot
 slug: /plotting-how-to
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 To create plots, you must have:
 
