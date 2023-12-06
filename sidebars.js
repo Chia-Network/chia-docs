@@ -438,5 +438,23 @@ module.exports = {
         'academy/chialisp/chialisp-intro',
       ],
     },
+    {
+      type: 'category',
+      label: 'Blockchain Basics Overview',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/blockchain-basics',
+        title: 'Blockchain Basics Overview',
+        description:
+          'These lessons cover the basics of the Chia Blockchain including consensus, timelords, block formation, the coin-set model, and security.',
+      },
+      items: [
+        'academy/blockchain-basics/consensus-basics',
+        'academy/blockchain-basics/timelord-basics',
+        'academy/blockchain-basics/block-formation-basics',
+      ],
+    },
   ],
 };
