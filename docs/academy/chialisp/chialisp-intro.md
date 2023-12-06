@@ -3,6 +3,8 @@ title: Intro to Chialisp
 slug: /chialisp-intro
 ---
 
+import Runnable from '../../../src/components/Runnable.tsx';
+
 ## Learning objectives
 - **Syntax and Structure**: Understand the basic Chialisp syntax and structure.
 - **Puzzles and Solutions**: Understand the use of puzzles and solutions in Chialisp.
@@ -168,6 +170,31 @@ What is a Chialisp puzzle that performs the following?
 ---
 
 ## Additional resources
+
+### Runnable Chialisp and clvm plugins
+For information on using these plugins please refer to the [academy overview](/academy-overview#runnable-chialisp-and-clvm-plugins)
+
+#### Chialisp plugin
+
+<Runnable flavor='chialisp' input='(10 99)'>
+
+```chialisp
+(mod (arg1 arg2) 
+    (if (> (+ arg1 arg2) 100) "large" "small")
+)
+```
+
+</Runnable>
+
+#### Clvm plugin
+
+<Runnable flavor='clvm' input='(1)'>
+
+```chialisp
+(a (i 2 (q 1 . "true") (q 1 . "false")) 1)
+```
+
+</Runnable>
 
 ### Links
 
