@@ -4,10 +4,8 @@ title: 钱包 RPC
 slug: /wallet-rpc
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 本文档提供了Chia钱包RPC API 的全面参考(不包含DID及NFT，这两者有专门的章节介绍)。
 
