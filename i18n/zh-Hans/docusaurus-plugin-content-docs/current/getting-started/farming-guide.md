@@ -4,10 +4,8 @@ title: Beginner's Guide to Farming
 slug: /farming-guide
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 So you want to be a Chia farmer? You've come to the right place!
 
