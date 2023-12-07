@@ -4,10 +4,8 @@ title: NFT CLI
 slug: /nft-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Reference
 
