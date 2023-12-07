@@ -3,6 +3,8 @@ title: Academy Overview
 slug: /academy-overview
 ---
 
+import Runnable from '../../../src/components/Runnable.tsx';
+
 The lesson pages in Chia Academy are thoughtfully designed to enhance the learning experience for students. Each lesson is organized in a user-friendly and visually appealing manner. The structure typically includes:  
 
 ---
@@ -115,6 +117,57 @@ What is the Chialisp puzzle for squaring a passed argument?
 ---
 
 ## Additional resources
-Links to additional reading materials, videos, or external resources may be provided for learners who wish to delve deeper into the lessons subject.
+Links to additional reading materials, videos, or external resources may be provided for learners who wish to delve deeper into the lessons subject.  
+
+### Runnable Chialisp and clvm plugins
+Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
+Each plugin has a series of components:  
+  
+**Language:** The language of the plugin (Chialisp or clvm) is in the top right corner.  
+**Solution:** The top section is the input or solution.   
+**Puzzle:** The bottom section is the puzzle.  
+**Run:** Each plugin has a play/run button to the right of the language identifier.  
+**Result:** After clicking run, the result of the puzzle appears below the puzzle.  
+**Cost:** After clicking run, the clvm cost of the puzzle is calculated and appears in the bottom right corner.  
+**Errors:** After clicking run, the plugin checks for and provides any errors in place of the result section.  
+
+:::info
+
+The plugins only validate the formatting and completeness of the code; they do not check for any potential exploits.
+
+:::
+
+#### Chialisp plugin
+When clicking run, the puzzle will first be serialized into clvm (similar to the `run` command) then the solution will be passed into the serialized puzzle (similar to the `brun` command).  
+The below example is a Chialisp puzzle that squares the number passed as an argument.  
+  
+Note the number `(5)` is used in the solution top section and the Chialisp formatted puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.  
+
+<Runnable flavor='chialisp' input='(5)'>
+
+```chialisp
+(mod (arg)
+    (defun square (number)
+        (* number number)
+    )
+    (square arg)
+)
+```
+
+</Runnable>
+
+#### Clvm plugin
+When clicking run, the solution will be passed into the serialized puzzle (similar to the `brun` command).  
+The below example uses the serialized puzzle from above that squares the number passed as an argument.  
+  
+Note the number `(5)` is used in the solution top section and the serialized puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.  
+
+<Runnable flavor='clvm' input='(5)'>
+
+```chialisp
+(a (q 2 2 (c 2 (c 5 ()))) (c (q 18 5 5) 1))
+```
+
+</Runnable>
 
 ---
