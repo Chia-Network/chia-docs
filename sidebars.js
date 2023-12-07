@@ -429,20 +429,6 @@ module.exports = {
         description:
           'These lessons cover the basics of Chialisp, the smart coin language used on the Chia blockchain.',
       },
-      items: ['academy/chialisp/chialisp-intro'],
-    },
-    {
-      type: 'category',
-      label: 'Chialisp Overview',
-      collapsible: true,
-      collapsed: true,
-      link: {
-        type: 'generated-index',
-        slug: '/academy/chialisp',
-        title: 'Chialisp Overview',
-        description:
-          'These lessons cover the basics of Chialisp, the smart coin language used on the Chia blockchain.',
-      },
       items: [
         'academy/chialisp/chialisp-intro',
         'academy/chialisp/chialisp-smart-coin',
