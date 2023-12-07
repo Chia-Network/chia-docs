@@ -4,10 +4,8 @@ title: CAT Admin CLI
 slug: /cat-admin-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 
