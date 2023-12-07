@@ -3,10 +3,8 @@ slug: /guides/datalayer-permissions
 title: DataLayer Permissions
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 

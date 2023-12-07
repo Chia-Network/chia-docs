@@ -4,10 +4,8 @@ title: Offer CLI
 slug: /offer-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 <details>
   <summary>Note about Windows command escaping</summary>

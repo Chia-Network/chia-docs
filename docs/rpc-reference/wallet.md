@@ -4,10 +4,8 @@ title: Wallet RPC
 slug: /wallet-rpc
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document provides a comprehensive reference to Chia's Wallet RPC API (minus the DID and NFT RPCs, which are documented on their own dedicated pages).
 

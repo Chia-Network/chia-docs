@@ -3,10 +3,8 @@ slug: /guides/crash-course/intro-to-chialisp
 title: Chialisp
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 For this section of the course, you will learn how to set up your development environment, write Chialisp code, and execute it on the command-line.
 
@@ -26,15 +24,13 @@ To get started with Chialisp, you will first want to [install Chia Dev Tools](ht
 
 Here is a summary of the instructions:
 
-```mdx-code-block
 <Tabs groupId="OS"
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux/MacOS', value: 'linux-macos'},
-]}>
-<TabItem value="windows">
-```
+  defaultValue="windows"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux/MacOS', value: 'linux-macos'},
+  ]}>
+  <TabItem value="windows">
 
 ```bash
 mkdir learning
@@ -45,10 +41,8 @@ pip install chia-dev-tools
 cdv --version
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="linux-macos">
-```
 
 ```bash
 mkdir learning
@@ -59,10 +53,8 @@ pip install chia-dev-tools
 cdv --version
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 This will install the Chia Dev Tools within your activated virtual environment. You'll want to make sure this virtual environment is activated before working on Chialisp. You'll see a `(venv)` on the left of your terminal prompt.
 
