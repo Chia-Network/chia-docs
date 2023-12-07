@@ -4,10 +4,8 @@ sidebar_label: 2. Snapshot Generation
 slug: /guides/cat2-snapshot
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 :::info
 CAT1 will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
@@ -36,21 +34,21 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 
 1. Open a terminal window and ensure you have direct access to the `chia` command by doing one of the following:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    1. If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
-   :::caution Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
+   :::caution
+   Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
+
 :::
 
    ```powershell
@@ -63,10 +61,8 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    .\venv\Scripts\Activate.ps1
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    1. If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
 
@@ -76,10 +72,8 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    . ./activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    1. If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
@@ -93,10 +87,8 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    . ./activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
 2. Run the following command:
 
@@ -124,17 +116,15 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 
    In order to set these variables, you are recommended to put them into a file called `.env` at the root of the `CAT-addresses` project. The tool will automatically read the variables in this file. For example:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    ```bash title=".env"
    FULL_NODE_HOSTNAME=localhost
@@ -143,10 +133,8 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    TARGET_HEIGHT=2311760
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash title=".env"
    FULL_NODE_HOSTNAME=localhost
@@ -155,10 +143,8 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    TARGET_HEIGHT=2311760
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash title=".env"
    FULL_NODE_HOSTNAME=localhost
@@ -167,51 +153,41 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    TARGET_HEIGHT=2311760
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
 5. Install dependencies:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    ```powershell
    python setup.py install
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="linux">
-   ```
+  </TabItem>
+<TabItem value="linux">
 
    ```bash
    python3 setup.py install
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 setup.py install
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    :::note The result may contain several warnings such as `WARNING: The wheel package is not available.` These can be safely ignored.
 :::
@@ -231,44 +207,36 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 
 7. Set up the database:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    ```powershell
    python setup_database.py
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    python3 setup_database.py
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 setup_database.py
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    :::tip If you receive an error message such as `ModuleNotFoundError: No module named 'chia'`, then make sure you can run the `chia` command from this directory and try again.
 :::
@@ -282,44 +250,36 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 
 8. Start the snapshot generator:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    ```powershell
    python start.py
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    python3 start.py
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 start.py
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    This command will show its progress according to the block height. If you used the recommended range for `START_HEIGHT` and `TARGET_HEIGHT` in your `.env` file, then this command could take over 40 hours to complete. The reason it takes so long is it needs to process each block, one at a time. If multiple blocks were done in parallel, then there would be a chance that the results would not be accurate. By processing one block at a time, the tool will return the correct results for the range provided.
 
@@ -346,74 +306,60 @@ Once you have populated the database with a snapshot, you can run a data export.
 
 3. Generate a CSV file containing all inner puzzle hashes and amounts for your CAT:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    ```powershell
    python export.py --output-dir <OUTPUT-DIR>\<PREFIX> --tail-hash <TAIL-HASH> --coins
    ```
 
-   ```mdx-code-block
-   <details>
-     <summary>Example command</summary>
-   ```
+    <details>
+      <summary>Example command</summary>
 
    ```powershell
    python export.py --output-dir C:\Users\Username\Chia\CAT-addresses\results\CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
    ```
 
-   ```mdx-code-block
-   </details>
-   </TabItem>
-   <TabItem value="linux">
-   ```
+    </details>
+  </TabItem>
+<TabItem value="linux">
 
    ```bash
    python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
    ```
 
-   ```mdx-code-block
-   <details>
-     <summary>Example command</summary>
-   ```
+    <details>
+      <summary>Example command</summary>
 
    ```bash
    python3 export.py --output-dir /home/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
    ```
 
-   ```mdx-code-block
-   </details>
-     </TabItem>
-     <TabItem value="macos">
-   ```
+    </details>
+  </TabItem>
+<TabItem value="macos">
 
    ```bash
    python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
    ```
 
-   ```mdx-code-block
-   <details>
-     <summary>Example command</summary>
-   ```
+    <details>
+      <summary>Example command</summary>
 
    ```bash
    python3 export.py --output-dir /Users/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
    ```
 
-   ```mdx-code-block
-   </details>
-     </TabItem>
-   </Tabs>
-   ```
+    </details>
+  </TabItem>
+</Tabs>
 
    :::info
 
@@ -463,60 +409,50 @@ dos2unix: converting file <CSV file> to Unix format...
 
 **Optional:** If the application exits partway through a run, it will only have imported some blocks at a particular height. You can delete the records from the database at and above a provided height by running the following command:
 
-```mdx-code-block
 <Tabs
   defaultValue="windows"
   groupId="os"
   values={[
     {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'macOS', value: 'macos'},
-  ]}>
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
   <TabItem value="windows">
-```
 
 ```powershell
 python clean.py --height <BLOCK-HEIGHT>
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="linux">
-```
+  </TabItem>
+  <TabItem value="linux">
 
 ```bash
 python3 clean.py --height <BLOCK-HEIGHT>
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="macos">
-```
 
 ```bash
 python3 clean.py --height <BLOCK-HEIGHT>
 ```
 
-```mdx-code-block
   </TabItem>
-</Tabs>
-```
+  </Tabs>
 
 ## Export Data for all CATs {#export-all}
 
 **Optional:** If you wish to obtain the balance of all CATs on the Chia blockchain, you can run `export-py` with various different options:
 
-```mdx-code-block
 <Tabs
   defaultValue="windows"
   groupId="os"
   values={[
     {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'macOS', value: 'macos'},
-  ]}>
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
   <TabItem value="windows">
-```
 
 The `--tail-hash` flag can be dropped, resulting in an output of a single CSV file containing every puzzle hash amount for every CAT on the Chia blockchain:
 
@@ -538,10 +474,8 @@ python export.py --output-dir <OUTPUT-DIR>\<PREFIX> --explode
 
 You can also use the `--explode` and `--coins` flags together, which will generate individual CSV files that also contain coin info.
 
-```mdx-code-block
-</TabItem>
-<TabItem value="linux">
-```
+  </TabItem>
+  <TabItem value="linux">
 
 The `--tail-hash` flag can be dropped, resulting in an output of a single CSV file containing every puzzle hash amount for every CAT on the Chia blockchain:
 
@@ -563,10 +497,8 @@ python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --explode
 
 You can also use the `--explode` and `--coins` flags together, which will generate individual CSV files that also contain coin info.
 
-```mdx-code-block
   </TabItem>
   <TabItem value="macos">
-```
 
 The `--tail-hash` flag can be dropped, resulting in an output of a single CSV file containing every puzzle hash amount for every CAT on the Chia blockchain:
 
@@ -588,7 +520,5 @@ python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --explode
 
 You can also use the `--explode` and `--coins` flags together, which will generate individual CSV files that also contain coin info.
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
