@@ -3,10 +3,8 @@ slug: /guides/cr-CAT-tutorial
 title: CR-CAT Creation Tutorial
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 
@@ -207,10 +205,14 @@ We will use three separate Chia wallets, which have been created beforehand usin
 
 CR-CATS are issued from the CAT-admin-tool repository. Follow the instructions below to install it for your specific OS:
 
-```mdx-code-block
-<Tabs groupId='os'>
-<TabItem value="mac" label="Linux/macOS">
-```
+<Tabs
+  defaultValue="mac"
+  groupId="os"
+  values={[
+    {label: 'Linux/macOS', value: 'mac'},
+ {label: 'Windows', value: 'windows'},
+ ]}>
+  <TabItem value="mac">
 
 Clone the repository:
 ```bash
@@ -247,11 +249,8 @@ Install the CAT admin tool:
 pip install .
 ```
 
-```mdx-code-block
-</TabItem>
-
-<TabItem value="windows" label="Windows">
-```
+  </TabItem>
+  <TabItem value="windows">
 
 Clone the repository:
 ```bash
@@ -288,11 +287,8 @@ Install the CAT admin tool:
 pip install .
 ```
 
-```mdx-code-block
-</TabItem>
-
+  </TabItem>
 </Tabs>
-```
 
 Your environment should be all set, but let's make sure:
 
