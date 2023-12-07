@@ -3,10 +3,8 @@ slug: /guides/clawback-primitive-guide
 title: 可撤回交易原语使用指南
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 
@@ -86,47 +84,39 @@ The clawback primitive is included in the `Chia-Network` organization's `chia-cl
 
 3. Create and activate a virtual environment:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+  </Tabs>
 
 4. Install the clawback primitive:
 
