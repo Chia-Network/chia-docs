@@ -4,10 +4,8 @@ title: Harvester RPC
 slug: /harvester-rpc
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document provides a comprehensive reference to Chia's Harvester RPC API.
 
