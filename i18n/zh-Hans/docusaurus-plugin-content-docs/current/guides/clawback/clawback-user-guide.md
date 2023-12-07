@@ -3,10 +3,8 @@ slug: /guides/clawback-user-guide
 title: Clawback User Guide
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 
