@@ -3,10 +3,8 @@ slug: /guides/nft-intro
 title: NFT Introduction
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## About This Document
 
@@ -118,15 +116,13 @@ After the installer has downloaded, execute it and Chia will install automatical
 :::info
 If the `chia` command isn't already in your system's path, you can create an alias:
 
-```mdx-code-block
 <Tabs
   defaultValue="windows"
   values={[
     {label: 'Windows', value: 'windows'},
-    {label: 'Linux/MacOS', value: 'nix'},
-  ]}>
+ {label: 'Linux/MacOS', value: 'nix'},
+ ]}>
   <TabItem value="windows">
-```
 
 Be sure to replace `<username>` and `<version>` with the actual folder names.
 
@@ -134,19 +130,15 @@ Be sure to replace `<username>` and `<version>` with the actual folder names.
 Set-Alias -Name chia "C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe"
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="nix">
-```
 
 ```bash
 alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia"
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 :::
 
