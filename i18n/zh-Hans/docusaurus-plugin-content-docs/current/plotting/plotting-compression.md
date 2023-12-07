@@ -4,10 +4,8 @@ title: Choosing a compression level
 slug: /plotting-compression
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 If you opt to create compressed plots, you will need to decide on the level of compression.
 
