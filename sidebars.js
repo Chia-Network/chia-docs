@@ -445,6 +445,28 @@ module.exports = {
       },
       items: [
         'academy/chialisp/chialisp-intro',
+        'academy/chialisp/chialisp-smart-coin',
+        'academy/chialisp/chialisp-signatures',
+        'academy/chialisp/chialisp-inner-puzzle',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Plotting & Farming',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/plotting-farming',
+        title: 'Plotting & Farming',
+        description:
+          'These lessons cover the basics of Plotting and Farming. How challenges are distributed and processed, and how pooling and plot filters benefit the network. At the end, we include a tutorial on creating your first plot.',
+      },
+      items: [
+        'academy/plotting-farming/farming-overview',
+        'academy/plotting-farming/challenges-plot-filters',
+        'academy/plotting-farming/pools',
+        'academy/plotting-farming/first-plot',
       ],
     },
   ],

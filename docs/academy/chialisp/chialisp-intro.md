@@ -7,7 +7,7 @@ slug: /chialisp-intro
 
 - **Syntax and Structure**: Understand the basic Chialisp syntax and structure.
 - **Puzzles and Solutions**: Understand the use of puzzles and solutions in Chialisp.
-- **Development Environment**: Setup and configure the Chialisp development environment. test
+- **Development Environment**: Setup and configure the Chialisp development environment.
 
 ---
 
