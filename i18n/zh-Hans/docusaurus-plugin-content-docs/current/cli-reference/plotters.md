@@ -4,10 +4,8 @@ title: Plotters
 slug: /plotters-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document is a comprehensive listing of CLI commands for creating plots from within Chia.
 
