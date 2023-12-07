@@ -4,10 +4,8 @@ title: Simulator CLI Reference
 slug: /simulator-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 
