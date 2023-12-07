@@ -4,10 +4,8 @@ title: DID CLI
 slug: /did-cli
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document is a comprehensive listing of CLI commands for interacting with Chia DIDs.
 
