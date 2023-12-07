@@ -3,10 +3,8 @@ slug: /guides/nft-bulk-mint
 title: NFT Bulk Minting Tool
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document will show you how to use Chia's NFT bulk minting tool.
 
@@ -86,47 +84,39 @@ cd chia-nft-minting-tool
 
 3. Create a new virtual environment and then activate it:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux', value: 'linux'},
+ {label: 'macOS', value: 'macos'},
+ ]}>
+  <TabItem value="windows">
 
    ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
 4. Install the bulk minting tool. This will install a copy of Chia in your virtual environment, as well as all other dependencies for the tool:
 
