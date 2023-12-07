@@ -4,10 +4,8 @@ title: Plotting Hardware
 slug: /plotting-hardware
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Cost/time tradeoffs
 
