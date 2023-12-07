@@ -3,10 +3,8 @@ title: Installation Details
 slug: /installation
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 :::info
 
@@ -49,18 +47,16 @@ If the computer or hard drives go to sleep during the plotting process, it will 
 ### Using the CLI
 _This method is intended for linux environments_
 
-```mdx-code-block
 <Tabs
   defaultValue="apt"
   groupId="install"
   values={[
     {label: 'APT', value: 'apt'},
-    {label: 'YUM', value: 'yum'},
-    {label: 'DNF', value: 'dnf'},
-    {label: 'PIP', value: 'pip'},
-]}>
-<TabItem value="apt">
-```
+ {label: 'YUM', value: 'yum'},
+ {label: 'DNF', value: 'dnf'},
+ {label: 'PIP', value: 'pip'},
+ ]}>
+  <TabItem value="apt">
 
 ```bash
 # Install packages
@@ -80,10 +76,8 @@ sudo apt-get install chia-blockchain
 # Use chia-blockchain-cli instead for CLI only
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="yum">
-```
+  </TabItem>
+  <TabItem value="yum">
 
 ```bash
 # Install packages
@@ -96,10 +90,8 @@ sudo yum install chia-blockchain
 # Use chia-blockchain-cli for CLI only
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="dnf">
-```
+  </TabItem>
+  <TabItem value="dnf">
 
 ```bash
 # Install packages
@@ -112,14 +104,12 @@ sudo dnf install chia-blockchain
 # Use chia-blockchain-cli for CLI only
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="pip">
-```
+  </TabItem>
+  <TabItem value="pip">
 
 :::note
 Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
+:::  
 
 ```bash
 # Create virtual environment
@@ -138,27 +128,23 @@ pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniu
 
 Chia strives to provide [binary wheels](https://pythonwheels.com) for modern systems. If your system does not have binary wheels, you may need to install development tools to build some Python extensions from source. If you're attempting to install from source, setting the environment variable `BUILD_VDF_CLIENT` to `N` will skip trying to build Timelord components that aren't very cross platform, e.g. `export BUILD_VDF_CLIENT=N`.
 
-```mdx-code-block
-</TabItem>
+  </TabItem>
 </Tabs>
-```
 
 ### From Source
 _This method is primarily intended for contributing to the Chia codebase_
-```mdx-code-block
 <Tabs
   defaultValue="linux-macos"
   groupId="source"
   values={[
     {label: 'Linux/MacOS', value: 'linux-macos'},
-    {label: 'Windows', value: 'windows'},
+ {label: 'Windows', value: 'windows'},
 ]}>
 <TabItem value="linux-macos">
-```
 
 :::note
 Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
+:::  
 
 ```bash
 # Download chia-blockchain
@@ -213,14 +199,12 @@ sh install.sh
 chia init
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="windows">
-```
+  </TabItem>
+  <TabItem value="windows">
 
 :::note
 Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
+:::  
 
 ```bash
 # Download chia-blockchain
@@ -275,15 +259,8 @@ git status
 chia init
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="windows">
-```
-
-```mdx-code-block
-</TabItem>
+  </TabItem>
 </Tabs>
-```
 
 ### Raspberry Pi 4 {#raspberry-pi}
 
@@ -297,16 +274,14 @@ It is highly recommended you put the Chia blockchain and wallet database on an S
 
 It is suggested that you set up 1024 MiB of swap:
 
-```mdx-code-block
 <Tabs
   defaultValue="ubuntu"
   groupId="source"
   values={[
     {label: 'Ubuntu 20.04 LTS', value: 'ubuntu'},
-    {label: 'Raspbian 64', value: 'raspbian'},
+ {label: 'Raspbian 64', value: 'raspbian'},
 ]}>
 <TabItem value="ubuntu">
-```
 
 Run the following commands to set up the swap:
 
@@ -323,17 +298,13 @@ Add this line to `/etc/fstab` so that swap available on reboot:
 /swap swap swap defaults 0 0
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="raspbian">
-```
+  </TabItem>
+  <TabItem value="raspbian">
 
 Here is an excellent [walk-through of increasing swap space](https://pimylifeup.com/raspberry-pi-swap-file/) on Raspbian 64.
 
-```mdx-code-block
-</TabItem>
+  </TabItem>
 </Tabs>
-```
 
 #### Setup {#raspberry-pi-setup}
 
@@ -372,15 +343,14 @@ export BUILD_VDF_CLIENT=N
 
 ### Other environments
 
-````mdx-code-block
 <Tabs>
   <TabItem value="Docker" label="Docker" default>
 
 Installation instructions for docker are found on the container repo:
 [Docker](https://github.com/orgs/Chia-Network/packages/container/package/chia)
 
-</TabItem>
-<TabItem value="WSL2" label="WSL2">
+  </TabItem>
+  <TabItem value="WSL2" label="WSL2">
 
 You can run chia-blockchain in Ubuntu 20.04 LTS via WSL2 on Windows.
 
@@ -435,8 +405,8 @@ For maximum speed, `-t` and `-2` should be inside the WSL2 filesystem. Something
 
 `-d` can point to any other drive for the final destination.
 
-</TabItem>
-<TabItem value="Amazon Linux 2" label="Amazon Linux 2">
+  </TabItem>
+  <TabItem value="Amazon Linux 2" label="Amazon Linux 2">
 
 #### Install from source - Amazon Linux 2
 See [install from source](/installation#from-source) for detailed instruction.
@@ -452,8 +422,8 @@ pip install --upgrade pip
 pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniupnpc
 ```
 
-</TabItem>
-<TabItem value="FreeBSD" label="FreeBSD">
+  </TabItem>
+  <TabItem value="FreeBSD" label="FreeBSD">
 
 _**These instructions were tested with Chia 1.1.4 on FreeBSD 11.3- and 11.4-RELEASE, newer versions may exist**_
 
@@ -708,8 +678,8 @@ That's it! Provided the instructions were followed to the T, and the build is a 
 More details can be found in the [Chia Introduction](https://docs.chia.net/introduction).
 
 
-</TabItem>
-<TabItem value="OpenBSD" label="OpenBSD">
+  </TabItem>
+  <TabItem value="OpenBSD" label="OpenBSD">
 
 _**These instructions were tested with Chia 1.1.4 on OpenBSD/amd64 6.8, newer versions may exist**_
 
@@ -823,10 +793,10 @@ cd chia-blockchain
 cd chia-blockchain-gui
 npm run electron
 ```
-</TabItem>
+  </TabItem>
 </Tabs>
 
-- - - - -==crwdHRulesLBB_2_BBsuleRHdwrc==
+- - - - -
 
 ## Directory Structure
 
@@ -851,13 +821,12 @@ The config file under the `config` subdirectory. Its name is `config.yaml`, and 
 
 It is possible to configure the `CHIA_ROOT` environment variable to another location. A common use for this would be to switch it to `~/.chia/testnet` to have a separate config for the testnet.
 
-- - - - -==crwdHRulesLBB_2_BBsuleRHdwrc==
+- - - - -
 
 ## CLI
 
 Using the CLI gives greater and more precise control over the various Chia services such as the full node. As of 1.8.2, when installing from an installer or package CLI commands will be automatically added to your path for Windows and Linux. For more details on the commands, read the [CLI Reference](/cli).
 
-````mdx-code-block
 <Tabs>
   <TabItem value="MacOS" label="MacOS" default>
 
@@ -877,8 +846,8 @@ export PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$
 
 To load this on startup, add it to the `.bashrc`, `.bash_profile`, or `.zshrc` file depending on which is used by the shell.
 
-</TabItem>
-<TabItem value="Windows" label="Windows">
+  </TabItem>
+  <TabItem value="Windows" label="Windows">
 
 The CLI commands are stored in the following location:
 If installed for the user it can be found at
@@ -890,8 +859,8 @@ If installed for all users it can be found at
 ```bash
 C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
-</TabItem>
-<TabItem value="Linux" label="Linux">
+  </TabItem>
+  <TabItem value="Linux" label="Linux">
 
 :::note
 If you installed Chia from source, the CLI will not require any further setup.
@@ -904,13 +873,13 @@ If you installed Chia with the Linux installer files, the CLI commands are store
 /lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia
 ```
 
-</TabItem>
+  </TabItem>
 </Tabs>
-````
-### GUI
-The GUI is the most user friendly method of interacting with Chia for non-developer uses, and it can be installed manually from the CLI if you installed from source.
 
-````mdx-code-block
+### GUI
+
+The GUI is the most user-friendly method of interacting with Chia for non-developer uses, and it can be installed manually from the CLI if you installed from source.
+
 <Tabs>
   <TabItem value="MacOS / Linux" label="MacOS / Linux" default>
 
@@ -944,8 +913,8 @@ chmod +x ./install-gui.sh
 bash start-gui.sh
 ```
 
-</TabItem>
-<TabItem value="Windows" label="Windows">
+  </TabItem>
+  <TabItem value="Windows" label="Windows">
 
 ```bash
 # Install the GUI
@@ -980,11 +949,13 @@ cd chia-blockchain-gui
 Start-Process -NoNewWindow npm run electron
 ```
 
-</TabItem>
+  </TabItem>
 </Tabs>
-````
+
 ### Initial Startup
+
 Upon launch the GUI will set everything up automatically, however if installing from source then the initial setup needs to be done manually via the CLI.
+
 First, initialize the Chia configuration files:
 
 ```bash
