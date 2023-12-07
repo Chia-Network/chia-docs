@@ -4,10 +4,8 @@ title: Plotting Setup
 slug: /plotting-setup
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 When it comes to plotting and farming in Chia, there is no one-size-fits-all solution. Hopefully after reading this section, you will have the information to help you make an informed decision about how to set up your farm.
 
