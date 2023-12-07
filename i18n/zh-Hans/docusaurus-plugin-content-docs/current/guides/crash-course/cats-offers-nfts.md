@@ -3,10 +3,8 @@ slug: /guides/crash-course/cats-offers-nfts
 title: CATs, Offers and NFTs
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 For this lesson you will want Chia installed and synced on testnet.
 
@@ -22,15 +20,14 @@ For example, the TAIL may limit the creation to **single-issuance**. Any tokens 
 
 Up next we will clone the CAT creation tool which will simplify creating a cat by providing all of the necessary TAIL Chialisp files.
 
-```mdx-code-block
-<Tabs groupId="OS"
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux/MacOS', value: 'linux-macos'},
-]}>
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+ {label: 'Linux/MacOS', value: 'linux-macos'},
+ ]}>
   <TabItem value="windows">
-```
 
 ```bash
 git clone https://github.com/Chia-Network/CAT-admin-tool.git
@@ -41,10 +38,8 @@ py -m pip install --upgrade pip setuptools wheel
 pip install .
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="linux-macos">
-```
+  </TabItem>
+  <TabItem value="linux-macos">
 
 ```bash
 git clone https://github.com/Chia-Network/CAT-admin-tool.git
@@ -55,10 +50,8 @@ python -m pip install --upgrade pip setuptools wheel
 pip install .
 ```
 
-```mdx-code-block
-</TabItem>
+  </TabItem>
 </Tabs>
-```
 
 At this point you should be able to execute `cats --help`.
 
