@@ -876,7 +876,7 @@ If you installed Chia with the Linux installer files, the CLI commands are store
   </TabItem>
 </Tabs>
 
-### GUI
+## GUI
 
 The GUI is the most user-friendly method of interacting with Chia for non-developer uses, and it can be installed manually from the CLI if you installed from source.
 
@@ -952,7 +952,7 @@ Start-Process -NoNewWindow npm run electron
   </TabItem>
 </Tabs>
 
-### Initial Startup
+## Initial Startup
 
 Upon launch the GUI will set everything up automatically, however if installing from source then the initial setup needs to be done manually via the CLI.
 
@@ -985,7 +985,95 @@ If all else fails, rebooting the machine and restarting the chia daemon/processe
 
 
 ## Testnets
+
 To join a testnet, follow the instructions on [How to Join the Official Testnet](/testnets#join-the-official-testnet). 
 
 It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet10" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet10"` so that all commands will use testnet10 instead of mainnet. If you're using a version above 1.2.11, you can update all config values to the testnet values by running `chia configure -t true`.
 
+
+## Beta and release candidate installations
+
+### From Source
+_This method is primarily intended for contributing to the Chia codebase_
+<Tabs
+  defaultValue="linux-macos"
+  groupId="source"
+  values={[
+    {label: 'Linux/MacOS', value: 'linux-macos'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+  <TabItem value="linux-macos">
+
+:::note
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
+:::
+
+```bash
+# Download chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
+
+# Change directory
+cd chia-blockchain
+
+# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.  
+git checkout tags/2.1.2-rc2
+
+# Install dependencies
+sh install.sh
+
+# Activate virtual environment
+. ./activate
+
+# Initialize
+chia init
+```
+
+  </TabItem>
+  <TabItem value="windows">
+
+:::note
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
+:::
+
+```bash
+# Download chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
+
+# Change directory
+cd chia-blockchain
+
+# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.  
+git checkout tags/2.1.2-rc2
+
+# Install dependencies
+./Install.ps1
+
+# Activate virtual environment
+. ./venv/Scripts/Activate.ps1
+
+# Initialize
+chia init
+```
+
+  </TabItem>
+</Tabs>
+
+### Apt
+
+```bash
+# Install packages
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+
+# Add GPG key
+curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/chia.gpg
+
+# Set up repository
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/prerelease/debian/ prerelease main" | sudo tee /etc/apt/sources.list.d/chia-blockchain-prerelease.list > /dev/null
+sudo apt-get update
+
+# Install chia-blockchain
+sudo apt-get install chia-blockchain
+
+# Use chia-blockchain-cli instead for CLI only
+```
