@@ -969,6 +969,39 @@ Finally, start the farmer and its full node:
 chia start farmer
 ```
 
+### Systemd
+
+Linux users who have installed the `chia-blockchain-cli` package using [apt, yum, or dnf](https://docs.chia.net/installation/#using-the-cli) will receive systemd configuration files for initializing and managing the Chia processes.  Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd).  A user must be specified during the initialization to ensure the resulting process can find the Chia root directory.  The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only.
+
+To start a Chia process with systemd, the command format is `systemctl start chia-<service-name>@<user>`. For example, if starting a Chia full node for the Linux user `ubuntu`, the command would be:
+
+```
+systemctl start chia-full-node@ubuntu
+```
+
+To start the full-node at system boot:
+
+```
+systemctl enable chia-full-node@ubuntu
+```
+
+The services available to be managed with systemd are:
+
+```
+chia-crawler
+chia-data-layer
+chia-data-layer-http
+chia-farmer
+chia-full-node
+chia-harvester
+chia-introducer
+chia-seeder
+chia-timelord
+chia-wallet
+```
+
+Note that the `chia-timelord` service runs the timelord coordinator service, but not the VDF clients.
+
 ## Troubleshooting
 
 Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version.  Make sure all daemons and chia processes are killed before installing or upgrading.
