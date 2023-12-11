@@ -16,7 +16,7 @@ slug: /chialisp-intro
 In this lesson, we review the basics of Chialisp including syntax & structure, inequalities and if statements, and setting up a development environment.
 
 <div class="videoWrapper">
-<iframe width="896" height="504" src="https://www.youtube.com/embed/W9QK4PFIIpA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/W9QK4PFIIpA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

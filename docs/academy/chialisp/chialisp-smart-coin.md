@@ -16,7 +16,7 @@ slug: /chialisp-smart-coin
 In this lesson, we go over currying, hashing, and conditions, and submit and use our first Chia Smart Coin.
 
 <div class="videoWrapper">
-<iframe width="896" height="504" src="https://www.youtube.com/embed/-Nza_N9Xb3Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/-Nza_N9Xb3Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

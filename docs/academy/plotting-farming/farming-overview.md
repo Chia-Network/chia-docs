@@ -15,7 +15,7 @@ slug: /farming-overview
 In this lesson, we go over the plotting process, and what happens when a Farmer wins a challenge.
 
 <div class="videoWrapper">
-<iframe width="896" height="504" src="https://www.youtube.com/embed/Y1BFnOkZAps" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/Y1BFnOkZAps" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

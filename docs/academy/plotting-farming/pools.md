@@ -15,7 +15,7 @@ slug: /pools
 In this lesson, we review the Pooling protocol, and how it can benefit a Farmer starting out.
 
 <div class="videoWrapper">
-<iframe width="896" height="504" src="https://www.youtube.com/embed/UgTe1t-bMsU" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/UgTe1t-bMsU" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

@@ -15,7 +15,7 @@ slug: /chialisp-inner-puzzle
 In this lesson, we'll talk about why you might want to nest puzzles and how to set them up.
 
 <div class="videoWrapper">
-<iframe width="896" height="504" src="https://www.youtube.com/embed/GAw1yMmkO3g" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/GAw1yMmkO3g" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

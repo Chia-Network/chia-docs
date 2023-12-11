@@ -15,7 +15,7 @@ slug: /chialisp-signatures
 In this lesson, we go over how to secure coins using signatures.
 
 <div class="videoWrapper">
-<iframe width="896" height="504" src="https://www.youtube.com/embed/zD1rhLKgc9Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/zD1rhLKgc9Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---
