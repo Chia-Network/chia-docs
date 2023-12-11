@@ -370,10 +370,7 @@ module.exports = {
       label: 'Offers',
       collapsible: true,
       collapsed: true,
-      items: [
-        'guides/tutorials/offers-gui',
-        'guides/tutorials/offers-cli',
-      ],
+      items: ['guides/tutorials/offers-gui', 'guides/tutorials/offers-cli'],
     },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
@@ -418,9 +415,7 @@ module.exports = {
         description:
           'Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain technology. In an age characterized by rapid digital transformation, this institution offers a comprehensive exploration of the Chia blockchain, dissecting its technical intricacies, real-world applications, and the nuances of its secure data handling. The Chia blockchain, created by Bram Cohen, stands out from traditional cryptocurrencies with its unique Proof of Space and Time (PoST) model, which contrasts with the energy-intensive Proof of Work model (PoW) used by Bitcoin. This innovation is notable for its eco-friendly approach to blockchain. As a Chia Academy student, you will dive into the core concepts and functionalities of the Chia blockchain, including:',
       },
-      items: [
-        'academy/academy-intro/academy-overview',
-      ],
+      items: ['academy/academy-intro/academy-overview'],
     },
     {
       type: 'category',
@@ -436,6 +431,48 @@ module.exports = {
       },
       items: [
         'academy/chialisp/chialisp-intro',
+        'academy/chialisp/chialisp-smart-coin',
+        'academy/chialisp/chialisp-signatures',
+        'academy/chialisp/chialisp-inner-puzzle',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Plotting & Farming',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/plotting-farming',
+        title: 'Plotting & Farming',
+        description:
+          'These lessons cover the basics of Plotting and Farming. How challenges are distributed and processed, and how pooling and plot filters benefit the network. At the end, we include a tutorial on creating your first plot.',
+      },
+      items: [
+        'academy/plotting-farming/farming-overview',
+        'academy/plotting-farming/challenges-plot-filters',
+        'academy/plotting-farming/pools',
+        'academy/plotting-farming/first-plot',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Blockchain Basics Overview',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/blockchain-basics',
+        title: 'Blockchain Basics Overview',
+        description:
+          'These lessons cover the basics of the Chia Blockchain including consensus, timelords, block formation, the coin-set model, and security.',
+      },
+      items: [
+        'academy/blockchain-basics/consensus-basics',
+        'academy/blockchain-basics/timelord-basics',
+        'academy/blockchain-basics/block-formation-basics',
+        'academy/blockchain-basics/coinset-basics',
+        'academy/blockchain-basics/security-basics',
       ],
     },
   ],
