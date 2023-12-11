@@ -861,17 +861,12 @@ C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
   </TabItem>
   <TabItem value="Linux" label="Linux">
-
-:::note
-If you installed Chia from source, the CLI will not require any further setup.
-:::
-
-If you installed Chia with the Linux installer files, the CLI commands are stored in one of the following locations:
-
-```bash
-/usr/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia
-/lib/chia-blockchain/resources/app.asar.unpacked/daemon/chia
-```
+  
+  The CLI commands are stored in the following location:
+  ```
+  /usr/bin/chia
+  ```
+  This location should already be included in your system's PATH, so you should be able to run `chia` directly from the command line without any further setup.
 
   </TabItem>
 </Tabs>
