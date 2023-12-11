@@ -791,7 +791,7 @@ Options:
 | Short Command | Long Command    | Type    | Required | Description                                                                                                 |
 | :------------ | :-------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
 | -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                    |
-| -h            | --key           | TEXT    | True     | The hexadecimal key                                                                                         |
+| -k            | --key           | TEXT    | True     | The hexadecimal key                                                                                         |
 | -r            | --root_hash     | TEXT    | False    | The hexadecimal root hash                                                                                   |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
