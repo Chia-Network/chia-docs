@@ -1,6 +1,6 @@
 import { useColorMode } from '@docusaurus/theme-common';
 import { Program, ProgramOutput } from 'clvm-lib';
-import Highlight from 'prism-react-renderer';
+import { Highlight } from 'prism-react-renderer';
 import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { FaCheck, FaKeyboard, FaPlay, FaTimes } from 'react-icons/fa';
 import Editor from 'react-simple-code-editor';
@@ -129,12 +129,12 @@ export default function Runnable({
               <HighlightCode
                 code={input}
                 setCode={setInput}
-                language="chialisp"
+                language='chialisp'
               />
               <hr style={{ marginTop: '14px', marginBottom: '14px' }} />
             </>
           )}
-          <HighlightCode code={code} setCode={setCode} language="chialisp" />
+          <HighlightCode code={code} setCode={setCode} language='chialisp' />
           <div style={{ position: 'absolute', top: '16px', right: '16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <span style={{ marginRight: '8px' }}>
@@ -143,15 +143,15 @@ export default function Runnable({
               {!input && (
                 <FaKeyboard
                   size={24}
-                  className="icon-button"
-                  cursor="pointer"
+                  className='icon-button'
+                  cursor='pointer'
                   onClick={() => setInput('()')}
                 />
               )}
               <FaPlay
                 size={24}
-                className="icon-button"
-                cursor="pointer"
+                className='icon-button'
+                cursor='pointer'
                 onClick={run}
               />
             </div>
@@ -162,7 +162,7 @@ export default function Runnable({
             <>
               <hr style={{ marginTop: '14px', marginBottom: '14px' }} />
               <div style={{ display: 'inline-block' }}>
-                <HighlightCode code={output} language="chialisp" />
+                <HighlightCode code={output} language='chialisp' />
               </div>
               {output && (
                 <>
@@ -173,7 +173,7 @@ export default function Runnable({
                       right: '60px',
                     }}
                   >
-                    <HighlightCode code={`Cost: ${cost}`} language="chialisp" />
+                    <HighlightCode code={`Cost: ${cost}`} language='chialisp' />
                   </div>
                   <CorrectIcon
                     size={24}

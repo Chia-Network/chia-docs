@@ -3,10 +3,8 @@ slug: /guides/nft-rpc
 title: Minting NFTs With RPC
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 The next section of this tutorial will demonstrate how to create and use DIDs and NFTs using RPCs. If you wish to use the CLI instead, head to the [CLI section](/guides/nft-cli).
 
@@ -35,7 +33,6 @@ When running RPC commands with JSON inputs on **Windows**, you will need to esca
 
 Here is an example of the difference between the syntax:
 
-```mdx-code-block
 <Tabs
   defaultValue="windows"
   values={[
@@ -43,25 +40,20 @@ Here is an example of the difference between the syntax:
     {label: 'Linux/MacOS', value: 'nix'},
   ]}>
   <TabItem value="windows">
-```
 
 ```powershell
 chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="nix">
-```
 
 ```bash
 chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 :::
 

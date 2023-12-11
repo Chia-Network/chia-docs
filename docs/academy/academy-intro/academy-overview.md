@@ -119,11 +119,11 @@ What is the chialisp puzzle for squaring a passed argument?
 ## Additional resources
 Links to additional reading materials, videos, or external resources may be provided for learners who wish to delve deeper into the lessons subject.  
 
-### Runnable chialisp and clvm plugins
-Runnable plugins are for chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
+### Runnable Chialisp and clvm plugins
+Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
 Each plugin has a series of components:  
   
-**Language:** The language of the plugin (chialisp or clvm) is in the top right corner.  
+**Language:** The language of the plugin (Chialisp or clvm) is in the top right corner.  
 **Solution:** The top section is the input or solution.   
 **Puzzle:** The bottom section is the puzzle.  
 **Run:** Each plugin has a play/run button to the right of the language identifier.  
@@ -139,9 +139,9 @@ The plugins only validate the formatting and completeness of the code; they do n
 
 #### Chialisp plugin
 When clicking run, the puzzle will first be serialized into clvm (similar to the `run` command) then the solution will be passed into the serialized puzzle (similar to the `brun` command).  
-The below example is a chialisp puzzle that squares the number passed as an argument.  
+The below example is a Chialisp puzzle that squares the number passed as an argument.  
   
-Note the number `(5)` is used in the solution top section and the chialisp formatted puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.  
+Note the number `(5)` is used in the solution top section and the Chialisp formatted puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.  
 
 <Runnable flavor='chialisp' input='(5)'>
 

@@ -3,10 +3,8 @@ slug: /guides/simulator-user-guide
 title: Simulator User Guide
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document will guide you through the process of setting up Chia's Simulator. For additional technical resources, see the following:
 
@@ -93,7 +91,6 @@ Make sure your CHIA_ROOT Environment Variable is set to: C:\Users\<user>\.chia\s
 
 Now that you have created the simulator, you can set the `CHIA_ROOT` environment variable to point to the simulator's installation directory. This will enable you to run the simulator from outside of `chia-blockchain`:
 
-```mdx-code-block
 <Tabs
   defaultValue="windows"
   groupId="os"
@@ -102,25 +99,20 @@ Now that you have created the simulator, you can set the `CHIA_ROOT` environment
     {label: 'Linux / MacOS', value: 'linux/macos'},
   ]}>
   <TabItem value="windows">
-```
 
 ```powershell
 $env:CHIA_ROOT='~/.chia/simulator/main'
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="linux/macos">
-```
+  </TabItem>
+  <TabItem value="linux/macos">
 
 ```bash
 export CHIA_ROOT='~/.chia/simulator/main'
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 :::note
 By setting the `CHIA_ROOT` path to the simulator in the current shell window (rather than globally), this enables you to run the simulator in tandem with a full node running on either the testnet or on mainnet. This is because the simulator uses different ports than a normal full node.

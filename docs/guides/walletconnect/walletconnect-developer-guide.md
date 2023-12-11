@@ -3,10 +3,8 @@ slug: /walletconnect-developer-guide
 title: WalletConnect Developer Guide
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## Intro
 
