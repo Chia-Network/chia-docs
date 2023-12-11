@@ -6,22 +6,25 @@ slug: /chialisp-intro
 import Runnable from '../../../src/components/Runnable.tsx';
 
 ## Learning objectives
+
 - **Syntax and Structure**: Understand the basic Chialisp syntax and structure.
 - **Puzzles and Solutions**: Understand the use of puzzles and solutions in Chialisp.
-- **Development Environment**: Setup and configure the Chialisp development environment. test
+- **Development Environment**: Setup and configure the Chialisp development environment.
 
 ---
 
 ## Content
-In this lesson, we review the basics of Chialisp including syntax and structure, inequalities and if statements, and setting up a development environment.
+
+In this lesson, we review the basics of Chialisp including syntax & structure, inequalities and if statements, and setting up a development environment.
 
 <div class="videoWrapper">
-<iframe width="896" height="504" src="https://www.youtube.com/embed/W9QK4PFIIpA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/W9QK4PFIIpA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---
 
 ## Script
+
 <details>
 
 <summary> Expand for the full script </summary>
@@ -74,9 +77,9 @@ In future videos we'll talk about smart coins signatures and inner puzzles. Than
 
 ## Common gotchas
 
-- **run vs brun:** Run is used to serialize and run Chialisp puzzles, while brun is used to run clvm serialized puzzles generally when passing arguments.
-- **Parentheses:** Chialisp is part of the fully parenthesized prefix notation programming language family, tracing their [origins](https://en.wikipedia.org/wiki/Lisp_(programming_language)) to LISP 1 from the 1950s. One highly apparent aspect of these languages is their use of parenthesis to denote lists. It is recommended to use an IDE with proper syntax highlighting when writing these languages to ensure that all parenthesis are in the proper places. To help with this, here is a [Chialisp language server extension](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp) for Visual Studio.
-- **Prefix Notation:** Chialisp being part of the LISP family uses prefix notation. This means that the functions or operators appear first with their arguments following.
+- **run vs brun:** Run is used to serialize and run chialisp puzzles while brun is used to run clvm serialized puzzles generally when passing arguments.
+- **Parentheses:** Chialisp is part of the fully parenthesized prefix notation programming language family tracing their [origins](https://en.wikipedia.org/wiki/Lisp_(programming_language)) to LISP 1 from the 1950s. One highly apparent aspect of these languages is their use of parenthesis to denote lists. It is recommended to use an IDE with proper syntax highlighting when writing these languages to ensure that all parenthesis are in the proper places. To help with this here is a [Chialisp language server extension](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp) for Visual Studio.
+- **Prefix Notation:** Chialisp being part of the LISP family uses prefix notation. This means that the functions or operators appears first with their arguments following.
 
 ---
 
@@ -84,7 +87,7 @@ In future videos we'll talk about smart coins signatures and inner puzzles. Than
 
 :::tip Question 1 - Subtraction
 
-What is a Chialisp puzzle for subtracting two arguments?
+What is a chialisp puzzle for subtracting two arguments?
 
 :::
 
@@ -93,7 +96,7 @@ What is a Chialisp puzzle for subtracting two arguments?
 <summary> Answer (expand when ready to see the answer)  </summary>
 
 ```chialisp
-(mod (arg1 arg2) 
+(mod (arg1 arg2)
     (- arg1 arg2)
 )
 ```
@@ -102,10 +105,10 @@ What is a Chialisp puzzle for subtracting two arguments?
 
 :::tip Question 2 - Comparison
 
-What is the serialized form of this Chialisp puzzle?
+What is the serialized form of this chialisp puzzle?
 
 ```chialisp
-(mod (arg1 arg2) 
+(mod (arg1 arg2)
     (> arg1 arg2)
 )
 ```
@@ -117,7 +120,7 @@ What is the serialized form of this Chialisp puzzle?
 <summary> Answer (expand when ready to see the answer)  </summary>
 
 ```chialisp
-(> 2 5)  
+(> 2 5)
 ```
 
 </details>
@@ -127,12 +130,15 @@ What is the serialized form of this Chialisp puzzle?
 What is the result of the below serialized puzzle and solution?
 
 Puzzle:
+
 ```chialisp
-(a (i 2 (q 1 . "true") (q 1 . "false")) 1)  
+(a (i 2 (q 1 . "true") (q 1 . "false")) 1)
 ```
+
 Solution:
+
 ```chialisp
-(1) 
+(1)
 ```
 
 :::
@@ -148,6 +154,7 @@ Solution:
 :::tip Question 4 - Combining all of the above
 
 What is a Chialisp puzzle that performs the following?
+
 - Accepts two arguments
 - Adds the two arguments together
 - Compares the sum of the arguments to 100
@@ -160,9 +167,9 @@ What is a Chialisp puzzle that performs the following?
 <summary> Answer (expand when ready to see the answer) </summary>
 
 ```chialisp
-(mod (arg1 arg2) 
+(mod (arg1 arg2)
     (if (> (+ arg1 arg2) 100) "large" "small")
-) 
+)
 ```
 
 </details>
@@ -172,6 +179,7 @@ What is a Chialisp puzzle that performs the following?
 ## Additional resources
 
 ### Runnable Chialisp and clvm plugins
+
 For information on using these plugins please refer to the [academy overview](/academy-overview#runnable-chialisp-and-clvm-plugins)
 
 #### Chialisp plugin
@@ -179,7 +187,7 @@ For information on using these plugins please refer to the [academy overview](/a
 <Runnable flavor='chialisp' input='(10 99)'>
 
 ```chialisp
-(mod (arg1 arg2) 
+(mod (arg1 arg2)
     (if (> (+ arg1 arg2) 100) "large" "small")
 )
 ```
@@ -198,9 +206,9 @@ For information on using these plugins please refer to the [academy overview](/a
 
 ### Links
 
-- General [Chialisp concepts](https://docs.chia.net/guides/chialisp-concepts): overviews of currying, inner puzzles, and morphing conditions.
-- Guided [Chialisp walkthroughs](https://docs.chia.net/guides/): guides for installation, creating smart coins, and working with BLS signatures.
-- Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of Chialisp.
+- General [chialisp concepts](https://docs.chia.net/guides/chialisp-concepts): overviews of currying, inner puzzles, and morphing conditions.
+- Guided [chialisp walkthroughs](https://docs.chia.net/guides/): guides for installation, creating smart coins, and working with BLS signatures.
+- Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
---- 
+---
