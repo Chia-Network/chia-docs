@@ -3,6 +3,8 @@ title: Creating your first Plot
 slug: /first-plot
 ---
 
+In this lesson, we learn how to set up the Chia client, sync our full node using a torrent file, and create our first plot to start farming.
+
 ## Learning objectives
 
 - **Syncing a Full Node**: Learn how to set up the Chia client and sync a full node.
@@ -11,8 +13,6 @@ slug: /first-plot
 ---
 
 ## Content
-
-In this lesson, we learn how to set up the Chia client, sync our full node using a torrent file, and create our first plot to start farming.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/UgTe1t-bMsU" frameborder="0" allowfullscreen="allowfullscreen"></iframe>

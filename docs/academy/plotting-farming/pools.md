@@ -3,6 +3,8 @@ title: Pools
 slug: /pools
 ---
 
+In this lesson, we review the Pooling protocol, and how it can benefit a Farmer starting out.
+
 ## Learning objectives
 
 - **Benefits of Pooling**: Understand the benefits of participating in a Pool.
@@ -11,8 +13,6 @@ slug: /pools
 ---
 
 ## Content
-
-In this lesson, we review the Pooling protocol, and how it can benefit a Farmer starting out.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/UgTe1t-bMsU" frameborder="0" allowfullscreen="allowfullscreen"></iframe>

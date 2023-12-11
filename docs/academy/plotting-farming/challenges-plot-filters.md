@@ -3,6 +3,8 @@ title: Challenges & Plot Filters
 slug: /challenges-plot-filters
 ---
 
+In this lesson, we discuss how the plot filter works, and what the benefits are of using one.
+
 ## Learning objectives
 
 - **Plot Filters**: Understand the basics of how the plot filter works, as well as the benefits of using one.
@@ -11,8 +13,6 @@ slug: /challenges-plot-filters
 ---
 
 ## Content
-
-In this lesson, we discuss how the plot filter works, and what the benefits are of using one.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/N55a0xQANVg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>

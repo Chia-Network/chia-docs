@@ -2,6 +2,7 @@
 title: How New Blocks are Formed
 slug: /block-formation-basics
 ---
+In this lesson, we review the basics of block formation including the farmers role in validating transactions, forming blocks, and managing the mempool.
 
 ## Learning objectives
 - **Transaction Validation**: Learn how nodes validate transactions for inclusion in a block.
@@ -11,7 +12,6 @@ slug: /block-formation-basics
 ---
 
 ## Content
-In this lesson, we review the basics of block formation including the farmers role in validating transactions, forming blocks, and managing the mempool.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/5XAbF_gs07I" frameborder="0" allowfullscreen="allowfullscreen"></iframe>

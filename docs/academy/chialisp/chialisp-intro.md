@@ -5,6 +5,8 @@ slug: /chialisp-intro
 
 import Runnable from '../../../src/components/Runnable.tsx';
 
+In this lesson, we review the basics of Chialisp including syntax & structure, inequalities and if statements, and setting up a development environment.
+
 ## Learning objectives
 
 - **Syntax and Structure**: Understand the basic Chialisp syntax and structure.
@@ -14,8 +16,6 @@ import Runnable from '../../../src/components/Runnable.tsx';
 ---
 
 ## Content
-
-In this lesson, we review the basics of Chialisp including syntax & structure, inequalities and if statements, and setting up a development environment.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/W9QK4PFIIpA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>

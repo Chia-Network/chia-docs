@@ -2,6 +2,7 @@
 title: How Chia Consensus Works
 slug: /consensus-basics
 ---
+In this lesson, we review the basics of consensus, the process by which to determine the true state of a blockchain.
 
 ## Learning objectives
 - **Farmers**: Understand the basic role of farmers in providing proofs of space.
@@ -11,7 +12,6 @@ slug: /consensus-basics
 ---
 
 ## Content
-In this lesson, we review the basics of consensus, the process by which to determine the true state of a blockchain.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/JJnGAwsJjXQ" frameborder="0" allowfullscreen="allowfullscreen"></iframe>

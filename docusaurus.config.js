@@ -61,7 +61,7 @@ const katex = require('rehype-katex');
             },
             {
               type: 'doc',
-              docId: 'academy-overview',
+              docId: 'academy/academy-intro/academy-overview',
               position: 'left',
               label: 'Chia Academy',
             },
