@@ -454,6 +454,8 @@ module.exports = {
         'academy/blockchain-basics/consensus-basics',
         'academy/blockchain-basics/timelord-basics',
         'academy/blockchain-basics/block-formation-basics',
+        'academy/blockchain-basics/coinset-basics',
+        'academy/blockchain-basics/security-basics',
       ],
     },
   ],
