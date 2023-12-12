@@ -14,7 +14,7 @@ In this lesson, we dive into the coinset model basics and learn what it means to
 ## Content
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/-axXmWEor-Q" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/QMs6Z6_ZQdg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

@@ -14,7 +14,7 @@ In this lesson, we learn the basic security implementations in Chia and how they
 ## Content
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/mwnSMDikkWg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/CATI6OVHPAg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

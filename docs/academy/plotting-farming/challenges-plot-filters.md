@@ -15,7 +15,7 @@ In this lesson, we discuss how the plot filter works, and what the benefits are 
 ## Content
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/N55a0xQANVg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/7L17dRNI6Kc" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

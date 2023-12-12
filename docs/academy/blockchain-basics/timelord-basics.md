@@ -14,7 +14,7 @@ In this lesson, we dive into the role that Timelords play in the consensus by us
 ## Content
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/zFQskQASUFM" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/tJPdBmpgvsc" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

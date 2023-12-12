@@ -14,7 +14,7 @@ In this lesson, we review the basics of consensus, the process by which to deter
 ## Content
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/JJnGAwsJjXQ" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/6fbZwfrYkcg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

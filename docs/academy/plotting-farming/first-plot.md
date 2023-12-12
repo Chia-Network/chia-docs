@@ -15,7 +15,7 @@ In this lesson, we learn how to set up the Chia client, sync our full node using
 ## Content
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/UgTe1t-bMsU" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/W9v7A8UJk9Q" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---
