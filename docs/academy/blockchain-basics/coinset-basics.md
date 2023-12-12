@@ -2,6 +2,7 @@
 title: Coin-Set Model Intro
 slug: /coinset-basics
 ---
+In this lesson, we dive into the coinset model basics and learn what it means to spend a coin in Chia.
 
 ## Learning objectives
 - **Coin Contents**: Learn what data is stored in a coin.
@@ -11,10 +12,9 @@ slug: /coinset-basics
 ---
 
 ## Content
-In this lesson, we dive into the coinset model basics and learn what it means to spend a coin in Chia.
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/-axXmWEor-Q" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/QMs6Z6_ZQdg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

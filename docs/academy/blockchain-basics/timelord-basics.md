@@ -2,6 +2,7 @@
 title: What are Timelords
 slug: /timelord-basics
 ---
+In this lesson, we dive into the role that Timelords play in the consensus by using VDFs to generate challenges.
 
 ## Learning objectives
 - **Proofs of Time**: Learn how Proofs of Time are created by timelords and what role they perform.
@@ -11,10 +12,9 @@ slug: /timelord-basics
 ---
 
 ## Content
-In this lesson, we dive into the role that Timelords play in the consensus by using VDFs to generate challenges.
 
 <div class="videoWrapper">
-<iframe width="100%" height="504" src="https://www.youtube.com/embed/zFQskQASUFM" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/tJPdBmpgvsc" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
 ---

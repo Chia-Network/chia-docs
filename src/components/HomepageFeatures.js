@@ -42,6 +42,14 @@ const FeatureList = [
       <>Chia Official discord server, join for support and to interact with the community.</>
     ),
   },
+  {
+    title: 'Chia Academy',
+    Svg: require('@site/static/svg/academy-logo.svg').default,
+    dest_url: 'https://docs.chia.net/academy-overview/',
+    description: (
+      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
+    ),
+  },
 ];
 
 function Feature({ Svg, title, description, dest_url }) {

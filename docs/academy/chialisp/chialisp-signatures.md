@@ -3,6 +3,10 @@ title: Signatures
 slug: /chialisp-signatures
 ---
 
+import Runnable from '../../../src/components/Runnable.tsx';
+
+In this lesson, we go over how to secure coins using signatures.
+
 ## Learning objectives
 
 - **Signing and Signatures**: Understand the uses and benefits of signatures.
@@ -11,8 +15,6 @@ slug: /chialisp-signatures
 ---
 
 ## Content
-
-In this lesson, we go over how to secure coins using signatures.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/zD1rhLKgc9Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -137,6 +139,32 @@ The `AGG_SIG_ME` condition expects a concatenated value of the following:
 ---
 
 ## Additional resources
+
+### Runnable Chialisp and clvm plugins
+
+For information on using these plugins please refer to the [academy overview](/academy-overview#runnable-chialisp-and-clvm-plugins)
+
+#### Chialisp plugin
+
+<Runnable flavor='chialisp' input='(10 99)'>
+
+```chialisp
+(mod (arg1 arg2)
+    (if (> (+ arg1 arg2) 100) "large" "small")
+)
+```
+
+</Runnable>
+
+#### Clvm plugin
+
+<Runnable flavor='clvm' input='(1)'>
+
+```chialisp
+(a (i 2 (q 1 . "true") (q 1 . "false")) 1)
+```
+
+</Runnable>
 
 ### Links
 

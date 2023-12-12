@@ -3,6 +3,10 @@ title: Inner Puzzles
 slug: /chialisp-inner-puzzle
 ---
 
+import Runnable from '../../../src/components/Runnable.tsx';
+
+In this lesson, we'll talk about why you might want to nest puzzles and how to set them up.
+
 ## Learning objectives
 
 - **Functions**: Learn how to define and execute functions in Chialisp.
@@ -12,7 +16,6 @@ slug: /chialisp-inner-puzzle
 
 ## Content
 
-In this lesson, we'll talk about why you might want to nest puzzles and how to set them up.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/GAw1yMmkO3g" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -118,6 +121,32 @@ What does the `ASSERT_HEIGHT_RELATIVE` condition check for?
 ---
 
 ## Additional resources
+
+### Runnable Chialisp and clvm plugins
+
+For information on using these plugins please refer to the [academy overview](/academy-overview#runnable-chialisp-and-clvm-plugins)
+
+#### Chialisp plugin
+
+<Runnable flavor='chialisp' input='(10 99)'>
+
+```chialisp
+(mod (arg1 arg2)
+    (if (> (+ arg1 arg2) 100) "large" "small")
+)
+```
+
+</Runnable>
+
+#### Clvm plugin
+
+<Runnable flavor='clvm' input='(1)'>
+
+```chialisp
+(a (i 2 (q 1 . "true") (q 1 . "false")) 1)
+```
+
+</Runnable>
 
 ### Links
 

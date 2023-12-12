@@ -3,6 +3,10 @@ title: Smart Coins
 slug: /chialisp-smart-coin
 ---
 
+import Runnable from '../../../src/components/Runnable.tsx';
+
+In this lesson, we go over currying, hashing, and conditions, and submit and use our first Chia Smart Coin.
+
 ## Learning objectives
 
 - **Currying**: Understand how to create more general use puzzle by using Currying.
@@ -12,8 +16,6 @@ slug: /chialisp-smart-coin
 ---
 
 ## Content
-
-In this lesson, we go over currying, hashing, and conditions, and submit and use our first Chia Smart Coin.
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/-Nza_N9Xb3Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -190,6 +192,32 @@ Write a Chialisp puzzle that performs the following.
 ---
 
 ## Additional resources
+
+### Runnable Chialisp and clvm plugins
+
+For information on using these plugins please refer to the [academy overview](/academy-overview#runnable-chialisp-and-clvm-plugins)
+
+#### Chialisp plugin
+
+<Runnable flavor='chialisp' input='(10 99)'>
+
+```chialisp
+(mod (arg1 arg2)
+    (if (> (+ arg1 arg2) 100) "large" "small")
+)
+```
+
+</Runnable>
+
+#### Clvm plugin
+
+<Runnable flavor='clvm' input='(1)'>
+
+```chialisp
+(a (i 2 (q 1 . "true") (q 1 . "false")) 1)
+```
+
+</Runnable>
 
 ### Links
 
