@@ -3,16 +3,12 @@ slug: /dao-cli-guide
 title: DAO CLI Guide
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 :::warning 
 
-Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **Do not create DAOs with this primitive on mainnet!** If you do, there is a chance that all funds will be lost.
-
-For more info, see our [list of known DAO issues][todo add new link].
+Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
 
 :::
 
@@ -26,7 +22,7 @@ This is a guide for using Chia DAOs from a command line interface (CLI). To foll
 For more information about Chia DAOs, see:
 - [DAO CLI Reference](/dao-cli)
 - [DAO RPC Reference](/dao-rpc)
-- [todo CHIP]
+- [DAO1 CHIP](https://github.com/Chia-Network/chips/pull/93)
 
 ---
 

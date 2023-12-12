@@ -4,10 +4,14 @@ title: DAO RPCs
 slug: /dao-rpc
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
+
+:::warning 
+
+Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
+
+:::
 
 <details>
   <summary>Note about Windows command escaping</summary>
@@ -193,13 +197,6 @@ Request Parameters:
 | wallet_id    | NUMBER | True     | The ID of the wallet whose filter level you would like to adjust. Must be of type `DAOWallet` |
 | filter_level | NUMBER | True     | The new filter level. Propos with fewer votes than this will not be shown.                    |
 
-<details>
-<summary>Example</summary>
-
-[todo]
-
-</details>
-
 ---
 
 ### `dao_close_proposal`
@@ -222,13 +219,6 @@ Request Parameters:
 | wallet_id   | NUMBER | True     | The ID of the wallet that contains the proposal to close. Must be of type `DAOWallet` |
 | proposal_id | STRING | True     | The ID of the proposal to close                                                       |
 | fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                  |
-
-<details>
-<summary>Example</summary>
-
-[todo]
-
-</details>
 
 ---
 
@@ -300,13 +290,6 @@ If the proposal is of type `mint`, then the following **request parameters** are
 | amount             | True     | The number of DAO CATs to mint               |
 | cat_target_address | True     | The xch address that will receive the tokens |
 
-<details>
-<summary>Example</summary>
-
-[todo]
-
-</details>
-
 ---
 
 ### `dao_exit_lockup`
@@ -330,13 +313,6 @@ Request Parameters:
 | coins     | STRING | False    | A list of coin IDs to release                                                        |
 | fee       | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
 
-<details>
-<summary>Example</summary>
-
-[todo]
-
-</details>
-
 ---
 
 ### `dao_free_coins_from_finished_proposals`
@@ -358,13 +334,6 @@ Request Parameters:
 |:----------|--------|:---------|:-------------------------------------------------------------------------------------|
 | wallet_id | NUMBER | True     | The ID of the wallet from which to release the DAO CATs. Must be of type `DAOWallet` |
 | fee       | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
-
-<details>
-<summary>Example</summary>
-
-[todo]
-
-</details>
 
 ---
 
@@ -712,13 +681,6 @@ Request Parameters:
 | wallet_id | NUMBER | True     | The ID of the wallet from which to lock DAO CATs. Must be of type `DAOWallet` |
 | amount    | NUMBEr | True     | The amount of CATs to lock for voting                                         |
 
-<details>
-<summary>Example</summary>
-
-[todo]
-
-</details>
-
 ---
 
 ### `dao_vote_on_proposal`
@@ -743,12 +705,5 @@ Request Parameters:
 | vote_amount | NUMBER  | False    | The number of DAO CATs to use for this vote [Default: None]                |
 | is_yes_vote | BOOLEAN | True     | A boolean indicating whether this vote is "yes" (`true`) or "no" (`false`) |
 | fee         | NUMBER  | False    | An optional blockchain fee, in mojos                                       |
-
-<details>
-<summary>Example</summary>
-
-[todo]
-
-</details>
 
 ---
