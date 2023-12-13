@@ -13,6 +13,7 @@ const katex = require('rehype-katex');
     favicon: '/svg/chia-leaf-green.svg',
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
+    trailingSlash: true,
     i18n: {
       defaultLocale: 'en',
       locales: ['en', 'zh'],
