@@ -11,6 +11,8 @@ import TabItem from '@theme/TabItem';
 
 Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
 
+Prior to using the DAO alpha primitive, be sure to read the [list of known issues](/dao-known-issues).
+
 :::
 
 <details>

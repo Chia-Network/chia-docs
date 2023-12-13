@@ -377,10 +377,19 @@ module.exports = {
         'guides/tutorials/offers-cli',
       ],
     },
+    {
+      type: 'category',
+      label: 'DAOs',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/dao/dao-cli-guide',
+        'guides/dao/dao-known-issues',
+      ],
+    },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/verifiable-credentials-guide',
-    'guides/dao/dao-cli-guide',
     {
       type: 'category',
       label: 'Tutorials',
