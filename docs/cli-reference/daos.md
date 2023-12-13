@@ -95,13 +95,6 @@ Chia Wallet:
    -Type:                  STANDARD_WALLET
    -Wallet ID:             1
 
-Chia Wallet:
-   -Total Balance:         1.0 txch (1000000000000 mojo)
-   -Pending Total Balance: 1.0 txch (1000000000000 mojo)
-   -Spendable:             1.0 txch (1000000000000 mojo)
-   -Type:                  STANDARD_WALLET
-   -Wallet ID:             1
-
 Test DAO Wallet:
    -Total Balance:         1.0
    -Pending Total Balance: 1.0
@@ -123,7 +116,7 @@ CAT 07e809aa0324acaf...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              0000000000000002000000000000000307e809aa0324acaf274ce1bb1502d18b
+   -Asset ID:              07e809aa0324acaf274ce1bb1502d18b31236ac46739e90ebf0a042dbbd2c882
    -Wallet ID:             4
 ```
 
@@ -197,7 +190,7 @@ CAT 07e809aa0324acaf...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              0000000000000003000000000000000407e809aa0324acaf274ce1bb1502d18b
+   -Asset ID:              07e809aa0324acaf274ce1bb1502d18b31236ac46739e90ebf0a042dbbd2c882
    -Wallet ID:             5
 ```
 
@@ -531,7 +524,7 @@ CAT 07e809aa0324acaf...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              0000000000000003000000000000000407e809aa0324acaf274ce1bb1502d18b
+   -Asset ID:              07e809aa0324acaf274ce1bb1502d18b31236ac46739e90ebf0a042dbbd2c882
    -Wallet ID:             5
 ```
 
@@ -632,7 +625,7 @@ CAT 07e809aa0324acaf...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              0000000000000003000000000000000407e809aa0324acaf274ce1bb1502d18b
+   -Asset ID:              07e809aa0324acaf274ce1bb1502d18b31236ac46739e90ebf0a042dbbd2c882
    -Wallet ID:             5
 ```
 
@@ -745,7 +738,7 @@ CAT 07e809aa0324acaf...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              0000000000000003000000000000000407e809aa0324acaf274ce1bb1502d18b
+   -Asset ID:              07e809aa0324acaf274ce1bb1502d18b31236ac46739e90ebf0a042dbbd2c882
    -Wallet ID:             5
 ```
 
@@ -953,7 +946,7 @@ CAT 3c992efe31910882...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              000000000000000200000000000000033c992efe31910882f35a6e0017b6a7ce
+   -Asset ID:              3c992efe31910882f35a6e0017b6a7ceb0e2f6f7b96a36285d5d11ea015c05a7
    -Wallet ID:             4
 ```
 
@@ -991,7 +984,7 @@ CAT a62a729da3c90a22...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              00000000000000060000000000000007a62a729da3c90a22aeb648f64a749968
+   -Asset ID:              a62a729da3c90a22aeb648f64a7499680eceef7c4d98a5dd9e7fa5d14fc3c99e
    -Wallet ID:             8
 ```
 
@@ -1144,7 +1137,7 @@ CAT 07e809aa0324acaf...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              0000000000000003000000000000000407e809aa0324acaf274ce1bb1502d18b
+   -Asset ID:              07e809aa0324acaf274ce1bb1502d18b31236ac46739e90ebf0a042dbbd2c882
    -Wallet ID:             5
 ```
 
@@ -1201,7 +1194,7 @@ CAT 07e809aa0324acaf...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              0000000000000003000000000000000407e809aa0324acaf274ce1bb1502d18b
+   -Asset ID:              07e809aa0324acaf274ce1bb1502d18b31236ac46739e90ebf0a042dbbd2c882
    -Wallet ID:             5
 ```
 
@@ -1252,7 +1245,7 @@ CAT 0ba7b225ea0aa595...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              000000000000000200000000000000030ba7b225ea0aa595384239537b055caa
+   -Asset ID:              0ba7b225ea0aa595384239537b055caa0fa8b627b98b6032439d4f2cd1414bf5
    -Wallet ID:             4
 ```
 
@@ -1293,7 +1286,7 @@ CAT 0ba7b225ea0aa595...:
    -Pending Total Balance: 0.0
    -Spendable:             0.0
    -Type:                  DAO_CAT
-   -Asset ID:              000000000000000200000000000000030ba7b225ea0aa595384239537b055caa
+   -Asset ID:              0ba7b225ea0aa595384239537b055caa0fa8b627b98b6032439d4f2cd1414bf5
    -Wallet ID:             4
 ```
 
