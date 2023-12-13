@@ -45,6 +45,7 @@ module.exports = {
       label: 'RPC Reference',
       items: [
         'rpc-reference/rpc',
+        'rpc-reference/daos',
         'rpc-reference/daemon',
         'rpc-reference/datalayer',
         'rpc-reference/dids',
@@ -63,6 +64,7 @@ module.exports = {
       label: 'CLI Reference',
       items: [
         'cli-reference/cli',
+        'cli-reference/daos',
         'cli-reference/datalayer',
         'cli-reference/dids',
         'cli-reference/nfts',
@@ -373,6 +375,16 @@ module.exports = {
       items: [
         'guides/tutorials/offers-gui',
         'guides/tutorials/offers-cli',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'DAOs',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/dao/dao-cli-guide',
+        'guides/dao/dao-known-issues',
       ],
     },
     'guides/simulator-user-guide',
