@@ -384,7 +384,7 @@ module.exports = {
       collapsed: true,
       items: [
         'guides/dao/dao-cli-guide',
-        '/dao-known-issues',
+        'guides/dao/dao-known-issues',
       ],
     },
     'guides/simulator-user-guide',
