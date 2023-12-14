@@ -3,10 +3,8 @@ slug: '/guides/cat-creation-tutorial'
 title: CAT Creation Tutorial
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 The CAT standard allows you to create fungible tokens on the Chia blockchain. This step-by-step guide will go through creating your own CATs. For info on how CATs are built at the Chialisp level, see our [CAT primitive page](https://chialisp.com/cats).
 
@@ -88,10 +86,14 @@ Once you have a synced wallet and some TXCH, you are ready to run the CAT admin 
 
 Now we will set up the CAT admin tool, which will help you to issue your CATs:
 
-```mdx-code-block
-<Tabs groupId='os'>
-<TabItem value="mac" label="Linux/macOS">
-```
+<Tabs
+  defaultValue="mac"
+  groupId="os"
+  values={[
+    {label: 'Linux/macOS', value: 'mac'},
+    {label: 'Windows', value: 'windows'},
+  ]}>
+  <TabItem value="mac">
 
 Your Linux installation may not come with Python's development tools installed by default. To be sure that these tools are installed, run:
 
@@ -145,11 +147,8 @@ Install pytest:
 pip install pytest
 ```
 
-```mdx-code-block
-</TabItem>
-
-<TabItem value="windows" label="Windows">
-```
+  </TabItem>
+  <TabItem value="windows">
 
 Next, clone the tool's GitHub repository:
 
@@ -201,11 +200,8 @@ pip install pytest
 You might receive an error such as ERROR: Failed building wheel for CAT-admin-tool. This is likely safe to ignore. As long as you can run cats --help without errors, the tool has been installed properly.
 :::
 
-```mdx-code-block
-</TabItem>
-
+  </TabItem>
 </Tabs>
-```
 
 ---
 <br/>

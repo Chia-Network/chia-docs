@@ -34,6 +34,22 @@ const FeatureList = [
       <>Frequently asked questions about Chia Network Inc., the company.</>
     ),
   },
+  {
+    title: 'Chia Discord Server',
+    Svg: require('@site/static/svg/discord-icon.svg').default,
+    dest_url: 'https://discord.gg/chia',
+    description: (
+      <>Chia Official discord server, join for support and to interact with the community.</>
+    ),
+  },
+  {
+    title: 'Chia Academy',
+    Svg: require('@site/static/svg/academy-logo.svg').default,
+    dest_url: 'https://docs.chia.net/academy-overview/',
+    description: (
+      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
+    ),
+  },
 ];
 
 function Feature({ Svg, title, description, dest_url }) {

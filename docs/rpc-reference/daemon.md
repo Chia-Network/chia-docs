@@ -4,10 +4,8 @@ title: Daemon RPC
 slug: /daemon-rpc
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 This document provides a comprehensive reference to Chia's Daemon RPC API.
 
@@ -41,17 +39,15 @@ npm install -g wscat
 
 Once wscat is installed, you can open a connection to the daemon. The command to run depends on your OS:
 
-```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
 Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.
 
@@ -59,28 +55,22 @@ Be sure to replace `username` with your actual username for both the `.crt` and 
 wscat -n --cert C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.crt --key C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.key -c wss://0.0.0.0:55400
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="linux">
-```
+  </TabItem>
+  <TabItem value="linux">
 
 ```bash
 wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="macos">
-```
 
 ```bash
 wscat -n --cert ~/.chia/mainnet/config/ssl/daemon/private_daemon.crt --key ~/.chia/mainnet/config/ssl/daemon/private_daemon.key -c wss://0.0.0.0:55400
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 ---
 

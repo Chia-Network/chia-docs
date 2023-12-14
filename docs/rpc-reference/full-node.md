@@ -4,10 +4,8 @@ title: Full Node RPC
 slug: /full-node-rpc
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 The full node RPC API is exposed by the full node, by default on port 8555. This port must not be exposed publicly for
 security concerns.

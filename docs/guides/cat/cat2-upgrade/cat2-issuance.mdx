@@ -4,10 +4,8 @@ sidebar_label: 3. Token Reissuance
 slug: /guides/cat2-issuance
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 :::info
 CAT1 will reach its end of life at block 2,311,760, which will occur on July 26, 2022 at around 17:00 UTC.
@@ -45,88 +43,72 @@ Now that you have a CSV file containing the necessary information, you can run t
 
 3. Create a new virtual environment and then activate it:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 -m venv venv
    . ./venv/bin/activate
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
 4. Install the latest versions of `pip`, `setuptools` and `wheel`:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    python -m pip install --upgrade pip setuptools wheel
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    python3 -m pip install --upgrade pip setuptools wheel
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    python3 -m pip install --upgrade pip setuptools wheel
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
 5. Install the CAT Admin Tool:
 
@@ -204,44 +186,36 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
    Here's an example of the command to reissue Spacebucks:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    The last line of the output will be something like:
 
@@ -266,44 +240,36 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
    Here's an example of the command to secure the bag for Spacebucks:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    secure_the_bag --tail .\reference_tails\genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /Users/Username/Download/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
 
@@ -328,44 +294,36 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
    For this example, the command looks like this:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    You will need to confirm that you want to push the transaction, then you will receive the `Asset ID` and `Eve Coin ID`. For this example, the following was the result:
 
@@ -427,44 +385,36 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
    Here's an example of the command:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    cats --tail .\reference_tails\delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    The last line of the output will be something like:
 
@@ -489,44 +439,36 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
    Here's an example of the command to secure the bag:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    secure_the_bag --tail .\reference_tails\delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /home/Username/Downloads/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /Users/Username/Download/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
 
@@ -549,44 +491,36 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
    In this example, the command will be:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    The output will be a new CLVM puzzle:
 
@@ -598,44 +532,36 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 6. Run the same `curry` command from the previous step, but add the `--treehash` flag at the end:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    The output will be the treehash of the puzzle you calculated in the previous step:
 
@@ -686,44 +612,36 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
    For this example, the command to execute is:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    The output of this command will contain the Asset ID and Eve Coin ID for your issuance:
 
@@ -764,7 +682,6 @@ unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-b
 
 For this example, the command to unwind the entire bag is:
 
-```mdx-code-block
 <Tabs
   defaultValue="windows"
   groupId="os"
@@ -774,34 +691,27 @@ For this example, the command to unwind the entire bag is:
     {label: 'macOS', value: 'macos'},
   ]}>
   <TabItem value="windows">
-```
 
 ```powershell
 unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1
 ```
 
-```mdx-code-block
-</TabItem>
-<TabItem value="linux">
-```
+  </TabItem>
+  <TabItem value="linux">
 
 ```bash
 unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="macos">
-```
 
 ```bash
 unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 This command could take a long time to finish running. Afterward, you will have an exact copy of your CAT1 issuance, but in CAT2 form.
 
@@ -862,44 +772,36 @@ At this point, you can navigate to [taildatabase.com](https://www.taildatabase.c
 
    In this example, the command to unwind the bag is:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    This command could take a long time, depending on the total number of coins to unwind.
    You will need to verify the spend of each individual coin to unwind, and the command will monitor the blockchain for the coin(s) to be spent.
@@ -912,44 +814,36 @@ At this point, you can navigate to [taildatabase.com](https://www.taildatabase.c
 
 5. The puzzle hashes from the CSV file are actually _inner_ puzzle hashes, so searching for them on chain using `cdv rpc coinrecords` is more complex than it normally would be. However, you can still verify that the bag was successfully unwound for that puzzle hash by searching for the hint:
 
-   ```mdx-code-block
-   <Tabs
-     defaultValue="windows"
-     groupId="os"
-     values={[
-       {label: 'Windows', value: 'windows'},
-       {label: 'Linux', value: 'linux'},
-       {label: 'macOS', value: 'macos'},
-     ]}>
-     <TabItem value="windows">
-   ```
+<Tabs
+  defaultValue="windows"
+  groupId="os"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'macOS', value: 'macos'},
+  ]}>
+  <TabItem value="windows">
 
    ```powershell
    chia rpc full_node get_coin_records_by_hint '{\"hint\": \"<puzzle hash obtained in step 2>\"}'
    ```
 
-   ```mdx-code-block
-   </TabItem>
-   <TabItem value="linux">
-   ```
+  </TabItem>
+  <TabItem value="linux">
 
    ```bash
    chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
    ```
 
-   ```mdx-code-block
-     </TabItem>
-     <TabItem value="macos">
-   ```
+  </TabItem>
+  <TabItem value="macos">
 
    ```bash
    chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
    ```
 
-   ```mdx-code-block
-     </TabItem>
-   </Tabs>
-   ```
+  </TabItem>
+</Tabs>
 
    You should see matching coin_records for each entry in the CSV file, along with its corresponding value.
 

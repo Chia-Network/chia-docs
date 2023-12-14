@@ -3,10 +3,8 @@ title: FAQ
 slug: /faq
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 ## General
 
@@ -1411,16 +1409,14 @@ After installing with the packaged installer, you can run Chia from the command 
 
 :::info Chia setup
 
-```mdx-code-block
 <Tabs
-defaultValue="windows"
-values={[
-{label: 'Windows', value: 'windows'},
-{label: 'Linux', value: 'linux'},
-{label: 'MacOS', value: 'macos'}
-]}>
-<TabItem value="windows">
-```
+  defaultValue="windows"
+  values={[
+    {label: 'Windows', value: 'windows'},
+    {label: 'Linux', value: 'linux'},
+    {label: 'MacOS', value: 'macos'}
+  ]}>
+  <TabItem value="windows">
 
 (Be sure to use powershell and update &lt;username&gt; to match the name of the user that installed Chia.)
 
@@ -1436,10 +1432,8 @@ If installed for all users:
 Set-Alias -Name chia "C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe"
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="linux">
-```
 
 Alias command is not needed, but you should still run the following:
 
@@ -1447,20 +1441,16 @@ Alias command is not needed, but you should still run the following:
 chia init --fix-ssl-permissions
 ```
 
-```mdx-code-block
   </TabItem>
   <TabItem value="macos">
-```
 
 ```bash
 alias chia='/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia'
 chia init --fix-ssl-permissions
 ```
 
-```mdx-code-block
   </TabItem>
 </Tabs>
-```
 
 :::
 

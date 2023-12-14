@@ -4,10 +4,8 @@ title: Plotting Basics
 slug: /plotting-basics
 ---
 
-```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-```
 
 :::note
 

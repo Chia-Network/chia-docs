@@ -45,6 +45,7 @@ module.exports = {
       label: 'RPC Reference',
       items: [
         'rpc-reference/rpc',
+        'rpc-reference/daos',
         'rpc-reference/daemon',
         'rpc-reference/datalayer',
         'rpc-reference/dids',
@@ -63,6 +64,7 @@ module.exports = {
       label: 'CLI Reference',
       items: [
         'cli-reference/cli',
+        'cli-reference/daos',
         'cli-reference/datalayer',
         'cli-reference/dids',
         'cli-reference/nfts',
@@ -375,6 +377,16 @@ module.exports = {
         'guides/tutorials/offers-cli',
       ],
     },
+    {
+      type: 'category',
+      label: 'DAOs',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'guides/dao/dao-cli-guide',
+        'guides/dao/dao-known-issues',
+      ],
+    },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
     'guides/verifiable-credentials-guide',
@@ -436,6 +448,48 @@ module.exports = {
       },
       items: [
         'academy/chialisp/chialisp-intro',
+        'academy/chialisp/chialisp-smart-coin',
+        'academy/chialisp/chialisp-signatures',
+        'academy/chialisp/chialisp-inner-puzzle',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Plotting & Farming',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/plotting-farming',
+        title: 'Plotting & Farming',
+        description:
+          'These lessons cover the basics of Plotting and Farming. How challenges are distributed and processed, and how pooling and plot filters benefit the network. At the end, we include a tutorial on creating your first plot.',
+      },
+      items: [
+        'academy/plotting-farming/farming-overview',
+        'academy/plotting-farming/challenges-plot-filters',
+        'academy/plotting-farming/pools',
+        'academy/plotting-farming/first-plot',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Blockchain Basics Overview',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/blockchain-basics',
+        title: 'Blockchain Basics Overview',
+        description:
+          'These lessons cover the basics of the Chia Blockchain including consensus, timelords, block formation, the coin-set model, and security.',
+      },
+      items: [
+        'academy/blockchain-basics/consensus-basics',
+        'academy/blockchain-basics/timelord-basics',
+        'academy/blockchain-basics/block-formation-basics',
+        'academy/blockchain-basics/coinset-basics',
+        'academy/blockchain-basics/security-basics',
       ],
     },
   ],
