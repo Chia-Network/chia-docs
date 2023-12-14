@@ -416,9 +416,9 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type   | Required | Description                                                   |
-|:------- |:------ |:-------- |:------------------------------------------------------------- |
-| coin_id | NUMBER | True     | The Wallet ID of the DID wallet for which to get the DID info |
+| Flag    | Type   | Required | Description                                                                       |
+|:------- |:------ |:-------- |:--------------------------------------------------------------------------------- |
+| coin_id | NUMBER | True     | The coin ID of the DID get info (can be in the `0x618...` or `did:chia:16` format |
 
 <details>
 <summary>Example</summary>
