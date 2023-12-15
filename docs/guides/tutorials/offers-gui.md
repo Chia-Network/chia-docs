@@ -46,7 +46,7 @@ Otherwise, click the `+` button:
   </div>
   <br/>
 
-  It is recommended that you check with another source of truth to make sure you have the correct ID. Another website that provides a listing of CATs and their IDs is [taildatabse.com](https://www.taildatabase.com/). Browse to this site, click the `Explore` menu, and search for your CAT. The name should appear in the search results:
+  It is recommended that you check with another source of truth to make sure you have the correct ID. Another website that provides a listing of CATs and their IDs is [taildatabase.com](https://www.taildatabase.com/). Browse to this site, click the `Explore` menu, and search for your CAT. The name should appear in the search results:
  
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/taildatabase_1.png" alt="taildatabase dexie bucks search"/>
@@ -64,7 +64,7 @@ Otherwise, click the `+` button:
 
   :::warning
 
-  If someone sends you an Asset ID (TAIL), do not assume it is correct. Instead, double-check with [spacescan.io](https://www.spacescan.io) or [taildatabse.com](https://www.taildatabase.com/) (or preferably both) to verify that you have the correct ID.
+  If someone sends you an Asset ID (TAIL), do not assume it is correct. Instead, double-check with [spacescan.io](https://www.spacescan.io) or [taildatabase.com](https://www.taildatabase.com/) (or preferably both) to verify that you have the correct ID.
 
   :::
 
