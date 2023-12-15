@@ -184,8 +184,8 @@ Usage: secure_the_bag [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                                                                                                                                            |     |
-| :------------ | :---------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| Short Command | Long Command                  | Type    | Required | Description                                                                                                                                                                                                            |
+| :------------ | :---------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -c            | --curry                       | TEXT    | False    | An argument to curry into the TAIL                                                                                                                                                                                     |
 | -a            | --amount                      | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)                                                                                                                                                   |
 | -stbtp        | --secure-the-bag-targets-path | TEXT    | True     | Path to CSV file containing targets of secure the bag (inner puzzle hash + amount). The total value of the coins in this file must match the value of the `amount` flag. If they don't match, an error will be thrown. |
