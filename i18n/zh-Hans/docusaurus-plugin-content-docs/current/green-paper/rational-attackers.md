@@ -42,9 +42,9 @@ By the Proposition below delayed gratification and the no slowdown property impl
 
 _Proof._ Consider an adversarial miner ${\cal A}$ with an $\alpha$ fraction of the resource and let $\ell$ denote the (expected) number of blocks to be found if everyone would mine honestly. By the no slowdown property, no matter what ${\cal A}$ does the number of blocks found is at least $\ell'\ge (1-\alpha)\cdot\ell$. By delayed gratification, at most $\alpha\cdot\ell$ of those blocks were created by ${\cal A}$, we get a chain quality of
 
-$$ \begin{aligned} \textit{chain quality}&=\frac{\text{honest blocks}}{\text{total blocks}}\\
-&=\frac{\ell' - \alpha \cdot \ell}{\ell'}\\ &=1-\frac{\alpha\cdot\ell}{\ell'}\\
-&\ge 1-\frac{\alpha\cdot\ell}{(1-\alpha)\cdot \ell}\\ &=1-\frac{\alpha}{1-\alpha} \hspace{10em}\square \end{aligned} $$
+$$ 
+\begin{aligned} \textit{chain quality}&=\frac{\text{honest blocks}}{\text{total blocks}}\\ &=\frac{\ell' - \alpha \cdot \ell}{\ell'}\\ &=1-\frac{\alpha\cdot\ell}{\ell'}\\ &\ge 1-\frac{\alpha\cdot\ell}{(1-\alpha)\cdot \ell}\\ &=1-\frac{\alpha}{1-\alpha} \hspace{10em}\square \end{aligned} 
+$$
 
 ---
 

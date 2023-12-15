@@ -12,7 +12,9 @@ A key ingredient in longest-chain blockchains are hash-chains as discussed in §
 
 For this writeup, a _hash chain_ is a sequence $b_0,b_1,b_2\ldots$ of blocks, where each block $b_i=\{h_i,x_i\}$ contains some data value $x_i$ (possibly empty) and (with the exception of $b_0$) a hash value of the current data and the previous block.
 
-$$ h_i:={\sf H}(b_{i-1},x_i) $$
+$$ 
+h_i:={\sf H}(b_{i-1},x_i) 
+$$
 
 #### Security from hash chains.
 
@@ -34,19 +36,22 @@ A hash chain is immutable in the following sense:
 A VDF chain is a sequence
 
 $$
-{\cal V}=z_0,\tau_1,z_1,\tau_2,z_2,\ldots,\tau_\ell $$
+{\cal V}=z_0,\tau_1,z_1,\tau_2,z_2,\ldots,\tau_\ell 
+$$
 
 <div class="eqnumber">eq.(5)</div>
 
 alternating data values $z_i\in\{0,1\}^*$ and VDF values $\tau_i=(\tau_i.{\sf y},\tau_i.\pi,\tau_i.{\sf c},\tau_i.{\sf t})$ (as described in §A.3). The chain is valid if all VDF proofs are correct
 
-$$
-{\sf VDF.verify}(\tau_i)={\sf accept}
+$$ 
+{\sf VDF.verify}(\tau_i)={\sf accept} 
 $$
 
 and the challenge for the $i$th VDF is derived from the previous VDF output (except for $i=1$) and data value
 
-$$ \tau_1.c := \mathsf{VDF.sample}(z_0) \quad \text{ and } \quad \forall i > 1 : \tau_i.\mathsf{c} := \mathsf{VDF.sample}(\tau_{i-1}.\mathsf{y}, z_{i-1}) $$
+$$ 
+\tau_1.c := \mathsf{VDF.sample}(z_0) \quad \text{ and } \quad \forall i > 1 : \tau_i.\mathsf{c} := \mathsf{VDF.sample}(\tau_{i-1}.\mathsf{y}, z_{i-1}) 
+$$
 
 where we use the convention that $\tau_0.{\sf y}$ is the empty string.
 
@@ -54,8 +59,8 @@ where we use the convention that $\tau_0.{\sf y}$ is the empty string.
 
 We naturally extend the notion for VDFs as described in §A.3 to VDF chains. The _total number of VDF steps in a VDF chain_ as in eq.(5) is simply the sum of the steps in its VDFs
 
-$$
-{\cal V}.{\sf t}\stackrel{\scriptsize \sf def}{=}\sum_{i=1}^\ell \tau_i.{\sf t}
+$$ 
+{\cal V}.{\sf t}\stackrel{\scriptsize \sf def}{=}\sum_{i=1}^\ell \tau_i.{\sf t} 
 $$
 
 #### Security from VDF chains.
@@ -66,9 +71,8 @@ VDF chains give two basic security guarantees, the first is immutability analogo
 
 **Proposition 3** (immutability and sequentiality of VDF chains). *Like a hash chain, a VDF chain is *immutable* in the sense that it's computationally infeasible to come up with two different VDF chains*
 
-$$
-{\cal V}=z_0,\tau_1,z_1,\tau_2,z_2,\ldots,\tau_\ell \qquad
-{\cal V}'=z'_0,\tau'_1,z'_1,\tau'_2,z'_2,\ldots,\tau'_{\ell'}
+$$ 
+{\cal V}=z_0,\tau_1,z_1,\tau_2,z_2,\ldots,\tau_\ell \qquad {\cal V}'=z'_0,\tau'_1,z'_1,\tau'_2,z'_2,\ldots,\tau'_{\ell'} 
 $$
 
 where the last VDF outputs collide, i.e., $\tau_\ell.{\sf y}=\tau'_{\ell'}.{\sf y}$. Here different means that either they have different length $\ell\neq \ell'$ and neither is a prefix of the other. Or (if $\ell=\ell'$) there exists an $i$ s.t. either $z_i\neq z'_i$ or $\tau_i.{\sf y}\neq \tau'_i.{\sf y}$ or $\tau.{\sf t}\neq \tau'.{\sf t}$. Note that we ignore the proofs $\tau.\pi$ when comparing chains (we just use them to determine whether the chain is valid) as they must not be unique.

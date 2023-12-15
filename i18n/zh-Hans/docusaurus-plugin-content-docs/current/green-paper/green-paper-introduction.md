@@ -34,13 +34,17 @@ Constructing a secure permissionless blockchain using proofs of space is much mo
 
 The Bitcoin blockchain is secure [<a href="/green-paper-references/#GKL15">GKL15</a>] as long as the hashing power $hash_h$ (measured in hashes per second) contributed by honest parties is larger than the hashing power $hash_a$ available to an adversary, i.e.,
 
-$$ hash_h > hash_a $$
+$$ 
+hash_h > hash_a 
+$$
 
 <div class="eqnumber">eq.(1)</div>
 
 Similarly, the security of $\textsf{Chia}$ depends on the amount of space $space_h$ and $space_a$ controlled by the honest parties and the adversary, respectively. Additionally, the speed $vdf_h$ and $vdf_a$ (measured in steps per second) of the VDFs run by the fastest honest timelord and the adversary are relevant. With these definitions,
 
-$$ \textrm{{\sf Chia}\ is provably secure if : } space_h\cdot vdf_h > space_a \cdot vdf_a \cdot 1.47 $$
+$$ 
+\textrm{{\sf Chia}\ is provably secure if : } space_h\cdot vdf_h > space_a \cdot vdf_a \cdot 1.47 
+$$
 
 <div class="eqnumber">eq.(2)</div>
 
@@ -52,7 +56,9 @@ This assumption comes at a prize: there's a $1.47$ factor by which the adversari
 
 The bound in eq.(1) is not tight in the sense that we don't have an attack that works if we replace "$>$" with "$<$". We have an attack assuming giving the adversary a slightly lower boosting factor of $1.34$
 
-$$ \textrm{double spending in {\sf Chia}\ possible if : }space_h\cdot vdf_h < space_a \cdot vdf_a \cdot  1.34 $$
+$$ 
+\textrm{double spending in {\sf Chia}\ possible if : }space_h\cdot vdf_h < space_a \cdot vdf_a \cdot  1.34 
+$$
 
 <div class="eqnumber">eq.(3)</div>
 
@@ -64,7 +70,9 @@ A contribution of this writeup is a modular approach towards achieving secure lo
 
 In Bitcoin each block contains the hash of the previous block. If two blocks are found at roughly the same time, so there was no time for the block that was found first to propagate to the miner that found the second, they will refer to the same block, and only one can be added to the chain. The other will be "orphaned" and does not contribute towards securing the blockchain. The fraction of orphaned blocks depends on the network delay (the smaller the delay the fewer orphans) and the block-arrival time (fewer blocks per minute decrease the probability of orphans). Taking this into account, the security statement for Bitcoin from eq.(1) should be augmented to:
 
-$$ hash_h \cdot \left(1-\frac{network\ delay}{block\ arrival\ time}\right)> hash_a $$
+$$ 
+hash_h \cdot \left(1-\frac{network\ delay}{block\ arrival\ time}\right)> hash_a 
+$$
 
 <div class="eqnumber">eq.(4)</div>
 
