@@ -3,7 +3,7 @@ title: Inner Puzzles
 slug: /chialisp-inner-puzzle
 ---
 
-import Runnable from '../../../src/components/Runnable.tsx';
+import Runnable from '@site/src/components/Runnable.tsx';
 
 In this lesson, we'll talk about why you might want to nest puzzles and how to set them up.
 

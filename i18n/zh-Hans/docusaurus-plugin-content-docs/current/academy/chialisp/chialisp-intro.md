@@ -3,7 +3,7 @@ title: Intro to Chialisp
 slug: /chialisp-intro
 ---
 
-import Runnable from '../../../src/components/Runnable.tsx';
+import Runnable from '@site/src/components/Runnable.tsx';
 
 In this lesson, we review the basics of Chialisp including syntax & structure, inequalities and if statements, and setting up a development environment.
 
