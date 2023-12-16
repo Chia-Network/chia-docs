@@ -10,9 +10,14 @@ In this Section we have a look at two closely related security properties of lon
 
 We discussed in §2 the main security issues of a PoSpace based longest-chain blockchain arise from the fact that PoSpace is an efficient proof system. PoSpace shares those security challenges with PoStake, and all three countermeasures summarized in Figure 3 (namely splitting the chain to prevent grinding, correlated randomness to prevent double-dipping and using VDFs to prevent bootstrapping) can readily be applied in the stake setting, correlated randomness was even originally proposed for stake [<a href="/green-paper-references/#BDK19">BDK+19</a>]. But as we'll discuss below, when it comes to security under dynamic availability or 51% attacks there are fundamental differences between space and stake. In particular, using proofs of space in combination with VDFs one can handle both attacks basically as well as with proofs of work, while proofs of stake cannot, even in combination with VDFs.
 
-  <figure>
-	  <img src="/img/green-paper/table-1.png" />
-	  <figcaption>Table 1: Summary of the ability to heal from malicious majority and provide security under dynamic availability of longest-chain protocols based various proof systems.</figcaption>
+{' '}
+<figure>
+  <img src='/img/green-paper/table-1.png' />
+  <figcaption>
+    Table 1: Summary of the ability to heal from malicious majority and provide
+    security under dynamic availability of longest-chain protocols based various
+    proof systems.
+  </figcaption>
 </figure>
 
 ## 6.1 Recovery from $51\%$ Attacks
@@ -41,7 +46,7 @@ $$
 {\sf PoW}_a(t_0,t_1)\ge {\sf PoW}_h(t_0,t_1)\quad\textrm{and}\quad {\sf PoW}_h(t,t_1)/D\ge k
 $$
 
-<div class="eqnumber">eq.(11)</div>
+<div class='eqnumber'>eq.(11)</div>
 
 If this holds the adversary can simply start at time $t_0$ to mine a chain in private, and release it at time $t_1$. By the first inequality the adversaries chain will be heavier than the honest one with probability at least $0.5$, and by the 2nd the honest block added at time $t$ will be buried by $k$ blocks with probability $0.5$, so both hold and we have a successful double spending attack with probability at least $\approx 0.5^2=0.25$ (it can actually be a bit less than that as the two events are negatively correlated).
 
@@ -54,7 +59,7 @@ $$
 \end{aligned}
 $$
 
-<div class="eqnumber">eq.(12)</div>
+<div class='eqnumber'>eq.(12)</div>
 
 ### 6.1.2 Recovering from PoStake Majority
 
@@ -102,7 +107,7 @@ $$
 \end{aligned}
 $$
 
-<div class="eqnumber">eq.(13)</div>
+<div class='eqnumber'>eq.(13)</div>
 
 A difference to the PoW setting is the additional $1.47$ factor boosting the adversary's resource which is necessary to account for the fact that they can do some bounded double dipping.
 
@@ -120,7 +125,7 @@ $$
 {\sf PoW}_a(t)\le f\cdot {\sf PoW}_h(t)
 $$
 
-<div class="eqnumber">eq.(14)</div>
+<div class='eqnumber'>eq.(14)</div>
 
 To see that Bitcoin is secure under dynamic availability we can reuse our inequality eq.(12) which using $\frac{{\sf PoW}_h(t_0,t_1)}{{\sf PoW}_a(t_0,t_1)}\ge f$ simplifies to (recall that $\frac{{\sf PoW}_h(t_0,t_1)}{D}$ is the expected number of honest blocks in the $t_0$ to $t_1$ window)
 
@@ -131,7 +136,7 @@ $$
 \end{aligned}
 $$
 
-<div class="eqnumber">eq.(15)</div>
+<div class='eqnumber'>eq.(15)</div>
 
 Which simply means that the probability that an adversary will be able to create any particular a fork decreases exponentially in the length of the fork.
 
@@ -143,7 +148,7 @@ $$
 {\sf PoST}_a(t)\le f\cdot {\sf PoST}_h(t)
 $$
 
-<div class="eqnumber">eq.(16)</div>
+<div class='eqnumber'>eq.(16)</div>
 
 With this eq.(13) becomes
 
@@ -154,7 +159,7 @@ $$
 \end{aligned}
 $$
 
-<div class="eqnumber">eq.(17)</div>
+<div class='eqnumber'>eq.(17)</div>
 
 Thus like in Bitcoin, in $\textsf{Chia}$ the probability of a successful fork decreases exponentially fast in the length of the fork.
 

@@ -413,5 +413,5 @@ Created at: 2022-09-01 13:40:07
 ...
 ```
 
-</details>
+</details>  
 At this point you have a Chia wallet and a basic understanding of the CLI. You should now be able to move on to the next section which will introduce many of the Chia primitives including CATs, offers, and NFTs.

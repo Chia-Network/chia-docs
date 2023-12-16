@@ -364,17 +364,17 @@ Once you have populated the database with a snapshot, you can run a data export.
   </TabItem>
 </Tabs>
 
-   :::info
+:::info
 
    - `<OUTPUT-DIR>` - a directory of your choice in which to save the CSV file
    - `<PREFIX>` - a string to be prepended to the output file name
    - `<TAIL-HASH>` - the TAIL hash you obtained from taildatabase.com
    - `--coins` - an **optional** flag that will add information about individual coins to the output (which might be helpful for auditing purposes)
-     :::
+:::
 
-   :::note
-   This command will not create any directories, so make sure `<OUTPUT-DIR>` already exists before running it. Otherwise, you will receive a `FileNotFoundError`.
-   :::
+:::note
+This command will not create any directories, so make sure `<OUTPUT-DIR>` already exists before running it. Otherwise, you will receive a `FileNotFoundError`.
+:::
 
 ## Fix EOL Characters {#fix-eol}
 
