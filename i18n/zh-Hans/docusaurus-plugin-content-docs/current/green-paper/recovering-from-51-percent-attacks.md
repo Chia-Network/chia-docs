@@ -9,11 +9,15 @@ slug: /recovering-from-51-percent-attacks
 In this Section we have a look at two closely related security properties of longest-chain blockchains, namely recovery from malicious majority (aka. 51% attacks) and security under dynamic availability. We'll discuss proofs of work, stake and space, for the latter two also looking at how adding VDFs changes the picture.
 
 We discussed in §2 the main security issues of a PoSpace based longest-chain blockchain arise from the fact that PoSpace is an efficient proof system. PoSpace shares those security challenges with PoStake, and all three countermeasures summarized in Figure 3 (namely splitting the chain to prevent grinding, correlated randomness to prevent double-dipping and using VDFs to prevent bootstrapping) can readily be applied in the stake setting, correlated randomness was even originally proposed for stake [<a href="/green-paper-references/#BDK19">BDK+19</a>]. But as we'll discuss below, when it comes to security under dynamic availability or 51% attacks there are fundamental differences between space and stake. In particular, using proofs of space in combination with VDFs one can handle both attacks basically as well as with proofs of work, while proofs of stake cannot, even in combination with VDFs.
+
+{' '}
 <figure>
-  ![](/img/green-paper/table-1.png) 
+  <img src='/img/green-paper/table-1.png' />
   <figcaption>
-    Table 1: Summary of the ability to heal from malicious majority and provide security under dynamic availability of longest-chain protocols based various proof systems.
-  </figcaption> 
+    Table 1: Summary of the ability to heal from malicious majority and provide
+    security under dynamic availability of longest-chain protocols based various
+    proof systems.
+  </figcaption>
 </figure>
 
 ## 6.1 Recovery from $51\%$ Attacks
@@ -26,31 +30,31 @@ There's also a key difference between PoStake and PoSpace. By using VDFs in addi
 
 While Bitcoin provides no security if more than half of the hashrate is controlled by an adversary, it is "self-healing" in the sense that once the majority of the hashrate is again controlled by honest parties, Bitcoin regains (after some delay) all its security properties.
 
-A bit more formally, let ${\sf PoW}_h(t)$ and ${\sf PoW}_a(t)$ denote the hashing power of the honest and adversarial parties at clock time $t$, respectively. For $t_0<t_1$ let
+A bit more formally, let ${\sf PoW}_h(t)$ and ${\sf PoW}_a(t)$ denote the hashing power of the honest and adversarial parties at clock time $t$, respectively. For $t_0
 
-$$ 
-{\sf PoW}_h(t_0,t_1)= \int_{t_0}^{t_1}{\sf PoW}_h(t) \,dt \quad , \quad {\sf PoW}_a(t_0,t_1)= \int_{t_0}^{t_1} {\sf PoW}_a(t) \,dt 
+<t_1$ let
+
 $$
+{\sf PoW}_h(t_0,t_1)= \int_{t_0}^{t_1}{\sf PoW}_h(t) \,dt \quad , \quad
+{\sf PoW}_a(t_0,t_1)= \int_{t_0}^{t_1} {\sf PoW}_a(t) \,dt $$
 
 denote the cumulated hashing power in the time window from $t_0$ to $t_1$. If $D$ is the difficulty in this time window,[^1] then the expected number of blocks found by the honest parties in this time window is ${\sf PoW}_h(t_0,t_1)/D$.
 
 It's instructive to understand when a transaction is trivially insecure: consider a transaction that is contained in a block attached at time $t$, if one waits for $k$ blocks on top before considering the transaction confirmed (for Bitcoin $k=6$ is often suggested), then an adversary can fork the chain in order to double spend this transaction with good probability if for some $t_0,t_1$ with $t_0\le t < t_1$ we have
 
-$$ 
-{\sf PoW}_a(t_0,t_1)\ge {\sf PoW}_h(t_0,t_1)\quad\textrm{and}\quad {\sf PoW}_h(t,t_1)/D\ge k 
 $$
+{\sf PoW}_a(t_0,t_1)\ge {\sf PoW}_h(t_0,t_1)\quad\textrm{and}\quad {\sf PoW}_h(t,t_1)/D\ge k $$
 
-<div class="eqnumber">eq.(11)</div>
+<div class='eqnumber'>eq.(11)</div>
 
 If this holds the adversary can simply start at time $t_0$ to mine a chain in private, and release it at time $t_1$. By the first inequality the adversaries chain will be heavier than the honest one with probability at least $0.5$, and by the 2nd the honest block added at time $t$ will be buried by $k$ blocks with probability $0.5$, so both hold and we have a successful double spending attack with probability at least $\approx 0.5^2=0.25$ (it can actually be a bit less than that as the two events are negatively correlated).
 
 To be secure it's not sufficient that no $t_0,t_1$ as in eq.(11) exist, but one needs to be "sufficiently far" from this situation to guarantee that double spending can only happen with some tiny probability. From the standard Chernoff bound it follows that the probability that a fork starting at a block added at time $t_0$ and being released at time $t_1$ will be successful (i.e., have higher weight than the honest chain) is exponentially small in the number of expected honest blocks ${\sf PoW}_h(t_0,t_1)/D$ and the square of the honest to adversarial advantage, i.e.,
 
-$$ 
-\begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\ &\le -\exp\left(\frac{\mathsf{PoW}_h(t_0,t_1)}{D} \cdot\left( \frac{\mathsf{PoW}_h(t_0,t_1)}{\mathsf{PoW}_a(t_0,t_1)}-1 \right)^2\right) \end{aligned} 
-$$
+$$ \begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\
+&\le -\exp\left(\frac{\mathsf{PoW}_h(t_0,t_1)}{D} \cdot\left( \frac{\mathsf{PoW}_h(t_0,t_1)}{\mathsf{PoW}_a(t_0,t_1)}-1 \right)^2\right) \end{aligned} $$
 
-<div class="eqnumber">eq.(12)</div>
+<div class='eqnumber'>eq.(12)</div>
 
 ### 6.1.2 Recovering from PoStake Majority
 
@@ -76,23 +80,22 @@ $vdf_h$ only considers the fastest honest time lord, as only they matter for the
 
 Define the honest and adversarial resource at time time as the product of their space and VDF speed
 
-$$ 
-{\sf PoST}_h(t)=space_h(t)\cdot vdf_h(t)\quad,\quad {\sf PoST}_a(t)=space_a(t)\cdot vdf_a(t) 
 $$
+{\sf PoST}_h(t)=space_h(t)\cdot vdf_h(t)\quad,\quad
+{\sf PoST}_a(t)=space_a(t)\cdot vdf_a(t) $$
 
 and analogously to the work setting let the cumulative space-time resource in a window from $t_0$ to $t_1$ be
 
-$$ 
-{\sf PoST}_h(t_0,t_1)= \int_{t_0}^{t_1}{\sf PoST}_h(t) \,dt \quad , \quad {\sf PoST}_a(t_0,t_1)= \int_{t_0}^{t_1} {\sf PoST}_a(t) \,dt 
 $$
+{\sf PoST}_h(t_0,t_1)= \int_{t_0}^{t_1}{\sf PoST}_h(t) \,dt \quad , \quad
+{\sf PoST}_a(t_0,t_1)= \int_{t_0}^{t_1} {\sf PoST}_a(t) \,dt $$
 
 With these definitions we now get a similar bound on the probability that an adversary can create a fork starting at $t_0$ and being released at time $t_1$ as we did for PoW in eq.(12)
 
-$$ 
-\begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\ &\le -\exp\left(\frac{\mathsf{PoST}_h(t_0,t_1)}{D} \cdot\left( \frac{\mathsf{PoST}_h(t_0,t_1)}{1.47\cdot \mathsf{PoST}_a(t_0,t_1)}-1 \right)^2\right) \end{aligned} 
-$$
+$$ \begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\
+&\le -\exp\left(\frac{\mathsf{PoST}_h(t_0,t_1)}{D} \cdot\left( \frac{\mathsf{PoST}_h(t_0,t_1)}{1.47\cdot \mathsf{PoST}_a(t_0,t_1)}-1 \right)^2\right) \end{aligned} $$
 
-<div class="eqnumber">eq.(13)</div>
+<div class='eqnumber'>eq.(13)</div>
 
 A difference to the PoW setting is the additional $1.47$ factor boosting the adversary's resource which is necessary to account for the fact that they can do some bounded double dipping.
 
@@ -106,19 +109,17 @@ A blockchain based on some resource is _secure under dynamic availability_ if it
 
 Using notation from §6.1.1, for a PoW based chain that means that for some $f>1$ (that captures the advantage of the honest parties) and any time $t$ we have
 
-$$ 
-{\sf PoW}_a(t)\le f\cdot {\sf PoW}_h(t) 
 $$
+{\sf PoW}_a(t)\le f\cdot {\sf PoW}_h(t) $$
 
-<div class="eqnumber">eq.(14)</div>
+<div class='eqnumber'>eq.(14)</div>
 
 To see that Bitcoin is secure under dynamic availability we can reuse our inequality eq.(12) which using $\frac{{\sf PoW}_h(t_0,t_1)}{{\sf PoW}_a(t_0,t_1)}\ge f$ simplifies to (recall that $\frac{{\sf PoW}_h(t_0,t_1)}{D}$ is the expected number of honest blocks in the $t_0$ to $t_1$ window)
 
-$$ 
-\begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\ &\le -\exp\left(\frac{\mathsf{PoW}_h(t_0,t_1)}{D} \cdot\left(f-1 \right)^2\right) \end{aligned} 
-$$
+$$ \begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\
+&\le -\exp\left(\frac{\mathsf{PoW}_h(t_0,t_1)}{D} \cdot\left(f-1 \right)^2\right) \end{aligned} $$
 
-<div class="eqnumber">eq.(15)</div>
+<div class='eqnumber'>eq.(15)</div>
 
 Which simply means that the probability that an adversary will be able to create any particular a fork decreases exponentially in the length of the fork.
 
@@ -126,19 +127,17 @@ Which simply means that the probability that an adversary will be able to create
 
 Analogously to PoW just outlined, and using notation from §6.1.4 we can define dynamic availability for PoST as used in $\textsf{Chia}$ by requiring that at any time $t$
 
-$$ 
-{\sf PoST}_a(t)\le f\cdot {\sf PoST}_h(t) 
 $$
+{\sf PoST}_a(t)\le f\cdot {\sf PoST}_h(t) $$
 
-<div class="eqnumber">eq.(16)</div>
+<div class='eqnumber'>eq.(16)</div>
 
 With this eq.(13) becomes
 
-$$ 
-\begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\ &\le -\exp\left(\frac{\mathsf{PoST}_h(t_0,t_1)}{D} \cdot\left( \frac{f}{1.47}-1 \right)^2\right) \end{aligned} 
-$$
+$$ \begin{aligned} &\text{Pr}\left[\text{fork starting at } t_0 \text{ and released at } t_1 \text{ heavier than honest chain}\right] \\
+&\le -\exp\left(\frac{\mathsf{PoST}_h(t_0,t_1)}{D} \cdot\left( \frac{f}{1.47}-1 \right)^2\right) \end{aligned} $$
 
-<div class="eqnumber">eq.(17)</div>
+<div class='eqnumber'>eq.(17)</div>
 
 Thus like in Bitcoin, in $\textsf{Chia}$ the probability of a successful fork decreases exponentially fast in the length of the fork.
 
