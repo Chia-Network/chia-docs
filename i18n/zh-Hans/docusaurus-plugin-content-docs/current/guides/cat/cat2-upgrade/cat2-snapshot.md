@@ -111,8 +111,7 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    3. `START_HEIGHT` - The height of the blockchain to start creating the snapshot from (default: `0`). If you are attempting to obtain all records for your CAT, the recommended start height is `1146800`, which is just before CAT1 was introduced.
    4. `TARGET_HEIGHT` - The height of the blockchain to end the snapshot (no default - must be set). The recommended height is `2311760`, which is the last block at which CAT1 is valid.
 
-:::caution 
-Running this process with the recommended block heights could take over 40 hours to complete. You may wish to test it first by setting the `TARGET_HEIGHT` to `1146900`. This will pull data from only 100 blocks, which should only take a few seconds.
+   :::caution Running this process with the recommended block heights could take over 40 hours to complete. You may wish to test it first by setting the `TARGET_HEIGHT` to `1146900`. This will pull data from only 100 blocks, which should only take a few seconds.
 :::
 
    In order to set these variables, you are recommended to put them into a file called `.env` at the root of the `CAT-addresses` project. The tool will automatically read the variables in this file. For example:
@@ -190,8 +189,7 @@ Running this process with the recommended block heights could take over 40 hours
   </TabItem>
 </Tabs>
 
-:::note 
-The result may contain several warnings such as `WARNING: The wheel package is not available.` These can be safely ignored.
+   :::note The result may contain several warnings such as `WARNING: The wheel package is not available.` These can be safely ignored.
 :::
 
    This command may take a few minutes to complete. At the end of the output, you should see something like:
@@ -240,8 +238,7 @@ The result may contain several warnings such as `WARNING: The wheel package is n
   </TabItem>
 </Tabs>
 
-:::tip 
-If you receive an error message such as `ModuleNotFoundError: No module named 'chia'`, then make sure you can run the `chia` command from this directory and try again.
+   :::tip If you receive an error message such as `ModuleNotFoundError: No module named 'chia'`, then make sure you can run the `chia` command from this directory and try again.
 :::
 
    If this command succeeds, then it will output:
@@ -286,8 +283,7 @@ If you receive an error message such as `ModuleNotFoundError: No module named 'c
 
    This command will show its progress according to the block height. If you used the recommended range for `START_HEIGHT` and `TARGET_HEIGHT` in your `.env` file, then this command could take over 40 hours to complete. The reason it takes so long is it needs to process each block, one at a time. If multiple blocks were done in parallel, then there would be a chance that the results would not be accurate. By processing one block at a time, the tool will return the correct results for the range provided.
 
-:::note 
-You can only generate a snapshot for each block once. If you attempt to run this command over a range against which it has already been run, you will receive an error containing this message:
+   :::note You can only generate a snapshot for each block once. If you attempt to run this command over a range against which it has already been run, you will receive an error containing this message:
 
    ```
    sqlite3.IntegrityError: UNIQUE constraint failed: coin_create.coin_name
@@ -373,7 +369,7 @@ Once you have populated the database with a snapshot, you can run a data export.
    - `--coins` - an **optional** flag that will add information about individual coins to the output (which might be helpful for auditing purposes)
 :::
 
-:::note 
+:::note
 This command will not create any directories, so make sure `<OUTPUT-DIR>` already exists before running it. Otherwise, you will receive a `FileNotFoundError`.
 :::
 
