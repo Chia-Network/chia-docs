@@ -3,7 +3,7 @@ title: Smart Coins
 slug: /chialisp-smart-coin
 ---
 
-import Runnable from '../../../src/components/Runnable.tsx';
+import Runnable from '@site/src/components/Runnable.tsx';
 
 In this lesson, we go over currying, hashing, and conditions, and submit and use our first Chia Smart Coin.
 

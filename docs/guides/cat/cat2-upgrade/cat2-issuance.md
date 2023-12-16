@@ -126,8 +126,6 @@ Now that you have a CSV file containing the necessary information, you can run t
    ERROR: pip's dependency resolver...
    ```
 
-   :::
-
    :::tip
    Python 3.9+ may be required on macOS
    :::

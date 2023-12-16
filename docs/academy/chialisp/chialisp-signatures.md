@@ -3,7 +3,7 @@ title: Signatures
 slug: /chialisp-signatures
 ---
 
-import Runnable from '../../../src/components/Runnable.tsx';
+import Runnable from '@site/src/components/Runnable.tsx';
 
 In this lesson, we go over how to secure coins using signatures.
 
