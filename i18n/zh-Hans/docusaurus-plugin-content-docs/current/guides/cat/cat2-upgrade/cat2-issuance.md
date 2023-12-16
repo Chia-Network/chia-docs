@@ -124,9 +124,8 @@ Now that you have a CSV file containing the necessary information, you can run t
    ERROR: Failed building wheel for CAT-admin-tool
    ERROR: pip's dependency resolver...
    ```
-   :::
 
-:::tip
+   :::tip
 Python 3.9+ may be required on macOS
 :::
 
@@ -158,7 +157,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
-:::note
+   :::note
 
    - You must run Chia `1.5.0` or greater.
    - You can run either the light wallet or a full node.
@@ -357,7 +356,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
-:::note
+   :::note
 
    - You must run Chia `1.5.0` or greater.
    - You can run either the light wallet or a full node.
@@ -805,8 +804,7 @@ At this point, you can navigate to [taildatabase.com](https://www.taildatabase.c
 
    The end result should be that the appropriate number of coins are sent to the puzzle hash, which you can then verify in your Chia wallet (assuming you control that wallet).
 
-:::note 
-   Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
+   :::note Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
 :::
 
 5. The puzzle hashes from the CSV file are actually _inner_ puzzle hashes, so searching for them on chain using `cdv rpc coinrecords` is more complex than it normally would be. However, you can still verify that the bag was successfully unwound for that puzzle hash by searching for the hint:
