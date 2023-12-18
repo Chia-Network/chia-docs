@@ -76,7 +76,7 @@ make linux-AMD64
 - -i 0=write/rewrite
 - -i 1=read/re-read
 - -i 2=random-read/write
-- -i 8=random\_mix
+- -i 8=random_mix
 - -e  Include flush (fsync,fflush) in the timing calculations
 - -r #  record size in Kb
 - -s #  file size in GB
@@ -89,4 +89,4 @@ make linux-AMD64
 ## Run multi threaded
 
 - Assume the test drive or volume is mounted as **/chia/scratch/disk01**
-- -I Use DIRECT I/O for all file operations. Tells the filesystem that all operations are to bypass the buffer cache and go directly to disk. This also will use VX\_DIRECT on VxFS, and O\_DIRECT on Linux, and directio() on Solaris.
+- -I Use DIRECT I/O for all file operations. Tells the filesystem that all operations are to bypass the buffer cache and go directly to disk. This also will use VX_DIRECT on VxFS, and O_DIRECT on Linux, and directio() on Solaris.
