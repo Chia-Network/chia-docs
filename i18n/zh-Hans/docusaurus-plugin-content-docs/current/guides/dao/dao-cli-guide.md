@@ -534,7 +534,7 @@ CAT 52d38b7cc156c8a7...:
 
 ### Lock up coins
 
-In each of the wallets, the `DAO_CAT` balance is `0.0`. This is because the tokens from each wallet are not currently in voting mode. Each wallet still needs to run the `lockup_coins` command. The maximum number of tokens they can lock is the number of CAT mojos they currently possess. In this case, we'll lock 1 CAT (1000 DAO\_CAT) for each wallet:
+In each of the wallets, the `DAO_CAT` balance is `0.0`. This is because the tokens from each wallet are not currently in voting mode. Each wallet still needs to run the `lockup_coins` command. The maximum number of tokens they can lock is the number of CAT mojos they currently possess. In this case, we'll lock 1 CAT (1000 DAO_CAT) for each wallet:
 
 ```bash
 chia dao lockup_coins -i 2 -a 1 -m 0.00001
@@ -547,7 +547,7 @@ Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c991
 Run 'chia wallet get_transaction -f 3885096935 -tx 0xe3eeeb55f97dea6f3330c286b917afea8c3e0f3a388b00d33abf93e44d2efe0d' to get status
 ```
 
-In each wallet's case, an on-chain transaction is required. After running this command on all three wallets, the status of CATs and DAO\_CATs is as follows:
+In each wallet's case, an on-chain transaction is required. After running this command on all three wallets, the status of CATs and DAO_CATs is as follows:
 
 **DAO creator**
 
