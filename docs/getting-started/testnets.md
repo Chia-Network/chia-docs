@@ -108,29 +108,29 @@ chia configure --testnet true
 # Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values. 
 # Use the ports listed or choose any you desire as long as they are different than the default values for mainnet.
 
-yq -i '.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
-yq -i '.ui.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
+yq -i -y '.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
+yq -i -y '.ui.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
 
-yq -i '.ui.port = 8802' ~/.chia/testnet/config/config.yaml
+yq -i -y '.ui.port = 8802' ~/.chia/testnet/config/config.yaml
 
-yq -i '.farmer.port = 8547' ~/.chia/testnet/config/config.yaml
-yq -i '.full_node.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
-yq -i '.harvester.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
+yq -i -y '.farmer.port = 8547' ~/.chia/testnet/config/config.yaml
+yq -i -y '.full_node.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
+yq -i -y '.harvester.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
 
-yq -i '.harvester.port = 8548' ~/.chia/testnet/config/config.yaml
-yq -i '.farmer.harvester_peer.port = 8548' ~/.chia/testnet/config/config.yaml
+yq -i -y '.harvester.port = 8548' ~/.chia/testnet/config/config.yaml
+yq -i -y '.farmer.harvester_peer.port = 8548' ~/.chia/testnet/config/config.yaml
 
-yq -i '.wallet.port = 8649' ~/.chia/testnet/config/config.yaml
-yq -i '.full_node.wallet_peer.port = 8649' ~/.chia/testnet/config/config.yaml
+yq -i -y '.wallet.port = 8649' ~/.chia/testnet/config/config.yaml
+yq -i -y '.full_node.wallet_peer.port = 8649' ~/.chia/testnet/config/config.yaml
 
-yq -i '.full_node.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
-yq -i '.ui.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
+yq -i -y '.full_node.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
+yq -i -y '.ui.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
 
-yq -i '.farmer.rpc_port = 8571' ~/.chia/testnet/config/config.yaml
+yq -i -y '.farmer.rpc_port = 8571' ~/.chia/testnet/config/config.yaml
 
-yq -i '.harvester.rpc_port = 8572' ~/.chia/testnet/config/config.yaml
+yq -i -y '.harvester.rpc_port = 8572' ~/.chia/testnet/config/config.yaml
 
-yq -i '.wallet.rpc_port = 9456' ~/.chia/testnet/config/config.yaml
+yq -i -y '.wallet.rpc_port = 9456' ~/.chia/testnet/config/config.yaml
 
 # Start Chia
 chia start farmer
