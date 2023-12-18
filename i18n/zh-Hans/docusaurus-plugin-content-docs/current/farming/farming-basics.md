@@ -3,7 +3,7 @@ title: Farming Basics
 slug: /farming-basics
 ---
 
-耕种（Farming）是[生成地块](/plotting-basics)（plotting）后的下一步。 Once a plot has been created, you have a chance of winning Chia as long as the file is being stored and the Chia farming software is running.
+耕种（Farming）是[生成地块](/plotting-basics)(/plotting-basics)（plotting）后的下一步。 Once a plot has been created, you have a chance of winning Chia as long as the file is being stored and the Chia farming software is running.
 
 When farming, you allocate a certain amount of storage space in order to have a chance at winning Chia. The more plots you have, the higher your chances of winning.
 
