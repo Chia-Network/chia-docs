@@ -77,6 +77,14 @@ A transaction can replace another transaction in the mempool if it spends at lea
 
 For example, if the original transaction spent coins A and B, then another transaction that spends A, B, and C can replace it. However, a transaction that spends B and C cannot. This prevents denial-of-service (DOS) attacks, as well as censorship of transactions. There is also a minimum fee bump which might depend on mempool software being used. In `chia-blockchain`, this is set to 5 fee-per-cost. This prevents spam replacement transactions.
 
+The full conditions for replace by fee are:
+1. The new spend bundle needs to include at least all the spends in the original one (can include additional spends)
+2. The new spend bundle needs to pay a higher fee per cost than the original one (and higher than the [minimum fee required for inclusion](https://docs.chia.net/mempool/#fee-required-for-inclusion))
+3. The new spend bundle needs to pay at least 10000000 mojos more in fees than the original one
+4. If there were any time-locks associated with the original spend, the new spend bundle has to have the same time-lock
+
+The replace by fee logic can be found [here](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/mempool_manager.py#L678)in the codebase)
+
 ## Block Creation
 
 When the farmer makes a block, they will select the highest fee-per-cost transactions from the mempool until they reach the maximum block size. These spend bundles are combined into one large spend bundle, which is guaranteed to be valid, since all spend bundles in the mempool must spend disjointed coins.
