@@ -115,7 +115,7 @@ Detailed instructions can be found in the "How to Plot" page:
 
 ### 第五步：管理联合耕种农田。
 
-You should see your plots in the `Pooling` dialog. The status should say `Pooling``. 在这里，可以看到当前农田的难度，已获得的积分（points）以及联合耕种池认为您拥有的积分（积分余额）。
+You should see your plots in the `Pooling` dialog. The status should say `Pooling`. 在这里，可以看到当前农田的难度，已获得的积分（points）以及联合耕种池认为您拥有的积分（积分余额）。
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/pooling/06.png" alt="Plot NFT details" />
