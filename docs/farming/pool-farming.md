@@ -124,7 +124,7 @@ Detailed instructions can be found in the "How to Plot" page:
 
 ### Step 5: Manage your Plot NFT
 
-You should see your plots in the `Pooling` dialog. The status should say `Pooling``. From here, you can see your
+You should see your plots in the `Pooling` dialog. The status should say `Pooling`. From here, you can see your
 difficulty, the number of points earned, and how many points the pool thinks you have (points balance).
 
 <div style={{ textAlign: 'left' }}>
