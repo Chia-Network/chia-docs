@@ -72,7 +72,8 @@ The time it takes to do a proof challenge should be below 30 seconds. If you see
 
 Here are some commands you can use to examine `debug.log` for problems.
 
-- Linux/macOS: `tail ~/.chia/mainnet/log/debug.log | grep eligible`
+- Linux/macOS:
+  - `tail ~/.chia/mainnet/log/debug.log | grep eligible`
 - Windows:
   - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "eligible"`
   - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Found [^0] proof"`
@@ -85,3 +86,13 @@ You can find the documentation for the `check` command on the [CLI Commands Refe
 
 - To check all your plots, run `chia plots check`. This will check all directories you have listed in your `config.yaml` to contain plots.
 - Use `chia plots check -h` to see the options for this command.
+
+## Full Node
+
+Block Validation Time
+- Linux/macOS:
+  - `grep -o "Block validation time: .* seconds" .chia/mainnet/log/debug.log |sort -rV | head -n 10`
+  - For a fancy grep `apt install st-console` then run:
+    - `grep "Block validation time:" ~/.chia/mainnet/log/debug.log* | awk '{print $8}' | st-console --summary -N`
+- Windows:
+  - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Block validation time:"`
