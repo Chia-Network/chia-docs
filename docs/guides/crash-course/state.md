@@ -285,6 +285,12 @@ cdv clsp build message.clsp
 
 ## Initial Setup
 
+Install NPM:
+
+```bash
+pip install npm
+```
+
 Install the needed dependencies:
 
 ```bash
