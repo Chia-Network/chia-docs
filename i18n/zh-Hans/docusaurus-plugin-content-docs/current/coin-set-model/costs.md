@@ -137,3 +137,31 @@ Theoretical maximum cost per block: `3 620 074 957 + 3 620 074 957 + 3 620 074 9
 The theoretical maximum size of a single block is `maximum cost per block / cost per byte`, or `11 000 000 000 / 12 000 = 916 667 bytes`. However, this number ignores the costs of all operators. If you want a CLVM program to do anything useful, the maximum size would be closer to 400 KB.
 
 Even this number is not realistic because it assumes that a single program will take up an entire block. The maximum number of vanilla transactions (with two outputs) per block is 1000. Therefore, if there is fee pressure on Chia's blockchain, a 400 KB program would need to include a larger fee than the top 1000 vanilla transactions in the mempool -- combined -- in order for a farmer to include it.
+
+### Estimated Transaction Costs
+
+The below chart contains costs for various transactions on the blockchain, each of these assumes the inputs and outputs have been optimized and represent a best case scenario.
+
+:::note
+The [minimum effective](/mempool/#fee-required-for-inclusion) fee represents 5 x the clvm cost and is the minimum fee recognized by the default consensus rules (any fee less would be the same as 1 mojo). This means one needs to use at least the fees listed below during moderate fee pressure but greater fees might be needed for time sensitive transactions to process in a timely manner.
+
+  Please note that the costs and fees listed are for vanilla versions of these transactions, they can vary based on the number of input and output coins needed so consider these the bare minimum. Transactions with a '*' are listed with a fee of 3 x the minimum effective fee. This is to ensure the fees are more realistic for how coins are distributed in users wallets but note that vanilla versions of these would be 1/3 that which is listed.
+:::
+
+| Transaction Type                  | clvm cost     | Minimum Effective Fee            |
+| --------------------------------- | ------------- | -------------------------------- |
+| **Full BLock (with 50% cap)**     | 5,500,000,000 | 27,500,000,000 (0.0275 xch)      |
+| **Standard Transaction**          | 6,000,000     | 90,000,000 mojo (0.00009 xch) *  |
+| **PlotNFT Creation**              | 18,000,000    | 90,000,000 mojo (0.00009 xch)    |
+| **Minting NFT with DID**          | 123,000,000   | 615,000,000 mojo (0.000615 xch)  |
+| **Minting NFT without DID**       | 53,000,000    | 265,000,000 mojo (0.000265 xch)  |
+| **Adding URI to NFT with DID**    | 71,000,000    | 355,000,000 mojo (0.000355 xch)  |
+| **Adding URI to NFT without DID** | 41,000,000    | 205,000,000 mojo (0.000205 xch)  |
+| **Transfer NFT with DID**         | 67,000,000    | 335,000,000 mojo (0.000335 xch)  |
+| **Assign DID to NFT**             | 107,000,000   | 535,000,000 mojo (0.000535 xch)  |
+| **Send Clawback Transaction**     | 10,000,000    | 150,000,000 mojo (0.00015 xch) * |
+| **Claim Clawback Transaction**    | 1,400,000     | 7,000,000 (.000007 xch)          |
+| **Clawback Clawback Transaction** | 15,600,000    | 75,800,000 mojo (.0000758 xch)   |
+| **Combine 500 Farming Rewards**   | 3,100,000,000 | 15,500,000,000 (.0155 xch)       |
+| **Split 1 Coin into 2**           | 11,000,000    | 55,000,000 (.000055 xch)         |
+| **Cat Transaction**               | 37,000,000    | 555,000,000 (.000555 xch) *      |
