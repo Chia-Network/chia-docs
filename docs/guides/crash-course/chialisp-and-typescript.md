@@ -387,7 +387,7 @@ npm run start
 
 ## Crafting a Solution
 
-THe solution for this puzzle consists of a list of conditions. To write Chialisp within JavaScript we can use the `Program.fromSource()` method.
+The solution for this puzzle consists of a list of conditions. To write Chialisp within JavaScript we can use the `Program.fromSource()` method.
 We will use a `51` (`CREATE_COIN`) condition delivering the value to our wallet puzzle hash.
 
 ```typescript
