@@ -21,6 +21,7 @@ slug: /references
 
 ## Video
 
+- [Bram Cohen's 2022 presentation](https://odysee.com/@Chia:d/off-the-chain-Bram-Cohen-2022:5) at Off the Chain 22 regarding custody solutions including authorized payee wallets and clawback transactions.
 - [Mariano Sorgente's 2019 presentation](https://youtu.be/_075bzQPooU) at MIT on how to achieve Nakamoto consensus with Proof of Space and VDFs
 - [Bram Cohen's 2018 presentation](https://www.youtube.com/watch?v=2Zlcgt8FVz4) at Stanford on Proofs of Space
 - [Bram Cohen's 2018 presentation](https://www.youtube.com/watch?v=iqxkO7C-cyk) at BPASE on the [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space") academic paper ([slides](https://view.publitas.com/chia-network/pbase18slides/page/1) by Hamza Abusalah)
