@@ -20,10 +20,10 @@ You can do RPC calls with pretty much any language, but to create larger applica
 
 This guide is meant to be an example that will give you some basic experience. We will be using Node.js with TypeScript to create a signature enforced coin. We'll use multiple TypeScript libraries for this project, which are open source if you want to see the details on how they work.
 
--   [BLS Signatures](https://npmjs.com/package/@rigidity/bls-signatures)
--   [CLVM](https://npmjs.com/package/@rigidity/clvm)
--   [RPCs](https://npmjs.com/package/@rigidity/chia)
--   [Wallet Helper](https://npmjs.com/package/@rigidity/chia-wallet)
+-   [BLS Signatures](https://npmjs.com/package/chia-bls)
+-   [CLVM](https://npmjs.com/package/clvm-lib)
+-   [RPCs](https://npmjs.com/package/chia-rpc)
+-   [Wallet Helper](https://npmjs.com/package/chia-wallet-lib)
 -   [DotEnv](https://npmjs.com/package/dotenv)
 -   [BIP39](https://npmjs.com/package/bip39)
 
@@ -132,7 +132,7 @@ npm run start
 For this project we are going to need add a few more dependencies. You can install these all at once with:
 
 ```
-npm install @rigidity/bls-signatures @rigidity/clvm @rigidity/chia @rigidity/chia-wallet bip39 dotenv
+npm install chia-bls clvm-lib chia-rpc chia-wallet-lib bip39 dotenv
 ```
 
 ## Mnemonic Phrase
@@ -182,14 +182,14 @@ import {
     fromHex,
     AugSchemeMPL,
     concatBytes,
-} from '@rigidity/bls-signatures';
+} from 'chia-bls';
 import { mnemonicToSeedSync } from 'bip39';
 import dotenv from 'dotenv';
-import { Program } from '@rigidity/clvm';
+import { Program } from 'clvm-lib';
 import fs from 'fs';
 import path from 'path';
-import { FullNode, formatHex, SpendBundle, toCoinId } from '@rigidity/chia';
-import { KeyStore, StandardWallet } from '@rigidity/chia-wallet';
+import { FullNode, formatHex, SpendBundle, toCoinId } from 'chia-rpc';
+import { KeyStore, StandardWallet } from 'chia-wallet-lib';
 import os from 'os';
 ```
 
@@ -464,14 +464,14 @@ import {
     fromHex,
     AugSchemeMPL,
     concatBytes,
-} from '@rigidity/bls-signatures';
+} from 'chia-bls';
 import { mnemonicToSeedSync } from 'bip39';
 import dotenv from 'dotenv';
-import { Program } from '@rigidity/clvm';
+import { Program } from 'clvm-lib';
 import fs from 'fs';
 import path from 'path';
-import { FullNode, formatHex, SpendBundle, toCoinId } from '@rigidity/chia';
-import { KeyStore, StandardWallet } from '@rigidity/chia-wallet';
+import { FullNode, formatHex, SpendBundle, toCoinId } from 'chia-rpc';
+import { KeyStore, StandardWallet } from 'chia-wallet-lib';
 import os from 'os';
 
 dotenv.config();
