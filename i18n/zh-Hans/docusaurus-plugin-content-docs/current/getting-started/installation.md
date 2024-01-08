@@ -178,6 +178,9 @@ chia stop -d all
 # Deactivate the virtual environment
 deactivate
 
+# Remove the current virtual environment
+rm -r venv
+
 # Pull the latest version
 git fetch
 git checkout latest
@@ -237,6 +240,9 @@ chia stop -d all
 
 # Deactivate the virtual environment
 deactivate
+
+# Remove the current virtual environment
+rm -r venv
 
 # Pull the latest version
 git fetch
