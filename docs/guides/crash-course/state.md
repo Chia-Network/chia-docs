@@ -415,6 +415,13 @@ GENESIS=d25b25b897564035695996922aa0f9ff9d611bd38cd2ecd0d2383a99a70dfc15
 EVE_COIN_ID=5fe284bfa91c32fd274179769f5b808c916e5135e603cb292a90e04e5867bd1a
 ```
 
+:::info
+The hash used in `GENESIS` can be found in your chia environments config.yaml file.  
+Mainnet Genesis = `ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb`  
+Testnet11 Genesis = `37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615`  
+For the simulator and other testnets please refer to the instances config.yaml `$CHIA_ROOT/config/config.yaml`.
+:::
+
 Write the following code to sync the state:
 
 ```ts title=index.ts
