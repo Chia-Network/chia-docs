@@ -3,7 +3,7 @@ title: K Sizes
 slug: /k-sizes
 ---
 
-# K size with compression level
+## K size with compression level
 
 | Compression Level | Plot Size k=32 (GiB) | Plot Size k=32 (GB) | Plot Size k=33 (GiB) | Plot Size k=34 (GiB) | Plot Size k=35 (GiB) |
 | ----------------- | -------------------- | ------------------- | -------------------- | -------------------- | -------------------- |
@@ -43,6 +43,18 @@ The following table shows the old size estimation of C0 plots, along with the ne
 | 38 | 8064.093156        | 8255.112685        |
 | 39 | 16547.10024        | 16939.06239        |
 
+## Storage requirements for uncompressed plots
+
+| K-size | Temp. Size         | Final Size           |
+|--------|--------------------|----------------------|
+| K=32   | 239 GiB (256.6 GB) | 101.4 GiB (108.9 GB) |
+| K=33   | 512 GiB (550 GB)   | 208.8 GiB (224.2 GB) |
+| K=34   | 1041 GiB (1118 GB) | 429.8 GiB (461.5 GB) |
+| K=35   | 2175 GiB (2335 GB) | 884.1 GiB (949.3 GB) |
+
+When planning on how much plotting space is required, only calculate the temporary disk size requirement.
+
+When stagger plotting, disk size requirement may change depending on which Phase the plotting is at.
 
 ## Plots larger than k=32
 
