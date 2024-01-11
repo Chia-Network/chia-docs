@@ -8,7 +8,7 @@ slug: /walletconnect-commands
 
 ## Getting Started
 
-You can install our [example WalletConnect dApp](https://github.com/Chia-Network/chia-wallet-connect-dapp-test) and run it in your browser to test out WalletConnect. The code can be adapted for use in your own React applications.
+You can install our [example WalletConnect dApp](https://github.com/Chia-Network/walletconnect-rpcs-dapp) and run it in your browser to test out WalletConnect. The code can be adapted for use in your own React applications.
 
 ## Commands
 
