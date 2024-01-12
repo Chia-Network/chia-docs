@@ -2,6 +2,19 @@
 sidebar_label: NFTs
 title: NFT CLI
 slug: /nft-cli
+description: This document is a comprehensive listing of CLI commands for interacting with Chia NFTs (non-fungible tokens).
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - primitive
+  - NFT
+  - NonFungible
+  - non-fungible
+  - token
+  - art
+  - creator
 ---
 
 import Tabs from '@theme/Tabs';

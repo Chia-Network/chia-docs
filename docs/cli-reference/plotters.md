@@ -2,6 +2,19 @@
 sidebar_label: Plotters
 title: Plotters
 slug: /plotters-cli
+description: This document is a comprehensive listing of CLI commands for creating plots from within Chia. Plots are used to provide proofs of space for the chia blockchain.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - plotters
+  - plotting
+  - plot
+  - farmer
+  - harvester
+  - chiapos
+  - proof of space
 ---
 
 import Tabs from '@theme/Tabs';
@@ -20,7 +33,7 @@ Usage: chia plotters chiapos [OPTIONS]
 Options:
 
 | Short Command | Long Command        | Type    | Required | Description                                                                               |
-| :------------ | :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------- |
+|:--------------|:--------------------|:--------|:---------|:------------------------------------------------------------------------------------------|
 | -t            | --tmp_dir           | TEXT    | True     | Temporary directory 1 (where most of the plots temp data will be stored)                  |
 | -2            | --tmp_dir2          | TEXT    | False    | Temporary directory 2 [Default: same as `tmp_dir`]                                        |
 | -k            | --size              | INTEGER | False    | K value [Default: 32]                                                                     |

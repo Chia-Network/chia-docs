@@ -2,6 +2,17 @@
 sidebar_label: DAOs
 title: DAO CLI
 slug: /dao-cli
+description: Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - DAO
+  - decentralized autonomous organization
+  - alpha
+  - treasury
+  - proposal
 ---
 
 import Tabs from '@theme/Tabs';
@@ -28,7 +39,7 @@ Usage: chia dao add [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:--------------|:------------------|:--------|:---------|:---------------------------------------------------------------------------------------------------------|
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -n            | --name            | TEXT    | False    | Set the DAO wallet name                                                                                  |

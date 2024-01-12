@@ -1,6 +1,17 @@
 ---
 slug: /custody-tool
 title: Custody Tool
+description: Chia uses an internal custody tool that enables multisig, clawback, and rekeying. These features allow you to store assets on Chia's blockchain in one of the most secure setups ever devised.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - multisig
+  - clawback
+  - rekey
+  - custody
+  - audit
 ---
 
 ### Intro

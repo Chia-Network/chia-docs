@@ -2,6 +2,19 @@
 sidebar_label: CAT Admin
 title: CAT Admin CLI
 slug: /cat-admin-cli
+description: On the Chia blockchain, non-native tokens are called CATs. This document is a reference guide for Chia's CAT Admin Tool, located in the CAT-admin-tool repository.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - primitive
+  - cat
+  - chia asset token
+  - tail
+  - Token Asset and Issuance Limitations
+  - issuance
+  - minting
 ---
 
 import Tabs from '@theme/Tabs';

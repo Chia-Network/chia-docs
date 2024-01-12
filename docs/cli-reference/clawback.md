@@ -1,6 +1,17 @@
 ---
 slug: /clawback-cli
 title: Clawback
+description: On the Chia blockchain, users can send transactions with a clawback allowing them a designated time period where they can recall the transaction while the recipient can confirm the funds are being sent to them.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - clawback
+  - primitive
+  - wallet
+  - time
+  - claim
 ---
 
 ## Intro

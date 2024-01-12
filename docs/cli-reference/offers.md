@@ -2,6 +2,19 @@
 sidebar_label: Offers
 title: Offer CLI
 slug: /offer-cli
+description: This document is a comprehensive listing of CLI commands for interacting with Chia offer files, a secure peer to peer payment solution.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - primitive
+  - Offer
+  - File
+  - p2p
+  - peer-to-peer
+  - transaction
+  - purchase
 ---
 
 import Tabs from '@theme/Tabs';

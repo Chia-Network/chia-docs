@@ -2,6 +2,19 @@
 sidebar_label: Simulator
 title: Simulator CLI Reference
 slug: /simulator-cli
+description: This page includes a comprehensive list of the Chia Command Line Interface commands for using the blockchain simulator. The simulator gives you complete control of a private Chia blockchain, including the ability to advance and revert blocks as needed.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - simulator
+  - blockchain
+  - testing
+  - private blockchain
+  - blocks
+  - chiapos
+  - proof of space
 ---
 
 import Tabs from '@theme/Tabs';

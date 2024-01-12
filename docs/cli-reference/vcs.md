@@ -2,6 +2,18 @@
 sidebar_label: VCs
 title: Verifiable Credentials
 slug: /vc-cli
+description: This document is a comprehensive listing of CLI commands for interacting with Chia verifiable credentials (VCs).
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - primitive
+  - VCs
+  - Verifiable Credentials
+  - decentralized
+  - identification
+  - id
 ---
 
 import Tabs from '@theme/Tabs';

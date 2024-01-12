@@ -2,6 +2,17 @@
 sidebar_label: DataLayer
 title: DataLayer CLI
 slug: /datalayer-cli
+description: This page includes a comprehensive list of the Chia Command Line Interface commands for interacting with the DataLayer primitive.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - DL
+  - DataLayer
+  - Data Layer
+  - data
+  - primitive
 ---
 
 import Tabs from '@theme/Tabs';

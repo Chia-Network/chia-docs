@@ -2,6 +2,21 @@
 sidebar_label: Wallet
 title: Wallet CLI
 slug: /wallet-cli
+description: This document is a reference for the Chia wallet CLI commands. Many chai wallet commands are documented on their own dedicated pages.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - primitive
+  - wallet
+  - coins
+  - tokens
+  - cats
+  - nfts
+  - dids
+  - offers
+  - vcs
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,7 +26,8 @@ This document is a reference for Chia's `wallet` CLI commands. The following `wa
 
 - [DIDs](/did-cli) (Decentralized Identifiers)
 - [NFTs](/nft-cli) (Non-Fungible Tokens)
-- [Offers](/offer-cli)
+- [Offers](/offer-cli) (Peer-to-peer Transactions)
+- [VCs](/vc-cli) (Verifiable Credentials)
 
 ## Reference
 

@@ -2,6 +2,17 @@
 sidebar_label: Overview
 title: CLI Overview
 slug: /cli
+description: For the Chia reference client, users can utilize the command line interface (CLI) to complete all functions that the GUI performs.
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - help
+  - init
+  - start
+  - stop
+  - show
 ---
 
 import Tabs from '@theme/Tabs';

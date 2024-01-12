@@ -2,6 +2,16 @@
 sidebar_label: DIDs
 title: DID CLI
 slug: /did-cli
+description: This document is a comprehensive listing of CLI commands for interacting with Chia DIDs (decentralized identifications).
+keywords:
+  - chia
+  - cli
+  - command line interface
+  - commands
+  - primitive
+  - DID
+  - Decentralized Identification
+  - wallet
 ---
 
 import Tabs from '@theme/Tabs';
