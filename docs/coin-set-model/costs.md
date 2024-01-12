@@ -3,7 +3,7 @@ title: Costs
 slug: /coin-set-costs
 ---
 
-Cost is a unit of measurement that is used to represent the available space in a block. It is measured by the amount of computing power required to execute the programs within it, as well as the physical drive space required to store data on each node's machine.
+Cost is a unit of measurement that represents resources expended to record a transaction in a block. It is a sum of a measure of computing power required to execute the programs within it, plus the physical drive space (bytes) required to store data on each node's machine.
 
 :::info
 The maximum cost per block is 11,000,000,000 (11 billion), which is typically equivalent to around 400 KB of space. However, not every block is completely full.
@@ -13,7 +13,7 @@ It is important to keep the cost usage of programs on the Chia blockchain as low
 
 ## Cost Calculation
 
-Every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
+Cost has several components.  First, every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
 
 Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
 
