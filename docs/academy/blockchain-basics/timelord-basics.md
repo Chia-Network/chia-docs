@@ -1,6 +1,15 @@
 ---
 title: What are Timelords
 slug: /timelord-basics
+description: In this lesson, we dive into the role that Timelords play in the chia proof of space time consensus by using VDFs to generate challenges.
+keywords:
+  - chia
+  - academy
+  - overview
+  - Proofs of Time
+  - Verifiable Delay Function
+  - VDF
+  - Challenges
 ---
 In this lesson, we dive into the role that Timelords play in the consensus by using VDFs to generate challenges.
 

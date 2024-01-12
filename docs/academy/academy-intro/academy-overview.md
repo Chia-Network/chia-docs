@@ -1,6 +1,11 @@
 ---
 title: Academy Overview
 slug: /academy-overview
+description: An overview of the Chia Academy lesson format describing each section and component that will be used throughout the lessons.
+keywords:
+  - chia
+  - academy
+  - overview
 ---
 
 import Runnable from '@site/src/components/Runnable.tsx';

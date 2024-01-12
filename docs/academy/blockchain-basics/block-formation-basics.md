@@ -1,6 +1,14 @@
 ---
 title: How New Blocks are Formed
 slug: /block-formation-basics
+description: In this lesson, we review the basics of block formation including the farmers role in validating transactions, forming blocks, and managing the mempool.
+keywords:
+  - chia
+  - academy
+  - overview
+  - Transaction Validation
+  - Block Formation
+  - Mempool
 ---
 In this lesson, we review the basics of block formation including the farmers role in validating transactions, forming blocks, and managing the mempool.
 

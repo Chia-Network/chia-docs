@@ -1,6 +1,14 @@
 ---
 title: Inner Puzzles
 slug: /chialisp-inner-puzzle
+description: In this lesson, we'll talk about why you might want to nest chia coin puzzles and how to set them up.
+keywords:
+  - chia
+  - academy
+  - overview
+  - Functions
+  - Nesting Puzzles
+  - Coin Solutions
 ---
 
 import Runnable from '@site/src/components/Runnable.tsx';

@@ -1,6 +1,14 @@
 ---
 title: How Chia Consensus Works
 slug: /consensus-basics
+description: In this lesson, we review the basics of the chia proof of space time consensus, the process by which to determine the true state of a blockchain.
+keywords:
+  - chia
+  - academy
+  - overview
+  - Farmers
+  - Timelords
+  - Plot Filter
 ---
 In this lesson, we review the basics of consensus, the process by which to determine the true state of a blockchain.
 

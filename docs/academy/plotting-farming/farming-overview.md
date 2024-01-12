@@ -1,6 +1,15 @@
 ---
 title: Farming Overview
 slug: /farming-overview
+description: In this lesson, we go over the chia blockchain plotting process, and what happens when a chia Farmer wins a challenge.
+keywords:
+  - chia
+  - academy
+  - Plotting
+  - Protocols
+  - Puzzles
+  - Solutions
+  - Farmer
 ---
 
 In this lesson, we go over the plotting process, and what happens when a Farmer wins a challenge.

@@ -1,6 +1,14 @@
 ---
 title: Coin-Set Model Intro
 slug: /coinset-basics
+description: In this lesson, we dive into the coinset model basics and learn what it means to spend a coin in Chia.
+keywords:
+  - chia
+  - academy
+  - overview
+  - Coin Contents
+  - Coin Puzzle
+  - Coin Solution
 ---
 In this lesson, we dive into the coinset model basics and learn what it means to spend a coin in Chia.
 

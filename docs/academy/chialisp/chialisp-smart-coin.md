@@ -1,6 +1,15 @@
 ---
 title: Smart Coins
 slug: /chialisp-smart-coin
+description: In this lesson, we go over currying, hashing, and conditions. Then submit and use our first Chia Smart Coin.
+keywords:
+  - chia
+  - academy
+  - chialisp
+  - Currying
+  - Hashing
+  - Conditions
+  - BLS
 ---
 
 import Runnable from '@site/src/components/Runnable.tsx';

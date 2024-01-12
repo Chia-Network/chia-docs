@@ -1,6 +1,17 @@
 ---
 title: Pools
 slug: /pools
+description: In this lesson, we review the chia Pooling protocol, and how it can benefit a Farmer starting out.
+keywords:
+  - chia
+  - academy
+  - Benefits
+  - Full Node
+  - Plot
+  - Pooling
+  - Reward
+  - Splitting
+  - Farmer
 ---
 
 In this lesson, we review the Pooling protocol, and how it can benefit a Farmer starting out.

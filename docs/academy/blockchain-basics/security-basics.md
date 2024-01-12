@@ -1,6 +1,14 @@
 ---
 title: Chia Blockchain Security Intro
 slug: /security-basics
+description: In this lesson, we learn the basic security implementations in Chia and how they protect users from bad actors.
+keywords:
+  - chia
+  - academy
+  - overview
+  - Decentralization
+  - Coin Signatures
+  - Chialisp Security
 ---
 In this lesson, we learn the basic security implementations in Chia and how they protect users from bad actors.
 

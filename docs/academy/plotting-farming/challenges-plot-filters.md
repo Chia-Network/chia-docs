@@ -1,6 +1,15 @@
 ---
 title: Challenges & Plot Filters
 slug: /challenges-plot-filters
+description: In this lesson, we discuss how the plot filter works in the chia blockchain consensus, and what the benefits are of using one.
+keywords:
+  - chia
+  - academy
+  - Plot
+  - Filters
+  - Challenge
+  - Generation
+  - Farmer
 ---
 
 In this lesson, we discuss how the plot filter works, and what the benefits are of using one.

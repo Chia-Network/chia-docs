@@ -1,6 +1,15 @@
 ---
 title: Signatures
 slug: /chialisp-signatures
+description: In this lesson, we go over how to secure coins on the chia blockchain using bls signatures.
+keywords:
+  - chia
+  - academy
+  - chialisp
+  - Signing
+  - Signatures
+  - Library files
+  - BLS
 ---
 
 import Runnable from '@site/src/components/Runnable.tsx';

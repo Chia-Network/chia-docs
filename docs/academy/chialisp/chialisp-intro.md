@@ -1,6 +1,16 @@
 ---
 title: Intro to Chialisp
 slug: /chialisp-intro
+description: In this lesson, we review the basics of Chialisp including syntax & structure, inequalities and if statements, and setting up a development environment. Chialisp is the onchain programming language for the chia blockchain.
+keywords:
+  - chia
+  - academy
+  - chialisp
+  - Syntax
+  - Structure
+  - Puzzles
+  - Solutions
+  - Development Environment
 ---
 
 import Runnable from '@site/src/components/Runnable.tsx';
