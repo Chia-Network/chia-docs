@@ -1,6 +1,16 @@
 ---
 title: Full Nodes
 slug: /full-node-architecture
+description: The core of Chia's peer-to-peer system is composed of full nodes. Full nodes have several responsibilities- maintaining a copy of the chia blockchain database, validating the chia blockchain database, propagating new blocks, transactions, and proofs through the network, using the peer protocol. Optionally full nodes serve light wallet clients, communicate with farmers, and communicate with timelords.
+keywords:
+  - chia
+  - architecture
+  - network
+  - Full Node
+  - database
+  - blockchain
+  - blocks
+  - proofs
 ---
 
 The core of Chia's peer-to-peer system is composed of full nodes. Full nodes have several responsibilities:

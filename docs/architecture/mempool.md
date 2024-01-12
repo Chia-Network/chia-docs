@@ -1,29 +1,40 @@
 ---
 title: Mempool
 slug: /mempool
+description: The chia blockchain mempool (or memory pool) is a collection of transactions stored by full nodes, usually in memory, before they are confirmed on the blockchain. The mempool is not dictated by the consensus rules; a farmer can change how their mempool functions and customize the rules without permission from other full nodes.
+keywords:
+  - chia
+  - architecture
+  - network
+  - full node
+  - mempool
+  - transactions
+  - memory pool
+  - fee
+  - block
 ---
 
 The mempool (or memory pool) is a collection of transactions stored by full nodes, usually in memory, before they are confirmed on the blockchain. The mempool is not dictated by the consensus rules; a farmer can change how their mempool functions and customize the rules without permission from other full nodes.
 
-The mempool is a required facet of Chia due to the decentralized nature of the blockchain. Transaction blocks occur approximately every 52 seconds, and it's impossible to predict who will win a block. Therefore, all transactions must be broadcast to the whole network and stored locally until they are confirmed. Additionally, it is normal to have more pending transactions than can fit in a single block, so the mempool also acts as a queue for inclusion into the blockchain.
+The mempool is a required facet of Chia due to the decentralized nature of the blockchain. [Transaction blocks](/consensus-foliage/#transaction-block-time) occur approximately every 52 seconds, and it's impossible to predict who will win a block. Therefore, all transactions must be broadcast to the whole network and stored locally until they are confirmed. Additionally, it is normal to have more pending transactions than can fit in a single block, so the mempool also acts as a queue for inclusion into the blockchain.
 
 :::info
-How many transactions can fit into a block? Due to the varying size of transactions, and the different definitions of what even counts as a "transaction," there is not an exact number. But just for a bit of rough guidance, approximately 1000 transactions with two inputs and two outputs, or 2000 transactions with one input and one output can fit into a single block.
+How many transactions can fit into a block? Due to the varying size of transactions, and the different definitions of what even counts as a "transaction," there is not an exact number. But just for a bit of rough guidance, approximately 1000 transactions with two inputs and two outputs, or 2000 transactions with one input and one output can fit into a single block. The total number of transactions that can fit into a block is based on each individual transactions [clvm cost](/coin-set-costs).
 :::
 
-When a user makes a transaction, it gets sent to a full node, which then verifies it, adds it to the mempool, and broadcasts it to all of its peers. Therefore, transactions get propagated to the whole network in a very short period of time.
+When a user makes a transaction, it gets sent to a full node, which then verifies it, adds it to the mempool, and broadcasts it to all of its peers. Therefore, transactions are propagated to the whole network in a very short period of time.
 
 ## Validation
 
-Only valid transactions are allowed to enter the mempool. The process of validating transactions is similar to the process of validating blocks. This includes running CLVM, checking conditions, validating signatures, and checking that the coins to be spent are currently unspent and valid.
+Only valid transactions are allowed to enter the mempool. The process of validating transactions is similar to the process of [validating blocks](/block-validation). This includes running CLVM, checking conditions, validating signatures, and checking that the coins to be spent are currently unspent and valid.
 
 The transaction is also checked against other transactions in the mempool, to ensure there are no conflicts.
 
 ## Fee Required for Inclusion
 
-When you submit a transaction, one of several possible scenarios will play out, depending on how full the mempool is, how large of a fee was included, the CLVM cost of the transaction, and other factors. Keep in mind that each farmer has its own copy of the mempool, with its own set of rules. The default mempool behavior discussed in this section will apply to most, but not all, nodes. It is up to each individual farmer to decide which transactions to include upon creating a block.
+When you submit a transaction, one of several possible scenarios will play out, depending on how full the mempool is, how large of a fee was included, the CLVM cost of the transaction, and other factors. Keep in mind that each farmer has its own copy of the mempool, with its own set of rules. The default mempool behavior discussed in this section will apply to most, but not all, nodes. It is up to each individual farmer to decide which transactions to include upon creating a block. More information about the mempool and fees required for inclusion can be found in our blog article [Getting to Know the Mempool and Transaction Fees](https://www.chia.net/2024/01/11/getting-to-know-the-mempool-and-transaction-fees/).
 
-To view the current status of the mempool, see the dashboard for [mainnet](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&var-network=mainnet) and [testnet10](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&var-network=testnet10).
+To view the current status of the mempool, see the dashboard for [mainnet](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&var-network=mainnet), [testnet10](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&var-network=testnet10), and [testnet11](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&var-network=testnet11).
 
 :::info
 

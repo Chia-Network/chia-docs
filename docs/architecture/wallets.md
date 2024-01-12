@@ -1,6 +1,15 @@
 ---
 title: Wallets
 slug: /wallet-architecture
+description: On the chia blockchain, light wallets can communicate with full nodes through the wallet protocol. This is similar to Bitcoin's SPV protocol- allowing verification of transactions and block weight, without the bandwidth and CPU requirements of full nodes.
+keywords:
+  - chia
+  - architecture
+  - network
+  - full node
+  - wallet
+  - light
+  - transaction
 ---
 
 Wallets can communicate with full nodes through the wallet protocol. This is similar to Bitcoin's SPV protocol: it allows verification of transactions and block weight, without the bandwidth and CPU requirements of full nodes.

@@ -1,6 +1,17 @@
 ---
 title: Timelords
 slug: /timelord-architecture
+description: On the chia blockchain, timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/proof-of-time)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
+keywords:
+  - chia
+  - architecture
+  - network
+  - full node
+  - timelord
+  - vdf
+  - verifiable delay function
+  - proof of time
+  - PoT
 ---
 
 Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/proof-of-time)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
@@ -29,11 +40,13 @@ There are two primary types of Timelords: Regular and Blueboxes.
 
 The first is the core Timelord that takes in Proofs of Space and uses a single fastest core to perform repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/master/classgroups.pdf) as fast as possible. Beside each running VDF (referred to as a vdf_client in the application and source) is a set of proof generation threads that accumulate the proof that the time calculation's number of iterations was done correctly.
 
-The second are Bluebox Timelords. Blueboxes are most any machine - especially things like old servers or gaming machines - that scour the historical chain looking for uncompressed proofs of time. So that the chain moves quickly, the regular Timelords use a faster method of generating proofs of time but the proofs are larger, which takes your Raspberry Pi a lot more time and effort to validate and sync the blockchain. A Bluebox picks up an uncompressed Proof of Time and recreates it, but this time with the slower and more compact proofs generated at the end. Those are then gossiped around to everyone so they can replace the large and slow to verify Proofs of Time with the compact and much quicker to validate version of exactly the same thing.
+The second are Bluebox Timelords. Blueboxes are most any machine - especially things like old servers or gaming machines - that scour the historical chain looking for uncompressed proofs of time. So that the chain moves quickly, the regular Timelords use a faster method of generating proofs of time but the proofs are larger, which takes your Raspberry Pi a lot more time and effort to validate and sync the blockchain. A Bluebox picks up an uncompressed Proof of Time and recreates it, but this time with the slower and more compact proofs generated at the end. Those are then gossiped around to everyone so they can replace the large and slow to verify Proofs of Time with the compact and much quicker to validate version of exactly the same thing.  
+
+When running a timelord, users will have the option to run either a core Timelord or a Bluebox Timelord, by default these will not run simultaneously.
 
 ## Running a Timelord
 
-The network only requires one running Timelord to keep moving (liveness.) The way Timelords race is like they are on a series of 100 meter dashes. Each one takes off with the last good Proof of Space and tries to get to the total number of iterations required to complete a given Proof of Space. Better Proofs of Space require less iterations to prove. When the fastest Timelord announces the Proof of Time for this Proof of Space all of the other Timelords stop racing and are magically teleported to the starting line of the next 100 meter dash to start it all over again.
+The network only requires one running Timelord to keep moving (liveness.) The way Timelords race is like they are on a series of 100 meter dashes. Each one takes off with the last good Proof of Space and tries to get to the total number of iterations required to complete a given Proof of Space. Better Proofs of Space require fewer iterations to prove. When the fastest Timelord announces the Proof of Time for this Proof of Space all other Timelords stop racing and are magically teleported to the starting line of the next 100 meter dash to start it all over again.
 
 It's good to have a few Timelords out there. There can be things like routing flaps or the overzealous backhoe that takes large swaths of the internet offline. If the fastest Timelord was just about to win the current dash when its internet blinked off in a fury of construction misadventure, then the second fastest will win that dash and the next dashes - until the fastest returns. One of the key qualities about Proofs of Time is that given the same Proof of Space, their output and proof are always the same (though the proofs can be larger or smaller and harder or easier to validate - they all end up with the same outcome.)
 

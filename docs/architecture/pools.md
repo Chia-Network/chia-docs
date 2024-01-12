@@ -1,6 +1,17 @@
 ---
 title: Pools
 slug: /pool-architecture
+description: The chia blockchain official pooling protocol pools allow farmers to smooth out their rewards by earning based on proof of space partials, as opposed to winning blocks.
+keywords:
+  - chia
+  - architecture
+  - network
+  - full node
+  - pooling
+  - pool
+  - rewards
+  - fee
+  - block
 ---
 
 Pools allow farmers to smooth out their rewards by earning based on proof of space partials, as opposed to winning blocks.
