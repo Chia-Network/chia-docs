@@ -1,6 +1,17 @@
 ---
 title: Block Validation
 slug: /block-validation
+description: On the Chia blockchain, Block validation is composed of two parts- header validation and body validation.
+keywords:
+  - chia
+  - architecture
+  - network
+  - blockchain
+  - block
+  - header
+  - body
+  - validation
+  - sync
 ---
 
 Block validation in Chia is composed of two parts: header validation and body validation.

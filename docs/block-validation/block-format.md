@@ -1,14 +1,25 @@
 ---
 title: Block Format
 slug: /block-format
+description: On the Chia blockchain, the full block is the data structure that contains all information required for validating and adding block `N`, assuming all blocks up to `N - 1` have already been added. FullBlocks are sent over the network protocol, and also sometimes stored on disk for the purpose of serving other nodes in the future.
+keywords:
+  - chia
+  - architecture
+  - network
+  - blockchain
+  - block
+  - validation
+  - trunk
+  - foliage
+  - reward chain
+  - challenge chain
 ---
 
 ## Full Block
 
-The full block is the data structure that contains all information required for validating and adding block `N`, assuming all blocks up to `N - 1` have already been added. FullBlocks are sent over the network protocol, and also sometimes stored
-on disk for the purpose of serving other nodes in the future.
+The full block is the data structure that contains all information required for validating and adding block `N`, assuming all blocks up to `N - 1` have already been added. FullBlocks are sent over the network protocol, and also sometimes stored on disk for the purpose of serving other nodes in the future.
 
-The FullBlock has fields for both the trunk and the foliage of the blockchain. The `header_hash`, which is used as the block identifier, is the hash of the `foliage` field in streamable format (see the [Serialization Protocol page](/serialization-protocol)). This commits to all relevant data and to all previous blocks.
+The FullBlock has fields for both the [trunk](/three-vdf-chains) and the [foliage](/consensus-foliage) of the blockchain. The `header_hash`, which is used as the block identifier, is the hash of the `foliage` field in streamable format (see the [Serialization Protocol page](/serialization-protocol)). This commits to all relevant data and to all previous blocks.
 
 - **finished_sub_sots**: List[EndOfSubSlotBundle]: This contains all sub-slots that have been completed since the previous block in the chain (block `N-1`).
 - **reward_chain_block**: RewardChainBlock: This is trunk data for the reward chain and challenge chain, including vdf outputs and proof of space.
