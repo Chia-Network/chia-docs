@@ -340,39 +340,41 @@ This is usually a system clock issue, which is causing the display of "Not synce
 
 ### What is the new database?
 
-Beginning in 1.3, Chia uses version 2 of its blockchain database. The new database is still written in SQLite, but it has undergone a series of optimizations, such as storing hashes in binary, rather than human-readable hex format. It also is more compressed than version 1. These two factors combined have resulted in an approximately 45% reduction in the size of the database, as well as a slight improvement in its performance.
+Chia began using version 2 of its blockchain database in 2022. Version 1 has since reached its end-of-life.
 
-If you install a brand new full node in Chia 1.3 or later, version 2 of the database will be created when you run `chia init`. If you want to stick with version 1, simply run `chia init --v1-db` instead.
+#### About version 2
 
-If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli).
+Version 2 of the database is still written in SQLite, but it has undergone a series of optimizations from version 1, such as storing hashes in binary, rather than human-readable hex format. It also is more compressed than version 1. These two factors combined have resulted in an approximately 45% reduction in the size of the database, as well as a slight improvement in its performance.
 
-You do not need to stop Chia in order to perform the upgrade. This is because the program performing the upgrade only needs to _read_ from your original database file, while your upgraded file will be written alongside it in the same folder. Be sure you have enough free space on the disk that contains your database file to write the new file.
+When you install a brand new full node, version 2 of the database will be created when you run `chia init`.
 
-The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly._
+If you are upgrading from Chia 1.x to 2.1 or later (which is required due to the [hard fork](/consensus-forks/)), you will no longer be able run with version 1 of the database. In this case, your options are to download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
 
-The upgrade could take several hours, so feel free to perform it at your leisure. After the upgrade has completed, run `chia start farmer -r` to restart your farmer and switch to the new database.
+#### About the upgrade process
+
+If you still have a copy of version 1 of the database, you can upgrade it to version 2. This upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli/#upgrade). Be sure you have enough free space on the disk that contains your database file to write the new file.
+
+The upgrade could take several hours. After it has completed, run `chia start farmer -r` to restart your farmer and switch to the new database.
 
 Note that the new database will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
 
-Because the upgrade from version 1 to 2 of the database is time-consuming, most users will likely only perform it on one of their systems and copy the new database file to their other systems afterward. If you choose this option, be sure to either copy the file _before_ running `chia start farmer -r`, or stop Chia altogether if it is already using the new database. Once the database is swapped from v1 to v2, you also need to update you `config.yaml` to reflect the new v2 database change. Under the `full_node:` section set `database_path: db/blockchain_v1_CHALLENGE.sqlite` to `database_path: db/blockchain_v2_CHALLENGE.sqlite`
+Because the upgrade from version 1 to 2 of the database is time-consuming, most users will likely only perform it on one of their systems and copy the new database file to their other systems afterward. If you choose this option, be sure to either copy the file _before_ running `chia start farmer -r`, or stop Chia altogether if it is already using the new database. Once the database is swapped from v1 to v2, you also need to update your `config.yaml` to reflect the new v2 database change. Under the `full_node:` section set `database_path: db/blockchain_v1_CHALLENGE.sqlite` to `database_path: db/blockchain_v2_CHALLENGE.sqlite`
 
 :::warning
 If you copy your database file to another computer while Chia is currently using it, you'll risk corrupting it, which will necessitate a full sync from genesis.
 :::
 
+#### Technical details
+
 If you're interested in learning more technical details of the new database, see the first Github Pull Request that introduced the changes:
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9442
+* https://github.com/Chia-Network/chia-blockchain/pull/9442
 
 And there were two follow-up Pull Requests with additional improvements, along with some benchmarks.
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9454
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9455
+* https://github.com/Chia-Network/chia-blockchain/pull/9454
+* https://github.com/Chia-Network/chia-blockchain/pull/9455
 
 Finally, here is the Pull Request that added the upgrade functionality:
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9613
+* https://github.com/Chia-Network/chia-blockchain/pull/9613
 
 ### What is the difference between Wallet Mode and Farming Mode?
 
