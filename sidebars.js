@@ -372,20 +372,14 @@ module.exports = {
       label: 'Offers',
       collapsible: true,
       collapsed: true,
-      items: [
-        'guides/tutorials/offers-gui',
-        'guides/tutorials/offers-cli',
-      ],
+      items: ['guides/tutorials/offers-gui', 'guides/tutorials/offers-cli'],
     },
     {
       type: 'category',
       label: 'DAOs',
       collapsible: true,
       collapsed: true,
-      items: [
-        'guides/dao/dao-cli-guide',
-        'guides/dao/dao-known-issues',
-      ],
+      items: ['guides/dao/dao-cli-guide', 'guides/dao/dao-known-issues'],
     },
     'guides/simulator-user-guide',
     'guides/seeder-user-guide',
@@ -428,9 +422,10 @@ module.exports = {
         slug: '/academy-intro',
         title: 'Chia Academy Intro',
         description:
-          'Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain technology. In an age characterized by rapid digital transformation, this institution offers a comprehensive exploration of the Chia blockchain, dissecting its technical intricacies, real-world applications, and the nuances of its secure data handling. The Chia blockchain, created by Bram Cohen, stands out from traditional cryptocurrencies with its unique Proof of Space and Time (PoST) model, which contrasts with the energy-intensive Proof of Work model (PoW) used by Bitcoin. This innovation is notable for its eco-friendly approach to blockchain. As a Chia Academy student, you will dive into the core concepts and functionalities of the Chia blockchain, including:',
+          'Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain technology. In an age characterized by rapid digital transformation, this institution offers a comprehensive exploration of the Chia blockchain, dissecting its technical intricacies, real-world applications, and the nuances of its secure data handling. The Chia blockchain, created by Bram Cohen, stands out from traditional cryptocurrencies with its unique Proof of Space and Time (PoST) model, which contrasts with the energy-intensive Proof of Work model (PoW) used by Bitcoin. This innovation is notable for its eco-friendly approach to blockchain. Check out the pages below to start your journey!',
       },
       items: [
+        'academy/academy-intro/academy-home',
         'academy/academy-intro/academy-overview',
       ],
     },

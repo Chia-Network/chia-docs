@@ -45,7 +45,7 @@ const FeatureList = [
   {
     title: 'Chia Academy',
     Svg: require('@site/static/svg/academy-logo.svg').default,
-    dest_url: 'https://docs.chia.net/academy-overview/',
+    dest_url: 'https://docs.chia.net/academy-home/',
     description: (
       <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
     ),
