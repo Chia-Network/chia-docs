@@ -29,8 +29,9 @@ Below, you'll find several curated courses covering the everything from the basi
 
 #### Chialisp Overview
 
-<div class="horizontal-scroll-wrapper">
-  <div class="horizontal-scroll squares">
+<section class="carousel">
+  <ol class="carousel-inner">
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -42,7 +43,9 @@ Below, you'll find several curated courses covering the everything from the basi
           </a>
         </div>
       </div>
-    </div>
+      </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -54,7 +57,9 @@ Below, you'll find several curated courses covering the everything from the basi
           </a>
         </div>
       </div>
-    </div>
+      </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -66,28 +71,32 @@ Below, you'll find several curated courses covering the everything from the basi
           </a>
         </div>
       </div>
-    </div>
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={InnerPuzzles} alt='Inner Puzzles' />
-        </div>
-        <div class="card__footer">
-          <a href='https://docs.chia.net/chialisp-inner-puzzle'>
-          <button class="button button--primary button--block">Learn</button>
-          </a>
-        </div>
       </div>
-    </div>
-  </div>
-</div>
+    </li>
+    <li class="carousel-item">
+        <div class="card-demo">
+            <div class="card">
+                <div class="card__image">
+                <img src={InnerPuzzles} alt='Inner Puzzles' />
+                </div>
+                <div class="card__footer">
+                <a href='https://docs.chia.net/chialisp-inner-puzzle'>
+                <button class="button button--primary button--block">Learn</button>
+                </a>
+                </div>
+            </div>
+      </div>
+    </li>
+  </ol>
+</section>
 
 ***
 
 #### Blockchain Basics
 
-<div class="horizontal-scroll-wrapper">
-  <div class="horizontal-scroll squares">
+<section class="carousel">
+  <ol class="carousel-inner">
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -100,6 +109,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -112,6 +123,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -124,6 +137,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -136,6 +151,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -148,20 +165,22 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </li>
+</ol>
+</section>
 
 ***
 
 #### Plotting & Farming
 
-<div class="horizontal-scroll-wrapper">
-  <div class="horizontal-scroll squares">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__image">
-          <img src={FarmingOverview} alt='Farming Overview' />
-        </div>
+<section class="carousel">
+  <ol class="carousel-inner">
+    <li class="carousel-item">
+      <div class="card-demo">
+        <div class="card">
+          <div class="card__image">
+            <img src={FarmingOverview} alt='Farming Overview' />
+          </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/farming-overview'>
           <button class="button button--primary button--block">Learn</button>
@@ -169,6 +188,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -181,6 +202,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -193,6 +216,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
+    </li>
+    <li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -205,8 +230,9 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-  </div>
-</div>
+    </li>
+  </ol>
+</section>
 
 ***
 
