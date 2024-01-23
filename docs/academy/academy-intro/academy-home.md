@@ -13,23 +13,121 @@ Below, you'll find several curated courses covering the everything from the basi
 
 #### Chialisp Overview
 
-| [!['Intro to Chialisp'](/img/academy/Intro2Chialisp.png)](https://docs.chia.net/chialisp-intro) | [!['Smart Coins'](/img/academy/SmartCoins.png)](https://docs.chia.net/chialisp-smart-coin) | [!['Signatures'](/img/academy/Signatures.png)](https://docs.chia.net/chialisp-signatures) | [!['Inner Puzzles'](/img/academy/InnerPuzzles.png)](https://docs.chia.net/chialisp-inner-puzzle) |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+<div class="horizontal-scroll-wrapper">
+  <div class="horizontal-scroll squares">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={ChialispIntro} alt='Intro to Chialisp' />
+        </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/chialisp-intro'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={SmartCoins} alt='Smart Coins' />
+        </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/chialisp-smart-coin'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={Signatures} alt='Signatures' />
+        </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/chialisp-signatures'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={InnerPuzzles} alt='Inner Puzzles' />
+        </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/chialisp-inner-puzzle'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
 #### Blockchain Basics
 
-| [!['Consensus'](/img/academy/consensus.png)](https://docs.chia.net/consensus-basics) | [!['Timelords'](/img/academy/timelords.png)](https://docs.chia.net/timelord-basics) | [!['Block Formation'](/img/academy/forming-blocks.png)](https://docs.chia.net/block-formation-basics) | [!['Coin-Set Model'](/img/academy/coin-set.png)](https://docs.chia.net/coinset-basics) |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| [!['Security'](/img/academy/security.png)](https://docs.chia.net/security-basics)    |
+<div class="horizontal-scroll-wrapper">
+  <div class="horizontal-scroll squares">
+    <div>
+      <a href='https://docs.chia.net/consensus-basics'>
+        <img src={Consensus} alt='Consensus'/>
+      </a>  
+    </div>
+    <div>
+      <a href='https://docs.chia.net/timelord-basics'>
+        <img src={Timelords} alt='Timelords' />
+      </a>
+    </div>
+    <div>
+      <a href='https://docs.chia.net/block-formation-basics'>
+        <img src={BlockFormation} alt='Block Formation' />
+      </a>  
+    </div>
+    <div>
+      <a href='https://docs.chia.net/coinset-basics'>
+        <img src={CoinSetModel} alt='Coin-Set Model' />
+      </a>
+    </div>
+    <div>
+      <a href='https://docs.chia.net/security-basics'>
+        <img src={Security} alt='Security' />
+      </a>
+    </div>
+  </div>
+</div>
 
 ---
 
 #### Plotting & Farming
 
-| [!['Farming Overview'](/img/academy/farming-overview.png)](https://docs.chia.net/farming-overview) | [!['Challenges & Plot Filters'](/img/academy/challenges-plot-filters.png)](https://docs.chia.net/challenges-plot-filters) | [!['Pools'](/img/academy/pools.png)](https://docs.chia.net/pools) | [!['Creating Your First Plot'](/img/academy/Intro2Farming.png)](https://docs.chia.net/first-plot) |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+<div class="horizontal-scroll-wrapper">
+  <div class="horizontal-scroll squares">
+    <div>
+      <a href='https://docs.chia.net/farming-overview'>
+        <img src={FarmingOverview} alt='Farming Overview' />
+      </a>  
+    </div>
+    <div>
+      <a href='https://docs.chia.net/challenges-plot-filters'>
+        <img src={ChallengesPlotFilters} alt='Challenges & Plot Filters' />
+      </a>
+    </div>
+    <div>
+      <a href='https://docs.chia.net/pools'>
+        <img src={Pools} alt='Pools' />
+      </a>  
+    </div>
+    <div>
+      <a href='https://docs.chia.net/first-plot'>
+        <img src={CreatingYourFirstPlot} alt='Creating Your First Plot' />
+      </a>
+    </div>
+  </div>
+</div>
 
 ---
 
