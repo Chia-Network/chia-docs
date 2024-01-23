@@ -121,7 +121,7 @@ const katex = require('rehype-katex');
                 },
                 {
                   label: 'Chia Academy',
-                  to: 'https://docs.chia.net/academy-home/',
+                  to: 'https://docs.chia.net/academy-overview/',
                 },
               ],
             },
