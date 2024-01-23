@@ -54,9 +54,9 @@ figcaption {
 
 .eqnumber {
   font-style: italic;
-  color:#999999;
+  color: #999999;
   text-align: center;
-  margin-top:-10px;
+  margin-top: -10px;
   margin-bottom: 25px;
   width: 100%;
 }
@@ -67,42 +67,31 @@ html {
   scroll-padding-top: 5rem;
 }
 
-
 /* Academy Home Carousel*/
 
-.horizontal-scroll-wrapper {
-  display: block;
-  width: 20px;
-  max-height: 220px;
+ol,
+li {
+  list-style: none;
   margin: 0;
-  padding-top: 1px;
+  padding: 10px;
 }
 
-.horizontal-scroll {
-  display: block;
-  width: 251px;
-  max-height: 55vw;
-  margin: 0;
-  padding-top: 1px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  transform: rotate(-90deg) translateY(-250px);
-  transform-origin: right top;
+.carousel {
+  position: relative;
 }
 
-.horizontal-scroll > div {
-    display: block;
-    padding: 5px;
-    transform: rotate(90deg) translateX(250px);
-    transform-origin: right top;
+.carousel-inner {
+  display: flex;
+  padding: 10px;
+  overflow-x: scroll;
+  counter-reset: item;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
-.squares {
-  padding: 0 0 0 0;
-}
-
-.squares > div {
-    width: 250px;
-    height: 250px;
-    margin: 10px 0;
+.carousel-item {
+  position: relative;
+  flex: 0 0 40%;
+  width: 100%;
+  counter-increment: item;
 }

@@ -62,7 +62,7 @@ const katex = require('rehype-katex');
             },
             {
               type: 'doc',
-              docId: 'academy/academy-intro/academy-overview',
+              docId: 'academy/academy-intro/academy-home',
               position: 'left',
               label: 'Chia Academy',
             },
