@@ -66,3 +66,43 @@ figcaption {
 html {
   scroll-padding-top: 5rem;
 }
+
+
+/* Academy Home Carousel*/
+
+.horizontal-scroll-wrapper {
+  display: block;
+  width: 20px;
+  max-height: 220px;
+  margin: 0;
+  padding-top: 1px;
+}
+
+.horizontal-scroll {
+  display: block;
+  width: 251px;
+  max-height: 55vw;
+  margin: 0;
+  padding-top: 1px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  transform: rotate(-90deg) translateY(-250px);
+  transform-origin: right top;
+}
+
+.horizontal-scroll > div {
+    display: block;
+    padding: 5px;
+    transform: rotate(90deg) translateX(250px);
+    transform-origin: right top;
+}
+
+.squares {
+  padding: 0 0 0 0;
+}
+
+.squares > div {
+    width: 250px;
+    height: 250px;
+    margin: 10px 0;
+}
