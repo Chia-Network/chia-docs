@@ -513,12 +513,11 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type    | Required | Description                                                                    |
-|:------------------- |:------- |:-------- |:------------------------------------------------------------------------------ |
-| wallet_id           | NUMBER  | True     | The Wallet ID from which to retrieve the NFTs                                  |
-| start_index         | NUMBER  | False    | The NFT index at which to start retrieving the NFTs [Default: `0`]             |
-| num                 | NUMBER  | False    | The maximum number of NFTs to retrieve [Default: `0`]                          |
-| ignore_size_limit | BOOLEAN | False    | Set to `True` to ignore the size limit when retrieving NFTs [Default: `False`] |
+| Flag        | Type   | Required | Description                                                        |
+|:----------- |:------ |:-------- |:------------------------------------------------------------------ |
+| wallet_id   | NUMBER | True     | The Wallet ID from which to retrieve the NFTs                      |
+| start_index | NUMBER | False    | The NFT index at which to start retrieving the NFTs [Default: `0`] |
+| num         | NUMBER | False    | The maximum number of NFTs to retrieve [Default: `0`]              |
 
 <details>
 <summary>Example</summary>
