@@ -95,3 +95,7 @@ li {
   width: 100%;
   counter-increment: item;
 }
+
+.markdown li + li {
+  margin-top: 0;
+}
