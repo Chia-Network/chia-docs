@@ -30,8 +30,8 @@ Below, you'll find several curated courses covering the everything from the basi
 #### Chialisp Overview
 
 <section class="carousel">
-  <ol class="carousel-inner">
-    <li class="carousel-item">
+  <c-ol class="carousel-inner">
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -44,8 +44,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
       </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -58,8 +58,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
       </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -72,8 +72,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
       </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
         <div class="card-demo">
             <div class="card">
                 <div class="card__image">
@@ -86,8 +86,8 @@ Below, you'll find several curated courses covering the everything from the basi
                 </div>
             </div>
       </div>
-    </li>
-  </ol>
+    </c-li>
+  </c-ol>
 </section>
 
 ---
@@ -95,8 +95,8 @@ Below, you'll find several curated courses covering the everything from the basi
 #### Blockchain Basics
 
 <section class="carousel">
-  <ol class="carousel-inner">
-    <li class="carousel-item">
+  <c-ol class="carousel-inner">
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -109,8 +109,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -123,8 +123,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -137,8 +137,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -151,8 +151,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -165,8 +165,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </c-li>
+</c-ol>
 </section>
 
 ---
@@ -174,8 +174,8 @@ Below, you'll find several curated courses covering the everything from the basi
 #### Plotting & Farming
 
 <section class="carousel">
-  <ol class="carousel-inner">
-    <li class="carousel-item">
+  <c-ol class="carousel-inner">
+    <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
           <div class="card__image">
@@ -188,8 +188,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -202,8 +202,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -216,8 +216,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-    <li class="carousel-item">
+    </c-li>
+    <c-li class="carousel-item">
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
@@ -230,8 +230,8 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
       </div>
     </div>
-    </li>
-  </ol>
+    </c-li>
+  </c-ol>
 </section>
 
 ---
