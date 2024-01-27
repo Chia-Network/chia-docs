@@ -7,7 +7,7 @@ title: Offers - CLI
 
 This tutorial covers Chia offers using the command line interface.
 
-See also our [GUI tutorial](/guides/offers-gui-tutorial) and our [reference document](https://chialisp.com/offers).
+See also our [GUI tutorial](/getting-started/wallet-guide) and our [reference document](https://chialisp.com/offers).
 
 :::note
 This tutorial occasionally references a token called "CAT King Cole" (CKC). This token is for demonstration purposes only.
@@ -883,5 +883,5 @@ The CAT1 Standard reached its end of life (EOL) with block 2,311,760 in July 202
 
 - [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
 - [Offers reference](https://chialisp.com/offers)
-- [GUI tutorial](/guides/offers-gui-tutorial)
+- [GUI tutorial](/getting-started/wallet-guide)
 - [Info on the coin set model](/coin-set-intro)

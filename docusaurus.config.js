@@ -50,15 +50,15 @@ const katex = require('rehype-katex');
           items: [
             {
               type: 'doc',
-              docId: 'getting-started/introduction',
+              docId: 'docs-home',
               position: 'left',
               label: 'Docs',
             },
             {
               type: 'doc',
-              docId: 'guides/crash-course/introduction',
+              docId: 'dev-guides-home',
               position: 'left',
-              label: 'Guides',
+              label: 'Dev Guides',
             },
             {
               type: 'doc',
@@ -67,18 +67,18 @@ const katex = require('rehype-katex');
               label: 'Chia Academy',
             },
             {
+              type: 'localeDropdown',
+              position: 'right',
+            },
+            {
               href: 'https://chialisp.com',
               label: 'Chialisp',
-              position: 'left',
+              position: 'right',
             },
             {
               href: 'https://chia.net',
               label: 'Chia Network',
-              position: 'left',
-            },
-            {
-              type: 'localeDropdown',
-              position: 'left',
+              position: 'right',
             },
             {
               href: 'https://github.com/Chia-Network/chia-blockchain',
@@ -122,6 +122,10 @@ const katex = require('rehype-katex');
                 {
                   label: 'Chia Academy',
                   to: 'https://docs.chia.net/academy-home/',
+                },
+                {
+                  label: 'Developer Guides',
+                  to: 'https://docs.chia.net/guides/crash-course/introduction',
                 },
               ],
             },

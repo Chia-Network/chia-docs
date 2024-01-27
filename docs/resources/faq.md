@@ -958,7 +958,7 @@ This error message occurs when you submit a transaction that does not include a 
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
 - [Technical reference document](https://chialisp.com/offers)
-- [GUI (graphical user interface) tutorial](/guides/offers-gui-tutorial)
+- [GUI (graphical user interface) tutorial](/getting-started/wallet-guide)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
 - [CLI (command line interface) tutorial](/guides/offers-cli-tutorial)
 

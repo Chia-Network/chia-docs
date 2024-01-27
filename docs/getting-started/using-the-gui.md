@@ -1,5 +1,5 @@
 ---
-title: Using the GUI
+title: Using the Chia GUI
 slug: /using-the-gui
 ---
 
