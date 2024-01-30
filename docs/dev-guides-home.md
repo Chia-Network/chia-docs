@@ -17,6 +17,8 @@ This page is a portal to developing on Chia and with the Chia Primitives, choose
 
 ## Chia Crash Course
 
+Embark on a swift journey into Chia Network's Crash Course for developers. Start with an Intro to Developing on Chia, grasp the fundamentals of Chialisp, explore the world of Smart Coins, and understand the intricacies of Signatures, State, Inner Puzzles, and Primitives.  
+
 <section class="carousel">
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
@@ -162,6 +164,8 @@ This page is a portal to developing on Chia and with the Chia Primitives, choose
 
 ## Primitives
 
+Explore the core building blocks of Chia development in the Primitives section. Unlock the potential of NFTs, embrace the versatility of CATs (Colored Coins), navigate the intricacies of Offers, leverage the DataLayer for efficient data management, implement Clawback mechanisms, understand the dynamics of DAOs, and secure your applications with Verifiable Credentials. These primitives are the foundation for creating robust and innovative solutions on the Chia Network.  
+
 <section class="carousel">
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
@@ -290,6 +294,8 @@ This page is a portal to developing on Chia and with the Chia Primitives, choose
 
 ## Tutorials
 
+Immerse yourself in Chia Network's Tutorials section for developers. Understand the intricacies of Application Structure, explore the art of Custom Puzzle Locks, wield the power of the Custody Tool, master Coin Spending via RPC, harness the capabilities of the Seeder and Simulator with our user guides, and gain insights into the WalletConnect framework.  
+
 <section class="carousel">
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
@@ -417,6 +423,8 @@ This page is a portal to developing on Chia and with the Chia Primitives, choose
 ---
 
 ## Video Series
+
+Dive into the Video Series of Chia Network's Developer Guides for a dynamic learning experience. Discover why Chia is great, explore the essentials of developing Chia applications, set up your tools efficiently, delve into programming in Chialisp, understand the intricacies of the Coin Lifecycle, implement Singleton Contracts, master the dynamics of State, Coins, and Announcements, ensure security with insights into Arguments and Signing, explore Announcements and Oracles, and harness the potential of CATs (Chia Asset Tokens).  
 
 <section class="carousel">
   <c-ol class="carousel-inner">

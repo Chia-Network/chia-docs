@@ -5,17 +5,15 @@ slug: /docs-home
 
 import ChiaLogo from '@site/static/img/og-chia.png';
 
-Chia is a cryptocurrency and blockchain with smart transaction capabilities. It was designed from the ground up to make cryptocurrency easier to use (and harder to lose) than cash.
-
-Its [Proof of Space and Time](/consensus-intro) consensus is the only Nakamoto consensus algorithm since Proof of Work, while also having a [much lower energy consumption](https://chiapower.org).  
-
-Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives released for [CATs](https://chialisp.com/cats), [NFTs](https://chialisp.com/nfts), [Offers](https://chialisp.com/offers), and [DIDs](https://chialisp.com/dids).
-
-This page is a portal to all things Chia, choose your path below:
+Welcome to the official documentation site for Chia Network! Here, you'll find a comprehensive resource that guides you through the diverse and innovative world of Chia, a blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or someone just beginning to explore the possibilities of decentralized technologies, our documentation is designed to empower you with the knowledge and tools needed to navigate the Chia ecosystem.  
+  
+From understanding the fundamentals of our unique Proof of Space and Time consensus algorithm to exploring our advanced smart transaction capabilities, we invite you to embark on a journey of discovery and collaboration. Dive into the documentation, and unlock the potential of Chia Network for your projects and aspirations. Happy exploring!  
 
 ---
 
 ## Beginner Install and Usage Docs
+
+Embark on your Chia Network journey with our Beginner Documentation! Uncover the essentials of Chia's unique Proof of Space and Time, perfect the art of farming, explore wallet basics, and navigate the intuitive GUI.  
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -93,6 +91,8 @@ This page is a portal to all things Chia, choose your path below:
 ---
 
 ## Advanced Install and Usage Docs
+
+Explore the advanced features of Chia Network through our comprehensive documentation. From installation guides and testnet access to plotting, farming, and detailed references for RPC, CLI, and WalletConnect, we've got you covered.  
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -239,6 +239,8 @@ This page is a portal to all things Chia, choose your path below:
 
 ## Troubleshooting the Chia Reference Client
 
+Navigate Chia Network's Troubleshooting Documentation with precision. Check the status of essential components, troubleshoot node syncing issues, and utilize our logging reference for effective problem-solving. Resolve challenges swiftly and ensure a seamless Chia experience.  
+
 <section class="carousel">
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
@@ -298,6 +300,8 @@ This page is a portal to all things Chia, choose your path below:
 ---
 
 ## Learn About Chia, Primitives, and the Reference Client
+
+Embark on a knowledge journey through Chia Network's Learn documentation. Delve into the consensus model intricacies, explore the architecture, unravel blockchain consensus mechanisms, decode Chia keys, understand protocols, and immerse yourself in the details presented in the Green Paper.
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -426,6 +430,8 @@ This page is a portal to all things Chia, choose your path below:
 ---
 
 ## Develop with Chia Primitives
+
+Dive into Chia Network's Developer Guides for an immersive experience. Begin with a Crash Course, delve into the core primitives shaping our ecosystem, and accelerate your skills through hands-on tutorials.
 
 <section class="carousel">
   <c-ol class="carousel-inner">
