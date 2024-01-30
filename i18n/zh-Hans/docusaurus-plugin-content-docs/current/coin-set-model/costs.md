@@ -15,7 +15,7 @@ It is important to keep the cost usage of programs on the Chia blockchain as low
 
 Every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
 
-Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
+Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
 
 Finally, each byte of data that gets added to the blockchain has a cost of 12,000. Spend bundles are created using a serialized format of CLVM programs, calculated by running [opc](https://chialisp.com/commands#serialize) on the original CLVM program. Each two-digit pair of this format is equivalent to one byte, which costs 12,000 to store on the blockchain.
 

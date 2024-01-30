@@ -48,7 +48,7 @@ Because the id is a sha256 hash, coins can never be changed. They can only be cr
 
 ## Puzzles
 
-A puzzle is a type of CLVM program that outputs [conditions](/conditions) that determine the result of the spend.
+A puzzle is a type of CLVM program that outputs [conditions](https://chialisp.com/conditions) that determine the result of the spend.
 
 Each coin has a puzzle associated with it that determines how, when, and by whom this coin can be spent. It must be chosen at the time of the coin's creation.
 
