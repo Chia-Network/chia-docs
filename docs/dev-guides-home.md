@@ -5,13 +5,7 @@ slug: /dev-guides-home
 
 import ChiaLogo from '@site/static/img/og-chia.png';
 
-Chia is a cryptocurrency and blockchain with smart transaction capabilities. It was designed from the ground up to make cryptocurrency easier to use (and harder to lose) than cash.
-
-Its [Proof of Space and Time](/consensus-intro) consensus is the only Nakamoto consensus algorithm since Proof of Work, while also having a [much lower energy consumption](https://chiapower.org).  
-
-Chia's mainnet was launched on March 19, 2021. Development of its ecosystem is ongoing, with primitives released for [CATs](https://chialisp.com/cats), [NFTs](https://chialisp.com/nfts), [Offers](https://chialisp.com/offers), and [DIDs](https://chialisp.com/dids).
-
-This page is a portal to developing on Chia and with the Chia Primitives, choose your path below:
+Welcome to the Chia Network Developer Guides hub! Your gateway to mastering the intricacies of Chia's blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or just stepping into the world of decentralized technologies, our documentation is crafted to empower you with knowledge and tools for navigating the Chia ecosystem. From mastering the basics of Chialisp programming to exploring advanced primitives, our guides cover a spectrum of topics designed to elevate your development skills.  
 
 ---
 
