@@ -74,7 +74,7 @@ chia wallet get_address
 Input your testnet wallet address into one of the faucets. If it says you are in the queue, it has worked.
 
 - Chia Official [testnet faucet](https://testnet10-faucet.chia.net/).
-- Community developed and managed [testnet faucet](https://xchdev.com/#!faucet.md). _Thank you to Steve Stepp for building and managing this faucet!_
+- Community developed and managed [testnet faucet](https://txchfaucet.com/). _Thank you to Steve Stepp for building and managing this faucet!_
 
 **Funds will not appear in your wallet until you are fully synced to the blockchain.**
 
