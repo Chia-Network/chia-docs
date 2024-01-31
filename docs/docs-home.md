@@ -3,7 +3,35 @@ title: Chia Docs Home
 slug: /docs-home
 ---
 
-import ChiaLogo from '@site/static/img/og-chia.png';
+import ChiaIntro from '@site/static/img/home_pages/chia_intro.png';
+import BeginnerFarming from '@site/static/img/home_pages/farming_guide.png';
+import BeginnerWallet from '@site/static/img/home_pages/wallet_guide.png';
+import UseGUI from '@site/static/img/home_pages/using_gui.png';
+
+import AdvancedInstall from '@site/static/img/home_pages/advanced_install.png';
+import Testnets from '@site/static/img/home_pages/testnets.png';
+import Plotting from '@site/static/img/home_pages/plotting.png';
+import Farming from '@site/static/img/home_pages/farming.png';
+import ReferenceClient from '@site/static/img/home_pages/reference_client.png';
+import CliReference from '@site/static/img/home_pages/cli_reference.png';
+import RpcReference from '@site/static/img/home_pages/rpc_reference.png';
+import WcReference from '@site/static/img/home_pages/wallet_connect.png';
+
+import WorkingThings from '@site/static/img/home_pages/is_it_working.png';
+import NodeSync from '@site/static/img/home_pages/node_syncing.png';
+import LoggingReference from '@site/static/img/home_pages/logging_reference.png';
+
+import CoinSetModel from '@site/static/img/home_pages/coinset_model.png';
+import Architecture from '@site/static/img/home_pages/architecture.png';
+import Consensus from '@site/static/img/home_pages/consensus.png';
+import ChiaKeys from '@site/static/img/home_pages/chia_keys.png';
+import Protocol from '@site/static/img/home_pages/protocol.png';
+import GreenPaper from '@site/static/img/home_pages/green_paper.png';
+import Resources from '@site/static/img/home_pages/resources.png';
+
+import CrashCourse from '@site/static/img/home_pages/crash_course.png';
+import Primitives from '@site/static/img/home_pages/primitives.png';
+import Tutorials from '@site/static/img/home_pages/tutorials.png';
 
 Welcome to the official documentation site for Chia Network! Here, you'll find a comprehensive resource that guides you through the diverse and innovative world of Chia, a blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or someone just beginning to explore the possibilities of decentralized technologies, our documentation is designed to empower you with the knowledge and tools needed to navigate the Chia ecosystem.  
   
@@ -20,11 +48,8 @@ Embark on your Chia Network journey with our Beginner Documentation! Uncover the
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to Chia</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to Chia' />
+            <img src={ChiaIntro} alt='Intro to Chia' />
           </div>
           <div class="card__footer">
             <a href='/introduction/'>
@@ -37,11 +62,8 @@ Embark on your Chia Network journey with our Beginner Documentation! Uncover the
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Beginners Farming Guide</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Beginners Farming Guide' />
+            <img src={BeginnerFarming} alt='Beginners Farming Guide' />
           </div>
           <div class="card__footer">
             <a href='/farming-guide/'>
@@ -54,11 +76,8 @@ Embark on your Chia Network journey with our Beginner Documentation! Uncover the
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Beginners Wallet Guide</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Beginners Wallet Guide' />
+            <img src={BeginnerWallet} alt='Beginners Wallet Guide' />
           </div>
           <div class="card__footer">
             <a href='/getting-started/wallet-guide/'>
@@ -71,11 +90,8 @@ Embark on your Chia Network journey with our Beginner Documentation! Uncover the
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Using the GUI</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Using the GUI' />
+            <img src={UseGUI} alt='Using the GUI' />
           </div>
           <div class="card__footer">
             <a href='/using-the-gui/'>
@@ -99,11 +115,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Advanced Installation</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Advanced Installation'/>
+            <img src={AdvancedInstall} alt='Advanced Installation'/>
           </div>
           <div class="card__footer">
             <a href='/installation/'>
@@ -116,11 +129,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Testnets</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Testnets' />
+            <img src={Testnets} alt='Testnets' />
           </div>
           <div class="card__footer">
             <a href='/testnets/'>
@@ -133,11 +143,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Plotting</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Plotting Deep Dive' />
+            <img src={Plotting} alt='Plotting Deep Dive' />
           </div>
           <div class="card__footer">
             <a href='/plotting-basics/'>
@@ -150,11 +157,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Farming</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Farming Deep Dive' />
+            <img src={Farming} alt='Farming Deep Dive' />
           </div>
           <div class="card__footer">
             <a href='/farming-basics/'>
@@ -167,11 +171,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Reference Client</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Reference Client Deep Dive' />
+            <img src={ReferenceClient} alt='Reference Client Deep Dive' />
           </div>
           <div class="card__footer">
             <a href='/chia-key-management/'>
@@ -184,11 +185,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>RPC Reference</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='RPC Reference' />
+            <img src={RpcReference} alt='RPC Reference' />
           </div>
           <div class="card__footer">
             <a href='/rpc/'>
@@ -201,11 +199,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>CLI Reference</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='CLI Reference' />
+            <img src={CliReference} alt='CLI Reference' />
           </div>
           <div class="card__footer">
             <a href='/cli/'>
@@ -218,11 +213,8 @@ Explore the advanced features of Chia Network through our comprehensive document
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>WalletConnect Reference</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='WalletConnect Reference' />
+            <img src={WcReference} alt='WalletConnect Reference' />
           </div>
           <div class="card__footer">
             <a href='/walletconnect-commands/'>
@@ -246,11 +238,8 @@ Navigate Chia Network's Troubleshooting Documentation with precision. Check the 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Check if Things are Working</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Check if Things are Working' />
+            <img src={WorkingThings} alt='Check if Things are Working' />
           </div>
           <div class="card__footer">
             <a href='/troubleshooting/check-if-things-are-working/'>
@@ -263,11 +252,8 @@ Navigate Chia Network's Troubleshooting Documentation with precision. Check the 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Node Syncing</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Node Syncing' />
+            <img src={NodeSync} alt='Node Syncing' />
           </div>
           <div class="card__footer">
             <a href='/troubleshooting/node-syncing/'>
@@ -280,11 +266,8 @@ Navigate Chia Network's Troubleshooting Documentation with precision. Check the 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Logging Reference</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Logging Reference' />
+            <img src={LoggingReference} alt='Logging Reference' />
           </div>
           <div class="card__footer">
             <a href='/troubleshooting/logging-reference/'>
@@ -308,11 +291,8 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>CoinSet Model</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='CoinSet Model' />
+            <img src={CoinSetModel} alt='CoinSet Model' />
           </div>
           <div class="card__footer">
             <a href='/coin-set-intro/'>
@@ -325,11 +305,8 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Architecture</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Architecture' />
+            <img src={Architecture} alt='Architecture' />
           </div>
           <div class="card__footer">
             <a href='/architecture-overview/'>
@@ -342,11 +319,8 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Blockchain Consensus</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Blockchain Consensus' />
+            <img src={Consensus} alt='Blockchain Consensus' />
           </div>
           <div class="card__footer">
             <a href='/consensus-intro/'>
@@ -359,11 +333,8 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Chia Keys</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Chia Keys' />
+            <img src={ChiaKeys} alt='Chia Keys' />
           </div>
           <div class="card__footer">
             <a href='/key-architecture/'>
@@ -376,11 +347,8 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Protocol</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Protocol' />
+            <img src={Protocol} alt='Protocol' />
           </div>
           <div class="card__footer">
             <a href='/chia-protocol/'>
@@ -393,11 +361,8 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Green Paper</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Green Paper' />
+            <img src={GreenPaper} alt='Green Paper' />
           </div>
           <div class="card__footer">
             <a href='/green-paper-abstract/'>
@@ -410,11 +375,8 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Resources</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Resources' />
+            <img src={Resources} alt='Resources' />
           </div>
           <div class="card__footer">
             <a href='/cryptocurrency-intro/'>
@@ -438,11 +400,8 @@ Dive into Chia Network's Developer Guides for an immersive experience. Begin wit
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Chia Crash Course</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Chia Crash Course' />
+            <img src={CrashCourse} alt='Chia Crash Course' />
           </div>
           <div class="card__footer">
             <a href='/guides/crash-course/introduction/'>
@@ -455,11 +414,8 @@ Dive into Chia Network's Developer Guides for an immersive experience. Begin wit
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Primitives</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Primitives' />
+            <img src={Primitives} alt='Primitives' />
           </div>
           <div class="card__footer">
             <a href='/guides/primitives'>
@@ -472,11 +428,8 @@ Dive into Chia Network's Developer Guides for an immersive experience. Begin wit
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Tutorials</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Tutorials' />
+            <img src={Tutorials} alt='Tutorials' />
           </div>
           <div class="card__footer">
             <a href='/guides/tutorials'>

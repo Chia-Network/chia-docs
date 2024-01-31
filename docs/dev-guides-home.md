@@ -3,7 +3,42 @@ title: Dev Guides Home
 slug: /dev-guides-home
 ---
 
-import ChiaLogo from '@site/static/img/og-chia.png';
+import DevChia from '@site/static/img/home_pages/dev_on_chia.png';
+import ChialispIntro from '@site/static/img/home_pages/chialisp_intro.png';
+import SmartCoins from '@site/static/img/home_pages/smart_coins.png';
+import Signatures from '@site/static/img/home_pages/signatures.png';
+import State from '@site/static/img/home_pages/state.png';
+import InnerPuzzles from '@site/static/img/home_pages/inner_puzzles.png';
+import CatsOffersNfts from '@site/static/img/home_pages/cats_offers_nfts.png';
+import ChialispTypescript from '@site/static/img/home_pages/chialisp_typescript.png';
+
+import Nfts from '@site/static/img/home_pages/nfts.png';
+import Cats from '@site/static/img/home_pages/cats.png';
+import DataLayer from '@site/static/img/home_pages/datalayer.png';
+import Clawback from '@site/static/img/home_pages/clawbacks.png';
+import Offers from '@site/static/img/home_pages/offers.png';
+import Daos from '@site/static/img/home_pages/daos.png';
+import Vcs from '@site/static/img/home_pages/vcs.png';
+
+import AppStructure from '@site/static/img/home_pages/app_structure.png';
+import PuzzleLock from '@site/static/img/home_pages/custom_puzzle_lock.png';
+import CustodyTool from '@site/static/img/home_pages/custody_tool.png';
+import RpcCoinSpend from '@site/static/img/home_pages/rpc_coin_spends.png';
+import SeederGuide from '@site/static/img/home_pages/seeder_guide.png';
+import SimulatorGuide from '@site/static/img/home_pages/simulator_guide.png';
+import WalletConnect from '@site/static/img/home_pages/wallet_connect.png';
+
+import GreatChia from '@site/static/img/home_pages/chia_great.png';
+import AppDev from '@site/static/img/home_pages/dev_on_chia.png';
+import ToolsSetup from '@site/static/img/home_pages/env_setup.png';
+import ProgrammingClsp from '@site/static/img/home_pages/clsp_programming.png';
+import CoinLifecycle from '@site/static/img/home_pages/smart_coins.png';
+import SingletonContracts from '@site/static/img/home_pages/singleton_contracts.png';
+import StateCoinsAnnounce from '@site/static/img/home_pages/state_coins_announce.png';
+import SecArgSign from '@site/static/img/home_pages/sec_args_sigs.png';
+import AnnounceOracle from '@site/static/img/home_pages/announcements_oracles.png';
+import SiCats from '@site/static/img/home_pages/si_cat.png';
+import MiCats from '@site/static/img/home_pages/mi_cat.png';
 
 Welcome to the Chia Network Developer Guides hub! Your gateway to mastering the intricacies of Chia's blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or just stepping into the world of decentralized technologies, our documentation is crafted to empower you with knowledge and tools for navigating the Chia ecosystem. From mastering the basics of Chialisp programming to exploring advanced primitives, our guides cover a spectrum of topics designed to elevate your development skills.  
 
@@ -18,11 +53,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to Developing on Chia</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to Developing on Chia' />
+            <img src={DevChia} alt='Intro to Developing on Chia' />
           </div>
           <div class="card__footer">
             <a href='/guides/crash-course/introduction/'>
@@ -35,11 +67,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to Chialisp</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to Chialisp' />
+            <img src={ChialispIntro} alt='Intro to Chialisp' />
           </div>
           <div class="card__footer">
             <a href='/guides/crash-course/intro-to-chialisp/'>
@@ -52,11 +81,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to Smart Coins</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to Smart Coins' />
+            <img src={SmartCoins} alt='Intro to Smart Coins' />
           </div>
           <div class="card__footer">
             <a href='/guides/crash-course/smart-coins/'>
@@ -69,11 +95,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to Signatures</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to Signatures' />
+            <img src={Signatures} alt='Intro to Signatures' />
           </div>
           <div class="card__footer">
             <a href='/guides/crash-course/signatures/'>
@@ -86,11 +109,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to State</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to State' />
+            <img src={State} alt='Intro to State' />
           </div>
           <div class="card__footer">
             <a href='/guides/crash-course/state/'>
@@ -103,11 +123,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to Inner Puzzles</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to Inner Puzzles' />
+            <img src={InnerPuzzles} alt='Intro to Inner Puzzles' />
           </div>
           <div class="card__footer">
             <a href='/guides/crash-course/inner-puzzles/'>
@@ -120,11 +137,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Intro to Cats, Offers, and NFTs</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Intro to Cats, Offers, and NFTs' />
+            <img src={CatsOffersNfts} alt='Intro to Cats, Offers, and NFTs' />
           </div>
           <div class="card__footer">
             <a href='/crash-course/cats-offers-nfts/'>
@@ -137,11 +151,8 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Chialisp and Typescript</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Chialisp and Typescript' />
+            <img src={ChialispTypescript} alt='Chialisp and Typescript' />
           </div>
           <div class="card__footer">
             <a href='/chialisp-and-typescript/'>
@@ -165,11 +176,8 @@ Explore the core building blocks of Chia development in the Primitives section. 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>NFTs</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='NFTs'/>
+            <img src={Nfts} alt='NFTs'/>
           </div>
           <div class="card__footer">
             <a href='/guides/nft-developer-guide/'>
@@ -182,11 +190,8 @@ Explore the core building blocks of Chia development in the Primitives section. 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>CATs</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='CATs' />
+            <img src={Cats} alt='CATs' />
           </div>
           <div class="card__footer">
             <a href='/guides/cat-developer-guide/'>
@@ -199,11 +204,8 @@ Explore the core building blocks of Chia development in the Primitives section. 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>DataLayer™</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='DataLayer™' />
+            <img src={DataLayer} alt='DataLayer™' />
           </div>
           <div class="card__footer">
             <a href='/guides/datalayer-developer-guide/'>
@@ -216,11 +218,8 @@ Explore the core building blocks of Chia development in the Primitives section. 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Clawback</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Clawback' />
+            <img src={Clawback} alt='Clawback' />
           </div>
           <div class="card__footer">
             <a href='/guides/clawback-developer-guide/'>
@@ -233,11 +232,8 @@ Explore the core building blocks of Chia development in the Primitives section. 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Offers</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Offers' />
+            <img src={Offers} alt='Offers' />
           </div>
           <div class="card__footer">
             <a href='/guides/offers-developer-guide/'>
@@ -250,11 +246,8 @@ Explore the core building blocks of Chia development in the Primitives section. 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>DAOs</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='DAOs' />
+            <img src={Daos} alt='DAOs' />
           </div>
           <div class="card__footer">
             <a href='/guides/daos-developer-guide/'>
@@ -267,11 +260,8 @@ Explore the core building blocks of Chia development in the Primitives section. 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Verifiable Credentials</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Verifiable Credentials' />
+            <img src={Vcs} alt='Verifiable Credentials' />
           </div>
           <div class="card__footer">
             <a href='/guides/verifiable-credentials-guide'>
@@ -295,11 +285,8 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Application Structure</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Application Structure' />
+            <img src={AppStructure} alt='Application Structure' />
           </div>
           <div class="card__footer">
             <a href='/guides/application-structure-tutorial/'>
@@ -312,11 +299,8 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Custom Puzzle Lock</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Custom Puzzle Lock' />
+            <img src={PuzzleLock} alt='Custom Puzzle Lock' />
           </div>
           <div class="card__footer">
             <a href='/guides/custom-puzzle-lock-tutorial/'>
@@ -329,11 +313,8 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Custody Tool</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Custody Tool' />
+            <img src={CustodyTool} alt='Custody Tool' />
           </div>
           <div class="card__footer">
             <a href='/guides/custody-tool/'>
@@ -346,11 +327,8 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>RPC Coin Spend</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='RPC Coin Spend' />
+            <img src={RpcCoinSpend} alt='RPC Coin Spend' />
           </div>
           <div class="card__footer">
             <a href='/guides/coin-spend-rpc-tutorial/'>
@@ -363,11 +341,8 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Seeder User Guide</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Seeder User Guide' />
+            <img src={SeederGuide} alt='Seeder User Guide' />
           </div>
           <div class="card__footer">
             <a href='/guides/seeder-user-guide/'>
@@ -380,11 +355,8 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Simulator User Guide</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Simulator User Guide' />
+            <img src={SimulatorGuide} alt='Simulator User Guide' />
           </div>
           <div class="card__footer">
             <a href='/guides/simulator-user-guide/'>
@@ -397,11 +369,8 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>WalletConnect</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='WalletConnect' />
+            <img src={WalletConnect} alt='WalletConnect' />
           </div>
           <div class="card__footer">
             <a href='/guides/walletconnect/'>
@@ -425,11 +394,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Why Chia is Great</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Why Chia is Great' />
+            <img src={GreatChia} alt='Why Chia is Great' />
           </div>
           <div class="card__footer">
             <a href='/guides/why-chia-is-great-video-series/'>
@@ -442,11 +408,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Developing Chia Applications</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Developing Chia Applications' />
+            <img src={AppDev} alt='Developing Chia Applications' />
           </div>
           <div class="card__footer">
             <a href='/guides/developing-applications-video-series/'>
@@ -459,11 +422,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Tools and Setup</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Tools and Setup' />
+            <img src={ToolsSetup} alt='Tools and Setup' />
           </div>
           <div class="card__footer">
             <a href='/guides/tools-and-setup-video-series/'>
@@ -476,11 +436,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Programming in ChiaLisp</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Programming in ChiaLisp' />
+            <img src={ProgrammingClsp} alt='Programming in ChiaLisp' />
           </div>
           <div class="card__footer">
             <a href='/guides/programming-chialisp-video-series/'>
@@ -493,11 +450,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Coin Lifecycle</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Coin Lifecycle' />
+            <img src={CoinLifecycle} alt='Coin Lifecycle' />
           </div>
           <div class="card__footer">
             <a href='/guides/coin-lifecycle-and-testing-video-series/'>
@@ -510,11 +464,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Singleton Contracts</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Singleton Contracts' />
+            <img src={SingletonContracts} alt='Singleton Contracts' />
           </div>
           <div class="card__footer">
             <a href='/guides/singleton-contracts-video-series/'>
@@ -527,11 +478,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>State, Coins, and Announcements</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='State, Coins, and Announcements' />
+            <img src={StateCoinsAnnounce} alt='State, Coins, and Announcements' />
           </div>
           <div class="card__footer">
             <a href='/guides/state-coins-announcements-video-series/'>
@@ -544,11 +492,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Security, Arguments, and Signing</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Security, Arguments, and Signing' />
+            <img src={SecArgSign} alt='Security, Arguments, and Signing' />
           </div>
           <div class="card__footer">
             <a href='/guides/security-arguments-signing-video-series/'>
@@ -561,11 +506,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Announcements and Oracles</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Announcements and Oracles' />
+            <img src={AnnounceOracle} alt='Announcements and Oracles' />
           </div>
           <div class="card__footer">
             <a href='/guides/announcements-oracles-video-series/'>
@@ -578,11 +520,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Single Issuance CATs</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Single Issuance CATs' />
+            <img src={SiCats} alt='Single Issuance CATs' />
           </div>
           <div class="card__footer">
             <a href='/guides/single-issuance-cat-video-series/'>
@@ -595,11 +534,8 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     <c-li class="carousel-item">
       <div class="card-demo">
         <div class="card">
-          <div class="card__header">
-            <h3>Multiple Issuance CATs</h3>
-          </div>
           <div class="card__image">
-            <img src={ChiaLogo} alt='Multiple Issuance CATs' />
+            <img src={MiCats} alt='Multiple Issuance CATs' />
           </div>
           <div class="card__footer">
             <a href='/guides/multiple-issuance-cat-video-series/'>
