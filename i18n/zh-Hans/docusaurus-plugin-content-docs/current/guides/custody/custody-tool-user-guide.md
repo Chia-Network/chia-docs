@@ -21,7 +21,7 @@ This tool was _not_ originally developed with the broader ecosystem in mind. For
 Before continuing, you might want to familiarize yourself with the following documents:
 
 - [Basic description](/guides/custody-tool-description) of how the custody tool works
-- [Flow chart](https://docs.chia.net/assets/files/chia-custody-tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png) to visualize how the custody tool works
+- [Flow chart](https://docs.chia.net/assets/files/chia-custody-tool.png) to visualize how the custody tool works
 - [CLI reference](https://docs.chia.net/custody-tool) for all custody commands used in this tutorial
 
 :::info
