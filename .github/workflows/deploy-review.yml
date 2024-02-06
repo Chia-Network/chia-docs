@@ -129,7 +129,7 @@ jobs:
 
       - name: Install certificate
         run: |
-          kubectl create namespace chia-docs || true
+          kubectl create namespace chia-docs --dry-run=client -o yaml | kubectl apply -f -
           kubectl apply -n chia-docs -f ./k8s/certificate.yaml
 
       - uses: Chia-Network/actions/helm/deploy@main
