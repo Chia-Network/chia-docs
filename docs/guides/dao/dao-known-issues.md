@@ -34,3 +34,9 @@ An attacker can create spam proposals with the intent of locking DAO_CATs into v
 In the event that such proposals are voted on by users, because the proposals can never be closed (even via self-destruct), any users who voted on these proposals will never be able to unlock the coins they voted with. Note that coins in this state could continue to be used to vote on other proposals.
 
 The current mitigation to this is that the wallet will filter out any proposals which either don't meet the proposal minimum amount or don't have valid timer coins. It is strongly suggested to use the `show_proposal` command with any proposal that you intend to vote on, and check that it is valid.
+
+## Changing a DAO's settings
+
+Because each proposal is voted on and enacted independently, it is possible to have a situation where a proposal to change one or more of the DAO's settings passes while another proposal is active. In this case, the active proposal will take on the _new_ rules imposed by the proposal to change the DAO's settings. This situation could cause the existing proposal to fail, even if it would have passed under the original rules. Other side effects are also possible.
+
+Because of this anomaly, a vote for a proposal to change the DAO's settings could affect any of the DAO's other active proposals. Therefore, members are strongly encouraged to examine all open proposals when deciding whether to vote for a proposal to change the DAO's settings.
