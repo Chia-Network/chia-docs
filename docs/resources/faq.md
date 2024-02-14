@@ -603,7 +603,7 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 
 :::info
 
-This functionality was first made available in Chia version 2.2.0, in [PR #17369](https://github.com/Chia-Network/chia-blockchain/pull/17369).
+This functionality was first made available in Chia version 2.2.0, in [PR #17369](https://github.com/Chia-Network/chia-blockchain/pull/17369). Special thanks to [Felix Brucker](https://github.com/felixbrucker) for creating it!
 
 :::
 
