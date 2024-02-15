@@ -94,7 +94,7 @@ The full conditions for replace by fee are:
 3. The new spend bundle needs to pay at least 10000000 mojos more in fees than the original one
 4. If there were any time-locks associated with the original spend, the new spend bundle has to have the same time-lock
 
-The replace by fee logic can be found [here](https://github.com/Chia-Network/chia-blockchain/blob/063f55cb0f5291d1aadf0031798e55c014fc9b15/chia/full_node/mempool_manager.py#L678) in the codebase)
+The replace by fee logic can be found [here](https://github.com/Chia-Network/chia-blockchain/blob/063f55cb0f5291d1aadf0031798e55c014fc9b15/chia/full_node/mempool_manager.py#L804) in the codebase)
 
 ## Block Creation
 
