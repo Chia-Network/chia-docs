@@ -3,7 +3,7 @@ title: Challenges
 slug: /consensus-challenges
 ---
 
-The Chia consensus algorithm relies on timelords running VDFs for periods of time called _sub-slots_, which are adjusted periodically (and automatically) to take around 10 minutes. During every sub-slot, challenges are released by timelords, and a sort of mini lottery starts, where farmers check their plots for proofs of space. When farmers find a proof of space that qualifies, they broadcast it to the network.
+The Chia consensus algorithm relies on timelords running VDFs for periods of time called _sub-slots_, which are adjusted periodically (and automatically) to take around 10 minutes. During every sub-slot, challenges are released by timelords, and a sort of mini bingo event starts, where farmers check their plots for proofs of space. When farmers find a proof of space that qualifies, they broadcast it to the network.
 
 The difficulty adjusts automatically to target 32 winning proofs for the entire network in each sub-slot, or about one winner every 18.75 seconds on average (32 winners per 600 seconds). The winning proofs are infused into the VDF at different times within the sub-slot.
 

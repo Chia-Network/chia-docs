@@ -9,7 +9,7 @@ Chia's Proof of Space and Time consensus uses storage capacity as the scarce res
 
 One other cryptographic puzzle piece is used to secure Chia's system: a verifiable delay function (VDF), which is a cryptographic proof that real time has passed.
 
-A fair system can be created by combining proofs of space and time. In such a system, users store random-looking data on their hard drives. Their chance to win XCH is proportional to their allocated space. Furthermore, such a system scales to billions of participants in a similar way to the Proof of Work lottery. No funds, special hardware, registration, or permission is required to join, only a hard drive and an internet connection. The system is completely transparent and deterministic -- anyone can efficiently and objectively verify which chain is the canonical one, without relying on any trusted parties.
+A fair system can be created by combining proofs of space and time. In such a system, users store random-looking data on their hard drives. Their chance to win XCH is proportional to their allocated space. Furthermore, such a system scales to billions of participants in a similar way to the Proof of Work bingo event. No funds, special hardware, registration, or permission is required to join, only a hard drive and an internet connection. The system is completely transparent and deterministic -- anyone can efficiently and objectively verify which chain is the canonical one, without relying on any trusted parties.
 
 Some notes to keep in mind as you continue reading:
 

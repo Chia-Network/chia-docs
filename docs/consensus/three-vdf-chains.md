@@ -18,7 +18,7 @@ cc = challenge chain, ic = infused challenge chain, rc = reward chain,
 
 sp = signage point, B = block, c = challenge, r = reward
 
-An attacker can manipulate the reward chain results but this has no effect on c2, and therefore has no effect on the PoSpace lottery.
+An attacker can manipulate the reward chain results but this has no effect on c2, and therefore has no effect on the PoSpace bingo event.
 
 </figcaption>
 </figure>
@@ -31,7 +31,7 @@ The challenge chain and the reward chain each create 64 signage points, released
 
 The timelords send their VDF output to their full node, which adds it into an EndOfSubSlotBundle. This bundle includes the output from each chain (for example c1, ic1, and r1 in the diagram). The bundle is propagated to all other full nodes. Blocks must also include the infusion point VDFs for all three chains.
 
-The challenge chain broadcasts the challenges (c1 and c2). The same chain also executes the VDF from the start of the sub-slot to the end with nothing infused into it (the circles are VDF proofs but they do not interrupt the VDF). That is, in the challenge chain, the "lottery" is completely pre-determined, and not affected by blocks in the slot, until the end of the slot.
+The challenge chain broadcasts the challenges (c1 and c2). The same chain also executes the VDF from the start of the sub-slot to the end with nothing infused into it (the circles are VDF proofs but they do not interrupt the VDF). That is, in the challenge chain, the bingo event is completely pre-determined, and not affected by blocks in the slot, until the end of the slot.
 
 The reward chain infuses every block that is included.
 
@@ -43,7 +43,7 @@ Because a sub-slot is targeted to produce more than 16 blocks, a slot usually on
 
 At the end of the slot, the challenge chain is combined with the infused challenge chain to generate the new challenge c2, which is used to start the challenge chain for the next sub-slot.
 
-The only block which affects the challenge chain (and thus the PoSpace lottery) is the first block in the slot, which here is B1. In fact, it's only a deterministic part of B1 called "cc B1", which only depends on challenge chain data. An attacker who wants to grind cannot change the challenge by withholding B2, B3, or any other block apart from the first one.
+The only block which affects the challenge chain (and thus the PoSpace bingo event) is the first block in the slot, which here is B1. In fact, it's only a deterministic part of B1 called "cc B1", which only depends on challenge chain data. An attacker who wants to grind cannot change the challenge by withholding B2, B3, or any other block apart from the first one.
 
 An honest farmer who holds the first block (B1) will release it. If an attacker controls the first block (B1), they have two additional options: delay it or withhold it.
 

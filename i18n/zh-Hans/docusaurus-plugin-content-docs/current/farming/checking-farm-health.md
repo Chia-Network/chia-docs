@@ -47,7 +47,7 @@ Here is how to interpret each of the statistics in the above image:
 * **Missing partials** -- The percent and number of partials your node has failed to return.
 
 #### Last Attempted Proof
-* **Plots Passed Filter** -- At each signage point, a certain number of your plots will pass the plot filter. The numerator indicates the number of plots that are eligible to play in that specific Proof of Space lottery. For small farms, this number is often 0. The denominator indicates your farm's total number of plots.
+* **Plots Passed Filter** -- At each signage point, a certain number of your plots will pass the plot filter. The numerator indicates the number of plots that are eligible to play in that specific Proof of Space bingo event. For small farms, this number is often 0. The denominator indicates your farm's total number of plots.
 * **Proofs Found** -- The number of valid proofs found at that signage point. If you are not in a pool, a number greater than 0 indicates that you have successfully found a proof and will likely win a block reward at the next transaction block. If you are in a pool, a number greater than 0 likely means that a valid partial proof was found and will be returned to your pool.
 
 ### Harvest panel

@@ -7,9 +7,9 @@ Farming is the next step after [plotting](/plotting-basics). Once a plot has bee
 
 When farming, you allocate a certain amount of storage space in order to have a chance at winning Chia. The more plots you have, the higher your chances of winning.
 
-Farming is similar to a lottery. Each plot acts like a lottery ticket, where a new drawing is performed every 9 seconds or so. If you win the lottery, you earn the right to create a new block, and you will be rewarded with Chia. With an average of 4608 blocks a day, you'll have many chances to win.
+Farming is similar to a bingo event. Each plot acts like a bingo card, where a new drawing is performed every 9 seconds or so. If you win the bingo event, you earn the right to create a new block, and you will be rewarded with Chia. With an average of 4608 blocks a day, you'll have many chances to win.
 
-Our [consensus](/consensus-intro) section has the technical details of how this "lottery" system works.
+Our [consensus](/consensus-intro) section has the technical details of how this "bingo event" system works.
 
 ## Estimated Time to Win
 
@@ -21,7 +21,7 @@ Prior wins (or lack thereof) do not determine new wins. If your estimated time t
 
 ## Pooling to the Rescue
 
-To combat the infrequency and inconsistency of winning, you can [join a pool](/pool-farming). It works similar to a lottery pool. Instead of occasionally earning a large reward, you will frequently earn a small payment. In the long run, pooling and solo-farming (aka **self-pooling**) will yield the same result (minus any pool fee), but pooling is much more predictable, and recommended for most farmers.
+To combat the infrequency and inconsistency of winning, you can [join a pool](/pool-farming). It works similar to a bingo card pool. Instead of occasionally earning a large reward, you will frequently earn a small payment. In the long run, pooling and solo-farming (aka **self-pooling**) will yield the same result (minus any pool fee), but pooling is much more predictable, and recommended for most farmers.
 
 An additional benefit of pooling is instant feedback as to whether your farm is running properly. With solo-farming you may be left wondering if you really can win a block.
 

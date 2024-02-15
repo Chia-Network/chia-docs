@@ -15,7 +15,7 @@ With the pooling protocol, your farmer will communicate with a specific pool ser
 each of its members (the farmers), and whenever one of the members wins a block, the pool can distribute rewards proportional to
 the amount of space that each farmer contributed.
 
-Therefore, pooling is kind of like lottery insurance: all of the members participate in the Chia "lottery", and whenever
+Therefore, pooling is kind of like bingo insurance: all of the members participate in the Chia "bingo event", and whenever
 one member wins, the pool gets the reward and distributes it to all of the members, minus a small fee. The reward is divided into two tranches: 7/8 is split among the pool members, and the other 1/8 goes directly to the farmer who won the block.
 
 ## How to Start Pooling in 6 Steps
