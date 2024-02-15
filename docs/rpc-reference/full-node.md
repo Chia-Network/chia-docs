@@ -12,6 +12,12 @@ security concerns.
 
 A synced full node is required for running the RPCs in this document.
 
+:::info
+
+The [coinset CLI tool](https://github.com/coinset-org/cli) is also capable of returning results equivalent to most of these RPCs. It queries a remote full node that is fast and reliable.
+
+:::
+
 <details>
   <summary>Note about Windows command escaping</summary>
 

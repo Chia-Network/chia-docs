@@ -71,7 +71,7 @@ What is the reward split between the Farmer and the Pool?
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-`"1/8 goes to the Farmer who won the challenge, 7/8 goes to the pool to be distributed"`
+1/8 goes to the Farmer who won the challenge, 7/8 goes to the pool to be distributed
 
 </details>
 
@@ -85,7 +85,7 @@ How does the protocol maintain decentralization?
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-`"By letting the Farmers process and author blocks, the network remains decentralized. Since the pool has no way of knowing which Farmer will win, and does not have a say on which transactions will be included in the block."`
+By letting the Farmers process and author blocks, the network remains decentralized. Since the pool has no way of knowing which Farmer will win, and does not have a say on which transactions will be included in the block.
 
 </details>
 

@@ -6,7 +6,9 @@ title: DAO Known Issues
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page contains a comprehensive list of known DAO issues. Be sure to read this list carefully before using the DAO primitive.
+DAOs are currently under development. Be sure to update to the [latest Chia version](https://www.chia.net/downloads/) prior to using the DAO primitive.
+
+As of Chia version 2.1.4, the following DAO issues are known to exist:
 
 ## Proposal Spam
 
@@ -33,8 +35,8 @@ In the event that such proposals are voted on by users, because the proposals ca
 
 The current mitigation to this is that the wallet will filter out any proposals which either don't meet the proposal minimum amount or don't have valid timer coins. It is strongly suggested to use the `show_proposal` command with any proposal that you intend to vote on, and check that it is valid.
 
-## Resync with locked DAO CATs
+## Changing a DAO's settings
 
-This issue occurs when you have a balance of locked DAO CATs which have voted on one or more open proposals, then you delete and resync the wallet DB. Once the proposals have closed, attempting to unlock the coins from voting mode will fail due to missing lineage proofs for the locked coins.
+Because each proposal is voted on and enacted independently, it is possible to have a situation where a proposal to change one or more of the DAO's settings passes while another proposal is active. In this case, the active proposal will take on the _new_ rules imposed by the proposal to change the DAO's settings. This situation could cause the existing proposal to fail, even if it would have passed under the original rules. Other side effects are also possible.
 
-Mitigation: This issue only exists in the 2.1.2 release. It has already been fixed in the `main` branch. To release the coins, launch the wallet from `main`, and then run the [release_coins](/dao-cli#release_coins) command.
+Because of this anomaly, a vote for a proposal to change the DAO's settings could affect any of the DAO's other active proposals. Therefore, members are strongly encouraged to examine all open proposals when deciding whether to vote for a proposal to change the DAO's settings.

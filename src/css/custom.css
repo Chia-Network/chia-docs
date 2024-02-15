@@ -54,9 +54,9 @@ figcaption {
 
 .eqnumber {
   font-style: italic;
-  color:#999999;
+  color: #999999;
   text-align: center;
-  margin-top:-10px;
+  margin-top: -10px;
   margin-bottom: 25px;
   width: 100%;
 }
@@ -65,4 +65,37 @@ figcaption {
 
 html {
   scroll-padding-top: 5rem;
+}
+
+/* Academy Home Carousel*/
+
+c-ol,
+c-li {
+  list-style: none;
+  margin: 0;
+  padding-right: 20px;
+}
+
+.carousel {
+  position: relative;
+}
+
+.carousel-inner {
+  display: flex;
+  padding: 10px;
+  overflow-x: scroll;
+  counter-reset: item;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+  position: relative;
+  flex: 0 0 40%;
+  width: 100%;
+  counter-increment: item;
+}
+
+.markdown li + li {
+  margin-top: 0;
 }
