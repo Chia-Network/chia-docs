@@ -33,6 +33,12 @@ const katex = require('rehype-katex');
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
           },
+          sitemap: {
+            changefreq: 'weekly',
+            priority: 0.6,
+            ignorePatterns: ['/tags/**'],
+            filename: 'sitemap.xml',
+          },
         }),
       ],
     ],
