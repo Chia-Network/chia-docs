@@ -43,8 +43,10 @@ If you would like to speed up connecting to other nodes and syncing, add one of 
 - Eastern North America `introducer-us-east-1.chia.net:8444`
 - Europe: `introducer-eu-west-2.chia.net:8444`
 
-There is a public node share the available 8444 peers every hour.
+Here is a GitHub repo / file that is frequently updated with verified nodes:
+- [GitHub.com/ChuckWhitson/Chia-Known-Nodes](https://raw.githubusercontent.com/ChuckWhitson/Chia-Known-Nodes/master/Currently_Available_Node_IPs.txt)
 
+Here is a site that hosts available 8444 peers updated every hour:
 - [chia.keva.app](https://chia.keva.app)
 
 These can be added in the GUI via the button, or via the CLI with `chia show -a PEER_ADDRESS:PORT` where `PORT` will usually be 8444.
