@@ -45,6 +45,7 @@ Options:
 |      -p       |    --filepath     |  TEXT   |   True   | The path to write the generated offer file to                                                            |
 |      -m       |       --fee       |  TEXT   |  False   | A fee to add to the offer when it gets taken                                                             |
 |               |      --reuse      |  None   |  False   | Set this flag to reuse an existing address for the offer [Default: generate a new address]               |
+|               |    --override     |  None   |  False   | Creates offer without checking for unusual values                                                        |
 |      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                             |
 
 ---
