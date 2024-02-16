@@ -614,6 +614,10 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                            |
 
+The proof is a proof of inclusion that a given key, value pair is in the specified datalayer store by chaining the Merkle hashes up to the published on-chain root hash.
+
+A user can generate a proof for multiple k,v pairs in the same datastore.
+
 <details>
 <summary>Example</summary>
 
@@ -1286,6 +1290,15 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                            |
 
+Notes about this command:
+* It only needs to perform a single lookup of the on-chain root.
+* It doesn't need to have synced any of the data, or be subscribed to the data store.
+* To keep the proofs smaller, only the clvm hash of the key and value are included in the proof, and not the actual key or value. (A clvm hash is just a sha256 hash of the data prepended with 0x01.)
+* Datalayer uses CLVM hashes for ease of verification in CLVM, although for this specific use case, there is no on-chain validation happening.
+* When using this command, pay attention to the `current_root` value in the returned JSON.
+  * If `current_root` is `True`, this data chains to the current published root, and so if you synced the data, you can be sure it would be there.
+  * If `current_root` is `False`, the root has moved from the time the proof was generated. You cannot make any assumptions in this case about whether the data is in fact in the datastore or not since the root has changed, therefore the data might have changed. It is up to the caller to determine how to treat this case; one possible action would be to obtain a new proof.
+
 The proof to validate requires several fields:
 * `coin_id`
 * `inner_puzzle_hash`
@@ -1296,7 +1309,7 @@ The proof to validate requires several fields:
     * `node_hash`
     * `layers`
 
-Each of these fields is output with the [get_proof](#get_proof) command.
+Each of these fields is output with the [get_proof](#get_proof) command. For more examples, see chia-blockchain [PR #16845](https://github.com/Chia-Network/chia-blockchain/pull/16845).
 
 <details>
 <summary>Example</summary>
