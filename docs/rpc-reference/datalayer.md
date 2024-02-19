@@ -118,7 +118,7 @@ Request Parameters:
 For this example, there is one owned store:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
 ```
 
 Response:
@@ -131,8 +131,8 @@ Response:
 Intentionally move the files and create an empty folder. This will simulate file corruption:
 
 ```json
-mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet10 ~/.chia/mainnet/data_layer/db/server_files_location_testnet10_bak
-mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
+mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet ~/.chia/mainnet/data_layer/db/server_files_location_testnet_bak
+mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
 ```
 
 Next, restore the files:
@@ -152,7 +152,7 @@ Response:
 Finally, verify that the files have been restored:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
 ```
 
 Response:

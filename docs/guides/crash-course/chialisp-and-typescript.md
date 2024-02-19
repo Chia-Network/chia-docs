@@ -292,7 +292,7 @@ You can retrieve your network's Genesis challenge in the terminal with:
 chia show -s
 ```
 
-Testnet10 has the genesis `ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2`. You can see this in `~/.chia/mainnet/config/config.yaml` as well with:
+Testnet11 has the genesis `37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615`. You can see this in `~/.chia/mainnet/config/config.yaml` as well with:
 
 ```bash
 less ~/.chia/mainnet/config/config.yaml
