@@ -77,7 +77,7 @@ To craft the solution, we'll run this command where `51` is the `CREATE_COIN` co
 Finally, the aggregated signature. Remember that the message we are signing is the tree hash of our conditions; or our solution. So first, let's generate that hash. Next we'll also need the coin ID and the genesis challenge. The genesis challenge is a standard value for each network.
 
 05:20\
-You can find the appropriate challenge by entering `chia show -s` and searching for 'genesis challenge'. Since we're on testnet10, our challenge is this value starting with 'AE'. For the coin ID, we actually need the parent ID, the puzzle hash, and the amount which can all be found in the coin record we copied earlier.
+You can find the appropriate challenge by entering `chia show -s` and searching for 'genesis challenge'. For the coin ID, we actually need the parent ID, the puzzle hash, and the amount which can all be found in the coin record we copied earlier.
 
 05:40\
 To get the coin ID, we'll run `cdv inspect -id coins` enter the parent ID, the puzzle hash, and the amount. (`cdv inspect -id coins --parent-id [PARENT_ID] --puzzle-hash [PUZZLE_HASH] --amount [AMOUNT]`) The `AGG_SIG_ME` condition expects the concatenation of the conditions treehash, coin ID, and genesis challenge, so run
