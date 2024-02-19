@@ -243,7 +243,7 @@ Chia Wallet:
 
 In order to continue, you'll need to have some TXCH in your wallet. If your total balance is 0, you can obtain 1 TXCH from our faucet. Copy the value of "First wallet address:" from the output of the `chia keys show` command. It will be a long string beginning with "txch".
 
-Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit".
+Open our [testnet faucet page](https://testnet11-faucet.chia.net "Chia's testnet11 faucet link"). Paste your address and click "Submit".
 
 You'll receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you'll receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your coins to arrive before continuing.
 
@@ -263,9 +263,9 @@ chia show -s
 Eventually, it will say `Full Node Synced`:
 
 ```text
-Network: testnet10    Port: 58444   RPC Port: 8555
+Network: testnet11    Port: 58444   RPC Port: 8555
 Node ID: 82a73b06b3a5f9493a3ac4e3d903026b39c85b748158ba41c623d531947f2a2a
-Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
+Genesis Challenge: 37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615
 Current Blockchain Status: Full Node Synced
 ```
 

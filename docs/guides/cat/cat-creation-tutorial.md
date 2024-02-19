@@ -49,7 +49,7 @@ These concepts are discussed in greater detail in our [CAT primitive page](https
 
 Cat issuance comes in two phases. First, you will test your issuance on a testnet. Once ready, you will issue on mainnet.
 
-For this tutorial, we'll use testnet10.
+For this tutorial, we'll use testnet11.
 
 Ensure that you have Python 3.7 or later by running:
 * Linux/MacOS -- `python3 --version`
@@ -57,7 +57,7 @@ Ensure that you have Python 3.7 or later by running:
 
 1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/installation).
 
-2. Configure Chia to run on testnet10. For more info, see our [testnet documentation](/guides/crash-course/introduction#getting-on-testnet).
+2. Configure Chia to run on testnet11. For more info, see our [testnet documentation](/guides/crash-course/introduction#getting-on-testnet).
 
 3. Start Chia's reference wallet GUI. The command you use will depend on your OS, as well as whether you used a binary installer or installed from source. If you need help, see the installation guide.
 
@@ -71,7 +71,7 @@ Ensure that you have Python 3.7 or later by running:
 
 4. Add a new wallet if you have not already done so.
 
-5. You will need to have a sufficient number of mojos for your CAT issuance and transaction fee(s). You can request some TXCH from the [Testnet10 faucet](https://testnet10-faucet.chia.net).
+5. You will need to have a sufficient number of mojos for your CAT issuance and transaction fee(s). You can request some TXCH from the [Testnet11 faucet](https://testnet11-faucet.chia.net).
 
 6. Before issuing a CAT, you will need to have a synced wallet, as demonstrated by the green checkmark inside the red circle in this image:
 
