@@ -583,7 +583,7 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
-This example is from testnet10, so the timestamp won't match the equivalent call on mainnet:
+This example is from a testnet, so the timestamp won't match the equivalent call on mainnet:
 
 ```json
 chia rpc wallet get_timestamp_for_height '{"height": 2000000}'
