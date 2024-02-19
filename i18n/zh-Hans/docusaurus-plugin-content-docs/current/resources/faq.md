@@ -496,7 +496,7 @@ If you believe your balance is incorrect, changing `initial_num_public_keys` is 
 The Chia database (db) is located in the `db/` directory inside the `.chia/mainnet/` directory. The `.chia/` directory will be found in your user's home directory. You will find the testnet database in the same `db/` directory if you are using testnet. The `.chia/` directory will be found in your user's home directory. You will find the testnet database in the same `db/` directory if you are using testnet.
 
 - mainnet database filename: `blockchain_v2_mainnet.sqlite`
-- testnet database filename: `blockchain_v2_testnet10.sqlite`
+- testnet database filename: `blockchain_v2_testnet11.sqlite`
 
 #### Windows Systems
 
