@@ -26,7 +26,7 @@ Spacescan.io has a handy bi-directional [bech32m \<\> puzzle hash converter](htt
 You can send unwanted tokens to this addresses to make them unspendable:
 
 - Mainnet burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
-- Testnet10 burn address: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
+- Testnet burn address: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
 
 :::warning
 Do not send anything to these addresses unless you want it to be inaccessible forever.
