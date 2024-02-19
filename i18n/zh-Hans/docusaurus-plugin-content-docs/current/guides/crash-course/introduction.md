@@ -258,11 +258,11 @@ chia show --state
 Response:
 
 ```
-Network: testnet10    Port: 58444   RPC Port: 8555
+Network: testnet11    Port: 58444   RPC Port: 8555
 Node ID: 67095d445d879556da95feeee70174c66b131d4f29bd447df5fbc56789a01f24
-Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
-Current Blockchain Status: Not Synced. Peak height: 1462514
-      Time: Wed Aug 31 2022 13:49:51 EDT                  Height:    1462514
+Genesis Challenge: 37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615
+Current Blockchain Status: Not Synced. Peak height: 355514
+      Time: Wed Feb 14 2024 13:49:51 EDT                  Height:    355514
 
 Estimated network space: 1.181 TiB
 Current difficulty: 708
@@ -288,7 +288,7 @@ Ideally, you'll see within this response a value like `Current Blockchain Status
 <details>
 <summary>Testnet Database</summary>
 
-For many things you will need a synced full node. Fortunately, an official [testnet database](https://downloads.chia.net/testnet10/) download is available, which can be a much faster option than syncing from scratch.
+For many things you will need a synced full node. Fortunately, an official [testnet database](https://downloads.chia.net/testnet11/) download is available, which can be a much faster option than syncing from scratch.
 
 Once this file is downloaded, stop your node:
 
@@ -314,7 +314,7 @@ chia show --state
 
 ## Getting TXCH
 
-For the rest of this workshop you will need some TXCH (Testnet Chia). You can get some for free from the [official Chia faucet](https://testnet10-faucet.chia.net/).
+For the rest of this workshop you will need some TXCH (Testnet Chia). You can get some for free from the [official Chia faucet](https://testnet11-faucet.chia.net/).
 
 For this you will need a receive address.
 
