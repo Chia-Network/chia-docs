@@ -21,7 +21,7 @@ For additional resources, see the following:
 
 The commands in this guide are only examples. Be sure to replace the listed values with values from your local system.
 
-This guide was creating using testnet10. The example commands use a fee of 100 million mojos, which will be rather high for mainnet usage. If running on mainnet, be sure to adjust your fees accordingly.
+This guide was creating using testnet11. The example commands use a fee of 100 million mojos, which will be rather high for mainnet usage. If running on mainnet, be sure to adjust your fees accordingly.
 
 :::
 
@@ -42,7 +42,7 @@ In order to mint CR-CATs, you will need to have:
 * Sufficient funds to cover blockchain fees, the amount of which depends on how busy the blockchain is at any moment
 
 We have faucets available if you don't have sufficient funds to get started:
-* [testnet](https://testnet10-faucet.chia.net/)
+* [testnet](https://testnet11-faucet.chia.net/)
 * [mainnet](https://faucet.chia.net/)
 
 :::warning important
