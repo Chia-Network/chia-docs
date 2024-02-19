@@ -22,7 +22,7 @@ For additional resources, see the following:
 
 The commands in this guide are only examples. Be sure to replace the listed values with values from your local system.
 
-This guide was creating using testnet10. The example commands use a fee of 100 million mojos, which will be rather high for mainnet usage. If running on mainnet, be sure to adjust your fees accordingly.
+This guide was creating using testnet11. The example commands use a fee of 100 million mojos, which will be rather high for mainnet usage. If running on mainnet, be sure to adjust your fees accordingly.
 
 :::
 
@@ -48,7 +48,7 @@ In order to mint a VC, you will need to have:
 You are recommended to test minting VCs on the testnet prior to minting them on mainnet. If you are unsure of how to configure your wallet to use the testnet, see our [guide](https://docs.chia.net/guides/chialisp-testnet-setup).
 
 We also have faucets available if you don't have sufficient funds to get started:
-* [testnet](https://testnet10-faucet.chia.net/)
+* [testnet](https://testnet11-faucet.chia.net/)
 * [mainnet](https://faucet.chia.net/)
 
 ### Entities Involved
