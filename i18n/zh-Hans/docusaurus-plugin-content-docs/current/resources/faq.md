@@ -812,7 +812,7 @@ The wallet no longer automatically adds unknown CATs wallets for CATs that may h
 
 ### How can I make a coin that may only be spent until a certain timestamp or block height?
 
-This capability is available by using the `ASSERT_BEFORE_*` conditions, originally added in [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md). In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](/conditions#assert-before-seconds-relative) for more info.
+This capability is available by using the `ASSERT_BEFORE_*` conditions, originally added in [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md). In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](https://chialisp.com/conditions#assert-before-seconds-relative) for more info.
 
 ### Where is the executable file to start the reference wallet GUI located on Windows?
 
@@ -1028,7 +1028,7 @@ This error message occurs when you submit a transaction that does not include a 
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
 - [Technical reference document](https://chialisp.com/offers)
-- [GUI (graphical user interface) tutorial](/guides/offers-gui-tutorial)
+- [GUI (graphical user interface) tutorial](/getting-started/wallet-guide)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
 - [CLI (command line interface) tutorial](/guides/offers-cli-tutorial)
 

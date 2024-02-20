@@ -1,5 +1,5 @@
 ---
-title: Installation Details
+title: Advanced Installation
 slug: /installation
 ---
 

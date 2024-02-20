@@ -15,7 +15,7 @@ There are two kinds of conditions. Some require something to be true (such as ti
 
 Be vigilant when using `ASSERT_MY_COIN_ID` as a shortcut for validating the parent coin ID, puzzle hash, and amount. If they are passed into the solution separately, then validated all at once by hashing them together, it is possible to shift the bytes to the left or right and manipulate the values.
 
-You are recommended to use the `coinid` operator when computing coin IDs. This operator was introduced with [CHIP-11](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md). It verifies that hashes are indeed 32 bytes in length, at no extra CLVM cost versus verifying the parent ID, puzzle hash, and amount individually. The `coinid` operator, as well as the other CHIP-11 operators, are described on [chialisp.com](https://chialisp.com/operators#chip-0011-operators).
+You are recommended to use the `coinid` operator when computing coin IDs. This operator was introduced with [CHIP-11](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md). It verifies that hashes are indeed 32 bytes in length, at no extra CLVM cost versus verifying the parent ID, puzzle hash, and amount individually. The `coinid` operator, as well as the other CHIP-11 operators, are described on the Chialisp [operators page](https://chialisp.com/operators#chip-0011-operators).
 
 :::
 
@@ -23,11 +23,14 @@ You are recommended to use the `coinid` operator when computing coin IDs. This o
 
 `ASSERT_COIN_ANNOUNCEMENT` and `ASSERT_PUZZLE_ANNOUNCEMENT` should typically only be used in a puzzle's _solution_, and not in the puzzle itself. This is especially important when using `ASSERT_COIN_ANNOUNCEMENT`, because it refers to a specific coin.
 
-To illustrate the danger, let's say `coin A` uses this condition in its puzzle, and it asserts a coin announcement from `coin B`. In this case, `coin A` requires `coin B` to be spent in the same block as it is spent. If `coin B` is spent before `coin A`, then `coin A` can _never_ be spent.
+To illustrate the danger, let's say `coin A` uses this condition in its puzzle, and it asserts a coin announcement from `coin B`.
+In this case, `coin A` requires `coin B` to be spent in the same block as it is spent.
+If `coin B` is spent before `coin A`, then `coin A` can _never_ be spent.
 
 However, if this condition is instead used in the _solution_ for `coin A`, and `coin B` has already been spent, then `coin A` can still be spent later, albeit with a different solution.
 
-It is somewhat less dangerous to use `ASSERT_PUZZLE_ANNOUNCEMENT` in a coin's puzzle because it only relies on a coin with a specific puzzle, and many such coins might exist. However, it is still best practice to only use this condition in a coin's solution.
+It is somewhat less dangerous to use `ASSERT_PUZZLE_ANNOUNCEMENT` in a coin's puzzle because it only relies on a coin with a specific puzzle, and many such coins might exist.
+However, it is still best practice to only use this condition in a coin's solution.
 
 :::
 
@@ -48,7 +51,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(43 public_key message)`
@@ -74,7 +77,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(44 public_key message)`
@@ -100,7 +103,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(45 public_key message)`
@@ -126,7 +129,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(46 public_key message)`
@@ -153,7 +156,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(47 public_key message)`
@@ -180,7 +183,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(48 public_key message)`
@@ -203,7 +206,7 @@ The following parameters are expected:
 ### 49 `AGG_SIG_UNSAFE` {#agg-sig-unsafe}
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(49 public_key message)`
@@ -226,7 +229,7 @@ In most cases, `AGG_SIG_ME` is the recommended condition for requiring signature
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(50 public_key message)`
@@ -248,7 +251,7 @@ The following parameters are expected:
 ### 51 `CREATE_COIN` {#create-coin}
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,800,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,800,000.
 :::
 
 Format: `(51 puzzle_hash amount (...memos)?)`
@@ -578,7 +581,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) equal to whatever the value of the first argument is.
+This condition adds an additional [CLVM cost](/coin-set-costs/) equal to whatever the value of the first argument is.
 :::
 
 Format: `(90 cost ...args)`
