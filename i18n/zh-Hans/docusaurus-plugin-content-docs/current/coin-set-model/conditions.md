@@ -15,7 +15,7 @@ There are two kinds of conditions. Some require something to be true (such as ti
 
 Be vigilant when using `ASSERT_MY_COIN_ID` as a shortcut for validating the parent coin ID, puzzle hash, and amount. If they are passed into the solution separately, then validated all at once by hashing them together, it is possible to shift the bytes to the left or right and manipulate the values.
 
-You are recommended to use the `coinid` operator when computing coin IDs. This operator was introduced with [CHIP-11](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md). It verifies that hashes are indeed 32 bytes in length, at no extra CLVM cost versus verifying the parent ID, puzzle hash, and amount individually. The `coinid` operator, as well as the other CHIP-11 operators, are described on [chialisp.com](https://chialisp.com/operators#chip-0011-operators).
+You are recommended to use the `coinid` operator when computing coin IDs. This operator was introduced with [CHIP-11](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md). It verifies that hashes are indeed 32 bytes in length, at no extra CLVM cost versus verifying the parent ID, puzzle hash, and amount individually. The `coinid` operator, as well as the other CHIP-11 operators, are described on the Chialisp [operators page](https://chialisp.com/operators#chip-0011-operators).
 
 :::
 
@@ -48,7 +48,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(43 public_key message)`
@@ -74,7 +74,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(44 public_key message)`
@@ -100,7 +100,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(45 public_key message)`
@@ -126,7 +126,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(46 public_key message)`
@@ -153,7 +153,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(47 public_key message)`
@@ -180,7 +180,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(48 public_key message)`
@@ -203,7 +203,7 @@ The following parameters are expected:
 ### 49 `AGG_SIG_UNSAFE` {#agg-sig-unsafe}
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(49 public_key message)`
@@ -226,7 +226,7 @@ In most cases, `AGG_SIG_ME` is the recommended condition for requiring signature
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,200,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
 :::
 
 Format: `(50 public_key message)`
@@ -248,7 +248,7 @@ The following parameters are expected:
 ### 51 `CREATE_COIN` {#create-coin}
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) of 1,800,000.
+This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,800,000.
 :::
 
 Format: `(51 puzzle_hash amount (...memos)?)`
@@ -578,7 +578,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs) equal to whatever the value of the first argument is.
+This condition adds an additional [CLVM cost](/coin-set-costs/) equal to whatever the value of the first argument is.
 :::
 
 Format: `(90 cost ...args)`
