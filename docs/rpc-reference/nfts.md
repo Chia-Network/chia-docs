@@ -789,8 +789,8 @@ Options:
 
 Request Parameters:
 
-| Flag               | Type         | Required | Description                                                                                                                                                                                          |
-| :----------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| Flag               | Type         | Required | Description                                                           |
+| :----------------- | :----------- | :------- | :---------------------------------------------------------------------|
 | wallet_id          | NUMBER       | True     | The Wallet ID in which to mint an NFT                                                                                                                                                                |
 | uris               | STRING ARRAY | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                    |
 | hash               | HEX STRING   | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                      |
