@@ -7,6 +7,8 @@ The mempool (or memory pool) is a collection of transactions stored by full node
 
 The mempool is a required facet of Chia due to the decentralized nature of the blockchain. Transaction blocks occur approximately every 52 seconds, and it's impossible to predict who will win a block. Therefore, all transactions must be broadcast to the whole network and stored locally until they are confirmed. Additionally, it is normal to have more pending transactions than can fit in a single block, so the mempool also acts as a queue for inclusion into the blockchain.
 
+For more information about the mempool, see our [blog post](https://www.chia.net/2024/01/11/getting-to-know-the-mempool-and-transaction-fees/) on this subject.
+
 :::info
 How many transactions can fit into a block? Due to the varying size of transactions, and the different definitions of what even counts as a "transaction," there is not an exact number. But just for a bit of rough guidance, approximately 1000 transactions with two inputs and two outputs, or 2000 transactions with one input and one output can fit into a single block.
 :::
@@ -27,15 +29,13 @@ To view the current status of the mempool, see the dashboard for [mainnet](https
 
 :::info
 
-Currently, the block size is artificially limited to 50% of its capacity. Eventually this limitation will be lifted, but the numbers discussed in this section assume it is being enforced.
-
-:::
-
-:::info
-
-The total size of the mempool differs by network.
-* Mainnet: 550 billion cost, or 100 blocks
-* Testnet11: 110 billion cost, or 20 blocks
+* By default, the total size of the mempool is 20 blocks. This true for both mainnet and testnet11.
+* Prior to version 2.2, the block size was artificially capped at 50% of its capacity.
+* Starting in version 2.2, the block size cap was increased to 60%.
+* This limitation will be increased gradually, until it reaches 100%, or 11 billion cost -- the limit enforced by the consensus rules.
+* The size (in CLVM cost) of the mempool is `mempool blocks * max cost per block * block size limit`.
+  * In version 2.2, this amounts to `20 * 11 billion * 0.6`, which equals 132 billion.
+  * When the block limiter is lifted, the total size will be `20 * 11 billion`, or 220 billion.
 
 :::
 
@@ -64,12 +64,22 @@ Testnet11 is constantly being "dusted" (thousands of small transactions are bein
 If the mempool is completely full, then in order for your transaction to be added, it will need to kick out one or more transactions. In this scenario:
 * Transactions with no fee will not be added to the mempool.
 * Transactions with a fee of less than five mojos per cost (~100 million mojos for 2-input, 2-output transactions) will be treated as zero-fee transactions, i.e. they will not be added to the mempool.
-* Transactions with a fee of at least five mojos per cost will be added to the mempool, prioritized by fee-per-cost, _if_ they are not the lowest priority transactions. In this case, one or more of the lowest-priority transactions will be removed.
-* If the lowest-cost transaction in the mempool is higher than than the new transaction, then the new transaction will not be added. For example, if the lowest priority transaction in the mempool has a fee of 100 mojos-per-cost (as might be the case in a very busy network), then a new transaction will have to include a higher fee in order to be added to the mempool.
+* Transactions with a fee of at least five mojos per cost will be added to the mempool, prioritized by fee-per-cost, _if_ they are not the lowest priority transactions (see Scenario 4 in this case).
 
 This scenario often occurs on testnet11. When the mempool is completely full, the dusters stop submitting transactions until some of the dust has been cleared. This scenario might occasionally happen on mainnet as well, in which case a minimum fee would be required.
 
 If you see `INVALID_FEE_TOO_CLOSE_TO_ZERO` in your log file, the mempool was likely full when you submitted your transaction, and you did not include a sufficient fee to kick out an existing transaction. Try resubmitting your transaction with a higher fee.
+
+### Scenario 4: Mempool Full of Transactions with Fees
+
+This is the final scenario, where every transaction in the mempool has a fee of at least five mojos per cost. In order for your transaction to be added, it will need to kick out one or more transactions. In this scenario:
+* Transactions with no fee will not be added to the mempool.
+* Transactions with a fee of less than five mojos per cost (~100 million mojos for 2-input, 2-output transactions) will be treated as zero-fee transactions, i.e. they will not be added to the mempool.
+* Transactions with a fee of at least five mojos per cost _might_ be added to mempool. For this to happen, they will need to kick out one or more transactions with a lower fee-per-cost ratio. For example:
+  * If the "cheapest" transaction currently in the mempool has a fee per cost of 10, and your transaction's fee per cost is 9, then your transaction will not be added to the mempool.
+  * If the "cheapest" transaction is 10, and yours is 15, then it likely will be added. However, even in this case, there are scenarios where your transaction might not be added, such as when the lowest-cost transaction currently in the mempool is quite large.
+
+If the mempool from Chia's mainnet reaches this state, the competition for block space will be strong. In order for your transaction to be included, the minimum fee might be significantly higher than it would be in the other scenarios.
 
 ## Replace by Fee
 
