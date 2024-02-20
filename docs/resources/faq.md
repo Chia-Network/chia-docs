@@ -599,6 +599,39 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 6. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2).
 7. Launch chia and wait for a bit (the height to hash, sub-epoch, and peers files need to be built so this can take 5-10 minutes).
 
+### How can I connect to the same full node peers whenever I start Chia?
+
+:::info
+
+This functionality was first made available in Chia version 2.2.0, in [PR #17369](https://github.com/Chia-Network/chia-blockchain/pull/17369). Special thanks to [Felix Brucker](https://github.com/felixbrucker) for creating it!
+
+:::
+
+By default, when you start a Chia full node, it will attempt to connect to a random set of peers. This is normally fine, but there are some cases in which you might want to connect to the same peer(s) every time, such as if:
+- You are a pool operator who wants to establish consistent groups of nodes to support your pool
+- You are running a small, private testnet where all peers are known
+- You are connecting to a larger testnet which nonetheless has an insufficient number of nodes to locate your first peer immediately upon starting a full node
+
+Steps to connect to the same full node peers:
+1. Edit your config file; the default location is `~/.chia/mainnet/config/config.yaml`
+2. In the `full_node:` section, you should see the following line: `full_node_peers: []`
+    * If you do not see this line, you can either add it manually, or rename your config file and run `chia init` to create a new copy, which will contain this line.
+3. Remove the square brackets (`[]`) and add add new lines with `- host` and `port`. Be sure to indent `port`, even though it does not have a hyphen. For example, to add two mainnet peers, use the following syntax:
+    ```yaml
+    full_node_peers:
+      - host: <Peer 1 IP address>
+        port: <port>
+      - host: <Peer 2 IP address>
+        port: <port>
+    ```
+    * Typically, `<port>` will be either 8444 (for mainnet) or 58444 (for most testnets).
+
+:::note
+
+These are not trusted peers (for more info, see the [question on connecting to trusted peers](#what-are-trusted-peers-and-how-do-i-add-them)). Instead, these are normal peers that you happen to want to connect to on an ongoing basis. If you lose your connection to one of these peers, your node will automatically attempt to reestablish the connection.
+
+:::
+
 ## Farming
 
 ### What is the difference between a Farmer and a Harvester?
