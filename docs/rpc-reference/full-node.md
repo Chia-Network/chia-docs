@@ -326,6 +326,41 @@ Response:
 
 ---
 
+### `get_aggsig_additional_data`
+
+Functionality: Returns the additional data used for `AGG_SIG` conditions for the current network
+
+Usage: chia rpc full_node [OPTIONS] get_aggsig_additional_data [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc full_node get_aggsig_additional_data
+```
+
+Response:
+
+```json
+{
+    "additional_data": "ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb",
+    "success": true
+}
+```
+
+</details>
+
+---
+
 ### `get_all_mempool_items`
 
 Functionality: Returns all items in the mempool

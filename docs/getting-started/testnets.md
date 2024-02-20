@@ -5,7 +5,8 @@ slug: /testnets
 
 :::note
 
-Testnet 10 is the supported testnet. Testnet 7 may remain active, but is no longer officially supported by Chia Network Inc.
+testnet11 is the supported testnet. Older testnets may remain active, but are no longer officially supported by Chia Network Inc.
+
 Testnets can be used to test the chia software with coins that have no real world value.  
 If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.
 
@@ -16,7 +17,7 @@ If you want to run the Chia blockchain mainnet, use the [mainnet installation](/
 ## Join the official testnet
 
 ### Prerequisites
-* Chia version higher than 1.2.11 [installed](/installation).
+* Minimum Chia version is 2.1.0 [installed](/installation).
 * All chia processes have been stopped with `chia stop all-d`.
 
 ### Configure Chia for testnet
@@ -34,8 +35,8 @@ chia configure --testnet true
 ### (Opt) Download the official testnet db
 This step is optional, but it will speed up syncing with the testnet
 
-* Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet10.sqlite.gz` while in the directory (a v1 DB is also available, but no longer updated).  
-* Windows users: download it from [https://downloads.chia.net/testnet10/](https://downloads.chia.net/testnet10/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. ~/.chia/mainnet/db is the database directory).
+* Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet11.sqlite.gz` while in the directory (a v1 DB is also available, but no longer updated).  
+* Windows users: download it from [https://downloads.chia.net/testnet11/](https://downloads.chia.net/testnet11/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. ~/.chia/mainnet/db is the database directory).
 
 _Make sure to unzip the database before continuing to the next step._
 
@@ -51,7 +52,7 @@ Prior to starting your node, it is recommended to delete `peers.dat`, located in
 chia start farmer
 
 # Once the node has started, connect to the testnet introducer
-chia show -a testnet10-node.chia.net:58444
+chia peer full_node -a testnet11-node.chia.net:58444
 
 # Check sync status
 chia show -s`
@@ -67,7 +68,7 @@ chia wallet get_address
 ```
 
 Input your testnet wallet address into one of the faucets. If it says you are in the queue, it has worked. 
-* Chia Official [testnet faucet](https://testnet10-faucet.chia.net/).   
+* Chia Official [testnet faucet](https://testnet11-faucet.chia.net/).   
 * Community developed and managed [testnet faucet](https://txchfaucet.com/). _Thank you to Steve Stepp for building and managing this faucet!_  
 
 **Funds will not appear in your wallet until you are fully synced to the blockchain.**

@@ -92,7 +92,7 @@ Options:
 For this example, there is one local store:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
 ```
 
 Response:
@@ -111,8 +111,8 @@ Response:
 Intentionally move the files and create an empty folder. This will simulate file corruption:
 
 ```json
-mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet10 ~/.chia/mainnet/data_layer/db/server_files_location_testnet10_bak
-mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
+mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet ~/.chia/mainnet/data_layer/db/server_files_location_testnet_bak
+mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
 ```
 
 Next, restore the files:
@@ -130,7 +130,7 @@ None
 Finally, verify that the files have been restored:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
 ```
 
 Response:
@@ -591,6 +591,60 @@ Response:
         '9d0c65e77c750eac28b3fa78e57cdcec59fe53448eb59bdfbfa694d89f262b4b'
     ],
     'success': True
+}
+```
+
+</details>
+
+---
+
+### `get_proof`
+
+Functionality: Obtains a merkle proof of inclusion for a given key
+
+Usage: `chia data get_proof [OPTIONS]`
+
+Options:
+
+| Short Command | Long Command    | Type    | Required | Description                                                                                             |
+| :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------ |
+| -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -k            | --key           | TEXT    | True     | The hexadecimal key                                                                                     |
+| -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
+| -h            | --help          | None    | False    | Show a help message and exit                                                                            |
+
+The proof is a proof of inclusion that a given key, value pair is in the specified datalayer store by chaining the Merkle hashes up to the published on-chain root hash.
+
+A user can generate a proof for multiple k,v pairs in the same datastore.
+
+<details>
+<summary>Example</summary>
+
+```bash
+chia data get_proof --id 7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e -k 0x0003
+```
+
+Response:
+
+```bash
+{
+    "proof": {
+        "coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756",
+        "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f",
+        "store_proofs": {
+            "proofs": [
+                {
+                    "key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1",
+                    "layers": [],
+                    "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb",
+                    "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"
+                }
+            ],
+            "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"
+        }
+    },
+    "success": true
 }
 ```
 
@@ -1214,6 +1268,71 @@ value = {
     "warehouseProjectId":"7539ec69-cb8e-44d6-8823-e0b11501bd43",
     "timeStaged":1646694602,
     "orgUid":"0b09d8ae47bfe2716bc25282134ce6aa91ac3dcdf93635ac8ed6bcb301bb4cb8"
+}
+```
+
+</details>
+
+---
+
+### `verify_proof`
+
+Functionality: Verifies a merkle proof of inclusion
+
+Usage: `chia data verify_proof [OPTIONS]`
+
+Options:
+
+| Short Command | Long Command    | Type    | Required | Description                                                                                             |
+| :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------ |
+| -p            | --proof         | TEXT    | True     | Proof to validate in JSON format                                                                        |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
+| -h            | --help          | None    | False    | Show a help message and exit                                                                            |
+
+Notes about this command:
+* It only needs to perform a single lookup of the on-chain root.
+* It doesn't need to have synced any of the data, or be subscribed to the data store.
+* To keep the proofs smaller, only the clvm hash of the key and value are included in the proof, and not the actual key or value. (A clvm hash is just a sha256 hash of the data prepended with 0x01.)
+* Datalayer uses CLVM hashes for ease of verification in CLVM, although for this specific use case, there is no on-chain validation happening.
+* When using this command, pay attention to the `current_root` value in the returned JSON.
+  * If `current_root` is `True`, this data chains to the current published root, and so if you synced the data, you can be sure it would be there.
+  * If `current_root` is `False`, the root has moved from the time the proof was generated. You cannot make any assumptions in this case about whether the data is in fact in the datastore or not since the root has changed, therefore the data might have changed. It is up to the caller to determine how to treat this case; one possible action would be to obtain a new proof.
+
+The proof to validate requires several fields:
+* `coin_id`
+* `inner_puzzle_hash`
+* `store_proofs`
+  * `proofs`
+    * `key_clvm_hash`
+    * `value_clvm_hash`
+    * `node_hash`
+    * `layers`
+
+Each of these fields is output with the [get_proof](#get_proof) command. For more examples, see chia-blockchain [PR #16845](https://github.com/Chia-Network/chia-blockchain/pull/16845).
+
+<details>
+<summary>Example</summary>
+
+```bash
+chia data verify_proof -p '{"coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756", "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f", "store_proofs": {"proofs": [{"key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1","layers": [], "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb", "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"}], "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"}}'
+```
+
+Response:
+
+```bash
+{
+    "current_root": true,
+    "success": true,
+    "verified_clvm_hashes": {
+        "inclusions": [
+            {
+                "key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1",
+                "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"
+            }
+        ],
+        "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"
+    }
 }
 ```
 
