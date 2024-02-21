@@ -23,7 +23,7 @@ Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain
 
 ## Courses
 
-Below, you'll find several curated courses covering the everything from the basics of blockchain technology, to the specifics of Chialisp and implementation. Courses can be taken in any order, so feel free to explore at your leisure.
+Below, you'll find several curated courses covering everything from the basics of blockchain technology, to the specifics of Chialisp and implementation. Courses can be taken in any order, so feel free to explore at your leisure.
 
 ***
 
