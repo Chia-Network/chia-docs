@@ -3,6 +3,9 @@ title: Node Syncing
 slug: /troubleshooting/node-syncing
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Port forwarding port 8444 can solve many sync issues and helps improve Chia's network health.
 
 Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networking%29) through which other Chia computers can communicate with your PC. When you set up port forwarding on port 8444, the Chia software on your computer can quickly talk to other PCs, link up, and start downloading and syncing with the Chia blockchain.
@@ -34,6 +37,7 @@ If you somehow are able to open up your port 8444 you will quickly have peers co
 ## Speed up connecting to nodes
 
 If you would like to speed up connecting to other nodes and syncing, add one of these introducer nodes:
+
 <Tabs
   defaultValue="mainnet"
   groupId="introducers"
@@ -41,26 +45,27 @@ If you would like to speed up connecting to other nodes and syncing, add one of 
     {label: 'Mainnet', value: 'mainnet'},
     {label: 'Testnet11', value: 'testnet11'},
   ]}>
+
   <TabItem value="mainnet">
 
-- North Asia: `introducer-ap-northeast-1.chia.net:8444`
-- South Asia: `introducer-ap-southeast-1.chia.net:8444`
-- Western North America: `introducer-us-west-2.chia.net:8444`
-- Eastern North America: `introducer-us-east-1.chia.net:8444`
-- Europe: `introducer-eu-west-2.chia.net:8444`
-
-There is a public node share the available 8444 peers every hour.
-
-- [chia.keva.app](https://chia.keva.app)
+    - North Asia: `introducer-ap-northeast-1.chia.net:8444`
+    - South Asia: `introducer-ap-southeast-1.chia.net:8444`
+    - Western North America: `introducer-us-west-2.chia.net:8444`
+    - Eastern North America: `introducer-us-east-1.chia.net:8444`
+    - Europe: `introducer-eu-west-2.chia.net:8444`
+    
+    There is a public node share the available 8444 peers every hour.
+    
+    - [chia.keva.app](https://chia.keva.app)
 
   </TabItem>
   <TabItem value="testnet11">
 
-- DNS Introducer: dns-introducer-testnet11.chia.net
-- Legacy Introducer: introducer-testnet11.chia.net:58444
-
-Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
-- CNI Operated Full Node: testnet11-node.chia.net
+    - DNS Introducer: dns-introducer-testnet11.chia.net
+    - Legacy Introducer: introducer-testnet11.chia.net:58444
+    
+    Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+    - CNI Operated Full Node: testnet11-node.chia.net
 
   </TabItem>
 </Tabs>
