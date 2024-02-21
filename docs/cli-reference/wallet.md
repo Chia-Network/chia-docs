@@ -804,13 +804,13 @@ Usage: chia wallet coins split [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+|:--------------|:------------------|:--------|:---------|:-------------------------------------------------------------------------------------------------------------|
 | -p            | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
 | -n            | --number-of-coins | INTEGER | True     | The number of new coins to create, excluding the remainder coin (minimum 1, maximum 500)                     |
 | -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
-| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in XCH                                                                |
+| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in the units of the coin (ex. XCH, CAT, etc)                          |
 | -t            | --target-coin-id  | TEXT    | True     | The coin id of the coin we are splitting                                                                     |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
 
