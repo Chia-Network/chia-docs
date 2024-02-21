@@ -1092,7 +1092,16 @@ chia init
   </TabItem>
 </Tabs>
 
-### Apt
+### From packaged installer
+
+<Tabs
+  defaultValue="apt"
+  groupId="source"
+  values={[
+    {label: 'Apt', value: 'apt'},
+    {label: 'exe, deb, dmg, rpm', value: 'exe, deb, dmg, rpm'},
+  ]}>
+  <TabItem value="apt">
 
 ```bash
 # Install packages
@@ -1111,3 +1120,20 @@ sudo apt-get install chia-blockchain
 
 # Use chia-blockchain-cli instead for CLI only
 ```
+
+  </TabItem>
+  <TabItem value="exe, deb, dmg, rpm">
+
+```bash
+# Navigate to downloads page
+Open https://github.com/Chia-Network/chia-blockchain/releases in a web browser
+
+# Download the correct asset
+Navigate to the release candidate of interest and download the necessary installer for your OS (ex. exe for windows)
+
+# Install the downloaded installer  
+Using your system finder/file explorer install the downloaded installer (note - make sure no other versions of chia are installed prior to this step)
+```
+
+  </TabItem>
+</Tabs>
