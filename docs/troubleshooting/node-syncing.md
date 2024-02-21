@@ -34,16 +34,36 @@ If you somehow are able to open up your port 8444 you will quickly have peers co
 ## Speed up connecting to nodes
 
 If you would like to speed up connecting to other nodes and syncing, add one of these introducer nodes:
+<Tabs
+  defaultValue="mainnet"
+  groupId="introducers"
+  values={[
+    {label: 'Mainnet', value: 'mainnet'},
+    {label: 'Testnet11', value: 'testnet11'},
+  ]}>
+  <TabItem value="mainnet">
 
-- North Asia `introducer-ap-northeast-1.chia.net:8444`
-- South Asia `introducer-ap-southeast-1.chia.net:8444`
+- North Asia: `introducer-ap-northeast-1.chia.net:8444`
+- South Asia: `introducer-ap-southeast-1.chia.net:8444`
 - Western North America: `introducer-us-west-2.chia.net:8444`
-- Eastern North America `introducer-us-east-1.chia.net:8444`
+- Eastern North America: `introducer-us-east-1.chia.net:8444`
 - Europe: `introducer-eu-west-2.chia.net:8444`
 
 There is a public node share the available 8444 peers every hour.
 
 - [chia.keva.app](https://chia.keva.app)
+
+  </TabItem>
+  <TabItem value="testnet11">
+
+- DNS Introducer: dns-introducer-testnet11.chia.net
+- Legacy Introducer: introducer-testnet11.chia.net:58444
+
+Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+- CNI Operated Full Node: testnet11-node.chia.net
+
+  </TabItem>
+</Tabs>
 
 These can be added in the GUI via the button, or via the CLI with `chia show -a PEER_ADDRESS:PORT` where `PORT` will usually be 8444.
 

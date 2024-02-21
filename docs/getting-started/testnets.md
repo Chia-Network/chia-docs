@@ -48,11 +48,9 @@ Prior to starting your node, it is recommended to delete `peers.dat`, located in
 
 ### Start your node and connect to peers
 ```bash
+# Note - make sure to delete the peers.dat file in ~/.chia/mainnet/db prior to starting your node
 # Start your node
 chia start farmer
-
-# Once the node has started, connect to the testnet introducer
-chia peer full_node -a testnet11-node.chia.net:58444
 
 # Check sync status
 chia show -s`
