@@ -807,7 +807,7 @@ Options:
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
 | -n            | --number-of-coins | INTEGER | True     | The number of new coins to create, excluding the remainder coin (minimum 1, maximum 500)                     |
 | -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
-| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in XCH                                                                |
+| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in the units of the coin (ex. XCH, CAT, etc)                          |
 | -t            | --target-coin-id  | TEXT    | True     | The coin id of the coin we are splitting                                                                     |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
 
