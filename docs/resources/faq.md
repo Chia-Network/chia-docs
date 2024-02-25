@@ -497,7 +497,7 @@ If you believe your balance is incorrect, changing `initial_num_public_keys` is 
 The Chia database (db) is located in the `db/` directory inside the `.chia/mainnet/` directory. The `.chia/` directory will be found in your user's home directory. You will find the testnet database in the same `db/` directory if you are using testnet.
 
 - mainnet database filename: `blockchain_v2_mainnet.sqlite`
-- testnet database filename: `blockchain_v2_testnet10.sqlite`
+- testnet database filename: `blockchain_v2_testnet11.sqlite`
 
 #### Windows Systems
 
@@ -598,6 +598,39 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
    - Remove any `-wal` or `-shm` files that are present in the directory (these are temporary files that should only be removed when all chia processes are stopped).
 6. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2).
 7. Launch chia and wait for a bit (the height to hash, sub-epoch, and peers files need to be built so this can take 5-10 minutes).
+
+### How can I connect to the same full node peers whenever I start Chia?
+
+:::info
+
+This functionality was first made available in Chia version 2.2.0, in [PR #17369](https://github.com/Chia-Network/chia-blockchain/pull/17369). Special thanks to [Felix Brucker](https://github.com/felixbrucker) for creating it!
+
+:::
+
+By default, when you start a Chia full node, it will attempt to connect to a random set of peers. This is normally fine, but there are some cases in which you might want to connect to the same peer(s) every time, such as if:
+- You are a pool operator who wants to establish consistent groups of nodes to support your pool
+- You are running a small, private testnet where all peers are known
+- You are connecting to a larger testnet which nonetheless has an insufficient number of nodes to locate your first peer immediately upon starting a full node
+
+Steps to connect to the same full node peers:
+1. Edit your config file; the default location is `~/.chia/mainnet/config/config.yaml`
+2. In the `full_node:` section, you should see the following line: `full_node_peers: []`
+    * If you do not see this line, you can either add it manually, or rename your config file and run `chia init` to create a new copy, which will contain this line.
+3. Remove the square brackets (`[]`) and add add new lines with `- host` and `port`. Be sure to indent `port`, even though it does not have a hyphen. For example, to add two mainnet peers, use the following syntax:
+    ```yaml
+    full_node_peers:
+      - host: <Peer 1 IP address>
+        port: <port>
+      - host: <Peer 2 IP address>
+        port: <port>
+    ```
+    * Typically, `<port>` will be either 8444 (for mainnet) or 58444 (for most testnets).
+
+:::note
+
+These are not trusted peers (for more info, see the [question on connecting to trusted peers](#what-are-trusted-peers-and-how-do-i-add-them)). Instead, these are normal peers that you happen to want to connect to on an ongoing basis. If you lose your connection to one of these peers, your node will automatically attempt to reestablish the connection.
+
+:::
 
 ## Farming
 
@@ -742,7 +775,7 @@ The wallet no longer automatically adds unknown CATs wallets for CATs that may h
 
 ### How can I make a coin that may only be spent until a certain timestamp or block height?
 
-This capability is available by using the `ASSERT_BEFORE_*` conditions, originally added in [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md). In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](/conditions#assert-before-seconds-relative) for more info.
+This capability is available by using the `ASSERT_BEFORE_*` conditions, originally added in [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md). In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](https://chialisp.com/conditions#assert-before-seconds-relative) for more info.
 
 ### Where is the executable file to start the reference wallet GUI located on Windows?
 
@@ -958,7 +991,7 @@ This error message occurs when you submit a transaction that does not include a 
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
 - [Technical reference document](https://chialisp.com/offers)
-- [GUI (graphical user interface) tutorial](/guides/offers-gui-tutorial)
+- [GUI (graphical user interface) tutorial](/getting-started/wallet-guide)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
 - [CLI (command line interface) tutorial](/guides/offers-cli-tutorial)
 

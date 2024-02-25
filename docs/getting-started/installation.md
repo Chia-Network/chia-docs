@@ -1,5 +1,5 @@
 ---
-title: Installation Details
+title: Advanced Installation
 slug: /installation
 ---
 
@@ -1022,7 +1022,7 @@ If all else fails, rebooting the machine and restarting the chia daemon/processe
 
 To join a testnet, follow the instructions on [How to Join the Official Testnet](/testnets#join-the-official-testnet). 
 
-It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet10" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet10"` so that all commands will use testnet10 instead of mainnet. If you're using a version above 1.2.11, you can update all config values to the testnet values by running `chia configure -t true`.
+It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet11" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet11"` so that all commands will use testnet11 instead of mainnet. You can update all config values to the testnet values by running `chia configure -t true`.
 
 
 ## Beta and release candidate installations
@@ -1092,7 +1092,16 @@ chia init
   </TabItem>
 </Tabs>
 
-### Apt
+### From packaged installer
+
+<Tabs
+  defaultValue="apt"
+  groupId="source"
+  values={[
+    {label: 'Apt', value: 'apt'},
+    {label: 'exe, deb, dmg, rpm', value: 'exe, deb, dmg, rpm'},
+  ]}>
+  <TabItem value="apt">
 
 ```bash
 # Install packages
@@ -1111,3 +1120,20 @@ sudo apt-get install chia-blockchain
 
 # Use chia-blockchain-cli instead for CLI only
 ```
+
+  </TabItem>
+  <TabItem value="exe, deb, dmg, rpm">
+
+```bash
+# Navigate to downloads page
+Open https://github.com/Chia-Network/chia-blockchain/releases in a web browser
+
+# Download the correct asset
+Navigate to the release candidate of interest and download the necessary installer for your OS (ex. exe for windows)
+
+# Install the downloaded installer  
+Using your system finder/file explorer install the downloaded installer (note - make sure no other versions of chia are installed prior to this step)
+```
+
+  </TabItem>
+</Tabs>
