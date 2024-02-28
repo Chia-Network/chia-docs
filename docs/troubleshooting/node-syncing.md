@@ -86,3 +86,4 @@ Setting up a VPN used to be a daunting task, but [Wireguard](https://www.wiregua
 - the home server is configured to route all internet traffic (but not local) through the cloud server, while periodically sending a "keepalive" packet to ensure the connection stays open.
 
 Here is a more detailed write-up with [example wireguard configuration](https://www.kmr.me/posts/wireguard/).
+
