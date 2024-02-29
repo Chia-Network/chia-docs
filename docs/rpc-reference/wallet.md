@@ -3059,8 +3059,9 @@ The signing mode strings are [stored in an enum](https://github.com/Chia-Network
   * Same as above, but uses UTF-8 instead of hex
 * `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
   * [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
-
-
+* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_P2_DELEGATED_PUZZLE`
+  * Uses p2_delegated_puzzle
+  * Supports signatures generated from Tangem cards
 
 ---
 
