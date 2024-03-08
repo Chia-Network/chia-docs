@@ -55,7 +55,7 @@ Prior to starting your node, it is recommended to delete `peers.dat`, located in
 chia start farmer
 
 # Once the node has started, connect to the testnet introducer
-chia show -a testnet10-node.chia.net:58444
+chia peer full_node -a testnet10-node.chia.net:58444
 
 # Check sync status
 chia show -s`
