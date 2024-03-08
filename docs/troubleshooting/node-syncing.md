@@ -14,13 +14,11 @@ The network is undergoing rapid growth and expansion. Many newly arriving Chia n
 
 Use [this port checker](https://portchecker.co/) to check if you have port forwarding configured correctly.
 
-# What to Do
+## Port Forwarding Settings
 
 Port forwarding is done on your router. How you set it up depends on your router's make and model. Look through your router's manual or just search for "`<your router name and model>` how to port forward" to get started.
 
 When you enable port forwarding, you are allowing any system on the Internet to connect to your Chia node through port 8444 to the Chia software.
-
-## Port Forwarding Settings
 
 Most routers will ask you from where you are allowing and to what you are connecting to. You want to set up port forwarding to allow any outside connection to connect to the IP address of your main node on your network through port 8444. Router manufacturers might call the settings different things, but the concept is always the same: Outside computers connecting through port 8444 to your computer.
 
@@ -30,13 +28,13 @@ Here are the settings most routers will ask for:
 - Destination (or forwarding) IP address - This is your main node (computer) IP address on your internal network; search online on how to do this for your type of computer. If you search for "what is my IP address" it will give you your external IP address, this is not the one you want.
 - Originating (or from) IP address - Set this to all or sometimes just an asterisk may be used `*`
 
-## Why Forward Port 8444?
+## Why forward port 8444?
 
 All newly added nodes are completely dependent on nodes that are allowing port forwarding, because they are the only nodes in which they can sync with. The more nodes there are that don't allow port forwarding can cause a bottleneck to those nodes that do have it enabled.
 
 If you enable port forwarding, your node will sync faster, and you will be helping to ensure the stability and overall health of the Chia network.
 
-## How to Speed Up Connecting to Nodes
+## Speed up connecting to nodes
 
 If you would like to speed up connectivity to other nodes and increase your sync speed, add one of these introducer nodes to your Chia client:
 
@@ -73,6 +71,8 @@ If you would like to speed up connectivity to other nodes and increase your sync
 </Tabs>
 
 Nodes (IPs) from these sites can be added in the GUI from the Full Node tab, select the Full Node button in the top right corner and then choose "Connect to Other Peers". You can also add nodes via the CLI with the command `chia peer full_node -a PEER_ADDRESS:PORT` where `PORT` will typically be 8444.
+
+## Dealing With Carrier-Grade NAT
 
 Have you opened port 8444 on your router but still not getting connections? With the exhaustion of the IPv4 network space, it's increasingly common for ISPs to use [Carrier-Grade NAT](https://en.wikipedia.org/wiki/Carrier-grade_NAT) (CGN, CG-NAT, NAT444) by placing multiple customers behind a single IP address. In this case, even if you open 8444 on your router, other nodes will not be able to connect to you. There are a couple options:
 
