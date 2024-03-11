@@ -223,6 +223,10 @@ A burn address is an address whose private key (24 words) is unobtainable. There
 
 Thank you to [r/chia](https://www.reddit.com/r/chia/) member [juraj](https://www.reddit.com/r/chia/comments/q88yi8/does_chia_have_a_dead_address/hqolhgn/) for this information.
 
+### How does the transactions_generator work?
+
+Some important changes went into the `transactions_generator` code with the 2.1.0 hard fork. These changes are detailed in the [Block Format](/block-validation/block-format.md#transactions_generator-update) page.
+
 ## Plotting
 
 ### What is k?
