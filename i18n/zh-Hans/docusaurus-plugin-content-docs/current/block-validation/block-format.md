@@ -28,7 +28,7 @@ Chia underwent a hard fork in version 2.1.0. This included updates to the `trans
 
 ### When
 
-The hard fork will activate at block `5 496 000`, which is expected to occur in June 2024. All wallets need to be compatible with the new implementation prior to this block.
+The hard fork will activate at block `5 496 000`, which is expected to occur in June 2024. All nodes need to be compatible with the new implementation prior to this block.
 
 ### Why
 
@@ -45,6 +45,7 @@ There were multiple reasons for this update:
 The code for these changes is held in two primary locations:
 - The [clvm_rs](https://github.com/Chia-Network/clvm_rs/blob/main/src/serde/de_br.rs) repo has the new serialization and deserialization code.
 - The [chia_rs](https://github.com/Chia-Network/chia_rs/tree/main/crates/chia-consensus/src/gen) repo has the consensus generator code.
+- The Rust program for running the generator is [run_block_generator.rs](https://github.com/Chia-Network/chia_rs/blob/main/crates/chia-consensus/src/gen/run_block_generator.rs).
 
 ### What
 
@@ -58,7 +59,7 @@ Two important changes went into this update:
 
     The atom `0xfe` is followed by another atom, which is interpreted as a path into the environment (the same form as in CLVM). It references a node from a part of the tree that has already been deserialized (thus, allowing for de-duplicating sub-trees).
 
-2. The generator ROM implementation was ported from CLVM to Rust. This also doesn't affect the behavior of anything. It just speeds up block validation.
+2. The generator ROM implementation was ported from CLVM to Rust. This also doesn't affect the behavior of anything (other than the CLVM cost, as explained below). It just speeds up block validation.
 
     About the generator ROM:
 
