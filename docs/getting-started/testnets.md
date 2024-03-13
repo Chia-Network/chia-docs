@@ -5,7 +5,7 @@ slug: /testnets
 
 :::note
 
-testnet11 is the supported testnet. Older testnets may remain active, but are no longer officially supported by Chia Network Inc.
+**testnet11 is the only supported testnet.** Older testnets may remain active, but Chia Network Inc. longer officially supports them.
 
 Testnets can be used to test the chia software with coins that have no real world value.  
 If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.
