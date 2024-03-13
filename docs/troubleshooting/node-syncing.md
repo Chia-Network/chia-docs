@@ -72,6 +72,12 @@ If you would like to speed up connectivity to other nodes and increase your sync
 
 Nodes (IPs) from these sites can be added in the GUI from the Full Node tab, select the Full Node button in the top right corner and then choose "Connect to Other Peers". You can also add nodes via the CLI with the command `chia peer full_node -a PEER_ADDRESS:PORT` where `PORT` will typically be 8444.
 
+## Detailed explanation
+
+A regular pc can communicate out with endless ports-- if the user is sending a signal out -- pc opens a port -- signal goes out, pc closes the port. Chia uses port 8444 as instant verified communication. So an open port can allow instant communication and start the blockchain sync. Signal comes in on port 8444- that Chia pc is verified, then both user's pc, opens their own "communication ports ex port 8421" and that new user can now sync and now they are linked together forming part of Chia mesh.
+
+If the users port 8444 is closed, the users pc has to start sending multiple signals out and hope that a pc with open port 8444 will link with them, then the sync starts. (1) pc can only link up a few pc and with so many other Chia users coming on board, they all have to wait. Keep in mind, Chia is built on a mesh network, the blockchain is shared among all the users, not from central pc.
+
 ## Dealing With Carrier-Grade NAT
 
 Have you opened port 8444 on your router but still not getting connections? With the exhaustion of the IPv4 network space, it's increasingly common for ISPs to use [Carrier-Grade NAT](https://en.wikipedia.org/wiki/Carrier-grade_NAT) (CGN, CG-NAT, NAT444) by placing multiple customers behind a single IP address. In this case, even if you open 8444 on your router, other nodes will not be able to connect to you. There are a couple options:
