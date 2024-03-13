@@ -5,7 +5,7 @@ slug: /testnets
 
 :::note
 
-testnet11 is the supported testnet. Older testnets may remain active, but are no longer officially supported by Chia Network Inc.
+**testnet11 is the only supported testnet.** Older testnets may remain active, but Chia Network Inc. longer officially supports them.
 
 Testnets can be used to test the chia software with coins that have no real world value.  
 If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.
@@ -32,13 +32,17 @@ chia keys generate
 chia configure --testnet true
 ```
 
-### (Opt) Download the official testnet db
-This step is optional, but it will speed up syncing with the testnet
+### Download the official testnet database (optional)
+This step is optional, but it will speed up syncing with the testnet.
 
-* Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet11.sqlite.gz` while in the directory (a v1 DB is also available, but no longer updated).  
-* Windows users: download it from [https://downloads.chia.net/testnet11/](https://downloads.chia.net/testnet11/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. ~/.chia/mainnet/db is the database directory).
+* Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet11.sqlite.gz` while in the directory (a v1 db is not available for testnet11).  
+* Windows users: download it from [https://downloads.chia.net/testnet11/](https://downloads.chia.net/testnet11/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. `~/.chia/mainnet/db` is the database directory).
 
-_Make sure to unzip the database before continuing to the next step._
+:::note
+
+Make sure to unzip the database before continuing to the next step.
+
+:::
 
 :::tip
 
@@ -59,7 +63,7 @@ chia show -s`
 chia wallet show
 ```
 
-### (Opt) Fund a testnet wallet
+### Fund a testnet wallet (optional)
 ```bash
 # Get a testnet wallet address differentiated from mainnet wallet addresses by beginning with txch instead of xch
 chia wallet get_address
