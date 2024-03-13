@@ -63,7 +63,7 @@ There are a series of different keys that your chia client uses, follow the belo
 
 ### Locating Keys in the CLI
 
-In order to view your farmer public key, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
+In order to view your keys from the cli, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
 
 1. From terminal (mac/linux) or powershell (windows) run `chia keys show`:
 ```bash
