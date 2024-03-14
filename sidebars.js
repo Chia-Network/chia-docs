@@ -117,6 +117,7 @@ module.exports = {
         'troubleshooting/check-if-things-are-working',
         'troubleshooting/node-syncing',
         'troubleshooting/logging-reference',
+        'troubleshooting/locating-keys',
       ],
     },
     {
