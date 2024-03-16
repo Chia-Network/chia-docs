@@ -15,7 +15,7 @@ This document is a comprehensive listing of CLI commands for interacting with Ch
 
 Functionality: Create a DID wallet
 
-Usage: chia wallet did create [OPTIONS]
+Usage: `chia wallet did create [OPTIONS]`
 
 Options:
 
@@ -81,7 +81,7 @@ My_DID:
 
 Functionality: Find the did you should own and recover the DID wallet
 
-Usage: chia wallet did find_lost [OPTIONS]
+Usage: `chia wallet did find_lost [OPTIONS]`
 
 Options:
 
@@ -118,7 +118,7 @@ Successfully found lost DID did:chia:1gam05w9xhdc406t03w79pst7hrhs36yw70ekg7hdsx
 
 Functionality: Get more details of any DID
 
-Usage: chia wallet did get_details [OPTIONS]
+Usage: `chia wallet did get_details [OPTIONS]`
 
 Options:
 
@@ -165,7 +165,7 @@ Last Spend Hints:       ['f2a5e7790267b0737c32e1e4a064c63b7d304b2b54454099661bdc
 
 Functionality: Get the DID and Coin ID for a DID wallet
 
-Usage: chia wallet did get_did [OPTIONS]
+Usage: `chia wallet did get_did [OPTIONS]`
 
 Options:
 
@@ -200,7 +200,7 @@ Coin ID:                0xe6c28c30c7dd2801a4cbfdb0e61186315ae9695dde0a75a6901c13
 
 Functionality: Generate a DID spend bundle for announcements (does not modify the blockchain)
 
-Usage: chia wallet did message_spend [OPTIONS]
+Usage: `chia wallet did message_spend [OPTIONS]`
 
 Options:
 
@@ -249,7 +249,7 @@ Message Spend Bundle:
 
 Functionality: Set the name for a DID wallet
 
-Usage: chia wallet did get_did [OPTIONS]
+Usage: `chia wallet did get_did [OPTIONS]`
 
 Options:
 
@@ -318,7 +318,7 @@ FULL_NODE 127.0.0.1                              58444/58444 f40100b8... Jun 15 
 
 Functionality: Sign a message using a specified DID ID. This command does not modify the blockchain.
 
-Usage: chia wallet did sign_message [OPTIONS]
+Usage: `chia wallet did sign_message [OPTIONS]`
 
 Options:
 
@@ -353,7 +353,7 @@ Signature: 981ed9b983440c06ae5d9f2f2a0f45c0a00015939d30f512364f44597dc381007ee69
 
 Functionality: Transfer a DID
 
-Usage: chia wallet did transfer [OPTIONS]
+Usage: `chia wallet did transfer [OPTIONS]`
 
 Options:
 
@@ -430,7 +430,7 @@ Transaction: {
 
 Functionality: Update the metadata of a DID
 
-Usage: chia wallet did update_metadata [OPTIONS]
+Usage: `chia wallet did update_metadata [OPTIONS]`
 
 Options:
 
