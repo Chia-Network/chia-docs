@@ -6,6 +6,9 @@ slug: /farming-guide
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import WalletKeyDetails from '@site/static/img/troubleshooting/wallet_key_details.png';
+import WalletKeysPublic from '@site/static/img/faq/wallet_keys_public_key.png';
+import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
 
 So you want to be a Chia farmer? You've come to the right place!
 
@@ -124,32 +127,68 @@ You will be taken to your wallet, which will show a zero-XCH balance. There will
 
 ### Fund your wallet
 
-If you think you will ever want to join a pool (recommended for small and medium farms), you will need at least one mojo (one trillionth of an XCH). To help with this, we have set up an online faucet. To use the faucet, you will need a receive address. Click `RECEIVE` to display one:
+If you think you will ever want to join a pool (recommended for small and medium farms), you will need at least one mojo (one trillionth of an XCH). To help with this, we have set up an online faucet at [faucet.chia.net](https://faucet.chia.net/).
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/06.png" alt="Receive address" />
+To use the faucet you will need to identify your **Master Public Key** (also referred to as the **Public Key**).
+You can use either the GUI or CLI to identify the Master Public Key by following these steps:
+
+#### GUI
+
+:::warning 
+Never share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+1. In the top right corner select logout:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletLogout} alt='Logout of the Chia wallet' />
 </div>
 <br />
 
-Copy your receive address (it will begin with `xch`) and head to our [faucet page](https://faucet.chia.net/). Paste your address, click the "I'm not a robot" check box, and click `Submit`:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/07.png" alt="Faucet"  width="75%"/>
+2. Using the desired keys menu, select details:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeyDetails} alt='Select Details for a Chia keyset' />
 </div>
 <br />
 
-You should receive a message stating that your money is on the way. Note that you can only use this faucet once.
-
-Within a few minutes, your wallet's balance should increase:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/08.png" alt="Wallet with 100 mojos" />
+3. View and copy the **Public Key** to the field on the Faucet page:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeysPublic} alt='Chia keys detail screen, Public Key highlighted' />
 </div>
 <br />
+
+#### CLI
+
+:::warning 
+**NEVER** share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+In order to view your keys from the cli, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
+
+1. From terminal (mac/linux) or powershell (windows) run `chia keys show`:
+```bash
+chia keys show
+```
+
+2. View and copy the **Master Public Key** to the field on the faucet page:
+
+```bash
+Showing all public keys derived from your master seed and private key:
+
+Label: Demo Wallet
+Fingerprint: 2281896037
+Master public key (m): 96ce91d974daa0990e6681ac2de3e3f49142f6b655a081817832265c143e658a6e60a5dec856f292f45fe2d04c7856f6**
+Farmer public key (m/12381/8444/0/0): a9e366b26f155491af9a903c0ed9717bfd09a71cbe283eeda825128fd7c6b9ac60e1608f9f008adcfbf66e233d5b4ce8
+Pool public key (m/12381/8444/1/0): 9566fa434f342dd5f9380a6bfc59dd7d1abd22869a425a8ca09cf27200eaa6aad5bc8fc00db90af832eb8028b0c6e3f0
+First wallet address: xch1kr3zf7dqw5q953ex6zt33lndj90q0zlh68404tsntnljthnwqs2qvjmwrg
+```
+
+:::note
+For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/) blog article.
+:::
 
 :::info
 
-You can continue with this guide while waiting for your 100 mojos to arrive.
+You can continue with this guide while waiting for your faucet payment to arrive.
 
 :::
 
