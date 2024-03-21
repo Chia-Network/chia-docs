@@ -34,4 +34,4 @@ Do not send anything to these addresses unless you want it to be inaccessible fo
 
 A traditional bech32m puzzle hash for a burn address is all zeros ending in "dead": `0x000000000000000000000000000000000000000000000000000000000000dead`. Converting this to an address, you end up with the burn addresses above.
 
-You can use a [puzzle hash converter](https://explorer.space/address-puzzlehash-converter) to verify for yourself.
+You can use a [puzzle hash converter](https://www.spacescan.io/tools/converter/address) to verify for yourself.
