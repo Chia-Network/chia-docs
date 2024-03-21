@@ -36,6 +36,7 @@ The hard fork will activate at block `5 496 000`, which is expected to occur in 
 Among other changes, the `transactions_generator` code was ported to Rust.
 
 There were multiple reasons for this update:
+
 - As an optimization -- Rust is generally more performant than Python
 - To support back refs
 - To make block validation faster
@@ -44,6 +45,7 @@ There were multiple reasons for this update:
 ### Where
 
 The code for these changes is held in two primary locations:
+
 - The [clvm_rs](https://github.com/Chia-Network/clvm_rs/blob/main/src/serde/de_br.rs) repo has the new serialization and deserialization code.
 - The [chia_rs](https://github.com/Chia-Network/chia_rs/tree/main/crates/chia-consensus/src/gen) repo has the consensus generator code.
 - The Rust program for running the generator is [run_block_generator.rs](https://github.com/Chia-Network/chia_rs/blob/main/crates/chia-consensus/src/gen/run_block_generator.rs).
@@ -53,22 +55,23 @@ The code for these changes is held in two primary locations:
 Two important changes went into this update:
 
 1. Allow serializing CLVM in a new, more compact form. This doesn't affect how CLVM is executed, it's just a matter of encoding. It does have some important consequences:
-    - Farmers can effectively stuff more transactions into blocks, because with a more compact encoding, you can fit more for the same byte-cost.
-    - The new implementation can take advantage of the de-duplication in the new serialization format, by caching tree-hashes. This effectively de-duplicates the work of hashing puzzles.
 
-    About the new serialization format:
+   - Farmers can effectively stuff more transactions into blocks, because with a more compact encoding, you can fit more for the same byte-cost.
+   - The new implementation can take advantage of the de-duplication in the new serialization format, by caching tree-hashes. This effectively de-duplicates the work of hashing puzzles.
 
-    The atom `0xfe` is followed by another atom, which is interpreted as a path into the environment (the same form as in CLVM). It references a node from a part of the tree that has already been deserialized (thus, allowing for de-duplicating sub-trees).
+   About the new serialization format:
+
+   The atom `0xfe` is followed by another atom, which is interpreted as a path into the environment (the same form as in CLVM). It references a node from a part of the tree that has already been deserialized (thus, allowing for de-duplicating sub-trees).
 
 2. The generator ROM implementation was ported from CLVM to Rust. This also doesn't affect the behavior of anything (other than the CLVM cost, as explained below). It just speeds up block validation.
 
-    About the generator ROM:
-    
-    - It is the code that invokes the generator in a block.
-    - The return value is a list of spends.
-    - The ROM validates all spends by checking the puzzle hashes and calling into all puzzles passing in their solutions. 
-    - The work done by the ROM no longer charges a CLVM cost, which has two primary benefits:
-      - It allows farmers to put more transactions into blocks.
-      - It makes it easier for the farmer to predict the total cost of a block as it's including transactions.
+   About the generator ROM:
+
+   - It is the code that invokes the generator in a block.
+   - The return value is a list of spends.
+   - The ROM validates all spends by checking the puzzle hashes and calling into all puzzles passing in their solutions.
+   - The work done by the ROM no longer charges a CLVM cost, which has two primary benefits:
+     - It allows farmers to put more transactions into blocks.
+     - It makes it easier for the farmer to predict the total cost of a block as it's including transactions.
 
 [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md#block-generator-optimizations) contains more info about the generator optimizations.

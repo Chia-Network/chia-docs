@@ -42,8 +42,9 @@ For more info, see [this issue on GitHub](https://github.com/aio-libs/aiohttp/is
 Chia's command line interface provides a set of commands to make, take, cancel, and list offers. To use offers on the command line, make sure you are using a virtual environment.
 
 For more info, see our comprehensive Offers references:
-* [CLI](/offer-cli)
-* [RPC](/offer-rpc)
+
+- [CLI](/offer-cli)
+- [RPC](/offer-rpc)
 
 ---
 

@@ -19,28 +19,28 @@ Usage: chia plotters chiapos [OPTIONS]
 
 Options:
 
-| Short Command | Long Command          | Type    | Required | Description                                                                               |
-|:------------- |:--------------------- |:------- |:-------- |:----------------------------------------------------------------------------------------- |
-| -t            | --tmp_dir             | TEXT    | True     | Temporary directory 1 (where most of the plots temp data will be stored)                  |
-| -2            | --tmp_dir2            | TEXT    | False    | Temporary directory 2 [Default: same as `tmp_dir`]                                        |
-| -k            | --size                | INTEGER | False    | K value [Default: 32]                                                                     |
-| -m            | --memo                | TEXT    | False    | Memo variable                                                                             |
-| -i            | --id                  | TEXT    | False    | Plot ID [Default: generate a random ID]                                                   |
-| -b            | --buffer              | INTEGER | False    | Size of the buffer, in MB [Default: 4608]                                                 |
-| -u            | --buckets             | INTEGER | False    | Number of buckets [Default: 64]                                                           |
-| -s            | --stripes             | INTEGER | False    | Stripe size [Default: 65536]                                                              |
-| -r            | --threads             | INTEGER | False    | Num threads [Default: 2]                                                                  |
-| -e            | --nobitfield          | None    | False    | Disable bitfield [Default: bitfield is enabled]                                           |
-|               | --override-k          | None    | False    | Force size smaller than 32 (only needed where `-k` is less than 32 [Default: disabled]    |
-| -a            | --alt_fingerprint     | INTEGER | False    | Enter the alternative fingerprint of the key you want to use                              |
-| -c            | --contract            | TEXT    | False    | Pool Contract Address (64 chars) [Default: none]                                          |
-| -f            | --farmerkey           | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]               |
-| -p            | --pool-key            | TEXT    | False    | Pool Public Key (48 bytes) [Default: use the key from the current wallet (self-pooling)]  |
-| -n            | --count               | INTEGER | False    | Number of plots to create [Default: 1]                                                    |
+| Short Command | Long Command        | Type    | Required | Description                                                                               |
+| :------------ | :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------- |
+| -t            | --tmp_dir           | TEXT    | True     | Temporary directory 1 (where most of the plots temp data will be stored)                  |
+| -2            | --tmp_dir2          | TEXT    | False    | Temporary directory 2 [Default: same as `tmp_dir`]                                        |
+| -k            | --size              | INTEGER | False    | K value [Default: 32]                                                                     |
+| -m            | --memo              | TEXT    | False    | Memo variable                                                                             |
+| -i            | --id                | TEXT    | False    | Plot ID [Default: generate a random ID]                                                   |
+| -b            | --buffer            | INTEGER | False    | Size of the buffer, in MB [Default: 4608]                                                 |
+| -u            | --buckets           | INTEGER | False    | Number of buckets [Default: 64]                                                           |
+| -s            | --stripes           | INTEGER | False    | Stripe size [Default: 65536]                                                              |
+| -r            | --threads           | INTEGER | False    | Num threads [Default: 2]                                                                  |
+| -e            | --nobitfield        | None    | False    | Disable bitfield [Default: bitfield is enabled]                                           |
+|               | --override-k        | None    | False    | Force size smaller than 32 (only needed where `-k` is less than 32 [Default: disabled]    |
+| -a            | --alt_fingerprint   | INTEGER | False    | Enter the alternative fingerprint of the key you want to use                              |
+| -c            | --contract          | TEXT    | False    | Pool Contract Address (64 chars) [Default: none]                                          |
+| -f            | --farmerkey         | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]               |
+| -p            | --pool-key          | TEXT    | False    | Pool Public Key (48 bytes) [Default: use the key from the current wallet (self-pooling)]  |
+| -n            | --count             | INTEGER | False    | Number of plots to create [Default: 1]                                                    |
 | -x            | --exclude_final_dir | None    | False    | Skips adding [final dir] to harvester for farming [Default: copy to final dir is enabled] |
-| -d            | --final_dir           | TEXT    | True     | Final directory after plot has been created                                               |
-|               | --compress            | INTEGER | False    | Compression level [Default: 0 (not compressed)]                                           |
-| -h            | --help                | None    | False    | Show a help message and exit                                                              |
+| -d            | --final_dir         | TEXT    | True     | Final directory after plot has been created                                               |
+|               | --compress          | INTEGER | False    | Compression level [Default: 0 (not compressed)]                                           |
+| -h            | --help              | None    | False    | Show a help message and exit                                                              |
 
 ---
 
@@ -53,7 +53,7 @@ Usage: chia plotters madmax [OPTIONS]
 Options:
 
 | Short Command | Long Command  | Type    | Required | Description                                                                              |
-|:------------- |:------------- |:------- |:-------- |:---------------------------------------------------------------------------------------- |
+| :------------ | :------------ | :------ | :------- | :--------------------------------------------------------------------------------------- |
 | -k            | --size        | INTEGER | False    | K value [Default: 32]                                                                    |
 | -n            | --count       | INTEGER | False    | Number of plots to create [Default: 1]                                                   |
 | -r            | --threads     | INTEGER | False    | Num threads [Default: 4]                                                                 |
@@ -86,26 +86,26 @@ Usage: chia plotters bladebit cudaplot [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                      |
-|:------------- |:----------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------- |
-| -r            | --threads         | INTEGER | False    | Num threads [Default: 12]                                                                                        |
-| -n            | --count           | INTEGER | False    | Number of plots to create [Default: 1]                                                                           |
-| -f            | --farmerkey       | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]                                      |
-| -p            | --pool-key        | TEXT    | False    | Pool Public Key (48 bytes) [Default: use the key from the current wallet (self-pooling)]                         |
-| -c            | --contract        | TEXT    | False    | Pool Contract Address (64 chars) [Default: none]                                                                 |
-| -t            | --tmp_dir         | TEXT    | False    | Temporary directory 1 (where most of the plot's temp data will be stored) [Default: in memory]                   |
-| -2            | --tmp_dir2        | TEXT    | False    | Temporary directory 2 [Default: same as `tmp_dir`]                                                               |
-| -i            | --id              | TEXT    | False    | Plot ID [Default: generate a random ID]                                                                          |
-| -w            | --warmstart       | None    | False    | Set to enable warm start [Default: disabled]                                                                     |
-|               | --nonuma          | None    | False    | Set to disable numa [Default: enabled]                                                                           |
-|               | --no-cpu-affinity | None    | False    | Set to disable assigning automatic thread affinity [Default: enabled]                                            |
-| -v            | --verbose         | None    | False    | Set to enable verbose output [Default: disabled]                                                                 |
-| -d            | --final_dir       | TEXT    | True     | Final directory after plot has been created                                                                      |
-|               | --compress        | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                                                 |
-|               | --device          | INTEGER | False    | The CUDA device index (typically 0 or 1), set if more than one GPU is installed [Default: 0]                     |
-|               | --disk-128        | None    | False    | Enable hybrid disk plotting, requires 128 GB of system RAM [Default: disabled]                                   |
-|               | --disk-16\*     | None    | False    | Enable hybrid disk plotting, requires at least 16 GB of system RAM [Default: disabled] **\*SEE WARNING BELOW** |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                     |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                    |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------- |
+| -r            | --threads         | INTEGER | False    | Num threads [Default: 12]                                                                                      |
+| -n            | --count           | INTEGER | False    | Number of plots to create [Default: 1]                                                                         |
+| -f            | --farmerkey       | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]                                    |
+| -p            | --pool-key        | TEXT    | False    | Pool Public Key (48 bytes) [Default: use the key from the current wallet (self-pooling)]                       |
+| -c            | --contract        | TEXT    | False    | Pool Contract Address (64 chars) [Default: none]                                                               |
+| -t            | --tmp_dir         | TEXT    | False    | Temporary directory 1 (where most of the plot's temp data will be stored) [Default: in memory]                 |
+| -2            | --tmp_dir2        | TEXT    | False    | Temporary directory 2 [Default: same as `tmp_dir`]                                                             |
+| -i            | --id              | TEXT    | False    | Plot ID [Default: generate a random ID]                                                                        |
+| -w            | --warmstart       | None    | False    | Set to enable warm start [Default: disabled]                                                                   |
+|               | --nonuma          | None    | False    | Set to disable numa [Default: enabled]                                                                         |
+|               | --no-cpu-affinity | None    | False    | Set to disable assigning automatic thread affinity [Default: enabled]                                          |
+| -v            | --verbose         | None    | False    | Set to enable verbose output [Default: disabled]                                                               |
+| -d            | --final_dir       | TEXT    | True     | Final directory after plot has been created                                                                    |
+|               | --compress        | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                                               |
+|               | --device          | INTEGER | False    | The CUDA device index (typically 0 or 1), set if more than one GPU is installed [Default: 0]                   |
+|               | --disk-128        | None    | False    | Enable hybrid disk plotting, requires 128 GB of system RAM [Default: disabled]                                 |
+|               | --disk-16\*       | None    | False    | Enable hybrid disk plotting, requires at least 16 GB of system RAM [Default: disabled] **\*SEE WARNING BELOW** |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                   |
 
 :::warning warning
 
@@ -140,7 +140,7 @@ Usage: chia plotters bladebit ramplot [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:---------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :--------------------------------------------------------------------------------------- |
 | -r            | --threads         | INTEGER | False    | Num threads [Default: 12]                                                                |
 | -n            | --count           | INTEGER | False    | Number of plots to create [Default: 1]                                                   |
 | -f            | --farmerkey       | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]              |
@@ -166,7 +166,7 @@ Usage: chia plotters bladebit diskplot [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                         |
-|:------------- |:----------------- |:------- |:-------- |:--------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------- |
 | -r            | --threads         | INTEGER | False    | Num threads [Default: 12]                                                                           |
 | -n            | --count           | INTEGER | False    | Number of plots to create [Default: 1]                                                              |
 | -f            | --farmerkey       | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]                         |
@@ -205,7 +205,7 @@ Usage: bladebit simulate [OPTIONS] \<plot_file_path>
 Options:
 
 | Short Command | Long Command | Type       | Required | Description                                                                    |
-|:------------- |:------------ |:---------- |:-------- |:------------------------------------------------------------------------------ |
+| :------------ | :----------- | :--------- | :------- | :----------------------------------------------------------------------------- |
 | -n            | --iterations | INTEGER    | False    | The number of iterations to run [Default: 100]                                 |
 | -p            | --parallel   | INTEGER    | False    | The number of instances to run in parallel [Default: 1]                        |
 | -l            | --lookup     | FLOAT      | False    | Maximum allowed time per proof lookup, in seconds [Default: 8.00]              |

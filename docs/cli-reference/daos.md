@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 This document contains a comprehensive reference of Chia DAO CLI commands and options.
 
-:::warning 
+:::warning
 
 Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
 
@@ -142,7 +142,7 @@ Options:
 | -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -i            | --wallet-id                           | INTEGER | True     | ID of the DAO Treasury Wallet                                                                            |
 | -w            | --funding-wallet-id                   | INTEGER | True     | The ID of the wallet to send funds from (must be of type `STANDARD_WALLET`)                              |
-| -a            | --amount                              | TEXT    | True     | The amount of funds to send, in XCH                                                                              |
+| -a            | --amount                              | TEXT    | True     | The amount of funds to send, in XCH                                                                      |
 | -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change [default: not set]                |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change [default: not set]      |
@@ -251,12 +251,12 @@ Usage: chia dao balance [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
-| -i            | --wallet-id                   | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -355,7 +355,7 @@ Proposal XCH Conditions
 0x6ace2ea83d1db903c2fef0237e1cd71cae017fa79fb3eeec4af3c7fc6c25c16e 1000000000000
 ```
 
-This proposal is now closed. The treasury's balance prior to the proposal being created was 2.0 XCH. 
+This proposal is now closed. The treasury's balance prior to the proposal being created was 2.0 XCH.
 Verify that 1 XCH was deducted by showing the current balance:
 
 ```bash
@@ -448,7 +448,7 @@ This command requires that you have at least two coins in your wallet: one to cr
 
 If you only have one coin, an error similar to the following will be shown:
 
-```ValueError: {'error': 'Transaction for 100000 is greater than spendable balance of 0. There may be other transactions pending or our minimum coin amount is too high.', 'success': False}```
+`ValueError: {'error': 'Transaction for 100000 is greater than spendable balance of 0. There may be other transactions pending or our minimum coin amount is too high.', 'success': False}`
 
 You can split one coin into multiple coins by running the [chia wallet coins split](/wallet-cli/#split) command.
 
@@ -458,17 +458,18 @@ You can split one coin into multiple coins by running the [chia wallet coins spl
    <summary>Example</summary>
 
 This example will create a DAO with the following options:
-* Proposals must exist for at least 10 blocks before being closed (`--proposal-timelock 10`)
-* Proposals must be unspent for at least 2 blocks before being closed (`--soft-close 2`)
-* At least 1000 votes ('yes' and 'no' combined) must be received before a proposal can pass (`--attendance-required`)
-* At least 50% of votes must be 'yes' in order for a proposal to pass (`--pass-percentage 5000`)
-* At least 10 blocks must pass before a proposal can be removed (`--self-destruct 10`)
-* At least 5 blocks must pass between oracle spends of the treasury (`--oracle-delay 5`)
-* One million mojos will be donated to the treasury upon completion of a proposal. This prevents bad actors from spamming a DAO with untennable proposals (`--proposal-minimum 0.000001`)
-* At least 1 vote must be made for a proposal before the wallet will recognise it (`--filter-amount 1`)
-* One hundred thousand DAO CATs will be created initially (`--cat-amount 100000`)
-* A blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO (`-m 0.00001`)
-* A second blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO CATs (`--fee-for-cat 0.00001`)
+
+- Proposals must exist for at least 10 blocks before being closed (`--proposal-timelock 10`)
+- Proposals must be unspent for at least 2 blocks before being closed (`--soft-close 2`)
+- At least 1000 votes ('yes' and 'no' combined) must be received before a proposal can pass (`--attendance-required`)
+- At least 50% of votes must be 'yes' in order for a proposal to pass (`--pass-percentage 5000`)
+- At least 10 blocks must pass before a proposal can be removed (`--self-destruct 10`)
+- At least 5 blocks must pass between oracle spends of the treasury (`--oracle-delay 5`)
+- One million mojos will be donated to the treasury upon completion of a proposal. This prevents bad actors from spamming a DAO with untennable proposals (`--proposal-minimum 0.000001`)
+- At least 1 vote must be made for a proposal before the wallet will recognise it (`--filter-amount 1`)
+- One hundred thousand DAO CATs will be created initially (`--cat-amount 100000`)
+- A blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO (`-m 0.00001`)
+- A second blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO CATs (`--fee-for-cat 0.00001`)
 
 ```bash
 chia dao create --proposal-timelock 10 --soft-close 2 --attendance-required 1000 --pass-percentage 5000 --self-destruct 10 --oracle-delay 5 --proposal-minimum 0.000001 --filter-amount 1 --cat-amount 100000 -m 0.00001 --fee-for-cat 0.00001
@@ -668,13 +669,13 @@ Amount of CAT to mint: 100000
 Address: txch1u7l0esj4jet6lc4uwm3qj3u3sgdh5y8h4msgl9g833907rrt4k6sj43nfx
 ```
 
-This result shows that 1 vote has been counted so far, from the proposer. 
+This result shows that 1 vote has been counted so far, from the proposer.
 If the proposal succeeds, 100 CATs (100,000 mojos) will be sent to the destination address.
 
 </details>
 
 ### `spend`
-  
+
 Functionality: Create a proposal to spend DAO funds
 
 Usage: chia dao create_proposal [OPTIONS]
@@ -744,10 +745,10 @@ CAT 07e809aa0324acaf...:
    -Wallet ID:             5
 ```
 
-In this case, the DAO has `--proposal-minimum` set to `0.000001`. 
-This means that `0.000001` will be reserved for the proposal's creation. 
-After the proposal has completed, that amount will be donated to the DAO's treasury. 
-Additionally, 100 `DAO_CAT` have been locked (100,000 mojos). 
+In this case, the DAO has `--proposal-minimum` set to `0.000001`.
+This means that `0.000001` will be reserved for the proposal's creation.
+After the proposal has completed, that amount will be donated to the DAO's treasury.
+Additionally, 100 `DAO_CAT` have been locked (100,000 mojos).
 To learn how to lock up these CATs, see the [lockup_coins](#lockup_coins) command.
 
 Next, create the proposal. In this case, we will propose to send 1 XCH (`-a`) to a new wallet address (`-t`) and use 50 of our votes to vote "yes" (`-v`) while adding a 100-million-mojo fee (`-m`)
@@ -810,7 +811,7 @@ Proposal XCH Conditions
 </details>
 
 ### `update`
-  
+
 Functionality: Create a proposal to change the DAO rules
 
 Usage: chia dao create_proposal [OPTIONS]
@@ -1004,12 +1005,12 @@ Usage: chia dao get_id [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
-| -i            | --wallet-id                   | INTEGER | True     | ID of the DAO wallet which will receive the funds                                                        |
-| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the DAO wallet which will receive the funds                                                        |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -1038,16 +1039,16 @@ Usage: chia dao list_proposals [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
-| -i            | --wallet-id                   | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -c            | --include-closed              | None    | False    | Set to include previously closed proposals [Default: not set]                                            |
-| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -c            | --include-closed  | None    | False    | Set to include previously closed proposals [Default: not set]                                            |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-This command will list all open proposals by default. 
-If the `-c` flag is included, then all open _and_ closed proposals will be listed. 
+This command will list all open proposals by default.
+If the `-c` flag is included, then all open _and_ closed proposals will be listed.
 To show the details of a specific proposal, use the [show_proposal](#show_proposal) command.
 
 <details>
@@ -1265,7 +1266,7 @@ The response does not contain much info:
 Transaction not yet submitted to nodes. TX ID: 0xcebd0fdf105855ad51820efee7231cac618f3028d37a7c80c376d4f63ceefa35
 ```
 
-After a few minutes, the transaction will be completed and the voting coins will have been released. 
+After a few minutes, the transaction will be completed and the voting coins will have been released.
 However, the wallet balance won't reflect this. In order to verify that the CATs have been released, you can run the `exit_lockup` command:
 
 ```bash
@@ -1292,7 +1293,7 @@ CAT 0ba7b225ea0aa595...:
    -Wallet ID:             4
 ```
 
-All 1000 DAO_CATs have been released. They are now reflected as 1 CAT. 
+All 1000 DAO_CATs have been released. They are now reflected as 1 CAT.
 If any DAO_CATs had still been locked in a current vote, they would not have unlocked in the `exit_lockup` command.
 
 </details>
@@ -1307,12 +1308,12 @@ Usage: chia dao rules [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
-| -i            | --wallet-id                   | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
   <summary>Example</summary>
@@ -1345,13 +1346,13 @@ Usage: chia dao show_proposal [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
-| -i            | --wallet-id                   | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -p            | --proposal_id                 | TEXT    | True     | The ID of the proposal to fetch, obtainable by running the [list_proposals](#list_proposals) command     |
-| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -p            | --proposal_id     | TEXT    | True     | The ID of the proposal to fetch, obtainable by running the [list_proposals](#list_proposals) command     |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>

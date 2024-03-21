@@ -47,7 +47,7 @@ If you are more of a visual learner, JM made a video outlining the steps from th
   Where `<farmer_key>` and `<pool_key>` can be obtained by running the following command on your main machine:
 
   ```bash
-  chia keys show  
+  chia keys show
   ```
 
   在生成地块后，请运行`chia plots check`命令确保一切正常运行。
@@ -73,57 +73,57 @@ For each harvester, follow these steps:
 1. Make sure your **main** machine's IP address on port 8447 is accessible by your harvester machines
 2. Shut down all Chia daemon processes by running:
 
-  ```bash
-  chia stop all -d
-  ```
+```bash
+chia stop all -d
+```
 
 3. 备份收割节点中的所有设置。
 4. Run the following command on your harvester, where `<directory>` is the copy of your **main** machine's `/ca` directory that you put in a temp folder:
 
-  ```bash
-  chia init -c <directory>
-  ```
+```bash
+chia init -c <directory>
+```
 
-  该命令将创建一个由主机CA签名的新证书。
+该命令将创建一个由主机CA签名的新证书。
 
-  :::warning
+:::warning
 
-  For step 4, you are using a copy of your `/ca` directory from your main machine temporarily. 请勿替换收割节点上的`/ca`文件夹。 将`/ca`目录放入收割节点上的临时文件夹中。 将暂时向收割节点展示这些文件，然后可以删除临时文件夹中的`/ca`目录。 This keeps your system more secure by limiting the exposure to your certificates.
-
+For step 4, you are using a copy of your `/ca` directory from your main machine temporarily. 请勿替换收割节点上的`/ca`文件夹。 将`/ca`目录放入收割节点上的临时文件夹中。 将暂时向收割节点展示这些文件，然后可以删除临时文件夹中的`/ca`目录。 This keeps your system more secure by limiting the exposure to your certificates.
 
 :::
 
 5. Open the following file in each harvester:
 
-  ```bash
-  ~/.chia/mainnet/config/config.yaml
-  ```
+```bash
+~/.chia/mainnet/config/config.yaml
+```
 
-  Search for the remote **`harvester`**'s farmer_peer section (NOT `full_node`). Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value.
+Search for the remote **`harvester`**'s farmer_peer section (NOT `full_node`). Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value.
 
-  In other words, replace `<Main.Machine.IP>` in the following snippet with your main machine's local IP:
+In other words, replace `<Main.Machine.IP>` in the following snippet with your main machine's local IP:
 
-  ```bash
-  harvester:
-    chia_ssl_ca:
-      crt: config/ssl/ca/chia_ca.crt
-      key: config/ssl/ca/chia_ca.key
-    farmer_peer:
-      host: <Main.Machine.IP>
-      port: 8447
-  ```
+```bash
+harvester:
+  chia_ssl_ca:
+    crt: config/ssl/ca/chia_ca.crt
+    key: config/ssl/ca/chia_ca.key
+  farmer_peer:
+    host: <Main.Machine.IP>
+    port: 8447
+```
 
 6. Launch the harvester by running the following command:
 
-  ```bash
-  chia start harvester -r
-  ```
+```bash
+chia start harvester -r
+```
 
-  You should see a new connection on your main machine in your `INFO` level logs.
+You should see a new connection on your main machine in your `INFO` level logs.
 
 :::note
 
 To stop the harvester, run the following command:
+
 ```bash
 chia stop harvester
 ```

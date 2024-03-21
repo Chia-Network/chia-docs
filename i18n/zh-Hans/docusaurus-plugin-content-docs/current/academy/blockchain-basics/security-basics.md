@@ -11,7 +11,7 @@ In this lesson, we learn the basic security implementations in Chia and how they
 - **Coin Signatures**: Learn how coin signatures protect the users ability to spend the coins.
 - **Chialisp Security**: Review the inherent security of Chialisp, the language used for coin puzzles.
 
-***
+---
 
 ## Content
 
@@ -19,7 +19,7 @@ In this lesson, we learn the basic security implementations in Chia and how they
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/CATI6OVHPAg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -55,7 +55,7 @@ so you can be sure about what exactly a coin is going to do when it is spent.
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
@@ -63,7 +63,7 @@ so you can be sure about what exactly a coin is going to do when it is spent.
 - **Coin Signatures:** Ensuring that a coins solution requires signing ensures that only the intended user can spend the coin, this is an essential part of securing coins on Chia.
 - **Chialisp Security:** Chialisp has been developed from Lisp to ensure Chia coins are highly efficient, secure, and easily auditable.
 
-***
+---
 
 ## Knowledge check
 
@@ -110,7 +110,7 @@ False, a custom-developed flavor of Lisp called Chialisp was developed to be use
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -121,4 +121,4 @@ False, a custom-developed flavor of Lisp called Chialisp was developed to be use
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of Chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

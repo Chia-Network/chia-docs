@@ -13,7 +13,7 @@ In this lesson, we go over currying, hashing, and conditions, and submit and use
 - **Hashing**: Understand the need to obfuscate sensitive portions of a puzzle by using Hashing.
 - **Conditions**: Using conditions to allow the spender of the coin to decide how it is spent.
 
-***
+---
 
 ## Content
 
@@ -21,7 +21,7 @@ In this lesson, we go over currying, hashing, and conditions, and submit and use
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/-Nza_N9Xb3Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -97,7 +97,7 @@ In the next video, we'll talk further about security and how to use signatures t
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
@@ -105,7 +105,7 @@ In the next video, we'll talk further about security and how to use signatures t
 - **0x Prefixes:** It's important to keep track of how we are using different values and understand how Chialisp is going to handle them. A common gotcha is forgetting to append `0x` to a value, or in some cases removing it to tell the puzzle how to properly handle the parameter.
 - **Condition Codes:** Condition codes are by default signified by a numerical code. In future lessons, we will also use a library that allows us to reference the codes with more descriptive language.
 
-***
+---
 
 ## Knowledge check
 
@@ -189,7 +189,7 @@ Write a Chialisp puzzle that performs the following.
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -226,4 +226,4 @@ For information on using these plugins please refer to the [academy overview](/a
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

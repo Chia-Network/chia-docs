@@ -90,6 +90,7 @@ You can find the documentation for the `check` command on the [CLI Commands Refe
 ## Full Node
 
 Block Validation Time
+
 - Linux/macOS:
   - `grep -o "Block validation time: .* seconds" .chia/mainnet/log/debug.log |sort -rV | head -n 10`
   - For a fancy grep `apt install st-console` then run:

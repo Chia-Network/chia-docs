@@ -513,11 +513,11 @@ Options:
 
 Request Parameters:
 
-| Flag              | Type    | Required | Description                                                                    |
-| :---------------- | :------ | :------- | :----------------------------------------------------------------------------- |
-| wallet_id         | NUMBER  | True     | The Wallet ID from which to retrieve the NFTs                                  |
-| start_index       | NUMBER  | False    | The NFT index at which to start retrieving the NFTs [Default: `0`]             |
-| num               | NUMBER  | False    | The maximum number of NFTs to retrieve [Default: `0`]                          |
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| wallet_id   | NUMBER | True     | The Wallet ID from which to retrieve the NFTs                      |
+| start_index | NUMBER | False    | The NFT index at which to start retrieving the NFTs [Default: `0`] |
+| num         | NUMBER | False    | The maximum number of NFTs to retrieve [Default: `0`]              |
 
 <details>
 <summary>Example</summary>
@@ -665,7 +665,7 @@ Request Parameters:
 | metadata_list          | STRING ARRAY | True     | A list of dicts containing the metadata for each NFT to be minted                                                                                                                                                                                                                                        |
 | royalty_percentage     | NUMBER       | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0                                                                                                        |
 | royalty_address        | STRING       | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                                                                                                                         |
-| target_list    | STRING ARRAY | False    | A list of wallet addresses where the NFTs will be sent upon minting                                                                                                                                                                                                                                      |
+| target_list            | STRING ARRAY | False    | A list of wallet addresses where the NFTs will be sent upon minting                                                                                                                                                                                                                                      |
 | mint_number_start      | NUMBER       | False    | The starting point for mint number used in intermediate launcher puzzle. Default: 1                                                                                                                                                                                                                      |
 | mint_total             | NUMBER       | False    | The total number of NFTs in the collection. Note that this is not necessarily reflective of the number of NFTs this command will create in the spend bundle, which is derived based on the `metadata_list`. For example, you could set `mint_total` to `1000` and pass only 10 dicts in `metadata_list`. |
 | xch_coin_list          | STRING ARRAY | False    | A list of coins to be used for funding the minting spend. These coins can be created in the future                                                                                                                                                                                                       |
@@ -789,8 +789,8 @@ Options:
 
 Request Parameters:
 
-| Flag               | Type         | Required | Description                                                           |
-| :----------------- | :----------- | :------- | :---------------------------------------------------------------------|
+| Flag               | Type         | Required | Description                                                                                                                                                                                          |
+| :----------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
 | wallet_id          | NUMBER       | True     | The Wallet ID in which to mint an NFT                                                                                                                                                                |
 | uris               | STRING ARRAY | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                    |
 | hash               | HEX STRING   | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                      |

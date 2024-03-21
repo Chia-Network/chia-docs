@@ -63,7 +63,7 @@ The cost for minting and modifying NFTs is significantly higher. The following c
 If the mempool is not full, then a 1-mojo fee will be sufficient for any of these spends to be included in the next transaction block. To view the current status of the mempool, see the [Mempool Cost](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&viewPanel=40) table on our dashboard site. (If the green line representing the current mempool cost is close to the red line representing the maximum cost, then the mempool is full, and the following table should be used.)
 
 | Operation                       | Cost (approx) | Min fee (mojos) | Cost in USD at $30/XCH |
-|:------------------------------- | -------------:|:--------------- |:---------------------- |
+| :------------------------------ | ------------: | :-------------- | :--------------------- |
 | Minting NFT without DID         |    53 million | 265 million     | $0.00795               |
 | Minting NFT with DID            |   123 million | 615 million     | $0.01845               |
 | Adding a URI to NFT without DID |    41 million | 205 million     | $0.00615               |
@@ -117,12 +117,12 @@ After the installer has downloaded, execute it and Chia will install automatical
 If the `chia` command isn't already in your system's path, you can create an alias:
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux/MacOS', value: 'nix'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows">
 
 Be sure to replace `<username>` and `<version>` with the actual folder names.
 
@@ -393,7 +393,7 @@ Chia NFTs use a list to store image URIs, so it is possible to add multiple loca
 
 ## NFT Metadata Standards
 
-Since the original release of this guide, a CHia Improvement Proposal ([CHIP](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0001.md#what-is-a-chip "CHIP explanation")) that standardizes the JSON metadata schema for Chia NFTs has been finalized.
+Since the original release of this guide, a CHia Improvement Proposal ([CHIP](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0001.md#what-is-a-chip 'CHIP explanation')) that standardizes the JSON metadata schema for Chia NFTs has been finalized.
 
 See [CHIP-7](https://github.com/Chia-Network/chips/blob/main/assets/chip-0007/schema.json) for the correct formatting. Usage of this CHIP is recommended in order to give marketplaces the best opportunity to parse your NFTs' metadata properly.
 

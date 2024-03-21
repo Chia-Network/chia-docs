@@ -39,14 +39,14 @@ To run the same command on Windows, you need to escape the quotes with backslash
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag     | Type       | Required | Description    |
-|:-------- |:---------- |:-------- |:-------------- |
+| Flag     | Type       | Required | Description                |
+| :------- | :--------- | :------- | :------------------------- |
 | mnemonic | TEXT ARRAY | True     | 一个24字助记词，表示为数组 |
 
 <details>
@@ -78,16 +78,16 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag               | Type   | Required | Description                                                        |
-|:------------------ |:------ |:-------- |:------------------------------------------------------------------ |
-| fingerprint        | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
-| max_ph_to_search | NUMBER | False    | 要搜索的拼图哈希的最大数量[默认：100]                                              |
+| Flag             | Type   | Required | Description                                                        |
+| :--------------- | :----- | :------- | :----------------------------------------------------------------- |
+| fingerprint      | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
+| max_ph_to_search | NUMBER | False    | 要搜索的拼图哈希的最大数量[默认：100]                              |
 
 <details>
 <summary>Example</summary>
@@ -121,7 +121,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -161,14 +161,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                                                        |
-|:----------- |:------ |:-------- |:------------------------------------------------------------------ |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
 | fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
 
 <details>
@@ -199,7 +199,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -259,7 +259,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -294,14 +294,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                                                        |
-|:----------- |:------ |:-------- |:------------------------------------------------------------------ |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
 | fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
 
 :::warning
@@ -346,7 +346,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -381,14 +381,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                                                        |
-|:----------- |:------ |:-------- |:------------------------------------------------------------------ |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
 | fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
 
 <details>
@@ -422,7 +422,7 @@ Usage: chia rpc wallet [OPTIONS] get_auto_claim [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -441,11 +441,11 @@ Response:
 
 ```json
 {
-    "batch_size": 50,
-    "enabled": false,
-    "min_amount": 0,
-    "success": true,
-    "tx_fee": 0
+  "batch_size": 50,
+  "enabled": false,
+  "min_amount": 0,
+  "success": true,
+  "tx_fee": 0
 }
 ```
 
@@ -462,7 +462,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -497,7 +497,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -533,7 +533,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -570,14 +570,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag   | Type   | Required | Description                                          |
-|:------ |:------ |:-------- |:---------------------------------------------------- |
+| :----- | :----- | :------- | :--------------------------------------------------- |
 | height | NUMBER | True     | The block height for which to retrieve the timestamp |
 
 <details>
@@ -611,14 +611,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag         | Type       | Required | Description                    |
-|:------------ |:---------- |:-------- |:------------------------------ |
+| :----------- | :--------- | :------- | :----------------------------- |
 | transactions | TEXT ARRAY | True     | A list of transactions to push |
 
 ---
@@ -632,14 +632,14 @@ Request Parameters:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag         | Type | Required | Description                            |
-|:------------ |:---- |:-------- |:-------------------------------------- |
+| :----------- | :--- | :------- | :------------------------------------- |
 | spend_bundle | TEXT | True     | The spend bundle (transaction) to push |
 
 ---
@@ -653,14 +653,14 @@ Usage: chia rpc wallet [OPTIONS] set_auto_claim [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag       | Type    | Required | Description                                                              |
-|:---------- |:------- |:-------- |:------------------------------------------------------------------------ |
+| :--------- | :------ | :------- | :----------------------------------------------------------------------- |
 | enabled    | BOOLEAN | TRUE     | Set to `true` to enable auto claim, or `false` to disable it             |
 | tx_fee     | NUMBER  | TRUE     | The default transaction fee to be used for claims, in mojos              |
 | min_amount | NUMBER  | TRUE     | The minimum value, in mojos, of a claim to be included in the auto claim |
@@ -681,11 +681,11 @@ Response:
 
 ```json
 {
-    "batch_size": 50,
-    "enabled": false,
-    "min_amount": 0,
-    "success": true,
-    "tx_fee": 0
+  "batch_size": 50,
+  "enabled": false,
+  "min_amount": 0,
+  "success": true,
+  "tx_fee": 0
 }
 ```
 
@@ -699,11 +699,11 @@ Response:
 
 ```json
 {
-    "batch_size": 1,
-    "enabled": true,
-    "min_amount": 1,
-    "success": true,
-    "tx_fee": 1
+  "batch_size": 1,
+  "enabled": true,
+  "min_amount": 1,
+  "success": true,
+  "tx_fee": 1
 }
 ```
 
@@ -720,14 +720,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag   | Type    | Required | Description                                      |
-|:------ |:------- |:-------- |:------------------------------------------------ |
+| :----- | :------ | :------- | :----------------------------------------------- |
 | enable | BOOLEAN | False    | Set to `true` to enable resync [Default: `true`] |
 
 <details>
@@ -760,53 +760,53 @@ Usage: chia rpc wallet [OPTIONS] create_new_wallet [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters (all wallet types):
 
 | Flag        | Type   | Required | Description                                                                                                                           |
-|:----------- |:------ |:-------- |:------------------------------------------------------------------------------------------------------------------------------------- |
+| :---------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | wallet_type | TEXT   | True     | The type of wallet to create. The type of wallet to create. Must be one of `cat_wallet`, `did_wallet`, `nft_wallet`, or `pool_wallet` |
 | fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                                                                  |
 
 `cat_wallet` Parameters:
 
-| Flag     | Type   | Required | Description                                                                                                             |
-|:-------- |:------ |:-------- |:----------------------------------------------------------------------------------------------------------------------- |
-| mode     | TEXT   | True     | Must be either `new` of `existing`                                                                                      |
-| name     | TEXT   | False    | The name of the wallet to create or modify [Default: `CAT` followed by the beginning of the CAT ID]                     |
-| amount   | NUMBER | True\* | \*Required if `mode` is `new`. Specify the value, in mojos, of this wallet                                            |
-| asset_id | TEXT   | True\* | \*Required if `mode` is `existing`. *Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update |
+| Flag     | Type   | Required | Description                                                                                                            |
+| :------- | :----- | :------- | :--------------------------------------------------------------------------------------------------------------------- |
+| mode     | TEXT   | True     | Must be either `new` of `existing`                                                                                     |
+| name     | TEXT   | False    | The name of the wallet to create or modify [Default: `CAT` followed by the beginning of the CAT ID]                    |
+| amount   | NUMBER | True\*   | \*Required if `mode` is `new`. Specify the value, in mojos, of this wallet                                             |
+| asset_id | TEXT   | True\*   | \*Required if `mode` is `existing`. \*Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update |
 
 `did_wallet` Parameters:
 
-| Flag                         | Type       | Required | Description                                                                                                                                                      |
-|:---------------------------- |:---------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| did_type                     | TEXT       | True     | Must be either `new` or `recovery`. Must be either `new` or `recovery`. If `recovery`, then each of the following parameters will be ignored                     |
-| backup_dids                  | TEXT ARRAY | True\* | \*Required if `did_type` is `new`. An array of backup DID IDs to be used for recovery. Must match actual DIDs                                                  |
-| num_of_backup_ids_needed | NUMBER     | True\* | \*Required if `did_type` is `new`. The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
-| metadata                     | DICT       | False    | The metadata of the DID                                                                                                                                          |
-| wallet_name                  | TEXT       | False    | The name of the DID wallet [Default: None]                                                                                                                       |
-| amount                       | NUMBER     | True\* | \*Required if `did_type` is `new`. Specify the initial value of this wallet, in mojos. Minimum value is `1`                                                    |
+| Flag                     | Type       | Required | Description                                                                                                                                                    |
+| :----------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| did_type                 | TEXT       | True     | Must be either `new` or `recovery`. Must be either `new` or `recovery`. If `recovery`, then each of the following parameters will be ignored                   |
+| backup_dids              | TEXT ARRAY | True\*   | \*Required if `did_type` is `new`. An array of backup DID IDs to be used for recovery. Must match actual DIDs                                                  |
+| num_of_backup_ids_needed | NUMBER     | True\*   | \*Required if `did_type` is `new`. The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
+| metadata                 | DICT       | False    | The metadata of the DID                                                                                                                                        |
+| wallet_name              | TEXT       | False    | The name of the DID wallet [Default: None]                                                                                                                     |
+| amount                   | NUMBER     | True\*   | \*Required if `did_type` is `new`. Specify the initial value of this wallet, in mojos. Minimum value is `1`                                                    |
 
 Note: Because `backup_dids` is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead.
 
 `nft_wallet` Parameters:
 
 | Flag   | Type | Required | Description                                                        |
-|:------ |:---- |:-------- |:------------------------------------------------------------------ |
+| :----- | :--- | :------- | :----------------------------------------------------------------- |
 | did_id | TEXT | False    | Associate a DID with the new NFT wallet                            |
 | name   | TEXT | False    | The name of the wallet to create or modify [Default: `NFT Wallet`] |
 
 `pool_wallet` Parameters:
 
-| Flag                      | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-|:------------------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mode                      | TEXT    | True     | Must be either `new` of `recovery`. Must be either `new` of `recovery`. However, `recovery` has not been implemented, so currently (version 1.6) it will automatically fail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Flag                    | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| :---------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mode                    | TEXT    | True     | Must be either `new` of `recovery`. Must be either `new` of `recovery`. However, `recovery` has not been implemented, so currently (version 1.6) it will automatically fail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | initial_target_state    | TEXT    | True     | This info should be sent from the daemon. This info should be sent from the daemon. `PoolState` is a type that is serialized to the blockchain to track the state of the user's pool singleton `target_puzzle_hash` is either the pool address, or the self-pooling address that pool rewards will be paid to. `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state |
-| p2_singleton_delayed_ph | TEXT    | True\* | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| p2_singleton_delayed_ph | TEXT    | True\*   | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | p2_singleton_delay_time | INTEGER | False    | The time (in seconds) to delay payments [Default: None ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 <details>
@@ -1032,34 +1032,34 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag         | Type    | Required | Description                                                              |
-|:------------ |:------- |:-------- |:------------------------------------------------------------------------ |
+| :----------- | :------ | :------- | :----------------------------------------------------------------------- |
 | include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`] |
 | type         | INTEGER | False    | The type of wallet to retrieve. See below for valid types                |
 
 Valid wallet types (the `type` parameter) include the following integers:
 
-| Name               | type |
-|:------------------ | ----:|
-| STANDARD_WALLET    |    0 |
-| ATOMIC_SWAP        |    2 |
-| AUTHORIZED_PAYEE   |    3 |
-| MULTI_SIG          |    4 |
-| CUSTODY            |    5 |
-| CAT                |    6 |
-| RECOVERABLE        |    7 |
-| DECENTRALIZED_ID   |    8 |
-| POOLING_WALLET     |    9 |
-| NFT                |   10 |
-| DATA_LAYER         |   11 |
+| Name             | type |
+| :--------------- | ---: |
+| STANDARD_WALLET  |    0 |
+| ATOMIC_SWAP      |    2 |
+| AUTHORIZED_PAYEE |    3 |
+| MULTI_SIG        |    4 |
+| CUSTODY          |    5 |
+| CAT              |    6 |
+| RECOVERABLE      |    7 |
+| DECENTRALIZED_ID |    8 |
+| POOLING_WALLET   |    9 |
+| NFT              |   10 |
+| DATA_LAYER       |   11 |
 | DATA_LAYER_OFFER |   12 |
-| VC                 |   13 |
+| VC               |   13 |
 
 More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
 
@@ -1138,24 +1138,24 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                   | Type         | Required | Description                                                                                |
-|:---------------------- |:------------ |:-------- |:------------------------------------------------------------------------------------------ |
-| wallet_id              | TEXT         | True     | The wallet ID for the origin of the transaction                                            |
-| additions              | TEXT ARRAY   | True     | A list of puzzle hashes and amounts to be included                                         |
+| Flag                 | Type         | Required | Description                                                                                |
+| :------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                            |
+| additions            | TEXT ARRAY   | True     | A list of puzzle hashes and amounts to be included                                         |
 | min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                               |
 | max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                               |
 | exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                          |
-| coins                  | TEXT ARRAY   | True     | A list of coins to include                                                                 |
-| exclude_coins          | TEXT ARRAY   | True     | A list of coins to exclude                                                                 |
-| coin_announcements     | TEXT ARRAY   | False    | A list of coin announcements, which includes `coin_id`, `message`, and `morph_bytes`       |
-| puzzle_announcements   | TEXT ARRAY   | False    | A list of puzzle announcements, which includes `puzzle_hash`, `message`, and `morph_bytes` |
-| fee                    | NUMBER       | False    | An optional blockchain fee, in mojos                                                       |
+| coins                | TEXT ARRAY   | True     | A list of coins to include                                                                 |
+| exclude_coins        | TEXT ARRAY   | True     | A list of coins to exclude                                                                 |
+| coin_announcements   | TEXT ARRAY   | False    | A list of coin announcements, which includes `coin_id`, `message`, and `morph_bytes`       |
+| puzzle_announcements | TEXT ARRAY   | False    | A list of puzzle announcements, which includes `puzzle_hash`, `message`, and `morph_bytes` |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                       |
 
 ---
 
@@ -1168,14 +1168,14 @@ Request Parameters:
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | Required | Description                                                                                                                |
-|:--------- |:-------- |:-------------------------------------------------------------------------------------------------------------------------- |
+| :-------- | :------- | :------------------------------------------------------------------------------------------------------------------------- |
 | ids       | False    | Set to delete notifications only from the specified IDs. \[Default: delete from all IDs\] \[Default: delete from all IDs\] |
 
 <details>
@@ -1206,14 +1206,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                            |
-|:--------- |:------ |:-------- |:------------------------------------------------------ |
+| :-------- | :----- | :------- | :----------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to delete transactions |
 
 <details>
@@ -1244,14 +1244,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag  | Type   | Required | Description                                                                                |
-|:----- |:------ |:-------- |:------------------------------------------------------------------------------------------ |
+| :---- | :----- | :------- | :----------------------------------------------------------------------------------------- |
 | index | NUMBER | True     | The new derivation index. The new derivation index. Must be larger than the previous index |
 
 Note: The derivation index is the minimum number of addresses the wallet will examine. It's not possible to decrease this number. It's not possible to decrease this number.
@@ -1285,7 +1285,7 @@ Usage: chia rpc wallet [OPTIONS] get_coin_records [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1304,25 +1304,25 @@ Response:
 
 ```json
 {
-    "coin_records": [
-        {
-            "amount": 100,
-            "coinbase": false,
-            "confirmed_height": 3879053,
-            "id": "0x8c8518c23670a37287063951761e6f23348918b887762d9a8fc7f2217bd44c04",
-            "metadata": null,
-            "parent_coin_info": "0x6b17387014afbdc661bec74438cc49e44889861b5ddd13ae2113807e82f9df08",
-            "puzzle_hash": "0x59714c1cebe4a747bb90b607bce5cc589df6b612ee7f742c79f6d070a50e9083",
-            "spent_height": 0,
-            "type": 0,
-            "wallet_identifier": {
-                "id": 1,
-                "type": 0
-            }
-        }
-    ],
-    "success": true,
-    "total_count": null
+  "coin_records": [
+    {
+      "amount": 100,
+      "coinbase": false,
+      "confirmed_height": 3879053,
+      "id": "0x8c8518c23670a37287063951761e6f23348918b887762d9a8fc7f2217bd44c04",
+      "metadata": null,
+      "parent_coin_info": "0x6b17387014afbdc661bec74438cc49e44889861b5ddd13ae2113807e82f9df08",
+      "puzzle_hash": "0x59714c1cebe4a747bb90b607bce5cc589df6b612ee7f742c79f6d070a50e9083",
+      "spent_height": 0,
+      "type": 0,
+      "wallet_identifier": {
+        "id": 1,
+        "type": 0
+      }
+    }
+  ],
+  "success": true,
+  "total_count": null
 }
 ```
 
@@ -1339,17 +1339,17 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                  | Type       | Required | Description                                         |
-|:--------------------- |:---------- |:-------- |:--------------------------------------------------- |
-| names                 | TEXT ARRAY | True     | A list of coin names from which to retrieve records |
-| start_height          | NUMBER     | False    | The block height at which to start the query        |
-| end_height            | NUMBER     | False    | The block height at which to end the query          |
+| Flag                | Type       | Required | Description                                         |
+| :------------------ | :--------- | :------- | :-------------------------------------------------- |
+| names               | TEXT ARRAY | True     | A list of coin names from which to retrieve records |
+| start_height        | NUMBER     | False    | The block height at which to start the query        |
+| end_height          | NUMBER     | False    | The block height at which to end the query          |
 | include_spent_coins | BOOLEAN    | False    | Include spent coins in the result [Default: false]  |
 
 <details>
@@ -1393,7 +1393,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1428,7 +1428,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1467,14 +1467,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type    | Required | Description                                                                    |
-|:----------- |:------- |:-------- |:------------------------------------------------------------------------------ |
+| :---------- | :------ | :------- | :----------------------------------------------------------------------------- |
 | wallet_id   | TEXT    | True     | The ID of the wallet from which to obtain the next address                     |
 | new_address | BOOLEAN | True     | If `true`, then create a new address, else display the latest existing address |
 
@@ -1508,14 +1508,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | Required | Description                                                                                                                         |
-|:--------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------- |
+| :-------- | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
 | ids       | False    | Set to receive notifications only from the specified IDs. \[Default: receive from all IDs\] \[Default: receive from all IDs\]       |
 | start     | False    | The number corresponding to the first notification to list. \[Default: the first notification\] \[Default: the first notification\] |
 | end       | False    | The number corresponding to the last notification to list. \[Default: the last notification\] \[Default: the last notification\]    |
@@ -1557,19 +1557,19 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                    | Type         | Required | Description                                                          |
-|:----------------------- |:------------ |:-------- |:-------------------------------------------------------------------- |
-| wallet_id               | NUMBER       | True     | The ID of the wallet from which to display coins                     |
+| Flag                  | Type         | Required | Description                                                          |
+| :-------------------- | :----------- | :------- | :------------------------------------------------------------------- |
+| wallet_id             | NUMBER       | True     | The ID of the wallet from which to display coins                     |
 | min_coin_amount       | NUMBER       | False    | The smallest coin to be selected in this query [Default: No minimum] |
 | max_coin_amount       | NUMBER       | False    | The largest coin to be selected in this query [Default: No maximum]  |
 | excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                    |
-| excluded_coins          | TEXT ARRAY   | False    | A list of coins to exclude                                           |
+| excluded_coins        | TEXT ARRAY   | False    | A list of coins to exclude                                           |
 | excluded_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                        |
 
 <details>
@@ -1617,14 +1617,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag           | Type | Required | Description                                                                                                                  |
-|:-------------- |:---- |:-------- |:---------------------------------------------------------------------------------------------------------------------------- |
+| :------------- | :--- | :------- | :--------------------------------------------------------------------------------------------------------------------------- |
 | transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
 
 <details>
@@ -1687,14 +1687,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag       | Type    | Required | Description                                                         |
-|:---------- |:------- |:-------- |:------------------------------------------------------------------- |
+| :--------- | :------ | :------- | :------------------------------------------------------------------ |
 | wallet_id  | NUMBER  | True     | The Wallet ID of the wallet from which to obtain transactions       |
 | start      | NUMBER  | False    | The sequence number of the first transaction to show [Default: 0]   |
 | end        | NUMBER  | False    | The sequence number of the last transaction to show [Default: 50]   |
@@ -1893,35 +1893,35 @@ Response:
 
 ```json
 {
-    "success": true,
-    "transactions": [
+  "success": true,
+  "transactions": [
+    {
+      "additions": [
         {
-            "additions": [
-                {
-                    "amount": 10000,
-                    "parent_coin_info": "0x5104073950bccd17a7ea57ca9f13c5546f88a048e3165069d0e255d3018faeed",
-                    "puzzle_hash": "0x5e5073dab71209426358624462fac281431f87571ad40009d7ec731784154a1c"
-                }
-            ],
-            "amount": 10000,
-            "confirmed": true,
-            "confirmed_at_height": 1932515,
-            "created_at_time": 1670949639,
-            "fee_amount": 0,
-            "memos": {},
-            "name": "0x38306b461975741641d397330bb34c01681bb242119bd4aa457c06e2080cf257",
-            "removals": [],
-            "sent": 0,
-            "sent_to": [],
-            "spend_bundle": null,
-            "to_address": "txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s",
-            "to_puzzle_hash": "0x82e6a78ee8dde8e66c844c9595b42d0fa29ff5e8ed49b5c332169ef6c0498955",
-            "trade_id": null,
-            "type": 0,
-            "wallet_id": 7
+          "amount": 10000,
+          "parent_coin_info": "0x5104073950bccd17a7ea57ca9f13c5546f88a048e3165069d0e255d3018faeed",
+          "puzzle_hash": "0x5e5073dab71209426358624462fac281431f87571ad40009d7ec731784154a1c"
         }
-    ],
-    "wallet_id": 7
+      ],
+      "amount": 10000,
+      "confirmed": true,
+      "confirmed_at_height": 1932515,
+      "created_at_time": 1670949639,
+      "fee_amount": 0,
+      "memos": {},
+      "name": "0x38306b461975741641d397330bb34c01681bb242119bd4aa457c06e2080cf257",
+      "removals": [],
+      "sent": 0,
+      "sent_to": [],
+      "spend_bundle": null,
+      "to_address": "txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s",
+      "to_puzzle_hash": "0x82e6a78ee8dde8e66c844c9595b42d0fa29ff5e8ed49b5c332169ef6c0498955",
+      "trade_id": null,
+      "type": 0,
+      "wallet_id": 7
+    }
+  ],
+  "wallet_id": 7
 }
 ```
 
@@ -1938,14 +1938,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type | Required | Description                                              |
-|:--------- |:---- |:-------- |:-------------------------------------------------------- |
+| :-------- | :--- | :------- | :------------------------------------------------------- |
 | wallet_id | TEXT | True     | The wallet ID from which to obtain the transaction count |
 
 <details>
@@ -1978,14 +1978,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter      | TYPE   | Required | Description                                              |
-|:-------------- |:------ |:-------- |:-------------------------------------------------------- |
+| :------------- | :----- | :------- | :------------------------------------------------------- |
 | transaction_id | STRING | True     | The ID of the transaction for which to retrieve the memo |
 
 <details>
@@ -2021,14 +2021,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                  |
-|:--------- |:------ |:-------- |:------------------------------------------------------------ |
+| :-------- | :----- | :------- | :----------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The Wallet ID of the wallet from which to obtain the balance |
 
 <details>
@@ -2071,14 +2071,14 @@ Functionality: Obtain the balance (and related info) from one or more wallets
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag       | Type | Required | Description                                                                                |
-|:---------- |:---- |:-------- |:------------------------------------------------------------------------------------------ |
+| :--------- | :--- | :------- | :----------------------------------------------------------------------------------------- |
 | wallet_ids | LIST | False    | A list of Wallet IDs from which to obtain the balance [Default: list info for all wallets] |
 
 <details>
@@ -2094,33 +2094,33 @@ Response:
 
 ```json
 {
-    "success": true,
-    "wallet_balances": {
-        "1": {
-            "confirmed_wallet_balance": 249908082013,
-            "fingerprint": 3792481086,
-            "max_send_amount": 249908082013,
-            "pending_change": 0,
-            "pending_coin_removal_count": 0,
-            "spendable_balance": 249908082013,
-            "unconfirmed_wallet_balance": 249908082013,
-            "unspent_coin_count": 19,
-            "wallet_id": 1,
-            "wallet_type": 0
-        },
-        "2": {
-            "confirmed_wallet_balance": 0,
-            "fingerprint": 3792481086,
-            "max_send_amount": 0,
-            "pending_change": 0,
-            "pending_coin_removal_count": 0,
-            "spendable_balance": 0,
-            "unconfirmed_wallet_balance": 0,
-            "unspent_coin_count": 6,
-            "wallet_id": 2,
-            "wallet_type": 10
-        }
+  "success": true,
+  "wallet_balances": {
+    "1": {
+      "confirmed_wallet_balance": 249908082013,
+      "fingerprint": 3792481086,
+      "max_send_amount": 249908082013,
+      "pending_change": 0,
+      "pending_coin_removal_count": 0,
+      "spendable_balance": 249908082013,
+      "unconfirmed_wallet_balance": 249908082013,
+      "unspent_coin_count": 19,
+      "wallet_id": 1,
+      "wallet_type": 0
+    },
+    "2": {
+      "confirmed_wallet_balance": 0,
+      "fingerprint": 3792481086,
+      "max_send_amount": 0,
+      "pending_change": 0,
+      "pending_coin_removal_count": 0,
+      "spendable_balance": 0,
+      "unconfirmed_wallet_balance": 0,
+      "unspent_coin_count": 6,
+      "wallet_id": 2,
+      "wallet_type": 10
     }
+  }
 }
 ```
 
@@ -2137,20 +2137,20 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                    | Type         | Required | Description                                                          |
-|:----------------------- |:------------ |:-------- |:-------------------------------------------------------------------- |
-| wallet_id               | NUMBER       | True     | The ID of the wallet from which to select coins                      |
-| amount                  | NUMBER       | True     | The number of mojos to select                                        |
+| Flag                  | Type         | Required | Description                                                          |
+| :-------------------- | :----------- | :------- | :------------------------------------------------------------------- |
+| wallet_id             | NUMBER       | True     | The ID of the wallet from which to select coins                      |
+| amount                | NUMBER       | True     | The number of mojos to select                                        |
 | min_coin_amount       | NUMBER       | False    | The smallest coin to be selected in this query [Default: No minimum] |
 | max_coin_amount       | NUMBER       | False    | The largest coin to be selected in this query [Default: No maximum]  |
 | excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                    |
-| excluded_coins          | TEXT ARRAY   | False    | A list of coins to exclude                                           |
+| excluded_coins        | TEXT ARRAY   | False    | A list of coins to exclude                                           |
 
 <details>
 <summary>Example 1</summary>
@@ -2206,14 +2206,14 @@ Request failed: {'error': 'Transaction for 1000 is greater than spendable balanc
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | TYPE       | Required | Description                                         |
-|:--------- |:---------- |:-------- |:--------------------------------------------------- |
+| :-------- | :--------- | :------- | :-------------------------------------------------- |
 | target    | HEX STRING | True     | The puzzle hash you would like to send a message to |
 | message   | HEX STRING | True     | The hex-encoded message you would like to send      |
 | amount    | NUMBER     | True     | The number of mojos to include with this message    |
@@ -2506,24 +2506,24 @@ This command will create a Message Coin on the blockchain. This command will cre
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                   | Type         | Required | Description                                                                                                                                                                              |
-|:---------------------- |:------------ |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id              | TEXT         | True     | The wallet ID for the origin of the transaction                                                                                                                                          |
-| address                | TEXT         | True     | The destination address                                                                                                                                                                  |
-| amount                 | NUMBER       | True     | The number of mojos to send                                                                                                                                                              |
-| fee                    | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| memos                  | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                                                                                               |
+| Flag                 | Type         | Required | Description                                                                                                                                                                              |
+| :------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                                                                                                          |
+| address              | TEXT         | True     | The destination address                                                                                                                                                                  |
+| amount               | NUMBER       | True     | The number of mojos to send                                                                                                                                                              |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                                                                                               |
 | min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                                                                                                             |
 | max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                                                                                                             |
 | exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                                                                        |
 | exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                                                                                            |
-| reuse_puzhash          | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -2605,14 +2605,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type       | Required | Description                                                |
-|:--------- |:---------- |:-------- |:---------------------------------------------------------- |
+| :-------- | :--------- | :------- | :--------------------------------------------------------- |
 | wallet_id | TEXT       | True     | The wallet ID for the origin of the transaction            |
 | address   | TEXT       | True     | The destination address                                    |
 | amount    | NUMBER     | True     | The number of mojos to send                                |
@@ -2631,14 +2631,14 @@ Request Parameters:
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | TYPE   | Required | Description                                                                                           |
-|:--------- |:------ |:-------- |:----------------------------------------------------------------------------------------------------- |
+| :-------- | :----- | :------- | :---------------------------------------------------------------------------------------------------- |
 | address   | STRING | True     | The address to use for signing. The address to use for signing. Must possess the key for this address |
 | message   | STRING | True     | The message to include with the signature                                                             |
 
@@ -2672,14 +2672,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | TYPE   | Required | Description                                                                                             |
-|:--------- |:------ |:-------- |:------------------------------------------------------------------------------------------------------- |
+| :-------- | :----- | :------- | :------------------------------------------------------------------------------------------------------ |
 | id        | STRING | True     | The DID or NFT ID to use for signing. Must possess the key for this ID Must possess the key for this ID |
 | message   | STRING | True     | The message to include with the signature                                                               |
 
@@ -2713,17 +2713,17 @@ Usage: chia rpc wallet [OPTIONS] spend_clawback_coins [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag       | Type         | Required | Description                                                                                                          |
-|:---------- |:------------ |:-------- |:-------------------------------------------------------------------------------------------------------------------- |
-| coin_ids   | STRING ARRAY | True     | List of coin IDs to be spent                                                                                         |
+| Flag       | Type         | Required | Description                                                                                                        |
+| :--------- | :----------- | :------- | :----------------------------------------------------------------------------------------------------------------- |
+| coin_ids   | STRING ARRAY | True     | List of coin IDs to be spent                                                                                       |
 | batch_size | NUMBER       | False    | The number of coins to spend per bundle, [Default: `batch_size` obtainable from [get_auto_claim](#get_auto_claim)] |
-| fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                 |
+| fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                               |
 
 When examing the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
 
@@ -2742,117 +2742,117 @@ Response:
 
 ```json
 {
-    "success": true,
-    "transactions": [
+  "success": true,
+  "transactions": [
+    {
+      "additions": [
         {
-            "additions": [
-                {
-                    "amount": 1000000000000,
-                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
-                    "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
-                },
-                {
-                    "amount": 999700000000,
-                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
-                    "puzzle_hash": "0x80877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963"
-                }
-            ],
-            "amount": 1000000000000,
-            "confirmed": true,
-            "confirmed_at_height": 2765989,
-            "created_at_time": 1686643350,
-            "fee_amount": 100000000,
-            "memos": {
-                "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
-            },
-            "name": "0x199415953fb4f1fea1131a0a44a30f78d456b970bdb16ac300d2d7ec81897c42",
-            "removals": [
-                {
-                    "amount": 1999800000000,
-                    "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
-                    "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
-                }
-            ],
-            "sent": 3,
-            "sent_to": [
-                [
-                    "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
-                    1,
-                    null
-                ],
-                [
-                    "5d00527d8db1c5ba8043fbe565d065ff1a0933e84b69a1e74b5f2e9c6b07b375",
-                    1,
-                    null
-                ],
-                [
-                    "a9e061dec18380f16afc72df7a580a5291eaf26175c0089c25f72a6d5be71773",
-                    3,
-                    "ALREADY_INCLUDING_TRANSACTION"
-                ]
-            ],
-            "spend_bundle": {
-                "aggregated_signature": "0x807a93c48e191a940738f1d886ade121a99901cd3f57d989cf014c5d09d8179507e5c36161974585c19b5c6b7578f06211742e5439e6d4e9eae69b8f8987898abe3f60e0925aa564e8d4f44b1591743649e61d043347af30f52bfa78d57f2166",
-                "coin_spends": [
-                    {
-                        "coin": {
-                            "amount": 1999800000000,
-                            "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
-                            "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
-                        },
-                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b1d8407fee30b01e66ab0baa86d1dcb67f41a91bc9aca70867dba877ec7276174344afc58adaf65c6e3ee7e483b39e8bff018080",
-                        "solution": "0xff80ffff01ffff01ff02ffc04e00010000004800000000000002587414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f80ffff33ffa0501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8ff8600e8d4a51000ffffa0c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f8080ffff33ffa080877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963ff8600e8c2c36d0080ffff34ff8405f5e10080ffff3cffa0cd929a98aba31bcee901d852a568089fb3ab7bbc8830eda7dba733692af3ffb58080ff8080"
-                    }
-                ]
-            },
-            "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
-            "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
-            "trade_id": null,
-            "type": 1,
-            "wallet_id": 1
+          "amount": 1000000000000,
+          "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+          "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
         },
         {
-            "additions": [
-                {
-                    "amount": 1000000000000,
-                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
-                    "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
-                }
-            ],
-            "amount": 1000000000000,
-            "confirmed": false,
-            "confirmed_at_height": 2765989,
-            "created_at_time": 1686643386,
-            "fee_amount": 0,
-            "memos": {
-                "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
-            },
-            "metadata": {
-                "coin_id": "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
-                "recipient_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
-                "sender_puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43",
-                "spent": false,
-                "time_lock": 600
-            },
-            "name": "0x97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
-            "removals": [
-                {
-                    "amount": 1999800000000,
-                    "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
-                    "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
-                }
-            ],
-            "sent": 0,
-            "sent_to": [],
-            "spend_bundle": null,
-            "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
-            "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
-            "trade_id": null,
-            "type": 7,
-            "wallet_id": 1
+          "amount": 999700000000,
+          "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+          "puzzle_hash": "0x80877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963"
         }
-    ],
-    "wallet_id": 1
+      ],
+      "amount": 1000000000000,
+      "confirmed": true,
+      "confirmed_at_height": 2765989,
+      "created_at_time": 1686643350,
+      "fee_amount": 100000000,
+      "memos": {
+        "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
+      },
+      "name": "0x199415953fb4f1fea1131a0a44a30f78d456b970bdb16ac300d2d7ec81897c42",
+      "removals": [
+        {
+          "amount": 1999800000000,
+          "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+          "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+        }
+      ],
+      "sent": 3,
+      "sent_to": [
+        [
+          "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
+          1,
+          null
+        ],
+        [
+          "5d00527d8db1c5ba8043fbe565d065ff1a0933e84b69a1e74b5f2e9c6b07b375",
+          1,
+          null
+        ],
+        [
+          "a9e061dec18380f16afc72df7a580a5291eaf26175c0089c25f72a6d5be71773",
+          3,
+          "ALREADY_INCLUDING_TRANSACTION"
+        ]
+      ],
+      "spend_bundle": {
+        "aggregated_signature": "0x807a93c48e191a940738f1d886ade121a99901cd3f57d989cf014c5d09d8179507e5c36161974585c19b5c6b7578f06211742e5439e6d4e9eae69b8f8987898abe3f60e0925aa564e8d4f44b1591743649e61d043347af30f52bfa78d57f2166",
+        "coin_spends": [
+          {
+            "coin": {
+              "amount": 1999800000000,
+              "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+              "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+            },
+            "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b1d8407fee30b01e66ab0baa86d1dcb67f41a91bc9aca70867dba877ec7276174344afc58adaf65c6e3ee7e483b39e8bff018080",
+            "solution": "0xff80ffff01ffff01ff02ffc04e00010000004800000000000002587414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f80ffff33ffa0501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8ff8600e8d4a51000ffffa0c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f8080ffff33ffa080877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963ff8600e8c2c36d0080ffff34ff8405f5e10080ffff3cffa0cd929a98aba31bcee901d852a568089fb3ab7bbc8830eda7dba733692af3ffb58080ff8080"
+          }
+        ]
+      },
+      "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
+      "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+      "trade_id": null,
+      "type": 1,
+      "wallet_id": 1
+    },
+    {
+      "additions": [
+        {
+          "amount": 1000000000000,
+          "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+          "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
+        }
+      ],
+      "amount": 1000000000000,
+      "confirmed": false,
+      "confirmed_at_height": 2765989,
+      "created_at_time": 1686643386,
+      "fee_amount": 0,
+      "memos": {
+        "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
+      },
+      "metadata": {
+        "coin_id": "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
+        "recipient_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+        "sender_puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43",
+        "spent": false,
+        "time_lock": 600
+      },
+      "name": "0x97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
+      "removals": [
+        {
+          "amount": 1999800000000,
+          "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+          "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+        }
+      ],
+      "sent": 0,
+      "sent_to": [],
+      "spend_bundle": null,
+      "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
+      "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+      "trade_id": null,
+      "type": 7,
+      "wallet_id": 1
+    }
+  ],
+  "wallet_id": 1
 }
 ```
 
@@ -2866,10 +2866,10 @@ Result:
 
 ```json
 {
-    "success": true,
-    "transaction_ids": [
-        "66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd"
-    ]
+  "success": true,
+  "transaction_ids": [
+    "66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd"
+  ]
 }
 ```
 
@@ -2969,14 +2969,14 @@ chia rpc wallet get_transaction '{"transaction_id": "66f7fd75bb4a2408d219d89f858
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag         | Type | Required | Description                                                                                       |
-|:------------ |:---- |:-------- |:------------------------------------------------------------------------------------------------- |
+| :----------- | :--- | :------- | :------------------------------------------------------------------------------------------------ |
 | signing_mode | TEXT | False    | Specify the type of signature to verify \[Default: BLS with hex input\] (see below for more info) |
 | pubkey       | TEXT | True     | The public key of the signature to verify                                                         |
 | message      | TEXT | True     | The message to verify                                                                             |
@@ -2984,18 +2984,17 @@ Request Parameters:
 | address      | TEXT | True     | The address, which must be derived from `pubkey`                                                  |
 
 The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include:
-* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
-  * Default signing mode
-  * Describes the standard BLS signatures used by Chia
-  * Uses a hex input
-  * Taken from [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-sign)
-  * Cipher suites used for BLS signatures are also defined at [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-ciphersuites)
-* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:utf8input_`
-  * Same as above, but uses UTF-8 instead of hex
-* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
-  * [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
 
-
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
+  - Default signing mode
+  - Describes the standard BLS signatures used by Chia
+  - Uses a hex input
+  - Taken from [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-sign)
+  - Cipher suites used for BLS signatures are also defined at [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-ciphersuites)
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:utf8input_`
+  - Same as above, but uses UTF-8 instead of hex
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
+  - [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
 
 ---
 
@@ -3010,14 +3009,14 @@ Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag     | Type    | Required | Description                                                                                                                                                                                                                                                     |
-|:-------- |:------- |:-------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | secure   | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared If `false`, the offer could still be taken if it has been shared |
 | trade_id | TEXT    | True     | The ID of the offer to cancel                                                                                                                                                                                                                                   |
 | fee      | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                                                            |
@@ -3050,14 +3049,14 @@ Usage: chia rpc wallet [OPTIONS] cancel_offers [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag       | Type    | Required | Description                                                                                                                                                                                                                                                     |
-|:---------- |:------- |:-------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :--------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | secure     | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared If `false`, the offer could still be taken if it has been shared |
 | batch_fee  | NUMBER  | False    | The fee, in mojos, to add to each batch cancellation [Default: 0]                                                                                                                                                                                               |
 | batch_size | NUMBER  | False    | The number of offers to cancel in each batch [Default: 5]                                                                                                                                                                                                       |
@@ -3092,14 +3091,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag     | Type | Required | Description                                                                                                                                                                                          |
-|:-------- |:---- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------- | :--- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | asset_id | TEXT | True     | The ID of the CAT whose name you would like to retrieve. The ID of the CAT whose name you would like to retrieve. This CAT must be listed in your `DEFAULT_CATS`, ie the CATs your wallet recognizes |
 
 <details>
@@ -3132,14 +3131,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                  |
-|:--------- |:------ |:-------- |:------------------------------------------------------------ |
+| :-------- | :----- | :------- | :----------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The wallet ID of the CAT whose ID you would like to retrieve |
 
 <details>
@@ -3172,14 +3171,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                    |
-|:--------- |:------ |:-------- |:-------------------------------------------------------------- |
+| :-------- | :----- | :------- | :------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The wallet ID of the CAT whose name you would like to retrieve |
 
 <details>
@@ -3212,14 +3211,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                              |
-|:--------- |:------ |:-------- |:-------------------------------------------------------- |
+| :-------- | :----- | :------- | :------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet whose name you would like to change |
 | name      | TEXT   | True     | The new name for the wallet                              |
 
@@ -3252,29 +3251,29 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                   | Type         | Required  | Description                                                                                                                                                                              |
-|:---------------------- |:------------ |:--------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id              | TEXT         | True      | The wallet ID for the origin of the transaction                                                                                                                                          |
-| additions              | TEXT ARRAY   | True\*  | \*Must include either `additions` or `amount`. A list of puzzle hashes and amounts to be included                                                                                      |
-| amount                 | NUMBER       | True\*  | \*Must include either `additions` or `amount`. The number of mojos to send                                                                                                             |
-| inner_address          | TEXT         | True      | The destination address                                                                                                                                                                  |
-| memos                  | TEXT ARRAY   | False     | An optional array of memos to be sent with the transaction                                                                                                                               |
-| coins                  | TEXT ARRAY   | False     | A list of coins to include in the spend                                                                                                                                                  |
-| min_coin_amount      | NUMBER       | False     | The minimum coin amount to send [Default: 0]                                                                                                                                             |
-| max_coin_amount      | NUMBER       | False     | The maximum coin amount to send [Default: 0]                                                                                                                                             |
-| exclude_coin_amounts | NUMBER ARRAY | False     | A list of coin amounts to exclude                                                                                                                                                        |
-| exclude_coin_ids     | TEXT ARRAY   | False     | A list of coin IDs to exclude                                                                                                                                                            |
-| fee                    | NUMBER       | False     | An optional blockchain fee, in mojos                                                                                                                                                     |
-| extra_delta            | TEXT         | False\* | The CAT's `extra_delta` parameter; \*If specified, then `tail_reveal` and `tail_solution` must also be specified                                                                       |
-| tail_reveal            | TEXT         | False\* | The CAT's `tail_reveal` parameter; \*If specified, then `extra_delta` and `tail_solution` must also be specified                                                                       |
-| tail_solution          | TEXT         | False\* | The CAT's `tail_solution` parameter; \*If specified, then `extra_delta` and `tail_reveal` must also be specified                                                                       |
-| reuse_puzhash          | BOOLEAN      | False     | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Flag                 | Type         | Required | Description                                                                                                                                                                              |
+| :------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                                                                                                          |
+| additions            | TEXT ARRAY   | True\*   | \*Must include either `additions` or `amount`. A list of puzzle hashes and amounts to be included                                                                                        |
+| amount               | NUMBER       | True\*   | \*Must include either `additions` or `amount`. The number of mojos to send                                                                                                               |
+| inner_address        | TEXT         | True     | The destination address                                                                                                                                                                  |
+| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                                                                                               |
+| coins                | TEXT ARRAY   | False    | A list of coins to include in the spend                                                                                                                                                  |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                                                                                                             |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                                                                                                             |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                                                                        |
+| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                                                                                            |
+| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| extra_delta          | TEXT         | False\*  | The CAT's `extra_delta` parameter; \*If specified, then `tail_reveal` and `tail_solution` must also be specified                                                                         |
+| tail_reveal          | TEXT         | False\*  | The CAT's `tail_reveal` parameter; \*If specified, then `extra_delta` and `tail_solution` must also be specified                                                                         |
+| tail_solution        | TEXT         | False\*  | The CAT's `tail_solution` parameter; \*If specified, then `extra_delta` and `tail_reveal` must also be specified                                                                         |
+| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -3375,14 +3374,14 @@ Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag  | Type | Required | Description                        |
-|:----- |:---- |:-------- |:---------------------------------- |
+| :---- | :--- | :------- | :--------------------------------- |
 | offer | TEXT | True     | The contents of the offer to check |
 
 <details>
@@ -3414,22 +3413,22 @@ Usage: chia rpc wallet [OPTIONS] create_offer_for_ids [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag              | Type    | Required | Description                                                                                                                                                                              |
-|:----------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer             | TEXT    | True     | The offer to create                                                                                                                                                                      |
-| validate_only     | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                                                          |
-| driver_dict       | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                |
+| Flag            | Type    | Required | Description                                                                                                                                                                              |
+| :-------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| offer           | TEXT    | True     | The offer to create                                                                                                                                                                      |
+| validate_only   | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                                                          |
+| driver_dict     | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                |
 | min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none]                                                                                                                          |
 | max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                                                          |
-| solver            | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
-| fee               | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| reuse_puzhash     | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
+| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 ---
 
@@ -3442,22 +3441,22 @@ Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                   | Type    | Required | Description                                                                   |
-|:---------------------- |:------- |:-------- |:----------------------------------------------------------------------------- |
-| start                  | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                   |
-| end                    | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                   |
+| Flag                 | Type    | Required | Description                                                                   |
+| :------------------- | :------ | :------- | :---------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                   |
+| end                  | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                   |
 | exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]               |
 | exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false] |
-| include_completed      | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]         |
-| sort_key               | NUMBER  | False    | Specify the key for sorting [Default: None]                                   |
-| reverse                | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]           |
-| file_contents          | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]          |
+| include_completed    | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]         |
+| sort_key             | NUMBER  | False    | Specify the key for sorting [Default: None]                                   |
+| reverse              | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]           |
+| file_contents        | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]          |
 
 <details>
 <summary>Example</summary>
@@ -3526,7 +3525,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -3584,14 +3583,14 @@ Usage: chia rpc wallet [OPTIONS] get_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag          | Type | Required | Description                                                                                                                      |
-|:------------- |:---- |:-------- |:-------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :--- | :------- | :------------------------------------------------------------------------------------------------------------------------------- |
 | trade_id      | TEXT | True     | The offer's ID                                                                                                                   |
 | file_contents | TEXT | False    | The contents of the offer. The contents of the offer. Required if the offer's info is not stored in the database for this wallet |
 
@@ -3666,7 +3665,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -3703,14 +3702,14 @@ Usage: chia rpc wallet [OPTIONS] get_offer_summary [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag     | Type    | Required | Description                                                 |
-|:-------- |:------- |:-------- |:----------------------------------------------------------- |
+| :------- | :------ | :------- | :---------------------------------------------------------- |
 | offer    | TEXT    | True     | The offer for which to retrieve a summary                   |
 | advanced | BOOLEAN | False    | Set to `true` to show a detailed summary [Default: `false`] |
 
@@ -3757,7 +3756,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -3792,20 +3791,20 @@ Usage: chia rpc wallet [OPTIONS] take_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag              | Type    | Required | Description                                                                                                                                                                              |
-|:----------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer             | TEXT    | True     | The offer to create                                                                                                                                                                      |
+| Flag            | Type    | Required | Description                                                                                                                                                                              |
+| :-------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| offer           | TEXT    | True     | The offer to create                                                                                                                                                                      |
 | min_coin_amount | NUMBER  | False    | The minimum coin amount to select for taking the offer [Default: none]                                                                                                                   |
 | max_coin_amount | NUMBER  | False    | The maximum coin amount to select for taking the offer [Default: none]                                                                                                                   |
-| solver            | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
-| fee               | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| reuse_puzhash     | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
+| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -3900,17 +3899,17 @@ See our [NFT RPC](/nft-rpc) page.
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag               | Type   | Required | Description                                                                                         |
-|:------------------ |:------ |:-------- |:--------------------------------------------------------------------------------------------------- |
-| wallet_id          | NUMBER | True     | The Wallet ID to which to absorb funds (must be of type `POOLING_WALLET`)                           |
+| Flag             | Type   | Required | Description                                                                                         |
+| :--------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
+| wallet_id        | NUMBER | True     | The Wallet ID to which to absorb funds (must be of type `POOLING_WALLET`)                           |
 | max_spends_in_tx | NUMBER | False    | The maximum number of reward transactions to roll into the absorb transaction [Default: no maximum] |
-| fee                | NUMBER | False    | An optional blockchain fee, in mojos                                                                |
+| fee              | NUMBER | False    | An optional blockchain fee, in mojos                                                                |
 
 :::note
 
@@ -3929,19 +3928,19 @@ This RPC will only succeed if the wallet has accumulated unspent coinbase reward
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                   | Type   | Required | Description                                                                                    |
-|:---------------------- |:------ |:-------- |:---------------------------------------------------------------------------------------------- |
-| wallet_id              | NUMBER | True     | The Wallet ID to use to join the pool (must be of type `POOLING_WALLET`)                       |
-| target_puzzlehash      | TEXT   | True     | This is the target of where rewards will be sent to from the singleton. Controlled by the pool |
-| pool_url               | TEXT   | True     | The URL of the pool to join                                                                    |
+| Flag                 | Type   | Required | Description                                                                                    |
+| :------------------- | :----- | :------- | :--------------------------------------------------------------------------------------------- |
+| wallet_id            | NUMBER | True     | The Wallet ID to use to join the pool (must be of type `POOLING_WALLET`)                       |
+| target_puzzlehash    | TEXT   | True     | This is the target of where rewards will be sent to from the singleton. Controlled by the pool |
+| pool_url             | TEXT   | True     | The URL of the pool to join                                                                    |
 | relative_lock_height | NUMBER | True     | The number of blocks required to wait when attempting to leave the pool                        |
-| fee                    | NUMBER | False    | An optional blockchain fee, in mojos                                                           |
+| fee                  | NUMBER | False    | An optional blockchain fee, in mojos                                                           |
 
 <details>
 <summary>Example</summary>
@@ -4079,14 +4078,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                              |
-|:--------- |:------ |:-------- |:------------------------------------------------------------------------ |
+| :-------- | :----- | :------- | :----------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The Wallet ID to use for self-pooling (must be of type `POOLING_WALLET`) |
 | fee       | NUMBER | False    | An optional blockchain fee, in mojos                                     |
 
@@ -4232,14 +4231,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                                     |
-|:--------- |:------ |:-------- |:------------------------------------------------------------------------------- |
+| :-------- | :----- | :------- | :------------------------------------------------------------------------------ |
 | wallet_id | NUMBER | True     | The Wallet ID for which to obtain the status (must be of type `POOLING_WALLET`) |
 
 <details>
@@ -4294,14 +4293,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type   | Required | Description                             |
-|:---- |:------ |:-------- |:--------------------------------------- |
+| :--- | :----- | :------- | :-------------------------------------- |
 | root | TEXT   | True     | The root hash of an existing data store |
 | fee  | NUMBER | False    | An optional blockchain fee, in mojos    |
 
@@ -4446,14 +4445,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type   | Required | Description                           |
-|:------- |:------ |:-------- |:------------------------------------- |
+| :------ | :----- | :------- | :------------------------------------ |
 | coin_id | TEXT   | True     | The `coin_id` of the mirror to delete |
 | fee     | NUMBER | False    | An optional blockchain fee, in mojos  |
 
@@ -4531,14 +4530,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type | Required | Description                             |
-|:----------- |:---- |:-------- |:--------------------------------------- |
+| :---------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
 <details>
@@ -4578,14 +4577,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag           | Type   | Required | Description                                                  |
-|:-------------- |:------ |:-------- |:------------------------------------------------------------ |
+| :------------- | :----- | :------- | :----------------------------------------------------------- |
 | launcher_id    | TEXT   | True     | The launcher ID of the DataLayer wallet                      |
 | min_generation | NUMBER | False    | The first generation of singleton to show [Default: none]    |
 | max_generation | NUMBER | False    | The last generation of the singleton to show [Default: none] |
@@ -4652,14 +4651,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag           | Type    | Required | Description                                            |
-|:-------------- |:------- |:-------- |:------------------------------------------------------ |
+| :------------- | :------ | :------- | :----------------------------------------------------- |
 | launcher_id    | TEXT    | True     | The launcher ID of the DataLayer wallet                |
 | only_confirmed | BOOLEAN | False    | Only show the latest confirmed record [Default: false] |
 
@@ -4706,14 +4705,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type       | Required | Description                                                                                                                     |
-|:----------- |:---------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------- |
+| :---------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
 | launcher_id | TEXT       | True     | The launcher ID of the DataLayer wallet                                                                                         |
 | urls        | TEXT ARRAY | True     | A list of URLs to be used for the mirror                                                                                        |
 | amount      | NUMBER     | True     | The value of the mirror (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
@@ -4800,7 +4799,7 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -4867,14 +4866,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type | Required | Description                             |
-|:----------- |:---- |:-------- |:--------------------------------------- |
+| :---------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 | root        | TEXT | True     | The root hash of an existing data store |
 
@@ -4923,14 +4922,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type | Required | Description                             |
-|:----------- |:---- |:-------- |:--------------------------------------- |
+| :---------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
 <details>
@@ -4961,14 +4960,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type | Required | Description                             |
-|:----------- |:---- |:-------- |:--------------------------------------- |
+| :---------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
 <details>
@@ -4999,14 +4998,14 @@ Response:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type       | Required | Description                                 |
-|:------- |:---------- |:-------- |:------------------------------------------- |
+| :------ | :--------- | :------- | :------------------------------------------ |
 | updates | TEXT ARRAY | True     | A list of launcher IDs and hashes to update |
 
 ---
@@ -5020,14 +5019,14 @@ Request Parameters:
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                             |
-|:----------- |:------ |:-------- |:--------------------------------------- |
+| :---------- | :----- | :------- | :-------------------------------------- |
 | launcher_id | TEXT   | True     | The launcher ID of the DataLayer wallet |
 | new_root    | TEXT   | True     | The new root hash of the data store     |
 | fee         | NUMBER | False    | An optional blockchain fee, in mojos    |
@@ -5117,7 +5116,7 @@ Note: Inherited from RPC Server
 Request Parameters:
 
 | Flag    | Type | Required | Description                                                      |
-|:------- |:---- |:-------- |:---------------------------------------------------------------- |
+| :------ | :--- | :------- | :--------------------------------------------------------------- |
 | node_id | TEXT | True     | The hex ID of the node to close, obtainable from get_connections |
 
 <details>
@@ -5197,133 +5196,133 @@ Response:
 
 ```json
 {
-    "routes": [
-        "/log_in",
-        "/get_logged_in_fingerprint",
-        "/get_public_keys",
-        "/get_private_key",
-        "/generate_mnemonic",
-        "/add_key",
-        "/delete_key",
-        "/check_delete_key",
-        "/delete_all_keys",
-        "/set_wallet_resync_on_startup",
-        "/get_sync_status",
-        "/get_height_info",
-        "/push_tx",
-        "/push_transactions",
-        "/farm_block",
-        "/get_timestamp_for_height",
-        "/set_auto_claim",
-        "/get_auto_claim",
-        "/get_initial_freeze_period",
-        "/get_network_info",
-        "/get_wallets",
-        "/create_new_wallet",
-        "/get_wallet_balance",
-        "/get_wallet_balances",
-        "/get_transaction",
-        "/get_transactions",
-        "/get_transaction_count",
-        "/get_next_address",
-        "/send_transaction",
-        "/send_transaction_multi",
-        "/spend_clawback_coins",
-        "/get_coin_records",
-        "/get_farmed_amount",
-        "/create_signed_transaction",
-        "/delete_unconfirmed_transactions",
-        "/select_coins",
-        "/get_spendable_coins",
-        "/get_coin_records_by_names",
-        "/get_current_derivation_index",
-        "/extend_derivation_index",
-        "/get_notifications",
-        "/delete_notifications",
-        "/send_notification",
-        "/sign_message_by_address",
-        "/sign_message_by_id",
-        "/verify_signature",
-        "/get_transaction_memo",
-        "/cat_set_name",
-        "/cat_asset_id_to_name",
-        "/cat_get_name",
-        "/get_stray_cats",
-        "/cat_spend",
-        "/cat_get_asset_id",
-        "/create_offer_for_ids",
-        "/get_offer_summary",
-        "/check_offer_validity",
-        "/take_offer",
-        "/get_offer",
-        "/get_all_offers",
-        "/get_offers_count",
-        "/cancel_offer",
-        "/cancel_offers",
-        "/get_cat_list",
-        "/did_set_wallet_name",
-        "/did_get_wallet_name",
-        "/did_update_recovery_ids",
-        "/did_update_metadata",
-        "/did_get_pubkey",
-        "/did_get_did",
-        "/did_recovery_spend",
-        "/did_get_recovery_list",
-        "/did_get_metadata",
-        "/did_create_attest",
-        "/did_get_information_needed_for_recovery",
-        "/did_get_current_coin_info",
-        "/did_create_backup_file",
-        "/did_transfer_did",
-        "/did_message_spend",
-        "/did_get_info",
-        "/did_find_lost_did",
-        "/nft_mint_nft",
-        "/nft_count_nfts",
-        "/nft_get_nfts",
-        "/nft_get_by_did",
-        "/nft_set_nft_did",
-        "/nft_set_nft_status",
-        "/nft_get_wallet_did",
-        "/nft_get_wallets_with_dids",
-        "/nft_get_info",
-        "/nft_transfer_nft",
-        "/nft_add_uri",
-        "/nft_calculate_royalties",
-        "/nft_mint_bulk",
-        "/nft_set_did_bulk",
-        "/nft_transfer_bulk",
-        "/pw_join_pool",
-        "/pw_self_pool",
-        "/pw_absorb_rewards",
-        "/pw_status",
-        "/create_new_dl",
-        "/dl_track_new",
-        "/dl_stop_tracking",
-        "/dl_latest_singleton",
-        "/dl_singletons_by_root",
-        "/dl_update_root",
-        "/dl_update_multiple",
-        "/dl_history",
-        "/dl_owned_singletons",
-        "/dl_get_mirrors",
-        "/dl_new_mirror",
-        "/dl_delete_mirror",
-        "/vc_mint",
-        "/vc_get",
-        "/vc_get_list",
-        "/vc_spend",
-        "/vc_add_proofs",
-        "/vc_get_proofs_for_root",
-        "/vc_revoke",
-        "/get_connections",
-        "/open_connection",
-        "/close_connection",
-        "/stop_node",
-        "/get_routes",
-        "/healthz"
-    ],
-    "success": true
+  "routes": [
+    "/log_in",
+    "/get_logged_in_fingerprint",
+    "/get_public_keys",
+    "/get_private_key",
+    "/generate_mnemonic",
+    "/add_key",
+    "/delete_key",
+    "/check_delete_key",
+    "/delete_all_keys",
+    "/set_wallet_resync_on_startup",
+    "/get_sync_status",
+    "/get_height_info",
+    "/push_tx",
+    "/push_transactions",
+    "/farm_block",
+    "/get_timestamp_for_height",
+    "/set_auto_claim",
+    "/get_auto_claim",
+    "/get_initial_freeze_period",
+    "/get_network_info",
+    "/get_wallets",
+    "/create_new_wallet",
+    "/get_wallet_balance",
+    "/get_wallet_balances",
+    "/get_transaction",
+    "/get_transactions",
+    "/get_transaction_count",
+    "/get_next_address",
+    "/send_transaction",
+    "/send_transaction_multi",
+    "/spend_clawback_coins",
+    "/get_coin_records",
+    "/get_farmed_amount",
+    "/create_signed_transaction",
+    "/delete_unconfirmed_transactions",
+    "/select_coins",
+    "/get_spendable_coins",
+    "/get_coin_records_by_names",
+    "/get_current_derivation_index",
+    "/extend_derivation_index",
+    "/get_notifications",
+    "/delete_notifications",
+    "/send_notification",
+    "/sign_message_by_address",
+    "/sign_message_by_id",
+    "/verify_signature",
+    "/get_transaction_memo",
+    "/cat_set_name",
+    "/cat_asset_id_to_name",
+    "/cat_get_name",
+    "/get_stray_cats",
+    "/cat_spend",
+    "/cat_get_asset_id",
+    "/create_offer_for_ids",
+    "/get_offer_summary",
+    "/check_offer_validity",
+    "/take_offer",
+    "/get_offer",
+    "/get_all_offers",
+    "/get_offers_count",
+    "/cancel_offer",
+    "/cancel_offers",
+    "/get_cat_list",
+    "/did_set_wallet_name",
+    "/did_get_wallet_name",
+    "/did_update_recovery_ids",
+    "/did_update_metadata",
+    "/did_get_pubkey",
+    "/did_get_did",
+    "/did_recovery_spend",
+    "/did_get_recovery_list",
+    "/did_get_metadata",
+    "/did_create_attest",
+    "/did_get_information_needed_for_recovery",
+    "/did_get_current_coin_info",
+    "/did_create_backup_file",
+    "/did_transfer_did",
+    "/did_message_spend",
+    "/did_get_info",
+    "/did_find_lost_did",
+    "/nft_mint_nft",
+    "/nft_count_nfts",
+    "/nft_get_nfts",
+    "/nft_get_by_did",
+    "/nft_set_nft_did",
+    "/nft_set_nft_status",
+    "/nft_get_wallet_did",
+    "/nft_get_wallets_with_dids",
+    "/nft_get_info",
+    "/nft_transfer_nft",
+    "/nft_add_uri",
+    "/nft_calculate_royalties",
+    "/nft_mint_bulk",
+    "/nft_set_did_bulk",
+    "/nft_transfer_bulk",
+    "/pw_join_pool",
+    "/pw_self_pool",
+    "/pw_absorb_rewards",
+    "/pw_status",
+    "/create_new_dl",
+    "/dl_track_new",
+    "/dl_stop_tracking",
+    "/dl_latest_singleton",
+    "/dl_singletons_by_root",
+    "/dl_update_root",
+    "/dl_update_multiple",
+    "/dl_history",
+    "/dl_owned_singletons",
+    "/dl_get_mirrors",
+    "/dl_new_mirror",
+    "/dl_delete_mirror",
+    "/vc_mint",
+    "/vc_get",
+    "/vc_get_list",
+    "/vc_spend",
+    "/vc_add_proofs",
+    "/vc_get_proofs_for_root",
+    "/vc_revoke",
+    "/get_connections",
+    "/open_connection",
+    "/close_connection",
+    "/stop_node",
+    "/get_routes",
+    "/healthz"
+  ],
+  "success": true
 }
 ```
 
@@ -5340,7 +5339,7 @@ Note: Inherited from RPC Server
 Request Parameters:
 
 | Flag | Type    | Required | Description                                          |
-|:---- |:------- |:-------- |:---------------------------------------------------- |
+| :--- | :------ | :------- | :--------------------------------------------------- |
 | host | TEXT    | True     | The IP or URL of the node to connect to              |
 | port | INTEGER | True     | The port through which to connect to the remote node |
 

@@ -10,12 +10,15 @@ The lesson pages in Chia Academy are thoughtfully designed to enhance the learni
 ---
 
 ## Lesson title
+
 Each lesson starts with a clear and descriptive title that informs students about the topic they are about to explore.
 
 ---
 
 ## Learning objectives
+
 A set of specific learning objectives is provided at the beginning of the lesson. These objectives outline what students will be able to understand or do by the end of the lesson, setting clear expectations.
+
 - Learning Objective 1
 - Learning Objective 2
 - Learning Objective 3
@@ -23,12 +26,15 @@ A set of specific learning objectives is provided at the beginning of the lesson
 ---
 
 ## Content
+
 The core content in each lesson is conveyed through structured, short format videos followed by scripts. This hybrid visual and text approach ensures accessibility and caters to diverse learning preferences.
 
 ---
 
 ## Script
-Each of the short format videos will be proceeded by the script used for creating the video. This written format ensures ease of translation catering to diverse learners.  
+
+Each of the short format videos will be proceeded by the script used for creating the video. This written format ensures ease of translation catering to diverse learners.
+
 <details>
 
 <summary> Expand for the full script </summary>
@@ -44,6 +50,7 @@ The timestamps are provided in set intervals and are formatted as `minutes:secon
 ---
 
 ## Common gotchas
+
 While lessons are thoughtfully designed to facilitate learning, there are some common pitfalls or challenges that a learner might face. These will be described after the script for each lesson.
 
 - **Gotcha 1:** Description of gotcha 1.
@@ -53,9 +60,10 @@ While lessons are thoughtfully designed to facilitate learning, there are some c
 ---
 
 ## Knowledge check
+
 Each lesson contains a brief self-assessment quiz designed to gauge learners' comprehension and retention of the video material. These assessments reinforce key concepts and help learners self-assess their understanding.
 
-The quiz section has two components, questions and answers.  The questions contain lesson-applicable questions and the answers contain the corresponding answers.
+The quiz section has two components, questions and answers. The questions contain lesson-applicable questions and the answers contain the corresponding answers.
 
 Since this is a self assessment, you can of course skip the questions and go straight to the answers; but, we strongly recommend that you take the time to solve the question on your own before checking the answer.
 
@@ -88,7 +96,7 @@ What is the serialized form of this Chialisp puzzle?
 <summary> Answer (expand when ready to see the answer)  </summary>
 
 ```chialisp
-(+ 2 5)  
+(+ 2 5)
 ```
 
 </details>
@@ -117,14 +125,16 @@ What is the Chialisp puzzle for squaring a passed argument?
 ---
 
 ## Additional resources
+
 Links to additional reading materials, videos, or external resources may be provided for learners who wish to delve deeper into the lessons subject.
 
 ### Runnable Chialisp and clvm plugins
+
 Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
 Each plugin has a series of components:
 
 **Language:** The language of the plugin (Chialisp or clvm) is in the top right corner.  
-**Solution:** The top section is the input or solution.   
+**Solution:** The top section is the input or solution.  
 **Puzzle:** The bottom section is the puzzle.  
 **Run:** Each plugin has a play/run button to the right of the language identifier.  
 **Result:** After clicking run, the result of the puzzle appears below the puzzle.  
@@ -138,6 +148,7 @@ The plugins only validate the formatting and completeness of the code; they do n
 :::
 
 #### Chialisp plugin
+
 When clicking run, the puzzle will first be serialized into clvm (similar to the `run` command) then the solution will be passed into the serialized puzzle (similar to the `brun` command).  
 The below example is a Chialisp puzzle that squares the number passed as an argument.
 
@@ -157,6 +168,7 @@ Note the number `(5)` is used in the solution top section and the Chialisp forma
 </Runnable>
 
 #### Clvm plugin
+
 When clicking run, the solution will be passed into the serialized puzzle (similar to the `brun` command).  
 The below example uses the serialized puzzle from above that squares the number passed as an argument.
 

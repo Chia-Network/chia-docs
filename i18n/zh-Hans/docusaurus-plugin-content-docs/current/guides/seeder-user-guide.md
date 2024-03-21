@@ -14,6 +14,7 @@ The Chia Seeder runs a mini-DNS server. Anyone can obtain an entry point into Ch
 The Chia Seeder has very low memory and CPU requirements.
 
 Chia’s core developers have already been running an instance of the Chia Seeder for some time. You can view the current status of this instance by running:
+
 ```bash
 # IPv4
 dig dns-introducer.chia.net
@@ -25,11 +26,13 @@ dig -t AAAA dns-introducer.chia.net
 Chia has now decided to release the Seeder as a tool for anyone to maintain their own list of reliable nodes, which contributes to the further decentralization of Chia’s network by taking this tool off of the core team’s hands.
 
 Features:
-* Implements peer statistics and exponentially moving averages over various time-windows, akin to those maintained by its relative, the bitcoin-seeder: https://github.com/sipa/bitcoin-seeder
-* Runs a mini-DNS server on port 53, along with a full node to crawl the network.
-* Stores peer IPs and peer statistics into a database, so that they are persisted across runs.
+
+- Implements peer statistics and exponentially moving averages over various time-windows, akin to those maintained by its relative, the bitcoin-seeder: https://github.com/sipa/bitcoin-seeder
+- Runs a mini-DNS server on port 53, along with a full node to crawl the network.
+- Stores peer IPs and peer statistics into a database, so that they are persisted across runs.
 
 ## Expectations for Chia Seeder operators
+
 The Chia network core developers endeavor to minimize the level of trust in the DNS servers associated with a Chia Seeder. In this regard, it is expected for each Chia Seeder to be run by an individual or organization recognized as well-intentioned within the Chia community.
 
 This entails following good host security practices, maintaining control of the underlying infrastructure, and not transferring control of the Chia Seeder they operate.
@@ -49,6 +52,7 @@ $ sh install.sh
 $ . ./activate
 $ chia init
 ```
+
 You most certainly will want to specify your own configuration of a domain name server. Do so by editing the config file located at `~/.chia/mainnet/config/config.yaml`, or by running `chia configure`. Please refer to the relevant section below for more details, or enter `$ chia configure --help`.
 
 ## Special instructions on Ubuntu
@@ -58,6 +62,7 @@ On Ubuntu, it is possible that systemd-resolved already binds port 53. The Chia 
 Special instructions to free port 53 are provided here (points #2 and #3): https://github.com/team-exor/generic-seeder#exclamation-special-instructions-for-ubuntu-users-exclamation
 
 This amounts to editing `/etc/systemd/resolved.conf` so as to disable binding of systemd-resolved to port 53 by setting `DNSStubListener=no`, or, alternatively, entirely disabling the systemd-resolved service. Note that you will likely need to add a nameserver in '/etc/resolv.conf'.
+
 ```bash
 # Example resolv.conf
 nameserver 2001:4860:4860::8888
@@ -65,10 +70,13 @@ nameserver 2001:4860:4860::8844
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
+
 Once you have completed freeing up port 53, you will then need to allow the python executable in your venv to have access to port 53:
+
 ```bash
 sudo setcap CAP_NET_BIND_SERVICE=+eip $(readlink -f /home/{{ user }}/chia-blockchain/venv/bin/python)
 ```
+
 Note that anytime you change the python executable by rerunning `sh install.sh` or when `apt` upgrades python, you will need to re-run this command.
 
 ## Configuration
@@ -88,10 +96,13 @@ Note that these names are examples, and as long as the "NS" record points at the
 :::
 
 You can check that this is the case by running the following command (please ensure that you have `dig` on your system by installing the `dnsutils` or `bind9-dnsutils` package; for instance, on Ubuntu, `$ sudo apt install dnsutils` or `$ sudo apt install bind9-dnsutils`):
+
 ```bash
 $ dig -t NS my-chia-seeder.example.com
 ```
+
 whose output should display, among other information, the following:
+
 ```bash
 ;; ANSWER SECTION
 my-chia-seeder.example.com.    86400    IN    NS    vps.example.com
@@ -109,11 +120,14 @@ In `config.yaml` the `domain_name` is `my-chia-seeder.example.com.` and the `nam
 $ . ./activate
 $ chia start seeder
 ```
+
 will run both a crawler and a DNS server. Alternatively,
+
 ```bash
 $ . ./activate
 $ chia start crawler
 ```
+
 gives you the option to merely crawl the network so as to get a list of the connectable nodes, without having to set up a DNS server.
 
 ## Testing

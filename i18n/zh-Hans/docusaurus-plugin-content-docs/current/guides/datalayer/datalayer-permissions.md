@@ -15,22 +15,25 @@ Many users -- especially those in the enterprise space -- would like to keep the
 DataLayer Permissions give owners of data stores a method to gate participation, thus keeping their data private. This is accomplished by using customizable plugins.
 
 This guide will show you how to get started with DataLayer Permissions. Additional resources include:
-* [DataLayer user guide](/guides/datalayer-user-guide) -- You should already be familiar with using DataLayer before working with permissions. This guide will help you to get started
-* [S3 plugin](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/s3_plugin_service.py) -- This is the reference plugin for Amazon S3 integration. It is [discussed](#the-chia-s3-plugin) later in this guide
-* [Source API calls](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer.py) -- In case you want to dig into the source code
-* [CLI documentation](/datalayer-cli) for DataLayer
-* [RPC documentation](/datalayer-rpc) for DataLayer
+
+- [DataLayer user guide](/guides/datalayer-user-guide) -- You should already be familiar with using DataLayer before working with permissions. This guide will help you to get started
+- [S3 plugin](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/s3_plugin_service.py) -- This is the reference plugin for Amazon S3 integration. It is [discussed](#the-chia-s3-plugin) later in this guide
+- [Source API calls](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer.py) -- In case you want to dig into the source code
+- [CLI documentation](/datalayer-cli) for DataLayer
+- [RPC documentation](/datalayer-rpc) for DataLayer
 
 ## About DataLayer permissions
 
 Support for permissions were added to DataLayer in version 1.8.0 of the Chia reference wallet. The permissioning system requires uploader (publisher) and downloader (subscriber) plugins, which function as follows:
-* When you push any changes to your DataLayer singleton, the uploader plugin is called
-* When one of your subscribed singletons makes any on-chain changes, the downloader plugin is called
+
+- When you push any changes to your DataLayer singleton, the uploader plugin is called
+- When one of your subscribed singletons makes any on-chain changes, the downloader plugin is called
 
 The uploader and downloader plugins take the form of a service that exposes a specific RESTful API that DataLayer will call. This service can be configured in multiple different ways:
-* Uploader only
-* Downloader only
-* Both uploader and downloader
+
+- Uploader only
+- Downloader only
+- Both uploader and downloader
 
 Multiple instances of the same service are also possible. The service can be configured to require credentials, thereby gating access to data.
 
@@ -39,14 +42,15 @@ Multiple instances of the same service are also possible. The service can be con
 To configure Chia to use DataLayer permissions, you need to add a list of URLs to config.yaml which allows access to the uploaders and downloaders. The settings to configure are new as of 1.8.0. To add them, you have two options:
 
 1. Start from scratch
-    * Delete or rename `~/.chia/mainnet/config/config.yaml`
-    * Run `chia init`; a new copy of config.yaml that contains the new settings will be generated
+
+   - Delete or rename `~/.chia/mainnet/config/config.yaml`
+   - Run `chia init`; a new copy of config.yaml that contains the new settings will be generated
 
 2. Add the settings manually
-    * Edit `~/.chia/mainnet/config/config.yaml`
-    * Under the `data_layer:` settings, add the following new lines:
-      * `downloaders: []`
-      * `uploaders: []`
+   - Edit `~/.chia/mainnet/config/config.yaml`
+   - Under the `data_layer:` settings, add the following new lines:
+     - `downloaders: []`
+     - `uploaders: []`
 
 At this point, you can edit config.yaml and add the URL path(s) to either or both of the plugins. Be sure to remove the square brackets `[]` if you add any URLs. For example, a snippet of config.yaml with the uploaders and downloaders configured might look like this:
 
@@ -55,10 +59,10 @@ data_layer:
   client_timeout: 15
   database_path: data_layer/db/data_layer_CHALLENGE.sqlite
   downloaders:
-  - http://localhost:9456
-  - http://localhost:3145
-...
-  uploaders:
+    - http://localhost:9456
+    - http://localhost:3145
+---
+uploaders:
   - http://localhost:9456
   - http://localhost:9384
 ```
@@ -82,7 +86,7 @@ Functionality: Configure a store for uploading
 Request Parameters:
 
 | Parameter | Type   | Required | Description                 |
-|:--------- |:------ |:-------- |:--------------------------- |
+| :-------- | :----- | :------- | :-------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format |
 
 Response: `{"handle_upload": [true|false]}`
@@ -96,7 +100,7 @@ Functionality: Configure a store for downloading from a mirror
 Request Parameters:
 
 | Parameter | Type   | Required | Description                            |
-|:--------- |:------ |:-------- |:-------------------------------------- |
+| :-------- | :----- | :------- | :------------------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format            |
 | url       | STRING | True     | The URL of the mirror to download from |
 
@@ -114,11 +118,11 @@ Functionality: Upload data to a store
 
 Request Parameters:
 
-| Parameter            | Type   | Required | Description                 |
-|:-------------------- |:------ |:-------- |:--------------------------- |
-| store_id             | STRING | True     | The store ID, in hex format |
+| Parameter          | Type   | Required | Description                 |
+| :----------------- | :----- | :------- | :-------------------------- |
+| store_id           | STRING | True     | The store ID, in hex format |
 | full_tree_filename | STRING | True     | Name of full tree dat file  |
-| diff_filename        | STRING | True     | Name of delta dat file      |
+| diff_filename      | STRING | True     | Name of delta dat file      |
 
 Response: `{"uploaded": [true|false]}`
 
@@ -135,11 +139,11 @@ Functionality: Download a data file from a URI
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                        |
-|:--------- |:------ |:-------- |:-------------------------------------------------- |
+| :-------- | :----- | :------- | :------------------------------------------------- |
 | url       | STRING | True     | The URI for the download, eg `"server_info.url"`   |
 | filename  | STRING | True     | The name of the file to download, eg `"file1.dat"` |
 
-Response:  `{"downloaded": [true|false]}`
+Response: `{"downloaded": [true|false]}`
 
 :::note
 The downloader plugin _must_ place the files into the same directory that Chia DataLayer expects files - which is configured in the chia config.yaml configuration as `service_files_location`
@@ -154,7 +158,7 @@ Functionality: Add missing files to a store
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                                              |
-|:--------- |:------ |:-------- |:------------------------------------------------------------------------ |
+| :-------- | :----- | :------- | :----------------------------------------------------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format                                              |
 | files     | LIST   | True     | The list of files to be added, for example: `["file1.dat", "file2.dat"]` |
 
@@ -183,16 +187,17 @@ This plugin implements the REST API from the [previous section](#rest-api). It u
 By providing credentials configured correctly, the plugin can do downloads with a read-only credential and uploads with a write-credential. **Without access to the credentials, the data in S3 is unavailable at large to the public - hence "permissioned".**
 
 A few notes about the S3 plugin:
-* It expects the mirror URL to use the `s3://` scheme for downloads; it requires a bucket name for uploads.
-* It expects to be configured with a list of `store_ids` it is responsible for, along with an `upload_bucket` and/or a list of s3 `download_urls`.
-* Either `upload_bucket`, or `download_urls`, or both must be configured.
+
+- It expects the mirror URL to use the `s3://` scheme for downloads; it requires a bucket name for uploads.
+- It expects to be configured with a list of `store_ids` it is responsible for, along with an `upload_bucket` and/or a list of s3 `download_urls`.
+- Either `upload_bucket`, or `download_urls`, or both must be configured.
 
 Example configuration:
 
 ```
 Test-Instance: # just a name for the instance
   log_filename: "s3_plugin.log"
-  log_level: INFO 
+  log_level: INFO
   server_files_location: # generally this only works if set to the same location as the Chia DataLayer `server_files_location`
   port: 8998
   aws_credentials:
@@ -228,10 +233,10 @@ Functionality: Add a new store
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                                                                                 |
-|:--------- |:------ |:-------- |:----------------------------------------------------------------------------------------------------------- |
+| :-------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format                                                                                 |
-| bucket    | STRING | True*    | The name of the S3 bucket [* Either `bucket` or `urls` or both is required]                                 |
-| urls      | LIST   | True*    | A list of s3 URLs, for example `["s3://one", "s3://two"]` [* Either `bucket` or `urls` or both is required] |
+| bucket    | STRING | True\*   | The name of the S3 bucket [* Either `bucket` or `urls` or both is required]                                 |
+| urls      | LIST   | True\*   | A list of s3 URLs, for example `["s3://one", "s3://two"]` [* Either `bucket` or `urls` or both is required] |
 
 Success Response: `{"success": true, "id": store id}`
 
@@ -250,7 +255,7 @@ Functionality: Remove a store
 Request Parameters:
 
 | Parameter | Type   | Required | Description                 |
-|:--------- |:------ |:-------- |:--------------------------- |
+| :-------- | :----- | :------- | :-------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format |
 
 Response: `{"success": [true|false], "store_id":store id in hex if successful}`

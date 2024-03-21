@@ -11,7 +11,7 @@ In this lesson, we review the basics of block formation including the farmers ro
 - **Block Formation**: Understand farmers role in forming blocks.
 - **Mempool**: Review the mempool basics for transaction inclusion and removal.
 
-***
+---
 
 ## Content
 
@@ -19,7 +19,7 @@ In this lesson, we review the basics of block formation including the farmers ro
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/yxt53B4GGbM" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -43,7 +43,7 @@ and the relevant transactions are cleared from the mempool. In this way, transac
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
@@ -51,7 +51,7 @@ and the relevant transactions are cleared from the mempool. In this way, transac
 - **Block Formation vs Infusion:** Block formation is the process of combining proofs of space with transactions (the foliage) and is performed by the farmer while block infusion is the process of adding blocks to the chain itself and is performed by timelords.
 - **Mempool:** All spend bundles (transactions) from the mempool that will be included in a block are aggregated together during block formation, this means that the specific spend bundle for a given transaction is not stored on-chain and is only available in the mempool.
 
-***
+---
 
 ## Knowledge check
 
@@ -109,7 +109,7 @@ A. Temporary storage on the network where transactions are queued before being c
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -121,4 +121,4 @@ A. Temporary storage on the network where transactions are queued before being c
 - Mempool [detailed documentation](https://docs.chia.net/mempool/): detailed information on all aspects of mempool inclusion scenarios and how the mempool is updated.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

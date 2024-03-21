@@ -253,9 +253,9 @@ Write the following in `password.clsp`:
 
 The key differences are the introduction of `conditions` in the parameter list and `(x)` at the bottom of the code. Let's explain both of these.
 
--   First off, the `(x)` operator raises an error. If the password is invalid, the `if` evaluates to `false` and the program terminates (the coin remains unspent).
+- First off, the `(x)` operator raises an error. If the password is invalid, the `if` evaluates to `false` and the program terminates (the coin remains unspent).
 
--   Conditions is a list that will be provided by the spender to control what happens with the coin. Instead of only being able to output a value like `Correct!`, the user can customize the functionality by providing specific requests in their provided solution. We'll see this in action and learn how to write the conditions later.
+- Conditions is a list that will be provided by the spender to control what happens with the coin. Instead of only being able to output a value like `Correct!`, the user can customize the functionality by providing specific requests in their provided solution. We'll see this in action and learn how to write the conditions later.
 
 :::note
 The blockchain doesn't understand anything other than a list of conditions as an output. Anything else will be ignored and cause the spend to be thrown out.
@@ -297,9 +297,9 @@ We need to calculate the puzzle hash before we can create the coin.
 
 This is because a coin id consists of the following things hashed together:
 
--   The id of its parent (`parent_coin_id`)
--   The hash of its puzzle (`puzzle_hash`)
--   The amount of mojos locked with it (`amount`)
+- The id of its parent (`parent_coin_id`)
+- The hash of its puzzle (`puzzle_hash`)
+- The amount of mojos locked with it (`amount`)
 
 In other words, you can calculate the coin id in Chialisp like this:
 
@@ -437,18 +437,18 @@ This should produce an output similar to this:
 
 ```json
 [
-    {
-        "coin": {
-            "amount": 10000000000,
-            "parent_coin_info": "0x88dae7d74a7b5edc8b4d46124e221a00d7b9f59042cd98be76472b663b2ce813",
-            "puzzle_hash": "0x87444f0b48929c0f11d512e5e0c7794a71c9aa20e1c303154ccda68e7c1c1a45"
-        },
-        "coinbase": false,
-        "confirmed_block_index": 1681937,
-        "spent": false,
-        "spent_block_index": 0,
-        "timestamp": 1666117720
-    }
+  {
+    "coin": {
+      "amount": 10000000000,
+      "parent_coin_info": "0x88dae7d74a7b5edc8b4d46124e221a00d7b9f59042cd98be76472b663b2ce813",
+      "puzzle_hash": "0x87444f0b48929c0f11d512e5e0c7794a71c9aa20e1c303154ccda68e7c1c1a45"
+    },
+    "coinbase": false,
+    "confirmed_block_index": 1681937,
+    "spent": false,
+    "spent_block_index": 0,
+    "timestamp": 1666117720
+  }
 ]
 ```
 
@@ -476,18 +476,18 @@ Now, using that as a reference, write the following in a file named `spendbundle
 
 ```json
 {
-    "coin_spends": [
-        {
-            "coin": {
-                "amount": 10000000000,
-                "parent_coin_info": "0x138d7e723b9f06ff3f4af8fba066cebb7ecb5b6c7f3353ae1b6a89309314c42d",
-                "puzzle_hash": "0x87444f0b48929c0f11d512e5e0c7794a71c9aa20e1c303154ccda68e7c1c1a45"
-            },
-            "puzzle_reveal": "ff02ffff01ff02ffff03ffff09ffff0bff0580ff0280ffff010bffff01ff088080ff0180ffff04ffff01a02cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824ff018080",
-            "solution": "ff8568656c6c6fffffff33ffa0697f2559a54b0963c8fbd33f34888f2cd94eafa80eb880e2a3a01021fc88fbfdff85025110f380808080"
-        }
-    ],
-    "aggregated_signature": "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  "coin_spends": [
+    {
+      "coin": {
+        "amount": 10000000000,
+        "parent_coin_info": "0x138d7e723b9f06ff3f4af8fba066cebb7ecb5b6c7f3353ae1b6a89309314c42d",
+        "puzzle_hash": "0x87444f0b48929c0f11d512e5e0c7794a71c9aa20e1c303154ccda68e7c1c1a45"
+      },
+      "puzzle_reveal": "ff02ffff01ff02ffff03ffff09ffff0bff0580ff0280ffff010bffff01ff088080ff0180ffff04ffff01a02cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824ff018080",
+      "solution": "ff8568656c6c6fffffff33ffa0697f2559a54b0963c8fbd33f34888f2cd94eafa80eb880e2a3a01021fc88fbfdff85025110f380808080"
+    }
+  ],
+  "aggregated_signature": "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
 }
 ```
 
@@ -522,8 +522,8 @@ Using a password to lock coins is good to teach various concepts, but it is inse
 
 There are a couple of reasons for this:
 
--   The password is publicly revealed to all nodes when the coin is spent
--   The transaction can be intercepted and modified freely by malicious farmers
+- The password is publicly revealed to all nodes when the coin is spent
+- The transaction can be intercepted and modified freely by malicious farmers
 
 Let's explore these in more detail.
 

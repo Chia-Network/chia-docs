@@ -13,7 +13,7 @@ Other relevant documents:
 
 ## Singleton Structure
 
-The prefarm uses a [singleton](https://chialisp.com/singletons "Description of Chia singletons") with the following features:
+The prefarm uses a [singleton](https://chialisp.com/singletons 'Description of Chia singletons') with the following features:
 
 1. **Multisig** -- required to perform actions on the singleton, where:
 
@@ -42,7 +42,7 @@ The singleton comes in two layers -- one permanent and one non-permanent.
 ### Permanent layer
 
 | Setting | Prefarm Value | Description                                                                                                                                                                                                                                                                                                                        |
-|:------- |:------------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------ | :------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `wt`    | 30 days       | Withdrawal Timelock -- When attempting to begin a withdrawal, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback.                                                                                                                                                           |
 | `pc`    | 90 days       | Payment Clawback -- The minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Clawbacks are possible during this window.                                                                                                                                                |
 | `rt`    | 15 days       | Rekey Timelock -- When attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback. For a slow rekey, this amount gets added for each key less than `m` (in addition to the amount of time that would have been required in a standard rekey). |
@@ -52,10 +52,10 @@ The singleton comes in two layers -- one permanent and one non-permanent.
 ### Non-permanent layer
 
 | Setting | Initial<br/>Value | Description                                                                 |
-|:------- |:----------------------- |:--------------------------------------------------------------------------- |
-| `m`     | 3                       | The initial number of pubkeys required to do a withdrawal or standard rekey |
-| `n`     | 5                       | The maximum number of pubkeys required to do a withdrawal or standard rekey |
-| `pks`   |                         | A comma separated list of pubkey files that will control this money         |
+| :------ | :---------------- | :-------------------------------------------------------------------------- |
+| `m`     | 3                 | The initial number of pubkeys required to do a withdrawal or standard rekey |
+| `n`     | 5                 | The maximum number of pubkeys required to do a withdrawal or standard rekey |
+| `pks`   |                   | A comma separated list of pubkey files that will control this money         |
 
 ## Allowed Actions
 
@@ -123,10 +123,10 @@ The amount of time before the rekey can begin depends on the number of keys used
 The following table illustrates a few examples of initiation timelock lengths, for various values of `m` and `k`. For this table, `rt` is set to 15 days and `sp` is set to 45 days (these are both denominated in seconds). The table assumes that `n` (5) and the minimum `k` (1) have not been modified from their default values:
 
 | `m` | `k` | Days | Comment                                                                                                                                                                            |
-|:---:|:---:|:----:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :-: | :-: | :--: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |  3  |  3  |  15  | Standard rekey, no penalty                                                                                                                                                         |
-|  3  |  2  |  75  | Slow rekey, `sp` day penalty + 2 \* standard `rt` days                                                                                                                           |
-|  3  |  1  |  90  | Slow rekey, `sp` day penalty + 3 \* `rt` days                                                                                                                                    |
+|  3  |  2  |  75  | Slow rekey, `sp` day penalty + 2 \* standard `rt` days                                                                                                                             |
+|  3  |  1  |  90  | Slow rekey, `sp` day penalty + 3 \* `rt` days                                                                                                                                      |
 |  1  |  1  |  15  | This is a case where, after a prior rekey, `m` was reduced to 1. There is no penalty, even with a single key                                                                       |
 |  5  |  3  |  90  | In this case, a lock level increase has been performed, so 5 of 5 keys are required to avoid a penalty                                                                             |
 |  5  |  1  | 120  | This is the longest possible initiation timelock duration when `n` is 5 and the minimum `k` is 1. In this case, `m` has been increased to 5, and 1 key is being used for the rekey |
@@ -190,23 +190,23 @@ The following table lists the action/consequence, given the current value of `m`
 
 <br/>
 
-| `m` | Keys Sniffed                                                                                                                                            | Keys Stolen                                                          | Keys Lost                                                            |
-|:--- |:------------------------------------------------------------------------------------------------------------------------------------------------------- |:-------------------------------------------------------------------- |:-------------------------------------------------------------------- |
-| 3   | 0-2: normal rekey <br/> 3: lock level increase to 4, normal rekey <br/> 4: lock level increase to 5, normal rekey <br/> 5: deadlocked | 0-2: normal rekey <br/> 3-5: drained                           | 0-2: normal rekey <br/> 3-4: slow rekey <br/> 5: bricked |
-| 4   | 0-3: normal rekey <br/> 4: lock level increase to 5, normal rekey <br/> 5: deadlocked                                                       | 0-1: normal rekey <br/> 2: slow rekey <br/> 3-5: drained | 0-1: normal rekey <br/> 2-4: slow rekey <br/> 5: bricked |
-| 5   | 0-4: normal rekey <br/> 5: deadlocked                                                                                                             | 0: normal rekey <br/> 1-2: slow rekey <br/> 3-5: drained | 0: normal rekey <br/> 1-4: slow rekey <br/> 5: bricked   |
+| `m` | Keys Sniffed                                                                                                                          | Keys Stolen                                              | Keys Lost                                                |
+| :-- | :------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------- | :------------------------------------------------------- |
+| 3   | 0-2: normal rekey <br/> 3: lock level increase to 4, normal rekey <br/> 4: lock level increase to 5, normal rekey <br/> 5: deadlocked | 0-2: normal rekey <br/> 3-5: drained                     | 0-2: normal rekey <br/> 3-4: slow rekey <br/> 5: bricked |
+| 4   | 0-3: normal rekey <br/> 4: lock level increase to 5, normal rekey <br/> 5: deadlocked                                                 | 0-1: normal rekey <br/> 2: slow rekey <br/> 3-5: drained | 0-1: normal rekey <br/> 2-4: slow rekey <br/> 5: bricked |
+| 5   | 0-4: normal rekey <br/> 5: deadlocked                                                                                                 | 0: normal rekey <br/> 1-2: slow rekey <br/> 3-5: drained | 0: normal rekey <br/> 1-4: slow rekey <br/> 5: bricked   |
 
 ---
 
 ## Source Code
 
-The source code for the custody solution is in the [internal-custody GitHub repository](https://github.com/Chia-Network/internal-custody "Chia internal custody solution").
+The source code for the custody solution is in the [internal-custody GitHub repository](https://github.com/Chia-Network/internal-custody 'Chia internal custody solution').
 
 There are two configuration files, one public (for observers) and one private.
 
 ### Public Configuration
 
-An observer can track the prefarm's configuration information from [prefarm_info.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/prefarm_info.py#L8-L18 "public configuration information"), which contains the following variables:
+An observer can track the prefarm's configuration information from [prefarm_info.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/prefarm_info.py#L8-L18 'public configuration information'), which contains the following variables:
 
 - `launcher_id`: `bytes32` -- This is pre-set; the user cannot change it
 - `puzzle_root`: `bytes32` -- This is pre-set; the user cannot change it
@@ -218,7 +218,7 @@ An observer can track the prefarm's configuration information from [prefarm_info
 
 ### Private Configuration
 
-The necessary information to spend the prefarm is located in [puzzle_root_construction.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/puzzle_root_construction.py#L26-L34 "private configuration information"). This information is considered private. However, if an attacker obtained this information, it would still be insufficient to spend the prefarm because valid signatures would be required. However, the Merkle tree would be considered sniffed, so a rekey would be required.
+The necessary information to spend the prefarm is located in [puzzle_root_construction.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/puzzle_root_construction.py#L26-L34 'private configuration information'). This information is considered private. However, if an attacker obtained this information, it would still be insufficient to spend the prefarm because valid signatures would be required. However, the Merkle tree would be considered sniffed, so a rekey would be required.
 
 This code contains the following variables:
 

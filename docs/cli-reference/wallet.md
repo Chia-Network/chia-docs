@@ -804,7 +804,7 @@ Usage: chia wallet coins split [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:--------------|:------------------|:--------|:---------|:-------------------------------------------------------------------------------------------------------------|
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -p            | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |

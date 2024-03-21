@@ -44,15 +44,16 @@ However, for creating your first plot, it's a good idea to use the equipment you
 ### Plot storage
 
 For this guide, we will create a single plot. This will require:
-* 4 GB of available RAM
-  * If you don't have this much, you can use Linux swap space, but it will be very slow
-* 275 GB of temporary storage
-  * An HDD will work, but it will be slow
-  * An SSD will be much faster; it's a good option for this tutorial
-  * RAM is the fastest option (the minimum for RAM plotting is 256 GB; if you don't have that much, don't worry about it for now)
-* 108.8 GB of free space where the plot will live
-  * An SSD will work, but is overkill
-  * The vast majority of plots are stored on HDDs
+
+- 4 GB of available RAM
+  - If you don't have this much, you can use Linux swap space, but it will be very slow
+- 275 GB of temporary storage
+  - An HDD will work, but it will be slow
+  - An SSD will be much faster; it's a good option for this tutorial
+  - RAM is the fastest option (the minimum for RAM plotting is 256 GB; if you don't have that much, don't worry about it for now)
+- 108.8 GB of free space where the plot will live
+  - An SSD will work, but is overkill
+  - The vast majority of plots are stored on HDDs
 
 A laptop or desktop with 400 GB of free space will satisfy these requirements. A 512-GB external SSD (available for ~$35 on Amazon) is another option.
 
@@ -108,7 +109,7 @@ You can also choose a custom name for your wallet. Click `NEXT` when you are fin
 
 If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place.
 
-:::  
+:::
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/04.png" alt="Wallet seed phrase" />
@@ -117,8 +118,9 @@ If someone obtains a copy of these words, they can steal your entire wallet, inc
 <br />
 
 You will be taken to your wallet, which will show a zero-XCH balance. There will be two round icons in the upper-right corner, one for the full node and one for the wallet:
-* Full node -- this icon will appear red until you connect to at least one peer. At this point it will turn yellow, which indicates that your full node is syncing.
-* Wallet -- this icon will appear yellow at first. Your wallet will attempt to connect to three peers for syncing. It should be synced within a few seconds, at which point the icon will turn green.
+
+- Full node -- this icon will appear red until you connect to at least one peer. At this point it will turn yellow, which indicates that your full node is syncing.
+- Wallet -- this icon will appear yellow at first. Your wallet will attempt to connect to three peers for syncing. It should be synced within a few seconds, at which point the icon will turn green.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/05.png" alt="Zero wallet balance" />
@@ -171,11 +173,12 @@ Click the `Full Node` icon on the left side of your wallet:
 <br />
 
 This screen shows your node's syncing status. In order to farm Chia, your node needs to be fully synced. You have two options to achieve this:
+
 1. Sync from genesis -- the above image shows this happening. Your node will connect with up to 80 peers and download information for each block. This is the most secure way to sync a node, and the only way to be sure that the information is accurate. However, it will take at least a few days, and possibly a week or more to sync from genesis, depending on your node's speed, your internet connection, and the quality of the peers to which you connect.
 2. Download a checkpoint database -- this option will allow you to sync much faster, but you have to trust that the information is accurate. For most users, this will be a worthwhile tradeoff.
-    * Head to our official [checkpoint download page](https://www.chia.net/downloads/#database-checkpoint) and click the `Torrent` link for the mainnet Database.
-    * When your download has completed, use [BitTorrent](https://www.bittorrent.com/) to open it; be sure to verify it with the checksum listed on the download page.
-    * Move the database to the appropriate destination (see below).
+   - Head to our official [checkpoint download page](https://www.chia.net/downloads/#database-checkpoint) and click the `Torrent` link for the mainnet Database.
+   - When your download has completed, use [BitTorrent](https://www.bittorrent.com/) to open it; be sure to verify it with the checksum listed on the download page.
+   - Move the database to the appropriate destination (see below).
 
 :::warning
 
@@ -186,10 +189,11 @@ This screen shows your node's syncing status. In order to farm Chia, your node n
 :::info
 
 By default, the database will be stored in `~/.chia/mainnet/db`. If you don't want to store it there (for example, if your computer lacks sufficient free space), you will need to change your configuration:
-* Edit `~/.chia/mainnet/config/config.yaml` -- this is this primary configuration file for all Chia settings.
-* Search for `database_path` in the `full_node:` section.
-  * The default value is `db/blockchain_v2_CHALLENGE.sqlite`.
-  * Change the path to the location of your database. For example, to store the database on an external SSD, you might change this to `/media/externalSSD/db/blockchain_v2_CHALLENGE.sqlite`. You do not need to change the name of the .sqlite file.
+
+- Edit `~/.chia/mainnet/config/config.yaml` -- this is this primary configuration file for all Chia settings.
+- Search for `database_path` in the `full_node:` section.
+  - The default value is `db/blockchain_v2_CHALLENGE.sqlite`.
+  - Change the path to the location of your database. For example, to store the database on an external SSD, you might change this to `/media/externalSSD/db/blockchain_v2_CHALLENGE.sqlite`. You do not need to change the name of the .sqlite file.
 
 If you change this setting, you will need to restart Chia for the change to be applied.
 
@@ -311,7 +315,7 @@ Next, you will need to choose a plotter. When creating a single plot, `Chia Proo
 
 When building a larger farm, the plotter you choose will depend greatly on your available hardware. It may help to experiment with multiple plotters to get a feel for which ones work best for your setup. For details on each of the available plotters, see our [Plotting Software](/plotting-software) section.
 
-:::  
+:::
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/18.png" alt="Choose plotter" />
@@ -348,9 +352,10 @@ Certain plotters are also capable of creating compressed plots, which are discus
 <br />
 
 Next, you need to select the temporary and final directories for your plot. The medium for temporary storage will greatly affect the speed at which your plot is created:
-* **RAM** -- For plots created entirely in RAM, there is no temporary storage. RAM plotters can typically create k32 plots in a few minutes, but they also require a significant amount of memory (256 GB - 416 GB, depending on the plotter).
-* **SSD** -- Most farmers choose to use an enterprise NVMe SSD for the temporary storage. These SSDs can handle large amounts of reads and writes in their lifetimes.
-* **HDD** -- If you don't mind plotting slowly, you can choose a directory located on an HDD.
+
+- **RAM** -- For plots created entirely in RAM, there is no temporary storage. RAM plotters can typically create k32 plots in a few minutes, but they also require a significant amount of memory (256 GB - 416 GB, depending on the plotter).
+- **SSD** -- Most farmers choose to use an enterprise NVMe SSD for the temporary storage. These SSDs can handle large amounts of reads and writes in their lifetimes.
+- **HDD** -- If you don't mind plotting slowly, you can choose a directory located on an HDD.
 
 The final directory is where the plot will be copied after it has been created. Most farmers will choose to use an HDD as the final directory. However, for this tutorial an NVMe SSD was used for both the temporary and final directories.
 
@@ -413,13 +418,14 @@ There is still a lot to learn, but you already have the basic knowledge needed t
 ## Next steps
 
 Once you have a small farm up and running, you can decide whether to expand, and how to do so. The following pages will show you:
-* [Basic details of Chia plots](/plotting-basics), including "compressed" versus "uncompressed" plots
-* [How to select the optimal computer for plotting](/plotting-hardware)
-* [List of Chia plotting software](/plotting-software)
-* [How to choose a plot compression level](/plotting-compression)
-* [How to create Chia plots](/plotting-how-to)
-* [Notes about SSD encurance](/ssd-endurance)
-* [How to move plots](/moving-plots) to their final destinations
+
+- [Basic details of Chia plots](/plotting-basics), including "compressed" versus "uncompressed" plots
+- [How to select the optimal computer for plotting](/plotting-hardware)
+- [List of Chia plotting software](/plotting-software)
+- [How to choose a plot compression level](/plotting-compression)
+- [How to create Chia plots](/plotting-how-to)
+- [Notes about SSD encurance](/ssd-endurance)
+- [How to move plots](/moving-plots) to their final destinations
 
 ## 如何获得帮助
 

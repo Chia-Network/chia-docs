@@ -7,7 +7,7 @@ slug: /dao-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::warning 
+:::warning
 
 Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
 
@@ -51,14 +51,14 @@ Usage: chia rpc wallet [OPTIONS] dao_add_funds_to_treasury [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag              | Type   | Required | Description                                                                           |
-|:------------------|--------|:---------|:--------------------------------------------------------------------------------------|
+| :---------------- | ------ | :------- | :------------------------------------------------------------------------------------ |
 | wallet_id         | NUMBER | True     | The DAO wallet to which to add funds. Must be of type `DAOWallet`                     |
 | funding_wallet_id | NUMBER | True     | The wallet from which the funds will come. Must be of type `STANDARD_WALLET` or `CAT` |
 | amount            | NUMBER | True     | The amount of funds to add, in mojos                                                  |
@@ -194,14 +194,14 @@ Usage: chia rpc wallet [OPTIONS] dao_adjust_filter_level [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag         | Type   | Required | Description                                                                                   |
-|:-------------|--------|:---------|:----------------------------------------------------------------------------------------------|
+| :----------- | ------ | :------- | :-------------------------------------------------------------------------------------------- |
 | wallet_id    | NUMBER | True     | The ID of the wallet whose filter level you would like to adjust. Must be of type `DAOWallet` |
 | filter_level | NUMBER | True     | The new filter level. Propos with fewer votes than this will not be shown.                    |
 
@@ -216,14 +216,14 @@ Usage: chia rpc wallet [OPTIONS] dao_close_proposal [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                                                                           |
-|:------------|--------|:---------|:--------------------------------------------------------------------------------------|
+| :---------- | ------ | :------- | :------------------------------------------------------------------------------------ |
 | wallet_id   | NUMBER | True     | The ID of the wallet that contains the proposal to close. Must be of type `DAOWallet` |
 | proposal_id | STRING | True     | The ID of the proposal to close                                                       |
 | fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                  |
@@ -239,14 +239,14 @@ Usage: chia rpc wallet [OPTIONS] dao_create_proposal [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag          | Type   | Required | Description                                                                  |
-|:--------------|--------|:---------|:-----------------------------------------------------------------------------|
+| :------------ | ------ | :------- | :--------------------------------------------------------------------------- |
 | wallet_id     | NUMBER | True     | The DAO wallet to use for creating the proposal. Must be of type `DAOWallet` |
 | proposal_type | STRING | True     | Must be either `spend`, `update`, or `mint`                                  |
 | vote_amount   | NUMBER | False    | The number of votes to add                                                   |
@@ -255,7 +255,7 @@ Request Parameters:
 Proposal Types:
 
 | Type   | Description                            |
-|:-------|:---------------------------------------|
+| :----- | :------------------------------------- |
 | spend  | A proposal to spend funds from the DAO |
 | update | A proposal to change a DAO's rules     |
 | mint   | A proposal to mint new DAO CATs        |
@@ -264,16 +264,16 @@ If the proposal is of type `spend`, then `additions` may optionally be included 
 
 `additions` is a list with the following elements:
 
-| Element      | Required | Description                                        |
-|:-------------|:---------|:---------------------------------------------------|
-| asset_id     | False    | The asset_id of the funds to spend [Default: None] |
-| puzzle_hash  | True     | The puzzle_hash of the funds to spend              |
-| amount       | True     | The amount, in mojos, to spend                     |
+| Element     | Required | Description                                        |
+| :---------- | :------- | :------------------------------------------------- |
+| asset_id    | False    | The asset_id of the funds to spend [Default: None] |
+| puzzle_hash | True     | The puzzle_hash of the funds to spend              |
+| amount      | True     | The amount, in mojos, to spend                     |
 
 If the proposal is of type `spend`, and `additions` is not included, then the following **request parameters** will be used instead:
 
 | Parameter     | Required | Description                                        |
-|:--------------|:---------|:---------------------------------------------------|
+| :------------ | :------- | :------------------------------------------------- |
 | asset_id      | False    | The asset_id of the funds to spend [Default: None] |
 | inner_address | True     | The inner address of the funds to spend            |
 | amount        | True     | The amount, in mojos, to spend                     |
@@ -283,7 +283,7 @@ If the proposal is of type `update`, then the **request parameter** `new_dao_rul
 `new_dao_rules` is a list of optional rules to update. If a rule is missing from this list, it will not be updated:
 
 | Rule                 | Required | Description                                                                                        |
-|:---------------------|:---------|:---------------------------------------------------------------------------------------------------|
+| :------------------- | :------- | :------------------------------------------------------------------------------------------------- |
 | proposal_timelock    | False    | The new minimum number of blocks before a proposal can close                                       |
 | soft_close_length    | False    | The number of blocks a proposal must remain unspent before closing                                 |
 | attendance_required  | False    | The minimum number of votes a proposal must receive to be accepted                                 |
@@ -294,7 +294,7 @@ If the proposal is of type `update`, then the **request parameter** `new_dao_rul
 If the proposal is of type `mint`, then the following **request parameters** are required:
 
 | Parameter          | Required | Description                                  |
-|:-------------------|:---------|:---------------------------------------------|
+| :----------------- | :------- | :------------------------------------------- |
 | amount             | True     | The number of DAO CATs to mint               |
 | cat_target_address | True     | The xch address that will receive the tokens |
 
@@ -309,14 +309,14 @@ Usage: chia rpc wallet [OPTIONS] dao_exit_lockup [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                                          |
-|:----------|--------|:---------|:-------------------------------------------------------------------------------------|
+| :-------- | ------ | :------- | :----------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to release the DAO CATs. Must be of type `DAOWallet` |
 | coins     | STRING | False    | A list of coin IDs to release                                                        |
 | fee       | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
@@ -332,14 +332,14 @@ Usage: chia rpc wallet [OPTIONS] dao_free_coins_from_finished_proposals [REQUEST
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                                          |
-|:----------|--------|:---------|:-------------------------------------------------------------------------------------|
+| :-------- | ------ | :------- | :----------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to release the DAO CATs. Must be of type `DAOWallet` |
 | fee       | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
 
@@ -354,14 +354,14 @@ Usage: chia rpc wallet [OPTIONS] dao_get_proposals [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                          |
-|:----------|--------|:---------|:---------------------------------------------------------------------|
+| :-------- | ------ | :------- | :------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The wallet from which to list proposals; must be of type `DAOWallet` |
 
 <details>
@@ -418,14 +418,14 @@ Usage: chia rpc wallet [OPTIONS] dao_get_proposal_state [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                                                                                     |
-|:------------|--------|:---------|:------------------------------------------------------------------------------------------------|
+| :---------- | ------ | :------- | :---------------------------------------------------------------------------------------------- |
 | wallet_id   | NUMBER | True     | The ID of the DAO wallet from which to look up a proposal's status. Must be of type `DAOWallet` |
 | proposal_id | STRING | True     | The ID of the proposal whose status you would like to show                                      |
 
@@ -493,14 +493,14 @@ Usage: chia rpc wallet [OPTIONS] dao_get_rules [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                              |
-|:----------|--------|:---------|:-------------------------------------------------------------------------|
+| :-------- | ------ | :------- | :----------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO wallet from which to show the rules. Must be of type `DAOWallet` |
 
 <details>
@@ -542,14 +542,14 @@ Usage: chia rpc wallet [OPTIONS] dao_get_treasury_balance [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                                        |
-|:----------|--------|:---------|:-----------------------------------------------------------------------------------|
+| :-------- | ------ | :------- | :--------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO whose treasury balance you would like to show. Must be of type `DAOWallet` |
 
 <details>
@@ -585,14 +585,14 @@ Usage: chia rpc wallet [OPTIONS] dao_get_treasury_id [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                                     |
-|:----------|--------|:---------|:--------------------------------------------------------------------------------|
+| :-------- | ------ | :------- | :------------------------------------------------------------------------------ |
 | wallet_id | NUMBER | True     | The DAO wallet whose ID you would like to retrieve. Must be of type `DAOWallet` |
 
 <details>
@@ -607,6 +607,7 @@ chia rpc wallet dao_get_treasury_id '{"wallet_id": 2}'
     "treasury_id": "0x41b28cbffdd7bbe18913ea84b75887264889ba3948fc9166881ba0bb359bd123"
 }
 ```
+
 </details>
 
 ---
@@ -620,14 +621,14 @@ Usage: chia rpc wallet [OPTIONS] dao_parse_proposal [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                                                          |
-|:------------|--------|:---------|:---------------------------------------------------------------------|
+| :---------- | ------ | :------- | :------------------------------------------------------------------- |
 | wallet_id   | NUMBER | True     | The DAO wallet where the proposal lives. Must be of type `DAOWallet` |
 | proposal_id | STRING | True     | The ID of the proposal whose details you would like to show          |
 
@@ -678,14 +679,14 @@ Usage: chia rpc wallet [OPTIONS] dao_send_to_lockup [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                                   |
-|:----------|--------|:---------|:------------------------------------------------------------------------------|
+| :-------- | ------ | :------- | :---------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to lock DAO CATs. Must be of type `DAOWallet` |
 | amount    | NUMBEr | True     | The amount of CATs to lock for voting                                         |
 
@@ -700,14 +701,14 @@ Usage: chia rpc wallet [OPTIONS] dao_vote_on_proposal [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:--------------|:-------------|:-----|:---------|:--------------------------------------------------------------------|
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag        | Type    | Required | Description                                                                |
-|:------------|---------|:---------|:---------------------------------------------------------------------------|
+| :---------- | ------- | :------- | :------------------------------------------------------------------------- |
 | wallet_id   | NUMBER  | True     | The ID of the wallet where the proposal lives. Must be of type `DAOWallet` |
 | proposal_id | STRING  | True     | The ID of the proposal on which you would like to vote                     |
 | vote_amount | NUMBER  | False    | The number of DAO CATs to use for this vote [Default: None]                |

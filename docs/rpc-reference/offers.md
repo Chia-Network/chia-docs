@@ -187,15 +187,15 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type    | Required | Description                                                                                                               |
-| :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------ |
-| offer           | OBJECT  | True     | A dictionary `[str, int]` of the Offer to create (see the examples below for specifics)                                   |
-| fee             | NUMBER  | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]                                                       |
-| validate_only   | BOOLEAN | False    | Set to `true` to verify the validity of a potential Offer, rather than actually creating an Offer [Default: `false`]      |
-| driver_dict     | OBJECT  | False    | A dictionary `[str, Any]` containing metadata of the asset being requested, for example an NFT's on-chain metadata        |
-| min_coin_amount | NUMBER  | False    | The minimum coin size to be included in the Offer [Default: `0`]                                                          |
-| max_coin_amount | NUMBER  | False    | The maximum coin size to be included in the Offer [Default: `0`]                                                          |
-| solver          |         | False    | Default: None                                                                                                             |
+| Flag            | Type    | Required | Description                                                                                                                 |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| offer           | OBJECT  | True     | A dictionary `[str, int]` of the Offer to create (see the examples below for specifics)                                     |
+| fee             | NUMBER  | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]                                                         |
+| validate_only   | BOOLEAN | False    | Set to `true` to verify the validity of a potential Offer, rather than actually creating an Offer [Default: `false`]        |
+| driver_dict     | OBJECT  | False    | A dictionary `[str, Any]` containing metadata of the asset being requested, for example an NFT's on-chain metadata          |
+| min_coin_amount | NUMBER  | False    | The minimum coin size to be included in the Offer [Default: `0`]                                                            |
+| max_coin_amount | NUMBER  | False    | The maximum coin size to be included in the Offer [Default: `0`]                                                            |
+| solver          |         | False    | Default: None                                                                                                               |
 | min_height      | NUMBER  | False    | The minimum block height that must be reached before this Offer becomes valid [Default: `null` (not used)]                  |
 | min_time        | NUMBER  | False    | The minimum UNIX timestamp that must be reached before this Offer becomes valid [Default: `null` (not used)]                |
 | max_height      | NUMBER  | False    | The maximum block height where this Offer is still considered valid, aka the expiry height [Default: `null` (not used)]     |
@@ -204,15 +204,16 @@ Request Parameters:
 :::note
 
 Although relative time lock flags are included in Offer files, the RPC API does not yet support them. The unsupported flags include:
-* `max_blocks_after_created`
-* `max_secs_after_created`
-* `min_blocks_since_created`
-* `min_secs_since_created`
 
-In addition, of the four absolute time lock flags, the reference wallet will only recognize `max_time`. 
+- `max_blocks_after_created`
+- `max_secs_after_created`
+- `min_blocks_since_created`
+- `min_secs_since_created`
 
-The other three **(**`min_height`, `min_time`, and `max_height`**)** are each enforced on the blockchain, but the reference wallet will not currently understand that the time locks need to be applied until it submits the Offer spendbundle to the mempool. 
-For this reason, if you use the reference wallet to accept an Offer that uses any of these three flags, the transaction will be initiated, but will fail. 
+In addition, of the four absolute time lock flags, the reference wallet will only recognize `max_time`.
+
+The other three **(**`min_height`, `min_time`, and `max_height`**)** are each enforced on the blockchain, but the reference wallet will not currently understand that the time locks need to be applied until it submits the Offer spendbundle to the mempool.
+For this reason, if you use the reference wallet to accept an Offer that uses any of these three flags, the transaction will be initiated, but will fail.
 Your log file will contain `ASSERT_SECONDS_ABSOLUTE_FAILED` in this case, but the GUI will continue to show the pending transaction as if it were still valid.
 
 :::
@@ -350,9 +351,9 @@ Response:
 }
 ```
 
-The Offer itself is the value of `offer`, at the top of the response. 
+The Offer itself is the value of `offer`, at the top of the response.
 It is possible to copy this string and paste it into the `Offers` dialog of the GUI.
-You can also send the Offer directly in an email, direct message, etc. 
+You can also send the Offer directly in an email, direct message, etc.
 It does not contain any sensitive information. A "thief" only has two options: accept the Offer or ignore it.
 
 </details>
@@ -406,12 +407,12 @@ Response:
 }
 ```
 
-The next step is to create a valid Offer that wallets will recognize. 
+The next step is to create a valid Offer that wallets will recognize.
 This includes creating a `driver_dict`, without which the Offer will be valid but wallets won't know how to interpret.
 The response from the above RPC call will include the information necessary to create the `driver_dict`,
 and the reference wallet uses a specific format for Offers.
 
-The following is an example RPC call that includes all of the necessary information. 
+The following is an example RPC call that includes all of the necessary information.
 However, it is formatted with multiple lines, so it will be difficult to copy/paste into a terminal.
 
 We'll give a few single-line, OS-specific examples afterward.
@@ -515,8 +516,8 @@ Just as in Example 1, the response includes the Offer itself at the top of the J
 }
 ```
 
-In Windows, quotes need to be escaped with backslashes. 
-The following is the equivalent command, formatted for Windows, using a single line. 
+In Windows, quotes need to be escaped with backslashes.
+The following is the equivalent command, formatted for Windows, using a single line.
 Note that for the quotes surrounding URIs _three_ backslashes are required:
 
 ```json

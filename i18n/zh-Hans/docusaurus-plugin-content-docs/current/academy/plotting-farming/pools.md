@@ -10,7 +10,7 @@ In this lesson, we review the Pooling protocol, and how it can benefit a Farmer 
 - **Benefits of Pooling**: Understand the benefits of participating in a Pool.
 - **Reward Splitting**: Understand how the rewards are split among pool participants.
 
-***
+---
 
 ## Content
 
@@ -18,7 +18,7 @@ In this lesson, we review the Pooling protocol, and how it can benefit a Farmer 
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/qO1ctn7DhwE" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -40,13 +40,13 @@ The overall reward earned is largely the same over time for average sized farms,
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
 - **Farming size still matters:** The size of a Farm directly relates to how many valid partials are generated, and partials determine a farmers share of the pool reward (7/8). This means there is still a benefit to large farms joining a pool.
 
-***
+---
 
 ## Knowledge check
 
@@ -78,7 +78,7 @@ How does the protocol maintain decentralization?
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -89,4 +89,4 @@ How does the protocol maintain decentralization?
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

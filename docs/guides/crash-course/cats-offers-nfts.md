@@ -21,13 +21,13 @@ For example, the TAIL may limit the creation to **single-issuance**. Any tokens 
 Up next we will clone the CAT creation tool which will simplify creating a cat by providing all of the necessary TAIL Chialisp files.
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux/MacOS', value: 'linux-macos'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux/MacOS', value: 'linux-macos'},
+]}>
+<TabItem value="windows">
 
 ```bash
 git clone https://github.com/Chia-Network/CAT-admin-tool.git

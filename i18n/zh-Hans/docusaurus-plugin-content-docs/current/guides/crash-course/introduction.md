@@ -57,12 +57,12 @@ Before we get started using the CLI, we need to be able to issue the `chia` comm
 Use this line in Git Bash / terminal:
 
 <Tabs groupId="OS"
-  defaultValue="windows (Git Bash)"
-  values={[
-    {label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
- {label: 'Linux/MacOS', value: 'nix'},
- ]}>
-  <TabItem value="windows (Git Bash)">
+defaultValue="windows (Git Bash)"
+values={[
+{label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows (Git Bash)">
 
 ```bash
 ~/AppData/Local/chia-blockchain/app-1.5.1/resources/app.asar.unpacked/daemon/chia.exe
@@ -128,12 +128,12 @@ Commands:
 Using this path each time can get old, so you have the option of creating an alias or environment variable.
 
 <Tabs groupId="OS"
-  defaultValue="windows (Git Bash)"
-  values={[
-    {label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
- {label: 'Linux/MacOS', value: 'nix'},
- ]}>
-  <TabItem value="windows (Git Bash)">
+defaultValue="windows (Git Bash)"
+values={[
+{label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows (Git Bash)">
 
 ```bash
 alias chia=~/AppData/Local/Programs/Chia/resources/app.asar.unpacked/daemon/chia.exe

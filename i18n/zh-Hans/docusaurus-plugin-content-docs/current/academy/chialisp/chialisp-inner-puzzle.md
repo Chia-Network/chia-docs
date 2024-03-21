@@ -12,7 +12,7 @@ In this lesson, we'll talk about why you might want to nest puzzles and how to s
 - **Functions**: Learn how to define and execute functions in Chialisp.
 - **Nesting Puzzles**: Understand the use of nesting puzzles in Chialisp.
 
-***
+---
 
 ## Content
 
@@ -20,7 +20,7 @@ In this lesson, we'll talk about why you might want to nest puzzles and how to s
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/GAw1yMmkO3g" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -75,13 +75,13 @@ If the number of blocks is not yet passed, it will have a pending status. If suc
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
 - **More Parentheses:** It's important to take note of where your solutions are going to be used in your puzzle and wrap them in the appropriate amount of parentheses. This can be counter-intuitive as the parentheses can seem unecessary at first glance.
 
-***
+---
 
 ## Knowledge check
 
@@ -117,7 +117,7 @@ What does the `ASSERT_HEIGHT_RELATIVE` condition check for?
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -154,4 +154,4 @@ For information on using these plugins please refer to the [academy overview](/a
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

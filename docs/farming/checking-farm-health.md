@@ -25,29 +25,34 @@ The new Farm and Harvest panels in 2.0 make it easy to get an overview of your f
 Here is how to interpret each of the statistics in the above image:
 
 #### Farm Health
-* **Sync status** -- Shows whether your full node is synced.
-* **Plots passing filter** -- Shows whether the "correct" number of plots are passing the [plot filter](https://help.chia.net/hc/en-us/articles/8373437367191-What-is-the-plot-filter-and-why-didn-t-my-plot-pass-it-). The popup, as shown in the above image, contains several stats. As long as the numbers next to `Total plots passing filter` and `Expected Total plots passing filter` are similar, this aspect of your farm is working properly.
-* **Missing signage points** -- Chia's consensus is designed such that 64 [signage points](/signage-and-infusion-points) are broadcast every 10 minutes, or 9216 signage points per day. You are ineligible to win a block at any missed signage points. It is normal to miss a few signage points per day, for example due to a temporary outage in your local network. However, if you miss 100 or more signage points per day, there is likely something wrong. The two most common causes for this are that your harvester is overwhelmed (fix this by moving some HDDs to another harvester), or that your network is experiencing frequent outages.
-* **Stale partials** -- Your pool will send partial challenges to your node in order to estimate how much space you are contributing. If your node doesn't respond to a partial challenge quickly, it will be considered "stale". Just as with missing signage points, an occasional stale partial is nothing to worry about. If you experience a frequent number of stale partials, the causes and solutions tend to be the same as with missing signage points.
+
+- **Sync status** -- Shows whether your full node is synced.
+- **Plots passing filter** -- Shows whether the "correct" number of plots are passing the [plot filter](https://help.chia.net/hc/en-us/articles/8373437367191-What-is-the-plot-filter-and-why-didn-t-my-plot-pass-it-). The popup, as shown in the above image, contains several stats. As long as the numbers next to `Total plots passing filter` and `Expected Total plots passing filter` are similar, this aspect of your farm is working properly.
+- **Missing signage points** -- Chia's consensus is designed such that 64 [signage points](/signage-and-infusion-points) are broadcast every 10 minutes, or 9216 signage points per day. You are ineligible to win a block at any missed signage points. It is normal to miss a few signage points per day, for example due to a temporary outage in your local network. However, if you miss 100 or more signage points per day, there is likely something wrong. The two most common causes for this are that your harvester is overwhelmed (fix this by moving some HDDs to another harvester), or that your network is experiencing frequent outages.
+- **Stale partials** -- Your pool will send partial challenges to your node in order to estimate how much space you are contributing. If your node doesn't respond to a partial challenge quickly, it will be considered "stale". Just as with missing signage points, an occasional stale partial is nothing to worry about. If you experience a frequent number of stale partials, the causes and solutions tend to be the same as with missing signage points.
 
 #### Netspace
-* **Total Netspace** -- This shows an estimate of the total amount of space on Chia's entire network.
-* **Farming Space** -- This is hidden behind the popup dialog in the above image. It is your local node's contribution of space to the network.
+
+- **Total Netspace** -- This shows an estimate of the total amount of space on Chia's entire network.
+- **Farming Space** -- This is hidden behind the popup dialog in the above image. It is your local node's contribution of space to the network.
 
 #### Farming Rewards
-* **Estimated Time to Win** -- This is only an estimation of when you will create your next block, based on the percentage of the total netspace you are contributing. You have a 50% chance of winning sooner than this, and a 50% chance of winning later. It is not uncommon for 5x this amount of time to elapse between block wins, even if your farm is set up perfectly. Also keep in mind that the probability that you will win the next block does not increase as more time elapses. The Gambler's Fallacy applies here.
-* **Estimated daily XCH** -- The formula for this is `(1 day / Estimated Time to Win) * block reward`. If you join a pool, this is roughly how much you should receive each day. However, you need to account for pool fees, as well as the fact that 1/8 of the reward goes directly to the farmer.
-* **Estimated monthly XCH** -- Same as above, but taken as a monthly estimate.
+
+- **Estimated Time to Win** -- This is only an estimation of when you will create your next block, based on the percentage of the total netspace you are contributing. You have a 50% chance of winning sooner than this, and a 50% chance of winning later. It is not uncommon for 5x this amount of time to elapse between block wins, even if your farm is set up perfectly. Also keep in mind that the probability that you will win the next block does not increase as more time elapses. The Gambler's Fallacy applies here.
+- **Estimated daily XCH** -- The formula for this is `(1 day / Estimated Time to Win) * block reward`. If you join a pool, this is roughly how much you should receive each day. However, you need to account for pool fees, as well as the fact that 1/8 of the reward goes directly to the farmer.
+- **Estimated monthly XCH** -- Same as above, but taken as a monthly estimate.
 
 #### Pooling Health
-* **Valid Partials** -- Partial proofs your node has successfully returned to your pool, expressed as both a number and a percentage. See above for more info on partials.
-* **Stale Partials** -- The percent and number of partials your node has failed to return on time.
-* **Invalid partials** -- The percent and number of partials your node has returned that were invalid.
-* **Missing partials** -- The percent and number of partials your node has failed to return.
+
+- **Valid Partials** -- Partial proofs your node has successfully returned to your pool, expressed as both a number and a percentage. See above for more info on partials.
+- **Stale Partials** -- The percent and number of partials your node has failed to return on time.
+- **Invalid partials** -- The percent and number of partials your node has returned that were invalid.
+- **Missing partials** -- The percent and number of partials your node has failed to return.
 
 #### Last Attempted Proof
-* **Plots Passed Filter** -- At each signage point, a certain number of your plots will pass the plot filter. The numerator indicates the number of plots that are eligible to play in that specific Proof of Space lottery. For small farms, this number is often 0. The denominator indicates your farm's total number of plots.
-* **Proofs Found** -- The number of valid proofs found at that signage point. If you are not in a pool, a number greater than 0 indicates that you have successfully found a proof and will likely win a block reward at the next transaction block. If you are in a pool, a number greater than 0 likely means that a valid partial proof was found and will be returned to your pool.
+
+- **Plots Passed Filter** -- At each signage point, a certain number of your plots will pass the plot filter. The numerator indicates the number of plots that are eligible to play in that specific Proof of Space lottery. For small farms, this number is often 0. The denominator indicates your farm's total number of plots.
+- **Proofs Found** -- The number of valid proofs found at that signage point. If you are not in a pool, a number greater than 0 indicates that you have successfully found a proof and will likely win a block reward at the next transaction block. If you are in a pool, a number greater than 0 likely means that a valid partial proof was found and will be returned to your pool.
 
 ### Harvest panel
 
@@ -57,8 +62,9 @@ Here is how to interpret each of the statistics in the above image:
 <br/>
 
 In the above image:
-* **Total farm size raw** -- The actual amount of space your farm is contributing to the network.
-* **Total farm size effective** -- The amount of space your farm is effectively contributing, with uncompressed (C0) plots as the baseline. For example, if your farm consists entirely of C3 plots, according to the [plot compression table](/plotting-compression#compression-table), your farm's effective size should be 20% larger than its actual size. If you are using plots with a mixture of compression levels, the effective size of each of your plots will be taken into account in this number's calculation.
+
+- **Total farm size raw** -- The actual amount of space your farm is contributing to the network.
+- **Total farm size effective** -- The amount of space your farm is effectively contributing, with uncompressed (C0) plots as the baseline. For example, if your farm consists entirely of C3 plots, according to the [plot compression table](/plotting-compression#compression-table), your farm's effective size should be 20% larger than its actual size. If you are using plots with a mixture of compression levels, the effective size of each of your plots will be taken into account in this number's calculation.
 
 ## CLI Health
 

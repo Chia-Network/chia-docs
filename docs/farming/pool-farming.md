@@ -119,8 +119,9 @@ A two-word name will automatically be assigned to your plot NFT.
 You can now start creating plots for this Plot NFT, which means these plots will be "pooling" and can earn rewards more often.
 
 Detailed instructions can be found in the "How to Plot" page:
-* Plotting from the [CLI](/plotting-how-to#cli-plotting)
-* Plotting from the [GUI](/plotting-how-to#gui-plotting)
+
+- Plotting from the [CLI](/plotting-how-to#cli-plotting)
+- Plotting from the [GUI](/plotting-how-to#gui-plotting)
 
 ### Step 5: Manage your Plot NFT
 
@@ -187,8 +188,8 @@ the GUI before a pool switching operation has finalized. Please click "change po
 
 The block reward is divided into two components, the pool portion (7/8 of the total reward) and the farmer portion (1/8).
 
--   The pool portion gets paid out to the pool, which will pay you according to their payout schedule. This is configurable in the Pool tab of the GUI: Click the three dots on the upper-right corner of your plot NFT and click "Edit Payout Instructions." This is also configurable in `config.yaml` in the pool_list section under payout_instructions.
--   The farmer portion will go to your farmer target address. This is configurable in the Farm tab of the GUI, or in `config.yaml` under farmer.xch_target_address.
+- The pool portion gets paid out to the pool, which will pay you according to their payout schedule. This is configurable in the Pool tab of the GUI: Click the three dots on the upper-right corner of your plot NFT and click "Edit Payout Instructions." This is also configurable in `config.yaml` in the pool_list section under payout_instructions.
+- The farmer portion will go to your farmer target address. This is configurable in the Farm tab of the GUI, or in `config.yaml` under farmer.xch_target_address.
 
 ### Self Pooling
 
@@ -279,8 +280,9 @@ A user can have one or more keys on a machine running Chia. A key is represented
 
 ### How is Chia pooling different from other cryptos?
 
-Chia has three major differences from most other crypto pooling protocol: 
-1. Joining pools is permissionless. You do not need to sign up to an account on a pool server before joining. 
+Chia has three major differences from most other crypto pooling protocol:
+
+1. Joining pools is permissionless. You do not need to sign up to an account on a pool server before joining.
 2. Farmers receive 1/8 of the block reward plus transaction fees, while the pool receives 7/8 of the reward to redistribute (minus pool fees) amongst all pool participants.
 3. The farmer with the winning proof will farm the block, not the pool server.
 
@@ -335,10 +337,10 @@ If it's your first time writing pool code, we recommend you look at established 
 
 ### Variable names used in pooling code
 
--   puzzle_hash: an address but in a different format. Addresses are human readable.
--   singleton: a smart coin (contract) that guaranteed to be unique and controlled by the user.
--   launcher_id: unique ID of the singleton.
--   points: represent the amount of farming that a farmer has done. It is calculated by number of proofs submitted, weighted by difficulty. One k32 farms 10 points per day. To accumulate 1000 points you need 10 TiB farming for a day. This is equivalent to shares in PoW pools.
+- puzzle_hash: an address but in a different format. Addresses are human readable.
+- singleton: a smart coin (contract) that guaranteed to be unique and controlled by the user.
+- launcher_id: unique ID of the singleton.
+- points: represent the amount of farming that a farmer has done. It is calculated by number of proofs submitted, weighted by difficulty. One k32 farms 10 points per day. To accumulate 1000 points you need 10 TiB farming for a day. This is equivalent to shares in PoW pools.
 
 ### How does one calculate a farmer's space?
 
@@ -367,18 +369,18 @@ Yes, the pool operator will need to write code to keep track of all farmers and 
 
 There are a few things you can do to the singleton:
 
--   Change pool (needs owner signature)
--   Escape pool, this is announcing that you will change pool (needs owner signature)
--   Claim rewards (does not need any signature, it goes to the specified address in the singleton)
+- Change pool (needs owner signature)
+- Escape pool, this is announcing that you will change pool (needs owner signature)
+- Claim rewards (does not need any signature, it goes to the specified address in the singleton)
 
 ### How do pools collect rewards?
 
--   Farmer joins a pool, they will assign their singleton to the pool_puzzle_hash.
--   When a farmer wins a block, the pool rewards will be sent to the p2_singleton_puzzle_hash.
--   Pool will scan blockchain to find new rewards sent to Farmer's singletons.
--   The pool will send a request to claim rewards to the winning Farmer's singleton.
--   Farmer's singleton will send pool rewards XCH to pool_puzzle_hash.
--   Pool will periodically distribute rewards to farmers that have points
+- Farmer joins a pool, they will assign their singleton to the pool_puzzle_hash.
+- When a farmer wins a block, the pool rewards will be sent to the p2_singleton_puzzle_hash.
+- Pool will scan blockchain to find new rewards sent to Farmer's singletons.
+- The pool will send a request to claim rewards to the winning Farmer's singleton.
+- Farmer's singleton will send pool rewards XCH to pool_puzzle_hash.
+- Pool will periodically distribute rewards to farmers that have points
 
 ### How can I tell if the server is receiving enough partials from a particular client?
 
@@ -425,5 +427,6 @@ https://github.com/Chia-Network/pool-reference/blob/main/SPECIFICATION.md
 ### Where can I see the video Technical Q&A on Chia Pooling:
 
 For those interested in the Chia Pools for Pool Operators video and presentation, you can find it here:
+
 - https://youtu.be/XzSZwxowPzw
 - https://www.chia.net/assets/presentations/2021-06-02_Pooling_for_Pool_Operators.pdf

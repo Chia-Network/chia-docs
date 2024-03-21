@@ -9,7 +9,7 @@ slug: /reference-farming-hardware
 
 The easiest way to get started in Chia is by attaching a USB hard drive to a desktop computer, or installing a SATA hard drive. The minimum amount of storage needed to farm is only a single plot! Beginners should start with a few drives to make it worth running the farm, and earn a few dollars per month. You can you use your desktop computer to create the plots (see plotting). There are companies like Evergreen that make it one step easier and remove the plotting step by offering a pre-plotted drive and a mobile app. Plotting is going to be the limiting factor for curious farmers because their desktop or laptop may not have enough compute and temporary SSD storage that is suitable for plotting, but filling up a single drive with plots is fairly easy even for beginners.
 
-<img src="https://www.chia.net/wp-content/uploads/2023/04/Hard-Drive-Standard.webp" width="300" /> 
+<img src="https://www.chia.net/wp-content/uploads/2023/04/Hard-Drive-Standard.webp" width="300" />
 
 ## Hobbyist
 

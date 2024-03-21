@@ -34,12 +34,12 @@ When running RPC commands with JSON inputs on **Windows**, you will need to esca
 Here is an example of the difference between the syntax:
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux/MacOS', value: 'nix'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows">
 
 ```powershell
 chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
