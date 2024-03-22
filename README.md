@@ -54,4 +54,4 @@ $ npm run build
 $ npm run serve
 ```
 
-Note: `npx prettier . --write` is for verifying the formatting of all .md files and should be run in the root directory.
+Note: `npx prettier --write --ignore-path .gitignore --ignore-path .prettierignore .` is for verifying the formatting of all .md and .mdx files and should be run in the root directory.
