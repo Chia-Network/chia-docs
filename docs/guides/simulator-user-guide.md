@@ -92,13 +92,13 @@ Make sure your CHIA_ROOT Environment Variable is set to: C:\Users\<user>\.chia\s
 Now that you have created the simulator, you can set the `CHIA_ROOT` environment variable to point to the simulator's installation directory. This will enable you to run the simulator from outside of `chia-blockchain`:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux / MacOS', value: 'linux/macos'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux / MacOS', value: 'linux/macos'},
+]}>
+<TabItem value="windows">
 
 ```powershell
 $env:CHIA_ROOT='~/.chia/simulator/main'

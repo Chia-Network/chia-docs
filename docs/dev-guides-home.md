@@ -40,13 +40,13 @@ import AnnounceOracle from '@site/static/img/home_pages/announcements_oracles.pn
 import SiCats from '@site/static/img/home_pages/si_cat.png';
 import MiCats from '@site/static/img/home_pages/mi_cat.png';
 
-Welcome to the Chia Network Developer Guides hub! Your gateway to mastering the intricacies of Chia's blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or just stepping into the world of decentralized technologies, our documentation is crafted to empower you with knowledge and tools for navigating the Chia ecosystem. From mastering the basics of Chialisp programming to exploring advanced primitives, our guides cover a spectrum of topics designed to elevate your development skills.  
+Welcome to the Chia Network Developer Guides hub! Your gateway to mastering the intricacies of Chia's blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or just stepping into the world of decentralized technologies, our documentation is crafted to empower you with knowledge and tools for navigating the Chia ecosystem. From mastering the basics of Chialisp programming to exploring advanced primitives, our guides cover a spectrum of topics designed to elevate your development skills.
 
 ---
 
 ## Chia Crash Course
 
-Embark on a swift journey into Chia Network's Crash Course for developers. Start with an Intro to Developing on Chia, grasp the fundamentals of Chialisp, explore the world of Smart Coins, and understand the intricacies of Signatures, State, Inner Puzzles, and Primitives.  
+Embark on a swift journey into Chia Network's Crash Course for developers. Start with an Intro to Developing on Chia, grasp the fundamentals of Chialisp, explore the world of Smart Coins, and understand the intricacies of Signatures, State, Inner Puzzles, and Primitives.
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -145,7 +145,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
 
 ## Primitives
 
-Explore the core building blocks of Chia development in the Primitives section. Unlock the potential of NFTs, embrace the versatility of CATs (Colored Coins), navigate the intricacies of Offers, leverage the DataLayer for efficient data management, implement Clawback mechanisms, understand the dynamics of DAOs, and secure your applications with Verifiable Credentials. These primitives are the foundation for creating robust and innovative solutions on the Chia Network.  
+Explore the core building blocks of Chia development in the Primitives section. Unlock the potential of NFTs, embrace the versatility of CATs (Colored Coins), navigate the intricacies of Offers, leverage the DataLayer for efficient data management, implement Clawback mechanisms, understand the dynamics of DAOs, and secure your applications with Verifiable Credentials. These primitives are the foundation for creating robust and innovative solutions on the Chia Network.
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -233,7 +233,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
 
 ## Tutorials
 
-Immerse yourself in Chia Network's Tutorials section for developers. Understand the intricacies of Application Structure, explore the art of Custom Puzzle Locks, wield the power of the Custody Tool, master Coin Spending via RPC, harness the capabilities of the Seeder and Simulator with our user guides, and gain insights into the WalletConnect framework.  
+Immerse yourself in Chia Network's Tutorials section for developers. Understand the intricacies of Application Structure, explore the art of Custom Puzzle Locks, wield the power of the Custody Tool, master Coin Spending via RPC, harness the capabilities of the Seeder and Simulator with our user guides, and gain insights into the WalletConnect framework.
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -321,7 +321,7 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
 
 ## Video Series
 
-Dive into the Video Series of Chia Network's Developer Guides for a dynamic learning experience. Discover why Chia is great, explore the essentials of developing Chia applications, set up your tools efficiently, delve into programming in Chialisp, understand the intricacies of the Coin Lifecycle, implement Singleton Contracts, master the dynamics of State, Coins, and Announcements, ensure security with insights into Arguments and Signing, explore Announcements and Oracles, and harness the potential of CATs (Chia Asset Tokens).  
+Dive into the Video Series of Chia Network's Developer Guides for a dynamic learning experience. Discover why Chia is great, explore the essentials of developing Chia applications, set up your tools efficiently, delve into programming in Chialisp, understand the intricacies of the Coin Lifecycle, implement Singleton Contracts, master the dynamics of State, Coins, and Announcements, ensure security with insights into Arguments and Signing, explore Announcements and Oracles, and harness the potential of CATs (Chia Asset Tokens).
 
 <section class="carousel">
   <c-ol class="carousel-inner">

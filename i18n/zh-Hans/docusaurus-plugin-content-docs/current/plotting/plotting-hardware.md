@@ -57,13 +57,13 @@ The **BladeBit CUDA** plotter requires an NVIDIA GPU with CUDA capability 5.2 an
 
 The following table lists the general plotter types, along with their requirements, for creating k32 plots:
 
-| Processor +<br/>Storage | Plotter <br/> Name(s)                          | Chia <br/> Version | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GB) | RAM<br/>(GB) | Plot<br/>Times<br/>(min.) |
-|:----------------------------- |:---------------------------------------------------- |:------------------------ |:--------------------- |:------- |:---------------------------------- |:------------------ |:------------------------------------- |
-| **GPU +<br/> RAM**      | BladeBit CUDA                                        | 2.0                      | Yes                   | GPU     | None                               | 256                | 1-3                                   |
-| **GPU +<br/> SSD**      | BladeBit CUDA                                        | 2.1                      | Yes                   | GPU     | 180                                | 128                | 3-5                                   |
-| **CPU +<br/> RAM**      | BladeBit RAM                                         | 2.0                      | Yes                   | CPU     | None                               | 416                | 2-5                                   |
-| **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                      | No                    | CPU     | 512                                | 4                  | 15-60                                 |
-| **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                      | No                    | CPU     | 512                                | 4                  | > 60                                  |
+| Processor +<br/>Storage | Plotter <br/> Name(s)                    | Chia <br/> Version | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GB) | RAM<br/>(GB) | Plot<br/>Times<br/>(min.) |
+| :---------------------- | :--------------------------------------- | :----------------- | :-------------- | :------ | :--------------------- | :----------- | :------------------------ |
+| **GPU +<br/> RAM**      | BladeBit CUDA                            | 2.0                | Yes             | GPU     | None                   | 256          | 1-3                       |
+| **GPU +<br/> SSD**      | BladeBit CUDA                            | 2.1                | Yes             | GPU     | 180                    | 128          | 3-5                       |
+| **CPU +<br/> RAM**      | BladeBit RAM                             | 2.0                | Yes             | CPU     | None                   | 416          | 2-5                       |
+| **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                    | 4            | 15-60                     |
+| **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                    | 4            | > 60                      |
 
 :::note
 

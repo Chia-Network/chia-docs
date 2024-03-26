@@ -23,7 +23,7 @@ The number of NFTs per spend bundle is hard-coded at 25 in this tool. It may be 
 <details>
   <summary>Note about Python <code>RuntimeError</code> on Windows</summary>
 
-If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 "More info about this issue") and can be safely ignored. For example:
+If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 'More info about this issue') and can be safely ignored. For example:
 
 ```bash
 chia stop -d all
@@ -68,7 +68,7 @@ chia stop -d all
 If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
 :::
 
-1. Clone the [chia-nft-minting-tool](https://github.com/Chia-Network/chia-nft-minting-tool "chia-nft-minting-tool") GitHub repository, which contains the bulk minting tool.
+1. Clone the [chia-nft-minting-tool](https://github.com/Chia-Network/chia-nft-minting-tool 'chia-nft-minting-tool') GitHub repository, which contains the bulk minting tool.
 
 In order to clone this repository, first open a PowerShell (Windows) or terminal (Linux and MacOS) window. Next, run the `git clone` command:
 
@@ -85,35 +85,35 @@ cd chia-nft-minting-tool
 3. Create a new virtual environment and then activate it:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
 </Tabs>
@@ -143,7 +143,7 @@ If you previously had been running Chia on mainnet, then your peers table will b
 
 - `~/.chia/mainnet/db/peers.dat`
 - `~/.chia/mainnet/wallet/db/wallet_peers.dat`
-:::
+  :::
 
 2. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run:
 
@@ -597,7 +597,7 @@ This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
    - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
-   - `-o`: *Not set.* In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
+   - `-o`: _Not set._ In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
 
 ```bash
 chianft submit-spend-bundles -m 10 output.pkl

@@ -1,5 +1,6 @@
-{
-  "tabWidth": 2,
-  "singleQuote": true,
-  "jsxSingleQuote": true
-}
+overrides:
+  - files: ["*.md", "*.mdx"]
+    options:
+      "tabWidth": 2
+      "singleQuote": true
+      "jsxSingleQuote": true

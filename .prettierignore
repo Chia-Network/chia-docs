@@ -1,0 +1,15 @@
+node_modules
+**/.github
+**/.docusarus
+
+# Ignore config files
+**/*.js
+**/*.yml
+**/*.json
+
+# Ignore artifacts:
+build
+src
+static
+k8s
+

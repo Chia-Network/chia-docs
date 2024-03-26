@@ -37,9 +37,9 @@ Gets the wallet's master public key.
 
 #### Output Data
 
-| Parameter     | Type      | Description                    |
-| ------------- | --------- | ------------------------------ |
-| `pubkey`      | `string`  | Hex encoded master public key. |
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| `pubkey`  | `string` | Hex encoded master public key. |
 
 ### `chia_getWallets`
 
@@ -270,14 +270,14 @@ Gets the current sync status of the wallet.
 
 ### TransactionType
 
-| Name               | Value |
-| ------------------ | ----- |
-| `Incoming`         | 0     |
-| `Outgoing`         | 1     |
-| `CoinbaseReward`   | 2     |
-| `FeeReward`        | 3     |
-| `IncomingTrade`    | 4     |
-| `OutgoingTrade`    | 5     |
+| Name             | Value |
+| ---------------- | ----- |
+| `Incoming`       | 0     |
+| `Outgoing`       | 1     |
+| `CoinbaseReward` | 2     |
+| `FeeReward`      | 3     |
+| `IncomingTrade`  | 4     |
+| `OutgoingTrade`  | 5     |
 
 ### Peer
 

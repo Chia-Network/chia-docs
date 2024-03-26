@@ -51,7 +51,7 @@ Chia 还有许多其他创新，其中一些包括：
 - **BLS签名**，允许将区块的所有签名聚合在一起。
 - **可扩展性和性能**改进，使得可以在树莓派上运行 Chia节点。
 - **权重证明和轻客户端**，支持从移动设备快速同步。 有关更多信息，请参见[轻客户端](/light-clients)。
-- **Chia资产代币**(Chia Asset Tokens，CAT)是可以从标准XCH铸造的可互换代币。 拥有无限可能！ [ CAT更多信息](https://chialisp.com/cats)或观看 [CAT视频介绍](https://www.youtube.com/watch?v=yxagP_VC8BE)。 此外，社区成员已经创建了一个名为 [TAIL Database](https://www.taildatabase.com/ "TAIL database")的数据库，其中包含了众多的CAT列表。
-- **报价文件**（Offer）使得资产的点对点交换成为可能，包括标准XCH 和CAT。 [阅读更多关于报价的信息](https://chialisp.com/offers) 或观看[简短介绍视频](https://youtu.be/Z2FoZSNtttM "报价介绍")。
+- **Chia资产代币**(Chia Asset Tokens，CAT)是可以从标准XCH铸造的可互换代币。 拥有无限可能！ [ CAT更多信息](https://chialisp.com/cats)或观看 [CAT视频介绍](https://www.youtube.com/watch?v=yxagP_VC8BE)。 此外，社区成员已经创建了一个名为 [TAIL Database](https://www.taildatabase.com/ 'TAIL database')的数据库，其中包含了众多的CAT列表。
+- **报价文件**（Offer）使得资产的点对点交换成为可能，包括标准XCH 和CAT。 [阅读更多关于报价的信息](https://chialisp.com/offers) 或观看[简短介绍视频](https://youtu.be/Z2FoZSNtttM '报价介绍')。
 - **NFT** 通过真正的市场独立性、一致的溯源和数字永久性，推动了数字所有权的实际应用。 我们阐述了我们关于 Chia NFT的[愿景](https://www.chia.net/2022/05/11/our-vision-for-chia-nfts.zh.html)并在 2022 年 6 月推出了我们的[NFT1标准](https://www.chia.net/2022/06/29/1.4.0-introducing-the-chia-nft1-standard.zh.html)。
 - 本文档将向技术受众解释Chia系统不同组件的动机和实现，并深入解释了所有内容的工作原理。 如果您想直接了解如何在Chia上制作去中心化应用程序（dApps），请访问[Chialisp](https://chialisp.com)网站。

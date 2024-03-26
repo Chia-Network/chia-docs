@@ -33,15 +33,15 @@ import CrashCourse from '@site/static/img/home_pages/crash_course.png';
 import Primitives from '@site/static/img/home_pages/primitives.png';
 import Tutorials from '@site/static/img/home_pages/tutorials.png';
 
-Welcome to the official documentation site for Chia Network! Here, you'll find a comprehensive resource that guides you through the diverse and innovative world of Chia, a blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or someone just beginning to explore the possibilities of decentralized technologies, our documentation is designed to empower you with the knowledge and tools needed to navigate the Chia ecosystem.  
-  
-From understanding the fundamentals of our unique Proof of Space and Time consensus algorithm to exploring our advanced smart transaction capabilities, we invite you to embark on a journey of discovery and collaboration. Dive into the documentation, and unlock the potential of Chia Network for your projects and aspirations. Happy exploring!  
+Welcome to the official documentation site for Chia Network! Here, you'll find a comprehensive resource that guides you through the diverse and innovative world of Chia, a blockchain and smart transaction platform. Whether you're a seasoned developer, a blockchain enthusiast, or someone just beginning to explore the possibilities of decentralized technologies, our documentation is designed to empower you with the knowledge and tools needed to navigate the Chia ecosystem.
+
+From understanding the fundamentals of our unique Proof of Space and Time consensus algorithm to exploring our advanced smart transaction capabilities, we invite you to embark on a journey of discovery and collaboration. Dive into the documentation, and unlock the potential of Chia Network for your projects and aspirations. Happy exploring!
 
 ---
 
 ## Beginner Install and Usage Docs
 
-Embark on your Chia Network journey with our Beginner Documentation! Uncover the essentials of Chia's unique Proof of Space and Time, perfect the art of farming, explore wallet basics, and navigate the intuitive GUI.  
+Embark on your Chia Network journey with our Beginner Documentation! Uncover the essentials of Chia's unique Proof of Space and Time, perfect the art of farming, explore wallet basics, and navigate the intuitive GUI.
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -96,7 +96,7 @@ Embark on your Chia Network journey with our Beginner Documentation! Uncover the
 
 ## Advanced Install and Usage Docs
 
-Explore the advanced features of Chia Network through our comprehensive documentation. From installation guides and testnet access to plotting, farming, and detailed references for RPC, CLI, and WalletConnect, we've got you covered.  
+Explore the advanced features of Chia Network through our comprehensive documentation. From installation guides and testnet access to plotting, farming, and detailed references for RPC, CLI, and WalletConnect, we've got you covered.
 
 <section class="carousel">
   <c-ol class="carousel-inner">
@@ -195,7 +195,7 @@ Explore the advanced features of Chia Network through our comprehensive document
 
 ## Troubleshooting the Chia Reference Client
 
-Navigate Chia Network's Troubleshooting Documentation with precision. Check the status of essential components, troubleshoot node syncing issues, and utilize our logging reference for effective problem-solving. Resolve challenges swiftly and ensure a seamless Chia experience.  
+Navigate Chia Network's Troubleshooting Documentation with precision. Check the status of essential components, troubleshoot node syncing issues, and utilize our logging reference for effective problem-solving. Resolve challenges swiftly and ensure a seamless Chia experience.
 
 <section class="carousel">
   <c-ol class="carousel-inner">

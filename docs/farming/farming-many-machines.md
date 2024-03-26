@@ -33,23 +33,23 @@ If you are more of a visual learner, JM made a video outlining the steps from th
 ## Prerequisites
 
 - First, make sure Chia is installed on all machines and initialized by running the following command:
-  
+
   ```bash
   chia init
   ```
 
 - When creating plots on the harvesters, run:
-  
+
   ```bash
   chia plots create -f <farmer_key> -p <pool_key>
   ```
-  
+
   Where `<farmer_key>` and `<pool_key>` can be obtained by running the following command on your main machine:
 
   ```bash
-  chia keys show  
+  chia keys show
   ```
-  
+
   After creating a plot, run `chia plots check` to ensure everything is working correctly.
 
 - A copy of your **main** machine CA directory needs to be accessible by your harvester machines. This directory is located in:
@@ -57,13 +57,13 @@ If you are more of a visual learner, JM made a video outlining the steps from th
   ```bash
   ~/.chia/mainnet/config/ssl/ca
   ```
-  
+
   Options to make this directory accessible include:
 
   - Share the directory on a network drive
   - Copy it using a USB key
   - Do a network copy to each harvester
-  
+
   Be aware that major updates might need you to copy the new `ca` contents. Verify that the harvester does not report SSL errors on connection attempts.
 
 ## Setup Steps
@@ -73,56 +73,57 @@ For each harvester, follow these steps:
 1. Make sure your **main** machine's IP address on port 8447 is accessible by your harvester machines
 2. Shut down all Chia daemon processes by running:
 
-  ```bash
-  chia stop all -d
-  ```
+```bash
+chia stop all -d
+```
 
 3. Make a backup of any settings in your harvester
 4. Run the following command on your harvester, where `<directory>` is the copy of your **main** machine's `/ca` directory that you put in a temp folder:
 
-  ```bash
-  chia init -c <directory>
-  ```
+```bash
+chia init -c <directory>
+```
 
-  This command creates a new certificate signed by your **main** machine's CA.
+This command creates a new certificate signed by your **main** machine's CA.
 
-  :::warning
+:::warning
 
-  For step 4, you are using a copy of your `/ca` directory from your main machine temporarily. DO NOT replace the `/ca` folder on your harvester. Put the `/ca` directory into a temp folder on your harvester. You're going to show your harvester these files temporarily and then you can delete the `/ca` directory in your temp folder. This keeps your system more secure by limiting the exposure to your certificates.
+For step 4, you are using a copy of your `/ca` directory from your main machine temporarily. DO NOT replace the `/ca` folder on your harvester. Put the `/ca` directory into a temp folder on your harvester. You're going to show your harvester these files temporarily and then you can delete the `/ca` directory in your temp folder. This keeps your system more secure by limiting the exposure to your certificates.
 
-  :::
+:::
 
 5. Open the following file in each harvester:
 
-  ```bash
-  ~/.chia/mainnet/config/config.yaml
-  ```
+```bash
+~/.chia/mainnet/config/config.yaml
+```
 
-  Search for the remote **`harvester`**'s farmer_peer section (NOT `full_node`). Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value.
-  
-  In other words, replace `<Main.Machine.IP>` in the following snippet with your main machine's local IP:
+Search for the remote **`harvester`**'s farmer_peer section (NOT `full_node`). Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value.
 
-  ```bash
-  harvester:
-    chia_ssl_ca:
-      crt: config/ssl/ca/chia_ca.crt
-      key: config/ssl/ca/chia_ca.key
-    farmer_peer:
-      host: <Main.Machine.IP>
-      port: 8447
-  ```
+In other words, replace `<Main.Machine.IP>` in the following snippet with your main machine's local IP:
+
+```bash
+harvester:
+  chia_ssl_ca:
+    crt: config/ssl/ca/chia_ca.crt
+    key: config/ssl/ca/chia_ca.key
+  farmer_peer:
+    host: <Main.Machine.IP>
+    port: 8447
+```
 
 6. Launch the harvester by running the following command:
 
-  ```bash
-  chia start harvester -r
-  ```
-  
-  You should see a new connection on your main machine in your `INFO` level logs.
+```bash
+chia start harvester -r
+```
+
+You should see a new connection on your main machine in your `INFO` level logs.
 
 :::note
 
 To stop the harvester, run the following command:
+
 ```bash
 chia stop harvester
 ```
@@ -187,7 +188,7 @@ In other words, _only use the keys specific to your machine's purpose_.
 #### Plotting On Multiple Machines
 
 As stated [above](#prerequisites), run the following command when creating plots:
-  
+
 ```bash
 chia plots create -f <farmer_key> -p <pool_key>
 ```

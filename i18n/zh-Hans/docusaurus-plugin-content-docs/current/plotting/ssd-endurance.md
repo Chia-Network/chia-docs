@@ -16,14 +16,14 @@ The fastest plot creation is done completely in memory, but requires a server wi
 
 衡量SSD耐久性的度量标准是以一定的工作负载为基础的写入总量，即TBW。 一般来说，工作负载是根据JEDEC组织的JESD219工作负载来定义的。 An SSD can still plot well beyond meeting its rated TBW limit, because UBER can be measured (when seeing host errors) and retention is not required (Chia plotting requires temporary or ephemeral storage).
 
-| 地块生成程序              | 缓存/内存磁盘 | K=32的写入次数 |
-| ------------------- | ------- | --------- |
-| Chiapos beta (2020) | 0       | 1.8 TBW   |
-| Chiapos 2021        | 0       | 1.4 TBW   |
-| madMAx Chia_plot    | 0       | 1.43 TBW  |
-| madMAx Chia_plot    | 110G    | 0.396 TBW |
-| Bladebit Disk       | 0       | 1.225 TBW |
-| Bladebit Disk       | \>99G  | 0.381 TBW |
+| 地块生成程序        | 缓存/内存磁盘 | K=32的写入次数 |
+| ------------------- | ------------- | -------------- |
+| Chiapos beta (2020) | 0             | 1.8 TBW        |
+| Chiapos 2021        | 0             | 1.4 TBW        |
+| madMAx Chia_plot    | 0             | 1.43 TBW       |
+| madMAx Chia_plot    | 110G          | 0.396 TBW      |
+| Bladebit Disk       | 0             | 1.225 TBW      |
+| Bladebit Disk       | \>99G         | 0.381 TBW      |
 
 Consumer NVMe SSDs are generally not recommended due to their lower endurance, and they often employ caching algorithms to faster media (SLC, or single level cell) for great bursty performance. They do not perform well under heavy workload sustained I/O. 虽然有一些高性能的消费级NVMe SSD可以提供出色的生成地块性能，但较低的TBW将导致更快的磨损。
 

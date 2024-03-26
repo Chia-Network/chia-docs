@@ -15,12 +15,12 @@ To get started with Chialisp, you will first want to [install Chia Dev Tools](ht
 Here is a summary of the instructions:
 
 <Tabs groupId="OS"
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux/MacOS', value: 'linux-macos'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux/MacOS', value: 'linux-macos'},
+]}>
+<TabItem value="windows">
 
 ```bash
 mkdir learning

@@ -11,7 +11,7 @@ In this lesson, we dive into the coinset model basics and learn what it means to
 - **Coin Puzzle**: Understand the role of a coins puzzle.
 - **Coin Solution**: Learn about the importance of a coins solution.
 
-***
+---
 
 ## Content
 
@@ -19,7 +19,7 @@ In this lesson, we dive into the coinset model basics and learn what it means to
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/QMs6Z6_ZQdg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -70,7 +70,7 @@ the hash of the puzzle that contains the conditions, and the value of the coin.
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
@@ -78,7 +78,7 @@ the hash of the puzzle that contains the conditions, and the value of the coin.
 - **Puzzles:** All requirements for spending a coin are contained in the coins puzzle. These puzzles can be simple or complex and effect how, when, and by whom the coin can be spent. The coins puzzle must be determined at the coins creation and cannot be altered thereafter.
 - **Solutions:** The ability to spend a coin is based on the users ability to provide a valid solution for the coins puzzle.
 
-***
+---
 
 ## Knowledge check
 
@@ -145,7 +145,7 @@ The coinset model.
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -156,4 +156,4 @@ The coinset model.
 - Security recommendations for [signing solutions](https://docs.chia.net/coin-set-security/#signing): reviews the recommendations for securing puzzles by requiring that solutions are signed to limit those who can spend the coin.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

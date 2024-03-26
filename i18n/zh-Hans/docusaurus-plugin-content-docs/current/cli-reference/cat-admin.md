@@ -24,7 +24,7 @@ Usage: cats [OPTIONS]
 Options:
 
 | Short Command | Long Command          | Type    | Required | Description                                                                                                                                                                                                    |
-|:------------- |:--------------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :-------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -l            | --tail                | TEXT    | True     | The TAIL program to launch this CAT with                                                                                                                                                                       |
 | -c            | --curry               | TEXT    | False    | An argument to curry into the TAIL                                                                                                                                                                             |
 | -s            | --solution            | TEXT    | False    | The solution to the TAIL program [default: ()]                                                                                                                                                                 |
@@ -95,14 +95,15 @@ After pushing the transaction, the new ID and Eve Coin (singleton parent coin) w
 <summary>Example 3 - Mint a new CR-CAT</summary>
 
 First, select a coin to use for the minting. Flags included in this example (CR-specific flags are in **bold**):
-* `--tail`: The tail to use; in this case we'll use a single-issuance TAIL
-* `--send-to`: The address to send the CR-CATs to upon minting
-* **`--authorized-provider`: The DID that is authorized to issue VCs containing the required proof(s) for this CAT**
-* **`--cr-flag`: The proof(s) required for owning this CR-CAT**
-* `--amount`: The number of mojos for this issuance (1 million mojos = 1 thousand CR-CATs)
-* `-m`: The transaction fee, in mojos
-* `--as-bytes`: Use bytes instead of JSON
-* `--select-coin`: Instead of minting the CAT, just select a coin to use for the isuance
+
+- `--tail`: The tail to use; in this case we'll use a single-issuance TAIL
+- `--send-to`: The address to send the CR-CATs to upon minting
+- **`--authorized-provider`: The DID that is authorized to issue VCs containing the required proof(s) for this CAT**
+- **`--cr-flag`: The proof(s) required for owning this CR-CAT**
+- `--amount`: The number of mojos for this issuance (1 million mojos = 1 thousand CR-CATs)
+- `-m`: The transaction fee, in mojos
+- `--as-bytes`: Use bytes instead of JSON
+- `--select-coin`: Instead of minting the CAT, just select a coin to use for the isuance
 
 ```bash
 cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to txch1ek6ln2ejdsec6l734x8tggk9j5sepl8nfqjer5yt2dr905f04prqmcjcc5 --authorized-provider did:chia:1x23lnyd2xjefnfly075ngk79duf0yxna35cp86mgnnp4t33senfs4cah7u --cr-flag "test_proof1" --amount 1000000 -m 1000 --as-bytes --select-coin
@@ -185,7 +186,7 @@ Usage: secure_the_bag [OPTIONS]
 Options:
 
 | Short Command | Long Command                  | Type    | Required | Description                                                                                                                                                                                                            |
-|:------------- |:----------------------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -c            | --curry                       | TEXT    | False    | An argument to curry into the TAIL                                                                                                                                                                                     |
 | -a            | --amount                      | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)                                                                                                                                                   |
 | -stbtp        | --secure-the-bag-targets-path | TEXT    | True     | Path to CSV file containing targets of secure the bag (inner puzzle hash + amount). The total value of the coins in this file must match the value of the `amount` flag. If they don't match, an error will be thrown. |
@@ -221,7 +222,7 @@ Usage: secure_the_bag [OPTIONS]
 Options:
 
 | Short Command | Long Command                  | Type    | Required | Description                                                                                           |
-|:------------- |:----------------------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------- |
 | -ecid         | --eve-coin-id                 | TEXT    | True     | ID of coin that was spent to create secured bag                                                       |
 | -th           | --tail-hash                   | TEXT    | True     | TAIL hash / Asset ID of CAT to unwind from secured bag of CATs                                        |
 | -stbtp        | --secure-the-bag-targets-path | TEXT    | True     | Path to CSV file containing targets of secure the bag (inner puzzle hash + amount)                    |

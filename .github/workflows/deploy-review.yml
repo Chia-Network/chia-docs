@@ -43,6 +43,8 @@ jobs:
           npm ci
           npm install
           npm run build
+      - name: Check for Prettier issues
+        run: npm run check:prettier
       - name: Upload build to artifacts
         uses: actions/upload-artifact@v3
         with:

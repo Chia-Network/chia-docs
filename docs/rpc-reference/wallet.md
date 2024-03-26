@@ -441,11 +441,11 @@ Response:
 
 ```json
 {
-    "batch_size": 50,
-    "enabled": false,
-    "min_amount": 0,
-    "success": true,
-    "tx_fee": 0
+  "batch_size": 50,
+  "enabled": false,
+  "min_amount": 0,
+  "success": true,
+  "tx_fee": 0
 }
 ```
 
@@ -681,11 +681,11 @@ Response:
 
 ```json
 {
-    "batch_size": 50,
-    "enabled": false,
-    "min_amount": 0,
-    "success": true,
-    "tx_fee": 0
+  "batch_size": 50,
+  "enabled": false,
+  "min_amount": 0,
+  "success": true,
+  "tx_fee": 0
 }
 ```
 
@@ -699,11 +699,11 @@ Response:
 
 ```json
 {
-    "batch_size": 1,
-    "enabled": true,
-    "min_amount": 1,
-    "success": true,
-    "tx_fee": 1
+  "batch_size": 1,
+  "enabled": true,
+  "min_amount": 1,
+  "success": true,
+  "tx_fee": 1
 }
 ```
 
@@ -766,10 +766,10 @@ Options:
 
 Request Parameters (all wallet types):
 
-| Flag        | Type   | Required | Description                                                                                             |
-| :---------- | :----- | :------- | :------------------------------------------------------------------------------------------------------ |
+| Flag        | Type   | Required | Description                                                                                                           |
+| :---------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------- |
 | wallet_type | STRING | True     | The type of wallet to create. Must be one of `cat_wallet`, `did_wallet`, `dao_wallet`, `nft_wallet`, or `pool_wallet` |
-| fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                                    |
+| fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                                                  |
 
 `cat_wallet` Parameters:
 
@@ -964,8 +964,9 @@ Profile 1:
 | treasury_id    | STRING    | True\*   | \*Required if `mode` is `existing`; this is the treasury ID of the DAO to join                                             |
 
 Notes:
-* When `mode` is `new`, this RPC has a similar functionality to the [create](/dao-cli/#create) DAO CLI command.
-* When `mode` is `existing`, this RPC has a similar functionality to the [add](/dao-cli/#add) DAO CLI command.
+
+- When `mode` is `new`, this RPC has a similar functionality to the [create](/dao-cli/#create) DAO CLI command.
+- When `mode` is `existing`, this RPC has a similar functionality to the [add](/dao-cli/#add) DAO CLI command.
 
 <details>
 <summary>Example 4 (New DAO wallet)</summary>
@@ -1017,10 +1018,10 @@ Your wallet will join the treasury and automatically create the required DAO, CA
 
 `nft_wallet` Parameters:
 
-| Flag   | Type | Required | Description                                                        |
-| :----- | :--- | :------- | :----------------------------------------------------------------- |
-| did_id | STRING | False  | Associate a DID with the new NFT wallet                            |
-| name   | STRING | False  | The name of the wallet to create or modify [Default: `NFT Wallet`] |
+| Flag   | Type   | Required | Description                                                        |
+| :----- | :----- | :------- | :----------------------------------------------------------------- |
+| did_id | STRING | False    | Associate a DID with the new NFT wallet                            |
+| name   | STRING | False    | The name of the wallet to create or modify [Default: `NFT Wallet`] |
 
 <details>
 <summary>Example 6 (NFT wallet without DID)</summary>
@@ -1112,19 +1113,19 @@ Valid wallet types (the `type` parameter) include the following integers:
 
 | Name             | type |
 | :--------------- | ---: |
-| STANDARD_WALLET  | 0    |
-| ATOMIC_SWAP      | 2    |
-| AUTHORIZED_PAYEE | 3    |
-| MULTI_SIG        | 4    |
-| CUSTODY          | 5    |
-| CAT              | 6    |
-| RECOVERABLE      | 7    |
-| DECENTRALIZED_ID | 8    |
-| POOLING_WALLET   | 9    |
-| NFT              | 10   |
-| DATA_LAYER       | 11   |
-| DATA_LAYER_OFFER | 12   |
-| VC               | 13   |
+| STANDARD_WALLET  |    0 |
+| ATOMIC_SWAP      |    2 |
+| AUTHORIZED_PAYEE |    3 |
+| MULTI_SIG        |    4 |
+| CUSTODY          |    5 |
+| CAT              |    6 |
+| RECOVERABLE      |    7 |
+| DECENTRALIZED_ID |    8 |
+| POOLING_WALLET   |    9 |
+| NFT              |   10 |
+| DATA_LAYER       |   11 |
+| DATA_LAYER_OFFER |   12 |
+| VC               |   13 |
 
 More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
 
@@ -1369,25 +1370,25 @@ Response:
 
 ```json
 {
-    "coin_records": [
-        {
-            "amount": 100,
-            "coinbase": false,
-            "confirmed_height": 3879053,
-            "id": "0x8c8518c23670a37287063951761e6f23348918b887762d9a8fc7f2217bd44c04",
-            "metadata": null,
-            "parent_coin_info": "0x6b17387014afbdc661bec74438cc49e44889861b5ddd13ae2113807e82f9df08",
-            "puzzle_hash": "0x59714c1cebe4a747bb90b607bce5cc589df6b612ee7f742c79f6d070a50e9083",
-            "spent_height": 0,
-            "type": 0,
-            "wallet_identifier": {
-                "id": 1,
-                "type": 0
-            }
-        }
-    ],
-    "success": true,
-    "total_count": null
+  "coin_records": [
+    {
+      "amount": 100,
+      "coinbase": false,
+      "confirmed_height": 3879053,
+      "id": "0x8c8518c23670a37287063951761e6f23348918b887762d9a8fc7f2217bd44c04",
+      "metadata": null,
+      "parent_coin_info": "0x6b17387014afbdc661bec74438cc49e44889861b5ddd13ae2113807e82f9df08",
+      "puzzle_hash": "0x59714c1cebe4a747bb90b607bce5cc589df6b612ee7f742c79f6d070a50e9083",
+      "spent_height": 0,
+      "type": 0,
+      "wallet_identifier": {
+        "id": 1,
+        "type": 0
+      }
+    }
+  ],
+  "success": true,
+  "total_count": null
 }
 ```
 
@@ -1689,7 +1690,7 @@ Options:
 Request Parameters:
 
 | Flag           | Type | Required | Description                                                                                                                  |
-| :------------- | :--- | :------- |:-----------------------------------------------------------------------------------------------------------------------------|
+| :------------- | :--- | :------- | :--------------------------------------------------------------------------------------------------------------------------- |
 | transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
 
 <details>
@@ -1767,7 +1768,7 @@ Request Parameters:
 | reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false] |
 | to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
 
-Note: By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination. 
+Note: By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination.
 If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
 
 <details>
@@ -1959,35 +1960,35 @@ Response:
 
 ```json
 {
-    "success": true,
-    "transactions": [
+  "success": true,
+  "transactions": [
+    {
+      "additions": [
         {
-            "additions": [
-                {
-                    "amount": 10000,
-                    "parent_coin_info": "0x5104073950bccd17a7ea57ca9f13c5546f88a048e3165069d0e255d3018faeed",
-                    "puzzle_hash": "0x5e5073dab71209426358624462fac281431f87571ad40009d7ec731784154a1c"
-                }
-            ],
-            "amount": 10000,
-            "confirmed": true,
-            "confirmed_at_height": 1932515,
-            "created_at_time": 1670949639,
-            "fee_amount": 0,
-            "memos": {},
-            "name": "0x38306b461975741641d397330bb34c01681bb242119bd4aa457c06e2080cf257",
-            "removals": [],
-            "sent": 0,
-            "sent_to": [],
-            "spend_bundle": null,
-            "to_address": "txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s",
-            "to_puzzle_hash": "0x82e6a78ee8dde8e66c844c9595b42d0fa29ff5e8ed49b5c332169ef6c0498955",
-            "trade_id": null,
-            "type": 0,
-            "wallet_id": 7
+          "amount": 10000,
+          "parent_coin_info": "0x5104073950bccd17a7ea57ca9f13c5546f88a048e3165069d0e255d3018faeed",
+          "puzzle_hash": "0x5e5073dab71209426358624462fac281431f87571ad40009d7ec731784154a1c"
         }
-    ],
-    "wallet_id": 7
+      ],
+      "amount": 10000,
+      "confirmed": true,
+      "confirmed_at_height": 1932515,
+      "created_at_time": 1670949639,
+      "fee_amount": 0,
+      "memos": {},
+      "name": "0x38306b461975741641d397330bb34c01681bb242119bd4aa457c06e2080cf257",
+      "removals": [],
+      "sent": 0,
+      "sent_to": [],
+      "spend_bundle": null,
+      "to_address": "txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s",
+      "to_puzzle_hash": "0x82e6a78ee8dde8e66c844c9595b42d0fa29ff5e8ed49b5c332169ef6c0498955",
+      "trade_id": null,
+      "type": 0,
+      "wallet_id": 7
+    }
+  ],
+  "wallet_id": 7
 }
 ```
 
@@ -2143,9 +2144,9 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type | Required  | Description                                                                                |
-| :--------- | :--- | :-------- | :----------------------------------------------------------------------------------------- |
-| wallet_ids | LIST | False     | A list of Wallet IDs from which to obtain the balance [Default: list info for all wallets] |
+| Flag       | Type | Required | Description                                                                                |
+| :--------- | :--- | :------- | :----------------------------------------------------------------------------------------- |
+| wallet_ids | LIST | False    | A list of Wallet IDs from which to obtain the balance [Default: list info for all wallets] |
 
 <details>
 <summary>Example</summary>
@@ -2160,33 +2161,33 @@ Response:
 
 ```json
 {
-    "success": true,
-    "wallet_balances": {
-        "1": {
-            "confirmed_wallet_balance": 249908082013,
-            "fingerprint": 3792481086,
-            "max_send_amount": 249908082013,
-            "pending_change": 0,
-            "pending_coin_removal_count": 0,
-            "spendable_balance": 249908082013,
-            "unconfirmed_wallet_balance": 249908082013,
-            "unspent_coin_count": 19,
-            "wallet_id": 1,
-            "wallet_type": 0
-        },
-        "2": {
-            "confirmed_wallet_balance": 0,
-            "fingerprint": 3792481086,
-            "max_send_amount": 0,
-            "pending_change": 0,
-            "pending_coin_removal_count": 0,
-            "spendable_balance": 0,
-            "unconfirmed_wallet_balance": 0,
-            "unspent_coin_count": 6,
-            "wallet_id": 2,
-            "wallet_type": 10
-        }
+  "success": true,
+  "wallet_balances": {
+    "1": {
+      "confirmed_wallet_balance": 249908082013,
+      "fingerprint": 3792481086,
+      "max_send_amount": 249908082013,
+      "pending_change": 0,
+      "pending_coin_removal_count": 0,
+      "spendable_balance": 249908082013,
+      "unconfirmed_wallet_balance": 249908082013,
+      "unspent_coin_count": 19,
+      "wallet_id": 1,
+      "wallet_type": 0
+    },
+    "2": {
+      "confirmed_wallet_balance": 0,
+      "fingerprint": 3792481086,
+      "max_send_amount": 0,
+      "pending_change": 0,
+      "pending_coin_removal_count": 0,
+      "spendable_balance": 0,
+      "unconfirmed_wallet_balance": 0,
+      "unspent_coin_count": 6,
+      "wallet_id": 2,
+      "wallet_type": 10
     }
+  }
 }
 ```
 
@@ -2785,7 +2786,7 @@ Options:
 Request Parameters:
 
 | Flag       | Type         | Required | Description                                                                                                        |
-| :--------- | :----------- | :------- |:------------------------------------------------------------------------------------------------------------------ |
+| :--------- | :----------- | :------- | :----------------------------------------------------------------------------------------------------------------- |
 | coin_ids   | STRING ARRAY | True     | List of coin IDs to be spent                                                                                       |
 | batch_size | NUMBER       | False    | The number of coins to spend per bundle, [Default: `batch_size` obtainable from [get_auto_claim](#get_auto_claim)] |
 | fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                               |
@@ -2807,117 +2808,117 @@ Response:
 
 ```json
 {
-    "success": true,
-    "transactions": [
+  "success": true,
+  "transactions": [
+    {
+      "additions": [
         {
-            "additions": [
-                {
-                    "amount": 1000000000000,
-                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
-                    "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
-                },
-                {
-                    "amount": 999700000000,
-                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
-                    "puzzle_hash": "0x80877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963"
-                }
-            ],
-            "amount": 1000000000000,
-            "confirmed": true,
-            "confirmed_at_height": 2765989,
-            "created_at_time": 1686643350,
-            "fee_amount": 100000000,
-            "memos": {
-                "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
-            },
-            "name": "0x199415953fb4f1fea1131a0a44a30f78d456b970bdb16ac300d2d7ec81897c42",
-            "removals": [
-                {
-                    "amount": 1999800000000,
-                    "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
-                    "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
-                }
-            ],
-            "sent": 3,
-            "sent_to": [
-                [
-                    "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
-                    1,
-                    null
-                ],
-                [
-                    "5d00527d8db1c5ba8043fbe565d065ff1a0933e84b69a1e74b5f2e9c6b07b375",
-                    1,
-                    null
-                ],
-                [
-                    "a9e061dec18380f16afc72df7a580a5291eaf26175c0089c25f72a6d5be71773",
-                    3,
-                    "ALREADY_INCLUDING_TRANSACTION"
-                ]
-            ],
-            "spend_bundle": {
-                "aggregated_signature": "0x807a93c48e191a940738f1d886ade121a99901cd3f57d989cf014c5d09d8179507e5c36161974585c19b5c6b7578f06211742e5439e6d4e9eae69b8f8987898abe3f60e0925aa564e8d4f44b1591743649e61d043347af30f52bfa78d57f2166",
-                "coin_spends": [
-                    {
-                        "coin": {
-                            "amount": 1999800000000,
-                            "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
-                            "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
-                        },
-                        "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b1d8407fee30b01e66ab0baa86d1dcb67f41a91bc9aca70867dba877ec7276174344afc58adaf65c6e3ee7e483b39e8bff018080",
-                        "solution": "0xff80ffff01ffff01ff02ffc04e00010000004800000000000002587414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f80ffff33ffa0501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8ff8600e8d4a51000ffffa0c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f8080ffff33ffa080877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963ff8600e8c2c36d0080ffff34ff8405f5e10080ffff3cffa0cd929a98aba31bcee901d852a568089fb3ab7bbc8830eda7dba733692af3ffb58080ff8080"
-                    }
-                ]
-            },
-            "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
-            "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
-            "trade_id": null,
-            "type": 1,
-            "wallet_id": 1
+          "amount": 1000000000000,
+          "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+          "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
         },
         {
-            "additions": [
-                {
-                    "amount": 1000000000000,
-                    "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
-                    "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
-                }
-            ],
-            "amount": 1000000000000,
-            "confirmed": false,
-            "confirmed_at_height": 2765989,
-            "created_at_time": 1686643386,
-            "fee_amount": 0,
-            "memos": {
-                "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
-            },
-            "metadata": {
-                "coin_id": "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
-                "recipient_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
-                "sender_puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43",
-                "spent": false,
-                "time_lock": 600
-            },
-            "name": "0x97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
-            "removals": [
-                {
-                    "amount": 1999800000000,
-                    "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
-                    "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
-                }
-            ],
-            "sent": 0,
-            "sent_to": [],
-            "spend_bundle": null,
-            "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
-            "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
-            "trade_id": null,
-            "type": 7,
-            "wallet_id": 1
+          "amount": 999700000000,
+          "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+          "puzzle_hash": "0x80877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963"
         }
-    ],
-    "wallet_id": 1
+      ],
+      "amount": 1000000000000,
+      "confirmed": true,
+      "confirmed_at_height": 2765989,
+      "created_at_time": 1686643350,
+      "fee_amount": 100000000,
+      "memos": {
+        "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
+      },
+      "name": "0x199415953fb4f1fea1131a0a44a30f78d456b970bdb16ac300d2d7ec81897c42",
+      "removals": [
+        {
+          "amount": 1999800000000,
+          "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+          "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+        }
+      ],
+      "sent": 3,
+      "sent_to": [
+        [
+          "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
+          1,
+          null
+        ],
+        [
+          "5d00527d8db1c5ba8043fbe565d065ff1a0933e84b69a1e74b5f2e9c6b07b375",
+          1,
+          null
+        ],
+        [
+          "a9e061dec18380f16afc72df7a580a5291eaf26175c0089c25f72a6d5be71773",
+          3,
+          "ALREADY_INCLUDING_TRANSACTION"
+        ]
+      ],
+      "spend_bundle": {
+        "aggregated_signature": "0x807a93c48e191a940738f1d886ade121a99901cd3f57d989cf014c5d09d8179507e5c36161974585c19b5c6b7578f06211742e5439e6d4e9eae69b8f8987898abe3f60e0925aa564e8d4f44b1591743649e61d043347af30f52bfa78d57f2166",
+        "coin_spends": [
+          {
+            "coin": {
+              "amount": 1999800000000,
+              "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+              "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+            },
+            "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b1d8407fee30b01e66ab0baa86d1dcb67f41a91bc9aca70867dba877ec7276174344afc58adaf65c6e3ee7e483b39e8bff018080",
+            "solution": "0xff80ffff01ffff01ff02ffc04e00010000004800000000000002587414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f80ffff33ffa0501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8ff8600e8d4a51000ffffa0c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f8080ffff33ffa080877718b9cbb2cd8a74c16698d2b31e2c282fcb9eb3694d3637dab3777d7963ff8600e8c2c36d0080ffff34ff8405f5e10080ffff3cffa0cd929a98aba31bcee901d852a568089fb3ab7bbc8830eda7dba733692af3ffb58080ff8080"
+          }
+        ]
+      },
+      "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
+      "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+      "trade_id": null,
+      "type": 1,
+      "wallet_id": 1
+    },
+    {
+      "additions": [
+        {
+          "amount": 1000000000000,
+          "parent_coin_info": "0x4bc01742a2fd34c3e73f70325250df90078b27c4ce344c70cb30977800b266b0",
+          "puzzle_hash": "0x501579507d7b5af574084d7ec4482c808757eea6de4b7af7c404c7941d047df8"
+        }
+      ],
+      "amount": 1000000000000,
+      "confirmed": false,
+      "confirmed_at_height": 2765989,
+      "created_at_time": 1686643386,
+      "fee_amount": 0,
+      "memos": {
+        "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea": "c7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f"
+      },
+      "metadata": {
+        "coin_id": "97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
+        "recipient_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+        "sender_puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43",
+        "spent": false,
+        "time_lock": 600
+      },
+      "name": "0x97822ef25be65d8c1cf9988a8151dedb140d54bbfe396b153ca561b7afdca1ea",
+      "removals": [
+        {
+          "amount": 1999800000000,
+          "parent_coin_info": "0x39af4024f6562f5758bf32e9fc554db32a7baf4a9eb6b750d269f95f0f7e52d1",
+          "puzzle_hash": "0x7414b827d59ca447f82dd51a2672b0cbb1acf8d819d58774b62620b460d9cb43"
+        }
+      ],
+      "sent": 0,
+      "sent_to": [],
+      "spend_bundle": null,
+      "to_address": "txch1cls7s7z7twt89l5ahv7kkmyanqg0zw7t9an2frmp9uqurw5q25hsgtd4fy",
+      "to_puzzle_hash": "0xc7e1e8785e5b9672fe9dbb3d6b6c9d9810f13bcb2f66a48f612f01c1ba80552f",
+      "trade_id": null,
+      "type": 7,
+      "wallet_id": 1
+    }
+  ],
+  "wallet_id": 1
 }
 ```
 
@@ -2931,10 +2932,10 @@ Result:
 
 ```json
 {
-    "success": true,
-    "transaction_ids": [
-        "66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd"
-    ]
+  "success": true,
+  "transaction_ids": [
+    "66f7fd75bb4a2408d219d89f8588ba4dceb28e95cc3105822142780cdce5fecd"
+  ]
 }
 ```
 
@@ -3049,19 +3050,20 @@ Request Parameters:
 | address      | TEXT | True     | The address, which must be derived from `pubkey`                                                |
 
 The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include:
-* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
-  * Default signing mode
-  * Describes the standard BLS signatures used by Chia
-  * Uses a hex input
-  * Taken from [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-sign)
-  * Cipher suites used for BLS signatures are also defined at [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-ciphersuites)
-* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:utf8input_`
-  * Same as above, but uses UTF-8 instead of hex
-* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
-  * [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
-* `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_P2_DELEGATED_PUZZLE`
-  * Uses p2_delegated_puzzle
-  * Supports signatures generated from Tangem cards
+
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
+  - Default signing mode
+  - Describes the standard BLS signatures used by Chia
+  - Uses a hex input
+  - Taken from [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-sign)
+  - Cipher suites used for BLS signatures are also defined at [ietf.org](https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#name-ciphersuites)
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:utf8input_`
+  - Same as above, but uses UTF-8 instead of hex
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
+  - [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_P2_DELEGATED_PUZZLE`
+  - Uses p2_delegated_puzzle
+  - Supports signatures generated from Tangem cards
 
 ---
 
@@ -5263,133 +5265,133 @@ Response:
 
 ```json
 {
-    "routes": [
-        "/log_in",
-        "/get_logged_in_fingerprint",
-        "/get_public_keys",
-        "/get_private_key",
-        "/generate_mnemonic",
-        "/add_key",
-        "/delete_key",
-        "/check_delete_key",
-        "/delete_all_keys",
-        "/set_wallet_resync_on_startup",
-        "/get_sync_status",
-        "/get_height_info",
-        "/push_tx",
-        "/push_transactions",
-        "/farm_block",
-        "/get_timestamp_for_height",
-        "/set_auto_claim",
-        "/get_auto_claim",
-        "/get_initial_freeze_period",
-        "/get_network_info",
-        "/get_wallets",
-        "/create_new_wallet",
-        "/get_wallet_balance",
-        "/get_wallet_balances",
-        "/get_transaction",
-        "/get_transactions",
-        "/get_transaction_count",
-        "/get_next_address",
-        "/send_transaction",
-        "/send_transaction_multi",
-        "/spend_clawback_coins",
-        "/get_coin_records",
-        "/get_farmed_amount",
-        "/create_signed_transaction",
-        "/delete_unconfirmed_transactions",
-        "/select_coins",
-        "/get_spendable_coins",
-        "/get_coin_records_by_names",
-        "/get_current_derivation_index",
-        "/extend_derivation_index",
-        "/get_notifications",
-        "/delete_notifications",
-        "/send_notification",
-        "/sign_message_by_address",
-        "/sign_message_by_id",
-        "/verify_signature",
-        "/get_transaction_memo",
-        "/cat_set_name",
-        "/cat_asset_id_to_name",
-        "/cat_get_name",
-        "/get_stray_cats",
-        "/cat_spend",
-        "/cat_get_asset_id",
-        "/create_offer_for_ids",
-        "/get_offer_summary",
-        "/check_offer_validity",
-        "/take_offer",
-        "/get_offer",
-        "/get_all_offers",
-        "/get_offers_count",
-        "/cancel_offer",
-        "/cancel_offers",
-        "/get_cat_list",
-        "/did_set_wallet_name",
-        "/did_get_wallet_name",
-        "/did_update_recovery_ids",
-        "/did_update_metadata",
-        "/did_get_pubkey",
-        "/did_get_did",
-        "/did_recovery_spend",
-        "/did_get_recovery_list",
-        "/did_get_metadata",
-        "/did_create_attest",
-        "/did_get_information_needed_for_recovery",
-        "/did_get_current_coin_info",
-        "/did_create_backup_file",
-        "/did_transfer_did",
-        "/did_message_spend",
-        "/did_get_info",
-        "/did_find_lost_did",
-        "/nft_mint_nft",
-        "/nft_count_nfts",
-        "/nft_get_nfts",
-        "/nft_get_by_did",
-        "/nft_set_nft_did",
-        "/nft_set_nft_status",
-        "/nft_get_wallet_did",
-        "/nft_get_wallets_with_dids",
-        "/nft_get_info",
-        "/nft_transfer_nft",
-        "/nft_add_uri",
-        "/nft_calculate_royalties",
-        "/nft_mint_bulk",
-        "/nft_set_did_bulk",
-        "/nft_transfer_bulk",
-        "/pw_join_pool",
-        "/pw_self_pool",
-        "/pw_absorb_rewards",
-        "/pw_status",
-        "/create_new_dl",
-        "/dl_track_new",
-        "/dl_stop_tracking",
-        "/dl_latest_singleton",
-        "/dl_singletons_by_root",
-        "/dl_update_root",
-        "/dl_update_multiple",
-        "/dl_history",
-        "/dl_owned_singletons",
-        "/dl_get_mirrors",
-        "/dl_new_mirror",
-        "/dl_delete_mirror",
-        "/vc_mint",
-        "/vc_get",
-        "/vc_get_list",
-        "/vc_spend",
-        "/vc_add_proofs",
-        "/vc_get_proofs_for_root",
-        "/vc_revoke",
-        "/get_connections",
-        "/open_connection",
-        "/close_connection",
-        "/stop_node",
-        "/get_routes",
-        "/healthz"
-    ],
-    "success": true
+  "routes": [
+    "/log_in",
+    "/get_logged_in_fingerprint",
+    "/get_public_keys",
+    "/get_private_key",
+    "/generate_mnemonic",
+    "/add_key",
+    "/delete_key",
+    "/check_delete_key",
+    "/delete_all_keys",
+    "/set_wallet_resync_on_startup",
+    "/get_sync_status",
+    "/get_height_info",
+    "/push_tx",
+    "/push_transactions",
+    "/farm_block",
+    "/get_timestamp_for_height",
+    "/set_auto_claim",
+    "/get_auto_claim",
+    "/get_initial_freeze_period",
+    "/get_network_info",
+    "/get_wallets",
+    "/create_new_wallet",
+    "/get_wallet_balance",
+    "/get_wallet_balances",
+    "/get_transaction",
+    "/get_transactions",
+    "/get_transaction_count",
+    "/get_next_address",
+    "/send_transaction",
+    "/send_transaction_multi",
+    "/spend_clawback_coins",
+    "/get_coin_records",
+    "/get_farmed_amount",
+    "/create_signed_transaction",
+    "/delete_unconfirmed_transactions",
+    "/select_coins",
+    "/get_spendable_coins",
+    "/get_coin_records_by_names",
+    "/get_current_derivation_index",
+    "/extend_derivation_index",
+    "/get_notifications",
+    "/delete_notifications",
+    "/send_notification",
+    "/sign_message_by_address",
+    "/sign_message_by_id",
+    "/verify_signature",
+    "/get_transaction_memo",
+    "/cat_set_name",
+    "/cat_asset_id_to_name",
+    "/cat_get_name",
+    "/get_stray_cats",
+    "/cat_spend",
+    "/cat_get_asset_id",
+    "/create_offer_for_ids",
+    "/get_offer_summary",
+    "/check_offer_validity",
+    "/take_offer",
+    "/get_offer",
+    "/get_all_offers",
+    "/get_offers_count",
+    "/cancel_offer",
+    "/cancel_offers",
+    "/get_cat_list",
+    "/did_set_wallet_name",
+    "/did_get_wallet_name",
+    "/did_update_recovery_ids",
+    "/did_update_metadata",
+    "/did_get_pubkey",
+    "/did_get_did",
+    "/did_recovery_spend",
+    "/did_get_recovery_list",
+    "/did_get_metadata",
+    "/did_create_attest",
+    "/did_get_information_needed_for_recovery",
+    "/did_get_current_coin_info",
+    "/did_create_backup_file",
+    "/did_transfer_did",
+    "/did_message_spend",
+    "/did_get_info",
+    "/did_find_lost_did",
+    "/nft_mint_nft",
+    "/nft_count_nfts",
+    "/nft_get_nfts",
+    "/nft_get_by_did",
+    "/nft_set_nft_did",
+    "/nft_set_nft_status",
+    "/nft_get_wallet_did",
+    "/nft_get_wallets_with_dids",
+    "/nft_get_info",
+    "/nft_transfer_nft",
+    "/nft_add_uri",
+    "/nft_calculate_royalties",
+    "/nft_mint_bulk",
+    "/nft_set_did_bulk",
+    "/nft_transfer_bulk",
+    "/pw_join_pool",
+    "/pw_self_pool",
+    "/pw_absorb_rewards",
+    "/pw_status",
+    "/create_new_dl",
+    "/dl_track_new",
+    "/dl_stop_tracking",
+    "/dl_latest_singleton",
+    "/dl_singletons_by_root",
+    "/dl_update_root",
+    "/dl_update_multiple",
+    "/dl_history",
+    "/dl_owned_singletons",
+    "/dl_get_mirrors",
+    "/dl_new_mirror",
+    "/dl_delete_mirror",
+    "/vc_mint",
+    "/vc_get",
+    "/vc_get_list",
+    "/vc_spend",
+    "/vc_add_proofs",
+    "/vc_get_proofs_for_root",
+    "/vc_revoke",
+    "/get_connections",
+    "/open_connection",
+    "/close_connection",
+    "/stop_node",
+    "/get_routes",
+    "/healthz"
+  ],
+  "success": true
 }
 ```
 

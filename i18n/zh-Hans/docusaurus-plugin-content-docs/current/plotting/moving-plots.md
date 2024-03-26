@@ -18,14 +18,14 @@ Luckily, a few community members have created scripts to automate the plot-movin
 
 ### Plow
 
-* [GitHub link](https://github.com/lmacken/plow)
-* [Video tutorial from JM](https://www.youtube.com/watch?v=0xjqQ9paHq0)
+- [GitHub link](https://github.com/lmacken/plow)
+- [Video tutorial from JM](https://www.youtube.com/watch?v=0xjqQ9paHq0)
 
 Plow is a Python script developed by Luke Macken. It will automatically move files from an SSD to multiple HDDs. As long as you supply the script with enough HDDs, the SSD will never become full. Instead, either the plotter, or possibly the local network's latency, will become the bottleneck. Plow allows you to create upwards of 100 TB of plots per day from a single machine.
 
 ### Plotman
 
-* [GitHub link](https://github.com/ericaltendorf/plotman)
+- [GitHub link](https://github.com/ericaltendorf/plotman)
 
 Plotman, by Eric Altendorf, is another tool for automating the plot creation process. It comes with a plethora of features, including the automatic spawning of new plotting processes, moving plots, and monitoring each plotting job.
 

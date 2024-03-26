@@ -30,48 +30,48 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 1. Run this command to clone the sample dApp's [GitHub repo](https://github.com/Chia-Network/walletconnect-rpcs-dapp):
 
-  ```bash
-  git clone https://github.com/Chia-Network/walletconnect-rpcs-dapp -b main
-  ```
+```bash
+git clone https://github.com/Chia-Network/walletconnect-rpcs-dapp -b main
+```
 
 2. Change to the sample dApp's directory:
 
-  ```bash
-  cd walletconnect-rpcs-dapp
-  ```
+```bash
+cd walletconnect-rpcs-dapp
+```
 
 3. Install the sample dApp using NPM:
 
-  ```bash
-  npm install
-  ```
+```bash
+npm install
+```
 
 4. Start the sample dApp:
 
-  ```bash
-  npm run dev
-  ```
+```bash
+npm run dev
+```
 
-  Example result:
+Example result:
 
-  ```bash
-  ➜  Local:   http://127.0.0.1:5173/
-    ➜  Network: use --host to expose
-    ➜  press h to show help
-  ```
+```bash
+➜  Local:   http://127.0.0.1:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+```
 
-  In this example, the dApp was started locally on port 5173. This is the default port; your dApp may need to use a different port if 5173 is already being used for something else.
+In this example, the dApp was started locally on port 5173. This is the default port; your dApp may need to use a different port if 5173 is already being used for something else.
 
 5. Access the sample dApp:
 
-  Open a browser and navigate to [http://127.0.0.1:5173/](http://127.0.0.1:5173/) (unless a different port was used)
+Open a browser and navigate to [http://127.0.0.1:5173/](http://127.0.0.1:5173/) (unless a different port was used)
 
-  :::info
+:::info
 
-  If you see an error message such as `An error as occurred`, the most likely cause is that you are running an ad blocker that is interfering with the dApp.
-  Either disable the ad blocker or try a different browser.
+If you see an error message such as `An error as occurred`, the most likely cause is that you are running an ad blocker that is interfering with the dApp.
+Either disable the ad blocker or try a different browser.
 
-  :::
+:::
 
 6. The `WalletConnect Example` screen should be displayed. Click `Link Wallet`:
 
@@ -87,7 +87,7 @@ If you would like to connect your Chia reference wallet to a different dApp, the
   </div>
   <br />
 
-  The link has been copied, so you are ready to set up WalletConnect in Chia's reference wallet. Keep this browser window open in case you need to copy the link again.
+The link has been copied, so you are ready to set up WalletConnect in Chia's reference wallet. Keep this browser window open in case you need to copy the link again.
 
 ---
 
@@ -97,15 +97,15 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 2. Set up Chia's testnet
 
-  While it's possible to use WalletConnect on Chia's mainnet, this example will use the testnet. 
-  The primary command to convert your system to use the testnet is `chia configure -t true`.
-  See our [testnet setup guide](/guides/chialisp-testnet-setup) for more info.
+While it's possible to use WalletConnect on Chia's mainnet, this example will use the testnet.
+The primary command to convert your system to use the testnet is `chia configure -t true`.
+See our [testnet setup guide](/guides/chialisp-testnet-setup) for more info.
 
-  After your system has been configured to use the testnet, you can start your Chia reference wallet.
+After your system has been configured to use the testnet, you can start your Chia reference wallet.
 
 3. Click the WalletConnect icon
 
-  The icon is located on the upper-right side of the reference wallet GUI, as shown here:
+The icon is located on the upper-right side of the reference wallet GUI, as shown here:
 
   <div style={{ textAlign: 'center' }}>
     <img
@@ -137,7 +137,7 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 6. Paste the link to your sample dApp and click `CONTINUE`
 
-  If you used this guide to set up the sample dApp, this was the link you obtained with the last step of the previous section:
+If you used this guide to set up the sample dApp, this was the link you obtained with the last step of the previous section:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/03_dapp.png" alt="Paste and click CONTINUE" />
@@ -156,7 +156,7 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 8. Confirm your connection
 
-  You will be shown the key(s) to connect to the dApp. If this looks OK, click `CLOSE`. To start over, click `DISCONNECT`:
+You will be shown the key(s) to connect to the dApp. If this looks OK, click `CLOSE`. To start over, click `DISCONNECT`:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/05_walletconnect.png" alt="Click CLOSE" />
@@ -165,14 +165,14 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 9. Show more info
 
-  To show info on which dApp(s) are paired to which keys(s), click the WalletConnect icon, click the three dots, and click `More Info`:
+To show info on which dApp(s) are paired to which keys(s), click the WalletConnect icon, click the three dots, and click `More Info`:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/06_walletconnect.png" alt="Click More Info" />
   </div>
   <br />
 
-  You will be shown the Pair Information for your dApp:
+You will be shown the Pair Information for your dApp:
 
   <div style={{ textAlign: 'center' }}>
     <img
@@ -182,7 +182,7 @@ If you would like to connect your Chia reference wallet to a different dApp, the
   </div>
   <br />
 
-  Your wallet has been successfully paired with the sample dApp. In the next section, we'll show you how to interact with your wallet from the dApp.
+Your wallet has been successfully paired with the sample dApp. In the next section, we'll show you how to interact with your wallet from the dApp.
 
 ---
 
@@ -190,9 +190,9 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 1. View the sample dApp in a web browser
 
-  Recall that by default, the dApp will run on [http://127.0.0.1:5173](http://127.0.0.1:5173).
+Recall that by default, the dApp will run on [http://127.0.0.1:5173](http://127.0.0.1:5173).
 
-  You will be shown a dropdown list of available methods. The default method is `chia_logIn`, but we'll call a different method for this example.
+You will be shown a dropdown list of available methods. The default method is `chia_logIn`, but we'll call a different method for this example.
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/04_dapp.png" alt="Dropdown menu" />
@@ -215,7 +215,7 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 4. Confirm the request
 
-  Switch back to your Chia reference wallet. You should now see a confirmation dialog with the requested method. Click `CONFIRM`:
+Switch back to your Chia reference wallet. You should now see a confirmation dialog with the requested method. Click `CONFIRM`:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/08_walletconnect.png" alt="Confirm request" />
@@ -224,7 +224,7 @@ If you would like to connect your Chia reference wallet to a different dApp, the
 
 5. View the response
 
-  Returning to the sample dApp, a new dialog with the response will appear. In this example, a new address will be shown:
+Returning to the sample dApp, a new dialog with the response will appear. In this example, a new address will be shown:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/07_dapp.png" alt="Showing next address" />
@@ -267,7 +267,7 @@ WalletConnect allows end users to connect their wallet to a dApp.
 
 ### What WalletConnect functionality might be enabled in the future?
 
-WalletConnect is currently supported in Chia's reference wallet. 
+WalletConnect is currently supported in Chia's reference wallet.
 It is also used in [Chia TCG](https://www.chiatcg.com), a trading card game that uses Chia NFTs.
 
 In the future, it could also be supported in other Chia wallets, as well as in other mobile- and web-based dApps. For example, mobile wallet providers will be able to integrate with WalletConnect to connect directly to dApp providers.

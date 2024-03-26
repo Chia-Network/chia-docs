@@ -19,6 +19,7 @@ The real magic of DataLayer is the ability to use the data in smart contract tra
 #### Proof of inclusion
 
 A proof of inclusion is a way to prove that a key/value pair is being stored, without needing to provide the entire Merkle tree from the store. This is accomplished by creating a spend of the DataLayer singleton that accepts two things in its solution:
+
 1. The hash of a key/value pair from the Merkle tree
 2. Proof that the same key/value pair actually exists in the Merkle tree. This proof is obtained by providing the minimum peer hashes necessary to recalculate the Merkle root that is currently stored on-chain, starting from the leaf obtained from the key/value pair.
 
@@ -52,9 +53,9 @@ Where it gets interesting is what other coins might do with that announcement. A
 
 A hypothetical example of a proof of inclusion could be NFT ratings. Here's how it would work:
 
-* A critic provides ratings for various NFTs in a DataLayer table, such that people could create offers based on that rating.
-* A prospective buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
-* To accept the offer, an NFT owner would have to include a proof of inclusion from the rating table that their NFT had that rating.
+- A critic provides ratings for various NFTs in a DataLayer table, such that people could create offers based on that rating.
+- A prospective buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
+- To accept the offer, an NFT owner would have to include a proof of inclusion from the rating table that their NFT had that rating.
 
 This example would require anyone-can-spend DataLayer proofs of inclusion (these doesn't exist yet, but would be straightforward to build). The anyone-can-spend proof of inclusion could also generate a payment to the DataLayer table owner to pay RatingWiz for their services.
 
@@ -62,8 +63,8 @@ This example would require anyone-can-spend DataLayer proofs of inclusion (these
 
 有关其他技术资源，请参阅以下内容：
 
-- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
-- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
+- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
 - [DataLayer blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/)
 
@@ -140,13 +141,13 @@ You are recommended to complete steps 1 and 2 (port forwarding and firewall conf
 :::info Firewall setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'MacOS', value: 'macos'}
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 From a PowerShell prompt, run:
 
@@ -233,11 +234,11 @@ data_layer:
     - url: http://localhost:3145
       headers:
         x-api-key: your-api-key-here
-...
-  uploaders:
-    - url: https://plugin.datalayer.storage
-      headers:
-        x-api-key: your-api-key-here
+---
+uploaders:
+  - url: https://plugin.datalayer.storage
+    headers:
+      x-api-key: your-api-key-here
 ```
 
 For more information on this feature, see the description in the relevant [GitHub issue](https://github.com/Chia-Network/issue-tracker/issues/483).
@@ -277,7 +278,7 @@ Regardless of the status of `FULL NODE`, you may safely proceed with this tutori
 - Green dot = full node is synced
 - `FULL NODE` is missing = you are running in `Wallet Mode`
 
-:::  
+:::
 
 <div style={{ textAlign: 'center' }}>
     <img src="/img/data_layer/10_synced.png" alt="Synced wallet" />
@@ -338,8 +339,8 @@ Keeping all of this in mind, **it is typically safe to insert data sets of up to
 
 Chia DataLayer doesn't have a GUI. The commands in this tutorial will use the command line interface (CLI). As a reminder, here is the complete reference for the CLI, as well as all available Remote Procedure Calls (RPCs):
 
-- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
-- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
+- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
+- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
 
 ### Create a data store
 

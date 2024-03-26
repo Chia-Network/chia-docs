@@ -78,7 +78,7 @@ In future videos we'll talk about smart coins signatures and inner puzzles. Than
 ## Common gotchas
 
 - **run vs brun:** Run is used to serialize and run chialisp puzzles while brun is used to run clvm serialized puzzles generally when passing arguments.
-- **Parentheses:** Chialisp is part of the fully parenthesized prefix notation programming language family tracing their [origins](https://en.wikipedia.org/wiki/Lisp_(programming_language)) to LISP 1 from the 1950s. One highly apparent aspect of these languages is their use of parenthesis to denote lists. It is recommended to use an IDE with proper syntax highlighting when writing these languages to ensure that all parenthesis are in the proper places. To help with this here is a [Chialisp language server extension](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp) for Visual Studio.
+- **Parentheses:** Chialisp is part of the fully parenthesized prefix notation programming language family tracing their [origins](<https://en.wikipedia.org/wiki/Lisp_(programming_language)>) to LISP 1 from the 1950s. One highly apparent aspect of these languages is their use of parenthesis to denote lists. It is recommended to use an IDE with proper syntax highlighting when writing these languages to ensure that all parenthesis are in the proper places. To help with this here is a [Chialisp language server extension](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp) for Visual Studio.
 - **Prefix Notation:** Chialisp being part of the LISP family uses prefix notation. This means that the functions or operators appears first with their arguments following.
 
 ---

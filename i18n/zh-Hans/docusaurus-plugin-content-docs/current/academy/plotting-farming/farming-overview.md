@@ -10,7 +10,7 @@ In this lesson, we go over the plotting process, and what happens when a Farmer 
 - **Protocols**: Understand the basics of the Chia Farming protocol.
 - **Puzzles and Solutions**: Understand the use of puzzles and solutions in Chialisp.
 
-***
+---
 
 ## Content
 
@@ -18,7 +18,7 @@ In this lesson, we go over the plotting process, and what happens when a Farmer 
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/vyn0nIO56WU" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -43,14 +43,14 @@ The block is then processed, meaning all the transactions and programs within sm
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
 - **Continuous Harvesting:** Plots do not need to be continuously created. A Farmer can create many plots all at once, and continuously harvest from those plots well into the future. The plots will remain valid and in use even after a proof of space has been found.
 - **Choosing Transactions:** Transactions are stored temporarily in the "mempool" and are retrieved by a winning Farmer to create a block. The transactions can be chosen to maximize the reward a Farmer receives by prioritizing the transactions that include Farming Fees. This means that if a transaction doesn't include a Fee, there is a chance that it will not be included in a block even if it was created before the transactions that were.
 
-***
+---
 
 ## Knowledge check
 
@@ -110,7 +110,7 @@ True or False; When a block is created, the Timelord processes and evaluates all
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -121,4 +121,4 @@ True or False; When a block is created, the Timelord processes and evaluates all
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

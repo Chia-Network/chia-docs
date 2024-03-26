@@ -9,10 +9,10 @@ Before we jump in to the bulk of this lesson I wanted to remind you of how the C
 
 For example:
 
--   Coin 1: 0.25 XCH
--   Coin 2: 1.75 XCH
--   Coin 3: 0.25 XCH
--   Coin 4: 1.75 XCH
+- Coin 1: 0.25 XCH
+- Coin 2: 1.75 XCH
+- Coin 3: 0.25 XCH
+- Coin 4: 1.75 XCH
 
 Balance: 4 XCH
 
@@ -64,7 +64,7 @@ const privateKey = PrivateKey.fromSeed(mnemonicToSeedSync(mnemonic));
 const dir = path.join(__dirname, '..');
 
 const messagePuzzle = Program.deserializeHex(
-    fs.readFileSync(path.join(dir, 'message.clsp.hex'), 'utf-8')
+  fs.readFileSync(path.join(dir, 'message.clsp.hex'), 'utf-8'),
 );
 
 const node = new FullNode(os.homedir() + '/.chia/mainnet');
@@ -77,161 +77,156 @@ const amount = 1;
 const fee = 0.00005e12;
 
 async function newInstance(initialMessage: Program) {
-    await wallet.sync();
+  await wallet.sync();
 
-    const spend = wallet.createSpend();
+  const spend = wallet.createSpend();
 
-    // Curry the puzzle
-    const puzzle = messagePuzzle.curry([
-        // Mod hash
-        Program.fromBytes(messagePuzzle.hash()),
+  // Curry the puzzle
+  const puzzle = messagePuzzle.curry([
+    // Mod hash
+    Program.fromBytes(messagePuzzle.hash()),
 
-        // Message is empty until the eve is spent
-        Program.nil,
-    ]);
+    // Message is empty until the eve is spent
+    Program.nil,
+  ]);
 
-    // Create the eve coin
-    const send = await wallet.send(puzzle.hash(), amount, fee);
-    spend.coin_spends.push(...send);
+  // Create the eve coin
+  const send = await wallet.send(puzzle.hash(), amount, fee);
+  spend.coin_spends.push(...send);
 
-    // Calculate the root coin id
-    const eveCoin: Coin = {
-        parent_coin_info: formatHex(toHex(toCoinId(send[0].coin))),
-        puzzle_hash: formatHex(puzzle.hashHex()),
-        amount,
-    };
+  // Calculate the root coin id
+  const eveCoin: Coin = {
+    parent_coin_info: formatHex(toHex(toCoinId(send[0].coin))),
+    puzzle_hash: formatHex(puzzle.hashHex()),
+    amount,
+  };
 
-    // Create the eve solution
-    const solution = Program.fromList([
-        // Message
-        initialMessage,
+  // Create the eve solution
+  const solution = Program.fromList([
+    // Message
+    initialMessage,
 
-        // Amount
-        Program.fromInt(amount),
-    ]);
+    // Amount
+    Program.fromInt(amount),
+  ]);
 
-    // Spend the eve coin
-    spend.coin_spends.push({
-        coin: eveCoin,
-        puzzle_reveal: puzzle.serializeHex(),
-        solution: solution.serializeHex(),
-    });
+  // Spend the eve coin
+  spend.coin_spends.push({
+    coin: eveCoin,
+    puzzle_reveal: puzzle.serializeHex(),
+    solution: solution.serializeHex(),
+  });
 
-    // Sign the wallet spend
-    wallet.signSpend(spend, genesis);
+  // Sign the wallet spend
+  wallet.signSpend(spend, genesis);
 
-    // Complete the transaction
-    console.log('Eve coin id:', toHex(toCoinId(eveCoin)));
-    console.log(await node.pushTx(spend));
+  // Complete the transaction
+  console.log('Eve coin id:', toHex(toCoinId(eveCoin)));
+  console.log(await node.pushTx(spend));
 }
 
 interface SyncInfo {
-    parent: string;
-    current: string;
+  parent: string;
+  current: string;
 }
 
 async function sync(): Promise<SyncInfo> {
-    const eveCoinId = process.env.EVE_COIN_ID!;
+  const eveCoinId = process.env.EVE_COIN_ID!;
 
-    let current = eveCoinId;
-    let parent = current;
+  let current = eveCoinId;
+  let parent = current;
 
-    while (true) {
-        // Fetch coins created by the current coin
-        const coinRecords = await node.getCoinRecordsByParentIds(
-            [current],
-            undefined,
-            undefined,
-            true
-        );
-        if (!coinRecords.success) throw new Error(coinRecords.error);
+  while (true) {
+    // Fetch coins created by the current coin
+    const coinRecords = await node.getCoinRecordsByParentIds(
+      [current],
+      undefined,
+      undefined,
+      true,
+    );
+    if (!coinRecords.success) throw new Error(coinRecords.error);
 
-        // If there are none, we are already synced
-        if (!coinRecords.coin_records.length) break;
+    // If there are none, we are already synced
+    if (!coinRecords.coin_records.length) break;
 
-        // Update the parent
-        parent = current;
+    // Update the parent
+    parent = current;
 
-        // Continue with the child coin as the new singleton
-        const coinRecord = coinRecords.coin_records[0];
-        current = toHex(toCoinId(coinRecord.coin));
-    }
+    // Continue with the child coin as the new singleton
+    const coinRecord = coinRecords.coin_records[0];
+    current = toHex(toCoinId(coinRecord.coin));
+  }
 
-    return {
-        parent,
-        current,
-    };
+  return {
+    parent,
+    current,
+  };
 }
 
 async function getMessage(syncInfo: SyncInfo): Promise<Program> {
-    const coinRecord = await node.getCoinRecordByName(syncInfo.parent);
-    if (!coinRecord.success) throw new Error(coinRecord.error);
+  const coinRecord = await node.getCoinRecordByName(syncInfo.parent);
+  if (!coinRecord.success) throw new Error(coinRecord.error);
 
-    const puzzleAndSolution = await node.getPuzzleAndSolution(
-        syncInfo.parent,
-        coinRecord.coin_record.spent_block_index
-    );
-    if (!puzzleAndSolution.success) throw new Error(puzzleAndSolution.error);
+  const puzzleAndSolution = await node.getPuzzleAndSolution(
+    syncInfo.parent,
+    coinRecord.coin_record.spent_block_index,
+  );
+  if (!puzzleAndSolution.success) throw new Error(puzzleAndSolution.error);
 
-    const spend = puzzleAndSolution.coin_solution;
+  const spend = puzzleAndSolution.coin_solution;
 
-    const solution = Program.deserializeHex(
-        sanitizeHex(spend.solution)
-    ).toList();
+  const solution = Program.deserializeHex(sanitizeHex(spend.solution)).toList();
 
-    return solution[0];
+  return solution[0];
 }
 
 async function printMessage() {
-    const syncInfo = await sync();
-    const message = await getMessage(syncInfo);
-    console.log('Message:', message.toString());
+  const syncInfo = await sync();
+  const message = await getMessage(syncInfo);
+  console.log('Message:', message.toString());
 }
 
 async function setMessage(newMessage: Program) {
-    await wallet.sync();
+  await wallet.sync();
 
-    const syncInfo = await sync();
-    const message = await getMessage(syncInfo);
+  const syncInfo = await sync();
+  const message = await getMessage(syncInfo);
 
-    // Fetch the coin record
-    const coinRecord = await node.getCoinRecordByName(syncInfo.current);
-    if (!coinRecord.success) throw new Error(coinRecord.error);
+  // Fetch the coin record
+  const coinRecord = await node.getCoinRecordByName(syncInfo.current);
+  if (!coinRecord.success) throw new Error(coinRecord.error);
 
-    const coin = coinRecord.coin_record.coin;
+  const coin = coinRecord.coin_record.coin;
 
-    const spend = wallet.createSpend();
+  const spend = wallet.createSpend();
 
-    // Create the current puzzle
-    const puzzle = messagePuzzle.curry([
-        Program.fromBytes(messagePuzzle.hash()),
-        message,
-    ]);
+  // Create the current puzzle
+  const puzzle = messagePuzzle.curry([
+    Program.fromBytes(messagePuzzle.hash()),
+    message,
+  ]);
 
-    // Create the solution
-    const solution = Program.fromList([
-        newMessage,
-        Program.fromInt(coin.amount),
-    ]);
+  // Create the solution
+  const solution = Program.fromList([newMessage, Program.fromInt(coin.amount)]);
 
-    spend.coin_spends.push({
-        // Spend the current singleton
-        coin,
+  spend.coin_spends.push({
+    // Spend the current singleton
+    coin,
 
-        // The puzzle reveal contains the old message
-        puzzle_reveal: puzzle.serializeHex(),
+    // The puzzle reveal contains the old message
+    puzzle_reveal: puzzle.serializeHex(),
 
-        // Spend it with the new message
-        solution: solution.serializeHex(),
-    });
+    // Spend it with the new message
+    solution: solution.serializeHex(),
+  });
 
-    const send = await wallet.sendFee(fee);
+  const send = await wallet.sendFee(fee);
 
-    spend.coin_spends.push(...send);
+  spend.coin_spends.push(...send);
 
-    wallet.signSpend(spend, genesis);
+  wallet.signSpend(spend, genesis);
 
-    console.log(await node.pushTx(spend));
+  console.log(await node.pushTx(spend));
 }
 
 // newInstance(Program.fromText('Hello, world!'));
@@ -335,52 +330,52 @@ Here is the code that initializes the eve coin and its descendant:
 
 ```ts
 async function newInstance(initialMessage: Program) {
-    await wallet.sync();
+  await wallet.sync();
 
-    const spend = wallet.createSpend();
+  const spend = wallet.createSpend();
 
-    // Curry the puzzle
-    const puzzle = messagePuzzle.curry([
-        // Mod hash
-        Program.fromBytes(messagePuzzle.hash()),
+  // Curry the puzzle
+  const puzzle = messagePuzzle.curry([
+    // Mod hash
+    Program.fromBytes(messagePuzzle.hash()),
 
-        // Message is empty until the eve is spent
-        Program.nil,
-    ]);
+    // Message is empty until the eve is spent
+    Program.nil,
+  ]);
 
-    // Create the eve coin
-    const send = await wallet.send(puzzle.hash(), amount, fee);
-    spend.coin_spends.push(...send);
+  // Create the eve coin
+  const send = await wallet.send(puzzle.hash(), amount, fee);
+  spend.coin_spends.push(...send);
 
-    // Calculate the root coin id
-    const eveCoin: Coin = {
-        parent_coin_info: formatHex(toHex(toCoinId(send[0].coin))),
-        puzzle_hash: formatHex(puzzle.hashHex()),
-        amount,
-    };
+  // Calculate the root coin id
+  const eveCoin: Coin = {
+    parent_coin_info: formatHex(toHex(toCoinId(send[0].coin))),
+    puzzle_hash: formatHex(puzzle.hashHex()),
+    amount,
+  };
 
-    // Create the eve solution
-    const solution = Program.fromList([
-        // Message
-        initialMessage,
+  // Create the eve solution
+  const solution = Program.fromList([
+    // Message
+    initialMessage,
 
-        // Amount
-        Program.fromInt(amount),
-    ]);
+    // Amount
+    Program.fromInt(amount),
+  ]);
 
-    // Spend the eve coin
-    spend.coin_spends.push({
-        coin: eveCoin,
-        puzzle_reveal: puzzle.serializeHex(),
-        solution: solution.serializeHex(),
-    });
+  // Spend the eve coin
+  spend.coin_spends.push({
+    coin: eveCoin,
+    puzzle_reveal: puzzle.serializeHex(),
+    solution: solution.serializeHex(),
+  });
 
-    // Sign the wallet spend
-    wallet.signSpend(spend, genesis);
+  // Sign the wallet spend
+  wallet.signSpend(spend, genesis);
 
-    // Complete the transaction
-    console.log('Eve coin id:', toHex(toCoinId(eveCoin)));
-    console.log(await node.pushTx(spend));
+  // Complete the transaction
+  console.log('Eve coin id:', toHex(toCoinId(eveCoin)));
+  console.log(await node.pushTx(spend));
 }
 
 newInstance(Program.fromText('Hello, world!'));
@@ -413,41 +408,41 @@ Write the following code to sync the state:
 
 ```ts title=index.ts
 interface SyncInfo {
-    parent: string;
-    current: string;
+  parent: string;
+  current: string;
 }
 
 async function sync(): Promise<SyncInfo> {
-    const eveCoinId = process.env.EVE_COIN_ID!;
+  const eveCoinId = process.env.EVE_COIN_ID!;
 
-    let current = eveCoinId;
-    let parent = current;
+  let current = eveCoinId;
+  let parent = current;
 
-    while (true) {
-        // Fetch coins created by the current coin
-        const coinRecords = await node.getCoinRecordsByParentIds(
-            [current],
-            undefined,
-            undefined,
-            true
-        );
-        if (!coinRecords.success) throw new Error(coinRecords.error);
+  while (true) {
+    // Fetch coins created by the current coin
+    const coinRecords = await node.getCoinRecordsByParentIds(
+      [current],
+      undefined,
+      undefined,
+      true,
+    );
+    if (!coinRecords.success) throw new Error(coinRecords.error);
 
-        // If there are none, we are already synced
-        if (!coinRecords.coin_records.length) break;
+    // If there are none, we are already synced
+    if (!coinRecords.coin_records.length) break;
 
-        // Update the parent
-        parent = current;
+    // Update the parent
+    parent = current;
 
-        // Continue with the child coin as the new singleton
-        const coinRecord = coinRecords.coin_records[0];
-        current = toHex(toCoinId(coinRecord.coin));
-    }
+    // Continue with the child coin as the new singleton
+    const coinRecord = coinRecords.coin_records[0];
+    current = toHex(toCoinId(coinRecord.coin));
+  }
 
-    return {
-        parent,
-        current,
-    };
+  return {
+    parent,
+    current,
+  };
 }
 ```
 
@@ -455,28 +450,26 @@ Now that we have the current coin and its parent, we can fetch the solution of t
 
 ```ts
 async function getMessage(syncInfo: SyncInfo): Promise<Program> {
-    const coinRecord = await node.getCoinRecordByName(syncInfo.parent);
-    if (!coinRecord.success) throw new Error(coinRecord.error);
+  const coinRecord = await node.getCoinRecordByName(syncInfo.parent);
+  if (!coinRecord.success) throw new Error(coinRecord.error);
 
-    const puzzleAndSolution = await node.getPuzzleAndSolution(
-        syncInfo.parent,
-        coinRecord.coin_record.spent_block_index
-    );
-    if (!puzzleAndSolution.success) throw new Error(puzzleAndSolution.error);
+  const puzzleAndSolution = await node.getPuzzleAndSolution(
+    syncInfo.parent,
+    coinRecord.coin_record.spent_block_index,
+  );
+  if (!puzzleAndSolution.success) throw new Error(puzzleAndSolution.error);
 
-    const spend = puzzleAndSolution.coin_solution;
+  const spend = puzzleAndSolution.coin_solution;
 
-    const solution = Program.deserializeHex(
-        sanitizeHex(spend.solution)
-    ).toList();
+  const solution = Program.deserializeHex(sanitizeHex(spend.solution)).toList();
 
-    return solution[0];
+  return solution[0];
 }
 
 async function printMessage() {
-    const syncInfo = await sync();
-    const message = await getMessage(syncInfo);
-    console.log('Message:', message.toString());
+  const syncInfo = await sync();
+  const message = await getMessage(syncInfo);
+  console.log('Message:', message.toString());
 }
 
 printMessage();
@@ -494,49 +487,46 @@ Finally, we can create a new coin by spending the existing coin and providing a 
 
 ```ts
 async function setMessage(newMessage: Program) {
-    await wallet.sync();
+  await wallet.sync();
 
-    const syncInfo = await sync();
-    const message = await getMessage(syncInfo);
+  const syncInfo = await sync();
+  const message = await getMessage(syncInfo);
 
-    // Fetch the coin record
-    const coinRecord = await node.getCoinRecordByName(syncInfo.current);
-    if (!coinRecord.success) throw new Error(coinRecord.error);
+  // Fetch the coin record
+  const coinRecord = await node.getCoinRecordByName(syncInfo.current);
+  if (!coinRecord.success) throw new Error(coinRecord.error);
 
-    const coin = coinRecord.coin_record.coin;
+  const coin = coinRecord.coin_record.coin;
 
-    const spend = wallet.createSpend();
+  const spend = wallet.createSpend();
 
-    // Create the current puzzle
-    const puzzle = messagePuzzle.curry([
-        Program.fromBytes(messagePuzzle.hash()),
-        message,
-    ]);
+  // Create the current puzzle
+  const puzzle = messagePuzzle.curry([
+    Program.fromBytes(messagePuzzle.hash()),
+    message,
+  ]);
 
-    // Create the solution
-    const solution = Program.fromList([
-        newMessage,
-        Program.fromInt(coin.amount),
-    ]);
+  // Create the solution
+  const solution = Program.fromList([newMessage, Program.fromInt(coin.amount)]);
 
-    spend.coin_spends.push({
-        // Spend the current singleton
-        coin,
+  spend.coin_spends.push({
+    // Spend the current singleton
+    coin,
 
-        // The puzzle reveal contains the old message
-        puzzle_reveal: puzzle.serializeHex(),
+    // The puzzle reveal contains the old message
+    puzzle_reveal: puzzle.serializeHex(),
 
-        // Spend it with the new message
-        solution: solution.serializeHex(),
-    });
+    // Spend it with the new message
+    solution: solution.serializeHex(),
+  });
 
-    const send = await wallet.sendFee(fee);
+  const send = await wallet.sendFee(fee);
 
-    spend.coin_spends.push(...send);
+  spend.coin_spends.push(...send);
 
-    wallet.signSpend(spend, genesis);
+  wallet.signSpend(spend, genesis);
 
-    console.log(await node.pushTx(spend));
+  console.log(await node.pushTx(spend));
 }
 
 setMessage(Program.fromText('Goodbye, world!'));
@@ -572,14 +562,14 @@ which is then spent using a solution with our new message:
 const solution = Program.fromList([newMessage, Program.fromInt(coin.amount)]);
 
 spend.coin_spends.push({
-    // Spend the current singleton
-    coin,
+  // Spend the current singleton
+  coin,
 
-    // The puzzle reveal contains the old message
-    puzzle_reveal: puzzle.serializeHex(),
+  // The puzzle reveal contains the old message
+  puzzle_reveal: puzzle.serializeHex(),
 
-    // Spend it with the new message
-    solution: solution.serializeHex(),
+  // Spend it with the new message
+  solution: solution.serializeHex(),
 });
 ```
 

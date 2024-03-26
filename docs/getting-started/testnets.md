@@ -17,10 +17,12 @@ If you want to run the Chia blockchain mainnet, use the [mainnet installation](/
 ## Join the official testnet
 
 ### Prerequisites
-* Minimum Chia version is 2.1.0 [installed](/installation).
-* All chia processes have been stopped with `chia stop all-d`.
+
+- Minimum Chia version is 2.1.0 [installed](/installation).
+- All chia processes have been stopped with `chia stop all-d`.
 
 ### Configure Chia for testnet
+
 ```bash
 # Initialize chia
 chia init
@@ -33,10 +35,11 @@ chia configure --testnet true
 ```
 
 ### Download the official testnet database (optional)
+
 This step is optional, but it will speed up syncing with the testnet.
 
-* Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet11.sqlite.gz` while in the directory (a v1 db is not available for testnet11).  
-* Windows users: download it from [https://downloads.chia.net/testnet11/](https://downloads.chia.net/testnet11/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. `~/.chia/mainnet/db` is the database directory).
+- Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet11.sqlite.gz` while in the directory (a v1 db is not available for testnet11).
+- Windows users: download it from [https://downloads.chia.net/testnet11/](https://downloads.chia.net/testnet11/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. `~/.chia/mainnet/db` is the database directory).
 
 :::note
 
@@ -51,6 +54,7 @@ Prior to starting your node, it is recommended to delete `peers.dat`, located in
 :::
 
 ### Start your node and connect to peers
+
 ```bash
 # Note - make sure to delete the peers.dat file in ~/.chia/mainnet/db prior to starting your node
 # Start your node
@@ -64,14 +68,16 @@ chia wallet show
 ```
 
 ### Fund a testnet wallet (optional)
+
 ```bash
 # Get a testnet wallet address differentiated from mainnet wallet addresses by beginning with txch instead of xch
 chia wallet get_address
 ```
 
-Input your testnet wallet address into one of the faucets. If it says you are in the queue, it has worked. 
-* Chia Official [testnet faucet](https://testnet11-faucet.chia.net/).   
-* Community developed and managed [testnet faucet](https://txchfaucet.com/). _Thank you to Steve Stepp for building and managing this faucet!_  
+Input your testnet wallet address into one of the faucets. If it says you are in the queue, it has worked.
+
+- Chia Official [testnet faucet](https://testnet11-faucet.chia.net/).
+- Community developed and managed [testnet faucet](https://txchfaucet.com/). _Thank you to Steve Stepp for building and managing this faucet!_
 
 **Funds will not appear in your wallet until you are fully synced to the blockchain.**
 
@@ -79,9 +85,9 @@ Input your testnet wallet address into one of the faucets. If it says you are in
 
 ## Dual farming mainnet and testnet
 
-*These instructions are tailored for Linux. A similar approach could likely be followed for MacOS.*
+_These instructions are tailored for Linux. A similar approach could likely be followed for MacOS._
 
-In some cases, you may want to farm the same plots you farm on mainnet on one of the testnets as well, without removing them from mainnet. This is doable with a bit of extra legwork to set up unique ports for the testnet chia installation. 
+In some cases, you may want to farm the same plots you farm on mainnet on one of the testnets as well, without removing them from mainnet. This is doable with a bit of extra legwork to set up unique ports for the testnet chia installation.
 
 There are a couple options for setting this up. You can either ensure you have the CHIA_ROOT set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific CHIA_ROOT.
 
@@ -108,7 +114,7 @@ chia init
 # Configure Chia for the currently-active testnet
 chia configure --testnet true
 
-# Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values. 
+# Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values.
 # Use the ports listed or choose any you desire as long as they are different than the default values for mainnet.
 
 yq -i -y '.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
@@ -150,19 +156,19 @@ To swap between running commands for mainnet and running commands for testnet, y
 
 ## Create a local testnet for fast, private testing
 
-*These instructions are tailored for Linux. A similar approach could likely be followed for MacOS.*  
+_These instructions are tailored for Linux. A similar approach could likely be followed for MacOS._
 
 0. Stop all chia processes. Check that they have stopped with `ps -ef | grep chia`
 1. Create a new chia root using `export CHIA_ROOT="~/.chia/my_testnet"`, then `chia init`. Don't forget to export CHIA_ROOT, or prefix your chia commands with `CHIA_ROOT="~/.chia/my_testnet"` if you want to run on my_testnet when starting a new terminal.
-2. Create a new entry in config.yaml with a different [GENESIS_CHALLENGE](https://docs.chia.net/consensus-challenges/#genesis-challenge), and reduced `DIFFICULTY_CONSTANT_FACTOR`. `2^67` constant factor is around 110PiB assuming a fast timelord. So if you have around 110GiB, you can set it to `2 ^ 47`. Decrease `SUB_SLOT_ITERS_STARTING` to something like `2^23` if you are using a slow computer. Decrease `PLOT_FILTER` if you want to have more proof checks per signage point. 
+2. Create a new entry in config.yaml with a different [GENESIS_CHALLENGE](https://docs.chia.net/consensus-challenges/#genesis-challenge), and reduced `DIFFICULTY_CONSTANT_FACTOR`. `2^67` constant factor is around 110PiB assuming a fast timelord. So if you have around 110GiB, you can set it to `2 ^ 47`. Decrease `SUB_SLOT_ITERS_STARTING` to something like `2^23` if you are using a slow computer. Decrease `PLOT_FILTER` if you want to have more proof checks per signage point.
 3. Make sure to add **my_testnet** to all places that need it, like `network_overrides.config`, and `selected_network`
 4. Change the introducer URLs to point to localhost so you don't contact the real ones
 5. Do `sh install-timelord.sh`
 6. Run the system with `chia start all`
 7. If you have installed the gui, run `(cd chia-blockchain-gui && npm run electron &)`
 
-
 You can generate a new genesis challenge by running python, and entering the following commands:
+
 ```python
 from secrets import token_bytes
 print(token_bytes().hex())
@@ -171,7 +177,7 @@ print(token_bytes().hex())
 ---
 
 ## Testnet support
+
 Join Our [Discord](https://discord.gg/chia) and jump into the #testnet channel for support
 
 ---
-

@@ -26,27 +26,27 @@ If stagger plotting, disk size requirement may change depending on which Phase t
 
 ## New constant space factor
 
-For a given _k_, the plot size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005`. 
-In previous versions of Chia's documentation and code, the constant at the end of this equation was estimated to be 0.762. 
+For a given _k_, the plot size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005`.
+In previous versions of Chia's documentation and code, the constant at the end of this equation was estimated to be 0.762.
 Our documentation and code now use a closer estimation of 0.78005.
 
 The following table shows the old size estimation of C0 plots, along with the new estimations:
 
-| k  | Old est. size (GB) | New est. size (GB) |
-| -: | -----------------: | -----------------: |
-| 32 | 106.3648651        | 108.8844003        |
-| 33 | 219.2752603        | 224.469379         |
-| 34 | 451.641581         | 462.339915         |
-| 35 | 929.4652826        | 951.4821439        |
-| 36 | 1911.294806        | 1956.568916        |
-| 37 | 3927.318095        | 4020.347087        |
-| 38 | 8064.093156        | 8255.112685        |
-| 39 | 16547.10024        | 16939.06239        |
+|   k | Old est. size (GB) | New est. size (GB) |
+| --: | -----------------: | -----------------: |
+|  32 |        106.3648651 |        108.8844003 |
+|  33 |        219.2752603 |         224.469379 |
+|  34 |         451.641581 |         462.339915 |
+|  35 |        929.4652826 |        951.4821439 |
+|  36 |        1911.294806 |        1956.568916 |
+|  37 |        3927.318095 |        4020.347087 |
+|  38 |        8064.093156 |        8255.112685 |
+|  39 |        16547.10024 |        16939.06239 |
 
 ## Storage requirements for uncompressed plots
 
 | K-size | Temp. Size         | Final Size           |
-|--------|--------------------|----------------------|
+| ------ | ------------------ | -------------------- |
 | K=32   | 239 GiB (256.6 GB) | 101.4 GiB (108.9 GB) |
 | K=33   | 512 GiB (550 GB)   | 208.8 GiB (224.2 GB) |
 | K=34   | 1041 GiB (1118 GB) | 429.8 GiB (461.5 GB) |

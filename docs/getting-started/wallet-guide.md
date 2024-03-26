@@ -12,7 +12,7 @@ So you want to set up and use a chia wallet? You've come to the right place!
 3. [Create a Wallet](#create-a-wallet)
 4. [Use the Chia Wallet](#use-the-chia-wallet)
 
-This guide will take you through each of these steps. We will set up a Chia wallet, which includes syncing a wallet node and learning about offer files. 
+This guide will take you through each of these steps. We will set up a Chia wallet, which includes syncing a wallet node and learning about offer files.
 
 :::info
 
@@ -67,7 +67,8 @@ If someone obtains a copy of these words, they can steal your entire wallet, inc
 <br />
 
 You will be taken to your wallet, which will show a zero-XCH balance. There will be a round icon in the upper-right corner for the wallet sync status:
-* Wallet -- this icon will appear yellow at first. Your wallet will attempt to connect to three peers for syncing. It should be synced within a few seconds, at which point the icon will turn green.
+
+- Wallet -- this icon will appear yellow at first. Your wallet will attempt to connect to three peers for syncing. It should be synced within a few seconds, at which point the icon will turn green.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/05.png" alt="Zero wallet balance" />
@@ -84,7 +85,6 @@ See also our [command line tutorial](/guides/offers-cli-tutorial) and our Offers
 
 Chia Asset Tokens (CATs) are fungible assets on Chia's blockchain. In Chia parlance, "CAT" and "token" are often used interchangeably. Each CAT must come with its own Token and Asset Issuance Limiter (TAIL), a program that dictates how the CAT may be issued. For more information, see our [CAT standard](https://chialisp.com/cats) documentation.
 
-
 ### Add a new CAT
 
 1. If you would like to acquire a CAT from an Offer, your wallet will need to recognize the CAT first. Click `MANAGE TOKEN LIST` in the lower-left corner of the reference wallet GUI:
@@ -94,8 +94,8 @@ Chia Asset Tokens (CATs) are fungible assets on Chia's blockchain. In Chia parla
   </div>
   <br/>
 
-2. The Chia reference wallet comes with a few included CATs, but most will need to be entered manually. If you want to add one of the included CATs, click the slider next to the CAT you would like to add. 
-Otherwise, click the `+` button:
+2. The Chia reference wallet comes with a few included CATs, but most will need to be entered manually. If you want to add one of the included CATs, click the slider next to the CAT you would like to add.
+   Otherwise, click the `+` button:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/02_offers.png" alt="add token"/>
@@ -109,36 +109,36 @@ Otherwise, click the `+` button:
   </div>
   <br/>
 
-  In addition to CATs, Spacescan provides a listing of NFTs. In certain cases, such as with Dexie Bucks, there are CAT _and_ NFT collections with the same name. In this case, be sure to click on `CAT2`, as in the above image.
+In addition to CATs, Spacescan provides a listing of NFTs. In certain cases, such as with Dexie Bucks, there are CAT _and_ NFT collections with the same name. In this case, be sure to click on `CAT2`, as in the above image.
 
-  The result will show you the details of the CAT you selected, including its ID. Copy this ID by clicking the icon as shown here:
+The result will show you the details of the CAT you selected, including its ID. Copy this ID by clicking the icon as shown here:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/spacescan_2.png" alt="copy dexie bucks ID"/>
   </div>
   <br/>
 
-  It is recommended that you check with another source of truth to make sure you have the correct ID. Another website that provides a listing of CATs and their IDs is [taildatabase.com](https://www.taildatabase.com/). Browse to this site, click the `Explore` menu, and search for your CAT. The name should appear in the search results:
- 
+It is recommended that you check with another source of truth to make sure you have the correct ID. Another website that provides a listing of CATs and their IDs is [taildatabase.com](https://www.taildatabase.com/). Browse to this site, click the `Explore` menu, and search for your CAT. The name should appear in the search results:
+
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/taildatabase_1.png" alt="taildatabase dexie bucks search"/>
   </div>
   <br/>
 
-  Some information about the CAT will appear, including its Asset ID, as highlighted here:
+Some information about the CAT will appear, including its Asset ID, as highlighted here:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/taildatabase_2.png" alt="taildatabase dexie bucks asset ID"/>
   </div>
   <br/>
 
-  Copy this ID and continue to the next step.
+Copy this ID and continue to the next step.
 
-  :::warning
+:::warning
 
-  If someone sends you an Asset ID (TAIL), do not assume it is correct. Instead, double-check with [spacescan.io](https://www.spacescan.io) or [taildatabase.com](https://www.taildatabase.com/) (or preferably both) to verify that you have the correct ID.
+If someone sends you an Asset ID (TAIL), do not assume it is correct. Instead, double-check with [spacescan.io](https://www.spacescan.io) or [taildatabase.com](https://www.taildatabase.com/) (or preferably both) to verify that you have the correct ID.
 
-  :::
+:::
 
 3. Enter the name and asset ID for your new CAT, then click `ADD`:
 
@@ -162,9 +162,9 @@ For our first example Offer, we will offer 1 XCH in exchange for the new CAT.
 
 2. Next, fill in the details of the Offer. By default, the Offer will be set to expire after 7 days. This is likely fine in most cases. (If an Offer never expires, there is a chance it will be taken as arbitrage long after the maker has forgotten about it.) However, feel free to enter a different expiration time if desired.
 
-  In this example, we will offer 1 XCH for 1000 tokens, and include a small blockchain fee, which will only be applied when the Offer is taken.
+In this example, we will offer 1 XCH for 1000 tokens, and include a small blockchain fee, which will only be applied when the Offer is taken.
 
-  After all of the details have been filled in, click `CREATE OFFER`:
+After all of the details have been filled in, click `CREATE OFFER`:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/05_offers.png" alt="fill in offer details"/>
@@ -180,12 +180,11 @@ For our first example Offer, we will offer 1 XCH in exchange for the new CAT.
 
 3. At this point, the Offer has been created locally. However, until you share it, it is unlikely that anyone will know it exists. Feel free to email the Offer file, share it on social media, etc. The Offer file does not contain any sensitive data. Whoever sees it will only have two options: take it or ignore it.
 
-  You can also use the panel that appears to share your Offer in a few default locations:
-    * Dexie -- a bulletin board that acts as a Decentralized EXchange (DEX)
-    * Hashgreen -- another DEX, as well as an Automated Market Maker (AMM)
-    * Offerpool -- a bulletin board for sharing offers
-    * Spacescan -- an explorer and bulletin board
-    * Finally, you can save the file to your local computer and share it however you want <br/><br/>
+You can also use the panel that appears to share your Offer in a few default locations:
+_ Dexie -- a bulletin board that acts as a Decentralized EXchange (DEX)
+_ Hashgreen -- another DEX, as well as an Automated Market Maker (AMM)
+_ Offerpool -- a bulletin board for sharing offers
+_ Spacescan -- an explorer and bulletin board \* Finally, you can save the file to your local computer and share it however you want <br/><br/>
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/07_offers.png" alt="distribute offer"/>
@@ -293,7 +292,7 @@ You can cancel any Offer you created, as long as it has not already been accepte
 
 1. In the "Offers" dialog, locate the Offer you want to cancel. It must be in the "Pending Accept" state.
 
-  Click the three dots in the "Actions" column:
+Click the three dots in the "Actions" column:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/20_offers.png" alt="Pending Accept"/>
@@ -309,9 +308,9 @@ You can cancel any Offer you created, as long as it has not already been accepte
 
 3.  The "Cancel Offer" dialog will appear. The default option is to cancel on the blockchain, as shown in the red circle in the image below.
 
-  This option will use your wallet to spend the coin(s) you had offered, and create new coins of the same type and value. This process does not involve taking the other end of the Offer, so you will not receive any funds of the type you had requested. The end result is that your wallet's balance will be the same as it was before you made the Offer (minus any transaction fees).
+This option will use your wallet to spend the coin(s) you had offered, and create new coins of the same type and value. This process does not involve taking the other end of the Offer, so you will not receive any funds of the type you had requested. The end result is that your wallet's balance will be the same as it was before you made the Offer (minus any transaction fees).
 
-  The advantage of canceling in this manner is that it ensures that nobody can accept your Offer in the future. The disadvantages are that you will need to wait a few minutes for your transaction to be processed, and that you may have to pay a transaction fee.
+The advantage of canceling in this manner is that it ensures that nobody can accept your Offer in the future. The disadvantages are that you will need to wait a few minutes for your transaction to be processed, and that you may have to pay a transaction fee.
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/22_offers.png" alt="Cancel on blockchain"/>
@@ -320,7 +319,7 @@ You can cancel any Offer you created, as long as it has not already been accepte
 
 4.  If you uncheck the checkbox, your wallet will un-reserve the coins for your Offer. However, nothing will be recorded on the blockchain. If you have copied your Offer file elsewhere, someone could still accept it.
 
-  The advantages of this option are that it will cancel your Offer instantly, and there's no need to include a fee.
+The advantages of this option are that it will cancel your Offer instantly, and there's no need to include a fee.
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/23_offers.png" alt="Cancel off chain"/>

@@ -34,32 +34,31 @@ The output is an object of type [`NftInfo`](#nftinfo).
 
 ### `chia_mintNFT`
 
-| Parameter                        | Type                            | Description                             |
-| -------------------------------- | ------------------------------- | --------------------------------------- |
-| `walletId`                       | `number`                        | NFT wallet id.                          |
-| `royaltyAddress` _(optional)_    | <code>string &#124; null</code> | Address royalty is sent to.             |
-| `royaltyPercentage` _(optional)_ | <code>number &#124; null</code> | Creator royalty percent. (1000 = 1%)    |
-| `targetAddress` _(optional)_     | <code>string &#124; null</code> | Address NFT is sent to upon mint.       |
-| `uris`                           | `string[]`                      | List of NFT content URIs.               |
-| `hash`                           | `string`                        | Hash of the NFT content.                |
-| `metaUris`                       | `string[]`                      | List of metadata URIs.                  |
-| `metaHash` _(optional)_          | <code>string &#124; null</code> | Hash of the metadata.                   |
-| `licenseUris`                    | `string[]`                      | List of the license URIs.               |
-| `licenseHash` _(optional)_       | <code>string &#124; null</code> | Hash of the license.                    |
-| `editionNumber` _(optional)_     | <code>number &#124; null</code> | Number of the current NFT in edition.   |
-| `editionTotal` _(optional)_      | <code>number &#124; null</code> | How many NFTs in the current edition.   |
-| `didId` _(optional)_             | <code>string &#124; null</code> | The DID used during an NFT mint.        |
-| `fee` _(optional)_               | <code>number &#124; null</code> | Transaction fee in mojos.               |
+| Parameter                        | Type                            | Description                           |
+| -------------------------------- | ------------------------------- | ------------------------------------- |
+| `walletId`                       | `number`                        | NFT wallet id.                        |
+| `royaltyAddress` _(optional)_    | <code>string &#124; null</code> | Address royalty is sent to.           |
+| `royaltyPercentage` _(optional)_ | <code>number &#124; null</code> | Creator royalty percent. (1000 = 1%)  |
+| `targetAddress` _(optional)_     | <code>string &#124; null</code> | Address NFT is sent to upon mint.     |
+| `uris`                           | `string[]`                      | List of NFT content URIs.             |
+| `hash`                           | `string`                        | Hash of the NFT content.              |
+| `metaUris`                       | `string[]`                      | List of metadata URIs.                |
+| `metaHash` _(optional)_          | <code>string &#124; null</code> | Hash of the metadata.                 |
+| `licenseUris`                    | `string[]`                      | List of the license URIs.             |
+| `licenseHash` _(optional)_       | <code>string &#124; null</code> | Hash of the license.                  |
+| `editionNumber` _(optional)_     | <code>number &#124; null</code> | Number of the current NFT in edition. |
+| `editionTotal` _(optional)_      | <code>number &#124; null</code> | How many NFTs in the current edition. |
+| `didId` _(optional)_             | <code>string &#124; null</code> | The DID used during an NFT mint.      |
+| `fee` _(optional)_               | <code>number &#124; null</code> | Transaction fee in mojos.             |
 
 #### Output Data
 
-| Parameter             | Type                                                 | Description             |
-| --------------------- | ---------------------------------------------------- | ----------------------- |
-| `nftId`               | `string`                                             | The NFT id.             |
-| `spendBundle`         | [`SpendBundle`](/walletconnect-commands#spendbundle) | Created spend bundle.   |
-| `success`             | `boolean`                                            | Backend success status. |
-| `walletId`            | `number`                                             | NFT wallet id.          |
-
+| Parameter     | Type                                                 | Description             |
+| ------------- | ---------------------------------------------------- | ----------------------- |
+| `nftId`       | `string`                                             | The NFT id.             |
+| `spendBundle` | [`SpendBundle`](/walletconnect-commands#spendbundle) | Created spend bundle.   |
+| `success`     | `boolean`                                            | Backend success status. |
+| `walletId`    | `number`                                             | NFT wallet id.          |
 
 ### `chia_transferNFT`
 

@@ -37,16 +37,16 @@ Usage: chia rpc wallet [OPTIONS] nft_add_uri [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag          | Type       | Required | Description                                                                                                                                                                              |
-|:------------- |:---------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :--------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | wallet_id     | NUMBER     | True     | The Wallet ID of the DID wallet to transfer                                                                                                                                              |
-| nft_coin_id | HEX STRING | True     | The coin ID of the NFT on which to add a URI                                                                                                                                             |
+| nft_coin_id   | HEX STRING | True     | The coin ID of the NFT on which to add a URI                                                                                                                                             |
 | key           | STRING     | True     | Must be either `u` (data URI), `mu` (metadata URI), or `lu` (license URI)                                                                                                                |
 | uri           | STRING     | True     | The URI to add                                                                                                                                                                           |
 | fee           | NUMBER     | False    | The one-time blockchain fee to be used upon adding a URI                                                                                                                                 |
@@ -156,14 +156,14 @@ Usage: chia rpc wallet [OPTIONS] nft_calculate_royalties [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter       | Sub-Parameter                                                                   | Required | Description                                                                                                                                                                                                                                                     |
-|:--------------- |:------------------------------------------------------------------------------- |:-------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :-------------- | :------------------------------------------------------------------------------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | royalty_assets  | Each royalty asset requires three sub-parameters, listed on the following lines | False    | A list of NFTs for which to calculate royalties. If this parameter is not included, then nothing will be returned                                                                                                                                               |
 |                 | asset                                                                           | True     | The asset ID of the NFT to be traded. This is only used for display in the response; a bogus value may be used                                                                                                                                                  |
 |                 | royalty_address                                                                 | True     | The address where the royalties will be sent. A bogus value may be used                                                                                                                                                                                         |
@@ -259,14 +259,14 @@ Usage: chia rpc wallet [OPTIONS] nft_count_nfts [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                                                  |
-|:--------- |:------ |:-------- |:---------------------------------------------------------------------------- |
+| :-------- | :----- | :------- | :--------------------------------------------------------------------------- |
 | wallet_id | NUMBER | False    | The ID of the wallet in which to count NFTs [Default: null (count all NFTs)] |
 
 <details>
@@ -339,14 +339,14 @@ Usage: chia rpc wallet [OPTIONS] nft_get_by_did [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag   | Type   | Required | Description           |
-|:------ |:------ |:-------- |:--------------------- |
+| :----- | :----- | :------- | :-------------------- |
 | did_id | NUMBER | True     | The DID ID to examine |
 
 <details>
@@ -378,14 +378,14 @@ Usage: chia rpc wallet [OPTIONS] nft_get_info [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                                          |
-|:--------- |:------ |:-------- |:---------------------------------------------------- |
+| :-------- | :----- | :------- | :--------------------------------------------------- |
 | coin_id   | NUMBER | True     | The coin ID of the NFT about which to retrieve info  |
 | wallet_id | NUMBER | False    | The Wallet ID of the NFT from which to retrieve info |
 
@@ -507,17 +507,17 @@ Usage: chia rpc wallet [OPTIONS] nft_get_nfts [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag                | Type    | Required | Description                                                                    |
-|:------------------- |:------- |:-------- |:------------------------------------------------------------------------------ |
-| wallet_id           | NUMBER  | True     | The Wallet ID from which to retrieve the NFTs                                  |
-| start_index         | NUMBER  | False    | The NFT index at which to start retrieving the NFTs [Default: `0`]             |
-| num                 | NUMBER  | False    | The maximum number of NFTs to retrieve [Default: `0`]                          |
+| Flag        | Type   | Required | Description                                                        |
+| :---------- | :----- | :------- | :----------------------------------------------------------------- |
+| wallet_id   | NUMBER | True     | The Wallet ID from which to retrieve the NFTs                      |
+| start_index | NUMBER | False    | The NFT index at which to start retrieving the NFTs [Default: `0`] |
+| num         | NUMBER | False    | The maximum number of NFTs to retrieve [Default: `0`]              |
 
 <details>
 <summary>Example</summary>
@@ -573,7 +573,7 @@ Usage: chia rpc wallet [OPTIONS] nft_get_wallets_with_dids
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
@@ -614,14 +614,14 @@ Usage: chia rpc wallet [OPTIONS] nft_get_wallet_did [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag      | Type   | Required | Description                    |
-|:--------- |:------ |:-------- |:------------------------------ |
+| :-------- | :----- | :------- | :----------------------------- |
 | wallet_id | NUMBER | True     | The Wallet ID of an NFT wallet |
 
 <details>
@@ -653,30 +653,30 @@ Usage: chia rpc wallet [OPTIONS] nft_mint_bulk [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag                     | Type         | Required | Description                                                                                                                                                                                                                                                                                              |
-|:------------------------ |:------------ |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id                | NUMBER       | True     | The ID of the NFT wallet to use for bulk minting                                                                                                                                                                                                                                                         |
-| metadata_list            | STRING ARRAY | True     | A list of dicts containing the metadata for each NFT to be minted                                                                                                                                                                                                                                        |
-| royalty_percentage       | NUMBER       | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0                                                                                                        |
-| royalty_address          | STRING       | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                                                                                                                         |
-| target_list              | STRING ARRAY | False    | A list of wallet addresses where the NFTs will be sent upon minting                                                                                                                                                                                                                                      |
+| Flag                   | Type         | Required | Description                                                                                                                                                                                                                                                                                              |
+| :--------------------- | :----------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id              | NUMBER       | True     | The ID of the NFT wallet to use for bulk minting                                                                                                                                                                                                                                                         |
+| metadata_list          | STRING ARRAY | True     | A list of dicts containing the metadata for each NFT to be minted                                                                                                                                                                                                                                        |
+| royalty_percentage     | NUMBER       | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0                                                                                                        |
+| royalty_address        | STRING       | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                                                                                                                         |
+| target_list            | STRING ARRAY | False    | A list of wallet addresses where the NFTs will be sent upon minting                                                                                                                                                                                                                                      |
 | mint_number_start      | NUMBER       | False    | The starting point for mint number used in intermediate launcher puzzle. Default: 1                                                                                                                                                                                                                      |
-| mint_total               | NUMBER       | False    | The total number of NFTs in the collection. Note that this is not necessarily reflective of the number of NFTs this command will create in the spend bundle, which is derived based on the `metadata_list`. For example, you could set `mint_total` to `1000` and pass only 10 dicts in `metadata_list`. |
+| mint_total             | NUMBER       | False    | The total number of NFTs in the collection. Note that this is not necessarily reflective of the number of NFTs this command will create in the spend bundle, which is derived based on the `metadata_list`. For example, you could set `mint_total` to `1000` and pass only 10 dicts in `metadata_list`. |
 | xch_coin_list          | STRING ARRAY | False    | A list of coins to be used for funding the minting spend. These coins can be created in the future                                                                                                                                                                                                       |
 | xch_change_target      | HEX STRING   | False    | For use with bulk minting, so we can specify the puzzle hash that the change from the funding transaction goes to.                                                                                                                                                                                       |
-| new_innerpuzhash         | HEX STRING   | False    | The new inner puzzle hash for the DID once it is spent. For bulk minting we generally don't provide this as the default behaviour is to re-use the existing inner puzzle hash                                                                                                                            |
+| new_innerpuzhash       | HEX STRING   | False    | The new inner puzzle hash for the DID once it is spent. For bulk minting we generally don't provide this as the default behaviour is to re-use the existing inner puzzle hash                                                                                                                            |
 | new_p2_puzhash         | HEX STRING   | False    | The new p2 puzzle hash for the DID once it is spent. For bulk minting we generally don't provide this as the default behaviour is to re-use the existing inner puzzle hash                                                                                                                               |
 | did_coin_dict          | DICTIONARY   | False    | The did coin to use for minting. Required for bulk minting when the DID coin will be created in the future                                                                                                                                                                                               |
 | did_lineage_parent_hex | HEX STRING   | False    | The parent coin to use for the lineage proof in the DID spend. Needed for bulk minting when the coin will be created in the future                                                                                                                                                                       |
 | mint_from_did          | BOOLEAN      | False    | Boolean to determine whether to mint from a DID. Default: false                                                                                                                                                                                                                                          |
-| fee                      | NUMBER       | False    | A blockchain fee to be deducted with each mint                                                                                                                                                                                                                                                           |
-| reuse_puzhash            | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml                                                                                                                 |
+| fee                    | NUMBER       | False    | A blockchain fee to be deducted with each mint                                                                                                                                                                                                                                                           |
+| reuse_puzhash          | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml                                                                                                                 |
 
 <details>
 <summary>Example</summary>
@@ -783,29 +783,29 @@ Usage: chia rpc wallet [OPTIONS] nft_mint_nft [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag               | Type         | Required | Description                                                                                                                                                                                            |
-|:------------------ |:------------ |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| wallet_id          | NUMBER       | True     | The Wallet ID in which to mint an NFT                                                                                                                                                                  |
-| uris               | STRING ARRAY | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                      |
-| hash               | HEX STRING   | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                        |
-| did_id             | STRING       | False    | Optionally specify the DID to be associated with this NFT                                                                                                                                              |
-| meta_uris          | STRING ARRAY | False    | A list of URIs to mark the location(s) of the NFT's metadata                                                                                                                                           |
-| meta_hash          | HEX STRING   | False    | The hash of the NFT's metadata                                                                                                                                                                         |
-| license_uris       | STRING ARRAY | False    | A list of URIs to mark the location(s) of the NFT's license                                                                                                                                            |
-| license_hash       | HEX STRING   | False    | The hash of the NFT's license                                                                                                                                                                          |
-| royalty_address    | STRING       | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                       |
-| royalty_percentage | NUMBER       | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0      |
-| target_address     | STRING       | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                      | |
-| edition_number     | NUMBER       | False    | If this NFT has multiple editions (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT.                                                                 |
-| edition_total      | NUMBER       | False    | If this NFT has multiple editions, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `edition_number` parameter was also used   |
-| fee                | NUMBER       | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                            |
-| reuse_puzhash      | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml               |
+| Flag               | Type         | Required | Description                                                                                                                                                                                          |
+| :----------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| wallet_id          | NUMBER       | True     | The Wallet ID in which to mint an NFT                                                                                                                                                                |
+| uris               | STRING ARRAY | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                    |
+| hash               | HEX STRING   | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                      |
+| did_id             | STRING       | False    | Optionally specify the DID to be associated with this NFT                                                                                                                                            |
+| meta_uris          | STRING ARRAY | False    | A list of URIs to mark the location(s) of the NFT's metadata                                                                                                                                         |
+| meta_hash          | HEX STRING   | False    | The hash of the NFT's metadata                                                                                                                                                                       |
+| license_uris       | STRING ARRAY | False    | A list of URIs to mark the location(s) of the NFT's license                                                                                                                                          |
+| license_hash       | HEX STRING   | False    | The hash of the NFT's license                                                                                                                                                                        |
+| royalty_address    | STRING       | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                     |
+| royalty_percentage | NUMBER       | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0    |
+| target_address     | STRING       | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                      |     |
+| edition_number     | NUMBER       | False    | If this NFT has multiple editions (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT.                                                               |
+| edition_total      | NUMBER       | False    | If this NFT has multiple editions, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `edition_number` parameter was also used |
+| fee                | NUMBER       | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                          |
+| reuse_puzhash      | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml             |
 
 <details>
 <summary>Example 1 - Mint an NFT without using a DID</summary>
@@ -983,18 +983,18 @@ Usage: chia rpc wallet [OPTIONS] nft_set_did_bulk [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag            | Type         | Required | Description                                                                                                                                                                              |
-|:--------------- |:------------ |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag          | Type         | Required | Description                                                                                                                                                                              |
+| :------------ | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | nft_coin_list | STRING ARRAY | True     | A list of coin IDs corresponding to the NFTs, along with the current wallet_ids. Syntax: `[{"nft_coin_id": COIN_ID/NFT_ID, "wallet_id": WALLET_ID}, ...]`                                |
-| did_id          | STRING       | False    | The ID of the DID to which to transfer the NFTs. [Default: no DID (reset the NFTs' DIDs)]                                                                                                |
-| fee             | NUMBER       | False    | An optional blockchain fee                                                                                                                                                               |
-| reuse_puzhash   | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| did_id        | STRING       | False    | The ID of the DID to which to transfer the NFTs. [Default: no DID (reset the NFTs' DIDs)]                                                                                                |
+| fee           | NUMBER       | False    | An optional blockchain fee                                                                                                                                                               |
+| reuse_puzhash | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -1086,16 +1086,16 @@ Usage: chia rpc wallet [OPTIONS] nft_set_nft_did [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag          | Type    | Required | Description                                                                                                                                                                              |
-|:------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | wallet_id     | NUMBER  | True     | The Wallet ID that holds the NFT on which to set the DID                                                                                                                                 |
-| nft_coin_id | NUMBER  | True     | The coin ID of the NFT on which to set the DID                                                                                                                                           |
+| nft_coin_id   | NUMBER  | True     | The coin ID of the NFT on which to set the DID                                                                                                                                           |
 | did_id        | NUMBER  | False    | Optionally specify the DID to be associated with this NFT. If this parameter is not specified, the DID will be Unassigned                                                                |
 | fee           | NUMBER  | False    | The one-time blockchain fee to be used upon adding a URI                                                                                                                                 |
 | reuse_puzhash | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
@@ -1265,14 +1265,14 @@ Usage: chia rpc wallet [OPTIONS] nft_set_nft_status [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag           | Type    | Required | Description                                         |
-|:-------------- |:------- |:-------- |:--------------------------------------------------- |
+| :------------- | :------ | :------- | :-------------------------------------------------- |
 | wallet_id      | NUMBER  | True     | The ID of an NFT wallet                             |
 | coin_id        | NUMBER  | True     | The coin_id of the NFT on which to set the status   |
 | in_transaction | BOOLEAN | True     | A boolean to set the transaction status for the NFT |
@@ -1305,18 +1305,18 @@ Usage: chia rpc wallet [OPTIONS] nft_transfer_bulk [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag            | Type         | Required | Description                                                                                                                                                                              |
-|:--------------- |:------------ |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| nft_coin_list | STRING ARRAY | True     | A list of coin IDs corresponding to the NFTs, along with the current wallet_ids. Syntax: `[{"nft_coin_id": COIN_ID/NFT_ID, "wallet_id": WALLET_ID}, ...]`                                |
-| target_address  | STRING       | True     | The address to which to transfer the NFTs                                                                                                                                                |
-| fee             | NUMBER       | False    | An optional blockchain fee                                                                                                                                                               |
-| reuse_puzhash   | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Flag           | Type         | Required | Description                                                                                                                                                                              |
+| :------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| nft_coin_list  | STRING ARRAY | True     | A list of coin IDs corresponding to the NFTs, along with the current wallet_ids. Syntax: `[{"nft_coin_id": COIN_ID/NFT_ID, "wallet_id": WALLET_ID}, ...]`                                |
+| target_address | STRING       | True     | The address to which to transfer the NFTs                                                                                                                                                |
+| fee            | NUMBER       | False    | An optional blockchain fee                                                                                                                                                               |
+| reuse_puzhash  | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -1399,17 +1399,17 @@ Usage: chia rpc wallet [OPTIONS] nft_transfer_nft [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag           | Type       | Required | Description                                                                                                                                                                              |
-|:-------------- |:---------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------- | :--------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | wallet_id      | NUMBER     | True     | The Wallet ID of the NFT to transfer                                                                                                                                                     |
 | target_address | STRING     | True     | The address to transfer the NFT to. For NFT0 this must be an XCH address. For NFT1 this could also be a DID address                                                                      |
-| nft_coin_id  | HEX STRING | True     | The coin ID of the NFT to transfer                                                                                                                                                       |
+| nft_coin_id    | HEX STRING | True     | The coin ID of the NFT to transfer                                                                                                                                                       |
 | fee            | NUMBER     | False    | The one-time blockchain fee to be used upon transferring the NFT                                                                                                                         |
 | reuse_puzhash  | BOOLEAN    | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 

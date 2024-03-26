@@ -40,14 +40,14 @@ npm install -g wscat
 Once wscat is installed, you can open a connection to the daemon. The command to run depends on your OS:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'macOS', value: 'macos'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
 Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.
 

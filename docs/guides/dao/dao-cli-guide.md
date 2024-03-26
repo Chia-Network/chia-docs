@@ -6,7 +6,7 @@ title: DAO CLI Guide
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::warning 
+:::warning
 
 Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
 
@@ -17,11 +17,13 @@ Prior to using the DAO alpha primitive, be sure to read the [list of known issue
 ## Intro
 
 This is a guide for using Chia DAOs from a command line interface (CLI). To follow this guide, you will need:
+
 - Chia version 2.1.4 or later
 - A wallet with some TXCH for creating a treasury
 - Ideally at least one more wallet to be used for voting on proposals
 
 For more information about Chia DAOs, see:
+
 - [DAO CLI Reference](/dao-cli)
 - [DAO RPC Reference](/dao-rpc)
 - [DAO1 CHIP](https://github.com/Chia-Network/chips/pull/93)
@@ -37,9 +39,10 @@ Chia Decentralized Autonomous Organizations (DAOs) are organizations where no ce
 ## Guide
 
 This guide will use four separate wallets:
-* The **DAO creator** wallet will create the DAO, fund the treasury, distribute voting tokens, and create and vote on proposals.
-* **DAO participant 1** and **DAO participant 2** will join a DAO that already exists. They will acquire voting tokens from the **DAO creator**. They can also create and vote on proposals.
-* The **DAO payout wallet** will only be used for receiving funds from a _spend_ proposal. This wallet will not join the DAO.
+
+- The **DAO creator** wallet will create the DAO, fund the treasury, distribute voting tokens, and create and vote on proposals.
+- **DAO participant 1** and **DAO participant 2** will join a DAO that already exists. They will acquire voting tokens from the **DAO creator**. They can also create and vote on proposals.
+- The **DAO payout wallet** will only be used for receiving funds from a _spend_ proposal. This wallet will not join the DAO.
 
 :::info
 
@@ -100,17 +103,18 @@ This guide will use a CLI command to create a DAO. If preferred, you can also cr
 The command to create a DAO is `chia dao create`. This command contains many options -- see [the documentation](/dao-cli#create) for a complete list. Most of the options are not required. However, we will change several of them because their default values are more appropriate for real-world DAOs.
 
 For this example, we will specify the following values:
-* `proposal-timelock: 3` -- Proposals must exist for at least 3 blocks before being closed.
-* `soft-close: 2` -- Proposals must be unspent for at least 2 blocks before being closed.
-* `attendance-required: 3000` -- At least 3000 votes ('yes' and 'no' combined) must be received before a proposal can pass.
-* `pass-percentage: 5000` -- At least 50% of votes must be 'yes' in order for a proposal to pass.
-* `self-destruct: 1` -- At least 1 block must pass before a proposal can be removed.
-* `oracle-delay: 2` -- At least 2 blocks must pass between oracle spends of the treasury.
-* `proposal-minimum: 0.000001` -- One million mojos will be donated to the treasury upon completion of a proposal. This prevents bad actors from spamming a DAO with untenable proposals.
-* `filter-amount: 1` -- At least 1 vote must be made for a proposal before the wallet will recognize it.
-* `cat-amount: 5000` -- Five thousand DAO CATs will be created initially.
-* `m: 0.00001` -- A blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO.
-* `fee-for-cat: 0.00001` -- A second blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO CATs.
+
+- `proposal-timelock: 3` -- Proposals must exist for at least 3 blocks before being closed.
+- `soft-close: 2` -- Proposals must be unspent for at least 2 blocks before being closed.
+- `attendance-required: 3000` -- At least 3000 votes ('yes' and 'no' combined) must be received before a proposal can pass.
+- `pass-percentage: 5000` -- At least 50% of votes must be 'yes' in order for a proposal to pass.
+- `self-destruct: 1` -- At least 1 block must pass before a proposal can be removed.
+- `oracle-delay: 2` -- At least 2 blocks must pass between oracle spends of the treasury.
+- `proposal-minimum: 0.000001` -- One million mojos will be donated to the treasury upon completion of a proposal. This prevents bad actors from spamming a DAO with untenable proposals.
+- `filter-amount: 1` -- At least 1 vote must be made for a proposal before the wallet will recognize it.
+- `cat-amount: 5000` -- Five thousand DAO CATs will be created initially.
+- `m: 0.00001` -- A blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO.
+- `fee-for-cat: 0.00001` -- A second blockchain fee of 0.00001 XCH will be paid for the transaction that creates the DAO CATs.
 
 These options are appropriate for running a small-scale DAO on a testnet. Be sure to choose your own options according to your DAO's needs.
 
@@ -172,9 +176,10 @@ CAT 52d38b7cc156c8a7...:
 ```
 
 The **DAO creator** now sees the following Wallet IDs:
-* DAO singleton: `Wallet ID: 2` -- keeps track of the rules governing the DAO
-* Unlocked DAO tokens: `Wallet ID: 3` -- tokens that are not in "voting mode"; can be transferred to other participants
-* Locked DAO tokens: `Wallet ID: 4` -- tokens that are in "voting mode"; may only be used to vote on proposals
+
+- DAO singleton: `Wallet ID: 2` -- keeps track of the rules governing the DAO
+- Unlocked DAO tokens: `Wallet ID: 3` -- tokens that are not in "voting mode"; can be transferred to other participants
+- Locked DAO tokens: `Wallet ID: 4` -- tokens that are in "voting mode"; may only be used to vote on proposals
 
 :::info
 
@@ -435,6 +440,7 @@ Next, we will repeat this process with **DAO participant 2**, except that wallet
 As a review, the status of each of the wallets is as follows:
 
 **DAO creator**
+
 ```bash
 Chia Wallet:
    -Total Balance:         73.997309608214 txch (73997309608214 mojo)
@@ -469,6 +475,7 @@ CAT 52d38b7cc156c8a7...:
 ```
 
 **DAO participant 1**
+
 ```bash
 Chia Wallet:
    -Total Balance:         2.0 txch (2000000000000 mojo)
@@ -555,6 +562,7 @@ Run 'chia wallet get_transaction -f 3885096935 -tx 0xe3eeeb55f97dea6f3330c286b91
 In each wallet's case, an on-chain transaction is required. After running this command on all three wallets, the status of CATs and DAO_CATs is as follows:
 
 **DAO creator**
+
 ```bash
 CAT 52d38b7cc156c8a7...:
    -Total Balance:         1.0  (1000 mojo)
@@ -574,6 +582,7 @@ CAT 52d38b7cc156c8a7...:
 ```
 
 **DAO participant 1**
+
 ```bash
 CAT 52d38b7cc156c8a7...:
    -Total Balance:         0.0  (0 mojo)
@@ -593,6 +602,7 @@ CAT 52d38b7cc156c8a7...:
 ```
 
 **DAO participant 2**
+
 ```bash
 CAT 52d38b7cc156c8a7...:
    -Total Balance:         1.0  (1000 mojo)
@@ -616,11 +626,12 @@ A total of 3000 tokens (1000 for each wallet) have been locked up for voting. Th
 ### Create a spend proposal
 
 DAOs come with three types of proposals:
-* Spend some of the treasury
-* Mint more CATs for the DAO
-* Change the DAO's rules
 
-First, let's create a spend proposal. To set this proposal up, we will need an address to which to send the funds if the proposal succeeds. This can be *any* XCH/TXCH address (it could be the address of a new singleton or any other smart contract), but for this tutorial the **DAO payout wallet** will just be a standard wallet.
+- Spend some of the treasury
+- Mint more CATs for the DAO
+- Change the DAO's rules
+
+First, let's create a spend proposal. To set this proposal up, we will need an address to which to send the funds if the proposal succeeds. This can be _any_ XCH/TXCH address (it could be the address of a new singleton or any other smart contract), but for this tutorial the **DAO payout wallet** will just be a standard wallet.
 
 Let's say the **DAO payout wallet** currently has no balance:
 
@@ -801,7 +812,7 @@ Address: txch1796cqesu4cghd603743hdsp4ffz0tj0tacp63ag2p433fhudkyuq58sw69
 Amount: 1000000000000
 ```
 
-The value for `Yes votes needed` has not changed, but `Total votes needed` has dropped from `2000` to `1000`. A quorum of 3000 votes has not been reached, so the proposal has not yet passed. **DAO participant 1** does not have any more voting tokens available to vote against this proposal, so it has not yet failed, either. 
+The value for `Yes votes needed` has not changed, but `Total votes needed` has dropped from `2000` to `1000`. A quorum of 3000 votes has not been reached, so the proposal has not yet passed. **DAO participant 1** does not have any more voting tokens available to vote against this proposal, so it has not yet failed, either.
 
 Let's say **DAO participant 1** attempts to add one more 'no' vote:
 
@@ -970,7 +981,7 @@ CAT e8829304151a4cdb...:
    -Wallet ID:             4
 ```
 
-**DAO participant 1** can then propose to send 1 CAT to an address they control, and add 1000 initial votes. 
+**DAO participant 1** can then propose to send 1 CAT to an address they control, and add 1000 initial votes.
 
 :::warning
 

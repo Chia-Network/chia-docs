@@ -117,12 +117,12 @@ After the installer has downloaded, execute it and Chia will install automatical
 If the `chia` command isn't already in your system's path, you can create an alias:
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux/MacOS', value: 'nix'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows">
 
 Be sure to replace `<username>` and `<version>` with the actual folder names.
 

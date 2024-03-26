@@ -11,7 +11,7 @@ In this lesson, we dive into the role that Timelords play in the consensus by us
 - **Verifiable Delay Function (VDF)**: Understand the basics of VDFs.
 - **Challenges**: Explore how challenges and Proofs of Space create new challenges.
 
-***
+---
 
 ## Content
 
@@ -19,7 +19,7 @@ In this lesson, we dive into the role that Timelords play in the consensus by us
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/tJPdBmpgvsc" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -51,7 +51,7 @@ While at least one Timelord is required for the blockchain to function, anyone c
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
@@ -59,7 +59,7 @@ While at least one Timelord is required for the blockchain to function, anyone c
 - **Timelords:** Only 1 timelord is needed to keep the chain moving but anyone can run a timelord and multiple timelords on the network ensures resiliency. Some attacks that timelords protect against are documented [here](https://docs.chia.net/consensus-attacks#faster-timelord).
 - **Challenges:** Challenges are deterministic meaning one can use the inputs (the previous challenge and Proof of Space) to verify the current challenge's accuracy.
 
-***
+---
 
 ## Knowledge check
 
@@ -137,7 +137,7 @@ True
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -148,4 +148,4 @@ True
 - Challenges [detailed documentation](https://docs.chia.net/consensus-challenges/): detailed information regarding challenges.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

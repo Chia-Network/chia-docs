@@ -16,9 +16,10 @@ Under normal circumstances, an attacker can create a malicious proposal to drain
 
 However, prior to creating this proposal, the attacker can use proposal spam to improve the chances of the attack's success.
 
-The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle_hash (including hinted coins):
-	* `trusted_max_subscribe_response_items`: 500000
-	* `max_subscribe_response_items`: 100000
+The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle\*hash (including hinted coins):
+
+- `trusted_max_subscribe_response_items`: 500000
+- `max_subscribe_response_items`: 100000
 
 The attacker can take advantage of this limit by creating multiple coins, each of which contains a hint equal to the `TREASURY_ID`. Eventually a wallet will no longer get any additional coin states for newer coins from a `full_node` via the coin state subscription. This is the "proposal spam" part of the attack.
 
@@ -28,8 +29,8 @@ If the attacker has created a sufficient number of the aforementioned coins to r
 
 An attacker can create spam proposals with the intent of locking DAO_CATs into voting mode permanently. There are two ways to accomplish this:
 
-* Create otherwise valid `PROPOSAL` coins which don't meet the proposal minimum amount (e.g. 0 or 1 mojo coins).
-* Create proposals without a timer coin.
+- Create otherwise valid `PROPOSAL` coins which don't meet the proposal minimum amount (e.g. 0 or 1 mojo coins).
+- Create proposals without a timer coin.
 
 In the event that such proposals are voted on by users, because the proposals can never be closed (even via self-destruct), any users who voted on these proposals will never be able to unlock the coins they voted with. Note that coins in this state could continue to be used to vote on other proposals.
 

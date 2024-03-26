@@ -28,7 +28,7 @@ For additional technical resources, see the following:
 
 ---
 
-### About clawback
+## About clawback
 
 The clawback primitive was designed to guard against sending Chia assets to an incorrect address. The principal behind clawback is simple: it is an intermediate coin that cannot be sent to the destination address until a timelock has expired. In the meantime, the Sender can "claw back" the coin, returning it to their wallet in the form of standard XCH.
 
@@ -66,7 +66,7 @@ The values used in the commands from this guide are just examples. You will need
 
 ---
 
-### Install the clawback primitive
+## Install the clawback primitive
 
 The clawback primitive is included in the `Chia-Network` organization's `chia-clawback-primitive` GitHub repository.
 
@@ -85,35 +85,35 @@ The clawback primitive is included in the `Chia-Network` organization's `chia-cl
 3. Create and activate a virtual environment:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'macOS', value: 'macos'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
   </Tabs>
@@ -142,7 +142,7 @@ At this point, you are ready to use the clawback primitive.
 
 ---
 
-### Create a clawback coin
+## Create a clawback coin
 
 For this example, we will use two wallets: a Sender and a Recipient. The Sender has a balance of 10 TXCH and the Recipient has 0 TXCH.
 
@@ -209,7 +209,7 @@ Timelock: 600 seconds
 Time left: 518 seconds
 ```
 
-### Claw back a coin
+## Claw back a coin
 
 This guide will continue from the previous section, where we created a new clawback coin, which has not yet been spent. As a reminder, these are the clawback coin's details:
 
@@ -280,7 +280,7 @@ Chia Wallet:
 
 At this point, the clawback coin no longer exists. The Sender is of course free to create new clawback coins as they see fit.
 
-### Claim a clawback coin
+## Claim a clawback coin
 
 In this section, we'll show how to claim a clawback coin. First, the Sender creates a new clawback coin with a 60-second timelock:
 
@@ -442,11 +442,11 @@ The spend is now complete and can no longer be clawed back. The funds are stored
 
 ---
 
-### Other cases
+## Other cases
 
 So far, we have shown the standard clawback and completion spends. There are also a few edge cases and errors worth discussing.
 
-#### Sender performs a clawback after the timelock
+### Sender performs a clawback after the timelock
 
 After the timelock expires, the Recipient may claim the clawback coin. Until this is done, the Sender can still claw back the coin.
 
@@ -532,7 +532,7 @@ Chia Wallet:
 
 Because the Sender can always claw back a clawback coin while it exists, the Recipient cannot assume that they will receive the clawback coin, even after the timelock has expired. However, after the Recipient has claimed the clawback coin and it has appeared in the Recipient's wallet as regular XCH/TXCH, the coin can no longer be clawed back.
 
-#### Recipient attempts to claim clawback coin before timelock has expired
+### Recipient attempts to claim clawback coin before timelock has expired
 
 Before the timelock expires, a clawback coin may not be spent to its Recipient's address. For example, let's say the following clawback coin exists. Note that its `Time left:` is still greater than 0 seconds:
 
@@ -564,7 +564,7 @@ Result:
 You are trying to claim the coin too early
 ```
 
-#### Someone other than the Sender attempts to claw back a coin
+### Someone other than the Sender attempts to claw back a coin
 
 For this example, the Sender creates a new clawback coin:
 
@@ -653,7 +653,7 @@ Traceback (most recent call last):
 ValueError: Couldn't find a matching key for puzzle hash: ee3144040e80747af2f6ec56ed7567d22ca83ea3470e09bb9d95347a80cd2d29.
 ```
 
-#### Someone other than the Recipient attempts to claim a clawback spend
+### Someone other than the Recipient attempts to claim a clawback spend
 
 For this example, someone other than the Recipient is made aware of the Coin ID of a pending clawback coin:
 
@@ -715,7 +715,7 @@ Traceback (most recent call last):
 ValueError: Couldn't find a matching key for puzzle hash: c08dfae2aab3b3b3cbffdd4c1f1e4bf2df278785e5ca67524d6e518e79f134c3.
 ```
 
-#### Sender claws back coin to a new wallet
+### Sender claws back coin to a new wallet
 
 The Sender has the option of performing a clawback where the coin is sent to any wallet. Let's say the Sender creates a clawback coin:
 
@@ -764,7 +764,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-#### Recipient claims a clawback coin in a new wallet address
+### Recipient claims a clawback coin in a new wallet address
 
 The Recipient also has the option of spending a clawback coin to a new address.
 
@@ -834,7 +834,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-#### Sender or Recipient attempts to show a clawback coin before it has been created
+### Sender or Recipient attempts to show a clawback coin before it has been created
 
 Two important rules to keep in mind:
 

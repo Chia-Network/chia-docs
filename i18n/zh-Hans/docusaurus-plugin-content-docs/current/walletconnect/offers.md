@@ -155,17 +155,17 @@ Creates an offer for wallet ids.
 
 | Parameter          | Type                                     | Description                                  |
 | ------------------ | ---------------------------------------- | -------------------------------------------- |
-| `acceptedAtTime`   | <code>number &#124; null</code>                | Timestamp when the trade was accepted.       |
+| `acceptedAtTime`   | <code>number &#124; null</code>          | Timestamp when the trade was accepted.       |
 | `coinsOfInterest`  | [`Coin[]`](/walletconnect-commands#coin) | Coins involved in trade.                     |
 | `confirmedAtIndex` | `number`                                 | Confirmation block index.                    |
 | `createdAtTime`    | `number`                                 | Timestamp when the trade was created.        |
 | `isMyOffer`        | `boolean`                                | Whether this is the wallet's own offer.      |
-| `pending`          | `Record<string, number>`           | Pending amounts.                             |
+| `pending`          | `Record<string, number>`                 | Pending amounts.                             |
 | `sent`             | `number`                                 | Number of peers the transaction was sent to. |
 | `sentTo`           | [`Peer[]`](/walletconnect-commands#peer) | Peers the transaction was sent to.           |
 | `status`           | [`TradeStatus`](#tradestatus)            | Trade status.                                |
 | `summary`          | `any`                                    | Trade summary metadata.                      |
-| `takenOffer`       | <code>string &#124; null</code>                | Taken bech32m encoded offer data.            |
+| `takenOffer`       | <code>string &#124; null</code>          | Taken bech32m encoded offer data.            |
 | `tradeId`          | `string`                                 | Trade id.                                    |
 | `_offerData`       | `string`                                 | Bech32m encoded offer data.                  |
 

@@ -55,14 +55,14 @@ Usage: chia rpc data_layer [OPTIONS] add_mirror [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag   | Type    | Required | Description                                                                                                      |
-|:------ |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------- |
+| :----- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
 | id     | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                        |
 | urls   | TEXT    | True     | A list of URLs where the mirror will reside                                                                      |
 | amount | INTEGER | True     | The number of mojos to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
@@ -100,16 +100,16 @@ Usage: chia rpc data_layer [OPTIONS] add_missing_files [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag       | Type    | Required | Description                                                                                                                                        |
-|:---------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ids        | TEXT    | False    | A list of hexadecimal store IDs to restore (default: all subscribed stores)                                                                        |
-| override   | BOOLEAN | False    | If `True`, will overwrite files that already exist (default: `False`)                                                                              |
+| Flag       | Type    | Required | Description                                                                                                                                  |
+| :--------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| ids        | TEXT    | False    | A list of hexadecimal store IDs to restore (default: all subscribed stores)                                                                  |
+| override   | BOOLEAN | False    | If `True`, will overwrite files that already exist (default: `False`)                                                                        |
 | foldername | TEXT    | False    | The name of the folder where the files to be restored are located (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`) |
 
 <details>
@@ -175,14 +175,14 @@ Usage: chia rpc data_layer [OPTIONS] batch_update [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag       | Type | Required | Description                               |
-|:---------- |:---- |:-------- |:----------------------------------------- |
+| :--------- | :--- | :------- | :---------------------------------------- |
 | id         | TEXT | True     | The hexadecimal store ID                  |
 | changelist | TEXT | True     | A string representing the changelist      |
 | fee        | TEXT | False    | Set the fee for the transaction, in mojos |
@@ -386,14 +386,14 @@ Usage: chia rpc data_layer [OPTIONS] cancel_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag     | Type    | Required | Description                                                                                                                                                                                                                                                             |
-|:-------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | trade_id | TEXT    | True     | The `trade_id` of the offer. This is displayed with the response of the [make_offer](#make_offer) RPC                                                                                                                                                                   |
 | secure   | BOOLEAN | True     | If `true`, the offer will be canceled on the blockchain, making it impossible to be accepted later. If `false`, the offer will only be canceled locally. We recommend that you set this to `true` unless you are certain that the offer file has not left your computer |
 | fee      | TEXT    | False    | If `secure` is `true`, this will set the fee for the transaction, in mojos. If `secure` is `false`, the fee will be ignored                                                                                                                                             |
@@ -428,7 +428,7 @@ Usage: chia rpc data_layer [OPTIONS] check_plugins [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -466,14 +466,14 @@ Usage: chia rpc data_layer [OPTIONS] clear_pending_roots [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag     | Type | Required | Description              |
-|:-------- |:---- |:-------- |:------------------------ |
+| :------- | :--- | :------- | :----------------------- |
 | store_id | TEXT | True     | The hexadecimal store ID |
 
 <details>
@@ -487,13 +487,13 @@ Response:
 
 ```json
 {
-    "root": {
-        "generation": 2,
-        "node_hash": "ab8da7d5adec29fe1d12888fec462d0b18d72cec975599e178f98037cf3b8d13",
-        "status": 1,
-        "tree_id": "2772c8108e19f9fa98ff7bc7d4bafd821319bc90af6b610d086b85f4c21fa816"
-    },
-    "success": true
+  "root": {
+    "generation": 2,
+    "node_hash": "ab8da7d5adec29fe1d12888fec462d0b18d72cec975599e178f98037cf3b8d13",
+    "status": 1,
+    "tree_id": "2772c8108e19f9fa98ff7bc7d4bafd821319bc90af6b610d086b85f4c21fa816"
+  },
+  "success": true
 }
 ```
 
@@ -510,14 +510,14 @@ Usage: chia rpc data_layer [OPTIONS] create_data_store [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                               |
-|:---- |:---- |:-------- |:----------------------------------------- |
+| :--- | :--- | :------- | :---------------------------------------- |
 | fee  | TEXT | False    | Set the fee for the transaction, in mojos |
 
 <details>
@@ -681,14 +681,14 @@ Usage: chia rpc data_layer [OPTIONS] delete_key [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                               |
-|:---- |:---- |:-------- |:----------------------------------------- |
+| :--- | :--- | :------- | :---------------------------------------- |
 | id   | TEXT | True     | The hexadecimal store ID                  |
 | key  | TEXT | True     | The hexadecimal key                       |
 | fee  | TEXT | False    | Set the fee for the transaction, in mojos |
@@ -724,14 +724,14 @@ Usage: chia rpc data_layer [OPTIONS] delete_mirror [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                                                                              |
-|:---- |:---- |:-------- |:---------------------------------------------------------------------------------------- |
+| :--- | :--- | :------- | :--------------------------------------------------------------------------------------- |
 | id   | TEXT | True     | The `coin_id` of the mirror to delete, obtainable by running [get_mirrors](#get_mirrors) |
 | fee  | TEXT | False    | Set the fee for the transaction, in mojos                                                |
 
@@ -780,14 +780,14 @@ Usage: chia rpc data_layer [OPTIONS] get_ancestors [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                              |
-|:---- |:---- |:-------- |:---------------------------------------- |
+| :--- | :--- | :------- | :--------------------------------------- |
 | id   | TEXT | True     | The hexadecimal store ID                 |
 | hash | TEXT | True     | The hash from which to display ancestors |
 
@@ -839,14 +839,14 @@ Usage: chia rpc data_layer [OPTIONS] get_keys [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type | Required | Description                             |
-|:--------- |:---- |:-------- |:--------------------------------------- |
+| :-------- | :--- | :------- | :-------------------------------------- |
 | id        | TEXT | True     | The hexadecimal store ID                |
 | root_hash | TEXT | False    | The root hash from which to obtain data |
 
@@ -885,14 +885,14 @@ Usage: chia rpc data_layer [OPTIONS] get_keys_values [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 |   Flag    | Type | Required | Description                             |
-|:---------:|:----:|:--------:|:--------------------------------------- |
+| :-------: | :--: | :------: | :-------------------------------------- |
 |    id     | TEXT |   True   | The hexadecimal store ID                |
 | root_hash | TEXT |  False   | The root hash from which to obtain data |
 
@@ -999,14 +999,14 @@ Usage: chia rpc data_layer [OPTIONS] get_kv_diff [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag   | Type | Required | Description                |
-|:------ |:---- |:-------- |:-------------------------- |
+| :----- | :--- | :------- | :------------------------- |
 | id     | TEXT | True     | The hexadecimal store ID   |
 | hash_1 | TEXT | True     | The first hash to compare  |
 | hash_2 | TEXT | True     | The second hash to compare |
@@ -1051,14 +1051,14 @@ Usage: chia rpc data_layer [OPTIONS] get_local_root [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:s
 
 | Flag | Type | Required | Description              |
-|:---- |:---- |:-------- |:------------------------ |
+| :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
 <details>
@@ -1090,14 +1090,14 @@ Usage: chia rpc data_layer [OPTIONS] get_mirrors [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                                               |
-|:---- |:---- |:-------- |:--------------------------------------------------------- |
+| :--- | :--- | :------- | :-------------------------------------------------------- |
 | id   | TEXT | True     | The hexadecimal ID of the store for which to list mirrors |
 
 <details>
@@ -1137,7 +1137,7 @@ Usage: chia rpc data_layer [OPTIONS] get_owned_stores [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1174,14 +1174,14 @@ Usage: chia rpc data_layer [OPTIONS] get_root [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description              |
-|:---- |:---- |:-------- |:------------------------ |
+| :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
 <details>
@@ -1239,14 +1239,14 @@ Usage: chia rpc data_layer [OPTIONS] get_roots [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                     |
-|:---- |:---- |:-------- |:------------------------------- |
+| :--- | :--- | :------- | :------------------------------ |
 | ids  | TEXT | True     | A list of hexadecimal store IDs |
 
 <details>
@@ -1293,14 +1293,14 @@ Usage: chia rpc data_layer [OPTIONS] get_root_history [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description              |
-|:---- |:---- |:-------- |:------------------------ |
+| :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
 <details>
@@ -1373,7 +1373,7 @@ Usage: chia rpc data_layer [OPTIONS] get_routes
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1443,14 +1443,14 @@ Usage: chia rpc data_layer [OPTIONS] get_sync_status [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description              |
-|:---- |:---- |:-------- |:------------------------ |
+| :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
 <details>
@@ -1487,14 +1487,14 @@ Usage: chia rpc data_layer [OPTIONS] get_value [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type | Required | Description                             |
-|:--------- |:---- |:-------- |:--------------------------------------- |
+| :-------- | :--- | :------- | :-------------------------------------- |
 | id        | TEXT | True     | The hexadecimal store ID                |
 | key       | TEXT | True     | The hexadecimal key                     |
 | root_hash | TEXT | False    | The root hash from which to obtain data |
@@ -1536,14 +1536,14 @@ Usage: chia rpc data_layer [OPTIONS] insert [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag  | Type | Required | Description                               |
-|:----- |:---- |:-------- |:----------------------------------------- |
+| :---- | :--- | :------- | :---------------------------------------- |
 | id    | TEXT | True     | The hexadecimal store ID                  |
 | key   | TEXT | True     | The hexadecimal key                       |
 | value | TEXT | True     | The hexadecimal value                     |
@@ -1600,14 +1600,14 @@ Usage: chia rpc data_layer [OPTIONS] make_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag  | Type | Required | Description                                               |
-|:----- |:---- |:-------- |:--------------------------------------------------------- |
+| :---- | :--- | :------- | :-------------------------------------------------------- |
 | maker | TEXT | True     | The hexadecimal ID of the store for which to list mirrors |
 | fee   | TEXT | False    | Set the fee for the offer, in mojos                       |
 
@@ -1808,14 +1808,14 @@ Usage: chia rpc data_layer [OPTIONS] remove_subscriptions [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                              |
-|:---- |:---- |:-------- |:---------------------------------------- |
+| :--- | :--- | :------- | :--------------------------------------- |
 | id   | TEXT | True     | The hexadecimal store ID                 |
 | urls | TEXT | True     | A list of URLs from which to unsubscribe |
 
@@ -1847,14 +1847,14 @@ Usage: chia rpc data_layer [OPTIONS] subscribe [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                                                              |
-|:---- |:---- |:-------- |:------------------------------------------------------------------------ |
+| :--- | :--- | :------- | :----------------------------------------------------------------------- |
 | id   | TEXT | True     | The hexadecimal store ID                                                 |
 | urls | TEXT | True     | A list of URLs where the data store resides. This list can be left blank |
 
@@ -1907,7 +1907,7 @@ Usage: chia rpc data_layer [OPTIONS] subscriptions [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1948,14 +1948,14 @@ Usage: chia rpc data_layer [OPTIONS] take_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag  | Type | Required | Description                                                                                            |
-|:----- |:---- |:-------- |:------------------------------------------------------------------------------------------------------ |
+| :---- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
 | offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
 | fee   | TEXT | False    | Set the fee for the offer, in mojos                                                                    |
 
@@ -2060,22 +2060,23 @@ Usage: chia rpc data_layer [OPTIONS] unsubscribe [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type | Required | Description                                               |
-|:---- |:---- |:-------- |:--------------------------------------------------------- |
+| :--- | :--- | :------- | :-------------------------------------------------------- |
 | id   | TEXT | True     | The hexadecimal ID of the store from which to unsubscribe |
 
 :::info
 
 The `unsubscribe` RPC may or may not delete any data, depending on which version of Chia you are running:
-* Prior to version 2.1, the command did not delete the .dat files, nor did it delete from the database.
-* As of version 2.1, the command deletes the .dat files, but does not delete from the database.
-* In a future release, the command will also delete from the database.
+
+- Prior to version 2.1, the command did not delete the .dat files, nor did it delete from the database.
+- As of version 2.1, the command deletes the .dat files, but does not delete from the database.
+- In a future release, the command will also delete from the database.
 
 :::
 
@@ -2107,14 +2108,14 @@ Usage: chia rpc data_layer [OPTIONS] verify_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag  | Type | Required | Description                                                                                            |
-|:----- |:---- |:-------- |:------------------------------------------------------------------------------------------------------ |
+| :---- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
 | offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
 
 <details>
@@ -2167,14 +2168,14 @@ Functionality: Request that the wallet service be logged in to the specified fin
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type   | Required | Description                          |
-|:----------- |:------ |:-------- |:------------------------------------ |
+| :---------- | :----- | :------- | :----------------------------------- |
 | fingerprint | STRING | True     | The fingerprint of the wallet to use |
 
 <details>
@@ -2209,14 +2210,14 @@ Usage: chia rpc data_layer [OPTIONS] close_connection [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 |  Flag   | Type | Required | Description                                                                            |
-|:-------:|:----:|:--------:|:-------------------------------------------------------------------------------------- |
+| :-----: | :--: | :------: | :------------------------------------------------------------------------------------- |
 | node_id | TEXT |   True   | The hex ID of the node to close, obtainable from [`get_connections`](#get_connections) |
 
 <details>
@@ -2264,7 +2265,7 @@ Usage: chia rpc data_layer [OPTIONS] get_connections [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -2314,14 +2315,14 @@ Usage: chia rpc data_layer [OPTIONS] open_connection [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type    | Required | Description                                          |
-|:---- |:------- |:-------- |:---------------------------------------------------- |
+| :--- | :------ | :------- | :--------------------------------------------------- |
 | host | TEXT    | True     | The IP or URL of the node to connect to              |
 | port | INTEGER | True     | The port through which to connect to the remote node |
 
@@ -2355,7 +2356,7 @@ Note: Inherited from RPC Server
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
