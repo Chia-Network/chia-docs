@@ -64,7 +64,7 @@ What is the minimum k size required by the Chia blockchain?
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-k32
+`"k32"`
 
 </details>
 
@@ -78,7 +78,7 @@ How large is a plot file when using the minimum k-size, k32?
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-Around 108GB
+`"Around 108GB"`
 
 </details>
 
@@ -92,7 +92,7 @@ How often should a Farmer replot?
 
 <summary> Answer (expand when ready to see the answer) </summary>
 
-Ideally, a Farmer should not have to replot. There may be some instances a Farmer may want to replot (alter the k-size or compression, changing from pool-based farming to solo-farming etc.), but the plots should remain valid and useful well into the future.
+`"Ideally, a Farmer should not have to replot. There may be some instances a Farmer may want to replot (alter the k-size or compression, changing from pool-based farming to solo-farming etc.), but the plots should remain valid and useful well into the future."`
 
 </details>
 
@@ -106,7 +106,7 @@ True or False; When a block is created, the Timelord processes and evaluates all
 
 <summary> Answer (expand when ready to see the answer) </summary>
 
-False. The Farmer processes the smart coins contained in the block. The Timelord infuses the block to the rest of the chain.
+False. The Farmer processes the smart coins contained in the block. The Timelord infuses the block to the rest of the chain."\`
 
 </details>
 
