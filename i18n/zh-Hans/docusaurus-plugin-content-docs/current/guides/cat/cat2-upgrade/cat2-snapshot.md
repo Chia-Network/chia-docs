@@ -35,57 +35,56 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 1. Open a terminal window and ensure you have direct access to the `chia` command by doing one of the following:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   1. If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
+- If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
-   :::caution
-   Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
+:::caution
+Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
+:::  
 
-:::
+```powershell
+Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VERSION>\resources\app.asar.unpacked\daemon\chia.exe"
+```
 
-   ```powershell
-   Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VERSION>\resources\app.asar.unpacked\daemon\chia.exe"
-   ```
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
-   2. If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
-
-   ```powershell
-   .\venv\Scripts\Activate.ps1
-   ```
+```powershell
+.\venv\Scripts\Activate.ps1
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   1. If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
+- If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
 
-   2. If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
-   ```bash
-   . ./activate
-   ```
+```bash
+. ./activate
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   1. If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
+- If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
-   ```bash
-   alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia"
-   ```
+```bash
+alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia"
+```
 
-   2. If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
-   ```bash
-   . ./activate
-   ```
+```bash
+. ./activate
+```
 
   </TabItem>
 </Tabs>
@@ -117,41 +116,41 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
    In order to set these variables, you are recommended to put them into a file called `.env` at the root of the `CAT-addresses` project. The tool will automatically read the variables in this file. For example:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```bash title=".env"
-   FULL_NODE_HOSTNAME=localhost
-   DB_SOURCE_DIR=C:\Users\Username\.chia\mainnet\db
-   START_HEIGHT=1146800
-   TARGET_HEIGHT=2311760
-   ```
+```bash title=".env"
+FULL_NODE_HOSTNAME=localhost
+DB_SOURCE_DIR=C:\Users\Username\.chia\mainnet\db
+START_HEIGHT=1146800
+TARGET_HEIGHT=2311760
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash title=".env"
-   FULL_NODE_HOSTNAME=localhost
-   DB_SOURCE_DIR=/home/Username/.chia/mainnet/db
-   START_HEIGHT=1146800
-   TARGET_HEIGHT=2311760
-   ```
+```bash title=".env"
+FULL_NODE_HOSTNAME=localhost
+DB_SOURCE_DIR=/home/Username/.chia/mainnet/db
+START_HEIGHT=1146800
+TARGET_HEIGHT=2311760
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash title=".env"
-   FULL_NODE_HOSTNAME=localhost
-   DB_SOURCE_DIR=/Users/Username/.chia/mainnet/db
-   START_HEIGHT=1146800
-   TARGET_HEIGHT=2311760
-   ```
+```bash title=".env"
+FULL_NODE_HOSTNAME=localhost
+DB_SOURCE_DIR=/Users/Username/.chia/mainnet/db
+START_HEIGHT=1146800
+TARGET_HEIGHT=2311760
+```
 
   </TabItem>
 </Tabs>
@@ -159,44 +158,45 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 5. Install dependencies:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python setup.py install
-   ```
+```powershell
+python setup.py install
+```
 
   </TabItem>
 <TabItem value="linux">
 
-   ```bash
-   python3 setup.py install
-   ```
+```bash
+python3 setup.py install
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 setup.py install
-   ```
+```bash
+python3 setup.py install
+```
 
   </TabItem>
 </Tabs>
 
-   :::note The result may contain several warnings such as `WARNING: The wheel package is not available.` These can be safely ignored.
+:::note
+The result may contain several warnings such as `WARNING: The wheel package is not available.` These can be safely ignored.
 :::
 
-   This command may take a few minutes to complete. At the end of the output, you should see something like:
+This command may take a few minutes to complete. At the end of the output, you should see something like:
 
-   ```
-   Finished processing dependencies for chia-transaction-exporter==0.1.dev55"
-   ```
+```
+Finished processing dependencies for chia-transaction-exporter==0.1.dev55"
+```
 
 6. Install the `dotenv` and `backoff` modules:
 
@@ -208,88 +208,90 @@ In order to use this tool, you are required to run a fully synced Chia node. Thi
 7. Set up the database:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python setup_database.py
-   ```
+```powershell
+python setup_database.py
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 setup_database.py
-   ```
+```bash
+python3 setup_database.py
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 setup_database.py
-   ```
+```bash
+python3 setup_database.py
+```
 
   </TabItem>
 </Tabs>
 
-   :::tip If you receive an error message such as `ModuleNotFoundError: No module named 'chia'`, then make sure you can run the `chia` command from this directory and try again.
+:::tip
+If you receive an error message such as `ModuleNotFoundError: No module named 'chia'`, then make sure you can run the `chia` command from this directory and try again.
 :::
 
-   If this command succeeds, then it will output:
+If this command succeeds, then it will output:
 
-   ```
-   INFO:setup_database:Setting up database
-   INFO:setup_database:Database setup complete
-   ```
+```
+INFO:setup_database:Setting up database
+INFO:setup_database:Database setup complete
+```
 
 8. Start the snapshot generator:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python start.py
-   ```
+```powershell
+python start.py
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 start.py
-   ```
+```bash
+python3 start.py
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 start.py
-   ```
+```bash
+python3 start.py
+```
 
   </TabItem>
 </Tabs>
 
-   This command will show its progress according to the block height. If you used the recommended range for `START_HEIGHT` and `TARGET_HEIGHT` in your `.env` file, then this command could take over 40 hours to complete. The reason it takes so long is it needs to process each block, one at a time. If multiple blocks were done in parallel, then there would be a chance that the results would not be accurate. By processing one block at a time, the tool will return the correct results for the range provided.
+This command will show its progress according to the block height. If you used the recommended range for `START_HEIGHT` and `TARGET_HEIGHT` in your `.env` file, then this command could take over 40 hours to complete. The reason it takes so long is it needs to process each block, one at a time. If multiple blocks were done in parallel, then there would be a chance that the results would not be accurate. By processing one block at a time, the tool will return the correct results for the range provided.
 
-   :::note You can only generate a snapshot for each block once. If you attempt to run this command over a range against which it has already been run, you will receive an error containing this message:
+:::note
+You can only generate a snapshot for each block once. If you attempt to run this command over a range against which it has already been run, you will receive an error containing this message:
 
-   ```
-   sqlite3.IntegrityError: UNIQUE constraint failed: coin_create.coin_name
-   ```
+```
+sqlite3.IntegrityError: UNIQUE constraint failed: coin_create.coin_name
+```
 
-   In this case, you either need to start from a higher height, or (recommended) start over. Follow the [Data Cleanup section](#cleanup) and try again.
+In this case, you either need to start from a higher height, or (recommended) start over. Follow the [Data Cleanup section](#cleanup) and try again.
 :::
 
 ## Export Your Data from the Snapshot {#export}
@@ -307,66 +309,69 @@ Once you have populated the database with a snapshot, you can run a data export.
 3. Generate a CSV file containing all inner puzzle hashes and amounts for your CAT:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python export.py --output-dir <OUTPUT-DIR>\<PREFIX> --tail-hash <TAIL-HASH> --coins
-   ```
+```powershell
+python export.py --output-dir <OUTPUT-DIR>\<PREFIX> --tail-hash <TAIL-HASH> --coins
+```
 
     <details>
       <summary>Example command</summary>
 
-   ```powershell
-   python export.py --output-dir C:\Users\Username\Chia\CAT-addresses\results\CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
-   ```
+```powershell
+python export.py --output-dir C:\Users\Username\Chia\CAT-addresses\results\CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
+```
 
     </details>
+
   </TabItem>
 <TabItem value="linux">
 
-   ```bash
-   python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
-   ```
+```bash
+python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
+```
 
     <details>
       <summary>Example command</summary>
 
-   ```bash
-   python3 export.py --output-dir /home/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
-   ```
+```bash
+python3 export.py --output-dir /home/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
+```
 
     </details>
+
   </TabItem>
 <TabItem value="macos">
 
-   ```bash
-   python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
-   ```
+```bash
+python3 export.py --output-dir <OUTPUT-DIR>/<PREFIX> --tail-hash <TAIL-HASH> --coins
+```
 
     <details>
       <summary>Example command</summary>
 
-   ```bash
-   python3 export.py --output-dir /Users/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
-   ```
+```bash
+python3 export.py --output-dir /Users/Username/CAT-addresses/results/CKC_ --tail-hash 1121996b75cce3c746369aced2c8887b02b84e95592c3dc006d82a145adf349a
+```
 
     </details>
+
   </TabItem>
 </Tabs>
 
 :::info
 
-   - `<OUTPUT-DIR>` - a directory of your choice in which to save the CSV file
-   - `<PREFIX>` - a string to be prepended to the output file name
-   - `<TAIL-HASH>` - the TAIL hash you obtained from taildatabase.com
-   - `--coins` - an **optional** flag that will add information about individual coins to the output (which might be helpful for auditing purposes)
+- `<OUTPUT-DIR>` - a directory of your choice in which to save the CSV file
+- `<PREFIX>` - a string to be prepended to the output file name
+- `<TAIL-HASH>` - the TAIL hash you obtained from taildatabase.com
+- `--coins` - an **optional** flag that will add information about individual coins to the output (which might be helpful for auditing purposes)
 :::
 
 :::note
@@ -411,14 +416,14 @@ dos2unix: converting file <CSV file> to Unix format...
 **Optional:** If the application exits partway through a run, it will only have imported some blocks at a particular height. You can delete the records from the database at and above a provided height by running the following command:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
 ```powershell
 python clean.py --height <BLOCK-HEIGHT>
@@ -446,14 +451,14 @@ python3 clean.py --height <BLOCK-HEIGHT>
 **Optional:** If you wish to obtain the balance of all CATs on the Chia blockchain, you can run `export-py` with various different options:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
 The `--tail-hash` flag can be dropped, resulting in an output of a single CSV file containing every puzzle hash amount for every CAT on the Chia blockchain:
 
