@@ -204,10 +204,11 @@ Request Parameters:
 :::note
 
 Although relative time lock flags are included in Offer files, the RPC API does not yet support them. The unsupported flags include:
-* `max_blocks_after_created`
-* `max_secs_after_created`
-* `min_blocks_since_created`
-* `min_secs_since_created`
+
+- `max_blocks_after_created`
+- `max_secs_after_created`
+- `min_blocks_since_created`
+- `min_secs_since_created`
 
 In addition, of the four absolute time lock flags, the reference wallet will only recognize `max_time`.
 
