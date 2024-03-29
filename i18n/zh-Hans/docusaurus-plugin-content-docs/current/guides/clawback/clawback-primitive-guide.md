@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。
+This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。 欢迎钱包开发者将其整合到开发的GUI钱包中。
 
 有关其他技术资源，请参阅以下内容：
 
@@ -18,7 +18,7 @@ This document will show you how to use Chia's standalone clawback primitive. 欢
 
 :::warning 一些重要提醒
 
-- The standalone clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
+- The standalone clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work. Rather, it's for developers to understand the process of how clawbacks work.
 - Chia Network, Inc has added a user-friendly implementation of the clawback primitive to version 1.8.2 of the reference wallet.
 - A **synced full node** AND a synced wallet are required to use the clawback primitive.
 - You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use a testnet.
@@ -43,7 +43,7 @@ This document will show you how to use Chia's standalone clawback primitive. 欢
   - It contains Alice's address as its clawback destination (Alice -- and no one else -- can modify this later)
   - It contains Bob's address as its final destination (Bob -- and no one else -- can modify this later)
 - The clawback coin therefore contains the following logic for how it may be spent:
-  - Before 1 hour has elapsed since the coin's creation, Alice can use [p2_1_of_n](https://github.com/Chia-Network/chia-blockchain/blob/eb543fd888bcc29f62a9eae064325a4a50996617/chia/wallet/puzzles/p2_m_of_n_delegate_direct.clsp) to spend the coin using the same public/private key pair that created the coin. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case.
+  - Before 1 hour has elapsed since the coin's creation, Alice can use [p2_1_of_n](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_m_of_n_delegate_direct.clvm) to spend the coin using the same public/private key pair that created the coin. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case.
   - Before 1 hour has elapsed since the coin's creation, nobody other than Alice may spend it
   - After 1 hour, the timelock elapses. At this point Bob can spend the clawback coin. When this spend occurs, by default a new standard XCH coin is created in Bob's wallet. Bob can also pass in a different address than the one he originally specified if he so chooses.
   - Note that the coin's clawback logic is in place for the life of the coin. This means that until the coin is spent, Alice is able to claw it back. This is true regardless of the coin's age. Because of this, after the timelock expires, Bob must spend the clawback coin in order to receive the XCH in his wallet. After this spend has completed, the clawback coin no longer exists, and the spend is final.
@@ -105,6 +105,7 @@ python -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -113,6 +114,7 @@ python3 -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -392,7 +394,7 @@ However, there is a small window of time where the timer has expired, but a bloc
 You are trying to claim the coin too early
 ```
 
-In this case, the Recipient needs to wait for one more transaction block to be farmed before proceeding with the `claim` call. As a reminder, a new transaction block is farmed every 52 seconds, on average.
+In this case, the Recipient needs to wait for one more transaction block to be farmed before proceeding with the `claim` call. As a reminder, a new transaction block is farmed every 52 seconds, on average. As a reminder, a new transaction block is farmed every 52 seconds, on average.
 
 :::
 
