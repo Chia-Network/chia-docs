@@ -487,5 +487,24 @@ module.exports = {
         'academy/blockchain-basics/security-basics',
       ],
     },
+    {
+      type: 'category',
+      label: 'Primitives',
+      collapsible: true,
+      collapsed: true,
+      link: {
+        type: 'generated-index',
+        slug: '/academy/primitives',
+        title: 'Primitives',
+        description:
+          'These lessons serve as an overview of the natively supported features available on the Chia Blockchain.',
+      },
+      items: [
+        'academy/primitives/primitives-overview',
+        'academy/primitives/academy-nft',
+        'academy/primitives/academy-did',
+        'academy/primitives/academy-cat',
+      ],
+    },
   ],
 };

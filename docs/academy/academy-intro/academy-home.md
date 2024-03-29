@@ -19,6 +19,11 @@ import ChallengesPlotFilters from '@site/static/img/academy/challenges-plot-filt
 import Pools from '@site/static/img/academy/pools.png';
 import CreatingYourFirstPlot from '@site/static/img/academy/Intro2Farming.png';
 
+import PrimitivesOverview from '@site/static/img/academy/primitives.png';
+import NFTs from '@site/static/img/academy/nft.png';
+import CATs from '@site/static/img/academy/cat.png';
+import DIDs from '@site/static/img/academy/did.png';
+
 Welcome to Chia Academy, the scholarly hub for delving deep into Chia blockchain technology. In an age characterized by rapid digital transformation, this institution offers a comprehensive exploration of the Chia blockchain, dissecting its technical intricacies, real-world applications, and the nuances of its secure data handling. As a Chia Academy student, you will dive into the core concepts and functionalities of the Chia blockchain.
 
 ## Courses
@@ -225,6 +230,71 @@ Below, you'll find several curated courses covering the everything from the basi
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/first-plot'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    </c-li>
+  </c-ol>
+</section>
+
+---
+
+#### Primitives
+
+<section class="carousel">
+  <c-ol class="carousel-inner">
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <div class="card">
+          <div class="card__image">
+            <img src={PrimitivesOverview} alt='Primitives Overview' />
+          </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/primitives-overview'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    </c-li>
+    <c-li class="carousel-item">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={NFTs} alt='NFTs' />
+        </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/academy-nft'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    </c-li>
+    <c-li class="carousel-item">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={DIDs} alt='DIDs' />
+        </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/academy-did'>
+          <button class="button button--primary button--block">Learn</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    </c-li>
+    <c-li class="carousel-item">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={CATs} alt='CATs' />
+        </div>
+        <div class="card__footer">
+          <a href='https://docs.chia.net/academy-cat'>
           <button class="button button--primary button--block">Learn</button>
           </a>
         </div>
