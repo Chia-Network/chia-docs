@@ -60,7 +60,6 @@ The output is an object of type [`NftInfo`](#nftinfo).
 | `success`     | `boolean`                                            | Backend success status. |
 | `walletId`    | `number`                                             | NFT wallet id.          |
 
-
 ### `chia_transferNFT`
 
 | Parameter       | Type       | Description                             |
