@@ -16,9 +16,10 @@ Under normal circumstances, an attacker can create a malicious proposal to drain
 
 However, prior to creating this proposal, the attacker can use proposal spam to improve the chances of the attack's success.
 
-The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle_hash (including hinted coins):
-\* `trusted_max_subscribe_response_items`: 500000
-\* `max_subscribe_response_items`: 100000
+The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle\*hash (including hinted coins):
+
+- `trusted_max_subscribe_response_items`: 500000
+- `max_subscribe_response_items`: 100000
 
 The attacker can take advantage of this limit by creating multiple coins, each of which contains a hint equal to the `TREASURY_ID`. Eventually a wallet will no longer get any additional coin states for newer coins from a `full_node` via the coin state subscription. This is the "proposal spam" part of the attack.
 
