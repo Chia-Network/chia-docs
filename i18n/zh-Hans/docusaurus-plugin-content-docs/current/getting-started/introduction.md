@@ -12,7 +12,7 @@ Chia是一种具有智能交易能力的加密货币和区块链。 它从头开
 
 Chia的主网于2021年3月19日推出。 其生态系统的开发正在进行中，已发布了[CAT](https://chialisp.com/cats)、[NFT](https://chialisp.com/nfts)、[报价（offer）](https://chialisp.com/offers) 和 [DID](https://chialisp.com/dids) 等基础设施。
 
-This page will give a brief overview of Chia and its various components. If you are interested in becoming a Chia farmer, feel free to skip ahead to the [Beginner's Guide to Farming](/farming-guide).
+This page will give a brief overview of Chia and its various components. This page will give a brief overview of Chia and its various components. If you are interested in becoming a Chia farmer, feel free to skip ahead to the [Beginner's Guide to Farming](/farming-guide).
 
 ## 时空证明（Proof of Space and Time）
 
