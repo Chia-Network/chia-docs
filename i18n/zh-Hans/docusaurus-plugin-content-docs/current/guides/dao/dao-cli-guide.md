@@ -18,7 +18,7 @@ Prior to using the DAO alpha primitive, be sure to read the [list of known issue
 
 This is a guide for using Chia DAOs from a command line interface (CLI). To follow this guide, you will need:
 
-- Chia version 2.1.4 or later
+- Chia version 2.1.2 or later
 - A wallet with some TXCH for creating a treasury
 - Ideally at least one more wallet to be used for voting on proposals
 
