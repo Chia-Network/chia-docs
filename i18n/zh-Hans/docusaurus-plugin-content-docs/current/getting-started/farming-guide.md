@@ -6,9 +6,6 @@ slug: /farming-guide
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import WalletKeyDetails from '@site/static/img/troubleshooting/wallet_key_details.png';
-import WalletKeysPublic from '@site/static/img/faq/wallet_keys_public_key.png';
-import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
 
 So you want to be a Chia farmer? You've come to the right place!
 
@@ -104,13 +101,13 @@ Assuming you don't have a wallet yet, click `CREATE A NEW WALLET KEY` (If you al
 
 <br />
 
-You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
+You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is important. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
 
-You can also choose a custom name for your wallet. Click `NEXT` when you are finished.
+You can also choose a custom name for your wallet. Click `NEXT` when you are finished. Click `NEXT` when you are finished.
 
 :::warning
 
-If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place.
+If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place. Be sure to store your recovery phrase in a safe place.
 
 :::  
 
@@ -194,7 +191,7 @@ For more security best practices please review the [Securing Your Chia – How t
 
 :::info
 
-You can continue with this guide while waiting for your faucet payment to arrive.
+You can continue with this guide while waiting for your 100 mojos to arrive.
 
 :::
 
@@ -261,7 +258,7 @@ Click the `Pooling` icon on the left side of your wallet, and click `JOIN A POOL
 
 Before you can join a pool, you will need to create a plot NFT. This will allow you to easily change pools later.
 
-Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
+Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 
@@ -269,7 +266,7 @@ If you don't want to join a pool, select `Self pool`. This will assign you to a 
 
 :::
 
-Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. If you used the faucet, you will now have 100 mojos. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
+Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes. You are also recommended to enter a blockchain fee. If you used the faucet, you will now have 100 mojos. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/11.png" alt="Create a plot NFT" />
@@ -285,7 +282,7 @@ If your faucet payout has not arrived after more than 10 minutes, someone on [Di
 
 :::
 
-If you entered a valid pool URL, the details will pop up. For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`:
+If you entered a valid pool URL, the details will pop up. For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`: For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/12.png" alt="Pool details" />
@@ -293,7 +290,7 @@ If you entered a valid pool URL, the details will pop up. For example, this pool
 
 <br />
 
-Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear:
+Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear: While it is pending, a new screen will appear:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/13.png" alt="Plot NFT pending" />
@@ -393,7 +390,7 @@ Next, you need to select the temporary and final directories for your plot. The 
 - **SSD** -- Most farmers choose to use an enterprise NVMe SSD for the temporary storage. These SSDs can handle large amounts of reads and writes in their lifetimes.
 - **HDD** -- If you don't mind plotting slowly, you can choose a directory located on an HDD.
 
-The final directory is where the plot will be copied after it has been created. Most farmers will choose to use an HDD as the final directory. However, for this tutorial an NVMe SSD was used for both the temporary and final directories.
+The final directory is where the plot will be copied after it has been created. The final directory is where the plot will be copied after it has been created. Most farmers will choose to use an HDD as the final directory. However, for this tutorial an NVMe SSD was used for both the temporary and final directories.
 
 :::warning
 
@@ -409,7 +406,7 @@ You will also need to choose how many plots to create. Certain plotters can be o
 
 <br />
 
-After you have gone through all of these settings, click `CREATE`. You will be taken to a progress panel:
+After you have gone through all of these settings, click `CREATE`. You will be taken to a progress panel: You will be taken to a progress panel:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/22.png" alt="Plot creation progress" />
