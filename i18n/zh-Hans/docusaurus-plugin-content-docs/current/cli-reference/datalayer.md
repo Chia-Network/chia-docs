@@ -92,7 +92,7 @@ Options:
 For this example, there is one local store:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
 ```
 
 Response:
@@ -111,8 +111,8 @@ Response:
 Intentionally move the files and create an empty folder. This will simulate file corruption:
 
 ```json
-mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet ~/.chia/mainnet/data_layer/db/server_files_location_testnet_bak
-mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
+mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet10 ~/.chia/mainnet/data_layer/db/server_files_location_testnet10_bak
+mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
 ```
 
 Next, restore the files:
@@ -130,7 +130,7 @@ None
 Finally, verify that the files have been restored:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
 ```
 
 Response:
@@ -169,7 +169,7 @@ Options:
 <details>
 <summary>Example</summary>
 
-To clear all pending roots, you need to enter the store ID. An example of this which also disables prompting:
+To clear all pending roots, you need to enter the store ID. An example of this which also disables prompting: An example of this which also disables prompting:
 
 ```bash
 chia data clear_pending_roots -i 2772c8108e19f9fa98ff7bc7d4bafd821319bc90af6b610d086b85f4c21fa816 --yes
@@ -1291,23 +1291,25 @@ Options:
 | -h            | --help          | None    | False    | Show a help message and exit                                                                            |
 
 Notes about this command:
-* It only needs to perform a single lookup of the on-chain root.
-* It doesn't need to have synced any of the data, or be subscribed to the data store.
-* To keep the proofs smaller, only the clvm hash of the key and value are included in the proof, and not the actual key or value. (A clvm hash is just a sha256 hash of the data prepended with 0x01.)
-* Datalayer uses CLVM hashes for ease of verification in CLVM, although for this specific use case, there is no on-chain validation happening.
-* When using this command, pay attention to the `current_root` value in the returned JSON.
-  * If `current_root` is `True`, this data chains to the current published root, and so if you synced the data, you can be sure it would be there.
-  * If `current_root` is `False`, the root has moved from the time the proof was generated. You cannot make any assumptions in this case about whether the data is in fact in the datastore or not since the root has changed, therefore the data might have changed. It is up to the caller to determine how to treat this case; one possible action would be to obtain a new proof.
+
+- It only needs to perform a single lookup of the on-chain root.
+- It doesn't need to have synced any of the data, or be subscribed to the data store.
+- To keep the proofs smaller, only the clvm hash of the key and value are included in the proof, and not the actual key or value. (A clvm hash is just a sha256 hash of the data prepended with 0x01.)
+- Datalayer uses CLVM hashes for ease of verification in CLVM, although for this specific use case, there is no on-chain validation happening.
+- When using this command, pay attention to the `current_root` value in the returned JSON.
+  - If `current_root` is `True`, this data chains to the current published root, and so if you synced the data, you can be sure it would be there.
+  - If `current_root` is `False`, the root has moved from the time the proof was generated. You cannot make any assumptions in this case about whether the data is in fact in the datastore or not since the root has changed, therefore the data might have changed. It is up to the caller to determine how to treat this case; one possible action would be to obtain a new proof.
 
 The proof to validate requires several fields:
-* `coin_id`
-* `inner_puzzle_hash`
-* `store_proofs`
-  * `proofs`
-    * `key_clvm_hash`
-    * `value_clvm_hash`
-    * `node_hash`
-    * `layers`
+
+- `coin_id`
+- `inner_puzzle_hash`
+- `store_proofs`
+  - `proofs`
+    - `key_clvm_hash`
+    - `value_clvm_hash`
+    - `node_hash`
+    - `layers`
 
 Each of these fields is output with the [get_proof](#get_proof) command. For more examples, see chia-blockchain [PR #16845](https://github.com/Chia-Network/chia-blockchain/pull/16845).
 
