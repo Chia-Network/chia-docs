@@ -460,6 +460,8 @@ Response:
 ```json
 {
   "nft_info": {
+    "chain_info": "((117 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif\") (104 . 0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b) (28021 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json\") (27765 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf\") (29550 . 1) (29556 . 1) (28008 . 0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b) (27752 . {
+  "nft_info": {
     "chain_info": "((117 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.gif\") (104 . 0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b) (28021 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/880.json\") (27765 \"https://bafybeigzcazxeu7epmm4vtkuadrvysv74lbzzbl2evphtae6k57yhgynp4.ipfs.nftstorage.link/license.pdf\") (29550 . 1) (29556 . 1) (28008 . 0xb2214ff82ef10a57f653fd09e761c3fabe630996300f90f6fbefcb4f65904c8b) (27752 . 0x2267456bd2cef8ebc2f22a42947b068bc3b138284a587feda2edfe07a3577f50))",
     "data_hash": "0x7a6eedd652d0e6d315e691e87f5098e858bfe646122d1a8759a40fcf3efb024b",
     "data_uris": [
@@ -1214,6 +1216,9 @@ In the response, `owner_did` is now set:
 {
   "nft_list": [
     {
+      "chain_info": "((117 \"https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg\") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 \"https://pastebin.com/raw/BHZc1suk\" \"https://pastebin.com/raw/bnzGwjmB\") (27765 \"https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE\") (29550 . 1) (29556 . 1) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . {
+  "nft_list": [
+    {
       "chain_info": "((117 \"https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg\") (104 . 0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4) (28021 \"https://pastebin.com/raw/BHZc1suk\" \"https://pastebin.com/raw/bnzGwjmB\") (27765 \"https://raw.githubusercontent.com/Chia-Network/chia-blockchain/main/LICENSE\") (29550 . 1) (29556 . 1) (28008 . 0x07cb3cc71732d1979abd357af86475e1e35f6c2b41ed2387b309e4b486a89a51) (27752 . 0x30a358857da6b49f57cfe819c1ca43bfe007f528eb784df5da5cb64577e0ffc6))",
       "data_hash": "0x0ebedcd2cda065c75132218f745cecc3a1c131927f70b192b3fe6bbebaf437c4",
       "data_uris": [
@@ -1234,10 +1239,10 @@ In the response, `owner_did` is now set:
       ],
       "mint_height": 1688221,
       "minter_did": "0xb08c01ace955ce180ce2e0b332b4c8d98d46469078e5191351f025d9cf9117f3",
-      "nft_coin_id": "0xe4497290bdfc82ddbc01828f8fa2c9c0c9413f20debe3baeef59d39b6f5c24de",
+      "nft_coin_id": "0x46a6638642eeea83432d7fe419882ed5aeb2ed82e2490cea40279a5ffe7ac1ff",
       "off_chain_metadata": null,
 
-      "owner_did": "0xb08c01ace955ce180ce2e0b332b4c8d98d46469078e5191351f025d9cf9117f3",
+      "owner_did": null,
 
       "p2_address": "0x8b4c2d1a6c7ac0914875db5a19e23fe7608c67f43ffe242e5519ae54737336e6",
       "pending_transaction": false,
@@ -1248,7 +1253,7 @@ In the response, `owner_did` is now set:
     }
   ],
   "success": true,
-  "wallet_id": 5
+  "wallet_id": 4
 }
 ```
 
