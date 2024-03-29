@@ -24,8 +24,8 @@ The following table shows each RPC for Chia WalletConnect dApps, along with a de
 | CreateOfferForIDs    | [create_offer_for_ids](/wallet-rpc#create_offer_for_ids)       | Create a new offer                                                                                |
 | getAllOffers         | [get_all_offers](/wallet-rpc#get_all_offers)                   | Show the details of all offers for this wallet                                                    |
 | getCATAssetId        | [cat_get_asset_id](/wallet-rpc#cat_get_asset_id)               | Retrieve a the asset ID from a CAT wallet                                                         |
-| getCurrentAddress    | [get_next_address](/wallet-rpc#get_next_address)*              | Set `new_address` to `false` to use the current address                                           |
-| getNextAddress       | [get_next_address](/wallet-rpc#get_next_address)*              | Set `new_address` to `true` to create a new address                                               |
+| getCurrentAddress    | [get_next_address](/wallet-rpc#get_next_address)\*           | Set `new_address` to `false` to use the current address                                           |
+| getNextAddress       | [get_next_address](/wallet-rpc#get_next_address)\*           | Set `new_address` to `true` to create a new address                                               |
 | getNFTCount          | [nft_count_nfts](/nft-rpc/#nft_count_nfts)                     | Count the number of NFTs in a wallet                                                              |
 | getNFTInfo           | [nft_get_info](/nft-rpc/#nft_get_info)                         | Get info about an NFT                                                                             |
 | getNFTs              | [nft_get_nfts](/nft-rpc/#nft_get_nfts)                         | Show all NFTs in a given wallet                                                                   |
@@ -47,8 +47,3 @@ The following table shows each RPC for Chia WalletConnect dApps, along with a de
 | transferNFT          | [nft_transfer_nft](/nft-rpc#nft_transfer_nft)                  | Transfer an NFT to a new wallet address                                                           |
 | VerifySignature      | [verify_signature](wallet-rpc#verify_signature)                  | Given a public key, message and signature, verify if it is valid                                  |
 | waitForConfirmation  |                                                                  |                                                                                                   |
-
-
-
-
-
