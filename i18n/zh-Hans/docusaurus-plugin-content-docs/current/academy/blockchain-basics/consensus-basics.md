@@ -30,18 +30,18 @@ In this lesson, we review the basics of consensus, the process by which to deter
 00:00\
 Consensus is the process by which to determine the true state of a blockchain. In short, by randomly selecting which node authorizes a new block, it becomes difficult for a bad actor to inject a false truth to the system.
 
-00:20\
+00:20
 With Chia, the consensus method is called Proof of Space and Time. Nodes begin by pre-generating hashes to store on spare disk space, called "plots". While this takes a lot of work, the work is only done once, and the results are stored and referenced continuously.
 
-00:40\
+00:40
 We call these nodes "Farmers".
 
 The Timelord is a program that broadcasts a proof of time to the network to first prove that time has passed since the last challenge, and then to generate a new challenge to distribute to the Farmers. This challenge is what determines the winner of the current block.
 
-01:00\
+01:00
 Next, a plot filter is implemented that automatically disqualifies a subset of plots. This further randomizes the winner, and is implemented fairly so each Farmer has the same chance of passing the filter. If the filter is passed, the Farmer will check their plots to find a quality proof of space,
 
-01:20\
+01:20
 and submit it to the chain. If the proof is the highest quality, the Farmer is granted authority to process and add the block to the chain, and rewarded with XCH.
 
 This consensus method maintains trustless security through high-decentralization while remaining energy efficient.
@@ -66,9 +66,9 @@ This consensus method maintains trustless security through high-decentralization
 
 What is the consensus method used by Chia?
 
-A: Proof of Work\
-B: Proof of Stake\
-C: Proof of Space and Time\
+A: Proof of Work
+B: Proof of Stake
+C: Proof of Space and Time
 D: Proof of Plots
 
 :::
@@ -85,9 +85,9 @@ C: Proof of Space and Time
 
 What system is used to prove that time is passing?
 
-A: Farmer\
-B: Timelord\
-C: Plot\
+A: Farmer
+B: Timelord
+C: Plot
 D: Node
 
 :::
