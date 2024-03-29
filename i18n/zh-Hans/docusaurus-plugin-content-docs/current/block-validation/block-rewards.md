@@ -14,11 +14,11 @@ The first block of the network pays out 21 million XCH, divided into a 1/8 coin 
 All other coins go through a formula, where the block reward starts at 2 XCH per block, and halves every 3 years, a total of 4 times. The exact block at which halvings occur is `32 * 6 * 24 * 365 * 3 * x`, where x is the index of the halving, starting at 1.
 
 ```
-Years 0-2 (index 1): 2 XCH
-Years 3-5 (index 2): 1 XCH
-Years 6-8 (index 3): 0.5 XCH
-Years 9-11 (index 4): 0.25 XCH
-Years 12 and beyond (index 5): 0.125 XCH
+0-3 years: 2 XCH
+3-6 years: 1 XCH
+6-9 years: 0.5 XCH
+9-12 years: 0.25 XCH
+12+: 0.125 XCH
 ```
 
 After the start of year 12, 0.125 XCH is created in perpetuity.
@@ -45,14 +45,14 @@ The second coin, with 7/8 of the value, is called the _pool coin_. This coin can
 
 ## Rewards schedule
 
-As detailed in the [Business white paper](https://www.chia.net/whitepaper), the network's emissions schedule is as follows (where `year 0` is the first year of mainnet's existence):
+As detailed in the [Business white paper](https://www.chia.net/whitepaper), the network's emissions schedule is as follows:
 
-|  Years | Final<br/>Block | Final Month<br/>(Approx.) | Block Reward<br/>(total) | Pool<br/>Reward | Farmer<br/>Reward |
-| ------:| ---------------------:| -------------------------------:| ------------------------------:| ---------------------:| -----------------------:|
-|  0 - 2 |           `5 045 760` |                      March 2024 |                          2 XCH |              1.75 XCH |                0.25 XCH |
-|  3 - 5 |          `10 091 520` |                      March 2027 |                          1 XCH |             0.875 XCH |               0.125 XCH |
-|  6 - 8 |          `15 137 280` |                      March 2030 |                        0.5 XCH |            0.4375 XCH |              0.0625 XCH |
-| 9 - 11 |          `20 183 040` |                      March 2033 |                       0.25 XCH |           0.21875 XCH |             0.03125 XCH |
-| 12 - ∞ |                     ∞ |                               ∞ |                      0.125 XCH |          0.109375 XCH |            0.015625 XCH |
+|   Years | Final<br/>Block | Final Month<br/>(Approx.) | Block Reward<br/>(total) | Pool<br/>Reward | Farmer<br/>Reward |
+| -------:| ---------------------:| -------------------------------:| ------------------------------:| ---------------------:| -----------------------:|
+|   1 - 3 |           `5 045 760` |                      March 2024 |                          2 XCH |              1.75 XCH |                0.25 XCH |
+|   4 - 6 |          `10 091 520` |                      March 2027 |                          1 XCH |             0.785 XCH |               0.125 XCH |
+|   7 - 9 |          `15 137 280` |                      March 2030 |                        0.5 XCH |            0.4375 XCH |              0.0625 XCH |
+| 10 - 12 |          `20 183 040` |                      March 2033 |                       0.25 XCH |           0.21875 XCH |             0.03125 XCH |
+|  13 - ∞ |                     ∞ |                               ∞ |                      0.125 XCH |          0.109375 XCH |            0.015625 XCH |
 
-Note that the rewards are adjusted according to a block height, not a timestamp. The `Final Block` column is therefore accurate as the last block before the rewards are modified. The months and years are only estimates based on when the block heights are likely to be reached.
+Note that the rewards are adjusted according to a block height, not a timestamp. Note that the rewards are adjusted according to a block height, not a timestamp. The `Final Block` column is therefore accurate as the last block before the rewards are modified. The months and years are only estimates based on when the block heights are likely to be reached. The months and years are only estimates based on when the block heights are likely to be reached.
