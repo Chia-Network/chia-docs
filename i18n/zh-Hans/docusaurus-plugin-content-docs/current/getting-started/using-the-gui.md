@@ -1,5 +1,5 @@
 ---
-title: Using the Chia GUI
+title: 使用图形用户界面（GUI）
 slug: /using-the-gui
 ---
 
@@ -31,7 +31,7 @@ Enabling a passphrase is a recommended step for protecting your funds, but it on
 
 ## Syncing
 
-Upon opening Chia, your wallet will need to sync. You'll need to see a green checkmark next to the **WALLET** label in the upper-right corner before seeing any tokens you have.
+Upon opening Chia, your wallet will need to sync. Upon opening Chia, your wallet will need to sync. You'll need to see a green checkmark next to the **WALLET** label in the upper-right corner before seeing any tokens you have.
 
 <p align='center'>
   <img alt='synced' src='/img/synced.png' width='300' />
