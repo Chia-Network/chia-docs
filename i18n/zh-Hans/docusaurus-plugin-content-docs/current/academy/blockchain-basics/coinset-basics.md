@@ -30,40 +30,40 @@ In this lesson, we dive into the coinset model basics and learn what it means to
 00:00\
 Chia uses the "coinset model" to keep track of the blockchain's state.
 
-00:10
+00:10\
 In this model, every transaction is represented by a "coin" that contains a value, the rules by which the coin can be spent, and signature authorizing the spend.
 
-00:20
+00:20\
 What this means is that a "coin" can have any value (in mojo) and as long as the rules are satisfied, anyone can spend the coin.
 
-00:30
+00:30\
 There are no accounts represented in the system.
 
 When a coin is created, the value is locked away in that coin and is inaccessible until the coin is spent,
 
-00:40
+00:40\
 at which point new coins will be created with values equal to the original.
 
 For example, if I want to send 1 XCH to someone else,
 
-00:50
+00:50\
 I will create a coin with a value of 1 XCH (or 1 trillion mojos), and set the conditions of the coin to only allow the coin to be spent if given the signature of the other person.
 
-01:00
+01:00\
 This in effect "sends" the coin to the other person, because they now control what happens to it. When they want to spend the coin, they provide the correct signature, and a new coin is created,
 
-01:10
+01:10\
 with a value of 1 XCH, itself containing it's own rules of how it can be spent.
 
 In this way, each coin is only ever used once.
 
-01:20
+01:20\
 Once it has been spent, it creates a new coin. In Chia, we call the set of conditions needed to unlock the coin the 'puzzle', and the provided data to unlock the coin is the 'solution'.
 
-01:30
+01:30\
 The coin is represented in the chain as a hash of three attributes, the parent coin ID, (or the ID of the previous coin that created this new one),
 
-01:40
+01:40\
 the hash of the puzzle that contains the conditions, and the value of the coin.
 
 01:50
@@ -86,9 +86,9 @@ the hash of the puzzle that contains the conditions, and the value of the coin.
 
 What data is contained in coins on the Chia Blockchain? (Select all that apply)
 
-A. Amount (or value)
-B. User account number
-C. Puzzle Hash
+A. Amount (or value)\
+B. User account number\
+C. Puzzle Hash\
 D. Parent Coin ID
 
 :::
@@ -97,8 +97,8 @@ D. Parent Coin ID
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-A. Amount (or value)
-C. Puzzle Hash
+A. Amount (or value)\
+C. Puzzle Hash\
 D. Parent Coin ID
 
 </details>
