@@ -26,7 +26,7 @@ Spacescan.io has a handy bi-directional [bech32m \<\> puzzle hash converter](htt
 You can send unwanted tokens to this addresses to make them unspendable:
 
 - Mainnet burn address: `xch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ks6e8mvy`
-- Testnet burn address: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
+- Testnet10 burn address: `txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh`
 
 :::warning
 Do not send anything to these addresses unless you want it to be inaccessible forever.
@@ -34,4 +34,4 @@ Do not send anything to these addresses unless you want it to be inaccessible fo
 
 A traditional bech32m puzzle hash for a burn address is all zeros ending in "dead": `0x000000000000000000000000000000000000000000000000000000000000dead`. Converting this to an address, you end up with the burn addresses above.
 
-You can use a [puzzle hash converter](https://www.spacescan.io/tools/converter/address) to verify for yourself.
+You can use a [puzzle hash converter](https://explorer.space/address-puzzlehash-converter) to verify for yourself.
