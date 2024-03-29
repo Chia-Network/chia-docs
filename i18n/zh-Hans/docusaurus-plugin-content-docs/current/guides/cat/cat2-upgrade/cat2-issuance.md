@@ -62,16 +62,18 @@ python -m venv venv
   <TabItem value="linux">
   
   ```bash
-  python3 -m venv venv
-  . ./venv/bin/activate
+python3 -m venv venv
+. ./venv/bin/activate
+``` ./venv/bin/activate
   ```
   
   </TabItem>
   <TabItem value="macos">
   
   ```bash
-  python3 -m venv venv
-  . ./venv/bin/activate
+python3 -m venv venv
+. ./venv/bin/activate
+``` ./venv/bin/activate
   ```
   
   </TabItem>
@@ -97,15 +99,15 @@ python -m pip install --upgrade pip setuptools wheel
   <TabItem value="linux">
   
   ```bash
-  python3 -m pip install --upgrade pip setuptools wheel
-  ```
+python3 -m pip install --upgrade pip setuptools wheel
+```
   
   </TabItem>
   <TabItem value="macos">
   
   ```bash
-  python3 -m pip install --upgrade pip setuptools wheel
-  ```
+python3 -m pip install --upgrade pip setuptools wheel
+```
   
   </TabItem>
   </Tabs>
@@ -114,16 +116,16 @@ python -m pip install --upgrade pip setuptools wheel
 
 ```bash
 pip install .
-pip install chia-dev-tools --no-deps
-pip install pytest
+pip install .
+   pip install chia-dev-tools --no-deps
+   pip install pytest
 ```
 
-:::note
-You can safely ignore the following errors:
+:::note You can safely ignore the following errors:
 
 ```
 ERROR: Failed building wheel for CAT-admin-tool
-ERROR: pip's dependency resolver...
+   ERROR: pip's dependency resolver...
 ```
 
 :::tip
@@ -134,7 +136,7 @@ Python 3.9+ may be required on macOS
 
 ```bash
 cats --help
-cdv --help
+   cdv --help
 ```
 
 You should get a usage statement for each command. At this point, you're ready to create your new CAT2 coins.
@@ -209,8 +211,8 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4
   <TabItem value="macos">
   
   ```bash
-  cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
-  ```
+cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+```
 
   </TabItem>
   </Tabs>
@@ -587,7 +589,7 @@ The output will be the public key used for signing, as well as the signature obt
 
 ```
 Public key: 8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b
-Signature: b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+   Signature: b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
 ```
 
 8. The final step is to create the coin using the `secure the bag root address` as the target address.
@@ -622,6 +624,7 @@ values={[
 
 ```powershell
 cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+``` 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
 ```
 
   </TabItem>
@@ -806,7 +809,7 @@ This command could take a long time, depending on the total number of coins to u
 The end result should be that the appropriate number of coins are sent to the puzzle hash, which you can then verify in your Chia wallet (assuming you control that wallet).
 
 :::note
-Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
+Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop. ::: When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
 :::
 
 5. The puzzle hashes from the CSV file are actually _inner_ puzzle hashes, so searching for them on chain using `cdv rpc coinrecords` is more complex than it normally would be. However, you can still verify that the bag was successfully unwound for that puzzle hash by searching for the hint:
