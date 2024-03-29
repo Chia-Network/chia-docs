@@ -51,13 +51,13 @@ Assuming you don't have a wallet yet, click `CREATE A NEW WALLET KEY` (If you al
 </div>
 <br />
 
-You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
+You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is important. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
 
-You can also choose a custom name for your wallet. Click `NEXT` when you are finished.
+You can also choose a custom name for your wallet. Click <code>NEXT</code> when you are finished. Click `NEXT` when you are finished.
 
 :::warning
 
-If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place.
+If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place. Be sure to store your recovery phrase in a safe place.
 
 :::
 
