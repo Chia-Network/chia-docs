@@ -131,7 +131,7 @@ npm run start
 For this project we are going to need add a few more dependencies. You can install these all at once with:
 
 ```
-npm install chia-bls clvm-lib chia-rpc chia-wallet-lib bip39 dotenv
+npm install @rigidity/bls-signatures @rigidity/clvm @rigidity/chia @rigidity/chia-wallet bip39 dotenv
 ```
 
 ## Mnemonic Phrase
@@ -176,14 +176,19 @@ If you use Git, you'll want to make sure the `.env` file is added to the `.gitig
 To not have to mention imports throughout the doc, Our imports will ultimately look like:
 
 ```ts
-import { PrivateKey, fromHex, AugSchemeMPL, concatBytes } from 'chia-bls';
+import {
+  PrivateKey,
+  fromHex,
+  AugSchemeMPL,
+  concatBytes,
+} from '@rigidity/bls-signatures';
 import { mnemonicToSeedSync } from 'bip39';
 import dotenv from 'dotenv';
-import { Program } from 'clvm-lib';
+import { Program } from '@rigidity/clvm';
 import fs from 'fs';
 import path from 'path';
-import { FullNode, formatHex, SpendBundle, toCoinId } from 'chia-rpc';
-import { KeyStore, StandardWallet } from 'chia-wallet-lib';
+import { FullNode, formatHex, SpendBundle, toCoinId } from '@rigidity/chia';
+import { KeyStore, StandardWallet } from '@rigidity/chia-wallet';
 import os from 'os';
 ```
 
@@ -286,7 +291,7 @@ You can retrieve your network's Genesis challenge in the terminal with:
 chia show -s
 ```
 
-Testnet11 has the genesis `37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615`. You can see this in `~/.chia/mainnet/config/config.yaml` as well with:
+Testnet10 has the genesis `ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2`. You can see this in `~/.chia/mainnet/config/config.yaml` as well with: You can see this in `~/.chia/mainnet/config/config.yaml` as well with:
 
 ```bash
 less ~/.chia/mainnet/config/config.yaml
@@ -450,14 +455,19 @@ Which should produce the following result:
 <summary>Complete Code</summary>
 
 ```typescript
-import { PrivateKey, fromHex, AugSchemeMPL, concatBytes } from 'chia-bls';
+import {
+  PrivateKey,
+  fromHex,
+  AugSchemeMPL,
+  concatBytes,
+} from '@rigidity/bls-signatures';
 import { mnemonicToSeedSync } from 'bip39';
 import dotenv from 'dotenv';
-import { Program } from 'clvm-lib';
+import { Program } from '@rigidity/clvm';
 import fs from 'fs';
 import path from 'path';
-import { FullNode, formatHex, SpendBundle, toCoinId } from 'chia-rpc';
-import { KeyStore, StandardWallet } from 'chia-wallet-lib';
+import { FullNode, formatHex, SpendBundle, toCoinId } from '@rigidity/chia';
+import { KeyStore, StandardWallet } from '@rigidity/chia-wallet';
 import os from 'os';
 
 dotenv.config();
