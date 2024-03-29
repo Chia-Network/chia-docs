@@ -13,7 +13,7 @@ It is important to keep the cost usage of programs on the Chia blockchain as low
 
 ## Cost Calculation
 
-Cost has several components.  First, every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
+Cost has several components. First, every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
 
 Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
 
@@ -145,23 +145,23 @@ The below chart contains costs for various transactions on the blockchain, each 
 :::note
 The [minimum effective](/mempool/#fee-required-for-inclusion) fee represents 5 x the clvm cost and is the minimum fee recognized by the default consensus rules (any fee less would be the same as 1 mojo). This means one needs to use at least the fees listed below during moderate fee pressure but greater fees might be needed for time sensitive transactions to process in a timely manner.
 
-  Please note that the costs and fees listed are for vanilla versions of these transactions, they can vary based on the number of input and output coins needed so consider these the bare minimum. Transactions with a '*' are listed with a fee of 3 x the minimum effective fee. This is to ensure the fees are more realistic for how coins are distributed in users wallets but note that vanilla versions of these would be 1/3 that which is listed.
+Please note that the costs and fees listed are for vanilla versions of these transactions, they can vary based on the number of input and output coins needed so consider these the bare minimum. Transactions with a '\*' are listed with a fee of 3 x the minimum effective fee. This is to ensure the fees are more realistic for how coins are distributed in users wallets but note that vanilla versions of these would be 1/3 that which is listed.
 :::
 
-| Transaction Type                  | clvm Cost     | Minimum Effective Fee            |
-| --------------------------------- | ------------- | -------------------------------- |
-| **Full Block (with 50% cap)**     | 5,500,000,000 | 27,500,000,000 mojo (0.0275 xch) |
-| **Standard Transaction**          | 6,000,000     | 90,000,000 mojo (0.00009 xch) *  |
-| **PlotNFT Creation**              | 18,000,000    | 90,000,000 mojo (0.00009 xch)    |
-| **Minting NFT with DID**          | 123,000,000   | 615,000,000 mojo (0.000615 xch)  |
-| **Minting NFT without DID**       | 53,000,000    | 265,000,000 mojo (0.000265 xch)  |
-| **Adding URI to NFT with DID**    | 71,000,000    | 355,000,000 mojo (0.000355 xch)  |
-| **Adding URI to NFT without DID** | 41,000,000    | 205,000,000 mojo (0.000205 xch)  |
-| **Transfer NFT with DID**         | 67,000,000    | 335,000,000 mojo (0.000335 xch)  |
-| **Assign DID to NFT**             | 107,000,000   | 535,000,000 mojo (0.000535 xch)  |
-| **Send Clawback Transaction**     | 10,000,000    | 150,000,000 mojo (0.00015 xch) * |
-| **Claim Clawback Transaction**    | 1,400,000     | 7,000,000 mojo (.000007 xch)     |
-| **Clawback Clawback Transaction** | 15,600,000    | 75,800,000 mojo (.0000758 xch)   |
-| **Combine 500 Farming Rewards**   | 3,100,000,000 | 15,500,000,000 mojo (.0155 xch)  |
-| **Split 1 Coin into 2**           | 11,000,000    | 55,000,000 mojo (.000055 xch)    |
-| **Cat Transaction**               | 37,000,000    | 555,000,000 mojo (.000555 xch) * |
+| Transaction Type                  | clvm Cost     | Minimum Effective Fee               |
+| --------------------------------- | ------------- | ----------------------------------- |
+| **Full Block (with 50% cap)**     | 5,500,000,000 | 27,500,000,000 mojo (0.0275 xch)    |
+| **Standard Transaction**          | 6,000,000     | 90,000,000 mojo (0.00009 xch) \*  |
+| **PlotNFT Creation**              | 18,000,000    | 90,000,000 mojo (0.00009 xch)       |
+| **Minting NFT with DID**          | 123,000,000   | 615,000,000 mojo (0.000615 xch)     |
+| **Minting NFT without DID**       | 53,000,000    | 265,000,000 mojo (0.000265 xch)     |
+| **Adding URI to NFT with DID**    | 71,000,000    | 355,000,000 mojo (0.000355 xch)     |
+| **Adding URI to NFT without DID** | 41,000,000    | 205,000,000 mojo (0.000205 xch)     |
+| **Transfer NFT with DID**         | 67,000,000    | 335,000,000 mojo (0.000335 xch)     |
+| **Assign DID to NFT**             | 107,000,000   | 535,000,000 mojo (0.000535 xch)     |
+| **Send Clawback Transaction**     | 10,000,000    | 150,000,000 mojo (0.00015 xch) \* |
+| **Claim Clawback Transaction**    | 1,400,000     | 7,000,000 mojo (.000007 xch)        |
+| **Clawback Clawback Transaction** | 15,600,000    | 75,800,000 mojo (.0000758 xch)      |
+| **Combine 500 Farming Rewards**   | 3,100,000,000 | 15,500,000,000 mojo (.0155 xch)     |
+| **Split 1 Coin into 2**           | 11,000,000    | 55,000,000 mojo (.000055 xch)       |
+| **Cat Transaction**               | 37,000,000    | 555,000,000 mojo (.000555 xch) \* |
