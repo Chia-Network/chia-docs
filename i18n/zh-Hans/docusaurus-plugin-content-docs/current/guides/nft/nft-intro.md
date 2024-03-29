@@ -117,14 +117,16 @@ After the installer has downloaded, execute it and Chia will install automatical
 If the `chia` command isn't already in your system's path, you can create an alias:
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux/MacOS', value: 'nix'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows">
 
 Be sure to replace `<username>` and `<version>` with the actual folder names.
+
+` with the actual folder names.
 
 ```bash
 Set-Alias -Name chia "C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe"
@@ -148,7 +150,7 @@ To install Chia from source, follow our [installation guide](https://docs.chia.n
 
 ### Switching to testnet
 
-By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/testnets).
+By default, Chia will run on mainnet. By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/testnets).
 
 ## Configuration
 
@@ -243,7 +245,7 @@ Chia Wallet:
 
 In order to continue, you'll need to have some TXCH in your wallet. If your total balance is 0, you can obtain 1 TXCH from our faucet. Copy the value of "First wallet address:" from the output of the `chia keys show` command. It will be a long string beginning with "txch".
 
-Open our [testnet faucet page](https://testnet11-faucet.chia.net "Chia's testnet11 faucet link"). Paste your address and click "Submit".
+Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit". Paste your address and click "Submit".
 
 You'll receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you'll receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your coins to arrive before continuing.
 
@@ -263,9 +265,9 @@ chia show -s
 Eventually, it will say `Full Node Synced`:
 
 ```text
-Network: testnet11    Port: 58444   RPC Port: 8555
+Network: testnet10    Port: 58444   RPC Port: 8555
 Node ID: 82a73b06b3a5f9493a3ac4e3d903026b39c85b748158ba41c623d531947f2a2a
-Genesis Challenge: 37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615
+Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
 Current Blockchain Status: Full Node Synced
 ```
 
