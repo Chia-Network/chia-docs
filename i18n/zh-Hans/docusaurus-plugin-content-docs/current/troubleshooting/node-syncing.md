@@ -64,11 +64,11 @@ Additionally, you can also visit either of the below websites that are frequentl
   <TabItem value="testnet11">
 
 ```
-- DNS Introducer: dns-introducer-testnet11.chia.net
-- Legacy Introducer: introducer-testnet11.chia.net:58444
+- DNS Introducer: `dns-introducer-testnet11.chia.net`
+- Legacy Introducer: `introducer-testnet11.chia.net:58444`
 
 Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
-- CNI Operated Full Node: testnet11-node.chia.net
+- CNI Operated Full Node: `testnet11-node.chia.net`
 ```
 
   
