@@ -6,7 +6,7 @@ title: DAO Known Issues
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-DAOs are currently under development. Be sure to update to the [latest Chia version](https://www.chia.net/downloads/) prior to using the DAO primitive.
+DAOs are currently under development. Be sure to read this list carefully before using the DAO primitive.
 
 As of Chia version 2.1.4, the following DAO issues are known to exist:
 
@@ -16,10 +16,10 @@ Under normal circumstances, an attacker can create a malicious proposal to drain
 
 However, prior to creating this proposal, the attacker can use proposal spam to improve the chances of the attack's success.
 
-The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle\*hash (including hinted coins):
+The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. To release the coins, launch the wallet from `main`, and then run the [release_coins](/dao-cli#release_coins) command.
 
-- `trusted_max_subscribe_response_items`: 500000
-- `max_subscribe_response_items`: 100000
+- There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle_hash (including hinted coins): \* `trusted_max_subscribe_response_items`: 500000 \* `max_subscribe_response_items`: 100000
+- Mitigation: This issue only exists in the 2.1.2 release.
 
 The attacker can take advantage of this limit by creating multiple coins, each of which contains a hint equal to the `TREASURY_ID`. Eventually a wallet will no longer get any additional coin states for newer coins from a `full_node` via the coin state subscription. This is the "proposal spam" part of the attack.
 
