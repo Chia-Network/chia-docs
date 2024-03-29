@@ -19,7 +19,7 @@ slug: /区块格式
 - **foliage**: Foliage: Foliage data for the reward chain block, the hash of this is the `header_hash`.
 - **foliage_transaction_block**: Optional[FoliageTransactionBlock]: Transaction related metadata that is relevant for light clients (not actual transactions), only for tx blocks.
 - **transactions_info**: Optional[TransactionsInfo]: Transaction related metadata that is not relevant for light clients (not actual transactions), only for tx blocks.
-- **transactions_generator**: Optional[SerializedProgram]: A clvm/rust program that generates all transactions (spends). See the next section for an important [update](#transactions_generator-update) due to the 2.1.0 hard fork.
+- **transactions_generator**: Optional[SerializedProgram]: A clvm program that generates all transactions (spends). See the next section for an important [update](#transactions_generator-update) due to the 2.1.0 hard fork.
 - **transactions_generator_ref_list**: List[uint32]: A list of block heights of previous generators referenced by this block's generator.
 
 ## transactions_generator update
