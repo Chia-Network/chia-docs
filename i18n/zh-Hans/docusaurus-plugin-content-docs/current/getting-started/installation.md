@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-This page will go into the details of the various different ways to install Chia. If you already installed Chia as part of the Farming Guide, then feel free to skip ahead to the [Plotting Basics](/plotting-basics) page.
+This page will go into the details of the various different ways to install Chia. This page will go into the details of the various different ways to install Chia. If you already installed Chia as part of the Farming Guide, then feel free to skip ahead to the [Plotting Basics](/plotting-basics) page.
 
 :::
 
 There are various ways to install Chia, with the best method depending on what you intend to do:
 
-- If you simply wish to use the Chia wallet, or to run a farm on a single personal computer, then we recommend installing the GUI from our [official downloads page](https://www.chia.net/downloads) for Windows and MacOS, and for Linux users to install the package [as described below](#using-the-cli). The GUI is the simplest way to interact with the Chia client and ideal for most non-developer use cases.
+- If you simply wish to use the Chia wallet, or to run a farm on a single personal computer, then we recommend installing the GUI from our [official downloads page](https://www.chia.net/downloads) for Windows and MacOS, and for Linux users to install the package [as described below](#using-the-cli). The GUI is the simplest way to interact with the Chia client and ideal for most non-developer use cases. The GUI is the simplest way to interact with the Chia client and ideal for most non-developer use cases.
 
 - If you intend to run a dedicated Chia full node on a server and connect to it programmatically using the [RPC interface](/rpc), the best method would be to install and run Chia via the command line on a proper server environment.
 
@@ -38,7 +38,7 @@ Chia plot files are at least 108GB in size (for K32). To plot successfully requi
 
 ### Sleep kills plots
 
-If the computer or hard drives go to sleep during the plotting process, it will fail, and you will need to start over. Please ensure all sleep, hibernate and power saving modes for your computer and hard drives are disabled before starting the Chia plotting process. In the future, Chia will have a resume plot feature. In the meantime, if you do get a failed plot, delete all `*.tmp` files before starting a new plot.
+If the computer or hard drives go to sleep during the plotting process, it will fail, and you will need to start over. Please ensure all sleep, hibernate and power saving modes for your computer and hard drives are disabled before starting the Chia plotting process. In the future, Chia will have a resume plot feature. In the meantime, if you do get a failed plot, delete all `*.tmp` files before starting a new plot. Please ensure all sleep, hibernate and power saving modes for your computer and hard drives are disabled before starting the Chia plotting process. In the future, Chia will have a resume plot feature. In the meantime, if you do get a failed plot, delete all `*.tmp` files before starting a new plot.
 
 ---
 
@@ -172,6 +172,34 @@ The following is how you update to the latest version:
 cd chia-blockchain
 
 # Activate the virtual environment
+. :::note  
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
+:::  
+
+```bash
+# Download chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
+
+# Change directory
+cd chia-blockchain
+
+# Install dependencies
+sh install.sh
+
+# Activate virtual environment
+. ./activate
+
+# Initialize
+chia init
+```
+
+The following is how you update to the latest version:
+
+```bash
+# Change directory
+cd chia-blockchain
+
+# Activate the virtual environment
 . ./activate
 
 # Stop running services
@@ -179,9 +207,6 @@ chia stop -d all
 
 # Deactivate the virtual environment
 deactivate
-
-# Remove the current virtual environment
-rm -r venv
 
 # Pull the latest version
 git fetch
@@ -199,6 +224,10 @@ sh install.sh
 
 # Activate the virtual environment
 . ./activate
+
+# Initialize the new version
+chia init
+``` ./activate
 
 # Initialize the new version
 chia init
@@ -436,6 +465,16 @@ See [install from source](/installation#from-source) for detailed instruction.
 # Install chia-blockchain as a binary package
 python -m venv venv
 ln -s venv/bin/activate
+. #### Install from source - Amazon Linux 2
+
+See [install from source](/installation#from-source) for detailed instruction.
+
+#### Install from binary package
+
+```bash
+# Install chia-blockchain as a binary package
+python -m venv venv
+ln -s venv/bin/activate
 . ./activate
 pip install --upgrade pip
 
@@ -447,11 +486,118 @@ pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniu
 
 _**These instructions were tested with Chia 1.1.4 on FreeBSD 11.3- and 11.4-RELEASE, newer versions may exist**_
 
----==crwdHRulesLBB_2_BBsuleRHdwrc==
+\*\*\*==crwdHRulesLBB_2_BBsuleRHdwrc==
 
 #### Upgrading Existing Chia Installs
 
 If you're upgrading from a previously built chia installation, exit from your previous venv environment (`deactivate`), create a new directory in which to place the latest Chia (e.g. `mkdir ~/chia-1.0.5 && cd ~/chia-1.0.5`), clone the latest repo (`git clone https://github.com/Chia-Network/chia-blockchain.git -b latest`), enter it and create a new Python virtual environment within it (`python3 -m venv venv`). Now, activate the newest environment (`. venv/bin/activate`), upgrade pip (`pip install --upgrade pip`). Now you may skip down to the [clvm_rs install section](#clvm_rs) and begin there.
+
+\*\*\*==crwdHRulesLBB_2_BBsuleRHdwrc==
+
+#### Why This Manual Installation?
+
+Currently the only way to ensure Chia builds on FreeBSD is to do it from the source. By following these instructions to the letter, you should have no problem building the latest Chia from source on a FreeBSD 11.3 or 11.4. This should also work on FreeBSD 12, possibly with some modifications - e.g. if the ports py-cryptography version is newer than 3.3.2, simply edit as needed - or if your preferred Python version is 3.8+ it should all still work considering you modify the package names as necessary.
+
+#### Notes on FreeNAS (TrueNAS)
+
+If you had been using NFS or Samba sharing to expose your plots to a harvester on another OS, such as Linux, you can instead build Chia within a jail (see the FreeNAS manual for 'jails'), expose your plot directories to it and run the harvester within. In my experience, it provides lower-latency and more reliable access to the plots since the disks are direct-attached and not being provided through an extra few layers of network protocols.
+
+If you are using a fresh jail created by the FreeNAS web GUI you may need to install openssh and setup a ssh key to login as root because by default it appears PAM password logins do not work. The jail shell CLI provided by the FreeNAS GUI allows copy and pasting so you can easily paste your public-key into /root/.ssh/authorized_keys && chmod -R 700 /root/.ssh.
+
+These instructions would be applicable to 11.3 and 11.4 jails created within FreeNAS 11 only. Version 12 (FreeBSD 12) ✔
+
+#### Other Notes
+
+These instructions will have you building both chia-blockchain and clvm_rs from github source, and python-cryptography from FreeBSD's ports.
+
+The result of this build will be the "chia version" showing the current release branch ahead by 1 and in "dev0"; for instance building 1.0.1 results in "chia version" returning "1.0.2.dev0". If someone knows why this is and how to fix it, please, edit and correct this! It does not happen on Linux.
+
+_**These instructions assume a fresh FreeBSD 11 installation!**_
+
+#### Discouraged?
+
+Following the instructions in this document will result in a working Chia CLI build on FreeBSD 11 if you follow step-by-step starting from a vanilla FreeBSD installation. Is something broken? Compare the commands you typed, accessible in your **bash** shell history, and match them with each command in this document. If you feel you've messed something up, do the following:
+
+```
+# if you have (venv) in your shell prompt, type deactivate
+deactivate
+# remove the chia-blockchain directory which will contain clvm_rs and the Python venv
+rm -rf chia-blockchain
+# ... now start again! You don't need to do all the setup steps but instead may start at the upgrade notes above if you had finished up to the py-cryptography ports build.
+```
+
+#### Pre-requisite package installation
+
+_If starting the build again after a failure and you have not re-installed FreeBSD, don't just skip this package installation section! You may have missed one or more software packages critical to the build._
+
+The 'pkg', 'portsnap' and port build are to be run as root. Everything else can be run from a normal non-root user.
+
+As root, update pkg and ports, and then install all packages as instructed below.
+
+```
+# Update your packages and ports; if ports are already installed as part of your fresh install run portsnap update instead of fetch/extract.
+pkg update
+portsnap fetch && portsnap extract
+
+# Install bash if you have not; the default csh will not suffice for the build scripts.
+pkg install bash
+# change your shell to bash
+chsh -s /usr/local/bin/bash
+# run bash
+/usr/local/bin/bash
+```
+
+Make sure you change the shell for your non-root chia-blockchain user. If you're opting to run Chia as root, you can skip this. If you are root, run this as it appears below; otherwise, you can omit the username because you are already that user.
+
+```
+chsh -s /usr/local/bin/bash NONROOT_USERNAME
+```
+
+Now proceed with installing the mandatory development tools.
+
+```
+pkg install lang/gcc9 gcc gmake cmake
+
+```
+
+#### gcc notes
+
+After installing gcc version 9.0, this message appears:
+
+```
+To ensure binaries built with this toolchain find appropriate versions
+of the necessary run-time libraries, you may want to link using
+
+  -Wl,-rpath=/usr/local/lib/gcc9
+```
+
+It's probably possible to build the libraries in a way that doesn't require `export LD_LIBRARY_PATH=/usr/local/lib/gcc9`. If you know how click "edit" and dish.
+
+#### Install rust, Python, and everything else.
+
+```
+pkg install lang/rust
+pkg install lang/python37 py37-pip py37-setuptools py37-wheel py37-sqlite3 py37-cffi py37-virtualenv py37-maturin python
+pkg install node npm git openssl
+```
+
+If you are ssh'ing into the machine you might want to use 'screen' so that processes will continue even if you logout. For more information: https://www.freebsd.org/cgi/man.cgi?query=screen. 'tmux' is also a great alternative especially if you use iTerm2 on macOS as it supports native tabs and windows with the '-CC' CLI option.
+
+```
+# optional packages
+pkg install screen tmux
+```
+
+#### Repo Cloning and Virtual Environment (venv) Activation
+
+**From this point on, with the exception of the security/py-cryptography port build process (and any other exceptions noted), you may proceed as a normal user.**
+
+```
+# Clone the latest chia-blockchain repository, via HTTP:
+git clone https://github.com/Chia-Network/chia-blockchain.git -b latest
+# or with SSH:
+git clone git@github.com:Chia-Network/chia-blockchain.git -b latest
+# Note: you can specify the branch by adding "--branch Now, activate the newest environment (`. venv/bin/activate`), upgrade pip (`pip install --upgrade pip`). Now you may skip down to the [clvm_rs install section](#clvm_rs) and begin there.
 
 ---==crwdHRulesLBB_2_BBsuleRHdwrc==
 
@@ -558,19 +704,29 @@ pkg install screen tmux
 git clone https://github.com/Chia-Network/chia-blockchain.git -b latest
 # or with SSH:
 git clone git@github.com:Chia-Network/chia-blockchain.git -b latest
-# Note: you can specify the branch by adding "--branch <version>" like: git clone http://github.com/Chia-Network/chia-blockchain.git --branch 1.0.1
+# Note: you can specify the branch by adding "--branch <version>:::note  
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
+:::  
 
-```
+```bash
+# Download chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
 
-Create a virtual environment directory 'venv' from _within_ the 'chia-blockchain' directory and activate it before proceeding
-
-```
+# Change directory
 cd chia-blockchain
-python3 -m venv venv
-source venv/bin/activate
-```
 
-You are now in the virtual environment that Python (and so chia) will use. You should have a "(venv)" prefix to your terminal prompt to confirm the venv is working.
+# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.
+git checkout tags/2.1.2-rc2
+
+# Install dependencies
+./Install.ps1
+
+# Activate virtual environment
+. ./venv/Scripts/Activate.ps1
+
+# Initialize
+chia init
+``` You should have a "(venv)" prefix to your terminal prompt to confirm the venv is working.
 
 Upgrade pip:
 
@@ -821,6 +977,211 @@ cd chia-blockchain
 
 cd chia-blockchain-gui
 npm run electron
+``` ./venv/bin/activate
+pip install --upgrade pip
+
+cd ../chiavdf/
+pip install .
+
+cd ../maturin/
+# don't pass static compiler flags to the rust linker because that would cause
+# a core dump, possibly because of resource limits
+sed -i 's|cargo_args.extend(\["--", "-C", "link-arg=-s"\])|#cargo_args.extend(\["--", "-C", "link-arg=-s"\])|' setup.py
+pip install .
+
+cd ../clvm_rs/
+maturin develop --release
+
+# XXX should be a more elegant way...
+" like: git clone http://github.com/Chia-Network/chia-blockchain.git --branch 1.0.1
+
+```
+
+Create a virtual environment directory 'venv' from _within_ the 'chia-blockchain' directory and activate it before proceeding
+
+```
+cd chia-blockchain
+python3 -m venv venv
+source venv/bin/activate
+```
+
+You are now in the virtual environment that Python (and so chia) will use. You should have a "(venv)" prefix to your terminal prompt to confirm the venv is working.
+
+Upgrade pip:
+
+```
+pip install --upgrade pip
+```
+
+To exit the virtual environment:
+
+```
+deactivate
+```
+
+#### Building py-cryptography from ports
+
+_**You'll need to switch to root for this part. If you're already using root remember to leave the virtual environment for this step.**_
+
+```
+cd /usr/ports/security/py-cryptography
+
+# Instruct 'make' that the SSL library is openssl.
+# Also force the Python version in case the port tries for a higher one
+echo "DEFAULT_VERSIONS+=ssl=openssl python=3.7 python3=3.7" >> /etc/make.conf
+
+make
+```
+
+You'll probably see a bunch of warnings and notices; these are not errors and it will build.
+
+Do NOT run make install. We will do our own py-cryptography install because 'make install' does not copy to our virtual environment. (If you know how to change this, please edit).
+
+If you are running inside a jail and make fails with an error about the OSVERSION not matching UNAME, you will need to set the UNAME_r environment variable to match your jails OSVERSION:
+
+```
+# Adjust the value to match your jails OSVERSION
+export UNAME_r=11.4-RELEASE
+```
+
+A full version list can be found [here](https://docs.freebsd.org/en/books/porters-handbook/book.html#versions).
+
+Once complete switch back to your non-root user if you so optioned. You must now be in your venv once again.
+
+#### clvm_rs
+
+Build and install the current version of [clvm_rs](https://github.com/Chia-Network/clvm_rs).
+These instructions were created for version 0.1.7 but a newer version may exist.
+
+```
+git clone http://github.com/Chia-Network/clvm_rs.git --branch 0.1.7
+cd clvm_rs
+maturin develop --release
+pip install git+https://github.com/Chia-Network/clvm@use_clvm_rs
+```
+
+clvm_rs 0.1.7 is now installed in your virtual environment.
+
+#### Install py-cryptography to the venv
+
+Copy py-cryptography and its meta-data from the staging directory to your virtual environment:
+
+```
+cp -R /usr/ports/security/py-cryptography/work-py37/stage/usr/local/lib/python3.7/site-packages/cryptography ${VIRTUAL_ENV}/lib/python3.7/site-packages/cryptography
+cp -R /usr/ports/security/py-cryptography/work-py37/stage/usr/local/lib/python3.7/site-packages/cryptography-3.3.2-py3.7.egg-info ${VIRTUAL_ENV}/lib/python3.7/site-packages/cryptography-3.3.2-py3.7.egg-info
+```
+
+Clear any Python byte-code cache files that may contain the old path. These should be re-built by the interpreter but we like a clean environment.
+
+```
+find ${VIRTUAL_ENV}/lib/python3.7/site-packages/cryptography -name __pycache__ | xargs -I{} rm -rf "{}"
+```
+
+#### Chia modifications and Building Chia Itself
+
+Switch to your chia-blockchain clone directory. You will need to edit two files.
+
+Using your favorite text editor, modify setup.py to edit the cryptography package version to 3.3.2.
+
+```
+"cryptography==3.4.6" --> to --> "cryptography==3.3.2"
+```
+
+Now you must modify chia/util/keychain.py to provide a static key when using the Python keyring. This is mandatory otherwise every time the keyring is accessed your passphrase will need to be entered on the command line, and for the CLI daemon this will not do.
+
+On line 25 of chia/util/keychain.py, change:
+
+```
+elif platform=="linux":
+```
+
+to:
+
+```
+elif platform=="linux" or platform.startswith("freebsd"):
+```
+
+On line 27 of the same file, change the passphrase from "your keyring password" to whatever you wish your passphrase to be. This is intended to be fixed in future versions but, for the time being, Linux and FreeBSD must have the keyphrase provided statically.
+
+```
+keyring.keyring_key = "your keyring password"  # type: ignore
+```
+
+can be changed like so:
+
+```
+keyring.keyring_key = "Too Many Secrets"
+```
+
+Now, you will build Chia!
+
+```
+sh install.sh
+```
+
+Once done, run:
+
+```
+chia init
+```
+
+NOTE: if you need to disable UPnP - a protocol which automatically sets up port-forwarding on routers using NAT which is a typical setup at any residence with broadband - set "enable_upnp: False" in config.yaml. You can use the one-liner below or do it yourself.
+
+```
+sed -i .bak 's/enable_upnp: True/enable_upnp: False' ~/.chia/mainnet/config/config.yaml
+```
+
+While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://docs.chia.net/farming-on-many-machines/).
+
+\*\*\*==crwdHRulesLBB_2_BBsuleRHdwrc==
+
+#### Installed and Ready to Farm!
+
+That's it! Provided the instructions were followed to the T, and the build is a fresh FreeBSD 11.3 or 11.4, either hardware or FreeNAS jailed, you should be good to go! Now go to town with `chia start node` or whatever floats your boat.
+
+More details can be found in the [Chia Introduction](https://docs.chia.net/introduction).
+
+_WARNING: Although the following steps have been used successfully, the resulting GUI will be run with an older version of electron than is recommended by the Chia Network team. This may result in unexpected problems._
+
+#### Prerequisite package installation
+
+As root (or using doas / sudo), first install some additional OpenBSD packages required for GUI usage:
+
+```bash
+pkg_add -i electron
+```
+
+#### Build
+
+```bash
+cd chia-blockchain
+. ./activate
+
+cd chia-blockchain-gui
+
+# build / set up GUI
+npm run build
+
+# Remove failed electron 8.2.5 install and fall back to the OpenBSD
+# ports tree 8.2.0 electron, which currently (as of 6/10/2020) works.
+#
+# This may not continue to work in the future.  A full solution to
+# this requires official OpenBSD electron builds, provided by the
+# electron project itself.
+
+rm -rf node_modules/electron
+```
+
+#### Launch GUI
+
+The GUI can now be launched using the following commands:
+
+```bash
+cd chia-blockchain
+. ./activate
+
+cd chia-blockchain-gui
+npm run electron
 ```
 
   </TabItem>
@@ -867,6 +1228,14 @@ The CLI commands are stored in the following location:
 ```
 
 To be able to use these commands without going to that directory in the terminal, add it to the path.
+
+This can be done by running the following command:
+
+```bash
+export PATH=/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon:$PATH
+```
+
+To load this on startup, add it to the `.bashrc`, `.bash_profile`, or `.zshrc` file depending on which is used by the shell.
 
 This can be done by running the following command:
 
@@ -1004,9 +1373,9 @@ chia start farmer
 
 ### Systemd
 
-Linux users who have installed the `chia-blockchain-cli` package using [apt, yum, or dnf](https://docs.chia.net/installation/#using-the-cli) will receive systemd configuration files for initializing and managing the Chia processes. Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd). A user must be specified during the initialization to ensure the resulting process can find the Chia root directory. The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only.
+Linux users who have installed the `chia-blockchain-cli` package using [apt, yum, or dnf](https://docs.chia.net/installation/#using-the-cli) will receive systemd configuration files for initializing and managing the Chia processes. Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd). A user must be specified during the initialization to ensure the resulting process can find the Chia root directory. The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only. Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd). A user must be specified during the initialization to ensure the resulting process can find the Chia root directory. The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only.
 
-To start a Chia process with systemd, the command format is `systemctl start chia-<service-name>@<user>`. For example, if starting a Chia full node for the Linux user `ubuntu`, the command would be:
+To start a Chia process with systemd, the command format is `systemctl start chia-<service-name>@<user>`. For example, if starting a Chia full node for the Linux user `ubuntu`, the command would be: For example, if starting a Chia full node for the Linux user `ubuntu`, the command would be:
 
 ```
 systemctl start chia-full-node@ubuntu
@@ -1037,10 +1406,10 @@ Note that the `chia-timelord` service runs the timelord coordinator service, but
 
 ## Troubleshooting
 
-Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version. Make sure all daemons and chia processes are killed before installing or upgrading.
+Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version. Make sure all daemons and chia processes are killed before installing or upgrading. Make sure all daemons and chia processes are killed before installing or upgrading.
 
 This is normally done by executing `chia stop -d all` from the upgrade example above.  
-But it doesn't hurt to double check using `ps -Af | grep chia` to make sure there are no chia processes left running. You may have to manually kill the chia daemon if an install and chia start was performed without first running `chia stop -d all`
+But it doesn't hurt to double check using `ps -Af | grep chia` to make sure there are no chia processes left running. You may have to manually kill the chia daemon if an install and chia start was performed without first running `chia stop -d all` You may have to manually kill the chia daemon if an install and chia start was performed without first running `chia stop -d all`
 
 If all else fails, rebooting the machine and restarting the chia daemon/processes usually does the trick.
 
@@ -1048,7 +1417,7 @@ If all else fails, rebooting the machine and restarting the chia daemon/processe
 
 To join a testnet, follow the instructions on [How to Join the Official Testnet](/testnets#join-the-official-testnet).
 
-It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet11" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet11"` so that all commands will use testnet11 instead of mainnet. You can update all config values to the testnet values by running `chia configure -t true`.
+It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet10" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet10"` so that all commands will use testnet10 instead of mainnet. If you're using a version above 1.2.11, you can update all config values to the testnet values by running `chia configure -t true`. For example, `CHIA_ROOT="~/.chia/testnet11" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet11"` so that all commands will use testnet11 instead of mainnet. You can update all config values to the testnet values by running `chia configure -t true`.
 
 ## Beta and release candidate installations
 
@@ -1129,7 +1498,6 @@ values={[
 ]}>
 <TabItem value="apt">
 
-```bash
 # Install packages
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
@@ -1138,27 +1506,39 @@ sudo apt-get install ca-certificates curl gnupg
 curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/chia.gpg
 
 # Set up repository
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/prerelease/debian/ prerelease main" | sudo tee /etc/apt/sources.list.d/chia-blockchain-prerelease.list > /dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/prerelease/debian/ prerelease main" | sudo tee /etc/apt/sources.list.d/chia-blockchain-prerelease.list &gt; /dev/null
 sudo apt-get update
 
 # Install chia-blockchain
 sudo apt-get install chia-blockchain
 
 # Use chia-blockchain-cli instead for CLI only
-```
 
   </TabItem>
   <TabItem value="exe, deb, dmg, rpm">
 
+:::note
+Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
+:::  
+
 ```bash
-# Navigate to downloads page
-Open https://github.com/Chia-Network/chia-blockchain/releases in a web browser
+# Download chia-blockchain
+git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
 
-# Download the correct asset
-Navigate to the release candidate of interest and download the necessary installer for your OS (ex. exe for windows)
+# Change directory
+cd chia-blockchain
 
-# Install the downloaded installer
-Using your system finder/file explorer install the downloaded installer (note - make sure no other versions of chia are installed prior to this step)
+# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.
+git checkout tags/2.1.2-rc2
+
+# Install dependencies
+sh install.sh
+
+# Activate virtual environment
+. ./activate
+
+# Initialize
+chia init
 ```
 
   </TabItem>
