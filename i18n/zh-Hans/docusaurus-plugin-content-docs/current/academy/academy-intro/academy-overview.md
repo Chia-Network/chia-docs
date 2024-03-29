@@ -5,7 +5,7 @@ slug: /academy-overview
 
 import Runnable from '@site/src/components/Runnable.tsx';
 
-The lesson pages in Chia Academy are thoughtfully designed to enhance the learning experience for students. Each lesson is organized in a user-friendly and visually appealing manner. The structure typically includes:
+The lesson pages in Chia Academy are thoughtfully designed to enhance the learning experience for students. Each lesson is organized in a user-friendly and visually appealing manner. The structure typically includes: Each lesson is organized in a user-friendly and visually appealing manner. The structure typically includes:
 
 ---
 
@@ -17,7 +17,7 @@ Each lesson starts with a clear and descriptive title that informs students abou
 
 ## Learning objectives
 
-A set of specific learning objectives is provided at the beginning of the lesson. These objectives outline what students will be able to understand or do by the end of the lesson, setting clear expectations.
+A set of specific learning objectives is provided at the beginning of the lesson. A set of specific learning objectives is provided at the beginning of the lesson. These objectives outline what students will be able to understand or do by the end of the lesson, setting clear expectations.
 
 - Learning Objective 1
 - Learning Objective 2
@@ -27,13 +27,13 @@ A set of specific learning objectives is provided at the beginning of the lesson
 
 ## Content
 
-The core content in each lesson is conveyed through structured, short format videos followed by scripts. This hybrid visual and text approach ensures accessibility and caters to diverse learning preferences.
+The core content in each lesson is conveyed through structured, short format videos followed by scripts. This hybrid visual and text approach ensures accessibility and caters to diverse learning preferences. This hybrid visual and text approach ensures accessibility and caters to diverse learning preferences.
 
 ---
 
 ## Script
 
-Each of the short format videos will be proceeded by the script used for creating the video. This written format ensures ease of translation catering to diverse learners.
+Each of the short format videos will be proceeded by the script used for creating the video. This written format ensures ease of translation catering to diverse learners. This written format ensures ease of translation catering to diverse learners.
 
 <details>
 
@@ -51,7 +51,7 @@ The timestamps are provided in set intervals and are formatted as `minutes:secon
 
 ## Common gotchas
 
-While lessons are thoughtfully designed to facilitate learning, there are some common pitfalls or challenges that a learner might face. These will be described after the script for each lesson.
+While lessons are thoughtfully designed to facilitate learning, there are some common pitfalls or challenges that a learner might face. These will be described after the script for each lesson. These will be described after the script for each lesson.
 
 - **Gotcha 1:** Description of gotcha 1.
 - **Gotcha 2:** Description of gotcha 2.
@@ -61,9 +61,9 @@ While lessons are thoughtfully designed to facilitate learning, there are some c
 
 ## Knowledge check
 
-Each lesson contains a brief self-assessment quiz designed to gauge learners' comprehension and retention of the video material. These assessments reinforce key concepts and help learners self-assess their understanding.
+Each lesson contains a brief self-assessment quiz designed to gauge learners' comprehension and retention of the video material. These assessments reinforce key concepts and help learners self-assess their understanding. These assessments reinforce key concepts and help learners self-assess their understanding.
 
-The quiz section has two components, questions and answers. The questions contain lesson-applicable questions and the answers contain the corresponding answers.
+The quiz section has two components, questions and answers. The questions contain lesson-applicable questions and the answers contain the corresponding answers. The questions contain lesson-applicable questions and the answers contain the corresponding answers.
 
 Since this is a self assessment, you can of course skip the questions and go straight to the answers; but, we strongly recommend that you take the time to solve the question on your own before checking the answer.
 
@@ -130,7 +130,7 @@ Links to additional reading materials, videos, or external resources may be prov
 
 ### Runnable Chialisp and clvm plugins
 
-Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
+Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
 Each plugin has a series of components:
 
 **Language:** The language of the plugin (Chialisp or clvm) is in the top right corner.  
@@ -152,7 +152,7 @@ The plugins only validate the formatting and completeness of the code; they do n
 When clicking run, the puzzle will first be serialized into clvm (similar to the `run` command) then the solution will be passed into the serialized puzzle (similar to the `brun` command).  
 The below example is a Chialisp puzzle that squares the number passed as an argument.
 
-Note the number `(5)` is used in the solution top section and the Chialisp formatted puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.
+Note the number `(5)` is used in the solution top section and the Chialisp formatted puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result. Clicking run on this puzzle will return `25` as the result.
 
 <Runnable flavor='chialisp' input='(5)'>
 
@@ -172,7 +172,7 @@ Note the number `(5)` is used in the solution top section and the Chialisp forma
 When clicking run, the solution will be passed into the serialized puzzle (similar to the `brun` command).  
 The below example uses the serialized puzzle from above that squares the number passed as an argument.
 
-Note the number `(5)` is used in the solution top section and the serialized puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.
+Note the number `(5)` is used in the solution top section and the serialized puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result. Clicking run on this puzzle will return `25` as the result.
 
 <Runnable flavor='clvm' input='(5)'>
 
