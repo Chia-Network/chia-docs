@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This document is a guide for using the clawback functionality introduced in version 1.8.2 of Chia's reference wallet. _Clawback_ is a new feature that offers protection against sending XCH to the wrong address.
+This document is a guide for using the clawback functionality introduced in version 1.8.2 of Chia's reference wallet. This document is a guide for using the clawback functionality introduced in version 1.8.2 of Chia's reference wallet. _Clawback_ is a new feature that offers protection against sending XCH to the wrong address.
 
 If you are a developer or a CLI user, see the following resources for more info:
 
@@ -18,8 +18,8 @@ If you are a developer or a CLI user, see the following resources for more info:
 
 In order to use Chia clawbacks, you must have:
 
-- Version 1.8.2 or later of Chia's reference light wallet or full node. See our [downloads page](https://www.chia.net/downloads/) to obtain a copy.
-- A sufficient amount of XCH or TXCH to send a transaction and pay fees. If you do not have a sufficient amount, you can obtain some from our [mainnet](https://faucet.chia.net/) and [testnet](https://testnet10-faucet.chia.net/) faucets.
+- Version 1.8.2 or later of Chia's reference light wallet or full node. See our [downloads page](https://www.chia.net/downloads/) to obtain a copy. See our [downloads page](https://www.chia.net/downloads/) to obtain a copy.
+- A sufficient amount of XCH or TXCH to send a transaction and pay fees. A sufficient amount of XCH or TXCH to send a transaction and pay fees. If you do not have a sufficient amount, you can obtain some from our [mainnet](https://faucet.chia.net/) and [testnet](https://testnet10-faucet.chia.net/) faucets.
 
 ---
 
@@ -35,11 +35,11 @@ The following demonstrates an example workflow of this process:
     - The sender and receiver both see the pending 1-XCH transaction in their wallets
     - The sender can choose to return the 1 XCH to his/her wallet (this is a _clawback_)
     - The receiver cannot yet claim the money
-    - The sender and receiver could communicate off-chain. For example, the sender could call the receiver and ask if the pending transaction appears in their wallet.
+    - The sender and receiver could communicate off-chain. The sender and receiver could communicate off-chain. For example, the sender could call the receiver and ask if the pending transaction appears in their wallet.
       - If yes, then both parties can be confident that the money was sent to the correct address
       - If no, then the money was sent to an incorrect address, so the sender will claw it back
 4.  After 10 minutes, if the sender has not clawed the 1 XCH back, the receiver can claim it
-5.  After the receiver has claimed the money, it appears in both wallets as a normal transaction. At this point, the transaction is complete; clawback is no longer possible
+5.  After the receiver has claimed the money, it appears in both wallets as a normal transaction. At this point, the transaction is complete; clawback is no longer possible At this point, the transaction is final. It can no longer be clawed back.
 
 The "intermediate location" is actually a coin with two rules:
 
@@ -56,7 +56,7 @@ This guide will show you how to perform the above workflow.
 
 ### Review Settings
 
-Before initiating a clawback transaction, it's a good idea to review your wallet's settings. Click `Settings` (the gear icon in the lower-left corner of your wallet) and click the `CUSTODY` menu.
+Before initiating a clawback transaction, it's a good idea to review your wallet's settings. Click `Settings` (the gear icon in the lower-left corner of your wallet) and click the `CUSTODY` menu. Click `Settings` (the gear icon in the lower-left corner of your wallet) and click the `CUSTODY` menu.
 
 From this menu:
 
@@ -82,8 +82,8 @@ From the `SEND` menu as shown below, enter the recipient's address, the amount t
 
 :::note
 
-- Prior to initiating the transaction, the sender's wallet from this example contained 5 TXCH. The amount to be sent was 1 TXCH.
-- This example was executed on Chia's testnet, which has higher fee requirements than mainnet. For this reason, a large fee of 100 million mojos was added.
+- Prior to initiating the transaction, the sender's wallet from this example contained 5 TXCH. The amount to be sent was 1 TXCH. The amount to be sent was 1 TXCH.
+- This example was executed on Chia's testnet, which has higher fee requirements than mainnet. For this reason, a large fee of 100 million mojos was added. For this reason, a large fee of 100 million mojos was added.
 
 :::
 
@@ -100,7 +100,7 @@ After you have entered these parameters, click the dropdown for `Add option to c
 
 ---
 
-Add the time (days, minutes, hours) during which the transaction will be able to be clawed back. In this case, we'll use 10 minutes.
+Add the time (days, minutes, hours) during which the transaction will be able to be clawed back. In this case, we'll use 10 minutes. In this case, we'll use 10 minutes.
 
 Optionally add a memo to describe this transaction, and click `SEND`.
 
@@ -115,7 +115,7 @@ Optionally add a memo to describe this transaction, and click `SEND`.
 
 ---
 
-The transaction has been added to the mempool. This means that it is still in the `Pending` state for inclusion on the blockchain. At this point, there is no indication in the GUI that this is a clawback transaction.
+The transaction has been added to the mempool. This means that it is still in the `Pending` state for inclusion on the blockchain. The transaction has been added to the mempool. This means that it is still in the `Pending` state for inclusion on the blockchain. At this point, there is no indication in the GUI that this is a clawback transaction.
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -128,9 +128,9 @@ The transaction has been added to the mempool. This means that it is still in th
 
 ---
 
-Eventually the clawback transaction will be confirmed on the blockchain. Note that the average time between transaction blocks is 52 seconds. Depending on how busy the mempool is, as well as the size of the included fee, confirmation could take much longer.
+Eventually the clawback transaction will be confirmed on the blockchain. Note that the average time between transaction blocks is 52 seconds. Depending on how busy the mempool is, as well as the size of the included fee, confirmation could take much longer. Note that the average time between transaction blocks is 52 seconds. Depending on how busy the mempool is, as well as the size of the included fee, confirmation could take much longer.
 
-After the transaction has been confirmed, a green `CLAW BACK THIS TRANSACTION` button will appear. This means that the recipient can also see this transaction, but has yet to claim it. While the transaction is in this state, you can claw it back by clicking the button, which will be demonstrated next.
+After the transaction has been confirmed, a green `CLAW BACK THIS TRANSACTION` button will appear. This means that the recipient can also see this transaction, but has yet to claim it. While the transaction is in this state, you can claw it back by clicking the button, which will be demonstrated next. This means that the recipient can also see this transaction, but has yet to claim it. While the transaction is in this state, you can claw it back by clicking the button, which will be demonstrated next.
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -143,7 +143,7 @@ After the transaction has been confirmed, a green `CLAW BACK THIS TRANSACTION` b
 
 ---
 
-The `clawback` action requires another on-chain transaction. Enter a transaction fee and click `CLAW BACK TRANSACTION` to claw it back.
+The `clawback` action requires another on-chain transaction. The `clawback` action requires another on-chain transaction. Enter a transaction fee and click `CLAW BACK TRANSACTION` to claw it back.
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -171,7 +171,7 @@ Just like the original transaction, the clawback will require some time to be co
 
 After the clawback has been confirmed, the pending amount is returned to the sender's wallet.
 
-In this example, the wallet started with 5 TXCH. Because of the two transaction fees, it now contains 4.9998 TXCH.
+In this example, the wallet started with 5 TXCH. Because of the two transaction fees, it now contains 4.9998 TXCH. Because of the two transaction fees, it now contains 4.9998 TXCH.
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -182,7 +182,7 @@ In this example, the wallet started with 5 TXCH. Because of the two transaction 
 
 <br />
 
-At this point, the transaction is final. The sender has the same amount of XCH they started with, minus the two transaction fees. Due to the clawback, the original "receiver" did not receive anything.
+At this point, the transaction is final. At this point, the transaction is final. The sender has the same amount of XCH they started with, minus the two transaction fees. Due to the clawback, the original "receiver" did not receive anything. Due to the clawback, the original "receiver" did not receive anything.
 
 ---
 
@@ -196,7 +196,7 @@ To avoid confusion, the sender's wallet in this example uses a light theme, and 
 
 :::
 
-Just like before, start by creating a new transaction and adding a clawback time and an optional memo. We'll use 10 minutes in this example.
+Just like before, start by creating a new transaction and adding a clawback time and an optional memo. We'll use 10 minutes in this example. We'll use 10 minutes in this example.
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -226,7 +226,7 @@ The receiver's wallet will show a pending transaction, including the value, the 
 
 :::note
 
-- While the transaction is in this state, it does not show up in any of the `Balance` fields in the receiver's wallet. This is because the sender can still claw it back. The receiver should therefore not assume the amount will eventually be claimed.
+- While the transaction is in this state, it does not show up in any of the `Balance` fields in the receiver's wallet. This is because the sender can still claw it back. The receiver should therefore not assume the amount will eventually be claimed. This is because the sender can still claw it back. The receiver should therefore not assume the amount will eventually be claimed.
 - The timer showing how long until the transaction can be claimed does not begin counting down until the original transaction is confirmed on the blockchain.
 
 :::  
@@ -242,7 +242,7 @@ The receiver's wallet will show a pending transaction, including the value, the 
 
 ---
 
-After the timer has expired, the receiver can claim the transaction. However, in this example, "auto claim" was disabled. Therefore, **the sender can still claw back the transaction, even though the timer has expired**. For this reason, it is a good idea for the receiver to enable "auto claim".
+After the timer has expired, the receiver can claim the transaction. However, in this example, "auto claim" was disabled. After the timer has expired, the receiver can claim the transaction. However, in this example, "auto claim" was disabled. Therefore, **the sender can still claw back the transaction, even though the timer has expired**. For this reason, it is a good idea for the receiver to enable "auto claim". For this reason, it is a good idea for the receiver to enable "auto claim".
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -268,7 +268,7 @@ If "auto claim" is disabled (as in this example), the receiver needs to click `C
 
 ---
 
-Enter a transaction fee and optionally click the `Auto-claim` checkbox if desired. Finally, click `CLAIM TRANSACTION`.
+Enter a transaction fee and optionally click the `Auto-claim` checkbox if desired. Finally, click `CLAIM TRANSACTION`. Finally, click `CLAIM TRANSACTION`.
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -281,7 +281,7 @@ Enter a transaction fee and optionally click the `Auto-claim` checkbox if desire
 
 ---
 
-At this point, the `claim` has been submitted to the mempool, but it has yet to be confirmed on chain. As stated previously, the amount of time before the transaction is completed depends on the mempool and the fee.
+At this point, the `claim` has been submitted to the mempool, but it has yet to be confirmed on chain. As stated previously, the amount of time before the transaction is completed depends on the mempool and the fee. As stated previously, the amount of time before the transaction is completed depends on the mempool and the fee.
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -294,7 +294,7 @@ At this point, the `claim` has been submitted to the mempool, but it has yet to 
 
 ---
 
-After the claim transaction has completed, it will appear as a normal transaction in the receiver's wallet. It will also appear in the `Total Balance` box.
+After the claim transaction has completed, it will appear as a normal transaction in the receiver's wallet. It will also appear in the `Total Balance` box. It will also appear in the `Total Balance` box.
 
 At this point, the transaction is final. It can no longer be clawed back.
 
@@ -319,7 +319,7 @@ The detailed documentation for the clawback CLI commands can be found in the fol
 
 ### Clawback
 
-1. Create the clawback spend. This step uses a normal `send` command, with an extra `--clawback` timer:
+1. Create the clawback spend. Create the clawback spend. This step uses a normal `send` command, with an extra `--clawback` timer:
 
 ```bash
 chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 3600
@@ -328,6 +328,7 @@ chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 
 Response:
 
 ```bash
+Submitting transaction...
 Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 4045726944 -tx 0x5a41dbe755a7a44b827b61cfa384e79bef5f79370f63fa7ffe1ea29212a26bf6' to get status
@@ -389,6 +390,7 @@ chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 60-second clawback" 
 Response:
 
 ```bash
+Submitting transaction...
 Submitting transaction...
 Tr0ansaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 4045726944 -tx 0x3ca82042aba188d47a80b663523847fa6050a21e04647c7b31ad3aa9d8d5450f' to get status
