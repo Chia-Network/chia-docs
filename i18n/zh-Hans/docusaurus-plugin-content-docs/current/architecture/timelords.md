@@ -68,9 +68,9 @@ Once you build the Timelord with `sh install-timelord.sh` in the virtual envir
 
 In 2023, CNI received its first batch of ASIC timelords. When run as a cluster of three VDFs, these timelords could hit upwards of one million IPS. This was approximately four times the speed of the fastest non-ASIC timelords. After installing several timelords in strategic locations globally, and after thorough testing on private testnets, the company added the ASICs to a public testnet. Finally, after [years of designing](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security) the ASICs and months of testing them, they were activated on mainnet in October 2023.
 
-The next step is to distribute some of the remaining ASIC timelords to a select list of applicants, as detailed in a [blog post](https://www.chia.net/2023/10/26/asic-timelords-faster-than-fast-chia-network/). This process will ensure a high amount of global redundancy on this critical network infrastructure.
+The next step is to distribute some of the remaining ASIC timelords to a select list of applicants, as detailed in a [blog post](https://www.chia.net/2023/10/26/asic-timelords-faster-than-fast-chia-network/). This process will ensure a high amount of global redundancy on this critical network infrastructure. This process will ensure a high amount of global redundancy on this critical network infrastructure.
 
-Of course, as technology improves, the ASIC design will need to be updated. However, this process is extremely costly, and the current generation is already pushing upon the limits imposed by the laws of physics. We expect the current crop to remain the fastest timelords in the world for years to come.
+Of course, as technology improves, the ASIC design will need to be updated. However, this process is extremely costly, and the current generation is already pushing upon the limits imposed by the laws of physics. We expect the current crop to remain the fastest timelords in the world for years to come. However, this process is extremely costly, and the current generation is already pushing upon the limits imposed by the laws of physics. We expect the current crop to remain the fastest timelords in the world for years to come.
 
 ## Timelords and Attacks
 
