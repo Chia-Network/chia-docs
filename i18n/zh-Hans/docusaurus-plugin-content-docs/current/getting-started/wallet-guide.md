@@ -181,11 +181,10 @@ After all of the details have been filled in, click `CREATE OFFER`:
 3. At this point, the Offer has been created locally. However, until you share it, it is unlikely that anyone will know it exists. Feel free to email the Offer file, share it on social media, etc. The Offer file does not contain any sensitive data. Whoever sees it will only have two options: take it or ignore it.
 
 You can also use the panel that appears to share your Offer in a few default locations:
-\* Dexie -- a bulletin board that acts as a Decentralized EXchange (DEX)
-\* Hashgreen -- another DEX, as well as an Automated Market Maker (AMM)
-\* Offerpool -- a bulletin board for sharing offers
-\* Spacescan -- an explorer and bulletin board
-\* Finally, you can save the file to your local computer and share it however you want <br/><br/>
+_ Dexie -- a bulletin board that acts as a Decentralized EXchange (DEX)
+_ Hashgreen -- another DEX, as well as an Automated Market Maker (AMM)
+_ Offerpool -- a bulletin board for sharing offers
+_ Spacescan -- an explorer and bulletin board \* Finally, you can save the file to your local computer and share it however you want <br/><br/>
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/07_offers.png" alt="distribute offer"/>
