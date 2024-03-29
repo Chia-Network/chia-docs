@@ -162,7 +162,7 @@ For more detail, you can read about the DiskProver commands in [chiapos](https:/
 
 The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio \<< 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be \<< 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge. "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge".
 
-**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio \<< 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
+**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio \<< 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`. Likewise, a plot with a ratio \<< 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
 
 # db
 
@@ -193,16 +193,16 @@ Command: `chia db backup [add flags and parameters]`
 
 **Flags**
 
-`--backup_file [PATH]`: (optional) Specifies the backup file and location. Default will create the backup in the same directory as the database.
+`--backup_file [PATH]`: (optional) Specifies the backup file and location. Default will create the backup in the same directory as the database. Default will create the backup in the same directory as the database.
 
 `--no_indexes`: (optional) Create backup without indexes.
 
 **Database backup notes**
 
-- This will vacuum (compress) and backup your database and may take several hours to complete. Use at your own leisure.
+- This will vacuum (compress) and backup your database and may take several hours to complete. Use at your own leisure. Use at your own leisure.
 - You do not need to stop your Chia node while performing the upgrade.
 - The new database file will be written to the same folder as the original with "vacuumed\_" prepended to the name.
-- To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove "vacuumed\_", and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file.
+- To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove "vacuumed\_", and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file. Note the initial start will take extra time as the client verifies the backup db file.
 
 ## [validate](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
 
@@ -210,13 +210,13 @@ Command: `chia db validate [add flags and parameters]`
 
 **Flags**
 
-`--db [PATH]`: (optional) Specifies which database file to validate. Default will use the default database and path.
+`--db [PATH]`: (optional) Specifies which database file to validate. Default will use the default database and path. Default will use the default database and path.
 
-`--validate-blocks`: (optional) Validate consistency of properties of the encoded blocks and block records. Note this will increase the validation time.
+`--validate-blocks`: (optional) Validate consistency of properties of the encoded blocks and block records. Note this will increase the validation time. Note this will increase the validation time.
 
 **Database validate notes**
 
-- This will validate your database and may take several hours to complete. Use at your own leisure.
+- This will validate your database and may take several hours to complete. Use at your own leisure. Use at your own leisure.
 - You do not need to stop your Chia node while performing the upgrade.
 - This will start by processing the latest block and traverse to the first block.
 
@@ -328,6 +328,17 @@ See our [official NFT reference](/nft-cli).
 # Other commands (not all are fully documented)
 
 ```sh
+$ chia
+
+Options:
+  --root-path PATH            Config file root
+                              [default: ~\.chia\mainnet]
+  --keys-root-path PATH       Keyring file root
+                              [default: ~\.chia_keys]
+  --passphrase-file FILENAME  File or descriptor to read the keyring
+                              passphrase from
+  -h, --help                  Show this message and exit.
+
 $ chia
 
 Options:
