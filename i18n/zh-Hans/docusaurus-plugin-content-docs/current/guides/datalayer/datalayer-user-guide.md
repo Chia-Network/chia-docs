@@ -221,7 +221,7 @@ sudo pfctl -sr | grep 8575
 
 :::
 
-3. (optional) If you are going to use a DataLayer as a Service (DLaaS) plugin, you can add custom headers to `~/.chia/mainnet/config/config.yaml`. For example, you might update the config as follows:
+3. (optional) If you are going to use a DataLayer as a Service (DLaaS) plugin, you can add custom headers to `~/.chia/mainnet/config/config.yaml`. For example, you might update the config as follows: For example, you might update the config as follows:
 
 ```yaml
 data_layer:
