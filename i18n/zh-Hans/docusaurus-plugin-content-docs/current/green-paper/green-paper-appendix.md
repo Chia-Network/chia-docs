@@ -18,7 +18,7 @@ $$ \begin{aligned} \forall m,&& \Pr[{{\sf Sig.verify}}(pk,m,\mu)={\sf accept}]=1
 $\textsf{Chia}$ uses signatures in the foliage (to chain foliage blocks and to bind them to the trunk) and also in the trunk (so only the farmer can compute the challenge). To avoid grinding attacks, the signatures used in the trunk must be unique, that is for every $pk$ (this includes maliciously generated public keys) and message $m$ there can be at most one accepting signature
 
 $$ \forall pk,m,\
-({{\sf Sig.verify}}(pk,m,\mu)={\sf accept})\wedge ({{\sf Sig.verify}}(pk,m,\mu')={\sf accept})\Rightarrow (\mu=\mu')~. $$
+({{\sf Sig.verify}}(pk,m,\mu)={\sf accept})\wedge ({{\sf Sig.verify}}(pk,m,\mu')={\sf accept})\Rightarrow (\mu=\mu')~. $$ $$
 
 ## A.2 (Unique) Proofs Of Space
 
@@ -59,7 +59,7 @@ $$ \begin{aligned} &\forall N,pk,c,\\
 
 For weakly unique PoSpace we assume that whenever there is more than one proof for a given challenge which passes verification, ${\sf PoSpace.prove}(S,c)$ outputs all of them.
 
-The [<a href="/green-paper-references/#AAC17">AAC+17</a>] PoSpace used in $\textsf{Chia}$ is only _weakly unique_. To be able to focus on the main challenges, we will nonetheless assume a _unique_ PoSpace when analyzing $\textsf{Chia}$ but our analysis can be extended without major difficulties to handle weakly unique PoSpace, things just get a bit more messy.
+The [<a href="/green-paper-references/#AAC17">AAC+17</a>] PoSpace used in $\textsf{Chia}$ is only _weakly unique_. To be able to focus on the main challenges, we will nonetheless assume a _unique_ PoSpace when analyzing $\textsf{Chia}$ but our analysis can be extended without major difficulties to handle weakly unique PoSpace, things just get a bit more messy. To be able to focus on the main challenges, we will nonetheless assume a _unique_ PoSpace when analyzing $\textsf{Chia}$ but our analysis can be extended without major difficulties to handle weakly unique PoSpace, things just get a bit more messy.
 
 ### A.2.4 The [AAC+17] PoSpace
 
