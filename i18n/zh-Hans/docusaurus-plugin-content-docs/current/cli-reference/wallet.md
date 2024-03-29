@@ -302,7 +302,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 ### `combine`
 
-Functionality: Combine coins (typically used for combining dust). The maximum number of coins that can be combined within a single transaction is 500.
+Functionality: Combine coins (typically used for combining dust). Functionality: Combine coins (typically used for combining dust). The maximum number of coins that can be combined within a single transaction is 500.
 
 Usage: chia wallet coins combine [OPTIONS]
 
@@ -807,7 +807,7 @@ Options:
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
 | -n            | --number-of-coins | INTEGER | True     | The number of new coins to create, excluding the remainder coin (minimum 1, maximum 500)                     |
 | -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
-| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in the units of the coin (ex. XCH, CAT, etc)                          |
+| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in XCH                                                                |
 | -t            | --target-coin-id  | TEXT    | True     | The coin id of the coin we are splitting                                                                     |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
 
@@ -912,21 +912,21 @@ Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -ids          | --tx_ids          | TEXT    | True     | IDs of the Clawback transactions you want to revert or claim. Separate multiple IDs by comma (,)             |
-| -m            | --fee             | TEXT    | False    | A fee to add to the offer when it gets taken, in XCH [default: 0]                                            |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                         |
+|:------------- |:----------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                        |
+| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                  |
+| -ids          | --tx_ids          | TEXT    | True     | IDs of the Clawback transactions you want to revert or claim. Separate multiple IDs by comma (,) Separate multiple IDs by comma (,) |
+| -m            | --fee             | TEXT    | False    | A fee to add to the offer when it gets taken, in XCH [default: 0]                                                                   |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                        |
 
 Note that wallet will automatically detect whether the transactions should be reverted (clawed back) or claimed.
 
 <details>
 <summary>Example 1: clawback</summary>
 
-First, create the clawback. This is a normal `send` command, with an extra `--clawback` timer:
+First, create the clawback. First, create the clawback. This is a normal `send` command, with an extra `--clawback` timer:
 
 ```bash
 chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 3600
@@ -935,6 +935,7 @@ chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 
 Response:
 
 ```
+Submitting transaction...
 Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 4045726944 -tx 0x5a41dbe755a7a44b827b61cfa384e79bef5f79370f63fa7ffe1ea29212a26bf6' to get status
@@ -997,6 +998,7 @@ chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 60-second clawback" 
 Response:
 
 ```bash
+Submitting transaction...
 Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 4045726944 -tx 0x3ca82042aba188d47a80b663523847fa6050a21e04647c7b31ad3aa9d8d5450f' to get status
@@ -1353,6 +1355,8 @@ Status: Confirmed
 Amount received: 10 CAT aaee6b63bcbc4aef...
 To address: txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s
 Created at: 2022-12-14 00:40:39
+To address: txch1stn20rhgmh5wvmyyfj2etdpdp73fla0ga4ymtsejz600dszf392s58kx2s
+Created at: 2022-12-14 00:40:39
 ```
 
 </details>
@@ -1485,22 +1489,22 @@ Usage: chia wallet send [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -a            | --amount          | TEXT    | True     | How much chia to send, in XCH                                                                                |
-| -e            | --memo            | TEXT    | False    | Additional memo for the transaction                                                                          |
-| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
-| -t            | --address         | TEXT    | True     | Address to send the XCH                                                                                      |
-| -o            | --override        | None    | False    | Submits transaction without checking for unusual values [default: disabled]                                  |
-| -ma           | --min-coin-amount | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                    |
-| -l            | --max-coin-amount | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                    |
-|               | --exclude-coin    | TEXT    | False    | Exclude this coin from being spent                                                                           |
-|               | --reuse           | None    | False    | Set this flag to reuse an existing address for the change [default: not set]                                 |
-|               | --clawback_time   | INTEGER | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature   |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                           |
+|:------------- |:----------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                          |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                    |
+| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                                  |
+| -a            | --amount          | TEXT    | True     | How much chia to send, in XCH                                                                                                                         |
+| -e            | --memo            | TEXT    | False    | Additional memo for the transaction                                                                                                                   |
+| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                                                                 |
+| -t            | --address         | TEXT    | True     | Address to send the XCH                                                                                                                               |
+| -o            | --override        | None    | False    | Submits transaction without checking for unusual values [default: disabled]                                                                           |
+| -ma           | --min-coin-amount | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                                                             |
+| -l            | --max-coin-amount | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                                                             |
+|               | --exclude-coin    | TEXT    | False    | Exclude this coin from being spent                                                                                                                    |
+|               | --reuse           | None    | False    | Set this flag to reuse an existing address for the change [default: not set]                                                                          |
+|               | --clawback_time   | INTEGER | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature A positive number will enable this feature |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                          |
 
 <details>
 <summary>Example 1: send with memo</summary>
@@ -1534,6 +1538,7 @@ Response:
 
 ```
 Submitting transaction...
+Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 4045726944 -tx 0x3012893bf84b66c849f54b1c4bd893000188a7f728e439d3d6634048e8474482' to get status
 ```
@@ -1554,7 +1559,7 @@ To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
 Created at: 2023-06-14 10:07:51
 ```
 
-Note that the status is `Confirmed` even though it is a pending clawback transaction. This is because the original transaction _has_ been confirmed and a new pending clawback transaction has been created.
+Note that the status is `Confirmed` even though it is a pending clawback transaction. Note that the status is `Confirmed` even though it is a pending clawback transaction. This is because the original transaction _has_ been confirmed and a new pending clawback transaction has been created.
 
 To view the pending clawback transaction, call `get_transactions` and include the `--clawback` flag (`-l 1` is used here to show only the latest transaction):
 
