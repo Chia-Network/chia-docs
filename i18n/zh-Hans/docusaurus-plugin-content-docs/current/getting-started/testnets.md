@@ -5,9 +5,11 @@ slug: /testnets
 
 :::note
 
-**testnet11 is the only supported testnet.** Older testnets may remain active, but Chia Network Inc. longer officially supports them.
+Testnet 10 is the supported testnet.
 
+Testnet 7 may remain active, but is no longer officially supported by Chia Network Inc.
 Testnets can be used to test the chia software with coins that have no real world value.\
+If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.\
 If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.
 
 :::
@@ -18,7 +20,7 @@ If you want to run the Chia blockchain mainnet, use the [mainnet installation](/
 
 ### 先决条件
 
-- Minimum Chia version is 2.1.0 [installed](/installation).
+- Chia version higher than 1.2.11 [installed](/installation).
 - All chia processes have been stopped with `chia stop all-d`.
 
 ### Configure Chia for testnet
@@ -34,16 +36,16 @@ chia keys generate
 chia configure --testnet true
 ```
 
-### Download the official testnet database (optional)
+### (Opt) Download the official testnet db
 
-This step is optional, but it will speed up syncing with the testnet.
+This step is optional, but it will speed up syncing with the testnet
 
-- Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet11.sqlite.gz` while in the directory (a v1 db is not available for testnet11).
-- Windows users: download it from [https://downloads.chia.net/testnet11/](https://downloads.chia.net/testnet11/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. `~/.chia/mainnet/db` is the database directory).
+- Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet10.sqlite.gz` while in the directory (a v1 DB is also available, but no longer updated).
+- Windows users: download it from [https://downloads.chia.net/testnet10/](https://downloads.chia.net/testnet10/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. \~/.chia/mainnet/db is the database directory).
 
 :::note
 
-Make sure to unzip the database before continuing to the next step.
+_Make sure to unzip the database before continuing to the next step._
 
 :::
 
@@ -56,9 +58,11 @@ Prior to starting your node, it is recommended to delete `peers.dat`, located in
 ### Start your node and connect to peers
 
 ```bash
-# Note - make sure to delete the peers.dat file in ~/.chia/mainnet/db prior to starting your node
 # Start your node
 chia start farmer
+
+# Once the node has started, connect to the testnet introducer
+chia peer full_node -a testnet10-node.chia.net:58444
 
 # Check sync status
 chia show -s`
@@ -67,7 +71,7 @@ chia show -s`
 chia wallet show
 ```
 
-### Fund a testnet wallet (optional)
+### (Opt) Fund a testnet wallet
 
 ```bash
 # Get a testnet wallet address differentiated from mainnet wallet addresses by beginning with txch instead of xch
@@ -76,7 +80,7 @@ chia wallet get_address
 
 Input your testnet wallet address into one of the faucets. If it says you are in the queue, it has worked.
 
-- Chia Official [testnet faucet](https://testnet11-faucet.chia.net/).
+- Chia Official [testnet faucet](https://testnet10-faucet.chia.net/).
 - Community developed and managed [testnet faucet](https://txchfaucet.com/). _Thank you to Steve Stepp for building and managing this faucet!_
 
 **Funds will not appear in your wallet until you are fully synced to the blockchain.**
@@ -89,7 +93,7 @@ _These instructions are tailored for Linux. A similar approach could likely be f
 
 在某些情况下，您可能希望在主网上耕种的同时，在其中一个测试网络上也进行耕种，而不会将它们从主网中移除。 This is doable with a bit of extra legwork to set up unique ports for the testnet chia installation.
 
-有几个设置的选项。 You can either ensure you have the CHIA_ROOT set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific CHIA_ROOT.
+有几个设置的选项。 有几个设置的选项。 You can either ensure you have the CHIA_ROOT set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific CHIA_ROOT.
 
 ### Set Up mainnet installation
 
@@ -100,13 +104,14 @@ For the mainnet installation, we will stick with the default ports and CHIA_ROOT
 :::note
 
 (Optional) Install `yq` to make editing the yaml files easier [https://github.com/mikefarah/yq#install](https://github.com/mikefarah/yq#install).\
+Alternatively, you can manually edit the ports in `config.yaml`.\
 Alternatively, you can manually edit the ports in `config.yaml`.
 
 :::
 
 ```bash
 # Export the Chia root
-export CHIA_ROOT=~/.chia/testnet
+export CHIA_ROOT ~/.chia/testnet
 
 # Initialize testnet
 chia init
@@ -117,29 +122,29 @@ chia configure --testnet true
 # Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values.
 # Use the ports listed or choose any you desire as long as they are different than the default values for mainnet.
 
-yq -i -y '.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
-yq -i -y '.ui.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
+yq -i '.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
+yq -i '.ui.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.ui.port = 8802' ~/.chia/testnet/config/config.yaml
+yq -i '.ui.port = 8802' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.farmer.port = 8547' ~/.chia/testnet/config/config.yaml
-yq -i -y '.full_node.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
-yq -i -y '.harvester.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
+yq -i '.farmer.port = 8547' ~/.chia/testnet/config/config.yaml
+yq -i '.full_node.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
+yq -i '.harvester.farmer_peer.port = 8547' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.harvester.port = 8548' ~/.chia/testnet/config/config.yaml
-yq -i -y '.farmer.harvester_peer.port = 8548' ~/.chia/testnet/config/config.yaml
+yq -i '.harvester.port = 8548' ~/.chia/testnet/config/config.yaml
+yq -i '.farmer.harvester_peer.port = 8548' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.wallet.port = 8649' ~/.chia/testnet/config/config.yaml
-yq -i -y '.full_node.wallet_peer.port = 8649' ~/.chia/testnet/config/config.yaml
+yq -i '.wallet.port = 8649' ~/.chia/testnet/config/config.yaml
+yq -i '.full_node.wallet_peer.port = 8649' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.full_node.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
-yq -i -y '.ui.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
+yq -i '.full_node.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
+yq -i '.ui.rpc_port = 8800' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.farmer.rpc_port = 8571' ~/.chia/testnet/config/config.yaml
+yq -i '.farmer.rpc_port = 8571' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.harvester.rpc_port = 8572' ~/.chia/testnet/config/config.yaml
+yq -i '.harvester.rpc_port = 8572' ~/.chia/testnet/config/config.yaml
 
-yq -i -y '.wallet.rpc_port = 9456' ~/.chia/testnet/config/config.yaml
+yq -i '.wallet.rpc_port = 9456' ~/.chia/testnet/config/config.yaml
 
 # Start Chia
 chia start farmer
@@ -160,8 +165,8 @@ _These instructions are tailored for Linux. A similar approach could likely be f
 
 0. Stop all chia processes. Check that they have stopped with `ps -ef | grep chia`
 1. Create a new chia root using `export CHIA_ROOT="~/.chia/my_testnet"`, then `chia init`. Don't forget to export CHIA_ROOT, or prefix your chia commands with `CHIA_ROOT="~/.chia/my_testnet"` if you want to run on my_testnet when starting a new terminal.
-2. Create a new entry in config.yaml with a different [GENESIS_CHALLENGE](https://docs.chia.net/consensus-challenges/#genesis-challenge), and reduced `DIFFICULTY_CONSTANT_FACTOR`. `2^67` constant factor is around 110PiB assuming a fast timelord. So if you have around 110GiB, you can set it to `2 ^ 47`. Decrease `SUB_SLOT_ITERS_STARTING` to something like `2^23` if you are using a slow computer. Decrease `PLOT_FILTER` if you want to have more proof checks per signage point.
-3. Make sure to add **my_testnet** to all places that need it, like `network_overrides.config`, and `selected_network`
+2. Create a new entry in config.yaml with a different GENESIS_CHALLENGE, and reduced DIFFICULTY_CONSTANT_FACTOR. 2^67 constant factor is around 110PiB assuming a fast timelord. So if you have around 110GiB, you can set it to 2 ^ 47. Decrease SUB_SLOT_ITERS_STARTING to something like 2^23 if you are using a slow computer. Decrease PLOT_FILTER if you want to have more proof checks per signage point.
+3. Make sure to add **my_testnet** to all places that need it, like network_overrides.config, and selected_network
 4. Change the introducer URLs to point to localhost so you don't contact the real ones
 5. Do `sh install-timelord.sh`
 6. Run the system with `chia start all`
