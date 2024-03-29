@@ -31,25 +31,28 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 This reference contains examples that make RPC calls directly from a terminal window on a running node.
 
-You can also make the same RPC calls to the daemon over a websocket. To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running:
+You can also make the same RPC calls to the daemon over a websocket. To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running: To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running:
 
 ```bash
 npm install -g wscat
 ```
 
-Once wscat is installed, you can open a connection to the daemon. The command to run depends on your OS:
+Once wscat is installed, you can open a connection to the daemon. The command to run depends on your OS: The command to run depends on your OS:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
 Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.
+
+```powershell
+wscat -n --cert C:\Users\
 
 ```powershell
 wscat -n --cert C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.crt --key C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.key -c wss://0.0.0.0:55400
@@ -88,9 +91,9 @@ Response:
 {"ack": true, "command": "get_wallet_addresses", "data": {"success": true, "wallet_addresses": {"2104826454": [{"address": "xch12yjgrn6m4eyszt9e3v3thczn2d6jlzvh2zjhnp0ar4kxhll8942sqq4s93", "hd_path": "m/12381/8444/2/100"}, {"address": "xch12hqq8g35gprs5r4vz366sf4r0mcvpmcy28a4tcfyda75avur4sas5vzvuj", "hd_path": "m/12381/8444/2/101"}]}}, "destination": "whatever", "origin": "daemon", "request_id": "also_whatever"}
 ```
 
-You can also use this websocket connection with the daemon to call RPCs on other services via the daemon. This is how the Chia GUI operates. It only has a websocket connection open to the daemon -- all other RPCs are dispatched by the daemon and routed back to the `wallet_ui` service (the service name for the Chia GUI).
+You can also use this websocket connection with the daemon to call RPCs on other services via the daemon. This is how the Chia GUI operates. You can also use this websocket connection with the daemon to call RPCs on other services via the daemon. This is how the Chia GUI operates. It only has a websocket connection open to the daemon -- all other RPCs are dispatched by the daemon and routed back to the `wallet_ui` service (the service name for the Chia GUI).
 
-To make this work, there's an extra step. You need to first call the `register_service` command to give your websocket connection a name.
+To make this work, there's an extra step. To make this work, there's an extra step. You need to first call the `register_service` command to give your websocket connection a name.
 
 For example, to register the websocket connect with the service name `my_fancy_service`, run:
 
@@ -651,12 +654,12 @@ Options:
 
 Request Parameters:
 
-| Flag               | Type    | Required | Description                                                                                                                                                                 |
-|:------------------ |:------- |:-------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)                                                                                                                       |
-| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long                                                                                                           |
-| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                  |
-| save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. [Default: False] |
+| Flag               | Type    | Required | Description                                                                                                                                                                                      |
+|:------------------ |:------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)                                                                                                                                            |
+| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long                                                                                                                                |
+| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                                       |
+| save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. \[Default: False\] \[Default: False\] |
 
 <details>
 <summary>Example</summary>
@@ -1068,7 +1071,7 @@ Response:
 <details>
 <summary>Example 2: invalid length</summary>
 
-The mnemonic must be either 12 or 24 words. Else, an error will be returned. For example:
+The mnemonic must be either 12 or 24 words. Else, an error will be returned. For example: Else, an error will be returned. For example:
 
 ```json
 chia rpc daemon add_private_key '{"mnemonic": "1 2 3 4 5 6 7 8 9 10 11 12 13", "label": "Example Key"}'
@@ -1088,7 +1091,7 @@ Response:
 <details>
 <summary>Example 3: invalid word</summary>
 
-Each word must be in the BIP-39 word list. Else, an error will be returned. For example:
+Each word must be in the BIP-39 word list. Else, an error will be returned. For example: Else, an error will be returned. For example:
 
 ```json
 chia rpc daemon add_private_key '{"mnemonic": "1 2 3 4 5 6 7 8 9 10 11 12", "label": "Example Key"}'
@@ -1108,7 +1111,7 @@ Response:
 <details>
 <summary>Example 4: Invalid word order</summary>
 
-If the mnemonic is 12 or 24 words, and each word is in the BIP-39 word list, the final check is that the words form a valid mnemonic phrase. For example:
+If the mnemonic is 12 or 24 words, and each word is in the BIP-39 word list, the final check is that the words form a valid mnemonic phrase. For example: For example:
 
 ```json
 chia rpc daemon add_private_key '{"mnemonic": "you can test this example word list because they tell you stuff", "label": "Example Key"}'
@@ -1167,7 +1170,7 @@ Note that this command will fail if the OS key ring is locked.
 
 :::warning
 
-This command will delete all of your local Chia keys. Use with caution.
+This command will delete all of your local Chia keys. Use with caution. Use with caution.
 
 :::
 
@@ -1209,7 +1212,7 @@ Response:
 }
 ```
 
-To verify that the key was deleted, you can call `get_public_key`. For example:
+To verify that the key was deleted, you can call `get_public_key`. For example: For example:
 
 ```json
 chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
@@ -1565,7 +1568,7 @@ Response:
 }
 ```
 
-To verify that the label was set, you can call `get_public_key`. For example:
+To verify that the label was set, you can call `get_public_key`. For example: For example:
 
 ```json
 chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
@@ -1622,7 +1625,7 @@ Response:
 }
 ```
 
-To verify that the label was set, you can call `get_public_key`. For example:
+To verify that the label was set, you can call `get_public_key`. For example: For example:
 
 ```json
 chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
