@@ -57,12 +57,12 @@ Before we get started using the CLI, we need to be able to issue the `chia` comm
 Use this line in Git Bash / terminal:
 
 <Tabs groupId="OS"
-  defaultValue="windows (Git Bash)"
-  values={[
-    {label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
- {label: 'Linux/MacOS', value: 'nix'},
- ]}>
-  <TabItem value="windows (Git Bash)">
+defaultValue="windows (Git Bash)"
+values={[
+{label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows (Git Bash)">
 
 ```bash
 ~/AppData/Local/chia-blockchain/app-1.5.1/resources/app.asar.unpacked/daemon/chia.exe
@@ -128,12 +128,12 @@ Commands:
 Using this path each time can get old, so you have the option of creating an alias or environment variable.
 
 <Tabs groupId="OS"
-  defaultValue="windows (Git Bash)"
-  values={[
-    {label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
- {label: 'Linux/MacOS', value: 'nix'},
- ]}>
-  <TabItem value="windows (Git Bash)">
+defaultValue="windows (Git Bash)"
+values={[
+{label: 'Windows (Git Bash)', value: 'windows (Git Bash)'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows (Git Bash)">
 
 ```bash
 alias chia=~/AppData/Local/Programs/Chia/resources/app.asar.unpacked/daemon/chia.exe
@@ -258,10 +258,28 @@ chia show --state
 Response:
 
 ```
-Network: testnet11    Port: 58444   RPC Port: 8555
+Network: testnet10    Port: 58444   RPC Port: 8555
 Node ID: 67095d445d879556da95feeee70174c66b131d4f29bd447df5fbc56789a01f24
-Genesis Challenge: 37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615
-Current Blockchain Status: Not Synced. Peak height: 355514
+Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
+Current Blockchain Status: Not Synced. Peak height: 1462514
+      Time: Wed Aug 31 2022 13:49:51 EDT                  Height:    1462514
+
+Estimated network space: 1.181 TiB
+Current difficulty: 708
+Current VDF sub_slot_iters: 70778880
+Total iterations since the start of the blockchain: 3364480016373
+
+  Height: |   Hash:
+  1462514 | d799fedae1ef226669f61ad843c5ae7947b42e596664f39fd68fcd299e076916
+  1462513 | 0764f546d9186da788485ce69ebe91969e8cf9495722d9567d67e54e3e3e6ed3
+  1462512 | d6132b015365b7609d0b5179b9daf9e4fd2ad7a9040ec1d13e15df65660cf69e
+  1462511 | 8ae2273b4a86fd9af85837c538faa75b572014ac281c6c51ad1eb4ce2a7f8072
+  1462510 | fb392a40b7e3bf38c8628311224b5aaa4a32ecdea403c16ae5d3c48d16b57f47
+  1462509 | 012b1f9213bf823e6b73408019f18ff8330e46b911ba78c1d64fd5019d6cc6d9
+  1462508 | e0f66ca2e00566eee9a3ce4028b6aa11771aa42c9bce34f296d89f42d1a909ce
+  1462507 | c900e2fb449db0def030a3c0e6a8bff5d23f6470730236120bcac442b2f1ab0f
+  1462506 | 39db9fe7658b545dcf45e8e99797c937b7b93a041485ef28bf9cda2b3529ac0a
+  1462505 | ca343b0e985fe9dafb7cba7cee0c1515c6bddd732e2542b8fbd49ac8d90c13f3 Peak height: 355514
       Time: Wed Feb 14 2024 13:49:51 EDT                  Height:    355514
 
 Estimated network space: 1.181 TiB
@@ -288,7 +306,7 @@ Ideally, you'll see within this response a value like `Current Blockchain Status
 <details>
 <summary>Testnet Database</summary>
 
-For many things you will need a synced full node. Fortunately, an official [testnet database](https://downloads.chia.net/testnet11/) download is available, which can be a much faster option than syncing from scratch.
+For many things you will need a synced full node. For many things you will need a synced full node. Fortunately, an official [testnet database](https://downloads.chia.net/testnet10/) download is available, which can be a much faster option than syncing from scratch.
 
 Once this file is downloaded, stop your node:
 
