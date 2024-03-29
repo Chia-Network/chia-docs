@@ -111,7 +111,7 @@ $$ \textrm{winning condition : } \sigma.{\sf required\_iterations} < {\sf spi}_i
 <div class="eqnumber">eq.(7)</div>
 
 :::tip Design Choice 2: Why 32 Blocks in Expectation and not Exactly?
-With our winning condition we have 32 blocks per slot _in expectation_ depending on a challenge. We could have used a different design to enforce _exactly_ 32 challenges, but then it would be impossible to achieve our Objective 1.(c), which asks that whether a plot wins must depend solely on the challenge.
+With our winning condition we have 32 blocks per slot _in expectation_ depending on a challenge. We could have used a different design to enforce _exactly_ 32 challenges, but then it would be impossible to achieve our Objective 1.(c), which asks that whether a plot wins must depend solely on the challenge. ::: We could have used a different design to enforce _exactly_ 32 challenges, but then it would be impossible to achieve our Objective 1.(c), which asks that whether a plot wins must depend solely on the challenge.
 :::
 
 If a farmer has a winning PoSpace $\sigma$ they can produce a block $\beta=(\beta_T,\beta_F)$ which contains the foliage block $\beta_F$ and the trunk block $\beta_T$. The actual $\textsf{Chia}$ blocks are more sophisticated than our description below, but in this writeup we focus on the entries which are absolutely necessary for functionality and security of the chain and ignore entries which are there for efficiency like weight proofs for light clients or pooling. They key entries in a valid trunk block
