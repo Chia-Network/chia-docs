@@ -14,10 +14,10 @@ We discussed in §2 the main security issues of a PoSpace based longest-chain b
 
 <figure>
   <img src='/img/green-paper/table-1.png' />
+  ![](/img/green-paper/table-1.png) 
   <figcaption>
-    Table 1: Summary of the ability to heal from malicious majority and provide
-    security under dynamic availability of longest-chain protocols based various
-    proof systems.
+    Table 1: Summary of the ability to heal from malicious majority and provide security under dynamic availability of longest-chain protocols based various proof systems.
+  </figcaption>
   </figcaption>
 </figure>
 
@@ -82,8 +82,7 @@ $vdf_h$ only considers the fastest honest time lord, as only they matter for the
 Define the honest and adversarial resource at time time as the product of their space and VDF speed
 
 $$
-{\sf PoST}_h(t)=space_h(t)\cdot vdf_h(t)\quad,\quad
-{\sf PoST}_a(t)=space_a(t)\cdot vdf_a(t) $$
+{\sf PoST}_h(t)=space_h(t)\cdot vdf_h(t)\quad,\quad {\sf PoST}_a(t)=space_a(t)\cdot vdf_a(t) $$
 
 and analogously to the work setting let the cumulative space-time resource in a window from $t_0$ to $t_1$ be
 
