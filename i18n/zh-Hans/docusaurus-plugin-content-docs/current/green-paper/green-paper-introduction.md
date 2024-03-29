@@ -13,7 +13,7 @@ The **$\textsf{Chia}$ network** ([chia.net](https://chia.net/)) is a permission
     <figcaption>Figure 1: Illustration of one slot (taking around 10 minutes) of the Chia blockchain. For illustration the slot has just 16 (instead 64) signage points and only 4 blocks (the actual chain has a target of 32).</figcaption>
 </figure>
 
-As mentioned, $\textsf{Chia}$ is basically what's called a _longest-chain_ protocol in the literature [<a href="/green-paper-references/#BNPW19">BNPW19</a>; <a href="/green-paper-references/#BDK19">BDK+19</a>]. This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to
+As mentioned, $\textsf{Chia}$ is basically what's called a _longest-chain_ protocol in the literature [<a href="/green-paper-references/#BNPW19">BNPW19</a>; <a href="/green-paper-references/#BDK19">BDK+19</a>]. This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to
 
 1.  listen to the (P2P) network to learn about progress of the chain and to collect transactions.
 
@@ -23,7 +23,7 @@ As mentioned, $\textsf{Chia}$ is basically what's called a _longest-chain_ prot
 
 No other coordination or communication amongst the parties is required. In particular, as the miners in Bitcoin, the farmers in $\textsf{Chia}$ only need to speak up once they find a block and want it to be included in the chain.
 
-Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. In particular, a secure (under dynamic availability) longest-chain protocol based on proofs of space alone does not exist [<a href="/green-paper-references/#BP22">BP22</a>], so Chia's _proofs of space and time_ (PoST) consensus protocol, apart from farmers providing disk space, additionally relies on so called timelords who evaluate verifiable delay functions (VDFs). Figure 2 gives an overview of the formal security proofs and more informal arguments outlined in this document.
+Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. In particular, a secure (under dynamic availability) longest-chain protocol based on proofs of space alone does not exist [<a href="/green-paper-references/#BP22">BP22</a>], so Chia's _proofs of space and time_ (PoST) consensus protocol, apart from farmers providing disk space, additionally relies on so called timelords who evaluate verifiable delay functions (VDFs). Figure 2 gives an overview of the formal security proofs and more informal arguments outlined in this document. Figure 2 gives an overview of the formal security proofs and more informal arguments outlined in this document.
 
 <figure>
     <img src="/img/green-paper/chia-flow.png" alt="Diagram of Chia security and arguments" />
@@ -168,7 +168,7 @@ A block $\beta=\{\beta_F,\beta_T\}$ is made of two parts, the foliage block $\be
 
 - A timelord computes the ${\cal RC},{\cal CC},{\sf i}{\cal CC},{\cal FC}$ chains and broadcasts relevant values to the network. This includes signage points ${\sf rc\_sp}$ and ${\sf cc\_sp}$ which are the values of the ${\cal RC}$ and ${\cal CC}$ chains (together with a proof that these values are on the VDF chains) once every $9.375$ seconds.
 
-- A farmer who receives these _signage points_ ${\sf rc\_sp}$ and ${\sf cc\_sp}$ checks whether these points are of interest (i.e., on the heaviest known chain) and all the VDF proofs verify. Next, for each of their plots, they use ${\sf cc\_sp}$ as a challenge to compute a PoSpace $\sigma$. Then they check whether $\sigma$ satisfies a winning condition that allows to produce a block.
+- A farmer who receives these _signage points_ ${\sf rc\_sp}$ and ${\sf cc\_sp}$ checks whether these points are of interest (i.e., on the heaviest known chain) and all the VDF proofs verify. Next, for each of their plots, they use ${\sf cc\_sp}$ as a challenge to compute a PoSpace $\sigma$. Then they check whether $\sigma$ satisfies a winning condition that allows to produce a block. Next, for each of their plots, they use ${\sf cc\_sp}$ as a challenge to compute a PoSpace $\sigma$. Then they check whether $\sigma$ satisfies a winning condition that allows to produce a block.
 
   If a winning PoSpace $\sigma$ is found, the farmer creates a signature $\mu_{\sf rc\_sp}$ of ${\sf rc\_sp}$ (that verifies under the $pk$ associated with $\sigma$) and a foliage block $\beta_F$ and then gossips the block $\beta=\{\beta_F,\beta_T=\{\sigma,\mu_{\sf rc\_sp}\}\}$.
 
@@ -180,7 +180,7 @@ A block $\beta=\{\beta_F,\beta_T\}$ is made of two parts, the foliage block $\be
 
   (${\sf i}{\cal CC}$) For some extra security, the timelord doesn't simply wait till the end of the slot to infuse the signature, but a third VDF is used to fork from ${\cal CC}$ at the infusion point by infusing $\mu_{\sf rc\_sp}$ into ${\cal CC}$, and this fork, called the infused challenge chain ${\sf i}{\cal CC}$, is then infused back to ${\cal CC}$ at the end of the slot.
 
-  (${\cal FC}$) Iff the signage point of this block is later than the infusion point of the last _transaction block_, then this block is also a transaction block. Only in this case its foliage $\beta_F$ is appended to the foliage (hash) chain ${\cal FC}$, and this block becomes a "transaction block".
+  (${\cal FC}$) Iff the signage point of this block is later than the infusion point of the last _transaction block_, then this block is also a transaction block. Only in this case its foliage $\beta_F$ is appended to the foliage (hash) chain ${\cal FC}$, and this block becomes a "transaction block". Only in this case its foliage $\beta_F$ is appended to the foliage (hash) chain ${\cal FC}$, and this block becomes a "transaction block".
 
 ## 1.8 Space Oddities
 
@@ -188,7 +188,7 @@ When constructing a proof of stake or proof or a space based longest-chain proto
 
 ### 1.8.1 Sized vs. Unsized
 
-A key difference between stake and work is the fact that in a stake based chain we know the amount of the resource available for mining, while for an external resource like work or space this is no longer the case. Lewis-Pye and Roughgarden [<a href="/green-paper-references/#Lew21">Lew21</a>; <a href="/green-paper-references/#LR21">LR21</a>] formalize this as the _sized_ vs. _unsized_ setting and prove some fundamental differences between them. The main result in [<a href="/green-paper-references/#LR21">LR21</a>] shows that _certificates_ which "provide incontrovertible proof of block confirmation", only exist in the sized setting, i.e., for PoStake but not PoWork blockchains.
+A key difference between stake and work is the fact that in a stake based chain we know the amount of the resource available for mining, while for an external resource like work or space this is no longer the case. Lewis-Pye and Roughgarden [<a href="/green-paper-references/#Lew21">Lew21</a>; <a href="/green-paper-references/#LR21">LR21</a>] formalize this as the _sized_ vs. _unsized_ setting and prove some fundamental differences between them. A key difference between stake and work is the fact that in a stake based chain we know the amount of the resource available for mining, while for an external resource like work or space this is no longer the case. Lewis-Pye and Roughgarden [<a href="/green-paper-references/#Lew21">Lew21</a>; <a href="/green-paper-references/#LR21">LR21</a>] formalize this as the _sized_ vs. _unsized_ setting and prove some fundamental differences between them. The main result in [<a href="/green-paper-references/#LR21">LR21</a>] shows that _certificates_ which "provide incontrovertible proof of block confirmation", only exist in the sized setting, i.e., for PoStake but not PoWork blockchains.
 
 In their framework _space_ and also _space and time_ (i.e., the available space multiplied with the speed of the available VDFs) as used in $\textsf{Chia}$ are an unsized resource, so we can't hope to get certificates.
 
@@ -202,7 +202,7 @@ To prevent such attacks some chain require parties to delete old keys, but it's 
 
 ### 1.8.3 Replotting
 
-A subtle but important difference between stake and space is the fact that space allows for _replotting_ which has no analogue in the stake setting: Given a challenge $c$, a space farmer controlling a plot $S$ of size $N$ can _efficiently_ compute _one_ proof $\sigma \gets  {\sf PoSpace.prove}(S,c)$. This is analogous to the stake based setting, but unlike in the stake setting, the farmer can _inefficiently_ compute _multiple_ proofs for challenge $c$ by repeatedly creating fresh plots and computing one proof with each of them.
+A subtle but important difference between stake and space is the fact that space allows for _replotting_ which has no analogue in the stake setting: Given a challenge $c$, a space farmer controlling a plot $S$ of size $N$ can _efficiently_ compute _one_ proof $\sigma \gets  {\sf PoSpace.prove}(S,c)$. This is analogous to the stake based setting, but unlike in the stake setting, the farmer can _inefficiently_ compute _multiple_ proofs for challenge $c$ by repeatedly creating fresh plots and computing one proof with each of them. This is analogous to the stake based setting, but unlike in the stake setting, the farmer can _inefficiently_ compute _multiple_ proofs for challenge $c$ by repeatedly creating fresh plots and computing one proof with each of them.
 
 We refer to attacks exploiting this fact as _replotting attacks_. The most basic design choice to harden a chain against replotting attacks is to make sure that challenges arrive at a sufficiently high rate so that substantial replotting in-between two challenges is not feasible. Moreover the plot filter (which dictates what fraction of plots must be accessed with every challenge) cannot be chosen too aggressively as more aggressive filters makes potential replotting attacks easier.
 
