@@ -13,9 +13,9 @@ Always make sure to protect yourself from malicious actors by [securing your chi
 
 :::
 
-This guide will show you how to run a harvester on each machine in your network. This architecture is composed of one main machine which runs the farmer, full node, and wallet, and other machines which run only the harvester. 只有主机将连接到Chia网络。
+This guide will show you how to run a harvester on each machine in your network. This architecture is composed of one main machine which runs the farmer, full node, and wallet, and other machines which run only the harvester. 只有主机将连接到Chia网络。 This architecture is composed of one main machine which runs the farmer, full node, and wallet, and other machines which run only the harvester. 只有主机将连接到Chia网络。
 
-This is the recommended setup for all Chia farms that use more than one computer. It uses less bandwidth, space and CPU versus running a full node on each computer. It also keeps your keys safer because they will only need to be stored on one computer. Finally, it makes your overall farm quicker and more efficient when replying to challenges.
+This is the recommended setup for all Chia farms that use more than one computer. It uses less bandwidth, space and CPU versus running a full node on each computer. It also keeps your keys safer because they will only need to be stored on one computer. Finally, it makes your overall farm quicker and more efficient when replying to challenges. It uses less bandwidth, space and CPU versus running a full node on each computer. It also keeps your keys safer because they will only need to be stored on one computer. Finally, it makes your overall farm quicker and more efficient when replying to challenges.
 
 为了保障收割节点与主机之间的通信安全，使用TLS（Transport Layer Security）协议，其中**主机**将充当私有证书颁发机构(CA)，用于签署所有证书。 每个收割节点必须拥有自己的签名证书，以便与**主机**正确通信。
 
@@ -26,7 +26,7 @@ This is the recommended setup for all Chia farms that use more than one computer
                                       \_____  收割机 3 (证书 C)
 ```
 
-If you are more of a visual learner, JM made a video outlining the steps from this tutorial. This video is from 2021, but the steps are still relevant today:
+If you are more of a visual learner, JM made a video outlining the steps from this tutorial. This video is from 2021, but the steps are still relevant today: This video is from 2021, but the steps are still relevant today:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QpgXr3aeU5g" title="Farming on multiple systems" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -52,7 +52,7 @@ If you are more of a visual learner, JM made a video outlining the steps from th
 
   在生成地块后，请运行`chia plots check`命令确保一切正常运行。
 
-- A copy of your **main** machine CA directory needs to be accessible by your harvester machines. This directory is located in:
+- A copy of your **main** machine CA directory needs to be accessible by your harvester machines. This directory is located in: This directory is located in:
 
   ```bash
   ~/.chia/mainnet/config/ssl/ca
@@ -88,7 +88,7 @@ chia init -c <directory>
 
 :::warning
 
-For step 4, you are using a copy of your `/ca` directory from your main machine temporarily. 请勿替换收割节点上的`/ca`文件夹。 将`/ca`目录放入收割节点上的临时文件夹中。 将暂时向收割节点展示这些文件，然后可以删除临时文件夹中的`/ca`目录。 This keeps your system more secure by limiting the exposure to your certificates.
+For step 4, you are using a copy of your `/ca` directory from your main machine temporarily. 请勿替换收割节点上的`/ca`文件夹。 请勿替换收割节点上的`/ca`文件夹。 将`/ca`目录放入收割节点上的临时文件夹中。 将暂时向收割节点展示这些文件，然后可以删除临时文件夹中的`/ca`目录。 This keeps your system more secure by limiting the exposure to your certificates.
 
 :::
 
@@ -98,7 +98,7 @@ For step 4, you are using a copy of your `/ca` directory from your main machine 
 ~/.chia/mainnet/config/config.yaml
 ```
 
-Search for the remote **`harvester`**'s farmer_peer section (NOT `full_node`). Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value.
+Search for the remote **`harvester`**'s farmer_peer section (NOT `full_node`). Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value. Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value.
 
 In other words, replace `<Main.Machine.IP>` in the following snippet with your main machine's local IP:
 
