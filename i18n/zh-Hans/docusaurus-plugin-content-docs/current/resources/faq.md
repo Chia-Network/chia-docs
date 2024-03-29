@@ -374,14 +374,17 @@ If you copy your database file to another computer while Chia is currently using
 #### Technical details
 
 If you're interested in learning more technical details of the new database, see the first Github Pull Request that introduced the changes:
-* https://github.com/Chia-Network/chia-blockchain/pull/9442
+
+- https://github.com/Chia-Network/chia-blockchain/pull/9442
 
 And there were two follow-up Pull Requests with additional improvements, along with some benchmarks.
-* https://github.com/Chia-Network/chia-blockchain/pull/9454
-* https://github.com/Chia-Network/chia-blockchain/pull/9455
+
+- https://github.com/Chia-Network/chia-blockchain/pull/9454
+- https://github.com/Chia-Network/chia-blockchain/pull/9455
 
 Finally, here is the Pull Request that added the upgrade functionality:
-* https://github.com/Chia-Network/chia-blockchain/pull/9613
+
+- https://github.com/Chia-Network/chia-blockchain/pull/9613
 
 ### What is the difference between Wallet Mode and Farming Mode?
 
@@ -699,23 +702,25 @@ This functionality was first made available in Chia version 2.2.0, in [PR #17369
 :::
 
 By default, when you start a Chia full node, it will attempt to connect to a random set of peers. This is normally fine, but there are some cases in which you might want to connect to the same peer(s) every time, such as if:
+
 - You are a pool operator who wants to establish consistent groups of nodes to support your pool
 - You are running a small, private testnet where all peers are known
 - You are connecting to a larger testnet which nonetheless has an insufficient number of nodes to locate your first peer immediately upon starting a full node
 
 Steps to connect to the same full node peers:
+
 1. Edit your config file; the default location is `~/.chia/mainnet/config/config.yaml`
 2. In the `full_node:` section, you should see the following line: `full_node_peers: []`
-    * If you do not see this line, you can either add it manually, or rename your config file and run `chia init` to create a new copy, which will contain this line.
+   - If you do not see this line, you can either add it manually, or rename your config file and run `chia init` to create a new copy, which will contain this line.
 3. Remove the square brackets (`[]`) and add add new lines with `- host` and `port`. Be sure to indent `port`, even though it does not have a hyphen. For example, to add two mainnet peers, use the following syntax:
-    ```yaml
-    full_node_peers:
-      - host: <Peer 1 IP address>
-        port: <port>
-      - host: <Peer 2 IP address>
-        port: <port>
-    ```
-    * Typically, `<port>` will be either 8444 (for mainnet) or 58444 (for most testnets).
+   ```yaml
+   full_node_peers:
+     - host: <Peer 1 IP address>
+       port: <port>
+     - host: <Peer 2 IP address>
+       port: <port>
+   ```
+   - Typically, `<port>` will be either 8444 (for mainnet) or 58444 (for most testnets).
 
 :::note
 
@@ -796,7 +801,7 @@ To use the [chia faucet](https://faucet.chia.net/) or [testnet11 faucet](https:/
 
 #### GUI
 
-:::warning 
+:::warning
 Never share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
 :::
 
@@ -820,13 +825,14 @@ Never share your private / secret keys or mnemonics with anyone. These give acce
 
 #### CLI
 
-:::warning 
+:::warning
 **NEVER** share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
 :::
 
 In order to view your keys from the cli, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
 
 1. From terminal (mac/linux) or powershell (windows) run `chia keys show`:
+
 ```bash
 chia keys show
 ```
@@ -1600,13 +1606,13 @@ After installing with the packaged installer, you can run Chia from the command 
 :::info Chia setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'MacOS', value: 'macos'}
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 (Be sure to use powershell and update &lt;username&gt; to match the name of the user that installed Chia.)
 
