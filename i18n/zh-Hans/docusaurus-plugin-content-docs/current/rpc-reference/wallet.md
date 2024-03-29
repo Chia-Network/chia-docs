@@ -583,7 +583,7 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
-This example is from a testnet, so the timestamp won't match the equivalent call on mainnet:
+This example is from testnet10, so the timestamp won't match the equivalent call on mainnet:
 
 ```json
 chia rpc wallet get_timestamp_for_height '{"height": 2000000}'
@@ -753,7 +753,7 @@ Response:
 
 ### `create_new_wallet`
 
-Functionality: Create a new wallet for CATs, DIDs, DAOs, NFTs, or pooling
+功能：为CAT、DID、NFT或联合耕种创建一个新钱包
 
 Usage: chia rpc wallet [OPTIONS] create_new_wallet [REQUEST]
 
@@ -775,7 +775,7 @@ Request Parameters (all wallet types):
 
 | Flag     | Type   | Required | Description                                                                                                             |
 |:-------- |:------ |:-------- |:----------------------------------------------------------------------------------------------------------------------- |
-| mode     | STRING | True     | Must be either `new` or `existing`                                                                                      |
+| mode     | STRING | True     | Must be either `new` of `existing`                                                                                      |
 | name     | STRING | False    | The name of the wallet to create or modify [Default: `CAT` followed by the beginning of the CAT ID]                     |
 | amount   | NUMBER | True\* | \*Required if `mode` is `new`. Specify the value, in mojos, of this wallet                                            |
 | asset_id | STRING | True\* | \*Required if `mode` is `existing`. *Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update |
@@ -954,14 +954,14 @@ Profile 1:
 
 | Flag             | Type      | Required  | Description                                                                                                                  |
 |:---------------- |:--------- |:--------- |:---------------------------------------------------------------------------------------------------------------------------- |
-| mode             | STRING    | True      | Must be either `new` or `existing`                                                                                           |
+| mode             | STRING    | True      | Must be either `new` of `existing`                                                                                           |
 | name             | STRING    | False     | A name to give to the DAO new/existing wallet [Default: None]                                                                |
 | dao_rules        | JSON DICT | True\*  | \*Required if `mode` is `new`; this is a json dictionary of the new DAO's rules                                            |
 | amount_of_cats | NUMBER    | False\* | \*Only used if `mode` is `new`; this is the number of DAO CATs (in mojos) to create when initializing the DAO [Default: 0] |
-| filter-amount    | NUMBER    | False     | The minimum number of votes a proposal needs before the wallet will recognise it [default: 1]                                |
-| fee              | NUMBER    | False\* | \*Only used if `mode` is `new`; this is a blockchain fee to add to the transaction to create the DAO treasury [Default: 0] |
+| filter-amount    | NUMBER    | False     | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]                              |
+| fee              | NUMBER    | False\* | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                            |
 | fee_for_cat    | NUMBER    | False\* | \*Only used if `mode` is `new`; this is a blockchain fee to add to the transaction to create the DAO CATs [Default: 0]     |
-| treasury_id      | STRING    | True\*  | \*Required if `mode` is `existing`; this is the treasury ID of the DAO to join                                             |
+| treasury_id      | STRING    | True\*  | \*Required if `mode` is `existing`. \*Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update   |
 
 Notes:
 
@@ -974,21 +974,18 @@ Notes:
 Create a new wallet with some basic DAO rules; also mint CATs and include transaction fees:
 
 ```bash
-chia rpc wallet create_new_wallet '{"wallet_type": "dao_wallet", "mode": "new", "name": "My Dao Wallet", "dao_rules": {"attendance_required": 3000, "oracle_spend_delay": 2, "pass_percentage": 5000, "proposal_minimum_amount": 1000001, "proposal_timelock": 3, "self_destruct_length": 1, "soft_close_length": 2}, "amount_of_cats": 1000, "filter-amount": 1, "fee": 500000000, "fee_for_cat": 100000000}'
+Note: Because <code>backup_dids</code> is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run <a href="/did-cli#create">the CLI command</a> to create a DID wallet instead. If you do not already have a DID, then run <a href="/did-cli#create">the CLI command</a> to create a DID wallet instead.
 ```
+ is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead.
+</code>
 
 As a result, a new treasury will be created, along with a CAT wallet containing 1000 CATs, and a DAO CAT wallet:
 
 ```bash
-{
-    "cat_wallet_id": 4,
-    "dao_cat_wallet_id": 5,
-    "success": true,
-    "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc",
-    "type": 14,
-    "wallet_id": 3
-}
+For this example, we'll use the wallet with ID <code>7</code>. This wallet is type <code>6</code> (CAT):
 ```
+. This wallet is type 6 (CAT):
+</code>
 
 </details>
 
@@ -998,21 +995,18 @@ As a result, a new treasury will be created, along with a CAT wallet containing 
 To join a DAO, set `mode` to `existing`:
 
 ```bash
-chia rpc wallet create_new_wallet '{"wallet_type": "dao_wallet", "mode": "existing", "name": "My Dao Wallet", "filter-amount": 1, "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc"}'
+This coin is <code>"type": 7</code>, so it is being sent from this wallet. This RPC can be used to claw back this coin as long as it has yet to be spent by the recipient wallet:
 ```
+, so it is being sent from this wallet. This RPC can be used to claw back this coin as long as it has yet to be spent by the recipient wallet:
+</code>
 
 Your wallet will join the treasury and automatically create the required DAO, CAT, and DAO_CAT wallets without any balance:
 
 ```bash
-{
-    "cat_wallet_id": 3,
-    "dao_cat_wallet_id": 4,
-    "success": true,
-    "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc",
-    "type": 14,
-    "wallet_id": 2
-}
+The type of wallet to create. The type of wallet to create. Must be one of <code>cat_wallet</code>, <code>did_wallet</code>, <code>nft_wallet</code>, or <code>pool_wallet</code>
 ```
+, did_wallet, nft_wallet, or pool_wallet
+</code>
 
 </details>
 
@@ -1127,7 +1121,7 @@ Valid wallet types (the `type` parameter) include the following integers:
 | DATA_LAYER_OFFER |   12 |
 | VC                 |   13 |
 
-More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
+More types may be added in the future. More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
 
 <details>
 <summary>Example 1</summary>
@@ -1689,9 +1683,9 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type | Required | Description                                                                                                                  |
-|:-------------- |:---- |:-------- |:---------------------------------------------------------------------------------------------------------------------------- |
-| transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
+| Flag           | Type | Required | Description                                                                                                                                                       |
+|:-------------- |:---- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| transaction_id | TEXT | True     | The ID of the transaction to obtain. The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
 
 <details>
 <summary>Example</summary>
@@ -1768,7 +1762,7 @@ Request Parameters:
 | reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false] |
 | to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
 
-Note: By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination. If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
+Note: By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination. If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions. This is recommended for building a transaction history due to pagination. If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
 
 <details>
 <summary>Example 1: List a single XCH transaction</summary>
@@ -1832,7 +1826,7 @@ Response:
 }
 ```
 
-In this case, we are interested in the `Chia Wallet`, of type `0`. This has an `id` of `1`.
+In this case, we are interested in the `Chia Wallet`, of type `0`. This has an `id` of `1`. This has an `id` of `1`.
 
 Next, list only the transaction from that wallet with an index of `3`:
 
@@ -2796,7 +2790,7 @@ When examing the on-chain metadata for a transaction, a coin with `"type": 6` is
 <details>
 <summary>Example</summary>
 
-First, list a clawback transaction. For this example, we will specify the `to_address`.
+First, list a clawback transaction. First, list a clawback transaction. For this example, we will specify the `to_address`.
 
 Alternatively, you could search for coins with `"type": 6` (receive) or `"type": 7` (send), and `"spent": false`.
 
@@ -3041,15 +3035,15 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type | Required | Description                                                                                       |
-|:------------ |:---- |:-------- |:------------------------------------------------------------------------------------------------- |
+| Flag         | Type | Required | Description                                                                                         |
+|:------------ |:---- |:-------- |:--------------------------------------------------------------------------------------------------- |
 | signing_mode | TEXT | False    | Specify the type of signature to verify \[Default: BLS with hex input\] (see below for more info) |
-| pubkey       | TEXT | True     | The public key of the signature to verify                                                         |
-| message      | TEXT | True     | The message to verify                                                                             |
-| signature    | TEXT | True     | The signature to verify                                                                           |
-| address      | TEXT | True     | The address, which must be derived from `pubkey`                                                  |
+| pubkey       | TEXT | True     | The public key of the signature to verify                                                           |
+| message      | TEXT | True     | The message to verify                                                                               |
+| signature    | TEXT | True     | The signature to verify                                                                             |
+| address      | TEXT | True     | The address, which must be derived from `pubkey`                                                    |
 
-The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include:
+The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include: As of Chia 2.0.0, valid signing mode strings include:
 
 - `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
   - Default signing mode
