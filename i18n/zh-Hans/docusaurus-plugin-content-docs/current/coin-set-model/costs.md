@@ -3,7 +3,7 @@ title: Costs
 slug: /coin-set-costs
 ---
 
-Cost is a unit of measurement that represents resources expended to record a transaction in a block. It is a sum of a measure of computing power required to execute the programs within it, plus the physical drive space (bytes) required to store data on each node's machine.
+Cost is a unit of measurement that represents resources expended to record a transaction in a block. Cost is a unit of measurement that is used to represent the available space in a block. It is measured by the amount of computing power required to execute the programs within it, as well as the physical drive space required to store data on each node's machine.
 
 :::info
 The maximum cost per block is 11,000,000,000 (11 billion), which is typically equivalent to around 400 KB of space. However, not every block is completely full.
@@ -15,7 +15,7 @@ It is important to keep the cost usage of programs on the Chia blockchain as low
 
 Cost has several components. First, every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
 
-Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
+Additionally, certain conditions in a coin spend have a cost associated with them as well. Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
 
 Finally, each byte of data that gets added to the blockchain has a cost of 12,000. Spend bundles are created using a serialized format of CLVM programs, calculated by running [opc](https://chialisp.com/commands#serialize) on the original CLVM program. Each two-digit pair of this format is equivalent to one byte, which costs 12,000 to store on the blockchain.
 
@@ -25,7 +25,7 @@ Aside from cost, the maximum number of atoms and pairs (counted separately) in a
 
 The minimum spec machine to run a full node is the Raspberry Pi 4. How do we know if this machine can stay synced? The worst case scenario occurs when multiple full transaction blocks are created with the minimum amount of time between them. This will temporarily put maximum load on the system. If the Pi can stay synced in this scenario, then it easily should be able to stay synced under normal load.
 
-The first question we must answer is how much time elapses between transaction blocks. Chia's consensus mandates that at least three signage points must be reached before infusion_iterations may occur, so the minimum time between blocks is the following:
+The first question we must answer is how much time elapses between transaction blocks. The first question we must answer is how much time elapses between transaction blocks. Chia's consensus mandates that at least three signage points must be reached before infusion_iterations may occur, so the minimum time between blocks is the following:
 
 ```
 3 signage points * signage point time
