@@ -30,25 +30,25 @@ In this lesson, we learn the basic security implementations in Chia and how they
 00:00\
 The Chia blockchain uses several layers of security.
 
-00:10
+00:10\
 The first the inherent security that comes from decentralization. By following a consensus method that prioritizes decentralization,
 
-00:20
+00:20\
 the network ensures that the new blocks being formed are not manipulated by bad actors. There is no need to have a trusted third party to validate transactions, as the network as a whole will weed out anything non-valid.
 
-00:30
+00:30\
 To secure transactions, we use signatures to protect the coins. In order to make sure that a transaction hasn’t been altered,
 
-00:40
+00:40\
 every spend bundle (the packet of information about a transaction that gets sent out to nodes) contains an aggregated signature that will only match if the underlying information is unaltered.
 
-00:50
+00:50\
 In addition, a common condition included in the coin is a required signature to spend, preventing anyone but the authorized party from using the coin.
 
-01:00
+01:00\
 Additionally, the language used to create "smart coins" is a custom flavor of Lisp called "Chialisp" that is designed to be highly efficient, secure, and easily auditable
 
-01:10
+01:10\
 so you can be sure about what exactly a coin is going to do when it is spent.
 
 01:20
