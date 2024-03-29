@@ -1,4 +1,4 @@
-project_id_env: 7
+project_id: 7
 api_token_env: CROWDIN_PERSONAL_TOKEN
 base_path: "."
 base_url: "https://chia.crowdin.com"
