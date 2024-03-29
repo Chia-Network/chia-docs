@@ -118,7 +118,7 @@ Request Parameters:
 For this example, there is one owned store:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
 ```
 
 Response:
@@ -131,8 +131,8 @@ Response:
 Intentionally move the files and create an empty folder. This will simulate file corruption:
 
 ```json
-mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet ~/.chia/mainnet/data_layer/db/server_files_location_testnet_bak
-mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
+mv ~/.chia/mainnet/data_layer/db/server_files_location_testnet10 ~/.chia/mainnet/data_layer/db/server_files_location_testnet10_bak
+mkdir ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
 ```
 
 Next, restore the files:
@@ -152,7 +152,7 @@ Response:
 Finally, verify that the files have been restored:
 
 ```json
-ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet/
+ls ~/.chia/mainnet/data_layer/db/server_files_location_testnet10/
 ```
 
 Response:
@@ -1449,7 +1449,6 @@ Response:
 ```json
 {
   "routes": [
-    "/wallet_log_in",
     "/create_data_store",
     "/get_owned_stores",
     "/batch_update",
@@ -1478,9 +1477,6 @@ Response:
     "/cancel_offer",
     "/get_sync_status",
     "/check_plugins",
-    "/clear_pending_roots",
-    "/get_proof",
-    "/verify_proof",
     "/get_connections",
     "/open_connection",
     "/close_connection",
