@@ -30,13 +30,13 @@ In this lesson, we review the basics of block formation including the farmers ro
 00:00\
 Every time a transaction occurs, it first gets sent to a full node (a node that is staying synced with the current state of the network), which verifies that it is a valid transaction.
 
-00:15\
+00:15
 This verification ensures that the conditions and signatures are valid, and that the coins being spent are currently unspent and valid. The transaction is then added to the mempool waiting to be included in a block.
 
-00:30\
+00:30
 A Farmer that wins the challenge will form a block by retrieving transactions from the mempool, usually based on fee amount, until the maximum block size is reached. The block is then signed and added to the chain,
 
-00:45\
+00:45
 and the relevant transactions are cleared from the mempool. In this way, transactions are propagated throughout the network very quickly, through the mempool, but are only confirmed once included in a block.
 
 01:00
@@ -59,9 +59,9 @@ and the relevant transactions are cleared from the mempool. In this way, transac
 
 What system validates transactions in Chia?
 
-A. Timelords\
-B. Farmers\
-C. Harvesters\
+A. Timelords
+B. Farmers
+C. Harvesters
 D. Full Nodes
 
 :::
@@ -95,9 +95,9 @@ False, it is timelords that **infuse** blocks to the chain and the role of full 
 What is the Mempool?
 
 A. Temporary storage on the network where transactions are queued before being confirmed.\
-B. The amount of system memory the blockchain can access.\
-C. The total size of all current plots on the network.\
-D. Another name for the chia blockchain database.
+The amount of system memory the blockchain can access.\
+The total size of all current plots on the network.\
+Another name for the chia blockchain database.
 
 :::
 
