@@ -34,12 +34,12 @@ When running RPC commands with JSON inputs on **Windows**, you will need to esca
 Here is an example of the difference between the syntax:
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux/MacOS', value: 'nix'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux/MacOS', value: 'nix'},
+]}>
+<TabItem value="windows">
 
 ```powershell
 chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
@@ -58,7 +58,7 @@ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 :::
 
 :::info
-If you already created an NFT wallet using the CLI command from the previous section, you can skip to the next section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
+If you already created an NFT wallet using the CLI command from the previous section, you can skip to the next section, [Obtain an image and its hash](#obtain-an-image-and-its-hash 'Obtain an image and its hash').
 :::
 
 In this section, we'll start with a brand new wallet fingerprint. However, you'll still need an existing DID to set up a new DID with this RPC.

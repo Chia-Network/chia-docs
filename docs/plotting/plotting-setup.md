@@ -35,11 +35,11 @@ With that in mind, the following table will give you an idea of what compression
 
 | <br />Level | Size <br />(GiB) | Relative <br />Size | Reward <br />Increase | Farm <br /> With |
 | :---------- | :--------------- | :------------------ | :-------------------- | :--------------- |
-| C0          | 101.4 		     | 100%                | 0%                    | Pi 4             |
+| C0          | 101.4            | 100%                | 0%                    | Pi 4             |
 | C1          | 87.5             | 86.3%               | 15.9%                 | Pi 4             |
 | C2          | 86.0             | 84.8%               | 17.9%                 | Pi 4             |
 | C3          | 84.5             | 83.3%               | 20.0%                 | Pi 4             |
-| C4          |	82.9             | 81.8%               | 22.3%                 | Pi 4             |
+| C4          | 82.9             | 81.8%               | 22.3%                 | Pi 4             |
 | C5          | 81.3             | 80.2%               | 24.7%                 | Fast CPU         |
 | C6          | 79.6             | 78.5%               | 27.4%                 | Fast CPU         |
 | C7          | 78.0             | 76.9%               | 29.8%                 | GPU              |

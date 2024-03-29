@@ -85,35 +85,35 @@ cd chia-nft-minting-tool
 3. Create a new virtual environment and then activate it:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'macOS', value: 'macos'},
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
 </Tabs>
@@ -600,7 +600,7 @@ This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
    - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
-   - `-o`: *Not set.* In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
+   - `-o`: _Not set._ In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
 
 ```bash
 chianft submit-spend-bundles -m 10 output.pkl

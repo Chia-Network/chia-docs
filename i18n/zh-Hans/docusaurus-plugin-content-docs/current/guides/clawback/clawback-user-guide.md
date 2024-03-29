@@ -11,12 +11,13 @@ import TabItem from '@theme/TabItem';
 This document is a guide for using the clawback functionality introduced in version 1.8.2 of Chia's reference wallet. _Clawback_ is a new feature that offers protection against sending XCH to the wrong address.
 
 If you are a developer or a CLI user, see the following resources for more info:
+
 - [Clawback Standalone Primitive Guide](/guides/clawback-primitive-guide)
 - [Clawback Standalone Primitive CLI Reference](/clawback-cli)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
 
-
 In order to use Chia clawbacks, you must have:
+
 - Version 1.8.2 or later of Chia's reference light wallet or full node. See our [downloads page](https://www.chia.net/downloads/) to obtain a copy.
 - A sufficient amount of XCH or TXCH to send a transaction and pay fees. If you do not have a sufficient amount, you can obtain some from our [mainnet](https://faucet.chia.net/) and [testnet](https://testnet10-faucet.chia.net/) faucets.
 
@@ -24,23 +25,24 @@ In order to use Chia clawbacks, you must have:
 
 ## Explanation
 
- _Clawback_ allows the sender of XCH to return funds to their wallet during a fixed window of time before the transaction can be completed.
+_Clawback_ allows the sender of XCH to return funds to their wallet during a fixed window of time before the transaction can be completed.
 
- The following demonstrates an example workflow of this process:
+The following demonstrates an example workflow of this process:
 
- 1. The sender sets up a 1-XCH transaction to the receiver's wallet, and adds a 10-minute clawback
- 2. Instead of being sent directly to the receiver's wallet, the 1 XCH is sent to an intermediate location (see below for an explanation)
- 3. For the next 10 minutes:
-     * The sender and receiver both see the pending 1-XCH transaction in their wallets
-     * The sender can choose to return the 1 XCH to his/her wallet (this is a _clawback_)
-     * The receiver cannot yet claim the money
-     * The sender and receiver could communicate off-chain. For example, the sender could call the receiver and ask if the pending transaction appears in their wallet.
-       * If yes, then both parties can be confident that the money was sent to the correct address
-       * If no, then the money was sent to an incorrect address, so the sender will claw it back
- 4. After 10 minutes, if the sender has not clawed the 1 XCH back, the receiver can claim it
- 5. After the receiver has claimed the money, it appears in both wallets as a normal transaction. At this point, the transaction is complete; clawback is no longer possible
+1.  The sender sets up a 1-XCH transaction to the receiver's wallet, and adds a 10-minute clawback
+2.  Instead of being sent directly to the receiver's wallet, the 1 XCH is sent to an intermediate location (see below for an explanation)
+3.  For the next 10 minutes:
+    - The sender and receiver both see the pending 1-XCH transaction in their wallets
+    - The sender can choose to return the 1 XCH to his/her wallet (this is a _clawback_)
+    - The receiver cannot yet claim the money
+    - The sender and receiver could communicate off-chain. For example, the sender could call the receiver and ask if the pending transaction appears in their wallet.
+      - If yes, then both parties can be confident that the money was sent to the correct address
+      - If no, then the money was sent to an incorrect address, so the sender will claw it back
+4.  After 10 minutes, if the sender has not clawed the 1 XCH back, the receiver can claim it
+5.  After the receiver has claimed the money, it appears in both wallets as a normal transaction. At this point, the transaction is complete; clawback is no longer possible
 
 The "intermediate location" is actually a coin with two rules:
+
 1. Before a certain timestamp, only the sender can spend the coin
 2. After the timestamp, the receiver can also spend the coin
 
@@ -57,6 +59,7 @@ This guide will show you how to perform the above workflow.
 Before initiating a clawback transaction, it's a good idea to review your wallet's settings. Click `Settings` (the gear icon in the lower-left corner of your wallet) and click the `CUSTODY` menu.
 
 From this menu:
+
 - The Sender wallet can enable clawback for all outgoing transactions
 - The Receiver wallet can automatically claim all clawback transactions by adding a default transaction fee
 
@@ -79,8 +82,8 @@ From the `SEND` menu as shown below, enter the recipient's address, the amount t
 
 :::note
 
-* Prior to initiating the transaction, the sender's wallet from this example contained 5 TXCH. The amount to be sent was 1 TXCH.
-* This example was executed on Chia's testnet, which has higher fee requirements than mainnet. For this reason, a large fee of 100 million mojos was added.
+- Prior to initiating the transaction, the sender's wallet from this example contained 5 TXCH. The amount to be sent was 1 TXCH.
+- This example was executed on Chia's testnet, which has higher fee requirements than mainnet. For this reason, a large fee of 100 million mojos was added.
 
 :::
 
@@ -223,10 +226,10 @@ The receiver's wallet will show a pending transaction, including the value, the 
 
 :::note
 
-* While the transaction is in this state, it does not show up in any of the `Balance` fields in the receiver's wallet. This is because the sender can still claw it back. The receiver should therefore not assume the amount will eventually be claimed.
-* The timer showing how long until the transaction can be claimed does not begin counting down until the original transaction is confirmed on the blockchain.
+- While the transaction is in this state, it does not show up in any of the `Balance` fields in the receiver's wallet. This is because the sender can still claw it back. The receiver should therefore not assume the amount will eventually be claimed.
+- The timer showing how long until the transaction can be claimed does not begin counting down until the original transaction is confirmed on the blockchain.
 
-:::  
+:::
 
 <div style={{ textAlign: 'center' }}>
     <img
@@ -309,68 +312,69 @@ At this point, the transaction is final. It can no longer be clawed back.
 ## CLI
 
 The detailed documentation for the clawback CLI commands can be found in the following locations:
-* [clawback](/wallet-cli#clawback)
-* [get_transactions](/wallet-cli#get_transactions)
-* [send](/wallet-cli#send-1)
+
+- [clawback](/wallet-cli#clawback)
+- [get_transactions](/wallet-cli#get_transactions)
+- [send](/wallet-cli#send-1)
 
 ### Clawback
 
 1. Create the clawback spend. This step uses a normal `send` command, with an extra `--clawback` timer:
 
-  ```bash
-  chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 3600
-  ```
+```bash
+chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 1-hour clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 3600
+```
 
-  Response:
+Response:
 
-  ```bash
-  Submitting transaction...
-  Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
-  Run 'chia wallet get_transaction -f 4045726944 -tx 0x5a41dbe755a7a44b827b61cfa384e79bef5f79370f63fa7ffe1ea29212a26bf6' to get status
-  ```
+```bash
+Submitting transaction...
+Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
+Run 'chia wallet get_transaction -f 4045726944 -tx 0x5a41dbe755a7a44b827b61cfa384e79bef5f79370f63fa7ffe1ea29212a26bf6' to get status
+```
 
 2. After the above transaction has been confirmed on-chain, obtain the ID for the clawback transaction:
 
-  ```bash
-  chia wallet get_transactions -f 4045726944 -l 1 --clawback
-  ```
+```bash
+chia wallet get_transactions -f 4045726944 -l 1 --clawback
+```
 
-  Response:
+Response:
 
-  ```bash
-  Transaction 0661d157b33597c33e5dc2027f07a1f0cbdc72fa950ca9617e08af326ceb7c81
-  Status: Pending
-  Amount received in clawback as sender: 1 TXCH
-  To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
-  Created at: 2023-06-14 13:14:16
-  Recipient claimable time: 2023-06-14 14:14:16
-  ```
+```bash
+Transaction 0661d157b33597c33e5dc2027f07a1f0cbdc72fa950ca9617e08af326ceb7c81
+Status: Pending
+Amount received in clawback as sender: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 13:14:16
+Recipient claimable time: 2023-06-14 14:14:16
+```
 
 3. Next, claw back the transaction (this must be done before the recipient claims it):
 
-  ```bash
-  chia wallet clawback -f 4045726944 -ids 0661d157b33597c33e5dc2027f07a1f0cbdc72fa950ca9617e08af326ceb7c81 -m 0.0001
-  ```
+```bash
+chia wallet clawback -f 4045726944 -ids 0661d157b33597c33e5dc2027f07a1f0cbdc72fa950ca9617e08af326ceb7c81 -m 0.0001
+```
 
-  Response:
+Response:
 
-  ```bash
-  {'success': True, 'transaction_ids': ['a8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff']}
-  ```
+```bash
+{'success': True, 'transaction_ids': ['a8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff']}
+```
 
 4. Finally, show the clawback transaction to verify that it was confirmed:
 
-  ```bash
-  chia wallet get_transaction -f 4045726944 -tx 0xa8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff
-  ```
+```bash
+chia wallet get_transaction -f 4045726944 -tx 0xa8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff
+```
 
-  ```bash
-  Transaction a8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff
-  Status: Confirmed
-  Amount claim/clawback: 1 TXCH
-  To address: txch1dmdj4ee0ss3m7zunaymz47kdejv2pfwxdhcdjh6zffg935yqmvlsqpvvjq
-  Created at: 2023-06-14 13:17:33
-  ```
+```bash
+Transaction a8295c3924a8ad079093995d3129a38e26faa01ffca175572d21881865dc48ff
+Status: Confirmed
+Amount claim/clawback: 1 TXCH
+To address: txch1dmdj4ee0ss3m7zunaymz47kdejv2pfwxdhcdjh6zffg935yqmvlsqpvvjq
+Created at: 2023-06-14 13:17:33
+```
 
 ### Claim
 
@@ -378,59 +382,59 @@ The process to claim a clawback transaction is similar to the clawback process, 
 
 1. Set up a clawback send transaction with a 60-second clawback window:
 
-  ```bash
-  chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 60-second clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 60
-  ```
+```bash
+chia wallet send -f 4045726944 -a 1 -e "Sending 1 TXCH with 60-second clawback" -m 0.0001 -t txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze --clawback_time 60
+```
 
-  Response:
+Response:
 
-  ```bash
-  Submitting transaction...
-  Tr0ansaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
-  Run 'chia wallet get_transaction -f 4045726944 -tx 0x3ca82042aba188d47a80b663523847fa6050a21e04647c7b31ad3aa9d8d5450f' to get status
-  ```
+```bash
+Submitting transaction...
+Tr0ansaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
+Run 'chia wallet get_transaction -f 4045726944 -tx 0x3ca82042aba188d47a80b663523847fa6050a21e04647c7b31ad3aa9d8d5450f' to get status
+```
 
 2. Get the status of the latest clawback transaction:
 
-  ```bash
-  chia wallet get_transactions -f 4045726944 -l 1 --clawback
-  ```
+```bash
+chia wallet get_transactions -f 4045726944 -l 1 --clawback
+```
 
-  Response:
+Response:
 
-  ```bash
-  Transaction d4d29b6381e4248fc7361abb900a154e14d3120f6ecc01e7aaccaf9d984ed2f3
-  Status: Pending
-  Amount received in clawback as sender: 1 TXCH
-  To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
-  Created at: 2023-06-14 13:28:38
-  Recipient claimable time: 2023-06-14 13:29:38
-  ```
+```bash
+Transaction d4d29b6381e4248fc7361abb900a154e14d3120f6ecc01e7aaccaf9d984ed2f3
+Status: Pending
+Amount received in clawback as sender: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 13:28:38
+Recipient claimable time: 2023-06-14 13:29:38
+```
 
 3. From the receiver's wallet, claim the transaction after the claimable time has elapsed:
 
-  ```bash
-  chia wallet clawback -f 2457176934 -ids d4d29b6381e4248fc7361abb900a154e14d3120f6ecc01e7aaccaf9d984ed2f3 -m 0.0001
-  ```
+```bash
+chia wallet clawback -f 2457176934 -ids d4d29b6381e4248fc7361abb900a154e14d3120f6ecc01e7aaccaf9d984ed2f3 -m 0.0001
+```
 
-  Response:
+Response:
 
-  ```bash
-  {'success': True, 'transaction_ids': ['e969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb']}
-  ```
+```bash
+{'success': True, 'transaction_ids': ['e969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb']}
+```
 
 4. Finally, show the last transaction's status:
 
-  ```bash
-  chia wallet get_transaction -f 2457176934 -tx 0xe969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb
-  ```
+```bash
+chia wallet get_transaction -f 2457176934 -tx 0xe969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb
+```
 
-  Response:
+Response:
 
-  ```bash
-  Transaction e969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb
-  Status: Confirmed
-  Amount claim/clawback: 1 TXCH
-  To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
-  Created at: 2023-06-14 13:33:10
-  ```
+```bash
+Transaction e969bb32b4b01e2c14f67c9d6c467645779c1898d08eb4e041c937f4ba3fe9cb
+Status: Confirmed
+Amount claim/clawback: 1 TXCH
+To address: txch1pxam7zakgqfcfr0xm8xcemm76d637w6sg0l7j8h6gv7rdlf8cfxs326mze
+Created at: 2023-06-14 13:33:10
+```

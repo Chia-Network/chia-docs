@@ -248,25 +248,25 @@ Gets the current sync status of the wallet.
 
 ### TransactionRecord
 
-| Parameter           | Type                                  | Description                            |
-| ------------------- | ------------------------------------- | -------------------------------------- |
-| `confirmedAtHeight` | `number`                              | Block height the tx was confirmed.     |
-| `createdAtTime`     | `number`                              | The timestamp when the tx was created. |
-| `toPuzzleHash`      | `string`                              | The destination puzzle hash.           |
-| `amount`            | `number`                              | The amount sent in mojos.              |
-| `feeAmount`         | `number`                              | The transaction fee in mojos.          |
-| `confirmed`         | `boolean`                             | Whether the tx was confirmed.          |
-| `sent`              | `number`                              | Number of peers the tx was sent to.    |
-| `sentTo`            | [`Peer[]`](#peer)                     | The peers the tx has been sent to.     |
-| `spendBundle`       | <code>[SpendBundle](#spendbundle) &#124; null</code>             | The associated spend bundle.           |
-| `additions`         | [`Coin[]`](#coin)                     | Created coins in the block.            |
-| `removals`          | [`Coin[]`](#coin)                     | Spent coins in the block.              |
-| `walletId`          | `number`                              | The wallet id.                         |
-| `toAddress`         | `string`                              | The bech32m encoded `to_puzzle_hash`.  |
-| `trade_id`          | <code>string &#124; null</code>             |                                        |
-| `type`              | [`TransactionType`](#transactiontype) | The type of transaction.               |
-| `name`              | `string`                              | The transaction's id.                  |
-| `memos`             | [`Memo[]`](#memo)                     | The memos associated with the tx.      |
+| Parameter           | Type                                                 | Description                            |
+| ------------------- | ---------------------------------------------------- | -------------------------------------- |
+| `confirmedAtHeight` | `number`                                             | Block height the tx was confirmed.     |
+| `createdAtTime`     | `number`                                             | The timestamp when the tx was created. |
+| `toPuzzleHash`      | `string`                                             | The destination puzzle hash.           |
+| `amount`            | `number`                                             | The amount sent in mojos.              |
+| `feeAmount`         | `number`                                             | The transaction fee in mojos.          |
+| `confirmed`         | `boolean`                                            | Whether the tx was confirmed.          |
+| `sent`              | `number`                                             | Number of peers the tx was sent to.    |
+| `sentTo`            | [`Peer[]`](#peer)                                    | The peers the tx has been sent to.     |
+| `spendBundle`       | <code>[SpendBundle](#spendbundle) &#124; null</code> | The associated spend bundle.           |
+| `additions`         | [`Coin[]`](#coin)                                    | Created coins in the block.            |
+| `removals`          | [`Coin[]`](#coin)                                    | Spent coins in the block.              |
+| `walletId`          | `number`                                             | The wallet id.                         |
+| `toAddress`         | `string`                                             | The bech32m encoded `to_puzzle_hash`.  |
+| `trade_id`          | <code>string &#124; null</code>                      |                                        |
+| `type`              | [`TransactionType`](#transactiontype)                | The type of transaction.               |
+| `name`              | `string`                                             | The transaction's id.                  |
+| `memos`             | [`Memo[]`](#memo)                                    | The memos associated with the tx.      |
 
 ### TransactionType
 
@@ -291,7 +291,7 @@ This is a tuple with the following parameters.
 | ---------------------------- | ------------------------------------- | -------------------------- |
 | `peerId` _(item 1)_          | `string`                              | Peer id.                   |
 | `inclusionStatus` _(item 2)_ | [`InclusionStatus`](#inclusionStatus) | Inclusion status.          |
-| `errorMessage` _(item 3)_    | <code>string &#124; null</code>             | Error message, if present. |
+| `errorMessage` _(item 3)_    | <code>string &#124; null</code>       | Error message, if present. |
 
 ### InclusionStatus
 

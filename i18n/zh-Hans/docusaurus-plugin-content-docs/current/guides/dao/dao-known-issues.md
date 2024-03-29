@@ -14,9 +14,7 @@ Under normal circumstances, an attacker can create a malicious proposal to drain
 
 However, prior to creating this proposal, the attacker can use proposal spam to improve the chances of the attack's success.
 
-The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle\_hash (including hinted coins):
-\* `trusted_max_subscribe_response_items`: 500000
-\* `max_subscribe_response_items`: 100000
+The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle_hash (including hinted coins): \* `trusted_max_subscribe_response_items`: 500000 \* `max_subscribe_response_items`: 100000
 
 The attacker can take advantage of this limit by creating multiple coins, each of which contains a hint equal to the `TREASURY_ID`. Eventually a wallet will no longer get any additional coin states for newer coins from a `full_node` via the coin state subscription. This is the "proposal spam" part of the attack.
 
@@ -24,7 +22,7 @@ If the attacker has created a sufficient number of the aforementioned coins to r
 
 ## Fake Proposals to lock DAO CATs
 
-An attacker can create spam proposals with the intent of locking DAO\_CATs into voting mode permanently. There are two ways to accomplish this:
+An attacker can create spam proposals with the intent of locking DAO_CATs into voting mode permanently. There are two ways to accomplish this:
 
 - Create otherwise valid `PROPOSAL` coins which don't meet the proposal minimum amount (e.g. 0 or 1 mojo coins).
 - Create proposals without a timer coin.
@@ -37,4 +35,4 @@ The current mitigation to this is that the wallet will filter out any proposals 
 
 This issue occurs when you have a balance of locked DAO CATs which have voted on one or more open proposals, then you delete and resync the wallet DB. Once the proposals have closed, attempting to unlock the coins from voting mode will fail due to missing lineage proofs for the locked coins.
 
-Mitigation: This issue only exists in the 2.1.2 release. It has already been fixed in the `main` branch. To release the coins, launch the wallet from `main`, and then run the [release\_coins](/dao-cli#release_coins) command.
+Mitigation: This issue only exists in the 2.1.2 release. It has already been fixed in the `main` branch. To release the coins, launch the wallet from `main`, and then run the [release_coins](/dao-cli#release_coins) command.

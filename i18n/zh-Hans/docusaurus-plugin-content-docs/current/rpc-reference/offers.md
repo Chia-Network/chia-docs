@@ -37,17 +37,17 @@ Usage: chia rpc wallet [OPTIONS] cancel_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag     | Type    | Required | Description                                                                                                                         |
-|:-------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------- |
+| Flag     | Type    | Required | Description                                                                                                                   |
+| :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------- |
 | trade_id | STRING  | True     | The `trade_id` of the Offer to cancel. Can be retrieved from an Offer file by calling `cdv inspect spendbundles <offer_file>` |
-| fee      | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                                          |
-| secure   | BOOLEAN | False    | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally [Default: `true`]         |
+| fee      | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                                    |
+| secure   | BOOLEAN | False    | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally [Default: `true`]   |
 
 :::note
 
@@ -83,14 +83,14 @@ Usage: chia rpc wallet [OPTIONS] cancel_offers [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag       | Type    | Required | Description                                                                                               |
-|:---------- |:------- |:-------- |:--------------------------------------------------------------------------------------------------------- |
+| :--------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
 | secure     | BOOLEAN | True     | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally |
 | fee        | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                |
 | batch_size | NUMBER  | False    | The number of Offers to cancel in one batch [Default: `5`]                                                |
@@ -125,14 +125,14 @@ Usage: chia rpc wallet [OPTIONS] check_offer_validity [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag  | Type   | Required | Description                       |
-|:----- |:------ |:-------- |:--------------------------------- |
+| :---- | :----- | :------- | :-------------------------------- |
 | offer | STRING | True     | The text of the Offer to validate |
 
 :::note
@@ -181,33 +181,34 @@ Usage: chia rpc wallet [OPTIONS] create_offer_for_ids [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag              | Type    | Required | Description                                                                                                                 |
-|:----------------- |:------- |:-------- |:--------------------------------------------------------------------------------------------------------------------------- |
-| offer             | OBJECT  | True     | A dictionary `[str, int]` of the Offer to create (see the examples below for specifics)                                     |
-| fee               | NUMBER  | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]                                                         |
-| validate_only     | BOOLEAN | False    | Set to `true` to verify the validity of a potential Offer, rather than actually creating an Offer [Default: `false`]        |
-| driver_dict       | OBJECT  | False    | A dictionary `[str, Any]` containing metadata of the asset being requested, for example an NFT's on-chain metadata          |
+| Flag            | Type    | Required | Description                                                                                                                 |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| offer           | OBJECT  | True     | A dictionary `[str, int]` of the Offer to create (see the examples below for specifics)                                     |
+| fee             | NUMBER  | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]                                                         |
+| validate_only   | BOOLEAN | False    | Set to `true` to verify the validity of a potential Offer, rather than actually creating an Offer [Default: `false`]        |
+| driver_dict     | OBJECT  | False    | A dictionary `[str, Any]` containing metadata of the asset being requested, for example an NFT's on-chain metadata          |
 | min_coin_amount | NUMBER  | False    | The minimum coin size to be included in the Offer [Default: `0`]                                                            |
 | max_coin_amount | NUMBER  | False    | The maximum coin size to be included in the Offer [Default: `0`]                                                            |
-| solver            |         | False    | Default: None                                                                                                               |
-| min_height        | NUMBER  | False    | The minimum block height that must be reached before this Offer becomes valid [Default: `null` (not used)]                  |
-| min_time          | NUMBER  | False    | The minimum UNIX timestamp that must be reached before this Offer becomes valid [Default: `null` (not used)]                |
-| max_height        | NUMBER  | False    | The maximum block height where this Offer is still considered valid, aka the expiry height [Default: `null` (not used)]     |
-| max_time          | NUMBER  | False    | The maximum UNIX timestamp where this Offer is stil considered valid, aka the expiry timestamp [Default: `null` (not used)] |
+| solver          |         | False    | Default: None                                                                                                               |
+| min_height      | NUMBER  | False    | The minimum block height that must be reached before this Offer becomes valid [Default: `null` (not used)]                  |
+| min_time        | NUMBER  | False    | The minimum UNIX timestamp that must be reached before this Offer becomes valid [Default: `null` (not used)]                |
+| max_height      | NUMBER  | False    | The maximum block height where this Offer is still considered valid, aka the expiry height [Default: `null` (not used)]     |
+| max_time        | NUMBER  | False    | The maximum UNIX timestamp where this Offer is stil considered valid, aka the expiry timestamp [Default: `null` (not used)] |
 
 :::note
 
 Although relative time lock flags are included in Offer files, the RPC API does not yet support them. The unsupported flags include:
-* `max_blocks_after_created`
-* `max_secs_after_created`
-* `min_blocks_since_created`
-* `min_secs_since_created`
+
+- `max_blocks_after_created`
+- `max_secs_after_created`
+- `min_blocks_since_created`
+- `min_secs_since_created`
 
 In addition, of the four absolute time lock flags, the reference wallet will only recognize `max_time`.
 
@@ -678,22 +679,22 @@ Usage: chia rpc wallet [OPTIONS] get_all_offers [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Flag                   | Type    | Required | Description                                                                                                      |
-|:---------------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------- |
-| start                  | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                             |
-| end                    | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                             |
+| Flag                 | Type    | Required | Description                                                                                                      |
+| :------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                             |
+| end                  | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                             |
 | exclude_my_offers    | BOOLEAN | False    | If `true`, don't show Offers that originated from this wallet [Default: `false`]                                 |
 | exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any Offers with a status of `CONFIRMED` [Default: `false`]                                 |
-| include_completed      | BOOLEAN | False    | If `true`, show completed Offers [Default: `false`]                                                              |
-| sort_key               | STRING  | False    | Optionally change the sort order of the results [Default: none]                                                  |
-| reverse                | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                |
-| file_contents          | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`] |
+| include_completed    | BOOLEAN | False    | If `true`, show completed Offers [Default: `false`]                                                              |
+| sort_key             | STRING  | False    | Optionally change the sort order of the results [Default: none]                                                  |
+| reverse              | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                |
+| file_contents        | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`] |
 
 <details>
 <summary>Example</summary>
@@ -780,14 +781,14 @@ Usage: chia rpc wallet [OPTIONS] get_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag          | Type    | Required | Description                                                                                                      |
-|:------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------- |
+| :------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
 | trade_id      | STRING  | True     | The `trade_id` of the Offer                                                                                      |
 | file_contents | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`] |
 
@@ -877,7 +878,7 @@ Functionality: Obtain a count of the number of offers created and taken with thi
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
@@ -914,14 +915,14 @@ Usage: chia rpc wallet [OPTIONS] get_offer_summary [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag     | Type    | Required | Description                                                           |
-|:-------- |:------- |:-------- |:--------------------------------------------------------------------- |
+| :------- | :------ | :------- | :-------------------------------------------------------------------- |
 | offer    | STRING  | True     | The text of the Offer to summarize                                    |
 | advanced | BOOLEAN | False    | Show advanced information, including expiration time [Default: false] |
 
@@ -1028,14 +1029,14 @@ Usage: chia rpc wallet [OPTIONS] take_offer [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Flag  | Type      | Required | Description                                                           |
-|:----- |:--------- |:-------- |:--------------------------------------------------------------------- |
+| :---- | :-------- | :------- | :-------------------------------------------------------------------- |
 | offer | FILE PATH | True     | The text of the Offer to take (must be in the `PENDING_ACCEPT` state) |
 | fee   | NUMBER    | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]   |
 

@@ -226,18 +226,18 @@ Now that we created the coin we can start to craft a spend bundle. Build this ou
 
 ```json
 {
-    "coin_spends": [
-        {
-            "coin": {
-                "amount": 10000000000,
-                "parent_coin_info": "",
-                "puzzle_hash": ""
-            },
-            "puzzle_reveal": "",
-            "solution": ""
-        }
-    ],
-    "aggregated_signature": ""
+  "coin_spends": [
+    {
+      "coin": {
+        "amount": 10000000000,
+        "parent_coin_info": "",
+        "puzzle_hash": ""
+      },
+      "puzzle_reveal": "",
+      "solution": ""
+    }
+  ],
+  "aggregated_signature": ""
 }
 ```
 
@@ -253,17 +253,17 @@ Response:
 
 ```json
 [
-    {
-        "coin": {
-            "amount": 10000000000,
-            "parent_coin_info": "0x2ae27f44c228eeb9b16eb3f878c51e5bc468009eea79fce976e9d0a25b0e2b85",
-            "puzzle_hash": "0xaa0dc6276e519a604dd0a750b8efb53c5d65b55f189cc0ca29d498d45b69a216"
-        },
-        "coinbase": false,
-        "confirmed_block_index": 321848,
-        "spent_block_index": 0,
-        "timestamp": 1667114401
-    }
+  {
+    "coin": {
+      "amount": 10000000000,
+      "parent_coin_info": "0x2ae27f44c228eeb9b16eb3f878c51e5bc468009eea79fce976e9d0a25b0e2b85",
+      "puzzle_hash": "0xaa0dc6276e519a604dd0a750b8efb53c5d65b55f189cc0ca29d498d45b69a216"
+    },
+    "coinbase": false,
+    "confirmed_block_index": 321848,
+    "spent_block_index": 0,
+    "timestamp": 1667114401
+  }
 ]
 ```
 
@@ -408,18 +408,18 @@ Using the gathered info thus far, we can craft our spend bundle:
 
 ```json
 {
-    "coin_spends": [
-        {
-            "coin": {
-                "amount": 10000000000,
-                "parent_coin_info": "0x2ae27f44c228eeb9b16eb3f878c51e5bc468009eea79fce976e9d0a25b0e2b85",
-                "puzzle_hash": "0xaa0dc6276e519a604dd0a750b8efb53c5d65b55f189cc0ca29d498d45b69a216"
-            },
-            "puzzle_reveal": "ff02ffff01ff02ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff0bff80808080ff80808080ff0b80ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b8f7dd239557ff8c49d338f89ac1a258a863fa52cd0a502e3aaae4b6738ba39ac8d982215aa3fa16bc5f8cb7e44b954dff018080",
-            "solution": "ffffff33ffa09ee6bfb3d3732c68fbff1fcce96fa26ab83ff8c5736eed25ceafe47cb4750f53ff85025110f380808080"
-        }
-    ],
-    "aggregated_signature": "a3994dc9c0ef41a903d3335f0afe42ba16c88e7881706798492da4a1653cd10c69c841eeb56f44ae005e2bad27fb7ebb16ce8bbfbd708ea91dd4ff24f030497b50e694a8270eccd07dbc206b8ffe0c34a9ea81291785299fae8206a1e1bbc1d1"
+  "coin_spends": [
+    {
+      "coin": {
+        "amount": 10000000000,
+        "parent_coin_info": "0x2ae27f44c228eeb9b16eb3f878c51e5bc468009eea79fce976e9d0a25b0e2b85",
+        "puzzle_hash": "0xaa0dc6276e519a604dd0a750b8efb53c5d65b55f189cc0ca29d498d45b69a216"
+      },
+      "puzzle_reveal": "ff02ffff01ff02ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff0bff80808080ff80808080ff0b80ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0b8f7dd239557ff8c49d338f89ac1a258a863fa52cd0a502e3aaae4b6738ba39ac8d982215aa3fa16bc5f8cb7e44b954dff018080",
+      "solution": "ffffff33ffa09ee6bfb3d3732c68fbff1fcce96fa26ab83ff8c5736eed25ceafe47cb4750f53ff85025110f380808080"
+    }
+  ],
+  "aggregated_signature": "a3994dc9c0ef41a903d3335f0afe42ba16c88e7881706798492da4a1653cd10c69c841eeb56f44ae005e2bad27fb7ebb16ce8bbfbd708ea91dd4ff24f030497b50e694a8270eccd07dbc206b8ffe0c34a9ea81291785299fae8206a1e1bbc1d1"
 }
 ```
 
@@ -431,8 +431,8 @@ Response:
 
 ```json
 {
-    "status": "SUCCESS",
-    "success": true
+  "status": "SUCCESS",
+  "success": true
 }
 ```
 

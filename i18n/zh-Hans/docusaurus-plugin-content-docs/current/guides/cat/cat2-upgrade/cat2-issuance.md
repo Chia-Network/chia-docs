@@ -44,35 +44,35 @@ Now that you have a CSV file containing the necessary information, you can run t
 3. Create a new virtual environment and then activate it:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
 </Tabs>
@@ -80,32 +80,32 @@ Now that you have a CSV file containing the necessary information, you can run t
 4. Install the latest versions of `pip`, `setuptools` and `wheel`:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python -m pip install --upgrade pip setuptools wheel
-   ```
+```powershell
+python -m pip install --upgrade pip setuptools wheel
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 -m pip install --upgrade pip setuptools wheel
-   ```
+```bash
+python3 -m pip install --upgrade pip setuptools wheel
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 -m pip install --upgrade pip setuptools wheel
-   ```
+```bash
+python3 -m pip install --upgrade pip setuptools wheel
+```
 
   </TabItem>
 </Tabs>
@@ -124,6 +124,7 @@ Now that you have a CSV file containing the necessary information, you can run t
    ERROR: Failed building wheel for CAT-admin-tool
    ERROR: pip's dependency resolver...
    ```
+
    :::
 
 :::tip
@@ -160,11 +161,11 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
 :::note
 
-   - You must run Chia `1.5.0` or greater.
-   - You can run either the light wallet or a full node.
-   - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
-   - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-:::
+- You must run Chia `1.5.0` or greater.
+- You can run either the light wallet or a full node.
+- You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
+- You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
+  :::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
@@ -185,43 +186,43 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
    Here's an example of the command to reissue Spacebucks:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
-   ```
+```powershell
+cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
-   ```
+```bash
+cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
-   ```
+```bash
+cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+```
 
   </TabItem>
 </Tabs>
 
-   The last line of the output will be something like:
+The last line of the output will be something like:
 
-   ```
-   Name: 8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
-   ```
+```
+Name: 8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+```
 
-   This is the Coin ID of the coin that you will use for reissuance. Keep this value handy.
+This is the Coin ID of the coin that you will use for reissuance. Keep this value handy.
 
 4. Obtain the target puzzle hash by running the "secure_the_bag" command. The important arguments here are:
 
@@ -239,46 +240,46 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
    Here's an example of the command to secure the bag for Spacebucks:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   secure_the_bag --tail .\reference_tails\genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
-   ```
+```powershell
+secure_the_bag --tail .\reference_tails\genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
-   ```
+```bash
+secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /Users/Username/Download/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
-   ```
+```bash
+secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path /Users/Username/Download/spacebucks.csv --prefix xch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+```
 
   </TabItem>
 </Tabs>
 
-   The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
+The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
 
-   For this example, the final two lines of the output are:
+For this example, the final two lines of the output are:
 
-   ```
-   Secure the bag root puzzle hash: 17060adf6856d2904c4fe90c9690b710cf758aee5968718e2fbfd12f7b9d817f
-   Secure the bag root address: xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr
-   ```
+```
+Secure the bag root puzzle hash: 17060adf6856d2904c4fe90c9690b710cf758aee5968718e2fbfd12f7b9d817f
+Secure the bag root address: xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr
+```
 
-   You'll need both of these values later.
+You'll need both of these values later.
 
 5. Push the transaction to the network. This will actually create the coin tree (_Secure the Bag_). The arguments are the same as above, with one exception:
 
@@ -293,48 +294,48 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
    For this example, the command looks like this:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
-   ```
+```powershell
+cats --tail .\reference_tails\genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
-   ```
+```bash
+cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
-   ```
+```bash
+cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5syzvxgkgulr7m49v2r57yh0aanm23hrffgd89j4nj3ywhqxadyqr --amount 1000000000000 --as-bytes --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
+```
 
   </TabItem>
 </Tabs>
 
-   You will need to confirm that you want to push the transaction, then you will receive the `Asset ID` and `Eve Coin ID`. For this example, the following was the result:
+You will need to confirm that you want to push the transaction, then you will receive the `Asset ID` and `Eve Coin ID`. For this example, the following was the result:
 
-   ```
-   The transaction has been created, would you like to push it to the network? (Y/N)y
-   Successfully pushed the transaction to the network
-   Asset ID: 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d
-   Eve Coin ID: 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b
-   ```
+```
+The transaction has been created, would you like to push it to the network? (Y/N)y
+Successfully pushed the transaction to the network
+Asset ID: 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d
+Eve Coin ID: 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b
+```
 
-   You will need to use both of these values later. At this point, the amount you selected should have been deducted from your wallet in order to secure the bag. However, as this is not a standard transaction, it will not show up in the _Transactions_ section of your wallet GUI.
+You will need to use both of these values later. At this point, the amount you selected should have been deducted from your wallet in order to secure the bag. However, as this is not a standard transaction, it will not show up in the _Transactions_ section of your wallet GUI.
 
-   After the transaction has been pushed to the blockchain, you will have successfully created a tree of coins that have an identical size and ultimate destination as the original set of CAT1 coins.
+After the transaction has been pushed to the blockchain, you will have successfully created a tree of coins that have an identical size and ultimate destination as the original set of CAT1 coins.
 
 ## Secure the Bag (Multi Issuance) {#secure-multi}
 
@@ -359,11 +360,11 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 :::note
 
-   - You must run Chia `1.5.0` or greater.
-   - You can run either the light wallet or a full node.
-   - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
-   - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-:::
+- You must run Chia `1.5.0` or greater.
+- You can run either the light wallet or a full node.
+- You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
+- You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
+  :::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
@@ -384,43 +385,43 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
    Here's an example of the command:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   cats --tail .\reference_tails\delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
-   ```
+```powershell
+cats --tail .\reference_tails\delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
-   ```
+```bash
+cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
-   ```
+```bash
+cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 6000000000 --as-bytes --select-coin
+```
 
   </TabItem>
 </Tabs>
 
-   The last line of the output will be something like:
+The last line of the output will be something like:
 
-   ```
-   Name: 11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
-   ```
+```
+Name: 11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+```
 
-   This is the Coin ID of the coin that you will use for reissuance. Keep this value handy.
+This is the Coin ID of the coin that you will use for reissuance. Keep this value handy.
 
 4. Obtain the target puzzle hash by running the "secure_the_bag" command. The important arguments here are:
 
@@ -438,46 +439,46 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
    Here's an example of the command to secure the bag:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   secure_the_bag --tail .\reference_tails\delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
-   ```
+```powershell
+secure_the_bag --tail .\reference_tails\delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path C:\Users\Username\Downloads\multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /home/Username/Downloads/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
-   ```
+```bash
+secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /home/Username/Downloads/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /Users/Username/Download/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
-   ```
+```bash
+secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000000 --secure-the-bag-targets-path /Users/Username/Download/multi.csv --prefix xch --curry 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+```
 
   </TabItem>
 </Tabs>
 
-   The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
+The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
 
-   For this example, the final two lines of the output are:
+For this example, the final two lines of the output are:
 
-   ```
-   Secure the bag root puzzle hash: ce663d935a4ca545475eeebff680922c32f496b326ade73a9820e354526449a1
-   Secure the bag root address: xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy
-   ```
+```
+Secure the bag root puzzle hash: ce663d935a4ca545475eeebff680922c32f496b326ade73a9820e354526449a1
+Secure the bag root address: xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy
+```
 
-   You should now have obtained the `Secure the bag root puzzle hash` and the `Secure the bag root address`.
+You should now have obtained the `Secure the bag root puzzle hash` and the `Secure the bag root address`.
 
 5. Using the coin ID obtained from the `cats` command above, curry the ID into the `genesis_by_coin_id` puzzle.
 
@@ -490,82 +491,82 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
    In this example, the command will be:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
-   ```
+```powershell
+cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
-   ```
+```bash
+cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
-   ```
+```bash
+cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6
+```
 
   </TabItem>
 </Tabs>
 
-   The output will be a new CLVM puzzle:
+The output will be a new CLVM puzzle:
 
-   ```lisp
-   (a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))
-   ```
+```lisp
+(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))
+```
 
-   You will need to use the resulting puzzle (the output, enclosed in parentheses) in a later step.
+You will need to use the resulting puzzle (the output, enclosed in parentheses) in a later step.
 
 6. Run the same `curry` command from the previous step, but add the `--treehash` flag at the end:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
-   ```
+```powershell
+cdv clsp curry .\reference_tails\genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
-   ```
+```bash
+cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
-   ```
+```bash
+cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6 --treehash
+```
 
   </TabItem>
 </Tabs>
 
-   The output will be the treehash of the puzzle you calculated in the previous step:
+The output will be the treehash of the puzzle you calculated in the previous step:
 
-   ```
-   3a56fa8cdf70dfd0e894af58359d72cb04658a1b0628a4ffe0dcc02099c9863b
-   ```
+```
+3a56fa8cdf70dfd0e894af58359d72cb04658a1b0628a4ffe0dcc02099c9863b
+```
 
 7. Sign the treehash that you just calculated. This will effectively sign the puzzle containing the coin you selected.
 
@@ -611,44 +612,44 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
    For this example, the command to execute is:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
-   ```
+```powershell
+cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
-   ```
+```bash
+cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
-   ```
+```bash
+cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+```
 
   </TabItem>
 </Tabs>
 
-   The output of this command will contain the Asset ID and Eve Coin ID for your issuance:
+The output of this command will contain the Asset ID and Eve Coin ID for your issuance:
 
-   ```
-   Asset ID: cd3f7b65e1c20317ea0586b272262d5d59c1f0ebcab02231f1ec6f738c1953cf
-   Eve Coin ID: 06e2afb16c5eebb4c5fbbfe95856cf961dc59a6292b969d5c9f8c8914e57987c
-   ```
+```
+Asset ID: cd3f7b65e1c20317ea0586b272262d5d59c1f0ebcab02231f1ec6f738c1953cf
+Eve Coin ID: 06e2afb16c5eebb4c5fbbfe95856cf961dc59a6292b969d5c9f8c8914e57987c
+```
 
-   You'll need these values in the next section. Note that if the Asset ID doesn't match the original CAT1 Asset ID, then something is wrong.
+You'll need these values in the next section. Note that if the Asset ID doesn't match the original CAT1 Asset ID, then something is wrong.
 
 ## Unwind the Bag {#unwind}
 
@@ -681,14 +682,14 @@ unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-b
 For this example, the command to unwind the entire bag is:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
 ```powershell
 unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1
@@ -771,77 +772,77 @@ At this point, you can navigate to [taildatabase.com](https://www.taildatabase.c
    In this example, the command to unwind the bag is:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
-   ```
+```powershell
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\Username\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
-   ```
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /home/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
-   ```
+```bash
+unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path /Users/Username/Downloads/spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash 0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+```
 
   </TabItem>
 </Tabs>
 
-   This command could take a long time, depending on the total number of coins to unwind. You will need to verify the spend of each individual coin to unwind, and the command will monitor the blockchain for the coin(s) to be spent.
+This command could take a long time, depending on the total number of coins to unwind. You will need to verify the spend of each individual coin to unwind, and the command will monitor the blockchain for the coin(s) to be spent.
 
-   The end result should be that the appropriate number of coins are sent to the puzzle hash, which you can then verify in your Chia wallet (assuming you control that wallet).
+The end result should be that the appropriate number of coins are sent to the puzzle hash, which you can then verify in your Chia wallet (assuming you control that wallet).
 
-:::note 
-   Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
+:::note
+Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
 :::
 
 5. The puzzle hashes from the CSV file are actually _inner_ puzzle hashes, so searching for them on chain using `cdv rpc coinrecords` is more complex than it normally would be. However, you can still verify that the bag was successfully unwound for that puzzle hash by searching for the hint:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   chia rpc full_node get_coin_records_by_hint '{\"hint\": \"<puzzle hash obtained in step 2>\"}'
-   ```
+```powershell
+chia rpc full_node get_coin_records_by_hint '{\"hint\": \"<puzzle hash obtained in step 2>\"}'
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
-   ```
+```bash
+chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
-   ```
+```bash
+chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in step 2>"}'
+```
 
   </TabItem>
 </Tabs>
 
-   You should see matching coin_records for each entry in the CSV file, along with its corresponding value.
+You should see matching coin_records for each entry in the CSV file, along with its corresponding value.
 
-   Now that you've tested unwinding the bag, you can proceed to [unwind the rest of the bag](#unwind).
+Now that you've tested unwinding the bag, you can proceed to [unwind the rest of the bag](#unwind).

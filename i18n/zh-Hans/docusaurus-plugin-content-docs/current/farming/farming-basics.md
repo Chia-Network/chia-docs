@@ -35,7 +35,7 @@ Every three years, there is a scheduled halving of the block reward. This means 
 
 以下是完整的区块奖励计划：
 
-| 年份    | 区块奖励      | XCH / 10 mins |
+| 年份  | 区块奖励  | XCH / 10 mins |
 | ----- | --------- | ------------- |
 | 1-3   | 2.0 XCH   | 64            |
 | 4-6   | 1.0 XCH   | 32            |

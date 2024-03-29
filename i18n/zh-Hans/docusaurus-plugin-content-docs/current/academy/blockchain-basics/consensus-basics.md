@@ -11,7 +11,7 @@ In this lesson, we review the basics of consensus, the process by which to deter
 - **Timelords**: Understand the basic role of timelords in providing proofs of time.
 - **Plot Filter**: Understand the basic role of the plot filter and its effect on the eligibility of proofs of space.
 
-***
+---
 
 ## Content
 
@@ -19,7 +19,7 @@ In this lesson, we review the basics of consensus, the process by which to deter
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/6fbZwfrYkcg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -50,7 +50,7 @@ This consensus method maintains trustless security through high-decentralization
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
@@ -58,7 +58,7 @@ This consensus method maintains trustless security through high-decentralization
 - **Timelords:** Timelords play the role of issuing challenges, verifying proofs of space, and infusing blocks to the chain. Farmers submit their Proofs of Space to Timelords but it is the Timelords that infuse blocks.
 - **Plot Filter:** The plot filter in Chia consensus automatically disqualifies a portion of plots from being valid Proofs of Space for a specific challenge, these plots can contain valid Proofs of Space for future challenges.
 
-***
+---
 
 ## Knowledge check
 
@@ -128,7 +128,7 @@ What is the current (as of December 2023) ratio of plots that contain eligible p
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -140,4 +140,4 @@ What is the current (as of December 2023) ratio of plots that contain eligible p
 - Plot filter [calculations](https://docs.chia.net/signage-and-infusion-points): overviews the process by which the plot filter effects the number of plots containing eligible proofs.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

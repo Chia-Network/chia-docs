@@ -20,12 +20,12 @@ You can do RPC calls with pretty much any language, but to create larger applica
 
 This guide is meant to be an example that will give you some basic experience. We will be using Node.js with TypeScript to create a signature enforced coin. We'll use multiple TypeScript libraries for this project, which are open source if you want to see the details on how they work.
 
--   [BLS Signatures](https://npmjs.com/package/chia-bls)
--   [CLVM](https://npmjs.com/package/clvm-lib)
--   [RPCs](https://npmjs.com/package/chia-rpc)
--   [Wallet Helper](https://npmjs.com/package/chia-wallet-lib)
--   [DotEnv](https://npmjs.com/package/dotenv)
--   [BIP39](https://npmjs.com/package/bip39)
+- [BLS Signatures](https://npmjs.com/package/chia-bls)
+- [CLVM](https://npmjs.com/package/clvm-lib)
+- [RPCs](https://npmjs.com/package/chia-rpc)
+- [Wallet Helper](https://npmjs.com/package/chia-wallet-lib)
+- [DotEnv](https://npmjs.com/package/dotenv)
+- [BIP39](https://npmjs.com/package/bip39)
 
 ### Full Node RPC
 
@@ -78,19 +78,19 @@ Now, add a `tsconfig.json` file with this content:
 
 ```json
 {
-    "compilerOptions": {
-        "moduleResolution": "node",
-        "target": "ESNext",
-        "downlevelIteration": true,
-        "esModuleInterop": true,
-        "inlineSourceMap": true,
-        "declaration": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "noImplicitOverride": true,
-        "strict": true
-    },
-    "include": ["src"]
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitOverride": true,
+    "strict": true
+  },
+  "include": ["src"]
 }
 ```
 
@@ -104,20 +104,20 @@ To run this, we can add a `start` script of `ts-node src/index.ts` to our `packa
 
 ```json title="package.json"
 {
-    "name": "tschia",
-    "version": "1.0.0",
-    "description": "",
-    "main": "dist/index.js",
-    "scripts": {
-        "start": "ts-node src/index.ts",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "ts-node": "^10.9.1",
-        "typescript": "^4.9.3"
-    }
+  "name": "tschia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
+  }
 }
 ```
 
@@ -141,7 +141,7 @@ As this code uses a custom wallet implementation instead of the Chia wallet RPC,
 
 ```ts
 const mnemonic =
-    'nasty sunny kingdom popular turn core rifle river twenty edit sort pill rice claw hollow please wash inform cannon empower emotion caught salt close';
+  'nasty sunny kingdom popular turn core rifle river twenty edit sort pill rice claw hollow please wash inform cannon empower emotion caught salt close';
 ```
 
 ### Dot Env
@@ -177,12 +177,7 @@ If you use Git, you'll want to make sure the `.env` file is added to the `.gitig
 To not have to mention imports throughout the doc, Our imports will ultimately look like:
 
 ```ts
-import {
-    PrivateKey,
-    fromHex,
-    AugSchemeMPL,
-    concatBytes,
-} from 'chia-bls';
+import { PrivateKey, fromHex, AugSchemeMPL, concatBytes } from 'chia-bls';
 import { mnemonicToSeedSync } from 'bip39';
 import dotenv from 'dotenv';
 import { Program } from 'clvm-lib';
@@ -222,7 +217,7 @@ This will create a `signature.clsp.hex` file that can be read in our code.
 
 ```typescript
 const program = Program.deserializeHex(
-    fs.readFileSync(path.join(__dirname, '..', 'signature.clsp.hex'), 'utf-8')
+  fs.readFileSync(path.join(__dirname, '..', 'signature.clsp.hex'), 'utf-8'),
 );
 
 console.log(program.toString());
@@ -314,12 +309,12 @@ For creating a coin we will use `async` and `await`, so we define an `async` fun
 
 ```typescript
 async function create() {
-    await wallet.sync({ unusedAddressCount: 10 });
+  await wallet.sync({ unusedAddressCount: 10 });
 
-    const spend = wallet.createSpend();
-    spend.coin_spends = await wallet.send(curried.hash(), 0.01e12, 0.00005e12);
-    wallet.signSpend(spend, genesis);
-    console.log(await node.pushTx(spend));
+  const spend = wallet.createSpend();
+  spend.coin_spends = await wallet.send(curried.hash(), 0.01e12, 0.00005e12);
+  wallet.signSpend(spend, genesis);
+  console.log(await node.pushTx(spend));
 }
 
 create();
@@ -362,16 +357,14 @@ We will need to give adequate time for the coin go successfully go to the mempoo
 
 ```typescript
 async function spend() {
-    await wallet.sync({ unusedAddressCount: 10 });
+  await wallet.sync({ unusedAddressCount: 10 });
 
-    const coinRecords = await node.getCoinRecordsByPuzzleHash(
-        curried.hashHex()
-    );
-    if (!coinRecords.success) throw new Error(coinRecords.error);
+  const coinRecords = await node.getCoinRecordsByPuzzleHash(curried.hashHex());
+  if (!coinRecords.success) throw new Error(coinRecords.error);
 
-    const record = coinRecords.coin_records[0];
+  const record = coinRecords.coin_records[0];
 
-    console.log(record);
+  console.log(record);
 }
 
 spend();
@@ -400,7 +393,7 @@ const fee = 0.00005e12;
 
 // Create a coin on the target, leaving a fee to be sent to the farmer.
 const conditions = Program.fromSource(
-    `((51 ${formatHex(target.hashHex())} ${record.coin.amount - fee}))`
+  `((51 ${formatHex(target.hashHex())} ${record.coin.amount - fee}))`,
 );
 
 // Create a solution from the conditions.
@@ -419,8 +412,8 @@ Reminder that the signature required for `AGG_SIG_ME` is the message + coin ID +
 
 ```typescript
 const signature = AugSchemeMPL.sign(
-    privateKey,
-    concatBytes(conditions.hash(), toCoinId(record.coin), genesis)
+  privateKey,
+  concatBytes(conditions.hash(), toCoinId(record.coin), genesis),
 ).toHex();
 ```
 
@@ -430,14 +423,14 @@ Finally, we can put everything together in a spend bundle and push the transacti
 
 ```typescript
 const spendBundle: SpendBundle = {
-    coin_spends: [
-        {
-            coin: record.coin,
-            puzzle_reveal: curried.serializeHex(),
-            solution: solution,
-        },
-    ],
-    aggregated_signature: signature,
+  coin_spends: [
+    {
+      coin: record.coin,
+      puzzle_reveal: curried.serializeHex(),
+      solution: solution,
+    },
+  ],
+  aggregated_signature: signature,
 };
 
 console.log(await node.pushTx(spendBundle));
@@ -459,12 +452,7 @@ Which should produce the following result:
 <summary>Complete Code</summary>
 
 ```typescript
-import {
-    PrivateKey,
-    fromHex,
-    AugSchemeMPL,
-    concatBytes,
-} from 'chia-bls';
+import { PrivateKey, fromHex, AugSchemeMPL, concatBytes } from 'chia-bls';
 import { mnemonicToSeedSync } from 'bip39';
 import dotenv from 'dotenv';
 import { Program } from 'clvm-lib';
@@ -477,7 +465,7 @@ import os from 'os';
 dotenv.config();
 
 const program = Program.deserializeHex(
-    fs.readFileSync(path.join(__dirname, '..', 'signature.clsp.hex'), 'utf-8')
+  fs.readFileSync(path.join(__dirname, '..', 'signature.clsp.hex'), 'utf-8'),
 );
 
 console.log(program.toString());
@@ -496,54 +484,52 @@ const wallet = new StandardWallet(node, keyStore);
 const genesis = fromHex(process.env.GENESIS!);
 
 async function create() {
-    await wallet.sync({ unusedAddressCount: 10 });
+  await wallet.sync({ unusedAddressCount: 10 });
 
-    const spend = wallet.createSpend();
-    spend.coin_spends = await wallet.send(curried.hash(), 0.01e12, 0.00005e12);
-    wallet.signSpend(spend, genesis);
-    console.log(await node.pushTx(spend));
+  const spend = wallet.createSpend();
+  spend.coin_spends = await wallet.send(curried.hash(), 0.01e12, 0.00005e12);
+  wallet.signSpend(spend, genesis);
+  console.log(await node.pushTx(spend));
 }
 
 async function spend() {
-    await wallet.sync({ unusedAddressCount: 10 });
+  await wallet.sync({ unusedAddressCount: 10 });
 
-    const coinRecords = await node.getCoinRecordsByPuzzleHash(
-        curried.hashHex()
-    );
-    if (!coinRecords.success) throw new Error(coinRecords.error);
+  const coinRecords = await node.getCoinRecordsByPuzzleHash(curried.hashHex());
+  if (!coinRecords.success) throw new Error(coinRecords.error);
 
-    const record = coinRecords.coin_records[0];
+  const record = coinRecords.coin_records[0];
 
-    console.log(record);
+  console.log(record);
 
-    const fee = 0.00005e12;
+  const fee = 0.00005e12;
 
-    const [targetIndex] = await wallet.findUnusedIndices(1, []);
-    const target = wallet.puzzleCache[targetIndex];
+  const [targetIndex] = await wallet.findUnusedIndices(1, []);
+  const target = wallet.puzzleCache[targetIndex];
 
-    const conditions = Program.fromSource(
-        `((51 ${formatHex(target.hashHex())} ${record.coin.amount - fee}))`
-    );
+  const conditions = Program.fromSource(
+    `((51 ${formatHex(target.hashHex())} ${record.coin.amount - fee}))`,
+  );
 
-    const solution = Program.fromSource(`(${conditions})`).serializeHex();
+  const solution = Program.fromSource(`(${conditions})`).serializeHex();
 
-    const signature = AugSchemeMPL.sign(
-        privateKey,
-        concatBytes(conditions.hash(), toCoinId(record.coin), genesis)
-    ).toHex();
+  const signature = AugSchemeMPL.sign(
+    privateKey,
+    concatBytes(conditions.hash(), toCoinId(record.coin), genesis),
+  ).toHex();
 
-    const spendBundle: SpendBundle = {
-        coin_spends: [
-            {
-                coin: record.coin,
-                puzzle_reveal: curried.serializeHex(),
-                solution: solution,
-            },
-        ],
-        aggregated_signature: signature,
-    };
+  const spendBundle: SpendBundle = {
+    coin_spends: [
+      {
+        coin: record.coin,
+        puzzle_reveal: curried.serializeHex(),
+        solution: solution,
+      },
+    ],
+    aggregated_signature: signature,
+  };
 
-    console.log(await node.pushTx(spendBundle));
+  console.log(await node.pushTx(spendBundle));
 }
 
 spend();
@@ -557,6 +543,6 @@ You have now put together what you have learned to build an actual program that 
 
 Here are a few examples of how you can expand on this:
 
--   Modify the puzzle and code to require two sets of signatures (either two mnemonics or by using two child keys from the key store).
--   Modify the puzzle to add an additional condition requiring the spend to happen at least 10 blocks after the coin is created.
--   Modify the puzzle and code to require at least 2 of 3 signatures from the corresponding keys curried in (referred to as an M of N).
+- Modify the puzzle and code to require two sets of signatures (either two mnemonics or by using two child keys from the key store).
+- Modify the puzzle to add an additional condition requiring the spend to happen at least 10 blocks after the coin is created.
+- Modify the puzzle and code to require at least 2 of 3 signatures from the corresponding keys curried in (referred to as an M of N).

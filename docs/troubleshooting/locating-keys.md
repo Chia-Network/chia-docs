@@ -13,6 +13,7 @@ Please refer to the [Installation page](/installation) if you do not have chia i
 ## Keys Overview
 
 The main keys utilized in chia are:
+
 1. **Public Key** - also known as the master public key, this key is used with the [Chia faucet](https://faucet.chia.net/) and as an observer only view for funds in the wallet.
 2. **Farmer Public Key** - this key is used to generate plots and is a public key. If using a plotting service they will request this key and also a pool contract address which is listed on the pool tab of the gui, detailed instructions can be found [here](/plotting-how-to#pool-contract-address)
 3. **Pool Public Key** - this is the key that was used for OG plots which cannot connect to pools. It is recommended to create plotNFT plots (portable plots) and use the pool contract address as outlined [here](/plotting-how-to#pool-contract-address)
@@ -20,12 +21,11 @@ The main keys utilized in chia are:
 5. **Secret Key** - also known as the master private key, this key should **NEVER** be shared with anyone as it can give access to spend funds from your wallet. Always be mindful when clicking the reveal button and recognize that this keyset is generally not needed for any manual entry.
 6. **Seed Phrase** - also known as the mnemonic phrase, this key should **NEVER** be shared with anyone as it gives full access to your wallet. This should be backed up in a safe location and never entered into any manual entry field unless you are importing your keys to a new wallet.
 
-
 ## GUI
 
 There are a series of different keys that your chia client uses, follow the below steps to view all of these keys but always be mindful with whom you share them.
 
-:::warning 
+:::warning
 Never share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
 :::
 
@@ -57,7 +57,7 @@ For more security best practices please review the [Securing Your Chia – How t
 
 There are a series of different keys that your chia client uses, follow the below steps to view all of these keys but always be mindful with whom you share them.
 
-:::warning 
+:::warning
 **NEVER** share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
 :::
 
@@ -66,12 +66,14 @@ There are a series of different keys that your chia client uses, follow the belo
 In order to view your keys from the cli, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
 
 1. From terminal (mac/linux) or powershell (windows) run `chia keys show`:
+
 ```bash
 chia keys show
 ```
+
 :::warning
 `chia keys show --show-mnemonic-seed`  
-displays the *Master Private Key, Farmer Private Key, and Seed Phrase / Mnemonic* **NEVER** share these with anyone.
+displays the _Master Private Key, Farmer Private Key, and Seed Phrase / Mnemonic_ **NEVER** share these with anyone.
 :::
 
 2. View and copy the needed keyset:

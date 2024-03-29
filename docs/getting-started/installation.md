@@ -22,7 +22,7 @@ There are various ways to install Chia, with the best method depending on what y
 
 - Lastly, if you plan on making contributions to the source code, then installing Chia [from source](/installation#from-source) would be your path.
 
-___In summary, unless you already knew before reading this page that you should be installing from source, chances are your best path will be to install from our [official downloads page](https://www.chia.net/downloads) or a Linux package, depending on your OS.___
+**_In summary, unless you already knew before reading this page that you should be installing from source, chances are your best path will be to install from our [official downloads page](https://www.chia.net/downloads) or a Linux package, depending on your OS._**
 
 ## System Requirements
 
@@ -40,23 +40,24 @@ Chia plot files are at least 108GB in size (for K32). To plot successfully requi
 
 If the computer or hard drives go to sleep during the plotting process, it will fail, and you will need to start over. Please ensure all sleep, hibernate and power saving modes for your computer and hard drives are disabled before starting the Chia plotting process. In the future, Chia will have a resume plot feature. In the meantime, if you do get a failed plot, delete all `*.tmp` files before starting a new plot.
 
-- - - - -
+---
 
 ## Install
 
 ### Using the CLI
+
 _This method is intended for linux environments_
 
 <Tabs
-  defaultValue="apt"
-  groupId="install"
-  values={[
-    {label: 'APT', value: 'apt'},
-    {label: 'YUM', value: 'yum'},
-    {label: 'DNF', value: 'dnf'},
-    {label: 'PIP', value: 'pip'},
-  ]}>
-  <TabItem value="apt">
+defaultValue="apt"
+groupId="install"
+values={[
+{label: 'APT', value: 'apt'},
+{label: 'YUM', value: 'yum'},
+{label: 'DNF', value: 'dnf'},
+{label: 'PIP', value: 'pip'},
+]}>
+<TabItem value="apt">
 
 ```bash
 # Install packages
@@ -132,13 +133,14 @@ Chia strives to provide [binary wheels](https://pythonwheels.com) for modern sys
 </Tabs>
 
 ### From Source
+
 _This method is primarily intended for contributing to the Chia codebase_
 <Tabs
-  defaultValue="linux-macos"
-  groupId="source"
-  values={[
-    {label: 'Linux/MacOS', value: 'linux-macos'},
-    {label: 'Windows', value: 'windows'},
+defaultValue="linux-macos"
+groupId="source"
+values={[
+{label: 'Linux/MacOS', value: 'linux-macos'},
+{label: 'Windows', value: 'windows'},
 ]}>
 <TabItem value="linux-macos">
 
@@ -281,11 +283,11 @@ It is highly recommended you put the Chia blockchain and wallet database on an S
 It is suggested that you set up 1024 MiB of swap:
 
 <Tabs
-  defaultValue="ubuntu"
-  groupId="source"
-  values={[
-    {label: 'Ubuntu 20.04 LTS', value: 'ubuntu'},
-    {label: 'Raspbian 64', value: 'raspbian'},
+defaultValue="ubuntu"
+groupId="source"
+values={[
+{label: 'Ubuntu 20.04 LTS', value: 'ubuntu'},
+{label: 'Raspbian 64', value: 'raspbian'},
 ]}>
 <TabItem value="ubuntu">
 
@@ -360,12 +362,14 @@ Installation instructions for docker are found on the container repo:
 
 You can run chia-blockchain in Ubuntu 20.04 LTS via WSL2 on Windows.
 
-NOTE: WSL2 plotting is currently only *slightly* faster than plotting on the native windows client. WSL2 requires significant tweaking to set up correctly. If you find that daunting, it's probably easier to just use the native windows client.
+NOTE: WSL2 plotting is currently only _slightly_ faster than plotting on the native windows client. WSL2 requires significant tweaking to set up correctly. If you find that daunting, it's probably easier to just use the native windows client.
 
-**You can not run the GUI** as WSL2 doesn't yet support graphical interfaces from WSL2. 
+**You can not run the GUI** as WSL2 doesn't yet support graphical interfaces from WSL2.
 
 #### Check if you already have WSL2 or WSL1 installed:
+
 From PowerShell, type:
+
 ```
 wsl -l -v
 ```
@@ -373,28 +377,36 @@ wsl -l -v
 If you get a listing of help topics for wsl commands, you have WSL1, and need to upgrade. To upgrade, [follow the instructions here](https://docs.microsoft.com/en-us/windows/wsl/install-win10#update-to-wsl-2). If you get a blank result or a listing of installed Linux versions, you have WSL2 and are OK to proceed.
 
 #### If WSL is not installed:
+
 From an Administrator PowerShell:
+
 ```
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all
 ```
-You will be prompted to reboot. 
+
+You will be prompted to reboot.
 
 #### Installing a new WSL2 instance:
+
 Install Ubuntu 20.04 LTS from the Microsoft Store and run it and complete its initial install steps. You now have a linux bash shell environment that can run linux native software on Windows.
 
 #### Install from source - WSL2
+
 See [install from source](/installation#from-source) for detailed instruction.
 
 Running a standalone Windows wallet gui is deprecated but may return in later versions. You can run the Windows version and share keys. You can also plot in WSL2 and migrate the plots to a Windows farmed plot directory.
 
 #### Increasing the WSL Maximum Storage Capacity
+
 WSL2 uses a Virtual Hardware Disk (VHD) to store files, and it automatically resizes as files grow. **However, the VHD has an initial maximum size of 256 GB.** Therefore, the default WSL2 VHD is probably only capable of plotting k=30 plots. To plot anything larger, you will need to increase the maximum allowable size. [Follow the guide here.](https://docs.microsoft.com/en-us/windows/wsl/compare-versions#expanding-the-size-of-your-wsl-2-virtual-hardware-disk)
 
 #### Setting a maximum limit to WSL2 memory access
+
 If you try plotting Chia in WSL2 without limiting the memory access, WSL2 will use 100% of your available machine's memory, and your computer will get bogged down and begin swapping memory to your hard drive. This will severely cripple your plotting speeds. To set the maximum memory that WSL2 is allowed to use, create a configuration file [as described in this guide](https://www.bleepingcomputer.com/news/microsoft/windows-10-wsl2-now-allows-you-to-configure-global-options/).
 
 #### WSL VHD Plotting Nuances
+
 Plotting within WSL2 can write to either the native VHD (which is EXT4) or to any other drive, which can be NTFS or any other FS-type. Writing to the native VHD is faster than writing out to another drive.
 
 Plotting uses three commands for directory control:
@@ -415,9 +427,11 @@ For maximum speed, `-t` and `-2` should be inside the WSL2 filesystem. Something
   <TabItem value="Amazon Linux 2" label="Amazon Linux 2">
 
 #### Install from source - Amazon Linux 2
+
 See [install from source](/installation#from-source) for detailed instruction.
 
 #### Install from binary package
+
 ```bash
 # Install chia-blockchain as a binary package
 python -m venv venv
@@ -433,13 +447,13 @@ pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniu
 
 _**These instructions were tested with Chia 1.1.4 on FreeBSD 11.3- and 11.4-RELEASE, newer versions may exist**_
 
-***
+---
 
 #### Upgrading Existing Chia Installs
 
-If you're upgrading from a previously built chia installation, exit from your previous venv environment (```deactivate```), create a new directory in which to place the latest Chia (e.g. ```mkdir ~/chia-1.0.5 && cd ~/chia-1.0.5```), clone the latest repo (```git clone https://github.com/Chia-Network/chia-blockchain.git -b latest```), enter it and create a new Python virtual environment within it (```python3 -m venv venv```). Now, activate the newest environment (```. venv/bin/activate```), upgrade pip (```pip install --upgrade pip```). Now you may skip down to the [clvm_rs install section](#clvm_rs) and begin there.
+If you're upgrading from a previously built chia installation, exit from your previous venv environment (`deactivate`), create a new directory in which to place the latest Chia (e.g. `mkdir ~/chia-1.0.5 && cd ~/chia-1.0.5`), clone the latest repo (`git clone https://github.com/Chia-Network/chia-blockchain.git -b latest`), enter it and create a new Python virtual environment within it (`python3 -m venv venv`). Now, activate the newest environment (`. venv/bin/activate`), upgrade pip (`pip install --upgrade pip`). Now you may skip down to the [clvm_rs install section](#clvm_rs) and begin there.
 
-***
+---
 
 #### Why This Manual Installation?
 
@@ -524,7 +538,7 @@ It's probably possible to build the libraries in a way that doesn't require `exp
 
 ```
 pkg install lang/rust
-pkg install lang/python37 py37-pip py37-setuptools py37-wheel py37-sqlite3 py37-cffi py37-virtualenv py37-maturin python 
+pkg install lang/python37 py37-pip py37-setuptools py37-wheel py37-sqlite3 py37-cffi py37-virtualenv py37-maturin python
 pkg install node npm git openssl
 ```
 
@@ -548,21 +562,24 @@ git clone git@github.com:Chia-Network/chia-blockchain.git -b latest
 
 ```
 
-Create a virtual environment directory 'venv' from *within* the 'chia-blockchain' directory and activate it before proceeding
+Create a virtual environment directory 'venv' from _within_ the 'chia-blockchain' directory and activate it before proceeding
+
 ```
 cd chia-blockchain
 python3 -m venv venv
-source venv/bin/activate 
+source venv/bin/activate
 ```
 
 You are now in the virtual environment that Python (and so chia) will use. You should have a "(venv)" prefix to your terminal prompt to confirm the venv is working.
 
 Upgrade pip:
+
 ```
 pip install --upgrade pip
 ```
 
 To exit the virtual environment:
+
 ```
 deactivate
 ```
@@ -594,7 +611,6 @@ export UNAME_r=11.4-RELEASE
 
 A full version list can be found [here](https://docs.freebsd.org/en/books/porters-handbook/book.html#versions).
 
-
 Once complete switch back to your non-root user if you so optioned. You must now be in your venv once again.
 
 #### clvm_rs
@@ -621,6 +637,7 @@ cp -R /usr/ports/security/py-cryptography/work-py37/stage/usr/local/lib/python3.
 ```
 
 Clear any Python byte-code cache files that may contain the old path. These should be re-built by the interpreter but we like a clean environment.
+
 ```
 find ${VIRTUAL_ENV}/lib/python3.7/site-packages/cryptography -name __pycache__ | xargs -I{} rm -rf "{}"
 ```
@@ -630,6 +647,7 @@ find ${VIRTUAL_ENV}/lib/python3.7/site-packages/cryptography -name __pycache__ |
 Switch to your chia-blockchain clone directory. You will need to edit two files.
 
 Using your favorite text editor, modify setup.py to edit the cryptography package version to 3.3.2.
+
 ```
 "cryptography==3.4.6" --> to --> "cryptography==3.3.2"
 ```
@@ -641,16 +659,21 @@ On line 25 of chia/util/keychain.py, change:
 ```
 elif platform=="linux":
 ```
+
 to:
+
 ```
 elif platform=="linux" or platform.startswith("freebsd"):
 ```
 
 On line 27 of the same file, change the passphrase from "your keyring password" to whatever you wish your passphrase to be. This is intended to be fixed in future versions but, for the time being, Linux and FreeBSD must have the keyphrase provided statically.
+
 ```
 keyring.keyring_key = "your keyring password"  # type: ignore
 ```
+
 can be changed like so:
+
 ```
 keyring.keyring_key = "Too Many Secrets"
 ```
@@ -675,14 +698,13 @@ sed -i .bak 's/enable_upnp: True/enable_upnp: False' ~/.chia/mainnet/config/conf
 
 While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://docs.chia.net/farming-on-many-machines/).
 
-***
+---
 
 #### Installed and Ready to Farm!
 
 That's it! Provided the instructions were followed to the T, and the build is a fresh FreeBSD 11.3 or 11.4, either hardware or FreeNAS jailed, you should be good to go! Now go to town with `chia start node` or whatever floats your boat.
 
 More details can be found in the [Chia Introduction](https://docs.chia.net/introduction).
-
 
   </TabItem>
   <TabItem value="OpenBSD" label="OpenBSD">
@@ -754,11 +776,11 @@ chia start node wallet farmer harvester
 
 #### GUI Build / Usage
 
-*WARNING: the following has only been tested with Chia 1.0beta7 on OpenBSD/amd64 6.7*
+_WARNING: the following has only been tested with Chia 1.0beta7 on OpenBSD/amd64 6.7_
 
 The build instructions in the previous sections above must be completed successfully before attempting to build the GUI using the procedure below.
 
-*WARNING: Although the following steps have been used successfully, the resulting GUI will be run with an older version of electron than is recommended by the Chia Network team. This may result in unexpected problems.*
+_WARNING: Although the following steps have been used successfully, the resulting GUI will be run with an older version of electron than is recommended by the Chia Network team. This may result in unexpected problems._
 
 #### Prerequisite package installation
 
@@ -790,6 +812,7 @@ rm -rf node_modules/electron
 ```
 
 #### Launch GUI
+
 The GUI can now be launched using the following commands:
 
 ```bash
@@ -799,10 +822,11 @@ cd chia-blockchain
 cd chia-blockchain-gui
 npm run electron
 ```
+
   </TabItem>
 </Tabs>
 
-- - - - -
+---
 
 ## Directory Structure
 
@@ -827,7 +851,7 @@ The config file under the `config` subdirectory. Its name is `config.yaml`, and 
 
 It is possible to configure the `CHIA_ROOT` environment variable to another location. A common use for this would be to switch it to `~/.chia/testnet` to have a separate config for the testnet.
 
-- - - - -
+---
 
 ## CLI
 
@@ -857,14 +881,17 @@ To load this on startup, add it to the `.bashrc`, `.bash_profile`, or `.zshrc` f
 
 The CLI commands are stored in the following location:
 If installed for the user it can be found at
+
 ```bash
 ~\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon
 ```
 
 If installed for all users it can be found at
+
 ```bash
 C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
+
   </TabItem>
   <TabItem value="Linux" label="Linux">
   
@@ -977,7 +1004,7 @@ chia start farmer
 
 ### Systemd
 
-Linux users who have installed the `chia-blockchain-cli` package using [apt, yum, or dnf](https://docs.chia.net/installation/#using-the-cli) will receive systemd configuration files for initializing and managing the Chia processes.  Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd).  A user must be specified during the initialization to ensure the resulting process can find the Chia root directory.  The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only. 
+Linux users who have installed the `chia-blockchain-cli` package using [apt, yum, or dnf](https://docs.chia.net/installation/#using-the-cli) will receive systemd configuration files for initializing and managing the Chia processes. Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd). A user must be specified during the initialization to ensure the resulting process can find the Chia root directory. The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only.
 
 To start a Chia process with systemd, the command format is `systemctl start chia-<service-name>@<user>`. For example, if starting a Chia full node for the Linux user `ubuntu`, the command would be:
 
@@ -1006,37 +1033,36 @@ chia-timelord
 chia-wallet
 ```
 
-Note that the `chia-timelord` service runs the timelord coordinator service, but not the VDF clients.  
+Note that the `chia-timelord` service runs the timelord coordinator service, but not the VDF clients.
 
 ## Troubleshooting
 
-Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version.  Make sure all daemons and chia processes are killed before installing or upgrading.  
+Sometimes stray daemons left over from previously running processes will cause strange bugs/errors when upgrading to a new version. Make sure all daemons and chia processes are killed before installing or upgrading.
 
 This is normally done by executing `chia stop -d all` from the upgrade example above.  
-But it doesn't hurt to double check using `ps -Af | grep chia` to make sure there are no chia processes left running.  You may have to manually kill the chia daemon if an install and chia start was performed without first running `chia stop -d all`
+But it doesn't hurt to double check using `ps -Af | grep chia` to make sure there are no chia processes left running. You may have to manually kill the chia daemon if an install and chia start was performed without first running `chia stop -d all`
 
 If all else fails, rebooting the machine and restarting the chia daemon/processes usually does the trick.
 
-
 ## Testnets
 
-To join a testnet, follow the instructions on [How to Join the Official Testnet](/testnets#join-the-official-testnet). 
+To join a testnet, follow the instructions on [How to Join the Official Testnet](/testnets#join-the-official-testnet).
 
 It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet11" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet11"` so that all commands will use testnet11 instead of mainnet. You can update all config values to the testnet values by running `chia configure -t true`.
-
 
 ## Beta and release candidate installations
 
 ### From Source
+
 _This method is primarily intended for contributing to the Chia codebase_
 <Tabs
-  defaultValue="linux-macos"
-  groupId="source"
-  values={[
-    {label: 'Linux/MacOS', value: 'linux-macos'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-  <TabItem value="linux-macos">
+defaultValue="linux-macos"
+groupId="source"
+values={[
+{label: 'Linux/MacOS', value: 'linux-macos'},
+{label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="linux-macos">
 
 :::note
 Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
@@ -1049,7 +1075,7 @@ git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-su
 # Change directory
 cd chia-blockchain
 
-# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.  
+# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.
 git checkout tags/2.1.2-rc2
 
 # Install dependencies
@@ -1076,7 +1102,7 @@ git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-su
 # Change directory
 cd chia-blockchain
 
-# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.  
+# Checkout the beta or release candidate by tag, tags can be found https://github.com/Chia-Network/chia-blockchain/tags.
 git checkout tags/2.1.2-rc2
 
 # Install dependencies
@@ -1095,13 +1121,13 @@ chia init
 ### From packaged installer
 
 <Tabs
-  defaultValue="apt"
-  groupId="source"
-  values={[
-    {label: 'Apt', value: 'apt'},
-    {label: 'exe, deb, dmg, rpm', value: 'exe, deb, dmg, rpm'},
-  ]}>
-  <TabItem value="apt">
+defaultValue="apt"
+groupId="source"
+values={[
+{label: 'Apt', value: 'apt'},
+{label: 'exe, deb, dmg, rpm', value: 'exe, deb, dmg, rpm'},
+]}>
+<TabItem value="apt">
 
 ```bash
 # Install packages
@@ -1131,7 +1157,7 @@ Open https://github.com/Chia-Network/chia-blockchain/releases in a web browser
 # Download the correct asset
 Navigate to the release candidate of interest and download the necessary installer for your OS (ex. exe for windows)
 
-# Install the downloaded installer  
+# Install the downloaded installer
 Using your system finder/file explorer install the downloaded installer (note - make sure no other versions of chia are installed prior to this step)
 ```
 

@@ -13,10 +13,12 @@ Other relevant documents:
 - [Prefarm Alert Tool](https://github.com/Chia-Network/prefarm-alert) to access the public prefarm config files
 
 ## Prefarm Audit with the Internal Custody Tool
+
 The following steps assume that you have installed and setup the custody tool following the [User guide](/guides/custody-tool-user-guide).
 
 1. Download the prefarm configuration files from the [Prefarm Alert Tool](https://github.com/Chia-Network/prefarm-alert/tree/main/singleton-metadata).
 2. Run the custody tool command `cic sync -c <config-file-path>.txt -db <unique_db_path>.sqlite`
+
 ```bash
 (venv) cic sync -c .\prefarm_configs\cold-us-public-config.txt -db .\sync_cold_us.sqlite
 ```
@@ -28,6 +30,7 @@ NOTE: This command has no result if completed successfully, but, you will see th
 :::
 
 3. Show details of the associated singleton by running `cic show -c -db <unique_db_path>.sqlite`
+
 ```bash
 (venv) cic show -c -db ./sync_cold_us.sqlite
 
@@ -60,11 +63,13 @@ This command shows the singleton launcher ID and the parameters associated with 
 :::
 
 4. Show the singleton p2 address by running `cic p2_address -db <unique_db_path>.sqlite`
+
 ```bash
 cic p2_address -db .\sync_cold_us.sqlite
 
 xch1jj0gm4ahhlu3ke0r0fx955v8axr6za7rzz6hc0y26lewa7zw6fws5nwvv6
 ```
+
 ---
 
 ## Prefarm Audit with Block Records
@@ -77,33 +82,35 @@ NOTE: A high level of technical proficiency is needed to understand the details 
 
 1. Use the internal custody tool to reveal the current root and other curried parameters (steps 1-4 above).
 2. Curry the necessary parameters into the prefarm_inner.clsp `(THIS_MOD_HASH, ROOT, STATE)`:
-    1. `THIS_MOD_HASH` = this code's sha256 tree hash without its curried arguments.
-    2. `ROOT` = the current root provided by the internal custody tool.
-    3. `STATE` = a tree with the following elements in order `((REKEY_MOD_HASH . ACH_MOD_HASH) . (ACH_TIMELOCK . (BASE_REKEY_TIMELOCK . SLOW_REKEY_PENALTY)))`:
-       1. `REKEY_MOD_HASH` = rekey puzzle sha256 tree hash without its curried arguments.
-       2. `ACH_MOD_HASH` = ach puzzle sha256 tree hash without its curried arguments.
-       3. `ACH_TIMELOCK` = integer of the ach timelock also referred to as the Withdrawal Timelock.
-       4. `BASE_REKEY_TIMELOCK` = integer of the rekey timelock.
-       5. `SLOW_REKEY_PENALTY` = integer of the slow rekey penalty.
+   1. `THIS_MOD_HASH` = this code's sha256 tree hash without its curried arguments.
+   2. `ROOT` = the current root provided by the internal custody tool.
+   3. `STATE` = a tree with the following elements in order `((REKEY_MOD_HASH . ACH_MOD_HASH) . (ACH_TIMELOCK . (BASE_REKEY_TIMELOCK . SLOW_REKEY_PENALTY)))`:
+      1. `REKEY_MOD_HASH` = rekey puzzle sha256 tree hash without its curried arguments.
+      2. `ACH_MOD_HASH` = ach puzzle sha256 tree hash without its curried arguments.
+      3. `ACH_TIMELOCK` = integer of the ach timelock also referred to as the Withdrawal Timelock.
+      4. `BASE_REKEY_TIMELOCK` = integer of the rekey timelock.
+      5. `SLOW_REKEY_PENALTY` = integer of the slow rekey penalty.
 3. Curry the necessary parameters into singleton_top_layer_v1_1.clsp `(SINGLETON_STRUCT INNER_PUZZLE)`:
-    1. `SINGLETON_STRUCT` = a tree with the following elements in order `(MOD_HASH . (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))`:
-       1. `MOD_HASH` = singleton_top_layer puzzle sha256 tree hash without its curried arguments.
-       2. `LAUNCHER_ID` = the ID of the singleton we are committed to paying.
-       3. `LAUNCHER_PUZZLE_HASH` = the puzzle hash of the launcher.
-    2. `INNER_PUZZLE` = the compiled form of the inner puzzle (result of the previous curry).
+   1. `SINGLETON_STRUCT` = a tree with the following elements in order `(MOD_HASH . (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))`:
+      1. `MOD_HASH` = singleton_top_layer puzzle sha256 tree hash without its curried arguments.
+      2. `LAUNCHER_ID` = the ID of the singleton we are committed to paying.
+      3. `LAUNCHER_PUZZLE_HASH` = the puzzle hash of the launcher.
+   2. `INNER_PUZZLE` = the compiled form of the inner puzzle (result of the previous curry).
 4. Derive the puzzle hash from the compiled form of the singleton.
+
 ```bash
 opc -H <compiled_puzzle>
 ```
+
 5. Convert the puzzle hash into the singleton p2 puzzle by currying the necessary parameters `(SINGLETON_MOD_HASH, LAUNCHER_ID, LAUNCHER_PUZZLE_HASH)`:
-    1. `SINGLETON_MOD_HASH` - singleton_top_layer puzzle sha256 tree hash without its curried arguments .
-    2. `LAUNCHER_ID` - the ID of the singleton we are committed to paying.
-    3. `LAUNCHER_PUZZLE_HASH` - the puzzle hash of the launcher.
+   1. `SINGLETON_MOD_HASH` - singleton_top_layer puzzle sha256 tree hash without its curried arguments .
+   2. `LAUNCHER_ID` - the ID of the singleton we are committed to paying.
+   3. `LAUNCHER_PUZZLE_HASH` - the puzzle hash of the launcher.
 6. Encode the singleton p2 puzzle to reveal the p2 address.
+
 ```bash
 cdv encode -p xch <singleton_p2_puzzle>
 ```
-
 
 :::info
 

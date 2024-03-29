@@ -59,7 +59,7 @@ chia plotnft create -s local
 chia plotnft create -s pool -u https://bar.examplepool.org
 ```
 
-请注意，即便选择的是选项1，以后仍然可以加入联合耕种池，并且可以随时切换到其它池。 如果决定加入一个联合耕种池，请输入网址 (必须以 _https://_开头)，然后查看描述。 如果同意, 则开始创建联合耕种农田, 并等待它被确认 (只点击一次)。 这可能需要几分钟的时间才能得到确认，然后出现在“联合耕种”选项卡中。 您只需要 1 个联合耕种农田。
+请注意，即便选择的是选项1，以后仍然可以加入联合耕种池，并且可以随时切换到其它池。 如果决定加入一个联合耕种池，请输入网址 (必须以 *https://*开头)，然后查看描述。 如果同意, 则开始创建联合耕种农田, 并等待它被确认 (只点击一次)。 这可能需要几分钟的时间才能得到确认，然后出现在“联合耕种”选项卡中。 您只需要 1 个联合耕种农田。
 
 #### 使用图形用户界面（GUI）
 
@@ -110,8 +110,9 @@ A two-word name will automatically be assigned to your plot NFT.
 You can now start creating plots for this Plot NFT, which means these plots will be "pooling" and can earn rewards more often.
 
 Detailed instructions can be found in the "How to Plot" page:
-* Plotting from the [CLI](/plotting-how-to#cli-plotting)
-* Plotting from the [GUI](/plotting-how-to#gui-plotting)
+
+- Plotting from the [CLI](/plotting-how-to#cli-plotting)
+- Plotting from the [GUI](/plotting-how-to#gui-plotting)
 
 ### 第五步：管理联合耕种农田。
 
@@ -165,8 +166,8 @@ Blockchain fees are paid to the creator of the block (farmers), to incentivize t
 
 区块奖励分为两部分，耕种池部分（总奖励的7/8）和农民部分（总奖励的1/8）。
 
--   耕种池部分将支付给耕种池，耕种池将根据其支付计划支付给您。 在GUI的“联合耕种”选项卡中可以进行配置：点击联合耕种农田界面右上角的三个点，然后点击“编辑支付地址”。 这也可以在`config.yaml`文件中的pool_list部分下的payout_instructions中进行配置。
--   The farmer portion will go to your farmer target address. 在GUI的“农场”选项卡中可以进行配置，或者在`config.yaml`文件中的farmer.xch_target_address下进行配置。
+- 耕种池部分将支付给耕种池，耕种池将根据其支付计划支付给您。 在GUI的“联合耕种”选项卡中可以进行配置：点击联合耕种农田界面右上角的三个点，然后点击“编辑支付地址”。 这也可以在`config.yaml`文件中的pool_list部分下的payout_instructions中进行配置。
+- The farmer portion will go to your farmer target address. 在GUI的“农场”选项卡中可以进行配置，或者在`config.yaml`文件中的farmer.xch_target_address下进行配置。
 
 ### 独自耕种
 
@@ -258,6 +259,7 @@ Each plot NFT you create will require 1 mojo (1 trillionth of a XCH) + transacti
 ### Chia耕种池（pooling）与其他加密货币的不同之处在哪里？
 
 Chia has three major differences from most other crypto pooling protocol:
+
 1. Joining pools is permissionless. 在加入之前不需要在耕种池(矿池)服务器上注册账户。
 2. Farmers receive 1/8 of the block reward plus transaction fees, while the pool receives 7/8 of the reward to redistribute (minus pool fees) amongst all pool participants.
 3. The farmer with the winning proof will farm the block, not the pool server.
@@ -312,10 +314,10 @@ Python
 
 ### 耕种池（矿池）代码中使用的变量名称
 
--   puzzle_hash: 一个地址（address），但是以不同的格式呈现。 地址是易于阅读的。
--   singleton: 一个智能硬币（合约），保证是唯一的，并由用户控制。
--   launcher_id: singleton的唯一标识
--   points: 积分（points）表示农民所完成的工作量。 它是通过提交的证明数量按难度加权计算得出的。 一个k32地块每天可以10个积分（points）。 要累积1000积分，需要在一天内完成 10 TiB 的耕种量。 这相当于PoW矿池中的份额。
+- puzzle_hash: 一个地址（address），但是以不同的格式呈现。 地址是易于阅读的。
+- singleton: 一个智能硬币（合约），保证是唯一的，并由用户控制。
+- launcher_id: singleton的唯一标识
+- points: 积分（points）表示农民所完成的工作量。 它是通过提交的证明数量按难度加权计算得出的。 一个k32地块每天可以10个积分（points）。 要累积1000积分，需要在一天内完成 10 TiB 的耕种量。 这相当于PoW矿池中的份额。
 
 ### How does one calculate a farmer's space?
 
@@ -344,18 +346,18 @@ Note that this calculation is based on the new constant space factor estimation 
 
 对于单例，有一些操作可以执行：
 
--   更改耕种池（需要拥有者的签名）
--   退出耕种池，这是宣布您将更改耕种池（需要拥有者的签名）
--   领取奖励（不需要任何签名，奖励将发送到单例中指定的地址）
+- 更改耕种池（需要拥有者的签名）
+- 退出耕种池，这是宣布您将更改耕种池（需要拥有者的签名）
+- 领取奖励（不需要任何签名，奖励将发送到单例中指定的地址）
 
 ### How do pools collect rewards?
 
--   农民加入矿池后，他们会将自己的单例（singleton）分配给矿池的拼图哈希（pool_puzzle_hash）。
--   当农民赢得一个区块时，矿池奖励将被发送到p2_singleton_puzzle_hash（农民单例的拼图哈希）。
--   矿池将扫描区块链，查找发送给农民单例的新奖励。
--   矿池将向获胜的农民单例发送奖励认领请求。
--   农民单例将发送耕种池奖励部分XCH到pool_puzzle_hash（矿池拼图哈希）。
--   矿池将定期分发奖励给具有积分（points）的农民。
+- 农民加入矿池后，他们会将自己的单例（singleton）分配给矿池的拼图哈希（pool_puzzle_hash）。
+- 当农民赢得一个区块时，矿池奖励将被发送到p2_singleton_puzzle_hash（农民单例的拼图哈希）。
+- 矿池将扫描区块链，查找发送给农民单例的新奖励。
+- 矿池将向获胜的农民单例发送奖励认领请求。
+- 农民单例将发送耕种池奖励部分XCH到pool_puzzle_hash（矿池拼图哈希）。
+- 矿池将定期分发奖励给具有积分（points）的农民。
 
 ### 如何判断服务器是否从特定客户端收到足够的部分证明（partials）？
 
@@ -392,5 +394,6 @@ Chia的分叉可以通过向农民目标地址发送1.75 XCH（Chia币）来轻�
 ### 在哪里观看关于Chia耕种池（矿池）技术问答视频呢？
 
 For those interested in the Chia Pools for Pool Operators video and presentation, you can find it here:
+
 - https://youtu.be/XzSZwxowPzw
 - https://www.chia.net/assets/presentations/2021-06-02_Pooling_for_Pool_Operators.pdf

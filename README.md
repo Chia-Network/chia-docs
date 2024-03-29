@@ -1,15 +1,12 @@
 ![chiadocs-01](https://github.com/Chia-Network/chia-docs/assets/1146050/30eabb47-1c10-489c-858d-522fb1623f98)
 
-
 This is the website for Chia Docs, the source of truth for Chia documentation.
 
 ## Localization (Translation)
 
-[![Crowdin](https://badges.crowdin.net/e/0bcec1c3702f37ddf7fcbdc5eba92ec3/localized.svg)](https://chia.crowdin.com/chia-docs) 
+[![Crowdin](https://badges.crowdin.net/e/0bcec1c3702f37ddf7fcbdc5eba92ec3/localized.svg)](https://chia.crowdin.com/chia-docs)
 
 If you would like to contribute localization translations, please visit our [Crowdin](https://chia.crowdin.com/chia-docs) and sign up to be a contributor.
-  
-  
 
 ## Website
 
@@ -50,8 +47,11 @@ This command serves the static content in the `build` directory.
 These are the commands being run in the github CI, run them all locally in this order to ensure there are no issues building and serving the content prior to submitting a pr:
 
 ```
-$ npm ci
 $ npm install
+$ npm ci
+$ npx prettier . --write
 $ npm run build
 $ npm run serve
 ```
+
+Note: `npx prettier --write --ignore-path .gitignore --ignore-path .prettierignore .` is for verifying the formatting of all .md and .mdx files and should be run in the root directory.

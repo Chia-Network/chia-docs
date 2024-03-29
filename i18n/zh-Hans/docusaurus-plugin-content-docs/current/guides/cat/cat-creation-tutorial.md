@@ -33,8 +33,8 @@ CAT denominations, as well as the rules behind issuance and melting, can take so
 - In a similar vein, Chia Network, Inc. has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
 
   :::caution
-Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
-:::
+  Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
+  :::
 
 - The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
 - A token's face value and its melt value are not necessarily correlated, let alone matched.
@@ -52,8 +52,9 @@ Cat issuance comes in two phases. First, you will test your issuance on a testne
 For this tutorial, we'll use testnet10.
 
 Ensure that you have Python 3.7 or later by running:
-* Linux/MacOS -- `python3 --version`
-* Windows -- `python --version`
+
+- Linux/MacOS -- `python3 --version`
+- Windows -- `python --version`
 
 1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/installation).
 
@@ -61,12 +62,11 @@ Ensure that you have Python 3.7 or later by running:
 
 3. Start Chia's reference wallet GUI. The command you use will depend on your OS, as well as whether you used a binary installer or installed from source. If you need help, see the installation guide.
 
-  When using the GUI, you have the option of running in `Farming Mode` or `Wallet Mode`. Both of these options will work for creating CATs. `Farming Mode` will be faster if you already have a synced full node, but this is not necessary for CAT issuance.
+When using the GUI, you have the option of running in `Farming Mode` or `Wallet Mode`. Both of these options will work for creating CATs. `Farming Mode` will be faster if you already have a synced full node, but this is not necessary for CAT issuance.
 
-  :::info
+:::info
 
-  You can also run Chia's reference wallet from a [command line](/installation#cli) if you prefer.
-
+You can also run Chia's reference wallet from a [command line](/installation#cli) if you prefer.
 
 :::
 
@@ -89,13 +89,13 @@ Once you have a synced wallet and some TXCH, you are ready to run the CAT admin 
 Now we will set up the CAT admin tool, which will help you to issue your CATs:
 
 <Tabs
-  defaultValue="mac"
-  groupId="os"
-  values={[
-    {label: 'Linux/macOS', value: 'mac'},
- {label: 'Windows', value: 'windows'},
- ]}>
-  <TabItem value="mac">
+defaultValue="mac"
+groupId="os"
+values={[
+{label: 'Linux/macOS', value: 'mac'},
+{label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="mac">
 
 Your Linux installation may not come with Python's development tools installed by default. To be sure that these tools are installed, run:
 
@@ -200,12 +200,13 @@ pip install pytest
 
 :::note
 You might receive an error such as ERROR: Failed building wheel for CAT-admin-tool. This is likely safe to ignore. As long as you can run cats --help without errors, the tool has been installed properly.
-:::  
+:::
 
   </TabItem>
 </Tabs>
 
 ---
+
 <br/>
 
 Your environment should be all set, but let's make sure:

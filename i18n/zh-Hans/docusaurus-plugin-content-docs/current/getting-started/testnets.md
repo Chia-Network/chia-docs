@@ -11,7 +11,7 @@ If you want to run the Chia blockchain mainnet, use the [mainnet installation](/
 
 :::
 
-***
+---
 
 ## Join the official testnet
 
@@ -78,7 +78,7 @@ Input your testnet wallet address into one of the faucets. If it says you are in
 
 **Funds will not appear in your wallet until you are fully synced to the blockchain.**
 
-***
+---
 
 ## Dual farming mainnet and testnet
 
@@ -86,11 +86,11 @@ _These instructions are tailored for Linux. A similar approach could likely be f
 
 在某些情况下，您可能希望在主网上耕种的同时，在其中一个测试网络上也进行耕种，而不会将它们从主网中移除。 This is doable with a bit of extra legwork to set up unique ports for the testnet chia installation.
 
-有几个设置的选项。 You can either ensure you have the CHIA\_ROOT set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific CHIA\_ROOT.
+有几个设置的选项。 You can either ensure you have the CHIA_ROOT set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific CHIA_ROOT.
 
 ### Set Up mainnet installation
 
-For the mainnet installation, we will stick with the default ports and CHIA\_ROOT, so these steps are essentially no different than the standard [installation instructions](/installation)
+For the mainnet installation, we will stick with the default ports and CHIA_ROOT, so these steps are essentially no different than the standard [installation instructions](/installation)
 
 ### Set Up testnet installation
 
@@ -111,7 +111,7 @@ chia init
 # Configure Chia for the currently-active testnet
 chia configure --testnet true
 
-# Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values. 
+# Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values.
 # Use the ports listed or choose any you desire as long as they are different than the default values for mainnet.
 
 yq -i '.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
@@ -149,16 +149,16 @@ To swap between running commands for mainnet and running commands for testnet, y
 - Mainnet: `export CHIA_ROOT=~/.chia/mainnet`
 - Testnet: `export CHIA_ROOT=~/.chia/testnet`
 
-***
+---
 
 ## Create a local testnet for fast, private testing
 
 _These instructions are tailored for Linux. A similar approach could likely be followed for MacOS._
 
 0. Stop all chia processes. Check that they have stopped with `ps -ef | grep chia`
-1. Create a new chia root using `export CHIA_ROOT="~/.chia/my_testnet"`, then `chia init`. Don't forget to export CHIA\_ROOT, or prefix your chia commands with `CHIA_ROOT="~/.chia/my_testnet"` if you want to run on my\_testnet when starting a new terminal.
-2. Create a new entry in config.yaml with a different GENESIS\_CHALLENGE, and reduced DIFFICULTY\_CONSTANT\_FACTOR. 2^67 constant factor is around 110PiB assuming a fast timelord. So if you have around 110GiB, you can set it to 2 ^ 47. Decrease SUB\_SLOT\_ITERS\_STARTING to something like 2^23 if you are using a slow computer. Decrease PLOT\_FILTER if you want to have more proof checks per signage point.
-3. Make sure to add **my\_testnet** to all places that need it, like network\_overrides.config, and selected\_network
+1. Create a new chia root using `export CHIA_ROOT="~/.chia/my_testnet"`, then `chia init`. Don't forget to export CHIA_ROOT, or prefix your chia commands with `CHIA_ROOT="~/.chia/my_testnet"` if you want to run on my_testnet when starting a new terminal.
+2. Create a new entry in config.yaml with a different GENESIS_CHALLENGE, and reduced DIFFICULTY_CONSTANT_FACTOR. 2^67 constant factor is around 110PiB assuming a fast timelord. So if you have around 110GiB, you can set it to 2 ^ 47. Decrease SUB_SLOT_ITERS_STARTING to something like 2^23 if you are using a slow computer. Decrease PLOT_FILTER if you want to have more proof checks per signage point.
+3. Make sure to add **my_testnet** to all places that need it, like network_overrides.config, and selected_network
 4. Change the introducer URLs to point to localhost so you don't contact the real ones
 5. Do `sh install-timelord.sh`
 6. Run the system with `chia start all`
@@ -171,10 +171,10 @@ from secrets import token_bytes
 print(token_bytes().hex())
 ```
 
-***
+---
 
 ## Testnet support
 
 Join Our [Discord](https://discord.gg/chia) and jump into the #testnet channel for support
 
-***
+---

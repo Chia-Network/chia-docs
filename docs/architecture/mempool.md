@@ -29,13 +29,13 @@ To view the current status of the mempool, see the dashboard for [mainnet](https
 
 :::info
 
-* By default, the total size of the mempool is 20 blocks. This true for both mainnet and testnet11.
-* Prior to version 2.2, the block size was artificially capped at 50% of its capacity.
-* Starting in version 2.2, the block size cap was increased to 60%.
-* This limitation will be increased gradually, until it reaches 100%, or 11 billion cost -- the limit enforced by the consensus rules.
-* The size (in CLVM cost) of the mempool is `mempool blocks * max cost per block * block size limit`.
-  * In version 2.2, this amounts to `20 * 11 billion * 0.6`, which equals 132 billion.
-  * When the block limiter is lifted, the total size will be `20 * 11 billion`, or 220 billion.
+- By default, the total size of the mempool is 20 blocks. This true for both mainnet and testnet11.
+- Prior to version 2.2, the block size was artificially capped at 50% of its capacity.
+- Starting in version 2.2, the block size cap was increased to 60%.
+- This limitation will be increased gradually, until it reaches 100%, or 11 billion cost -- the limit enforced by the consensus rules.
+- The size (in CLVM cost) of the mempool is `mempool blocks * max cost per block * block size limit`.
+  - In version 2.2, this amounts to `20 * 11 billion * 0.6`, which equals 132 billion.
+  - When the block limiter is lifted, the total size will be `20 * 11 billion`, or 220 billion.
 
 :::
 
@@ -50,8 +50,9 @@ The mempool for Chia's mainnet is often in this state. This does not mean that n
 ### Scenario 2: Mempool Busy But Not Full
 
 If the mempool's contents will occupy more than one block, but the mempool is not full, then it is considered _busy_. In this case:
-* Transactions that don't include fees will be added to the mempool, but they won't make it into the next block. Instead, they will have to "wait in line" for higher-priority transactions to be cleared. They likely will eventually be included in a block, but this is not guaranteed.
-* Transactions with fees will be added to the mempool and prioritized according to the size of their fee-per-cost. For example, a transaction with a 1-mojo fee will enter the queue ahead of zero-fee transactions. 
+
+- Transactions that don't include fees will be added to the mempool, but they won't make it into the next block. Instead, they will have to "wait in line" for higher-priority transactions to be cleared. They likely will eventually be included in a block, but this is not guaranteed.
+- Transactions with fees will be added to the mempool and prioritized according to the size of their fee-per-cost. For example, a transaction with a 1-mojo fee will enter the queue ahead of zero-fee transactions.
 
 :::info Testnet11 info
 
@@ -62,9 +63,10 @@ Testnet11 is constantly being "dusted" (thousands of small transactions are bein
 ### Scenario 3: Mempool Full
 
 If the mempool is completely full, then in order for your transaction to be added, it will need to kick out one or more transactions. In this scenario:
-* Transactions with no fee will not be added to the mempool.
-* Transactions with a fee of less than five mojos per cost (~100 million mojos for 2-input, 2-output transactions) will be treated as zero-fee transactions, i.e. they will not be added to the mempool.
-* Transactions with a fee of at least five mojos per cost will be added to the mempool, prioritized by fee-per-cost, _if_ they are not the lowest priority transactions (see Scenario 4 in this case).
+
+- Transactions with no fee will not be added to the mempool.
+- Transactions with a fee of less than five mojos per cost (~100 million mojos for 2-input, 2-output transactions) will be treated as zero-fee transactions, i.e. they will not be added to the mempool.
+- Transactions with a fee of at least five mojos per cost will be added to the mempool, prioritized by fee-per-cost, _if_ they are not the lowest priority transactions (see Scenario 4 in this case).
 
 This scenario often occurs on testnet11. When the mempool is completely full, the dusters stop submitting transactions until some of the dust has been cleared. This scenario might occasionally happen on mainnet as well, in which case a minimum fee would be required.
 
@@ -73,11 +75,12 @@ If you see `INVALID_FEE_TOO_CLOSE_TO_ZERO` in your log file, the mempool was lik
 ### Scenario 4: Mempool Full of Transactions with Fees
 
 This is the final scenario, where every transaction in the mempool has a fee of at least five mojos per cost. In order for your transaction to be added, it will need to kick out one or more transactions. In this scenario:
-* Transactions with no fee will not be added to the mempool.
-* Transactions with a fee of less than five mojos per cost (~100 million mojos for 2-input, 2-output transactions) will be treated as zero-fee transactions, i.e. they will not be added to the mempool.
-* Transactions with a fee of at least five mojos per cost _might_ be added to mempool. For this to happen, they will need to kick out one or more transactions with a lower fee-per-cost ratio. For example:
-  * If the "cheapest" transaction currently in the mempool has a fee per cost of 10, and your transaction's fee per cost is 9, then your transaction will not be added to the mempool.
-  * If the "cheapest" transaction is 10, and yours is 15, then it likely will be added. However, even in this case, there are scenarios where your transaction might not be added, such as when the lowest-cost transaction currently in the mempool is quite large.
+
+- Transactions with no fee will not be added to the mempool.
+- Transactions with a fee of less than five mojos per cost (~100 million mojos for 2-input, 2-output transactions) will be treated as zero-fee transactions, i.e. they will not be added to the mempool.
+- Transactions with a fee of at least five mojos per cost _might_ be added to mempool. For this to happen, they will need to kick out one or more transactions with a lower fee-per-cost ratio. For example:
+  - If the "cheapest" transaction currently in the mempool has a fee per cost of 10, and your transaction's fee per cost is 9, then your transaction will not be added to the mempool.
+  - If the "cheapest" transaction is 10, and yours is 15, then it likely will be added. However, even in this case, there are scenarios where your transaction might not be added, such as when the lowest-cost transaction currently in the mempool is quite large.
 
 If the mempool from Chia's mainnet reaches this state, the competition for block space will be strong. In order for your transaction to be included, the minimum fee might be significantly higher than it would be in the other scenarios.
 
@@ -88,6 +91,7 @@ A transaction can replace another transaction in the mempool if it spends at lea
 For example, if the original transaction spent coins A and B, then another transaction that spends A, B, and C can replace it. However, a transaction that spends B and C cannot. This prevents denial-of-service (DOS) attacks, as well as censorship of transactions. There is also a minimum fee bump which might depend on mempool software being used. In `chia-blockchain`, this is set to 5 fee-per-cost. This prevents spam replacement transactions.
 
 The full conditions for replace by fee are:
+
 1. The new spend bundle needs to include at least all the spends in the original one (can include additional spends)
 2. The new spend bundle needs to pay a higher fee per cost than the original one (and higher than the [minimum fee required for inclusion](https://docs.chia.net/mempool/#fee-required-for-inclusion))
 3. The new spend bundle needs to pay at least 10000000 mojos more in fees than the original one

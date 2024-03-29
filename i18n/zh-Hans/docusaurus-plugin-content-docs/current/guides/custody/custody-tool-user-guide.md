@@ -36,11 +36,11 @@ The custody tool uses many parameters, each of which is important. You are highl
 
 ### Requirements
 
-- A synced full node (mainnet, testnet, or [simulator](/guides/simulator-user-guide "Simulator user guide"))
-- A synced [Chia wallet](https://docs.chia.net/installation "Chia installation instructions")
-- [Python](https://www.python.org/downloads/ "Python downloads page") 3.9 or greater **(will not work with 3.8.x)**
-- [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "How to install the Git command line tool")
-- [Powershell 6](https://www.howtogeek.com/731885/how-to-check-the-powershell-version-in-windows-10/ "How to check your Powershell version") or greater (Windows only)
+- A synced full node (mainnet, testnet, or [simulator](/guides/simulator-user-guide 'Simulator user guide'))
+- A synced [Chia wallet](https://docs.chia.net/installation 'Chia installation instructions')
+- [Python](https://www.python.org/downloads/ 'Python downloads page') 3.9 or greater **(will not work with 3.8.x)**
+- [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git 'How to install the Git command line tool')
+- [Powershell 6](https://www.howtogeek.com/731885/how-to-check-the-powershell-version-in-windows-10/ 'How to check your Powershell version') or greater (Windows only)
 - Visual C++ Redistributable (Windows only)
 
 ### Steps to install
@@ -60,35 +60,35 @@ cd internal-custody
 3. Create a new virtual environment and then activate it:
 
 <Tabs
-  defaultValue="windows"
-  groupId="os"
-  values={[
-    {label: 'Windows', value: 'windows'},
- {label: 'Linux', value: 'linux'},
- {label: 'macOS', value: 'macos'},
- ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+groupId="os"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'macOS', value: 'macos'},
+]}>
+<TabItem value="windows">
 
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
   </TabItem>
   <TabItem value="linux">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
   <TabItem value="macos">
 
-   ```bash
-   python3 -m venv venv
-   . ./venv/bin/activate
-   ```
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
 
   </TabItem>
 </Tabs>
@@ -226,7 +226,7 @@ If you are generating only one key per computer, you will need to copy the .pk (
 
 ## Initialize the singleton
 
-The custody tool uses the Chialisp [singleton](https://chialisp.com/singletons "Your guide to Chialisp singletons") primitive. This section will show you how to set up a custody singleton for testing.
+The custody tool uses the Chialisp [singleton](https://chialisp.com/singletons 'Your guide to Chialisp singletons') primitive. This section will show you how to set up a custody singleton for testing.
 
 ### Create the permanent layer
 
@@ -246,13 +246,13 @@ The `cic init` command will initialize the permanent layer of the singleton. **N
 For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](https://docs.chia.net/assets/files/chia-custody-tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png).
 
 | Flag&nbsp; | Example<br/>Value | Description                                                                                                                                                                                                                                   |
-|:---------- |:----------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d`       | keys_and_sb           | The directory where the keys and spend bundles will be stored.                                                                                                                                                                                |
-| `-wt`      | 600 seconds             | Withdrawal Timelock -- the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback before a withdrawal can be initiated.                                                                                |
-| `-pc`      | 1200 seconds            | Payment Claw back -- the minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Clawbacks are possible during this window.                                                          |
-| `-rt`      | 300 seconds             | Rekey Timelock -- when attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`. |
-| `-rc`      | 600 seconds             | Rekey Claw back -- the minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Claw backs are possible during this window.                                                                     |
-| `-sp`      | 900 seconds             | Slow rekey Penalty -- this amount gets added to the Rekey Timelock when a slow rekey is being performed.                                                                                                                                      |
+| :--------- | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`       | keys_and_sb       | The directory where the keys and spend bundles will be stored.                                                                                                                                                                                |
+| `-wt`      | 600 seconds       | Withdrawal Timelock -- the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback before a withdrawal can be initiated.                                                                                |
+| `-pc`      | 1200 seconds      | Payment Claw back -- the minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Clawbacks are possible during this window.                                                          |
+| `-rt`      | 300 seconds       | Rekey Timelock -- when attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`. |
+| `-rc`      | 600 seconds       | Rekey Claw back -- the minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Claw backs are possible during this window.                                                                     |
+| `-sp`      | 900 seconds       | Slow rekey Penalty -- this amount gets added to the Rekey Timelock when a slow rekey is being performed.                                                                                                                                      |
 
 :::info notes regarding the above table
 
@@ -620,7 +620,7 @@ This test will run through the complete sequence of withdrawing money from the s
 
 This command generates an unsigned spend bundle which requires specific keys. Signers can take this spend bundle to an HSM for signing.
 
-To begin the payment process, use the `cic payment` command. For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment "payment command") for all options):
+To begin the payment process, use the `cic payment` command. For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment 'payment command') for all options):
 
 - `-f` : The name of the file in which to save the unsigned spend bundle
 - `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command

@@ -12,7 +12,7 @@ In this lesson, we go over how to secure coins using signatures.
 - **Signing and Signatures**: Understand the uses and benefits of signatures.
 - **Chialisp Library files**: Learn about helpful Chialisp libraries to simplify development.
 
-***
+---
 
 ## Content
 
@@ -20,7 +20,7 @@ In this lesson, we go over how to secure coins using signatures.
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/zD1rhLKgc9Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </div>
 
-***
+---
 
 ## Script
 
@@ -93,14 +93,14 @@ So we've talked in this video about how signatures work, their importance, and h
 
 </details>
 
-***
+---
 
 ## Common gotchas
 
 - **0x Prefixes:** It's important to keep track of how we are using different values and understand how Chialisp is going to handle them. A common gotcha is forgetting to append `0x` to a value, or in some cases removing it to tell the puzzle how to properly handle the parameter.
 - **"Saving for Later":** At several points in this lesson, we generate results that we'll need to use elsewhere, sometimes many times. These results also do not have obivious indicators as to what they are. It's helpful to have a document to temporarily store these results for later use.
 
-***
+---
 
 ## Knowledge check
 
@@ -136,7 +136,7 @@ The `AGG_SIG_ME` condition expects a concatenated value of the following:
 
 </details>
 
-***
+---
 
 ## Additional resources
 
@@ -173,4 +173,4 @@ For information on using these plugins please refer to the [academy overview](/a
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
-***
+---

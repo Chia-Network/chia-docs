@@ -19,10 +19,11 @@ The real magic of DataLayer is the ability to use the data in smart contract tra
 #### Proof of inclusion
 
 A proof of inclusion is a way to prove that a key/value pair is being stored, without needing to provide the entire Merkle tree from the store. This is accomplished by creating a spend of the DataLayer singleton that accepts two things in its solution:
+
 1. The hash of a key/value pair from the Merkle tree
 2. Proof that the same key/value pair actually exists in the Merkle tree. This proof is obtained by providing the minimum peer hashes necessary to recalculate the Merkle root that is currently stored on-chain, starting from the leaf obtained from the key/value pair.
 
-When this proof is obtained, the singleton announces the hash that exists in that DataLayer table.  
+When this proof is obtained, the singleton announces the hash that exists in that DataLayer table.
 
 Proofs of inclusion are the basis for accessing DataLayer data from Chialisp because once the data is proven, it can be used to drive other functionality, starting with the two-party commit, and moving beyond to include oracles and off-chain contracts.
 
@@ -52,9 +53,9 @@ Where it gets interesting is what other coins might do with that announcement. A
 
 A hypothetical example of a proof of inclusion could be NFT ratings. Here's how it would work:
 
-* A critic provides ratings for various NFTs in a DataLayer table, such that people could create offers based on that rating.
-* A prospective buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
-* To accept the offer, an NFT owner would have to include a proof of inclusion from the rating table that their NFT had that rating.
+- A critic provides ratings for various NFTs in a DataLayer table, such that people could create offers based on that rating.
+- A prospective buyer might offer 5 XCH for any NFT with a "blue ribbon" rating from RatingWiz.
+- To accept the offer, an NFT owner would have to include a proof of inclusion from the rating table that their NFT had that rating.
 
 This example would require anyone-can-spend DataLayer proofs of inclusion (these doesn't exist yet, but would be straightforward to build). The anyone-can-spend proof of inclusion could also generate a payment to the DataLayer table owner to pay RatingWiz for their services.
 
@@ -89,7 +90,7 @@ If you have already installed Chia version 1.6 or greater and started the refere
 
 ### Install and Run Chia
 
-DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/installation#from-source) or [run the packaged installer](https://www.chia.net/downloads/). 
+DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/installation#from-source) or [run the packaged installer](https://www.chia.net/downloads/).
 
 1. **If you installed from source**, be sure you have activated a virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window).
 
@@ -140,13 +141,13 @@ You are recommended to complete steps 1 and 2 (port forwarding and firewall conf
 :::info Firewall setup
 
 <Tabs
-  defaultValue="windows"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'MacOS', value: 'macos'}
-  ]}>
-  <TabItem value="windows">
+defaultValue="windows"
+values={[
+{label: 'Windows', value: 'windows'},
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'}
+]}>
+<TabItem value="windows">
 
 From a PowerShell prompt, run:
 
@@ -233,11 +234,11 @@ data_layer:
     - url: http://localhost:3145
       headers:
         x-api-key: your-api-key-here
-...
-  uploaders:
-    - url: https://plugin.datalayer.storage
-      headers:
-        x-api-key: your-api-key-here
+---
+uploaders:
+  - url: https://plugin.datalayer.storage
+    headers:
+      x-api-key: your-api-key-here
 ```
 
 For more information on this feature, see the description in the relevant [GitHub issue](https://github.com/Chia-Network/issue-tracker/issues/483).

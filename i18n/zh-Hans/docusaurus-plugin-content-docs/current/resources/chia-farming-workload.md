@@ -31,12 +31,12 @@ The proof of space construction and the [Proof of Space page](/proof-of-space) c
 
 We can estimate the storage workload on a given drive capacity (measured in TB, terabytes) by knowing the k size selected and n number of plots that fit on the drive.
 
-| Drive size (TB) |  4 |  8 | 10 |  12 |  14 |  16 |  18 |  20 |
-| --------------- | --:| --:| --:| ---:| ---:| ---:| ---:| ---:|
-| k value         | 32 | 32 | 32 |  32 |  32 |  32 |  32 |  32 |
-| Number of plots | 36 | 73 | 91 | 110 | 128 | 146 | 165 | 183 |
-| k value         | 34 | 34 | 34 |  34 |  34 |  34 |  34 |  34 |
-| Number of plots |  8 | 17 | 21 |  25 |  30 |  34 |  38 |  43 |
+| Drive size (TB) |   4 |   8 |  10 |  12 |  14 |  16 |  18 |  20 |
+| --------------- | --: | --: | --: | --: | --: | --: | --: | --: |
+| k value         |  32 |  32 |  32 |  32 |  32 |  32 |  32 |  32 |
+| Number of plots |  36 |  73 |  91 | 110 | 128 | 146 | 165 | 183 |
+| k value         |  34 |  34 |  34 |  34 |  34 |  34 |  34 |  34 |
+| Number of plots |   8 |  17 |  21 |  25 |  30 |  34 |  38 |  43 |
 
 Events per day, plots passing filter = signage points per day ✕ n plots / filter constant number of reads =(Events per day, plots passing filter ✕ IO Proof quality check) +(IO Full proof of space ✕ Partials per day  
 IOPS average =number of reads per day / 86400 seconds MB read per day = Number of reads ✕ average IO size per request (kB) / 1000  
@@ -46,7 +46,7 @@ Bandwidth = IOPS \* Block Size
 
 An IO kernel trace was taken on a sample of drives to determine the block size requests on the block layer (commands sent directly to the drive over the SATA interface), and found that the majority of the IO commands sent were 12 and 16kB transfers. This will likely change very slightly with different storage hardware, operating systems, storage devices, drivers, and filesystems.
 
-![iosize_hist](images/iosize_hist.png "iosize_hist")
+![iosize_hist](images/iosize_hist.png 'iosize_hist')
 
 Measured data from ext4 filesystem in Linux resulted in an average blocksize of 13.9kB with n=44 drives of capacity 18TB 14.5kB with n=94 drives capacity ranging from 8-18TB
 
@@ -54,15 +54,15 @@ Measured data from ext4 filesystem in Linux resulted in an average blocksize of 
 
 Chia Farming Total Amount of data read per day per drive capacity
 
-![data_per_day](images/data_per_day.png "data_per_day")
+![data_per_day](images/data_per_day.png 'data_per_day')
 
 Bandwidth and amount of data read are all directly proportional to the number of io requests required for the proof quality checks and partial proof of space generation. K=32 with a difficulty of 1 is the theoretical maximum bandwidth for Chia farming. It is typical for a pool operator to automatically adjust the difficulty to target enough partials per day to get an accurate estimate of the farming capacity, without a significant increase in io on the device.
 
-![bw_drive](images/bw_drive.png "bw_drive")
+![bw_drive](images/bw_drive.png 'bw_drive')
 
 As expected, bandwidth per drive scales with the number of plots per drive (which is increased when a higher capacity disk is used) and increases with difficulty. K=34 offers a reduction in io requirements by reducing the number of plots per disk.
 
-![prob_access](images/prob_access.png "prob_access")
+![prob_access](images/prob_access.png 'prob_access')
 
 ### Hard drive rated workloads
 
@@ -93,31 +93,31 @@ We compare the modeled metrics of an 18TB drive to the measure data collected
 
 Disk IOPS
 
-![IOPS](images/iops.png "IOPS")
+![IOPS](images/iops.png 'IOPS')
 
 Disk bandwidth
 
-![bw](images/bw.png "bw")
+![bw](images/bw.png 'bw')
 
 Latency
 
-![latency](images/latency.png "latency")
+![latency](images/latency.png 'latency')
 
 Disk Utilization
 
-![disk_busy](images/disk_busy.png "disk_busy")
+![disk_busy](images/disk_busy.png 'disk_busy')
 
 CPU Busy Time
 
-![cpu busy time](images/cpu1.png "cpu")
+![cpu busy time](images/cpu1.png 'cpu')
 
 System CPU Utilization
 
-![system utilization](images/cpu.png "cpu")
+![system utilization](images/cpu.png 'cpu')
 
 Network Traffic (Chia harvester only)
 
-![network](images/net.png "network traffic")
+![network](images/net.png 'network traffic')
 
 ### Measurement tools
 
@@ -150,8 +150,8 @@ UBER is defined as "A metric for the rate of occurrence of data errors, equal to
 
 Consumer HDDs are rated for less than 1 error per 10<sup>14</sup> (sometimes shown as UBER of 10<sup>-14</sup>). This means that if a consumer reads on 800TB of data, they would expect a single read error on average.
 
-| Device         | UBER    | Data read per error |
-| -------------- | ------- | ------------------- |
+| Device         | UBER   | Data read per error |
+| -------------- | ------ | ------------------- |
 | Consumer HDD   | 10\-14 | 800 TB              |
 | Enterprise HDD | 10\-15 | 8 PB                |
 | SSD            | 10\-17 | 800 PB              |
@@ -162,7 +162,7 @@ In a storage system containing user data, an uncorrectable read error on a singl
 
 Using the UBER and the estimated amount of data read per day with Chia farming, we can approximate the number of years it would take to encounter an error while farming Chia.
 
-![UBER](images/uber.png "UBER")
+![UBER](images/uber.png 'UBER')
 
 ### What happens when an error occurs?
 
