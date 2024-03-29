@@ -52,8 +52,9 @@ Cat issuance comes in two phases. First, you will test your issuance on a testne
 For this tutorial, we'll use testnet11.
 
 Ensure that you have Python 3.7 or later by running:
-* Linux/MacOS -- `python3 --version`
-* Windows -- `python --version`
+
+- Linux/MacOS -- `python3 --version`
+- Windows -- `python --version`
 
 1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/installation).
 
@@ -61,12 +62,11 @@ Ensure that you have Python 3.7 or later by running:
 
 3. Start Chia's reference wallet GUI. The command you use will depend on your OS, as well as whether you used a binary installer or installed from source. If you need help, see the installation guide.
 
-  When using the GUI, you have the option of running in `Farming Mode` or `Wallet Mode`. Both of these options will work for creating CATs. `Farming Mode` will be faster if you already have a synced full node, but this is not necessary for CAT issuance.
+When using the GUI, you have the option of running in `Farming Mode` or `Wallet Mode`. Both of these options will work for creating CATs. `Farming Mode` will be faster if you already have a synced full node, but this is not necessary for CAT issuance.
 
-  :::info
+:::info
 
-  You can also run Chia's reference wallet from a [command line](/installation#cli) if you prefer.
-
+You can also run Chia's reference wallet from a [command line](/installation#cli) if you prefer.
 
 :::
 
@@ -89,13 +89,13 @@ Once you have a synced wallet and some TXCH, you are ready to run the CAT admin 
 Now we will set up the CAT admin tool, which will help you to issue your CATs:
 
 <Tabs
-  defaultValue="mac"
-  groupId="os"
-  values={[
-    {label: 'Linux/macOS', value: 'mac'},
- {label: 'Windows', value: 'windows'},
- ]}>
-  <TabItem value="mac">
+defaultValue="mac"
+groupId="os"
+values={[
+{label: 'Linux/macOS', value: 'mac'},
+{label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="mac">
 
 Your Linux installation may not come with Python's development tools installed by default. To be sure that these tools are installed, run:
 
@@ -206,6 +206,7 @@ You might receive an error such as ERROR: Failed building wheel for CAT-admin-to
 </Tabs>
 
 ---
+
 <br/>
 
 Your environment should be all set, but let's make sure:
