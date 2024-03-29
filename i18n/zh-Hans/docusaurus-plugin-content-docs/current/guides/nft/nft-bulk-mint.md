@@ -105,6 +105,7 @@ python -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -113,6 +114,7 @@ python3 -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -196,7 +198,7 @@ If you ever need to display your address, run `chia keys show`. This command wil
 
 6. In order to continue, you will need to have some TXCH in your wallet. If your total balance is 0, you can obtain 1 TXCH from our faucet. Copy the value of "First wallet address:" from the output of the `chia keys show` command. It will be a long string beginning with "txch".
 
-Open our [testnet faucet page](https://testnet11-faucet.chia.net "Chia's testnet11 faucet link"). Paste your address and click "Submit".
+Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit". Paste your address and click "Submit".
 
 You will receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you will receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your coins to arrive before continuing.
 
@@ -206,12 +208,12 @@ You will receive this message: `Accepted. Your request is in the queue and will 
 mkdir ~/.chia/mainnet/db
 ```
 
-8. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called `blockchain_v2_testnet11.sqlite`.
+8. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called `blockchain_v2_testnet10.sqlite`.
 
 Move the database to the folder you just created:
 
 ```bash
-mv ~/Downloads/blockchain_v2_testnet11.sqlite ~/.chia/mainnet/db
+mv ~/Downloads/blockchain_v2_testnet10.sqlite ~/.chia/mainnet/db
 ```
 
 9. Start the full node, which will begin syncing to the database file:
@@ -232,9 +234,9 @@ chia show -s
 Eventually, it will say `Full Node Synced`:
 
 ```text
-Network: testnet11    Port: 58444   RPC Port: 8555
+Network: testnet10    Port: 58444   RPC Port: 8555
 Node ID: 82a73b06b3a5f9493a3ac4e3d903026b39c85b748158ba41c623d531947f2a2a
-Genesis Challenge: 37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615
+Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
 Current Blockchain Status: Full Node Synced
 ```
 
@@ -597,7 +599,7 @@ This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
    - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
-   - `-o`: _Not set._ In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
+   - `-o`: _Not set._ In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.) We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
 
 ```bash
 chianft submit-spend-bundles -m 10 output.pkl
