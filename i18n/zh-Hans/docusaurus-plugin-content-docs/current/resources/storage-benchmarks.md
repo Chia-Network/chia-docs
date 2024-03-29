@@ -77,10 +77,10 @@ make linux-AMD64
 - -i 1=read/re-read
 - -i 2=random-read/write
 - -i 8=random_mix
-- -e  Include flush (fsync,fflush) in the timing calculations
-- -r #  record size in Kb
-- -s #  file size in GB
-- -U  Mount point to remount between tests, this option will clear the block caches between tests. For this to work, mounting of the disk/volume needs to be configured in /etc/fstab.
+- -e Include flush (fsync,fflush) in the timing calculations
+- -r # record size in Kb
+- -s # file size in GB
+- -U Mount point to remount between tests, this option will clear the block caches between tests. For this to work, mounting of the disk/volume needs to be configured in /etc/fstab.
 
 ```
 /opt/iozone3_490/src/current/iozone -e -r 256 -s 32G -i 0 -i 1 -i 2 -i 8 -f /chia/scratch/disk01/tfile -U /chia/scratch/disk01
