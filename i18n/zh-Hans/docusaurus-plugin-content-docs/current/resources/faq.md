@@ -353,15 +353,15 @@ Chia began using version 2 of its blockchain database in 2022. Version 1 has sin
 
 Version 2 of the database is still written in SQLite, but it has undergone a series of optimizations from version 1, such as storing hashes in binary, rather than human-readable hex format. It also is more compressed than version 1. These two factors combined have resulted in an approximately 45% reduction in the size of the database, as well as a slight improvement in its performance.
 
-When you install a brand new full node, version 2 of the database will be created when you run `chia init`.
+If you install a brand new full node in Chia 1.3 or later, version 2 of the database will be created when you run `chia init`. If you want to stick with version 1, simply run `chia init --v1-db` instead.
 
-If you are upgrading from Chia 1.x to 2.1 or later (which is required due to the [hard fork](/consensus-forks/)), you will no longer be able run with version 1 of the database. In this case, your options are to download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
+If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli). In this case, your options are to download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
 
 #### About the upgrade process
 
 If you still have a copy of version 1 of the database, you can upgrade it to version 2. This upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli/#upgrade). Be sure you have enough free space on the disk that contains your database file to write the new file.
 
-The upgrade could take several hours. After it has completed, run `chia start farmer -r` to restart your farmer and switch to the new database.
+The upgrade could take several hours. The upgrade could take several hours, so feel free to perform it at your leisure. After the upgrade has completed, run `chia start farmer -r` to restart your farmer and switch to the new database.
 
 Note that the new database will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
 
@@ -507,7 +507,7 @@ If you believe your balance is incorrect, changing `initial_num_public_keys` is 
 The Chia database (db) is located in the `db/` directory inside the `.chia/mainnet/` directory. The `.chia/` directory will be found in your user's home directory. You will find the testnet database in the same `db/` directory if you are using testnet. The `.chia/` directory will be found in your user's home directory. You will find the testnet database in the same `db/` directory if you are using testnet.
 
 - mainnet database filename: `blockchain_v2_mainnet.sqlite`
-- testnet database filename: `blockchain_v2_testnet11.sqlite`
+- testnet database filename: `blockchain_v2_testnet10.sqlite`
 
 #### Windows Systems
 
@@ -542,7 +542,7 @@ To show hidden files on Mac finder click "COMMAND"+"SHIFT"+"." (period), on linu
 ### How do I use the Official Chia Blockchain snapshot torrent?
 
 1. Download the torrent file from https://www.chia.net/downloads/#database-checkpoint
-2. Use a torrent client to download the full db (I have used bittorrent and qbittorrent)
+2. Use a torrent client to download the full db. [Bittorrent](https://www.bittorrent.com/) is recommended but any torrent client will work.
 3. Unpack/reassemble the torrent file that was downloaded (on windows I used 7zip, Mac and linux have built in tools that work for this)
 4. Move the db to the correct folder (~\.chia\mainnet\db\) and update the name to "blockchain_v2_mainnet.sqlite" (removing the date information in the name)
 5. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2)
@@ -693,7 +693,7 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 6. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2).
 7. Launch chia and wait for a bit (the height to hash, sub-epoch, and peers files need to be built so this can take 5-10 minutes).
 
-### How can I connect to the same full node peers whenever I start Chia?
+### Why does my node have no connections? How can I get more connections?
 
 :::info
 
@@ -709,9 +709,9 @@ By default, when you start a Chia full node, it will attempt to connect to a ran
 
 Steps to connect to the same full node peers:
 
-1. Edit your config file; the default location is `~/.chia/mainnet/config/config.yaml`
+1. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\&#060;username&#062;\.chia\mainnet\config` on Windows.
 2. In the `full_node:` section, you should see the following line: `full_node_peers: []`
-   - If you do not see this line, you can either add it manually, or rename your config file and run `chia init` to create a new copy, which will contain this line.
+   - If you are upgrading an existing Chia installation, these settings won't be added automatically. In this case, you will need to either add them manually or delete `config.yaml` and run `chia init` to generate a new copy.
 3. Remove the square brackets (`[]`) and add add new lines with `- host` and `port`. Be sure to indent `port`, even though it does not have a hyphen. For example, to add two mainnet peers, use the following syntax:
    ```yaml
    full_node_peers:
@@ -928,7 +928,7 @@ The wallet no longer automatically adds unknown CATs wallets for CATs that may h
 
 ### How can I make a coin that may only be spent until a certain timestamp or block height?
 
-This capability is available by using the `ASSERT_BEFORE_*` conditions, originally added in [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md). In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](/conditions#assert-before-seconds-relative) for more info. In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](https://chialisp.com/conditions#assert-before-seconds-relative) for more info.
+This capability is available by using the `ASSERT_BEFORE_*` conditions, originally added in [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md). In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](https://chialisp.com/conditions#assert-before-seconds-relative) for more info. In order to prevent the possibility of bricking a coin, you are recommended to use these conditions only in a coin's _solution_ and not in its _puzzle_. See [our documentation](https://chialisp.com/conditions#assert-before-seconds-relative) for more info.
 
 ### Where is the executable file to start the reference wallet GUI located on Windows?
 
