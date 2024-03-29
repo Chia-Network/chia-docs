@@ -15,13 +15,13 @@ Chia的联合耕种协议（pooling protocol）允许将地块分配给“联合
 
 :::note
 
-The official pooling protocol was introduced in verion 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. If you have any of these "OG" plots, you can either recreate them using a plot NFT, or co-farm them on the same machine as your official pool plots.
+The official pooling protocol was introduced in verion 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. The official pooling protocol was introduced in verion 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. If you have any of these "OG" plots, you can either recreate them using a plot NFT, or co-farm them on the same machine as your official pool plots.
 
 :::
 
 ### 第一步：同步全节点和钱包
 
-In order to set up your farm for pooling, you need to have a synced full node and wallet. In the upper-right corner of your wallet, you should see green icons next to `FUll NODE` and `WALLET`:
+In order to set up your farm for pooling, you need to have a synced full node and wallet. In the upper-right corner of your wallet, you should see green icons next to `FUll NODE` and `WALLET`: In the upper-right corner of your wallet, you should see green icons next to `FUll NODE` and `WALLET`:
 
 <div style={{textAlign: 'left'}}>
  <img src="/img/pooling/01.png" alt="Sync status"/>
@@ -37,7 +37,7 @@ For more info, see our [blog post](https://www.chia.net/2023/03/19/introducing-c
 
 ### 第二步：获取一些XCH
 
-开始联合耕种之前，请确保钱包里面拥有一小笔XCH。 可以向朋友索取mojo（1 mojo等于0.000000000001 XCH），或者到https://faucet.chia.net/获取mojo。 You can use the receive address on the `Tokens` page, and you can also create new receive addresses. Any of the receive addresses can be used; they are all part of the same wallet.
+开始联合耕种之前，请确保钱包里面拥有一小笔XCH。 可以向朋友索取mojo（1 mojo等于0.000000000001 XCH），或者到https://faucet.chia.net/获取mojo。 You can use the receive address on the `Tokens` page, and you can also create new receive addresses. Any of the receive addresses can be used; they are all part of the same wallet. Any of the receive addresses can be used; they are all part of the same wallet.
 
 ### 第三步：创建联合耕种农田（Plot NFT）
 
@@ -71,9 +71,9 @@ Click the `Pooling` icon on the left side of your wallet, and click `JOIN A POOL
 
 <br />
 
-Select `Connect to pool`. You will need to enter a valid pool URL. For a list of Chia pools, see [chialinks.com](https://chialinks.com/pools).
+Select `Connect to pool`. You will need to enter a valid pool URL. Select `Connect to pool`. You will need to enter a valid pool URL. For a list of Chia pools, see [chialinks.com](https://chialinks.com/pools).
 
-Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
+Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes. You are also recommended to enter a blockchain fee. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/pooling/03.png" alt="Create a plot NFT" />
@@ -81,7 +81,7 @@ Creating a plot NFT requires an on-chain transaction that will cost one mojo. Yo
 
 <br />
 
-If you entered a valid pool URL, the details will pop up. If everything looks acceptable, click `CREATE`:
+If you entered a valid pool URL, the details will pop up. For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`: If everything looks acceptable, click `CREATE`:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/pooling/04.png" alt="Pool details" />
@@ -89,7 +89,7 @@ If you entered a valid pool URL, the details will pop up. If everything looks ac
 
 <br />
 
-Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear:
+Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear: While it is pending, a new screen will appear:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/pooling/05.png" alt="Plot NFT pending" />
@@ -110,12 +110,13 @@ A two-word name will automatically be assigned to your plot NFT.
 You can now start creating plots for this Plot NFT, which means these plots will be "pooling" and can earn rewards more often.
 
 Detailed instructions can be found in the "How to Plot" page:
-* Plotting from the [CLI](/plotting-how-to#cli-plotting)
-* Plotting from the [GUI](/plotting-how-to#gui-plotting)
+
+- Plotting from the [CLI](/plotting-how-to#cli-plotting)
+- Plotting from the [GUI](/plotting-how-to#gui-plotting)
 
 ### 第五步：管理联合耕种农田。
 
-You should see your plots in the `Pooling` dialog. The status should say `Pooling`. 在这里，可以看到当前农田的难度，已获得的积分（points）以及联合耕种池认为您拥有的积分（积分余额）。
+You should see your plots in the `Pooling` dialog. The status should say `Pooling``. 在这里，可以看到当前农田的难度，已获得的积分（points）以及联合耕种池认为您拥有的积分（积分余额）。 The status should say `Pooling`. 在这里，可以看到当前农田的难度，已获得的积分（points）以及联合耕种池认为您拥有的积分（积分余额）。
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/pooling/06.png" alt="Plot NFT details" />
@@ -127,7 +128,7 @@ You should see your plots in the `Pooling` dialog. The status should say `Poolin
 
 积分是一种计算地块找到了多少证明的方式。 每个K32地块每天平均会获得10个积分，与难度无关。 积分与Chia（XCH）不同。 积分只是反映了进行了多少耕种的值。 可以将其视为一种会计工具。 根据您获得的积分数，由联合耕种池定期发放XCH，并将您的积分重置为0，这是矿池的责任。
 
-To change pools, click on the `CHANGE POOL` button and enter the new pool URL. 请注意，更改联合耕种池有一个等待期，可能会持续几分钟到一小时左右。 请在此过程中不要关闭应用程序。 可以随意更改联合耕种池，而且不需要进行注册或支付任何罚款。 请注意，如果更改了联合耕种池，之前的耕种池不再有义务继续向你支付收益。
+To change pools, click on the `CHANGE POOL` button and enter the new pool URL. 请注意，更改联合耕种池有一个等待期，可能会持续几分钟到一小时左右。 请注意，更改联合耕种池有一个等待期，可能会持续几分钟到一小时左右。 请在此过程中不要关闭应用程序。 可以随意更改联合耕种池，而且不需要进行注册或支付任何罚款。 请注意，如果更改了联合耕种池，之前的耕种池不再有义务继续向你支付收益。
 
 您应该确保在过去24小时内的积分数是准确的。 每天每个k32地块应该获得大约10个积分，所以如果有100个k32的地块，每天应该获得大约1000个积分。 确保您的积分在持续增长。 支付后，积分余额将重置为零。 积分将随机出现，因为查找证明也是随机的。 因此，预计会有很多变化，并且会有好运和坏运的时候。
 
@@ -143,7 +144,7 @@ To change pools, click on the `CHANGE POOL` button and enter the new pool URL. �
 
 ### 多台电脑
 
-You can take your 24-word seed phrase and enter it into a different computer, and when it is synched, the current Plot NFTs and pool information will be automatically downloaded from the blockchain. All information about your pool, plot NFTs, and smart contract addresses is completely backed up on the blockchain, and can be recovered using the seed phrase.
+You can take your 24-word seed phrase and enter it into a different computer, and when it is synched, the current Plot NFTs and pool information will be automatically downloaded from the blockchain. All information about your pool, plot NFTs, and smart contract addresses is completely backed up on the blockchain, and can be recovered using the seed phrase. All information about your pool, plot NFTs, and smart contract addresses is completely backed up on the blockchain, and can be recovered using the seed phrase.
 
 ### 多个密钥
 
@@ -155,7 +156,7 @@ You can take your 24-word seed phrase and enter it into a different computer, an
 
 ### 区块链手续费
 
-Blockchain fees are paid to the creator of the block (farmers), to incentivize them to include your transaction. If the blockchain is busy, you might have to pay small a small fee to get your transaction included. (Creating a plot NFT and changing pools both require an on-chain transaction.)
+Blockchain fees are paid to the creator of the block (farmers), to incentivize them to include your transaction. If the blockchain is busy, you might have to pay small a small fee to get your transaction included. (Creating a plot NFT and changing pools both require an on-chain transaction.) If the blockchain is busy, you might have to pay small a small fee to get your transaction included. (Creating a plot NFT and changing pools both require an on-chain transaction.)
 
 ### 无效状态
 
@@ -165,8 +166,8 @@ Blockchain fees are paid to the creator of the block (farmers), to incentivize t
 
 区块奖励分为两部分，耕种池部分（总奖励的7/8）和农民部分（总奖励的1/8）。
 
--   耕种池部分将支付给耕种池，耕种池将根据其支付计划支付给您。 在GUI的“联合耕种”选项卡中可以进行配置：点击联合耕种农田界面右上角的三个点，然后点击“编辑支付地址”。 这也可以在`config.yaml`文件中的pool_list部分下的payout_instructions中进行配置。
--   The farmer portion will go to your farmer target address. 在GUI的“农场”选项卡中可以进行配置，或者在`config.yaml`文件中的farmer.xch_target_address下进行配置。
+- 耕种池部分将支付给耕种池，耕种池将根据其支付计划支付给您。 在GUI的“联合耕种”选项卡中可以进行配置：点击联合耕种农田界面右上角的三个点，然后点击“编辑支付地址”。 这也可以在`config.yaml`文件中的pool_list部分下的payout_instructions中进行配置。
+- The farmer portion will go to your farmer target address. 在GUI的“农场”选项卡中可以进行配置，或者在`config.yaml`文件中的farmer.xch_target_address下进行配置。
 
 ### 独自耕种
 
@@ -237,11 +238,11 @@ chia plotnft show
 
 ### 什么是联合耕种农田？
 
-一个联合耕种农田（plot NFT）是区块链上的智能币或代币，允许用户管理他们在耕种池中的成员资格。 Users can assign the plot NFT to any pool they want, at any point. 在生成地块时，可以选择一个农田，并且该地块将永远与该农田绑定在一起。 农田是“非同质化”的，因为它们不可互换；每个农田代表一个独特的耕种池合约。
+一个联合耕种农田（plot NFT）是区块链上的智能币或代币，允许用户管理他们在耕种池中的成员资格。 Users can assign the plot NFT to any pool they want, at any point. 在生成地块时，可以选择一个农田，并且该地块将永远与该农田绑定在一起。 在生成地块时，可以选择一个农田，并且该地块将永远与该农田绑定在一起。 农田是“非同质化”的，因为它们不可互换；每个农田代表一个独特的耕种池合约。
 
 ### 需要支付XCH来创建联合耕种农田或切换耕种池吗？
 
-Each plot NFT you create will require 1 mojo (1 trillionth of a XCH) + transaction fee. 切换耕种池只需要支付交易手续费。 如果您没有任何XCH，可以从Chia的官方水龙头获得100个mojo：https://faucet.chia.net/
+Each plot NFT you create will require 1 mojo (1 trillionth of a XCH) + transaction fee. 切换耕种池只需要支付交易手续费。 切换耕种池只需要支付交易手续费。 如果您没有任何XCH，可以从Chia的官方水龙头获得100个mojo：https://faucet.chia.net/
 
 ### 可以同时在旧土地和新地块上耕种吗？
 
@@ -258,7 +259,8 @@ Each plot NFT you create will require 1 mojo (1 trillionth of a XCH) + transacti
 ### Chia耕种池（pooling）与其他加密货币的不同之处在哪里？
 
 Chia has three major differences from most other crypto pooling protocol:
-1. Joining pools is permissionless. 在加入之前不需要在耕种池(矿池)服务器上注册账户。
+
+1. Joining pools is permissionless. 在加入之前不需要在耕种池(矿池)服务器上注册账户。 在加入之前不需要在耕种池(矿池)服务器上注册账户。
 2. Farmers receive 1/8 of the block reward plus transaction fees, while the pool receives 7/8 of the reward to redistribute (minus pool fees) amongst all pool participants.
 3. The farmer with the winning proof will farm the block, not the pool server.
 
@@ -312,15 +314,15 @@ Python
 
 ### 耕种池（矿池）代码中使用的变量名称
 
--   puzzle_hash: 一个地址（address），但是以不同的格式呈现。 地址是易于阅读的。
--   singleton: 一个智能硬币（合约），保证是唯一的，并由用户控制。
--   launcher_id: singleton的唯一标识
--   points: 积分（points）表示农民所完成的工作量。 它是通过提交的证明数量按难度加权计算得出的。 一个k32地块每天可以10个积分（points）。 要累积1000积分，需要在一天内完成 10 TiB 的耕种量。 这相当于PoW矿池中的份额。
+- puzzle_hash: 一个地址（address），但是以不同的格式呈现。 地址是易于阅读的。
+- singleton: 一个智能硬币（合约），保证是唯一的，并由用户控制。
+- launcher_id: singleton的唯一标识
+- points: 积分（points）表示农民所完成的工作量。 它是通过提交的证明数量按难度加权计算得出的。 一个k32地块每天可以10个积分（points）。 要累积1000积分，需要在一天内完成 10 TiB 的耕种量。 这相当于PoW矿池中的份额。
 
 ### How does one calculate a farmer's space?
 
-A farmer's space can be estimated by the number of points submitted over each unit of time, or points/second. 每个k32地块平均每天获得10个积分（points）。 所以每个地块的算力为 `10 / 86400 = 0.0001157 points/second`。 Per byte, that is `L = 0.0001157 / 108884400275 = 1.06259482265 * 10^-15`. To calculate total space `S`, take the total number of points found `P`, and the time period in seconds `T` and do `S = P / (L*T)`.  
-For example for 340 points in 6 hours, use `P=340, T=21600, L=1.06259482265e-15`, `S = 340/(21600*1.06259482265e-15) = 14,813,492,786,900 bytes`. Dividing by `1024^4` we get `13.4727932044 TiB`.
+A farmer's space can be estimated by the number of points submitted over each unit of time, or points/second. 每个k32地块平均每天获得10个积分（points）。 每个k32地块平均每天获得10个积分（points）。 所以每个地块的算力为 `10 / 86400 = 0.0001157 points/second`。 Per byte, that is `L = 0.0001157 / 108884400275 = 1.06259482265 * 10^-15`. Per byte, that is `L = 0.0001157 / 108884400275 = 1.06259482265 * 10^-15`. To calculate total space `S`, take the total number of points found `P`, and the time period in seconds `T` and do `S = P / (L*T)`.  
+For example for 340 points in 6 hours, use `P=340, T=21600, L=1.06259482265e-15`, `S = 340/(21600*1.06259482265e-15) = 14,813,492,786,900 bytes`. Dividing by `1024^4` we get `13.4727932044 TiB`. Dividing by `1024^4` we get `13.4727932044 TiB`.
 
 :::info
 
@@ -344,18 +346,18 @@ Note that this calculation is based on the new constant space factor estimation 
 
 对于单例，有一些操作可以执行：
 
--   更改耕种池（需要拥有者的签名）
--   退出耕种池，这是宣布您将更改耕种池（需要拥有者的签名）
--   领取奖励（不需要任何签名，奖励将发送到单例中指定的地址）
+- 更改耕种池（需要拥有者的签名）
+- 退出耕种池，这是宣布您将更改耕种池（需要拥有者的签名）
+- 领取奖励（不需要任何签名，奖励将发送到单例中指定的地址）
 
 ### How do pools collect rewards?
 
--   农民加入矿池后，他们会将自己的单例（singleton）分配给矿池的拼图哈希（pool_puzzle_hash）。
--   当农民赢得一个区块时，矿池奖励将被发送到p2_singleton_puzzle_hash（农民单例的拼图哈希）。
--   矿池将扫描区块链，查找发送给农民单例的新奖励。
--   矿池将向获胜的农民单例发送奖励认领请求。
--   农民单例将发送耕种池奖励部分XCH到pool_puzzle_hash（矿池拼图哈希）。
--   矿池将定期分发奖励给具有积分（points）的农民。
+- 农民加入矿池后，他们会将自己的单例（singleton）分配给矿池的拼图哈希（pool_puzzle_hash）。
+- 当农民赢得一个区块时，矿池奖励将被发送到p2_singleton_puzzle_hash（农民单例的拼图哈希）。
+- 矿池将扫描区块链，查找发送给农民单例的新奖励。
+- 矿池将向获胜的农民单例发送奖励认领请求。
+- 农民单例将发送耕种池奖励部分XCH到pool_puzzle_hash（矿池拼图哈希）。
+- 矿池将定期分发奖励给具有积分（points）的农民。
 
 ### 如何判断服务器是否从特定客户端收到足够的部分证明（partials）？
 
@@ -392,5 +394,6 @@ Chia的分叉可以通过向农民目标地址发送1.75 XCH（Chia币）来轻�
 ### 在哪里观看关于Chia耕种池（矿池）技术问答视频呢？
 
 For those interested in the Chia Pools for Pool Operators video and presentation, you can find it here:
+
 - https://youtu.be/XzSZwxowPzw
 - https://www.chia.net/assets/presentations/2021-06-02_Pooling_for_Pool_Operators.pdf
