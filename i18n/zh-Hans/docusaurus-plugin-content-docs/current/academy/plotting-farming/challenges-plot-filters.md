@@ -60,7 +60,7 @@ About how often will a Timelord generate a new challenge?
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-About every 9 seconds
+`"About every 9 seconds"`
 
 </details>
 
@@ -75,7 +75,8 @@ What are the two significant benefits of using a plot filter?
 <summary> Answer (expand when ready to see the answer)  </summary>
 
 1. It further decentralizes the network.
-2. It reduces the amount of compute needed, improving network efficiency
+2. 1. It further decentralizes the network.
+   2. It reduces the amount of compute needed, improving network efficiency
 
 </details>
 
