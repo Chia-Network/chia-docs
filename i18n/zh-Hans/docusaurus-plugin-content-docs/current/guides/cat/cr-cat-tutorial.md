@@ -27,27 +27,29 @@ This guide was creating using testnet11. The example commands use a fee of 100 m
 
 ## Definitions
 
-* **Decentralized Identifier (DID)** -- An identifier that enables verifiable, decentralized digital identity
-* **Verifiable Credential (VC)** -- Allows someone or something to prove that a subject belongs to a certain category or categories, such as being a US citizen. One type of VC is issued by a Know Your Customer (KYC) provider, who must perform this verification.
-* **Chia Asset Tokens (CATs)** -- Fungible tokens on the Chia blockchain
+- **Decentralized Identifier (DID)** -- An identifier that enables verifiable, decentralized digital identity
+- **Verifiable Credential (VC)** -- Allows someone or something to prove that a subject belongs to a certain category or categories, such as being a US citizen. One type of VC is issued by a Know Your Customer (KYC) provider, who must perform this verification.
+- **Chia Asset Tokens (CATs)** -- Fungible tokens on the Chia blockchain
 
 ## Setup
 
 ### 先决条件
 
 In order to mint CR-CATs, you will need to have:
-* A synced Chia wallet, running version 2.0 or later (a full node is _not_ required)
-* At least one DID to be used as a trusted provider
-* A sufficient amount of XCH or TXCH for the minting. As a reminder, each CAT consists of 1000 mojos. If you want to mint 1 billion CATs, you will need 1 trillion mojos (1 XCH) for the minting.
-* Sufficient funds to cover blockchain fees, the amount of which depends on how busy the blockchain is at any moment
+
+- A synced Chia wallet, running version 2.0 or later (a full node is _not_ required)
+- At least one DID to be used as a trusted provider
+- A sufficient amount of XCH or TXCH for the minting. As a reminder, each CAT consists of 1000 mojos. If you want to mint 1 billion CATs, you will need 1 trillion mojos (1 XCH) for the minting.
+- Sufficient funds to cover blockchain fees, the amount of which depends on how busy the blockchain is at any moment
 
 We have faucets available if you don't have sufficient funds to get started:
-* [testnet](https://testnet11-faucet.chia.net/)
-* [mainnet](https://faucet.chia.net/)
+
+- [testnet](https://testnet11-faucet.chia.net/)
+- [mainnet](https://faucet.chia.net/)
 
 :::warning important
 
-It is possible to brick* funds by sending them to an address without the appropriate credentials, as will be demonstrated later in this guide. You are therefore recommended to test minting CR-CATs on the testnet or on a simulator prior to minting them on mainnet. If you are unsure of how to configure your wallet to use the testnet, see our [guide](https://docs.chia.net/guides/chialisp-testnet-setup).
+It is possible to brick\* funds by sending them to an address without the appropriate credentials, as will be demonstrated later in this guide. You are therefore recommended to test minting CR-CATs on the testnet or on a simulator prior to minting them on mainnet. If you are unsure of how to configure your wallet to use the testnet, see our [guide](https://docs.chia.net/guides/chialisp-testnet-setup).
 
 \* Technically, the funds will remain recoverable, but this process will not be easy.
 :::
@@ -70,64 +72,64 @@ We will use three separate Chia wallets, which have been created beforehand usin
 
 #### Authorized Provider Wallet
 
-  * Owns one DID -- `did:chia:1w4gf5eyensd37xa0x7aj27fe4cr9tqmf46m272suve5n4q2draesd0t54c`
-  * Used this DID to mint a VC with launcher ID `9b6c65bd82ebe139ad5785ffdf99f6fe8ccbedb62a7ba2560989ef4e8a00ec86`
-    * Added two proofs: `test_proof1` and `test_proof2`
-    * "Transferred" this VC to the same wallet
-  * Minted another VC with the same proofs and transferred it to the VC Holder Wallet (see next section)
-  * This wallet will issue the CR-CATs and send some of them to the VC Holder
+- Owns one DID -- `did:chia:1w4gf5eyensd37xa0x7aj27fe4cr9tqmf46m272suve5n4q2draesd0t54c`
+- Used this DID to mint a VC with launcher ID `9b6c65bd82ebe139ad5785ffdf99f6fe8ccbedb62a7ba2560989ef4e8a00ec86`
+  - Added two proofs: `test_proof1` and `test_proof2`
+  - "Transferred" this VC to the same wallet
+- Minted another VC with the same proofs and transferred it to the VC Holder Wallet (see next section)
+- This wallet will issue the CR-CATs and send some of them to the VC Holder
 
-  The CLI view of the Authorized Provider's wallet is as follows:
+The CLI view of the Authorized Provider's wallet is as follows:
 
-  ```bash
-  Balances, fingerprint: 3152280463
+```bash
+Balances, fingerprint: 3152280463
 
-  Chia Wallet:
-     -Total Balance:         0.999499999997 txch (999499999997 mojo)
-     -Pending Total Balance: 0.999499999997 txch (999499999997 mojo)
-     -Spendable:             0.999499999997 txch (999499999997 mojo)
-     -Type:                  STANDARD_WALLET
-     -Wallet ID:             1
+Chia Wallet:
+   -Total Balance:         0.999499999997 txch (999499999997 mojo)
+   -Pending Total Balance: 0.999499999997 txch (999499999997 mojo)
+   -Spendable:             0.999499999997 txch (999499999997 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
 
-  Profile 1:
-     -Total Balance:         1.0
-     -Pending Total Balance: 1.0
-     -Spendable:             1.0
-     -Type:                  DECENTRALIZED_ID
-     -DID ID:                did:chia:1w4gf5eyensd37xa0x7aj27fe4cr9tqmf46m272suve5n4q2draesd0t54c
-     -Wallet ID:             2
+Profile 1:
+   -Total Balance:         1.0
+   -Pending Total Balance: 1.0
+   -Spendable:             1.0
+   -Type:                  DECENTRALIZED_ID
+   -DID ID:                did:chia:1w4gf5eyensd37xa0x7aj27fe4cr9tqmf46m272suve5n4q2draesd0t54c
+   -Wallet ID:             2
 
-  NFT Wallet:
-     -Total Balance:         0.0
-     -Pending Total Balance: 0.0
-     -Spendable:             0.0
-     -Type:                  NFT
-     -DID ID:                did:chia:1w4gf5eyensd37xa0x7aj27fe4cr9tqmf46m272suve5n4q2draesd0t54c
-     -Wallet ID:             3
+NFT Wallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  NFT
+   -DID ID:                did:chia:1w4gf5eyensd37xa0x7aj27fe4cr9tqmf46m272suve5n4q2draesd0t54c
+   -Wallet ID:             3
 
-  VCWallet:
-     -Total Balance:         0.0
-     -Pending Total Balance: 0.0
-     -Spendable:             0.0
-     -Type:                  VC
-     -Wallet ID:             4
-  ```
+VCWallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  VC
+   -Wallet ID:             4
+```
 
-  The CLI view of the Authorized Provider's VC is as follows:
+The CLI view of the Authorized Provider's VC is as follows:
 
-  ```bash
-  Proofs:
-    - f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
-      - test_proof1
-      - test_proof2
+```bash
+Proofs:
+  - f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
+    - test_proof1
+    - test_proof2
 
-  Launcher ID: 9b6c65bd82ebe139ad5785ffdf99f6fe8ccbedb62a7ba2560989ef4e8a00ec86
-  Coin ID: 1d24b1eb6909fcded260c7a6da092fc3d95156c217e6f7944ee3a75473730737
-  Inner Address: txch1jl9wvatyyy6lwt7eswa9ax7sydzr80tww6npfupd5jj95le3p4ssvcped6
-  Proof Hash: f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
-  ```
+Launcher ID: 9b6c65bd82ebe139ad5785ffdf99f6fe8ccbedb62a7ba2560989ef4e8a00ec86
+Coin ID: 1d24b1eb6909fcded260c7a6da092fc3d95156c217e6f7944ee3a75473730737
+Inner Address: txch1jl9wvatyyy6lwt7eswa9ax7sydzr80tww6npfupd5jj95le3p4ssvcped6
+Proof Hash: f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
+```
 
-  The VC is also viewable from the GUI:
+The VC is also viewable from the GUI:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/01_cr-cat.png" alt="Authorized provider VC" />
@@ -137,45 +139,45 @@ We will use three separate Chia wallets, which have been created beforehand usin
 
 #### VC Holder Wallet
 
-  * Holds a VC with launcher ID `5b5389e77b7ec8e9ebd7d92136254418ca674e382031d29aaa6ab75b7822792b` and two proofs: `test_proof1` and `test_proof2`. This VC was provided by the Authorized Provider wallet.
-  * Does not own a DID
-  * This wallet will receive some CR-CATs from the Authorized Provider
+- Holds a VC with launcher ID `5b5389e77b7ec8e9ebd7d92136254418ca674e382031d29aaa6ab75b7822792b` and two proofs: `test_proof1` and `test_proof2`. This VC was provided by the Authorized Provider wallet.
+- Does not own a DID
+- This wallet will receive some CR-CATs from the Authorized Provider
 
-  The CLI view of the VC Holder's wallet is as follows:
+The CLI view of the VC Holder's wallet is as follows:
 
-  ```bash
-  Balances, fingerprint: 455644407
+```bash
+Balances, fingerprint: 455644407
 
-  Chia Wallet:
-     -Total Balance:         0.5 txch (500000000000 mojo)
-     -Pending Total Balance: 0.5 txch (500000000000 mojo)
-     -Spendable:             0.5 txch (500000000000 mojo)
-     -Type:                  STANDARD_WALLET
-     -Wallet ID:             1
+Chia Wallet:
+   -Total Balance:         0.5 txch (500000000000 mojo)
+   -Pending Total Balance: 0.5 txch (500000000000 mojo)
+   -Spendable:             0.5 txch (500000000000 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
 
-  VCWallet:
-     -Total Balance:         0.0
-     -Pending Total Balance: 0.0
-     -Spendable:             0.0
-     -Type:                  VC
-     -Wallet ID:             2
-  ```
+VCWallet:
+   -Total Balance:         0.0
+   -Pending Total Balance: 0.0
+   -Spendable:             0.0
+   -Type:                  VC
+   -Wallet ID:             2
+```
 
-  The CLI view of the VC Holder's VC is as follows:
+The CLI view of the VC Holder's VC is as follows:
 
-  ```bash
-  Proofs:
-    - f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
-      - test_proof1
-      - test_proof2
+```bash
+Proofs:
+  - f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
+    - test_proof1
+    - test_proof2
 
-  Launcher ID: 5b5389e77b7ec8e9ebd7d92136254418ca674e382031d29aaa6ab75b7822792b
-  Coin ID: 87781377b81b54c56df4e1fc3558757065409fe65ecab16de89f8d07f7a7cecb
-  Inner Address: txch1hsyj53wz3wzznxdd0kupk075yj2muew8q49yj83yh5tde92x0uxst6ztpg
-  Proof Hash: f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
-  ```
+Launcher ID: 5b5389e77b7ec8e9ebd7d92136254418ca674e382031d29aaa6ab75b7822792b
+Coin ID: 87781377b81b54c56df4e1fc3558757065409fe65ecab16de89f8d07f7a7cecb
+Inner Address: txch1hsyj53wz3wzznxdd0kupk075yj2muew8q49yj83yh5tde92x0uxst6ztpg
+Proof Hash: f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
+```
 
-  The VC is also viewable from the GUI:
+The VC is also viewable from the GUI:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/02_cr-cat.png" alt="Holder VC" />
@@ -185,36 +187,37 @@ We will use three separate Chia wallets, which have been created beforehand usin
 
 #### XCH Wallet
 
-  * Does not hold any DIDs or VCs
-  * This wallet will demonstrate that CR-CATs can only be held by wallets that hold a required set of VCs
+- Does not hold any DIDs or VCs
+- This wallet will demonstrate that CR-CATs can only be held by wallets that hold a required set of VCs
 
-  The CLI view of the XCH wallet is as follows:
+The CLI view of the XCH wallet is as follows:
 
-  ```bash
-  Balances, fingerprint: 2811450244
+```bash
+Balances, fingerprint: 2811450244
 
-  Chia Wallet:
-     -Total Balance:         0.5 txch (500000000000 mojo)
-     -Pending Total Balance: 0.5 txch (500000000000 mojo)
-     -Spendable:             0.5 txch (500000000000 mojo)
-     -Type:                  STANDARD_WALLET
-     -Wallet ID:             1
-  ```
+Chia Wallet:
+   -Total Balance:         0.5 txch (500000000000 mojo)
+   -Pending Total Balance: 0.5 txch (500000000000 mojo)
+   -Spendable:             0.5 txch (500000000000 mojo)
+   -Type:                  STANDARD_WALLET
+   -Wallet ID:             1
+```
 
 ### CAT Admin Tool
 
 CR-CATS are issued from the CAT-admin-tool repository. Follow the instructions below to install it for your specific OS:
 
 <Tabs
-  defaultValue="mac"
-  groupId="os"
-  values={[
-    {label: 'Linux/macOS', value: 'mac'},
- {label: 'Windows', value: 'windows'},
- ]}>
-  <TabItem value="mac">
+defaultValue="mac"
+groupId="os"
+values={[
+{label: 'Linux/macOS', value: 'mac'},
+{label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="mac">
 
 Clone the repository:
+
 ```bash
 git clone https://github.com/Chia-Network/CAT-admin-tool.git -b main --recurse-submodules
 ```
@@ -253,6 +256,7 @@ pip install .
   <TabItem value="windows">
 
 Clone the repository:
+
 ```bash
 git clone https://github.com/Chia-Network/CAT-admin-tool.git -b main --recurse-submodules
 ```
@@ -327,18 +331,19 @@ If you prefer not to use this option, you can also manually add new CATs with th
 ### Setup summary
 
 At this point, in order to follow this tutorial you should have:
-* An instance of the cat-admin-tool repository installed locally
-  * Verifiable by running `cats --help` and `cdv --help` (you should see a usage statement)
-* An Authorized Provider's wallet, which holds:
-  * A DID
-  * A VC
-  * Some XCH or TXCH
-* A VC Holder's wallet, which holds:
-  * A VC
-  * Some XCH or TXCH
-* (If you want to test a failure case) A wallet that only holds some XCH or TXCH
-* (recommended) A synced full node
-* (recommended) Set `automatically_add_unknown_cats: true` in `config.yaml`
+
+- An instance of the cat-admin-tool repository installed locally
+  - Verifiable by running `cats --help` and `cdv --help` (you should see a usage statement)
+- An Authorized Provider's wallet, which holds:
+  - A DID
+  - A VC
+  - Some XCH or TXCH
+- A VC Holder's wallet, which holds:
+  - A VC
+  - Some XCH or TXCH
+- (If you want to test a failure case) A wallet that only holds some XCH or TXCH
+- (recommended) A synced full node
+- (recommended) Set `automatically_add_unknown_cats: true` in `config.yaml`
 
 With all of these setup steps complete, you are ready to mint CR-CATs!
 
@@ -381,20 +386,21 @@ Profile 1:
 In this example, we will create one thousand CR-CATs. Each CR-CAT will consist of 1000 mojos (same as standard CATs), so this example will require one million mojos, plus a transaction fee, for the issuance.
 
 When minting CR-CATs, you have two options for applying restrictions:
-* `-r`/`--proofs-checker` -- Use this option to supply a custom program for checking proofs (not yet supported in the reference wallet).
-* `-v`/`--cr-flag` -- Use this option to specify which proof(s) a VC must have in order to approve a transaction from this CR-CAT.
+
+- `-r`/`--proofs-checker` -- Use this option to supply a custom program for checking proofs (not yet supported in the reference wallet).
+- `-v`/`--cr-flag` -- Use this option to specify which proof(s) a VC must have in order to approve a transaction from this CR-CAT.
 
 For this example, we will use the `-v` option.
 
 We also need to add the `-sc` flag to select a valid coin to spend. Here is a summary of the options that will be used in this example:
 
-* `-l` -- the TAIL to use
-* `-t` -- the address to send the CR-CATs to upon being minted
-* `-a` -- the amount, in mojos, to use for the minting
-* `-m` -- an optional blockchain fee, in mojos
-* `-d` -- the authorized provider (DID) for issuing VCs for these CR-CATs
-* `-v` -- the string required in a VC proof for trading these CR-CATs
-* `-sc` -- return a valid coin to spend for the minting
+- `-l` -- the TAIL to use
+- `-t` -- the address to send the CR-CATs to upon being minted
+- `-a` -- the amount, in mojos, to use for the minting
+- `-m` -- an optional blockchain fee, in mojos
+- `-d` -- the authorized provider (DID) for issuing VCs for these CR-CATs
+- `-v` -- the string required in a VC proof for trading these CR-CATs
+- `-sc` -- return a valid coin to spend for the minting
 
 And here is the example command:
 
@@ -453,6 +459,7 @@ chia wallet show
 ```
 
 Response (truncated):
+
 ```bash
 ...
 CAT 3ba9e16dca39f3fb...:
@@ -542,10 +549,11 @@ CAT 3ba9e16dca39f3fb...:
 ```
 
 From the CLI, run a standard `send` command. In this example, we will use the following flags:
-  * `-i` -- The `Wallet ID` of the CR-CAT
-  * `-a` -- The number of CR-CATs to send
-  * `-m` -- An optional transaction free, in XCH/TXCH
-  * `-t` -- The address to send the CR-CATs to (the VC Holder's wallet address)
+
+- `-i` -- The `Wallet ID` of the CR-CAT
+- `-a` -- The number of CR-CATs to send
+- `-m` -- An optional transaction free, in XCH/TXCH
+- `-t` -- The address to send the CR-CATs to (the VC Holder's wallet address)
 
 ```bash
 chia wallet send -i 5 -a 100 -m 0.0001 -t txch1hsyj53wz3wzznxdd0kupk075yj2muew8q49yj83yh5tde92x0uxst6ztpg
@@ -612,9 +620,9 @@ CAT 3ba9e16dca39f3fb...:
 
 The VC Holder still needs to approve the new CR-CATs in order to add them to the wallet balance. This is accomplished with the `approve_r_cats` command. In this example, we will use the following flags:
 
-* `-i` -- The `Wallet ID` of the CR-CAT
-* `-a` -- The amount to approve
-* `-m` -- An optional transaction free, in XCH/TXCH
+- `-i` -- The `Wallet ID` of the CR-CAT
+- `-a` -- The amount to approve
+- `-m` -- An optional transaction free, in XCH/TXCH
 
 ```bash
 chia wallet vcs approve_r_cats -i 3 -a 100 -m 0.0001
@@ -672,7 +680,7 @@ In this example, as the **Authorized Provider**, click `CREATE AN OFFER` from th
 
   <br />
 
-Next, fill out the Offer Builder. For this example, we will offer to trade 99 CR-CATs for 0.1 TXCH: 
+Next, fill out the Offer Builder. For this example, we will offer to trade 99 CR-CATs for 0.1 TXCH:
 
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/10_cr-cat.png" alt="Offer Builder" />
@@ -712,9 +720,9 @@ At this point, the VC Holder wallet has full possession of the CR-CATs.
 
 Offers for CR-CATs can also be created and accepted via the CLI. For this example, the **Authorized Provider** will create an Offer using the following flags:
 
-* `-o` -- The Offer amount, using the syntax `<Wallet ID of asset to offer>`:`<amount to offer>`
-* `-r` -- The requested amount, using the syntax `<Wallet ID of asset to request>`:`<amount to request`
-* `-p` -- The path to the file name in which to save the Offer
+- `-o` -- The Offer amount, using the syntax `<Wallet ID of asset to offer>`:`<amount to offer>`
+- `-r` -- The requested amount, using the syntax `<Wallet ID of asset to request>`:`<amount to request`
+- `-p` -- The path to the file name in which to save the Offer
 
 ```bash
 chia wallet make_offer -o 5:33 -r 1:0.01 -p ~/Downloads/33_CR-CATs_for_0.01_TXCH.offer
@@ -870,10 +878,11 @@ However, this attempt will fail because the required proofs are missing:
   <br />
 
 The status of these CR-CATs is as follows:
-* They are pending approval in the XCH Wallet
-* The XCH Wallet is not allowed to approve them
-* The XCH Wallet is not allowed to send them elsewhere
-* The Authorized Provider's wallet no longer holds them
+
+- They are pending approval in the XCH Wallet
+- The XCH Wallet is not allowed to approve them
+- The XCH Wallet is not allowed to send them elsewhere
+- The Authorized Provider's wallet no longer holds them
 
 Note that even though nothing can be done with the funds in this state, they are still not bricked. The XCH Wallet will gain access to the funds if it obtains a VC with the required proof. However, assuming the XCH Wallet was not supposed to hold the correct VC in the first place, the Authorized Provider will presumably be reluctant to issue a VC to this wallet.
 
@@ -882,8 +891,9 @@ Note that even though nothing can be done with the funds in this state, they are
 For the reasons discussed above, exercise caution when sending CR-CATs to another wallet. In fact, because of the risk of making the funds difficult (if not impossible) to access, we recommend that you don't send CR-CATs in this way.
 
 Instead, you should use Offers to distribute CR-CATs, as they provide two important advantages:
-* If the recipient is allowed to hold the CR-CATs, they will be able to accept an Offer to receive those CATs. Once the Offer is complete, they will not need to submit an approval transaction.
-* If the recipient is not allowed to hold the CR-CATs, they will not be able to accept an Offer to receive those CATs in the first place.
+
+- If the recipient is allowed to hold the CR-CATs, they will be able to accept an Offer to receive those CATs. Once the Offer is complete, they will not need to submit an approval transaction.
+- If the recipient is not allowed to hold the CR-CATs, they will not be able to accept an Offer to receive those CATs in the first place.
 
 :::
 
