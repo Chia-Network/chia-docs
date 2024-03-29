@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 ## Cost/time tradeoffs
 
-生成地块需要计算资源，计算资源越多，生成地块时间越快。 With that in mind, it may be tempting to run out and buy the fastest computer you can find for plotting. But first, you should consider a few important points, and answer some related questions:
+生成地块需要计算资源，计算资源越多，生成地块时间越快。 With that in mind, it may be tempting to run out and buy the fastest computer you can find for plotting. But first, you should consider a few important points, and answer some related questions: But first, you should consider a few important points, and answer some related questions:
 
 - Most computers made within the last decade can be used to create Chia plots.
   - Do you already own a computer that is not being heavily used?
@@ -18,12 +18,12 @@ import TabItem from '@theme/TabItem';
 - Farming is a long-term endeavor.
   - If you do buy a plotting computer, will the time saved on plotting justify its cost?
 
-Everyone needs to decide for themselves what makes the most economic sense. With plotting, often it comes down a simple tradeoff of either:
+Everyone needs to decide for themselves what makes the most economic sense. With plotting, often it comes down a simple tradeoff of either: With plotting, often it comes down a simple tradeoff of either:
 
 - Spend money on a computer, plot faster, and earn rewards sooner, or
 - Don't spend money, plot slower, and earn rewards later
 
-[ChiaCalculator.com](https://chiacalculator.com/) will help you to understand this tradeoff, along with more nuanced factors. Many farmers find that they will make more money by using the equipment they already own.
+[ChiaCalculator.com](https://chiacalculator.com/) will help you to understand this tradeoff, along with more nuanced factors. [ChiaCalculator.com](https://chiacalculator.com/) will help you to understand this tradeoff, along with more nuanced factors. Many farmers find that they will make more money by using the equipment they already own.
 
 If you do decide to buy hardware, this page will help you to decide what might work best for your farm.
 
@@ -31,7 +31,7 @@ When looking for a plotting machine, the main components to consider are the tem
 
 ## Temporary storage
 
-While a Chia plot is being created, a significant amount of temporary data must be written, either entirely in memory, or mostly on disk (HDD or SSD). There are tradeoffs to using RAM, HDDs, and SSDs for plotting, including durability, speed, and cost:
+While a Chia plot is being created, a significant amount of temporary data must be written, either entirely in memory, or mostly on disk (HDD or SSD). There are tradeoffs to using RAM, HDDs, and SSDs for plotting, including durability, speed, and cost: There are tradeoffs to using RAM, HDDs, and SSDs for plotting, including durability, speed, and cost:
 
 - **RAM**
   - Doesn't wear out from Chia plotting
@@ -53,7 +53,7 @@ While a Chia plot is being created, a significant amount of temporary data must 
 
 CPUs and GPUs are both supported for plotting, with GPUs typically being faster.
 
-The **BladeBit CUDA** plotter requires an NVIDIA GPU with CUDA capability 5.2 and up, with at least 8GB of vRAM. It is supported on **Windows and Linux only.** MacOS support may be added in the future, but is not guaranteed.
+The **BladeBit CUDA** plotter requires an NVIDIA GPU with CUDA capability 5.2 and up, with at least 8GB of vRAM. It is supported on **Windows and Linux only.** MacOS support may be added in the future, but is not guaranteed. It is supported on **Windows and Linux only.** MacOS support may be added in the future, but is not guaranteed.
 
 The following table lists the general plotter types, along with their requirements, for creating k32 plots:
 
@@ -67,17 +67,17 @@ The following table lists the general plotter types, along with their requiremen
 
 :::note
 
-`GPU + HDD` is not recommended. The HDD is already the bottleneck, even with CPU plotting. Using a GPU with an HDD is not likely to improve plotting speed versus `CPU + HDD`.
+`GPU + HDD` is not recommended. The HDD is already the bottleneck, even with CPU plotting. `GPU + HDD` is not recommended. The HDD is already the bottleneck, even with CPU plotting. Using a GPU with an HDD is not likely to improve plotting speed versus `CPU + HDD`.
 
 :::
 
 :::info
 
-[Gigahorse](https://github.com/madMAx43v3r/chia-gigahorse) from madMAx is a third-party plotter capable of creating compressed plots. Depending on your setup, it may be a viable option, but do keep in mind that this plotter carries a dev fee, as explained in the link.
+[Gigahorse](https://github.com/madMAx43v3r/chia-gigahorse) from madMAx is a third-party plotter capable of creating compressed plots. Depending on your setup, it may be a viable option, but do keep in mind that this plotter carries a dev fee, as explained in the link. Depending on your setup, it may be a viable option, but do keep in mind that this plotter carries a dev fee, as explained in the link.
 
 :::
 
-If you want to create compressed plots, you will need to choose either `GPU + RAM`, `GPU + SSD`, or `CPU + RAM`. At some point, `CPU + SSD` might become capable of creating compressed plots as well, but for now this is not an option.
+If you want to create compressed plots, you will need to choose either `GPU + RAM`, `GPU + SSD`, or `CPU + RAM`. At some point, `CPU + SSD` might become capable of creating compressed plots as well, but for now this is not an option. At some point, `CPU + SSD` might become capable of creating compressed plots as well, but for now this is not an option.
 
 The rest of this page will list a few decent configurations, depending on your budget and goals.
 
@@ -150,9 +150,9 @@ GPUs
 
 ## Recommended plotting systems
 
-JM has created an excellent [plotting build guide](https://chiadecentral.com/gpu-plotting-build-guide/) with advice on which equipment provides the best performance for the money. This guide is well worth a visit if you are interested in creating compressed plots with BladeBit CUDA.
+JM has created an excellent [plotting build guide](https://chiadecentral.com/gpu-plotting-build-guide/) with advice on which equipment provides the best performance for the money. JM has created an excellent [plotting build guide](https://chiadecentral.com/gpu-plotting-build-guide/) with advice on which equipment provides the best performance for the money. This guide is well worth a visit if you are interested in creating compressed plots with BladeBit CUDA.
 
-We'll also list two recommendations here, which assume you will use pre-owned components wherever possible. eBay and Amazon are good places to shop around.
+We'll also list two recommendations here, which assume you will use pre-owned components wherever possible. eBay and Amazon are good places to shop around. eBay and Amazon are good places to shop around.
 
 ### Budget
 
@@ -183,7 +183,7 @@ Daily plot capacity: 60-95 TB
 
 ## Uncompressed plotters
 
-Most Chia farmers will want to create compressed plots. However, some will opt for uncompressed plots, including those who:
+Most Chia farmers will want to create compressed plots. However, some will opt for uncompressed plots, including those who: However, some will opt for uncompressed plots, including those who:
 
 - Intend to keep their farm small
 - Are not be primarily motivated by profit
