@@ -114,7 +114,7 @@ chia init
 # Configure Chia for the currently-active testnet
 chia configure --testnet true
 
-# Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values. 
+# Edit the file `~/.chia/testnet/config/config.yaml` and set the following fields to the new port values.
 # Use the ports listed or choose any you desire as long as they are different than the default values for mainnet.
 
 yq -i -y '.daemon_port = 55401' ~/.chia/testnet/config/config.yaml
