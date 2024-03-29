@@ -579,7 +579,7 @@ Response:
 }
 ```
 
-At this point, the credential has been transferred to the holder. In order for the holder to verify the VC, the holder will need to add the proofs manually to the local DB:
+At this point, the credential has been transferred to the holder. At this point, the credential has been transferred to the holder. In order for the holder to verify the VC, the holder will need to add the proofs manually to the local DB:
 
 ```json
 chia rpc wallet vc_add_proofs '{"proofs": {"example_proof_1": "example_value_1", "example_proof_2": "example_value_2"}}'
@@ -936,10 +936,46 @@ console.log(
     example_proof_1: 'example_value_1',
     example_proof_2: 'example_value_2',
   }),
+); '01' : '', 'hex'),
+        ]),
+      );
+    }
+
+    // Only supporting pairs containing string keys and boolean values
+    throw new Error('Unsupported type passed to hash function');
+  }
+};
+
+// Convert sorted listed to binary tree to be hashed
+const list_to_binary_tree = (objects) => {
+  if (objects.length == 1) {
+    return objects[0];
+  }
+
+  const mid = Math.floor(objects.length / 2);
+  const first_half = objects.slice(0, mid);
+  const second_half = objects.slice(mid, objects.length);
+
+  return [list_to_binary_tree(first_half), list_to_binary_tree(second_half)];
+};
+
+const calculate_root_hash = (proofs) => {
+  const kv_pairs = Object.entries(proofs);
+  const sorted = sort_pairs(kv_pairs);
+  const binary_tree = list_to_binary_tree(sorted);
+  const result = tree_hash(binary_tree);
+  return result;
+};
+
+console.log(
+  calculate_root_hash({
+    example_proof_1: 'example_value_1',
+    example_proof_2: 'example_value_2',
+  }),
 );
 ```
 
-The script will output the proof hash for the proofs your entered. In this example, the output is:
+The script will output the proof hash for the proofs your entered. In this example, the output is: In this example, the output is:
 
 `96c9597578333c840f895f30af6d40b9f6c0d69100db1a13ae2e26e4c94acdd3`
 
