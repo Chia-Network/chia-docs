@@ -36,9 +36,9 @@ For both of our [previous example](/consensus-challenges), as well as the next e
 :::
 
 - _sub-slot_iterations = 100,000,000_
-- _sp_interval_iterations = sub-slot_iterations / 64 = 1,562,500_
+- _sp_interval_iterations = `sub-slot_iterations` / 64 = 1,562,500_
 
-The farmer computes the **_required_iterations_** for each proof of space. If the _required_iterations < sp_interval_iterations_, the proof of space is eligible for inclusion into the blockchain. At this point, the farmer fetches the entire proof of space from disk (which requires 64 disk seeks, or 640 ms on a slow HDD), creates an unfinished block, and broadcasts it to the network.
+The farmer computes the **required_iterations** for each proof of space. If the required_iterations < sp_interval_iterations, the proof of space is eligible for inclusion into the blockchain. At this point, the farmer fetches the entire proof of space from disk (which requires 64 disk seeks, or 640 ms on a slow HDD), creates an unfinished block, and broadcasts it to the network. If the _required_iterations < sp_interval_iterations_, the proof of space is eligible for inclusion into the blockchain. At this point, the farmer fetches the entire proof of space from disk (which requires 64 disk seeks, or 640 ms on a slow HDD), creates an unfinished block, and broadcasts it to the network.
 
 :::info
 For the vast majority of eligible plots, _required_iterations_ will be far too high, since on average 32 will qualify for the whole network for each 10-minute sub-slot. This is a random process so it's possible (though unlikely) for a large number of proofs to qualify. Any plot that does meet the _required_iterations_ for a signage point will qualify as there is no rivalry between winning plots.
@@ -56,14 +56,14 @@ required_iterations = (difficulty
 
 The difficulty constant factor is based on the initial constants of the blockchain. For Chia, it is _2^67_. The difficulty varies per epoch, as explained in [Section 3.11](/epoch-and-difficulty) 'Section 3.11: Epochs and Difficulty Adjustment'). As you can see, the `sp_quality_string` is converted into a random number between 0 and 1, by dividing it by _2^256_, and then multiplied by the plot size.
 
-For consensus purposes, the `expected_plot_size` is `((2 * k) + 1) * (2 ** (k - 1))`, where `k>=32<50`. The actual plot size is that value times a constant factor, in bytes. This is because each entry in the plot is around `k+0.5` bits, and there are around `2 ** k` entries.
+For consensus purposes, the `expected_plot_size` is `((2 * k) + 1) * (2 ** (k - 1)).`, where k>=32\<50. The actual plot size is that value times a constant factor, in bytes. This is because each entry in the plot is around `k+0.5` bits, and there are around `2^(k)` entries. The actual plot size is that value times a constant factor, in bytes. This is because each entry in the plot is around `k+0.5` bits, and there are around `2 ** k` entries.
 
 The _signage_point_iterations_ is the number of iterations from the start of the sub-slot to the signage point.
 
-The _infusion_iterations_ is the number of iterations from the start of the sub-slot at which the block with at least the required quality can be included into the blockchain. This is calculated as:
+The **infusion_iterations** is the number of iterations from the start of the sub-slot at which the block with at least the required quality can be included into the blockchain. This is calculated as: This is calculated as:
 
 ```
-infusion_iterations = (signage_point_iterations + 3 * sp_interval_iterations + required_iterations) % sub-slot_iterations
+infusion_iterations = ( signage_point_iterations + 3 * sp_interval_iterations + required_iterations) % sub-slot_iterations
 ```
 
 Therefore, _infusion_iterations_ will be between 3 and 4 signage points after the current signage point. Farmers must submit their proofs and blocks before the infusion point is reached. The modulus is there to allow overflows into the next sub-slot, if the signage point is near the end of the sub-slot. This is expanded on in [Section 3.9](/overflow-blocks) 'Section 3.9: Overflow Blocks and Weight').
@@ -91,20 +91,16 @@ In Figure 5, the farmer creates the block at the time of the signage point, `b1'
 Recall that in this example,
 
 - _sub-slot_iterations = 100,000,000_
-- _sp_interval_iterations = 1,562,500_
+- _= (signage \* point \* sp \* interval_iterations) + (3 \* sp_interval_iterations) + required_iterations_
 
-For each of the 64 signage points, as they are released to the network every 9.375 seconds, or every 1,562,500 iterations, the farmer computes the plot filter and sees how many plots pass. For each passing plot, the farmer calculates _required_iterations_.
+For each of the 64 signage points, as they are released to the network every 9.375 seconds, or every 1.5625M iterations, the farmer computes the plot filter and sees how many plots pass. For each passing plot, the farmer calculates required_iterations. For each passing plot, the farmer calculates _required_iterations_.
 
-Let's say the farmer calculates _required_iterations < 1,562,500_ once in the sub-slot. (We'll assume the exact _required_iterations = 782,800_ in this instance.) Figure 5 shows this happening at the 20th signage point.
+Let's say the farmer calculates required_iterations < 1.5625M once in the sub-slot. (We'll assume the exact required_iterations = 0.7828M in this instance.) Figure 5 shows this happening at the 20th signage point. (We'll assume the exact _required_iterations = 782,800_ in this instance.) Figure 5 shows this happening at the 20th signage point.
 
-_infusion_iterations_ is then computed as:
+infusion_iterations is then computed as:
 
 ```
-infusion_iterations
-  = signage_point_iterations + (3 * sp_interval_iterations) + required_iterations
-  = (signage point * sp_interval_iterations) + (3 * sp_interval_iterations) + required_iterations
-  = (20 * 1,562,500) + (3 * 1,562,600) + 782,700
-  = 36,722,300
+infusion_iterations = signage_point_iterations + (3 \* sp_interval_iterations) + required_iterations
 ```
 
 After realizing they have won (at the 20th infusion point), the farmer fetches the whole proof of space, makes a block (optionally including transactions), and broadcasts this to the network. The block has until _infusion_iterations_ (typically a few seconds) to reach timelords, who will infuse the block, creating the infusion point VDFs. With these VDFs, the block can be finished and added to the blockchain by full nodes.
@@ -129,14 +125,14 @@ This begs the question: why not use even more signage points in the consensus? T
 
 **Quality string**: A small part of the proof of space, 2 _x values_ out of the total 64 _x values_, which can be retrieved efficiently from disk, and which values_to_fetch is determined by the signage point.
 
-**_sp_quality_string_**: A hash of the quality string concatenated with the challenge chain's signage point. This hash is what ultimately decides the "luck" of a certain proof, using the size of _required_iterations_
+**sp_quality_string**: A hash of the quality string concatenated with the challenge chain's signage point. This hash is what ultimately decides the "luck" of a certain proof, using the size of required_iterations. This hash is what ultimately decides the "luck" of a certain proof, using the size of _required_iterations_
 
-**_sp_interval_iterations_**: Defined as _floor(sub-slot_iterations / 64)_.
+**sp_interval_iterations**: Defined as floor(sub-slot_iterations / 64).
 
 **Signage points**: 64 intermediary points in time within a sub-slot in both the challenge and reward chains, for which VDFs are periodically released. At each signage point, a VDF output is created and broadcast through the network. The first signage point in the sub-slot is the challenge itself. Each block has a signage point such that the proof of space in the block must be eligible for that signage point.
 
-**_required_iterations_**: A number computed using the quality string, used to choose proofs of space which are eligible to make blocks. The vast majority of proofs of space will have _required_iterations_ which are too high, and thus not eligible for inclusion into the chain. This number is used to compute the infusion point.
+**required_iterations**: A number computed using the quality string, used to choose proofs of space which are eligible to make blocks. The vast majority of proofs of space will have required_iterations which are too high, and thus not eligible for inclusion into the chain. This number is used to compute the infusion point. The vast majority of proofs of space will have _required_iterations_ which are too high, and thus not eligible for inclusion into the chain. This number is used to compute the infusion point.
 
-**Infusion point**: The point in time at _infusion_iterations_ from the challenge point, for a proof of space with a certain challenge and _infusion_iterations_. At this point, the farmer's block gets infused into the reward chain VDF. The infusion point of a block is always between 3 and 4 signage points after the signage point of that block. Computed as _signage_point_iterations + 3 \* sp_interval_iterations + required_iterations_.
+**Infusion point**: The point in time at infusion_iterations from the challenge point, for a proof of space with a certain challenge and infusion_iterations. At this point, the farmer's block gets infused into the reward chain VDF. The infusion point of a block is always between 3 and 4 signage points after the signage point of that block. Computed as signage_point_iterations + 3 \* sp_interval_iterations + required_iterations. At this point, the farmer's block gets infused into the reward chain VDF. The infusion point of a block is always between 3 and 4 signage points after the signage point of that block. Computed as _signage_point_iterations + 3 \* sp_interval_iterations + required_iterations_.
 
 The delay between the signage point and infusion point has many benefits, including defense against orphaning and selfish farming, decreased forks, and no VDF pauses. This delay of around 28 seconds is given so that farmers have enough time to sign without delaying the slot VDF. Well-behaving farmers sign only one signage point with each proof of space, meaning that attackers cannot easily reorg the chain.
