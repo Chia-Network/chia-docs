@@ -96,3 +96,12 @@ When acquiring NFTs or tokens, you may need to make an offer for them. Offers ar
 By using offers you are embracing the decentralized nature of the Chia blockchain.
 
 [Read more about offers](https://chialisp.com/offers).
+
+## Run Chia Services in the Background
+
+Starting in version 2.3.0, this is possible. When you attempt to close the application, the confirmation window will now display a checkbox. If you want to continue running your full node, harvester, farmer, etc after closing the GUI, be sure to check the checkbox, as demonstrated in the following image:
+
+<p align='center'>
+  <img alt='offers' src='/img/gui/background_services.png' width='800' />
+</p>
+
