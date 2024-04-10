@@ -181,12 +181,18 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type    | Required | Description                                                                                                        |
-| :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------- |
-| id              | TEXT    | True     | The hexadecimal store ID                                                                                           |
-| changelist      | TEXT    | True     | A string representing the changelist                                                                               |
-| submit_on_chain | BOOLEAN | False    | Specify whether to submit the update to the blockchain (`True`), or to store it locally (`False`). Default: `True` |
-| fee             | TEXT    | False    | Set the fee for the transaction, in mojos                                                                          |
+| Flag            | Type    | Required | Description                                                                                                                                   |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | TEXT    | True     | The hexadecimal store ID                                                                                                                      |
+| changelist      | TEXT    | True     | A string representing the changelist                                                                                                          |
+| submit_on_chain | BOOLEAN | False    | Specify whether to submit the update to the blockchain (`True`), or to store it locally (`False`). Default: `True` (See info box for details) |
+| fee             | TEXT    | False    | Set the fee for the transaction, in mojos                                                                                                     |
+
+:::info
+
+The `submit_on_chain` flag was added in Chia version 2.3.0. In order to support the new functionality (submit an update off-chain), the schema for your `root` table will be upgraded automatically upon starting the DataLayer service. This upgrade takes about three minutes to complete.
+
+:::
 
 A few notes on the `changelist` option:
 
