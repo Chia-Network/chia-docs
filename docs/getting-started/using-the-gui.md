@@ -104,4 +104,3 @@ Starting in version 2.3.0, this is possible. When you attempt to close the appli
 <p align='center'>
   <img alt='offers' src='/img/gui/background_services.png' width='800' />
 </p>
-
