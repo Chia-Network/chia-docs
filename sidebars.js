@@ -246,7 +246,23 @@ module.exports = {
             'resources/k-sizes',
             'resources/faq',
             'resources/storage-benchmarks',
-            'resources/timelord-contest-rules',
+            {
+              type: 'category',
+              label: 'Timelord Contest',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'generated-index',
+                slug: '/resources/timelord-contest',
+                title: 'Timelord Contest',
+                description:
+                  "",
+              },
+              items: [
+                'resources/timelord-contest/timelord-contest',
+                'resources/timelord-contest/timelord-contest-rules',
+              ],
+            },
           ],
         },
       ],
