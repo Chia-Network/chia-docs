@@ -27,7 +27,7 @@ You can learn about potential attacks against Chia's network in the [Attacks and
 
 There are two primary types of Timelords: Regular and Blueboxes.
 
-The first is the core Timelord that takes in Proofs of Space and uses a single fastest core to perform repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/master/classgroups.pdf) as fast as possible. Beside each running VDF (referred to as a vdf_client in the application and source) is a set of proof generation threads that accumulate the proof that the time calculation's number of iterations was done correctly.
+The first is the core Timelord and can be either a software Timelord or a hardware Timelord (ASIC) that takes in Proofs of Space and uses a single fastest core to perform repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/master/classgroups.pdf) as fast as possible. Beside each running VDF (referred to as a vdf_client in the application and source) is a set of proof generation threads that accumulate the proof that the time calculation's number of iterations was done correctly.
 
 The second are Bluebox Timelords. Blueboxes are most any machine - especially things like old servers or gaming machines - that scour the historical chain looking for uncompressed proofs of time. So that the chain moves quickly, the regular Timelords use a faster method of generating proofs of time but the proofs are larger, which takes your Raspberry Pi a lot more time and effort to validate and sync the blockchain. A Bluebox picks up an uncompressed Proof of Time and recreates it, but this time with the slower and more compact proofs generated at the end. Those are then gossiped around to everyone so they can replace the large and slow to verify Proofs of Time with the compact and much quicker to validate version of exactly the same thing.
 
@@ -39,36 +39,17 @@ It's good to have a few Timelords out there. There can be things like routing fl
 
 The Company plans to run a few Timelords around the world - and some backups too - to ensure that all Farmers and nodes can hear the beat that the Timelords are calling.
 
-## Installing a Timelord
+For installation and usage documentation please refer [here](/timelords).
 
-:::info
-If you want to run a Timelord on Linux/MacOS, first follow the Install from Source instructions [here](/installation#from-source). Then run:
+## Troubleshooting a Timelord
 
-```bash
-. ./activate
-sh install-timelord.sh
-chia start timelord &
-```
-
-:::
-
-Timelords execute sequential verifiable delay functions (proofs of time or VDFs), that get added to blocks to make them valid. This requires fast CPUs and a few cores per VDF.
-
-Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows.
-
-### Regular Timelords
-
-On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.
-
-### Bluebox Timelords
-
-Once you build the Timelord with `sh install-timelord.sh` in the virtual environment, you will need to make two changes to `~/.chia/VERSION/config.yaml`. In the `timelord:` section, set `bluebox_mode:` to `True`. Then you need to proceed to the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap. The default settings may otherwise work but if the total effort is a little too much for whatever machine you are on you can also lower the `process_count:` from 3 to 2, or even 1, in the `timelord_launcher:` section. You know it is working if you see `VDF Client: Sent proof` in your logs at INFO level.
+For troubleshooting steps please refer to the documentation [here](/troubleshooting/timelords).
 
 ## The Future of Timelords
 
 In 2023, CNI received its first batch of ASIC timelords. When run as a cluster of three VDFs, these timelords could hit upwards of one million IPS. This was approximately four times the speed of the fastest non-ASIC timelords. After installing several timelords in strategic locations globally, and after thorough testing on private testnets, the company added the ASICs to a public testnet. Finally, after [years of designing](https://www.businesswire.com/news/home/20211013005324/en/Chia-Partners-With-Supranational-to-Create-Industry-Leading-Proof-of-Space-Time-Security) the ASICs and months of testing them, they were activated on mainnet in October 2023.
 
-The next step is to distribute some of the remaining ASIC timelords to a select list of applicants, as detailed in a [blog post](https://www.chia.net/2023/10/26/asic-timelords-faster-than-fast-chia-network/). This process will ensure a high amount of global redundancy on this critical network infrastructure.
+The next step was to distribute some of the remaining ASIC timelords to a select list of applicants, as detailed in a [blog post](https://www.chia.net/2023/10/26/asic-timelords-faster-than-fast-chia-network/). This process ensures a high amount of global redundancy on this critical network infrastructure.
 
 Of course, as technology improves, the ASIC design will need to be updated. However, this process is extremely costly, and the current generation is already pushing upon the limits imposed by the laws of physics. We expect the current crop to remain the fastest timelords in the world for years to come.
 
