@@ -13,7 +13,7 @@ Contest rules can be found [here](/timelord-contest-rules)
 
 We’re holding a contest for community members! You could win a timelord for submitting a winning Chia Academy course.
 
-Not the strongest community-created courses for Chia Academy. Courses should be relevant to the Chia community and blockchain and neutral to third-party projects.
+We're awarding one timelord to 3 separate individuals and awarding up to 5 timelords to members of one team to the strongest community-created courses for Chia Academy. Courses should be relevant to the Chia community and blockchain and neutral to third-party projects.
 To enter, do the following between May 1-May 31, 2024 at 11:59 p.m. EST:
 
 1. Create a Chia Academy course in written or video form and submit it to the contest using this [format](https://docs.chia.net/academy-overview/) and this [template](https://github.com/Chia-Network/chia-docs/blob/33269c4ab9a661fbaf2a61aaa062e88639e17f8f/docs/academy/academy-intro/academy-overview.md).
