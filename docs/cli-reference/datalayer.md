@@ -391,7 +391,17 @@ Options:
 | -r            | --root_hash     | TEXT    | False    | The hexadecimal root hash                                                                                   |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
+| -p            | --page          | INTEGER | False    | Enables pagination of the output and requests a specific page                                               |
+|               | --max-page-size | INTEGER | False    | Set how many bytes to be included in a page, if pagination is enabled [Default: 40 MB]                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max-page-size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -430,7 +440,17 @@ Options:
 | -r            | --root_hash     | TEXT    | False    | The hexadecimal root hash                                                                                   |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
+| -p            | --page          | INTEGER | False    | Enables pagination of the output and requests a specific page                                               |
+|               | --max-page-size | INTEGER | False    | Set how many bytes to be included in a page, if pagination is enabled [Default: 40 MB]                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max-page-size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -480,7 +500,17 @@ Options:
 | -hash_2       | --hash_2        | TEXT    | True     | The second hash to compare                                                                                  |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
+| -p            | --page          | INTEGER | False    | Enables pagination of the output and requests a specific page                                               |
+|               | --max-page-size | INTEGER | False    | Set how many bytes to be included in a page, if pagination is enabled [Default: 40 MB]                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max-page-size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -1091,6 +1121,8 @@ Options:
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
+|               | --submit        | None    | False    | Set to submit the result on chain [Default: don't submit]                                               |
+|               | --no-submit     | None    | False    | Set to explicitly specify not to submit the result on chain [Default: don't submit]                     |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                            |
 
 A few notes on the `-d` / `--changelist` option:
