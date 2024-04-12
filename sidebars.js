@@ -246,6 +246,23 @@ module.exports = {
             'resources/k-sizes',
             'resources/faq',
             'resources/storage-benchmarks',
+            {
+              type: 'category',
+              label: 'Timelord Contest',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'generated-index',
+                slug: '/resources/timelord-contest',
+                title: 'Timelord Contest',
+                description:
+                  "We’re holding a contest for community members! May 1-May 31, 2024 at 11:59 p.m. EST, you could win a timelord for submitting a winning Chia Academy course. Not the strongest community-created courses for Chia Academy. Courses should be relevant to the Chia community and blockchain and neutral to third-party projects.",
+              },
+              items: [
+                'resources/timelord-contest/timelord-contest',
+                'resources/timelord-contest/timelord-contest-rules',
+              ],
+            },
           ],
         },
       ],
