@@ -11,7 +11,7 @@ Contest rules can be found [here](/timelord-contest-rules)
 
 :::
 
-We’re holding a contest for community members! You could win a timelord for submitting a winning Chia Academy course. 
+We’re holding a contest for community members! You could win a timelord for submitting a winning Chia Academy course.
 
 Not the strongest community-created courses for Chia Academy. Courses should be relevant to the Chia community and blockchain and neutral to third-party projects.
 To enter, do the following between May 1-May 31, 2024 at 11:59 p.m. EST:
