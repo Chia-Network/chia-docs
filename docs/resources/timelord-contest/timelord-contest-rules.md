@@ -12,7 +12,7 @@ Chia Network Inc. (“**the Company**”, “**we**”, or “**us**”) invites
 - Submissions (including your personal contact details) must be true, accurate, original, non-infringing and not in violation of any third-party rights (including, by way of example and not limitation, the rights of privacy and publicity), exclusively created, and owned by you, and you must have all rights necessary to submit the Submission.
 - Submissions may not contain information of any individuals who have not provided their explicit, legally enforceable authorization or any other sensitive information.
 - All Submission materials must be in English or, if not in English, you must provide an English translation of the Submission.
-- Submissions must be received by the Company from 12:00am Eastern Time February 19, 2024 through 11:59pm Eastern Term March 3, 2024.
+- Submissions must be received by the Company from EST 12:00am Eastern Time May 1, 2024 through 11:59pm Eastern Term May 31, 2024.
 - The Company reserves the right to reject any applicant or Submission for any or no reason in its sole discretion and without notice.
 
 ## 2. Eligibility.
