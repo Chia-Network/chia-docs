@@ -10,10 +10,7 @@ import TabItem from '@theme/TabItem';
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
 :::
 
-Detailed information regarding timelord architecture can be found [here](/timelord-architecture)
-
 ---
-
 ## Timelord Requirements and Dependencies
 
 :::info
