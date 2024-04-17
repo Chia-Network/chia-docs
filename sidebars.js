@@ -20,6 +20,7 @@ module.exports = {
       items: [
         'getting-started/installation',
         'getting-started/testnets',
+        'getting-started/timelords',
         {
           type: 'category',
           label: 'Plotting',
@@ -118,6 +119,7 @@ module.exports = {
         'troubleshooting/node-syncing',
         'troubleshooting/logging-reference',
         'troubleshooting/locating-keys',
+        'troubleshooting/timelords',
       ],
     },
     {
