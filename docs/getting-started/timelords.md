@@ -13,6 +13,7 @@ import TabItem from '@theme/TabItem';
 Detailed information regarding timelord architecture can be found [here](/timelord-architecture)
 
 ---
+
 ## Timelord Requirements and Dependencies
 
 :::info
