@@ -206,7 +206,7 @@ NOTE - make sure to replace `USERNAME` with your system's username.
 
 ```bash
 # Create systemd service
-sudo nano /etc/systemd/system/chia-exporter.service
+sudo nano /etc/systemd/system/chiahw-vdf.service
 
 # Copy the data from below replacing USERNAME with your system's username
 ```
@@ -237,21 +237,21 @@ CTRL-X # exit the nano editor
 
 # Reload and start the systemd services
 sudo systemctl daemon-reload
-sudo systemctl enable chia-exporter.service
-sudo systemctl start chia-exporter.service
-sudo systemctl status chia-exporter.service
+sudo systemctl enable chiahw-vdf.service
+sudo systemctl start chiahw-vdf.service
+sudo systemctl status chiahw-vdf.service
 ```
 
 ### Using the systemd Service
 
 Restart the ASIC systemd software:
-`sudo systemctl restart chia-exporter.service`
+`sudo systemctl restart chiahw-vdf.service`
 
 Stop the ASIC systemd software:
-`sudo systemctl stop chia-exporter.service`
+`sudo systemctl stop chiahw-vdf.service`
 
 Check status of the ASIC systemd software:
-`sudo systemctl status chia-exporter.service`
+`sudo systemctl status chiahw-vdf.service`
 
 ## Troubleshooting a Timelord
 
