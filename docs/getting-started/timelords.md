@@ -270,7 +270,7 @@ Join Our [Discord](https://discord.gg/chia) and jump into the #support channel f
 ### What are the hardware requirements for running a Timelord?
 
 There are no specific requirements as timelords are a fastest wins process. This means that those with higher end hardware are more likely to generate Proofs of Time than those with lower end hardware.
-Currently, a modern gaming PC with 8 cores and 8 GB of RAM is recommended.
+Currently, a modern gaming PC with 8 cores and 8 GB of RAM is recommended when running an ASIC or Bluebox timelord. With the release of ASIC timelords, software timelords will have a near impossible time competing. It is recommended to only run a software timelord for experimentation and learning purposes.
 
 ### Can a Singe ASIC Compete with an ASIC Cluster?
 
@@ -280,6 +280,10 @@ This means that the ASIC cluster will always have an advantage but there are tim
 ### Can I Overclock the ASIC to Get More Performance or Higher IPS?
 
 While one can overclock the ASIC we very strongly recommend against doing such. Overclocking the ASICs will lead to diminishing longevity of the machine and only provides a minor increase in performance making it inefficient to overclock an ASIC.
+
+## What Voltage Should I Use for an ASIC Timelord?
+
+It is highly recommend to use the default `0.88` voltage.
 
 ### What OS is Compatible with Running a Timelord?
 
