@@ -117,6 +117,20 @@ chia start node timelord &
 Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
 :::
 
+#### ASIC Cluster Setup
+
+It is recommended to use three host machines for ASIC clusters in a setup similar to:
+
+```
+                                                  _____ ASIC 2 (ASIC software only, IP set to main machine)
+                                                 /
+Main Machine (ASIC 1)  --------------------------
+(chia node, timelord-only, and ASIC software)    \_____  ASIC 3 (ASIC software only, IP set to main machine)
+```
+
+For an ASIC cluster you will need to follow the below install steps on the main machine to include the chia node, timelord-only, and ASIC software processes are all being run on the main machine.  
+The additional ASIC hosts will only need the ASIC software installed (noted in the below install instructions).
+
 ```bash
 # Install packages
 sudo apt-get update
@@ -125,19 +139,19 @@ sudo apt-get install ca-certificates curl gnupg
 # Add GPG key
 curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/chia.gpg
 
-# Set up repositories (first is for chia and second is for the hw vdf repo)
+# Set up repositories (first is for chia and second is for the hw vdf repo, for clusters the chia software is only needed on the main machine all other hosts need the hw vdf repo)
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/debian/ stable main" | sudo tee /etc/apt/sources.list.d/chia.list > /dev/null
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/chiavdf-hw/debian/ stable main" | sudo tee /etc/apt/sources.list.d/chiavdf-hw.list > /dev/null
 sudo apt-get update
 
-# Install chia-blockchain and ASIC repos
+# Install chia-blockchain and ASIC repos (for clusters the chia software is only needed on the main machine all other hosts need the hw vdf repo)
 sudo apt-get install chia-blockchain
 sudo apt-get install chiavdf-hw
 
-# Launch the ASIC timelord services (if using a cluster verify the IP address is correct and launch with only 1 for each)
+# Launch the ASIC timelord services (for clusters verify the IP address is correct and launch with only 1 VDF for each)
 hw_vdf_client --ip 127.0.0.1 8000 3
 
-# Launch timelord services in chia
+# Launch timelord services in chia (for clusters only the main machine should be running the node and timelord services)
 chia start node timelord-only
 ```
 
@@ -152,7 +166,7 @@ Detailed information about the hw_vdf_client parameters can be found [here](/asi
 :::
 
 ```bash
-# Download chia-blockchain
+# Download chia-blockchain (for clusters the chia software is only needed on the main machine all other hosts need the hw vdf repo)
 git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
 
 # Change directory
@@ -189,17 +203,17 @@ sudo apt-get install ca-certificates curl gnupg
 ## Add GPG key
 curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/chia.gpg
 
-## Set up repositories (first is for chia and second is for the hw vdf repo)
+## Set up hw vdf repository (for clusters the chia software is only needed on the main machine all other hosts need the hw vdf repo)
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/chiavdf-hw/debian/ stable main" | sudo tee /etc/apt/sources.list.d/chiavdf-hw.list > /dev/null
 sudo apt-get update
 
 ## Install ASIC repo
 sudo apt-get install chiavdf-hw
 
-# Launch the ASIC timelord services (if using a cluster verify the IP address is correct and launch with only 1 for each)
+# Launch the ASIC timelord services (for clusters verify the IP address is correct and launch with only 1 VDF for each)
 hw_vdf_client --ip 127.0.0.1 8000 3
 
-## Launch the timelord-only chia service
+## Launch the timelord-only chia service (for clusters only the main machine should be running the node and timelord services)
 chia start node timelord-only
 
 ```
