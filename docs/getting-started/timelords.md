@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
 :::
 
-Timelord architecture information can be found [here](/timelord-architecture)
+Timelord architecture information can be found [here](/timelord-architecture).  
 The hw_vdf_client parameter information can be found [here](/asic-cli).
 
 ---
@@ -18,7 +18,7 @@ The hw_vdf_client parameter information can be found [here](/asic-cli).
 ## Timelord Requirements and Dependencies
 
 :::info
-Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows.
+Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows.  
 Running a timelord on a farming machine will reduce the efficiency of the farmer and the timelord, for this reason it is recommended to have a dedicated machine for running timelords.
 :::
 
@@ -113,7 +113,7 @@ chia start node timelord &
   <TabItem value="hw-tl">
 
 :::warning
-**DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
+**DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!  
 Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
 :::
 
@@ -147,7 +147,7 @@ chia start node timelord-only
 ### Installing a Timelord from Source
 
 :::info
-On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.
+On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.  
 Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
 :::
 
@@ -208,7 +208,7 @@ chia start node timelord-only
 
 ## ASIC Timelord Systemd Setup
 
-Below is an example of a systemd service file to run the ASIC hw vdf processes.
+Below is an example of a systemd service file to run the ASIC hw vdf processes.  
 NOTE - make sure to replace `USERNAME` with your system's username.
 
 ```bash
@@ -290,7 +290,7 @@ This means that the ASIC cluster will always have an advantage but there are tim
 
 While one can overclock the ASIC we very strongly recommend against doing such. Overclocking the ASICs will lead to diminishing longevity of the machine and only provides a minor increase in performance making it inefficient to overclock an ASIC.
 
-## What Voltage Should I Use for an ASIC Timelord?
+### What Voltage Should I Use for an ASIC Timelord?
 
 It is highly recommend to use the default `0.88` voltage.
 
