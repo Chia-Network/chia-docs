@@ -290,7 +290,7 @@ This means that the ASIC cluster will always have an advantage but there are tim
 
 While one can overclock the ASIC we very strongly recommend against doing such. Overclocking the ASICs will lead to diminishing longevity of the machine and only provides a minor increase in performance making it inefficient to overclock an ASIC.
 
-## What Voltage Should I Use for an ASIC Timelord?
+### What Voltage Should I Use for an ASIC Timelord?
 
 It is highly recommend to use the default `0.88` voltage.
 
