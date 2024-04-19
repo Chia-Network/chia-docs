@@ -96,6 +96,7 @@ module.exports = {
             'cli-reference/cat-admin',
             'cli-reference/clawback',
             'cli-reference/custody-tool',
+            'cli-reference/asic-hwvdf',
           ],
         },
         {

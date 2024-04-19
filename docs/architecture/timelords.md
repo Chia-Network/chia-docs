@@ -39,7 +39,7 @@ It's good to have a few Timelords out there. There can be things like routing fl
 
 The Company plans to run a few Timelords around the world - and some backups too - to ensure that all Farmers and nodes can hear the beat that the Timelords are calling.
 
-For installation and usage documentation please refer [here](/timelords).
+For installation and usage documentation please refer [here](/timelord-install).
 
 ## Troubleshooting a Timelord
 

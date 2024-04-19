@@ -1,6 +1,6 @@
 ---
 title: Timelords
-slug: /timelords
+slug: /timelord-install
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +10,8 @@ import TabItem from '@theme/TabItem';
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
 :::
 
-Detailed information regarding timelord architecture can be found [here](/timelord-architecture)
+Timelord architecture information can be found [here](/timelord-architecture)
+The hw_vdf_client parameter information can be found [here](/asic-cli).
 
 ---
 
@@ -38,6 +39,8 @@ Dependencies:
 - linux OS, our testing has been with Ubuntu 22 and newer
 - git (if installing from source)
 - ca-certificates curl gnupg (if installing from APT or if running an ASIC - RECOMMENDED)
+
+---
 
 ## Installing a Timelord
 
@@ -111,6 +114,7 @@ chia start node timelord &
 
 :::warning
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
+Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
 :::
 
 ```bash
@@ -144,6 +148,7 @@ chia start node timelord-only
 
 :::info
 On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.
+Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
 :::
 
 ```bash
@@ -199,6 +204,8 @@ chia start node timelord-only
 
 ```
 
+---
+
 ## ASIC Timelord Systemd Setup
 
 Below is an example of a systemd service file to run the ASIC hw vdf processes.
@@ -253,6 +260,8 @@ Stop the ASIC systemd software:
 Check status of the ASIC systemd software:
 `sudo systemctl status chiahw-vdf.service`
 
+---
+
 ## Troubleshooting a Timelord
 
 For troubleshooting steps please refer to the documentation [here](/troubleshooting/timelords).
@@ -272,7 +281,7 @@ Join Our [Discord](https://discord.gg/chia) and jump into the #support channel f
 There are no specific requirements as timelords are a fastest wins process. This means that those with higher end hardware are more likely to generate Proofs of Time than those with lower end hardware.
 Currently, a modern gaming PC with 8 cores and 8 GB of RAM is recommended when running an ASIC or Bluebox timelord. With the release of ASIC timelords, software timelords will have a near impossible time competing. It is recommended to only run a software timelord for experimentation and learning purposes.
 
-### Can a Singe ASIC Compete with an ASIC Cluster?
+### Can a Single ASIC Compete with an ASIC Cluster?
 
 The nature of timelords is to create three VDF chains, one can create the chains themselves in parallel (i.e. one on each ASIC) but one cannot break down the VDFs themselves to parallelize them.
 This means that the ASIC cluster will always have an advantage but there are times when a single ASIC can reasonably compete. This almost always requires the block farming node to be closer in physical proximity to the single ASIC than to the ASIC cluster establishing a minor time advantage for the single ASIC
