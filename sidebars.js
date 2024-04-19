@@ -20,6 +20,7 @@ module.exports = {
       items: [
         'getting-started/installation',
         'getting-started/testnets',
+        'getting-started/timelords',
         {
           type: 'category',
           label: 'Plotting',
@@ -95,6 +96,7 @@ module.exports = {
             'cli-reference/cat-admin',
             'cli-reference/clawback',
             'cli-reference/custody-tool',
+            'cli-reference/asic-hwvdf',
           ],
         },
         {
@@ -118,6 +120,7 @@ module.exports = {
         'troubleshooting/node-syncing',
         'troubleshooting/logging-reference',
         'troubleshooting/locating-keys',
+        'troubleshooting/timelords',
       ],
     },
     {
