@@ -30,7 +30,7 @@ Static:
 
 If you have set up the timelord services to run through systemD you can use the below command(s) for pulling those records.
 
-If running as a service:
+If running as a service:  
 `journalctl -f -u chia-hw-vdf | grep "MHz"` : output of the ASIC timelord reported IPS (this will be higher than the estimated IPS as seen by the network). If not using systemD this information is available in the the terminal output where the `hw_vdf_client` command was run.
 
 ## Common Timelord Error Logs
@@ -45,12 +45,12 @@ timelord chia.timelord.timelord   : ERROR    Error while handling message: Trace
   File "chia/timelord/timelord.py", line 221, in _stop_chain
 ```
 
-This error occurs when the ASIC software has been shutdown unexpectedly and will start spamming your log file.
+This error occurs when the ASIC software has been shutdown unexpectedly and will start spamming your log file.  
 The current resolution is to restart the chia processes with something like `chia start full_node timelord-only -r`.
 
 ### ASIC logs
 
-`Warning: too much work for VDF aux threads` - This generally means that the frequency is set too high, it is recommended to use the auto-frequency flag for the software to self adjust and resolve this error `--auto-freq 60` updates the frequency every 60 seconds.
+`Warning: too much work for VDF aux threads` - This generally means that the frequency is set too high, it is recommended to use the auto-frequency flag for the software to self adjust and resolve this error `--auto-freq 60` updates the frequency every 60 seconds.  
 `Bad data size after stop: -1` - This is a known logging error related to how the chia client and ASIC disconnect after a stop. There is no concern with having this error in your logs.
 
 ---
