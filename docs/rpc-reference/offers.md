@@ -101,7 +101,7 @@ Request Parameters:
 <summary>Example</summary>
 
 ```json
-chia rpc wallet cancel_offers '{"secure": true, "batch_fee": 1, "batch_size": 2}'
+chia rpc wallet cancel_offers '{"secure": true, "fee": 1, "batch_size": 2}'
 ```
 
 Response:
