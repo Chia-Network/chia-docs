@@ -50,8 +50,8 @@ You will be notified no later than the end of June 2024.
 
 ### Who can I contact if I have questions?
 
-DM lgoldman721 on Keybase or lgoldman721_63745 on Discord.
+Please use the #support channel in our official [Discord](https://discord.gg/chia) for contest support and questions.
 
 ## Contest Support
 
-Please use the #support channel in our official [Discord](https://discord.gg/chia) for contest support and questions or contact Lori on Keybase (lgoldman721) or on Discord (lgoldman721_63745).
+Please use the #support channel in our official [Discord](https://discord.gg/chia) for contest support and questions.
