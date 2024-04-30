@@ -26,8 +26,6 @@ Every person who uses GitHub.com signs in to a personal account. Your personal a
 
 Later, you can explore the different types of accounts that GitHub offers, and decide if you need a billing plan. For more information, see ["Types of GitHub accounts"](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts) and ["GitHub’s plans"](https://docs.github.com/en/get-started/learning-about-github/githubs-plans).
 
-Note that the steps in this article don't apply to Enterprise Managed Users. If your GitHub account has been created for you by your company, you can skip this article and continue to ["Hello World"](https://docs.github.com/en/get-started/start-your-journey/hello-world).
-
 #### Signing up for a Personal Account
 
 1. Navigate to https://github.com/.
@@ -37,11 +35,6 @@ Note that the steps in this article don't apply to Enterprise Managed Users. If 
 During sign up, you'll be asked to verify your email address. Without a verified email address, you won't be able to complete some basic GitHub tasks, such as creating a repository.
 
 If you're having problems verifying your email address, there are some troubleshooting steps you can take. For more information, see ["Verifying your email address"](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/verifying-your-email-address#troubleshooting-email-verification).
-
-#### Next Steps
-
-- Now that you've created your personal account, we'll start to explore the basics of GitHub. In the next tutorial, "Hello World," you'll learn about repositories and how to create one, and you'll be introduced to concepts such as branching, commits, and pull requests.
-- We strongly recommend that you configure 2FA for your account. 2FA is an extra layer of security that can help keep your account secure. For more information, see "Configuring two-factor authentication."
 
 ---
 
@@ -70,9 +63,7 @@ You must have a 64-bit operating system to run GitHub Desktop.
 The below information has been adapted from the [Github docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
 :::
 
-A fork is a new repository that shares code and visibility settings with the original “upstream” repository.
-
-You might fork a project to propose changes to the upstream repository. In this case, it's good practice to regularly sync your fork with the upstream repository. To do this, you'll need to use Git on the command line. You can practice setting the upstream repository using the same [Chia-Network/chia-docs](https://github.com/Chia-Network/chia-docs) repository you just forked.
+A fork is a new repository that shares code and visibility settings with the original “upstream” repository. The below example is for the chia-docs repo but the same process can be followed for any of the public Chia-Network repos.
 
 1. On GitHub.com, navigate to the [Chia-Network/chia-docs](https://github.com/Chia-Network/chia-docs) repository.
 2. In the top-right corner of the page, click Fork.
@@ -84,9 +75,9 @@ You might fork a project to propose changes to the upstream repository. In this 
 3. Under "Owner," select the dropdown menu and click an owner for the forked repository.
 4. By default, forks are named the same as their upstream repositories. Optionally, to further distinguish your fork, in the "Repository name" field, type a name.
 5. Optionally, in the "Description" field, type a description of your fork.
-6. Optionally, select Copy the DEFAULT branch only.
+6. Optionally, select **Copy the DEFAULT branch only**.
    For many forking scenarios, such as contributing to open-source projects, you only need to copy the default branch. If you do not select this option, all branches will be copied into the new fork.
-7. Click Create fork.
+7. Click **Create fork**.
 
 :::note
 If you want to copy additional branches from the upstream repository, you can do so from the Branches page. For more information, see ["Creating and deleting branches within your repository"](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository).
@@ -114,9 +105,7 @@ Right now, you have a fork of the chia-docs repository, but you do not have the 
 
 ### Setup Commit Signing
 
-:::info
 All Chia related Github repos require the signing of commits, follow the outlined process to setup automated commit signing for the Github Desktop Application.
-:::
 
 #### Generating a New GPG Key
 
@@ -154,13 +143,16 @@ Note: Before generating a new GPG key, make sure you've verified your email addr
    :::
 9. Type a secure passphrase.
 10. Use the `gpg --list-secret-keys --keyid-format=long` command to list the long form of the GPG keys for which you have both a public and private key. A private key is required for signing commits or tags.
-    `shell
-      gpg --list-secret-keys --keyid-format=long
-    `
-    :::note
-    Some GPG installations on Linux may require you to use gpg2 --list-keys --keyid-format LONG to view a list of your existing keys instead. In this case you will also need to configure Git to use gpg2 by running git config --global gpg.program gpg2.
-    :::
-11. From the list of GPG keys, copy the long form of the GPG key ID you'd like to use. In this example, the GPG key ID is 3AA5C34371567BD2:
+
+```shell
+  gpg --list-secret-keys --keyid-format=long
+```
+
+:::note
+Some GPG installations on Linux may require you to use `gpg2 --list-keys --keyid-format` LONG to view a list of your existing keys instead. In this case you will also need to configure Git to use gpg2 by running `git config --global gpg.program gpg2`.
+:::
+
+11. From the list of GPG keys, copy the long form of the GPG key ID you'd like to use. In this example, the GPG key ID is `3AA5C34371567BD2`:
 
 ```shell
   $ gpg --list-secret-keys --keyid-format=long
@@ -189,7 +181,11 @@ Note: Before generating a new GPG key, make sure you've verified your email addr
 
 :::info
 Storing your passphrase ensures you don't have to enter it every time you want to sign a commit, this is strictly optional.
-::: - For Mac users, the [GPG Suite](https://gpgtools.org/) allows you to store your GPG key passphrase in the macOS Keychain. - For Windows users, the [Gpg4win](https://www.gpg4win.org/) integrates with other Windows tools. - You can also manually configure [gpg-agent](http://linux.die.net/man/1/gpg-agent) to save your GPG key passphrase, but this doesn't integrate with macOS Keychain like ssh-agent and requires more setup.
+:::
+
+- For Mac users, the [GPG Suite](https://gpgtools.org/) allows you to store your GPG key passphrase in the macOS Keychain.
+- For Windows users, the [Gpg4win](https://www.gpg4win.org/) integrates with other Windows tools.
+- You can also manually configure [gpg-agent](http://linux.die.net/man/1/gpg-agent) to save your GPG key passphrase, but this doesn't integrate with macOS Keychain like ssh-agent and requires more setup.
 
 #### Add a GPG Key to Your GitHub Account
 
@@ -199,7 +195,7 @@ The below information has been adapted from the [Github docs](https://docs.githu
 
 1. In the upper-right corner of any page, click your profile photo, then click `Settings`.
 <div style={{ textAlign: 'left' }}>
-  <img src={AddGPG} alt='Add a GPG Key to Your Github Account' />
+  <img src={AddGPG} height="600" alt='Add a GPG Key to Your Github Account' />
 </div>
 <br />
 
@@ -220,11 +216,11 @@ The below information has been adapted from the [Github docs](https://docs.githu
 
 At last, you're ready to propose changes into the main project! This is the final step in producing a fork of someone else's project, and arguably the most important. If you've made a change that you feel would benefit the community as a whole, you should definitely consider contributing back.
 
-To do so, head on over to the repository on GitHub where your project lives. For this example, it would be at https://github.com/&#60;your_username&#62;/chia-docs. You'll see a banner indicating that your branch is one commit ahead of chia-docs:main. Click **Contribute** and then **Open a pull request**.
-
-GitHub will bring you to a page that shows the differences between your fork and the Chia-Network/chia-docs repository. Click **Create pull request**.
-
-GitHub will bring you to a page where you can enter a title and a description of your changes. It's important to provide as much useful information and a rationale for why you're making this pull request in the first place. The project owner needs to be able to determine whether your change is as useful to everyone as you think it is. Finally, click **Create pull request**.
+1. To do so, head on over to the repository on GitHub where your project lives. For this example, it would be at `https://github.com/<your_username>/chia-docs`.
+2. You'll see a banner indicating that your branch is one commit ahead of chia-docs:main. Click **Contribute** and then **Open a pull request**.
+3. GitHub will bring you to a page that shows the differences between your fork and the Chia-Network/chia-docs repository. Click **Create pull request**.
+   - GitHub will bring you to a page where you can enter a title and a description of your changes. It's important to provide as much useful information and a rationale for why you're making this pull request in the first place. The project owner needs to be able to determine whether your change is as useful to everyone as you think it is.
+4. Finally, click **Create pull request**.
 
 ---
 
