@@ -101,7 +101,7 @@ The below information has been adapted from the [Github docs](https://docs.githu
 Right now, you have a fork of the chia-docs repository, but you do not have the files in that repository locally on your computer.
 
 1. On GitHub.com, navigate to your fork of the Chia-Network/chia-docs repository.
-2. Above the list of files, click <> **Code**.
+2. Above the list of files, click **Code**.
 
 <div style={{ textAlign: 'left' }}>
   <img src={CodeButton} alt='Clone a Repository in Github' />
@@ -220,7 +220,7 @@ The below information has been adapted from the [Github docs](https://docs.githu
 
 At last, you're ready to propose changes into the main project! This is the final step in producing a fork of someone else's project, and arguably the most important. If you've made a change that you feel would benefit the community as a whole, you should definitely consider contributing back.
 
-To do so, head on over to the repository on GitHub where your project lives. For this example, it would be at https://github.com/<your_username>/chia-docs. You'll see a banner indicating that your branch is one commit ahead of chia-docs:main. Click **Contribute** and then **Open a pull request**.
+To do so, head on over to the repository on GitHub where your project lives. For this example, it would be at https://github.com/&#60;your_username&#62;/chia-docs. You'll see a banner indicating that your branch is one commit ahead of chia-docs:main. Click **Contribute** and then **Open a pull request**.
 
 GitHub will bring you to a page that shows the differences between your fork and the Chia-Network/chia-docs repository. Click **Create pull request**.
 
