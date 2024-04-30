@@ -31,7 +31,7 @@ chia rpc full_node get_block '{"header_hash":"0xf42b4e77315d79ddfb3d64becb21e26e
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-    "header_hash" becomes \"header_hash\"
+    "header_hash" becomes \\"header_hash\\"
 
 </details>
 
