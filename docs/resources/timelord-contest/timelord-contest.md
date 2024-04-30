@@ -18,8 +18,39 @@ We're awarding one timelord for up to 3 separate individuals and awarding up to 
 To enter, do the following between May 1-May 31, 2024 at 11:59 p.m. EST:
 
 1. Create a Chia Academy course in written or video form and submit it to the contest using this [format](https://docs.chia.net/academy-overview/) and this [template](https://github.com/Chia-Network/chia-docs/blob/33269c4ab9a661fbaf2a61aaa062e88639e17f8f/docs/academy/academy-intro/academy-overview.md).
-2. Fork the [docs repo](https://github.com/Chia-Network/chia-docs/tree/main) and submit a PR with the `timelord-contest` label. Github provides great information on [forking a repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) and [submitting a pr](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+2. Fork the [docs repo](https://github.com/Chia-Network/chia-docs/tree/main) and submit a PR with the `timelord-contest` label. Please review our [Using Github](/contribution/using-github) contribution information if you are new to Github or contributing tot he chia repos.
 3. Include your Keybase handle so we can notify you if you win.
+
+Note that residents in some locations are not eligible, and the content becomes public domain once submitted. For information about this, FAQs, and the official contest rules
+
+---
+
+## Requirements and Criteria
+
+Github Requirements:
+
+- [Create a Github Account](/contribution/using-github#create-a-github-account)
+- [Fork the chia-docs repo](/contribution/using-github#forking-a-repository)
+- [Clone the forked repo](/contribution/using-github#cloning-a-forked-repository)
+- [Sign all Commits](/contribution/using-github#setup-commit-signing)
+- [Submit a PR](/contribution/using-github#making-a-pull-request)
+
+Content Criteria:
+
+- Quality of content
+- Novelty
+- Applicability
+- Course structure
+
+---
+
+## Rewards
+
+We’ll be awarding Timelords to winning submissions in two categories: Individual and Team submissions.
+
+Up to 3 individual submissions will be chosen as winners, and each will receive a Timelord. One team submission will also be awarded (up to 5 Timelords to 1 team!).
+
+---
 
 ## FAQ
 

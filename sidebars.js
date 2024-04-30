@@ -125,6 +125,13 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Contributing',
+      items: [
+        'contribution/using-github',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Learn More',
       items: [
         {
