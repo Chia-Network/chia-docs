@@ -30,6 +30,58 @@ This is due to the two instances of each log, for example the log where others c
 `cat ~/.chia/mainnet/log/debug.log | grep "stimated"` : static output of the current estimated IPS as seen by the network (note this will be lower than the IPS reported by the ASIC software).  
 `cat ~/.chia/mainnet/log/debug.log | grep "kipping"` : statis output of peak heights added to the node. If a height is skipped than very likely your timelord created the PoT, if the height is not skipped then a different timelord created the PoT.
 
+<details>
+<summary>Example Estimated IPS Logs</summary>
+These logs indicate your timelord has completed a Proof of Time, note there are three VDF chains and the specific VDF that was completed will be indicated.
+
+```bash
+cat ~/.chia/mainnet/log/debug.log | grep "stimated"
+```
+
+Response:
+
+```
+2024-04-11T16:59:01.482 timelord chia.timelord.timelord   : INFO     Finished PoT chall:79a8b30ee7aaa3064ac4.. 1981176 iters, Estimated IPS: 575336.2, Chain: Chain.REWARD_CHAIN
+2024-04-11T16:59:01.588 timelord chia.timelord.timelord   : INFO     Finished PoT chall:027e1c04ae11d627179b.. 1981176 iters, Estimated IPS: 558173.6, Chain: Chain.INFUSED_CHALLENGE_CHAIN
+2024-04-11T16:59:01.627 timelord chia.timelord.timelord   : INFO     Finished PoT chall:50cd37772d5bae2a00d4.. 1981176 iters, Estimated IPS: 552043.3, Chain: Chain.CHALLENGE_CHAIN
+```
+
+</details>
+
+<details>
+<summary>Example Skipping Peak Log</summary>
+These logs indicate your timelord is skipping the peak height, one can reasonably assume that they have completed the Proof of Time the fastest or at least as fast as the other timelords.  
+Note: a capital `S` is used here to just pull the Skipping peak logs.
+
+```bash
+cat ~/.chia/mainnet/log/debug.log | grep "Skipping"
+```
+
+Response:
+
+```
+2024-05-01T06:30:27.983 timelord chia.timelord.timelord_api: INFO     Skipping peak, already have.
+```
+
+</details>
+
+<details>
+<summary>Example Not Skipping Peak Log</summary>
+These logs indicate your timelord is not skipping the peak height, this means that your timelord was not the fastest at completing the PoT and it is getting the peak from a peer node.  
+Note: a lower case `s` is used here to just pull the Not skipping peak logs.
+
+```bash
+cat ~/.chia/mainnet/log/debug.log | grep "skipping"
+```
+
+Response:
+
+```
+2024-05-01T06:30:27.983 timelord chia.timelord.timelord_api: INFO     Not skipping peak, don't have. Maybe we are not the fastest timelord.
+```
+
+</details>
+
 :::note
 If you have set up the timelord services to run through systemD you can use the below command(s) for pulling those records.
 :::
