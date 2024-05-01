@@ -4,22 +4,22 @@ slug: /consensus-foliage
 ---
 
 In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical.
-There is also no place to include transactions. Everything we have talked about so far is the trunk of the blockchain.
+There is also no place to include transactions. Everything we have talked about so far is known as the _trunk_ of the blockchain.
 
 Farmers have no say in how their block is constructed in the trunk, since they must use the exact proof of space, VDFs, and signatures that are specified.
-In order to include farming rewards, as well as transactions, in the system, we must introduce an additional component of blocks called _foliage_.
+In order to include farming rewards, as well as transactions, in the system, we must introduce an additional component to the reward chain called _foliage_.
 
-**Trunk**: The component of blocks and the blockchain which includes VDFs, proofs of space, PoSpace signatures, challenges, and previous trunk blocks, and is completely canonical. The trunk never refers to the foliage chain.
+**Trunk**: The component of blocks and the blockchain which includes VDFs, proofs of space, PoSpace signatures, challenges, and previous trunk blocks, and is completely canonical. The trunk includes each of the [three VDF chains](/three-vdf-chains), but it never refers to the foliage.
 
-**Foliage**: The component of blocks and the blockchain which includes specification of where rewards should go, which transactions should be included, and what the previous foliage block is. This is up to the farmer to decide and is grindable, so it can never be used as input to the challenges.
+**Foliage**: An extension of the blocks produced in the reward chain. A block's foliage includes the specification of where rewards should go, which transactions should be included, and what the previous block's foliage is. This is up to the farmer to decide and is grindable, so it can never be used as input to the challenges.
 
-**Re-org**: A re-org (or reorganization) is when a node's view of the peak changes, such that the old view contains a block that is not included in the new view (some block has been reversed). Both trunk and foliage re-orgs are possible, but should be rare in practice, and low in depth.
+**Re-org**: A re-org (or reorganization) is when a node's view of the peak changes, such that the old view contains a block that is not included in the new view (one or more blocks have either been removed, or have changed order). Both trunk and foliage re-orgs are possible, but should be rare in practice, and low in depth.
 
-In figure 11 below we can see that the foliage is added to blocks to produce an additional chain. This foliage includes a hash of the previous foliage, a reward block hash, and a signature. These foliage pointers are separate from the trunk chain, and are not canonical. That is, farmers could theoretically create a foliage re-org where foliage is replaced, but the exact same trunk (proofs of space and time) are used.
+In figure 11 below we can see that the foliage is added to the blocks formed in the reward chain. This foliage includes a hash of the previous foliage, a reward block hash, and a signature. These foliage pointers are separate from the trunk chain, and are not canonical. That is, farmers could theoretically create a foliage re-org where foliage is replaced, but the exact same trunk (proofs of space and time) are used.
 
-To prevent a foliage re-org, honest farmers only create one foliage block per block. As soon as one honest farmer has added a foliage block, the foliage becomes impossible to re-org beyond that height with the same PoSpace, since that farmer will not sign again with the same PoSpace.
+To prevent a foliage re-org, honest farmers only create one set of foliage per block. As soon as one honest farmer has added foliage to a block, the foliage becomes impossible to re-org beyond that height with the same PoSpace, since that farmer will not sign again with the same PoSpace.
 
-Furthermore, blocks like B3, which come parallel with another foliage block (B2), do not have to sign the previous foliage block, since they do not necessarily have enough time to see it.
+Furthermore, blocks like B3, which come parallel with another the foliage of another block (B2), do not have to sign the previous block's foliage, since they do not necessarily have enough time to see it.
 
 :::info
 
@@ -35,12 +35,12 @@ Blocks which have red pointers are also eligible to create transactions, and are
 
 In the diagram, sp3 comes before B2, (a transaction block, and the previous block of B3), so B3 cannot be a transaction block.
 
-The red arrows provide security by burying foliage blocks, but the gray arrows do not. The purpose of the gray arrows is to maintain a linked list in the foliage, and to reduce complexity in implementations. However, blocks with gray arrows pointing to them do get buried in the next-next block.
+The red arrows provide security by burying foliage, but the gray arrows do not. The purpose of the gray arrows is to maintain a linked list in the foliage, and to reduce complexity in implementations. However, foliages with gray arrows pointing to them do get buried in the next-next block.
 
 <figure>
 <img src="/img/foliage.png" alt="drawing" width="1400"/>
 <figcaption>
-Figure 11: Foliage blocks and trunk blocks. Blocks B1, B2, and B4 have transactions and have red pointers (pointers to last block). Note that the start of the sub-slot is also a signage point.
+Figure 11: Foliage and trunk blocks. Blocks B1, B2, and B4 have transactions and have red pointers (pointers to last block). Note that the start of the sub-slot is also a signage point.
 </figcaption>
 </figure>
 
