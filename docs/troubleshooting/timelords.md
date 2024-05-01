@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting Timelords
+title: Timelords
 slug: /troubleshooting/timelords
 ---
 
@@ -32,7 +32,8 @@ This is due to the two instances of each log, for example the log where others c
 
 <details>
 <summary>Example Estimated IPS Logs</summary>
-These logs indicate your timelord has completed a Proof of Time, note there are three VDF chains and the specific VDF that was completed will be indicated.
+
+These logs indicate your timelord has completed a Proof of Time, note there are three VDF chains and the specific VDF that was completed will be indicated. Also note that this does not mean your timelord is the fastest timelord, only that it completed a PoT.
 
 ```bash
 cat ~/.chia/mainnet/log/debug.log | grep "stimated"
@@ -50,6 +51,7 @@ Response:
 
 <details>
 <summary>Example Skipping Peak Log</summary>
+
 These logs indicate your timelord is skipping the peak height, one can reasonably assume that they have completed the Proof of Time the fastest or at least as fast as the other timelords.  
 Note: a capital `S` is used here to just pull the Skipping peak logs.
 
@@ -67,6 +69,7 @@ Response:
 
 <details>
 <summary>Example Not Skipping Peak Log</summary>
+
 These logs indicate your timelord is not skipping the peak height, this means that your timelord was not the fastest at completing the PoT and it is getting the peak from a peer node.  
 Note: a lower case `s` is used here to just pull the Not skipping peak logs.
 
