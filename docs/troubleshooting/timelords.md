@@ -14,23 +14,27 @@ To do so run: `chia configure --log-level INFO`
 :::
 
 The below commands are for use with linux OS.  
-The `tail` command only pulls new information as it is added to the log files allowing one to see new information as it is added.  
+The `tail` command only pulls new information as it is added to the log files showing new information as it is added.  
 The `cat` command pulls all current data from the log files providing a snapshot of where it was and is currently.
 
-The matched strings are missing the first letter (E or S) intentionally.
+:::note
+The matched strings are missing the first letter (E or S) intentionally.  
 This is due to the two instances of each log, for example the log where others create the proof of time has the string "Not skipping" while the log where your machine creates the PoT has the string "Skipping".
+:::
 
-Continuous:  
-`tail -F ~/.chia/mainnet/log/debug.log | grep "stimated"` : running output of the current estimated IPS as seen by the network (note this will be lower than the IPS reported by the ASIC software).
+**Continuous:**  
+`tail -F ~/.chia/mainnet/log/debug.log | grep "stimated"` : running output of the current estimated IPS as seen by the network (note this will be lower than the IPS reported by the ASIC software).  
 `tail -F ~/.chia/mainnet/log/debug.log | grep "kipping"` : running output of peak heights being added to the node. If a height is skipped than very likely your timelord created the PoT, if the height is not skipped then a different timelord created the PoT.
 
-Static:  
-`cat ~/.chia/mainnet/log/debug.log | grep "stimated"` : static output of the current estimated IPS as seen by the network (note this will be lower than the IPS reported by the ASIC software).
+**Static:**  
+`cat ~/.chia/mainnet/log/debug.log | grep "stimated"` : static output of the current estimated IPS as seen by the network (note this will be lower than the IPS reported by the ASIC software).  
 `cat ~/.chia/mainnet/log/debug.log | grep "kipping"` : statis output of peak heights added to the node. If a height is skipped than very likely your timelord created the PoT, if the height is not skipped then a different timelord created the PoT.
 
+:::note
 If you have set up the timelord services to run through systemD you can use the below command(s) for pulling those records.
+:::
 
-If running as a service:  
+**If running as a service:**  
 `journalctl -f -u chia-hw-vdf | grep "MHz"` : output of the ASIC timelord reported IPS (this will be higher than the estimated IPS as seen by the network). If not using systemD this information is available in the the terminal output where the `hw_vdf_client` command was run.
 
 ## Common Timelord Error Logs
