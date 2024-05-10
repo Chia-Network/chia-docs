@@ -11,7 +11,7 @@ It does so by crawling through the network, periodically revisiting known nodes 
 
 The Chia Seeder runs a mini-DNS server. Anyone can obtain an entry point into Chia’s decentralized and permissionless network via a simple DNS request for reliable node IPs.
 
-The Chia Seeder has very low memory and CPU requirements.
+The Chia Seeder has very low memory and CPU requirements. It runs a faux full_node process and does not need its own node.
 
 Chia’s core developers have already been running an instance of the Chia Seeder for some time. You can view the current status of this instance by running:
 
