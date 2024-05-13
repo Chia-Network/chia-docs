@@ -9,13 +9,16 @@ import TabItem from '@theme/TabItem';
 
 Several Chia plotters are now available. The output (a plot) will be nearly identical for a given k-value and compression level. However, the hardware requirements are different for each plotter.
 
-The three families of plotters include:
+The four families of plotters include:
 
-- BladeBit -- developed by Chia Network, Inc.
+- BladeBit -- developed by Chia Network Inc.
+- DrPlotter -- developed by DrNick and supported by Chia Network Inc.
 - madMAx -- developed external to CNI
 - ChiaPoS -- the original plotter, developed by CNI
 
 This page provides details about the plotters that exist within each of these families.
+
+---
 
 ## Plotters
 
@@ -33,7 +36,7 @@ Requirements
 - OS: Windows 11 or Debian/Ubuntu Linux (MacOS and other flavors of Linux will likely be supported in the future)
 - Memory:
   - For 100% in-memory plotting: 256 GB of DRAM
-  - For RAM + disk plotting: 16 GB (experimental) or 128 GB (supported as of Chia 2.1.0)
+  - For RAM + disk plotting: 16 GB (experimental) or 128 GB (only available on linux)
 - Temporary Disk:
   - Not used for 256 GB version
   - SSD required for \<= 128 GB of RAM
@@ -59,6 +62,8 @@ The following command will create a single plot with a compression level of 7. I
 ```bash
 chia plotters bladebit cudaplot -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -n 1 --compress 7
 ```
+
+---
 
 ### BladeBit RAM
 
@@ -95,6 +100,8 @@ The following command will create a single plot with a compression level of 7. I
 ```bash
 chia plotters bladebit ramplot -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -n 1 --compress 7
 ```
+
+---
 
 ### Bladebit Disk
 
@@ -135,6 +142,82 @@ The following command will create a single uncompressed plot (plot compression i
 chia plotters bladebit diskplot -t <temp dir> -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> --cache 32G -n 1 --compress 0
 ```
 
+---
+
+### DrPlotter
+
+#### A standalone GPU plotter
+
+Plot capabilities
+
+- Type: Compressed plots
+- Size: k32 only
+
+Requirements
+
+- DrPlotter Minimum Requirements:
+  - 24GB nvidia 3090 / A5000 / 4090 
+  - 128GB DDR4 RAM 
+  - motherboard with a PCIE 4.0 x 16 slot 
+  - 64 bit processor (onboard GPU a bonus)
+  - Ubuntu / Debian based system
+
+- DrSolver Minimum Requirements:
+  - 24GB nvidia 3090. 
+  - Ubuntu / Debian based system
+
+- DrChia Harvester Minimum Requirements:
+  - ~4GB RAM for every 1PiB of raw disk space. 
+  - Ubuntu / Debian based system
+
+
+More info
+
+- Up to +413% Rewards: Two compression modes offer a balance between optimal efficiency and optimal cost per eTB for maximum ROI. 
+- Enhanced Security: Relies solely on public farmer keys, letting you safeguard your private keys. 
+- Effortless Remote GPU Use: Enjoy a streamlined process for submitting proofs and the flexibility to use your GPU remotely with ease. 
+- Supporting the Chia Ecosystem: By seamlessly integrating with the official Chia Farmers, DrPlotter plays a part in keeping the Chia network strong and decentralized.
+
+For DrPlotter and DrServer commands please refer to the [CLI documentation](/plotters-cli#drplotter).  
+
+See the video on the [Introduction to DrPlotter](https://www.youtube.com/watch?v=hQTV7foIRHo&t=3s).  
+
+**Complete Instructions** for downloading and installing DrPlotter are available on the [DrPlotter GitHub page](https://github.com/drnick23/drplotter/wiki/Installation-Guide).
+
+Abbreviated installation instructions:
+
+1. Download the latest DrPlotter [software](https://github.com/drnick23/drplotter/releases)
+2. Install the software (This will install drplotter, drsolver, and drchia for the harvester in the /usr/bin/ directory.):
+
+```
+sudo dpkg -i drplotter_0.12.0_amd64.deb 
+```
+
+After the installation has completed, the `drplotter` command will be available. For example, to obtain a list of options, run:
+
+```
+drplotter -h
+```
+
+**Example command**
+
+The following plotting command will fill the directory with plots. While plotting, you'll see progress and when plots complete:
+
+```bash
+drplotter plot -f <your_farmer_key> -c <your_pool_contract_address> -d /your/hdd/directory/ --compression <eco3x or pro4x>
+```
+
+In addition to installing and plotting with DrPlotter you will need to:
+- [Set your client token](https://github.com/drnick23/drplotter#setting-up-your-drplotter_client_token)
+- [Run your DrSolvers](https://github.com/drnick23/drplotter#run-your-drsolver) 
+
+If you already have other chia plots and installation you can:
+- [Setup and run your DrChia harvester](https://github.com/drnick23/drplotter#setup-and-run-your-drchia-harvester) with your existing chia farmer.
+
+To ensure proofs are being submitted you can follow this [guide](https://github.com/drnick23/drplotter#verify-your-drplots-are-submitting-proofs)
+
+---
+
 ### Gigahorse
 
 #### A third-party GPU plotter, available as a [standalone download](https://github.com/madMAx43v3r/chia-gigahorse)
@@ -149,6 +232,8 @@ More info
 - Designed to work with CUDA-class GPUs
 - Creates compressed plots
 - Closed source, has dev fee depending on compression and whether CPU or GPU is used for farming
+
+---
 
 ### madMAx
 
@@ -182,6 +267,8 @@ More info
 ```bash
 chia plotters madmax -t <temp dir> -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -k <size> -n <number of plots>
 ```
+
+---
 
 ### ChiaPoS
 
@@ -217,6 +304,8 @@ More info
 ```bash
 chia plotters chiapos -t <temp dir> -d <destination dir> -f <farmer key> -p <pool key> -c <contract address> -k <size> -n <number of plots>
 ```
+
+---
 
 ### BladeBit (standalone)
 
@@ -260,6 +349,8 @@ After the installation has completed, the `bladebit` command will be available f
 ./Release/bladebit -h
 ```
 
+---
+
 ## Choosing a plotter
 
 With so many plotters available, the decision of which one to choose may seem daunting. However, your hardware setup will often make the choice for you. If you have:
@@ -278,6 +369,8 @@ With so many plotters available, the decision of which one to choose may seem da
   - BladeBit Disk and madMAx are both good options
 
 It is always possible, and indeed recommended, to create a plot with a few different plotters to understand how well your system will perform. Once you have a feel for using the different plotters, you can begin plotting in earnest.
+
+---
 
 ## CLI usage
 
