@@ -49,6 +49,8 @@ If a node does not receive any message from a peer for a certain period of time,
 
 ## Introducer
 
+Please refer to the [chia seeder documentation](https://docs.chia.net/guides/seeder-user-guide/) for more information on setting up you own chia seeder / introducer and how to have it included in the default chia config.yaml.
+
 When a new node joins the network, it randomly connects to existing nodes on the network.
 
 To facilitate this process, a number of introducer nodes will temporarily be run by Chia and other users, which will crawl the network and support one protocol message: get_peers_introducer. The introducer will then return a random subset of known recent peers that the calling node will attempt to connect to.
