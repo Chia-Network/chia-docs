@@ -20,7 +20,7 @@ Usage: chia plotters chiapos [OPTIONS]
 Options:
 
 | Short Command | Long Command        | Type    | Required | Description                                                                               |
-|:--------------|:--------------------|:--------|:---------|:------------------------------------------------------------------------------------------|
+| :------------ | :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------- |
 | -t            | --tmp_dir           | TEXT    | True     | Temporary directory 1 (where most of the plots temp data will be stored)                  |
 | -2            | --tmp_dir2          | TEXT    | False    | Temporary directory 2 [Default: same as `tmp_dir`]                                        |
 | -k            | --size              | INTEGER | False    | K value [Default: 32]                                                                     |
@@ -51,7 +51,7 @@ Usage: chia plotters madmax [OPTIONS]
 Options:
 
 | Short Command | Long Command  | Type    | Required | Description                                                                              |
-|:--------------|:--------------|:--------|:---------|:-----------------------------------------------------------------------------------------|
+| :------------ | :------------ | :------ | :------- | :--------------------------------------------------------------------------------------- |
 | -k            | --size        | INTEGER | False    | K value [Default: 32]                                                                    |
 | -n            | --count       | INTEGER | False    | Number of plots to create [Default: 1]                                                   |
 | -r            | --threads     | INTEGER | False    | Num threads [Default: 4]                                                                 |
@@ -85,7 +85,7 @@ Usage: chia plotters bladebit cudaplot [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                    |
-|:--------------|:------------------|:--------|:---------|:---------------------------------------------------------------------------------------------------------------|
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------- |
 | -r            | --threads         | INTEGER | False    | Num threads [Default: 12]                                                                                      |
 | -n            | --count           | INTEGER | False    | Number of plots to create [Default: 1]                                                                         |
 | -f            | --farmerkey       | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]                                    |
@@ -141,7 +141,7 @@ Usage: chia plotters bladebit ramplot [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                              |
-|:--------------|:------------------|:--------|:---------|:-----------------------------------------------------------------------------------------|
+| :------------ | :---------------- | :------ | :------- | :--------------------------------------------------------------------------------------- |
 | -r            | --threads         | INTEGER | False    | Num threads [Default: 12]                                                                |
 | -n            | --count           | INTEGER | False    | Number of plots to create [Default: 1]                                                   |
 | -f            | --farmerkey       | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]              |
@@ -165,7 +165,7 @@ Usage: chia plotters bladebit diskplot [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                         |
-|:--------------|:------------------|:--------|:---------|:----------------------------------------------------------------------------------------------------|
+| :------------ | :---------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------- |
 | -r            | --threads         | INTEGER | False    | Num threads [Default: 12]                                                                           |
 | -n            | --count           | INTEGER | False    | Number of plots to create [Default: 1]                                                              |
 | -f            | --farmerkey       | TEXT    | False    | Farmer Public Key (48 bytes) [Default: use the key from the current wallet]                         |
@@ -202,7 +202,7 @@ Usage: bladebit simulate [OPTIONS] \<plot_file_path>
 Options:
 
 | Short Command | Long Command | Type       | Required | Description                                                                    |
-|:--------------|:-------------|:-----------|:---------|:-------------------------------------------------------------------------------|
+| :------------ | :----------- | :--------- | :------- | :----------------------------------------------------------------------------- |
 | -n            | --iterations | INTEGER    | False    | The number of iterations to run [Default: 100]                                 |
 | -p            | --parallel   | INTEGER    | False    | The number of instances to run in parallel [Default: 1]                        |
 | -l            | --lookup     | FLOAT      | False    | Maximum allowed time per proof lookup, in seconds [Default: 8.00]              |
@@ -232,7 +232,7 @@ Usage: drplotter plot [OPTIONS]
 Options:
 
 | Short Command | Long Command       | Type    | Required | Description                                                                                                   |
-|:--------------|:-------------------|:--------|:---------|:--------------------------------------------------------------------------------------------------------------|
+| :------------ | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------ |
 | -h            | --help             | None    | False    | Show a help message and exit                                                                                  |
 | -f            | --farmerkey        | TEXT    | True     | Farmer Public Key (48 bytes, hex encoded)                                                                     |
 | -c            | --contractkey      | TEXT    | True     | Pool Contract Address (64 chars, hex encoded)                                                                 |
@@ -252,7 +252,7 @@ Usage: drplotter verify [OPTIONS]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                  |
-|:--------------|:-------------|:-----|:---------|:-----------------------------|
+| :------------ | :----------- | :--- | :------- | :--------------------------- |
 | -h            | --help       | None | False    | Show a help message and exit |
 | -f            | --file       | TEXT | False    | File to read from            |
 | -d            | --directory  | TEXT | False    | Check all files in directory |
@@ -268,7 +268,7 @@ Usage: drsolver [OPTIONS]
 Options:
 
 | Short Command | Long Command     | Type    | Required | Description                                          |
-|:--------------|:-----------------|:--------|:---------|:-----------------------------------------------------|
+| :------------ | :--------------- | :------ | :------- | :--------------------------------------------------- |
 | -h            | --help           | None    | False    | Show a help message and exit                         |
 | -g            | --gpu            | INTEGER | True     | GPU ID to use for solving                            |
 | -v            | --verbose        | None    | False    | Verbose output                                       |
@@ -288,9 +288,7 @@ Usage: drserver [OPTIONS]
 Options:
 
 | Short Command | Long Command | Type    | Required | Description                  |
-|:--------------|:-------------|:--------|:---------|:-----------------------------|
+| :------------ | :----------- | :------ | :------- | :--------------------------- |
 | -h            | --help       | None    | False    | Show a help message and exit |
 | -p            | --port       | INTEGER | True     | Server port                  |
 | -t            | --token      | TEXT    | True     | Server token                 |
-
-

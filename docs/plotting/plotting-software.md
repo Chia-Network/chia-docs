@@ -146,7 +146,7 @@ chia plotters bladebit diskplot -t <temp dir> -d <destination dir> -f <farmer ke
 
 ### DrPlotter
 
-#### A standalone GPU plotter
+#### A standalone GPU plotter and harvester
 
 Plot capabilities
 
@@ -156,41 +156,43 @@ Plot capabilities
 Requirements
 
 - DrPlotter Minimum Requirements:
-  - 24GB nvidia 3090 / A5000 / 4090 
-  - 128GB DDR4 RAM 
-  - motherboard with a PCIE 4.0 x 16 slot 
+
+  - 24GB nvidia 3090 / A5000 / 4090
+  - 128GB DDR4 RAM
+  - motherboard with a PCIE 4.0 x 16 slot
   - 64 bit processor (onboard GPU a bonus)
   - Ubuntu / Debian based system
 
 - DrSolver Minimum Requirements:
-  - 24GB nvidia 3090. 
+
+  - 24GB nvidia 3090
   - Ubuntu / Debian based system
 
 - DrChia Harvester Minimum Requirements:
-  - ~4GB RAM for every 1PiB of raw disk space. 
-  - Ubuntu / Debian based system
 
+  - ~4GB RAM for every 1PiB of raw disk space
+  - Ubuntu / Debian based system
 
 More info
 
-- Up to +413% Rewards: Two compression modes offer a balance between optimal efficiency and optimal cost per eTB for maximum ROI. 
-- Enhanced Security: Relies solely on public farmer keys, letting you safeguard your private keys. 
-- Effortless Remote GPU Use: Enjoy a streamlined process for submitting proofs and the flexibility to use your GPU remotely with ease. 
+- Up to +413% Rewards: Two compression modes offer a balance between optimal efficiency and optimal cost per eTB for maximum ROI.
+- Enhanced Security: Relies solely on public farmer keys, letting you safeguard your private keys.
+- Effortless Remote GPU Use: Enjoy a streamlined process for submitting proofs and the flexibility to use your GPU remotely with ease.
 - Supporting the Chia Ecosystem: By seamlessly integrating with the official Chia Farmers, DrPlotter plays a part in keeping the Chia network strong and decentralized.
 
-For DrPlotter and DrServer commands please refer to the [CLI documentation](/plotters-cli#drplotter).  
+Getting started
 
-See the video on the [Introduction to DrPlotter](https://www.youtube.com/watch?v=hQTV7foIRHo&t=3s).  
+- [CLI documentation](/plotters-cli#drplotter)
+- [Introduction to DrPlotter](https://www.youtube.com/watch?v=hQTV7foIRHo&t=3s)
+- Complete instructions for downloading and installing DrPlotter are available on the [DrPlotter GitHub page](https://github.com/drnick23/drplotter/wiki/Installation-Guide).
 
-**Complete Instructions** for downloading and installing DrPlotter are available on the [DrPlotter GitHub page](https://github.com/drnick23/drplotter/wiki/Installation-Guide).
-
-Abbreviated installation instructions:
+Abbreviated installation instructions
 
 1. Download the latest DrPlotter [software](https://github.com/drnick23/drplotter/releases)
-2. Install the software (This will install drplotter, drsolver, and drchia for the harvester in the /usr/bin/ directory.):
+2. Install the software (this will install drplotter, drsolver, and drchia for the harvester in the /usr/bin/ directory):
 
 ```
-sudo dpkg -i drplotter_0.12.0_amd64.deb 
+sudo dpkg -i drplotter_0.12.0_amd64.deb
 ```
 
 After the installation has completed, the `drplotter` command will be available. For example, to obtain a list of options, run:
@@ -208,10 +210,9 @@ drplotter plot -f <your_farmer_key> -c <your_pool_contract_address> -d /your/hdd
 ```
 
 In addition to installing and plotting with DrPlotter you will need to:
-- [Set your client token](https://github.com/drnick23/drplotter#setting-up-your-drplotter_client_token)
-- [Run your DrSolvers](https://github.com/drnick23/drplotter#run-your-drsolver) 
 
-If you already have other chia plots and installation you can:
+- [Set your client token](https://github.com/drnick23/drplotter#setting-up-your-drplotter_client_token)
+- [Run your DrSolvers](https://github.com/drnick23/drplotter#run-your-drsolver)
 - [Setup and run your DrChia harvester](https://github.com/drnick23/drplotter#setup-and-run-your-drchia-harvester) with your existing chia farmer.
 
 To ensure proofs are being submitted you can follow this [guide](https://github.com/drnick23/drplotter#verify-your-drplots-are-submitting-proofs)
