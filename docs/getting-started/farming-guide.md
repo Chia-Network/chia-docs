@@ -256,7 +256,7 @@ Click the `Pooling` icon on the left side of your wallet, and click `JOIN A POOL
 
 Before you can join a pool, you will need to create a plot NFT. This will allow you to easily change pools later.
 
-Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
+Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 

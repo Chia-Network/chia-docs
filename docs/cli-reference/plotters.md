@@ -42,8 +42,6 @@ Options:
 |               | --compress          | INTEGER | False    | Compression level [Default: 0 (not compressed)]                                           |
 | -h            | --help              | None    | False    | Show a help message and exit                                                              |
 
----
-
 ### `madmax`
 
 Functionality: Use the madMAx plotter
@@ -134,8 +132,6 @@ In this case, as much of the plotting as possible will be done in memory, and th
 
 :::
 
----
-
 ### `ramplot`
 
 Functionality: Use the BladeBit RAM plotter
@@ -159,8 +155,6 @@ Options:
 | -d            | --final_dir       | TEXT    | True     | Final directory after plot has been created                                              |
 |               | --compress        | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                         |
 | -h            | --help            | None    | False    | Show a help message and exit                                                             |
-
----
 
 ### `diskplot`
 
@@ -199,8 +193,6 @@ Options:
 |               | --compress        | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                                    |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                        |
 
----
-
 ### `simulate`
 
 Functionality: Determine your farm's maximum capacity; this command is **only** avaible with the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit.
@@ -224,3 +216,79 @@ Options:
 | -h            | --help       | None       | False    | Show a help message and exit                                                   |
 
 ---
+
+## `drplotter`
+
+Functionality: Use the DrPlotter plotter
+
+Usage: drplotter [plot | verify] [OPTIONS]
+
+### `plot`
+
+Functionality: Plot with the DrPlotter plotter
+
+Usage: drplotter plot [OPTIONS]
+
+Options:
+
+| Short Command | Long Command       | Type    | Required | Description                                                                                                   |
+| :------------ | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------ |
+| -h            | --help             | None    | False    | Show a help message and exit                                                                                  |
+| -f            | --farmerkey        | TEXT    | True     | Farmer Public Key (48 bytes, hex encoded)                                                                     |
+| -c            | --contractkey      | TEXT    | True     | Pool Contract Address (64 chars, hex encoded)                                                                 |
+| -d            | --outputDirectory  | TEXT    | True     | Final directory after plot has been created                                                                   |
+|               | --compression      | TEXT    | False    | Set compression mode. Choose between eco3x (68 bits per proof), or pro4x (49 bits per proof) [Default: eco3x] |
+| -i            | --gpu_id           | INTEGER | False    | GPU ID to use [Default: 0]                                                                                    |
+| -n            | --n_to_plot        | INTEGER | False    | Number of plots to create [Default: 0, fills directory]                                                       |
+| -L            | --gpu_memory_limit | INTEGER | False    | GPU memory limit in MB [Default: 0 (disabled)]                                                                |
+|               | --min_gpu_ram      | None    | False    | Use min gpu ram                                                                                               |
+
+### `verify`
+
+Functionality: Verify plots with the DrPlotter plotter
+
+Usage: drplotter verify [OPTIONS]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                  |
+| :------------ | :----------- | :--- | :------- | :--------------------------- |
+| -h            | --help       | None | False    | Show a help message and exit |
+| -f            | --file       | TEXT | False    | File to read from            |
+| -d            | --directory  | TEXT | False    | Check all files in directory |
+
+---
+
+## `drsolver`
+
+Functionality: Use the DrSolver harvester
+
+Usage: drsolver [OPTIONS]
+
+Options:
+
+| Short Command | Long Command     | Type    | Required | Description                                          |
+| :------------ | :--------------- | :------ | :------- | :--------------------------------------------------- |
+| -h            | --help           | None    | False    | Show a help message and exit                         |
+| -g            | --gpu            | INTEGER | True     | GPU ID to use for solving                            |
+| -v            | --verbose        | None    | False    | Verbose output                                       |
+| -t            | --token          | TEXT    | True     | Client token to use for registration                 |
+|               | --generate-token | None    | False    | Generate a client token                              |
+|               | --drserver-ip    | TEXT    | True     | Your own DrServer, at IP:PORT, e.g. 192.168.0.1:8080 |
+|               | --ssl            | BOOLEAN | False    | Use SSL for your solver server [Default: false]      |
+
+---
+
+## `drserver`
+
+Functionality: Use the DrServer harvester
+
+Usage: drserver [OPTIONS]
+
+Options:
+
+| Short Command | Long Command | Type    | Required | Description                  |
+| :------------ | :----------- | :------ | :------- | :--------------------------- |
+| -h            | --help       | None    | False    | Show a help message and exit |
+| -p            | --port       | INTEGER | True     | Server port                  |
+| -t            | --token      | TEXT    | True     | Server token                 |
