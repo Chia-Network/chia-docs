@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   push-to-crowdin:
-    runs-on: [k8s-public]
+    runs-on: [k8s-public-fmt]
     container: node:18
     steps:
       - name: Checkout
