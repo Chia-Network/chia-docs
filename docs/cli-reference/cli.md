@@ -93,7 +93,7 @@ Command: `chia start {service}`
 `-r, --restart`: Restart of running processes
 
 |                   | Full Node | Wallet | Farmer | Harvester | Timelord | Timelord Launcher | Timelord-Only | Introducer | Full Node Simulator |
-|-------------------|-----------|--------|--------|-----------|----------|-------------------|---------------|------------|---------------------|
+| ----------------- | --------- | ------ | ------ | --------- | -------- | ----------------- | ------------- | ---------- | ------------------- |
 | all               | X         | X      | X      | X         | X        | X                 |               |            |                     |
 | node              | X         |        |        |           |          |                   |               |            |                     |
 | harvester         |           |        |        | X         |          |                   |               |            |                     |

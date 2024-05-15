@@ -1787,6 +1787,7 @@ By default, the function lists the oldest transactions first. This is recommende
 If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
 
 The transaction history is not deterministic due to heuristics we use to counter privacy features of the blockchain. This means, a couple of details cannot be fetched fully:
+
 - The transaction IDs can and will change if you resync the wallet
 - Transactions of assets other than xch (cat, nft, ...) which include a fee will cause a second fee-transaction in the xch currency wallet (wallet 1)
 - Offers are split into multiple transactions on the corresponding wallets
@@ -1797,7 +1798,6 @@ The transaction history is not deterministic due to heuristics we use to counter
 For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
 </details>
 
- 
 <details>
 <summary>Example 1: List a single XCH transaction</summary>
 

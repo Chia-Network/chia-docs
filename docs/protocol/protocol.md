@@ -21,4 +21,3 @@ In addition to the sub-protocols that are specific to services, a few protocols 
 2. [Timing protocol](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/protocol_timing.py)
 3. [Message types protocol](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/protocol_message_types.py)
 4. [State machine protocol](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/protocol_state_machine.py)
-
