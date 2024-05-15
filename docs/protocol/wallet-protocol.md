@@ -3,6 +3,8 @@ title: Wallet Protocol
 slug: /wallet-protocol
 ---
 
+[Wallet protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/wallet_protocol.py)
+
 This protocol is a bidirectional protocol for communication between full nodes and wallets in the Chia system.
 This is also sometimes referred to as the light client protocol.
 

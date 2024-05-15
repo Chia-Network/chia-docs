@@ -2,6 +2,7 @@
 title: Networking Protocol
 slug: /networking-protocol
 ---
+[Shared networking protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/shared_protocol.py)
 
 The Chia protocol is asynchronous and peer-to-peer. It runs on top of WebSockets on port 8444 (or other ports for farmers and timelords). All nodes act as both clients and servers, and can maintain long-term connections with other peers.
 
