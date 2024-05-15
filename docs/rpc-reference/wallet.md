@@ -1694,6 +1694,19 @@ Request Parameters:
 | transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
 
 <details>
+<summary>Notes about transactions</summary>
+The transaction history is not deterministic due to heuristics we use to counter privacy features of the blockchain. This means, a couple of details cannot be fetched fully:
+- The transaction IDs can and will change if you resync the wallet
+- Transactions of assets other than xch (cat, nft, ...) which include a fee will cause a second fee-transaction in the xch currency wallet (wallet 1)
+- Offers are split into multiple transactions on the corresponding wallets
+- Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
+- The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
+- For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
+- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+</details>
+
+<details>
 <summary>Example</summary>
 
 ```json
@@ -1768,8 +1781,22 @@ Request Parameters:
 | reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false] |
 | to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
 
-Note: By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination.
+<details>
+<summary>Notes about transactions</summary>
+By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination.
 If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
+
+The transaction history is not deterministic due to heuristics we use to counter privacy features of the blockchain. This means, a couple of details cannot be fetched fully:
+
+- The transaction IDs can and will change if you resync the wallet
+- Transactions of assets other than xch (cat, nft, ...) which include a fee will cause a second fee-transaction in the xch currency wallet (wallet 1)
+- Offers are split into multiple transactions on the corresponding wallets
+- Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
+- The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
+- For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
+- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+</details>
 
 <details>
 <summary>Example 1: List a single XCH transaction</summary>

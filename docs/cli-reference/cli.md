@@ -92,6 +92,22 @@ Command: `chia start {service}`
 
 `-r, --restart`: Restart of running processes
 
+|                   | Full Node | Wallet | Farmer | Harvester | Timelord | Timelord Launcher | Timelord-Only | Introducer | Full Node Simulator |
+| ----------------- | --------- | ------ | ------ | --------- | -------- | ----------------- | ------------- | ---------- | ------------------- |
+| all               | X         | X      | X      | X         | X        | X                 |               |            |                     |
+| node              | X         |        |        |           |          |                   |               |            |                     |
+| harvester         |           |        |        | X         |          |                   |               |            |                     |
+| farmer            | X         | X      | X      | X         |          |                   |               |            |                     |
+| farmer-no-wallet  | X         |        | X      | X         |          |                   |               |            |                     |
+| farmer-only       |           |        | X      |           |          |                   |               |            |                     |
+| timelord          | X         |        |        |           | X        | X                 |               |            |                     |
+| timelord-only     |           |        |        |           | X        |                   | X             |            |                     |
+| timelord-launcher |           |        |        |           |          | X                 |               |            |                     |
+| wallet            | X         | X      |        |           |          |                   |               |            |                     |
+| wallet-only       |           | X      |        |           |          |                   |               |            |                     |
+| introducer        |           |        |        |           |          |                   |               | X          |                     |
+| simulator         |           |        |        |           |          |                   |               |            | X                   |
+
 # plotters
 
 In 2.1.0 the option to use different plotters including compressed plotter was introduced. Each plotter has slightly different hardware requirements and may need slightly different options specified.
@@ -347,6 +363,7 @@ Options:
 Commands:
   completion  Generate shell completion
   configure   Modify configuration
+  dao         Create, manage or show state of DAOs
   data        Manage your data
   db          Manage the blockchain database
   dev         Developer commands and tools
