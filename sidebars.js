@@ -12,6 +12,7 @@ module.exports = {
         'getting-started/farming-guide',
         'getting-started/wallet-guide',
         'getting-started/using-the-gui',
+        'getting-started/bridge-guide',
       ],
     },
     {
