@@ -76,7 +76,7 @@ After your Ethereum wallet has been funded, you can set up a Chia wallet.
 
 ## Set up a Chia wallet
 
-While several Chia wallets exist, currently the bridge only supports wallets that use WalletConnect, as well as [Goby](https://www.goby.app/). For this example, we will use the Chia reference wallet. See our [wallet guide](/getting-started/wallet-guide/) for instructions on setting up this wallet.
+While several Chia wallets exist, currently the bridge only supports wallets that use WalletConnect, as well as [Goby](https://www.goby.app/). For this example, we will use the Chia reference wallet. See our [wallet guide](/getting-started/wallet-guide/#use-the-chia-wallet) for instructions on setting up this wallet.
 
 You will need to add some XCH to the reference wallet in order to pay fees. In the image below, the wallet contains 0.001 XCH. Typically, this amount will be sufficient.
 
