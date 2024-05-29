@@ -236,7 +236,21 @@ Be sure to read this dialog carefully, and verify that all information contained
 
 :::
 
-Note that a toll will be charged on the Base blockchain, and a tip will be charged on the Chia side. These funds will go to the bridge operators. If everything looks good, click `Initiate Bridging`:
+:::note note on fees
+
+Several fees may apply when using the bridge:
+
+Each blockchain charges a fee to use its network. The size of each fee depends on how busy the network is, as well as how long you are willing to wait for your transaction to be confirmed. Generally speaking, the fees on Base are significantly lower than those on Ethereum. On Chia, the network is often not busy enough to require any fees.
+
+In addition, a "toll" is automatically deducted for using the bridge. The toll is a small charge (either 0.001 XCH or 0.00001 ETH, depending on the chain where the transaction originated), collected solely to prevent network spam. This money does not go to the bridge or to its operators. Instead, it is redirected to the farmer/miner of the block which includes your transaction.
+
+Finally, the bridge itself charges a 0.3% tip for using the protocol. This tip is split among the bridge validators and helps to cover the costs associated with maintaining the bridge.
+
+For more information, see [warp.green's documentation](https://docs.warp.green/).
+
+:::
+
+If everything looks good, click `Initiate Bridging`:
 
 <p align='center'>
   <img alt='bridge' src='/img/bridge/eth_base_to_chia/24.png' width='800' />
