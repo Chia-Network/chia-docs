@@ -39,12 +39,11 @@ The way Chia has enabled truly peer-to-peer trading with offer files is unique a
 
 </details>
 
-
 ---
 
 ## Common gotchas
 
-- **Locked coins:** Some wallets including the GUI Reference Wallet will indicate part of the balance of an asset as "locked" or "unspendable" if an Offer was created offering that asset. In truth, those coins aren't actually unspendable but if they *are* spent, any offer(s) that use those coins will be invalid. In order to not lock up more than the offered amount, one can split their coins into smaller amounts prior to creating an offer.
+- **Locked coins:** Some wallets including the GUI Reference Wallet will indicate part of the balance of an asset as "locked" or "unspendable" if an Offer was created offering that asset. In truth, those coins aren't actually unspendable but if they _are_ spent, any offer(s) that use those coins will be invalid. In order to not lock up more than the offered amount, one can split their coins into smaller amounts prior to creating an offer.
 - **Canceling open offers:** If an offer has been previously shared (e.g. uploaded to dexie) and the creator wishes to cancel it, they need to cancel with the "Cancel on blockchain" function enabled to ensure the offer is truly invalidated and not just deleted locally.
 - **Blockchain fees:** Accepting an offer is an on-chain transaction and hence requires a transaction fee to be prioritized when blocks are full. The creator can embed fees as part of the offer file but the buyer can also optionally include a transaction fee as well.
 
