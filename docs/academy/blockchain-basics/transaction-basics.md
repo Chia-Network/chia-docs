@@ -100,5 +100,3 @@ C. Either the sender or receiver
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---
-
-A MASSIVE thank you to [SlowestTimeLord](https://github.com/SlowestTimelord) for the help in this submission 
