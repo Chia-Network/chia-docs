@@ -20,8 +20,8 @@ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-- "wallet_type" becomes \"wallet_type\"
-- "nft_wallet" becomes \"nft_wallet\"
+- `"wallet_type"` becomes `\"wallet_type\"`
+- `"nft_wallet"` becomes `\"nft_wallet\"`
 - etc
 
 </details>
