@@ -577,7 +577,7 @@ module.exports = {
         'academy/blockchain-basics/block-formation-basics',
         'academy/blockchain-basics/coinset-basics',
         'academy/blockchain-basics/security-basics',
-        'academy/blockchain-basics/transactions-basics',
+        'academy/blockchain-basics/transaction-basics',
       ],
     },
     {
