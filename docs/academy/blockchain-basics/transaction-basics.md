@@ -1,6 +1,6 @@
 ---
 title: Sending Transactions
-transaction-basics.md: /transaction-basics
+slug: /transaction-basics
 ---
 
 In this lesson, we look at the fundamental capability of sending assets to others on the blockchain.
