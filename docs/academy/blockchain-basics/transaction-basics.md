@@ -1,6 +1,6 @@
 ---
 title: Sending Transactions
-slug: /transactions-basics
+transaction-basics.md: /transaction-basics
 ---
 
 In this lesson, we look at the fundamental capability of sending assets to others on the blockchain.
@@ -56,8 +56,11 @@ When sending a large transaction, it can be helpful to give yourself an opportun
 Who receives the transaction fee?
 
 A. The transaction fee gets burned.
+
 B. It goes to the farmer that formed the block.
+
 C. It goes to the receiver of the transaction.
+
 D. It goes to an ecosystem developer fund.
 
 :::
