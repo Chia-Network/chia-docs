@@ -11,7 +11,17 @@ In order to include farming rewards, as well as transactions, in the system, we 
 
 **Trunk**: The component of blocks and the blockchain which includes VDFs, proofs of space, PoSpace signatures, challenges, and previous trunk blocks, and is completely canonical. The trunk includes each of the [three VDF chains](/three-vdf-chains), but it never refers to the foliage.
 
-**Foliage**: An extension of the blocks produced in the reward chain. A block's foliage includes the specification of where rewards should go, which transactions should be included, and what the previous block's foliage is. This is up to the farmer to decide and is grindable, so it can never be used as input to the challenges.
+**Foliage**: An extension of the blocks produced in the reward chain. A block's foliage includes the specification of where rewards should go, which transactions should be included, and what the previous block's foliage is.
+
+:::info
+
+Foliage provides a separation between the transactions and the consensus.
+
+A given block's farmer decides what is included in the foliage, thereby allowing the farmer to grind on its contents. If the transactions and the consensus were not separated, a farmer could grind on the foliage in order to gain an unfair edge in the consensus, which would allow them to win more blocks. For this reason, the foliage is kept separate from the consensus, and it can never be used as input to the challenges.
+
+It is also important to note that in the implementation, when a farmer submits a block, the trunk and foliage are both submitted together -- the two pieces are not calculated and submitted at separate times. The reason we emphasize the separation of the transactions and the consensus is because the farmer may not modify a block's trunk, but retains total control over the foliage.
+
+:::
 
 **Re-org**: A re-org (or reorganization) is when a node's view of the peak changes, such that the old view contains a block that is not included in the new view (one or more blocks have either been removed, or have changed order). Both trunk and foliage re-orgs are possible, but should be rare in practice, and low in depth.
 
@@ -19,7 +29,7 @@ In figure 11 below we can see that the foliage is added to the blocks formed in 
 
 To prevent a foliage re-org, honest farmers only create one set of foliage per block. As soon as one honest farmer has added foliage to a block, the foliage becomes impossible to re-org beyond that height with the same PoSpace, since that farmer will not sign again with the same PoSpace.
 
-Furthermore, blocks like B3, which come parallel with another the foliage of another block (B2), do not have to sign the previous block's foliage, since they do not necessarily have enough time to see it.
+Furthermore, blocks like B3, which come parallel with the foliage of another block (B2), do not have to sign the previous block's foliage, since they do not necessarily have enough time to see it.
 
 :::info
 
