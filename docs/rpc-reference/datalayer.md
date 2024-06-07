@@ -20,8 +20,8 @@ chia rpc data_layer create_data_store '{"fee":"1000"}'
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-- "fee" becomes \"fee\"
-- "1000" becomes \"1000\"
+- `"fee"` becomes `\"fee\"`
+- `"1000"` becomes `\"1000\"`
 - etc
 
 </details>

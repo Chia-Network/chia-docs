@@ -22,7 +22,7 @@ chia rpc daemon get_keys_for_plotting '{"fingerprints":[2104826454]}'
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-    "fingerprints" becomes \"fingerprints\"
+    `"fingerprints"` becomes `\"fingerprints\"`
     etc
 
 </details>

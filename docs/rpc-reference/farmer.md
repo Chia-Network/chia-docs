@@ -22,7 +22,7 @@ chia rpc farmer get_reward_targets '{"search_for_private_key": false}'
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-    "search_for_private_key" becomes \"search_for_private_key\"
+    `"search_for_private_key"` becomes `\"search_for_private_key\"`
     etc
 
 </details>
