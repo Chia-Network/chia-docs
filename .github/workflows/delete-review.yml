@@ -29,14 +29,14 @@ jobs:
           fi
 
   delete:
-    runs-on: [k8s-public]
+    runs-on: [k8s-public-fmt]
     container:
       image: registry.gitlab.com/cmmarslender/kubectl-helm:v3
     needs:
       - check-secret-access
     if: needs.check-secret-access.outputs.allowed == 'true'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Vault Login
         uses: Chia-Network/actions/vault/login@main
@@ -45,7 +45,7 @@ jobs:
           role_name: github-chia-docs
 
       - name: Get secrets from vault
-        uses: hashicorp/vault-action@v2
+        uses: hashicorp/vault-action@v3
         with:
           url: ${{ secrets.VAULT_URL }}
           token: ${{ env.VAULT_TOKEN }}

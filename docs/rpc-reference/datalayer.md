@@ -20,8 +20,8 @@ chia rpc data_layer create_data_store '{"fee":"1000"}'
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-- "fee" becomes \"fee\"
-- "1000" becomes \"1000\"
+- `"fee"` becomes `\"fee\"`
+- `"1000"` becomes `\"1000\"`
 - etc
 
 </details>
@@ -181,11 +181,18 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type | Required | Description                               |
-| :--------- | :--- | :------- | :---------------------------------------- |
-| id         | TEXT | True     | The hexadecimal store ID                  |
-| changelist | TEXT | True     | A string representing the changelist      |
-| fee        | TEXT | False    | Set the fee for the transaction, in mojos |
+| Flag            | Type    | Required | Description                                                                                                                                   |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | TEXT    | True     | The hexadecimal store ID                                                                                                                      |
+| changelist      | TEXT    | True     | A string representing the changelist                                                                                                          |
+| submit_on_chain | BOOLEAN | False    | Specify whether to submit the update to the blockchain (`True`), or to store it locally (`False`). Default: `True` (See info box for details) |
+| fee             | TEXT    | False    | Set the fee for the transaction, in mojos                                                                                                     |
+
+:::info
+
+The `submit_on_chain` flag was added in Chia version 2.3.0. In order to support the new functionality (submit an update off-chain), the schema for your `root` table will be upgraded automatically upon starting the DataLayer service. This upgrade takes about three minutes to complete.
+
+:::
 
 A few notes on the `changelist` option:
 
@@ -845,10 +852,12 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type | Required | Description                             |
-| :-------- | :--- | :------- | :-------------------------------------- |
-| id        | TEXT | True     | The hexadecimal store ID                |
-| root_hash | TEXT | False    | The root hash from which to obtain data |
+| Flag          | Type   | Required | Description                                                                                       |
+| :------------ | :----- | :------- | :------------------------------------------------------------------------------------------------ |
+| id            | TEXT   | True     | The hexadecimal store ID                                                                          |
+| root_hash     | TEXT   | False    | The root hash from which to obtain data                                                           |
+| page          | NUMBER | False    | Enables pagination of the output and requests a specific page                                     |
+| max_page_size | NUMBER | False    | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
 
 :::info
 
@@ -856,6 +865,14 @@ The `root_hash` parameter is recommended to be used each time you call this RPC.
 If `root_hash` is not specified, there is no way to guarantee that the latest data is being shown
 (stale data may be shown instead).
 This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max_page_size`, an error will be thrown.
 
 :::
 
@@ -894,10 +911,12 @@ Options:
 
 Request Parameters:
 
-|   Flag    | Type | Required | Description                             |
-| :-------: | :--: | :------: | :-------------------------------------- |
-|    id     | TEXT |   True   | The hexadecimal store ID                |
-| root_hash | TEXT |  False   | The root hash from which to obtain data |
+|     Flag      |  Type  | Required | Description                                                                                       |
+| :-----------: | :----: | :------: | :------------------------------------------------------------------------------------------------ |
+|      id       |  TEXT  |   True   | The hexadecimal store ID                                                                          |
+|   root_hash   |  TEXT  |  False   | The root hash from which to obtain data                                                           |
+|     page      | NUMBER |  False   | Enables pagination of the output and requests a specific page                                     |
+| max_page_size | NUMBER |  False   | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
 
 :::info
 
@@ -905,6 +924,14 @@ The `root_hash` parameter is recommended to be used each time you call this RPC.
 If `root_hash` is not specified, there is no way to guarantee that the latest data is being shown
 (stale data may be shown instead).
 This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max_page_size`, an error will be thrown.
 
 :::
 
@@ -1013,11 +1040,21 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type | Required | Description                |
-| :----- | :--- | :------- | :------------------------- |
-| id     | TEXT | True     | The hexadecimal store ID   |
-| hash_1 | TEXT | True     | The first hash to compare  |
-| hash_2 | TEXT | True     | The second hash to compare |
+| Flag          | Type   | Required | Description                                                                                       |
+| :------------ | :----- | :------- | :------------------------------------------------------------------------------------------------ |
+| id            | TEXT   | True     | The hexadecimal store ID                                                                          |
+| hash_1        | TEXT   | True     | The first hash to compare                                                                         |
+| hash_2        | TEXT   | True     | The second hash to compare                                                                        |
+| page          | NUMBER | False    | Enables pagination of the output and requests a specific page                                     |
+| max_page_size | NUMBER | False    | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max_page_size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -1461,6 +1498,7 @@ Response:
     "/create_data_store",
     "/get_owned_stores",
     "/batch_update",
+    "/submit_pending_root",
     "/get_value",
     "/get_keys",
     "/get_keys_values",
@@ -1908,6 +1946,27 @@ Response:
 ```
 
 </details>
+
+---
+
+### `submit_pending_root`
+
+Functionality: Publish the root from all pending batch updates
+
+Usage: chia rpc data_layer [OPTIONS] submit_pending_root [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type | Required | Description              |
+| :--- | :--- | :------- | :----------------------- |
+| id   | TEXT | True     | The hexadecimal store ID |
 
 ---
 

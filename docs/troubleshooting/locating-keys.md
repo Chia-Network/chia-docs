@@ -17,9 +17,9 @@ The main keys utilized in chia are:
 1. **Public Key** - also known as the master public key, this key is used with the [Chia faucet](https://faucet.chia.net/) and as an observer only view for funds in the wallet.
 2. **Farmer Public Key** - this key is used to generate plots and is a public key. If using a plotting service they will request this key and also a pool contract address which is listed on the pool tab of the gui, detailed instructions can be found [here](/plotting-how-to#pool-contract-address)
 3. **Pool Public Key** - this is the key that was used for OG plots which cannot connect to pools. It is recommended to create plotNFT plots (portable plots) and use the pool contract address as outlined [here](/plotting-how-to#pool-contract-address)
-4. **Farmer Private Key** - this key should **NEVER** be shared with anyone as it is used to sign farmed blocks. Always be mindful when clicking the reveal button and recognize that this keyset is generally not needed for any manual entry.
-5. **Secret Key** - also known as the master private key, this key should **NEVER** be shared with anyone as it can give access to spend funds from your wallet. Always be mindful when clicking the reveal button and recognize that this keyset is generally not needed for any manual entry.
-6. **Seed Phrase** - also known as the mnemonic phrase, this key should **NEVER** be shared with anyone as it gives full access to your wallet. This should be backed up in a safe location and never entered into any manual entry field unless you are importing your keys to a new wallet.
+4. **Secret Key** - also known as the master private key, this key should **NEVER** be shared with anyone as it can give access to spend funds from your wallet. Always be mindful when clicking the reveal button and recognize that this keyset is generally not needed for any manual entry.
+5. **Seed Phrase** - also known as the mnemonic phrase, this key should **NEVER** be shared with anyone as it gives full access to your wallet. This should be backed up in a safe location and never entered into any manual entry field unless you are importing your keys to a new wallet.
+6. **Farmer Private Key** - this key should **NEVER** be shared with anyone as it is used to sign farmed blocks. Always be mindful when clicking the reveal button and recognize that this keyset is generally not needed for any manual entry.
 
 ## GUI
 

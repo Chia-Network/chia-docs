@@ -22,8 +22,8 @@ chia rpc harvester add_plot_directory '{"dirname": "C:\\plots"}'
 
 To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
 
-    "dirname" becomes \"dirname\"
-    "C:\\plots" becomes \"C:\\plots\"
+    `"dirname"` becomes `\"dirname\"`
+    `"C:\\plots"` becomes `\"C:\\plots\"`
 
 </details>
 
