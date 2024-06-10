@@ -5,7 +5,7 @@ slug: /bridge-guide
 
 ## Intro
 
-The [Warp.green bridge](https://www.warp.green/) is a messaging protocol that enables bridging assets between Chia and other blockchains. It is an open-source project located on [GitHub](https://github.com/warpdotgreen). It was developed by Warp.green, which is not affiliated with Chia Network, Inc.
+The [Warp.green bridge](https://www.warp.green/) is a messaging protocol that enables bridging assets between Chia and other blockchains. It is an open-source project located on [GitHub](https://github.com/warpdotgreen). It was developed by Warp.green, which is not affiliated with Chia Network Inc.
 
 This guide will show you how to send ETH from the [Base](https://www.base.org/) blockchain (an Ethereum L2) to the Chia blockchain. The transfer will take a total of 15-20 minutes, though the initial setup could take considerably longer if you are not familiar with the technologies involved.
 
