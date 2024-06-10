@@ -217,4 +217,5 @@ We refer to attacks exploiting this fact as _replotting attacks_. The most basic
 A fundamental fact about PoSpace that crucially relies on replotting is that *no PoSpace based longest-chain protocol secure under dynamic availability exists* [<a href="/green-paper-references/#BP22">BP22</a>], we'll discuss their result in more detail in §6.2.3. $\textsf{Chia}$ overcomes this no-go theorem by using VDFs, we discuss security under dynamic availability and healing from malicious majority in the work, stake and space setting in §6.
 
 [^1]: According to Wikipedia, _delayed gratification_ is the resistance to the temptation of an immediate pleasure in the hope of obtaining a valuable and long-lasting reward in the long-term.
+
 [^2]: The crucial observation that makes this possible is the fact that Hellman's attack assumes that $f(.)$ can be efficiently computed in forward direction, while for a PoSpace we just require that the entire function table of $f(.)$ can be computed in time linear in the size of the table.
