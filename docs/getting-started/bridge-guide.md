@@ -7,7 +7,7 @@ slug: /bridge-guide
 
 A _cryptocurrency bridge_ is a powerful tool that enables seamless transfers of digital assets between different blockchain networks, breaking down the barriers of blockchain interoperability. The first Chia blockchain bridge by Warp.Green is now available, paving the way for anyone to access XCH.
 
-As the first of many bridges to come, Warp.Green marks an exciting milestone in our journey toward greater access to chia (XCH). To help you get started, here's a comprehensive guide on how to use the Warp.Green bridge.
+As the first of many bridges to come, Warp.Green marks an exciting milestone in our journey toward greater access to chia (XCH). To help you get started, here's a introductory guide on how to use the Warp.Green bridge.
 
 ## The Warp.green Bridge
 
