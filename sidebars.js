@@ -454,6 +454,7 @@ module.exports = {
             'guides/custody/prefarm-audit',
           ],
         },
+        'guides/observer-wallet-guide',
         'guides/tutorials/coin-spend-rpc',
         'guides/seeder-user-guide',
         'guides/simulator-user-guide',
