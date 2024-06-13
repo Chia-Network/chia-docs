@@ -3,6 +3,9 @@ title: Node Syncing
 slug: /troubleshooting/node-syncing
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Port forwarding port 8444 can solve many sync issues and helps improve Chia's network health.
 
 Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networking%29) through which other Chia computers can communicate with your PC. When you set up port forwarding on port 8444, the Chia software on your computer can quickly talk to other PCs, link up, and start downloading and syncing with the Chia blockchain.
