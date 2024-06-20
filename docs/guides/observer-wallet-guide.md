@@ -59,7 +59,6 @@ First wallet address: <address>
 
 Save a copy of the key shown with `Master public key (m):` in a text file. This file must only contain the public key, and it must be on a single line.
 
-
 Delete your wallet/key by running the following command:
 
 ```bash
