@@ -12,6 +12,12 @@ import TabItem from '@theme/TabItem';
 
 An observer wallet is a wallet that cannot be used for sending transactions. In other words, it is a read-only wallet. This is a powerful concept for HODLers and farmers alike.
 
+:::info
+
+Currently, you need to understand how to use a command line interface (CLI) in order to set up an observer wallet. Eventually, we will make this setup easier for GUI users.
+
+:::
+
 Until the introduction of observer wallets, the Chia reference wallet always stored each public/private key pair locally. It was possible to maintain an offline key, for example in order to receive farmer rewards, but checking the balance required using a blockchain explorer. However, as a privacy feature, Chia wallets generate a new address each time they receive money. A blockchain explorer is therefore not always able to provide an accurate view of a wallet's history.
 
 With an observer wallet, you can view your wallet's history and balance without the risk of funds being stolen by someone who gains access to your computer.
@@ -24,16 +30,7 @@ Eventually, we will add the ability to sign transactions using an external signe
 
 ## Set up
 
-In order to set up an observer wallet, you need to know the wallet's public key. This guide will demonstrate one technique to obtain this information.
-
-If you don't have an existing wallet that you would like to convert to an observer wallet, then you will need to create one. From the "Chia Wallet Keys" screen, click `ADD WALLET` and `Create New`:
-
-<p align='center'>
-  <img alt='observer wallet' src='/img/observer_wallet/01.png' width='800' />
-</p>
-<br/>
-
-You will be shown a 24-word seed phrase. Write down these words, and store them in a secure place. As with all wallets that use a seed phrase, if a malicious actor obtains these words, they can steal all of your funds.
+This guide will show you how to set up an existing non-observer wallet in observer mode. It assumes that you have already copied the exiting wallet's 24-word seed phrase to a secure location. See our [wallet guide](/getting-started/wallet-guide/) for more info on this setup.
 
 :::warning important
 
@@ -41,51 +38,41 @@ To load an observer wallet, the seed phrase is not required. However, in order t
 
 :::
 
-After securely copying the seed phrase, enter a name for the wallet and click `NEXT`:
+The next step after you have set up a wallet in non-observer mode is to obtain its master public key. Open a command prompt or terminal window, and enter the following:
 
-<p align='center'>
-  <img alt='observer wallet' src='/img/observer_wallet/02.png' width='800' />
-</p>
-<br/>
+```bash
+chia keys show
+```
 
-Your new wallet will be created as a normal, non-observer wallet. At this point, you can exit the wallet (we will return to it shortly):
+Locate your wallet's fingerprint. You will see something like the following:
 
-<p align='center'>
-  <img alt='observer wallet' src='/img/observer_wallet/03.png' width='800' />
-</p>
-<br/>
+```bash
+Showing all public keys derived from your master key:
 
-From the `Chia Wallet Keys` screen, click the three dots associated with your wallet, and click `Details`:
+Label: Testnet11 Small
+Fingerprint: <fingerprint>
+Master public key (m): <master public key>
+Farmer public key (m/12381/8444/0/0): <farmer public key>
+Pool public key (m/12381/8444/1/0): <pool public key>
+First wallet address: <address>
+```
 
-<p align='center'>
-  <img alt='observer wallet' src='/img/observer_wallet/04.png' width='800' />
-</p>
-<br/>
+Save a copy of the key shown with `Master public key (m):` in a text file. This file must only contain the public key, and it must be on a single line.
 
-Copy the value of `Public Key`, which has been removed from the following image, but is the long string below the red circle. When you have safely stored your wallet's public key (it can be stored along with the seed phrase), click `CLOSE`:
 
-<p align='center'>
-  <img alt='observer wallet' src='/img/observer_wallet/05.png' width='800' />
-</p>
-<br/>
+Delete your wallet/key by running the following command:
 
-Now that you have saved a copy of your wallet's public key, you can delete your wallet. From the `Chia Wallet Keys` screen, click the three dots associated with your wallet, and click `Delete`:
+```bash
+chia keys delete -f <fingerprint>
+```
 
-<p align='center'>
-  <img alt='observer wallet' src='/img/observer_wallet/06.png' width='800' />
-</p>
-<br/>
+The output will look something like the following:
 
-You will need to enter your wallet's fingerprint, and click `DELETE`:
+```bash
+Deleting private_key with fingerprint <fingerprint>
+```
 
-<p align='center'>
-  <img alt='observer wallet' src='/img/observer_wallet/07.png' width='800' />
-</p>
-<br/>
-
-Next, you can re-add your wallet using its public key. To do this, first save your wallet's public key in a text file. This file must only contain the public key, and it must be on a single line.
-
-Open a command prompt or terminal window, and enter the following:
+Next, run the following command to re-add your wallet/key using the master public key you previously saved:
 
 ```bash
 chia keys add -f <file name> -l "<Name>"
@@ -94,7 +81,7 @@ chia keys add -f <file name> -l "<Name>"
 Be sure to enter the actual file path, as well as whatever name you want to call your observer wallet. The output will look something like the following:
 
 ```bash
-Added public key with fingerprint
+Added public key with fingerprint <fingerprint>
 ```
 
 You may also see a warning such as the following, which can be safely ignored:
