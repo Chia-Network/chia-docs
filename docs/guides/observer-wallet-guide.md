@@ -30,15 +30,9 @@ Eventually, we will add the ability to sign transactions using an external signe
 
 ## Set up
 
-This guide will show you how to set up an existing non-observer wallet in observer mode. It assumes that you have already copied the exiting wallet's 24-word seed phrase to a secure location. See our [wallet guide](/getting-started/wallet-guide/) for more info on this setup.
+This guide assumes you have a wallet set up in non-observer mode, and that you want to set up the same wallet in observer mode on a new computer where Chia is also installed.
 
-:::warning important
-
-To load an observer wallet, the seed phrase is not required. However, in order to spend the funds in an observer wallet later, the seed phrase **is** required. It is critically important to securely save this seed phrase, just as you would with a non-observer wallet. If you do not save a copy of the seed phrase, you will never be able to spend this wallet's funds.
-
-:::
-
-The next step after you have set up a wallet in non-observer mode is to obtain its master public key. Open a command prompt or terminal window, and enter the following:
+The first step is to obtain the wallet's master public key from the original computer. Open a command prompt or terminal window, and enter the following:
 
 ```bash
 chia keys show
@@ -57,21 +51,9 @@ Pool public key (m/12381/8444/1/0): <pool public key>
 First wallet address: <address>
 ```
 
-Save a copy of the key shown with `Master public key (m):` in a text file. This file must only contain the public key, and it must be on a single line.
+Save a copy of the key shown with `Master public key (m):` in a text file. This file must only contain the public key, and it must be on a single line. Copy this file to the computer on which you want to load the wallet in observer mode.
 
-Delete your wallet/key by running the following command:
-
-```bash
-chia keys delete -f <fingerprint>
-```
-
-The output will look something like the following:
-
-```bash
-Deleting private_key with fingerprint <fingerprint>
-```
-
-Next, run the following command to re-add your wallet/key using the master public key you previously saved:
+From your second computer, run the following command to add your wallet in observer mode:
 
 ```bash
 chia keys add -f <file name> -l "<Name>"
@@ -128,5 +110,3 @@ This should result in an error:
   <img alt='observer wallet' src='/img/observer_wallet/12.png' width='800' />
 </p>
 <br/>
-
-When you need to spend the wallet's funds, delete the observer wallet, and re-add it using the seed phrase.
