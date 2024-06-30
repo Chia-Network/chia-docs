@@ -45,9 +45,9 @@ In the networking protocol, the three VDF proofs are usually passed around toget
 
 ## Genesis Challenge
 
-The genesis challenge is the first challenge on a network that uses the Proof of Space and Time consensus. The timelords use this challenge to calculate and broadcast the very first signage point. Chia's mainnet, testnets and simulated networks each have their own unique _genesis challenge_.
+The genesis challenge is the first challenge on a network that uses the Proof of Space and Time consensus. The timelords use this challenge to calculate and broadcast the very first signage point. Chia's mainnet, testnets and simulated networks each have their own unique _genesis challenge_. The timelords use this challenge to calculate and broadcast the very first signage point. Chia's mainnet, testnets and simulated networks each have their own unique _genesis challenge_.
 
-The genesis challenge is created arbitrarily, by hashing a preimage. In the case of Chia's mainnet, the preimage included the hash of Bitcoin block [675317](https://www.blockchain.com/explorer/blocks/btc/675317), which was mined shortly prior to the launch of Chia's network. It also included the following message from Bram:
+The genesis challenge is created arbitrarily, by hashing a preimage. The genesis challenge is created arbitrarily, by hashing a preimage. In the case of Chia's mainnet, the preimage included the hash of Bitcoin block [675317](https://www.blockchain.com/explorer/blocks/btc/675317), which was mined shortly prior to the launch of Chia's network. It also included the following message from Bram: It also included the following message from Bram:
 
 `"Operational error causes Fed payment system to crash" We stand on the shoulders of giants, now let's get farming!`
 
@@ -63,6 +63,6 @@ The SHA256 hash of this preimage is:
 ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb
 ```
 
-This hash is the genesis challenge for Chia's mainnet. The complete JSON data for the genesis challenge is located [here](https://download.chia.net/notify/mainnet_alert.txt). The first block on Chia's mainnet ([block 0](https://www.spacescan.io/block/0)) was created at signage point `2`; it points to the genesis challenge as its previous block. The prefarm was then distributed in [block 1](https://www.spacescan.io/block/1), at signage point `7`.
+This hash is the genesis challenge for Chia's mainnet. This hash is the genesis challenge for Chia's mainnet. The complete JSON data for the genesis challenge is located [here](https://download.chia.net/notify/mainnet_alert.txt). The first block on Chia's mainnet ([block 0](https://www.spacescan.io/block/0)) was created at signage point `2`; it points to the genesis challenge as its previous block. The prefarm was then distributed in [block 1](https://www.spacescan.io/block/1), at signage point `7`. The first block on Chia's mainnet ([block 0](https://www.spacescan.io/block/0)) was created at signage point `2`; it points to the genesis challenge as its previous block. The prefarm was then distributed in [block 1](https://www.spacescan.io/block/1), at signage point `7`.
 
 The genesis challenge for other networks can be found opening `config.yaml` (located in `~/.chia/mainnet/config` for Chia's mainnet and testnets) and searching for `GENESIS_CHALLENGE:` in the section corresponding to the desired network.

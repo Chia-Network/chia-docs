@@ -3,7 +3,7 @@ title: Costs
 slug: /coin-set-costs
 ---
 
-Cost is a unit of measurement that is used to represent the available space in a block. It is measured by the amount of computing power required to execute the programs within it, as well as the physical drive space required to store data on each node's machine.
+Cost is a unit of measurement that represents resources expended to record a transaction in a block. Cost is a unit of measurement that is used to represent the available space in a block. It is measured by the amount of computing power required to execute the programs within it, as well as the physical drive space required to store data on each node's machine.
 
 :::info
 The maximum cost per block is 11,000,000,000 (11 billion), which is typically equivalent to around 400 KB of space. However, not every block is completely full.
@@ -13,9 +13,9 @@ It is important to keep the cost usage of programs on the Chia blockchain as low
 
 ## Cost Calculation
 
-Every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
+Cost has several components. First, every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
 
-Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
+Additionally, certain conditions in a coin spend have a cost associated with them as well. Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
 
 Finally, each byte of data that gets added to the blockchain has a cost of 12,000. Spend bundles are created using a serialized format of CLVM programs, calculated by running [opc](https://chialisp.com/commands#serialize) on the original CLVM program. Each two-digit pair of this format is equivalent to one byte, which costs 12,000 to store on the blockchain.
 
@@ -25,7 +25,7 @@ Aside from cost, the maximum number of atoms and pairs (counted separately) in a
 
 The minimum spec machine to run a full node is the Raspberry Pi 4. How do we know if this machine can stay synced? The worst case scenario occurs when multiple full transaction blocks are created with the minimum amount of time between them. This will temporarily put maximum load on the system. If the Pi can stay synced in this scenario, then it easily should be able to stay synced under normal load.
 
-The first question we must answer is how much time elapses between transaction blocks. Chia's consensus mandates that at least three signage points must be reached before infusion_iterations may occur, so the minimum time between blocks is the following:
+The first question we must answer is how much time elapses between transaction blocks. The first question we must answer is how much time elapses between transaction blocks. Chia's consensus mandates that at least three signage points must be reached before infusion_iterations may occur, so the minimum time between blocks is the following:
 
 ```
 3 signage points * signage point time
@@ -137,3 +137,31 @@ Theoretical maximum cost per block: `3 620 074 957 + 3 620 074 957 + 3 620 074 9
 The theoretical maximum size of a single block is `maximum cost per block / cost per byte`, or `11 000 000 000 / 12 000 = 916 667 bytes`. However, this number ignores the costs of all operators. If you want a CLVM program to do anything useful, the maximum size would be closer to 400 KB.
 
 Even this number is not realistic because it assumes that a single program will take up an entire block. The maximum number of vanilla transactions (with two outputs) per block is 1000. Therefore, if there is fee pressure on Chia's blockchain, a 400 KB program would need to include a larger fee than the top 1000 vanilla transactions in the mempool -- combined -- in order for a farmer to include it.
+
+### Estimated Transaction Costs
+
+The below chart contains costs for various transactions on the blockchain, each of these assumes the inputs and outputs have been optimized and represent a best case scenario.
+
+:::note
+The [minimum effective](/mempool/#fee-required-for-inclusion) fee represents 5 x the clvm cost and is the minimum fee recognized by the default consensus rules (any fee less would be the same as 1 mojo). This means one needs to use at least the fees listed below during moderate fee pressure but greater fees might be needed for time sensitive transactions to process in a timely manner.
+
+Please note that the costs and fees listed are for vanilla versions of these transactions, they can vary based on the number of input and output coins needed so consider these the bare minimum. Transactions with a '\*' are listed with a fee of 3 x the minimum effective fee. This is to ensure the fees are more realistic for how coins are distributed in users wallets but note that vanilla versions of these would be 1/3 that which is listed.
+:::
+
+| Transaction Type                  | clvm Cost     | Minimum Effective Fee               |
+| --------------------------------- | ------------- | ----------------------------------- |
+| **Full Block (with 50% cap)**     | 5,500,000,000 | 27,500,000,000 mojo (0.0275 xch)    |
+| **Standard Transaction**          | 6,000,000     | 90,000,000 mojo (0.00009 xch) \*  |
+| **PlotNFT Creation**              | 18,000,000    | 90,000,000 mojo (0.00009 xch)       |
+| **Minting NFT with DID**          | 123,000,000   | 615,000,000 mojo (0.000615 xch)     |
+| **Minting NFT without DID**       | 53,000,000    | 265,000,000 mojo (0.000265 xch)     |
+| **Adding URI to NFT with DID**    | 71,000,000    | 355,000,000 mojo (0.000355 xch)     |
+| **Adding URI to NFT without DID** | 41,000,000    | 205,000,000 mojo (0.000205 xch)     |
+| **Transfer NFT with DID**         | 67,000,000    | 335,000,000 mojo (0.000335 xch)     |
+| **Assign DID to NFT**             | 107,000,000   | 535,000,000 mojo (0.000535 xch)     |
+| **Send Clawback Transaction**     | 10,000,000    | 150,000,000 mojo (0.00015 xch) \* |
+| **Claim Clawback Transaction**    | 1,400,000     | 7,000,000 mojo (.000007 xch)        |
+| **Clawback Clawback Transaction** | 15,600,000    | 75,800,000 mojo (.0000758 xch)      |
+| **Combine 500 Farming Rewards**   | 3,100,000,000 | 15,500,000,000 mojo (.0155 xch)     |
+| **Split 1 Coin into 2**           | 11,000,000    | 55,000,000 mojo (.000055 xch)       |
+| **Cat Transaction**               | 37,000,000    | 555,000,000 mojo (.000555 xch) \* |

@@ -5,7 +5,7 @@ slug: /block-formation-basics
 
 In this lesson, we review the basics of block formation including the farmers role in validating transactions, forming blocks, and managing the mempool.
 
-## Learning objectives
+## 学习目标
 
 - **Transaction Validation**: Learn how nodes validate transactions for inclusion in a block.
 - **Block Formation**: Understand farmers role in forming blocks.
@@ -13,7 +13,7 @@ In this lesson, we review the basics of block formation including the farmers ro
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/yxt53B4GGbM" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -21,7 +21,7 @@ In this lesson, we review the basics of block formation including the farmers ro
 
 ---
 
-## Script
+## 脚本
 
 <details>
 
@@ -45,7 +45,7 @@ and the relevant transactions are cleared from the mempool. In this way, transac
 
 ---
 
-## Common gotchas
+## 常见问题
 
 - **Transaction Validation:** Transactions are validated by all nodes not only while blocks are being formed but also when the newly infused blocks are sent from peers, this eliminates a malicious actors ability from altering transactions even if they have the fastest timelord and have farmed the block.
 - **Block Formation vs Infusion:** Block formation is the process of combining proofs of space with transactions (the foliage) and is performed by the farmer while block infusion is the process of adding blocks to the chain itself and is performed by timelords.
@@ -53,7 +53,7 @@ and the relevant transactions are cleared from the mempool. In this way, transac
 
 ---
 
-## Knowledge check
+## 知识检测
 
 :::tip Question 1 - Transaction Validation
 
@@ -94,10 +94,10 @@ False, it is timelords that **infuse** blocks to the chain and the role of full 
 
 What is the Mempool?
 
-A. Temporary storage on the network where transactions are queued before being confirmed.
-B. The amount of system memory the blockchain can access.
-C. The total size of all current plots on the network.
-D. Another name for the chia blockchain database.
+A. Temporary storage on the network where transactions are queued before being confirmed.\
+The amount of system memory the blockchain can access.\
+The total size of all current plots on the network.\
+Another name for the chia blockchain database.
 
 :::
 
@@ -111,9 +111,9 @@ A. Temporary storage on the network where transactions are queued before being c
 
 ---
 
-## Additional resources
+## 附加资源
 
-### Links
+### 链接
 
 - Transaction validation [overview](https://docs.chia.net/block-validation/#body-validation): dives into the requirements for validating the blocks body (which contains the transactions).
 - Block formation [overview](https://docs.chia.net/consensus-foliage): explores the intricacies of the full nodes role in block formation and when transaction blocks are formed.

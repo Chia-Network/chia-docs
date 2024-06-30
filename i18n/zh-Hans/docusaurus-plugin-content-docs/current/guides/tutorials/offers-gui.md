@@ -1,5 +1,5 @@
 ---
-slug: /guides/offers-gui-tutorial-old
+slug: /guides/offers-gui-tutorial
 title: Offers - GUI
 ---
 

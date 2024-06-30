@@ -94,6 +94,12 @@ Coin ID: 0xde53700207e23c74088bd6feaadf39f36248729880ffe112b9420fa27c861d5c
 
 :::
 
+:::note
+
+This guide will use a CLI command to create a DAO. If preferred, you can also create a DAO with the [create_new_wallet](/wallet-rpc/#create_new_wallet) wallet RPC (see Example 4).
+
+:::
+
 The command to create a DAO is `chia dao create`. This command contains many options -- see [the documentation](/dao-cli#create) for a complete list. Most of the options are not required. However, we will change several of them because their default values are more appropriate for real-world DAOs.
 
 For this example, we will specify the following values:
@@ -273,6 +279,12 @@ XCH: 5.0
 The DAO now has 5 TXCH in its treasury. But there isn't much point in creating a DAO with only one member. The next step will be to get others to join.
 
 ### Join a DAO
+
+:::note
+
+This guide will use a CLI command to join an existing DAO. If preferred, you can also join a DAO with the [create_new_wallet](/wallet-rpc/#create_new_wallet) wallet RPC (see Example 5).
+
+:::
 
 For this example, we will begin with a wallet that contains 3 TXCH. This will become the wallet for **DAO participant 1**:
 

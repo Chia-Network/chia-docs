@@ -86,7 +86,7 @@ wsapp.close()
 
 #### WebSockets Example Output
 
-(Long strings have been replace with `XxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.)
+(Long strings have been replaced with `XxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`.)
 
 ```json
 Starting Something
@@ -155,11 +155,20 @@ namespace ChiaExamples
 
 ## Services
 
-The service RPC APIs are documented in the following sections: TODO: add links here and create the other sections
+| Service           | Managed Objects                                                                                       | Associated API                                                                                               | Associated RPC API                                                                                          |
+| ----------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| FarmerService     | [Farmer](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/farmer/farmer.py)             | [FarmerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/farmer/farmer_api.py)             | [FarmerRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/farmer_rpc_api.py)        |
+| FullNodeService   | [FullNode](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/full_node.py)     | [FullNodeAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/full_node_api.py)     | [FullNodeRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/full_node_rpc_api.py)   |
+| HarvesterService  | [Harvester](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/harvester/harvester.py)    | [HarvesterAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/harvester/harvester_api.py)    | [HarvesterRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/harvester_rpc_api.py)  |
+| IntroducerService | [Introducer](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/introducer/introducer.py) | [IntroducerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/introducer/introducer_api.py) | [FullNodeRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/full_node_rpc_api.py)   |
+| CrawlerService    | [Crawler](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/seeder/crawler.py)           | [CrawlerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/seeder/crawler_api.py)           | [CrawlerRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/crawler_rpc_api.py)      |
+| DataLayerService  | [DataLayer](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer.py)  | [DataLayerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer_api.py)  | [DataLayerRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/data_layer_rpc_api.py) |
+| TimelordService   | [Timelord](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/timelord/timelord.py)       | [TimelordAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/timelord/timelord_api.py)       | [TimelordRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/timelord_rpc_api.py)    |
+| WalletService     | [WalletNode](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/wallet_node.py)    | [WalletNodeAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/wallet_node_api.py)    | [WalletRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/wallet_rpc_api.py)        |
 
-- Shared: RPCs that all services share
-- Full Node
-- Farmer
-- Harvester
-- Timelord
-- Wallet (This API is still a WIP and likely to change soon)
+**Explanation:** Each service is composed of a managed object, an API for control, and an RPC API for remote control. The combination of these into the service is controlled by the [service alias](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/aliases.py) types.
+
+- **Service**: This column lists the different manager services within the Chia system.
+- **Managed Objects**: This column details the core entities or components that each service oversees.
+- **Associated API**: This column specifies the API class associated with each service. This API class defines the interface for interacting with the corresponding managed objects.
+- **Associated RPC API**: This column lists the RPC API class associated with each service. This RPC API class allows for remote control of the managed objects through Remote Procedure Calls (RPC).

@@ -1,6 +1,6 @@
 ---
 title: 收割机
-slug: /harvester-architecture
+slug: 收割机架构
 ---
 
 收割机是一些独立的机器，由农民控制。 在大规模耕作活动中，农民可能与许多收割机连接在一起。
@@ -16,7 +16,7 @@ slug: /harvester-architecture
 
 就大多数挑战而言，质量 ( 步骤1) 很低，所以没有必要获取全部证明（步骤2）。 一个节点有28秒的时间返回一个证明，所以磁盘I/O 不会是一个限制因素， 即使证明存储在慢速HDD上。
 
-:::note
+:::注意：
 磁带驱动器太慢无法耕种。 The protocol was designed to support hard disks, but nothing slower. It is possible to use tape for long-term plot storage, only transferring the plots to disks for occasional farming, but this is likely a very rare use case.
 :::
 

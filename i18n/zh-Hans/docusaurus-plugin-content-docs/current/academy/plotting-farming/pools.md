@@ -5,14 +5,14 @@ slug: /pools
 
 In this lesson, we review the Pooling protocol, and how it can benefit a Farmer starting out.
 
-## Learning objectives
+## 学习目标
 
 - **Benefits of Pooling**: Understand the benefits of participating in a Pool.
 - **Reward Splitting**: Understand how the rewards are split among pool participants.
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/qO1ctn7DhwE" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -20,7 +20,7 @@ In this lesson, we review the Pooling protocol, and how it can benefit a Farmer 
 
 ---
 
-## Script
+## 脚本
 
 <details>
 
@@ -42,13 +42,13 @@ The overall reward earned is largely the same over time for average sized farms,
 
 ---
 
-## Common gotchas
+## 常见问题
 
 - **Farming size still matters:** The size of a Farm directly relates to how many valid partials are generated, and partials determine a farmers share of the pool reward (7/8). This means there is still a benefit to large farms joining a pool.
 
 ---
 
-## Knowledge check
+## 知识检测
 
 :::tip Question 1 - Reward Split
 
@@ -80,13 +80,13 @@ How does the protocol maintain decentralization?
 
 ---
 
-## Additional resources
+## 附加资源
 
-### Links
+### 链接
 
 - More [farming basics](https://docs.chia.net/farming-basics): overviews of plotting, pooling, and rewards.
 - In depth [architecture overview](https://docs.chia.net/architecture-overview): describing the interactions between Farmers, Harvesters, Wallets, etc.
-- Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
+- Chialisp[详细文档](https://chialisp.com/)：提供有关Chialisp各个方面的详细信息。
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---

@@ -23,7 +23,7 @@ The number of NFTs per spend bundle is hard-coded at 25 in this tool. It may be 
 <details>
   <summary>Note about Python <code>RuntimeError</code> on Windows</summary>
 
-If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 'More info about this issue') and can be safely ignored. For example:
+If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 "More info about this issue") and can be safely ignored. For example:
 
 ```bash
 chia stop -d all
@@ -48,7 +48,7 @@ daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination
 
 We strongly recommend that you test the bulk minting tool either on the testnet or by using the [simulator](/guides/simulator-user-guide) before attempting to use it on mainnet. In addition, you will need to run a fully synced node in order to use this tool (this is true for testnet, mainnet and the simulator).
 
-For this guide, we will use the testnet. If you do not already have a synced testnet node, you can safely [download a copy of the database](https://www.chia.net/downloads/#database-checkpoint). **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
+For this guide, we will use the testnet. If you do not already have a synced testnet node, you can safely [download a copy of the database](https://www.chia.net/downloads/#database-checkpoint). **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet11/blockchain_v2_testnet11.sqlite.gz "Chia's testnet11 database download site") Save the file to your Downloads folder.
 
 :::note
 At the time of this writing, the file you will download is around 50 GB, compressed. Uncompressed, it will be around 100 GB. However, this file increases in size every day. You may want to double check that you have plenty of free space before proceeding with the download.
@@ -68,7 +68,7 @@ chia stop -d all
 If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
 :::
 
-1. Clone the [chia-nft-minting-tool](https://github.com/Chia-Network/chia-nft-minting-tool 'chia-nft-minting-tool') GitHub repository, which contains the bulk minting tool.
+1. Clone the [chia-nft-minting-tool](https://github.com/Chia-Network/chia-nft-minting-tool "chia-nft-minting-tool") GitHub repository, which contains the bulk minting tool.
 
 In order to clone this repository, first open a PowerShell (Windows) or terminal (Linux and MacOS) window. Next, run the `git clone` command:
 
@@ -105,6 +105,7 @@ python -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -113,6 +114,7 @@ python3 -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -143,7 +145,7 @@ If you previously had been running Chia on mainnet, then your peers table will b
 
 - `~/.chia/mainnet/db/peers.dat`
 - `~/.chia/mainnet/wallet/db/wallet_peers.dat`
-  :::
+:::
 
 2. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run:
 
@@ -196,7 +198,7 @@ If you ever need to display your address, run `chia keys show`. This command wil
 
 6. In order to continue, you will need to have some TXCH in your wallet. If your total balance is 0, you can obtain 1 TXCH from our faucet. Copy the value of "First wallet address:" from the output of the `chia keys show` command. It will be a long string beginning with "txch".
 
-Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit".
+Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit". Paste your address and click "Submit".
 
 You will receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you will receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your coins to arrive before continuing.
 
@@ -206,7 +208,7 @@ You will receive this message: `Accepted. Your request is in the queue and will 
 mkdir ~/.chia/mainnet/db
 ```
 
-8. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called `blockchain_v2_testnet10.sqlite`.
+8. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called `blockchain_v2_testnet10.sqlite`.
 
 Move the database to the folder you just created:
 
@@ -597,7 +599,7 @@ This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
    - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
-   - `-o`: _Not set._ In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
+   - `-o`: _Not set._ In this example, we don't provide this option as we will be air-dropping them to their targeted address in the `metadata.csv`. We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.) We declared these spend bundles to include a targeted address in the previous command. We would not be able to create offers for NFTs where we are offering the NFT if we are not the owner. (The air-drop address is the NFT owner.)
 
 ```bash
 chianft submit-spend-bundles -m 10 output.pkl

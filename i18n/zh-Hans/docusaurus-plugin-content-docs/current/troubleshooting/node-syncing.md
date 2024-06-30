@@ -10,7 +10,7 @@ Port forwarding port 8444 can solve many sync issues and helps improve Chia's ne
 
 Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networking%29) through which other Chia computers can communicate with your PC. When you set up port forwarding on port 8444, the Chia software on your computer can quickly talk to other PCs, link up, and start downloading and syncing with the Chia blockchain.
 
-The network is undergoing rapid growth and expansion. Many of the newly arrived Chia peers (computers) do not open up port 8444. It makes it very hard for the network. So please port forward on port 8444!
+The network is undergoing rapid growth and expansion. Many of the newly arrived Chia peers (computers) do not open up port 8444. Therefore, it is strongly recommended that you enable port forwarding.
 
 Use [this port checker](https://portchecker.co/) to check if your router's port 8444 is closed.
 
@@ -30,15 +30,15 @@ Here are the settings most routers will ask for:
 
 ## Why forward port 8444?
 
-All peers (computers) with a closed port 8444 are completely dependent on pc peers with open port 8444. They are the only PCs they can talk to. If you got 1,000 nodes with an open port 8444, but 20,000 nodes with a closed port 8444, trying to sync, it will only just be able to theoretically have enough IP's estimated 3,000 can sync at a time, while the other wait for another open Chia user with open port 8444. Right now (Mid April '20) it seems that number is even much worse. And it causes a scenario where there just isn't enough open port 8444 peers to serve all the closed port 8444 peers. The only way around this is to ensure that you got an open port 8444.
+All newly added nodes are completely dependent on nodes that are allowing port forwarding, because they are the only nodes in which they can sync with. The more nodes there are that don't allow port forwarding can cause a bottleneck to those nodes that do have it enabled.
 
-If you somehow are able to open up your port 8444 you will quickly have peers connecting to you and have a much easier time to get connections established.
+If you enable port forwarding, your node will sync faster, and you will be helping to ensure the stability and overall health of the Chia network.
 
 ## Speed up connecting to nodes
 
 If you would like to speed up connectivity to other nodes and increase your sync speed, add the introducer node to your Chia client:
 
-<Tabs
+\<Tabs
 defaultValue="mainnet"
 groupId="introducers"
 values={[
@@ -48,33 +48,36 @@ values={[
 
   <TabItem value="mainnet">
 
-    - Mainnet Introducer: `introducer.chia.net:8444`
+```
+- Mainnet Introducer: `introducer.chia.net:8444`
 
-    Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
-    - CNI Operated Full Node: `node.chia.net`
+Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+- CNI Operated Full Node: `node.chia.net`
 
-    Additionally, you can also visit either of the below websites that are frequently updated with available nodes listening on port 8444:
-    - [ChiaNodes.com](https://ChiaNodes.com)
-    - [chia.keva.app](https://chia.keva.app)
+Additionally, you can also visit either of the below websites that are frequently updated with available nodes listening on port 8444:
+- [ChiaNodes.com](https://ChiaNodes.com)
+- [chia.keva.app](https://chia.keva.app)
+```
 
   </TabItem>
   <TabItem value="testnet11">
 
-    - DNS Introducer: `dns-introducer-testnet11.chia.net`
-    - Legacy Introducer: `introducer-testnet11.chia.net:58444`
+```
+- DNS Introducer: `dns-introducer-testnet11.chia.net`
+- Legacy Introducer: `introducer-testnet11.chia.net:58444`
 
-    Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
-    - CNI Operated Full Node: `testnet11-node.chia.net`
+Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+- CNI Operated Full Node: `testnet11-node.chia.net`
+```
 
   </TabItem>
 </Tabs>
 
-Nodes (IPs) from these sites can be added in the GUI from the Full Node tab, select the Full Node button in the top right corner and then choose "Connect to Other Peers". You can also add nodes via the CLI with the command `chia peer full_node -a PEER_ADDRESS:PORT` where `PORT` will typically be 8444.
+Nodes (IPs) from these sites can be added in the GUI from the Full Node tab, select the Full Node button in the top right corner and then choose "Connect to Other Peers". These can be added in the GUI via the button, or via the CLI with `chia show -a PEER_ADDRESS:PORT` where `PORT` will usually be 8444.
 
-# Detailed explanation
+## Detailed explanation
 
-A regular pc can communicate **out** with endless ports-- if the user is sending a signal out -- pc opens a port -- signal goes out, pc closes the port.
-Chia uses port 8444 as instant verified communication. So an open port can allow instant communication and start the blockchain sync. Signal comes in on port 8444- that Chia pc is verified, then **both** user's pc, opens their own "communication ports ex port 8421" and that new user can now sync and now they are linked together forming part of Chia mesh.
+A regular pc can communicate **out** with endless ports-- if the user is sending a signal out -- pc opens a port -- signal goes out, pc closes the port. Chia uses port 8444 as instant verified communication. So an open port can allow instant communication and start the blockchain sync. Signal comes in on port 8444- that Chia pc is verified, then **both** user's pc, opens their own "communication ports ex port 8421" and that new user can now sync and now they are linked together forming part of Chia mesh.
 
 If the users port 8444 is closed, the users pc has to start sending multiple signals out and hope that a pc with open port 8444 will link with them, then the sync starts. (1) pc can only link up a few pc and with so many other Chia users coming on board, they all have to wait. Keep in mind, Chia is built on a mesh network, the blockchain is shared among all the users, not from central pc.
 

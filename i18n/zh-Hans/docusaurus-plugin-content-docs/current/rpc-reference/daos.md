@@ -15,6 +15,12 @@ Prior to using the DAO alpha primitive, be sure to read the [list of known issue
 
 :::
 
+:::note
+
+The RPC to create a new DAO is a **wallet RPC** called [create_new_wallet](/wallet-rpc/#create_new_wallet), therefore it is not documented here. See Example 7 for details of how this command's options can be used.
+
+:::
+
 <details>
   <summary>Note about Windows command escaping</summary>
 
@@ -51,12 +57,12 @@ Options:
 
 Request Parameters:
 
-| Flag              | Type   | Required | Description                                                                           |
-| :---------------- | ------ | :------- | :------------------------------------------------------------------------------------ |
-| wallet_id         | NUMBER | True     | The DAO wallet to which to add funds. Must be of type `DAOWallet`                     |
-| funding_wallet_id | NUMBER | True     | The wallet from which the funds will come. Must be of type `STANDARD_WALLET` or `CAT` |
-| amount            | NUMBER | True     | The amount of funds to add, in mojos                                                  |
-| fee               | NUMBER | False    | An optional blockchain fee, in mojos \[Default: 0]                                    |
+| Flag                                                        | Type   | Required | Description                                                                                                             |
+| :---------------------------------------------------------- | ------ | :------- | :---------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                              | NUMBER | True     | The DAO wallet to which to add funds. Must be of type `DAOWallet`                                       |
+| funding_wallet_id | NUMBER | True     | The wallet from which the funds will come. Must be of type `STANDARD_WALLET` or `CAT`                   |
+| amount                                                      | NUMBER | True     | The amount of funds to add, in mojos                                                                                    |
+| fee                                                         | NUMBER | False    | An optional blockchain fee, in mojos \[Default: 0] |
 
 <details>
 <summary>Example</summary>
@@ -194,10 +200,10 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type   | Required | Description                                                                                   |
-| :----------- | ------ | :------- | :-------------------------------------------------------------------------------------------- |
+| Flag                              | Type   | Required | Description                                                                                                   |
+| :-------------------------------- | ------ | :------- | :------------------------------------------------------------------------------------------------------------ |
 | wallet_id    | NUMBER | True     | The ID of the wallet whose filter level you would like to adjust. Must be of type `DAOWallet` |
-| filter_level | NUMBER | True     | The new filter level. Propos with fewer votes than this will not be shown.                    |
+| filter_level | NUMBER | True     | The new filter level. Propos with fewer votes than this will not be shown.    |
 
 ---
 
@@ -216,11 +222,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type   | Required | Description                                                                           |
-| :---------- | ------ | :------- | :------------------------------------------------------------------------------------ |
+| Flag                             | Type   | Required | Description                                                                                           |
+| :------------------------------- | ------ | :------- | :---------------------------------------------------------------------------------------------------- |
 | wallet_id   | NUMBER | True     | The ID of the wallet that contains the proposal to close. Must be of type `DAOWallet` |
-| proposal_id | STRING | True     | The ID of the proposal to close                                                       |
-| fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                  |
+| proposal_id | STRING | True     | The ID of the proposal to close                                                                       |
+| fee                              | NUMBER | False    | An optional blockchain fee, in mojos                                                                  |
 
 ---
 
@@ -239,12 +245,12 @@ Options:
 
 Request Parameters:
 
-| Flag          | Type   | Required | Description                                                                  |
-| :------------ | ------ | :------- | :--------------------------------------------------------------------------- |
+| Flag                               | Type   | Required | Description                                                                                  |
+| :--------------------------------- | ------ | :------- | :------------------------------------------------------------------------------------------- |
 | wallet_id     | NUMBER | True     | The DAO wallet to use for creating the proposal. Must be of type `DAOWallet` |
-| proposal_type | STRING | True     | Must be either `spend`, `update`, or `mint`                                  |
-| vote_amount   | NUMBER | False    | The number of votes to add                                                   |
-| fee           | NUMBER | False    | An optional blockchain fee, in mojos                                         |
+| proposal_type | STRING | True     | Must be either `spend`, `update`, or `mint`                                                  |
+| vote_amount   | NUMBER | False    | The number of votes to add                                                                   |
+| fee                                | NUMBER | False    | An optional blockchain fee, in mojos                                                         |
 
 Proposal Types:
 
@@ -258,38 +264,38 @@ If the proposal is of type `spend`, then `additions` may optionally be included 
 
 `additions` is a list with the following elements:
 
-| Element     | Required | Description                                         |
-| :---------- | :------- | :-------------------------------------------------- |
+| Element                          | Required | Description                                                                                                                                   |
+| :------------------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | asset_id    | False    | The asset_id of the funds to spend \[Default: None] |
-| puzzle_hash | True     | The puzzle_hash of the funds to spend               |
-| amount      | True     | The amount, in mojos, to spend                      |
+| puzzle_hash | True     | The puzzle_hash of the funds to spend                                                                                    |
+| amount                           | True     | The amount, in mojos, to spend                                                                                                                |
 
 If the proposal is of type `spend`, and `additions` is not included, then the following **request parameters** will be used instead:
 
-| Parameter     | Required | Description                                         |
-| :------------ | :------- | :-------------------------------------------------- |
+| Parameter                          | Required | Description                                                                                                                                   |
+| :--------------------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | asset_id      | False    | The asset_id of the funds to spend \[Default: None] |
-| inner_address | True     | The inner address of the funds to spend             |
-| amount        | True     | The amount, in mojos, to spend                      |
+| inner_address | True     | The inner address of the funds to spend                                                                                                       |
+| amount                             | True     | The amount, in mojos, to spend                                                                                                                |
 
 If the proposal is of type `update`, then the **request parameter** `new_dao_rules` is required.
 
 `new_dao_rules` is a list of optional rules to update. If a rule is missing from this list, it will not be updated:
 
-| Rule                 | Required | Description                                                                                        |
-| :------------------- | :------- | :------------------------------------------------------------------------------------------------- |
-| proposal_timelock    | False    | The new minimum number of blocks before a proposal can close                                       |
-| soft_close_length    | False    | The number of blocks a proposal must remain unspent before closing                                 |
-| attendance_required  | False    | The minimum number of votes a proposal must receive to be accepted                                 |
-| pass_percentage      | False    | The percentage of 'yes' votes in basis points a proposal must receive to be accepted. 100% = 10000 |
-| self_destruct_length | False    | The number of blocks required before a proposal can be automatically removed                       |
-| oracle_spend_delay   | False    | The number of blocks required between oracle spends of the treasury                                |
+| Rule                                                           | Required | Description                                                                                                        |
+| :------------------------------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------- |
+| proposal_timelock                         | False    | The new minimum number of blocks before a proposal can close                                                       |
+| soft_close_length    | False    | The number of blocks a proposal must remain unspent before closing                                                 |
+| attendance_required                       | False    | The minimum number of votes a proposal must receive to be accepted                                                 |
+| pass_percentage                           | False    | The percentage of 'yes' votes in basis points a proposal must receive to be accepted. 100% = 10000 |
+| self_destruct_length | False    | The number of blocks required before a proposal can be automatically removed                                       |
+| oracle_spend_delay   | False    | The number of blocks required between oracle spends of the treasury                                                |
 
 If the proposal is of type `mint`, then the following **request parameters** are required:
 
-| Parameter          | Required | Description                                  |
-| :----------------- | :------- | :------------------------------------------- |
-| amount             | True     | The number of DAO CATs to mint               |
+| Parameter                                                    | Required | Description                                  |
+| :----------------------------------------------------------- | :------- | :------------------------------------------- |
+| amount                                                       | True     | The number of DAO CATs to mint               |
 | cat_target_address | True     | The xch address that will receive the tokens |
 
 ---
@@ -309,11 +315,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                          |
-| :-------- | ------ | :------- | :----------------------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                                          |
+| :----------------------------- | ------ | :------- | :--------------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to release the DAO CATs. Must be of type `DAOWallet` |
-| coins     | STRING | False    | A list of coin IDs to release                                                        |
-| fee       | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
+| coins                          | STRING | False    | A list of coin IDs to release                                                                        |
+| fee                            | NUMBER | False    | An optional blockchain fee, in mojos                                                                 |
 
 ---
 
@@ -332,10 +338,10 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                          |
-| :-------- | ------ | :------- | :----------------------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                                          |
+| :----------------------------- | ------ | :------- | :--------------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to release the DAO CATs. Must be of type `DAOWallet` |
-| fee       | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
+| fee                            | NUMBER | False    | An optional blockchain fee, in mojos                                                                 |
 
 ---
 
@@ -354,8 +360,8 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                          |
-| :-------- | ------ | :------- | :------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                          |
+| :----------------------------- | ------ | :------- | :------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The wallet from which to list proposals; must be of type `DAOWallet` |
 
 <details>
@@ -418,10 +424,10 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type   | Required | Description                                                                                     |
-| :---------- | ------ | :------- | :---------------------------------------------------------------------------------------------- |
+| Flag                             | Type   | Required | Description                                                                                                     |
+| :------------------------------- | ------ | :------- | :-------------------------------------------------------------------------------------------------------------- |
 | wallet_id   | NUMBER | True     | The ID of the DAO wallet from which to look up a proposal's status. Must be of type `DAOWallet` |
-| proposal_id | STRING | True     | The ID of the proposal whose status you would like to show                                      |
+| proposal_id | STRING | True     | The ID of the proposal whose status you would like to show                                                      |
 
 <details>
 <summary>Example</summary>
@@ -493,8 +499,8 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                              |
-| :-------- | ------ | :------- | :----------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                              |
+| :----------------------------- | ------ | :------- | :--------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO wallet from which to show the rules. Must be of type `DAOWallet` |
 
 <details>
@@ -542,8 +548,8 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                        |
-| :-------- | ------ | :------- | :--------------------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                                        |
+| :----------------------------- | ------ | :------- | :------------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO whose treasury balance you would like to show. Must be of type `DAOWallet` |
 
 <details>
@@ -585,8 +591,8 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                     |
-| :-------- | ------ | :------- | :------------------------------------------------------------------------------ |
+| Flag                           | Type   | Required | Description                                                                                     |
+| :----------------------------- | ------ | :------- | :---------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO wallet whose ID you would like to retrieve. Must be of type `DAOWallet` |
 
 <details>
@@ -621,10 +627,10 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type   | Required | Description                                                          |
-| :---------- | ------ | :------- | :------------------------------------------------------------------- |
+| Flag                             | Type   | Required | Description                                                                          |
+| :------------------------------- | ------ | :------- | :----------------------------------------------------------------------------------- |
 | wallet_id   | NUMBER | True     | The DAO wallet where the proposal lives. Must be of type `DAOWallet` |
-| proposal_id | STRING | True     | The ID of the proposal whose details you would like to show          |
+| proposal_id | STRING | True     | The ID of the proposal whose details you would like to show                          |
 
 <details>
 <summary>Example</summary>
@@ -679,10 +685,10 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                   |
-| :-------- | ------ | :------- | :---------------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                                   |
+| :----------------------------- | ------ | :------- | :-------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to lock DAO CATs. Must be of type `DAOWallet` |
-| amount    | NUMBEr | True     | The amount of CATs to lock for voting                                         |
+| amount                         | NUMBEr | True     | The amount of CATs to lock for voting                                                         |
 
 ---
 
@@ -701,12 +707,12 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type    | Required | Description                                                                |
-| :---------- | ------- | :------- | :------------------------------------------------------------------------- |
-| wallet_id   | NUMBER  | True     | The ID of the wallet where the proposal lives. Must be of type `DAOWallet` |
-| proposal_id | STRING  | True     | The ID of the proposal on which you would like to vote                     |
-| vote_amount | NUMBER  | False    | The number of DAO CATs to use for this vote \[Default: None]               |
-| is_yes_vote | BOOLEAN | True     | A boolean indicating whether this vote is "yes" (`true`) or "no" (`false`) |
-| fee         | NUMBER  | False    | An optional blockchain fee, in mojos                                       |
+| Flag                                                  | Type    | Required | Description                                                                                                                       |
+| :---------------------------------------------------- | ------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                        | NUMBER  | True     | The ID of the wallet where the proposal lives. Must be of type `DAOWallet`                                        |
+| proposal_id                      | STRING  | True     | The ID of the proposal on which you would like to vote                                                                            |
+| vote_amount                      | NUMBER  | False    | The number of DAO CATs to use for this vote \[Default: None] |
+| is_yes_vote | BOOLEAN | True     | A boolean indicating whether this vote is "yes" (`true`) or "no" (`false`)                  |
+| fee                                                   | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                              |
 
 ---

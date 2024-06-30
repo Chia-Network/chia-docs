@@ -3,6 +3,12 @@ title: Consensus Introduction
 slug: /consensus-intro
 ---
 
+:::info
+
+This section is meant to provide a high level overview of Chia's consensus. If you are interested in implementing a new full node, we recommend that you review the [source code](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/consensus) in order to understand in depth how the consensus is implemented. If you have further questions, feel free to reach out to us on [Discord](https://discord.gg/chia).
+
+:::
+
 Decentralized consensus algorithms require Sybil resistance, using a resource that is both cryptographically verifiable and scarce (not infinite). In previous blockchain systems, two different scarce resources have been used: computing power (Proof of Work) and staked money (Proof of Stake).
 
 Chia's Proof of Space and Time consensus uses storage capacity as the scarce resource. This comes much closer than previous systems to Satoshi's original ideal of "one CPU, one vote," where a _vote_ refers to a chance to win and validate a block, not an actual vote on-chain. For example, someone storing 500 GiB has 5 "votes," and someone storing 100 GiB has 1 "vote."

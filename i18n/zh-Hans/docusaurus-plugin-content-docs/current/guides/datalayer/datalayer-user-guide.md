@@ -63,8 +63,8 @@ This example would require anyone-can-spend DataLayer proofs of inclusion (these
 
 有关其他技术资源，请参阅以下内容：
 
-- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
-- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
+- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
 - [DataLayer blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/)
 
@@ -221,7 +221,7 @@ sudo pfctl -sr | grep 8575
 
 :::
 
-3. (optional) If you are going to use a DataLayer as a Service (DLaaS) plugin, you can add custom headers to `~/.chia/mainnet/config/config.yaml`. For example, you might update the config as follows:
+3. (optional) If you are going to use a DataLayer as a Service (DLaaS) plugin, you can add custom headers to `~/.chia/mainnet/config/config.yaml`. For example, you might update the config as follows: For example, you might update the config as follows:
 
 ```yaml
 data_layer:
@@ -278,7 +278,7 @@ Regardless of the status of `FULL NODE`, you may safely proceed with this tutori
 - Green dot = full node is synced
 - `FULL NODE` is missing = you are running in `Wallet Mode`
 
-:::
+:::  
 
 <div style={{ textAlign: 'center' }}>
     <img src="/img/data_layer/10_synced.png" alt="Synced wallet" />
@@ -339,8 +339,8 @@ Keeping all of this in mind, **it is typically safe to insert data sets of up to
 
 Chia DataLayer doesn't have a GUI. The commands in this tutorial will use the command line interface (CLI). As a reminder, here is the complete reference for the CLI, as well as all available Remote Procedure Calls (RPCs):
 
-- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
-- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
+- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
 
 ### Create a data store
 

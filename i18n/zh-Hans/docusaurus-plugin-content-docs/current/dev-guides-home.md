@@ -52,114 +52,70 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={DevChia} alt='Intro to Developing on Chia' />
+        <a href='/guides/crash-course/introduction/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={DevChia} alt='Intro to Developing on Chia' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/crash-course/introduction/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={ChialispIntro} alt='Intro to Chialisp' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/crash-course/intro-to-chialisp/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={SmartCoins} alt='Intro to Smart Coins' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/crash-course/smart-coins/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={Signatures} alt='Intro to Signatures' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/crash-course/signatures/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <a href='/guides/crash-course/state/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={State} alt='Intro to State' />
+            </div>
+          </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={State} alt='Intro to State' />
-          </div>
-          <div class="card__footer">
-            <a href='/guides/crash-course/state/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </c-li>
-    <c-li class="carousel-item">
-      <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={InnerPuzzles} alt='Intro to Inner Puzzles' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/crash-course/inner-puzzles/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={CatsOffersNfts} alt='Intro to Cats, Offers, and NFTs' />
-          </div>
-          <div class="card__footer">
             <a href='/crash-course/cats-offers-nfts/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={ChialispTypescript} alt='Chialisp and Typescript' />
+        <a href='/chialisp-and-typescript/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={ChialispTypescript} alt='Chialisp and Typescript' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/chialisp-and-typescript/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
   </c-ol>
@@ -175,100 +131,79 @@ Explore the core building blocks of Chia development in the Primitives section. 
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={Nfts} alt='NFTs'/>
+        <a href='/guides/nft-developer-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={Nfts} alt='NFTs'/>
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/nft-developer-guide/'>
-              <button class="button button--primary button--block">Explore</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={Cats} alt='CATs' />
+        <a href='/guides/cat-developer-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={Cats} alt='CATs' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/cat-developer-guide/'>
-              <button class="button button--primary button--block">Explore</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={DataLayer} alt='DataLayer™' />
+        <a href='/guides/datalayer-developer-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={DataLayer} alt='DataLayer™' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/datalayer-developer-guide/'>
-              <button class="button button--primary button--block">Explore</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={Clawback} alt='Clawback' />
+        <a href='/guides/clawback-developer-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={Clawback} alt='Clawback' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/clawback-developer-guide/'>
-              <button class="button button--primary button--block">Explore</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={Offers} alt='Offers' />
+        <a href='/guides/offers-developer-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={Offers} alt='Offers' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/offers-developer-guide/'>
-              <button class="button button--primary button--block">Explore</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={Daos} alt='DAOs' />
+        <a href='/guides/daos-developer-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={Daos} alt='DAOs' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/daos-developer-guide/'>
-              <button class="button button--primary button--block">Explore</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={Vcs} alt='Verifiable Credentials' />
+        <a href='/guides/verifiable-credentials-guide'>
+          <div class="card">
+            <div class="card__image">
+              <img src={Vcs} alt='Verifiable Credentials' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/verifiable-credentials-guide'>
-              <button class="button button--primary button--block">Explore</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
   </c-ol>
@@ -284,101 +219,64 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={AppStructure} alt='Application Structure' />
+        <a href='/guides/application-structure-tutorial/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={AppStructure} alt='Application Structure' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/application-structure-tutorial/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={PuzzleLock} alt='Custom Puzzle Lock' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/custom-puzzle-lock-tutorial/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <a href='/guides/custody-tool/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={CustodyTool} alt='Custody Tool' />
+            </div>
+          </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={CustodyTool} alt='Custody Tool' />
-          </div>
-          <div class="card__footer">
-            <a href='/guides/custody-tool/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </c-li>
-    <c-li class="carousel-item">
-      <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={RpcCoinSpend} alt='RPC Coin Spend' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/coin-spend-rpc-tutorial/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <a href='/guides/seeder-user-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SeederGuide} alt='Seeder User Guide' />
+            </div>
+          </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={SeederGuide} alt='Seeder User Guide' />
-          </div>
-          <div class="card__footer">
-            <a href='/guides/seeder-user-guide/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </c-li>
-    <c-li class="carousel-item">
-      <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={SimulatorGuide} alt='Simulator User Guide' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/simulator-user-guide/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={WalletConnect} alt='WalletConnect' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/walletconnect/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
   </c-ol>
 </section>
@@ -393,157 +291,100 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={GreatChia} alt='Why Chia is Great' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/why-chia-is-great-video-series/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={AppDev} alt='Developing Chia Applications' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/developing-applications-video-series/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <a href='/guides/tools-and-setup-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={ToolsSetup} alt='Tools and Setup' />
+            </div>
+          </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={ToolsSetup} alt='Tools and Setup' />
+        <a href='/guides/programming-chialisp-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={ProgrammingClsp} alt='Programming in ChiaLisp' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/tools-and-setup-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={ProgrammingClsp} alt='Programming in ChiaLisp' />
-          </div>
-          <div class="card__footer">
-            <a href='/guides/programming-chialisp-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </c-li>
-    <c-li class="carousel-item">
-      <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={CoinLifecycle} alt='Coin Lifecycle' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/coin-lifecycle-and-testing-video-series/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <a href='/guides/singleton-contracts-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SingletonContracts} alt='Singleton Contracts' />
+            </div>
+          </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={SingletonContracts} alt='Singleton Contracts' />
-          </div>
-          <div class="card__footer">
-            <a href='/guides/singleton-contracts-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </c-li>
-    <c-li class="carousel-item">
-      <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={StateCoinsAnnounce} alt='State, Coins, and Announcements' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/state-coins-announcements-video-series/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <a href='/guides/security-arguments-signing-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SecArgSign} alt='Security, Arguments, and Signing' />
+            </div>
+          </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={SecArgSign} alt='Security, Arguments, and Signing' />
+        <a href='/guides/announcements-oracles-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={AnnounceOracle} alt='Announcements and Oracles' />
+            </div>
           </div>
-          <div class="card__footer">
-            <a href='/guides/security-arguments-signing-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
+        </a>
       </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={AnnounceOracle} alt='Announcements and Oracles' />
-          </div>
-          <div class="card__footer">
-            <a href='/guides/announcements-oracles-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </c-li>
-    <c-li class="carousel-item">
-      <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={SiCats} alt='Single Issuance CATs' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/single-issuance-cat-video-series/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <div class="card">
-          <div class="card__image">
-            <img src={MiCats} alt='Multiple Issuance CATs' />
-          </div>
-          <div class="card__footer">
             <a href='/guides/multiple-issuance-cat-video-series/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
-        </div>
-      </div>
     </c-li>
   </c-ol>
 </section>
