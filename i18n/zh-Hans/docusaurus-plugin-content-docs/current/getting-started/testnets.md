@@ -5,8 +5,11 @@ slug: /testnets
 
 :::note
 
-Testnet 10 is the supported testnet. Testnet 7 may remain active, but is no longer officially supported by Chia Network Inc.
+Testnet 10 is the supported testnet.
+
+Testnet 7 may remain active, but is no longer officially supported by Chia Network Inc.
 Testnets can be used to test the chia software with coins that have no real world value.\
+If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.\
 If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.
 
 :::
@@ -40,7 +43,11 @@ This step is optional, but it will speed up syncing with the testnet
 - Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet10.sqlite.gz` while in the directory (a v1 DB is also available, but no longer updated).
 - Windows users: download it from [https://downloads.chia.net/testnet10/](https://downloads.chia.net/testnet10/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. \~/.chia/mainnet/db is the database directory).
 
+:::note
+
 _Make sure to unzip the database before continuing to the next step._
+
+:::
 
 :::tip
 
@@ -86,7 +93,7 @@ _These instructions are tailored for Linux. A similar approach could likely be f
 
 在某些情况下，您可能希望在主网上耕种的同时，在其中一个测试网络上也进行耕种，而不会将它们从主网中移除。 This is doable with a bit of extra legwork to set up unique ports for the testnet chia installation.
 
-有几个设置的选项。 You can either ensure you have the CHIA_ROOT set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific CHIA_ROOT.
+有几个设置的选项。 有几个设置的选项。 You can either ensure you have the CHIA_ROOT set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific CHIA_ROOT.
 
 ### Set Up mainnet installation
 
@@ -97,6 +104,7 @@ For the mainnet installation, we will stick with the default ports and CHIA_ROOT
 :::note
 
 (Optional) Install `yq` to make editing the yaml files easier [https://github.com/mikefarah/yq#install](https://github.com/mikefarah/yq#install).\
+Alternatively, you can manually edit the ports in `config.yaml`.\
 Alternatively, you can manually edit the ports in `config.yaml`.
 
 :::

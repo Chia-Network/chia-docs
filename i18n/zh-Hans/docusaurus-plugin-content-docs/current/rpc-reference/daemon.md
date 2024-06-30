@@ -31,13 +31,13 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 This reference contains examples that make RPC calls directly from a terminal window on a running node.
 
-You can also make the same RPC calls to the daemon over a websocket. To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running:
+You can also make the same RPC calls to the daemon over a websocket. To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running: To do this, first you will need to install [wscat](https://www.npmjs.com/package/wscat), for example by running:
 
 ```bash
 npm install -g wscat
 ```
 
-Once wscat is installed, you can open a connection to the daemon. The command to run depends on your OS:
+Once wscat is installed, you can open a connection to the daemon. The command to run depends on your OS: The command to run depends on your OS:
 
 <Tabs
 defaultValue="windows"
@@ -50,6 +50,9 @@ values={[
 <TabItem value="windows">
 
 Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.
+
+```powershell
+wscat -n --cert C:\Users\
 
 ```powershell
 wscat -n --cert C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.crt --key C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.key -c wss://0.0.0.0:55400
@@ -88,9 +91,9 @@ Response:
 {"ack": true, "command": "get_wallet_addresses", "data": {"success": true, "wallet_addresses": {"2104826454": [{"address": "xch12yjgrn6m4eyszt9e3v3thczn2d6jlzvh2zjhnp0ar4kxhll8942sqq4s93", "hd_path": "m/12381/8444/2/100"}, {"address": "xch12hqq8g35gprs5r4vz366sf4r0mcvpmcy28a4tcfyda75avur4sas5vzvuj", "hd_path": "m/12381/8444/2/101"}]}}, "destination": "whatever", "origin": "daemon", "request_id": "also_whatever"}
 ```
 
-You can also use this websocket connection with the daemon to call RPCs on other services via the daemon. This is how the Chia GUI operates. It only has a websocket connection open to the daemon -- all other RPCs are dispatched by the daemon and routed back to the `wallet_ui` service (the service name for the Chia GUI).
+You can also use this websocket connection with the daemon to call RPCs on other services via the daemon. This is how the Chia GUI operates. You can also use this websocket connection with the daemon to call RPCs on other services via the daemon. This is how the Chia GUI operates. It only has a websocket connection open to the daemon -- all other RPCs are dispatched by the daemon and routed back to the `wallet_ui` service (the service name for the Chia GUI).
 
-To make this work, there's an extra step. You need to first call the `register_service` command to give your websocket connection a name.
+To make this work, there's an extra step. To make this work, there's an extra step. You need to first call the `register_service` command to give your websocket connection a name.
 
 For example, to register the websocket connect with the service name `my_fancy_service`, run:
 
@@ -131,7 +134,7 @@ Usage: chia rpc daemon [OPTIONS] exit [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -171,7 +174,7 @@ Usage: chia rpc daemon [OPTIONS] get_routes [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -227,7 +230,7 @@ Usage: chia rpc daemon [OPTIONS] get_status [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -262,7 +265,7 @@ Usage: chia rpc daemon [OPTIONS] get_version [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -297,17 +300,17 @@ Usage: chia rpc daemon [OPTIONS] get_wallet_addresses [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                    | Type    | Required | Description                                                                                 |
-| :---------------------- | :------ | :------- | :------------------------------------------------------------------------------------------ |
-| fingerprints            | NUMBER  | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
-| index                   | NUMBER  | False    | Starting index for addresses to list [Default: 0]                                           |
-| count                   | NUMBER  | False    | Number of addresses to list [Default: 1]                                                    |
+| Flag                      | Type    | Required | Description                                                                                 |
+|:------------------------- |:------- |:-------- |:------------------------------------------------------------------------------------------- |
+| fingerprints              | NUMBER  | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
+| index                     | NUMBER  | False    | Starting index for addresses to list [Default: 0]                                           |
+| count                     | NUMBER  | False    | Number of addresses to list [Default: 1]                                                    |
 | non_observer_derivation | BOOLEAN | False    | Set to `True` to use non-observer derivation [Default: `False`]                             |
 
 <details>
@@ -385,7 +388,7 @@ Usage: chia rpc daemon [OPTIONS] is_keyring_locked [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -420,14 +423,14 @@ Usage: chia rpc daemon [OPTIONS] is_running [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag    | Type   | Required | Description                                                                                                                                                                                                                                                                                                             |
-| :------ | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag    | Type   | Required | Description                                                                                                                                                                                                                                                                                                                                 |
+|:------- |:------ |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | service | STRING | TRUE     | The service to query; valid examples include, but are not limited to, "chia_data_layer", "chia_data_layer_http", "chia_wallet", "chia_full_node", "chia_harvester", "chia_farmer", "chia_introducer", "chia_timelord", "chia_timelord_launcher", "chia_full_node_simulator", "chia_seeder", "chia_crawler", "wallet_ui" |
 
 <details>
@@ -462,7 +465,7 @@ Usage: chia rpc daemon [OPTIONS] keyring_status [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -505,14 +508,14 @@ Usage: chia rpc daemon [OPTIONS] register_service [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type   | Required | Description                         |
-| :------ | :----- | :------- | :---------------------------------- |
+|:------- |:------ |:-------- |:----------------------------------- |
 | service | STRING | TRUE     | The name of the service to register |
 
 <details>
@@ -543,14 +546,14 @@ Usage: chia rpc daemon [OPTIONS] remove_keyring_passphrase [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag               | Type   | Required | Description                                                                       |
-| :----------------- | :----- | :------- | :-------------------------------------------------------------------------------- |
+|:------------------ |:------ |:-------- |:--------------------------------------------------------------------------------- |
 | current_passphrase | STRING | True     | The current passphrase; if entered correctly, it will be removed from the keyring |
 
 <details>
@@ -604,7 +607,7 @@ Usage: chia rpc daemon [OPTIONS] running_services [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -645,18 +648,18 @@ Usage: chia rpc daemon [OPTIONS] set_keyring_passphrase [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag               | Type    | Required | Description                                                                                                                                                                 |
-| :----------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)                                                                                                                       |
-| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long                                                                                                           |
-| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                  |
-| save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. [Default: False] |
+| Flag               | Type    | Required | Description                                                                                                                                                                                      |
+|:------------------ |:------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)                                                                                                                                            |
+| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long                                                                                                                                |
+| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                                       |
+| save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. \[Default: False\] \[Default: False\] |
 
 <details>
 <summary>Example</summary>
@@ -687,14 +690,14 @@ Usage: chia rpc daemon [OPTIONS] start_service [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type    | Required | Description                                                   |
-| :------ | :------ | :------- | :------------------------------------------------------------ |
+|:------- |:------- |:-------- |:------------------------------------------------------------- |
 | service | STRING  | True     | The service to start                                          |
 | testing | Boolean | False    | If `true`, then test the start_service RPC [Default: `false`] |
 
@@ -730,14 +733,14 @@ Usage: chia rpc daemon [OPTIONS] stop_service [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type   | Required | Description         |
-| :------ | :----- | :------- | :------------------ |
+|:------- |:------ |:-------- |:------------------- |
 | service | STRING | True     | The service to stop |
 
 <details>
@@ -771,14 +774,14 @@ Usage: chia rpc daemon [OPTIONS] unlock_keyring [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type   | Required | Description                       |
-| :--- | :----- | :------- | :-------------------------------- |
+|:---- |:------ |:-------- |:--------------------------------- |
 | key  | STRING | False    | The key to unlock [Default: None] |
 
 <details>
@@ -810,14 +813,14 @@ Usage: chia rpc daemon [OPTIONS] validate_keyring_passphrase [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type   | Required | Description      |
-| :--- | :----- | :------- | :--------------- |
+|:---- |:------ |:-------- |:---------------- |
 | key  | STRING | True     | The key to check |
 
 <details>
@@ -851,14 +854,14 @@ Usage: chia rpc daemon [OPTIONS] get_keys_for_plotting [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag         | Type   | Required | Description                                                                                 |
-| :----------- | :----- | :------- | :------------------------------------------------------------------------------------------ |
+|:------------ |:------ |:-------- |:------------------------------------------------------------------------------------------- |
 | fingerprints | NUMBER | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
 
 <details>
@@ -897,7 +900,7 @@ Usage: chia rpc daemon [OPTIONS] get_plotters [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -950,14 +953,14 @@ Usage: chia rpc daemon [OPTIONS] start_plotting [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type    | Required | Description                                                            |
-| :-------- | :------ | :------- | :--------------------------------------------------------------------- |
+|:--------- |:------- |:-------- |:---------------------------------------------------------------------- |
 | service   | STRING  | True     | The plotting service to use                                            |
 | plotter   | STRING  | False    | The plotter to use [Default: "chiapos"]                                |
 | delay     | INTEGER | False    | The number of seconds to delay before starting to plot [Default: 0]    |
@@ -985,14 +988,14 @@ Usage: chia rpc daemon [OPTIONS] stop_plotting [REQUEST]
 Options: Stop creating a plot
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag | Type   | Required | Description                         |
-| :--- | :----- | :------- | :---------------------------------- |
+|:---- |:------ |:-------- |:----------------------------------- |
 | id   | STRING | True     | The ID of the plot to stop creating |
 
 <details>
@@ -1025,14 +1028,14 @@ Usage: chia rpc daemon [OPTIONS] add_private_key [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag     | Type   | Required | Description                                      |
-| :------- | :----- | :------- | :----------------------------------------------- |
+|:-------- |:------ |:-------- |:------------------------------------------------ |
 | mnemonic | STRING | True     | The mnemonic word list (see below for details)   |
 | label    | STRING | False    | The label to assign for this key [Default: None] |
 
@@ -1068,7 +1071,7 @@ Response:
 <details>
 <summary>Example 2: invalid length</summary>
 
-The mnemonic must be either 12 or 24 words. Else, an error will be returned. For example:
+The mnemonic must be either 12 or 24 words. Else, an error will be returned. For example: Else, an error will be returned. For example:
 
 ```json
 chia rpc daemon add_private_key '{"mnemonic": "1 2 3 4 5 6 7 8 9 10 11 12 13", "label": "Example Key"}'
@@ -1088,7 +1091,7 @@ Response:
 <details>
 <summary>Example 3: invalid word</summary>
 
-Each word must be in the BIP-39 word list. Else, an error will be returned. For example:
+Each word must be in the BIP-39 word list. Else, an error will be returned. For example: Else, an error will be returned. For example:
 
 ```json
 chia rpc daemon add_private_key '{"mnemonic": "1 2 3 4 5 6 7 8 9 10 11 12", "label": "Example Key"}'
@@ -1108,7 +1111,7 @@ Response:
 <details>
 <summary>Example 4: Invalid word order</summary>
 
-If the mnemonic is 12 or 24 words, and each word is in the BIP-39 word list, the final check is that the words form a valid mnemonic phrase. For example:
+If the mnemonic is 12 or 24 words, and each word is in the BIP-39 word list, the final check is that the words form a valid mnemonic phrase. For example: For example:
 
 ```json
 chia rpc daemon add_private_key '{"mnemonic": "you can test this example word list because they tell you stuff", "label": "Example Key"}'
@@ -1136,14 +1139,14 @@ Usage: chia rpc daemon [OPTIONS] check_keys [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type   | Required |
-| :-------- | :----- | :------- |
+|:--------- |:------ |:-------- |
 | root_path | STRING | True     |
 
 ---
@@ -1157,7 +1160,7 @@ Usage: chia rpc daemon [OPTIONS] delete_all_keys [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1167,7 +1170,7 @@ Note that this command will fail if the OS key ring is locked.
 
 :::warning
 
-This command will delete all of your local Chia keys. Use with caution.
+This command will delete all of your local Chia keys. Use with caution. Use with caution.
 
 :::
 
@@ -1182,14 +1185,14 @@ Usage: chia rpc daemon [OPTIONS] delete_key_by_fingerprint [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type    | Required | Description                                  |
-| :---------- | :------ | :------- | :------------------------------------------- |
+|:----------- |:------- |:-------- |:-------------------------------------------- |
 | fingerprint | INTEGER | True     | The fingerprint whose key you want to delete |
 
 Note that this command will fail if the OS key ring is locked.
@@ -1209,7 +1212,7 @@ Response:
 }
 ```
 
-To verify that the key was deleted, you can call `get_public_key`. For example:
+To verify that the key was deleted, you can call `get_public_key`. For example: For example:
 
 ```json
 chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
@@ -1240,7 +1243,7 @@ Usage: chia rpc daemon [OPTIONS] get_all_private_keys [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1286,7 +1289,7 @@ Usage: chia rpc daemon [OPTIONS] get_first_private_key [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1324,14 +1327,14 @@ Usage: chia rpc daemon [OPTIONS] get_key_for_fingerprint [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type    | Required | Description                                             |
-| :---------- | :------ | :------- | :------------------------------------------------------ |
+|:----------- |:------- |:-------- |:------------------------------------------------------- |
 | fingerprint | INTEGER | False    | The fingerprint to look up [Default: get the first key] |
 
 <details>
@@ -1364,14 +1367,14 @@ Usage: chia rpc daemon [OPTIONS] get_key [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag            | Type    | Required | Description                                                         |
-| :-------------- | :------ | :------- | :------------------------------------------------------------------ |
+|:--------------- |:------- |:-------- |:------------------------------------------------------------------- |
 | fingerprint     | INTEGER | True     | The fingerprint whose key you want to look up                       |
 | include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
@@ -1409,14 +1412,14 @@ Usage: chia rpc daemon [OPTIONS] get_keys [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag            | Type    | Required | Description                                                         |
-| :-------------- | :------ | :------- | :------------------------------------------------------------------ |
+|:--------------- |:------- |:-------- |:------------------------------------------------------------------- |
 | include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
 <details>
@@ -1455,14 +1458,14 @@ Usage: chia rpc daemon [OPTIONS] get_public_key [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type    | Required | Description                                   |
-| :---------- | :------ | :------- | :-------------------------------------------- |
+|:----------- |:------- |:-------- |:--------------------------------------------- |
 | fingerprint | INTEGER | True     | The fingerprint whose key you want to look up |
 
 <details>
@@ -1498,7 +1501,7 @@ Usage: chia rpc daemon [OPTIONS] get_public_keys [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -1539,14 +1542,14 @@ Usage: chia rpc daemon [OPTIONS] set_label [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type    | Required | Description                                 |
-| :---------- | :------ | :------- | :------------------------------------------ |
+|:----------- |:------- |:-------- |:------------------------------------------- |
 | fingerprint | INTEGER | True     | The fingerprint whose label you want to set |
 | label       | STRING  | True     | The new label                               |
 
@@ -1565,7 +1568,7 @@ Response:
 }
 ```
 
-To verify that the label was set, you can call `get_public_key`. For example:
+To verify that the label was set, you can call `get_public_key`. For example: For example:
 
 ```json
 chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
@@ -1597,14 +1600,14 @@ Usage: chia rpc daemon [OPTIONS] delete_label [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag        | Type    | Required | Description                                    |
-| :---------- | :------ | :------- | :--------------------------------------------- |
+|:----------- |:------- |:-------- |:---------------------------------------------- |
 | fingerprint | INTEGER | True     | The fingerprint whose label you want to delete |
 
 <details>
@@ -1622,7 +1625,7 @@ Response:
 }
 ```
 
-To verify that the label was set, you can call `get_public_key`. For example:
+To verify that the label was set, you can call `get_public_key`. For example: For example:
 
 ```json
 chia rpc daemon get_public_key '{"fingerprint": 1542304282}'

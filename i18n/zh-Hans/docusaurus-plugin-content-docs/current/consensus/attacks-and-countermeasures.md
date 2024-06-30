@@ -79,7 +79,7 @@ Finally, the formula to calculate the minimum netspace percentage required for t
 The following table shows the minimum required proportion of the total netspace an attacker must have in order to succeed in a majority attack. This table is valid for attacks lasting any amount of time, though sometimes it's overly conservative for attacks lasting more than one epoch. It uses fixed values for the first two columns.
 
 | Number of Timelords | VA (relative to VH) |   DD    |  SA   | Percent of netspace required | Comment                                                                                                                                                        |
-| :-----------------: | :-----------------: | :-----: | :---: | :--------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-------------------:|:-------------------:|:-------:|:-----:|:----------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |          0          |         N/A         |    1    |   ∞   |             N/A              | Without a timelord, the attack is not possible.                                                                                                                |
 |          1          |         0.5         |    1    |   2   |            66.7%             | With a 0.5x timelord, the attacker must control twice as much space as the rest of the network combined.                                                       |
 |          ∞          |         0.5         | 1.34313 | 1.489 |            59.8%             | With infinite 0.5x timelords, the attacker gains a double-dip advantage, so less space is required versus having a single timelord of the same speed.          |
@@ -91,7 +91,7 @@ The following table shows the minimum required proportion of the total netspace 
 For attacks lasting longer than one epoch, `DD` will not exceed 1.34313. In such an attack, the final row from the preceding table will change to the following:
 
 | Number of Timelords | VA (relative to VH) |   DD    |  SA   | Percent of netspace required | Comment                                                                          |
-| :-----------------: | :-----------------: | :-----: | :---: | :--------------------------: | :------------------------------------------------------------------------------- |
+|:-------------------:|:-------------------:|:-------:|:-----:|:----------------------------:|:-------------------------------------------------------------------------------- |
 |          ∞          |          2          | 1.34313 | 0.372 |            27.1%             | If the attack longer than one epoch, the double-dip advantage will be minimized. |
 
 Note that if we continue to increase `VA`, `DD` will always remain at 1.4678 for the first table, and 1.34313 for the second table. The percent of netspace required will decrease linearly.

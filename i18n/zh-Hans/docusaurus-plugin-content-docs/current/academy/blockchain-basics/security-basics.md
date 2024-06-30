@@ -5,7 +5,7 @@ slug: /security-basics
 
 In this lesson, we learn the basic security implementations in Chia and how they protect users from bad actors.
 
-## Learning objectives
+## 学习目标
 
 - **Decentralization**: Understand how a decentralized network enhances security and reduces attack options for bad actors.
 - **Coin Signatures**: Learn how coin signatures protect the users ability to spend the coins.
@@ -13,7 +13,7 @@ In this lesson, we learn the basic security implementations in Chia and how they
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/CATI6OVHPAg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -21,7 +21,7 @@ In this lesson, we learn the basic security implementations in Chia and how they
 
 ---
 
-## Script
+## 脚本
 
 <details>
 
@@ -57,7 +57,7 @@ so you can be sure about what exactly a coin is going to do when it is spent.
 
 ---
 
-## Common gotchas
+## 常见问题
 
 - **Decentralization:** The true decentralization of Chia greatly increases the economic costs associated with performing various attacks on Chia, protecting it from all scales of bad actors.
 - **Coin Signatures:** Ensuring that a coins solution requires signing ensures that only the intended user can spend the coin, this is an essential part of securing coins on Chia.
@@ -65,7 +65,7 @@ so you can be sure about what exactly a coin is going to do when it is spent.
 
 ---
 
-## Knowledge check
+## 知识检测
 
 :::tip Question 1 - Decentralization
 
@@ -112,9 +112,9 @@ False, a custom-developed flavor of Lisp called Chialisp was developed to be use
 
 ---
 
-## Additional resources
+## 附加资源
 
-### Links
+### 链接
 
 - General [Security Overview](https://docs.chia.net/coin-set-security): overviews of Chia security and a review of potential attacks.
 - Overview of [Coin Signing](https://docs.chia.net/coin-set-security/#signing): reviews the purpose of signing and when it should be used for coins.

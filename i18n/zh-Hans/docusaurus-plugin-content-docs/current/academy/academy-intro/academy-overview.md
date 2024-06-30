@@ -1,89 +1,89 @@
 ---
-title: Academy Overview
+title: 学院概述
 slug: /academy-overview
 ---
 
 import Runnable from '@site/src/components/Runnable.tsx';
 
-The lesson pages in Chia Academy are thoughtfully designed to enhance the learning experience for students. Each lesson is organized in a user-friendly and visually appealing manner. The structure typically includes:
+Chia学院的课程页面经过精心设计，以增强学生的学习体验。 每节课都以用户友好且视觉吸引的方式组织。 结构通常包括：
 
 ---
 
-## Lesson title
+## 课程标题
 
-Each lesson starts with a clear and descriptive title that informs students about the topic they are about to explore.
-
----
-
-## Learning objectives
-
-A set of specific learning objectives is provided at the beginning of the lesson. These objectives outline what students will be able to understand or do by the end of the lesson, setting clear expectations.
-
-- Learning Objective 1
-- Learning Objective 2
-- Learning Objective 3
+每节课以一个清晰且描述性的标题开始，告知学生他们将要探讨的主题。
 
 ---
 
-## Content
+## 学习目标
 
-The core content in each lesson is conveyed through structured, short format videos followed by scripts. This hybrid visual and text approach ensures accessibility and caters to diverse learning preferences.
+在课程开始时会提供一组具体的学习目标。 这些目标概述了学生在课程结束时能够理解或完成的内容，设定了明确的期望。
+
+- 学习目标1
+- 学习目标2
+- 学习目标3
 
 ---
 
-## Script
+## 内容
 
-Each of the short format videos will be proceeded by the script used for creating the video. This written format ensures ease of translation catering to diverse learners.
+每节课的核心内容通过结构化的短视频和脚本传达。 这种视觉和文本混合的方法确保了可访问性，适应了不同的学习偏好。
+
+---
+
+## 脚本
+
+每个短视频之后都会附有用于制作视频的脚本。 书面格式确保了翻译的便利性，适应了不同的学习者。
 
 <details>
 
-<summary> Expand for the full script </summary>
+<summary> 展开查看完整脚本 </summary>
 
 00:00  
-This is an example of how the scripts will be provided including timestamps.
+这是脚本提供的示例，包括时间戳。
 
 00:20  
-The timestamps are provided in set intervals and are formatted as `minutes:seconds` (`MM:SS`).
+时间戳以设定的间隔提供，格式为`分钟:秒`（`MM:SS`）。
 
 </details>
 
 ---
 
-## Common gotchas
+## 常见问题
 
-While lessons are thoughtfully designed to facilitate learning, there are some common pitfalls or challenges that a learner might face. These will be described after the script for each lesson.
+虽然课程经过精心设计以促进学习，但学习者可能会遇到一些常见的陷阱或挑战。 课程的这一部分会指出这些潜在的问题，并提供建议或解决方案。
 
-- **Gotcha 1:** Description of gotcha 1.
-- **Gotcha 2:** Description of gotcha 2.
-- **Gotcha 3:** Description of gotcha 3.
+- **常见问题1:** 常见问题1的描述。
+- **常见问题2:** 常见问题2的描述。
+- **常见问题3:** 常见问题3的描述。
 
 ---
 
-## Knowledge check
+## 知识检测
 
-Each lesson contains a brief self-assessment quiz designed to gauge learners' comprehension and retention of the video material. These assessments reinforce key concepts and help learners self-assess their understanding.
+每节课程都包含一个简短的自我评估测验，旨在衡量学习者对视频材料的理解和记忆。 这些评估强化了关键概念，并帮助学习者自我评估他们的理解。
 
-The quiz section has two components, questions and answers. The questions contain lesson-applicable questions and the answers contain the corresponding answers.
+测验部分有两个组成部分，问题和答案。 问题包含与课程相关的问题，答案包含相应的答案。
 
-Since this is a self assessment, you can of course skip the questions and go straight to the answers; but, we strongly recommend that you take the time to solve the question on your own before checking the answer.
+由于这是一个自我评估，您当然可以跳过问题直接查看答案；但是，我们强烈建议您在查看答案之前花时间自己解决问题。
 
-:::tip Question 1
+:::tip 问题1
 
-What format is used for timestamps in the content scripts?
+内容脚本中使用什么格式来表示时间戳？
 
 :::
 
 <details>
 
-<summary> Answer (expand when ready to see the answer)  </summary>
+<summary> 答案(当准备好查看答案时展开)  </summary>
 
-`MM:SS` or `minutes:seconds`
+`MM:SS` 或者 `minutes:seconds`
 
 </details>
 
-:::tip Question 2
+:::tip 问题2
 
-What is the serialized form of this Chialisp puzzle?
+这个Chialisp谜题的序列化形式是什么？
 
 ```chialisp
 (mod (arg1 arg2) (+ arg1 arg2))
@@ -93,7 +93,7 @@ What is the serialized form of this Chialisp puzzle?
 
 <details>
 
-<summary> Answer (expand when ready to see the answer)  </summary>
+<summary> 答案(当准备好查看答案时展开)  </summary>
 
 ```chialisp
 (+ 2 5)
@@ -101,15 +101,15 @@ What is the serialized form of this Chialisp puzzle?
 
 </details>
 
-:::tip Question 3
+:::tip 问题3
 
-What is the Chialisp puzzle for squaring a passed argument?
+求传入参数的平方的Chialisp谜题是什么？
 
 :::
 
 <details>
 
-<summary> Answer (expand when ready to see the answer) </summary>
+<summary> 答案(当准备好查看答案时展开) </summary>
 
 ```chialisp
 (mod (arg)
@@ -124,35 +124,31 @@ What is the Chialisp puzzle for squaring a passed argument?
 
 ---
 
-## Additional resources
+## 附加资源
 
-Links to additional reading materials, videos, or external resources may be provided for learners who wish to delve deeper into the lessons subject.
+为了帮助希望深入学习课程主题的学习者，可能会提供额外的阅读材料、视频或外部资源链接。
 
-### Runnable Chialisp and clvm plugins
+### 可运行的Chialisp和clvm插件
 
-Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
-Each plugin has a series of components:
+所有适用的课程都提供了Chialisp和clvm的可运行插件。 花些时间熟悉这些工具，并学习如何在整个课程中最好地利用它们。 每个插件都有一系列组件：
 
-**Language:** The language of the plugin (Chialisp or clvm) is in the top right corner.  
-**Solution:** The top section is the input or solution.  
-**Puzzle:** The bottom section is the puzzle.  
-**Run:** Each plugin has a play/run button to the right of the language identifier.  
-**Result:** After clicking run, the result of the puzzle appears below the puzzle.  
-**Cost:** After clicking run, the clvm cost of the puzzle is calculated and appears in the bottom right corner.  
-**Errors:** After clicking run, the plugin checks for and provides any errors in place of the result section.
+**语言：** 插件的语言（Chialisp或clvm）位于右上角。   
+**解决方案(Solution)：** 顶部部分是输入或解决方案。   
+**谜题(Puzzle)：** 底部部分是谜题。   
+**运行：** 每个插件在语言标识符右侧都有一个播放/运行按钮。   
+**结果：** 单击运行后，谜题的结果将出现在谜题下方。
 
 :::info
 
-The plugins only validate the formatting and completeness of the code; they do not check for any potential exploits.
+插件仅验证代码的格式和完整性；它们不检查任何潜在的漏洞。
 
 :::
 
-#### Chialisp plugin
+#### Chialisp 插件
 
-When clicking run, the puzzle will first be serialized into clvm (similar to the `run` command) then the solution will be passed into the serialized puzzle (similar to the `brun` command).  
-The below example is a Chialisp puzzle that squares the number passed as an argument.
+单击运行时，谜题将首先被序列化为clvm（类似于 `run` 命令），然后解决方案将被传递到序列化谜题中（类似于 `brun` 命令）。 下面的示例是一个Chialisp谜题，它将传入的参数作为一个数字并返回其平方。
 
-Note the number `(5)` is used in the solution top section and the Chialisp formatted puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.
+注意解决方案顶部部分使用了数字 `(5)`，而 Chialisp 格式化的谜题被输入到谜题底部部分。 单击此谜题上的运行按钮将返回 `25` 作为结果。
 
 <Runnable flavor='chialisp' input='(5)'>
 
@@ -167,12 +163,11 @@ Note the number `(5)` is used in the solution top section and the Chialisp forma
 
 </Runnable>
 
-#### Clvm plugin
+#### Clvm插件
 
-When clicking run, the solution will be passed into the serialized puzzle (similar to the `brun` command).  
-The below example uses the serialized puzzle from above that squares the number passed as an argument.
+单击运行时，解决方案将被传递到序列化的谜题中（类似于`brun` 命令）。 下面的示例使用了上面序列化的谜题，将传入的参数作为一个数字并返回其平方。
 
-Note the number `(5)` is used in the solution top section and the serialized puzzle is entered in the puzzle bottom section. Clicking run on this puzzle will return `25` as the result.
+注意解决方案顶部部分使用了数字 `(5)`，而序列化的谜题被输入到谜题底部部分。 单击此谜题上的运行按钮将返回 `25` 作为结果。
 
 <Runnable flavor='clvm' input='(5)'>
 

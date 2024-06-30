@@ -3,6 +3,8 @@ title: Peer Protocol
 slug: /peer-protocol
 ---
 
+[Peer protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/full_node_protocol.py)
+
 This protocol is a bidirectional protocol for communication between full nodes in the Chia system. The sender is the full node sending the message, and the recipient is the full node that is receiving the message.
 
 ## new_peak

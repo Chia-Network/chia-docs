@@ -101,15 +101,15 @@ Assuming you don't have a wallet yet, click `CREATE A NEW WALLET KEY` (If you al
 
 <br />
 
-You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
+You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is important. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
 
-You can also choose a custom name for your wallet. Click `NEXT` when you are finished.
+You can also choose a custom name for your wallet. Click `NEXT` when you are finished. Click `NEXT` when you are finished.
 
 :::warning
 
-If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place.
+If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place. Be sure to store your recovery phrase in a safe place.
 
-:::
+:::  
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/04.png" alt="Wallet seed phrase" />
@@ -130,31 +130,64 @@ You will be taken to your wallet, which will show a zero-XCH balance. There will
 
 ### Fund your wallet
 
-If you think you will ever want to join a pool (recommended for small and medium farms), you will need at least one mojo (one trillionth of an XCH). To help with this, we have set up an online faucet. To use the faucet, you will need a receive address. Click `RECEIVE` to display one:
+If you think you will ever want to join a pool (recommended for small and medium farms), you will need at least one mojo (one trillionth of an XCH). To help with this, we have set up an online faucet at [faucet.chia.net](https://faucet.chia.net/).
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/06.png" alt="Receive address" />
+To use the faucet you will need to identify your **Master Public Key** (also referred to as the **Public Key**). You can use either the GUI or CLI to identify the Master Public Key by following these steps:
+
+#### GUI
+
+:::warning
+Never share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+1. In the top right corner select logout:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletLogout} alt='Logout of the Chia wallet' />
 </div>
-
 <br />
 
-Copy your receive address (it will begin with `xch`) and head to our [faucet page](https://faucet.chia.net/). Paste your address, click the "I'm not a robot" check box, and click `Submit`:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/07.png" alt="Faucet"  width="75%"/>
+2. Using the desired keys menu, select details:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeyDetails} alt='Select Details for a Chia keyset' />
 </div>
-
 <br />
 
-You should receive a message stating that your money is on the way. Note that you can only use this faucet once.
-
-Within a few minutes, your wallet's balance should increase:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/08.png" alt="Wallet with 100 mojos" />
+3. View and copy the **Public Key** to the field on the Faucet page:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeysPublic} alt='Chia keys detail screen, Public Key highlighted' />
 </div>
-
 <br />
+
+#### CLI
+
+:::warning
+**NEVER** share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+In order to view your keys from the cli, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
+
+1. From terminal (mac/linux) or powershell (windows) run `chia keys show`:
+
+```bash
+chia keys show
+```
+
+2. View and copy the **Master Public Key** to the field on the faucet page:
+
+```bash
+Showing all public keys derived from your master seed and private key:
+
+Label: Demo Wallet
+Fingerprint: 2281896037
+Master public key (m): 96ce91d974daa0990e6681ac2de3e3f49142f6b655a081817832265c143e658a6e60a5dec856f292f45fe2d04c7856f6**
+Farmer public key (m/12381/8444/0/0): a9e366b26f155491af9a903c0ed9717bfd09a71cbe283eeda825128fd7c6b9ac60e1608f9f008adcfbf66e233d5b4ce8
+Pool public key (m/12381/8444/1/0): 9566fa434f342dd5f9380a6bfc59dd7d1abd22869a425a8ca09cf27200eaa6aad5bc8fc00db90af832eb8028b0c6e3f0
+First wallet address: xch1kr3zf7dqw5q953ex6zt33lndj90q0zlh68404tsntnljthnwqs2qvjmwrg
+```
+
+:::note
+For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/) blog article.
+:::
 
 :::info
 
@@ -225,7 +258,7 @@ Click the `Pooling` icon on the left side of your wallet, and click `JOIN A POOL
 
 Before you can join a pool, you will need to create a plot NFT. This will allow you to easily change pools later.
 
-Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
+Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks). (Chia Network Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 
@@ -233,7 +266,7 @@ If you don't want to join a pool, select `Self pool`. This will assign you to a 
 
 :::
 
-Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. If you used the faucet, you will now have 100 mojos. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
+Creating a plot NFT requires an on-chain transaction that will cost one mojo. You are also recommended to enter a blockchain fee. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes. You are also recommended to enter a blockchain fee. If you used the faucet, you will now have 100 mojos. Depending on how busy the network is, a one-mojo fee is typically enough to complete your transaction within a few minutes.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/11.png" alt="Create a plot NFT" />
@@ -249,7 +282,7 @@ If your faucet payout has not arrived after more than 10 minutes, someone on [Di
 
 :::
 
-If you entered a valid pool URL, the details will pop up. For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`:
+If you entered a valid pool URL, the details will pop up. For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`: For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/12.png" alt="Pool details" />
@@ -257,7 +290,7 @@ If you entered a valid pool URL, the details will pop up. For example, this pool
 
 <br />
 
-Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear:
+Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear: While it is pending, a new screen will appear:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/13.png" alt="Plot NFT pending" />
@@ -315,7 +348,7 @@ Next, you will need to choose a plotter. When creating a single plot, `Chia Proo
 
 When building a larger farm, the plotter you choose will depend greatly on your available hardware. It may help to experiment with multiple plotters to get a feel for which ones work best for your setup. For details on each of the available plotters, see our [Plotting Software](/plotting-software) section.
 
-:::
+:::  
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/18.png" alt="Choose plotter" />
@@ -357,7 +390,7 @@ Next, you need to select the temporary and final directories for your plot. The 
 - **SSD** -- Most farmers choose to use an enterprise NVMe SSD for the temporary storage. These SSDs can handle large amounts of reads and writes in their lifetimes.
 - **HDD** -- If you don't mind plotting slowly, you can choose a directory located on an HDD.
 
-The final directory is where the plot will be copied after it has been created. Most farmers will choose to use an HDD as the final directory. However, for this tutorial an NVMe SSD was used for both the temporary and final directories.
+The final directory is where the plot will be copied after it has been created. The final directory is where the plot will be copied after it has been created. Most farmers will choose to use an HDD as the final directory. However, for this tutorial an NVMe SSD was used for both the temporary and final directories.
 
 :::warning
 
@@ -373,7 +406,7 @@ You will also need to choose how many plots to create. Certain plotters can be o
 
 <br />
 
-After you have gone through all of these settings, click `CREATE`. You will be taken to a progress panel:
+After you have gone through all of these settings, click `CREATE`. You will be taken to a progress panel: You will be taken to a progress panel:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/22.png" alt="Plot creation progress" />

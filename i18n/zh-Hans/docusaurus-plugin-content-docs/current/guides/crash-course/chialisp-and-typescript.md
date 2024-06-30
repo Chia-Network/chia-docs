@@ -19,10 +19,10 @@ You can do RPC calls with pretty much any language, but to create larger applica
 
 This guide is meant to be an example that will give you some basic experience. We will be using Node.js with TypeScript to create a signature enforced coin. We'll use multiple TypeScript libraries for this project, which are open source if you want to see the details on how they work.
 
-- [BLS Signatures](https://npmjs.com/package/@rigidity/bls-signatures)
-- [CLVM](https://npmjs.com/package/@rigidity/clvm)
-- [RPCs](https://npmjs.com/package/@rigidity/chia)
-- [Wallet Helper](https://npmjs.com/package/@rigidity/chia-wallet)
+- [BLS Signatures](https://npmjs.com/package/chia-bls)
+- [CLVM](https://npmjs.com/package/clvm-lib)
+- [RPCs](https://npmjs.com/package/chia-rpc)
+- [Wallet Helper](https://npmjs.com/package/chia-wallet-lib)
 - [DotEnv](https://npmjs.com/package/dotenv)
 - [BIP39](https://npmjs.com/package/bip39)
 
@@ -291,7 +291,7 @@ You can retrieve your network's Genesis challenge in the terminal with:
 chia show -s
 ```
 
-Testnet10 has the genesis `ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2`. You can see this in `~/.chia/mainnet/config/config.yaml` as well with:
+Testnet10 has the genesis `ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2`. You can see this in `~/.chia/mainnet/config/config.yaml` as well with: You can see this in `~/.chia/mainnet/config/config.yaml` as well with:
 
 ```bash
 less ~/.chia/mainnet/config/config.yaml
@@ -384,7 +384,7 @@ npm run start
 
 ## Crafting a Solution
 
-THe solution for this puzzle consists of a list of conditions. To write Chialisp within JavaScript we can use the `Program.fromSource()` method. We will use a `51` (`CREATE_COIN`) condition delivering the value to our wallet puzzle hash.
+The solution for this puzzle consists of a list of conditions. To write Chialisp within JavaScript we can use the `Program.fromSource()` method. We will use a `51` (`CREATE_COIN`) condition delivering the value to our wallet puzzle hash.
 
 ```typescript
 // Calculate an unused address we can send the value to.
