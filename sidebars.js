@@ -597,6 +597,7 @@ module.exports = {
         'academy/primitives/academy-nft',
         'academy/primitives/academy-did',
         'academy/primitives/academy-cat',
+        'academy/primitives/academy-offers',
       ],
     },
   ],
