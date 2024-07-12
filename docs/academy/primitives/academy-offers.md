@@ -3,16 +3,20 @@ title: Offers
 slug: /academy-offers
 ---
 
-In this lesson, we talk about Chia Offers and how it enables safe peer-to-peer trading.
+In this lesson, we talk about Chia Offers and how they enables safe peer-to-peer trading.
 
 ## Learning objectives
 
-- **Peer-to-peer trading**: Understand what offers are how they enable P2P trading.
+- **Peer-to-peer trading**: Understand what offers are and how they enable P2P trading.
 - **Managing offer files**: Learn how to share, accept, and cancel offers.
 
 ---
 
 ## Content
+
+<div class="videoWrapper">
+<iframe width="100%" height="504" src="https://www.youtube.com/embed/O7Anp-oPV_A" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+</div>
 
 ---
 
@@ -22,20 +26,20 @@ In this lesson, we talk about Chia Offers and how it enables safe peer-to-peer t
 
 <summary> Expand for the full script </summary>
 
-0:00  
-Chia Offers are how assets can be traded between two parties directly peer-to-peer safely and securely. They can be used to trade any combination of assets including XCH, CATs, and NFTs. When an offer is accepted, the trade happens atomically, meaning the entirety of the trade settles simulatenously with no counterparty risk.
+0:00
+Chia Offers are used to trade assets between two parties safely and securely in a direct, peer-to-peer transaction. They can be used to trade any combination of assets including XCH, CATs, and NFTs. 
 
 0:20
-The creator of an offer specifies the assets they wish to offer as well as the assets they wish to receive. An offer file is then created, represented as a string of characters containing an uncompleted and partially signed spend bundle. The creator can they share this offer file through any means, including email, QR code, and offer file exchanges such as dexie.
+When an offer is accepted, the trade happens atomically, meaning the entirety of the trade settles simultaneously with no counterparty risk. The creator of an offer specifies the assets they wish to offer as well as the assets they wish to receive. 
 
 0:40
-Anyone that sees an offer file and wants to accept the trade can sign and complete the other side of the spend bundle and submit it to the blockchain to be settled atomically. When trading NFTs with offers, creator royalties are also enforced -- no marketplace or escrow needed!
+An offer file is then created, represented as a string of characters containing an incomplete and partially signed spend bundle. The creator can then share this offer file through any means, such as email, QR code, and offer file exchange services. Anyone that sees an offer file and wants to accept the trade can do so by signing and completing the other side of the spend bundle and submit it to the blockchain to be settled atomically.
 
 1:00
-If a creator wishes to cancel an existing offer, they can simply spend any of the assets offered to invalidate it. This can be done manually or in the GUI with the "Cancel on blockchain" function. Offers can also be set to automatically expire after a certain amount of time if nobody takes it.
+Assets with smart contracts attached such as NFTs that include creator royalties are also enforced. If a creator wishes to cancel an existing offer, they can simply spend any of the assets offered to invalidate it.
 
 1:20
-The way Chia has enabled truly peer-to-peer trading with offer files is unique and introduces a new way to create safe and decentralized liquid markets for assets on the Chia blockchain.
+Offers can also be set to automatically expire after a certain amount of time if nobody takes it. Offer files allow for true peer-to-peer transactions, introducing a new way to create safe and decentralized liquid markets for assets on the Chia blockchain.
 
 </details>
 
