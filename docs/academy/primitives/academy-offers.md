@@ -27,10 +27,10 @@ In this lesson, we talk about Chia Offers and how they enables safe peer-to-peer
 <summary> Expand for the full script </summary>
 
 0:00
-Chia Offers are used to trade assets between two parties safely and securely in a direct, peer-to-peer transaction. They can be used to trade any combination of assets including XCH, CATs, and NFTs. 
+Chia Offers are used to trade assets between two parties safely and securely in a direct, peer-to-peer transaction. They can be used to trade any combination of assets including XCH, CATs, and NFTs.
 
 0:20
-When an offer is accepted, the trade happens atomically, meaning the entirety of the trade settles simultaneously with no counterparty risk. The creator of an offer specifies the assets they wish to offer as well as the assets they wish to receive. 
+When an offer is accepted, the trade happens atomically, meaning the entirety of the trade settles simultaneously with no counterparty risk. The creator of an offer specifies the assets they wish to offer as well as the assets they wish to receive.
 
 0:40
 An offer file is then created, represented as a string of characters containing an incomplete and partially signed spend bundle. The creator can then share this offer file through any means, such as email, QR code, and offer file exchange services. Anyone that sees an offer file and wants to accept the trade can do so by signing and completing the other side of the spend bundle and submit it to the blockchain to be settled atomically.
