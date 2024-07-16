@@ -394,7 +394,7 @@ Chia NFTs use a list to store image URIs, so it is possible to add multiple loca
 
 ## NFT Metadata Standards
 
-Since the original release of this guide, a CHia Improvement Proposal ([CHIP](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0001.md#what-is-a-chip 'CHIP explanation')) that standardizes the JSON metadata schema for Chia NFTs has been finalized.
+Since the original release of this guide, a CHia Improvement Proposal ([CHIP](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0001.md#what-is-a-chip "CHIP explanation")) that standardizes the JSON metadata schema for Chia NFTs has been finalized.
 
 See [CHIP-7](https://github.com/Chia-Network/chips/blob/main/assets/chip-0007/schema.json) for the correct formatting. Usage of this CHIP is recommended in order to give marketplaces the best opportunity to parse your NFTs' metadata properly.
 

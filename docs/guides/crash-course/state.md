@@ -46,28 +46,28 @@ We will be building a simple example of a coin that stores a message that anyone
 <summary>index.ts</summary>
 
 ```ts
-import { mnemonicToSeedSync } from 'bip39';
-import { fromHex, PrivateKey, toHex } from 'chia-bls';
-import { Coin, formatHex, FullNode, sanitizeHex, toCoinId } from 'chia-rpc';
-import { KeyStore, StandardWallet } from 'chia-wallet-lib';
-import { Program } from 'clvm-lib';
-import dotenv from 'dotenv';
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
+import { mnemonicToSeedSync } from "bip39";
+import { fromHex, PrivateKey, toHex } from "chia-bls";
+import { Coin, formatHex, FullNode, sanitizeHex, toCoinId } from "chia-rpc";
+import { KeyStore, StandardWallet } from "chia-wallet-lib";
+import { Program } from "clvm-lib";
+import dotenv from "dotenv";
+import fs from "fs";
+import os from "os";
+import path from "path";
 
 dotenv.config();
 
 const mnemonic = process.env.MNEMONIC!;
 const privateKey = PrivateKey.fromSeed(mnemonicToSeedSync(mnemonic));
 
-const dir = path.join(__dirname, '..');
+const dir = path.join(__dirname, "..");
 
 const messagePuzzle = Program.deserializeHex(
-  fs.readFileSync(path.join(dir, 'message.clsp.hex'), 'utf-8'),
+  fs.readFileSync(path.join(dir, "message.clsp.hex"), "utf-8"),
 );
 
-const node = new FullNode(os.homedir() + '/.chia/mainnet');
+const node = new FullNode(os.homedir() + "/.chia/mainnet");
 const keyStore = new KeyStore(privateKey);
 
 const wallet = new StandardWallet(node, keyStore);
@@ -121,7 +121,7 @@ async function newInstance(initialMessage: Program) {
   wallet.signSpend(spend, genesis);
 
   // Complete the transaction
-  console.log('Eve coin id:', toHex(toCoinId(eveCoin)));
+  console.log("Eve coin id:", toHex(toCoinId(eveCoin)));
   console.log(await node.pushTx(spend));
 }
 
@@ -183,7 +183,7 @@ async function getMessage(syncInfo: SyncInfo): Promise<Program> {
 async function printMessage() {
   const syncInfo = await sync();
   const message = await getMessage(syncInfo);
-  console.log('Message:', message.toString());
+  console.log("Message:", message.toString());
 }
 
 async function setMessage(newMessage: Program) {
@@ -380,11 +380,11 @@ async function newInstance(initialMessage: Program) {
   wallet.signSpend(spend, genesis);
 
   // Complete the transaction
-  console.log('Eve coin id:', toHex(toCoinId(eveCoin)));
+  console.log("Eve coin id:", toHex(toCoinId(eveCoin)));
   console.log(await node.pushTx(spend));
 }
 
-newInstance(Program.fromText('Hello, world!'));
+newInstance(Program.fromText("Hello, world!"));
 ```
 
 Running this, you will get a response similar to:
@@ -482,7 +482,7 @@ async function getMessage(syncInfo: SyncInfo): Promise<Program> {
 async function printMessage() {
   const syncInfo = await sync();
   const message = await getMessage(syncInfo);
-  console.log('Message:', message.toString());
+  console.log("Message:", message.toString());
 }
 
 printMessage();
@@ -542,7 +542,7 @@ async function setMessage(newMessage: Program) {
   console.log(await node.pushTx(spend));
 }
 
-setMessage(Program.fromText('Goodbye, world!'));
+setMessage(Program.fromText("Goodbye, world!"));
 ```
 
 Run the following command to set the new message:

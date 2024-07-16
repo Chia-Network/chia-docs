@@ -3,7 +3,7 @@ title: CLVM vs EVM
 slug: /clvm-vs-evm
 ---
 
-We'll start with a brief description of CLVM. For details on the inner workings of CLVM, see our [CLVM reference](https://chialisp.com/clvm 'CLVM reference on chialisp.com').
+We'll start with a brief description of CLVM. For details on the inner workings of CLVM, see our [CLVM reference](https://chialisp.com/clvm "CLVM reference on chialisp.com").
 
 - CLVM is the compiled, minimal version of ChiaLisp that is used by the Chia network.
 - CLVM is built out of cons boxes and atoms. Cons boxes contain two items, which can be either an atom or another cons box.
