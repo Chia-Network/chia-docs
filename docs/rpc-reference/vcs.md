@@ -850,10 +850,10 @@ In order to run this example:
 4. Run the script by calling, for example, `node calculate_proof_hash.js`
 
 ```javascript
-const { strict: assert } = require('node:assert');
-const crypto = require('crypto');
+const { strict: assert } = require("node:assert");
+const crypto = require("crypto");
 
-const std_hash = (s) => crypto.createHash('sha256').update(s).digest('hex');
+const std_hash = (s) => crypto.createHash("sha256").update(s).digest("hex");
 
 const sort_pairs = (pairs) =>
   pairs.sort(([a], [b]) => {
@@ -866,8 +866,8 @@ const sort_pairs = (pairs) =>
     return 0;
   });
 
-const CHIA_TREE_HASH_ATOM_PREFIX = '01';
-const CHIA_TREE_HASH_PAIR_PREFIX = '02';
+const CHIA_TREE_HASH_ATOM_PREFIX = "01";
+const CHIA_TREE_HASH_PAIR_PREFIX = "02";
 
 const tree_hash = (node) => {
   if (Array.isArray(node)) {
@@ -880,34 +880,34 @@ const tree_hash = (node) => {
     // Hashes pair
     return std_hash(
       Buffer.concat([
-        Buffer.from(CHIA_TREE_HASH_PAIR_PREFIX, 'hex'),
-        Buffer.from(left_hash, 'hex'),
-        Buffer.from(right_hash, 'hex'),
+        Buffer.from(CHIA_TREE_HASH_PAIR_PREFIX, "hex"),
+        Buffer.from(left_hash, "hex"),
+        Buffer.from(right_hash, "hex"),
       ]),
     );
   } else {
     // Hashes string key
-    if (typeof node === 'string') {
+    if (typeof node === "string") {
       return std_hash(
         Buffer.concat([
-          Buffer.from(CHIA_TREE_HASH_ATOM_PREFIX, 'hex'),
-          Buffer.from(node, 'utf-8'),
+          Buffer.from(CHIA_TREE_HASH_ATOM_PREFIX, "hex"),
+          Buffer.from(node, "utf-8"),
         ]),
       );
     }
 
     // Hashes boolean value
-    if (typeof node === 'boolean') {
+    if (typeof node === "boolean") {
       return std_hash(
         Buffer.concat([
-          Buffer.from(CHIA_TREE_HASH_ATOM_PREFIX, 'hex'),
-          Buffer.from(node ? '01' : '', 'hex'),
+          Buffer.from(CHIA_TREE_HASH_ATOM_PREFIX, "hex"),
+          Buffer.from(node ? "01" : "", "hex"),
         ]),
       );
     }
 
     // Only supporting pairs containing string keys and boolean values
-    throw new Error('Unsupported type passed to hash function');
+    throw new Error("Unsupported type passed to hash function");
   }
 };
 
@@ -934,8 +934,8 @@ const calculate_root_hash = (proofs) => {
 
 console.log(
   calculate_root_hash({
-    example_proof_1: 'example_value_1',
-    example_proof_2: 'example_value_2',
+    example_proof_1: "example_value_1",
+    example_proof_2: "example_value_2",
   }),
 );
 ```

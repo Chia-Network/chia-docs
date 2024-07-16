@@ -16,7 +16,7 @@ slug: /references
 - [BLS Signatures](https://github.com/Chia-Network/bls-signatures "Chia's BLS Signatures on GitHub")
 - [Verifiable Delay Function (VDF)](https://github.com/Chia-Network/chiavdf "Chia's VDF on GitHub")
 - [Proofs of Space](https://github.com/Chia-Network/chiapos "Chia's Proof of Space repository on GitHub")
-- [Binary Quadratic Forms](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf 'Binary quadratic forms white paper, by Lipa Long') -- a white paper by Lipa Long
+- [Binary Quadratic Forms](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf "Binary quadratic forms white paper, by Lipa Long") -- a white paper by Lipa Long
 - [How to Store a Permutation Compactly](https://hackmd.io/@dabo/rkP8Pcf9t) by Bram Cohen and Dan Boneh
 
 ## Video
@@ -33,8 +33,8 @@ slug: /references
 
 - [Chia's power consumption](https://chiapower.org "Chia's energy consumption statistics")
 - [BladeBit CUDA Performance Analysis](https://scienceofmining.com/20230828-BladeBit/BladeBit%20CUDA%20Performance%20Analysis-1.html), by scienceofmining.com
-- [A Survey of Two Verifiable Delay Functions](https://eprint.iacr.org/2018/712.pdf 'The underlying technology of Proof of Time'), by our advisors Dan Boneh, Benedikt Bünz, and Ben Fisch
-- [Simple Verifiable Delay Functions](https://eprint.iacr.org/2018/627.pdf 'The basis for Proof of Time'), by our advisor Krzysztof Pietrzak
+- [A Survey of Two Verifiable Delay Functions](https://eprint.iacr.org/2018/712.pdf "The underlying technology of Proof of Time"), by our advisors Dan Boneh, Benedikt Bünz, and Ben Fisch
+- [Simple Verifiable Delay Functions](https://eprint.iacr.org/2018/627.pdf "The basis for Proof of Time"), by our advisor Krzysztof Pietrzak
 - [History of Cryptography](https://cs.stanford.edu/people/eroberts/courses/soco/projects/public-key-cryptography/history.html#:~:text=The%20idea%20of%20public%20key,known%20as%20the%20knapsack%20problem), from Stanford University
 - [Beyond Hellman](https://eprint.iacr.org/2017/893.pdf "Beyond Hellman's Time-Memory Trade Offs with Applications to Proofs of Space"), by Hamza Abusalah, Jo ̈el Alwen, Bram Cohen, Danylo Khilko, Krzysztof Pietrzak, and Leonid Reyzin
 - [POS Longest Chain Protocols](http://tselab.stanford.edu/downloads/PoS_LC_SBC2020.pdf), by Vivek Bagaria, Amir Dembo, Sreeram Kannan, Sewoong Oh, David Tse, Pramod Viswanath, Xuechao Wang, and Ofer Zeitouni

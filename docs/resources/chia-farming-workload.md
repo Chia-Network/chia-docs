@@ -48,7 +48,7 @@ Bandwidth = IOPS \* Block Size
 
 An IO kernel trace was taken on a sample of drives to determine the block size requests on the block layer (commands sent directly to the drive over the SATA interface), and found that the majority of the IO commands sent were 12 and 16kB transfers. This will likely change very slightly with different storage hardware, operating systems, storage devices, drivers, and filesystems.
 
-![iosize_hist](images/iosize_hist.png 'iosize_hist')
+![iosize_hist](images/iosize_hist.png "iosize_hist")
 
 Measured data from ext4 filesystem in Linux resulted in an average blocksize of
 13.9kB with n=44 drives of capacity 18TB
@@ -58,15 +58,15 @@ Measured data from ext4 filesystem in Linux resulted in an average blocksize of
 
 Chia Farming Total Amount of data read per day per drive capacity
 
-![data_per_day](images/data_per_day.png 'data_per_day')
+![data_per_day](images/data_per_day.png "data_per_day")
 
 Bandwidth and amount of data read are all directly proportional to the number of io requests required for the proof quality checks and partial proof of space generation. K=32 with a difficulty of 1 is the theoretical maximum bandwidth for Chia farming. It is typical for a pool operator to automatically adjust the difficulty to target enough partials per day to get an accurate estimate of the farming capacity, without a significant increase in io on the device.
 
-![bw_drive](images/bw_drive.png 'bw_drive')
+![bw_drive](images/bw_drive.png "bw_drive")
 
 As expected, bandwidth per drive scales with the number of plots per drive (which is increased when a higher capacity disk is used) and increases with difficulty. K=34 offers a reduction in io requirements by reducing the number of plots per disk.
 
-![prob_access](images/prob_access.png 'prob_access')
+![prob_access](images/prob_access.png "prob_access")
 
 ### Hard drive rated workloads
 
@@ -97,31 +97,31 @@ We compare the modeled metrics of an 18TB drive to the measure data collected
 
 Disk IOPS
 
-![IOPS](images/iops.png 'IOPS')
+![IOPS](images/iops.png "IOPS")
 
 Disk bandwidth
 
-![bw](images/bw.png 'bw')
+![bw](images/bw.png "bw")
 
 Latency
 
-![latency](images/latency.png 'latency')
+![latency](images/latency.png "latency")
 
 Disk Utilization
 
-![disk_busy](images/disk_busy.png 'disk_busy')
+![disk_busy](images/disk_busy.png "disk_busy")
 
 CPU Busy Time
 
-![cpu busy time](images/cpu1.png 'cpu')
+![cpu busy time](images/cpu1.png "cpu")
 
 System CPU Utilization
 
-![system utilization](images/cpu.png 'cpu')
+![system utilization](images/cpu.png "cpu")
 
 Network Traffic (Chia harvester only)
 
-![network](images/net.png 'network traffic')
+![network](images/net.png "network traffic")
 
 ### Measurement tools
 
@@ -168,7 +168,7 @@ In a storage system containing user data, an uncorrectable read error on a singl
 
 Using the UBER and the estimated amount of data read per day with Chia farming, we can approximate the number of years it would take to encounter an error while farming Chia.
 
-![UBER](images/uber.png 'UBER')
+![UBER](images/uber.png "UBER")
 
 ### What happens when an error occurs?
 
