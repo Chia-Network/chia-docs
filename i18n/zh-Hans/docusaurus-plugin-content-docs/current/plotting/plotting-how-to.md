@@ -63,7 +63,6 @@ If you do not have a key, you will need to create one:
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/01.png" alt="Create a new wallet key" />
 </div>
-
 <br />
 
 You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is important.
@@ -79,7 +78,6 @@ If someone obtains a copy of these words, they can steal your entire wallet, inc
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/02.png" alt="Wallet seed phrase" />
 </div>
-
 <br />
 
 You will be taken to your new wallet. In order to obtain your farmer public key, you will need to log out of the wallet. Click the icon next to the bell icon.
@@ -87,7 +85,6 @@ You will be taken to your new wallet. In order to obtain your farmer public key,
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/03.png" alt="Log out" />
 </div>
-
 <br />
 
 Click the three dots in the lower-right corner of your wallet, then click `Details`.
@@ -95,7 +92,6 @@ Click the three dots in the lower-right corner of your wallet, then click `Detai
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/04.png" alt="Show details" />
 </div>
-
 <br />
 
 Among other information, your farmer public key and pool public key will be shown. If you plan to plot from the CLI, make note of these keys. If you will stick with the GUI for plotting, these keys will be obtained automatically later.
@@ -112,7 +108,7 @@ In order to obtain a pool contract address, you will need to create a Plot NFT.
 
 First, you will need to decide whether to join a pool. For this example, we will use `-s pool` to join a pool. If you want to solo farm, use `-s local` instead. (Later, you can change pools, using the plot NFT you are about to create.)
 
-If you choose to join a pool, you will need to add the URL by adding the `-u` flag. For this example, we will join OpenChia, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
+If you choose to join a pool, you will need to add the URL by adding the `-u` flag. For this example, we will join OpenChia, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 Finally, you have the option of adding a blockchain fee with the `-m` flag. We will add a one-mojo fee for this example, which typically is sufficient to complete your transaction within a few minutes.
 
@@ -177,13 +173,12 @@ Open your wallet, click the `Pooling` icon in the lower-left corner, and click `
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/06.png" alt="Join a pool" />
 </div>
-
 <br />
 
 Select either option:
 
 - `Self pool` -- Select this if you are a solo farmer. Technically, you will be joining a "pool" where you are the only member.
-- `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
+- `Connect to pool` -- You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 
@@ -196,7 +191,6 @@ Creating a plot NFT requires an on-chain transaction that will cost one mojo. Yo
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/07.png" alt="Create a plot NFT" />
 </div>
-
 <br />
 
 If you entered a valid pool URL, the details will pop up. For example, this pool has a fee of 1%. If everything looks acceptable, click `CREATE`:
@@ -204,7 +198,6 @@ If you entered a valid pool URL, the details will pop up. For example, this pool
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/08.png" alt="Pool details" />
 </div>
-
 <br />
 
 Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear:
@@ -212,7 +205,6 @@ Your transaction will be pushed to the blockchain. While it is pending, a new sc
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/09.png" alt="Plot NFT pending" />
 </div>
-
 <br />
 
 After the transaction has been finalized (typically 1-3 minutes), the details of your plot NFT will appear:
@@ -220,7 +212,6 @@ After the transaction has been finalized (typically 1-3 minutes), the details of
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/10.png" alt="Plot NFT details" />
 </div>
-
 <br />
 
 The pool contract address will be displayed automatically when creating a plot in the GUI.
@@ -277,14 +268,13 @@ chia plotters chiapos -t <temp dir> -d <destination dir> -f <farmer key> -p <poo
 
 Regardless of which plotter you choose, it's a good idea to experiment with the optional parameters in order to optimize the plotting process for your hardware.
 
-## 图形用户界面（GUI）生成地块
+## GUI Plotting
 
 From the Chia application, click the `Farm` icon and click `ADD A PLOT`:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/11.png" alt="Add a plot" />
 </div>
-
 <br />
 
 Your plot NFT will appear. In this example, it is called "Harlequin Koala". The plots you create will be associated with this NFT. It is important that you associate all of your plots to the same NFT because it will allow you to farm to a pool, as well as to change pools easily if desired. As long as your plot NFT shows up here, there is no need to change it:
@@ -292,7 +282,6 @@ Your plot NFT will appear. In this example, it is called "Harlequin Koala". The 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/12.png" alt="Plot NFT" />
 </div>
-
 <br />
 
 Next, you will need to choose a plotter. If you are unsure which one to use, see the [Plotting Software](/plotting-software) page for guidance.
@@ -300,15 +289,13 @@ Next, you will need to choose a plotter. If you are unsure which one to use, see
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/13.png" alt="Choose plotter" />
 </div>
-
 <br />
 
 For the `Keys` section, you typically won't need to change anything (these are the keys you set up previously).
 
 <div style={{ textAlign: 'left' }}>
-  <img src="/img/how_to_plot/14.png" alt="密钥" />
+  <img src="/img/how_to_plot/14.png" alt="Keys" />
 </div>
-
 <br />
 
 Next, you will need to choose a `k` value and a compression level. Certain plotters only allow one or the other of these options.
@@ -316,7 +303,6 @@ Next, you will need to choose a `k` value and a compression level. Certain plott
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/15.png" alt="Choose K value" />
 </div>
-
 <br />
 
 Depending on which plotter you chose, you may need to select a temporary storage location.
@@ -326,7 +312,6 @@ The final directory is where the plot will be copied after it has been created. 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/16.png" alt="Final directory" />
 </div>
-
 <br />
 
 You will also need to choose how many plots to create.
@@ -334,7 +319,6 @@ You will also need to choose how many plots to create.
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/17.png" alt="Number of plots" />
 </div>
-
 <br />
 
 After you have gone through all of these settings, click `CREATE`. You will be taken to a progress panel:
@@ -342,7 +326,6 @@ After you have gone through all of these settings, click `CREATE`. You will be t
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/18.png" alt="Plot creation progress" />
 </div>
-
 <br />
 
 :::note

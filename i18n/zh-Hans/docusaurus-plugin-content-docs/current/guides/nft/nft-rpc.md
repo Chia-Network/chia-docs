@@ -57,10 +57,6 @@ chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 
 :::
 
-:::info
-If you already created an NFT wallet using the CLI command from the previous section, you can skip to the next section, [Obtain an image and its hash](#obtain-an-image-and-its-hash "Obtain an image and its hash").
-:::
-
 In this section, we'll start with a brand new wallet fingerprint. However, you'll still need an existing DID to set up a new DID with this RPC.
 
 As detailed in the previous guide, you can use this command to do that:

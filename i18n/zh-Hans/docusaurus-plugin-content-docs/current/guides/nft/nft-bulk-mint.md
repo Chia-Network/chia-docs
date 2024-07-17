@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 This document will show you how to use Chia's NFT bulk minting tool.
 
-First, some background. Chia uses the [coin set](coin-set-intro) model of accounting. This is similar to Bitcoin's UTXO model. Most other blockchains, however, use an account model to track the system's overall state.
+First, some background. Chia uses the [coin set](/coin-set-intro) model of accounting. This is similar to Bitcoin's UTXO model. Most other blockchains, however, use an account model to track the system's overall state.
 
 The coin set model has [many advantages](/coin-set-vs-account) over the account model, but there are some tradeoffs. In the case of NFTs, they are implemented as [singletons](https://chialisp.com/singletons) instead of a simple array. Because of this, creating multiple related NFTs in the same block can be a cumbersome process.
 
@@ -48,7 +48,7 @@ daemon: {'ack': True, 'command': 'exit', 'data': {'success': True}, 'destination
 
 We strongly recommend that you test the bulk minting tool either on the testnet or by using the [simulator](/guides/simulator-user-guide) before attempting to use it on mainnet. In addition, you will need to run a fully synced node in order to use this tool (this is true for testnet, mainnet and the simulator).
 
-For this guide, we will use the testnet. If you do not already have a synced testnet node, you can safely [download a copy of the database](https://www.chia.net/downloads/#database-checkpoint). **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet10/blockchain_v2_testnet10.sqlite.gz "Chia's testnet10 database download site") Save the file to your Downloads folder.
+For this guide, we will use the testnet. If you do not already have a synced testnet node, you can safely [download a copy of the database](https://www.chia.net/downloads/#database-checkpoint). **Do not attempt this on mainnet.** [Click here to begin the download.](https://download.chia.net/testnet11/blockchain_v2_testnet11.sqlite.gz "Chia's testnet11 database download site") Save the file to your Downloads folder.
 
 :::note
 At the time of this writing, the file you will download is around 50 GB, compressed. Uncompressed, it will be around 100 GB. However, this file increases in size every day. You may want to double check that you have plenty of free space before proceeding with the download.
@@ -139,7 +139,10 @@ chia configure --testnet true
 ```
 
 :::note
-If you previously had been running Chia on mainnet, then your peers table will be populated with mainnet peers. When you switch to running on the testnet, the peers listed in this table will time out. Eventually the table will be repopulated with testnet peers, but this can take a long time. In order to expedite this process, We recommend that you delete your peers tables:
+If you previously had been running Chia on mainnet, then your peers table will be populated with mainnet peers.
+When you switch to running on the testnet, the peers listed in this table will time out.
+Eventually the table will be repopulated with testnet peers, but this can take a long time.
+In order to expedite this process, We recommend that you delete your peers tables:
 
 - `~/.chia/mainnet/db/peers.dat`
 - `~/.chia/mainnet/wallet/db/wallet_peers.dat`
@@ -182,7 +185,7 @@ Showing all public and private keys
 
 Fingerprint: 3049838316
 (...)
-    Mnemonic seed (24 secret words):
+	Mnemonic seed (24 secret words):
 youth stomach social aware clay pottery benefit asthma mail cry rubber panda wife around provide atom cute sand staff exotic pink east gloom minute
 ```
 
@@ -196,7 +199,7 @@ If you ever need to display your address, run `chia keys show`. This command wil
 
 6. In order to continue, you will need to have some TXCH in your wallet. If your total balance is 0, you can obtain 1 TXCH from our faucet. Copy the value of "First wallet address:" from the output of the `chia keys show` command. It will be a long string beginning with "txch".
 
-Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit".
+Open our [testnet faucet page](https://testnet11-faucet.chia.net "Chia's testnet11 faucet link"). Paste your address and click "Submit".
 
 You will receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you will receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your coins to arrive before continuing.
 
@@ -206,12 +209,12 @@ You will receive this message: `Accepted. Your request is in the queue and will 
 mkdir ~/.chia/mainnet/db
 ```
 
-8. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called `blockchain_v2_testnet10.sqlite`.
+8. If you downloaded a copy of the testnet database, you will need to wait for the download to complete before continuing. After the download has completed, use an archive manager such as [7-Zip](https://www.7-zip.org/ "7-Zip's website") to extract the file. You should now have a file in your Downloads folder called `blockchain_v2_testnet11.sqlite`.
 
 Move the database to the folder you just created:
 
 ```bash
-mv ~/Downloads/blockchain_v2_testnet10.sqlite ~/.chia/mainnet/db
+mv ~/Downloads/blockchain_v2_testnet11.sqlite ~/.chia/mainnet/db
 ```
 
 9. Start the full node, which will begin syncing to the database file:
@@ -232,9 +235,9 @@ chia show -s
 Eventually, it will say `Full Node Synced`:
 
 ```text
-Network: testnet10    Port: 58444   RPC Port: 8555
+Network: testnet11    Port: 58444   RPC Port: 8555
 Node ID: 82a73b06b3a5f9493a3ac4e3d903026b39c85b748158ba41c623d531947f2a2a
-Genesis Challenge: ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2
+Genesis Challenge: 37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615
 Current Blockchain Status: Full Node Synced
 ```
 
@@ -503,7 +506,7 @@ chianft submit-spend-bundles -m 10 -o 100 output.pkl
 Each time a spend bundle is submitted, some status info will appear. For example:
 
 ```bash
-SUBMITTED: 1/4  TX: 104.70s FEE: 0.04s  OFFER: 6.02s    TOTAL: 120.77s
+SUBMITTED: 1/4	TX: 104.70s	FEE: 0.04s	OFFER: 6.02s	TOTAL: 120.77s
 ```
 
 Expect the total time for each spend bundle to be around 1-2 minutes. A project with `10 000` NFTs could take anywhere from 7-14 hours to complete.
@@ -606,7 +609,7 @@ chianft submit-spend-bundles -m 10 output.pkl
 Each time a spend bundle is submitted, some status info will appear. For example:
 
 ```bash
-SUBMITTED: 1/4  TX: 104.70s FEE: 0.04s  OFFER: 6.02s    TOTAL: 120.77s
+SUBMITTED: 1/4	TX: 104.70s	FEE: 0.04s	OFFER: 6.02s	TOTAL: 120.77s
 ```
 
 Expect the total time for each spend bundle to be around 1-2 minutes. A project with `10 000` NFTs could take anywhere from 7-14 hours to complete.
