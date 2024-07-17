@@ -262,7 +262,7 @@ k=32 is expected to be the minimum plot size until at least 2026. If and when th
 ### What is recommended for plotting?
 
 We think you will want to use used Data Center grade NVMe SSD drives to create your plots. Regular consumer NVMe SSD generally has too low of a [TBW](https://www.enterprisestorageforum.com/storage-hardware/ssd-lifespan.html) rating. One of our community members keeps this handy [SSD Endurance page](/ssd-endurance) up to date so you can compare various SSDs. You should never use your root/OS SSD to plot as it can lead to drive failure and loss of booting. You can plot directly to hard drives and get good results, especially if you plot in parallel to different drives. You can use non-root SSD over Thunderbolt 3 and migrate your plots off to whatever storage you want to keep them on long term. You could even load them on a Raspberry Pi 4 with outdated USB 2.0 drives attached and they will harvest and farm just fine. PC World offers this great [background on current storage technologies](https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html) but this graph gives you a quick view of why we recommend NVMe SSD:
-![NVMe SSD vs SATA](/img/plotting-nvme-ssd.png 'NVMe SSD is 5.5 times faster than SATA SSD')
+![NVMe SSD vs SATA](/img/plotting-nvme-ssd.png "NVMe SSD is 5.5 times faster than SATA SSD")
 
 ### Can I plot more than one plot at a time?
 
@@ -662,7 +662,7 @@ No. You have 30 seconds to respond to challenges.
 
 ### I have only 10 TB, will I ever win XCH?
 
-[ChiaCalculator.com](https://chiacalculator.com 'Chia Calculator') does a good job at running the numbers.
+[ChiaCalculator.com](https://chiacalculator.com "Chia Calculator") does a good job at running the numbers.
 
 First, the bad news. Statistically, it would take multiple years to win a reward with a 10-TB farm. ("So you're saying there's a chance...")
 
@@ -1127,7 +1127,7 @@ To fix this, download and install the [latest version](https://www.chia.net/down
 
 ### What are NFTs?
 
-Non-Fungible Tokens have become extremely popular in the last few years. [This site](https://www.simplilearn.com/tutorials/blockchain-tutorial/what-is-nft 'Basic NFT Explanation') gives a beginner-friendly explanation of what NFTs are.
+Non-Fungible Tokens have become extremely popular in the last few years. [This site](https://www.simplilearn.com/tutorials/blockchain-tutorial/what-is-nft "Basic NFT Explanation") gives a beginner-friendly explanation of what NFTs are.
 
 ### How do I buy NFTs?
 

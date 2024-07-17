@@ -96,7 +96,7 @@ Now, add a `tsconfig.json` file with this content:
 We will put all of our code inside of a `src` folder, so add that folder now with an `index.ts` file:
 
 ```ts title="src/index.ts"
-console.log('Hello, Chia!');
+console.log("Hello, Chia!");
 ```
 
 To run this, we can add a `start` script of `ts-node src/index.ts` to our `package.json`. Our file will look something like this:
@@ -140,7 +140,7 @@ As this code uses a custom wallet implementation instead of the Chia wallet RPC,
 
 ```ts
 const mnemonic =
-  'nasty sunny kingdom popular turn core rifle river twenty edit sort pill rice claw hollow please wash inform cannon empower emotion caught salt close';
+  "nasty sunny kingdom popular turn core rifle river twenty edit sort pill rice claw hollow please wash inform cannon empower emotion caught salt close";
 ```
 
 ### Dot Env
@@ -164,7 +164,7 @@ chia keys show --show-mnemonic-seed
 This is how you load the file for later:
 
 ```ts title="index.ts"
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 dotenv.config();
 ```
@@ -181,15 +181,15 @@ import {
   fromHex,
   AugSchemeMPL,
   concatBytes,
-} from '@rigidity/bls-signatures';
-import { mnemonicToSeedSync } from 'bip39';
-import dotenv from 'dotenv';
-import { Program } from '@rigidity/clvm';
-import fs from 'fs';
-import path from 'path';
-import { FullNode, formatHex, SpendBundle, toCoinId } from '@rigidity/chia';
-import { KeyStore, StandardWallet } from '@rigidity/chia-wallet';
-import os from 'os';
+} from "@rigidity/bls-signatures";
+import { mnemonicToSeedSync } from "bip39";
+import dotenv from "dotenv";
+import { Program } from "@rigidity/clvm";
+import fs from "fs";
+import path from "path";
+import { FullNode, formatHex, SpendBundle, toCoinId } from "@rigidity/chia";
+import { KeyStore, StandardWallet } from "@rigidity/chia-wallet";
+import os from "os";
 ```
 
 ## Loading Chialisp Files
@@ -221,7 +221,7 @@ This will create a `signature.clsp.hex` file that can be read in our code.
 
 ```typescript
 const program = Program.deserializeHex(
-  fs.readFileSync(path.join(__dirname, '..', 'signature.clsp.hex'), 'utf-8'),
+  fs.readFileSync(path.join(__dirname, "..", "signature.clsp.hex"), "utf-8"),
 );
 
 console.log(program.toString());
@@ -300,7 +300,7 @@ less ~/.chia/mainnet/config/config.yaml
 Now you can start the full node RPC client and wallet like this:
 
 ```typescript
-const node = new FullNode(os.homedir() + '/.chia/mainnet');
+const node = new FullNode(os.homedir() + "/.chia/mainnet");
 const keyStore = new KeyStore(privateKey);
 
 const wallet = new StandardWallet(node, keyStore);
@@ -460,20 +460,20 @@ import {
   fromHex,
   AugSchemeMPL,
   concatBytes,
-} from '@rigidity/bls-signatures';
-import { mnemonicToSeedSync } from 'bip39';
-import dotenv from 'dotenv';
-import { Program } from '@rigidity/clvm';
-import fs from 'fs';
-import path from 'path';
-import { FullNode, formatHex, SpendBundle, toCoinId } from '@rigidity/chia';
-import { KeyStore, StandardWallet } from '@rigidity/chia-wallet';
-import os from 'os';
+} from "@rigidity/bls-signatures";
+import { mnemonicToSeedSync } from "bip39";
+import dotenv from "dotenv";
+import { Program } from "@rigidity/clvm";
+import fs from "fs";
+import path from "path";
+import { FullNode, formatHex, SpendBundle, toCoinId } from "@rigidity/chia";
+import { KeyStore, StandardWallet } from "@rigidity/chia-wallet";
+import os from "os";
 
 dotenv.config();
 
 const program = Program.deserializeHex(
-  fs.readFileSync(path.join(__dirname, '..', 'signature.clsp.hex'), 'utf-8'),
+  fs.readFileSync(path.join(__dirname, "..", "signature.clsp.hex"), "utf-8"),
 );
 
 console.log(program.toString());
@@ -484,7 +484,7 @@ const publicKey = privateKey.getG1();
 const curried = program.curry([Program.fromJacobianPoint(publicKey)]);
 console.log(curried.toString());
 
-const node = new FullNode(os.homedir() + '/.chia/mainnet');
+const node = new FullNode(os.homedir() + "/.chia/mainnet");
 const keyStore = new KeyStore(privateKey);
 
 const wallet = new StandardWallet(node, keyStore);

@@ -63,8 +63,8 @@ This example would require anyone-can-spend DataLayer proofs of inclusion (these
 
 有关其他技术资源，请参阅以下内容：
 
-- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
-- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
+- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
 - [DataLayer blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/)
 
@@ -339,8 +339,8 @@ Keeping all of this in mind, **it is typically safe to insert data sets of up to
 
 Chia DataLayer doesn't have a GUI. The commands in this tutorial will use the command line interface (CLI). As a reminder, here is the complete reference for the CLI, as well as all available Remote Procedure Calls (RPCs):
 
-- [DataLayer RPC API](/datalayer-rpc/ 'DataLayer RPC API')
-- [DataLayer CLI Reference](/datalayer-cli/ 'DataLayer CLI Reference')
+- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
+- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
 
 ### Create a data store
 

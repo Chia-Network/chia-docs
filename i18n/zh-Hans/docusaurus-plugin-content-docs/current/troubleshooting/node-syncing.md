@@ -3,6 +3,9 @@ title: Node Syncing
 slug: /troubleshooting/node-syncing
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Port forwarding port 8444 can solve many sync issues and helps improve Chia's network health.
 
 Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networking%29) through which other Chia computers can communicate with your PC. When you set up port forwarding on port 8444, the Chia software on your computer can quickly talk to other PCs, link up, and start downloading and syncing with the Chia blockchain.
@@ -33,19 +36,40 @@ If you somehow are able to open up your port 8444 you will quickly have peers co
 
 ## Speed up connecting to nodes
 
-If you would like to speed up connecting to other nodes and syncing, add one of these introducer nodes:
+If you would like to speed up connectivity to other nodes and increase your sync speed, add the introducer node to your Chia client:
 
-- North Asia `introducer-ap-northeast-1.chia.net:8444`
-- South Asia `introducer-ap-southeast-1.chia.net:8444`
-- Western North America: `introducer-us-west-2.chia.net:8444`
-- Eastern North America `introducer-us-east-1.chia.net:8444`
-- Europe: `introducer-eu-west-2.chia.net:8444`
+<Tabs
+defaultValue="mainnet"
+groupId="introducers"
+values={[
+{label: 'Mainnet', value: 'mainnet'},
+{label: 'Testnet11', value: 'testnet11'},
+]}>
 
-There is a public node share the available 8444 peers every hour.
+  <TabItem value="mainnet">
 
-- [chia.keva.app](https://chia.keva.app)
+    - Mainnet Introducer: `introducer.chia.net:8444`
 
-These can be added in the GUI via the button, or via the CLI with `chia show -a PEER_ADDRESS:PORT` where `PORT` will usually be 8444.
+    Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+    - CNI Operated Full Node: `node.chia.net`
+
+    Additionally, you can also visit either of the below websites that are frequently updated with available nodes listening on port 8444:
+    - [ChiaNodes.com](https://ChiaNodes.com)
+    - [chia.keva.app](https://chia.keva.app)
+
+  </TabItem>
+  <TabItem value="testnet11">
+
+    - DNS Introducer: `dns-introducer-testnet11.chia.net`
+    - Legacy Introducer: `introducer-testnet11.chia.net:58444`
+
+    Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+    - CNI Operated Full Node: `testnet11-node.chia.net`
+
+  </TabItem>
+</Tabs>
+
+Nodes (IPs) from these sites can be added in the GUI from the Full Node tab, select the Full Node button in the top right corner and then choose "Connect to Other Peers". You can also add nodes via the CLI with the command `chia peer full_node -a PEER_ADDRESS:PORT` where `PORT` will typically be 8444.
 
 # Detailed explanation
 

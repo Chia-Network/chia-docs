@@ -23,7 +23,7 @@ The number of NFTs per spend bundle is hard-coded at 25 in this tool. It may be 
 <details>
   <summary>Note about Python <code>RuntimeError</code> on Windows</summary>
 
-If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 'More info about this issue') and can be safely ignored. For example:
+If you are running on Windows, you might occasionally see a Python Runtime Error. This is a [known issue in Python](https://github.com/aio-libs/aiohttp/issues/4324 "More info about this issue") and can be safely ignored. For example:
 
 ```bash
 chia stop -d all
@@ -68,7 +68,7 @@ chia stop -d all
 If you don't already have the `git` CLI tool installed, [follow these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install it
 :::
 
-1. Clone the [chia-nft-minting-tool](https://github.com/Chia-Network/chia-nft-minting-tool 'chia-nft-minting-tool') GitHub repository, which contains the bulk minting tool.
+1. Clone the [chia-nft-minting-tool](https://github.com/Chia-Network/chia-nft-minting-tool "chia-nft-minting-tool") GitHub repository, which contains the bulk minting tool.
 
 In order to clone this repository, first open a PowerShell (Windows) or terminal (Linux and MacOS) window. Next, run the `git clone` command:
 

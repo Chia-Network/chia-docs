@@ -7,13 +7,13 @@ The majority of Chia Network Inc's prefarm is being held in a cold wallet, secur
 
 Other relevant documents:
 
-- [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
+- [Flow chart](https://docs.chia.net/img/chia-custody-tool.png) to visualize how the custody tool works
 - [User guide](/guides/custody-tool-user-guide) to help you get up and running
 - [CLI reference](/custody-tool) for all custody commands used in this tutorial
 
 ## Singleton Structure
 
-The prefarm uses a [singleton](https://chialisp.com/singletons 'Description of Chia singletons') with the following features:
+The prefarm uses a [singleton](https://chialisp.com/singletons "Description of Chia singletons") with the following features:
 
 1. **Multisig** -- required to perform actions on the singleton, where:
 
@@ -200,13 +200,13 @@ The following table lists the action/consequence, given the current value of `m`
 
 ## Source Code
 
-The source code for the custody solution is in the [internal-custody GitHub repository](https://github.com/Chia-Network/internal-custody 'Chia internal custody solution').
+The source code for the custody solution is in the [internal-custody GitHub repository](https://github.com/Chia-Network/internal-custody "Chia internal custody solution").
 
 There are two configuration files, one public (for observers) and one private.
 
 ### Public Configuration
 
-An observer can track the prefarm's configuration information from [prefarm_info.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/prefarm_info.py#L8-L18 'public configuration information'), which contains the following variables:
+An observer can track the prefarm's configuration information from [prefarm_info.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/prefarm_info.py#L8-L18 "public configuration information"), which contains the following variables:
 
 - `launcher_id`: `bytes32` -- This is pre-set; the user cannot change it
 - `puzzle_root`: `bytes32` -- This is pre-set; the user cannot change it
@@ -218,7 +218,7 @@ An observer can track the prefarm's configuration information from [prefarm_info
 
 ### Private Configuration
 
-The necessary information to spend the prefarm is located in [puzzle_root_construction.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/puzzle_root_construction.py#L26-L34 'private configuration information'). This information is considered private. However, if an attacker obtained this information, it would still be insufficient to spend the prefarm because valid signatures would be required. However, the Merkle tree would be considered sniffed, so a rekey would be required.
+The necessary information to spend the prefarm is located in [puzzle_root_construction.py](https://github.com/Chia-Network/internal-custody/blob/main/cic/drivers/puzzle_root_construction.py#L26-L34 "private configuration information"). This information is considered private. However, if an attacker obtained this information, it would still be insufficient to spend the prefarm because valid signatures would be required. However, the Merkle tree would be considered sniffed, so a rekey would be required.
 
 This code contains the following variables:
 

@@ -1,11 +1,17 @@
 ---
-title: Warp.green Bridge Guide
+title: XCH Bridge Guide
 slug: /bridge-guide
 ---
 
 ## Intro
 
-The [Warp.green bridge](https://www.warp.green/) is a messaging protocol that enables bridging assets between Chia and other blockchains. It is an open-source project located on [GitHub](https://github.com/warpdotgreen). It was developed by Warp.green, which is not affiliated with Chia Network, Inc.
+A _cryptocurrency bridge_ is a powerful tool that enables seamless transfers of digital assets between different blockchain networks, breaking down the barriers of blockchain interoperability. The first Chia blockchain bridge by Warp.Green is now available, paving the way for anyone to access XCH.
+
+As the first of many bridges to come, Warp.Green marks an exciting milestone in our journey toward greater access to chia (XCH). To help you get started, here's a introductory guide on how to use the Warp.Green bridge.
+
+## The Warp.green Bridge
+
+The [Warp.green bridge](https://www.warp.green/) is a messaging protocol that enables bridging assets between Chia and other blockchains. It is an open-source project located on [GitHub](https://github.com/warpdotgreen). It was developed by Warp.green, which is not affiliated with Chia Network Inc.
 
 This guide will show you how to send ETH from the [Base](https://www.base.org/) blockchain (an Ethereum L2) to the Chia blockchain. The transfer will take a total of 15-20 minutes, though the initial setup could take considerably longer if you are not familiar with the technologies involved.
 
@@ -21,7 +27,7 @@ Finally, note that the bridge is set up to allow for bridging _any_ Chia or Ethe
 
 ## Set up MetaMask
 
-[MetaMask](https://metamask.io/) is one of the most popular wallets for storing digital assets such as ETH, and it supports the Base blockchain. We will use MetaMask for this guide, so if you want to follow along, you will need to install it as a web browser extension. But don't worry -- if you want to use a different Base wallet, the instructions will likely be similar.
+[MetaMask](https://metamask.io/) is one of the most popular wallets for storing digital assets such as ETH, and it supports the Base blockchain. We will use MetaMask for this guide, so if you want to follow along, you will need to install it as a web browser extension. But don't worry – if you want to use a different Base wallet, the instructions will likely be similar.
 
 After you have installed MetaMask, click the browser extension button ("1" in the following image), then click the dropdown to change blockchains ("2"):
 
