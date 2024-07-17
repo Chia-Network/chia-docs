@@ -78,10 +78,10 @@ Accepts an offer and completes the transaction.
 
 #### Output Data
 
-| Parameter     | Type                                                 | Description             |
-| ------------- | ---------------------------------------------------- | ----------------------- |
+| Parameter     | Type                                               | Description             |
+| ------------- | -------------------------------------------------- | ----------------------- |
 | `tradeRecord` | [`TradeRecord`](/walletconnect-offers#traderecord) | Trade record.           |
-| `success`     | `boolean`                                            | Backend success status. |
+| `success`     | `boolean`                                          | Backend success status. |
 
 ### `chia_getOfferSummary`
 
@@ -93,11 +93,11 @@ Gets the summary object of an offer.
 
 #### Output Data
 
-| Parameter | Type                                                  | Description             |
-| --------- | ----------------------------------------------------- | ----------------------- |
-| `id`      | `string`                                              | Trade id.               |
+| Parameter | Type           | Description             |
+| --------- | -------------- | ----------------------- |
+| `id`      | `string`       | Trade id.               |
 | `summary` | `TradeSummary` | Trade summary.          |
-| `success` | `boolean`                                             | Backend success status. |
+| `success` | `boolean`      | Backend success status. |
 
 ### `chia_getOfferData`
 
@@ -109,11 +109,11 @@ Gets the data of an offer.
 
 #### Output Data
 
-| Parameter     | Type                                                 | Description                 |
-| ------------- | ---------------------------------------------------- | --------------------------- |
-| `offer`       | `string`                                             | Bech32m encoded offer data. |
+| Parameter     | Type                                               | Description                 |
+| ------------- | -------------------------------------------------- | --------------------------- |
+| `offer`       | `string`                                           | Bech32m encoded offer data. |
 | `tradeRecord` | [`TradeRecord`](/walletconnect-offers#traderecord) | Trade record.               |
-| `success`     | `boolean`                                            | Backend success status.     |
+| `success`     | `boolean`                                          | Backend success status.     |
 
 ### `chia_getOfferRecord`
 
@@ -125,11 +125,11 @@ Gets the trade record of an offer.
 
 #### Output Data
 
-| Parameter     | Type                                                 | Description                                                                            |
-| ------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `offer`       | `null`                                               | Use [`chia_getOfferData`](/walletconnect-offers#chia_getofferdata) if you need this. |
-| `tradeRecord` | [`TradeRecord`](/walletconnect-offers#traderecord) | Trade record.                                                                          |
-| `success`     | `boolean`                                            | Backend success status.                                                                |
+| Parameter     | Type                                               | Description                                                                          |
+| ------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `offer`       | `null`                                             | Use [`chia_getOfferData`](/walletconnect-offers#chia_getofferdata) if you need this. |
+| `tradeRecord` | [`TradeRecord`](/walletconnect-offers#traderecord) | Trade record.                                                                        |
+| `success`     | `boolean`                                          | Backend success status.                                                              |
 
 ### `chia_createOfferForIds`
 
@@ -144,30 +144,30 @@ Creates an offer for wallet ids.
 
 #### Output Data
 
-| Parameter     | Type                                                 | Description                 |
-| ------------- | ---------------------------------------------------- | --------------------------- |
-| `offer`       | `string`                                             | Bech32m encoded offer data. |
+| Parameter     | Type                                               | Description                 |
+| ------------- | -------------------------------------------------- | --------------------------- |
+| `offer`       | `string`                                           | Bech32m encoded offer data. |
 | `tradeRecord` | [`TradeRecord`](/walletconnect-offers#traderecord) | Trade record.               |
 
 ## Types
 
 ### TradeRecord
 
-| Parameter          | Type                                                 | Description                                  |
-| ------------------ | ---------------------------------------------------- | -------------------------------------------- |
-| `acceptedAtTime`   | <code>number &#124; null</code>                      | Timestamp when the trade was accepted.       |
-| `coinsOfInterest`  | [`Coin[]`](/walletconnect-commands#coin)             | Coins involved in trade.                     |
-| `confirmedAtIndex` | `number`                                             | Confirmation block index.                    |
-| `createdAtTime`    | `number`                                             | Timestamp when the trade was created.        |
-| `isMyOffer`        | `boolean`                                            | Whether this is the wallet's own offer.      |
-| `pending`          | `Record<string, number>`                             | Pending amounts.                             |
-| `sent`             | `number`                                             | Number of peers the transaction was sent to. |
-| `sentTo`           | [`Peer[]`](/walletconnect-commands#peer)             | Peers the transaction was sent to.           |
+| Parameter          | Type                                               | Description                                  |
+| ------------------ | -------------------------------------------------- | -------------------------------------------- |
+| `acceptedAtTime`   | <code>number &#124; null</code>                    | Timestamp when the trade was accepted.       |
+| `coinsOfInterest`  | [`Coin[]`](/walletconnect-commands#coin)           | Coins involved in trade.                     |
+| `confirmedAtIndex` | `number`                                           | Confirmation block index.                    |
+| `createdAtTime`    | `number`                                           | Timestamp when the trade was created.        |
+| `isMyOffer`        | `boolean`                                          | Whether this is the wallet's own offer.      |
+| `pending`          | `Record<string, number>`                           | Pending amounts.                             |
+| `sent`             | `number`                                           | Number of peers the transaction was sent to. |
+| `sentTo`           | [`Peer[]`](/walletconnect-commands#peer)           | Peers the transaction was sent to.           |
 | `status`           | [`TradeStatus`](/walletconnect-offers#tradestatus) | Trade status.                                |
-| `summary`          | `any`                                                | Trade summary metadata.                      |
-| `takenOffer`       | <code>string &#124; null</code>                      | Taken bech32m encoded offer data.            |
-| `tradeId`          | `string`                                             | Trade id.                                    |
-| `_offerData`       | `string`                                             | Bech32m encoded offer data.                  |
+| `summary`          | `any`                                              | Trade summary metadata.                      |
+| `takenOffer`       | <code>string &#124; null</code>                    | Taken bech32m encoded offer data.            |
+| `tradeId`          | `string`                                           | Trade id.                                    |
+| `_offerData`       | `string`                                           | Bech32m encoded offer data.                  |
 
 ### TradeStatus
 
