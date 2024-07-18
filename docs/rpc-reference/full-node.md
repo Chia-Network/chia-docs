@@ -66,12 +66,15 @@ for spent coins, use the [get_puzzle_and_solution](#get_puzzle_and_solution) API
 <details>
 <summary>Example</summary>
 
-```json
-chia rpc full_node get_additions_and_removals '{"header_hash": "0xfb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8"}'
-```
+````mdx-code-block
+  ```json
+  chia rpc full_node get_additions_and_removals '{"header_hash": "0xfb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8"}'
+  ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "additions": [
@@ -321,6 +324,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -344,18 +348,22 @@ Request Parameters: None
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_aggsig_additional_data
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "additional_data": "ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb",
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -379,12 +387,15 @@ Request Parameters: None
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_all_mempool_items
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "mempool_items": {
@@ -743,6 +754,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -766,12 +778,15 @@ Request Parameters: None
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_all_mempool_tx_ids
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "success": true,
@@ -784,6 +799,7 @@ Response:
   ]
 }
 ```
+````
 
 </details>
 
@@ -813,12 +829,15 @@ Request Parameters:
 
 Note that some blocks (such as the one from this example) are not transaction blocks:
 
+````mdx-code-block
 ```json
 chia rpc full_node get_block '{"header_hash":"0xf42b4e77315d79ddfb3d64becb21e26ebff5408bda4d1b7c3782fd04f49ec0bb"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "block": {
@@ -896,6 +915,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -919,12 +939,15 @@ Request Parameters: None
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_blockchain_state
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "blockchain_state": {
@@ -1013,6 +1036,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -1049,12 +1073,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_blocks '{"start": 100, "end": 102, "exclude_header_hash": true}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "blocks": [
@@ -1291,6 +1318,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -1320,12 +1348,15 @@ Request Parameters: None
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_block_count_metrics
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "metrics": {
@@ -1336,6 +1367,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -1363,12 +1395,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_block_record '{"header_hash": "0x3723909a7374c4c88cf00ab9b15365f4988f5bdb2d51bac23f6af939fe40f56c"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "block_record": {
@@ -1416,6 +1451,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -1446,12 +1482,15 @@ Request Parameters:
 
 Get two block records (`3 300 000` and `3 300 001`):
 
+````mdx-code-block
 ```json
 chia rpc full_node get_block_records '{"start": 3300000, "end": 3300002}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "block_records": [
@@ -1582,6 +1621,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -1615,12 +1655,15 @@ Note that not all blocks will have all fields set here (depending on transaction
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_block_record_by_height '{"height": 3000000}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "block_record": {
@@ -1688,6 +1731,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -1721,12 +1765,15 @@ Keep in mind that most blocks do not contain any transactions. These blocks will
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_block_spends '{"header_hash": "0x65b9e51000d4ab6996b98bf27c1ccd4b0861a5e3b2e8acdb14f45d1680e5e484"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "block_spends": [
@@ -1942,6 +1989,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -1975,12 +2023,15 @@ Keep in mind that most blocks do not contain any transactions. These blocks will
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_block_spends_with_conditions '{"header_hash": "0x0e2adf947b9165298bfb297c5142e9b5ad75ae922052bc95d5ab1b19f2824797"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "block_spends_with_conditions": [
@@ -2058,6 +2109,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2088,12 +2140,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_coin_records_by_hint '{"start_height": 400000, "end_height": 1900000, "include_spent_coins": true, "hint": "0x6916079cc35f377e96fa34af87d14f58ce1f08d864f93e89bbdd04a26f591540"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "coin_records": [
@@ -2125,6 +2180,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2155,12 +2211,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_coin_records_by_names '{"start_height": 400000, "end_height": 1900000, "include_spent_coins": true, "names":["0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195", "0x3a071ea8bb51d724bf3841fae40370ff18fe1e71a890b731ed1e67f026550995"]}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "coin_records": [
@@ -2192,6 +2251,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2222,12 +2282,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_coin_records_by_parent_ids '{"start_height":4, "end_height": 1900000, "include_spent_coins": true, "parent_ids": ["0x83103a520d363d9356d2bba5be786f56ca83cdccdaad1f7db74cabe3a6ec6195", "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000061"]}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "coin_records": [
@@ -2271,6 +2334,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2301,12 +2365,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_coin_records_by_puzzle_hash '{"puzzle_hash": "0x6bde1e0c6f9d3b93dc5e7e878723257ede573deeed59e3b4a90f5c86de1a0bd3", "start_height": 3343000, "end_height": 3343335, "include_spent_coins": true}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "coin_records": [
@@ -2374,6 +2441,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2404,12 +2472,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_coin_records_by_puzzle_hashes '{"puzzle_hashes": ["0x6bde1e0c6f9d3b93dc5e7e878723257ede573deeed59e3b4a90f5c86de1a0bd3", "0x71c79abd24b6cf63a92a5d8d1ca88014fd3b39cb3c300876370aac477a13b598"], "start_height": 3343293, "end_height": 3343380, "include_spent_coins": false}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "coin_records": [
@@ -2453,6 +2524,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2486,12 +2558,15 @@ The `name` (coin ID) can be obtained by hashing the Coin object: `sha256(parent 
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_coin_record_by_name '{"name": "0x7a639649fa2b6b4233cab7bf98b3da01be182afba622eb377011ac0940cd83c8"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "coin_record": {
@@ -2509,6 +2584,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2549,12 +2625,15 @@ Obtain a fee estimate for a spendbundle with a CLVM cost of 20 million. Targeted
 
 Note that this example was completed at a time when the mempool was not busy, so the fee estimates are all `0`.
 
+````mdx-code-block
 ```json
 chia rpc full_node get_fee_estimate '{"cost":20000000, "target_times": [60, 300, 600]}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "current_fee_rate": 0.0342163071650677,
@@ -2575,6 +2654,7 @@ Response:
   "target_times": [60, 300, 600]
 }
 ```
+````
 
 </details>
 
@@ -2604,12 +2684,15 @@ Request Parameters:
 
 Start by obtaining all of the mempool tx IDs:
 
+````mdx-code-block
 ```json
 chia rpc full_node get_all_mempool_tx_ids
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "success": true,
@@ -2627,15 +2710,19 @@ Response:
   ]
 }
 ```
+````
 
 Next, obtain a mempool item for one of the IDs:
 
+````mdx-code-block
 ```json
 chia rpc full_node get_mempool_item_by_tx_id '{"tx_id": "0x709a278da6d8093b0063c90061c18eb74eb8d49677166dc239455eeaaa9d4315"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "mempool_item": {
@@ -2741,6 +2828,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2768,12 +2856,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
  chia rpc full_node get_mempool_items_by_coin_name '{"coin_name": "0xfceac40f1cfe41cc7f0be5f80b9dc1be5d28475a6e8cb3d89a78f0baaee7065a"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "mempool_items": [
@@ -2863,6 +2954,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2886,12 +2978,15 @@ Request Parameters: None
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_network_info
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "network_name": "mainnet",
@@ -2899,6 +2994,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -2927,18 +3023,22 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_network_space '{"older_block_header_hash": "023cbcdc3cb97e5ddeb6fe40a6a28b303255bb821090b237d00dd77c9dfefb7a", "newer_block_header_hash": "6c26e4a79b437de1272942a7c4c78e1af3a71741f1244b14320279c7084cf3c8"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "space": 26915196432975761408,
   "success": true
 }
 ```
+````
 
 The result is the average network space (in bytes) from the blocks starting with `older_block_header_hash` and ending with `newer_block_header_hash`.
 
@@ -2980,12 +3080,15 @@ By definition, coins that are unspent do not have their original puzzle or solut
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_puzzle_and_solution '{"coin_id": "0x985221340d70b38cee51d35fdbb64c333e15e7c27133e962d39237672985fdc9", "height": 3343255}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "coin_solution": {
@@ -3000,6 +3103,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -3034,12 +3138,15 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_recent_signage_point_or_eos '{"challenge_hash": "0xc97facdb04807e595f46f76961febeea245c044d35152e4397e5c4878d5bce37"}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "eos": {
@@ -3100,6 +3207,7 @@ Response:
   "time_received": 1678155344.7621934
 }
 ```
+````
 
 </details>
 
@@ -3123,12 +3231,15 @@ Request Parameters: None
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_routes
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "routes": [
@@ -3170,6 +3281,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -3201,12 +3313,15 @@ blocks after it.
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node get_unfinished_block_headers
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "headers": [
@@ -3418,6 +3533,7 @@ Response:
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -3447,17 +3563,21 @@ This RPC returns `200` if successful. It is lightweight and can be queried often
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node healthz
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "success": true
 }
 ```
+````
 
 </details>
 
@@ -3486,6 +3606,7 @@ Request Parameters:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```json
 chia rpc full_node push_tx
 '{
@@ -3505,12 +3626,15 @@ chia rpc full_node push_tx
   }
 }'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 { "status": "SUCCESS", "success": true }
 ```
+````
 
 </details>
 
