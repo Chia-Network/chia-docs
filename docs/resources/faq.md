@@ -229,7 +229,7 @@ Thank you to [r/chia](https://www.reddit.com/r/chia/) member [juraj](https://www
 
 ### How does the transactions_generator work?
 
-Some important changes went into the `transactions_generator` code with the 2.1.0 hard fork. These changes are detailed in the [Block Format](/block-validation/block-format.md#transactions_generator-update) page.
+Some important changes went into the `transactions_generator` code with the 2.1.0 hard fork. These changes are detailed in the [Block Format](/block-format#transactions_generator-update) page.
 
 ## Plotting
 
@@ -1407,7 +1407,7 @@ In order to enable notifications, you can either add these settings manually, or
 
 Finally, you need to restart Chia for these settings to be picked up.
 
-Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
+Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/wallet-rpc#send_notification).
 
 ### How can I use the CLI to send an Offer notification to the owner of an NFT?
 

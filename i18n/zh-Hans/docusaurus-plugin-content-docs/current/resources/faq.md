@@ -6,6 +6,10 @@ slug: /faq
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import WalletKeyDetails from '@site/static/img/troubleshooting/wallet_key_details.png';
+import WalletKeysPublic from '@site/static/img/faq/wallet_keys_public_key.png';
+import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
+
 ## General
 
 ### What are harvesters, farmers, full nodes, and timelords?
@@ -14,7 +18,7 @@ You can read about each of them and the architecture in the [Architecture Overvi
 
 ### What is a proof of space?
 
-A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](/farming-on-many-machines) to manage the whole "farm".
+A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](/farming-on-many-machines) to manage the whole "farm".
 
 Farming uses substantially less electricity than Proof of Work for the same unit of security. You can learn more at [chiapower.org](https://chiapower.org).
 
@@ -223,11 +227,15 @@ A burn address is an address whose private key (24 words) is unobtainable. There
 
 Thank you to [r/chia](https://www.reddit.com/r/chia/) member [juraj](https://www.reddit.com/r/chia/comments/q88yi8/does_chia_have_a_dead_address/hqolhgn/) for this information.
 
+### How does the transactions_generator work?
+
+Some important changes went into the `transactions_generator` code with the 2.1.0 hard fork. These changes are detailed in the [Block Format](/block-format#transactions_generator-update) page.
+
 ## Plotting
 
 ### What is k?
 
-"k" is the space parameter that controls the size of plots. It is an integer for the following equation: `plot_size_bytes = C1 * 2^k(k + C2)` where C1 is constant 1 and C2 is constant 2. In practice this means that final size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005` though that constant is estimated. You can examine the [Space Required section](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf#page=15) of the [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) for the calculation of how much space is required for a given k.
+"k" is the space parameter that controls the size of plots. It is an integer for the following equation: `plot_size_bytes = C1 * 2^k(k + C2)` where C1 is constant 1 and C2 is constant 2. In practice this means that final size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005` though that constant is estimated. You can examine the [Space Required section](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf#page=15) of the [Chia Proof of Space Construction document](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf) for the calculation of how much space is required for a given k.
 
 :::note
 
@@ -253,7 +261,8 @@ k=32 is expected to be the minimum plot size until at least 2026. If and when th
 
 ### What is recommended for plotting?
 
-We think you will want to use used Data Center grade NVMe SSD drives to create your plots. Regular consumer NVMe SSD generally has too low of a [TBW](https://www.enterprisestorageforum.com/storage-hardware/ssd-lifespan.html) rating. One of our community members keeps this handy [SSD Endurance page](/ssd-endurance) up to date so you can compare various SSDs. You should never use your root/OS SSD to plot as it can lead to drive failure and loss of booting. You can plot directly to hard drives and get good results, especially if you plot in parallel to different drives. You can use non-root SSD over Thunderbolt 3 and migrate your plots off to whatever storage you want to keep them on long term. You could even load them on a Raspberry Pi 4 with outdated USB 2.0 drives attached and they will harvest and farm just fine. PC World offers this great [background on current storage technologies](https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html) but this graph gives you a quick view of why we recommend NVMe SSD: ![NVMe SSD vs SATA](/img/plotting-nvme-ssd.png "NVMe SSD is 5.5 times faster than SATA SSD")
+We think you will want to use used Data Center grade NVMe SSD drives to create your plots. Regular consumer NVMe SSD generally has too low of a [TBW](https://www.enterprisestorageforum.com/storage-hardware/ssd-lifespan.html) rating. One of our community members keeps this handy [SSD Endurance page](/ssd-endurance) up to date so you can compare various SSDs. You should never use your root/OS SSD to plot as it can lead to drive failure and loss of booting. You can plot directly to hard drives and get good results, especially if you plot in parallel to different drives. You can use non-root SSD over Thunderbolt 3 and migrate your plots off to whatever storage you want to keep them on long term. You could even load them on a Raspberry Pi 4 with outdated USB 2.0 drives attached and they will harvest and farm just fine. PC World offers this great [background on current storage technologies](https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html) but this graph gives you a quick view of why we recommend NVMe SSD:
+![NVMe SSD vs SATA](/img/plotting-nvme-ssd.png "NVMe SSD is 5.5 times faster than SATA SSD")
 
 ### Can I plot more than one plot at a time?
 
@@ -261,7 +270,7 @@ Yes, using either the GUI or CLI. Over the short run you have a bit more control
 
 ### Can I make plots on one machine and move it to another machine?
 
-是的。 The [Moving Plots page](/moving-plots) gives you the details. You may also want to consider running a [remote harvester](/farming-on-many-machines). You can also use the same private key set to plot on more than one machine at a time but be aware of the [uPnP issues](/faq#why-should-i-not-run-more-than-one-node-on-a-home-network-and-whats-this-about-upnp).
+Yes. The [Moving Plots page](/moving-plots) gives you the details. You may also want to consider running a [remote harvester](/farming-on-many-machines). You can also use the same private key set to plot on more than one machine at a time but be aware of the [uPnP issues](/faq#why-should-i-not-run-more-than-one-node-on-a-home-network-and-whats-this-about-upnp).
 
 ### What is the secondary temp directory `-2`, and how should I set it?
 
@@ -289,13 +298,13 @@ No. As long as you plot at least k=32, those plots will be eligible to win on ma
 
 ### Is the final size of the plotted space the only variable in how often I can win block rewards?
 
-是的。
+Yes.
 
 ### How do I know if my plots are OK?
 
 Run `chia plots check -n 30` to try 30 sample challenges for each plot. Each of your plots should return a number around 30, which means it found around 100% of the attempted proofs of space. If you're still worried try `-n 100` as more random attempts will give you a more valid assessment that the plots is fine. It really is ok if your plot is within 80%-120%. If some of your plots are missing for some reason you may need to add the directory they are in to your config.yaml file. That can be done in the GUI with the MANAGE PLOT DIRECTORIES button or on the command line with `chia plots add -d [directory]`.
 
-### 我可以使用连接到SSD/NVME的USB 3.0电缆来运行临时文件吗？
+### Can I use USB 3.0 cable connected to SSD/NVME running the Temp files?
 
 On Windows, it has not worked well since the communication speed is not fast enough, sometimes the usb turns off, then the plot is not valid. It's possible to run 1 plot, but limiting when trying to process multiple plots. Most are installing PCIe adapters to SSC/NVME and that solves the issue. The mac has very fast communication to do the first plot, many others are saying that they can do 2 plots but process time increases dramatically. Technology is constantly changing so continue to do research and ask in the chat rooms.
 
@@ -339,39 +348,44 @@ This is usually a system clock issue, which is causing the display of "Not synce
 
 ### What is the new database?
 
-Beginning in 1.3, Chia uses version 2 of its blockchain database. The new database is still written in SQLite, but it has undergone a series of optimizations, such as storing hashes in binary, rather than human-readable hex format. It also is more compressed than version 1. These two factors combined have resulted in an approximately 45% reduction in the size of the database, as well as a slight improvement in its performance.
+Chia began using version 2 of its blockchain database in 2022. Version 1 has since reached its end-of-life.
 
-If you install a brand new full node in Chia 1.3 or later, version 2 of the database will be created when you run `chia init`. If you want to stick with version 1, simply run `chia init --v1-db` instead.
+#### About version 2
 
-If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli).
+Version 2 of the database is still written in SQLite, but it has undergone a series of optimizations from version 1, such as storing hashes in binary, rather than human-readable hex format. It also is more compressed than version 1. These two factors combined have resulted in an approximately 45% reduction in the size of the database, as well as a slight improvement in its performance.
 
-You do not need to stop Chia in order to perform the upgrade. This is because the program performing the upgrade only needs to _read_ from your original database file, while your upgraded file will be written alongside it in the same folder. Be sure you have enough free space on the disk that contains your database file to write the new file.
+When you install a brand new full node, version 2 of the database will be created when you run `chia init`.
 
-The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly._
+If you are upgrading from Chia 1.x to 2.1 or later (which is required due to the [hard fork](/consensus-forks/)), you will no longer be able run with version 1 of the database. In this case, your options are to download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
 
-The upgrade could take several hours, so feel free to perform it at your leisure. After the upgrade has completed, run `chia start farmer -r` to restart your farmer and switch to the new database.
+#### About the upgrade process
+
+If you still have a copy of version 1 of the database, you can upgrade it to version 2. This upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli/#upgrade). Be sure you have enough free space on the disk that contains your database file to write the new file.
+
+The upgrade could take several hours. After it has completed, run `chia start farmer -r` to restart your farmer and switch to the new database.
 
 Note that the new database will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
 
-Because the upgrade from version 1 to 2 of the database is time-consuming, most users will likely only perform it on one of their systems and copy the new database file to their other systems afterward. If you choose this option, be sure to either copy the file _before_ running `chia start farmer -r`, or stop Chia altogether if it is already using the new database. Once the database is swapped from v1 to v2, you also need to update you `config.yaml` to reflect the new v2 database change. Under the `full_node:` section set `database_path: db/blockchain_v1_CHALLENGE.sqlite` to `database_path: db/blockchain_v2_CHALLENGE.sqlite`
+Because the upgrade from version 1 to 2 of the database is time-consuming, most users will likely only perform it on one of their systems and copy the new database file to their other systems afterward. If you choose this option, be sure to either copy the file _before_ running `chia start farmer -r`, or stop Chia altogether if it is already using the new database. Once the database is swapped from v1 to v2, you also need to update your `config.yaml` to reflect the new v2 database change. Under the `full_node:` section set `database_path: db/blockchain_v1_CHALLENGE.sqlite` to `database_path: db/blockchain_v2_CHALLENGE.sqlite`
 
 :::warning
 If you copy your database file to another computer while Chia is currently using it, you'll risk corrupting it, which will necessitate a full sync from genesis.
 :::
 
+#### Technical details
+
 If you're interested in learning more technical details of the new database, see the first Github Pull Request that introduced the changes:
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9442
+
+- https://github.com/Chia-Network/chia-blockchain/pull/9442
 
 And there were two follow-up Pull Requests with additional improvements, along with some benchmarks.
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9454
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9455
+
+- https://github.com/Chia-Network/chia-blockchain/pull/9454
+- https://github.com/Chia-Network/chia-blockchain/pull/9455
 
 Finally, here is the Pull Request that added the upgrade functionality:
-<br/>
-https://github.com/Chia-Network/chia-blockchain/pull/9613
+
+- https://github.com/Chia-Network/chia-blockchain/pull/9613
 
 ### What is the difference between Wallet Mode and Farming Mode?
 
@@ -427,7 +441,7 @@ The light wallet protocol has two techniques to sync:
 
 Typically, it is much faster to sync a wallet by connecting to a trusted node. Therefore, if you have access to a synced node that you trust, you may want to add that node to your trusted peers list. _We recommend that you only add your own full nodes to this list_.
 
-#### 先决条件
+#### Prerequisites
 
 1. Chia needs to be version 1.3.0 or later on all computers
 2. Have a full node running on version 1.3.0 or later
@@ -442,7 +456,7 @@ Network: mainnet    Port: 8444   Rpc Port: 8555
 Node ID: 0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9
 ```
 
-2. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\&#060;username&#062;\.chia\mainnet\config` on Windows.
+2. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows.
 
 Search for the `wallet:` section. It should be near the end of the file. Edit the following values from within this section:
 
@@ -473,7 +487,7 @@ First, a bit about addresses in Chia. A single Chia wallet can use up to four bi
 
 One important thing to remember is that your wallet addresses will always be generated _in the same order_. When you generate a "new" address, you're actually calculating the _next_ address in the sequence. Your wallet doesn't know what the next address will be until it's generated, but the sequence will always be the same. For example, if you generate 50 new addresses (and write them down), and then install Chia on a new computer and import the same wallet, the first 50 addresses you generate will _exactly_ match those from your original computer.
 
-Next, we'll introduce a setting called `initial_num_public_keys`. This setting is part of `config.yaml`, located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\&#060;username&#062;\.chia\mainnet\config` on Windows. The default value of this setting is 100. The majority of users should _not_ change it.
+Next, we'll introduce a setting called `initial_num_public_keys`. This setting is part of `config.yaml`, located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows. The default value of this setting is 100. The majority of users should _not_ change it.
 
 You can think of `initial_num_public_keys` as the number of future addresses to examine. It's a window that expands with time (and never contracts). Here's how it works:
 
@@ -494,7 +508,7 @@ If you believe your balance is incorrect, changing `initial_num_public_keys` is 
 The Chia database (db) is located in the `db/` directory inside the `.chia/mainnet/` directory. The `.chia/` directory will be found in your user's home directory. You will find the testnet database in the same `db/` directory if you are using testnet.
 
 - mainnet database filename: `blockchain_v2_mainnet.sqlite`
-- testnet database filename: `blockchain_v2_testnet10.sqlite`
+- testnet database filename: `blockchain_v2_testnet11.sqlite`
 
 #### Windows Systems
 
@@ -526,6 +540,15 @@ To show hidden files on Mac finder click "COMMAND"+"SHIFT"+"." (period), on linu
        └─ db/
 ```
 
+### How do I use the Official Chia Blockchain snapshot torrent?
+
+1. Download the torrent file from https://www.chia.net/downloads/#database-checkpoint
+2. Use a torrent client to download the full db (I have used bittorrent and qbittorrent)
+3. Unpack/reassemble the torrent file that was downloaded (on windows I used 7zip, Mac and linux have built in tools that work for this)
+4. Move the db to the correct folder (~\.chia\mainnet\db\) and update the name to "blockchain_v2_mainnet.sqlite" (removing the date information in the name)
+5. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2)
+6. Launch chia and wait for a bit (the height to hash and peers files need to be built so this can take upwards of 30 minutes)
+
 ### How do I move the Chia blockchain database to another drive?
 
 The Chia blockchain database will continue to grow as new blocks are farmed creating the ever-growing need for additional space. In some cases this requires users to move their database to a different drive.
@@ -546,103 +569,19 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
 4. Update the applicable config.yaml parameters from the table below.
    - Config file: `~/.chia/mainnet/config/config.yaml`
 
-<table spaces-before="0">
-  <tr>
-    <th>
-      Database
-    </th>
-    
-    <th>
-      Config.yaml Parameter
-    </th>
-    
-    <th>
-      Default
-    </th>
-    
-    <th>
-      New Location
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      Blockchain
-    </td>
-    
-    <td>
-      full_node: database_path:
-    </td>
-    
-    <td>
-      db/blockchain_v1_CHALLENGE.sqlite
-    </td>
-    
-    <td>
-      \<NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      Blockchain peer table
-    </td>
-    
-    <td>
-      full_node: peer_db_path:
-    </td>
-    
-    <td>
-      db/peer_table_node.sqlite
-    </td>
-    
-    <td>
-      \<NEW_LOCATION_PATH>/db/peer_table_node.sqlite
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      Wallet
-    </td>
-    
-    <td>
-      wallet: database_path:
-    </td>
-    
-    <td>
-      wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
-    </td>
-    
-    <td>
-      \<NEW_LOCATION_PATH>/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      Wallet peer table
-    </td>
-    
-    <td>
-      wallet: wallet_peers_path:
-    </td>
-    
-    <td>
-      wallet/db/wallet_peers.sqlite
-    </td>
-    
-    <td>
-      \<NEW_LOCATION_PATH>/wallet/db/wallet_peers.sqlite
-    </td>
-  </tr>
-</table>
+| Database              | Config.yaml Parameter      | Default                                             | New Location                                                             |
+| --------------------- | -------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------ |
+| Blockchain            | full_node: database_path:  | db/blockchain_v1_CHALLENGE.sqlite                   | \<NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite                   |
+| Blockchain peer table | full_node: peer_db_path:   | db/peer_table_node.sqlite                           | \<NEW_LOCATION_PATH>/db/peer_table_node.sqlite                           |
+| Wallet                | wallet: database_path:     | wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite | \<NEW_LOCATION_PATH>/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite |
+| Wallet peer table     | wallet: wallet_peers_path: | wallet/db/wallet_peers.sqlite                       | \<NEW_LOCATION_PATH>/wallet/db/wallet_peers.sqlite                       |
 
 **Note:** This information has been adapted from the [Spacefarmers guide](https://wiki.spacefarmers.io/guides/farming/movedb).
 
 :::info
 
-Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. Please refer to the [upgrade instructions](/faq#how-do-i-upgrade-my-version-1-blockchain-database-to-version-2) if your database is version 1.
+Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database.
+Please refer to the [upgrade instructions](/faq#how-do-i-upgrade-my-version-1-blockchain-database-to-version-2) if your database is version 1.
 
 :::
 
@@ -666,20 +605,56 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 2. Use a torrent client to download the full db. [Bittorrent](https://www.bittorrent.com/) is recommended but any torrent client will work.
 3. Unpack/reassemble the torrent file that was downloaded (on windows one can use [7zip](https://7-zip.org/), Mac and linux have built in tools that work for this).
 4. Stop all chia processes if you have not already.
-5. Move the db to the correct folder ``~\.chia\mainnet\db\` and update the name to``blockchain_v2_mainnet.sqlite` (removing the date information in the name).
+5. Move the db to the correct folder `~\.chia\mainnet\db\` and update the name to `blockchain_v2_mainnet.sqlite` (removing the date information in the name).
    - Remove any `-wal` or `-shm` files that are present in the directory (these are temporary files that should only be removed when all chia processes are stopped).
 6. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2).
 7. Launch chia and wait for a bit (the height to hash, sub-epoch, and peers files need to be built so this can take 5-10 minutes).
+
+### How can I connect to the same full node peers whenever I start Chia?
+
+:::info
+
+This functionality was first made available in Chia version 2.2.0, in [PR #17369](https://github.com/Chia-Network/chia-blockchain/pull/17369). Special thanks to [Felix Brucker](https://github.com/felixbrucker) for creating it!
+
+:::
+
+By default, when you start a Chia full node, it will attempt to connect to a random set of peers. This is normally fine, but there are some cases in which you might want to connect to the same peer(s) every time, such as if:
+
+- You are a pool operator who wants to establish consistent groups of nodes to support your pool
+- You are running a small, private testnet where all peers are known
+- You are connecting to a larger testnet which nonetheless has an insufficient number of nodes to locate your first peer immediately upon starting a full node
+
+Steps to connect to the same full node peers:
+
+1. Edit your config file; the default location is `~/.chia/mainnet/config/config.yaml`
+2. In the `full_node:` section, you should see the following line: `full_node_peers: []`
+   - If you do not see this line, you can either add it manually, or rename your config file and run `chia init` to create a new copy, which will contain this line.
+3. Remove the square brackets (`[]`) and add add new lines with `- host` and `port`. Be sure to indent `port`, even though it does not have a hyphen. For example, to add two mainnet peers, use the following syntax:
+   ```yaml
+   full_node_peers:
+     - host: <Peer 1 IP address>
+       port: <port>
+     - host: <Peer 2 IP address>
+       port: <port>
+   ```
+   - Typically, `<port>` will be either 8444 (for mainnet) or 58444 (for most testnets).
+
+:::note
+
+These are not trusted peers (for more info, see the [question on connecting to trusted peers](#what-are-trusted-peers-and-how-do-i-add-them)). Instead, these are normal peers that you happen to want to connect to on an ongoing basis. If you lose your connection to one of these peers, your node will automatically attempt to reestablish the connection.
+
+:::
 
 ## Farming
 
 ### What is the difference between a Farmer and a Harvester?
 
-可以将收割机视为是农民的一个扩展节点。 收割机检查地块并将结果报告给农民，然后农民将结果提交给区块链。 If setting up harvesters it is important to review the proper way to [farm on many machines](/farming-on-many-machines)
+A harvester can be thought of as a node that is an extension of your farmer. The harvester checks the plots and reports the results to the farmer, the farmer then submits the results to the blockchain. If setting up harvesters it is important to review the proper way to [farm on many machines](/farming-on-many-machines)
 
 ### How do I tell if I'm farming correctly?
 
-If you see plots in the Plots section of the Farm page in the GUI - your plots are being farmed. You will see challenges and proof attempts as they come through in the Last Attempted Proof section however you usually will not have a proof worth sending to the network due to the [plot filter](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). You can additionally see the Total Size of Plots on the Farm view and it will tell you how much unique space is being farmed and statistically how long it should take - on average - to win a block. Also, your node needs to be synced for you to farm properly. In the GUI, check the Full Node page. On the cli, do `chia show -s -c`.
+If you see plots in the Plots section of the Farm page in the GUI - your plots are being farmed. You will see challenges and proof attempts as they come through in the Last Attempted Proof section however you usually will not have a proof worth sending to the network due to the [plot filter](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). You can additionally see the Total Size of Plots on the Farm view and it will tell you how much unique space is being farmed and statistically how long it should take - on average - to win a block.
+Also, your node needs to be synced for you to farm properly. In the GUI, check the Full Node page. On the cli, do `chia show -s -c`.
 
 ### Does it matter how fast my internet connection is?
 
@@ -730,13 +705,74 @@ Some background: The consensus Chia originally used during the testnet phase con
 
 No, your plots are virtually unaffected by the passage of time, aside from hardware errors. Even in the presence of bit flips due to aging hardware, plots remain mostly effective. The only cases where you would need to re-plot are: 1. if you are using solo plots (not NFT plots) and wish to join a pool (please see note below) or 2. if hardware speeds advance to the point of a certain k value becoming obsolete (e.g., `k=32` becomes too fast to plot and we ban them, forcing you to replace them with `k≧33` plots). For case 1., you are free to have any mix of solo plots and pool plots if you do not want to re-plot. For case 2., `k=32` is not expected to become outdated until sometime between 2026-2031.
 
-- Note on case 1: We have added a Pooling Protocol that replaces the hard-coded "Pool Public Key" of a plot, with a plotNFT's "Pool Contract Address" - more on this subject can be read here: https://docs.chia.net/pool-farming/#pooling-faq
+- Note on case 1:
+  We have added a Pooling Protocol that replaces the hard-coded "Pool Public Key" of a plot, with a plotNFT's "Pool Contract Address" - more on this subject can be read here: https://docs.chia.net/pool-farming/#pooling-faq
 
 ### Is it possible to have a proof but not get a reward?
 
 It is unlikely, but it is possible. There are multiple reasons why this might be the case. The most common is that due to network delay, or drive speed delay (for example using a slow NAS), you missed the time for inclusion into the blockchain, which is 28 seconds. This time is from when the timelords create the signage points, to when the timelords infuse your block. Check to make sure that you are connected and synced to multiple peers, and that your quality lookup are fast (\<2 seconds, definitely less than 5). Another reason might be that the signage point where you won did not get included into the blockchain. This can sometimes happen, since timelords may publish signage points that don't end up on chain.
 
 ## Wallet
+
+### How do I use the Chia faucet?
+
+To use the [chia faucet](https://faucet.chia.net/) or [testnet11 faucet](https://testnet11-faucet.chia.net/) you will need to identify your **Master Public Key** (also referred to as the **Public Key**).
+You can use either the GUI or CLI to identify the Master Public Key by following these steps:
+
+#### GUI
+
+:::warning
+Never share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+1. In the top right corner select logout:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletLogout} alt='Logout of the Chia wallet' />
+</div>
+<br />
+
+2. Using the desired keys menu, select details:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeyDetails} alt='Select Details for a Chia keyset' />
+</div>
+<br />
+
+3. View and copy the **Public Key** to the field on the Faucet page:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeysPublic} alt='Chia keys detail screen, Public Key highlighted' />
+</div>
+<br />
+
+#### CLI
+
+:::warning
+**NEVER** share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+In order to view your keys from the cli, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
+
+1. From terminal (mac/linux) or powershell (windows) run `chia keys show`:
+
+```bash
+chia keys show
+```
+
+2. View and copy the **Master Public Key** to the field on the faucet page:
+
+```bash
+Showing all public keys derived from your master seed and private key:
+
+Label: Demo Wallet
+Fingerprint: 2281896037
+Master public key (m): 96ce91d974daa0990e6681ac2de3e3f49142f6b655a081817832265c143e658a6e60a5dec856f292f45fe2d04c7856f6**
+Farmer public key (m/12381/8444/0/0): a9e366b26f155491af9a903c0ed9717bfd09a71cbe283eeda825128fd7c6b9ac60e1608f9f008adcfbf66e233d5b4ce8
+Pool public key (m/12381/8444/1/0): 9566fa434f342dd5f9380a6bfc59dd7d1abd22869a425a8ca09cf27200eaa6aad5bc8fc00db90af832eb8028b0c6e3f0
+First wallet address: xch1kr3zf7dqw5q953ex6zt33lndj90q0zlh68404tsntnljthnwqs2qvjmwrg
+```
+
+:::note
+For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/) blog article.
+:::
 
 ### How do I send or receive a transaction?
 
@@ -1171,7 +1207,7 @@ Status: CONFIRMED
 
 ### Can I send an NFT to an XCH address?
 
-是的。 Just as with XCH and CATs, you can send NFTs to an XCH address. If the recipient doesn't have an NFT wallet, one will be created automatically.
+Yes. Just as with XCH and CATs, you can send NFTs to an XCH address. If the recipient doesn't have an NFT wallet, one will be created automatically.
 
 ### How do I sell my NFTs?
 
@@ -1371,7 +1407,7 @@ In order to enable notifications, you can either add these settings manually, or
 
 Finally, you need to restart Chia for these settings to be picked up.
 
-Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/offer-rpc/#send_notification).
+Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/wallet-rpc#send_notification).
 
 ### How can I use the CLI to send an Offer notification to the owner of an NFT?
 
@@ -1421,7 +1457,8 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 ### How do I verify file checksum?
 
-Use the instructions below to verify Chia download integrity in a command line. Windows – Verify Checksum
+Use the instructions below to verify Chia download integrity in a command line.
+Windows – Verify Checksum
 
 Run the following command:
 
@@ -1477,7 +1514,7 @@ If you use the GUI, it will migrate from release to release for you. For both th
 
 ### Where is the executable file to start Chia's reference wallet on Windows?
 
-Windows users can run `C:\Users\&#060;user ID&#062;\AppData\Local\Programs\Chia\Chia.exe` (be sure to replace `&#060;user ID&#062;` with the actual ID) to start the reference wallet GUI. This will also start a full node if that features has been enabled.
+Windows users can run `C:\Users\<user ID>\AppData\Local\Programs\Chia\Chia.exe` (be sure to replace `<user ID>` with the actual ID) to start the reference wallet GUI. This will also start a full node if that features has been enabled.
 
 ### I installed Chia with the packaged installer. How do I run CLI commands?
 
@@ -1561,7 +1598,8 @@ Chia logs: C:\Users\%USERNAME%\.chia\mainnet\log\
 
 CLI
 
-You can use the CLI command chia configure --set-log-level INFO to set your log level to the useful INFO setting. Be sure to restart Chia after making settings changes. Config File
+You can use the CLI command chia configure --set-log-level INFO to set your log level to the useful INFO setting. Be sure to restart Chia after making settings changes.
+Config File
 
 In `config.yaml` you can set the level of detail for your logs.
 
@@ -1613,7 +1651,8 @@ Get-Content -Path "~\.chia\mainnet\log\debug.log" -Wait | Select-String -Pattern
 
 ### What is the difference between chia and Chia (chia capitalization)?
 
-Chia - depending on context, this can refer to Chia Network the company, the Chia software (Chia client), or the Chia blockchain chia - lowercase chia refers to the Chia token, XCH. Similarly, mojos are lowercase.
+Chia - depending on context, this can refer to Chia Network the company, the Chia software (Chia client), or the Chia blockchain
+chia - lowercase chia refers to the Chia token, XCH. Similarly, mojos are lowercase.
 
 ### How can I use PFX certificates for .NET development on Windows?
 

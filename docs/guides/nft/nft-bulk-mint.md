@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 This document will show you how to use Chia's NFT bulk minting tool.
 
-First, some background. Chia uses the [coin set](coin-set-intro) model of accounting. This is similar to Bitcoin's UTXO model. Most other blockchains, however, use an account model to track the system's overall state.
+First, some background. Chia uses the [coin set](/coin-set-intro) model of accounting. This is similar to Bitcoin's UTXO model. Most other blockchains, however, use an account model to track the system's overall state.
 
 The coin set model has [many advantages](/coin-set-vs-account) over the account model, but there are some tradeoffs. In the case of NFTs, they are implemented as [singletons](https://chialisp.com/singletons) instead of a simple array. Because of this, creating multiple related NFTs in the same block can be a cumbersome process.
 

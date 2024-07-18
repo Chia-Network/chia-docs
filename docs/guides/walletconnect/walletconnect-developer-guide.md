@@ -63,5 +63,5 @@ The following table shows each RPC for Chia WalletConnect dApps, along with a de
 | takeOffer             | [take_offer](/wallet-rpc#take_offer)                             | Take an offer                                                                                     |
 | transferNFT           | [nft_transfer_nft](/nft-rpc#nft_transfer_nft)                    | Transfer an NFT to a new wallet address                                                           |
 | spendVC               | [vc_spend](/vc-rpc/#vc_spend)                                    | Add Proofs To Verifiable Credential                                                               |
-| verifySignature       | [verify_signature](wallet-rpc#verify_signature)                  | Given a public key, message and signature, verify if it is valid                                  |
+| verifySignature       | [verify_signature](/wallet-rpc#verify_signature)                 | Given a public key, message and signature, verify if it is valid                                  |
 | waitForConfirmation   |                                                                  |                                                                                                   |

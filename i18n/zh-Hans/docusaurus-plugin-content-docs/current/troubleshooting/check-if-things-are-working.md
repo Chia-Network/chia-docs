@@ -57,14 +57,14 @@ logging: &id001
   log_stdout: false
 ```
 
-You can run `grep` ([Linux](https://man7.org/linux/man-pages/man1/grep.1.html), [macOS](https://ss64.com/osx/grep.html)) or `Select-String` ([Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string?view=powershell-7.1)) to search through your logs for relevant information.
+You can run `grep` ([Linux](https://man7.org/linux/man-pages/man1/grep.1.html), [macOS](https://ss64.com/osx/grep.html)) or `Select-String` ([Windows Powershell](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string?view=powershell-7.4)) to search through your logs for relevant information.
 
 # Is It Working?
 
 If you want to quickly find errors, run this:
 
 - Linux/macOS: `cat ~/.chia/mainnet/log/debug.log | grep -i 'error'`
-- Windows: `Get-Content -Path "~\.chia\mainnet\log\debug.log" | Select-String -Pattern "error"`
+- Windows Powershell: `Get-Content -Path "~\.chia\mainnet\log\debug.log" | Select-String -Pattern "error"`
 
 ## Harvester
 
@@ -74,7 +74,7 @@ Here are some commands you can use to examine `debug.log` for problems.
 
 - Linux/macOS:
   - `tail ~/.chia/mainnet/log/debug.log | grep eligible`
-- Windows:
+- Windows Powershell:
   - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "eligible"`
   - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Found [^0] proof"`
   - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Farmed unfinished_block"`
@@ -82,7 +82,7 @@ Here are some commands you can use to examine `debug.log` for problems.
 
 ## Plotting
 
-You can find the documentation for the `check` command on the [CLI Commands Reference page](/cli#check) page
+You can find the documentation for the `check` command on the [CLI Commands Reference page](/cli#plots-check) page
 
 - To check all your plots, run `chia plots check`. This will check all directories you have listed in your `config.yaml` to contain plots.
 - Use `chia plots check -h` to see the options for this command.
@@ -95,5 +95,5 @@ Block Validation Time
   - `grep -o "Block validation time: .* seconds" .chia/mainnet/log/debug.log |sort -rV | head -n 10`
   - For a fancy grep `apt install st-console` then run:
     - `grep "Block validation time:" ~/.chia/mainnet/log/debug.log* | awk '{print $8}' | st-console --summary -N`
-- Windows:
-  - `Select-String -Path "~\.chia\mainnet\log\debug*" -Pattern "Block validation time:"`
+- Windows Powershell:
+  - `Select-String -Path "~\.chia\mainnet\log\debug.log" -Pattern "Block validation time:" | Select-Object -Last 10` (change 10 to the number of lines you wish to return)

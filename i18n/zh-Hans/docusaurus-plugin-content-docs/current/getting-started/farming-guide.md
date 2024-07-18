@@ -6,6 +6,9 @@ slug: /farming-guide
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import WalletKeyDetails from '@site/static/img/troubleshooting/wallet_key_details.png';
+import WalletKeysPublic from '@site/static/img/faq/wallet_keys_public_key.png';
+import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
 
 So you want to be a Chia farmer? You've come to the right place!
 
@@ -63,7 +66,8 @@ In order to store the blockchain database, an SSD with at least 520 MB/s read/wr
 
 :::info
 
-Let's say you have a computer without much free space. If you add a 1024-GB external SSD, it will be sufficient to create and store a plot, as well as to store the blockchain database. This will not be an ideal setup for creating a larger farm. But if you already have this equipment, you can set up a small farm without spending any money.
+Let's say you have a computer without much free space. If you add a 1024-GB external SSD, it will be sufficient to create and store a plot, as well as to store the blockchain database. This will not be an ideal setup for
+creating a larger farm. But if you already have this equipment, you can set up a small farm without spending any money.
 
 :::
 
@@ -78,7 +82,6 @@ Two check boxes will be shown on the last screen after the install has completed
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/01.png" alt="Check both boxes" width="50%"/>
 </div>
-
 <br />
 
 ## Run and configure Chia
@@ -88,7 +91,6 @@ The first time Chia starts, you will be given the option to run in either Wallet
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/02.png" alt="Choose farming mode" />
 </div>
-
 <br />
 
 ### Create a wallet
@@ -98,7 +100,6 @@ Assuming you don't have a wallet yet, click `CREATE A NEW WALLET KEY` (If you al
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/03.png" alt="Create a new wallet key" />
 </div>
-
 <br />
 
 You will be presented with a list of twenty-four words. This is your wallet's recovery phrase. These words are all that are needed to recover your wallet on a new computer. Write them down and store them in a safe place. The order of the words is also important.
@@ -114,7 +115,6 @@ If someone obtains a copy of these words, they can steal your entire wallet, inc
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/04.png" alt="Wallet seed phrase" />
 </div>
-
 <br />
 
 You will be taken to your wallet, which will show a zero-XCH balance. There will be two round icons in the upper-right corner, one for the full node and one for the wallet:
@@ -125,40 +125,73 @@ You will be taken to your wallet, which will show a zero-XCH balance. There will
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/05.png" alt="Zero wallet balance" />
 </div>
-
 <br />
 
 ### Fund your wallet
 
-If you think you will ever want to join a pool (recommended for small and medium farms), you will need at least one mojo (one trillionth of an XCH). To help with this, we have set up an online faucet. To use the faucet, you will need a receive address. Click `RECEIVE` to display one:
+If you think you will ever want to join a pool (recommended for small and medium farms), you will need at least one mojo (one trillionth of an XCH). To help with this, we have set up an online faucet at [faucet.chia.net](https://faucet.chia.net/).
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/06.png" alt="Receive address" />
+To use the faucet you will need to identify your **Master Public Key** (also referred to as the **Public Key**).
+You can use either the GUI or CLI to identify the Master Public Key by following these steps:
+
+#### GUI
+
+:::warning
+Never share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+1. In the top right corner select logout:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletLogout} alt='Logout of the Chia wallet' />
 </div>
-
 <br />
 
-Copy your receive address (it will begin with `xch`) and head to our [faucet page](https://faucet.chia.net/). Paste your address, click the "I'm not a robot" check box, and click `Submit`:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/07.png" alt="Faucet"  width="75%"/>
+2. Using the desired keys menu, select details:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeyDetails} alt='Select Details for a Chia keyset' />
 </div>
-
 <br />
 
-You should receive a message stating that your money is on the way. Note that you can only use this faucet once.
-
-Within a few minutes, your wallet's balance should increase:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/08.png" alt="Wallet with 100 mojos" />
+3. View and copy the **Public Key** to the field on the Faucet page:
+<div style={{ textAlign: 'center' }}>
+  <img src={WalletKeysPublic} alt='Chia keys detail screen, Public Key highlighted' />
 </div>
-
 <br />
+
+#### CLI
+
+:::warning
+**NEVER** share your private / secret keys or mnemonics with anyone. These give access to spend funds from your wallet.
+:::
+
+In order to view your keys from the cli, run `chia keys show`, optionally including the `-f <fingerprint>` flag to show only the info for the key you just generated:
+
+1. From terminal (mac/linux) or powershell (windows) run `chia keys show`:
+
+```bash
+chia keys show
+```
+
+2. View and copy the **Master Public Key** to the field on the faucet page:
+
+```bash
+Showing all public keys derived from your master seed and private key:
+
+Label: Demo Wallet
+Fingerprint: 2281896037
+Master public key (m): 96ce91d974daa0990e6681ac2de3e3f49142f6b655a081817832265c143e658a6e60a5dec856f292f45fe2d04c7856f6**
+Farmer public key (m/12381/8444/0/0): a9e366b26f155491af9a903c0ed9717bfd09a71cbe283eeda825128fd7c6b9ac60e1608f9f008adcfbf66e233d5b4ce8
+Pool public key (m/12381/8444/1/0): 9566fa434f342dd5f9380a6bfc59dd7d1abd22869a425a8ca09cf27200eaa6aad5bc8fc00db90af832eb8028b0c6e3f0
+First wallet address: xch1kr3zf7dqw5q953ex6zt33lndj90q0zlh68404tsntnljthnwqs2qvjmwrg
+```
+
+:::note
+For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/) blog article.
+:::
 
 :::info
 
-You can continue with this guide while waiting for your 100 mojos to arrive.
+You can continue with this guide while waiting for your faucet payment to arrive.
 
 :::
 
@@ -169,7 +202,6 @@ Click the `Full Node` icon on the left side of your wallet:
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/09.png" alt="Syncing from genesis" />
 </div>
-
 <br />
 
 This screen shows your node's syncing status. In order to farm Chia, your node needs to be fully synced. You have two options to achieve this:
@@ -220,12 +252,11 @@ Click the `Pooling` icon on the left side of your wallet, and click `JOIN A POOL
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/10.png" alt="Join a pool" />
 </div>
-
 <br />
 
 Before you can join a pool, you will need to create a plot NFT. This will allow you to easily change pools later.
 
-Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network, Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
+Select `Connect to pool`. You will need to enter a valid pool URL. We will use OpenChia for this example, but there are many great pools to choose from. For a list of reputable pools, see [Chialinks.com](https://chialinks.com/pools/). (Chia Network Inc. does not run a pool, and is not affiliated with OpenChia or Chialinks).
 
 :::info
 
@@ -238,7 +269,6 @@ Creating a plot NFT requires an on-chain transaction that will cost one mojo. Yo
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/11.png" alt="Create a plot NFT" />
 </div>
-
 <br />
 
 :::info
@@ -254,7 +284,6 @@ If you entered a valid pool URL, the details will pop up. For example, this pool
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/12.png" alt="Pool details" />
 </div>
-
 <br />
 
 Your transaction will be pushed to the blockchain. While it is pending, a new screen will appear:
@@ -262,7 +291,6 @@ Your transaction will be pushed to the blockchain. While it is pending, a new sc
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/13.png" alt="Plot NFT pending" />
 </div>
-
 <br />
 
 After the transaction has been finalized (typically 1-3 minutes), the details of your plot NFT will appear:
@@ -270,7 +298,6 @@ After the transaction has been finalized (typically 1-3 minutes), the details of
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/14.png" alt="Plot NFT details" />
 </div>
-
 <br />
 
 A two-word name will automatically be assigned to your plot NFT, in this case "Harlequin Koala". In order to determine how much space you are contributing, your pool will periodically send you challenges. If you want to change pools later, simply return to this screen and click `CHANGE POOL`.
@@ -298,7 +325,6 @@ From the Chia application, click the `Farm` icon and click `ADD A PLOT`:
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/15.png" alt="Add a plot" />
 </div>
-
 <br />
 
 If you previously created a plot NFT, it will show up now. The plots you create will be associated with this NFT. It is important that you associate all of your plots to the same NFT in order to farm to a pool, as well as to be able to change pools easily if desired. As long as your plot NFT shows up here, there is no need to change it:
@@ -306,7 +332,6 @@ If you previously created a plot NFT, it will show up now. The plots you create 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/16.png" alt="Plot NFT" />
 </div>
-
 <br />
 
 Next, you will need to choose a plotter. When creating a single plot, `Chia Proof of Space` and `madMAx` both will work on almost all hardware. The plot from this example was created with `madMAx` because it requires the smallest amount of temporary disk space.
@@ -320,15 +345,13 @@ When building a larger farm, the plotter you choose will depend greatly on your 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/18.png" alt="Choose plotter" />
 </div>
-
 <br />
 
 For the `Keys` section, you typically won't need to change anything.
 
 <div style={{ textAlign: 'left' }}>
-  <img src="/img/first_plot/19.png" alt="密钥" />
+  <img src="/img/first_plot/19.png" alt="Keys" />
 </div>
-
 <br />
 
 Next, you will need to choose a `k` value, and possibly a compression level.
@@ -348,7 +371,6 @@ Certain plotters are also capable of creating compressed plots, which are discus
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/20.png" alt="Choose K value" />
 </div>
-
 <br />
 
 Next, you need to select the temporary and final directories for your plot. The medium for temporary storage will greatly affect the speed at which your plot is created:
@@ -370,7 +392,6 @@ You will also need to choose how many plots to create. Certain plotters can be o
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/21.png" alt="Temporary and final directories" />
 </div>
-
 <br />
 
 After you have gone through all of these settings, click `CREATE`. You will be taken to a progress panel:
@@ -378,7 +399,6 @@ After you have gone through all of these settings, click `CREATE`. You will be t
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/22.png" alt="Plot creation progress" />
 </div>
-
 <br />
 
 The amount of time required to create this plot is highly dependent on your hardware. The world record time to create a k32 plot is around 30 seconds. The plot for this tutorial was created on a laptop in around 3 hours.
@@ -398,7 +418,6 @@ Before you can begin farming, you need to be running a synced full node. Earlier
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/23.png" alt="Synced node" />
 </div>
-
 <br />
 
 Your node is now synced. If your plot has finished being created, you are also farming. To verify this, click the `Farm` icon:
@@ -406,7 +425,6 @@ Your node is now synced. If your plot has finished being created, you are also f
 <div style={{ textAlign: 'left' }}>
   <img src="/img/first_plot/24.png" alt="Farm health" />
 </div>
-
 <br />
 
 You will be shown a number of details about your farm. As long as the `Farm Health` section has all green icons, everything is working as expected.
@@ -427,7 +445,7 @@ Once you have a small farm up and running, you can decide whether to expand, and
 - [Notes about SSD encurance](/ssd-endurance)
 - [How to move plots](/moving-plots) to their final destinations
 
-## 如何获得帮助
+## How to Get Help
 
 - Get help on CNI's official [Discord](https://discord.gg/chia), in the `#farming-and-plotting` and `#support` channels.
-- 在[生成地块问答](/plotting-faq)中获取更多问题的解答。
+- Get more questions answered in the [plotting FAQ](/plotting-faq).

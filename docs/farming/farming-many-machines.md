@@ -187,7 +187,7 @@ In other words, _only use the keys specific to your machine's purpose_.
 
 #### Plotting On Multiple Machines
 
-As stated [above](#prerequisites), run the following command when creating plots:
+As stated [above](/farming-on-many-machines#prerequisites), run the following command when creating plots:
 
 ```bash
 chia plots create -f <farmer_key> -p <pool_key>
@@ -197,7 +197,7 @@ When you use the `-f` and `-p` parameters, you do not need to copy the keys to t
 
 #### Harvesting On Multiple Machines
 
-Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](#prerequisites) steps to keep them in one place while farming.
+Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](/farming-on-many-machines#prerequisites) steps to keep them in one place while farming.
 
 ### Keep Your Wallet Separate
 
