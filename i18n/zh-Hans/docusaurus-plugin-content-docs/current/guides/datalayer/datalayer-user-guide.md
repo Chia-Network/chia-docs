@@ -221,7 +221,7 @@ sudo pfctl -sr | grep 8575
 
 :::
 
-3. (optional) If you are going to use a DataLayer as a Service (DLaaS) plugin, you can add custom headers to `~/.chia/mainnet/config/config.yaml`. For example, you might update the config as follows:
+3. (optional) If you are going to use a DataLayer as a Service (DLaaS) plugin, you can add custom headers to `~/.chia/mainnet/config/config.yaml`. For example, you might update the config as follows: For example, you might update the config as follows:
 
 ```yaml
 data_layer:
@@ -278,7 +278,7 @@ Regardless of the status of `FULL NODE`, you may safely proceed with this tutori
 - Green dot = full node is synced
 - `FULL NODE` is missing = you are running in `Wallet Mode`
 
-:::
+:::  
 
 <div style={{ textAlign: 'center' }}>
     <img src="/img/data_layer/10_synced.png" alt="Synced wallet" />

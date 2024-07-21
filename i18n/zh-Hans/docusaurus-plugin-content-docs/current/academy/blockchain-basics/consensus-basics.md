@@ -5,7 +5,7 @@ slug: /consensus-basics
 
 In this lesson, we review the basics of consensus, the process by which to determine the true state of a blockchain.
 
-## Learning objectives
+## 学习目标
 
 - **Farmers**: Understand the basic role of farmers in providing proofs of space.
 - **Timelords**: Understand the basic role of timelords in providing proofs of time.
@@ -13,7 +13,7 @@ In this lesson, we review the basics of consensus, the process by which to deter
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/6fbZwfrYkcg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -21,7 +21,7 @@ In this lesson, we review the basics of consensus, the process by which to deter
 
 ---
 
-## Script
+## 脚本
 
 <details>
 
@@ -52,7 +52,7 @@ This consensus method maintains trustless security through high-decentralization
 
 ---
 
-## Common gotchas
+## 常见问题
 
 - **Proof of Space:** Chia relies on Proof of Space where the user stores deterministic x value tables in "plots" not to be confused with Proof of Capacity (PoC) where users store data of other network participants (like filecoin).
 - **Timelords:** Timelords play the role of issuing challenges, verifying proofs of space, and infusing blocks to the chain. Farmers submit their Proofs of Space to Timelords but it is the Timelords that infuse blocks.
@@ -60,7 +60,7 @@ This consensus method maintains trustless security through high-decentralization
 
 ---
 
-## Knowledge check
+## 知识检测
 
 :::tip Question 1 - Consensus Method
 
@@ -130,9 +130,9 @@ What is the current (as of December 2023) ratio of plots that contain eligible p
 
 ---
 
-## Additional resources
+## 附加资源
 
-### Links
+### 链接
 
 - Consensus [detailed documentation](https://docs.chia.net/consensus-intro): details the Chia consensus including proofs of space and time, timelords, vdfs, and more.
 - Farming [basics](https://docs.chia.net/farming-basics): overviews the farming process and how to get started.

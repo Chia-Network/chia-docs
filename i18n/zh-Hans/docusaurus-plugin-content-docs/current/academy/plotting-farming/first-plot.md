@@ -1,18 +1,18 @@
 ---
-title: Creating your first Plot
+title: 创建第一个图块
 slug: /first-plot
 ---
 
-In this lesson, we learn how to set up the Chia client, sync our full node using a torrent file, and create our first plot to start farming.
+在这节课中，我们将学习如何设置Chia客户端，使用种子文件同步我们的全节点，并创建第一个图块来开始耕种。
 
-## Learning objectives
+## 学习目标
 
-- **Syncing a Full Node**: Learn how to set up the Chia client and sync a full node.
-- **Plot Creation**: Learn how to create a plot.
+- **同步全节点**：学习如何设置Chia客户端并同步全节点。
+- **图块创建**：学习如何创建一个图块。
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/W9v7A8UJk9Q" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -20,25 +20,25 @@ In this lesson, we learn how to set up the Chia client, sync our full node using
 
 ---
 
-## Common gotchas
+## 常见问题
 
-- **Joining a pool before plotting:** It might seem strange to join a pool before setting up your plots, but the plots need to be generated using a plotnft in order for the pool to know who runs them. You must associate a plotnft with a pool if you want to use pooling, and if set up correctly you can always leave the pool later and farm your plots solo.
-
----
-
-## Knowledge check
-
-Follow along with the video, and start plotting!
+- **在创建图块之前加入矿池：** 在设置绘图之前加入矿池可能看起来有些奇怪，但图块需要使用农田（plot NFT）生成，以便矿池知道谁拥有它们。 如果你想使用矿池，你必须将农田与一个矿池关联起来，如果设置正确，你随时可以离开矿池，自己耕种你的图块。
 
 ---
 
-## Additional resources
+## 知识检测
 
-### Links
+跟随视频操作，开始创建图块吧！
 
-- More [farming basics](https://docs.chia.net/farming-basics): overviews of plotting, pooling, and rewards.
-- In depth [architecture overview](https://docs.chia.net/architecture-overview): describing the interactions between Farmers, Harvesters, Wallets, etc.
-- Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
+---
+
+## 附加资源
+
+### 链接
+
+- 更多的[耕种基础知识](https://docs.chia.net/farming-basics)：绘图、矿池和奖励的概述。
+- 详细的[架构概述](https://docs.chia.net/architecture-overview)：描述农民、收割机、钱包等之间的交互。
+- Chialisp[详细文档](https://chialisp.com/)：提供有关Chialisp各个方面的详细信息。
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---

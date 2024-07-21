@@ -37,6 +37,7 @@ py -m venv venv
 py -m pip install --upgrade pip setuptools wheel
 pip install .
 ```
+```
 
   </TabItem>
   <TabItem value="linux-macos">
@@ -46,6 +47,9 @@ git clone https://github.com/Chia-Network/CAT-admin-tool.git
 cd CAT-admin-tool
 python3 -m venv venv
 . ./venv/bin/activate
+python -m pip install --upgrade pip setuptools wheel
+pip install .
+``` ./venv/bin/activate
 python -m pip install --upgrade pip setuptools wheel
 pip install .
 ```

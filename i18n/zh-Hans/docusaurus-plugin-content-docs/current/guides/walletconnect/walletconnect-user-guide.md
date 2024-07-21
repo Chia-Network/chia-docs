@@ -23,7 +23,7 @@ This guide will show you how to use [WalletConnect](https://walletconnect.com/) 
 
 ## Install the sample dApp
 
-In order to help you get started with WalletConnect, we have created a sample dApp to run Chia wallet RPCs. In this section, we'll install and run the dApp locally. We'll also obtain a link to connect the dApp to a Chia reference wallet.
+In order to help you get started with WalletConnect, we have created a sample dApp to run Chia wallet RPCs. In this section, we'll install and run the dApp locally. We'll also obtain a link to connect the dApp to a Chia reference wallet. In this section, we'll install and run the dApp locally. We'll also obtain a link to connect the dApp to a Chia reference wallet.
 
 If you would like to connect your Chia reference wallet to a different dApp, then feel free to skip ahead to the [next section](#configure-walletconnect).
 
@@ -59,7 +59,7 @@ Example result:
   ➜  press h to show help
 ```
 
-In this example, the dApp was started locally on port 5173. This is the default port; your dApp may need to use a different port if 5173 is already being used for something else.
+In this example, the dApp was started locally on port 5173. In this example, the dApp was started locally on port 5173. This is the default port; your dApp may need to use a different port if 5173 is already being used for something else.
 
 5. Access the sample dApp:
 
@@ -71,7 +71,7 @@ If you see an error message such as `An error as occurred`, the most likely caus
 
 :::
 
-6. The `WalletConnect Example` screen should be displayed. Click `Link Wallet`:
+6. The `WalletConnect Example` screen should be displayed. Click `Link Wallet`: Click `Link Wallet`:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/01_dapp.png" alt="Click Connect" />
@@ -146,7 +146,7 @@ If you used this guide to set up the sample dApp, this was the link you obtained
 
   <br />
 
-7. By default, the wallet that is currently synced will be selected (in the red circle below). Click the `Select Keys` dropdown if you want to connect other wallets, then click `CONTINUE`:
+7. By default, the wallet that is currently synced will be selected (in the red circle below). By default, the wallet that is currently synced will be selected (in the red circle below). Click the `Select Keys` dropdown if you want to connect other wallets, then click `CONTINUE`:
 
   <div style={{ textAlign: 'center' }}>
     <img
@@ -198,7 +198,7 @@ Your wallet has been successfully paired with the sample dApp. In the next secti
 
 Recall that by default, the dApp will run on [http://127.0.0.1:5173](http://127.0.0.1:5173).
 
-You will be shown a dropdown list of available methods. The default method is `chia_logIn`, but we'll call a different method for this example.
+You will be shown a dropdown list of available methods. You will be shown a dropdown list of available methods. The default method is `chia_logIn`, but we'll call a different method for this example.
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/walletconnect/04_dapp.png" alt="Dropdown menu" />
@@ -242,7 +242,7 @@ Returning to the sample dApp, a new dialog with the response will appear. In thi
 
   <br />
 
-You have now installed, configured, and used the sample dApp. Feel free to test the other functions, as well as create your own!
+  You have now installed, configured, and used the sample dApp. Feel free to test the other functions, as well as create your own!
 
 ---
 
@@ -253,7 +253,7 @@ By default, you can only run dApp methods against the wallet key that is current
 Click the gear icon in the lower left corner of the reference wallet, then click the `INTEGRATION` tab. Two switches will appear at the top of this panel:
 
 - `Enable WalletConnect` -- This setting was activated when you enabled WalletConnect earlier in the guide.
-- `Key Switching` -- If you activate this setting, your dApp will be able to switch between multiple wallet keys. The selected wallet will need to sync whenever you switch between keys.
+- `Key Switching` -- If you activate this setting, your dApp will be able to switch between multiple wallet keys. The selected wallet will need to sync whenever you switch between keys. The selected wallet will need to sync whenever you switch between keys.
 
   <div style={{ textAlign: 'center' }}>
     <img
@@ -276,9 +276,9 @@ WalletConnect allows end users to connect their wallet to a dApp.
 
 ### What WalletConnect functionality might be enabled in the future?
 
-WalletConnect is currently supported in Chia's reference wallet. It is also used in [Chia TCG](https://www.chiatcg.com), a trading card game that uses Chia NFTs.
+WalletConnect is currently supported in Chia's reference wallet. WalletConnect is currently supported in Chia's reference wallet. It is also used in [Chia TCG](https://www.chiatcg.com), a trading card game that uses Chia NFTs.
 
-In the future, it could also be supported in other Chia wallets, as well as in other mobile- and web-based dApps. For example, mobile wallet providers will be able to integrate with WalletConnect to connect directly to dApp providers.
+In the future, it could also be supported in other Chia wallets, as well as in other mobile- and web-based dApps. For example, mobile wallet providers will be able to integrate with WalletConnect to connect directly to dApp providers. For example, mobile wallet providers will be able to integrate with WalletConnect to connect directly to dApp providers.
 
 WalletConnect will aslo be used for initiating signing requests from within a dApp. This will enable interactions with all types of assets on Chia, including XCH, CATs, and NFTs. It will aslo enable using Chia Offers.
 

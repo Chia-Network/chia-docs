@@ -350,7 +350,7 @@ To sign the message we will actually need the `coin_id` and the genesis challeng
 less ~/.chia/mainnet/config/config.yaml
 ```
 
-and then search for `genesis_challenge`, picking the one for the appropriate network (such as testnet10). The value will be a hex string such as `ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2` (that is the value for testnet10).
+and then search for `genesis_challenge`, picking the one for the appropriate network (such as testnet10). The value will be a hex string such as `ae83525ba8d1dd3f09b277de18ca3e43fc0af20d20c4b3e92ef2a48bd291ccb2` (that is the value for testnet10). ::: The value will be a hex string such as `37a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615` (that is the value for testnet11).
 :::
 
 ## Get Coin Id

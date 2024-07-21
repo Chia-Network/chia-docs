@@ -31,7 +31,7 @@ Enabling a passphrase is a recommended step for protecting your funds, but it on
 
 ## Syncing
 
-Upon opening Chia, your wallet will need to sync. You'll need to see a green checkmark next to the **WALLET** label in the upper-right corner before seeing any tokens you have.
+Upon opening Chia, your wallet will need to sync. Upon opening Chia, your wallet will need to sync. You'll need to see a green checkmark next to the **WALLET** label in the upper-right corner before seeing any tokens you have.
 
 <p align='center'>
   <img alt='synced' src='/img/synced.png' width='300' />
@@ -96,3 +96,11 @@ When acquiring NFTs or tokens, you may need to make an offer for them. Offers ar
 By using offers you are embracing the decentralized nature of the Chia blockchain.
 
 [Read more about offers](https://chialisp.com/offers).
+
+## Run Chia Services in the Background
+
+Starting in version 2.3.0, this is possible. When you attempt to close the application, the confirmation window will now display a checkbox. If you want to continue running your full node, harvester, farmer, etc after closing the GUI, be sure to check the checkbox, as demonstrated in the following image:
+
+<p align='center'>
+  <img alt='offers' src='/img/gui/background_services.png' width='800' />
+</p>

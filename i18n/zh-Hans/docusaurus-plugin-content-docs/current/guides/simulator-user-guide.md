@@ -12,7 +12,7 @@ This document will guide you through the process of setting up Chia's Simulator.
 - [Simulator CLI Reference](/simulator-cli)
 
 :::note
-It is possible to run the simulator and either Chia's testnet or mainnet simultaneously. This is because the simulator will use its own ports and directories.
+It is possible to run the simulator and either Chia's testnet or mainnet simultaneously. This is because the simulator will use its own ports and directories. ::: This is because the simulator will use its own ports and directories.
 :::
 
 ---
@@ -24,7 +24,7 @@ The simulator is included in the `chia-blockchain` GitHub repository (the same r
 After you have installed from source and have activated your virtual environment (you should see `(venv)` on the left side of your command prompt), you are all set to install the simulator.
 
 :::warning
-If you installed Chia from the binary installation file, you cannot use this installation to run the simulator. Instead, follow the instructions linked above to create a new installation from source, then return to this guide.
+If you installed Chia from the binary installation file, you cannot use this installation to run the simulator. Instead, follow the instructions linked above to create a new installation from source, then return to this guide. ::: Instead, follow the instructions linked above to create a new installation from source, then return to this guide.
 :::
 
 ## Setup instructions
@@ -89,7 +89,7 @@ Make sure your CHIA_ROOT Environment Variable is set to: C:\Users\<user>\.chia\s
 
 ### Configure the environment
 
-Now that you have created the simulator, you can set the `CHIA_ROOT` environment variable to point to the simulator's installation directory. This will enable you to run the simulator from outside of `chia-blockchain`:
+Now that you have created the simulator, you can set the `CHIA_ROOT` environment variable to point to the simulator's installation directory. This will enable you to run the simulator from outside of `chia-blockchain`: This will enable you to run the simulator from outside of `chia-blockchain`:
 
 <Tabs
 defaultValue="windows"
@@ -115,7 +115,7 @@ export CHIA_ROOT='~/.chia/simulator/main'
 </Tabs>
 
 :::note
-By setting the `CHIA_ROOT` path to the simulator in the current shell window (rather than globally), this enables you to run the simulator in tandem with a full node running on either the testnet or on mainnet. This is because the simulator uses different ports than a normal full node.
+By setting the `CHIA_ROOT` path to the simulator in the current shell window (rather than globally), this enables you to run the simulator in tandem with a full node running on either the testnet or on mainnet. This is because the simulator uses different ports than a normal full node. ::: This is because the simulator uses different ports than a normal full node.
 :::
 
 ## Usage instructions
@@ -136,6 +136,7 @@ This command is the equivalent of `chia start node` on testnet and mainnet.
 
 :::note
 You will need to have your `CHIA_ROOT` set before using this command, otherwise it will try to connect to your mainnet or testnet node.
+:::
 :::
 
 Run the following command to start the wallet:

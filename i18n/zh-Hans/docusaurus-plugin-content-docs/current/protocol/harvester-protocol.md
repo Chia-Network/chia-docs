@@ -3,6 +3,8 @@ title: Harvester Protocol
 slug: /harvester-protocol
 ---
 
+[Harvester protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/harvester_protocol.py)
+
 The harvester protocol defines the messages sent between a farmer service and a harvester service. These tend to be on the same machine for small farmers, but for medium or large farmers they can be in multiple machines.
 
 ## harvester_handshake

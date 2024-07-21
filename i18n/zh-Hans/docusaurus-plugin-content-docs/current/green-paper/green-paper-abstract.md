@@ -18,4 +18,4 @@ slug: /green-paper-abstract
 
 ### 先前版本共识绿皮书
 
-为了提供历史背景，绿皮书的先前版本讨论了一种从未实现的共识，可以在这里查看：[先前绿皮书](/files/Precursor-ChiaGreenPaper.pdf)。
+In order to provide historical context, the Green Paper's previous version that discusses a precursor consensus which was never implemented is available here for viewing: [Precursor Green Paper](https://docs.chia.net/assets/files/Precursor-ChiaGreenPaper-82cb50060c575f3f71444a4b7430fb9d.pdf).

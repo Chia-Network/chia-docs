@@ -23,27 +23,27 @@ Usage: cats [OPTIONS]
 
 Options:
 
-| Short Command | Long Command          | Type    | Required | Description                                                                                                                                                                                                    |
-| :------------ | :-------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -l            | --tail                | TEXT    | True     | The TAIL program to launch this CAT with                                                                                                                                                                       |
-| -c            | --curry               | TEXT    | False    | An argument to curry into the TAIL                                                                                                                                                                             |
-| -s            | --solution            | TEXT    | False    | The solution to the TAIL program [default: ()]                                                                                                                                                                 |
-| -t            | --send-to             | TEXT    | True     | The address these CATs will appear at once they are issued                                                                                                                                                     |
-| -a            | --amount              | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)                                                                                                                                           |
-| -m            | --fee                 | INTEGER | False    | The fees for the transaction, in mojos [default: 0]                                                                                                                                                            |
-| -d            | --authorized-provider | TEXT    | False    | A trusted DID that can issue VCs that are allowed to trade the CAT. Specifying this option will make the CAT a CR (credential restricted) CAT. Requires specifying either `--proofs-checker` or `--cr-flag`    |
-| -r            | --proofs-checker      | TEXT    | False    | The program that checks the proofs of a VC for a CR-CAT. Specifying this option requires a value for `--authorized-providers`                                                                                  |
-| -v            | --cr-flag             | TEXT    | False    | Specify a list of flags to check a VC for in order to authorize this CR-CAT. Specifying this option requires a value for `--authorized-providers`. Cannot be used if a custom `--proofs-checker` is specified. |
-| -f            | --fingerprint         | INTEGER | False    | The wallet fingerprint to use as funds                                                                                                                                                                         |
-| -sig          | --signature           | TEXT    | False    | A signature to aggregate with the transaction                                                                                                                                                                  |
-| -as           | --spend               | TEXT    | False    | An additional spend to aggregate with the transaction                                                                                                                                                          |
-| -b            | --as-bytes            | None    | False    | Output the spend bundle as a sequence of bytes instead of JSON                                                                                                                                                 |
-| -sc           | --select-coin         | None    | False    | Stop the process once a coin from the wallet has been selected and return the coin                                                                                                                             |
-| -q            | --quiet               | None    | False    | Quiet mode will not ask to push transaction to the network                                                                                                                                                     |
-| -p            | --push                | None    | False    | Automatically push transaction to the network in quiet mode                                                                                                                                                    |
-|               | --root-path           | PATH    | False    | The root folder where the config lies [default: ~/.chia/mainnet]                                                                                                                                               |
-|               | --wallet-rpc-port     | INTEGER | False    | The RPC port the wallet service is running on                                                                                                                                                                  |
-|               | --help                | None    | False    | Show a help message and exit                                                                                                                                                                                   |
+| Short Command | Long Command          | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                         |
+|:------------- |:--------------------- |:------- |:-------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -l            | --tail                | TEXT    | True     | The TAIL program to launch this CAT with                                                                                                                                                                                                                                                                                                            |
+| -c            | --curry               | TEXT    | False    | An argument to curry into the TAIL                                                                                                                                                                                                                                                                                                                  |
+| -s            | --solution            | TEXT    | False    | The solution to the TAIL program [default: ()]                                                                                                                                                                                                                                                                                                      |
+| -t            | --send-to             | TEXT    | True     | The address these CATs will appear at once they are issued                                                                                                                                                                                                                                                                                          |
+| -a            | --amount              | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)                                                                                                                                                                                                                                                                                |
+| -m            | --fee                 | INTEGER | False    | The fees for the transaction, in mojos [default: 0]                                                                                                                                                                                                                                                                                                 |
+| -d            | --authorized-provider | TEXT    | False    | A trusted DID that can issue VCs that are allowed to trade the CAT. Specifying this option will make the CAT a CR (credential restricted) CAT. Requires specifying either `--proofs-checker` or `--cr-flag` Specifying this option will make the CAT a CR (credential restricted) CAT. Requires specifying either `--proofs-checker` or `--cr-flag` |
+| -r            | --proofs-checker      | TEXT    | False    | The program that checks the proofs of a VC for a CR-CAT. Specifying this option requires a value for `--authorized-providers` Specifying this option requires a value for `--authorized-providers`                                                                                                                                                  |
+| -v            | --cr-flag             | TEXT    | False    | Specify a list of flags to check a VC for in order to authorize this CR-CAT. Specifying this option requires a value for `--authorized-providers`. Cannot be used if a custom `--proofs-checker` is specified. Specifying this option requires a value for `--authorized-providers`. Cannot be used if a custom `--proofs-checker` is specified.    |
+| -f            | --fingerprint         | INTEGER | False    | The wallet fingerprint to use as funds                                                                                                                                                                                                                                                                                                              |
+| -sig          | --signature           | TEXT    | False    | A signature to aggregate with the transaction                                                                                                                                                                                                                                                                                                       |
+| -as           | --spend               | TEXT    | False    | An additional spend to aggregate with the transaction                                                                                                                                                                                                                                                                                               |
+| -b            | --as-bytes            | None    | False    | Output the spend bundle as a sequence of bytes instead of JSON                                                                                                                                                                                                                                                                                      |
+| -sc           | --select-coin         | None    | False    | Stop the process once a coin from the wallet has been selected and return the coin                                                                                                                                                                                                                                                                  |
+| -q            | --quiet               | None    | False    | Quiet mode will not ask to push transaction to the network                                                                                                                                                                                                                                                                                          |
+| -p            | --push                | None    | False    | Automatically push transaction to the network in quiet mode                                                                                                                                                                                                                                                                                         |
+|               | --root-path           | PATH    | False    | The root folder where the config lies [default: ~/.chia/mainnet]                                                                                                                                                                                                                                                                                    |
+|               | --wallet-rpc-port     | INTEGER | False    | The RPC port the wallet service is running on                                                                                                                                                                                                                                                                                                       |
+|               | --help                | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                                                                        |
 
 <details>
 <summary>Example 1 - select a coin from the wallet with a value of at least 1 XCH (1 trillion mojos)</summary>
@@ -94,7 +94,7 @@ After pushing the transaction, the new ID and Eve Coin (singleton parent coin) w
 <details>
 <summary>Example 3 - Mint a new CR-CAT</summary>
 
-First, select a coin to use for the minting. Flags included in this example (CR-specific flags are in **bold**):
+First, select a coin to use for the minting. First, select a coin to use for the minting. Flags included in this example (CR-specific flags are in **bold**):
 
 - `--tail`: The tail to use; in this case we'll use a single-issuance TAIL
 - `--send-to`: The address to send the CR-CATs to upon minting
@@ -120,7 +120,7 @@ Response:
 Name: c5519ac8ef55043b23bef45b1326d445f2c4af579f13dc0cdec10335ccb0a809
 ```
 
-In the above repsonse, `Name` is the ID of the coin to be used for the minting. Next, run the same command again, but remove the `--select-coin` flag and add `--curry 0x<coin ID>` (the `0x` is required and important here):
+In the above repsonse, `Name` is the ID of the coin to be used for the minting. In the above repsonse, `Name` is the ID of the coin to be used for the minting. Next, run the same command again, but remove the `--select-coin` flag and add `--curry 0x<coin ID>` (the `0x` is required and important here):
 
 ```bash
 cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to txch1ek6ln2ejdsec6l734x8tggk9j5sepl8nfqjer5yt2dr905f04prqmcjcc5 --authorized-provider did:chia:1x23lnyd2xjefnfly075ngk79duf0yxna35cp86mgnnp4t33senfs4cah7u --cr-flag "test_proof1" --amount 1000000 -m 1000 --as-bytes --curry 0xc5519ac8ef55043b23bef45b1326d445f2c4af579f13dc0cdec10335ccb0a809
@@ -134,9 +134,9 @@ Asset ID: 262a2c2cbb09414652006c4da139a186b3a110bb57cd5d76b6785e4811f1c77c
 Eve Coin ID: 692a4f63c56815a33510088a255d695aea472d0f03bb9f0d5cdd5c91a82821f2
 ```
 
-Just as with standard CATs, the CR-CAT has been minted and sent to its destination address. `Asset ID` can now be added in the destination wallet.
+Just as with standard CATs, the CR-CAT has been minted and sent to its destination address. `Asset ID` can now be added in the destination wallet. `Asset ID` can now be added in the destination wallet.
 
-In this case, the destination wallet is the holder of a VC with the proof required to hold this CR-CAT. To verify this, run the `vcs get` CLI command:
+In this case, the destination wallet is the holder of a VC with the proof required to hold this CR-CAT. To verify this, run the `vcs get` CLI command: To verify this, run the `vcs get` CLI command:
 
 ```bash
 chia wallet vcs get
@@ -154,7 +154,7 @@ Inner Address: txch166pzqd55p2emp9sqaflvyc8x2s4qn4eexrxgrlfwf8khuefp5fqswe84mu
 Proof Hash: f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
 ```
 
-This VC contains the proof that was added to the CR-CAT (`test_proof1`). Once the CR-CAT has been added to this Chia wallet, it will be displayed as type `CRCAT`. For example:
+This VC contains the proof that was added to the CR-CAT (`test_proof1`). Once the CR-CAT has been added to this Chia wallet, it will be displayed as type `CRCAT`. For example: Once the CR-CAT has been added to this Chia wallet, it will be displayed as type `CRCAT`. For example:
 
 ```bash
 chia wallet show
@@ -186,7 +186,7 @@ Usage: secure_the_bag [OPTIONS]
 Options:
 
 | Short Command | Long Command                  | Type    | Required | Description                                                                                                                                                                                                            |
-| :------------ | :---------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -c            | --curry                       | TEXT    | False    | An argument to curry into the TAIL                                                                                                                                                                                     |
 | -a            | --amount                      | INTEGER | True     | The amount to issue in mojos (regular XCH will be used to fund this)                                                                                                                                                   |
 | -stbtp        | --secure-the-bag-targets-path | TEXT    | True     | Path to CSV file containing targets of secure the bag (inner puzzle hash + amount). The total value of the coins in this file must match the value of the `amount` flag. If they don't match, an error will be thrown. |
@@ -222,7 +222,7 @@ Usage: secure_the_bag [OPTIONS]
 Options:
 
 | Short Command | Long Command                  | Type    | Required | Description                                                                                           |
-| :------------ | :---------------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------- |
 | -ecid         | --eve-coin-id                 | TEXT    | True     | ID of coin that was spent to create secured bag                                                       |
 | -th           | --tail-hash                   | TEXT    | True     | TAIL hash / Asset ID of CAT to unwind from secured bag of CATs                                        |
 | -stbtp        | --secure-the-bag-targets-path | TEXT    | True     | Path to CSV file containing targets of secure the bag (inner puzzle hash + amount)                    |

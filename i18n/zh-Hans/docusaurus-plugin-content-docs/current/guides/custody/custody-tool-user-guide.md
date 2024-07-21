@@ -80,6 +80,7 @@ python -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -88,6 +89,7 @@ python3 -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -246,13 +248,13 @@ The `cic init` command will initialize the permanent layer of the singleton. **N
 For this guide, we'll create an example singleton that uses the values listed in the table below. As a reminder, these settings correspond to those used in the [flow chart](https://docs.chia.net/assets/files/chia-custody-tool-5e6e2f18e8f98c0faaf11bdf5fea5971.png).
 
 | Flag&nbsp; | Example<br/>Value | Description                                                                                                                                                                                                                                   |
-| :--------- | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d`       | keys_and_sb       | The directory where the keys and spend bundles will be stored.                                                                                                                                                                                |
-| `-wt`      | 600 seconds       | Withdrawal Timelock -- the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback before a withdrawal can be initiated.                                                                                |
-| `-pc`      | 1200 seconds      | Payment Claw back -- the minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Clawbacks are possible during this window.                                                          |
-| `-rt`      | 300 seconds       | Rekey Timelock -- when attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`. |
-| `-rc`      | 600 seconds       | Rekey Claw back -- the minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Claw backs are possible during this window.                                                                     |
-| `-sp`      | 900 seconds       | Slow rekey Penalty -- this amount gets added to the Rekey Timelock when a slow rekey is being performed.                                                                                                                                      |
+|:---------- |:----------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`       | keys_and_sb           | The directory where the keys and spend bundles will be stored.                                                                                                                                                                                |
+| `-wt`      | 600 seconds             | Withdrawal Timelock -- the minimum number of seconds that must have elapsed since the last withdrawal, rekey or clawback before a withdrawal can be initiated.                                                                                |
+| `-pc`      | 1200 seconds            | Payment Claw back -- the minimum number of seconds that must elapse after initiating a withdrawal before the withdrawal can be completed. Clawbacks are possible during this window.                                                          |
+| `-rt`      | 300 seconds             | Rekey Timelock -- when attempting to begin a standard rekey, this is the minimum number of seconds that must have elapsed since the last withdrawal, rekey or claw back. For a slow rekey, this amount gets added for each key less than `m`. |
+| `-rc`      | 600 seconds             | Rekey Claw back -- the minimum number of seconds that must elapse after initiating a rekey before the rekey can be completed. Claw backs are possible during this window.                                                                     |
+| `-sp`      | 900 seconds             | Slow rekey Penalty -- this amount gets added to the Rekey Timelock when a slow rekey is being performed.                                                                                                                                      |
 
 :::info notes regarding the above table
 

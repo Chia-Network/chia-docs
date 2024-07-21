@@ -5,7 +5,7 @@ slug: /timelord-basics
 
 In this lesson, we dive into the role that Timelords play in the consensus by using VDFs to generate challenges.
 
-## Learning objectives
+## 学习目标
 
 - **Proofs of Time**: Learn how Proofs of Time are created by timelords and what role they perform.
 - **Verifiable Delay Function (VDF)**: Understand the basics of VDFs.
@@ -13,7 +13,7 @@ In this lesson, we dive into the role that Timelords play in the consensus by us
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/tJPdBmpgvsc" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -21,7 +21,7 @@ In this lesson, we dive into the role that Timelords play in the consensus by us
 
 ---
 
-## Script
+## 脚本
 
 <details>
 
@@ -53,7 +53,7 @@ While at least one Timelord is required for the blockchain to function, anyone c
 
 ---
 
-## Common gotchas
+## 常见问题
 
 - **VDFs and Proofs of Time:** A Verifiable Delay Function, also referred to as a Proof of Time or VDF, is a proof that a sequential function was executed a certain number of times.
 - **Timelords:** Only 1 timelord is needed to keep the chain moving but anyone can run a timelord and multiple timelords on the network ensures resiliency. Some attacks that timelords protect against are documented [here](https://docs.chia.net/consensus-attacks#faster-timelord).
@@ -61,15 +61,15 @@ While at least one Timelord is required for the blockchain to function, anyone c
 
 ---
 
-## Knowledge check
+## 知识检测
 
 :::tip Question 1 - Timelords
 
 How many Farmers need to run a Timelord for the network?
 
-A. Every Farmer needs to run a Timelord.
-B. At least half the Farmers need to run a Timelord.
-C. Farmers aren't able to run Timelords.
+A. Every Farmer needs to run a Timelord.\
+At least half the Farmers need to run a Timelord.\
+Farmers aren't able to run Timelords.\
 D. Just one Timelord is needed for the network.
 
 :::
@@ -105,10 +105,10 @@ A. Timelords
 
 What are the primary purposes of VDFs? (choose all that apply)
 
-A. To slow down the network.
-B. To prove time has passed between blocks.
-C. Provide security to the network.
-D. Prepare for time travel integrations.
+A. To slow down the network.\
+B. To prove time has passed between blocks.\
+Provide security to the network.\
+Prepare for time travel integrations.
 
 :::
 
@@ -116,8 +116,8 @@ D. Prepare for time travel integrations.
 
 <summary> Answer (expand when ready to see the answer) </summary>
 
-B. To prove time has passed between blocks.
-C. Provide security to the network.
+B. To prove time has passed between blocks.\
+Provide security to the network.
 
 </details>
 
@@ -139,9 +139,9 @@ True
 
 ---
 
-## Additional resources
+## 附加资源
 
-### Links
+### 链接
 
 - Timelords [detailed documentation](https://docs.chia.net/timelord-algorithm/): details the timelords role in the consensus model.
 - Proofs of Time / VDFs [overview](https://docs.chia.net/proof-of-time/): detailed overview for Proofs of Time and VDFs.

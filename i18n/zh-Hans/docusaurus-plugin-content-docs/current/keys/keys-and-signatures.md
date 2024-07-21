@@ -41,7 +41,7 @@ So an address is analogous to a wallet child BLS public key, the private key of 
 
 ## Difference between Chia and EIP-2333
 
-Chia's plot format uses keys compliant with the [IRTF CFRG BLS standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/). After Chia had already committed to this standard, a new optional change was introduced to the salt format.
+Chia's plot format uses keys compliant with the [IRTF CFRG BLS standard](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/). After Chia had already committed to this standard, a new optional change was introduced to the salt format. After Chia had already committed to this standard, a new optional change was introduced to the salt format.
 
 Chia uses the following salt:
 
