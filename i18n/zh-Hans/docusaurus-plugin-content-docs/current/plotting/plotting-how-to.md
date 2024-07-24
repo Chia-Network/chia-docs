@@ -15,7 +15,7 @@ To create plots, you must have:
 
 This page will give a basic overview of how to obtain these values. This page will give a basic overview of how to obtain these values. For a detailed description, see the [Beginner's Guide to Farming](/farming-guide).
 
-If you already have a wallet with a plot NFT, feel free to skip to the section for [CLI Plotting](#cli-plotting) or [GUI Plotting](#gui-plotting).
+If you already have a wallet with a plot NFT, feel free to skip to the section for [CLI Plotting](#cli-plotting) or [GUI Plotting](#图形用户界面gui生成地块).
 
 ## Public Keys
 

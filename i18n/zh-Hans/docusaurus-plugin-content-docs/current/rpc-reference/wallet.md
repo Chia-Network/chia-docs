@@ -974,18 +974,21 @@ Notes:
 Create a new wallet with some basic DAO rules; also mint CATs and include transaction fees:
 
 ```bash
-Note: Because <code>backup_dids</code> is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run <a href="/did-cli#create">the CLI command</a> to create a DID wallet instead. If you do not already have a DID, then run <a href="/did-cli#create">the CLI command</a> to create a DID wallet instead.
+chia rpc wallet create_new_wallet '{"wallet_type": "dao_wallet", "mode": "new", "name": "My Dao Wallet", "dao_rules": {"attendance_required": 3000, "oracle_spend_delay": 2, "pass_percentage": 5000, "proposal_minimum_amount": 1000001, "proposal_timelock": 3, "self_destruct_length": 1, "soft_close_length": 2}, "amount_of_cats": 1000, "filter-amount": 1, "fee": 500000000, "fee_for_cat": 100000000}'
 ```
- is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead.
-</code>
 
 As a result, a new treasury will be created, along with a CAT wallet containing 1000 CATs, and a DAO CAT wallet:
 
 ```bash
-For this example, we'll use the wallet with ID <code>7</code>. This wallet is type <code>6</code> (CAT):
+{
+    "cat_wallet_id": 4,
+    "dao_cat_wallet_id": 5,
+    "success": true,
+    "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc",
+    "type": 14,
+    "wallet_id": 3
+}
 ```
-. This wallet is type 6 (CAT):
-</code>
 
 </details>
 
@@ -995,18 +998,21 @@ For this example, we'll use the wallet with ID <code>7</code>. This wallet is ty
 To join a DAO, set `mode` to `existing`:
 
 ```bash
-This coin is <code>"type": 7</code>, so it is being sent from this wallet. This RPC can be used to claw back this coin as long as it has yet to be spent by the recipient wallet:
+chia rpc wallet create_new_wallet '{"wallet_type": "dao_wallet", "mode": "existing", "name": "My Dao Wallet", "filter-amount": 1, "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc"}'
 ```
-, so it is being sent from this wallet. This RPC can be used to claw back this coin as long as it has yet to be spent by the recipient wallet:
-</code>
 
 Your wallet will join the treasury and automatically create the required DAO, CAT, and DAO_CAT wallets without any balance:
 
 ```bash
-The type of wallet to create. The type of wallet to create. Must be one of <code>cat_wallet</code>, <code>did_wallet</code>, <code>nft_wallet</code>, or <code>pool_wallet</code>
+{
+    "cat_wallet_id": 3,
+    "dao_cat_wallet_id": 4,
+    "success": true,
+    "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc",
+    "type": 14,
+    "wallet_id": 2
+}
 ```
-, did_wallet, nft_wallet, or pool_wallet
-</code>
 
 </details>
 
@@ -1696,7 +1702,9 @@ The transaction history is not deterministic due to heuristics we use to counter
 - Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
 - The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
 - For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
-- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade For accurate records, you should keep a local record of transactions (TXs) and the Offer files made. </details>
+- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+</details>
 
 <details>
 <summary>Example</summary>
@@ -1775,7 +1783,8 @@ Request Parameters:
 
 <details>
 <summary>Notes about transactions</summary>
-By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination. If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
+By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination.
+If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
 
 The transaction history is not deterministic due to heuristics we use to counter privacy features of the blockchain. This means, a couple of details cannot be fetched fully:
 
@@ -1785,7 +1794,9 @@ The transaction history is not deterministic due to heuristics we use to counter
 - Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
 - The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
 - For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
-- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade For accurate records, you should keep a local record of transactions (TXs) and the Offer files made. </details>
+- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+</details>
 
 <details>
 <summary>Example 1: List a single XCH transaction</summary>
@@ -2415,8 +2426,6 @@ Result:
 ```bash
 {
     "nft_info": {
-        "chain_info": "((117 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\") (104 . 0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a) (28021 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\") (27765) (29550 . 1) (29556 . 1) (28008 . {
-    "nft_info": {
         "chain_info": "((117 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\") (104 . 0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a) (28021 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\") (27765) (29550 . 1) (29556 . 1) (28008 . 0xfdfe889a579916f8f75dcfff809eee44fc844df5fa92aecd2d562578e7e69a24))",
         "data_hash": "0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a",
         "data_uris": [
@@ -2467,7 +2476,8 @@ The `ph` for the message payload can be any puzzlehash in your key derivation. O
 xch1ta7zjqqtaw9wyfnawl3z84a26vexr3qtmp7jq6gx4vpzl792sf9qddsacl
 ```
 
-This address still needs to be converted into a puzzlehash. This address still needs to be converted into a puzzlehash. One way to accomplish this is with an online converter, such as the one available from [spacescan](https://www.spacescan.io/tools/puzzlehashconverter). Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository: Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository:
+This address still needs to be converted into a puzzlehash. One way to accomplish this is with an online converter, such as the one available from [spacescan](https://www.spacescan.io/tools/puzzlehashconverter).
+Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository:
 
 ```json
 cdv decode xch1ta7zjqqtaw9wyfnawl3z84a26vexr3qtmp7jq6gx4vpzl792sf9qddsacl
@@ -2808,7 +2818,7 @@ Request Parameters:
 | batch_size | NUMBER       | False    | The number of coins to spend per bundle, [Default: `batch_size` obtainable from [get_auto_claim](#get_auto_claim)] |
 | fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                 |
 
-When examing the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
+When examining the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
 
 <details>
 <summary>Example</summary>
@@ -3210,7 +3220,7 @@ Response:
 
 ### `cat_get_asset_id`
 
-功能： Retrieve a the asset ID from a CAT wallet
+功能： Retrieve the asset ID from a CAT wallet
 
 用法： chia rpc wallet [OPTIONS] cat_get_asset_id [REQUEST]
 

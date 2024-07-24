@@ -3,11 +3,11 @@ slug: /custody/prefarm-audit-tutorial
 title: Prefarm Audit Tutorial
 ---
 
-Chia Network Inc's prefarm is secured by a complex set of custodial rules. This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/). This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/).
+Chia Network Inc's prefarm is secured by a complex set of custodial rules. This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/).
 
 Other relevant documents:
 
-- [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
+- [Flow chart](https://docs.chia.net/img/chia-custody-tool.png) to visualize how the custody tool works
 - [User guide](/guides/custody-tool-user-guide) to help you get up and running
 - [CLI reference](/custody-tool) for all custody commands used in this tutorial
 - [Prefarm Alert Tool](https://github.com/Chia-Network/prefarm-alert) to access the public prefarm config files
@@ -76,7 +76,9 @@ xch1jj0gm4ahhlu3ke0r0fx955v8axr6za7rzz6hc0y26lewa7zw6fws5nwvv6
 
 :::info
 
-NOTE: A high level of technical proficiency is needed to understand the details of this manual process for what the cic tool does above. This process is a high-level guide and does not display expected results for each step. NOTE: A high level of technical proficiency is needed to understand the details of this manual process for what the cic tool does above. This process is a high-level guide and does not display expected results for each step. The [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools#install) are needed for this audit.
+NOTE: A high level of technical proficiency is needed to understand the details of this manual process for what the cic tool does above.
+This process is a high-level guide and does not display expected results for each step.
+The [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools#install) are needed for this audit.
 
 :::
 
@@ -91,7 +93,7 @@ NOTE: A high level of technical proficiency is needed to understand the details 
       4. `BASE_REKEY_TIMELOCK` = integer of the rekey timelock.
       5. `SLOW_REKEY_PENALTY` = integer of the slow rekey penalty.
 3. Curry the necessary parameters into singleton_top_layer_v1_1.clsp `(SINGLETON_STRUCT INNER_PUZZLE)`:
-   1. `SINGLETON_STRUCT` = a tree with the following elements in order `(MOD_HASH . (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))`: (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))</code>:
+   1. `SINGLETON_STRUCT` = a tree with the following elements in order `(MOD_HASH . (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))`:
       1. `MOD_HASH` = singleton_top_layer puzzle sha256 tree hash without its curried arguments.
       2. `LAUNCHER_ID` = the ID of the singleton we are committed to paying.
       3. `LAUNCHER_PUZZLE_HASH` = the puzzle hash of the launcher.

@@ -6,7 +6,7 @@ title: CAT Creation Tutorial
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The CAT standard allows you to create fungible tokens on the Chia blockchain. This step-by-step guide will go through creating your own CATs. For info on how CATs are built at the Chialisp level, see our [CAT primitive page](https://chialisp.com/cats). This step-by-step guide will go through creating your own CATs. For info on how CATs are built at the Chialisp level, see our [CAT primitive page](https://chialisp.com/cats).
+The CAT standard allows you to create fungible tokens on the Chia blockchain. This step-by-step guide will go through creating your own CATs. For info on how CATs are built at the Chialisp level, see our [CAT primitive page](https://chialisp.com/cats).
 
 Alternatively, if you're looking for non-fungible tokens on Chia, check out our [NFT guide](/guides/nft-intro).
 
@@ -33,8 +33,8 @@ CAT denominations, as well as the rules behind issuance and melting, can take so
 - In a similar vein, Chia Network Inc. has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
 
   :::caution
-Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
-:::
+  Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
+  :::
 
 - The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
 - A token's face value and its melt value are not necessarily correlated, let alone matched.
@@ -49,20 +49,20 @@ These concepts are discussed in greater detail in our [CAT primitive page](https
 
 Cat issuance comes in two phases. First, you will test your issuance on a testnet. Once ready, you will issue on mainnet.
 
-For this tutorial, we'll use testnet10.
+For this tutorial, we'll use testnet11.
 
 Ensure that you have Python 3.7 or later by running:
 
 - Linux/MacOS -- `python3 --version`
 - Windows -- `python --version`
 
-1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/installation). For more info, see our [installation guide](/installation).
+1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/installation).
 
-2. Configure Chia to run on testnet11. Configure Chia to run on testnet10. For more info, see our [testnet documentation](/guides/crash-course/introduction#getting-on-testnet).
+2. Configure Chia to run on testnet11. For more info, see our [testnet documentation](/guides/crash-course/introduction#getting-on-testnet).
 
-3. Start Chia's reference wallet GUI. The command you use will depend on your OS, as well as whether you used a binary installer or installed from source. If you need help, see the installation guide. The command you use will depend on your OS, as well as whether you used a binary installer or installed from source. If you need help, see the installation guide.
+3. Start Chia's reference wallet GUI. The command you use will depend on your OS, as well as whether you used a binary installer or installed from source. If you need help, see the installation guide.
 
-When using the GUI, you have the option of running in `Farming Mode` or `Wallet Mode`. Both of these options will work for creating CATs. When using the GUI, you have the option of running in `Farming Mode` or `Wallet Mode`. Both of these options will work for creating CATs. `Farming Mode` will be faster if you already have a synced full node, but this is not necessary for CAT issuance.
+When using the GUI, you have the option of running in `Farming Mode` or `Wallet Mode`. Both of these options will work for creating CATs. `Farming Mode` will be faster if you already have a synced full node, but this is not necessary for CAT issuance.
 
 :::info
 
@@ -72,14 +72,13 @@ You can also run Chia's reference wallet from a [command line](/installation#cli
 
 4. Add a new wallet if you have not already done so.
 
-5. You will need to have a sufficient number of mojos for your CAT issuance and transaction fee(s). You can request some TXCH from the [Testnet10 faucet](https://testnet10-faucet.chia.net). You can request some TXCH from the [Testnet11 faucet](https://testnet11-faucet.chia.net).
+5. You will need to have a sufficient number of mojos for your CAT issuance and transaction fee(s). You can request some TXCH from the [Testnet11 faucet](https://testnet11-faucet.chia.net).
 
 6. Before issuing a CAT, you will need to have a synced wallet, as demonstrated by the green checkmark inside the red circle in this image:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cat/01_cat.png" alt="Synced wallet" />
   </div>
-
   <br />
 
 Once you have a synced wallet and some TXCH, you are ready to run the CAT admin tool.
@@ -97,7 +96,7 @@ values={[
 ]}>
 <TabItem value="mac">
 
-Your Linux installation may not come with Python's development tools installed by default. Your Linux installation may not come with Python's development tools installed by default. To be sure that these tools are installed, run:
+Your Linux installation may not come with Python's development tools installed by default. To be sure that these tools are installed, run:
 
 ```bash
 sudo apt-get install -y build-essential python3-dev
@@ -123,31 +122,6 @@ python3 -m venv venv
 
 ```bash
 . ./venv/bin/activate
-```
-
-Install the prerequisites:
-
-```bash
-python3 -m pip install --upgrade pip setuptools wheel
-```
-
-Install the tool:
-
-```bash
-pip install .
-```
-
-Install chia dev tools:
-
-```bash
-pip install chia-dev-tools --no-deps
-```
-
-Install pytest:
-
-```bash
-pip install pytest
-``` ./venv/bin/activate
 ```
 
 Install the prerequisites:
@@ -226,23 +200,6 @@ pip install pytest
 :::note
 You might receive an error such as ERROR: Failed building wheel for CAT-admin-tool. This is likely safe to ignore. As long as you can run cats --help without errors, the tool has been installed properly.
 :::
-```
-
-Install Chia dev tools:
-
-```bash
-pip install chia-dev-tools --no-deps
-```
-
-Install pytest:
-
-```bash
-pip install pytest
-```
-
-:::note
-You might receive an error such as ERROR: Failed building wheel for CAT-admin-tool. This is likely safe to ignore. As long as you can run cats --help without errors, the tool has been installed properly.
-:::  
 
   </TabItem>
 </Tabs>
@@ -250,7 +207,7 @@ You might receive an error such as ERROR: Failed building wheel for CAT-admin-to
 ---
 
 <br/>
-
+    
 Your environment should be all set, but let's make sure:
 
 - Run `cats --help`. You should get a usage statement.
@@ -267,7 +224,7 @@ To get started, you will create a single-issuance CAT. This is the default way t
 
 :::note
 
-A TAIL is a Chialisp program that defines the rules for issuing and melting tokens. Learn more about the [Token and Asset Issuance Limitations program](https://chialisp.com/cats/#tail). Learn more about the [Token and Asset Issuance Limitations program](https://chialisp.com/cats/#tail).
+A TAIL is a Chialisp program that defines the rules for issuing and melting tokens. Learn more about the [Token and Asset Issuance Limitations program](https://chialisp.com/cats/#tail).
 
 :::
 
@@ -275,7 +232,7 @@ A CAT with a single-issuance TAIL will be useful for anyone who wants to create 
 
 First, figure out how many tokens you want to issue. Because creating a single token takes 1,000 mojos, you will multiply your supply by 1,000 to figure out how much TXCH (or XCH on mainnet) is needed. For example, if you want to issue 1 million tokens, you'll need 1 billion mojos (1/1000 of a TXCH/XCH).
 
-Take note of your _Receive Address_ in the Chia GUI. (Alternatively, run `chia wallet get_address` from a terminal window.) You'll need this address for the next step. (Alternatively, run `chia wallet get_address` from a terminal window.) You'll need this address for the next step.
+Take note of your _Receive Address_ in the Chia GUI. (Alternatively, run `chia wallet get_address` from a terminal window.) You'll need this address for the next step.
 
 After confirming you are within the admin tool directory, run:
 
@@ -323,7 +280,7 @@ First, figure out how many tokens you want to issue. Because creating a single t
 Just as with the Single Issuance CAT, we recommend that you include a fee with your transaction. This fee will ensure that your transaction is processed in front of any dust in the mempool. Whether you're running on testnet or mainnet, the recommended fee amount is 100 million mojos (`-m 100000000`). Even though you will run the `cats` command multiple times, the fee will only be applied once, when the transaction is pushed to the network.
 :::
 
-Run `chia wallet get_address` from a terminal window to get a new receive address. You will use this address shortly. You will use this address shortly.
+Run `chia wallet get_address` from a terminal window to get a new receive address. You will use this address shortly.
 
 Run `chia keys show`. Take note of your **fingerprint** and **master public key**.
 
@@ -382,7 +339,6 @@ Now you can add a wallet ID for your new CAT. In the lower left corner, click `M
 <div style={{ textAlign: 'center' }}>
   <img src="/img/cat/02_cat.png" alt="Manage Token List" />
 </div>
-
 <br />
 
 The first few tokens listed will be there by default (Marmot, Spacebucks, etc). At the end of the list, you should find your CAT's `asset ID`. Feel free to rename your CAT, and click the slider to add a new wallet with that CAT:
@@ -390,7 +346,6 @@ The first few tokens listed will be there by default (Marmot, Spacebucks, etc). 
 <div style={{ textAlign: 'center' }}>
   <img src="/img/cat/03_cat.png" alt="Enable new CAT" />
 </div>
-
 <br />
 
 You will now see your token in your wallet with the full issued quantity. As a reminder, this should be the number of mojos spent divided by 1,000 (as each CAT token requires 1,000 mojos to issue).
@@ -398,7 +353,6 @@ You will now see your token in your wallet with the full issued quantity. As a r
 <div style={{ textAlign: 'center' }}>
   <img src="/img/cat/04_cat.png" alt="View new CAT" />
 </div>
-
 <br />
 
 You now have access to your CAT in the GUI. You can send and receive your new tokens just like you would with regular XCH.
@@ -415,7 +369,7 @@ When you are ready to issue your CAT to mainnet, the first step is to switch to 
 chia configure -t false
 ```
 
-The second step is to generate a new key pair and store the mnemonic in a secure manner. The second step is to generate a new key pair and store the mnemonic in a secure manner. You can generate your key by clicking `Add Wallet` and `Create New` from the `Wallet Keys` login screen of the GUI. This will work in the same manner as earlier for our testnet CAT. This will work in the same manner as earlier for our testnet CAT.
+The second step is to generate a new key pair and store the mnemonic in a secure manner. You can generate your key by clicking `Add Wallet` and `Create New` from the `Wallet Keys` login screen of the GUI. This will work in the same manner as earlier for our testnet CAT.
 
 :::danger
 We recommend the new keypair being used exclusively for the CAT ownership.
@@ -428,7 +382,9 @@ This would be a complex and time-consuming process that would likely result in p
 :::
 
 :::tip
-You can generate keys from the CLI as well. Use `chia keys show` to see your available keys. Take note of their fingerprint as you will want to _not_ use an existing key. Generate a key with `chia keys generate`, followed by `chia keys show --show-mnemonic-seed` to reveal the 24 words.
+You can generate keys from the CLI as well.
+Use `chia keys show` to see your available keys. Take note of their fingerprint as you will want to _not_ use an existing key.
+Generate a key with `chia keys generate`, followed by `chia keys show --show-mnemonic-seed` to reveal the 24 words.
 :::
 
 Copy your new key pair's **mnemonic seed (24 secret words)** to a secure offline location. These 24 words are all you'll need to restore your wallet in the future.
@@ -439,6 +395,6 @@ Finally, you can go through the same process to create a CAT now using real XCH 
 
 Congratulations! You've created your first CAT. What now?
 
-Well, hopefully you can share your CAT with the world and get some traction. Well, hopefully you can share your CAT with the world and get some traction. In the meantime, you can learn more about the [Single Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/cat_wallet/puzzles/genesis_by_coin_id.clsp) and [Multi Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/cat_wallet/puzzles/delegated_tail.clsp).
+Well, hopefully you can share your CAT with the world and get some traction. In the meantime, you can learn more about the [Single Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/cat_wallet/puzzles/genesis_by_coin_id.clsp) and [Multi Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/cat_wallet/puzzles/delegated_tail.clsp).
 
 This guide was for fungible tokens. Now you can learn about [non-fungible tokens](/guides/nft-intro).

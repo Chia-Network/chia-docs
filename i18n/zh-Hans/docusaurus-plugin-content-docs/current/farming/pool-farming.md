@@ -15,7 +15,7 @@ Chia的联合耕种协议（pooling protocol）允许将地块分配给“联合
 
 :::note
 
-The official pooling protocol was introduced in verion 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. The official pooling protocol was introduced in verion 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. If you have any of these "OG" plots, you can either recreate them using a plot NFT, or co-farm them on the same machine as your official pool plots.
+The official pooling protocol was introduced in version 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. The official pooling protocol was introduced in version 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. If you have any of these "OG" plots, you can either recreate them using a plot NFT, or co-farm them on the same machine as your official pool plots.
 
 :::
 
@@ -112,7 +112,7 @@ You can now start creating plots for this Plot NFT, which means these plots will
 Detailed instructions can be found in the "How to Plot" page:
 
 - Plotting from the [CLI](/plotting-how-to#cli-plotting)
-- Plotting from the [GUI](/plotting-how-to#gui-plotting)
+- Plotting from the [GUI](/plotting-how-to#图形用户界面gui生成地块)
 
 ### 第五步：管理联合耕种农田。
 

@@ -142,7 +142,7 @@ import Runnable from '@site/src/components/Runnable.tsx';
 
 ### 可运行的Chialisp和clvm插件
 
-有关使用这些插件的信息，请参阅[学院概述](/academy-overview#runnable-chialisp-and-clvm-plugins)。
+有关使用这些插件的信息，请参阅[学院概述](/academy-overview#可运行的chialisp和clvm插件)。
 
 #### Chialisp 插件
 

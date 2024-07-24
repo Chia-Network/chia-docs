@@ -53,7 +53,6 @@ It is possible to brick\* funds by sending them to an address without the approp
 
 \* Technically, the funds will remain recoverable, but this process will not be easy.
 :::
-:::
 
 ### DID and VC Setup
 
@@ -135,7 +134,6 @@ The VC is also viewable from the GUI:
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/01_cr-cat.png" alt="Authorized provider VC" />
   </div>
-
   <br />
 
 #### VC Holder Wallet
@@ -183,7 +181,6 @@ The VC is also viewable from the GUI:
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/02_cr-cat.png" alt="Holder VC" />
   </div>
-
   <br />
 
 #### XCH Wallet
@@ -251,19 +248,6 @@ Install the CAT admin tool:
 
 ```bash
 pip install .
-``` ./venv/bin/activate
-```
-
-Install all prerequisites:
-
-```bash
-python3 -m pip install --upgrade pip setuptools wheel
-```
-
-Install the CAT admin tool:
-
-```bash
-pip install .
 ```
 
   </TabItem>
@@ -303,7 +287,6 @@ Install the CAT admin tool:
 
 ```bash
 pip install .
-```
 ```
 
   </TabItem>
@@ -387,7 +370,6 @@ chia wallet show
 Response (truncated):
 
 ```bash
-...
 ...
 Profile 1:
    -Total Balance:         1.0
@@ -478,7 +460,6 @@ Response (truncated):
 
 ```bash
 ...
-...
 CAT 3ba9e16dca39f3fb...:
    -Total Balance:                      1000.0  (1000000 mojo)
    -Balance Pending VC Approval:        0.0  (0 mojo)
@@ -497,7 +478,6 @@ This information is also viewable in the GUI:
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/03_cr-cat.png" alt="CR-CAT issuance" />
   </div>
-
   <br />
 
 The Authorized Provider now has control of all 1000 of the issued CR-CATs. This type of CAT is distinguished in the GUI by a padlock icon and `Restricted CAT`. The Authorized Provider now has control of all 1000 of the issued CR-CATs. This type of CAT is distinguished in the GUI by a padlock icon and `Restricted CAT`. The Authorized Provider also possesses a VC with the required proof (`test_proof1`), so a green icon appears when viewing the CAT.
@@ -513,7 +493,6 @@ You can send CR-CATs just as you would with regular CATs:
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/04_cr-cat.png" alt="CR-CAT send" />
   </div>
-
   <br />
 
 You should see a "success" message:
@@ -521,7 +500,6 @@ You should see a "success" message:
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/05_cr-cat.png" alt="CR-CAT send success" />
   </div>
-
   <br />
 
 In this example, the recipient is the VC Holder's wallet. This wallet holds the credential with the required proof (`test_proof1`) for holding this CR-CAT. Because the proof exists, a green `APPROVE` button will appear.
@@ -531,7 +509,6 @@ From the VC Holder's wallet, click this button to finalize the transaction:
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/06_cr-cat.png" alt="VC Holder Approve" />
   </div>
-
   <br />
 
 An on-chain transaction is required for the approval to be processed. An on-chain transaction is required for the approval to be processed. This is necessary to guard against unauthorized wallets holding CR-CATs, as will be demonstrated later in this tutorial. Enter a transaction fee and click `APPROVE PENDING TRANSACTIONS`: Enter a transaction fee and click `APPROVE PENDING TRANSACTIONS`:
@@ -539,7 +516,6 @@ An on-chain transaction is required for the approval to be processed. An on-chai
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/07_cr-cat.png" alt="Approve pending transactions" />
   </div>
-
   <br />
 
 After the transaction has been processed, the CR-CATs will become available to the VC Holder, who can now send or trade them just like normal CATs.
@@ -547,7 +523,6 @@ After the transaction has been processed, the CR-CATs will become available to t
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/08_cr-cat.png" alt="CR-CAT approved" />
   </div>
-
   <br />
 
 ### Sending from the CLI
@@ -580,7 +555,6 @@ Response:
 
 ```bash
 Submitting transaction...
-Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 3152280463 -tx 0xab577bdce7fdd1be8b4e0634ad69aa5cff66f6d9dc7d26e0119d1a3a740f91e8' to get status
 ```
@@ -597,8 +571,6 @@ The response should show that this transaction has been confirmed:
 Transaction ab577bdce7fdd1be8b4e0634ad69aa5cff66f6d9dc7d26e0119d1a3a740f91e8
 Status: Confirmed
 Amount sent: 100 CAT 3ba9e16dca39f3fb...
-To address: txch1yzjq802ym3lv9aupl6nyvv6s24fdm9wpnte2rvhk04arr3jyt4js2287gz
-Created at: 2023-09-22 09:21:25
 To address: txch1yzjq802ym3lv9aupl6nyvv6s24fdm9wpnte2rvhk04arr3jyt4js2287gz
 Created at: 2023-09-22 09:21:25
 ```
@@ -697,7 +669,6 @@ In this example, as the **Authorized Provider**, click `CREATE AN OFFER` from th
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/09_cr-cat.png" alt="Create an Offer" />
   </div>
-
   <br />
 
 Next, fill out the Offer Builder. Next, fill out the Offer Builder. For this example, we will offer to trade 99 CR-CATs for 0.1 TXCH:
@@ -705,7 +676,6 @@ Next, fill out the Offer Builder. Next, fill out the Offer Builder. For this exa
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/10_cr-cat.png" alt="Offer Builder" />
   </div>
-
   <br />
 
 After creating the Offer, Authorized Provider can save it as a local file or post it to a marketplace.
@@ -715,7 +685,6 @@ For this example, we will change to the **VC Holder** wallet and load the Offer 
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/11_cr-cat.png" alt="Accept Offer" />
   </div>
-
   <br />
 
 While the on-chain transaction to accept the Offer is pending, the 99 CR-CATs will be displayed in the VC Holder's `Pending Balance`. Note that the `Pending Balance for Approval` is `0` in this case: Note that the `Pending Balance for Approval` is `0` in this case:
@@ -723,7 +692,6 @@ While the on-chain transaction to accept the Offer is pending, the 99 CR-CATs wi
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/12_cr-cat.png" alt="Pending Offer Acceptance" />
   </div>
-
   <br />
 
 After the transaction has been confirmed, the balance is updated. After the transaction has been confirmed, the balance is updated. When receiving CR-CATs via an Offer, there is no need to perform another transaction to approve of the incoming tokens. This is because the proof requirement is already baked into the Offer file. This is because the proof requirement is already baked into the Offer file.
@@ -731,7 +699,6 @@ After the transaction has been confirmed, the balance is updated. After the tran
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/13_cr-cat.png" alt="Completed Offer" />
   </div>
-
   <br />
 
 At this point, the VC Holder wallet has full possession of the CR-CATs.
@@ -870,7 +837,6 @@ Let's say the Authorized Provider obtains the XCH Wallet's address and sends 50 
 <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/14_cr-cat.png" alt="Send CR-CATs to address lacking proofs" />
   </div>
-
   <br />
 
 Even though the recipient is not allowed to hold these CR-CATs, the transaction itself is valid. Even though the recipient is not allowed to hold these CR-CATs, the transaction itself is valid. However, just as in the examples at the beginning of this tutorial, the XCH Wallet will receive the CR-CATs in the `Pending Balance for Approval` section of the GUI. In this case, the required proof (in the red circle below) is not present. In this case, the required proof (in the red circle below) is not present.
@@ -880,13 +846,11 @@ The XCH Wallet can still attempt to approve these CR-CATs:
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/15_cr-cat.png" alt="Proof not present" />
   </div>
-
   <br />
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/16_cr-cat.png" alt="Attempt to approve" />
   </div>
-
   <br />
 
 However, this attempt will fail because the required proofs are missing:
@@ -894,7 +858,6 @@ However, this attempt will fail because the required proofs are missing:
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/17_cr-cat.png" alt="Required providers missing" />
   </div>
-
   <br />
 
 The status of these CR-CATs is as follows:
@@ -924,7 +887,6 @@ Let's say the owner of the XCH Wallet locates a CR-CAT Offer. Let's say the owne
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/18_cr-cat.png" alt="Offer where required providers missing" />
   </div>
-
   <br />
 
 Any attempts to accept this Offer without first receiving a VC with the required proofs will fail:
@@ -932,7 +894,6 @@ Any attempts to accept this Offer without first receiving a VC with the required
   <div style={{ textAlign: 'center' }}>
     <img src="/img/cr-cat/19_cr-cat.png" alt="Offer acceptance where required providers missing" />
   </div>
-
   <br />
 
 Thus, when using Offers, the funds cannot accidentally be sent to an unauthorized recipient.
