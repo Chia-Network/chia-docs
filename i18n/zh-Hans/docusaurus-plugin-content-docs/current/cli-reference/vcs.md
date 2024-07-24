@@ -20,10 +20,10 @@ Usage: chia wallet vcs add_proof_reveal [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                             |
-|:------------- |:----------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                         |
-| -p            | --proof           | TEXT    | True\* | A flag to add as a proof                                                                                                |
+| -p            | --proof           | TEXT    | True\*   | A flag to add as a proof                                                                                                |
 | -r            | --root-only       | None    | False    | If this flag is set, do not add the proofs to the DB, just output the root from the specified proofs [Default: not set] |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                            |
 
@@ -72,7 +72,7 @@ Usage: chia wallet vcs get [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -s            | --start           | INTEGER | False    | The index to start the list at [default: 0]                                                              |
@@ -109,7 +109,7 @@ Usage: chia wallet vcs get_proofs_for_root [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -r            | --proof-hash      | TEXT    | True     | The root to search for                                                                                   |
@@ -147,7 +147,7 @@ Usage: chia wallet vcs mint [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                 |
-|:------------- |:----------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml    |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use as the issuing wallet                                       |
 | -d            | --did             | TEXT    | True     | The DID of the VC's proof provider. Must be owned by the issuing wallet Must be owned by the issuing wallet |
@@ -223,11 +223,11 @@ Usage: chia wallet vcs revoke [OPTIONS]
 Options:
 
 | Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                                                                                                                               |
-|:------------- |:---------------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :--------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                                                                                                                                  |
 | -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                                                                                                                                           |
-| -p            | --parent-coin-id       | TEXT    | True\* | The ID of the parent coin of the VC (\*optional if VC ID is used)                                                                                                                                                                                                                       |
-| -l            | --vc-id TEXT           | TEXT    | True\* | The launcher ID of the VC to revoke (must be tracked by wallet) (\*optional if Parent ID is used)                                                                                                                                                                                       |
+| -p            | --parent-coin-id       | TEXT    | True\*   | The ID of the parent coin of the VC (\*optional if VC ID is used)                                                                                                                                                                                                                         |
+| -l            | --vc-id TEXT           | TEXT    | True\*   | The launcher ID of the VC to revoke (must be tracked by wallet) (\*optional if Parent ID is used)                                                                                                                                                                                         |
 | -m            | --fee                  | TEXT    | False    | Blockchain fee for revocation transaction, in XCH                                                                                                                                                                                                                                         |
 |               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash]                                                                                                               |
 |               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set |
@@ -289,7 +289,7 @@ Usage: chia wallet vcs update_proofs [OPTIONS]
 Options:
 
 | Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                                                                                                                               |
-|:------------- |:---------------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :--------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                                                                                                                                  |
 | -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                                                                                                                                           |
 | -l            | --vc-id                | TEXT    | True     | The launcher ID of the VC whose proofs should be updated                                                                                                                                                                                                                                  |

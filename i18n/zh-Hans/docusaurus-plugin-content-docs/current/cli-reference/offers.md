@@ -37,7 +37,7 @@ Usage: `chia wallet make_offer [OPTIONS]`
 Options:
 
 | Short Command |   Long Command    |  Type   | Required | Description                                                                                              |
-|:-------------:|:-----------------:|:-------:|:--------:|:-------------------------------------------------------------------------------------------------------- |
+| :-----------: | :---------------: | :-----: | :------: | :------------------------------------------------------------------------------------------------------- |
 |      -wp      | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 |      -f       |   --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                       |
 |      -o       |      --offer      |  TEXT   |   True   | A wallet id to offer and the amount to offer (formatted like wallet_id:amount)                           |
@@ -59,7 +59,7 @@ Usage: `chia wallet take_offer [OPTIONS] PATH_OR_HEX`
 Options:
 
 | Short Command |   Long Command    |  Type   | Required | Description                                                                                              |
-|:-------------:|:-----------------:|:-------:|:--------:|:-------------------------------------------------------------------------------------------------------- |
+| :-----------: | :---------------: | :-----: | :------: | :------------------------------------------------------------------------------------------------------- |
 |      -wp      | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 |      -f       |   --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                       |
 |      -e       |  --examine-only   |  None   |  False   | Print the summary of the offer file but do not take it                                                   |
@@ -78,7 +78,7 @@ Usage: `chia wallet cancel_offer [OPTIONS]`
 Options:
 
 | Short Command |   Long Command    |  Type   | Required | Description                                                                                                              |
-|:-------------:|:-----------------:|:-------:|:--------:|:------------------------------------------------------------------------------------------------------------------------ |
+| :-----------: | :---------------: | :-----: | :------: | :----------------------------------------------------------------------------------------------------------------------- |
 |      -wp      | --wallet-rpc-port | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                 |
 |      -f       |   --fingerprint   | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                                       |
 |      -id      |       --id        |  TEXT   |   True   | The offer ID that you wish to cancel                                                                                     |
@@ -97,7 +97,7 @@ Usage: `chia wallet get_offers [OPTIONS]`
 Options:
 
 | Short Command |      Long Command      |  Type   | Required | Description                                                                                              |
-|:-------------:|:----------------------:|:-------:|:--------:|:-------------------------------------------------------------------------------------------------------- |
+| :-----------: | :--------------------: | :-----: | :------: | :------------------------------------------------------------------------------------------------------- |
 |      -wp      |   --wallet-rpc-port    | INTEGER |  False   | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 |      -f       |     --fingerprint      | INTEGER |  False   | Set the fingerprint to specify which wallet to use                                                       |
 |      -id      |          --id          |  TEXT   |  False   | The ID of the offer that you wish to examine                                                             |

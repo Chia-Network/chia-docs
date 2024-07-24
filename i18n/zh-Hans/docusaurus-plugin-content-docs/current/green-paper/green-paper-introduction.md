@@ -52,7 +52,7 @@ This assumption comes at a prize: there's a $1.47$ factor by which the adversari
 
 The bound in eq.(1) is not tight in the sense that we don't have an attack that works if we replace "$>$" with "$<$". We have an attack assuming giving the adversary a slightly lower boosting factor of $1.34$
 
-$$ \textrm{double spending in {\sf Chia}\ possible if : }space_h\cdot vdf_h < space_a \cdot vdf_a \cdot  1.34 $$
+$$ \textrm{double spending in {\sf Chia}\ possible if : }space_h\cdot vdf_h < space_a \cdot vdf_a \cdot 1.34 $$
 
 <div class="eqnumber">eq.(3)</div>
 

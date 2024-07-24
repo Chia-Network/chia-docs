@@ -31,12 +31,12 @@ The proof of space construction and the [Proof of Space page](/proof-of-space) c
 
 We can estimate the storage workload on a given drive capacity (measured in TB, terabytes) by knowing the k size selected and n number of plots that fit on the drive.
 
-| Drive size (TB) |  4 |  8 | 10 |  12 |  14 |  16 |  18 |  20 |
-| --------------- | --:| --:| --:| ---:| ---:| ---:| ---:| ---:|
-| k value         | 32 | 32 | 32 |  32 |  32 |  32 |  32 |  32 |
-| Number of plots | 36 | 73 | 91 | 110 | 128 | 146 | 165 | 183 |
-| k value         | 34 | 34 | 34 |  34 |  34 |  34 |  34 |  34 |
-| Number of plots |  8 | 17 | 21 |  25 |  30 |  34 |  38 |  43 |
+| Drive size (TB) |   4 |   8 |  10 |  12 |  14 |  16 |  18 |  20 |
+| --------------- | --: | --: | --: | --: | --: | --: | --: | --: |
+| k value         |  32 |  32 |  32 |  32 |  32 |  32 |  32 |  32 |
+| Number of plots |  36 |  73 |  91 | 110 | 128 | 146 | 165 | 183 |
+| k value         |  34 |  34 |  34 |  34 |  34 |  34 |  34 |  34 |
+| Number of plots |   8 |  17 |  21 |  25 |  30 |  34 |  38 |  43 |
 
 Events per day, plots passing filter = signage points per day ✕ n plots / filter constant number of reads =(Events per day, plots passing filter ✕ IO Proof quality check) +(IO Full proof of space ✕ Partials per day  
 IOPS average =number of reads per day / 86400 seconds MB read per day = Number of reads ✕ average IO size per request (kB) / 1000  
@@ -150,8 +150,8 @@ UBER is defined as "A metric for the rate of occurrence of data errors, equal to
 
 Consumer HDDs are rated for less than 1 error per 10<sup>14</sup> (sometimes shown as UBER of 10<sup>-14</sup>). This means that if a consumer reads on 800TB of data, they would expect a single read error on average.
 
-| Device         | UBER    | Data read per error |
-| -------------- | ------- | ------------------- |
+| Device         | UBER   | Data read per error |
+| -------------- | ------ | ------------------- |
 | Consumer HDD   | 10\-14 | 800 TB              |
 | Enterprise HDD | 10\-15 | 8 PB                |
 | SSD            | 10\-17 | 800 PB              |

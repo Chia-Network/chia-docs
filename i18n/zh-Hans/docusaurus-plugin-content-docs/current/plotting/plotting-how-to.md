@@ -74,7 +74,7 @@ You can also choose a custom name for your wallet. Click `NEXT` when you are fin
 
 If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place. Be sure to store your recovery phrase in a safe place.
 
-:::  
+:::
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/02.png" alt="Wallet seed phrase" />

@@ -24,7 +24,7 @@ Usage: chia wallet add_token [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -id           | --asset-id        | TEXT    | True     | The Asset ID of the coin you wish to add/rename (the treehash of the TAIL program)                           |
 | -n            | --token-name      | TEXT    | False    | The name you wish to designate to the token                                                                  |
@@ -63,7 +63,7 @@ Usage: chia wallet coins list [OPTIONS]
 Options:
 
 | Short Command | Long Command       | Type    | Required | Description                                                                                                       |
-|:------------- |:------------------ |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------- |
+| :------------ | :----------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- |
 | -p            | --wallet-rpc-port  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml      |
 | -f            | --fingerprint      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
 | -i            | --id               | INTEGER | False    | Id of the wallet to use [default: 1]                                                                              |
@@ -309,7 +309,7 @@ Usage: chia wallet coins combine [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                                                            |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -p            | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                           |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                     |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                                   |
@@ -801,7 +801,7 @@ Usage: chia wallet coins split [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -p            | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
@@ -913,7 +913,7 @@ Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                                         |
-|:------------- |:----------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                        |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                  |
@@ -1062,7 +1062,7 @@ Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
@@ -1094,7 +1094,7 @@ Usage: chia wallet get_address [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
@@ -1130,7 +1130,7 @@ Usage: chia wallet get_derivation_index [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
@@ -1161,7 +1161,7 @@ Usage: chia wallet get_transaction [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i,           | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
@@ -1199,7 +1199,7 @@ Usage: chia wallet get_transactions [OPTIONS]
 Options:
 
 | Short Command | Long Command        | Type    | Required | Description                                                                                                       |
-|:------------- |:------------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------- |
+| :------------ | :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port   | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml      |
 | -f            | --fingerprint       | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
 | -i            | --id                | INTEGER | False    | ID of the wallet to use [default: 1]                                                                              |
@@ -1209,7 +1209,7 @@ Options:
 |               | --paginate          | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
 |               | --no-paginate       | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
 |               | --sort-by-height    | None    | False    | Sort transactions by height [default: disabled]                                                                   |
-|               | --sort-by-relevance | None    | False    | Sort transactions by \{confirmed \| height \| time\} [default: disabled]                                      |
+|               | --sort-by-relevance | None    | False    | Sort transactions by \{confirmed \| height \| time\} [default: disabled]                                          |
 |               | --reverse           | None    | False    | Reverse the transaction ordering [default: disabled]                                                              |
 |               | --clawback          | None    | False    | Only show clawback transactions [default: disabled]                                                               |
 | -h            | --help              | None    | False    | Show a help message and exit                                                                                      |
@@ -1376,7 +1376,7 @@ Usage: chia wallet notifications delete [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --id              | TEXT    | False    | A specific notification ID to delete                                                                         |
@@ -1411,7 +1411,7 @@ Usage: chia wallet notifications get [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --id              | TEXT    | False    | The specific notification ID to show                                                                         |
@@ -1453,7 +1453,7 @@ Usage: chia wallet notifications send [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -t            | --to-address      | TEXT    | True     | The address to send the notification to                                                                      |
@@ -1490,7 +1490,7 @@ Usage: chia wallet send [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                                                           |
-|:------------- |:----------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                          |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                    |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                                  |
@@ -1590,12 +1590,12 @@ Usage: chia wallet show [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                                                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                                                                                                                                             |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                                                                                                       |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                                                                                                           |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                                                                                                                          |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                                                                                    |
 | -w            | --wallet_type     | TEXT    | False    | Choose a specific wallet type to return, choose from the following: [standard_wallet \| atomic_swap \| authorized_payee \| multi_sig \| custody \| cat \| recoverable \| decentralized_id \| pooling_wallet \| nft \| data_layer \| data_layer_offer] |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                                                                                                             |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                                                                                          |
 
 <details>
 <summary>Example</summary>
@@ -1654,7 +1654,7 @@ Usage: chia wallet sign_message [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -a            | --address         | TEXT    | True     | The address you want to use for signing                                                                      |
@@ -1689,7 +1689,7 @@ Usage: chia wallet update_derivation_index [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------ |
+| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --index           | INTEGER | True     | Index to set. Must be greater than the current derivation index                                              |

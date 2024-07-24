@@ -54,8 +54,8 @@ Options:
 
 Request Parameters:
 
-| Flag                             | Type       | Required | Description                  |
-| :------------------------------- | :--------- | :------- | :--------------------------- |
+| Flag        | Type       | Required | Description                  |
+| :---------- | :--------- | :------- | :--------------------------- |
 | header_hash | HEX STRING | True     | The header hash of the block |
 
 :::note
@@ -822,8 +822,8 @@ Options:
 
 Request Parameters:
 
-| Flag                             | Type       | Required | Description                                                                            |
-| :------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| Flag        | Type       | Required | Description                                         |
+| :---------- | :--------- | :------- | :-------------------------------------------------- |
 | header_hash | HEX STRING | True     | Header hash (block identifier) of the block to get. |
 
 <details>
@@ -1066,10 +1066,10 @@ Options:
 
 Request Parameters:
 
-| Flag                                                          | Type    | Required | Description                                                                                                                             |
-| :------------------------------------------------------------ | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| start                                                         | INTEGER | True     | The start height                                                                                                                        |
-| end                                                           | INTEGER | True     | The end height (non-inclusive)                                                                                       |
+| Flag                | Type    | Required | Description                                                         |
+| :------------------ | :------ | :------- | :------------------------------------------------------------------ |
+| start               | INTEGER | True     | The start height                                                    |
+| end                 | INTEGER | True     | The end height (non-inclusive)                                      |
 | exclude_header_hash | BOOLEAN | False    | Whether to exclude the header hash in the response [Default: false] |
 
 <details>
@@ -1390,8 +1390,8 @@ Options:
 
 Request Parameters:
 
-| Flag                             | Type       | Required | Description               |
-| :------------------------------- | :--------- | :------- | :------------------------ |
+| Flag        | Type       | Required | Description               |
+| :---------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
 <details>
@@ -1474,8 +1474,8 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type    | Required | Description                                       |
-| :---- | :------ | :------- | :------------------------------------------------ |
+| Flag  | Type    | Required | Description                    |
+| :---- | :------ | :------- | :----------------------------- |
 | start | INTEGER | True     | The start height (inclusive)   |
 | end   | INTEGER | True     | The end height (non-inclusive) |
 
@@ -1644,8 +1644,8 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                                     |
-| :----- | :------ | :------- | :-------------------------------------------------------------- |
+| Flag   | Type    | Required | Description                                 |
+| :----- | :------ | :------- | :------------------------------------------ |
 | height | INTEGER | True     | The height to get (must be \<= peak height) |
 
 :::note
@@ -1754,8 +1754,8 @@ Options:
 
 Request Parameters:
 
-| Flag                             | Type       | Required | Description               |
-| :------------------------------- | :--------- | :------- | :------------------------ |
+| Flag        | Type       | Required | Description               |
+| :---------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
 :::note
@@ -2012,8 +2012,8 @@ Options:
 
 Request Parameters:
 
-| Flag                             | Type       | Required | Description               |
-| :------------------------------- | :--------- | :------- | :------------------------ |
+| Flag        | Type       | Required | Description               |
+| :---------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
 :::note
@@ -2132,11 +2132,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                          | Type       | Required | Description                                                                            |
-| :------------------------------------------------------------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
-| hint                                                          | HEX STRING | True     | The hint to examine                                                                    |
-| start_height                             | INTEGER    | False    | The block height at which to begin the search                                          |
-| end_height                               | INTEGER    | False    | The block height at which to end the search                                            |
+| Flag                | Type       | Required | Description                                                         |
+| :------------------ | :--------- | :------- | :------------------------------------------------------------------ |
+| hint                | HEX STRING | True     | The hint to examine                                                 |
+| start_height        | INTEGER    | False    | The block height at which to begin the search                       |
+| end_height          | INTEGER    | False    | The block height at which to end the search                         |
 | include_spent_coins | BOOLEAN    | False    | A boolean indicating whether to include spent coins (default=false) |
 
 <details>
@@ -2203,11 +2203,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                          | Type             | Required | Description                                                                            |
-| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
-| names                                                         | HEX STRING ARRAY | True     | A list of coin_ids to examine                                     |
-| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
-| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
+| Flag                | Type             | Required | Description                                                         |
+| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
+| names               | HEX STRING ARRAY | True     | A list of coin_ids to examine                                       |
+| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
+| end_height          | INTEGER          | False    | The block height at which to end the search                         |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
 <details>
@@ -2274,11 +2274,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                          | Type             | Required | Description                                                                            |
-| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
-| parent_ids                               | HEX STRING ARRAY | True     | A list of parent IDs to examine                                                        |
-| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
-| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
+| Flag                | Type             | Required | Description                                                         |
+| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
+| parent_ids          | HEX STRING ARRAY | True     | A list of parent IDs to examine                                     |
+| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
+| end_height          | INTEGER          | False    | The block height at which to end the search                         |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
 <details>
@@ -2357,11 +2357,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                          | Type       | Required | Description                                                                            |
-| :------------------------------------------------------------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
-| puzzle_hash                              | HEX STRING | True     | The puzzle hash to search for                                                          |
-| start_height                             | INTEGER    | False    | The block height at which to begin the search                                          |
-| end_height                               | INTEGER    | False    | The block height at which to end the search                                            |
+| Flag                | Type       | Required | Description                                                         |
+| :------------------ | :--------- | :------- | :------------------------------------------------------------------ |
+| puzzle_hash         | HEX STRING | True     | The puzzle hash to search for                                       |
+| start_height        | INTEGER    | False    | The block height at which to begin the search                       |
+| end_height          | INTEGER    | False    | The block height at which to end the search                         |
 | include_spent_coins | BOOLEAN    | False    | A boolean indicating whether to include spent coins (default=false) |
 
 <details>
@@ -2464,11 +2464,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                          | Type             | Required | Description                                                                            |
-| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
-| puzzle_hashes                            | HEX STRING ARRAY | True     | An array of puzzle hashes to examine                                                   |
-| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
-| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
+| Flag                | Type             | Required | Description                                                         |
+| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
+| puzzle_hashes       | HEX STRING ARRAY | True     | An array of puzzle hashes to examine                                |
+| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
+| end_height          | INTEGER          | False    | The block height at which to end the search                         |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
 <details>
@@ -2607,11 +2607,11 @@ Options:
 
 Request Parameters:
 
-| Parameter                         | Type          | Required | Description                                                                                                                                                               |
-| :-------------------------------- | :------------ | :------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter    | Type          | Required | Description                                                                                                                         |
+| :----------- | :------------ | :------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | spend_bundle | FILENAME      | True\*   | The spend bundle file (in json format) for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified) |
-| cost                              | INTEGER       | True\*   | The CLVM cost for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified)                                             |
-| target_times | INTEGER ARRAY | True     | An array of the targeted times for transaction inclusion, in seconds. Each targeted time must be at least 0                                               |
+| cost         | INTEGER       | True\*   | The CLVM cost for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified)                          |
+| target_times | INTEGER ARRAY | True     | An array of the targeted times for transaction inclusion, in seconds. Each targeted time must be at least 0                         |
 
 :::note
 
@@ -2677,8 +2677,8 @@ Options:
 
 Request Parameters:
 
-| Flag                       | Type       | Required | Description                                                                     |
-| :------------------------- | :--------- | :------- | :------------------------------------------------------------------------------ |
+| Flag  | Type       | Required | Description                                                  |
+| :---- | :--------- | :------- | :----------------------------------------------------------- |
 | tx_id | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item |
 
 <details>
@@ -2851,8 +2851,8 @@ Options:
 
 Request Parameters:
 
-| Flag                           | Type   | Required | Description                                                                                        |
-| :----------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------- |
+| Flag      | Type   | Required | Description                                                                        |
+| :-------- | :----- | :------- | :--------------------------------------------------------------------------------- |
 | coin_name | STRING | True     | The ID of the coin to retreive. Must be in the mempool in order to return a result |
 
 <details>
@@ -3017,8 +3017,8 @@ Options:
 
 Request Parameters:
 
-| Flag                                                                                   | Type       | Required | Description           |
-| :------------------------------------------------------------------------------------- | :--------- | :------- | :-------------------- |
+| Flag                    | Type       | Required | Description           |
+| :---------------------- | :--------- | :------- | :-------------------- |
 | older_block_header_hash | HEX STRING | True     | The start header hash |
 | newer_block_header_hash | HEX STRING | True     | The end header hash   |
 
@@ -3066,10 +3066,10 @@ Options:
 
 Request Parameters:
 
-| Flag                         | Type       | Required | Description                        |
-| :--------------------------- | :--------- | :------- | :--------------------------------- |
+| Flag    | Type       | Required | Description                        |
+| :------ | :--------- | :------- | :--------------------------------- |
 | coin_id | HEX STRING | True     | Coin ID of the coin to look up     |
-| height                       | INTEGER    | True     | Height at which the coin was spent |
+| height  | INTEGER    | True     | Height at which the coin was spent |
 
 :::note
 
@@ -3126,10 +3126,10 @@ Options:
 
 Request Parameters:
 
-| Flag                                | Type       | Required | Description                                                                                                       |
-| :---------------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------------------- |
-| sp_hash        | HEX STRING | True\*   | The hash of the output for a signage point (if it's in the middle of a sub slot)               |
-| challenge_hash | HEX STRING | True\*   | The challenge_hash for the subslot (if it's an end of sub slot challenge) |
+| Flag           | Type       | Required | Description                                                                      |
+| :------------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| sp_hash        | HEX STRING | True\*   | The hash of the output for a signage point (if it's in the middle of a sub slot) |
+| challenge_hash | HEX STRING | True\*   | The challenge_hash for the subslot (if it's an end of sub slot challenge)        |
 
 :::note
 
@@ -3601,8 +3601,8 @@ Options:
 
 Request Parameters:
 
-| Flag                              | Type | Required | Description                     |
-| :-------------------------------- | :--- | :------- | :------------------------------ |
+| Flag         | Type | Required | Description                     |
+| :----------- | :--- | :------- | :------------------------------ |
 | spend_bundle | JSON | True     | Spend bundle to submit, in JSON |
 
 <details>

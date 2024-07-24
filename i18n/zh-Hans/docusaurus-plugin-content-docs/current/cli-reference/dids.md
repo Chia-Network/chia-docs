@@ -20,7 +20,7 @@ Usage: chia wallet did create [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -n            | --name            | TEXT    | False    | Set the DID wallet name [default: None]                                                                  |
@@ -85,15 +85,15 @@ Usage: chia wallet did find_lost [OPTIONS]
 
 Options:
 
-| Short Command | Long Command           | Type    | Required | Description                                                                                                                         |
-|:------------- |:---------------------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                            |
-| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                     |
-| -id           | --coin_id              | TEXT    | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
-| -m            | --metadata             | TEXT    | False    | The new whole metadata in json format                                                                                               |
+| Short Command | Long Command         | Type    | Required | Description                                                                                                                         |
+| :------------ | :------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port    | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                            |
+| -f            | --fingerprint        | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                     |
+| -id           | --coin_id            | TEXT    | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
+| -m            | --metadata           | TEXT    | False    | The new whole metadata in json format                                                                                               |
 | -r            | --recovery_list_hash | TEXT    | False    | Override the recovery list hash of the DID. Only set this if your last DID spend updated the recovery list                          |
-| -n            | --num_verification     | INTEGER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
-| -h            | --help                 | None    | False    | Show a help message and exit.                                                                                                       |
+| -n            | --num_verification   | INTEGER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
+| -h            | --help               | None    | False    | Show a help message and exit.                                                                                                       |
 
 <details>
 <summary>Example</summary>
@@ -123,7 +123,7 @@ Usage: chia wallet did get_details [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                 |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                          |
 | -id           | --coin_id         | TEXT    | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID                        |
@@ -170,7 +170,7 @@ Usage: chia wallet did get_did [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                  |
@@ -205,7 +205,7 @@ Usage: chia wallet did message_spend [OPTIONS]
 Options:
 
 | Short Command | Long Command           | Type    | Required | Description                                                                                              |
-|:------------- |:---------------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :--------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id                   | INTEGER | True     | ID of the wallet to use                                                                                  |
@@ -254,7 +254,7 @@ Usage: chia wallet did get_did [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                  |
@@ -323,7 +323,7 @@ Usage: chia wallet did sign_message [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --did_id          | TEXT    | True     | DID ID you want to use for signing                                                                       |
@@ -358,7 +358,7 @@ Usage: chia wallet did transfer [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | ID of the DID wallet to transfer                                                                         |
@@ -435,7 +435,7 @@ Usage: chia wallet did update_metadata [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | ID of the DID wallet to use                                                                              |

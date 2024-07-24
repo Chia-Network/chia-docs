@@ -229,7 +229,7 @@ The receiver's wallet will show a pending transaction, including the value, the 
 - While the transaction is in this state, it does not show up in any of the `Balance` fields in the receiver's wallet. This is because the sender can still claw it back. The receiver should therefore not assume the amount will eventually be claimed. This is because the sender can still claw it back. The receiver should therefore not assume the amount will eventually be claimed.
 - The timer showing how long until the transaction can be claimed does not begin counting down until the original transaction is confirmed on the blockchain.
 
-:::  
+:::
 
 <div style={{ textAlign: 'center' }}>
     <img

@@ -27,14 +27,14 @@ Usage: chia dao add \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                         |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml       |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                     |
-| -n            | --name            | TEXT    | False    | Set the DAO wallet name                                                                                                                                             |
-| -t            | --treasury-id     | TEXT    | True     | The Treasury ID of the DAO you want to track                                                                                                                        |
-| -a            | --filter-amount   | INTEGER | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1] |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                        |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -n            | --name            | TEXT    | False    | Set the DAO wallet name                                                                                  |
+| -t            | --treasury-id     | TEXT    | True     | The Treasury ID of the DAO you want to track                                                             |
+| -a            | --filter-amount   | INTEGER | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]           |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -136,21 +136,21 @@ Usage: chia dao add_funds \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO Treasury Wallet                                                                                                                                             |
-| -w            | --funding-wallet-id                   | INTEGER | True     | The ID of the wallet to send funds from (must be of type `STANDARD_WALLET`)                                                                            |
-| -a            | --amount                              | TEXT    | True     | The amount of funds to send, in XCH                                                                                                                                       |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO Treasury Wallet                                                                            |
+| -w            | --funding-wallet-id                   | INTEGER | True     | The ID of the wallet to send funds from (must be of type `STANDARD_WALLET`)                              |
+| -a            | --amount                              | TEXT    | True     | The amount of funds to send, in XCH                                                                      |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -251,12 +251,12 @@ Usage: chia dao balance \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                               |
-| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -283,21 +283,21 @@ Usage: chia dao close_proposal \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                                              |
-| :------------ | :------------------------------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                            |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                                          |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                                                                                                  |
-| -p            | --proposal-id                         | TEXT    | True     | The ID of the proposal you are voting on                                                                                                                                                 |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                                         |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------ |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml            |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                     |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                             |
+| -p            | --proposal-id                         | TEXT    | True     | The ID of the proposal you are voting on                                                                            |
 | -d            | --self-destruct                       | None    | False    | If this flag is set, it will self-destruct a broken proposal, thus forcing to force it to close \[default: not set] |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                    |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                   |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]                          |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]                |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                                  |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                                  |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                                           |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                                        |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                                             |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                             |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                             |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                      |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                   |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                                        |
 
 <details>
    <summary>Example</summary>
@@ -410,29 +410,29 @@ Usage: chia dao create \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                                                                                                                                                                                  |
-| :------------ | :------------------------------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                                                                                                                |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                                                                                                                                                                              |
-| -n            | --name                                | TEXT    | False    | Set the DAO wallet name                                                                                                                                                                                                                                                                                                      |
-|               | --proposal-timelock                   | INTEGER | False    | The minimum number of blocks before a proposal can close \[default: 1000]                                                                                                                                                                               |
-|               | --soft-close                          | INTEGER | False    | The number of blocks a proposal must remain unspent before closing \[default: 20]                                                                                                                                                                       |
-|               | --attendance-required                 | INTEGER | True     | The minimum number of votes a proposal must receive to be accepted                                                                                                                                                                                                                                                           |
-|               | --pass-percentage                     | INTEGER | False    | The percentage of 'yes' votes in basis points a proposal must receive to be accepted. 100% = 10000 \[default: 5000]                                                                                                                     |
-|               | --self-destruct                       | INTEGER | False    | The number of blocks required before a proposal can be automatically removed \[default: 10000]                                                                                                                                                          |
-|               | --oracle-delay                        | INTEGER | False    | The number of blocks required between oracle spends of the treasury \[default: 50]                                                                                                                                                                      |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                                                       |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                                          |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                                                   |
+| -n            | --name                                | TEXT    | False    | Set the DAO wallet name                                                                                                                                                                           |
+|               | --proposal-timelock                   | INTEGER | False    | The minimum number of blocks before a proposal can close \[default: 1000]                                                                                                                         |
+|               | --soft-close                          | INTEGER | False    | The number of blocks a proposal must remain unspent before closing \[default: 20]                                                                                                                 |
+|               | --attendance-required                 | INTEGER | True     | The minimum number of votes a proposal must receive to be accepted                                                                                                                                |
+|               | --pass-percentage                     | INTEGER | False    | The percentage of 'yes' votes in basis points a proposal must receive to be accepted. 100% = 10000 \[default: 5000]                                                                               |
+|               | --self-destruct                       | INTEGER | False    | The number of blocks required before a proposal can be automatically removed \[default: 10000]                                                                                                    |
+|               | --oracle-delay                        | INTEGER | False    | The number of blocks required between oracle spends of the treasury \[default: 50]                                                                                                                |
 |               | --proposal-minimum                    | INTEGER | False    | The minimum amount (in xch) that a proposal must use to be created (this is a spam-prevention measure; it will be donated to the treasury when the proposal is closed) \[default: 0.000000000001] |
-|               | --filter-amount                       | INTEGER | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]                                                                                                                                                          |
-|               | --cat-amount                          | INTEGER | True     | The number of DAO CATs (in mojos) to create when initializing the DAO                                                                                                                                                                                                                                     |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                                                                                                                                                        |
-|               | --fee-for-cat                         | TEXT    | False    | Set the fees for the CAT creation transaction, in XCH \[default: 0]                                                                                                                                                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]                                                                                                                                                              |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]                                                                                                                                                    |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                                                                                                                                                                      |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                                                                                                                                                                      |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                                                                                                                                                                               |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                                                                                                                                                                            |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                                                 |
+|               | --filter-amount                       | INTEGER | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]                                                                                                    |
+|               | --cat-amount                          | INTEGER | True     | The number of DAO CATs (in mojos) to create when initializing the DAO                                                                                                                             |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                                                                                                 |
+|               | --fee-for-cat                         | TEXT    | False    | Set the fees for the CAT creation transaction, in XCH \[default: 0]                                                                                                                               |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]                                                                                                        |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]                                                                                              |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                                           |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                                           |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                                                    |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                                                 |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                                                      |
 
 :::info
 
@@ -563,22 +563,22 @@ Usage: chia dao create_proposal \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet to use                                                                                                                                               |
-| -a            | --amount                              | INTEGER | True     | The amount of new cats the proposal will mint (in mojos)                                                                                               |
-| -t            | --to-address                          | TEXT    | True     | The address new cats will be minted to                                                                                                                                    |
-| -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                                                                                                |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet to use                                                                              |
+| -a            | --amount                              | INTEGER | True     | The amount of new cats the proposal will mint (in mojos)                                                 |
+| -t            | --to-address                          | TEXT    | True     | The address new cats will be minted to                                                                   |
+| -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                               |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 :::warning
 
@@ -682,24 +682,24 @@ Usage: chia dao create_proposal \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                                                                                   |
-| -t            | --to-address                          | TEXT    | False    | The address the proposal will send funds to                                                                                                                               |
-| -a            | --amount                              | FLOAT   | False    | The amount of funds the proposal will send (in mojos)                                                                                                  |
-| -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                                                                                                |
-|               | --asset-id                            | TEXT    | False    | The asset id of the funds the proposal will send. Leave blank for xch                                                                                     |
-| -j            | --from-json                           | TEXT    | False    | Path to a json file containing a list of additions, for use in proposals with multiple spends                                                                             |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -t            | --to-address                          | TEXT    | False    | The address the proposal will send funds to                                                              |
+| -a            | --amount                              | FLOAT   | False    | The amount of funds the proposal will send (in mojos)                                                    |
+| -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                               |
+|               | --asset-id                            | TEXT    | False    | The asset id of the funds the proposal will send. Leave blank for xch                                    |
+| -j            | --from-json                           | TEXT    | False    | Path to a json file containing a list of additions, for use in proposals with multiple spends            |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -818,26 +818,26 @@ Usage: chia dao create_proposal \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                                                                                   |
-| -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                                                                                                |
-|               | --proposal-timelock                   | INTEGER | False    | The new minimum number of blocks before a proposal can close                                                                                                              |
-|               | --soft-close                          | INTEGER | False    | The number of blocks a proposal must remain unspent before closing                                                                                                        |
-|               | --attendance-required                 | INTEGER | False    | The minimum number of votes a proposal must receive to be accepted                                                                                                        |
-|               | --pass-percentage                     | INTEGER | False    | The percentage of 'yes' votes in basis points a proposal must receive to be accepted. 100% = 10000                                                        |
-|               | --self-destruct                       | INTEGER | False    | The number of blocks required before a proposal can be automatically removed                                                                                              |
-|               | --oracle-delay                        | INTEGER | False    | The number of blocks required between oracle spends of the treasury                                                                                                       |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                               |
+|               | --proposal-timelock                   | INTEGER | False    | The new minimum number of blocks before a proposal can close                                             |
+|               | --soft-close                          | INTEGER | False    | The number of blocks a proposal must remain unspent before closing                                       |
+|               | --attendance-required                 | INTEGER | False    | The minimum number of votes a proposal must receive to be accepted                                       |
+|               | --pass-percentage                     | INTEGER | False    | The percentage of 'yes' votes in basis points a proposal must receive to be accepted. 100% = 10000       |
+|               | --self-destruct                       | INTEGER | False    | The number of blocks required before a proposal can be automatically removed                             |
+|               | --oracle-delay                        | INTEGER | False    | The number of blocks required between oracle spends of the treasury                                      |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -908,19 +908,19 @@ Usage: chia dao exit_lockup \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet from which to exit the lockup                                                                                                                        |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet from which to exit the lockup                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 This command will unlock tokens that have been locked for voting, provided that there are no active proposals that these CATs have voted on. This command will automatically determine which CATs are available to be unlocked.
 
@@ -1005,12 +1005,12 @@ Usage: chia dao get_id \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                               |
-| -i            | --wallet-id       | INTEGER | True     | ID of the DAO wallet which will receive the funds                                                                                                             |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the DAO wallet which will receive the funds                                                        |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -1039,13 +1039,13 @@ Usage: chia dao list_proposals \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                               |
-| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
-| -c            | --include-closed  | None    | False    | Set to include previously closed proposals \[Default: not set]                           |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -c            | --include-closed  | None    | False    | Set to include previously closed proposals \[Default: not set]                                           |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 This command will list all open proposals by default.
 If the `-c` flag is included, then all open _and_ closed proposals will be listed.
@@ -1083,20 +1083,20 @@ Usage: chia dao lockup_coins \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet to use                                                                                                                                               |
-| -a            | --amount                              | TEXT    | True     | The amount of CATs (not mojos) to lock in voting mode                                                                                                  |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet to use                                                                              |
+| -a            | --amount                              | TEXT    | True     | The amount of CATs (not mojos) to lock in voting mode                                                    |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 This command will lock the specified number of tokens, thereby making them available for voting.
 
@@ -1215,19 +1215,19 @@ Usage: chia dao release_coins \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                                                                                   |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -1308,12 +1308,12 @@ Usage: chia dao rules \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                               |
-| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
   <summary>Example</summary>
@@ -1346,13 +1346,13 @@ Usage: chia dao show_proposal \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                       | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :--------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                      | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                               |
-| -i            | --wallet-id                        | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
-| -p            | --proposal_id | TEXT    | True     | The ID of the proposal to fetch, obtainable by running the [list_proposals](#list_proposals) command                                     |
-| -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                                  |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id       | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -p            | --proposal_id     | TEXT    | True     | The ID of the proposal to fetch, obtainable by running the [list_proposals](#list_proposals) command     |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>
@@ -1391,22 +1391,22 @@ Usage: chia dao vote \[OPTIONS]
 
 Options:
 
-| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                               |
-| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml             |
-| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                           |
-| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                                                                                   |
-| -p            | --proposal-id                         | TEXT    | True     | The ID of the proposal you are voting on                                                                                                                                  |
-| -a            | --vote-amount                         | INTEGER | True     | The number of votes you want to cast                                                                                                                                      |
-| -n            | --vote-no                             | None    | False    | Use this option to vote against a proposal. If not present then the vote is for the proposal                                                              |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                     |
-|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]           |
-|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set] |
-| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                                                                                   |
-| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                                                                                   |
-|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                                                                                            |
-|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                         |
-| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                              |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                              |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
+| -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                  |
+| -p            | --proposal-id                         | TEXT    | True     | The ID of the proposal you are voting on                                                                 |
+| -a            | --vote-amount                         | INTEGER | True     | The number of votes you want to cast                                                                     |
+| -n            | --vote-no                             | None    | False    | Use this option to vote against a proposal. If not present then the vote is for the proposal             |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
+|               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
+| -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount, --max-amount       | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units                                                  |
+|               | --exclude-coin                        | TEXT    | False    | Exclude the coin with this ID from being spent                                                           |
+|               | --exclude-amount                      | TEXT    | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
    <summary>Example</summary>

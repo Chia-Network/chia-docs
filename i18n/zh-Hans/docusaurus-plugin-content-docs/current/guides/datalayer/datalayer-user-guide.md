@@ -278,7 +278,7 @@ Regardless of the status of `FULL NODE`, you may safely proceed with this tutori
 - Green dot = full node is synced
 - `FULL NODE` is missing = you are running in `Wallet Mode`
 
-:::  
+:::
 
 <div style={{ textAlign: 'center' }}>
     <img src="/img/data_layer/10_synced.png" alt="Synced wallet" />

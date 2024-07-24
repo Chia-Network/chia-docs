@@ -164,7 +164,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 - You can run either the light wallet or a full node.
 - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
 - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-:::
+  :::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
@@ -363,7 +363,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 - You can run either the light wallet or a full node.
 - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
 - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-:::
+  :::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 

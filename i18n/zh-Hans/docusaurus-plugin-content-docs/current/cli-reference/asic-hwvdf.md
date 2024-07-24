@@ -17,17 +17,17 @@ Usage: hw_vdf_client [OPTIONS] PORT [N_VDFS]
 
 Options:
 
-| Long Command       | Type    | Required | Description                                                                                                                            |
-| :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------- |
-| --freq             | INTEGER | False    | set ASIC frequency [%d, 200 - 2200]                                                |
-| --voltage          | INTEGER | False    | set board voltage [.88, 0.7 - 1.0] |
-| --ip               | TEXT    | False    | timelord IP address [localhost]                                                    |
-| --vdfs-mask        | TEXT    | False    | mask for enabling VDF engines [7, 1 - 7]                                           |
-| --vdf-threads      | TEXT    | False    | number of software threads per VDF engine [4, 2 - 64]                              |
-| --proof-threads    | TEXT    | False    | number of proof threads per VDF engine [3, 1 - 63]                                 |
-| --auto-freq-period | TEXT    | False    | auto-adjust frequency every N seconds [0, 10 - inf]                                |
-| --list             | TEXT    | False    | list available devices and exit                                                                                                        |
-| --help             | None    | False    | Show a help message and exit                                                                                                           |
+| Long Command       | Type    | Required | Description                                           |
+| :----------------- | :------ | :------- | :---------------------------------------------------- |
+| --freq             | INTEGER | False    | set ASIC frequency [%d, 200 - 2200]                   |
+| --voltage          | INTEGER | False    | set board voltage [.88, 0.7 - 1.0]                    |
+| --ip               | TEXT    | False    | timelord IP address [localhost]                       |
+| --vdfs-mask        | TEXT    | False    | mask for enabling VDF engines [7, 1 - 7]              |
+| --vdf-threads      | TEXT    | False    | number of software threads per VDF engine [4, 2 - 64] |
+| --proof-threads    | TEXT    | False    | number of proof threads per VDF engine [3, 1 - 63]    |
+| --auto-freq-period | TEXT    | False    | auto-adjust frequency every N seconds [0, 10 - inf]   |
+| --list             | TEXT    | False    | list available devices and exit                       |
+| --help             | None    | False    | Show a help message and exit                          |
 
 <details>
 <summary>Example 1 - Run the ASIC software with defaults</summary>

@@ -35,7 +35,7 @@ Configuration steps:
 - Delete the second key: `chia keys delete -f <fingerprint>`
   - /!\ **Caution**: make sure you have a backup of the 24 words mnemonic or you will lose access to the key for ever.
 - It should prompt a WARNING message like "Deleting private_key with fingerprint `<fingerprint>`" :::warning Using a farmer address which we don't have the private keys for. We searched the first 500 addresses. Consider overriding `<cold-storage-wallet-address>` with `<farmer-wallet-address>`
-:::
+  :::
 - Make sure the `<cold-storage-wallet-address>` corresponds to your second key wallet address.
 
 Your setup is complete. Your machine can farm XCH and rewards will be sent to the key that you stored on paper. Would you need to transfer funds you can add it back to your computer's Chia keychain by doing: `chia keys add`
