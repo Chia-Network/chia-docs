@@ -180,8 +180,10 @@ chia stop -d all
 # Deactivate the virtual environment
 deactivate
 
-# Remove the current virtual environment
+# Remove the current virtual environments
 rm -r venv
+rm -r .penv
+rm -r .venv
 
 # Pull the latest version
 git fetch
