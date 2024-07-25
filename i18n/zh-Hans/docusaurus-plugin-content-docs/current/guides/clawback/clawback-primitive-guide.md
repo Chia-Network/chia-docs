@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。
+This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。 欢迎钱包开发者将其整合到开发的GUI钱包中。
 
 有关其他技术资源，请参阅以下内容：
 
@@ -18,17 +18,17 @@ This document will show you how to use Chia's standalone clawback primitive. 欢
 
 :::warning 一些重要提醒
 
-- The standalone clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work.
-- Chia Network, Inc has added a user-friendly implementation of the clawback primitive to version 1.8.2 of the reference wallet.
+- The standalone clawback primitive doesn't implement wallet functionality to handle incoming clawbacks and resync deleted coin stores. Rather, it's for developers to understand the process of how clawbacks work. Rather, it's for developers to understand the process of how clawbacks work.
+- Chia Network Inc has added a user-friendly implementation of the clawback primitive to version 1.8.2 of the reference wallet.
 - A **synced full node** AND a synced wallet are required to use the clawback primitive.
-- You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use testnet10.
+- You are recommended to test the clawback primitive on either the testnet or a simulator before moving to mainnet. For your reference, this guide will use a testnet.
 - The clawback primitive currently only supports XCH/TXCH. It does not support CATs or NFTs. The `-w` flag will be ignored if it points to a non-XCH (or TXCH) wallet.
 
 :::
 
 ---
 
-### 关于可撤回交易（clawback）
+## 关于可撤回交易（clawback）
 
 可撤回交易原语的目的是防止将Chia资产发送到一个错误的地址。 可撤回交易的原理很简单：它是一种中间硬币，直到时间锁定过期之前，无法发送到目标地址。 与此同时，发送者可以"撤回"该硬币，将其以标准XCH的形式退回到他们的钱包中。
 
@@ -43,7 +43,7 @@ This document will show you how to use Chia's standalone clawback primitive. 欢
   - It contains Alice's address as its clawback destination (Alice -- and no one else -- can modify this later)
   - It contains Bob's address as its final destination (Bob -- and no one else -- can modify this later)
 - The clawback coin therefore contains the following logic for how it may be spent:
-  - Before 1 hour has elapsed since the coin's creation, Alice can use [p2_1_of_n](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_m_of_n_delegate_direct.clvm) to spend the coin using the same public/private key pair that created the coin. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case.
+  - Before 1 hour has elapsed since the coin's creation, Alice can use [p2_1_of_n](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_m_of_n_delegate_direct.clvm) to spend the coin using the same public/private key pair that created the coin. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case.
   - Before 1 hour has elapsed since the coin's creation, nobody other than Alice may spend it
   - After 1 hour, the timelock elapses. At this point Bob can spend the clawback coin. When this spend occurs, by default a new standard XCH coin is created in Bob's wallet. Bob can also pass in a different address than the one he originally specified if he so chooses.
   - Note that the coin's clawback logic is in place for the life of the coin. This means that until the coin is spent, Alice is able to claw it back. This is true regardless of the coin's age. Because of this, after the timelock expires, Bob must spend the clawback coin in order to receive the XCH in his wallet. After this spend has completed, the clawback coin no longer exists, and the spend is final.
@@ -66,7 +66,7 @@ The values used in the commands from this guide are just examples. You will need
 
 ---
 
-### Install the clawback primitive
+## Install the clawback primitive
 
 The clawback primitive is included in the `Chia-Network` organization's `chia-clawback-primitive` GitHub repository.
 
@@ -142,7 +142,7 @@ At this point, you are ready to use the clawback primitive.
 
 ---
 
-### Create a clawback coin
+## Create a clawback coin
 
 For this example, we will use two wallets: a Sender and a Recipient. The Sender has a balance of 10 TXCH and the Recipient has 0 TXCH.
 
@@ -209,7 +209,7 @@ Timelock: 600 seconds
 Time left: 518 seconds
 ```
 
-### Claw back a coin
+## Claw back a coin
 
 This guide will continue from the previous section, where we created a new clawback coin, which has not yet been spent. As a reminder, these are the clawback coin's details:
 
@@ -280,7 +280,7 @@ Chia Wallet:
 
 At this point, the clawback coin no longer exists. The Sender is of course free to create new clawback coins as they see fit.
 
-### Claim a clawback coin
+## Claim a clawback coin
 
 In this section, we'll show how to claim a clawback coin. First, the Sender creates a new clawback coin with a 60-second timelock:
 
@@ -392,7 +392,7 @@ However, there is a small window of time where the timer has expired, but a bloc
 You are trying to claim the coin too early
 ```
 
-In this case, the Recipient needs to wait for one more transaction block to be farmed before proceeding with the `claim` call. As a reminder, a new transaction block is farmed every 52 seconds, on average.
+In this case, the Recipient needs to wait for one more transaction block to be farmed before proceeding with the `claim` call. As a reminder, a new transaction block is farmed every 52 seconds, on average. As a reminder, a new transaction block is farmed every 52 seconds, on average.
 
 :::
 
@@ -442,11 +442,11 @@ The spend is now complete and can no longer be clawed back. The funds are stored
 
 ---
 
-### Other cases
+## Other cases
 
 So far, we have shown the standard clawback and completion spends. There are also a few edge cases and errors worth discussing.
 
-#### Sender performs a clawback after the timelock
+### Sender performs a clawback after the timelock
 
 After the timelock expires, the Recipient may claim the clawback coin. Until this is done, the Sender can still claw back the coin.
 
@@ -532,7 +532,7 @@ Chia Wallet:
 
 Because the Sender can always claw back a clawback coin while it exists, the Recipient cannot assume that they will receive the clawback coin, even after the timelock has expired. However, after the Recipient has claimed the clawback coin and it has appeared in the Recipient's wallet as regular XCH/TXCH, the coin can no longer be clawed back.
 
-#### Recipient attempts to claim clawback coin before timelock has expired
+### Recipient attempts to claim clawback coin before timelock has expired
 
 Before the timelock expires, a clawback coin may not be spent to its Recipient's address. For example, let's say the following clawback coin exists. Note that its `Time left:` is still greater than 0 seconds:
 
@@ -564,7 +564,7 @@ Result:
 You are trying to claim the coin too early
 ```
 
-#### Someone other than the Sender attempts to claw back a coin
+### Someone other than the Sender attempts to claw back a coin
 
 For this example, the Sender creates a new clawback coin:
 
@@ -653,7 +653,7 @@ Traceback (most recent call last):
 ValueError: Couldn't find a matching key for puzzle hash: ee3144040e80747af2f6ec56ed7567d22ca83ea3470e09bb9d95347a80cd2d29.
 ```
 
-#### Someone other than the Recipient attempts to claim a clawback spend
+### Someone other than the Recipient attempts to claim a clawback spend
 
 For this example, someone other than the Recipient is made aware of the Coin ID of a pending clawback coin:
 
@@ -715,7 +715,7 @@ Traceback (most recent call last):
 ValueError: Couldn't find a matching key for puzzle hash: c08dfae2aab3b3b3cbffdd4c1f1e4bf2df278785e5ca67524d6e518e79f134c3.
 ```
 
-#### Sender claws back coin to a new wallet
+### Sender claws back coin to a new wallet
 
 The Sender has the option of performing a clawback where the coin is sent to any wallet. Let's say the Sender creates a clawback coin:
 
@@ -763,7 +763,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-#### Recipient claims a clawback coin in a new wallet address
+### Recipient claims a clawback coin in a new wallet address
 
 The Recipient also has the option of spending a clawback coin to a new address.
 
@@ -833,7 +833,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-#### Sender or Recipient attempts to show a clawback coin before it has been created
+### Sender or Recipient attempts to show a clawback coin before it has been created
 
 Two important rules to keep in mind:
 

@@ -42,8 +42,6 @@ Options:
 |               | --compress          | INTEGER | False    | Compression level [Default: 0 (not compressed)]                                           |
 | -h            | --help              | None    | False    | Show a help message and exit                                                              |
 
----
-
 ### `madmax`
 
 Functionality: Use the madMAx plotter
@@ -112,7 +110,7 @@ Options:
 A few notes about the `disk-16` option:
 
 - As of BladeBit 3.0.1 (Chia 2.1.0), `disk-16` is experimental.
-- This option has been disabled in the Chia 2.1.0 release. It is currently only available from the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit.
+- This option has been disabled in the Chia 2.1.0 release. This option has been disabled in the Chia 2.1.0 release. It is currently only available from the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit.
 - Plots created with this option on Linux with direct I/O disabled appear to work, but more testing is still needed.
 - Plots created with this option on Windows are more likely to encounter issues.
 - Be sure to check all plots created with this option, as they could be invalid even if the plotter appeared to succeed.
@@ -121,15 +119,13 @@ A few notes about the `disk-16` option:
 
 :::info
 
-Computers with at least 256 GB of system memory should not use either the `disk-128` or `disk-16` options. They should also not use `tmp_dir` or `tmp_dir2`. In this case, plotting will be performed entirely in memory.
+Computers with at least 256 GB of system memory should not use either the `disk-128` or `disk-16` options. They should also not use `tmp_dir` or `tmp_dir2`. In this case, plotting will be performed entirely in memory. They should also not use `tmp_dir` or `tmp_dir2`. In this case, plotting will be performed entirely in memory.
 
-Computers with at least 128 GB of system memory (but less than 256 GB) should use the `disk-128`, `tmp_dir`, and `tmp_dir2` options. In this case, most of the plotting will be done in memory, and some will be done on disk.
+Computers with at least 128 GB of system memory (but less than 256 GB) should use the `disk-128`, `tmp_dir`, and `tmp_dir2` options. In this case, most of the plotting will be done in memory, and some will be done on disk. In this case, most of the plotting will be done in memory, and some will be done on disk.
 
-Linux computers with at least 16 GB of system memory (but less than 128 GB) can use the `disk-16`, `tmp_dir`, and `tmp_dir2` options. However, **do so at your own risk**. (See the above warning for details.) In this case, as much of the plotting as possible will be done in memory, and the rest will be done on disk.
+Linux computers with at least 16 GB of system memory (but less than 128 GB) can use the `disk-16`, `tmp_dir`, and `tmp_dir2` options. However, **do so at your own risk**. (See the above warning for details.) In this case, as much of the plotting as possible will be done in memory, and the rest will be done on disk. However, **do so at your own risk**. (See the above warning for details.) In this case, as much of the plotting as possible will be done in memory, and the rest will be done on disk.
 
 :::
-
----
 
 ### `ramplot`
 
@@ -154,8 +150,6 @@ Options:
 | -d            | --final_dir       | TEXT    | True     | Final directory after plot has been created                                              |
 |               | --compress        | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                         |
 | -h            | --help            | None    | False    | Show a help message and exit                                                             |
-
----
 
 ### `diskplot`
 
@@ -194,8 +188,6 @@ Options:
 |               | --compress        | INTEGER | False    | Compression level, 0-9 are accepted [Default: 1]                                                    |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                        |
 
----
-
 ### `simulate`
 
 Functionality: Determine your farm's maximum capacity; this command is **only** avaible with the [standalone version](https://github.com/Chia-Network/bladebit/) of BladeBit.
@@ -204,18 +196,94 @@ Usage: bladebit simulate [OPTIONS] \<plot_file_path>
 
 Options:
 
-| Short Command | Long Command | Type       | Required | Description                                                                    |
-| :------------ | :----------- | :--------- | :------- | :----------------------------------------------------------------------------- |
-| -n            | --iterations | INTEGER    | False    | The number of iterations to run [Default: 100]                                 |
-| -p            | --parallel   | INTEGER    | False    | The number of instances to run in parallel [Default: 1]                        |
-| -l            | --lookup     | FLOAT      | False    | Maximum allowed time per proof lookup, in seconds [Default: 8.00]              |
-| -f            | --filter     | INTEGER    | False    | Plot filter bit count [Default: 512]                                           |
-|               | --partials   | INTEGER    | False    | Partials per-day simulation [Default: 300]                                     |
-|               | --power      | INTEGER    | False    | Time in seconds to run power simulation. -n is set automatically in this mode. |
-| -s            | --size       | INTEGER    | False    | Size of farm. Only used when `--power` is set.                                 |
-|               | --seed       | HEX STRING | False    | 64 char hex string to use as a random seed for challenges                      |
-|               | --no-cuda    | None       | False    | If set, don't use CUDA for decompression. [Default: not set]                   |
-| -d            | --device     | INTEGER    | False    | Cuda device index, to be used when more than one device exists [Default: 0]    |
-| -h            | --help       | None       | False    | Show a help message and exit                                                   |
+| Short Command | Long Command | Type       | Required | Description                                                                                                          |
+| :------------ | :----------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------- |
+| -n            | --iterations | INTEGER    | False    | The number of iterations to run [Default: 100]                                                                       |
+| -p            | --parallel   | INTEGER    | False    | The number of instances to run in parallel [Default: 1]                                                              |
+| -l            | --lookup     | FLOAT      | False    | Maximum allowed time per proof lookup, in seconds [Default: 8.00]                                                    |
+| -f            | --filter     | INTEGER    | False    | Plot filter bit count [Default: 512]                                                                                 |
+|               | --partials   | INTEGER    | False    | Partials per-day simulation [Default: 300]                                                                           |
+|               | --power      | INTEGER    | False    | Time in seconds to run power simulation. -n is set automatically in this mode. -n is set automatically in this mode. |
+| -s            | --size       | INTEGER    | False    | Size of farm. Size of farm. Only used when `--power` is set.                                                         |
+|               | --seed       | HEX STRING | False    | 64 char hex string to use as a random seed for challenges                                                            |
+|               | --no-cuda    | None       | False    | If set, don't use CUDA for decompression. \[Default: not set\] \[Default: not set\]                                  |
+| -d            | --device     | INTEGER    | False    | Cuda device index, to be used when more than one device exists [Default: 0]                                          |
+| -h            | --help       | None       | False    | Show a help message and exit                                                                                         |
 
 ---
+
+## `drplotter`
+
+Functionality: Use the DrPlotter plotter
+
+Usage: drplotter \[plot | verify\] \[OPTIONS\]
+
+### `plot`
+
+Functionality: Plot with the DrPlotter plotter
+
+Usage: drplotter plot [OPTIONS]
+
+Options:
+
+| Short Command | Long Command       | Type    | Required | Description                                                                                                   |
+| :------------ | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------ |
+| -h            | --help             | None    | False    | Show a help message and exit                                                                                  |
+| -f            | --farmerkey        | TEXT    | True     | Farmer Public Key (48 bytes, hex encoded)                                                                     |
+| -c            | --contractkey      | TEXT    | True     | Pool Contract Address (64 chars, hex encoded)                                                                 |
+| -d            | --outputDirectory  | TEXT    | True     | Final directory after plot has been created                                                                   |
+|               | --compression      | TEXT    | False    | Set compression mode. Choose between eco3x (68 bits per proof), or pro4x (49 bits per proof) [Default: eco3x] |
+| -i            | --gpu_id           | INTEGER | False    | GPU ID to use [Default: 0]                                                                                    |
+| -n            | --n_to_plot        | INTEGER | False    | Number of plots to create [Default: 0, fills directory]                                                       |
+| -L            | --gpu_memory_limit | INTEGER | False    | GPU memory limit in MB [Default: 0 (disabled)]                                                                |
+|               | --min_gpu_ram      | None    | False    | Use min gpu ram                                                                                               |
+
+### `verify`
+
+Functionality: Verify plots with the DrPlotter plotter
+
+Usage: drplotter verify [OPTIONS]
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                  |
+| :------------ | :----------- | :--- | :------- | :--------------------------- |
+| -h            | --help       | None | False    | Show a help message and exit |
+| -f            | --file       | TEXT | False    | File to read from            |
+| -d            | --directory  | TEXT | False    | Check all files in directory |
+
+---
+
+## `drsolver`
+
+Functionality: Use the DrSolver harvester
+
+Usage: drsolver [OPTIONS]
+
+Options:
+
+| Short Command | Long Command     | Type    | Required | Description                                          |
+| :------------ | :--------------- | :------ | :------- | :--------------------------------------------------- |
+| -h            | --help           | None    | False    | Show a help message and exit                         |
+| -g            | --gpu            | INTEGER | True     | GPU ID to use for solving                            |
+| -v            | --verbose        | None    | False    | Verbose output                                       |
+| -t            | --token          | TEXT    | True     | Client token to use for registration                 |
+|               | --generate-token | None    | False    | Generate a client token                              |
+|               | --drserver-ip    | TEXT    | True     | Your own DrServer, at IP:PORT, e.g. 192.168.0.1:8080 |
+|               | --ssl            | BOOLEAN | False    | Use SSL for your solver server [Default: false]      |
+
+---
+
+## `drserver`
+
+Functionality: Use the DrServer harvester
+
+Usage: drserver [OPTIONS]
+
+Options:
+
+| Short Command | Long Command | Type    | Required | Description                  |
+| :------------ | :----------- | :------ | :------- | :--------------------------- |
+| -h            | --help       | None    | False    | Show a help message and exit |
+| -p            | --port       | INTEGER | True     | Server port                  |
+| -t            | --token      | TEXT    | True     | Server token                 |

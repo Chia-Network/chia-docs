@@ -19,7 +19,7 @@ In this section we finally outline the design of the $\textsf{Chia}$ blockchain
 
 ### 5.1.1 Variables
 
-| 变量             | Definition                                                                                                                 |
+| Variable         | Definition                                                                                                                 |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | $T_i$            | Time parameter of $i$-th slot (# of VDF steps per sub-slot). Recalibrated once per day for 10 minutes per sub-slot target. |
 | $\mathsf{spi}_i$ | $$\mathsf{spi}_i \stackrel{\text{\tiny def}}{=} \frac{T_i}{64}$$                                                           |
@@ -90,7 +90,8 @@ $$
 Here $\tau^{\cal CC}_i$ is the VDF computation for the $i$th slot. Usually its number of VDF steps is the current time parameter $T_i$ (and should take 10 minutes to compute), but in exceptional cases it can be an integer multiple $\kappa_i\in\mathbb{N}$ of that as we enforce a 16 block minimum per slot
 
 $$
-\tau^{\cal CC}_i.{\sf t} = \kappa_i\cdot T_i \qquad\textrm{typically $\kappa_i=1$}
+\tau^{\cal CC}_i.{\sf t} = \kappa_i\cdot T_i
+\qquad\textrm{typically $\kappa_i=1$}
 $$
 
 The value ${\sf ic}_i$ infused at the beginning of slot $i+1$ depends on the first block in slot $i$, we'll explain how exactly in §5.5.
@@ -116,7 +117,8 @@ The reward chain ${\cal RC}$ is a VDF chain that the time lords evaluate in para
 Whenever a farmer receives new signage points ${\sf cc\_sp}_{i,j},{\sf rc\_sp}_{i,j}$ they first check whether this points lie on a heaviest chain (cf. the discussion in §1.5) and their VDF proofs verify. If the this is the case, the farmer checks they can create a winning PoSpace proof. This process will, for a subset of the plots, produce a PoSpace $\sigma$ and some additional value $\sigma.{\sf required\_iterations}$. Whether this PoSpace is a winning proof is now determined by the time parameter $T_i$ as
 
 $$
-\textrm{winning condition : } \sigma.{\sf required\_iterations} < {\sf spi}_i\quad (=T_i/64)
+\textrm{winning condition : }
+\sigma.{\sf required\_iterations} < {\sf spi}_i\quad (=T_i/64)
 $$
 
 <div class="eqnumber">eq.(7)</div>
@@ -194,7 +196,8 @@ $$
 now the challenge $x$ is derived from the PoSpace in this block and the value of ${\cal CC}$ at the depth of its infusion point
 
 $$
-\quad x\gets {\sf VDF.sample}(\sigma,{\cal CC}[{\sf rc\_ip}(\beta_T).{\sf D}].{\sf y})
+\quad
+x\gets {\sf VDF.sample}(\sigma,{\cal CC}[{\sf rc\_ip}(\beta_T).{\sf D}].{\sf y})
 $$
 
 the number of steps $t$ is the the remaining number of VDF steps in the slot, so the value ${\sf ic}_i$ will be available at the end of the slot when it's required, but not earlier

@@ -445,6 +445,16 @@ Response:
   ],
   "success": true
 }
+        },
+        {
+          "error_code": 10,
+          "error_message": "Farmer with launcher_id 55244acf3017c2fc245020b46600827047dce8f54c982adaf95248ff2e955ad8 unknown."
+        }
+      ]
+    }
+  ],
+  "success": true
+}
 ```
 
 </details>

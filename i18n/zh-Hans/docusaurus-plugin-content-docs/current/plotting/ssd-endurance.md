@@ -3,7 +3,7 @@ title: SSD的耐久性
 slug: /ssd-endurance
 ---
 
-The fastest plot creation is done completely in memory, but requires a server with a large amount of DRAM (256 GB for BladeBit CUDA, or 416 GB for BladeBit RAM). Most consumer motherboards don't support this much memory, so temporary storage must be used. This typically comes in the form of an SSD.
+The fastest plot creation is done completely in memory, but requires a server with a large amount of DRAM (256 GB for BladeBit CUDA, or 416 GB for BladeBit RAM). Most consumer motherboards don't support this much memory, so temporary storage must be used. This typically comes in the form of an SSD. Most consumer motherboards don't support this much memory, so temporary storage must be used. This typically comes in the form of an SSD.
 
 当今的主流SSD使用NAND闪存技术来存储数据。 NAND具有高性能、可扩展性和低成本，适用于几乎所有的计算领域，包括手机、SD卡、消费级笔记本电脑和数据中心。 However, NAND must be erased before the cell is programmed, a process known as a program erase cycle. This can only be performed a certain amount of times before the NAND cell wears out and can no longer reliably store user data. 一般来说，这被定义为SSD不再满足UBER(不可纠正位错误率)、保持时间(在给定温度下，设备在关机状态下可以安全地存储用户数据的时间)或功能故障(设备不能再开机)的条件。
 
@@ -25,7 +25,7 @@ The fastest plot creation is done completely in memory, but requires a server wi
 | Bladebit Disk       | 0             | 1.225 TBW      |
 | Bladebit Disk       | \>99G         | 0.381 TBW      |
 
-Consumer NVMe SSDs are generally not recommended due to their lower endurance, and they often employ caching algorithms to faster media (SLC, or single level cell) for great bursty performance. They do not perform well under heavy workload sustained I/O. 虽然有一些高性能的消费级NVMe SSD可以提供出色的生成地块性能，但较低的TBW将导致更快的磨损。
+Consumer NVMe SSDs are generally not recommended due to their lower endurance, and they often employ caching algorithms to faster media (SLC, or single level cell) for great bursty performance. They do not perform well under heavy workload sustained I/O. 虽然有一些高性能的消费级NVMe SSD可以提供出色的生成地块性能，但较低的TBW将导致更快的磨损。 They do not perform well under heavy workload sustained I/O. 虽然有一些高性能的消费级NVMe SSD可以提供出色的生成地块性能，但较低的TBW将导致更快的磨损。
 
 这里有一些[耐久性示例](https://docs.google.com/spreadsheets/d/1mNUYRWeJUaijEZXupwP5k6IuATZGj1FB/edit#gid=1857251151)。
 

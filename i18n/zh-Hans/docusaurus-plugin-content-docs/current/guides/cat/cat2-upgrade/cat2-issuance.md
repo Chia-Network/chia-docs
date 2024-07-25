@@ -31,15 +31,15 @@ Now that you have a CSV file containing the necessary information, you can run t
 
 1. Open a new terminal window and run the following to clone the CAT Admin Tool repository, using the `main` branch:
 
-   ```bash
-   git clone https://github.com/Chia-Network/CAT-admin-tool.git -b main
-   ```
+```bash
+git clone https://github.com/Chia-Network/CAT-admin-tool.git -b main
+```
 
 2. Change to the cloned repository:
 
-   ```bash
-   cd CAT-admin-tool
-   ```
+```bash
+cd CAT-admin-tool
+```
 
 3. Create a new virtual environment and then activate it:
 
@@ -60,22 +60,22 @@ python -m venv venv
 
   </TabItem>
   <TabItem value="linux">
-
-```bash
+  
+  ```bash
 python3 -m venv venv
 . ./venv/bin/activate
-```
-
+  ```
+  
   </TabItem>
   <TabItem value="macos">
-
-```bash
+  
+  ```bash
 python3 -m venv venv
 . ./venv/bin/activate
-```
-
+  ```
+  
   </TabItem>
-</Tabs>
+  </Tabs>
 
 4. Install the latest versions of `pip`, `setuptools` and `wheel`:
 
@@ -95,37 +95,36 @@ python -m pip install --upgrade pip setuptools wheel
 
   </TabItem>
   <TabItem value="linux">
-
-```bash
+  
+  ```bash
 python3 -m pip install --upgrade pip setuptools wheel
 ```
-
+  
   </TabItem>
   <TabItem value="macos">
-
-```bash
+  
+  ```bash
 python3 -m pip install --upgrade pip setuptools wheel
 ```
-
+  
   </TabItem>
-</Tabs>
+  </Tabs>
 
 5. Install the CAT Admin Tool:
 
-   ```bash
-   pip install .
+```bash
+pip install .
+pip install .
    pip install chia-dev-tools --no-deps
    pip install pytest
-   ```
+```
 
-   :::note You can safely ignore the following errors:
+:::note You can safely ignore the following errors:
 
-   ```
-   ERROR: Failed building wheel for CAT-admin-tool
+```
+ERROR: Failed building wheel for CAT-admin-tool
    ERROR: pip's dependency resolver...
-   ```
-
-   :::
+```
 
 :::tip
 Python 3.9+ may be required on macOS
@@ -133,12 +132,12 @@ Python 3.9+ may be required on macOS
 
 6. The CAT Admin Tool should now be installed and configured properly. To test it, run:
 
-   ```bash
-   cats --help
+```bash
+cats --help
    cdv --help
-   ```
+```
 
-   You should get a usage statement for each command. At this point, you're ready to create your new CAT2 coins.
+You should get a usage statement for each command. At this point, you're ready to create your new CAT2 coins.
 
 ## Secure the Bag (Single Issuance) {#secure-single}
 
@@ -151,10 +150,10 @@ This section will show you how to create a tree of CAT2 coins that are identical
 If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1 will show you how to view the TAIL that was used to create it.
 
 1. Figure out the total number of XCH mojos that were issued for your CAT1.
-   - Navigate to [taildatabase.com](https://www.taildatabase.com).
-   - Search for your CAT. We'll use Spacebucks for this example.
-   - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 trillion (1,000,000,000,000) XCH mojos.
 
+- Navigate to [taildatabase.com](https://www.taildatabase.com).
+- Search for your CAT. We'll use Spacebucks for this example.
+- You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 trillion (1,000,000,000,000) XCH mojos.
 - Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
@@ -169,21 +168,21 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
-   From a terminal window you'll need to run the `cats` command. The arguments needed for this command include:
+From a terminal window you'll need to run the `cats` command. The arguments needed for this command include:
 
-   - `--tail` – The TAIL program that was originally used (usually this is `genesis_by_coin_id`), in hex file format.
-   - `--send-to` – Where to send the tokens when they are initially issued. This is a placeholder only – you can enter any XCH address here. The value is required, but it will be ignored.
-   - `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
-   - `--as-bytes` – This tells the tool to output the spend bundle in bytes instead of JSON.
-   - `--select-coin` – This tells the tool to select a specific coin from your wallet.
+- `--tail` – The TAIL program that was originally used (usually this is `genesis_by_coin_id`), in hex file format.
+- `--send-to` – Where to send the tokens when they are initially issued. This is a placeholder only – you can enter any XCH address here. The value is required, but it will be ignored.
+- `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
+- `--as-bytes` – This tells the tool to output the spend bundle in bytes instead of JSON.
+- `--select-coin` – This tells the tool to select a specific coin from your wallet.
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   cats --tail <HEX-FILE> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --select-coin
-   ```
+```bash
+cats --tail <HEX-FILE> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --select-coin
+```
 
-   Here's an example of the command to reissue Spacebucks:
+Here's an example of the command to reissue Spacebucks:
 
 <Tabs
 defaultValue="windows"
@@ -208,13 +207,13 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4
 
   </TabItem>
   <TabItem value="macos">
-
-```bash
-cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+  
+  ```bash
+cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 The last line of the output will be something like:
 
@@ -226,18 +225,18 @@ This is the Coin ID of the coin that you will use for reissuance. Keep this valu
 
 4. Obtain the target puzzle hash by running the "secure_the_bag" command. The important arguments here are:
 
-   - `--tail` – The TAIL program that was originally used (usually this is `genesis_by_coin_id`), in hex file format.
-   - `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
-   - `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
-   - `--curry` – The value of `Name:` from the above output. Note that you need to prepend `0x` to this argument, so for the above example, this value would start with `0x8f4`.
+- `--tail` – The TAIL program that was originally used (usually this is `genesis_by_coin_id`), in hex file format.
+- `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
+- `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
+- `--curry` – The value of `Name:` from the above output. Note that you need to prepend `0x` to this argument, so for the above example, this value would start with `0x8f4`.
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   secure_the_bag --tail <HEX-FILE> --amount <AMOUNT> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --prefix xch --curry <COIN-ID>
-   ```
+```bash
+secure_the_bag --tail <HEX-FILE> --amount <AMOUNT> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --prefix xch --curry <COIN-ID>
+```
 
-   Here's an example of the command to secure the bag for Spacebucks:
+Here's an example of the command to secure the bag for Spacebucks:
 
 <Tabs
 defaultValue="windows"
@@ -268,7 +267,7 @@ secure_the_bag --tail ./reference_tails/genesis_by_coin_id.clsp.hex --amount 100
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
 
@@ -283,15 +282,15 @@ You'll need both of these values later.
 
 5. Push the transaction to the network. This will actually create the coin tree (_Secure the Bag_). The arguments are the same as above, with one exception:
 
-   `--send-to` – The XCH address from the "Secure the bag root address:" of the above output
+`--send-to` – The XCH address from the "Secure the bag root address:" of the above output
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   cats --tail <TAIL hex file> --send-to <root address> --amount <amount in mojos> --as-bytes --curry <0x Coin ID>
-   ```
+```bash
+cats --tail <TAIL hex file> --send-to <root address> --amount <amount in mojos> --as-bytes --curry <0x Coin ID>
+```
 
-   For this example, the command looks like this:
+For this example, the command looks like this:
 
 <Tabs
 defaultValue="windows"
@@ -322,7 +321,7 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch19k6cl5sy
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 You will need to confirm that you want to push the transaction, then you will receive the `Asset ID` and `Eve Coin ID`. For this example, the following was the result:
 
@@ -351,10 +350,10 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 1. Figure out the total number of XCH mojos that were issued for your CAT1.
 
-   - Navigate to [taildatabase.com](https://www.taildatabase.com).
-   - Search for your CAT.
-   - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. In this example, we'll use an issuance of 6 million (6,000,000) tokens, which is equivalent to 6 billion (6,000,000,000) XCH mojos.
-   - Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+- Navigate to [taildatabase.com](https://www.taildatabase.com).
+- Search for your CAT.
+- You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. In this example, we'll use an issuance of 6 million (6,000,000) tokens, which is equivalent to 6 billion (6,000,000,000) XCH mojos.
+- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
@@ -368,21 +367,21 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
-   From a terminal window you'll need to run the `cats` command. The arguments needed for this command include:
+From a terminal window you'll need to run the `cats` command. The arguments needed for this command include:
 
-   - `--tail` – The TAIL program that was originally used (usually this is `delegated_tail`), in hex file format.
-   - `--send-to` – Where to send the tokens when they are initially issued. This is a placeholder only – you can enter any XCH address here. The value is required, but it will be ignored.
-   - `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
-   - `--as-bytes` – This tells the tool to output the spend bundle in bytes instead of JSON.
-   - `--select-coin` – This tells the tool to select a specific coin from your wallet.
+- `--tail` – The TAIL program that was originally used (usually this is `delegated_tail`), in hex file format.
+- `--send-to` – Where to send the tokens when they are initially issued. This is a placeholder only – you can enter any XCH address here. The value is required, but it will be ignored.
+- `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
+- `--as-bytes` – This tells the tool to output the spend bundle in bytes instead of JSON.
+- `--select-coin` – This tells the tool to select a specific coin from your wallet.
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   cats --tail <HEX-FILE> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --select-coin
-   ```
+```bash
+cats --tail <HEX-FILE> --send-to <ADDRESS> --amount <AMOUNT> --as-bytes --select-coin
+```
 
-   Here's an example of the command:
+Here's an example of the command:
 
 <Tabs
 defaultValue="windows"
@@ -413,7 +412,7 @@ cats --tail ./reference_tails/delegated_tail.clsp.hex --send-to xch1rh6punh4fy70
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 The last line of the output will be something like:
 
@@ -425,18 +424,18 @@ This is the Coin ID of the coin that you will use for reissuance. Keep this valu
 
 4. Obtain the target puzzle hash by running the "secure_the_bag" command. The important arguments here are:
 
-   - `--tail` – The TAIL program that was originally used (usually this is `delegated_tail`), in hex file format.
-   - `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
-   - `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
-   - `--curry` – The value of `Name:` from the above output. Note that you need to prepend `0x` to this argument, so for the above example, this value would start with `0x110`.
+- `--tail` – The TAIL program that was originally used (usually this is `delegated_tail`), in hex file format.
+- `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
+- `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
+- `--curry` – The value of `Name:` from the above output. Note that you need to prepend `0x` to this argument, so for the above example, this value would start with `0x110`.
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   secure_the_bag --tail <HEX-FILE> --amount <AMOUNT> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --prefix xch --curry <COIN-ID>
-   ```
+```bash
+secure_the_bag --tail <HEX-FILE> --amount <AMOUNT> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --prefix xch --curry <COIN-ID>
+```
 
-   Here's an example of the command to secure the bag:
+Here's an example of the command to secure the bag:
 
 <Tabs
 defaultValue="windows"
@@ -467,7 +466,7 @@ secure_the_bag --tail ./reference_tails/delegated_tail.clsp.hex --amount 6000000
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 The command will create a tree of coins. This could take a long time, depending on how many coins need to be created. While it's in progress, it will output the percent complete. After it is finished, it will output the puzzle hash and address of the new coin to be created.
 
@@ -482,13 +481,13 @@ You should now have obtained the `Secure the bag root puzzle hash` and the `Secu
 
 5. Using the coin ID obtained from the `cats` command above, curry the ID into the `genesis_by_coin_id` puzzle.
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   cdv clsp curry <HEX-FILE> -a <COIN-ID>
-   ```
+```bash
+cdv clsp curry <HEX-FILE> -a <COIN-ID>
+```
 
-   In this example, the command will be:
+In this example, the command will be:
 
 <Tabs
 defaultValue="windows"
@@ -519,7 +518,7 @@ cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 The output will be a new CLVM puzzle:
 
@@ -560,7 +559,7 @@ cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x11038a7e107cb7
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 The output will be the treehash of the puzzle you calculated in the previous step:
 
@@ -570,46 +569,46 @@ The output will be the treehash of the puzzle you calculated in the previous ste
 
 7. Sign the treehash that you just calculated. This will effectively sign the puzzle containing the coin you selected.
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   chia keys sign -d <TREEHASH> -f <FINGERPRINT> -t m -b
-   ```
+```bash
+chia keys sign -d <TREEHASH> -f <FINGERPRINT> -t m -b
+```
 
-   Where `<FINGERPRINT>` is the fingerprint of the wallet that holds the coin you previously selected. This fingerprint can be obtained by running `chia keys show`.
+Where `<FINGERPRINT>` is the fingerprint of the wallet that holds the coin you previously selected. This fingerprint can be obtained by running `chia keys show`.
 
-   For this example, the command is:
+For this example, the command is:
 
-   ```bash
-   chia keys sign -d 3a56fa8cdf70dfd0e894af58359d72cb04658a1b0628a4ffe0dcc02099c9863b -f 1131363750 -t m -b
-   ```
+```bash
+chia keys sign -d 3a56fa8cdf70dfd0e894af58359d72cb04658a1b0628a4ffe0dcc02099c9863b -f 1131363750 -t m -b
+```
 
-   The output will be the public key used for signing, as well as the signature obtained:
+The output will be the public key used for signing, as well as the signature obtained:
 
-   ```
-   Public key: 8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b
+```
+Public key: 8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b
    Signature: b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
-   ```
+```
 
 8. The final step is to create the coin using the `secure the bag root address` as the target address.
 
-   The command to run is:
+The command to run is:
 
-   ```
-   cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "<curry command output>" --signature <signature>
-   ```
+```
+cats --tail <HEX-FILE> --curry <PUBLIC-KEY> --send-to <Secure the bag root address> --amount <amount in mojos> --as-bytes --solution "<curry command output>" --signature <signature>
+```
 
-   The arguments needed are:
+The arguments needed are:
 
-   - `--tail` – The TAIL program that was originally used (usually this is `delegated_tail`), in hex file format.
-   - `--curry` – The public key obtained in the previous step. Be sure to prefix it with `0x`.
-   - `--send-to` – The `secure the bag root address`, obtained from in a previous step.
-   - `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
-   - `--as-bytes` – Output the spend bundle in bytes (don't change this).
-   - `--solution` – The output of the `curry` command from a previous step (in quotes).
-   - `--signature` – The signature obtained from the previous step.
+- `--tail` – The TAIL program that was originally used (usually this is `delegated_tail`), in hex file format.
+- `--curry` – The public key obtained in the previous step. Be sure to prefix it with `0x`.
+- `--send-to` – The `secure the bag root address`, obtained from in a previous step.
+- `--amount` – The total number of mojos for this issuance. You need to have this many mojos in your wallet. This number must match the actual number of mojos that were originally issued.
+- `--as-bytes` – Output the spend bundle in bytes (don't change this).
+- `--solution` – The output of the `curry` command from a previous step (in quotes).
+- `--signature` – The signature obtained from the previous step.
 
-   For this example, the command to execute is:
+For this example, the command to execute is:
 
 <Tabs
 defaultValue="windows"
@@ -640,7 +639,7 @@ cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b9
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 The output of this command will contain the Asset ID and Eve Coin ID for your issuance:
 
@@ -710,7 +709,7 @@ unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde66
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 This command could take a long time to finish running. Afterward, you will have an exact copy of your CAT1 issuance, but in CAT2 form.
 
@@ -726,50 +725,50 @@ At this point, you can navigate to [taildatabase.com](https://www.taildatabase.c
 
 1. We used Spacebucks in the single-issuance example, so we'll obtain the puzzle hash of a wallet that contains some CAT1 Spacebucks. First, run:
 
-   ```bash
-   chia keys show
-   ```
+```bash
+chia keys show
+```
 
-   This will show the `First wallet address` of the key pair that contains Spacebucks:
+This will show the `First wallet address` of the key pair that contains Spacebucks:
 
-   ```
-   First wallet address: xch1qzz5xrd05698f2n2tt4qm500kys6p4w79ph7s2xrlau3drfugl3qqh9j4l
-   ```
+```
+First wallet address: xch1qzz5xrd05698f2n2tt4qm500kys6p4w79ph7s2xrlau3drfugl3qqh9j4l
+```
 
 2. Use the `cdv decode` command to obtain the puzzle hash that corresponds to this wallet address:
 
-   ```bash
-   cdv decode xch1qzz5xrd05698f2n2tt4qm500kys6p4w79ph7s2xrlau3drfugl3qqh9j4l
-   ```
+```bash
+cdv decode xch1qzz5xrd05698f2n2tt4qm500kys6p4w79ph7s2xrlau3drfugl3qqh9j4l
+```
 
-   Which outputs:
+Which outputs:
 
-   ```
-   0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
-   ```
+```
+0085430dafa68a74aa6a5aea0dd1efb121a0d5de286fe828c3ff79168d3c47e2
+```
 
 3. If you want to verify that the puzzle hash is actually due to receive some tokens, you can check the CSV file. In this case, puzzle hash `0085...` should receive 42 thousand (42,000) barfs.
 
 4. Run the `unwind_the_bag` command to send the appropriate amount to that puzzle hash. Be sure to run this command from the wallet that has the appropriate funds in it.
 
-   The important values for this command are:
+The important values for this command are:
 
-   - `--eve-coin-id` – Obtained from the final "secure the bag" command above.
-   - `--tail-hash` – The `Asset ID:` from the final "secure the bag" command above.
-   - `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
-   - `--unwind-fee` – An optional blockchain fee in mojos, will be applied to each spend.
-   - `--wallet-id` – The ID of the wallet from which to unwind (typically `1`).
-   - `--unwind-target-puzzle-hash` – The puzzle hash obtained from the `cdv decode` command above.
+- `--eve-coin-id` – Obtained from the final "secure the bag" command above.
+- `--tail-hash` – The `Asset ID:` from the final "secure the bag" command above.
+- `--secure-the-bag-targets-path` – The full path to the CSV file that contains the snapshot of this CAT.
+- `--unwind-fee` – An optional blockchain fee in mojos, will be applied to each spend.
+- `--wallet-id` – The ID of the wallet from which to unwind (typically `1`).
+- `--unwind-target-puzzle-hash` – The puzzle hash obtained from the `cdv decode` command above.
 
-   The command to run is:
+The command to run is:
 
-   ```bash
-   unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID> --unwind-target-puzzle-hash <PUZZLE-HASH>
-   ```
+```bash
+unwind_the_bag --eve-coin-id <EVE-COIN-ID> --tail-hash <ASSET-ID> --secure-the-bag-targets-path <PATH-TO-CSV-FILE> --unwind-fee <FEE> --wallet-id <WALLET-ID> --unwind-target-puzzle-hash <PUZZLE-HASH>
+```
 
-   You may have noticed that this command is identical to [the command that unwinds the whole bag](#unwind), with the addition of the `--unwind-target-puzzle-hash` flag that ensures only coins are sent to a specific address.
+You may have noticed that this command is identical to [the command that unwinds the whole bag](#unwind), with the addition of the `--unwind-target-puzzle-hash` flag that ensures only coins are sent to a specific address.
 
-   In this example, the command to unwind the bag is:
+In this example, the command to unwind the bag is:
 
 <Tabs
 defaultValue="windows"
@@ -800,14 +799,14 @@ unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde66
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 This command could take a long time, depending on the total number of coins to unwind. You will need to verify the spend of each individual coin to unwind, and the command will monitor the blockchain for the coin(s) to be spent.
 
 The end result should be that the appropriate number of coins are sent to the puzzle hash, which you can then verify in your Chia wallet (assuming you control that wallet).
 
 :::note
-Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
+Each puzzle hash in the bag can only receive one airdrop. When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop. ::: When you later unwind the bag for each puzzle hash, any puzzle hashes that have already received an airdrop will be skipped. They will _not_ receive a second airdrop.
 :::
 
 5. The puzzle hashes from the CSV file are actually _inner_ puzzle hashes, so searching for them on chain using `cdv rpc coinrecords` is more complex than it normally would be. However, you can still verify that the bag was successfully unwound for that puzzle hash by searching for the hint:
@@ -841,7 +840,7 @@ chia rpc full_node get_coin_records_by_hint '{"hint": "<puzzle hash obtained in 
 ```
 
   </TabItem>
-</Tabs>
+  </Tabs>
 
 You should see matching coin_records for each entry in the CSV file, along with its corresponding value.
 

@@ -3,6 +3,8 @@ title: Networking Protocol
 slug: /networking-protocol
 ---
 
+[Shared networking protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/shared_protocol.py)
+
 The Chia protocol is asynchronous and peer-to-peer. It runs on top of WebSockets on port 8444 (or other ports for farmers and timelords). All nodes act as both clients and servers, and can maintain long-term connections with other peers.
 
 Every message in the Chia protocol is composed of bytes, using the Streamable format, and sent as a WebSocket message. Each message is composed of three parts:
@@ -48,6 +50,8 @@ Heartbeat messages are sent periodically by the WebSocket libraries. Peers that 
 If a node does not receive any message from a peer for a certain period of time, even if heartbeats are being received, then the node will disconnect and remove the peer from the active peer list.
 
 ## Introducer
+
+Please refer to the [chia seeder documentation](https://docs.chia.net/guides/seeder-user-guide/) for more information on setting up you own chia seeder / introducer and how to have it included in the default chia config.yaml.
 
 When a new node joins the network, it randomly connects to existing nodes on the network.
 

@@ -143,7 +143,7 @@ Options:
 | -i            | --wallet-id                           | INTEGER | True     | ID of the DAO Treasury Wallet                                                                            |
 | -w            | --funding-wallet-id                   | INTEGER | True     | The ID of the wallet to send funds from (must be of type `STANDARD_WALLET`)                              |
 | -a            | --amount                              | TEXT    | True     | The amount of funds to send, in XCH                                                                      |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
@@ -290,7 +290,7 @@ Options:
 | -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                             |
 | -p            | --proposal-id                         | TEXT    | True     | The ID of the proposal you are voting on                                                                            |
 | -d            | --self-destruct                       | None    | False    | If this flag is set, it will self-destruct a broken proposal, thus forcing to force it to close \[default: not set] |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                                  |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                   |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]                          |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]                |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                             |
@@ -424,7 +424,7 @@ Options:
 |               | --proposal-minimum                    | INTEGER | False    | The minimum amount (in xch) that a proposal must use to be created (this is a spam-prevention measure; it will be donated to the treasury when the proposal is closed) \[default: 0.000000000001] |
 |               | --filter-amount                       | INTEGER | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]                                                                                                    |
 |               | --cat-amount                          | INTEGER | True     | The number of DAO CATs (in mojos) to create when initializing the DAO                                                                                                                             |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                                                                                                                |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                                                                                                 |
 |               | --fee-for-cat                         | TEXT    | False    | Set the fees for the CAT creation transaction, in XCH \[default: 0]                                                                                                                               |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]                                                                                                        |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]                                                                                              |
@@ -571,7 +571,7 @@ Options:
 | -a            | --amount                              | INTEGER | True     | The amount of new cats the proposal will mint (in mojos)                                                 |
 | -t            | --to-address                          | TEXT    | True     | The address new cats will be minted to                                                                   |
 | -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                               |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
@@ -692,7 +692,7 @@ Options:
 | -v            | --vote-amount                         | INTEGER | True     | The number of votes to add                                                                               |
 |               | --asset-id                            | TEXT    | False    | The asset id of the funds the proposal will send. Leave blank for xch                                    |
 | -j            | --from-json                           | TEXT    | False    | Path to a json file containing a list of additions, for use in proposals with multiple spends            |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
@@ -830,7 +830,7 @@ Options:
 |               | --pass-percentage                     | INTEGER | False    | The percentage of 'yes' votes in basis points a proposal must receive to be accepted. 100% = 10000       |
 |               | --self-destruct                       | INTEGER | False    | The number of blocks required before a proposal can be automatically removed                             |
 |               | --oracle-delay                        | INTEGER | False    | The number of blocks required between oracle spends of the treasury                                      |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
@@ -913,7 +913,7 @@ Options:
 | -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet from which to exit the lockup                                                       |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
@@ -1089,7 +1089,7 @@ Options:
 | -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -i            | --wallet-id                           | INTEGER | True     | ID of the DAO wallet to use                                                                              |
 | -a            | --amount                              | TEXT    | True     | The amount of CATs (not mojos) to lock in voting mode                                                    |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
@@ -1220,7 +1220,7 @@ Options:
 | -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -i            | --wallet-id                           | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |
@@ -1399,7 +1399,7 @@ Options:
 | -p            | --proposal-id                         | TEXT    | True     | The ID of the proposal you are voting on                                                                 |
 | -a            | --vote-amount                         | INTEGER | True     | The number of votes you want to cast                                                                     |
 | -n            | --vote-no                             | None    | False    | Use this option to vote against a proposal. If not present then the vote is for the proposal             |
-| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH \[default: 0]                                                       |
+| -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change \[default: not set]               |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change \[default: not set]     |
 | -ma           | --min-coin-amount, --min-amount       | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units                                                  |

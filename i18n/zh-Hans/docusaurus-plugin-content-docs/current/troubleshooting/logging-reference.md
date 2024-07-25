@@ -47,7 +47,7 @@ Change the `log_level` to `INFO`, save the file, and restart the node.
 
 ## Log Message Format:
 
-| Field             | Content                          |
+| Field             | 内容                             |
 | ----------------- | -------------------------------- |
 | Date/time         | in ISO format, in local timezone |
 | Node Component    | see the list above               |
@@ -79,9 +79,9 @@ Another log message you will see is `Updated Wallet peak to height x, weight y` 
 | mempool_manager   | It took x to pre validate transaction            |           |             |                      |         |
 | full_node         | Added unfinished_block x, not farmed by us       |           |             |                      |         |
 | full_node         | Already compactified block:                      |           |             |                      |         |
-| full_node         | Duplicate compact proof. Height: x               |           |             |                      |
-| full_node         | Finished signage point x/64:                     |           |             |                      |
-| full_node         | Scanning the blockchain for uncompact blocks.    |           |             |                      |
+| full_node         | Duplicate compact proof. Height: x               |           |             |                      |         |
+| full_node         | Finished signage point x/64:                     |           |             |                      |         |
+| full_node         | Scanning the blockchain for uncompact blocks.    |           |             |                      |         |
 | full_node         | Updated peak to height x                         |           |             |                      |         |
 | full_node_server  | new_compact_vdf                                  | to/from   | peer        |                      |         |
 | full_node_server  | new_peak                                         | to/from   | peer        |                      |         |
@@ -107,24 +107,24 @@ Another log message you will see is `Updated Wallet peak to height x, weight y` 
 | wallet_server     | request_block_header                             | to        | localhost   | from full_node       |         |
 | wallet_server     | respond_block_header                             | from      | localhost   | to full_node         |         |
 | wallet_server     | new_peak_wallet                                  | from      | localhost   | to full_node         |         |
-| wallet_blockchain | Updated Wallet peak to height x, weight y        |           |             |                      |
+| wallet_blockchain | Updated Wallet peak to height x, weight y        |           |             |                      |         |
 | timelord_server   | new_peak_timelord                                | from      | localhost   | to full_node         |         |
 | timelord_server   | new_unfinished_block_timelord                    | from      | localhost   | to full_node         |         |
-| timelord_launcher | VDF client x: VDF Client: Discriminant =         |           |             |                      |
-| VDF Client        | Sending Proof, Sent Proof, Stopped everything!   |           |             |                      |
+| timelord_launcher | VDF client x: VDF Client: Discriminant =         |           |             |                      |         |
+| VDF Client        | Sending Proof, Sent Proof, Stopped everything!   |           |             |                      |         |
 | harvester_server  | farming_info                                     | to/from   | localhost   |                      |         |
 | harvester_server  | new_signage_point_harvester                      | from      | localhost   | to farmer_server     |         |
-| harvester         | x plots were eligible for farming                |           |             |                      |
-| plot_tools        | Loaded a total of x plots of size y in z seconds |           |             |                      |
-| plot_tools        | Searching directories                            |           |             |                      |
+| harvester         | x plots were eligible for farming                |           |             |                      |         |
+| plot_tools        | Loaded a total of x plots of size y in z seconds |           |             |                      |         |
+| plot_tools        | Searching directories                            |           |             |                      |         |
 | farmer_server     | new_signage_point                                | from      | localhost   | to full_node         |         |
 | farmer_server     | farming_info                                     | from      | localhost   | to full_node         |         |
 | farmer_server     | new_signage_point_harvester                      | to        | localhost   | from harvester       |         |
 
 | Source                              | Level   | Message                                                                                                                                                                                            | Description                                                                                                                                                                 |
 | ----------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| daemon asyncio                      | ERROR   | Task exception was never retrieved future: `<Task finished coro=<WebSocketServer.statechanged() done, defined at src\daemon\server.py:316> exception=ValueError('list.remove(x): x not in list')>` |
-| full_node asyncio                   | ERROR   | SSL error in data received protocol: `<asyncio.sslproto.SSLProtocol object at 0x7f762544a8>`                                                                                                       |
+| daemon asyncio                      | ERROR   | Task exception was never retrieved future: `<Task finished coro=<WebSocketServer.statechanged() done, defined at src\daemon\server.py:316> exception=ValueError('list.remove(x): x not in list')>` |                                                                                                                                                                             |
+| full_node asyncio                   | ERROR   | SSL error in data received protocol: `<asyncio.sslproto.SSLProtocol object at 0x7f762544a8>`                                                                                                       |                                                                                                                                                                             |
 | full_node full_node_server          | ERROR   | Exception: Failed to fetch block `N` from \{'host': `IP ADDRESS`, 'port': 8444\}, timed out, \{'host': `IP ADDRESS`, 'port': 8444\}.                                                               | Peer disconnected, other peer connections will take over                                                                                                                    |
 | full_node full_node_server          | ERROR   | Exception: `<class 'concurrent.futures._base.CancelledError'>`, closing connection None.                                                                                                           | Peer disconnected                                                                                                                                                           |
 | full_node full_node_server          | WARNING | [Errno 32] Broken pipe `IP Address`                                                                                                                                                                | Peer disconnected                                                                                                                                                           |
@@ -134,8 +134,8 @@ Another log message you will see is `Updated Wallet peak to height x, weight y` 
 | harvester src.plotting.plot_tools   | WARNING | Have multiple copies of the plot `plotfilename`, not adding it.                                                                                                                                    |                                                                                                                                                                             |
 | harvester src.plotting.plot_tools   | INFO    | Not checking subdirectory `Dir1/directory`, subdirectories not added by default                                                                                                                    |                                                                                                                                                                             |
 | full_node full_node_server          | INFO    | Connection closed: `IP Address`, node id: `hex`                                                                                                                                                    | Peer disconnected                                                                                                                                                           |
-| full_node src.full_node.full_node   | INFO    | ⏲️ Finished signage point `N`/64: `hex`                                                                                                                                                            |
-| full_node src.full_node.full_node   | INFO    | Added unfinished_block `hex`, not farmed                                                                                                                                                           |
+| full_node src.full_node.full_node   | INFO    | ⏲️ Finished signage point `N`/64: `hex`                                                                                                                                                            |                                                                                                                                                                             |
+| full_node src.full_node.full_node   | INFO    | Added unfinished_block `hex`, not farmed                                                                                                                                                           |                                                                                                                                                                             |
 | harvester src.plotting.plot_tools   | INFO    | Searching directories [`Dir1`,`Dir2`]                                                                                                                                                              |                                                                                                                                                                             |
 | harvester src.plotting.plot_tools   | INFO    | Loaded a total of `N` plots of size `size` TiB, in `time` seconds                                                                                                                                  |                                                                                                                                                                             |
 | harvester src.harvester.harvester   | INFO    | `X` plots were eligible for farming `hex`... Found `Y` proofs. Time: `Time` s. Total `Z` plots                                                                                                     | This is a vital message and should be seen at regular intervals. Note that `Time` is ideally < 1s. If drive is in sleep mode, may show ~10 seconds, and should be prevented |

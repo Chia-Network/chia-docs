@@ -123,7 +123,7 @@ If you get a usage statement, then `cic` (Chia Internal Custody) has been instal
 
 ---
 
-## Command Notes
+### Command Notes
 
 :::info A few notes about the commands in this guide
 
@@ -137,9 +137,12 @@ Most of the commands from this tutorial will _not_ alter the blockchain. This in
 
 :::warning warning for windows users
 
-Windows uses different line endings than Linux and MacOS. If you only plan to use Windows for both generating and signing spend bundles, this won't be a problem.
+Windows uses different line endings than Linux and MacOS.
+If you only plan to use Windows for both generating and signing spend bundles, this won't be a problem.
 
-However, if you plan to generate your spend bundles on Windows and sign them using a Linux HSM, then you will need to modify the line endings before signing. The easiest way to accomplish this is with `dos2unix`. This is not included with Windows, so you will need to download it from [SourceForge](https://sourceforge.net/projects/dos2unix/).
+However, if you plan to generate your spend bundles on Windows and sign them using a Linux HSM, then you will need to modify the line endings before signing.
+The easiest way to accomplish this is with `dos2unix`.
+This is not included with Windows, so you will need to download it from [SourceForge](https://sourceforge.net/projects/dos2unix/).
 
 The command to convert your spend bundles is then:
 
@@ -313,9 +316,12 @@ As a result of running this command, `Configuration (awaiting launch).txt` will 
 
 :::
 
-In this step, you will run `cic launch_singleton`, which will create the singleton on the blockchain. In order to run this command, you will need to have at least 1 mojo in your wallet to create the singleton.
+In this step, you will run `cic launch_singleton`, which will create the singleton on the blockchain.
+In order to run this command, you will need to have at least 1 mojo in your wallet to create the singleton.
 
-The `launch_singleton` command also includes a recommended `--fee` flag to specify a blockchain fee in mojos. This fee is completely separate from the actual financing of the singleton, which will occur in a later step. It is also possible to launch the singleton using one wallet and fund it with another -- think of the singleton as a brand new wallet.
+The `launch_singleton` command also includes a recommended `--fee` flag to specify a blockchain fee in mojos.
+This fee is completely separate from the actual financing of the singleton, which will occur in a later step.
+It is also possible to launch the singleton using one wallet and fund it with another -- think of the singleton as a brand new wallet.
 
 Aside from the fees, the `launch_singleton` command includes an optional `--configuration` flag to specify the name and location of the configuration file. By default, the command will look in `./Configuration (awaiting launch).txt`.
 
@@ -369,7 +375,8 @@ Congratulations, you have successfully launched the singleton! (You will need to
 
 At this point, the singleton should exist on the blockchain. However, it has not yet been funded. For now, let's view it.
 
-Currently your local custody database does not know about the singleton. Therefore, in order to view the singleton, you must first synchronize the localhost with the blockchain by running the `sync` command.
+Currently your local custody database does not know about the singleton.
+Therefore, in order to view the singleton, you must first synchronize the localhost with the blockchain by running the `sync` command.
 
 The first time you run the `sync` command, you need to specify the configuration file, which will then be copied into your config database.
 
@@ -402,7 +409,9 @@ Outstanding events:
   REKEYS:
 ```
 
-To view the configuration, run `cic show` and add the `-c` flag. To view the derivation info, run `cic show` and add the `-d` flag. You can also add both flags.
+To view the configuration, run `cic show` and add the `-c` flag.
+To view the derivation info, run `cic show` and add the `-d` flag.
+You can also add both flags.
 
 For example:
 
@@ -620,7 +629,8 @@ This test will run through the complete sequence of withdrawing money from the s
 
 This command generates an unsigned spend bundle which requires specific keys. Signers can take this spend bundle to an HSM for signing.
 
-To begin the payment process, use the `cic payment` command. For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment "payment command") for all options):
+To begin the payment process, use the `cic payment` command.
+For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment "payment command") for all options):
 
 - `-f` : The name of the file in which to save the unsigned spend bundle
 - `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command
@@ -743,7 +753,9 @@ Once you have the signed spend bundle on a synced node with some XCH/TXCH for a 
 cic push_tx -b ./withdrawal.signed -m 10000000
 ```
 
-The withdrawal has now been added to the blockchain. However, the money has not yet reached its final destination. Instead, it will now sit in a "drop coin" (aka escrow) and cannot be withdrawn for at least (`-pc`) seconds, which is built into the singleton and cannot be changed. For this example, we used 1200 seconds for this value.
+The withdrawal has now been added to the blockchain. However, the money has not yet reached its final destination.
+Instead, it will now sit in a "drop coin" (aka escrow) and cannot be withdrawn for at least (`-pc`) seconds, which is built into the singleton and cannot be changed.
+For this example, we used 1200 seconds for this value.
 
 #### View the payment's status
 
@@ -784,7 +796,9 @@ As the output of this command shows, there is a new payment outstanding (`PAYMEN
 - If (`-pc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
 - If (`-pc`) seconds have elapsed, then the output will say `(Ready)`
 
-In either case, claw backs are allowed until the payment has been completed. (Even if the withdrawal is in "Ready" state, it can still be clawed back. However, because _anyone_ can complete the withdrawal, claw backs should no longer be assumed to be available once the "Ready" state has been reached.)
+In either case, claw backs are allowed until the payment has been completed.
+(Even if the withdrawal is in "Ready" state, it can still be clawed back. However, because _anyone_ can
+complete the withdrawal, claw backs should no longer be assumed to be available once the "Ready" state has been reached.)
 
 Note that even when the state is "Ready", the next transaction block will still need to be created before the withdrawal is _actually_ ready.
 
@@ -957,7 +971,8 @@ Outstanding events:
   REKEYS:
 ```
 
-Instead of completing the payment, we'll claw it back. If you want to test this feature, be sure to make the value of `-pc` sufficiently large to give yourself plenty of time to perform the clawback. In this example we still have 17 minutes remaining (`Ready at` minus `Current time` from the above output).
+Instead of completing the payment, we'll claw it back. If you want to test this feature, be sure to make the value of `-pc` sufficiently large to give yourself plenty of time to perform the clawback.
+In this example we still have 17 minutes remaining (`Ready at` minus `Current time` from the above output).
 
 #### Create an unsigned spend bundle for the clawback
 
@@ -1041,7 +1056,8 @@ echo 549614102252741379514039214279174962654364157854486736945228183041555384205
 
 This command should have no output. The signatures are now stored in text files.
 
-Finally, merge the claw back signatures into a signed spend bundle. Note that an arbitrary number of signatures can be passed into this command. We'll use two signatures for this example.
+Finally, merge the claw back signatures into a signed spend bundle.
+Note that an arbitrary number of signatures can be passed into this command. We'll use two signatures for this example.
 
 ```bash
 hsmmerge ./clawback.unsigned ./clawback_1.sig ./clawback_2.sig > clawback.signed
@@ -1241,7 +1257,9 @@ Custody rules successfully added to configuration
 
 :::
 
-Next, run `start_rekey`, which will create an unsigned spend bundle for the rekey. Note that in this command, `-pks` refers to the original keys that must sign to allow the rekey to happen. The configuration file from the `-new` flag contains all of the new info that will be used after the rekey has completed.
+Next, run `start_rekey`, which will create an unsigned spend bundle for the rekey. Note that in this command,
+`-pks` refers to the original keys that must sign to allow the rekey to happen.
+The configuration file from the `-new` flag contains all of the new info that will be used after the rekey has completed.
 
 ```bash
 cic start_rekey -f rekey.unsigned -pks "1.pk,2.pk" -new './Configuration (after rekey).txt'
@@ -1300,7 +1318,9 @@ echo 555391688726247518407714092604079246104554134754321333331702549926309406250
 echo 5561137392380018602752549597282386367838345256392677171809614780347764174154608487537742644428466353746831639451621586320322685820178179047514852085991565214608652175820480007073564769669494661900487484133333312104972188050976529086895435776 > rekey_2.sig
 ```
 
-Finally, merge the rekey signatures into a signed spend bundle. Note that an arbitrary number of signatures can be passed into this command. For this example, we need to use the two signatures we just calculated:
+Finally, merge the rekey signatures into a signed spend bundle.
+Note that an arbitrary number of signatures can be passed into this command.
+For this example, we need to use the two signatures we just calculated:
 
 ```bash
 hsmmerge ./rekey.unsigned ./rekey_1.sig ./rekey_2.sig > rekey.signed
@@ -1371,9 +1391,12 @@ As the output of this command shows, there is a new rekey outstanding (`REKEY fr
 - If (`-rc`) seconds have not elapsed since the drop coin's creation, the output will display `(Ready at: <mm/dd/yyyy hh:mm:ss>)`
 - If (`-rc`) seconds have elapsed, then the output will say `(Ready)`
 
-In either case, cancellation/clawback is allowed until the rekey is completed. (Even if the rekey is in "Ready" state, it can still be clawed back. However, because _anyone_ can complete the rekey, claw backs should no longer be assumed to be available once it reaches the "Ready" state.)
+In either case, cancellation/clawback is allowed until the rekey is completed.
+(Even if the rekey is in "Ready" state, it can still be clawed back. However, because _anyone_ can
+complete the rekey, claw backs should no longer be assumed to be available once it reaches the "Ready" state.)
 
-Note that even when the state is "Ready", the next transaction block will still need to be created before the rekey is _actually_ ready. Transaction blocks happen every 52 seconds on average.
+Note that even when the state is "Ready", the next transaction block will still need to be created before the rekey is _actually_ ready.
+Transaction blocks happen every 52 seconds on average.
 
 #### Create a signed spend bundle for the completion
 

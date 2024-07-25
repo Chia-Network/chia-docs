@@ -20,18 +20,18 @@ For additional resources, see the following:
 
 :::warning
 
-The commands in this guide are only examples. Be sure to replace the listed values with values from your local system.
+The commands in this guide are only examples. The commands in this guide are only examples. Be sure to replace the listed values with values from your local system.
 
-This guide was creating using testnet10. The example commands use a fee of 100 million mojos, which will be rather high for mainnet usage. If running on mainnet, be sure to adjust your fees accordingly.
+This guide was creating using testnet11. This guide was creating using testnet10. The example commands use a fee of 100 million mojos, which will be rather high for mainnet usage. If running on mainnet, be sure to adjust your fees accordingly. If running on mainnet, be sure to adjust your fees accordingly.
 
 :::
 
 ## Definitions
 
 - **Decentralized Identifier (DID)** -- A decentralized way to represent an identity of an organization, a person, or any other entity
-- **Verifiable Credential (VC)** -- Allows someone or something to prove that a subject belongs to a certain category or categories, such as being a US citizen. One type of VC is issued by a Know Your Customer (KYC) provider, who must perform this verification.
+- **Verifiable Credential (VC)** -- Allows someone or something to prove that a subject belongs to a certain category or categories, such as being a US citizen. One type of VC is issued by a Know Your Customer (KYC) provider, who must perform this verification. One type of VC is issued by a Know Your Customer (KYC) provider, who must perform this verification.
 
-  In Chia terminology, VCs depend on DIDs. In other words, a DID is required in order to mint a VC on Chia's blockchain.
+  In Chia terminology, VCs depend on DIDs. In Chia terminology, VCs depend on DIDs. In other words, a DID is required in order to mint a VC on Chia's blockchain.
 
 - **Proofs** -- Key-value pairs that are attached to a VC
 
@@ -46,11 +46,11 @@ In order to mint a VC, you will need to have:
 - One mojo to create a VC singleton
 - Sufficient funds to cover blockchain fees, the amount of which depend on how busy the blockchain is at any moment
 
-You are recommended to test minting VCs on the testnet prior to minting them on mainnet. If you are unsure of how to configure your wallet to use the testnet, see our [guide](https://docs.chia.net/guides/chialisp-testnet-setup).
+You are recommended to test minting VCs on the testnet prior to minting them on mainnet. You are recommended to test minting VCs on the testnet prior to minting them on mainnet. If you are unsure of how to configure your wallet to use the testnet, see our [guide](https://docs.chia.net/guides/chialisp-testnet-setup).
 
 We also have faucets available if you don't have sufficient funds to get started:
 
-- [testnet](https://testnet10-faucet.chia.net/)
+- [testnet](https://testnet11-faucet.chia.net/)
 - [mainnet](https://faucet.chia.net/)
 
 ### Entities Involved
@@ -60,7 +60,7 @@ VC issuance and usage involves at least two entities:
 1. Credential subject / holder -- the individual or entity who has applied for a VC (aka the _subject_) or currently holds a VC (aka the _holder_)
 2. Proof provider / credential issuer -- the entity that creates and signs the VC, thus asserting the claims about the holder's identity, attributes, or qualifications, and provides a proof for those claims in a credential that is issued to the holder
 
-To test issuing, minting, and revoking VCs, you will need to create separate wallets to represent both of these entities. The two wallets can coexist on the same computer.
+To test issuing, minting, and revoking VCs, you will need to create separate wallets to represent both of these entities. The two wallets can coexist on the same computer. The two wallets can coexist on the same computer.
 
 :::info note
 
@@ -74,20 +74,20 @@ For this guide, the Verifier is the blockchain itself.
 
 ### DID Creation
 
-The proof provider **must** have a DID in order to mint a VC. In order to create a DID, run the following command from a terminal window or command prompt:
+The proof provider **must** have a DID in order to mint a VC. The proof provider **must** have a DID in order to mint a VC. In order to create a DID, run the following command from a terminal window or command prompt:
 
 ```bash
 chia wallet did create -m 0.0001
 ```
 
-The response will include the ID of the newly created DID (it will begin with `did:chia:`). Save your local DID ID for later (it will be different from the one displayed here):
+The response will include the ID of the newly created DID (it will begin with `did:chia:`). Save your local DID ID for later (it will be different from the one displayed here): Save your local DID ID for later (it will be different from the one displayed here):
 
 ```bash
 Successfully created a DID wallet with name None and id 2 on key 1725104286
 Successfully created a DID did:chia:1rnvmwp3wmglslk942mwsrmf7dlkluytyna8mgewel44h4ne3nd9slhtddg in the newly created DID wallet
 ```
 
-The DID will be created with an on-chain transaction. After this transaction has been confirmed, you can view your DID by running `chia wallet show`:
+The DID will be created with an on-chain transaction. The DID will be created with an on-chain transaction. After this transaction has been confirmed, you can view your DID by running `chia wallet show`:
 
 ```bash
 chia wallet show
@@ -124,7 +124,7 @@ This section will show you how to mint, transfer, and revoke a VC using Chia's `
 
 ### Create proofs
 
-First, you must add proofs to the local database. To do this, run the [add_proof_reveal](/vc-cli#add_proof_reveal) command. You can add multiple proofs by reusing the `proof` parameter. For example:
+First, you must add proofs to the local database. First, you must add proofs to the local database. To do this, run the [add_proof_reveal](/vc-cli#add_proof_reveal) command. You can add multiple proofs by reusing the `proof` parameter. For example: You can add multiple proofs by reusing the `proof` parameter. For example:
 
 ```bash
 chia wallet vcs add_proof_reveal --proof test_proof1 --proof test_proof2
@@ -152,7 +152,7 @@ Be sure to note your own root hash, as you will need it when minting a VC.
 
 :::warning important
 
-When using the CLI to add proofs, the value of each proof will be `1`. This is not configurable in the CLI. If you need to use different values, see the [RPC guide](#rpc-guide) instead.
+When using the CLI to add proofs, the value of each proof will be `1`. This is not configurable in the CLI. If you need to use different values, see the [RPC guide](#rpc-guide) instead. This is not configurable in the CLI. If you need to use different values, see the [RPC guide](#rpc-guide) instead.
 
 :::
 
@@ -197,9 +197,9 @@ To address: txch1wrr3hew9nr8ukenv3nwq0fg78h4uh5pm9shyqjl4rmfz9nuqcyxqcy8lth
 Created at: 2023-06-23 12:34:13
 ```
 
-By default, the VC will be minted to the same wallet that runs this command. However, you can also use the `--target-address` parameter to mint the VC to a different address.
+By default, the VC will be minted to the same wallet that runs this command. By default, the VC will be minted to the same wallet that runs this command. However, you can also use the `--target-address` parameter to mint the VC to a different address.
 
-When a VC is first minted, it will not contain any proofs. You can verify this by running the `get` command:
+When a VC is first minted, it will not contain any proofs. You can verify this by running the `get` command: You can verify this by running the `get` command:
 
 ```bash
 chia wallet vcs get
@@ -215,13 +215,13 @@ Coin ID: 8942dc321387287084a92e6451a01505e6771df81daa86937679eb1ef67abb4a
 Inner Address: txch1wrr3hew9nr8ukenv3nwq0fg78h4uh5pm9shyqjl4rmfz9nuqcyxqcy8lth
 ```
 
-This command shows the `Launcher ID` (the VC's ID), which you will need for the next command. In addition, the `Coin ID` will be required in case the proofs need to be revoked later.
+This command shows the `Launcher ID` (the VC's ID), which you will need for the next command. In addition, the `Coin ID` will be required in case the proofs need to be revoked later. In addition, the `Coin ID` will be required in case the proofs need to be revoked later.
 
-Previously, you added your desired proofs to the local database and calculated the root hash. The next step is to add this root hash to the VC, and simultaneously send it to the new holder. This is accomplished by spending the VC.
+Previously, you added your desired proofs to the local database and calculated the root hash. Previously, you added your desired proofs to the local database and calculated the root hash. The next step is to add this root hash to the VC, and simultaneously send it to the new holder. This is accomplished by spending the VC. This is accomplished by spending the VC.
 
 ### Add proofs to a VC
 
-Use the [update_proofs](/vc-cli#update_proofs) command to add proofs to a VC. This command must be run from the proof provider's wallet (the wallet that contains the DID used for minting).
+Use the [update_proofs](/vc-cli#update_proofs) command to add proofs to a VC. This command must be run from the proof provider's wallet (the wallet that contains the DID used for minting). This command must be run from the proof provider's wallet (the wallet that contains the DID used for minting).
 
 The `--new-proof-hash` parameter is required; this hash was included in the response from running the `add_proof_reveal` command.
 
@@ -258,7 +258,7 @@ To address: txch1ehkl33dypc7mg820c7j94zfg8pz5j5lqtx7253nmxft52ryvzw8stx7czc
 Created at: 2023-06-23 12:48:15
 ```
 
-After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included. First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example:
+After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included. First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example: First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example:
 
 ```bash
 chia wallet vcs add_proof_reveal --proof test_proof1 --proof test_proof2
@@ -276,7 +276,7 @@ Next, the credential holder can run the [get](/vc-cli#get) command:
 chia wallet vcs get
 ```
 
-In this case, one VC is shown, along with the proof hash and both proofs. If the proofs were not manually added to the local database, they would not show in this command, and the GUI would show the VC as invalid.
+In this case, one VC is shown, along with the proof hash and both proofs. In this case, one VC is shown, along with the proof hash and both proofs. If the proofs were not manually added to the local database, they would not show in this command, and the GUI would show the VC as invalid.
 
 ```bash
 Proofs:
@@ -292,13 +292,13 @@ Proof Hash: f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
 
 ### Revoke a VC
 
-Typically, the proof provider only needs to mint a VC, add proofs, and transfer the VC to the new holder. However, at some point, a holder's proofs may change. For example, a holder might have originally proven that they were not a US citizen, and then they later became a US citizen.
+Typically, the proof provider only needs to mint a VC, add proofs, and transfer the VC to the new holder. However, at some point, a holder's proofs may change. For example, a holder might have originally proven that they were not a US citizen, and then they later became a US citizen. However, at some point, a holder's proofs may change. For example, a holder might have originally proven that they were not a US citizen, and then they later became a US citizen.
 
-In cases such as this, the proof provider needs to _revoke_ the credentials, ie to remove all proofs from a VC. (The holder will continue to hold the VC, but it will no longer contain any proofs.) We don't allow the proof provider to take back the VC itself because it is possible for it to custody other assets, though we don't support this yet.
+In cases such as this, the proof provider needs to _revoke_ the credentials, ie to remove all proofs from a VC. (The holder will continue to hold the VC, but it will no longer contain any proofs.) We don't allow the proof provider to take back the VC itself because it is possible for it to custody other assets, though we don't support this yet. (The holder will continue to hold the VC, but it will no longer contain any proofs.) We don't allow the proof provider to take back the VC itself because it is possible for it to custody other assets, though we don't support this yet.
 
 The only wallet that is allowed to revoke credentials is the proof provider's (the wallet that contains the DID used to mint the VC).
 
-In order to run the [revoke](/vc-cli#revoke) command, the proof provider will need to know the parent coin ID (the `-p` parameter). Because VCs are singletons, their parent coin IDs will change every time the VC is spent (every time a change is made).
+In order to run the [revoke](/vc-cli#revoke) command, the proof provider will need to know the parent coin ID (the `-p` parameter). Because VCs are singletons, their parent coin IDs will change every time the VC is spent (every time a change is made). Because VCs are singletons, their parent coin IDs will change every time the VC is spent (every time a change is made).
 
 For testing purposes, the **holder's wallet** can obtain the parent coin ID by running the [vc_get](/vc-rpc#vc_get) RPC. The parent coin ID is the value of the `"parent_coin_info"`. In a production environment, the proof provider will track the VC on-chain and obtain this info immediately prior to revoking the VC.
 
@@ -312,22 +312,23 @@ As a result, the VC will be recreated in the same wallet, but without any proofs
 
 ```bash
 VC successfully revoked!
+Proofs successfully updated!
 Relevant TX records:
 
-Transaction 286cc31575aa167c4b34cbc0a768a162caefb6afea77560db0693934ac3fbf1e
-Status: Pending
-Amount sent: 1E-12 XCH
-To address: txch1ehkl33dypc7mg820c7j94zfg8pz5j5lqtx7253nmxft52ryvzw8stx7czc
-Created at: 2023-06-23 13:33:50
-
-Transaction ae6378e84742ab6abb07df666291093938ec9e06ae8e2b4066d7386d94289ba3
+Transaction 76f5ea8475d695e798518cd405070dc22542e31fc85220ff7d2ca7b44852a45b
 Status: Pending
 Amount sent: 0 XCH
-To address: txch1mahlm65l8q9frcqcfveekx3a29cd74w6gfajqy05ukz2afrzg03syqkz3p
-Created at: 2023-06-23 13:33:50
+To address: txch10xjm79zct87gc8ux5vzrhnnt03zjn4ntn5y95w37rsfmp4rxjycquqctuc
+Created at: 2023-06-15 10:15:27
+
+Transaction f9eebb0520d024aaf4ae176d554c0f806b8d724d21d5da03b5f541fafd69c99f
+Status: Pending
+Amount sent: 1E-12 XCH
+To address: txch1dlyh9rwd9y6clt3pjjs3gh25ck9vlfx7qwqvvru27dmhgtn80z9s2rruam
+Created at: 2023-06-15 10:15:28
 ```
 
-After these transactions have been confirmed on-chain, the VC no longer contains any proofs. The holder can verify this:
+After these transactions have been confirmed on-chain, the VC no longer contains any proofs. The holder can verify this: The holder can verify this:
 
 ```bash
 chia wallet vcs get
@@ -343,7 +344,7 @@ Proofs:
 
 ## RPC Guide
 
-This section will show you how to mint, transfer, and revoke a VC using Chia's [wallet RPC](/vc-rpc). The RPC commands will generally give more detailed responses than their CLI equivalents, but the functionality will be mostly the same.
+This section will show you how to mint, transfer, and revoke a VC using Chia's `wallet` [CLI commands](/vc-cli). A similar walk-through using RPCs will be presented in the [next section](#rpc-guide). This section will show you how to mint, transfer, and revoke a VC using Chia's [wallet RPC](/vc-rpc). The RPC commands will generally give more detailed responses than their CLI equivalents, but the functionality will be mostly the same.
 
 <details>
   <summary>Note about Windows command escaping</summary>
@@ -366,7 +367,7 @@ chia rpc wallet vc_get '\"vc_id\": \"13ba084e78475327e41c60df5a108965d7a283f065b
 
 ### Create proofs
 
-First, you must add proofs to the local database. To do this, run the [vc_add_proofs](/vc-rpc#vc_add_proofs) command. `"proofs"` is a dictionary of key-value pairs. Unlike the equivalent CLI command, this command allows you to use any string value.
+First, you must add proofs to the local database. First, you must add proofs to the local database. To do this, run the [vc_add_proofs](/vc-rpc#vc_add_proofs) command. `"proofs"` is a dictionary of key-value pairs. Unlike the equivalent CLI command, this command allows you to use any string value. `"proofs"` is a dictionary of key-value pairs. Unlike the equivalent CLI command, this command allows you to use any string value.
 
 ```json
 chia rpc wallet vc_add_proofs '{"proofs": {"example_proof_1": "example_value_1", "example_proof_2": "example_value_2"}}'
@@ -386,7 +387,7 @@ The next step is to calculate the root hash for the proofs you just added.
 
 A VC's proofs are presented as a Merkle tree, the root hash of which is stored on-chain.
 
-When looking up proofs, a hash called a _Proof of Inclusion_ is all that is required to be presented. Any third-party observers of the blockchain won't be able to identify who the VC corresponds to, but the KYC Provider will know this information as the issuer of the VC.
+When looking up proofs, a hash called a _Proof of Inclusion_ is all that is required to be presented. When looking up proofs, a hash called a _Proof of Inclusion_ is all that is required to be presented. Any third-party observers of the blockchain won't be able to identify who the VC corresponds to, but the KYC Provider will know this information as the issuer of the VC.
 
 In order to construct a Merkle tree from a set of proofs:
 
@@ -500,7 +501,7 @@ console.log(
 );
 ```
 
-The script will output the proof hash for the proofs your entered. In this example, the output is:
+The script will output the proof hash for the proofs your entered. In this example, the output is: In this example, the output is:
 
 `96c9597578333c840f895f30af6d40b9f6c0d69100db1a13ae2e26e4c94acdd3`
 
@@ -508,7 +509,7 @@ The script will output the proof hash for the proofs your entered. In this examp
 
 :::info
 
-If you want to retrieve your original proofs from a proof hash, run the [vc_get_proofs_for_root](/vc-rpc#vc_get_proofs_for_root) command. For example:
+If you want to retrieve your original proofs from a proof hash, run the [vc_get_proofs_for_root](/vc-rpc#vc_get_proofs_for_root) command. For example: For example:
 
 ```json
 chia rpc wallet vc_get_proofs_for_root '{"root": "96c9597578333c840f895f30af6d40b9f6c0d69100db1a13ae2e26e4c94acdd3"}'
@@ -532,7 +533,7 @@ Note that this command will only succeed if you have already added the correspon
 
 ### Mint a VC
 
-To mint a VC, run the [vc_mint](/vc-rpc#vc_mint) command. The `did_id` parameter is required. This is the DID owned by the minting wallet. You may also optionally pass in a `target_address`, where the VC will be delivered. If this parameter is missing, the VC will be sent to the same wallet that owns the DID:
+To mint a VC, run the [vc_mint](/vc-rpc#vc_mint) command. The `did_id` parameter is required. This is the DID owned by the minting wallet. You may also optionally pass in a `target_address`, where the VC will be delivered. If this parameter is missing, the VC will be sent to the same wallet that owns the DID: The `did_id` parameter is required. This is the DID owned by the minting wallet. You may also optionally pass in a `target_address`, where the VC will be delivered. If this parameter is missing, the VC will be sent to the same wallet that owns the DID:
 
 ```json
 chia rpc wallet vc_mint '{"did_id": "did:chia:1rnvmwp3wmglslk942mwsrmf7dlkluytyna8mgewel44h4ne3nd9slhtddg", "target_address": "txch1yfcclacd6sch2w9dz394zjuq7pqnmz5g7mrqac0hjhwpzmyahe9sqetxaz", "fee": 100000000}'
@@ -662,21 +663,21 @@ As a result, the spend bundle used to mint the VC will be output:
 }
 ```
 
-When a VC is first minted, it will not contain any proofs.
+When a VC is first minted, it will not contain any proofs. You can verify this by running the `get` command:
 
 Previously, you added your desired proofs to the local database and calculated the root hash. The next step is to add your root hash to the VC.
 
 ### Add proofs to a VC
 
-In Chia, a singleton is a primitive standard that allows a coin to be recreated with different properties when it is spent. Chia VCs are singletons; use the [vc_spend](/vc-rpc#vc_spend) command to spend a VC and recreate it with a new set of proofs.
+In Chia, a singleton is a primitive standard that allows a coin to be recreated with different properties when it is spent. In Chia, a singleton is a primitive standard that allows a coin to be recreated with different properties when it is spent. Chia VCs are singletons; use the [vc_spend](/vc-rpc#vc_spend) command to spend a VC and recreate it with a new set of proofs.
 
 The `new_proof_hash` parameter is required; this is the root hash you previously obtained.
 
-The `new_puzhash` parameter is typically used, but not required. This parameter allows you to recreate the VC singleton in a different wallet (ie to send the VC to the new holder in the same command that is used to add the proof hash).
+The `new_puzhash` parameter is typically used, but not required. This parameter allows you to recreate the VC singleton in a different wallet (ie to send the VC to the new holder in the same command that is used to add the proof hash). This parameter allows you to recreate the VC singleton in a different wallet (ie to send the VC to the new holder in the same command that is used to add the proof hash).
 
 :::note
 
-`new_puzhash` requires a _puzzle hash_ and not a wallet address. If you are not sure how to convert a wallet address to a puzzle hash, the [Chia.tt explorer](https://chia.tt/convert) includes a handy puzzle hash converter tool. If you prefer to do this conversion programmatically, use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository.
+`new_puzhash` requires a _puzzle hash_ and not a wallet address. If you are not sure how to convert a wallet address to a puzzle hash, the [Chia.tt explorer](https://chia.tt/convert) includes a handy puzzle hash converter tool. If you prefer to do this conversion programmatically, use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository. If you are not sure how to convert a wallet address to a puzzle hash, the [Chia.tt explorer](https://chia.tt/convert) includes a handy puzzle hash converter tool. If you prefer to do this conversion programmatically, use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository.
 
 :::
 
@@ -812,7 +813,7 @@ The response includes the spend bundle used to spend the VC:
 }
 ```
 
-After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included. First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example:
+After this transaction has been confirmed on the blockchain, the new **credential holder** can confirm that the proofs are included. First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example: First, the credential holder needs to run the same command as the proof provider to add the proofs to the local database. For example:
 
 ```json
 chia rpc wallet vc_add_proofs '{"proofs": {"example_proof_1": "example_value_1", "example_proof_2": "example_value_2"}}'
@@ -915,9 +916,9 @@ Response:
 
 ### Revoke a VC
 
-Typically, the proof provider only needs to mint a VC, add proofs, and transfer the VC to the new holder. However, at some point, a holder's proofs may change. For example, a holder might have originally proven that they were not a US citizen, and then they later became a US citizen.
+Typically, the proof provider only needs to mint a VC, add proofs, and transfer the VC to the new holder. However, at some point, a holder's proofs may change. For example, a holder might have originally proven that they were not a US citizen, and then they later became a US citizen. However, at some point, a holder's proofs may change. For example, a holder might have originally proven that they were not a US citizen, and then they later became a US citizen.
 
-In cases such as this, the proof provider needs to _revoke_ the credentials, ie to remove all proofs from a VC. (The holder will continue to hold the VC, but it will no longer contain any proofs.) We don't allow the proof provider to take back the VC itself because it is possible for it to custody other assets, though we don't support this yet.
+In cases such as this, the proof provider needs to _revoke_ the credentials, ie to remove all proofs from a VC. (The holder will continue to hold the VC, but it will no longer contain any proofs.) We don't allow the proof provider to take back the VC itself because it is possible for it to custody other assets, though we don't support this yet. (The holder will continue to hold the VC, but it will no longer contain any proofs.) We don't allow the proof provider to take back the VC itself because it is possible for it to custody other assets, though we don't support this yet.
 
 The only wallet that is allowed to revoke credentials is the proof provider's (the wallet that contains the DID used to mint the VC).
 
@@ -1083,7 +1084,7 @@ As a result, the VC will be recreated in the same wallet, but without any proofs
 }
 ```
 
-After these transactions have been confirmed on-chain, the VC no longer contains any proofs. The holder can verify this:
+After these transactions have been confirmed on-chain, the VC no longer contains any proofs. The holder can verify this: The holder can verify this:
 
 ```json
 chia rpc wallet vc_get_list

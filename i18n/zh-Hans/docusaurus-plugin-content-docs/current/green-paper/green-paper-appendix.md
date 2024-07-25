@@ -57,13 +57,22 @@ To prevent grinding attacks, we need our PoSpace to be unique as defined below.
 A PoSpace is unique if for any identity $pk$ and any challenge $c$ there is exactly one proof, i.e.,
 
 $$
-\begin{aligned} &\forall N,pk,c,\\ &\left|\{\sigma\ :\ \left({{\sf PoSpace.verify}}(\sigma)={\sf accept}\right)\wedge \left( (\sigma.N,\sigma.pk,\sigma.c)=(N,pk,c)\right)\}\right|= 1 \end{aligned}
+\begin{aligned}
+&\forall N,pk,c,\\
+&\left|\{\sigma\ :\ \left({{\sf PoSpace.verify}}(\sigma)={\sf accept}\right)\wedge \left( (\sigma.N,\sigma.pk,\sigma.c)=(N,pk,c)\right)\}\right|= 1
+\end{aligned}
 $$
 
 We call a PoSpace _weakly_ unique if the _expected_ number of proofs is close to $1$, i.e.,
 
 $$
-\begin{aligned} &\forall N,pk,c,\\ &{\mathrm E}_{c\gets \{0,1\}^w}\left[|\{\sigma : \left({{\sf PoSpace.verify}}(\sigma)={\sf accept}\}   \right) \wedge  \left((\sigma.N,\sigma.pk,\sigma.c)=(N,pk,c)\right) |\right]\\ &\approx 1 \end{aligned}
+\begin{aligned}
+&\forall N,pk,c,\\
+&{\mathrm E}_{c\gets \{0,1\}^w}\left[|\{\sigma : \left({{\sf PoSpace.verify}}(\sigma)={\sf accept}\}   \right)
+\wedge  \left((\sigma.N,\sigma.pk,\sigma.c)=(N,pk,c)\right)
+|\right]\\
+&\approx 1
+\end{aligned}
 $$
 
 For weakly unique PoSpace we assume that whenever there is more than one proof for a given challenge which passes verification, ${\sf PoSpace.prove}(S,c)$ outputs all of them.
@@ -83,7 +92,8 @@ $$
 Note that if we model ${\sf H}$ as a random function, then $f,g$ are also random functions. On a challenge $y\in L$ the prover must answer with a tuple
 
 $$
-id,(x,x')\qquad\textrm{ where }\qquad x\neq x', f(x)=f(x'), g(x,x')=y
+id,(x,x')\qquad\textrm{ where }\qquad
+x\neq x', f(x)=f(x'), g(x,x')=y
 $$
 
 if it exists. In this construction, for roughly a $(1-1/e)\approx 0.632$ fraction of the challenges $y\in L$ there will be at least one proof, and the expected number of proofs is $1$ (so it is a weakly unique PoSpace).
@@ -138,7 +148,8 @@ $$
 
 The two security properties we require are
 
-**uniqueness:** It is hard to come up with any statement and an accepting proof for a wrong output. More precisely, it is computationally difficult to find any $\tau'$ where for $\tau\gets {\sf VDF.solve}(\tau'.c,\tau'.t)$ we have
+**uniqueness:**
+It is hard to come up with any statement and an accepting proof for a wrong output. More precisely, it is computationally difficult to find any $\tau'$ where for $\tau\gets {\sf VDF.solve}(\tau'.c,\tau'.t)$ we have
 
 $$
 {\sf VDF.verify}(\tau')={\sf accept}\quad\textrm{ and }\quad\tau.y\neq \tau'.y\ .
@@ -146,18 +157,19 @@ $$
 
 Note that we only need $\tau.y$ (but not $\tau.\pi$) to be unique, i.e., the proof $\tau.\pi$ showing that $\tau.y$ is the correct value can be malleable. This seems sufficient for all applications of VDFs, but let us mention that in the [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] VDFs discussed below also $\tau.\pi$ is unique.
 
-**sequentiality:** Informally, sequentiality states that for any $t$, an adversary ${\cal A}$ who makes less than $t$ sequential steps will not find an accepting proof on a random challenge. I.e., for some tiny $\epsilon$
+**sequentiality:**
+Informally, sequentiality states that for any $t$, an adversary ${\cal A}$ who makes less than $t$ sequential steps will not find an accepting proof on a random challenge. I.e., for some tiny $\epsilon$
 
 $$
 \hspace{-1cm}
-  \Pr[{\sf VDF.verify}(\tau)={\sf accept}\ \wedge \ \tau.c=c\ \wedge\ \tau.t=t \ :\ c\stackrel{rand}{\gets}\{0,1\}^w,\tau\gets{\cal A}(c,t)]\le \epsilon
+	\Pr[{\sf VDF.verify}(\tau)={\sf accept}\ \wedge \ \tau.c=c\ \wedge\ \tau.t=t \ :\ c\stackrel{rand}{\gets}\{0,1\}^w,\tau\gets{\cal A}(c,t)]\le \epsilon
 $$
 
 Let us stress that ${\cal A}$ is only bounded by the number of _sequential_ steps, but they can use high parallelism. Thus the VDF output cannot be computed faster by adding parallelism beyond what can be used to speed up a single step of the VDF computation.
 
 ### A.3.1 The [Pie19b, Wes20] VDFs
 
-The VDFs proposed in \[<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>\] (see [<a href="/green-paper-references/#BBBF18">BBBF18</a>a] for an overview of those constructions) are both based on squaring in a group of unknown order, for concreteness let the group be $\mathbb{Z}_N^*$ where $N=pq$ is the product of two large primes $p,q$. On input ${\sf VDF.solve}(c,t)$ one would first map the challenge $c$ on a group element, say as $x_c:= hash(c)\bmod N$, and the output is $(y,\pi)$ with $y=x_c^{2^t}\bmod N$. This $y$ can be computed by squaring $x_c$ sequentially $t$ times $x_c\rightarrow x_c^2\rightarrow x_c^{2^2}\rightarrow \cdots \rightarrow x_c^{2^t}$, and it is conjectured that there is no shortcut to this computation if one doesn't know the factorization of $N$.
+The VDFs proposed in [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] (see [<a href="/green-paper-references/#BBBF18">BBBF18</a>a] for an overview of those constructions) are both based on squaring in a group of unknown order, for concreteness let the group be $\mathbb{Z}_N^*$ where $N=pq$ is the product of two large primes $p,q$. On input ${\sf VDF.solve}(c,t)$ one would first map the challenge $c$ on a group element, say as $x_c:= hash(c)\bmod N$, and the output is $(y,\pi)$ with $y=x_c^{2^t}\bmod N$. This $y$ can be computed by squaring $x_c$ sequentially $t$ times $x_c\rightarrow x_c^2\rightarrow x_c^{2^2}\rightarrow \cdots \rightarrow x_c^{2^t}$, and it is conjectured that there is no shortcut to this computation if one doesn't know the factorization of $N$.
 
 The VDFs from [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] differ in how the proof $\pi$ that certifies that $y=x_c^{2^t}\bmod N$ is defined. The proof in [<a href="/green-paper-references/#Pie19b">Pie19b</a>] is shorter ($1$ vs. $\log(T)$ elements), but soundness of the proof requires an additional assumption (that taking random roots is hard).
 

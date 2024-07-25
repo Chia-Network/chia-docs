@@ -579,7 +579,7 @@ Response:
 }
 ```
 
-At this point, the credential has been transferred to the holder. In order for the holder to verify the VC, the holder will need to add the proofs manually to the local DB:
+At this point, the credential has been transferred to the holder. At this point, the credential has been transferred to the holder. In order for the holder to verify the VC, the holder will need to add the proofs manually to the local DB:
 
 ```json
 chia rpc wallet vc_add_proofs '{"proofs": {"example_proof_1": "example_value_1", "example_proof_2": "example_value_2"}}'
@@ -939,7 +939,7 @@ console.log(
 );
 ```
 
-The script will output the proof hash for the proofs your entered. In this example, the output is:
+The script will output the proof hash for the proofs your entered. In this example, the output is: In this example, the output is:
 
 `96c9597578333c840f895f30af6d40b9f6c0d69100db1a13ae2e26e4c94acdd3`
 

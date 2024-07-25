@@ -146,19 +146,19 @@ Usage: chia wallet vcs mint [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use as the issuing wallet                                    |
-| -d            | --did             | TEXT    | True     | The DID of the VC's proof provider. Must be owned by the issuing wallet                                  |
-| -t            | --target-address  | TEXT    | False    | The address to send the VC to once it's minted [Default: send to minting wallet]                         |
-| -m            | --fee             | TEXT    | False    | Blockchain fee for mint transaction, in XCH                                                              |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                 |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml    |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use as the issuing wallet                                       |
+| -d            | --did             | TEXT    | True     | The DID of the VC's proof provider. Must be owned by the issuing wallet Must be owned by the issuing wallet |
+| -t            | --target-address  | TEXT    | False    | The address to send the VC to once it's minted [Default: send to minting wallet]                            |
+| -m            | --fee             | TEXT    | False    | Blockchain fee for mint transaction, in XCH                                                                 |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                |
 
 <details>
 <summary>Example</summary>
 
-A DID is required in order to mint a new VC. If the proof provider does not already have a DID, use the `did create` command to create one. For example:
+A DID is required in order to mint a new VC. A DID is required in order to mint a new VC. If the proof provider does not already have a DID, use the `did create` command to create one. For example: For example:
 
 ```bash
 chia wallet did create -f 2108245669 -n Provider_DID -m 0.0001
@@ -171,7 +171,7 @@ Successfully created a DID wallet with name Provider_DID and id 2 on key 2108245
 Successfully created a DID did:chia:1n2s77g7rer2v62xzrvd0at6tgx8m4g8t6encghs375r64lc6e5mssdkap3 in the newly created DID wallet
 ```
 
-Next, mint a new VC. Note that the DID specified with `-d` must be owned by the fingerprint specified with `-f` (or the one selected if `-f` is not used). For example:
+Next, mint a new VC. Next, mint a new VC. Note that the DID specified with `-d` must be owned by the fingerprint specified with `-f` (or the one selected if `-f` is not used). For example: For example:
 
 ```bash
 chia wallet vcs mint -f 2108245669 -d did:chia:1n2s77g7rer2v62xzrvd0at6tgx8m4g8t6encghs375r64lc6e5mssdkap3 -m 0.0001
@@ -208,7 +208,7 @@ Inner Address: txch1at35qwx6djmadnh9v77a72z8vcaxsle36ke3dj26gcpt2fnh654qsqecnj
 
 It is recommended that you save the `Launcher ID` because it will be needed if the VC needs to be revoked later.
 
-No proofs have been added yet. This is accomplished with the [update_proofs](#update_proofs) command.
+No proofs have been added yet. No proofs have been added yet. This is accomplished with the [update_proofs](#update_proofs) command.
 
 </details>
 
@@ -222,21 +222,21 @@ Usage: chia wallet vcs revoke [OPTIONS]
 
 Options:
 
-| Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                 |
-| :------------ | :--------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
-| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                             |
-| -p            | --parent-coin-id       | TEXT    | True\*   | The ID of the parent coin of the VC (\*optional if VC ID is used)                                                                                                           |
-| -l            | --vc-id TEXT           | TEXT    | True\*   | The launcher ID of the VC to revoke (must be tracked by wallet) (\*optional if Parent ID is used)                                                                           |
-| -m            | --fee                  | TEXT    | False    | Blockchain fee for revocation transaction, in XCH                                                                                                                           |
-|               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
-|               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
-| -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                |
+| Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                                                                                                                               |
+| :------------ | :--------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                                                                                                                                  |
+| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                                                                                                                                           |
+| -p            | --parent-coin-id       | TEXT    | True\*   | The ID of the parent coin of the VC (\*optional if VC ID is used)                                                                                                                                                                                                                         |
+| -l            | --vc-id TEXT           | TEXT    | True\*   | The launcher ID of the VC to revoke (must be tracked by wallet) (\*optional if Parent ID is used)                                                                                                                                                                                         |
+| -m            | --fee                  | TEXT    | False    | Blockchain fee for revocation transaction, in XCH                                                                                                                                                                                                                                         |
+|               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash]                                                                                                               |
+|               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set |
+| -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                              |
 
 <details>
 <summary>Example</summary>
 
-Revoke the proofs from a VC. A few notes:
+Revoke the proofs from a VC. A few notes: A few notes:
 
 - The only wallet authorized to call this command is the wallet that contains the DID that created the VC
 
@@ -248,19 +248,20 @@ Response:
 
 ```bash
 VC successfully revoked!
+Proofs successfully updated!
 Relevant TX records:
 
-Transaction 286cc31575aa167c4b34cbc0a768a162caefb6afea77560db0693934ac3fbf1e
-Status: Pending
-Amount sent: 1E-12 XCH
-To address: txch1ehkl33dypc7mg820c7j94zfg8pz5j5lqtx7253nmxft52ryvzw8stx7czc
-Created at: 2023-06-23 13:33:50
-
-Transaction ae6378e84742ab6abb07df666291093938ec9e06ae8e2b4066d7386d94289ba3
+Transaction 76f5ea8475d695e798518cd405070dc22542e31fc85220ff7d2ca7b44852a45b
 Status: Pending
 Amount sent: 0 XCH
-To address: txch1mahlm65l8q9frcqcfveekx3a29cd74w6gfajqy05ukz2afrzg03syqkz3p
-Created at: 2023-06-23 13:33:50
+To address: txch10xjm79zct87gc8ux5vzrhnnt03zjn4ntn5y95w37rsfmp4rxjycquqctuc
+Created at: 2023-06-15 10:15:27
+
+Transaction f9eebb0520d024aaf4ae176d554c0f806b8d724d21d5da03b5f541fafd69c99f
+Status: Pending
+Amount sent: 1E-12 XCH
+To address: txch1dlyh9rwd9y6clt3pjjs3gh25ck9vlfx7qwqvvru27dmhgtn80z9s2rruam
+Created at: 2023-06-15 10:15:28
 ```
 
 After the transactions have completed, the holder of the VC can now show that the VC does not contain any proofs:
@@ -287,22 +288,22 @@ Usage: chia wallet vcs update_proofs [OPTIONS]
 
 Options:
 
-| Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                 |
-| :------------ | :--------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
-| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                             |
-| -l            | --vc-id                | TEXT    | True     | The launcher ID of the VC whose proofs should be updated                                                                                                                    |
-| -t            | --new-puzhash          | TEXT    | False    | The puzzle hash to which to send the VC after the proofs have been updated                                                                                                  |
-| -p            | --new-proof-hash       | TEXT    | True     | The new proof hash to update the VC to                                                                                                                                      |
-| -m            | --fee                  | TEXT    | False    | Blockchain fee for update transaction, in XCH                                                                                                                               |
-|               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
-|               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
-| -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                |
+| Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                                                                                                                               |
+| :------------ | :--------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                                                                                                                                  |
+| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                                                                                                                                           |
+| -l            | --vc-id                | TEXT    | True     | The launcher ID of the VC whose proofs should be updated                                                                                                                                                                                                                                  |
+| -t            | --new-puzhash          | TEXT    | False    | The puzzle hash to which to send the VC after the proofs have been updated                                                                                                                                                                                                                |
+| -p            | --new-proof-hash       | TEXT    | True     | The new proof hash to update the VC to                                                                                                                                                                                                                                                    |
+| -m            | --fee                  | TEXT    | False    | Blockchain fee for update transaction, in XCH                                                                                                                                                                                                                                             |
+|               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash]                                                                                                               |
+|               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set |
+| -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                              |
 
 <details>
 <summary>Example</summary>
 
-Update the proofs. A few notes:
+Update the proofs. A few notes: A few notes:
 
 - The only wallet authorized to call this command is the wallet that contains the DID that created the VC
 - The `-t` parameter must point to a puzzle hash, not an address

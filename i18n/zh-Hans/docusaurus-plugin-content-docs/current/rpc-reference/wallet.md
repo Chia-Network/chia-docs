@@ -766,51 +766,22 @@ Options:
 
 Request Parameters (all wallet types):
 
-| Flag        | Type   | Required | Description                                                                                                                           |
-| :---------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| wallet_type | TEXT   | True     | The type of wallet to create. The type of wallet to create. Must be one of `cat_wallet`, `did_wallet`, `nft_wallet`, or `pool_wallet` |
-| fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                                                                  |
+| Flag        | Type   | Required | Description                                                                                                           |
+| :---------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------- |
+| wallet_type | STRING | True     | The type of wallet to create. Must be one of `cat_wallet`, `did_wallet`, `dao_wallet`, `nft_wallet`, or `pool_wallet` |
+| fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                                                  |
 
 `cat_wallet` Parameters:
 
 | Flag     | Type   | Required | Description                                                                                                            |
 | :------- | :----- | :------- | :--------------------------------------------------------------------------------------------------------------------- |
-| mode     | TEXT   | True     | Must be either `new` of `existing`                                                                                     |
-| name     | TEXT   | False    | The name of the wallet to create or modify [Default: `CAT` followed by the beginning of the CAT ID]                    |
+| mode     | STRING | True     | Must be either `new` of `existing`                                                                                     |
+| name     | STRING | False    | The name of the wallet to create or modify [Default: `CAT` followed by the beginning of the CAT ID]                    |
 | amount   | NUMBER | True\*   | \*Required if `mode` is `new`. Specify the value, in mojos, of this wallet                                             |
-| asset_id | TEXT   | True\*   | \*Required if `mode` is `existing`. \*Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update |
-
-`did_wallet` Parameters:
-
-| Flag                     | Type       | Required | Description                                                                                                                                                    |
-| :----------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| did_type                 | TEXT       | True     | Must be either `new` or `recovery`. Must be either `new` or `recovery`. If `recovery`, then each of the following parameters will be ignored                   |
-| backup_dids              | TEXT ARRAY | True\*   | \*Required if `did_type` is `new`. An array of backup DID IDs to be used for recovery. Must match actual DIDs                                                  |
-| num_of_backup_ids_needed | NUMBER     | True\*   | \*Required if `did_type` is `new`. The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
-| metadata                 | DICT       | False    | The metadata of the DID                                                                                                                                        |
-| wallet_name              | TEXT       | False    | The name of the DID wallet [Default: None]                                                                                                                     |
-| amount                   | NUMBER     | True\*   | \*Required if `did_type` is `new`. Specify the initial value of this wallet, in mojos. Minimum value is `1`                                                    |
-
-Note: Because `backup_dids` is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead.
-
-`nft_wallet` Parameters:
-
-| Flag   | Type | Required | Description                                                        |
-| :----- | :--- | :------- | :----------------------------------------------------------------- |
-| did_id | TEXT | False    | Associate a DID with the new NFT wallet                            |
-| name   | TEXT | False    | The name of the wallet to create or modify [Default: `NFT Wallet`] |
-
-`pool_wallet` Parameters:
-
-| Flag                    | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| :---------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mode                    | TEXT    | True     | Must be either `new` of `recovery`. Must be either `new` of `recovery`. However, `recovery` has not been implemented, so currently (version 1.6) it will automatically fail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| initial_target_state    | TEXT    | True     | This info should be sent from the daemon. This info should be sent from the daemon. `PoolState` is a type that is serialized to the blockchain to track the state of the user's pool singleton `target_puzzle_hash` is either the pool address, or the self-pooling address that pool rewards will be paid to. `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state |
-| p2_singleton_delayed_ph | TEXT    | True\*   | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| p2_singleton_delay_time | INTEGER | False    | The time (in seconds) to delay payments [Default: None ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| asset_id | STRING | True\*   | \*Required if `mode` is `existing`. \*Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update |
 
 <details>
-<summary>Example 1</summary>
+<summary>Example 1 (CAT wallet with name)</summary>
 
 Create a new CAT wallet called `test` and send it 100 mojos:
 
@@ -861,7 +832,7 @@ test:
 </details>
 
 <details>
-<summary>Example 2</summary>
+<summary>Example 2 (CAT wallet without name)</summary>
 
 Create a new CAT wallet without specifying a name:
 
@@ -915,8 +886,21 @@ CAT 348dfae821c76f0a...:
 
 </details>
 
+`did_wallet` Parameters:
+
+| Flag                     | Type         | Required | Description                                                                                                                                                    |
+| :----------------------- | :----------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| did_type                 | STRING       | True     | Must be either `new` or `recovery`. Must be either `new` or `recovery`. If `recovery`, then each of the following parameters will be ignored                   |
+| backup_dids              | STRING ARRAY | True\*   | \*Required if `did_type` is `new`. An array of backup DID IDs to be used for recovery. Must match actual DIDs                                                  |
+| num_of_backup_ids_needed | NUMBER       | True\*   | \*Required if `did_type` is `new`. The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
+| metadata                 | DICT         | False    | The metadata of the DID                                                                                                                                        |
+| wallet_name              | STRING       | False    | The name of the DID wallet [Default: None]                                                                                                                     |
+| amount                   | NUMBER       | True\*   | \*Required if `did_type` is `new`. Specify the initial value of this wallet, in mojos. Minimum value is `1`                                                    |
+
+Note: Because `backup_dids` is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead.
+
 <details>
-<summary>Example 3</summary>
+<summary>Example 3 (DID wallet)</summary>
 
 Create a new DID wallet with one backup DID:
 
@@ -966,8 +950,81 @@ Profile 1:
 
 </details>
 
+`dao_wallet` Parameters:
+
+| Flag           | Type      | Required | Description                                                                                                                |
+| :------------- | :-------- | :------- | :------------------------------------------------------------------------------------------------------------------------- |
+| mode           | STRING    | True     | Must be either `new` of `existing`                                                                                         |
+| name           | STRING    | False    | A name to give to the DAO new/existing wallet [Default: None]                                                              |
+| dao_rules      | JSON DICT | True\*   | \*Required if `mode` is `new`; this is a json dictionary of the new DAO's rules                                            |
+| amount_of_cats | NUMBER    | False\*  | \*Only used if `mode` is `new`; this is the number of DAO CATs (in mojos) to create when initializing the DAO [Default: 0] |
+| filter-amount  | NUMBER    | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]                             |
+| fee            | NUMBER    | False\*  | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                            |
+| fee_for_cat    | NUMBER    | False\*  | \*Only used if `mode` is `new`; this is a blockchain fee to add to the transaction to create the DAO CATs [Default: 0]     |
+| treasury_id    | STRING    | True\*   | \*Required if `mode` is `existing`. \*Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update     |
+
+Notes:
+
+- When `mode` is `new`, this RPC has a similar functionality to the [create](/dao-cli/#create) DAO CLI command.
+- When `mode` is `existing`, this RPC has a similar functionality to the [add](/dao-cli/#add) DAO CLI command.
+
 <details>
-<summary>Example 4</summary>
+<summary>Example 4 (New DAO wallet)</summary>
+
+Create a new wallet with some basic DAO rules; also mint CATs and include transaction fees:
+
+```bash
+chia rpc wallet create_new_wallet '{"wallet_type": "dao_wallet", "mode": "new", "name": "My Dao Wallet", "dao_rules": {"attendance_required": 3000, "oracle_spend_delay": 2, "pass_percentage": 5000, "proposal_minimum_amount": 1000001, "proposal_timelock": 3, "self_destruct_length": 1, "soft_close_length": 2}, "amount_of_cats": 1000, "filter-amount": 1, "fee": 500000000, "fee_for_cat": 100000000}'
+```
+
+As a result, a new treasury will be created, along with a CAT wallet containing 1000 CATs, and a DAO CAT wallet:
+
+```bash
+{
+    "cat_wallet_id": 4,
+    "dao_cat_wallet_id": 5,
+    "success": true,
+    "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc",
+    "type": 14,
+    "wallet_id": 3
+}
+```
+
+</details>
+
+<details>
+<summary>Example 5 (Join existing DAO)</summary>
+
+To join a DAO, set `mode` to `existing`:
+
+```bash
+chia rpc wallet create_new_wallet '{"wallet_type": "dao_wallet", "mode": "existing", "name": "My Dao Wallet", "filter-amount": 1, "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc"}'
+```
+
+Your wallet will join the treasury and automatically create the required DAO, CAT, and DAO_CAT wallets without any balance:
+
+```bash
+{
+    "cat_wallet_id": 3,
+    "dao_cat_wallet_id": 4,
+    "success": true,
+    "treasury_id": "0x89fdd510ce617c0b78d7f997d6fe52737a8c57100cca73c9dc4957eaf7fe55dc",
+    "type": 14,
+    "wallet_id": 2
+}
+```
+
+</details>
+
+`nft_wallet` Parameters:
+
+| Flag   | Type   | Required | Description                                                        |
+| :----- | :----- | :------- | :----------------------------------------------------------------- |
+| did_id | STRING | False    | Associate a DID with the new NFT wallet                            |
+| name   | STRING | False    | The name of the wallet to create or modify [Default: `NFT Wallet`] |
+
+<details>
+<summary>Example 6 (NFT wallet without DID)</summary>
 
 Create a new NFT wallet that is not associated with a DID:
 
@@ -988,7 +1045,7 @@ Response:
 </details>
 
 <details>
-<summary>Example 5</summary>
+<summary>Example 7 (NFT wallet with DID)</summary>
 
 Create an NFT wallet that is associated with a DID. First, create the DID: First, create the DID:
 
@@ -1020,6 +1077,15 @@ Response:
 ```
 
 </details>
+
+`pool_wallet` Parameters:
+
+| Flag                    | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| :---------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mode                    | STRING  | True     | Must be either `new` of `recovery`. Must be either `new` of `recovery`. However, `recovery` has not been implemented, so currently (version 1.6) it will automatically fail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| initial_target_state    | STRING  | True     | This info should be sent from the daemon. This info should be sent from the daemon. `PoolState` is a type that is serialized to the blockchain to track the state of the user's pool singleton `target_puzzle_hash` is either the pool address, or the self-pooling address that pool rewards will be paid to. `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state |
+| p2_singleton_delayed_ph | STRING  | True\*   | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| p2_singleton_delay_time | INTEGER | False    | The time (in seconds) to delay payments [Default: None ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 ---
 
@@ -1061,7 +1127,7 @@ Valid wallet types (the `type` parameter) include the following integers:
 | DATA_LAYER_OFFER |   12 |
 | VC               |   13 |
 
-More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
+More types may be added in the future. More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
 
 <details>
 <summary>Example 1</summary>
@@ -1623,9 +1689,22 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type | Required | Description                                                                                                                  |
-| :------------- | :--- | :------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
+| Flag           | Type | Required | Description                                                                                                                                                       |
+| :------------- | :--- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| transaction_id | TEXT | True     | The ID of the transaction to obtain. The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
+
+<details>
+<summary>Notes about transactions</summary>
+The transaction history is not deterministic due to heuristics we use to counter privacy features of the blockchain. This means, a couple of details cannot be fetched fully:
+- The transaction IDs can and will change if you resync the wallet
+- Transactions of assets other than xch (cat, nft, ...) which include a fee will cause a second fee-transaction in the xch currency wallet (wallet 1)
+- Offers are split into multiple transactions on the corresponding wallets
+- Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
+- The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
+- For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
+- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+</details>
 
 <details>
 <summary>Example</summary>
@@ -1702,7 +1781,22 @@ Request Parameters:
 | reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false] |
 | to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
 
-Note: By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination. If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
+<details>
+<summary>Notes about transactions</summary>
+By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination.
+If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
+
+The transaction history is not deterministic due to heuristics we use to counter privacy features of the blockchain. This means, a couple of details cannot be fetched fully:
+
+- The transaction IDs can and will change if you resync the wallet
+- Transactions of assets other than xch (cat, nft, ...) which include a fee will cause a second fee-transaction in the xch currency wallet (wallet 1)
+- Offers are split into multiple transactions on the corresponding wallets
+- Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
+- The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
+- For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
+- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+</details>
 
 <details>
 <summary>Example 1: List a single XCH transaction</summary>
@@ -1766,7 +1860,7 @@ Response:
 }
 ```
 
-In this case, we are interested in the `Chia Wallet`, of type `0`. This has an `id` of `1`.
+In this case, we are interested in the `Chia Wallet`, of type `0`. This has an `id` of `1`. This has an `id` of `1`.
 
 Next, list only the transaction from that wallet with an index of `3`:
 
@@ -2332,8 +2426,6 @@ Result:
 ```bash
 {
     "nft_info": {
-        "chain_info": "((117 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\") (104 . 0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a) (28021 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\") (27765) (29550 . 1) (29556 . 1) (28008 . {
-    "nft_info": {
         "chain_info": "((117 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/78.jpg\") (104 . 0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a) (28021 \"https://nftstorage.link/ipfs/bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\" \"ipfs://bafybeic32cwe43voxoybnwbayy7bedv4ip5tqho4jfol3xmtd62vscfoqa/metadata.json\") (27765) (29550 . 1) (29556 . 1) (28008 . 0xfdfe889a579916f8f75dcfff809eee44fc844df5fa92aecd2d562578e7e69a24))",
         "data_hash": "0x1a9152787d8374ececa0bf070b7a10e91162ada15964404d52232152f25b8b7a",
         "data_uris": [
@@ -2384,7 +2476,8 @@ The `ph` for the message payload can be any puzzlehash in your key derivation. O
 xch1ta7zjqqtaw9wyfnawl3z84a26vexr3qtmp7jq6gx4vpzl792sf9qddsacl
 ```
 
-This address still needs to be converted into a puzzlehash. This address still needs to be converted into a puzzlehash. One way to accomplish this is with an online converter, such as the one available from [spacescan](https://www.spacescan.io/tools/puzzlehashconverter). Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository: Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository:
+This address still needs to be converted into a puzzlehash. One way to accomplish this is with an online converter, such as the one available from [spacescan](https://www.spacescan.io/tools/puzzlehashconverter).
+Another option is to use the `decode` command from the [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools) repository:
 
 ```json
 cdv decode xch1ta7zjqqtaw9wyfnawl3z84a26vexr3qtmp7jq6gx4vpzl792sf9qddsacl
@@ -2725,12 +2818,12 @@ Request Parameters:
 | batch_size | NUMBER       | False    | The number of coins to spend per bundle, [Default: `batch_size` obtainable from [get_auto_claim](#get_auto_claim)] |
 | fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                               |
 
-When examing the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
+When examining the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
 
 <details>
 <summary>Example</summary>
 
-First, list a clawback transaction. For this example, we will specify the `to_address`.
+First, list a clawback transaction. First, list a clawback transaction. For this example, we will specify the `to_address`.
 
 Alternatively, you could search for coins with `"type": 6` (receive) or `"type": 7` (send), and `"spent": false`.
 
@@ -2983,7 +3076,7 @@ Request Parameters:
 | signature    | TEXT | True     | The signature to verify                                                                           |
 | address      | TEXT | True     | The address, which must be derived from `pubkey`                                                  |
 
-The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include:
+The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include: As of Chia 2.0.0, valid signing mode strings include:
 
 - `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:hexinput_`
   - Default signing mode
@@ -2995,6 +3088,9 @@ The signing mode strings are [stored in an enum](https://github.com/Chia-Network
   - Same as above, but uses UTF-8 instead of hex
 - `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_`
   - [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) signs the result of `sha256tree(cons("Chia Signed Message", message))` using the BLS message augmentation scheme
+- `BLS_SIG_BLS12381G2_XMD:SHA-256_SSWU_RO_AUG:CHIP-0002_P2_DELEGATED_PUZZLE`
+  - Uses p2_delegated_puzzle
+  - Supports signatures generated from Tangem cards
 
 ---
 
@@ -3124,7 +3220,7 @@ Response:
 
 ### `cat_get_asset_id`
 
-功能： Retrieve a the asset ID from a CAT wallet
+功能： Retrieve the asset ID from a CAT wallet
 
 用法： chia rpc wallet [OPTIONS] cat_get_asset_id [REQUEST]
 

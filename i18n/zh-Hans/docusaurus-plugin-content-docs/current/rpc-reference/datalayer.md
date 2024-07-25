@@ -181,11 +181,18 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type | Required | Description                               |
-| :--------- | :--- | :------- | :---------------------------------------- |
-| id         | TEXT | True     | The hexadecimal store ID                  |
-| changelist | TEXT | True     | A string representing the changelist      |
-| fee        | TEXT | False    | Set the fee for the transaction, in mojos |
+| Flag            | Type    | Required | Description                                                                                                                                   |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | TEXT    | True     | The hexadecimal store ID                                                                                                                      |
+| changelist      | TEXT    | True     | A string representing the changelist                                                                                                          |
+| submit_on_chain | BOOLEAN | False    | Specify whether to submit the update to the blockchain (`True`), or to store it locally (`False`). Default: `True` (See info box for details) |
+| fee             | TEXT    | False    | Set the fee for the transaction, in mojos                                                                                                     |
+
+:::info
+
+The `submit_on_chain` flag was added in Chia version 2.3.0. In order to support the new functionality (submit an update off-chain), the schema for your `root` table will be upgraded automatically upon starting the DataLayer service. This upgrade takes about three minutes to complete.
+
+:::
 
 A few notes on the `changelist` option:
 
@@ -845,14 +852,24 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type | Required | Description                             |
-| :-------- | :--- | :------- | :-------------------------------------- |
-| id        | TEXT | True     | The hexadecimal store ID                |
-| root_hash | TEXT | False    | The root hash from which to obtain data |
+| Flag          | Type   | Required | Description                                                                                       |
+| :------------ | :----- | :------- | :------------------------------------------------------------------------------------------------ |
+| id            | TEXT   | True     | The hexadecimal store ID                                                                          |
+| root_hash     | TEXT   | False    | The root hash from which to obtain data                                                           |
+| page          | NUMBER | False    | Enables pagination of the output and requests a specific page                                     |
+| max_page_size | NUMBER | False    | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
 
 :::info
 
 The `root_hash` parameter is recommended to be used each time you call this RPC. If `root_hash` is not specified, there is no way to guarantee that the latest data is being shown (stale data may be shown instead). This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max_page_size`, an error will be thrown.
 
 :::
 
@@ -891,14 +908,24 @@ Options:
 
 Request Parameters:
 
-|   Flag    | Type | Required | Description                             |
-| :-------: | :--: | :------: | :-------------------------------------- |
-|    id     | TEXT |   True   | The hexadecimal store ID                |
-| root_hash | TEXT |  False   | The root hash from which to obtain data |
+|     Flag      |  Type  | Required | Description                                                                                       |
+| :-----------: | :----: | :------: | :------------------------------------------------------------------------------------------------ |
+|      id       |  TEXT  |   True   | The hexadecimal store ID                                                                          |
+|   root_hash   |  TEXT  |  False   | The root hash from which to obtain data                                                           |
+|     page      | NUMBER |  False   | Enables pagination of the output and requests a specific page                                     |
+| max_page_size | NUMBER |  False   | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
 
 :::info
 
 The `root_hash` parameter is recommended to be used each time you call this RPC. If `root_hash` is not specified, there is no way to guarantee that the latest data is being shown (stale data may be shown instead). This parameter is obtainable by calling the [get_root](#get_root) RPC.
+
+:::
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max_page_size`, an error will be thrown.
 
 :::
 
@@ -1005,11 +1032,21 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type | Required | Description                |
-| :----- | :--- | :------- | :------------------------- |
-| id     | TEXT | True     | The hexadecimal store ID   |
-| hash_1 | TEXT | True     | The first hash to compare  |
-| hash_2 | TEXT | True     | The second hash to compare |
+| Flag          | Type   | Required | Description                                                                                       |
+| :------------ | :----- | :------- | :------------------------------------------------------------------------------------------------ |
+| id            | TEXT   | True     | The hexadecimal store ID                                                                          |
+| hash_1        | TEXT   | True     | The first hash to compare                                                                         |
+| hash_2        | TEXT   | True     | The second hash to compare                                                                        |
+| page          | NUMBER | False    | Enables pagination of the output and requests a specific page                                     |
+| max_page_size | NUMBER | False    | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max_page_size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -1157,6 +1194,64 @@ Response:
   "store_ids": [
     "1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a"
   ],
+  "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_proof`
+
+Functionality: Obtains a merkle proof of inclusion for a given key
+
+Usage: chia rpc data_layer [OPTIONS] get_proof [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag     | Type        | Required | Description                                 |
+| :------- | :---------- | :------- | :------------------------------------------ |
+| store_id | TEXT        | True     | The hexadecimal store ID                    |
+| keys     | STRING LIST | True     | A list of keys for which to retrieve proofs |
+
+The proof is a proof of inclusion that a given key, value pair is in the specified datalayer store by chaining the Merkle hashes up to the published on-chain root hash.
+
+A user can generate a proof for multiple k,v pairs in the same datastore.
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc data_layer get_proof '{"store_id": "7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e", "keys": ["0x0003"]}'
+```
+
+Response:
+
+```json
+{
+  "proof": {
+    "coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756",
+    "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f",
+    "store_proofs": {
+      "proofs": [
+        {
+          "key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1",
+          "layers": [],
+          "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb",
+          "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"
+        }
+      ],
+      "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"
+    }
+  },
   "success": true
 }
 ```
@@ -1391,9 +1486,11 @@ Response:
 ```json
 {
   "routes": [
+    "/wallet_log_in",
     "/create_data_store",
     "/get_owned_stores",
     "/batch_update",
+    "/submit_pending_root",
     "/get_value",
     "/get_keys",
     "/get_keys_values",
@@ -1419,6 +1516,9 @@ Response:
     "/cancel_offer",
     "/get_sync_status",
     "/check_plugins",
+    "/clear_pending_roots",
+    "/get_proof",
+    "/verify_proof",
     "/get_connections",
     "/open_connection",
     "/close_connection",
@@ -1838,6 +1938,27 @@ Response:
 
 ---
 
+### `submit_pending_root`
+
+Functionality: Publish the root from all pending batch updates
+
+Usage: chia rpc data_layer [OPTIONS] submit_pending_root [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type | Required | Description              |
+| :--- | :--- | :------- | :----------------------- |
+| id   | TEXT | True     | The hexadecimal store ID |
+
+---
+
 ### `subscribe`
 
 Functionality: Subscribe to a store ID
@@ -2155,6 +2276,68 @@ Response:
 
 ```json
 Request failed: {'error': 'non-hexadecimal number found in fromhex() arg at position 18699', 'success': False}
+```
+
+</details>
+
+---
+
+### `verify_proof`
+
+Functionality: Verifies a merkle proof of inclusion
+
+Usage: chia rpc data_layer [OPTIONS] verify_proof [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag              | Type   | Required | Description                                                                                                                                                                            |
+| :---------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| store_proofs      | STRING | True     | The proof to verify; requires a `proofs` parameter, which must contain the following parameters: `key_clvm_hash`, `value_clvm_hash`, `node_hash`, `layers`. See the example for usage. |
+| coin_id           | STRING | True     | The ID of the coin to retrieve                                                                                                                                                         |
+| inner_puzzle_hash | STRING | True     | The proof's inner puzzle hash                                                                                                                                                          |
+
+Notes about this command:
+
+- It only needs to perform a single lookup of the on-chain root.
+- It doesn't need to have synced any of the data, or be subscribed to the data store.
+- To keep the proofs smaller, only the clvm hash of the key and value are included in the proof, and not the actual key or value. (A clvm hash is just a sha256 hash of the data prepended with 0x01.)
+- Datalayer uses CLVM hashes for ease of verification in CLVM, although for this specific use case, there is no on-chain validation happening.
+- When using this command, pay attention to the `current_root` value in the returned JSON.
+  - If `current_root` is `True`, this data chains to the current published root, and so if you synced the data, you can be sure it would be there.
+  - If `current_root` is `False`, the root has moved from the time the proof was generated. You cannot make any assumptions in this case about whether the data is in fact in the datastore or not since the root has changed, therefore the data might have changed. It is up to the caller to determine how to treat this case; one possible action would be to obtain a new proof.
+
+For more help with constructing the `store_proofs` JSON, see the output from the [get_proof](#get_proof) RPC. For more examples, see chia-blockchain [PR #16845](https://github.com/Chia-Network/chia-blockchain/pull/16845).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc data_layer verify_proof '{"coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756", "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f", "store_proofs": {"proofs": [{"key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1","layers": [], "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb", "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"}], "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"}}'
+```
+
+Response:
+
+```json
+{
+  "current_root": true,
+  "success": true,
+  "verified_clvm_hashes": {
+    "inclusions": [
+      {
+        "key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1",
+        "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"
+      }
+    ],
+    "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"
+  }
+}
 ```
 
 </details>

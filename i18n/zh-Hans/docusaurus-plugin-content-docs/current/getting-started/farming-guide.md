@@ -310,7 +310,7 @@ Pools typically require you to wait for 30 minutes before leaving. This is to pr
 
 :::info
 
-Chia's pooling protocol has several significant advantages over pools on other blockchains. Read more about these advantages, as well as the technical details of how the protocol works, in our [pooling section](/introduction#pooling).
+Chia's pooling protocol has several significant advantages over pools on other blockchains. Read more about these advantages, as well as the technical details of how the protocol works, in our [pooling section](/introduction#矿池pooling).
 
 :::
 

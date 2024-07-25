@@ -3,16 +3,16 @@ title: Pools
 slug: /pools
 ---
 
-In this lesson, we review the Pooling protocol, and how it can benefit a Farmer starting out.
+在本课程中，我们将回顾矿池协议，以及它如何有助于刚开始的农民。
 
-## Learning objectives
+## 学习目标
 
-- **Benefits of Pooling**: Understand the benefits of participating in a Pool.
-- **Reward Splitting**: Understand how the rewards are split among pool participants.
+- **矿池的好处**：理解参与矿池（Pool）的好处。
+- **奖励分配**：理解奖励如何在矿池参与者之间分配。
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/qO1ctn7DhwE" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -20,39 +20,39 @@ In this lesson, we review the Pooling protocol, and how it can benefit a Farmer 
 
 ---
 
-## Script
+## 脚本
 
 <details>
 
 <summary> Expand for the full script </summary>
 
 0:00\
-Pools are a great way to get started with Farming. Pooling allows farmers to smooth out their rewards by earning based on proof of space partials, as opposed to winning blocks.
+矿池是开始耕种的一个很好的方式。 通过参与矿池，农民可以通过基于空间证明的部分证明来平滑他们的奖励，而不是通过赢得区块来获取奖励。
 
 0:20\
-A Proof of Space partial contains some additional metadata about the farmer that lets the Pool distribute shared rewards based on relative farm size. The more valid partials a farmer generates, the larger their share of the reward. When a submitted proof of space wins, the farmer that generated it still retains the right to farm the block, and processes it themselves.
+一个空间证明的部分（Proof of Space partial ）包含一些关于农民的额外元数据，这使得矿池可以根据相对农场规模分配共享奖励。 农民生成的有效部分越多，他们获得的奖励份额就越大。 当提交的空间证明获胜时，生成它的农民仍保留生成该区块的权利，并自行处理它。
 
 0:40\
-In return, they receive 1/8 the value of the reward, while the remaining 7/8 is distributed to the rest of the pool, based on valid partials. Because the block is still farmed by an individual farmer, the network remains sufficiently decentralized.
+作为回报，他们获得奖励价值的1/8，剩余的7/8根据有效部分分配给矿池的其他成员。 因为区块仍由农民生成，所以网络保持足够的去中心化。
 
 1:00\
-The overall reward earned is largely the same over time for average sized farms, so Pooling is a great choice to get started.
+随着时间的推移，对于农民来说，总体获得的奖励基本相同，因此参与矿池是一个很好的选择。
 
 </details>
 
 ---
 
-## Common gotchas
+## 常见问题
 
-- **Farming size still matters:** The size of a Farm directly relates to how many valid partials are generated, and partials determine a farmers share of the pool reward (7/8). This means there is still a benefit to large farms joining a pool.
+- **农场规模仍然重要：** 农场的规模直接影响生成的有效部分数量，而有效部分决定了农民在矿池奖励中的份额(7/8)。 这意味着大型农场加入矿池仍然具有好处。
 
 ---
 
-## Knowledge check
+## 知识检测
 
-:::tip Question 1 - Reward Split
+:::tip 问题1 - 奖励分配
 
-What is the reward split between the Farmer and the Pool?
+农民和矿池之间的奖励分配是多少？
 
 :::
 
@@ -60,13 +60,13 @@ What is the reward split between the Farmer and the Pool?
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-`"1/8 goes to the Farmer who won the challenge, 7/8 goes to the pool to be distributed"`
+1/8的奖励给赢得挑战的农民，7/8的奖励给矿池分配
 
 </details>
 
-:::tip Question 2 - Decentralized Pooling
+:::tip 问题2 - 去中心化矿池
 
-How does the protocol maintain decentralization?
+这个协议如何保持去中心化？
 
 :::
 
@@ -74,19 +74,19 @@ How does the protocol maintain decentralization?
 
 <summary> Answer (expand when ready to see the answer)  </summary>
 
-`"By letting the Farmers process and author blocks, the network remains decentralized. Since the pool has no way of knowing which Farmer will win, and does not have a say on which transactions will be included in the block."`
+通过让农民处理和创建区块，网络保持去中心化。 因为矿池无法知道哪个农民会赢得挑战，并且无权决定哪些交易将被包含在区块中。
 
 </details>
 
 ---
 
-## Additional resources
+## 附加资源
 
-### Links
+### 链接
 
-- More [farming basics](https://docs.chia.net/farming-basics): overviews of plotting, pooling, and rewards.
-- In depth [architecture overview](https://docs.chia.net/architecture-overview): describing the interactions between Farmers, Harvesters, Wallets, etc.
-- Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
+- 更多的[耕种基础知识](https://docs.chia.net/farming-basics)：绘图、矿池和奖励的概述。
+- 详细的[架构概述](https://docs.chia.net/architecture-overview)：描述农民、收割机、钱包等之间的交互。
+- Chialisp[详细文档](https://chialisp.com/)：提供有关Chialisp各个方面的详细信息。
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---

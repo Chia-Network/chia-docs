@@ -5,7 +5,7 @@ slug: /coinset-basics
 
 In this lesson, we dive into the coinset model basics and learn what it means to spend a coin in Chia.
 
-## Learning objectives
+## 学习目标
 
 - **Coin Contents**: Learn what data is stored in a coin.
 - **Coin Puzzle**: Understand the role of a coins puzzle.
@@ -13,7 +13,7 @@ In this lesson, we dive into the coinset model basics and learn what it means to
 
 ---
 
-## Content
+## 内容
 
 <div class="videoWrapper">
 <iframe width="100%" height="504" src="https://www.youtube.com/embed/QMs6Z6_ZQdg" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -21,7 +21,7 @@ In this lesson, we dive into the coinset model basics and learn what it means to
 
 ---
 
-## Script
+## 脚本
 
 <details>
 
@@ -72,7 +72,7 @@ the hash of the puzzle that contains the conditions, and the value of the coin.
 
 ---
 
-## Common gotchas
+## 常见问题
 
 - **Coinset vs Account:** Chia adopts the coinset model where everything is a coin that has its own set of rules, more information about the coinset model can be found [here](https://docs.chia.net/coin-set-vs-account/). This differs from the account model which instead uses contracts (or accounts) to represent users balances and these balances are what is stored on the chain (as opposed to coins and those coins values).
 - **Puzzles:** All requirements for spending a coin are contained in the coins puzzle. These puzzles can be simple or complex and effect how, when, and by whom the coin can be spent. The coins puzzle must be determined at the coins creation and cannot be altered thereafter.
@@ -80,7 +80,7 @@ the hash of the puzzle that contains the conditions, and the value of the coin.
 
 ---
 
-## Knowledge check
+## 知识检测
 
 :::tip Question 1 - Coinset
 
@@ -147,9 +147,9 @@ The coinset model.
 
 ---
 
-## Additional resources
+## 附加资源
 
-### Links
+### 链接
 
 - Detailed [coinset and account model comparisons](https://docs.chia.net/coin-set-vs-account/): details the differences between the coinset and account models including how these differences effect transactions.
 - Overview of [coin puzzles](https://docs.chia.net/coin-set-intro/#puzzles): overviews the role of a coins puzzle and the effect it has on the coins abiltiy to be spent.

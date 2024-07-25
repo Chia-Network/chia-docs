@@ -126,6 +126,8 @@ values={[
 
 Be sure to replace `<username>` and `<version>` with the actual folder names.
 
+` with the actual folder names.
+
 ```bash
 Set-Alias -Name chia "C:\Users\<username>\AppData\Local\chia-blockchain\app-<version>\resources\app.asar.unpacked\daemon\chia.exe"
 ```
@@ -148,7 +150,7 @@ To install Chia from source, follow our [installation guide](https://docs.chia.n
 
 ### Switching to testnet
 
-By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/testnets).
+By default, Chia will run on mainnet. By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/testnets).
 
 ## Configuration
 
@@ -243,7 +245,7 @@ Chia Wallet:
 
 In order to continue, you'll need to have some TXCH in your wallet. If your total balance is 0, you can obtain 1 TXCH from our faucet. Copy the value of "First wallet address:" from the output of the `chia keys show` command. It will be a long string beginning with "txch".
 
-Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit".
+Open our [testnet faucet page](https://testnet10-faucet.chia.net "Chia's testnet10 faucet link"). Paste your address and click "Submit". Paste your address and click "Submit".
 
 You'll receive this message: `Accepted. Your request is in the queue and will be processed in the order it was received.` At some point you'll receive 1 TXCH. Depending on how busy the faucet and the testnet are, this could take several minutes. However, you don't need to wait for your coins to arrive before continuing.
 

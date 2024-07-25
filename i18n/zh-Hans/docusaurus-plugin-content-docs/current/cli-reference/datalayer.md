@@ -169,7 +169,7 @@ Options:
 <details>
 <summary>Example</summary>
 
-To clear all pending roots, you need to enter the store ID. An example of this which also disables prompting:
+To clear all pending roots, you need to enter the store ID. An example of this which also disables prompting: An example of this which also disables prompting:
 
 ```bash
 chia data clear_pending_roots -i 2772c8108e19f9fa98ff7bc7d4bafd821319bc90af6b610d086b85f4c21fa816 --yes
@@ -391,7 +391,17 @@ Options:
 | -r            | --root_hash     | TEXT    | False    | The hexadecimal root hash                                                                                   |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
+| -p            | --page          | INTEGER | False    | Enables pagination of the output and requests a specific page                                               |
+|               | --max-page-size | INTEGER | False    | Set how many bytes to be included in a page, if pagination is enabled [Default: 40 MB]                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max-page-size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -430,7 +440,17 @@ Options:
 | -r            | --root_hash     | TEXT    | False    | The hexadecimal root hash                                                                                   |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
+| -p            | --page          | INTEGER | False    | Enables pagination of the output and requests a specific page                                               |
+|               | --max-page-size | INTEGER | False    | Set how many bytes to be included in a page, if pagination is enabled [Default: 40 MB]                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max-page-size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -480,7 +500,17 @@ Options:
 | -hash_2       | --hash_2        | TEXT    | True     | The second hash to compare                                                                                  |
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under data_layer in config.yaml |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                          |
+| -p            | --page          | INTEGER | False    | Enables pagination of the output and requests a specific page                                               |
+|               | --max-page-size | INTEGER | False    | Set how many bytes to be included in a page, if pagination is enabled [Default: 40 MB]                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                |
+
+:::info
+
+Pagination is disabled by default. If it is enabled (by using the `page` flag), then the JSON response will include `total_pages` and `total_bytes`, in addition to the data.
+
+If an item is larger than `max-page-size`, an error will be thrown.
+
+:::
 
 <details>
 <summary>Example</summary>
@@ -591,6 +621,60 @@ Response:
         '9d0c65e77c750eac28b3fa78e57cdcec59fe53448eb59bdfbfa694d89f262b4b'
     ],
     'success': True
+}
+```
+
+</details>
+
+---
+
+### `get_proof`
+
+Functionality: Obtains a merkle proof of inclusion for a given key
+
+Usage: `chia data get_proof [OPTIONS]`
+
+Options:
+
+| Short Command | Long Command    | Type    | Required | Description                                                                                             |
+| :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------ |
+| -store        | --id            | TEXT    | True     | The hexadecimal store id                                                                                |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -k            | --key           | TEXT    | True     | The hexadecimal key                                                                                     |
+| -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
+| -h            | --help          | None    | False    | Show a help message and exit                                                                            |
+
+The proof is a proof of inclusion that a given key, value pair is in the specified datalayer store by chaining the Merkle hashes up to the published on-chain root hash.
+
+A user can generate a proof for multiple k,v pairs in the same datastore.
+
+<details>
+<summary>Example</summary>
+
+```bash
+chia data get_proof --id 7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e -k 0x0003
+```
+
+Response:
+
+```bash
+{
+    "proof": {
+        "coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756",
+        "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f",
+        "store_proofs": {
+            "proofs": [
+                {
+                    "key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1",
+                    "layers": [],
+                    "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb",
+                    "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"
+                }
+            ],
+            "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"
+        }
+    },
+    "success": true
 }
 ```
 
@@ -1037,6 +1121,8 @@ Options:
 | -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
 | -m            | --fee           | TEXT    | False    | Set the fees for the transaction, in XCH                                                                |
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
+|               | --submit        | None    | False    | Set to submit the result on chain [Default: don't submit]                                               |
+|               | --no-submit     | None    | False    | Set to explicitly specify not to submit the result on chain [Default: don't submit]                     |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                            |
 
 A few notes on the `-d` / `--changelist` option:
@@ -1214,6 +1300,73 @@ value = {
     "warehouseProjectId":"7539ec69-cb8e-44d6-8823-e0b11501bd43",
     "timeStaged":1646694602,
     "orgUid":"0b09d8ae47bfe2716bc25282134ce6aa91ac3dcdf93635ac8ed6bcb301bb4cb8"
+}
+```
+
+</details>
+
+---
+
+### `verify_proof`
+
+Functionality: Verifies a merkle proof of inclusion
+
+Usage: `chia data verify_proof [OPTIONS]`
+
+Options:
+
+| Short Command | Long Command    | Type    | Required | Description                                                                                             |
+| :------------ | :-------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------ |
+| -p            | --proof         | TEXT    | True     | Proof to validate in JSON format                                                                        |
+| -dp           | --data-rpc-port | INTEGER | False    | Set the port where the DataLayer is hosting the RPC interface. See rpc_port under wallet in config.yaml |
+| -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                      |
+| -h            | --help          | None    | False    | Show a help message and exit                                                                            |
+
+Notes about this command:
+
+- It only needs to perform a single lookup of the on-chain root.
+- It doesn't need to have synced any of the data, or be subscribed to the data store.
+- To keep the proofs smaller, only the clvm hash of the key and value are included in the proof, and not the actual key or value. (A clvm hash is just a sha256 hash of the data prepended with 0x01.)
+- Datalayer uses CLVM hashes for ease of verification in CLVM, although for this specific use case, there is no on-chain validation happening.
+- When using this command, pay attention to the `current_root` value in the returned JSON.
+  - If `current_root` is `True`, this data chains to the current published root, and so if you synced the data, you can be sure it would be there.
+  - If `current_root` is `False`, the root has moved from the time the proof was generated. You cannot make any assumptions in this case about whether the data is in fact in the datastore or not since the root has changed, therefore the data might have changed. It is up to the caller to determine how to treat this case; one possible action would be to obtain a new proof.
+
+The proof to validate requires several fields:
+
+- `coin_id`
+- `inner_puzzle_hash`
+- `store_proofs`
+  - `proofs`
+    - `key_clvm_hash`
+    - `value_clvm_hash`
+    - `node_hash`
+    - `layers`
+
+Each of these fields is output with the [get_proof](#get_proof) command. For more examples, see chia-blockchain [PR #16845](https://github.com/Chia-Network/chia-blockchain/pull/16845).
+
+<details>
+<summary>Example</summary>
+
+```bash
+chia data verify_proof -p '{"coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756", "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f", "store_proofs": {"proofs": [{"key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1","layers": [], "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb", "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"}], "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"}}'
+```
+
+Response:
+
+```bash
+{
+    "current_root": true,
+    "success": true,
+    "verified_clvm_hashes": {
+        "inclusions": [
+            {
+                "key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1",
+                "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"
+            }
+        ],
+        "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"
+    }
 }
 ```
 

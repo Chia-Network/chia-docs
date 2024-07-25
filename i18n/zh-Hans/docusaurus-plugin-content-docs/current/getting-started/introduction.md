@@ -12,7 +12,7 @@ Chia是一种具有智能交易能力的加密货币和区块链。 它从头开
 
 Chia的主网于2021年3月19日推出。 其生态系统的开发正在进行中，已发布了[CAT](https://chialisp.com/cats)、[NFT](https://chialisp.com/nfts)、[报价（offer）](https://chialisp.com/offers) 和 [DID](https://chialisp.com/dids) 等基础设施。
 
-This page will give a brief overview of Chia and its various components. If you are interested in becoming a Chia farmer, feel free to skip ahead to the [Beginner's Guide to Farming](/farming-guide).
+This page will give a brief overview of Chia and its various components. This page will give a brief overview of Chia and its various components. If you are interested in becoming a Chia farmer, feel free to skip ahead to the [Beginner's Guide to Farming](/farming-guide).
 
 ## 时空证明（Proof of Space and Time）
 
@@ -30,7 +30,7 @@ Chia使用硬币模型来跟踪网络的状态。 在这个模型中，硬币（
 有关更多信息，请查看[硬币模型简介页面](/coin-set-intro)和[Chialisp.com](https://chialisp.com) 网站。
 :::
 
-## Pooling
+## 矿池（Pooling）
 
 与许多其他区块链一样，Chia允许连接矿池来确保小规模的农民能够平滑的获得奖励。 然而，Chia的矿池协议具有三个独特的特点。
 

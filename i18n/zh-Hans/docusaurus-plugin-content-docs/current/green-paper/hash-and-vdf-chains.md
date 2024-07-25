@@ -29,8 +29,8 @@ A hash chain is immutable in the following sense:
 ## 4.2 VDF chains
 
 <figure>
-    <img src="/img/green-paper/infusion.png" alt="Illustration of a VDF chain" />
-    <figcaption>Figure 6: Illustration of a VDF chain.</figcaption>
+	<img src="/img/green-paper/infusion.png" alt="Illustration of a VDF chain" />
+	<figcaption>Figure 6: Illustration of a VDF chain.</figcaption>
 </figure>
 
 A VDF chain is a sequence
@@ -72,7 +72,9 @@ VDF chains give two basic security guarantees, the first is immutability analogo
 **Proposition 3** (immutability and sequentiality of VDF chains). *Like a hash chain, a VDF chain is *immutable* in the sense that it's computationally infeasible to come up with two different VDF chains*
 
 $$
-{\cal V}=z_0,\tau_1,z_1,\tau_2,z_2,\ldots,\tau_\ell \qquad {\cal V}'=z'_0,\tau'_1,z'_1,\tau'_2,z'_2,\ldots,\tau'_{\ell'}
+{\cal V}=z_0,\tau_1,z_1,\tau_2,z_2,\ldots,\tau_\ell
+\qquad
+{\cal V}'=z'_0,\tau'_1,z'_1,\tau'_2,z'_2,\ldots,\tau'_{\ell'}
 $$
 
 where the last VDF outputs collide, i.e., $\tau_\ell.{\sf y}=\tau'_{\ell'}.{\sf y}$. Here different means that either they have different length $\ell\neq \ell'$ and neither is a prefix of the other. Or (if $\ell=\ell'$) there exists an $i$ s.t. either $z_i\neq z'_i$ or $\tau_i.{\sf y}\neq \tau'_i.{\sf y}$ or $\tau.{\sf t}\neq \tau'.{\sf t}$. Note that we ignore the proofs $\tau.\pi$ when comparing chains (we just use them to determine whether the chain is valid) as they must not be unique.

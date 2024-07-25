@@ -7,7 +7,7 @@ In Chia, the issuance schedule, also referred to as the block reward schedule, d
 
 ## Strategic Reserve (pre-farm)
 
-The first block of the network pays out 21 million XCH, divided into a 1/8 coin and a 7/8 coin, to an address that Chia Network Inc controls. The purpose and future usage of the funds is described in the [business whitepaper](https://www.chia.net/whitepaper).
+The first block of the network pays out 21 million XCH, divided into a 1/8 coin and a 7/8 coin, to an address that Chia Network Inc controls. The purpose and future usage of the funds is described in the [business white paper](https://www.chia.net/whitepaper).
 
 ## Halvings
 
@@ -36,7 +36,7 @@ Therefore, Chia coins are never destroyed. In a given block, any portion of a sp
 
 ## Farmer vs Pool reward
 
-The block reward is divided into two coins. The first coin goes to the farmer puzzle hash, which is specified by the farmer, and usually goes straight to the farmer's wallet. This contains 1/8 of the total value (0.25 XCH for the first 3 years). This is referred to as the _farmer coin_.
+The block reward is divided into two coins. The first coin goes to the farmer puzzle hash, which is specified by the farmer, and usually goes straight to the farmer's wallet. This contains 1/8 of the total value. This is referred to as the _farmer coin_.
 
 The second coin, with 7/8 of the value, is called the _pool coin_. This coin can go to one of two places:
 
@@ -55,4 +55,4 @@ As detailed in the [Business white paper](https://www.chia.net/whitepaper), the 
 | 10 - 12 |    `20 183 040` |                March 2033 |                 0.25 XCH |     0.21875 XCH |       0.03125 XCH |
 |  13 - ∞ |               ∞ |                         ∞ |                0.125 XCH |    0.109375 XCH |      0.015625 XCH |
 
-Note that the rewards are adjusted according to a block height, not a timestamp. The `Final Block` column is therefore accurate as the last block before the rewards are modified. The months and years are only estimates based on when the block heights are likely to be reached.
+Note that the rewards are adjusted according to a block height, not a timestamp. Note that the rewards are adjusted according to a block height, not a timestamp. The `Final Block` column is therefore accurate as the last block before the rewards are modified. The months and years are only estimates based on when the block heights are likely to be reached. The months and years are only estimates based on when the block heights are likely to be reached.

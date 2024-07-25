@@ -2818,7 +2818,7 @@ Request Parameters:
 | batch_size | NUMBER       | False    | The number of coins to spend per bundle, [Default: `batch_size` obtainable from [get_auto_claim](#get_auto_claim)] |
 | fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                               |
 
-When examing the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
+When examining the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
 
 <details>
 <summary>Example</summary>
@@ -3220,7 +3220,7 @@ Response:
 
 ### `cat_get_asset_id`
 
-Functionality: Retrieve a the asset ID from a CAT wallet
+Functionality: Retrieve the asset ID from a CAT wallet
 
 Usage: chia rpc wallet [OPTIONS] cat_get_asset_id [REQUEST]
 

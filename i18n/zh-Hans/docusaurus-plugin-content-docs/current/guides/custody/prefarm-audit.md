@@ -7,7 +7,7 @@ Chia Network Inc's prefarm is secured by a complex set of custodial rules. This 
 
 Other relevant documents:
 
-- [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
+- [Flow chart](https://docs.chia.net/img/chia-custody-tool.png) to visualize how the custody tool works
 - [User guide](/guides/custody-tool-user-guide) to help you get up and running
 - [CLI reference](/custody-tool) for all custody commands used in this tutorial
 - [Prefarm Alert Tool](https://github.com/Chia-Network/prefarm-alert) to access the public prefarm config files
@@ -76,7 +76,9 @@ xch1jj0gm4ahhlu3ke0r0fx955v8axr6za7rzz6hc0y26lewa7zw6fws5nwvv6
 
 :::info
 
-NOTE: A high level of technical proficiency is needed to understand the details of this manual process for what the cic tool does above. This process is a high-level guide and does not display expected results for each step. The [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools#install) are needed for this audit.
+NOTE: A high level of technical proficiency is needed to understand the details of this manual process for what the cic tool does above.
+This process is a high-level guide and does not display expected results for each step.
+The [chia-dev-tools](https://github.com/Chia-Network/chia-dev-tools#install) are needed for this audit.
 
 :::
 

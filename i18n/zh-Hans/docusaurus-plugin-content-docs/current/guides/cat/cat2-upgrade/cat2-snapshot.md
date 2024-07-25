@@ -44,18 +44,17 @@ values={[
 ]}>
 <TabItem value="windows">
 
-1.  If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
+- If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
 :::caution
 Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
-
 :::
 
 ```powershell
 Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VERSION>\resources\app.asar.unpacked\daemon\chia.exe"
 ```
 
-2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
@@ -64,9 +63,9 @@ Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VER
   </TabItem>
   <TabItem value="linux">
 
-1.  If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
+- If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
 
-2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
 ```bash
 . ./activate
@@ -75,13 +74,13 @@ Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VER
   </TabItem>
   <TabItem value="macos">
 
-1.  If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
+- If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
 ```bash
 alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia"
 ```
 
-2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
 ```bash
 . ./activate
@@ -111,11 +110,11 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
    3. `START_HEIGHT` - The height of the blockchain to start creating the snapshot from (default: `0`). If you are attempting to obtain all records for your CAT, the recommended start height is `1146800`, which is just before CAT1 was introduced.
    4. `TARGET_HEIGHT` - The height of the blockchain to end the snapshot (no default - must be set). The recommended height is `2311760`, which is the last block at which CAT1 is valid.
 
-:::caution
-Running this process with the recommended block heights could take over 40 hours to complete. You may wish to test it first by setting the `TARGET_HEIGHT` to `1146900`. This will pull data from only 100 blocks, which should only take a few seconds.
-:::
+   :::caution
+   Running this process with the recommended block heights could take over 40 hours to complete. You may wish to test it first by setting the `TARGET_HEIGHT` to `1146900`. This will pull data from only 100 blocks, which should only take a few seconds.
+   :::
 
-In order to set these variables, you are recommended to put them into a file called `.env` at the root of the `CAT-addresses` project. The tool will automatically read the variables in this file. For example:
+   In order to set these variables, you are recommended to put them into a file called `.env` at the root of the `CAT-addresses` project. The tool will automatically read the variables in this file. For example:
 
 <Tabs
 defaultValue="windows"

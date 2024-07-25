@@ -3,7 +3,7 @@ title: K值大小
 slug: /k-sizes
 ---
 
-# K值大小与压缩等级
+## K值大小与压缩等级
 
 | 压缩等级 | 地块大小 k=32（GiB） | 地块大小 k=32（GB） | 地块大小 k=33（GiB） | 地块大小 k=34（GiB） | 地块大小 k=35（GiB） |
 | -------- | -------------------- | ------------------- | -------------------- | -------------------- | -------------------- |
@@ -40,6 +40,19 @@ The following table shows the old size estimation of C0 plots, along with the ne
 |  37 |        3927.318095 |        4020.347087 |
 |  38 |        8064.093156 |        8255.112685 |
 |  39 |        16547.10024 |        16939.06239 |
+
+## Storage requirements for uncompressed plots
+
+| K-size                                                                                                                                                                                                                                                                              | Temp. Size         | Final Size           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------- |
+| New est. size (GB)                                                                                                                                                                                                                                                                  | 239 GiB (256.6 GB) | 101.4 GiB (108.9 GB) |
+| For a given _k_, the plot size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005`. In previous versions of Chia's documentation and code, the constant at the end of this equation was estimated to be 0.762. Our documentation and code now use a closer estimation of 0.78005. | 512 GiB (550 GB)   | 208.8 GiB (224.2 GB) |
+| Old est. size (GB)                                                                                                                                                                                                                                                                  | 1041 GiB (1118 GB) | 429.8 GiB (461.5 GB) |
+| K=35                                                                                                                                                                                                                                                                                | 2175 GiB (2335 GB) | 884.1 GiB (949.3 GB) |
+
+When planning on how much plotting space is required, only calculate the temporary disk size requirement.
+
+When stagger plotting, disk size requirement may change depending on which Phase the plotting is at.
 
 ## 大于k=32的地块
 

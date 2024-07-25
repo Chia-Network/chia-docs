@@ -180,6 +180,9 @@ chia stop -d all
 # Deactivate the virtual environment
 deactivate
 
+# Remove the current virtual environment
+rm -r venv
+
 # Pull the latest version
 git fetch
 git checkout latest
@@ -239,6 +242,9 @@ chia stop -d all
 
 # Deactivate the virtual environment
 deactivate
+
+# Remove the current virtual environment
+rm -r venv
 
 # Pull the latest version
 git fetch
@@ -441,13 +447,13 @@ pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniu
 
 _**These instructions were tested with Chia 1.1.4 on FreeBSD 11.3- and 11.4-RELEASE, newer versions may exist**_
 
-\*\*\*==crwdHRulesLBB_2_BBsuleRHdwrc==
+---
 
 #### Upgrading Existing Chia Installs
 
 If you're upgrading from a previously built chia installation, exit from your previous venv environment (`deactivate`), create a new directory in which to place the latest Chia (e.g. `mkdir ~/chia-1.0.5 && cd ~/chia-1.0.5`), clone the latest repo (`git clone https://github.com/Chia-Network/chia-blockchain.git -b latest`), enter it and create a new Python virtual environment within it (`python3 -m venv venv`). Now, activate the newest environment (`. venv/bin/activate`), upgrade pip (`pip install --upgrade pip`). Now you may skip down to the [clvm_rs install section](#clvm_rs) and begin there.
 
-\*\*\*==crwdHRulesLBB_2_BBsuleRHdwrc==
+---
 
 #### Why This Manual Installation?
 
@@ -692,7 +698,7 @@ sed -i .bak 's/enable_upnp: True/enable_upnp: False' ~/.chia/mainnet/config/conf
 
 While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://docs.chia.net/farming-on-many-machines/).
 
-\*\*\*==crwdHRulesLBB_2_BBsuleRHdwrc==
+---
 
 #### Installed and Ready to Farm!
 
@@ -1042,7 +1048,7 @@ If all else fails, rebooting the machine and restarting the chia daemon/processe
 
 To join a testnet, follow the instructions on [How to Join the Official Testnet](/testnets#join-the-official-testnet).
 
-It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet10" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet10"` so that all commands will use testnet10 instead of mainnet. If you're using a version above 1.2.11, you can update all config values to the testnet values by running `chia configure -t true`.
+It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet11" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet11"` so that all commands will use testnet11 instead of mainnet. You can update all config values to the testnet values by running `chia configure -t true`.
 
 ## Beta and release candidate installations
 
@@ -1112,7 +1118,16 @@ chia init
   </TabItem>
 </Tabs>
 
-### Apt
+### From packaged installer
+
+<Tabs
+defaultValue="apt"
+groupId="source"
+values={[
+{label: 'Apt', value: 'apt'},
+{label: 'exe, deb, dmg, rpm', value: 'exe, deb, dmg, rpm'},
+]}>
+<TabItem value="apt">
 
 ```bash
 # Install packages
@@ -1131,3 +1146,20 @@ sudo apt-get install chia-blockchain
 
 # Use chia-blockchain-cli instead for CLI only
 ```
+
+  </TabItem>
+  <TabItem value="exe, deb, dmg, rpm">
+
+```bash
+# Navigate to downloads page
+Open https://github.com/Chia-Network/chia-blockchain/releases in a web browser
+
+# Download the correct asset
+Navigate to the release candidate of interest and download the necessary installer for your OS (ex. exe for windows)
+
+# Install the downloaded installer
+Using your system finder/file explorer install the downloaded installer (note - make sure no other versions of chia are installed prior to this step)
+```
+
+  </TabItem>
+</Tabs>
