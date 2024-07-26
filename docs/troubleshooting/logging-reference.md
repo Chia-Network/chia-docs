@@ -3,15 +3,18 @@ title: Logging Reference
 slug: /troubleshooting/logging-reference
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Chia blockchain nodes consist of several components that each handle different aspects of farming, harvesting, the wallet and general management of a node. Each component creates entries in a single log file `debug.log`.
 
 ## Log file Location:
 
 | OS      | Location                                                             |
-|---------|----------------------------------------------------------------------|
+| ------- | -------------------------------------------------------------------- |
 | Linux   | `~/.chia/mainnet/log/debug.log`                                      |
 | Windows | `$env:USERPROFILE\.chia\mainnet\log\` (`C:\Users\<username>\.chia…`) |
-| MacOS   | `/Users/<username>/.chia/mainnet/log/debug.log`                      |
+| MacOS   | `$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`)     |
 
 ## Log File Management:
 
@@ -38,7 +41,7 @@ Change the `log_level` to `INFO`, save the file, and restart the node.
 ## Node Components:
 
 | Component        | Function                                        |
-|------------------|-------------------------------------------------|
+| ---------------- | ----------------------------------------------- |
 | farmer_server    | Signage stuff about signs and things            |
 | harvester_server | Gathers and shares plot information             |
 | timelord_server  | Manages Verifiable Delay Functions for the node |
@@ -48,7 +51,7 @@ Change the `log_level` to `INFO`, save the file, and restart the node.
 ## Log Message Format:
 
 | Field             | Content                          |
-|-------------------|----------------------------------|
+| ----------------- | -------------------------------- |
 | Date/time         | in ISO format, in local timezone |
 | Node Component    | see the list above               |
 | Log Level         | ERROR, WARN, INFO                |
@@ -73,56 +76,56 @@ Another log message you will see is `Updated Wallet peak to height x, weight y` 
 
 ## Other Normal Log Messages:
 
-| Component         | Message                                          | Direction | Destination | Cross component      | Comment |
-|-------------------|--------------------------------------------------|-----------|-------------|----------------------|---------|
-| mempool_manager   | add_spendbundle took x seconds                   |           |             |                      |         |
-| mempool_manager   | It took x to pre validate transaction            |           |             |                      |         |
-| full_node         | Added unfinished_block x, not farmed by us       |           |             |                      |         |
-| full_node         | Already compactified block:                      |           |             |                      |         |
-| full_node         | Duplicate compact proof. Height: x               |           |             |                      |         |
-| full_node         | Finished signage point x/64:                     |           |             |                      |         |
-| full_node         | Scanning the blockchain for uncompact blocks.    |           |             |                      |         |
-| full_node         | Updated peak to height x                         |           |             |                      |         |
-| full_node_server  | new_compact_vdf                                  | to/from   | peer        |                      |         |
-| full_node_server  | new_peak                                         | to/from   | peer        |                      |         |
-| full_node_server  | new_peak_timelord                                | to        | localhost   | from timelord_server |         |
-| full_node_server  | new_peak_wallet                                  | to        | localhost   | from wallet_server   |         |
-| full_node_server  | new_signage_point                                | to        | localhost   | from farmer_server   |         |
-| full_node_server  | new_signage_point_or_end_of_sub_slot             | to/from   | peer        |                      |         |
-| full_node_server  | new_transaction                                  | to/from   | peer        |                      |         |
-| full_node_server  | new_unfinished_block                             | to/from   | peer        |                      |         |
-| full_node_server  | new_unfinished_block_timelord                    | to/from   | localhost   |                      |         |
-| full_node_server  | request_block                                    | to/from   | peer        |                      |         |
-| full_node_server  | request_block_header                             | from      | localhost   | to wallet_server     |         |
-| full_node_server  | request_compact_vdf                              | to/from   | peer        |                      |         |
-| full_node_server  | request_compact_proof_of_time                    | to        | localhost   | from timelord_server |         |
-| full_node_server  | request_signage_point_or_end_of_sub_slot         | to/from   | peer        |                      |         |
-| full_node_server  | request_transaction                              | to/from   | peer        |                      |         |
-| full_node_server  | request_unfinished_block                         | to/from   | peer        |                      |         |
-| full_node_server  | respond_block                                    | to/from   | peer        |                      |         |
-| full_node_server  | respond_compact_vdf                              | to/from   | peer        |                      |         |
-| full_node_server  | respond_signage_point                            | to/from   | peer        |                      |         |
-| full_node_server  | respond_transaction                              | to/from   | peer        |                      |         |
-| full_node_server  | respond_unfinished_block                         | to/from   | peer        |                      |         |
-| wallet_server     | request_block_header                             | to        | localhost   | from full_node       |         |
-| wallet_server     | respond_block_header                             | from      | localhost   | to full_node         |         |
-| wallet_server     | new_peak_wallet                                  | from      | localhost   | to full_node         |         |
-| wallet_blockchain | Updated Wallet peak to height x, weight y        |           |             |                      |         |
-| timelord_server   | new_peak_timelord                                | from      | localhost   | to full_node         |         |
-| timelord_server   | new_unfinished_block_timelord                    | from      | localhost   | to full_node         |         |
-| timelord_launcher | VDF client x: VDF Client: Discriminant =         |           |             |                      |         |
-| VDF Client        | Sending Proof, Sent Proof, Stopped everything!   |           |             |                      |         |
-| harvester_server  | farming_info                                     | to/from   | localhost   |                      |         |
-| harvester_server  | new_signage_point_harvester                      | from      | localhost   | to farmer_server     |         |
-| harvester         | x plots were eligible for farming                |           |             |                      |         |
-| plot_tools        | Loaded a total of x plots of size y in z seconds |           |             |                      |         |
-| plot_tools        | Searching directories                            |           |             |                      |         |
-| farmer_server     | new_signage_point                                | from      | localhost   | to full_node         |         |
-| farmer_server     | farming_info                                     | from      | localhost   | to full_node         |         |
-| farmer_server     | new_signage_point_harvester                      | to        | localhost   | from harvester       |         |
+| Component         | Message                                          | Direction | Destination | Cross component      |
+| ----------------- | ------------------------------------------------ | --------- | ----------- | -------------------- |
+| mempool_manager   | add_spendbundle took x seconds                   |           |             |                      |
+| mempool_manager   | It took x to pre validate transaction            |           |             |                      |
+| full_node         | Added unfinished_block x, not farmed by us       |           |             |                      |
+| full_node         | Already compactified block:                      |           |             |                      |
+| full_node         | Duplicate compact proof. Height: x               |           |             |                      |
+| full_node         | Finished signage point x/64:                     |           |             |                      |
+| full_node         | Scanning the blockchain for uncompact blocks.    |           |             |                      |
+| full_node         | Updated peak to height x                         |           |             |                      |
+| full_node_server  | new_compact_vdf                                  | to/from   | peer        |                      |
+| full_node_server  | new_peak                                         | to/from   | peer        |                      |
+| full_node_server  | new_peak_timelord                                | to        | localhost   | from timelord_server |
+| full_node_server  | new_peak_wallet                                  | to        | localhost   | from wallet_server   |
+| full_node_server  | new_signage_point                                | to        | localhost   | from farmer_server   |
+| full_node_server  | new_signage_point_or_end_of_sub_slot             | to/from   | peer        |                      |
+| full_node_server  | new_transaction                                  | to/from   | peer        |                      |
+| full_node_server  | new_unfinished_block                             | to/from   | peer        |                      |
+| full_node_server  | new_unfinished_block_timelord                    | to/from   | localhost   |                      |
+| full_node_server  | request_block                                    | to/from   | peer        |                      |
+| full_node_server  | request_block_header                             | from      | localhost   | to wallet_server     |
+| full_node_server  | request_compact_vdf                              | to/from   | peer        |                      |
+| full_node_server  | request_compact_proof_of_time                    | to        | localhost   | from timelord_server |
+| full_node_server  | request_signage_point_or_end_of_sub_slot         | to/from   | peer        |                      |
+| full_node_server  | request_transaction                              | to/from   | peer        |                      |
+| full_node_server  | request_unfinished_block                         | to/from   | peer        |                      |
+| full_node_server  | respond_block                                    | to/from   | peer        |                      |
+| full_node_server  | respond_compact_vdf                              | to/from   | peer        |                      |
+| full_node_server  | respond_signage_point                            | to/from   | peer        |                      |
+| full_node_server  | respond_transaction                              | to/from   | peer        |                      |
+| full_node_server  | respond_unfinished_block                         | to/from   | peer        |                      |
+| wallet_server     | request_block_header                             | to        | localhost   | from full_node       |
+| wallet_server     | respond_block_header                             | from      | localhost   | to full_node         |
+| wallet_server     | new_peak_wallet                                  | from      | localhost   | to full_node         |
+| wallet_blockchain | Updated Wallet peak to height x, weight y        |           |             |                      |
+| timelord_server   | new_peak_timelord                                | from      | localhost   | to full_node         |
+| timelord_server   | new_unfinished_block_timelord                    | from      | localhost   | to full_node         |
+| timelord_launcher | VDF client x: VDF Client: Discriminant =         |           |             |                      |
+| VDF Client        | Sending Proof, Sent Proof, Stopped everything!   |           |             |                      |
+| harvester_server  | farming_info                                     | to/from   | localhost   |                      |
+| harvester_server  | new_signage_point_harvester                      | from      | localhost   | to farmer_server     |
+| harvester         | x plots were eligible for farming                |           |             |                      |
+| plot_tools        | Loaded a total of x plots of size y in z seconds |           |             |                      |
+| plot_tools        | Searching directories                            |           |             |                      |
+| farmer_server     | new_signage_point                                | from      | localhost   | to full_node         |
+| farmer_server     | farming_info                                     | from      | localhost   | to full_node         |
+| farmer_server     | new_signage_point_harvester                      | to        | localhost   | from harvester       |
 
 | Source                              | Level   | Message                                                                                                                                                                                            | Description                                                                                                                                                                 |
-|-------------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | daemon asyncio                      | ERROR   | Task exception was never retrieved future: `<Task finished coro=<WebSocketServer.statechanged() done, defined at src\daemon\server.py:316> exception=ValueError('list.remove(x): x not in list')>` |                                                                                                                                                                             |
 | full_node asyncio                   | ERROR   | SSL error in data received protocol: `<asyncio.sslproto.SSLProtocol object at 0x7f762544a8>`                                                                                                       |                                                                                                                                                                             |
 | full_node full_node_server          | ERROR   | Exception: Failed to fetch block `N` from \{'host': `IP ADDRESS`, 'port': 8444\}, timed out, \{'host': `IP ADDRESS`, 'port': 8444\}.                                                               | Peer disconnected, other peer connections will take over                                                                                                                    |
@@ -154,6 +157,11 @@ values={[
 
 ### search linux or mac logs
 
+:::info
+The below strings are an example of what can be used to search for specific log lines but they are not all-inclusive.  
+You can also use strings from any other log lines in the below command to search for other lines, just make sure you have the correct log level setting for the line that is being searched.
+:::
+
 Functionality: Output log lines that contain the string in terminal
 
 Usage: `find "$HOME/.chia/mainnet/log" -type f -exec grep -Hn "[STRING]" {} \;`
@@ -161,12 +169,11 @@ Usage: `find "$HOME/.chia/mainnet/log" -type f -exec grep -Hn "[STRING]" {} \;`
 Options:
 
 | String          | Minimum Required Log Level | Description                                          |
-|-----------------|----------------------------|------------------------------------------------------|
-| "ing service"   | INFO                       | Outputs all starting and stopping services log lines |
-| ": ERROR"       | ERROR                      | Outputs all error log lines                          |
-| ": WARNING"     | WARNING                    | Outputs all warning log lines                        |
-| "proofs. Time:" | INFO                       | Outputs all proof check log lines                    |
-
+| --------------- | -------------------------- | ---------------------------------------------------- |
+| `ing service`   | INFO                       | Outputs all starting and stopping services log lines |
+| `: ERROR`       | ERROR                      | Outputs all error log lines                          |
+| `: WARNING`     | WARNING                    | Outputs all warning log lines                        |
+| `proofs. Time:` | INFO                       | Outputs all proof check log lines                    |
 
 <details>
 <summary>Example</summary>
@@ -199,6 +206,11 @@ The chia client automatically rotates log files so pay close attention to the fi
 
 ### search windows logs
 
+:::info
+The below strings are an example of what can be used to search for specific log lines but they are not all-inclusive.  
+You can also use strings from any other log lines in the below command to search for other lines, just make sure you have the correct log level setting for the line that is being searched.
+:::
+
 Functionality: Output log lines that contain the string in powershell
 
 Usage: `Get-ChildItem -Path $env:USERPROFILE\.chia\mainnet\log\ -recurse |  Select-String -Pattern "[STRING]"`
@@ -206,12 +218,11 @@ Usage: `Get-ChildItem -Path $env:USERPROFILE\.chia\mainnet\log\ -recurse |  Sele
 Options:
 
 | String          | Minimum Required Log Level | Description                                          |
-|-----------------|----------------------------|------------------------------------------------------|
-| "ing service"   | INFO                       | Outputs all starting and stopping services log lines |
-| ": ERROR"       | ERROR                      | Outputs all error log lines                          |
-| ": WARNING"     | WARNING                    | Outputs all warning log lines                        |
-| "proofs. Time:" | INFO                       | Outputs all proof check log lines                    |
-
+| --------------- | -------------------------- | ---------------------------------------------------- |
+| `ing service`   | INFO                       | Outputs all starting and stopping services log lines |
+| `: ERROR`       | ERROR                      | Outputs all error log lines                          |
+| `: WARNING`     | WARNING                    | Outputs all warning log lines                        |
+| `proofs. Time:` | INFO                       | Outputs all proof check log lines                    |
 
 <details>
 <summary>Example</summary>
@@ -239,7 +250,6 @@ C:\Users\[USERNAME]\.chia\mainnet
 </details>
 
 ---
-
 
   </TabItem>
 </Tabs>
