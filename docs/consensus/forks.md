@@ -3,7 +3,7 @@ title: Forks
 slug: /consensus-forks
 ---
 
-The following table is a comprehensive list of all forks (planned and activated) on Chia's blockchain. It was last updated on 2023-09-10.
+The following table is a comprehensive list of all forks (planned and activated) on Chia's blockchain. It was last updated on 2024-07-30.
 
 | Activation Block | Activation Date | Type | Build | Status                        | Description                                                                                                                                                    |
 | :--------------- | :-------------- | :--- | :---- | :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
