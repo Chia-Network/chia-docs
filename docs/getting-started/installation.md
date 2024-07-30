@@ -247,6 +247,8 @@ deactivate
 
 # Remove the current virtual environment
 rm -r venv
+rm -r .penv
+rm -r .venv
 
 # Pull the latest version
 git fetch
