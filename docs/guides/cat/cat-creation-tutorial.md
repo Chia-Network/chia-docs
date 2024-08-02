@@ -224,7 +224,8 @@ To get started, you will create a single-issuance CAT. This is the default way t
 
 :::note
 
-A TAIL is a Chialisp program that defines the rules for issuing and melting tokens. Learn more about the [Token and Asset Issuance Limitations program](https://chialisp.com/cats/#tail).
+A TAIL is a Chialisp program that defines the rules for issuing and melting tokens. Learn more about the [Token and Asset Issuance Limitations program](https://chialisp.com/cats/#tail).  
+Single issuance CATs can **NOT** be melted.
 
 :::
 
@@ -277,6 +278,8 @@ We'll set up this CAT to delegate the same TAIL we set up previously. What this 
 First, figure out how many tokens you want to issue. Because creating a single token takes 1,000 mojos, you will multiply your supply by 1,000 to figure out how much TXCH (or XCH on mainnet) is needed. For example, if you want to issue 1 million tokens, you'll need 1 billion mojos (1/1000 of a TXCH/XCH).
 
 :::note
+Multi-issuance CATs can be melted with a custom spend bundle as described [here](#melting-a-cat).
+
 Just as with the Single Issuance CAT, we recommend that you include a fee with your transaction. This fee will ensure that your transaction is processed in front of any dust in the mempool. Whether you're running on testnet or mainnet, the recommended fee amount is 100 million mojos (`-m 100000000`). Even though you will run the `cats` command multiple times, the fee will only be applied once, when the transaction is pushed to the network.
 :::
 
@@ -356,6 +359,26 @@ You will now see your token in your wallet with the full issued quantity. As a r
 <br />
 
 You now have access to your CAT in the GUI. You can send and receive your new tokens just like you would with regular XCH.
+
+## Melting a CAT
+
+When you spend one or more CAT coins, you provide an Extra Delta in the solution, which is essentially by how much the supply is changing. If it's positive, you're increasing the supply. And if it's negative, you're melting the CAT away.
+
+When the Extra Delta is non-zero, you have to run the TAIL program, which describes the rules for when you are allowed to change the supply.
+
+Single issuance CATs cannot be melted because the TAIL only allows being run if the coin has a specific parent. In other words, the supply can only be set once, and never modified thereafter.
+For multi issuance CATs, you need to sign with the issuance key in order to authorize the supply change, and therefore it does support melting.
+
+You reveal and run the TAIL by outputting the following condition from the inner puzzle's spend:  
+`(list CREATE_COIN () -113 <tail program> <tail solution>)`
+
+The documentation for this Extra Delta concept can be found [here](https://chialisp.com/cats/#extra-delta).
+
+This is an [example](https://github.com/Rigidity/chia-wallet-sdk/blob/main/crates/chia-sdk-driver/src/puzzles/cat/cat_spend.rs#L250-L268) of melting a CAT from Rigidity's wallet SDK.
+
+In this example, you start with a supply of 10000, use an extra delta of -3000, reveal the TAIL and output a new CAT with the remaining supply of 7000.
+
+Here is another [example](https://github.com/irulast/chia_crypto_utils/blob/0bbf32a422e2b624cd3f84b7b643b0f83f18be51/integration_test/cat/cat_multi_issuance_test.dart#L44) of melting a CAT from Irulast's chia crypto utils.
 
 ## Preparing for Mainnet
 
