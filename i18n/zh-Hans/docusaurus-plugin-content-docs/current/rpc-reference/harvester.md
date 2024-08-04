@@ -38,14 +38,14 @@ Usage: chia rpc harvester [OPTIONS] add_plot_directory [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type | Required | Description                           |
-| :------ | :--- | :------- | :------------------------------------ |
+|:------- |:---- |:-------- |:------------------------------------- |
 | dirname | TEXT | True     | The full path of the directory to add |
 
 :::note
@@ -90,14 +90,14 @@ Usage: chia rpc harvester [OPTIONS] delete_plot [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag     | Type | Required | Description                         |
-| :------- | :--- | :------- | :---------------------------------- |
+|:-------- |:---- |:-------- |:----------------------------------- |
 | filename | TEXT | True     | The file name of the plot to delete |
 
 :::note
@@ -134,7 +134,7 @@ Usage: chia rpc harvester [OPTIONS] get_plots [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -204,7 +204,7 @@ Usage: chia rpc harvester [OPTIONS] get_plot_directories [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -242,7 +242,7 @@ Usage: chia rpc harvester [OPTIONS] get_routes [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -290,7 +290,7 @@ Usage: chia rpc harvester [OPTIONS] refresh_plots [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -330,14 +330,14 @@ Usage: chia rpc harvester [OPTIONS] remove_plot_directory [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type | Required | Description                              |
-| :------ | :--- | :------- | :--------------------------------------- |
+|:------- |:---- |:-------- |:---------------------------------------- |
 | dirname | TEXT | True     | The full path of the directory to remove |
 
 :::note
