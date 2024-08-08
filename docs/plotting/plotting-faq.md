@@ -3,6 +3,14 @@ title: Plotting FAQ
 slug: /plotting-faq
 ---
 
+:::info
+
+In 2024 we proposed a new proof format. Please see our [frequently asked questions](/new-proof-faq) for the new format. For additional information, see our [new proof format](/new-proof-introduction) section.
+
+The questions listed on this page only pertain to the original format.
+
+:::
+
 ## If power goes out what happens?
 
 Any plots that were partially made will be invalid. This will likely leave many `.tmp` files that can be removed. In many cases, temp files will be automatically deleted, but this is one case where you'll likely need to remove the files manually. This does not harm any existing plots that have already been completed.

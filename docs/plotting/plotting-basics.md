@@ -68,6 +68,8 @@ Plot "compression" is possible because the data contained within a plot is deter
 
 By mid-2023, most new Chia plots were being created using these "compression" techniques. Each individual plot earns the same rewards as an equivalent uncompressed plot. However, because the compressed plots are smaller, more of them fit on each disk. Farmers therefore earn extra income compared with using uncompressed plots.
 
+In 2024, we proposed a new proof format that would make it much more difficult to compress plots. This is an ongoing project, which will not be complete until the end of 2026 according to current estimates. For more info, see our section dedicated to the [new proof format](/new-proof-introduction).
+
 ### Tradeoffs
 
 As with most technologies, compressed plots come with tradeoffs. The fact that they are left incomplete upon being created means that they require more energy to be "completed" while farming. Luckily, the lower levels of compression only require a small amount of extra energy, while yielding 15% more rewards. On the other hand, plots using the highest levels of compression require more compute while farming, thus necessitating the use of a GPU.

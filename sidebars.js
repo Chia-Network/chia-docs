@@ -170,6 +170,19 @@ module.exports = {
           items: [
             'consensus/consensus-intro',
             'consensus/proof-of-space',
+            {
+              type: 'category',
+              label: 'New Proof Format',
+              items: [
+                'new-proof-format/new-proof-introduction',
+                'new-proof-format/new-proof-plotting-requirements',
+                'new-proof-format/new-proof-farming-requirements',
+                'new-proof-format/new-proof-timeline',
+                'new-proof-format/new-proof-faq',
+                'new-proof-format/new-proof-technical-overview',
+                'new-proof-format/new-proof-technical-details',
+              ],
+            },
             'consensus/proof-of-time',
             {
               type: 'category',
