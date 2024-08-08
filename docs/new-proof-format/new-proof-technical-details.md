@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 ## New Matching Algorithm
 
-The matching algorithm for all tables has changed, and now forms the basis of security. It is a memory hard algorithm which can be tuned to take more or less time by adjusting the number of match indexes to test for whether two entries match. 
+The matching algorithm for all tables has changed, and now forms the basis of security. It is a memory hard algorithm which can be tuned to take more or less time by adjusting the number of match indexes to test for whether two entries match.
 
 The benefit of this algorithm is that we can set the difficulty very high so that plotting will take longer and compression attacks will be more expensive, yet it incurs negligible cost when validating a proof. Since validation is “free”, we can tune this to be as difficult as we need, without adding extra compute expense to the network.
 
@@ -57,12 +57,12 @@ A few definitions:
 
 - x1 and x2 are pairs matched in the first table, and are the left side match in the next table.
 - x3 and x4 are pairs matched in the first table, that then form the right-side match with x1 and x2 in the second table.
-- Xdata totals 2k bits, comprising the upper section bits of x1, additional bits of x1, additional bits of x2, and match index for pairing x1 and x2, upper section bits of x3, additional bits of x3, additional bits of x4, and match index for pairing x3 and x4. 
+- Xdata totals 2k bits, comprising the upper section bits of x1, additional bits of x1, additional bits of x2, and match index for pairing x1 and x2, upper section bits of x3, additional bits of x3, additional bits of x4, and match index for pairing x3 and x4.
 
- E.g. if we have a k32, 6 section bits and 6 match bits, we form: [upper 6 bits of x1 and x2 (which are the same)][bits 7-16 of x1][bits 7-16 of x2][6 match index bits (applied to x1)][upper 6 bits of x3 and x4 (which are the same)][bits 7-16 of x3][bits 7-16 of x4][6 match index bits (applied to x3)].
+E.g. if we have a k32, 6 section bits and 6 match bits, we form: [upper 6 bits of x1 and x2 (which are the same)][bits 7-16 of x1][bits 7-16 of x2][6 match index bits (applied to x1)][upper 6 bits of x3 and x4 (which are the same)][bits 7-16 of x3][bits 7-16 of x4][6 match index bits (applied to x3)].
+
 - EncryptedXs is the 2k-bits encrypted Xdata with a seed based on plot_id (reversible)
 - S is a random range within 0..2^2k based on the challenge
-
 
 #### The Challenge
 
@@ -91,13 +91,13 @@ The combination of these three filters severely constrain the flexibility afford
 
 ## Benes Compression
 
-A new compression algorithm allows us to compress each table in the plot by 2-3 extra bits compared to the original format. Note that this is not bit dropping (which incurs costs that go up exponentially based on the amount of data being dropped), but rather an improved way to losslessly store information in each table. The findings are based on this  [blog post](https://hackmd.io/@dabo/rkP8Pcf9t).
+A new compression algorithm allows us to compress each table in the plot by 2-3 extra bits compared to the original format. Note that this is not bit dropping (which incurs costs that go up exponentially based on the amount of data being dropped), but rather an improved way to losslessly store information in each table. The findings are based on this [blog post](https://hackmd.io/@dabo/rkP8Pcf9t).
 
 In addition, Benes compression has the unique property that plot tables can be traversed in both directions, whereas the HDD friendly format requires additional data to store an index from the T2 table to the last table (so that it can then traverse entries down the table).
 
 Each table in the plot using Benes compression comes at the cost of doing a few more random seeks in data retrieval. While it would be possible to put a few such Benes plots on an HDD, the proof retrieval times are not guaranteed to be completed in time. On SSD using Benes compression has minimal impact on farming and is the recommended storage format.
 
-While we hope to release Benes compression for plots prior to the hard fork, constructing the proof of space using the Benes algorithms is more challenging and could require significantly more RAM and slower plotting times. 
+While we hope to release Benes compression for plots prior to the hard fork, constructing the proof of space using the Benes algorithms is more challenging and could require significantly more RAM and slower plotting times.
 
 ## Further Compression by Additional Bit Dropping
 
@@ -105,13 +105,13 @@ One of the first known compression attacks is to bit drop on x1/x2 pairs on the 
 
 It is still possible to drop the lower-order bits from the EncryptedX values, where each bit dropped would require a doubling of compute. A potentially more advantageous approach is to leave the default x values intact and instead drop bits from the back pointers starting from table T3. In the original format, dropping two bits (one from each of the two back pointers in T3) would have saved approximately 1% of space, at the cost of doubling the time needed to recompute the quality string and the full proof.
 
-In the new format, we have restructured the back pointers, and currently, we see the potential to drop only 1 bit per back pointer for a doubling of compute. Further research may reveal the possibility of more aggressive bit dropping back up to 2 bits per doubling of recompute. 
+In the new format, we have restructured the back pointers, and currently, we see the potential to drop only 1 bit per back pointer for a doubling of compute. Further research may reveal the possibility of more aggressive bit dropping back up to 2 bits per doubling of recompute.
 
-As it stands, the default plot already includes a certain level of bit dropping, and bit dropping further  quickly becomes too expensive. Depending on the final parameter settings, we don’t expect this to be economically viable beyond a few bits on today’s hardware, with each bit dropped saving ~0.5%. We will also offer the ability to plot using the most optimal method for further compression for those interested.
+As it stands, the default plot already includes a certain level of bit dropping, and bit dropping further quickly becomes too expensive. Depending on the final parameter settings, we don’t expect this to be economically viable beyond a few bits on today’s hardware, with each bit dropped saving ~0.5%. We will also offer the ability to plot using the most optimal method for further compression for those interested.
 
 ## Impact to Honest Farmers
 
-The x values stored in T2 have default levels of bit-dropping already applied that are defined in the challenge scan filter. A small amount of compute is required when fetching a final quality string, similar to the low C-levels of the bladebit formats. The honest farmer will have to grind an additional small amount to get the full x values for the proof. 
+The x values stored in T2 have default levels of bit-dropping already applied that are defined in the challenge scan filter. A small amount of compute is required when fetching a final quality string, similar to the low C-levels of the bladebit formats. The honest farmer will have to grind an additional small amount to get the full x values for the proof.
 
 There will also be an option to omit this low-level grinding if desired, at the cost of adding more bits to the plot format. However, since the compute required for the grind is low and designed to be close to optimal, the default level of bit dropping specified by the challenge is the recommended setting.
 
