@@ -19,7 +19,7 @@ The documents in this section describe a technology that is still being develope
 
 While the development of this technology is ongoing, we have put together several documents to answer all of your questions:
 
-- A [blog post](https://www.chia.net/blog) by Dr. Nick, which takes a deep dive into our plans
+- A [blog post](https://www.chia.net/2024/08/08/approaching-the-next-generation-of-proof-of-space/) by Dr. Nick, which takes a deep dive into our plans
 - A list of the expected [plotting requirements](/new-proof-plotting-requirements)
 - A list of the expected [farming requirements](/new-proof-farming-requirements)
 - A [timeline](/new-proof-timeline) of when we expect to reach each milestone
