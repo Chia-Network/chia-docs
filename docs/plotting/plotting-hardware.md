@@ -7,6 +7,16 @@ slug: /plotting-hardware
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+## New proof format
+
+In 2024, we proposed a new proof format. This format will have slightly different hardware requirements for plotting and farming versus the original format. For more info about the new format, see the following resources:
+
+- [plotting requirements](/new-proof-plotting-requirements)
+- [farming requirements](/new-proof-farming-requirements)
+- [timeline](/new-proof-timeline)
+
+The rest of this page only pertains to the original proof format.
+
 ## Cost/time tradeoffs
 
 Plotting requires compute - the more compute, the faster the plot time. With that in mind, it may be tempting to run out and buy the fastest computer you can find for plotting. But first, you should consider a few important points, and answer some related questions:
