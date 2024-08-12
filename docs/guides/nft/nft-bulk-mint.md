@@ -121,7 +121,7 @@ python3 -m venv venv
 4. Install the bulk minting tool. This will install a copy of Chia in your virtual environment, as well as all other dependencies for the tool:
 
 ```bash
-pip install --editable .[dev]
+pip install --editable '.[dev]'
 ```
 
 ## Configure Chia to use the bulk minting tool
