@@ -270,6 +270,7 @@ module.exports = {
             'resources/k-sizes',
             'resources/faq',
             'resources/storage-benchmarks',
+            'resources/glossary',
             {
               type: 'category',
               label: 'Timelord Contest',
