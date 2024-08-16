@@ -16,9 +16,9 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 - **CATs** - Chia Asset Token - a special kind of chia coin which are created by users. A CAT is a uniquely marked subset of chia which can't be forged and can be linked to other assets. More information can be found on the [CATs Puzzles page](https://chialisp.com/docs/puzzles/cats).
 
-- **CAT1** - First version of the Chia token standard, there was a bug in this standard and its fix deprecated the standard creating the CAT2 standard. 
+- **CAT1** - First version of the Chia token standard, there was a bug in this standard and its fix deprecated the standard creating the CAT2 standard.
 
-- **CAT2** - Second version of the Chia token standard, there was a bug in the first standard and its fix deprecated the standard creating the CAT2 standard. 
+- **CAT2** - Second version of the Chia token standard, there was a bug in the first standard and its fix deprecated the standard creating the CAT2 standard.
 
 - **Chia** - Uppercase “Chia”. The software, the blockchain, or the company.
 
@@ -76,13 +76,15 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 - **Prepend Signature** - Prepend signatures are used so that we can retain metadata about the structure of an aggregated signature.
 
-- **Primary Input/Parent** - When a coin is created the coin that was used as input in the transaction is designated as the primary input. This is used to create the coin ID. If more that one coin is used up as an input in a transaction then one of the coins is designated the primary input, and the others simply reinforce the transaction.
+- **Primary Input/Parent** - When a coin is created the coin that was used as input in the transaction is designated as the primary input. This is used to create the coin ID. If more than one coin is used up as an input in a transaction then one of the coins is designated the primary input, and the others simply reinforce the transaction.
 
 - **Puzzle (Scriptpubkey)** - A ChiaLisp program which specifies the behaviour of a coin when it is spent. A puzzle can either reject a solution or output a set of constraints.
 
 - **Puzzle Generator** - A wallet will use a Puzzle Generator to define how it wants to receive transactions. Most wallets will want to generate the standard transaction, however by storing a ChiaLisp program that generate a puzzle, all a Sending Wallet needs to do is ask the Recipient Wallet what its Program Generator is and then run that to create the puzzle to lock the coin up with.
 
 - **Puzzle Generator ID** - This is the hash of a wallet's puzzle generator. A wallet can do a hash-lookup and see if it already knows the source code for that puzzle generator. If not, it will request the full source code and store that information in its lookup table.
+
+- **Rue** - Rue is an alternative language to Chialisp that compiles to CLVM which the puzzles for spending coin are programmed. Rue is being developed by a community member (Rigidity) and more information can be found on his [github repo](https://github.com/Rigidity/rue) or the [Rue website](https://rue-lang.com/).
 
 - **Smart Contract/Puzzle** - A smart contract is a specialised ChiaLisp puzzle which locks a coin up and enables complex blockchain interactions.
 
