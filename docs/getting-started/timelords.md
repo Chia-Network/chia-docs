@@ -83,31 +83,7 @@ chia start node timelord &
   </TabItem>
   <TabItem value="bb-tl">
 
-```bash
-# Install packages
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg
-
-# Add GPG key
-curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/chia.gpg
-
-# Set up repository
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/debian/ stable main" | sudo tee /etc/apt/sources.list.d/chia.list > /dev/null
-sudo apt-get update
-
-# Install chia-blockchain
-sudo apt-get install chia-blockchain
-
-# Bluebox timelord setup
-For bluebox timelords you will need to make two changes to `~/.chia/mainnet/config.yaml`.
-- In the `timelord:` section, set `bluebox_mode:` to `True`.
-- In the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap.
-
-Note - The default settings may otherwise work but if the total effort is a little too much for whatever machine you are on you can also lower the `process_count:` from 3 to 2, or even 1, in the `timelord_launcher:` section. You know it is working if you see `VDF Client: Sent proof` in your logs at INFO level.
-
-# Launch timelord
-chia start node timelord &
-```
+The bluebox timelord must be installed from scratch following the instructions [here](/timelord-install#installing-a-timelord-from-source).
 
   </TabItem>
   <TabItem value="hw-tl">
@@ -192,6 +168,9 @@ chia start full_node timelord
 Once you build the Timelord with `sh install-timelord.sh` in the virtual environment, you will need to make two changes to `~/.chia/VERSION/config.yaml`.
 - In the `timelord:` section, set `bluebox_mode:` to `True`.
 - In the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap.
+
+## Start the daemon, timelord-launcher, timelord, and node for a Bluebox timelord
+chia start full node_timelord
 
 Note - The default settings may otherwise work but if the total effort is a little too much for whatever machine you are on you can also lower the `process_count:` from 3 to 2, or even 1, in the `timelord_launcher:` section. You know it is working if you see `VDF Client: Sent proof` in your logs at INFO level.
 
