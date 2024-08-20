@@ -170,7 +170,7 @@ Once you build the Timelord with `sh install-timelord.sh` in the virtual environ
 - In the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap.
 
 ## Start the daemon, timelord-launcher, timelord, and node for a Bluebox timelord
-chia start full node_timelord
+chia start full_node timelord
 
 Note - The default settings may otherwise work but if the total effort is a little too much for whatever machine you are on you can also lower the `process_count:` from 3 to 2, or even 1, in the `timelord_launcher:` section. You know it is working if you see `VDF Client: Sent proof` in your logs at INFO level.
 
