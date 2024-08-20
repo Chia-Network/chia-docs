@@ -165,12 +165,19 @@ sh install-timelord.sh
 chia start node timelord
 
 # Bluebox timelord setup
-Once you build the Timelord with `sh install-timelord.sh` in the virtual environment, you will need to make two changes to `~/.chia/VERSION/config.yaml`.
+Once you build the Timelord with `sh install-timelord.sh` in the virtual environment, you will need to make some changes to `~/.chia/VERSION/config.yaml`.
 - In the `timelord:` section, set `bluebox_mode:` to `True`.
+(Note: It is possible to run a bluebox timelord on a separate machine from your full node. If you wish to run them separately, make the change listed below on your full node machine.)
 - In the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap.
 
-## Start the daemon, timelord-launcher, timelord, and node for a Bluebox timelord
+# Additional config.yaml change ONLY for running a bluebox timelord on a separate machine from full node
+- In the config.yaml of your bluebox timelord, go to the 'timelord:' section under 'full_node_peers' and, modify the 'host' value from 'localhost' to the local IP of your full node (i.e. 192.168.1.3)
+
+## Start the daemon, timelord-launcher, timelord, and node for a Bluebox timelord + full node running on the same device
 chia start node timelord
+
+## Start the daemon, timelord-launcher, and timelord for a Bluebox timelord connecting to a separate full node
+chia start timelord-launcher-only timelord-only
 
 Note - The default settings may otherwise work but if the total effort is a little too much for whatever machine you are on you can also lower the `process_count:` from 3 to 2, or even 1, in the `timelord_launcher:` section. You know it is working if you see `VDF Client: Sent proof` in your logs at INFO level.
 
