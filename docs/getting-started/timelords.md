@@ -162,7 +162,7 @@ chia init
 sh install-timelord.sh
 
 # Start timelord (skip this step and proceed below if installing a bluebox or ASIC timelord)
-chia start full_node timelord
+chia start node timelord
 
 # Bluebox timelord setup
 Once you build the Timelord with `sh install-timelord.sh` in the virtual environment, you will need to make two changes to `~/.chia/VERSION/config.yaml`.
