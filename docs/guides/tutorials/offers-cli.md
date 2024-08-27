@@ -381,7 +381,7 @@ Wallet ID 4 type COLOURED_COIN CAT King Cole (Asset ID: 1121996b75cce3c746369ace
 
 ## Create an expiring Offer (RPC)
 
-In this example, we will offer 0.1 CATs (`Launcher ID: 91aa...004r`) in exchange for 1 TXCH (`Wallet ID: 1`). In addition, we will add an expiry timestamp so that this Offer will expire on Jan. 1, 2024. This is accomplished with the `max_time` flag:
+In this example, we will offer 0.1 CATs (`TAIL/Asset ID: 91aa...004r`) in exchange for 1 TXCH (`Wallet ID: 1`). In addition, we will add an expiry timestamp so that this Offer will expire on Jan. 1, 2024. This is accomplished with the `max_time` flag:
 
 ```bash
 chia rpc wallet create_offer_for_ids '{"offer":{"1":1000000000000,"91aa49303fd325cf8029cc0ee5e19ac78ec33d641d63b50d0ba859309a73004d":-100},"fee":10000000,"driver_dict":{},"validate_only":false, "max_time": 1704070800}'
