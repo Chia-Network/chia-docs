@@ -3,7 +3,7 @@ title: Forks
 slug: /consensus-forks
 ---
 
-The following table is a comprehensive list of all forks (planned and activated) on Chia's blockchain. It was last updated on 2024-07-30.
+The following table is a comprehensive list of all forks (planned and activated) on Chia's blockchain. It was last updated on 2024-09-23.
 
 | Activation Block | Activation Date | Type | Build | Status                        | Description                                                                                                                                                    |
 | :--------------- | :-------------- | :--- | :---- | :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,5 +12,5 @@ The following table is a comprehensive list of all forks (planned and activated)
 | `3 886 635`      | 2023-07-01      | Soft | 1.8.0 | Activated                     | [CHIP-14](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0014.md) -- `ASSERT_BEFORE_*` conditions                                                  |
 | `4 510 000`      | 2023-11-12      | Soft | 2.0.0 | Activated                     | [CHIP-11](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md) -- BLS/SECP CLVM Operators                                                       |
 | `5 496 000`      | 2024-06-13      | Hard | 2.1.0 | Activated                     | [CHIP-12](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0012.md) -- Decrease plot filter                                                          |
-| `5 716 000`      | 2024-07         | Soft | 2.3.0 | Activated                     | [CHIP-25](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0025.md) -- Chialisp Message Conditions                                                   |
-| `5 940 000`      | 2024-09         | Soft | 2.4.0 | Released, <br/> Not Activated | Disallow infinity G1 points                                                                                                                                    |
+| `5 716 000`      | 2024-07-30      | Soft | 2.3.0 | Activated                     | [CHIP-25](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0025.md) -- Chialisp Message Conditions                                                   |
+| `5 940 000`      | 2024-09-17      | Soft | 2.4.0 | Activated                     | Disallow infinity G1 points                                                                                                                                    |
