@@ -15,7 +15,7 @@ Chia的联合耕种协议（pooling protocol）允许将地块分配给“联合
 
 :::note
 
-The official pooling protocol was introduced in version 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. The official pooling protocol was introduced in version 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. If you have any of these "OG" plots, you can either recreate them using a plot NFT, or co-farm them on the same machine as your official pool plots.
+The official pooling protocol was introduced in verion 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. The official pooling protocol was introduced in verion 1.2 in mid-2021. All plots created before this point, as well as newer plots created with following the pooling protocol, are not eligible for pooling. If you have any of these "OG" plots, you can either recreate them using a plot NFT, or co-farm them on the same machine as your official pool plots.
 
 :::
 
@@ -59,7 +59,7 @@ chia plotnft create -s local
 chia plotnft create -s pool -u https://bar.examplepool.org
 ```
 
-请注意，即便选择的是选项1，以后仍然可以加入联合耕种池，并且可以随时切换到其它池。 如果决定加入一个联合耕种池，请输入网址 (必须以 *https://*开头)，然后查看描述。 如果同意, 则开始创建联合耕种农田, 并等待它被确认 (只点击一次)。 这可能需要几分钟的时间才能得到确认，然后出现在“联合耕种”选项卡中。 您只需要 1 个联合耕种农田。
+请注意，即便选择的是选项1，以后仍然可以加入联合耕种池，并且可以随时切换到其它池。 如果决定加入一个联合耕种池，请输入网址 (必须以 _https://_开头)，然后查看描述。 如果同意, 则开始创建联合耕种农田, 并等待它被确认 (只点击一次)。 这可能需要几分钟的时间才能得到确认，然后出现在“联合耕种”选项卡中。 您只需要 1 个联合耕种农田。
 
 #### 使用图形用户界面（GUI）
 
@@ -112,7 +112,7 @@ You can now start creating plots for this Plot NFT, which means these plots will
 Detailed instructions can be found in the "How to Plot" page:
 
 - Plotting from the [CLI](/plotting-how-to#cli-plotting)
-- Plotting from the [GUI](/plotting-how-to#图形用户界面gui生成地块)
+- Plotting from the [GUI](/plotting-how-to#gui-plotting)
 
 ### 第五步：管理联合耕种农田。
 
