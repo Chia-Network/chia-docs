@@ -105,6 +105,7 @@ python -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
@@ -113,6 +114,7 @@ python3 -m venv venv
 ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
 ```
 
   </TabItem>
