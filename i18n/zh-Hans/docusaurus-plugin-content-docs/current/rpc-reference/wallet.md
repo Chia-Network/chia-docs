@@ -1772,14 +1772,14 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type    | Required | Description                                                         |
-| :--------- | :------ | :------- | :------------------------------------------------------------------ |
-| wallet_id  | NUMBER  | True     | The Wallet ID of the wallet from which to obtain transactions       |
-| start      | NUMBER  | False    | The sequence number of the first transaction to show [Default: 0]   |
-| end        | NUMBER  | False    | The sequence number of the last transaction to show [Default: 50]   |
-| sort_key   | NUMBER  | False    | Specify the key for sorting [Default: None]                         |
-| reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false] |
-| to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]    |
+| Flag       | Type    | Required | Description                                                                                                                                                                                                            |
+| :--------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id  | NUMBER  | True     | The Wallet ID of the wallet from which to obtain transactions                                                                                                                                                          |
+| start      | NUMBER  | False    | The sequence number of the first transaction to show [Default: 0]                                                                                                                                                      |
+| end        | NUMBER  | False    | The sequence number of the last transaction to show [Default: 50]                                                                                                                                                      |
+| sort_key   | NUMBER  | False    | Specify the key for sorting, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
+| reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]                                                                                                                                                    |
+| to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]                                                                                                                                                       |
 
 <details>
 <summary>Notes about transactions</summary>
@@ -3543,16 +3543,16 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type    | Required | Description                                                                   |
-| :------------------- | :------ | :------- | :---------------------------------------------------------------------------- |
-| start                | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                   |
-| end                  | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                   |
-| exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]               |
-| exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false] |
-| include_completed    | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]         |
-| sort_key             | NUMBER  | False    | Specify the key for sorting [Default: None]                                   |
-| reverse              | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]           |
-| file_contents        | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]          |
+| Flag                 | Type    | Required | Description                                                                                                                                                                                                            |
+| :------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                                                                                                                                                            |
+| end                  | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                                                                                                                                                            |
+| exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]                                                                                                                                                        |
+| exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false]                                                                                                                                          |
+| include_completed    | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]                                                                                                                                                  |
+| sort_key             | NUMBER  | False    | Specify the key for sorting, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
+| reverse              | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]                                                                                                                                                    |
+| file_contents        | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]                                                                                                                                                   |
 
 <details>
 <summary>Example</summary>
