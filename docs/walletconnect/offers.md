@@ -171,11 +171,13 @@ Creates an offer for wallet ids.
 
 ### TradeStatus
 
-| Value             |
-| ----------------- |
-| `PENDING_ACCEPT`  |
-| `PENDING_CONFIRM` |
-| `PENDING_CANCEL`  |
-| `CANCELLED`       |
-| `CONFIRMED`       |
-| `FAILED`          |
+Values that can be returned for the trade_status. Note that offers cannot be resynced and are not available on-chain so granular trade_status is not always available.
+
+| Value             |                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------- |
+| `PENDING_ACCEPT`  | Acceptance has been pushed to the chain and is pending confirmation.                  |
+| `PENDING_CONFIRM` | Acceptance has been pushed to the chain and is pending confirmation.                  |
+| `PENDING_CANCEL`  | Cancelation has been pushed to the chain (if applicable) and is pending confirmation. |
+| `CANCELLED`       | Offer cancellation has been confirmed onchain (if applicable).                        |
+| `CONFIRMED`       | Offer acceptance has been confirmed onchain.                                          |
+| `FAILED`          | Offer acceptance failed, review logs for reasoning of failure.                        |
