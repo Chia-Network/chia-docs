@@ -71,13 +71,13 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-Once you have completed freeing up port 53, you will then need to allow the python executable in your venv to have access to port 53:
+Once you have completed freeing up port 53, you will then need to allow the python executable in your venv to have access to port 53. From an activated venv run `whereis python` and use the result in the command below:
 
 ```bash
-sudo setcap CAP_NET_BIND_SERVICE=+eip $(readlink -f /home/{{ user }}/chia-blockchain/venv/bin/python)
+sudo setcap CAP_NET_BIND_SERVICE=+eip $(readlink -f /home/{{ user }}/chia-blockchain/.venv/bin/python)
 ```
 
-Note that anytime you change the python executable by rerunning `sh install.sh` or when `apt` upgrades python, you will need to re-run this command.
+Note that anytime you change the python executable by rerunning `sh install.sh` or when `apt` upgrades python, you will need to re-run this command. Also, the exact path to python has changed as of version 2.4.3 and that new usual default is what is specified above.
 
 ## Configuration
 
