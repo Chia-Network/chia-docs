@@ -697,16 +697,16 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type    | Required | Description                                                                                                      |
-| :------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
-| start                | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                             |
-| end                  | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                             |
-| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show Offers that originated from this wallet [Default: `false`]                                 |
-| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any Offers with a status of `CONFIRMED` [Default: `false`]                                 |
-| include_completed    | BOOLEAN | False    | If `true`, show completed Offers [Default: `false`]                                                              |
-| sort_key             | STRING  | False    | Optionally change the sort order of the results [Default: none]                                                  |
-| reverse              | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                |
-| file_contents        | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`] |
+| Flag                 | Type    | Required | Description                                                                                                                                                                                                                                |
+| :------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                                                                                                                                                       |
+| end                  | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                                                                                                                                                       |
+| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show Offers that originated from this wallet [Default: `false`]                                                                                                                                                           |
+| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any Offers with a status of `CONFIRMED` [Default: `false`]                                                                                                                                                           |
+| include_completed    | BOOLEAN | False    | If `true`, show completed Offers [Default: `false`]                                                                                                                                                                                        |
+| sort_key             | STRING  | False    | Optionally change the sort order of the results, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
+| reverse              | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                                                                                                                                          |
+| file_contents        | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`]                                                                                                                           |
 
 <details>
 <summary>Example</summary>
