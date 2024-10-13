@@ -15,7 +15,7 @@ To create plots, you must have:
 
 This page will give a basic overview of how to obtain these values. This page will give a basic overview of how to obtain these values. For a detailed description, see the [Beginner's Guide to Farming](/farming-guide).
 
-If you already have a wallet with a plot NFT, feel free to skip to the section for [CLI Plotting](#cli-plotting) or [GUI Plotting](#图形用户界面gui生成地块).
+If you already have a wallet with a plot NFT, feel free to skip to the section for [CLI Plotting](#cli-plotting) or [GUI Plotting](#gui-plotting).
 
 ## Public Keys
 
@@ -74,7 +74,7 @@ You can also choose a custom name for your wallet. Click `NEXT` when you are fin
 
 If someone obtains a copy of these words, they can steal your entire wallet, including all of its funds. Be sure to store your recovery phrase in a safe place. Be sure to store your recovery phrase in a safe place.
 
-:::
+:::  
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/02.png" alt="Wallet seed phrase" />
