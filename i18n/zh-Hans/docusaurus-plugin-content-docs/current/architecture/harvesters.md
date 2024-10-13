@@ -1,6 +1,6 @@
 ---
 title: 收割机
-slug: /harvester-architecture
+slug: 收割机架构
 ---
 
 收割机是一些独立的机器，由农民控制。 在大规模耕作活动中，农民可能与许多收割机连接在一起。
