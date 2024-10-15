@@ -142,7 +142,7 @@ Options:
 | -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which key to use                                                          |
 | -i            | --wallet-id                           | INTEGER | True     | ID of the DAO Treasury Wallet                                                                            |
 | -w            | --funding-wallet-id                   | INTEGER | True     | The ID of the wallet to send funds from (must be of type `STANDARD_WALLET`)                              |
-| -a            | --amount                              | TEXT    | True     | The amount of funds to send, in XCH                                                                      |
+| -a            | --amount                              | TEXT    | True     | The amount of funds to send, in XCH or CATs                                                              |
 | -m            | --fee                                 | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --reuse, --reuse-puzhash              | None    | False    | Set either of these flags to reuse the existing address for the change [default: not set]                |
 |               | --new-address, --generate-new-puzhash | None    | False    | Set either of these flags to generate a new puzzle hash / address for the change [default: not set]      |
