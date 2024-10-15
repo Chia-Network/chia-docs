@@ -617,9 +617,16 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type       | Required | Description                    |
-| :----------- | :--------- | :------- | :----------------------------- |
-| transactions | TEXT ARRAY | True     | A list of transactions to push |
+| Flag         | Type       | Required | Description                                                          |
+| :----------- | :--------- | :------- | :------------------------------------------------------------------- |
+| transactions | TEXT ARRAY | True     | A list of transactions to push                                       |
+| fee          | NUMBER     | False    | Add a transaction fee (in mojos) for the entire request [Default: 0] |
+
+:::info note
+
+`"success": true` does not guarantee that the transaction will get confirmed. A transaction may be dropped from the mempool and not included if the fee is too low.
+
+:::
 
 ---
 
