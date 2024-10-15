@@ -1202,6 +1202,127 @@ Response:
 
 ## Wallet
 
+### `combine_coins`
+
+Functionality: Combine coins (typically used for combining dust). The maximum number of coins that can be combined within a single transaction is 500.
+
+Usage: chia rpc wallet [OPTIONS] combine_coins [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type         | Required | Description                                                                                         |
+| :------------------- | :----------- | :------- | :-------------------------------------------------------------------------------------------------- |
+| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                     |
+| number_of_coins      | INTEGER      | False    | The number of coins to combine [Default: combine all coins, up to `coin_num_limit`]                   |
+| largest_first        | BOOLEAN      | False    | Set to `True` to prioritize combining the largest coins first [Default: False]                                        |
+| target_coin_ids      | TEXT ARRAY   | False    | Only combine these coins [Default: Disabled]                                                                        |
+| target_coin_amount   | INTEGER      | False    | Select coins until this amount (in XCH or CAT) is reached. Combine all selected coins into one coin [Default: None] |
+| coin_num_limit       | INTEGER      | False    | Combine up to this many coins [Default: 500]                                                        |
+| fee                  | INTEGER      | False    | An optional blockchain fee, in mojos                                                                |
+
+:::info
+
+If `number_of_coins` is used, it must be:
+* At least `2`
+* At most `coin_num_limit`
+
+If `target_coin_ids` is used, its length must not be larger than `number_of_coins`.
+
+:::
+
+:::warning
+
+It is not recommended to increase the value of `coin_num_limit` to a value higher than the default limit of 500 coins. Beyond this amount, it may be difficult to fit this transaction into a block, in which case the transaction could be stuck in the mempool for a long time.
+
+:::
+
+<details>
+
+<summary>Example 1</summary>
+
+For this example, combine as many coins as are required until a target of 2 trillion mojos is reached. Include a blockchain fee of 25 million mojos:
+
+```json
+chia rpc wallet combine_coins '{"wallet_id": 1, "target_coin_amount": 2000000000000, "fee": 25000000}'
+```
+
+Response:
+
+```
+[todo]
+```
+
+</details>
+
+<summary>Example 2</summary>
+
+First, list some coins to combine. The following command will list all coins in the wallet. (It is also possible to obtain a more nuanced listing by running the [list](/wallet-cli/#list) command):
+
+```json
+chia rpc wallet get_coin_records
+```
+
+Response (truncated):
+
+```json
+{
+  {
+      "amount": 749996911173,
+      "coinbase": false,
+      "confirmed_height": 1472824,
+      "id": "0x067919e0dacb16541141acab9128b321b06325f14683f953acb30719c04db5b3",
+      "metadata": null,
+      "parent_coin_info": "0x9430666326f06c68a05e1714550181ba81edf88c142a955f65a9f33b8d0adaf4",
+      "puzzle_hash": "0x338860ddc5bdb23266884c827261913d7b01b349d511f1d084b983041b37f7b7",
+      "spent_height": 0,
+      "type": 0,
+      "wallet_identifier": {
+        "id": 1,
+        "type": 0
+      }
+    },
+    {
+      "amount": 749900000000,
+      "coinbase": false,
+      "confirmed_height": 1476378,
+      "id": "0x535899f5466073d26cab78b48313887a74a368112dd75f23f44837cb9fdde672",
+      "metadata": null,
+      "parent_coin_info": "0x7bf7cda4bbde8a105f19705f6bb8adcf67b4b9e70b13dbd616858de8a874531c",
+      "puzzle_hash": "0xed82e472025b0463f75ccf9958d8149249c7530d33d54d9f6cee72208b0da095",
+      "spent_height": 0,
+      "type": 0,
+      "wallet_identifier": {
+        "id": 1,
+        "type": 0
+      }
+    }
+  ],
+  "success": true,
+  "total_count": null
+}
+```
+
+Next, combine these coins, including an optional blockchain fee:
+
+```
+chia rpc wallet combine_coins '{"wallet_id": 1, "target_coin_ids": ["0x067919e0dacb16541141acab9128b321b06325f14683f953acb30719c04db5b3", "0x535899f5466073d26cab78b48313887a74a368112dd75f23f44837cb9fdde672"], "fee": 25000000}'
+```
+
+Response:
+
+```
+[todo]
+```
+
+</details>
+
 ### `create_signed_transaction`
 
 Functionality: Create a signed transaction from the given wallet
