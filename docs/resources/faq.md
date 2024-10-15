@@ -1074,7 +1074,7 @@ When you create an offer, [coins are reserved](https://chialisp.com/offers#offer
 
 ### I plan on making many offers and I want to ensure that my coins aren't locked up?
 
-To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/puzzles/offers#coin-set-utxo).
+To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/wallet-cli/).
 
 ### When canceling an offer, when should I check the "cancel on blockchain" checkbox?
 

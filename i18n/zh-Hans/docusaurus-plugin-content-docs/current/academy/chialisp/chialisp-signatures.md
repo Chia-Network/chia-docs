@@ -168,7 +168,7 @@ import Runnable from '@site/src/components/Runnable.tsx';
 
 ### 链接
 
-- [Chialisp基本概念](https://docs.chia.net/guides/chialisp-concepts)：包括柯里化（currying）、内部谜题（inner puzzles）和条件变换（morphing conditions）的概述。
+- [Chialisp基本概念](https://chialisp.com/chialisp-concepts/)：包括柯里化（currying）、内部谜题（inner puzzles）和条件变换（morphing conditions）的概述。
 - 指导性的[Chialisp演练](https://docs.chia.net/guides/)：安装、创建智能币和使用BLS签名的指南。
 - Chialisp[详细文档](https://chialisp.com/)：提供有关Chialisp各个方面的详细信息。
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
