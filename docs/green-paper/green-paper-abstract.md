@@ -14,7 +14,7 @@ We outline the challenges one must solve when replacing proofs of work with an e
 
 This document is not a formal specification of $\textrm{{\sf Chia}}$. Instead, it aims at readers who want to understand the design choices of $\textrm{{\sf Chia's}}$ consensus, and are interested in permissionless longest-chain blockchains from efficient proof systems in general.
 
-[Green Paper PDF](@site/static/files/ChiaGreenPaper_20241008.pdf) - updated October 8, 2024
+[Green Paper PDF](/files/ChiaGreenPaper_20241008.pdf) - updated October 8, 2024
 
 ---
 
