@@ -1258,7 +1258,7 @@ It is not recommended to increase the value of `coin_num_limit` to a value highe
 
 <details>
 
-<summary>Example</summary>
+<summary>Example 1</summary>
 
 For this example, combine as many coins as are required until a target of 2 trillion mojos is reached. Include a blockchain fee of 25 million mojos:
 
@@ -1415,6 +1415,7 @@ Response:
 
 </details>
 
+<details>
 <summary>Example 2</summary>
 
 First, list some coins to combine. The following command will list all coins in the wallet. (It is also possible to obtain a more nuanced listing by running the [list](/wallet-cli/#list) command):
@@ -3508,7 +3509,7 @@ The minimum number of new coins is 1. "Splitting" one coin into one new coin cou
 
 :::
 
-details>
+<details>
 
 <summary>Example</summary>
 
