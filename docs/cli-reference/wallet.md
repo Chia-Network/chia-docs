@@ -1603,7 +1603,7 @@ Options:
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -t            | --to-address      | TEXT    | True     | The address to send the notification to                                                                      |
-| -a            | --amount          | TEXT    | False    | The amount (in XCH) to send to get the notification past the recipient's spam filter [default: 0.00001]               |
+| -a            | --amount          | TEXT    | False    | The amount (in XCH) to send to get the notification past the recipient's spam filter [default: 0.00001]      |
 | -n            | --message         | TEXT    | True     | The message of the notification                                                                              |
 | -m            | --fee             | TEXT    | False    | The fee for the transaction                                                                                  |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                 |

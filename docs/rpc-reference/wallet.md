@@ -1352,37 +1352,23 @@ Response:
         "key_hints": {
           "path_hints": [
             {
-              "path": [
-                12381,
-                8444,
-                2,
-                2
-              ],
+              "path": [12381, 8444, 2, 2],
               "root_fingerprint": "0xbd7ea085"
             },
             {
-              "path": [
-                12381,
-                8444,
-                2,
-                2
-              ],
+              "path": [12381, 8444, 2, 2],
               "root_fingerprint": "0xbd7ea085"
             }
           ],
           "sum_hints": [
             {
               "final_pubkey": "0xb323951e45840af4678ca35f5c165448aa16f28f1ef2a36248ce95b07e0ca3e0fd34b994e8ededb388ffc42d562c15e7",
-              "fingerprints": [
-                "0xd6ec6f98"
-              ],
+              "fingerprints": ["0xd6ec6f98"],
               "synthetic_offset": "0x62466ba455dba328aa65267cd279ac1166dfc3235ec42401b0d3a31e2e2560ef"
             },
             {
               "final_pubkey": "0xb323951e45840af4678ca35f5c165448aa16f28f1ef2a36248ce95b07e0ca3e0fd34b994e8ededb388ffc42d562c15e7",
-              "fingerprints": [
-                "0xd6ec6f98"
-              ],
+              "fingerprints": ["0xd6ec6f98"],
               "synthetic_offset": "0x62466ba455dba328aa65267cd279ac1166dfc3235ec42401b0d3a31e2e2560ef"
             }
           ]
@@ -1564,37 +1550,23 @@ Response:
         "key_hints": {
           "path_hints": [
             {
-              "path": [
-                12381,
-                8444,
-                2,
-                130
-              ],
+              "path": [12381, 8444, 2, 130],
               "root_fingerprint": "0xbd7ea085"
             },
             {
-              "path": [
-                12381,
-                8444,
-                2,
-                129
-              ],
+              "path": [12381, 8444, 2, 129],
               "root_fingerprint": "0xbd7ea085"
             }
           ],
           "sum_hints": [
             {
               "final_pubkey": "0xa9bb633b5e2bae69050559cc4d73b00fb70dc799212a2a85a58197db494961904db6920255458853c69e1541261d30ea",
-              "fingerprints": [
-                "0xbef0af90"
-              ],
+              "fingerprints": ["0xbef0af90"],
               "synthetic_offset": "0x60dc1ea2a3afd38a8b1867cc94048e1c14c76eb78980cb1a6b369e144ca6d9c4"
             },
             {
               "final_pubkey": "0x873ff760e5ce9f0d95e886534ba2a2ca270ccbd8592e321be783f9a61bcabc11cbbaaf1b9bd3363382bfb99587bd7d96",
-              "fingerprints": [
-                "0x47dc97ec"
-              ],
+              "fingerprints": ["0x47dc97ec"],
               "synthetic_offset": "0x6405f8cd2c7c8556d8535392ee94ea27e5a2e25590083160bd073febdef940c4"
             }
           ]
