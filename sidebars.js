@@ -44,11 +44,9 @@ module.exports = {
             'farming/farming-compressed-plots',
             'farming/farming-many-machines',
             'farming/pool-farming',
-            'farming/checking-farm-health',
             'farming/reference-farming-hardware',
             'farming/farming-considerations',
             'farming/dual-farming-testnet-mainnet',
-            'farming/farming-faq',
           ],
         },
         {
@@ -118,6 +116,8 @@ module.exports = {
       label: 'Troubleshooting',
       items: [
         'troubleshooting/check-if-things-are-working',
+        'troubleshooting/checking-farm-health',
+        'troubleshooting/farming-faq',
         'troubleshooting/node-syncing',
         'troubleshooting/logging-reference',
         'troubleshooting/locating-keys',
