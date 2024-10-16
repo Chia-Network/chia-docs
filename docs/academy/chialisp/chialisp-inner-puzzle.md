@@ -149,7 +149,7 @@ For information on using these plugins please refer to the [academy overview](/a
 
 ### Links
 
-- General [chialisp concepts](https://docs.chia.net/guides/chialisp-concepts): overviews of currying, inner puzzles, and morphing conditions.
+- General [chialisp concepts](https://chialisp.com/chialisp-concepts/): overviews of currying, inner puzzles, and morphing conditions.
 - Guided [chialisp walkthroughs](https://docs.chia.net/guides/): guides for installation, creating smart coins, and working with BLS signatures.
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.

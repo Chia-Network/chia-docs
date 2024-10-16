@@ -20,4 +20,4 @@ This document is not a formal specification of $\textrm{{\sf Chia}}$. Instead, i
 
 ### Precursor Consensus Green Paper
 
-In order to provide historical context, the Green Paper's previous version that discusses a precursor consensus which was never implemented is available here for viewing: [Precursor Green Paper](https://docs.chia.net/assets/files/Precursor-ChiaGreenPaper-82cb50060c575f3f71444a4b7430fb9d.pdf).
+In order to provide historical context, the Green Paper's previous version that discusses a precursor consensus which was never implemented is available here for viewing: [Precursor Green Paper](https://docs.chia.net/files/Precursor-ChiaGreenPaper.pdf).
