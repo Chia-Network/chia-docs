@@ -46,6 +46,8 @@ Options:
 |      -m       |       --fee       |  TEXT   |  False   | A fee to add to the offer when it gets taken                                                             |
 |               |      --reuse      |  None   |  False   | Set this flag to reuse an existing address for the offer [Default: generate a new address]               |
 |               |    --override     |  None   |  False   | Creates offer without checking for unusual values                                                        |
+|               |    --valid-at     | INTEGER |  False   | UNIX timestamp at which the associated transactions become valid                                         |
+|               |   --expires-at    | INTEGER |  False   | UNIX timestamp at which the associated transactions expire                                               |
 |      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                             |
 
 ---

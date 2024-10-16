@@ -1603,7 +1603,7 @@ Options:
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -t            | --to-address      | TEXT    | True     | The address to send the notification to                                                                      |
-| -a            | --amount          | TEXT    | False    | The amount to send to get the notification past the recipient's spam filter [default: 0.00001]               |
+| -a            | --amount          | TEXT    | False    | The amount (in XCH) to send to get the notification past the recipient's spam filter [default: 0.00001]      |
 | -n            | --message         | TEXT    | True     | The message of the notification                                                                              |
 | -m            | --fee             | TEXT    | False    | The fee for the transaction                                                                                  |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
@@ -1629,7 +1629,7 @@ Notification sent successfully.
 
 ## `send`
 
-Functionality: Send chia to another wallet
+Functionality: Send chia or other assets to another wallet
 
 Usage: chia wallet send [OPTIONS]
 
@@ -1640,7 +1640,7 @@ Options:
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
 | -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -a            | --amount          | TEXT    | True     | How much chia to send, in XCH                                                                                |
+| -a            | --amount          | TEXT    | True     | How much chia to send, in XCH or CAT units                                                                   |
 | -e            | --memo            | TEXT    | False    | Additional memo for the transaction                                                                          |
 | -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
 | -t            | --address         | TEXT    | True     | Address to send the XCH                                                                                      |
