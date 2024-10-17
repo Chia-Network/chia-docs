@@ -47,27 +47,25 @@ chia configure --testnet true
 ```bash
 yq -i '.daemon_port = 55401' ./config.yaml
 yq -i '."*".log_syslog_port = 1514' ./config.yaml
-yq -i '.data_layer.port = 10561' ./config.yaml
+
 yq -i '.data_layer.rpc_port = 10562' ./config.yaml
 yq -i '.data_layer.wallet_peer.port = 11256' ./config.yaml
-yq -i '.data_layer.host_port = 10565' ./config.yaml
+yq -i '.data_layer.host_port = 10575' ./config.yaml
 
 yq -i '.farmer.port = 10447' ./config.yaml
 yq -i '.farmer.rpc_port = 10559' ./config.yaml
-yq -i '.farmer.harvester_peer.port = 10448' ./config.yaml
 
-yq -i '.harvester.port = 10448' ./config.yaml
 yq -i '.harvester.rpc_port = 10560' ./config.yaml
-yq -i '.harvester.farmer_peer.port = 10447' ./config.yaml
+yq -i '.harvester.farmer_peers.port = 10447' ./config.yaml
 
-yq -i '.wallet.port = 10449' ./config.yaml
 yq -i '.wallet.rpc_port = 11256' ./config.yaml
 
 yq -i '.full_node.rpc_port = 10555' ./config.yaml
-yq -i '.full_node.wallet_peer.port = 10449' ./config.yaml
-yq -i '.full_node.farmer_peer.port = 10447' ./config.yaml
 
-yq -i '.ui.port = 10222' ./config.yaml
+yq -i '.timelord.rpc_port = 10557' ./config.yaml
+yq -i '.timelord.vdf_server.port = 10000' ./config.yaml
+yq -i '.timelord_launcher.port = 10000' ./config.yaml
+
 yq -i '.ui.rpc_port = 10555' ./config.yaml
 yq -i '.ui.daemon_port = 55401' ./config.yaml
 ```
