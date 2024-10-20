@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
 :::
 
-Timelord architecture information can be found [here](/timelord-architecture).  
+Timelord architecture information can be found [here](/timelord-architecture).\
 The hw_vdf_client parameter information can be found [here](/asic-cli).
 
 ---
@@ -18,7 +18,7 @@ The hw_vdf_client parameter information can be found [here](/asic-cli).
 ## Timelord Requirements and Dependencies
 
 :::info
-Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows.  
+Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows.\
 Running a timelord on a farming machine will reduce the efficiency of the farmer and the timelord, for this reason it is recommended to have a dedicated machine for running timelords.
 :::
 
@@ -48,15 +48,14 @@ Dependencies:
 Timelords execute sequential verifiable delay functions (proofs of time or VDFs), that get added to blocks to make them valid. This requires fast CPUs and a few cores per VDF.
 :::
 
-<Tabs
+\<Tabs
 defaultValue="sw-tl"
 groupId="timelord"
 values={[
 {label: 'Software TL', value: 'sw-tl'},
 {label: 'Bluebox TL', value: 'bb-tl'},
 {label: 'Hardware (ASIC) TL', value: 'hw-tl'},
-]}>
-<TabItem value="sw-tl">
+]}> <TabItem value="sw-tl">
 :::info
 Use `chia-blockchain-cli` instead of `chia-blockchain` for CLI only version that does not have a GUI.
 :::
@@ -83,37 +82,13 @@ chia start node timelord &
   </TabItem>
   <TabItem value="bb-tl">
 
-```bash
-# Install packages
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg
-
-# Add GPG key
-curl -sL https://repo.chia.net/FD39E6D3.pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/chia.gpg
-
-# Set up repository
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/chia.gpg] https://repo.chia.net/debian/ stable main" | sudo tee /etc/apt/sources.list.d/chia.list > /dev/null
-sudo apt-get update
-
-# Install chia-blockchain
-sudo apt-get install chia-blockchain
-
-# Bluebox timelord setup
-For bluebox timelords you will need to make two changes to `~/.chia/mainnet/config.yaml`.
-- In the `timelord:` section, set `bluebox_mode:` to `True`.
-- In the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap.
-
-Note - The default settings may otherwise work but if the total effort is a little too much for whatever machine you are on you can also lower the `process_count:` from 3 to 2, or even 1, in the `timelord_launcher:` section. You know it is working if you see `VDF Client: Sent proof` in your logs at INFO level.
-
-# Launch timelord
-chia start node timelord &
-```
+The bluebox timelord must be installed from scratch following the instructions [here](/timelord-install#installing-a-timelord-from-source).
 
   </TabItem>
   <TabItem value="hw-tl">
 
 :::warning
-**DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!  
+**DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!\
 Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
 :::
 
@@ -128,7 +103,7 @@ Main Machine (ASIC 1)  --------------------------
 (chia node, timelord-only, and ASIC software)    \_____  ASIC 3 (ASIC software only, IP set to main machine)
 ```
 
-For an ASIC cluster you will need to follow the below install steps on the main machine to include the chia node, timelord-only, and ASIC software processes are all being run on the main machine.  
+For an ASIC cluster you will need to follow the below install steps on the main machine to include the chia node, timelord-only, and ASIC software processes are all being run on the main machine.\
 The additional ASIC hosts will only need the ASIC software installed (noted in the below install instructions).
 
 ```bash
@@ -161,7 +136,7 @@ chia start node timelord-only
 ### Installing a Timelord from Source
 
 :::info
-On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.  
+On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.\
 Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
 :::
 
@@ -186,12 +161,22 @@ chia init
 sh install-timelord.sh
 
 # Start timelord (skip this step and proceed below if installing a bluebox or ASIC timelord)
-chia start full_node timelord
+chia start node timelord
 
 # Bluebox timelord setup
-Once you build the Timelord with `sh install-timelord.sh` in the virtual environment, you will need to make two changes to `~/.chia/VERSION/config.yaml`.
+Once you build the Timelord with `sh install-timelord.sh` in the virtual environment, you will need to make some changes to `~/.chia/VERSION/config.yaml`.
 - In the `timelord:` section, set `bluebox_mode:` to `True`.
+(Note: It is possible to run a bluebox timelord on a separate machine from your full node. If you wish to run them separately, make the change listed below on your full node machine.)
 - In the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap.
+
+# Additional config.yaml change ONLY for running a bluebox timelord on a separate machine from full node
+- In the config.yaml of your bluebox timelord, go to the 'timelord:' section under 'full_node_peers' and, modify the 'host' value from 'localhost' to the local IP of your full node (i.e. 192.168.1.3)
+
+## Start the daemon, timelord-launcher, timelord, and node for a Bluebox timelord + full node running on the same device
+chia start node timelord
+
+## Start the daemon, timelord-launcher, and timelord for a Bluebox timelord connecting to a separate full node
+chia start timelord-launcher-only timelord-only
 
 Note - The default settings may otherwise work but if the total effort is a little too much for whatever machine you are on you can also lower the `process_count:` from 3 to 2, or even 1, in the `timelord_launcher:` section. You know it is working if you see `VDF Client: Sent proof` in your logs at INFO level.
 
@@ -222,7 +207,7 @@ chia start node timelord-only
 
 ## ASIC Timelord Systemd Setup
 
-Below is an example of a systemd service file to run the ASIC hw vdf processes.  
+Below is an example of a systemd service file to run the ASIC hw vdf processes.\
 NOTE - make sure to replace `USERNAME` with your system's username.
 
 ```bash

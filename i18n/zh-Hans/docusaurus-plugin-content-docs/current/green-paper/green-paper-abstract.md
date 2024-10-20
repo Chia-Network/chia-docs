@@ -14,6 +14,8 @@ slug: /green-paper-abstract
 
 本文不是 $\textrm{{\sf Chia}}$ 的正式规范。 相反，它面向那些希望理解 $\textrm{{\sf Chia}}$ 共识设计选择的读者，以及对来自高效证明系统的无需许可的最长链区块链感兴趣的人。
 
+[Green Paper PDF](/files/ChiaGreenPaper_20241008.pdf) - updated October 8, 2024
+
 ---
 
 ### 先前版本共识绿皮书
