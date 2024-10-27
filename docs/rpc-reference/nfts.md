@@ -704,7 +704,7 @@ chia rpc wallet nft_mint_bulk '{
   "wallet_id": 5,
   "royalty_address": "txch1zda49pjkj4hkv50fesvagf86f7pnlq68ej629dzp2hqa7p5n88sqtwnfuy",
   "royalty_percentage": 175,
-  "target_address_list": [
+  "target_list": [
     "txch1zda49pjkj4hkv50fesvagf86f7pnlq68ej629dzp2hqa7p5n88sqtwnfuy"
   ],
   "mint_number_start": 1,
