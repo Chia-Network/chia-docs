@@ -38,19 +38,7 @@ If you are more of a visual learner, JM made a video outlining the steps from th
   chia init
   ```
 
-- When creating plots on the harvesters, run:
-
-  ```bash
-  chia plots create -f <farmer_key> -p <pool_key>
-  ```
-
-  Where `<farmer_key>` and `<pool_key>` can be obtained by running the following command on your main machine:
-
-  ```bash
-  chia keys show
-  ```
-
-  After creating a plot, run `chia plots check` to ensure everything is working correctly.
+- When creating plots on the harvesters, run the correct command based on which plotter you want to use. More information about the plotters available and their usage can be found here: https://docs.chia.net/plotting-software/
 
 - A copy of your **main** machine CA directory needs to be accessible by your harvester machines. This directory is located in:
 
