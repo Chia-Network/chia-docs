@@ -3123,14 +3123,215 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                |
-| :-------- | :--------- | :------- | :--------------------------------------------------------- |
-| wallet_id | TEXT       | True     | The wallet ID for the origin of the transaction            |
-| address   | TEXT       | True     | The destination address                                    |
-| amount    | NUMBER     | True     | The number of mojos to send                                |
-| fee       | NUMBER     | False    | An optional blockchain fee, in mojos                       |
-| memos     | TEXT ARRAY | False    | An optional array of memos to be sent with the transaction |
-| additions | TEXT ARRAY | True     | A list of puzzle hashes and amounts to be included         |
+| Flag      | Type       | Required | Description                                                        |
+| :-------- | :--------- | :------- | :----------------------------------------------------------------- |
+| wallet_id | TEXT       | True     | The wallet ID for the origin of the transaction                    |
+| additions | TEXT ARRAY | True     | A list of puzzle hashes, amounts, and memos to be included         |
+| coins     | TEXT ARRAY | False    | Optional declaration of coins to be used                           |
+| fee       | NUMBER     | False    | An optional blockchain fee, in mojos                               |
+| push      | BOOLEAN    | False    | Option to push the transaction to the chain or not (default: true) |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet send_transaction_multi '{"wallet_id": 1, "additions": [{"amount": 1000, "puzzle_hash": "0xd826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156"},{"amount": 500, "puzzle_hash": "0x45d4b5bd3f1e2c28483cae0eab27921adabff3300cb7d1241ba1a9628727197d", "memos": ["hello", "world"]}],"fee": 100}'
+```
+
+Response:
+
+````mdx-code-block
+  ```json
+  {
+    "success": true,
+    "transaction": {
+      "additions": [
+        {
+          "amount": 500,
+          "parent_coin_info": "0x45b30dd00437cdc24b508e1beae38fb11536e40ef1acf03f50a825d84e8dec94",
+          "puzzle_hash": "0x45d4b5bd3f1e2c28483cae0eab27921adabff3300cb7d1241ba1a9628727197d"
+        },
+        {
+          "amount": 1000,
+          "parent_coin_info": "0x45b30dd00437cdc24b508e1beae38fb11536e40ef1acf03f50a825d84e8dec94",
+          "puzzle_hash": "0xd826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156"
+        },
+        {
+          "amount": 21999981853856,
+          "parent_coin_info": "0x45b30dd00437cdc24b508e1beae38fb11536e40ef1acf03f50a825d84e8dec94",
+          "puzzle_hash": "0xe32e50011a2f5f6af81db9b56c500b84c67429340a9b7b37d4505f0f51fc9450"
+        }
+      ],
+      "amount": 1500,
+      "confirmed": false,
+      "confirmed_at_height": 0,
+      "created_at_time": 1730235776,
+      "fee_amount": 100,
+      "memos": {
+        "899c65593cb6bb0d515ac34c5e334287872f92ebcb2273ac0f0914efd6f0cabf": "776f726c64"
+      },
+      "name": "0xcc3d1668094e7643de772c5b9de0927508f9402fbb4cb66b4161a34b043c5bfa",
+      "removals": [
+        {
+          "amount": 21999981855456,
+          "parent_coin_info": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+          "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+        }
+      ],
+      "sent": 0,
+      "sent_to": [],
+      "spend_bundle": {
+        "aggregated_signature": "0x86c593c8156e9c3b7a038b6e945975058dd98e4598d24bbb750b2a3f5aa44439af2370dc736478cdd07249bb0ce8575c174b2cf451655ea45f132502b955d63372d3cb1d6c293c7ad567fc38d54c76cc289bc4ffadbe2a7103a45984dd72a160",
+        "coin_spends": [
+          {
+            "coin": {
+              "amount": 21999981855456,
+              "parent_coin_info": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+              "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+            },
+            "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08b3488cda8b3a32bcb74058bfb10c93a642d987908e6aec880dc85bf81b4b872b9f2cc6e08df73f62019ff593a2de1fdff018080",
+            "solution": "0xff80ffff01ffff3cffa03fb274324e854698e253364b3f76011ab98bb3b170a0a2633fb6aac19be3512480ffff33ffa045d4b5bd3f1e2c28483cae0eab27921adabff3300cb7d1241ba1a9628727197dff8201f4ffff8568656c6c6fff85776f726c648080ffff33ffa0d826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156ff8203e880ffff33ffa0e32e50011a2f5f6af81db9b56c500b84c67429340a9b7b37d4505f0f51fc9450ff861402451a7ca080ffff34ff648080ff8080"
+          }
+        ]
+      },
+      "to_address": "txch1mqn08muru96jwu2zd7gw4keyus4839yvklm50k59cpw64vd3u9tqghkcyg",
+      "to_puzzle_hash": "0xd826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156",
+      "trade_id": null,
+      "type": 1,
+      "valid_times": {
+        "max_blocks_after_created": null,
+        "max_height": null,
+        "max_secs_after_created": null,
+        "max_time": null,
+        "min_blocks_since_created": null,
+        "min_height": null,
+        "min_secs_since_created": null,
+        "min_time": null
+      },
+      "wallet_id": 1
+    },
+    "transaction_id": "0xcc3d1668094e7643de772c5b9de0927508f9402fbb4cb66b4161a34b043c5bfa",
+    "transactions": [
+      {
+        "additions": [
+          {
+            "amount": 500,
+            "parent_coin_info": "0x45b30dd00437cdc24b508e1beae38fb11536e40ef1acf03f50a825d84e8dec94",
+            "puzzle_hash": "0x45d4b5bd3f1e2c28483cae0eab27921adabff3300cb7d1241ba1a9628727197d"
+          },
+          {
+            "amount": 1000,
+            "parent_coin_info": "0x45b30dd00437cdc24b508e1beae38fb11536e40ef1acf03f50a825d84e8dec94",
+            "puzzle_hash": "0xd826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156"
+          },
+          {
+            "amount": 21999981853856,
+            "parent_coin_info": "0x45b30dd00437cdc24b508e1beae38fb11536e40ef1acf03f50a825d84e8dec94",
+            "puzzle_hash": "0xe32e50011a2f5f6af81db9b56c500b84c67429340a9b7b37d4505f0f51fc9450"
+          }
+        ],
+        "amount": 1500,
+        "confirmed": false,
+        "confirmed_at_height": 0,
+        "created_at_time": 1730235776,
+        "fee_amount": 100,
+        "memos": {
+          "899c65593cb6bb0d515ac34c5e334287872f92ebcb2273ac0f0914efd6f0cabf": "776f726c64"
+        },
+        "name": "0xcc3d1668094e7643de772c5b9de0927508f9402fbb4cb66b4161a34b043c5bfa",
+        "removals": [
+          {
+            "amount": 21999981855456,
+            "parent_coin_info": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+            "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+          }
+        ],
+        "sent": 0,
+        "sent_to": [],
+        "spend_bundle": {
+          "aggregated_signature": "0x86c593c8156e9c3b7a038b6e945975058dd98e4598d24bbb750b2a3f5aa44439af2370dc736478cdd07249bb0ce8575c174b2cf451655ea45f132502b955d63372d3cb1d6c293c7ad567fc38d54c76cc289bc4ffadbe2a7103a45984dd72a160",
+          "coin_spends": [
+            {
+              "coin": {
+                "amount": 21999981855456,
+                "parent_coin_info": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+                "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+              },
+              "puzzle_reveal": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08b3488cda8b3a32bcb74058bfb10c93a642d987908e6aec880dc85bf81b4b872b9f2cc6e08df73f62019ff593a2de1fdff018080",
+              "solution": "0xff80ffff01ffff3cffa03fb274324e854698e253364b3f76011ab98bb3b170a0a2633fb6aac19be3512480ffff33ffa045d4b5bd3f1e2c28483cae0eab27921adabff3300cb7d1241ba1a9628727197dff8201f4ffff8568656c6c6fff85776f726c648080ffff33ffa0d826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156ff8203e880ffff33ffa0e32e50011a2f5f6af81db9b56c500b84c67429340a9b7b37d4505f0f51fc9450ff861402451a7ca080ffff34ff648080ff8080"
+            }
+          ]
+        },
+        "to_address": "txch1mqn08muru96jwu2zd7gw4keyus4839yvklm50k59cpw64vd3u9tqghkcyg",
+        "to_puzzle_hash": "0xd826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156",
+        "trade_id": null,
+        "type": 1,
+        "valid_times": {
+          "max_blocks_after_created": null,
+          "max_height": null,
+          "max_secs_after_created": null,
+          "max_time": null,
+          "min_blocks_since_created": null,
+          "min_height": null,
+          "min_secs_since_created": null,
+          "min_time": null
+        },
+        "wallet_id": 1
+      }
+    ],
+    "unsigned_transactions": [
+      {
+        "signing_instructions": {
+          "key_hints": {
+            "path_hints": [
+              {
+                "path": [
+                  12381,
+                  8444,
+                  2,
+                  19
+                ],
+                "root_fingerprint": "0x428c4870"
+              }
+            ],
+            "sum_hints": [
+              {
+                "final_pubkey": "0x8b3488cda8b3a32bcb74058bfb10c93a642d987908e6aec880dc85bf81b4b872b9f2cc6e08df73f62019ff593a2de1fd",
+                "fingerprints": [
+                  "0x619bc5cd"
+                ],
+                "synthetic_offset": "0x64771976abb4a834675485d405228f1d42de0fe66ff8a15fcccb3edc5318ffed"
+              }
+            ]
+          },
+          "targets": [
+            {
+              "fingerprint": "0xb995704b",
+              "hook": "0x5164cb7113616036c959df00ffa45f0a06e1f1c8d04ac3c811b0f20f591c6d26",
+              "message": "0x45c51f68a927c0a5cab76e23821c14ed48508a03680d0f2b8171110fd424a38145b30dd00437cdc24b508e1beae38fb11536e40ef1acf03f50a825d84e8dec9437a90eb5185a9c4439a91ddc98bbadce7b4feba060d50116a067de66bf236615"
+            }
+          ]
+        },
+        "transaction_info": {
+          "spends": [
+            {
+              "coin": {
+                "amount": 21999981855456,
+                "parent_coin_id": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+                "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+              },
+              "puzzle": "0xff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04ffff02ff06ffff04ff02ffff04ff17ff80808080ff80808080ffff02ff17ff2f808080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b08b3488cda8b3a32bcb74058bfb10c93a642d987908e6aec880dc85bf81b4b872b9f2cc6e08df73f62019ff593a2de1fdff018080",
+              "solution": "0xff80ffff01ffff3cffa03fb274324e854698e253364b3f76011ab98bb3b170a0a2633fb6aac19be3512480ffff33ffa045d4b5bd3f1e2c28483cae0eab27921adabff3300cb7d1241ba1a9628727197dff8201f4ffff8568656c6c6fff85776f726c648080ffff33ffa0d826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156ff8203e880ffff33ffa0e32e50011a2f5f6af81db9b56c500b84c67429340a9b7b37d4505f0f51fc9450ff861402451a7ca080ffff34ff648080ff8080"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  ```
+````
+
+</details>
 
 ---
 
