@@ -32,7 +32,7 @@ All peers in the Chia protocol (whether they are farmers, full nodes, timelords,
 
 ```python
 class Handshake(Streamable):
-    network_id: str                         # Network id, usually the genesis challenge of the blockchain
+    network_id: str                         # Network id, ex. mainnet, testnet11, simulator0
     protocol_version: str                   # Protocol version to determine which messages the peer supports
     software_version: str                   # Version of the software, to debug and determine feature support
     server_port: uint16                     # Which port the server is listening on
