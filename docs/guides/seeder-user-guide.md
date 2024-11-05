@@ -11,9 +11,9 @@ It does so by crawling through the network, periodically revisiting known nodes 
 
 The Chia Seeder runs a mini-DNS server. Anyone can obtain an entry point into Chia’s decentralized and permissionless network via a simple DNS request for reliable node IPs.
 
-The Chia Seeder has very low memory and CPU requirements. It runs a faux full_node process and does not need its own node.
+The Chia Seeder has low memory and CPU requirements. It runs a faux full_node process and does not need its own node.
 
-Chia’s core developers have already been running an instance of the Chia Seeder for some time. You can view the current status of this instance by running:
+Chia’s core developers have been running an instance of the Chia Seeder for some time. You can view the current status of this instance by running:
 
 ```bash
 # IPv4
@@ -23,13 +23,15 @@ dig dns-introducer.chia.net
 dig -t AAAA dns-introducer.chia.net
 ```
 
-Chia has now decided to release the Seeder as a tool for anyone to maintain their own list of reliable nodes, which contributes to the further decentralization of Chia’s network by taking this tool off of the core team’s hands.
+Chia Network released the Seeder as a tool for anyone to maintain their own list of reliable nodes, which contributes to the further decentralization of Chia’s network by taking this tool off of the core team’s hands.
 
 Features:
 
 - Implements peer statistics and exponentially moving averages over various time-windows, akin to those maintained by its relative, the bitcoin-seeder: https://github.com/sipa/bitcoin-seeder
 - Runs a mini-DNS server on port 53, along with a full node to crawl the network.
 - Stores peer IPs and peer statistics into a database, so that they are persisted across runs.
+
+@dns_xch from Dexie created an [alternate light implemntation}](https://github.com/dexie-space/chia-seeder-light) in Rust that uses 99% less CPU and 66% less RAM with the only tradeoff being that it does not (currently) persist the crawled peer list across restarts.
 
 ## Expectations for Chia Seeder operators
 
