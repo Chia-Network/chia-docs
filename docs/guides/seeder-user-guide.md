@@ -32,6 +32,7 @@ Features:
 - Stores peer IPs and peer statistics into a database, so that they are persisted across runs.
 
 @dns_xch from Dexie created an [alternate light implemntation}](https://github.com/dexie-space/chia-seeder-light) in Rust that uses 99% less CPU and 66% less RAM.
+
 ## Expectations for Chia Seeder operators
 
 The Chia network core developers endeavor to minimize the level of trust in the DNS servers associated with a Chia Seeder. In this regard, it is expected for each Chia Seeder to be run by an individual or organization recognized as well-intentioned within the Chia community.
