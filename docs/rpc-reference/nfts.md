@@ -790,7 +790,7 @@ Options:
 Request Parameters:
 
 | Flag               | Type         | Required | Description                                                                                                                                                                                          |
-| :----------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| :----------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | wallet_id          | NUMBER       | True     | The Wallet ID in which to mint an NFT                                                                                                                                                                |
 | uris               | STRING ARRAY | True     | A list of URIs to mark the location(s) of the NFT                                                                                                                                                    |
 | hash               | HEX STRING   | True     | The hash of the NFT's data. This should use sha256 for proper verification against the URI list                                                                                                      |
@@ -801,7 +801,7 @@ Request Parameters:
 | license_hash       | HEX STRING   | False    | The hash of the NFT's license                                                                                                                                                                        |
 | royalty_address    | STRING       | False    | The wallet address of the NFT's artist. This is where royalties will be sent. It could be either an XCH address or a DID address                                                                     |
 | royalty_percentage | NUMBER       | False    | The royalty that will go to the original artist each time the NFT is sold. The percentage is multiplied by 100 -- for example, to set a 3% royalty, set this value to 300. The default value is 0    |
-| target_address     | STRING       | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                      |     |
+| target_address     | STRING       | False    | The wallet address of the initial owner of the NFT. This may be the same as the royalty address                                                                                                      |
 | edition_number     | NUMBER       | False    | If this NFT has multiple editions (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT.                                                               |
 | edition_total      | NUMBER       | False    | If this NFT has multiple editions, then this parameter indicates the total number of editions of this NFT. This parameter should be used if and only if the `edition_number` parameter was also used |
 | fee                | NUMBER       | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                          |
