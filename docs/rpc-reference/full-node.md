@@ -3656,7 +3656,7 @@ each coin id that should be created by this spend bundle.
 The error status can be one of:
 
 - **SUCCESS**: if the transaction was successfully added to the mempool
-- **PENDING**: if the transaction cannot be included yes due to timelocks or conflicts
+- **PENDING**: if the transaction cannot be included yet due to timelocks or conflicts
 - **FAILED**: transaction was not added to the mempool, and was dropped
 
 :::
