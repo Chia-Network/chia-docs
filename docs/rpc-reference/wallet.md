@@ -2120,8 +2120,8 @@ The transaction history is not deterministic due to heuristics we use to counter
 - Offers are split into multiple transactions on the corresponding wallets
 - Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
 - The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
-- For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
-- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+- For your offers which were accepted by a 3rd Party , the incoming coins are being marked as incoming transaction, not as incoming trade
+- When cancelling offers, the cancellation Transactions are being shown as transaction, not as trade
 For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
 </details>
 
@@ -2212,8 +2212,8 @@ The transaction history is not deterministic due to heuristics we use to counter
 - Offers are split into multiple transactions on the corresponding wallets
 - Transactions of one Offer do not share the same id`s. To match them up, it is best to keep the offer files
 - The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
-- For your offers which were accepted by a 3rd Party , the incoming coins are beeing marked as incoming transaction, not as incoming trade
-- When cancelling offers, the cancellation Transactions are beeing shown as transaction, not as trade
+- For your offers which were accepted by a 3rd Party , the incoming coins are being marked as incoming transaction, not as incoming trade
+- When cancelling offers, the cancellation Transactions are being shown as transaction, not as trade
 For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
 </details>
 
