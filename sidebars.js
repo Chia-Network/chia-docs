@@ -13,6 +13,17 @@ module.exports = {
         'getting-started/wallet-guide',
         'getting-started/using-the-gui',
         'getting-started/bridge-guide',
+        {
+          type: 'category',
+          label: 'Cloud Wallet',
+          items: [
+            'getting-started/cloud-wallet/getting-started',
+            'getting-started/cloud-wallet/faq',
+            'getting-started/cloud-wallet/tooltips',
+            'getting-started/cloud-wallet/unfinished',
+            'getting-started/cloud-wallet/known-issues',
+          ]
+        } 
       ],
     },
     {

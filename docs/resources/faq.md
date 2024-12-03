@@ -1057,6 +1057,12 @@ This error message occurs when you submit a transaction that does not include a 
 
 ---
 
+## Cloud Wallet
+
+See our dedicated page for [Cloud Wallet FAQs](/getting-started/cloud-wallet/faq).
+
+---
+
 ## Offers
 
 ### What are Chia Offers?
