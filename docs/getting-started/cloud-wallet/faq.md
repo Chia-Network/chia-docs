@@ -128,7 +128,7 @@ Yes! The Chia blockchain is a public ledger, so anyone can build software to mon
 
 ### What is the Chia Signer app?
 
-The Chia Signer app turns your smartphone into a hardware wallet. The app uses your phone’s Secure Enclave to create a vault custody key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it. You can [download it Test Flight](https://testflight.apple.com/join/X5ZkWYzj).
+The Chia Signer app turns your smartphone into a hardware wallet. The app uses your phone’s Secure Enclave to create a vault custody key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it. You can download it from [Apple's app store](https://apps.apple.com/app/id6504493785).
 
 ### Is the Chia Signer app available for both Android and iOS?
 
