@@ -42,7 +42,7 @@ Congratulations, you're all set to create your first vault!
 
 2. Give your vault a name, for example `My Signer Vault`.
 
-3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet, you can click the `Download Signer App` button, or browse directly to [Apple's app store](https://apps.apple.com/app/id6504493785).
+3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet, you can download it from [Test Flight](https://testflight.apple.com/join/X5ZkWYzj).
 
    Note: The Chia Signer app currently is only built for iOS devices. We will build an Android version of the app in the future.
 
