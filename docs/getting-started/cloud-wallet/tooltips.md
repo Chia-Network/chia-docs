@@ -8,6 +8,10 @@ import TabItem from '@theme/TabItem';
 
 This page contains tooltip links from the Cloud Wallet. It provides some basic info about the various components.
 
+## Recovery
+
+This is the process of rekeying a vault. If your custody key is lost or stolen, you can swap it out for a new one. For example, if someone steals your smartphone where your Chia Signer app is installed, you can obtain a new phone, install the Chia Signer app, and create a new hardware key. You can then instruct your vault to replace the stolen key with the new one. The recovery process also allows you to change your recovery key if desired.
+
 ## Custody Key
 
 This is a vault’s primary key used for signing transactions. It can be either a passkey or a hardware key from the Chia Signer app.
@@ -34,4 +38,4 @@ This is the amount of time you must wait before a recovery operation can be comp
 
 ## Signer App
 
-A smartphone app initially available for iPhones made after 2013. The app stores a signer key in its Secure Enclave. This key cannot be copied or removed from the phone, so the only way to steal it is to gain physical access to the device. For this reason, we strongly recommend that you secure the Signer app using your phone’s biometrics.
+A smartphone app initially available for iPhones made after 2013. The app stores a spend key in its Secure Enclave. This key cannot be copied or removed from the phone, so the only way to steal it is to gain physical access to the device. For this reason, we strongly recommend that you secure the Signer app using your phone’s biometrics.
