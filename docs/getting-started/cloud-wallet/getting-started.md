@@ -37,6 +37,7 @@ Congratulations, you're all set to create your first vault!
 :::info
 
 Currently, in order to use the Chia Signer app, you will need two separate devices:
+
 1. A computer or phone to access your vault
 2. An iOS device on which the Chia Signer app is installed
 

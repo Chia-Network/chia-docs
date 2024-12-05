@@ -133,6 +133,7 @@ The Chia Signer app turns your smartphone into a hardware wallet. The app uses y
 :::info
 
 Currently, in order to use the Chia Signer app, you will need two separate devices:
+
 1. A computer or phone to access your vault
 2. An iOS device on which the Chia Signer app is installed
 
@@ -147,12 +148,14 @@ It is currently only available for iOS. We will build an Android version in the 
 ### On which iOS devices is the Chia Signer app supported?
 
 The app has two requirements for iOS devices:
+
 1. The device must run iOS 15 or later
 2. The device must have a Secure Enclave
 
 The following devices meet both of these requirements:
-* iPhone models beginning with the iPhone 6
-* iPad models beginning with the iPad mini 4
+
+- iPhone models beginning with the iPhone 6
+- iPad models beginning with the iPad mini 4
 
 Be sure to double check that your device is running at least iOS 15 prior to installing the Chia Signer app.
 
