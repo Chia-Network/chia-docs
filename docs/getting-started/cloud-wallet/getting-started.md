@@ -34,6 +34,17 @@ Congratulations, you're all set to create your first vault!
 
 ## Create a vault
 
+:::info
+
+Currently, in order to use the Chia Signer app, you will need two separate devices:
+
+1. A computer or phone to access your vault
+2. An iOS device on which the Chia Signer app is installed
+
+You cannot use both the Cloud Wallet and the Chia Signer app on the same device yet. However, we do intend to enable this functionality in a future release.
+
+:::
+
 1. The free tier of the Cloud Wallet only allows you to create a single vault, so you will need to choose from one of the two options. Let's create a vault using the Chia Signer app:
 
 <div style={{ textAlign: 'left' }}>
