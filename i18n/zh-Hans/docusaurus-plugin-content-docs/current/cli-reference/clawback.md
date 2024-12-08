@@ -36,14 +36,14 @@ Usage: `clawback [OPTIONS] COMMAND [ARGS]`
 Options:
 
 | Short Command | Long Command | Type | Required | Description                  |
-| :------------ | :----------- | :--- | :------- | :--------------------------- |
+|:------------- |:------------ |:---- |:-------- |:---------------------------- |
 |               | --version    | None | False    | Show the version and exit    |
 | -h            | --help       | None | False    | Show a help message and exit |
 
 Commands:
 
 | Name   | Description                                         |
-| :----- | :-------------------------------------------------- |
+|:------ |:--------------------------------------------------- |
 | claim  | Claim a clawback coin after the timelock has passed |
 | claw   | Clawback an unclaimed coin                          |
 | create | Send xch to a clawback coin                         |
@@ -60,7 +60,7 @@ Usage: `clawback claim [OPTIONS]`
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -c            | --coin-id         | TEXT    | True     | The coin ID you want to claim                                                                            |
 | -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
 | -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
@@ -245,7 +245,7 @@ Usage: `clawback claw [OPTIONS]`
 Options: Clawback an unclaimed coin
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -c            | --coin-id         | TEXT    | True     | The coin ID for the clawback coin to inspect                                                             |
 | -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
 | -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
@@ -317,7 +317,7 @@ Usage: `clawback create [OPTIONS]`
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -t            | --to              | TEXT    | True     | The recipient's address                                                                                  |
 | -l            | --timelock        | INTEGER | False    | The timelock to use for the clawback coin you're creating, in seconds. Default is two weeks              |
 | -a            | --amount          | INTEGER | True     | The amount to fund (in XCH)                                                                              |
@@ -410,7 +410,7 @@ Usage: `clawback show [OPTIONS]`
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -c            | --coin-id         | TEXT    | False    | The coin ID for the clawback coin to inspect                                                             |
 | -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
