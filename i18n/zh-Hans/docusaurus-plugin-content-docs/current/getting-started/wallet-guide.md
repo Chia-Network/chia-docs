@@ -695,6 +695,7 @@ This is viewable in the offer's details:
 </figcaption>
 </figure>
 
+
 <br/>
 
 While the Offer is pending, the Maker attempts to send 0.1 XCH to another address.
