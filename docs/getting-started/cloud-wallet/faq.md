@@ -169,7 +169,7 @@ No, but it doesn't use clear signing yet, either. The user is shown the details 
 
 ### Can I use the Chia Signer app to sign into my Cloud Wallet account?
 
-No, the Chia Signer app is only for signing transactions. You will need to use either a password or a passkey to sign into your Cloud Wallet account. 
+No, the Chia Signer app is only for signing transactions. You will need to use either a password or a passkey to sign into your Cloud Wallet account.
 
 ## Security and privacy
 
