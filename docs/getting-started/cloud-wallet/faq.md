@@ -161,11 +161,15 @@ Be sure to double check that your device is running at least iOS 15 prior to ins
 
 ### Is it safe to install the Chia Signer app on a second-hand device?
 
-Yes -- just be sure to use the do a factory reset of the device first. See [Apple's support site](https://support.apple.com/guide/iphone/iph7a2a9399b/ios) for instructions.
+Yes -- just be sure to do a factory reset of the device first. See [Apple's support site](https://support.apple.com/guide/iphone/iph7a2a9399b/ios) for instructions.
 
 ### Does the Chia Signer app use blind signing?
 
 No, but it doesn't use clear signing yet, either. The user is shown the details of the transaction before signing it. This info is significantly more detailed than what can be seen on the small screens of most hardware wallets. However, the end user needs to trust that CNI's servers have not been compromised, so it also isn't clear signing. The light amount of trust required should be sufficient for most users. However, for users who want to sign large transfers with the Chia Signer app, we plan to develop true clear signing in the future.
+
+### Can I use the Chia Signer app to sign into my Cloud Wallet account?
+
+No, the Chia Signer app is only for signing transactions. You will need to use either a password or a passkey to sign into your Cloud Wallet account. 
 
 ## Security and privacy
 
