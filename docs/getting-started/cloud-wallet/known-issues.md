@@ -3,18 +3,21 @@ slug: /getting-started/cloud-wallet/known-issues
 title: Known Issues
 ---
 
-This list was last updated on 2024-12-05. Although there are many items in this list, most of them are minor issues or issues that occur rarely. In addition, while we will attempt to keep this list up to date, it may fall behind on occasion. This is not meant to be a comprehensive list.
+This list was last updated on 2024-12-09. Although there are many items in this list, most of them are minor issues or issues that occur rarely. In addition, while we will attempt to keep this list up to date, it may fall behind on occasion. This is not meant to be a comprehensive list.
 
 - Recovery is not yet enabled for vaults that use the Chia Signer app
 - The fee field doesn’t work yet for recovery operations (initiate, cancel, complete)
-- Upon cancelling a recovery, the app doesn’t indicate that anything is happening while the the transaction is being processed
-- We are in the process of updating the mobile UI, so certain buttons and labels may look bad on a mobile device for now
+- Long vault names are truncated; this is a display issue only
+- Vaults currently can be named with all whitespace (space/tab) characters; this will be disallowed in the future
+- The Chia Signer app is only for signing transactions; the current signup process doesn't make it completely clear that the app cannot be used for logging into the Cloud Wallet. We will make this clearer in the future.
+- The transaction history may not show all incoming transactions, even when the balance is accurate
 - The error message that appears when you enter an invalid Send address is not very descriptive
 - When setting up a vault on an iPhone, the fields for inputting up the clawback timer might not show any numbers
 - If you attempt to add a passkey, but then click the X to close out of the window, it will give you an error
 - If you send funds to your own vault, the transaction will show an amount of 0
 - In rare occurrences, when creating an account, you might see "Internal Server Error"
 - You may see "User not found for this passkey" when attempting to create an account with a passkey
+- We are in the process of updating the mobile UI, so certain buttons and labels may look bad on a mobile device for now
 - Some users have reported seeing "vault.chiatest.net's DNS address could not be found...." when using the Brave browser
 - Upon cancelling a recovery, an extra signature dialog is displayed
 - You may receive two identical copies of the same watchtower email upon successfully completing a recovery
