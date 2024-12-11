@@ -7,6 +7,13 @@ slug: /new-proof-technical-overview
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::note
+
+This information was not updated on 12/11/2024 with the rest of this section.
+This information will be updated once the CHIP has been submitted in Q1 2025.
+
+:::
+
 This section will go over some of the novel ideas for the proof of space and reasons why they are beneficial.
 
 The most notable changes to the proof of space are:

@@ -7,6 +7,13 @@ slug: /new-proof-details
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::note
+
+This information was not updated on 12/11/2024 with the rest of this section.
+This information will be updated once the CHIP has been submitted in Q1 2025.
+
+:::
+
 ## New Matching Algorithm
 
 The matching algorithm for all tables has changed, and now forms the basis of security. It is a memory hard algorithm which can be tuned to take more or less time by adjusting the number of match indexes to test for whether two entries match.
