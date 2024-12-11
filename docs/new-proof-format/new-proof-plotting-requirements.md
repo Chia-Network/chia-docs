@@ -13,15 +13,22 @@ This information was updated on 12/11/2024.
 
 :::
 
+## Plot Sizes
+
+The new proof of space format supports plots as small as 3 GiB. Due to symmetric properties of the format, only even-sized k-sizes are supported. While we currently have no plans to support sizes smaller than k28, larger k-sizes may be enabled in the future. Each even-step k-size is a little over four times larger than the previous size.
+
+| Plot Size | All RAM       |
+|:----------|:--------------|
+| k34       | &#126;260 GiB |
+| k32       | &#126;61 GiB  |
+| k30       | &#126;14 GiB  |
+| k28       | &#126;3 GiB   |
+
 ## Memory
 
 We have separated the memory requirements by RAM only (no disk needed) and RAM + disk (for systems with 32 GiB of RAM). We also break down these requirements for plots meant to be stored on HDDs and for those meant to be stored on SSDs.
 
-### HDD
-
-Technically, HDD plots will also work on SSDs, but we also have a format that is optimized to be stored on SSDs for farming.
-
-#### RAM Requirements
+### RAM Requirements
 
 Memory requirements for full plotting in RAM for HDD friendly format:
 
@@ -31,6 +38,10 @@ Memory requirements for full plotting in RAM for HDD friendly format:
 | k32       | 128GB   | 2GB        | 2GB VRAM    |
 | k30       | 32GB    | 512MB      | 512MB VRAM  |
 | k28       | 8GB     | 128MB      | 128MB VRAM  |
+
+### HDD
+
+Technically, HDD plots will also work on SSDs, but we also have a format that is optimized to be stored on SSDs for farming.
 
 ### SSD optimized
 

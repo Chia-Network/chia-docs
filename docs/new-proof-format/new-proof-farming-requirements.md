@@ -40,7 +40,9 @@ Lower k-sizes increase disk activity but lower your minimum hardware requirement
 ### Quality Strings Frequency
 
 Quality strings are found when a plot passes several filters, including plot ID, scan, and chain filters. Once found, they are tested against a difficulty filter to determine if they qualify as a block or pool partial win.
+
 **Solo farming:** The frequency of quality strings does not significantly impact farming activity.
+
 **Pool farming:** Increased quality string frequency improves pool size estimation accuracy for smaller farmers, helping stabilize rewards. Farmers with few plots may experience fluctuating estimated space and rewards day-to-day, but over time, rewards will align with actual plotted space.
 
 | Plot Size | Avg. Quality <br/> Strings per hr <br/> per TiB |
