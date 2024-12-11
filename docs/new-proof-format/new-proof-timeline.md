@@ -7,6 +7,13 @@ slug: /new-proof-timeline
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::note
+
+This information was not updated on 12/11/2024 with the rest of this section.
+This information will be updated once the CHIP has been submitted in Q1 2025.
+
+:::
+
 This table gives a _rough_ timeline of what to expect with the new format. We will know the exact timeline (to within a few days) when we enter the locked in period.
 
 | Time frame               | Name                    | Begins when                      | Ends when                        | Description                                                                                                                                                 |
