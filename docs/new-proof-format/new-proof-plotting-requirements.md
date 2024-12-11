@@ -52,12 +52,12 @@ CPU plotting will be possible but slow and expensive, and thus only recommended 
 
 Some expected plot times according to size and format:
 
-| Plot Size               | Raspberry Pi 5 | Ryzen 5600 <br/> (6-core) | Nvidia 3090   |
-| :---------------------- | :------------- | :------------------------ | :------------ |
-| k34                     | N/A            | ~10 hours                 | ~6 minutes    |
-| k32                     | N/A            | ~3 hours                  | ~1-2 minutes  |
-| k30                     | N/A            | ~45 minutes               | ~30 seconds   |
-| k28                     | ~40 minutes    | ~12 minutes               | ~5 seconds    |
-| Plotted <br/> space/day | Up to 170 GiB  | Up to 800 GiB             | Up to 100 TiB |
+| Plot Size               | Raspberry Pi 5   | Ryzen 5600 <br/> (6-core) | Nvidia 3090       |
+| :---------------------- | :--------------- | :------------------------ | :---------------- |
+| k34                     | N/A              | &#126;10 hours            | &#126;6 minutes   |
+| k32                     | N/A              | &#126;3 hours             | &#126;1-2 minutes |
+| k30                     | N/A              | &#126;45 minutes          | &#126;30 seconds  |
+| k28                     | &#126;40 minutes | &#126;12 minutes          | &#126;5 seconds   |
+| Plotted <br/> space/day | Up to 170 GiB    | Up to 800 GiB             | Up to 100 TiB     |
 
 Eventual support for Apple M-Series and iGPU’s acceleration. First releases will support CPU plotting and nVidia GPUs, and later additional support for other chips will be included.
