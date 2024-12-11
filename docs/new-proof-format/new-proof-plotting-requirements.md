@@ -18,7 +18,7 @@ This information was updated on 12/11/2024.
 The new proof of space format supports plots as small as 3 GiB. Due to symmetric properties of the format, only even-sized k-sizes are supported. While we currently have no plans to support sizes smaller than k28, larger k-sizes may be enabled in the future. Each even-step k-size is a little over four times larger than the previous size.
 
 | Plot Size | All RAM       |
-|:----------|:--------------|
+| :-------- | :------------ |
 | k34       | &#126;260 GiB |
 | k32       | &#126;61 GiB  |
 | k30       | &#126;14 GiB  |
