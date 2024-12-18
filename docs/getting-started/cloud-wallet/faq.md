@@ -72,7 +72,7 @@ In the reference wallet, the key used for signing transactions is located on the
 
 We plan to release three tiers with the Cloud Wallet:
 
-- Free Tier – currently available, albeit in beta form. It includes one vault, with a single custody key and a single recovery key. The free tier will provide easy onboarding for new users, and will offer a more secure solution than what exists in most of the industry.
+- Free Tier – currently available, albeit in beta form. It includes one vault, with a single key for spending and a single key for recovery. The free tier will provide easy onboarding for new users, and will offer a more secure solution than what exists in most of the industry.
 - Prosumer Tier (coming soon) – will include support for multisig vaults, as well as some advanced trading tools. This will be the perfect solution for individuals and small groups who want to share custody, as well as for high-frequency traders. It will be available for a monthly fee.
 - Enterprise Tier (coming soon) – will provide custody, management, and support solutions for large enterprises.
 
@@ -92,11 +92,11 @@ If you discover any security issues, you can file a report on our [bug bounty si
 
 ## Recovery
 
-### What happens if I lose my custody key?
+### What happens if I lose my spend key?
 
 You can use your recovery key to swap out the lost key for a new one.
 
-### What happens if my custody key is stolen? Will all of my funds be stolen?
+### What happens if my spend key is stolen? Will all of my funds be stolen?
 
 It depends. For example, the Chia Signer app recommends using biometric authentication such as a fingerprint or face ID. With this setup, if a thief steals your phone, they will not be able to access the Chia Signer app, and thus your funds will remain secure. You can procure a new smartphone and initiate the recovery process in order to restore your funds.
 
@@ -104,7 +104,7 @@ However, the current setup is not secure against wrench attacks, where the thief
 
 ### What happens if I lose my recovery key?
 
-You can use your custody key to send your funds to a new vault.
+You can use your spend key to send your funds to a new vault.
 
 ### What happens if my recovery key is stolen? Will all of my funds be stolen?
 
@@ -128,7 +128,7 @@ Yes! The Chia blockchain is a public ledger, so anyone can build software to mon
 
 ### What is the Chia Signer app?
 
-The Chia Signer app turns your smartphone into a hardware wallet. The app uses your phone's Secure Enclave to create a vault custody key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it. You can download it from the [iOS App Store](https://apps.apple.com/app/chia-signer/id6504493785).
+The Chia Signer app turns your smartphone into a hardware wallet. The app uses your phone's Secure Enclave to create a vault spend key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it. You can download it from the [iOS App Store](https://apps.apple.com/app/chia-signer/id6504493785).
 
 :::info
 
@@ -179,7 +179,7 @@ No. CNI won't custody any of your assets, so it won't have the ability to freeze
 
 ### What risks do end users take regarding CNI's control of the Cloud Wallet website?
 
-One of the advantages of using vaults is that their custody keys are not directly accessible to the website or its APIs.
+One of the advantages of using vaults is that their spend keys are not directly accessible to the website or its APIs.
 
 The two risks for Cloud Wallet end users are:
 

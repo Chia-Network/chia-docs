@@ -10,9 +10,9 @@ This page contains tooltip links from the Cloud Wallet. It provides some basic i
 
 ## Recovery
 
-This is the process of rekeying a vault. If your custody key is lost or stolen, you can swap it out for a new one. For example, if someone steals your smartphone where your Chia Signer app is installed, you can obtain a new phone, install the Chia Signer app, and create a new hardware key. You can then instruct your vault to replace the stolen key with the new one. The recovery process also allows you to change your recovery key if desired.
+This is the process of rekeying a vault. If your spend key is lost or stolen, you can swap it out for a new one. For example, if someone steals your smartphone where your Chia Signer app is installed, you can obtain a new phone, install the Chia Signer app, and create a new hardware key. You can then instruct your vault to replace the stolen key with the new one. The recovery process also allows you to change your recovery key if desired.
 
-## Custody Key
+## Spend Key
 
 This is a vault’s primary key used for signing transactions. It can be either a passkey or a hardware key from the Chia Signer app.
 
