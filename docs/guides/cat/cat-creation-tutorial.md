@@ -374,7 +374,7 @@ You reveal and run the TAIL by outputting the following condition from the inner
 
 The documentation for this Extra Delta concept can be found [here](https://chialisp.com/cats/#extra-delta).
 
-This is an [example](https://github.com/Rigidity/chia-wallet-sdk/blob/main/crates/chia-sdk-driver/src/puzzles/cat/cat_spend.rs#L250-L268) of melting a CAT from Rigidity's wallet SDK.
+This is an [example](https://github.com/xch-dev/chia-wallet-sdk/blob/main/crates/chia-sdk-driver/src/primitives/cat/cat_spend.rs) of melting a CAT from Rigidity's wallet SDK.
 
 In this example, you start with a supply of 10000, use an extra delta of -3000, reveal the TAIL and output a new CAT with the remaining supply of 7000.
 
