@@ -376,7 +376,6 @@ The below messages have been added via (Chip 26)[https://github.com/Chia-Network
 These have been added to the reference (node codebase)[https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/wallet_protocol.py] but have not been implemented in the reference wallet as of January 2025.
 :::
 
-
 ## request_remove_puzzle_subscriptions
 
 Removes puzzle hashes from the subscription list (or all of them if None).
@@ -417,7 +416,7 @@ class RespondRemoveCoinSubscriptions:
 
 Requests coin states that match the given puzzle hashes (or hints).  
 When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.  
-When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time). 
+When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time).
 Filter out spent, unspent, or hinted coins, as well as coins below a minimum amount.
 
 ```python
@@ -466,7 +465,7 @@ class RejectStateReason(IntEnum):
 
 Request coin states that match the given coin ids.  
 When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.  
-When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time). 
+When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time).
 
 ```python
 class RequestCoinState:
@@ -481,7 +480,7 @@ class RequestCoinState:
 Respond with coin states that match the given coin ids.  
 This does not implement batching for simplicity. The order is also not guaranteed. However, you can still specify the previous_height and header_hash to start.
 
-```python 
+```python
 class RespondCoinState:
     coin_ids: List[bytes32]
     coin_states: List[CoinState]
@@ -502,9 +501,10 @@ class RejectStateReason(IntEnum):
 
 ## mempool_items_added
 
-The below mempool update messages (including an initial MempoolItemsAdded message when you subscribe for the first time) are received when:  
-- `request_coin_state` or `request_puzzle_state` messages are sent,  
-- AND subscribe is set to True in the request,  
+The below mempool update messages (including an initial MempoolItemsAdded message when you subscribe for the first time) are received when:
+
+- `request_coin_state` or `request_puzzle_state` messages are sent,
+- AND subscribe is set to True in the request,
 - AND mempool updates are enabled (can be done during the handshake).
 
 ```python
@@ -514,9 +514,10 @@ class MempoolItemsAdded:
 
 ## mempool_items_removed
 
-The below mempool update messages (including an initial MempoolItemsAdded message when you subscribe for the first time) are received when:  
-- `request_coin_state` or `request_puzzle_state` messages are sent,  
-- AND subscribe is set to True in the request,  
+The below mempool update messages (including an initial MempoolItemsAdded message when you subscribe for the first time) are received when:
+
+- `request_coin_state` or `request_puzzle_state` messages are sent,
+- AND subscribe is set to True in the request,
 - AND mempool updates are enabled (can be done during the handshake).
 
 ```python
