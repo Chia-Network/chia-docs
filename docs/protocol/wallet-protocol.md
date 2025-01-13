@@ -350,3 +350,181 @@ class RespondSESInfo(Streamable):
     reward_chain_hash: List[bytes32]
     heights: List[List[uint32]]
 ```
+
+:::note
+The below messages have been added via (Chip 26)[https://github.com/Chia-Network/chips/blob/8a597d06988eb308aa13488c5916ec041f39bc74/CHIPs/chip-0026.md].
+These have been added to the reference (node codebase)[https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/wallet_protocol.py] but have not been implemented in the reference wallet as of January 2025.
+:::
+
+
+## request_remove_puzzle_subscriptions
+
+Removes puzzle hashes from the subscription list (or all of them if None).
+
+```python
+class RequestRemovePuzzleSubscriptions:
+    puzzle_hashes: Optional[List[bytes32]]
+```
+
+## respond_remove_puzzle_subscriptions
+
+Returns the hashes that were actually removed.
+
+```python
+class RespondRemovePuzzleSubscriptions:
+    puzzle_hashes: List[bytes32]
+```
+
+## request_remove_coin_subscriptions
+
+Removes coin ids from the subscription list (or all of them if None)
+
+```python
+class RequestRemoveCoinSubscriptions:
+    coin_ids: Optional[List[bytes32]]
+```
+
+## respond_remove_coin_subscriptions
+
+Returns the ids that were actually removed.
+
+```python
+class RespondRemoveCoinSubscriptions:
+    coin_ids: List[bytes32]
+```
+
+## request_puzzle_state
+
+Requests coin states that match the given puzzle hashes (or hints).  
+When subscribe_when_finished is set to True, it will add subscriptions, but only once the last batch has been requested.  
+Filter out spent, unspent, or hinted coins, as well as coins below a minimum amount.
+
+```python
+class RequestPuzzleState:
+    puzzle_hashes: List[bytes32]
+    previous_height: Optional[uint32]
+    header_hash: bytes32
+    filters: CoinStateFilters
+    subscribe_when_finished: bool
+
+class CoinStateFilters:
+    include_spent: bool
+    include_unspent: bool
+    include_hinted: bool
+    min_amount: uint64
+```
+
+## respond_puzzle_state
+
+Responds with coin states that match the given puzzle hashes (or hints).
+
+```python
+class RespondPuzzleState:
+    puzzle_hashes: List[bytes32]
+    height: uint32
+    header_hash: bytes32
+    is_finished: bool
+    coin_states: List[CoinState]
+```
+
+## reject_puzzle_state
+
+Reject request_puzzle_state in the event that a reorg is detected by a node, this is the only scenario it will be rejected like this.
+
+```python
+class RejectPuzzleState:
+    reason: uint8  # RejectStateReason
+
+
+class RejectStateReason(IntEnum):
+    REORG = 0
+    EXCEEDED_SUBSCRIPTION_LIMIT = 1
+```
+
+## request_coin_state
+
+Request coin states that match the given coin ids.  
+When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.
+
+```python
+class RequestCoinState:
+    coin_ids: List[bytes32]
+    previous_height: Optional[uint32]
+    header_hash: bytes32
+    subscribe: bool
+```
+
+## respond_coin_state
+
+Respond with coin states that match the given coin ids.  
+This does not implement batching for simplicity. The order is also not guaranteed. However, you can still specify the previous_height and header_hash to start.
+
+```python 
+class RespondCoinState:
+    coin_ids: List[bytes32]
+    coin_states: List[CoinState]
+```
+
+## reject_coin_state
+
+Reject request_coin_state in the event that a reorg is detected by a node, this is the only scenario it will be rejected like this.
+
+```python
+class RejectCoinState:
+    reason: uint8  # RejectStateReason
+
+class RejectStateReason(IntEnum):
+    REORG = 0
+    EXCEEDED_SUBSCRIPTION_LIMIT = 1
+```
+
+## mempool_items_added
+
+This opts in to receiving the below mempool update messages.
+
+```python
+class MempoolItemsAdded:
+    transaction_ids: List[bytes32]
+```
+
+## mempool_items_removed
+
+Request receiving the below mempool update messages.
+
+```python
+class MempoolItemsRemoved:
+    removed_items: List[RemovedMempoolItem]
+
+class RemovedMempoolItem:
+    transaction_id: bytes32
+    reason: uint8 # MempoolRemoveReason
+
+class MempoolRemoveReason(Enum):
+    CONFLICT = 1
+    BLOCK_INCLUSION = 2
+    POOL_FULL = 3
+    EXPIRED = 4
+```
+
+## request_cost_info
+
+Request various information about the costs of transactions, blocks, and the mempool.
+
+```python
+class RequestCostInfo:
+    pass
+```
+
+## respond_cost_info
+
+Respond with various information about the costs of transactions, blocks, and the mempool.
+
+```python
+class RespondCostInfo:
+    max_transaction_cost: uint64
+    max_block_cost: uint64
+    max_mempool_cost: uint64
+    mempool_cost: uint64
+    mempool_fee: uint64
+    bump_fee_per_cost: uint8
+```
