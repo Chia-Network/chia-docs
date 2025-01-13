@@ -111,6 +111,7 @@ class NewPeakWallet(Streamable):
 
 ## request_block_header
 
+DEPRECATED: this message has been deprecated and replaced with request_block_headers (plural).  
 A request from the wallet to the full node for a HeaderBlock at a specific height.
 
 ```python
@@ -120,10 +121,29 @@ class RequestBlockHeader(Streamable):
 
 ## respond_block_header
 
+DEPRECATED: this message has been deprecated and replaced with respond_block_headers (plural).
 A response to a `request_block_header` request.
 
 ```python
 class RespondBlockHeader(Streamable):
+    header_block: HeaderBlock
+```
+
+## request_block_headers
+
+A request from the wallet to the full node for a HeaderBlock at a specific height.
+
+```python
+class RequestBlockHeaders(Streamable):
+    height: uint32  # Height of the header block
+```
+
+## respond_block_headers
+
+A response to a `request_block_headers` request.
+
+```python
+class RespondBlockHeaders(Streamable):
     header_block: HeaderBlock
 ```
 
@@ -396,7 +416,8 @@ class RespondRemoveCoinSubscriptions:
 ## request_puzzle_state
 
 Requests coin states that match the given puzzle hashes (or hints).  
-When subscribe_when_finished is set to True, it will add subscriptions, but only once the last batch has been requested.  
+When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.  
+When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time). 
 Filter out spent, unspent, or hinted coins, as well as coins below a minimum amount.
 
 ```python
@@ -444,7 +465,8 @@ class RejectStateReason(IntEnum):
 ## request_coin_state
 
 Request coin states that match the given coin ids.  
-When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.
+When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.  
+When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time). 
 
 ```python
 class RequestCoinState:
@@ -480,7 +502,10 @@ class RejectStateReason(IntEnum):
 
 ## mempool_items_added
 
-This opts in to receiving the below mempool update messages.
+The below mempool update messages (including an initial MempoolItemsAdded message when you subscribe for the first time) are received when:  
+- `request_coin_state` or `request_puzzle_state` messages are sent,  
+- AND subscribe is set to True in the request,  
+- AND mempool updates are enabled (can be done during the handshake).
 
 ```python
 class MempoolItemsAdded:
@@ -489,7 +514,10 @@ class MempoolItemsAdded:
 
 ## mempool_items_removed
 
-Request receiving the below mempool update messages.
+The below mempool update messages (including an initial MempoolItemsAdded message when you subscribe for the first time) are received when:  
+- `request_coin_state` or `request_puzzle_state` messages are sent,  
+- AND subscribe is set to True in the request,  
+- AND mempool updates are enabled (can be done during the handshake).
 
 ```python
 class MempoolItemsRemoved:
