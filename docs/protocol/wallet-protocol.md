@@ -111,7 +111,6 @@ class NewPeakWallet(Streamable):
 
 ## request_block_header
 
-DEPRECATED: this message has been deprecated and replaced with request_block_headers (plural).  
 A request from the wallet to the full node for a HeaderBlock at a specific height.
 
 ```python
@@ -121,7 +120,6 @@ class RequestBlockHeader(Streamable):
 
 ## respond_block_header
 
-DEPRECATED: this message has been deprecated and replaced with respond_block_headers (plural).
 A response to a `request_block_header` request.
 
 ```python
@@ -131,7 +129,8 @@ class RespondBlockHeader(Streamable):
 
 ## request_block_headers
 
-A request from the wallet to the full node for a HeaderBlock at a specific height.
+A request from the wallet to the full node for a HeaderBlock at a specific height.  
+NOTE: this message deprecates and replaces `request_header_blocks` (flip block and header).
 
 ```python
 class RequestBlockHeaders(Streamable):
@@ -140,11 +139,23 @@ class RequestBlockHeaders(Streamable):
 
 ## respond_block_headers
 
-A response to a `request_block_headers` request.
+A response to a `request_block_headers` request.  
+NOTE: this message deprecates and replaces `respond_header_blocks` (flip block and header).
 
 ```python
 class RespondBlockHeaders(Streamable):
     header_block: HeaderBlock
+```
+
+## reject_block_headers
+
+A rejection to a `request_block_headers` request.  
+NOTE: this message deprecates and replaces `reject_header_blocks` (flip block and header).
+
+```python
+class RejectBlockHeaders(Streamable):
+    start_height: uint32
+    end_height: uint32
 ```
 
 ## reject_header_request
@@ -235,6 +246,7 @@ class RejectAdditionsRequest(Streamable):
 
 ## request_header_blocks
 
+DEPRECATED: this message has been deprecated and replaced with `request_block_headers` (flip block and header).  
 A request from the wallet to the full node for a list of consecutive header blocks, inclusive.
 
 ```python
@@ -245,6 +257,7 @@ class RequestHeaderBlocks(Streamable):
 
 ## reject_header_blocks
 
+DEPRECATED: this message has been deprecated and replaced with `reject_block_headers` (flip block and header).  
 A rejection for a `request_header_blocks` request.
 
 ```python
@@ -255,6 +268,7 @@ class RejectHeaderBlocks(Streamable):
 
 ## respond_header_blocks
 
+DEPRECATED: this message has been deprecated and replaced with `respond_block_headers` (flip block and header).  
 A response to a `request_header_blocks` request.
 
 ```python
