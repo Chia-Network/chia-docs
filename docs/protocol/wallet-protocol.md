@@ -386,8 +386,8 @@ class RespondSESInfo(Streamable):
 ```
 
 :::note
-The below messages have been added via (Chip 26)[https://github.com/Chia-Network/chips/blob/8a597d06988eb308aa13488c5916ec041f39bc74/CHIPs/chip-0026.md].
-These have been added to the reference (node codebase)[https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/wallet_protocol.py] but have not been implemented in the reference wallet as of January 2025.
+The below messages have been added via [Chip 26](https://github.com/Chia-Network/chips/blob/8a597d06988eb308aa13488c5916ec041f39bc74/CHIPs/chip-0026.md).
+These have been added to the reference [node codebase](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/wallet_protocol.py) but have not been implemented in the reference wallet as of January 2025.
 :::
 
 ## request_remove_puzzle_subscriptions
