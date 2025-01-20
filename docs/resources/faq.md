@@ -820,9 +820,9 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ### Where can I buy Chia?
 
-Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.com/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
+Visit [chia.net/buy-xch](https://chia.net/buy-xch) for instructions on buying Chia. Visit [offers](https://chialisp.com/offers) to learn more about peer-to-peer trading on Chia.
 
-There are also several exchanges that offer XCH. You can see a list of exchanges supporting XCH [here](https://chialinks.com/exchanges/). This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
+There are several exchanges that offer XCH, you can see a list of exchanges supporting XCH on [this](https://chialinks.com/exchanges/) community created website. This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
 ### I was running the light wallet beta app and I upgraded to the latest beta and my offer history disappeared. How do I get that back?
 
@@ -1109,7 +1109,7 @@ You are probably running the wallet that comes installed with the full node. Be 
 
 ### How do I know if I'm getting the right exchange value for an offer?
 
-Prices in cryptocurrencies fluctuate all the time. You can review any of the existing DEXes like Hashgreen or Offerbin to see what trading pairs are trading for in the open market. Alternatively you can find a reputable website that will give you the currency valuation for more popular and well known currencies like USDS.
+Prices in cryptocurrencies fluctuate all the time. You can review any of the existing decentralized exchanges like Dexie, Offerpool, or TibetSwap to see what trading pairs are trading for in the open market. Alternatively you can find a reputable centralized exchange website that will give you the valuation in local currencies.
 
 ### Will my Offers sync across different Chia wallets on different machines?
 
