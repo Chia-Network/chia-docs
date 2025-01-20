@@ -24,7 +24,7 @@ Farming uses substantially less electricity than Proof of Work for the same unit
 
 ### What is a VDF/proof of time?
 
-A VDF, also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](/timelord-algorithm) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
+A Verifiable Delay Function (VDF), also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](/timelord-algorithm) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
 
 ### What is a genesis challenge?
 
@@ -312,7 +312,7 @@ On Windows, it has not worked well since the communication speed is not fast eno
 
 ### What is this UPnP Error?
 
-[UPnP](ttps://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) is an optional setting that allows users to open a port in their router and therefore allow other nodes to connect to them. This is not required, since your node can still make outgoing connections without UPnP.
+[UPnP](https://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) is an optional setting that allows users to open a port in their router and therefore allow other nodes to connect to them. This is not required, since your node can still make outgoing connections without UPnP.
 
 For some routers, UPnP is enabled automatically, but for others, you might have to go into your router settings and enable UPnP manually. Sometimes restarting the router is also necessary.
 
@@ -820,9 +820,9 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ### Where can I buy Chia?
 
-Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.com/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
+Visit [chia.net/buy-xch](https://chia.net/buy-xch) for instructions on buying Chia. Visit [offers](https://chialisp.com/offers) to learn more about peer-to-peer trading on Chia.
 
-There are also several exchanges that offer XCH. You can see a list of exchanges supporting XCH [here](https://chialinks.com/exchanges/). This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
+There are several exchanges that offer XCH, you can see a list of exchanges supporting XCH on [chialinks](https://chialinks.com/exchanges/) a community created website. This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
 ### I was running the light wallet beta app and I upgraded to the latest beta and my offer history disappeared. How do I get that back?
 
@@ -1099,17 +1099,16 @@ You should always check the ID of the asset(s) being offered before accepting an
 Once you've created the offer, you'll need to find someone who will take the other side of it. You can share your offers through the following methods:
 
 - Send your offer file directly to another user
-- [Offerbin](http://offerbin.io) - an open marketplace for Chia Offers
 - [Offerpool.io](https://offerpool.io/) - an open-sourced, decentralized offers database built on top of OrbitDB and IPFS
 - [dexie.space](https://dexie.space/markets) - a decentralized exchange for Chia offers supporting Chia tokens (CATs) and NFTs
 
 ### Why don't I see the offers option in my wallet?
 
-You are probably running the wallet that comes installed with the full node. Be sure to download the standalone lightwallet [here](https://www.chia.net/download/#light-wallet-beta) (and be sure not to install on the same machine as your full node). We will be integrating the new capabilities of the standalone light wallet into the full node so you can farm and use all the new features of the wallet Soon™.
+You are probably running a very old version before it was integrated into both the Full Node and Light Wallet options. You should download and install the [latest version](https://www.chia.net/downloads) of the reference software. Now you can farm and use all the new features of the wallet.
 
 ### How do I know if I'm getting the right exchange value for an offer?
 
-Prices in cryptocurrencies fluctuate all the time. You can review any of the existing DEXes like Hashgreen or Offerbin to see what trading pairs are trading for in the open market. Alternatively you can find a reputable website that will give you the currency valuation for more popular and well known currencies like USDS.
+Prices in cryptocurrencies fluctuate all the time. You can review any of the existing decentralized exchanges like Dexie, HashgreenSwap, Offerpool, or TibetSwap to see what trading pairs are trading for in the open market. Alternatively you can find a reputable centralized exchange website that will give you the valuation in local currencies.
 
 ### Will my Offers sync across different Chia wallets on different machines?
 
