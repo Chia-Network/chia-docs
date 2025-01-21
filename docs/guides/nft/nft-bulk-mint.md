@@ -464,6 +464,15 @@ This message should appear in the output:
 dos2unix: converting file <CSV file> to Unix format...
 ```
 
+
+:::note
+
+If you plan to use fees, make sure to split your coins before the next step. If you have a single coin in your wallet you will run into errors when trying to submit the spend bundles.
+
+The easiest way to split coins is to send a portion of your balance to yourself (yes send xch/txch to your own address), this will split the coin into two the amount you sent and the change.
+
+:::
+
 3. Create the spend bundles. This command has six inputs:
 
 - `-w`: the wallet ID for the NFT wallet (`3` in this example)
@@ -496,7 +505,7 @@ Note that you may see a warning such as:
 This can be safely ignored.
 
 4. Submit the spend bundles created in the output file (output.pkl in this example). This command has two flags:
-   - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand
+   - `-m`: an optional transaction fee, in mojos. This is a fee to be used for inclusion in the blockchain, completely separate from the royalty percentage. This fee will be applied once per spend bundle of 25 NFTs. The bulk mint tool will not verify that you have enough money to cover this fee beforehand. If you are getting errors submitting the spend bundle indicating your balance is 0 then please split your coins by sending a portion of your balance to yourself and rerun the create-mint-spend-bundles command.
    - `-o`: set this to create a separate offer file for each NFT, using the specified price. In this example, the offer price will be 100 mojos
 
 ```bash
