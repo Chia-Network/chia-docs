@@ -464,7 +464,6 @@ This message should appear in the output:
 dos2unix: converting file <CSV file> to Unix format...
 ```
 
-
 :::note
 
 If you plan to use fees, make sure to split your coins before the next step. If you have a single coin in your wallet you will run into errors when trying to submit the spend bundles.
