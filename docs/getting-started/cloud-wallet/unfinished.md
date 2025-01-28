@@ -8,10 +8,6 @@ import TabItem from '@theme/TabItem';
 
 While the Cloud Wallet public beta has most of its planned features in place, it is currently missing a few things that will be included in the production release.
 
-## Recovery for Chia Signer Vaults
-
-Vaults that use the Chia Signer app as their signer cannot yet perform a recovery. While the APIs for recovering these vaults are working, the GUI is not yet ready. We are actively working on finishing this.
-
 ## Recovery for Unlisted Vaults
 
 Currently, if you lose access to your Cloud Wallet and signer passkey (for example, if you are accessing your account from a smartphone, and this phone is stolen), the app does not have a method for recovering your vault. We are working on implementing this.
