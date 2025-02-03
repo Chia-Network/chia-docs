@@ -54,7 +54,7 @@ A vault is a new way to custody your assets on Chia's blockchain. Instead of sec
 
 ### What is the advantage of using a vault instead of a wallet?
 
-Standard wallets on Chia as well as other blockchains only have one key. If this key is lost or stolen, then all of the funds custodied in the wallet will also be lost or stolen. The security assumptions surrounding standard wallets are disconcerting to retail and enterprise users alike. By using Chia vaults, users can feel confident that their funds will remain secure even if one of their keys is lost, and often (as discussed below) if it is stolen.
+The Chia reference wallet currently only uses a single key. If this key is lost or stolen, then all of the funds custodied in the wallet will also be lost or stolen. By using Chia vaults, users can feel confident that their funds will remain secure even if one of their keys is lost, and often (as discussed below) if it is stolen.
 
 ### Why do I see “Your vault is being minted, the address will be available soon.” after I create a vault?
 
@@ -62,7 +62,7 @@ A vault needs to be created on the blockchain after you click the “Create” b
 
 ### Can I import an existing wallet into the Cloud Wallet by entering a seed phrase?
 
-Not at the moment. Currently the Cloud Wallet only supports vaults. We may add support for standard BLS wallets, but we haven't made that decision yet.
+Not at the moment. Currently the Cloud Wallet only supports vaults. We may add support for BLS wallets, but we haven't made that decision yet.
 
 ### How is signing different with the Chia vault than with the reference wallet?
 
@@ -89,6 +89,10 @@ Feel free to ask questions in the #support channel of [our Discord](https://disc
 If you find any bugs, feel free to fill out a [bug report](https://docs.google.com/forms/d/e/1FAIpQLSeIAZAxSwTwZPGUVLs7_XKseoPgOmtBa0qhtWNQwBeoo9adRA/viewform). However, please keep in mind that this is beta software. We are aware of several existing bugs, which we are tracking in a [list](/getting-started/cloud-wallet/known-issues/).
 
 If you discover any security issues, you can file a report on our [bug bounty site](https://hackerone.com/chia_network). Thanks for your help!
+
+### Why is the `Add Vault` button disabled after I create my first vault?
+
+Currently the only tier you can choose is the `Free` tier, which only allows you to create one vault. In the future we will enable the `Pro` and `Enterprise` tiers, which enable multiple vaults, along with several other features.
 
 ## Recovery
 
@@ -188,11 +192,13 @@ The two risks for Cloud Wallet end users are:
 
 ### Do vaults always use the same address?
 
-Yes, and this is a departure from the reference wallet, which uses a new address for each transaction. The reason vaults always use the same address is because they are singletons -- the vault itself authorizes the spend of coins under its control, as opposed to standard wallets which are derived from BLS keys.
+Currently, yes. This is a departure from the reference wallet, which uses a new address for each transaction. The reason vaults always use the same address is because they are singletons -- the vault itself authorizes the spend of coins under its control. This is a different approach from the reference wallet, which uses a BLS key to derive its addresses.
 
 Users must carefully consider the privacy (and therefore security) implications of reusing an address. When the address doesn't change, it becomes easier to put together a historical record of transactions. Vaults that hold significant value could therefore be targeted with physical attacks, as explained in [a Bitcoin wiki](https://en.bitcoin.it/wiki/Address_reuse).
 
 Future versions of vaults will have additional security such as multisigs and time locks to mitigate the risk of physical attacks.
+
+In addition, in the future we plan to support vaults with multiple receive addresses. Stay tuned for more info on that topic.
 
 ### Will the Chia Signer app be open source?
 
