@@ -441,6 +441,10 @@ The light wallet protocol has two techniques to sync:
 
 Typically, it is much faster to sync a wallet by connecting to a trusted node. Therefore, if you have access to a synced node that you trust, you may want to add that node to your trusted peers list. _We recommend that you only add your own full nodes to this list_.
 
+### How can I connect to a community node instead of farming with my own full node?
+
+Unfortunately, connecting to a community node is not secure, and we therefore never recommend doing so. See our [node syncing guide](https://docs.chia.net/troubleshooting/node-syncing/#community-nodes) for more info.
+
 #### Prerequisites
 
 1. Chia needs to be version 1.3.0 or later on all computers

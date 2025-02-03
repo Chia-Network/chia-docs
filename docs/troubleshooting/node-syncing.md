@@ -91,3 +91,27 @@ Setting up a VPN used to be a daunting task, but [Wireguard](https://www.wiregua
 - the home server is configured to route all internet traffic (but not local) through the cloud server, while periodically sending a "keepalive" packet to ensure the connection stays open.
 
 Here is a more detailed write-up with [example wireguard configuration](https://www.kmr.me/posts/wireguard/).
+
+## Community Nodes
+
+:::warning
+
+We **never** recommend connecting to a community node. This section will detail why.
+
+:::
+
+A "community node" (AKA an untrusted node) is a node that other farmers can connect to, in order to avoid having to run their own full node.
+
+While this may seem like a convenient setup, community nodes are inherently not secure, and we therefore never recommend connecting to them. The primary issue is that the community node can steal farmer rewards. The reason for this is because the farmer service was created with the security assumption that it would only connect to a local/trusted node.
+
+This means that:
+
+- The farmer never verifies anything that the node puts into a block
+  - The farmer blind-signs whatever the node sends it
+  - The farmer doesn't verify the reward address
+- The community node can therefore modify the reward address before the farmer signs a block
+- Any modifications we could make to the farmer would have widespread ripple effects to the rest of the node software, so we won't support any such modifications
+
+In summary, if you farm using a community node, that node can steal all of your farming rewards as you earn them. The way to avoid this scenario is to run your own node.
+
+Luckily, a high-powered system is not required to run a Chia node. In fact, the [minimum supported node hardware](https://docs.chia.net/coin-set-costs/#farming-spec) is the Raspberry Pi with a cheap external SSD to hold the database file. In order to expedite the process of syncing your full node, you can download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint).
