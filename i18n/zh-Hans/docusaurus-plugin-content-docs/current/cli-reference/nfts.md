@@ -18,7 +18,7 @@ Usage: chia wallet nft create [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -di           | --did-id          | TEXT    | False    | DID Id to use                                                                                            |
@@ -113,7 +113,7 @@ Usage: chia wallet nft mint [OPTIONS]
 Options:
 
 | Short Command | Long Command                  | Type    | Required | Description                                                                                              |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id                          | INTEGER | True     | Id of the NFT wallet to use                                                                              |
@@ -309,7 +309,7 @@ Usage: chia wallet nft set_did [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
@@ -346,7 +346,7 @@ Usage: chia wallet nft sign_message [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --nft_id          | TEXT    | True     | NFT ID you want to use for signing                                                                       |
@@ -478,7 +478,7 @@ Usage: chia wallet nft list [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
@@ -577,7 +577,7 @@ Usage: chia wallet nft get_info [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin for which to show info                                                                |
@@ -634,7 +634,7 @@ Usage: chia wallet nft transfer [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
@@ -712,7 +712,7 @@ Usage: chia wallet nft add_uri [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required        | Description                                                                                              |
-| :------------ | :---------------- | :------ | :-------------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:--------------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False           | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False           | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True            | Id of the NFT wallet to use                                                                              |
@@ -779,7 +779,7 @@ Usage: chia wallet nft set_did [OPTIONS]
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:-------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
 | -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
