@@ -235,6 +235,8 @@ Response:
 }
 ```
 
+</details>
+
 ### `set_log_level`
 
 Functionality: Set the services current log level
@@ -291,6 +293,8 @@ Response:
 }
 ```
 
+</details>
+
 ### `reset_log_level`
 
 Functionality: Reset the services current log level
@@ -338,3 +342,5 @@ Response:
   "success": true
 }
 ```
+
+</details>
