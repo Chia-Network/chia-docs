@@ -203,9 +203,9 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                     |
-| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| STRING | True     | The service to query; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+| Type   | Required | Description                                                                                                                                       |
+| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| STRING | True     | The service to query for its log level; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters: None
 
@@ -252,9 +252,9 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                     |
-| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| STRING | True     | The service to query; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+| Type   | Required | Description                                                                                                                                   |
+| :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| STRING | True     | Set the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters:
 
@@ -310,9 +310,9 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                     |
-| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| STRING | True     | The service to query; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+| Type   | Required | Description                                                                                                                                     |
+| :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
+| STRING | True     | Reset the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters: None
 
