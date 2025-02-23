@@ -52,17 +52,17 @@ Usage: chia rpc full_node [OPTIONS] farm_block [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter          | Required | Description                                                                                                                                                                                                          |
-| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| address            | True     | The address to use to farm the block                                                                                                                                                                                 |
+| Parameter            | Required | Description                                                                                                                                                                                                          |
+|:-------------------- |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address              | True     | The address to use to farm the block                                                                                                                                                                                 |
 | guarantee_tx_block | False    | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
-| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
+| blocks               | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
 
 <details>
 <summary>Example 1</summary>
@@ -115,7 +115,7 @@ Usage: chia rpc full_node [OPTIONS] get_all_blocks [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
@@ -222,14 +222,14 @@ Usage: chia rpc full_node [OPTIONS] get_all_coins [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter           | Required | Description                                                                           |
-| :------------------ | :------- | :------------------------------------------------------------------------------------ |
+| Parameter             | Required | Description                                                                           |
+|:--------------------- |:-------- |:------------------------------------------------------------------------------------- |
 | include_spent_coins | False    | Boolean, if `True` then spent coins will be included in the result (Default: `False`) |
 
 <details>
@@ -287,7 +287,7 @@ Usage: chia rpc full_node [OPTIONS] get_all_puzzle_hashes [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
@@ -332,7 +332,7 @@ Usage: chia rpc full_node [OPTIONS] get_auto_farming [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
@@ -367,7 +367,7 @@ Usage: chia rpc full_node [OPTIONS] get_farming_ph [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
@@ -414,18 +414,18 @@ Usage: chia rpc full_node [OPTIONS] reorg_blocks [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter            | Required | Description                                                         |
-| :------------------- | :------- | :------------------------------------------------------------------ |
+| Parameter                | Required | Description                                                         |
+|:------------------------ |:-------- |:------------------------------------------------------------------- |
 | num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                        |
-| num_of_new_blocks    | False    | The number of blocks to add (Default: 1)                            |
-| revert_all_blocks    | False    | Boolean, set to `True` to fork all blocks (Default: `False`)        |
-| random_seed          | False    | String, used to randomize the seed, which will differentiate reorgs |
+| num_of_new_blocks      | False    | The number of blocks to add (Default: 1)                            |
+| revert_all_blocks      | False    | Boolean, set to `True` to fork all blocks (Default: `False`)        |
+| random_seed              | False    | String, used to randomize the seed, which will differentiate reorgs |
 
 <details>
 <summary>Example 1</summary>
@@ -478,14 +478,14 @@ Usage: chia rpc full_node [OPTIONS] revert_blocks [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter         | Required | Description                                                    |
-| :---------------- | :------- | :------------------------------------------------------------- |
+| Parameter           | Required | Description                                                    |
+|:------------------- |:-------- |:-------------------------------------------------------------- |
 | num_of_blocks     | False    | The number of blocks to revert (Default: 1)                    |
 | delete_all_blocks | False    | Boolean, set to `True` to revert all blocks (Default: `False`) |
 
@@ -540,14 +540,14 @@ Usage: chia rpc full_node [OPTIONS] set_auto_farming [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | Required | Description                               |
-| :-------- | :------- | :---------------------------------------- |
+|:--------- |:-------- |:----------------------------------------- |
 | auto_farm | True     | Boolean to enable or disable auto farming |
 
 <details>
