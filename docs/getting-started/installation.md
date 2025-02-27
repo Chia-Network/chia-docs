@@ -30,7 +30,7 @@ The minimum supported specs are that of the Raspberry Pi 4, 4GB model:
 
 - Quad core 1.5Ghz CPU (must be 64 bit)
 - 4 GB RAM
-- As of Chia version 2.0, Python versions 3.8 and later are supported
+- As of Chia version 2.5, Python versions 3.9 and later are supported
 
 ### Drive Format
 
