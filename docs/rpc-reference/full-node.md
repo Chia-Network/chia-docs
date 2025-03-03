@@ -26,12 +26,14 @@ This document will use Linux/MacOS RPC syntax. When running rpc commands on Wind
 For example, here is a typical RPC command on Linux and MacOS:
 
 ```powershell
-chia rpc full_node get_block '{"header_hash":"0xf42b4e77315d79ddfb3d64becb21e26ebff5408bda4d1b7c3782fd04f49ec0bb"}'
+chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
-To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
+To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
-    `"header_hash"` becomes `\"header_hash\"`
+```powershell
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```
 
 </details>
 

@@ -20,11 +20,11 @@ For example, here is a typical RPC command on Linux and MacOS:
 chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
-To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
+To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
-    `"fee"` becomes `\"fee\"`
-    `"1000"` becomes `\"1000\"`
-    etc
+```powershell
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```
 
 </details>
 
