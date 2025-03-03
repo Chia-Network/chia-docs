@@ -35,7 +35,7 @@ chia rpc wallet dao_get_treasury_balance '{"wallet_id": 2}'
 To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
 ```powershell
-chia rpc wallet dao_get_treasury_balance '\"wallet_id\": 2'
+chia rpc wallet dao_get_treasury_balance '{\"wallet_id\": 2}'
 ```
 
 </details>
