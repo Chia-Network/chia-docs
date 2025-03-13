@@ -95,8 +95,8 @@ harvester:
   chia_ssl_ca:
     crt: config/ssl/ca/chia_ca.crt
     key: config/ssl/ca/chia_ca.key
-  farmer_peer:
-    host: <Main.Machine.IP>
+  farmer_peers:
+  - host: localhost
     port: 8447
 ```
 
