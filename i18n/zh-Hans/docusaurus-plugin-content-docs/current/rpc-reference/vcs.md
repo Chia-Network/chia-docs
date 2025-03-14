@@ -21,7 +21,7 @@ chia rpc wallet vc_get '{"vc_id": "13ba084e78475327e41c60df5a108965d7a283f065b55
 To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
 ```powershell
-chia rpc wallet vc_get '\"vc_id\": \"13ba084e78475327e41c60df5a108965d7a283f065b5506e266ffb3563937b6c\"'
+chia rpc wallet vc_get '{\"vc_id\": \"13ba084e78475327e41c60df5a108965d7a283f065b5506e266ffb3563937b6c\"}'
 ```
 
 </details>

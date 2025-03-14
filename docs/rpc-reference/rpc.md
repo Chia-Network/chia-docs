@@ -4,6 +4,25 @@ title: RPC Overview
 slug: /rpc
 ---
 
+<details>
+  <summary>Note about Windows command escaping</summary>
+
+This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
+
+For example, here is a typical RPC command on Linux and MacOS:
+
+```powershell
+chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+```
+
+To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
+
+```powershell
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```
+
+</details>
+
 The Chia node and services come with a JSON RPC API server that allows you to access information and control the services.
 These are accessible via HTTP, WebSockets, or via client SDKs.
 The ports can be configured in `~/.chia/mainnet/config/config.yaml`.
