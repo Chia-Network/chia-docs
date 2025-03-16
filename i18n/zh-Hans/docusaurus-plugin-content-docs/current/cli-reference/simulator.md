@@ -31,7 +31,7 @@ Usage: `chia dev sim create [OPTIONS]`
 Options:
 
 | Short Command | Long Command     | Type    | Required | Description                                                                   |
-| :------------ | :--------------- | :------ | :------- | :---------------------------------------------------------------------------- |
+|:------------- |:---------------- |:------- |:-------- |:----------------------------------------------------------------------------- |
 | -f            | --fingerprint    | INTEGER | False    | Use your fingerprint to skip the key prompt                                   |
 | -r            | --reward_address | TEXT    | False    | Use this address instead of the default farming address                       |
 | -p            | --plot-directory | TEXT    | False    | Set the directory in which to create/store plots (Default: 'simulator/plots') |
@@ -305,7 +305,7 @@ Usage: `chia dev sim autofarm [OPTIONS] [on|off]`
 Options:
 
 | Short Command | Long Command | Type | Required | Description                  |
-| :------------ | :----------- | :--- | :------- | :--------------------------- |
+|:------------- |:------------ |:---- |:-------- |:---------------------------- |
 | -h            | --help       | None | False    | Show a help message and exit |
 
 Auto farming is enabled by default. The examples will show you how to disable/enable it.
@@ -355,7 +355,7 @@ Usage: `chia dev sim farm [OPTIONS]`
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                              |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:------------------------------------------------------------------------ |
 | -b            | --blocks          | INTEGER | False    | Number of blocks to create (Default: 1)                                  |
 | -n            | --non-transaction | None    | False    | Enable to allow non-transaction blocks (Default: disabled)               |
 | -a            | --target-address  | TEXT    | False    | Block reward address. If not specified, the default address will be used |
@@ -490,7 +490,7 @@ Usage: `chia dev sim revert [OPTIONS]`
 Options:
 
 | Short Command | Long Command     | Type    | Required | Description                                                                                                                                                                        |
-| :------------ | :--------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------- |:---------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -b            | --blocks         | INTEGER | False    | Number of blocks to go back (Default: 1)                                                                                                                                           |
 | -n            | --new_blocks     | INTEGER | False    | Number of new blocks to add during a reorg (Default: 1)                                                                                                                            |
 | -r            | --reset          | None    | False    | Enable to revert all transactions to the genesis block (Default: disabled)                                                                                                         |
@@ -563,7 +563,7 @@ Usage: `chia dev sim start [OPTIONS]`
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                            |
-| :------------ | :----------- | :--- | :------- | :----------------------------------------------------- |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------ |
 | -r            | --restart    | None | False    | Enable to restart running services (Default: disabled) |
 | -w            | --wallet     | None | False    | Enable to start wallet (Default: disabled)             |
 | -h            | --help       | None | False    | Show a help message and exit                           |
@@ -619,7 +619,7 @@ Usage: `chia dev sim status [OPTIONS]`
 Options:
 
 | Short Command | Long Command      | Type    | Required | Description                                                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------- |:----------------- |:------- |:-------- |:---------------------------------------------------------------------------------------------------------------------------------------- |
 | -f            | --fingerprint     | INTEGER | False    | Get detailed information on this fingerprint.                                                                                            |
 | -k            | --show_key        | None    | False    | Enable to show detailed key information, including seed phrase (Default: disabled)                                                       |
 | -c            | --show_coins      | None    | False    | Enable to show all unspent coins (Default: disabled). When enabled, this does not show reward coins unless used in conjunction with `-i` |
@@ -841,7 +841,7 @@ Usage: `chia dev sim stop [OPTIONS]`
 Options: Stop running services
 
 | Short Command | Long Command | Type | Required | Description                                   |
-| :------------ | :----------- | :--- | :------- | :-------------------------------------------- |
+|:------------- |:------------ |:---- |:-------- |:--------------------------------------------- |
 | -d            | --daemon     | None | False    | Enable to stop the daemon (Default: disabled) |
 | -w            | --wallet     | None | False    | Enable to stop the wallet (Default: disabled) |
 | -h            | --help       | None | False    | Show a help message and exit                  |
