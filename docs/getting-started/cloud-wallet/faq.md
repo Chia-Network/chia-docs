@@ -78,7 +78,7 @@ We plan to release three tiers with the Cloud Wallet:
 
 ### Are you planning to improve upon the existing vault technology?
 
-Yes. The current vaults are 1-of-1 for signing, and 2-of-2 for loss of funds. The next step is to introduce m-of-n multisig vaults for both signing and recovery. Longer term, we plan to introduce vaults with significantly more flexibility, which will be useful for end users and large enterprises alike. Stay tuned…
+Yes. With the current setup, the `Free` tier's single-signature vaults use the same underlying Chialisp as the multisig vaults from the `Pro` and `Enterprise` tiers. The only difference is that the Cloud Wallet GUI enforces single-signature signing and recovery for `Free` tier vaults. Longer term, we plan to introduce vaults with significantly more flexibility, which will be useful for end users and large enterprises alike. Stay tuned…
 
 ### Where can I go for support?
 
