@@ -39,3 +39,7 @@ We plan to support basic clawback transactions, similar to what exists in the re
 ## Separate Passkeys
 
 Currently, all Cloud Wallet passkeys are used for both signing into the app and for signing vault transactions. We plan to separate these functionalities to allow separate passkeys to be used.
+
+## Coin Management
+
+We plan to enable listing, splitting, and combining your coins directly from the Cloud Wallet GUI.
