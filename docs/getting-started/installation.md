@@ -108,10 +108,6 @@ sudo dnf install chia-blockchain
   </TabItem>
   <TabItem value="pip">
 
-:::note
-Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
-
 ```bash
 # Create virtual environment
 python -m venv venv
@@ -143,10 +139,6 @@ values={[
 {label: 'Windows', value: 'windows'},
 ]}>
 <TabItem value="linux-macos">
-
-:::note
-Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
 
 ```bash
 # Download chia-blockchain
@@ -208,10 +200,6 @@ chia init
 
   </TabItem>
   <TabItem value="windows">
-
-:::note
-Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
 
 ```bash
 # Download chia-blockchain
@@ -329,7 +317,7 @@ sudo apt-get install -y build-essential python3-dev
 # If you are not using Raspbian 64, add this
 export PIP_EXTRA_INDEX_URL=https://www.piwheels.org/simple/
 
-# Make sure you have 64-bit Python 3.8 or later
+# Make sure you have 64-bit Python 3.9 or later
 python3 -c 'import platform; print(platform.architecture())'
 ```
 
@@ -1068,10 +1056,6 @@ values={[
 ]}>
 <TabItem value="linux-macos">
 
-:::note
-Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
-
 ```bash
 # Download chia-blockchain
 git clone https://github.com/Chia-Network/chia-blockchain -b latest --recurse-submodules
@@ -1094,10 +1078,6 @@ chia init
 
   </TabItem>
   <TabItem value="windows">
-
-:::note
-Make sure you have [Python 3.10](https://www.python.org/downloads/release/python-3109) and [Git](https://git-scm.com/downloads) installed.
-:::
 
 ```bash
 # Download chia-blockchain

@@ -469,7 +469,7 @@ Search for the `wallet:` section. It should be near the end of the file. Edit th
 
 Optional (this setting ensures the node is automatically used while starting the client)
 
-- `full_node_peer:` the default `host:` is `localhost`. `full_node_peer:` the default `host:` is `localhost`. Change this to the IP address of the trusted full node (local IP if the node is on the same LAN and public IP if it is not).
+- `full_node_peers:` the default `host:` is `localhost`. `full_node_peer:` the default `host:` is `localhost`. Change this to the IP address of the trusted full node (local IP if the node is on the same LAN and public IP if it is not).
   - Note 3: The IP address can be found by reviewing your full nodes network connection information (local IP) or by searching "What's my IP" in your favorite search engine.
 
 3. Restart Chia on the computer you are connecting to the trusted node to pick up the changes.
@@ -1533,7 +1533,7 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 ### What versions of Python are supported?
 
-- Chia supports all versions of Python that have not reached their end-of-life. Starting with Chia version 2.0.0, the minimum version of Python supported is 3.8. See the [official Python version list](https://devguide.python.org/versions/) for more info. Starting with Chia version 2.0.0, the minimum version of Python supported is 3.8. See the [official Python version list](https://devguide.python.org/versions/) for more info.
+- Chia supports all versions of Python that have not reached their end-of-life. Starting with Chia version 2.5.0, the minimum version of Python supported is 3.9. See the [official Python version list](https://devguide.python.org/versions/) for more info.
 
 ### How do I verify file checksum?
 
