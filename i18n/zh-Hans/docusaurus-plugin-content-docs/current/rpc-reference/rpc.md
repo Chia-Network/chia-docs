@@ -4,6 +4,25 @@ title: RPC Overview
 slug: /rpc
 ---
 
+<details>
+  <summary>Note about Windows command escaping</summary>
+
+This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
+
+For example, here is a typical RPC command on Linux and MacOS:
+
+```powershell
+chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+```
+
+To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
+
+```powershell
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```
+
+</details>
+
 The Chia node and services come with a JSON RPC API server that allows you to access information and control the services. These are accessible via HTTP, WebSockets, or via client SDKs. The ports can be configured in `~/.chia/mainnet/config/config.yaml`. The RPC ports should not be exposed to the internet. TLS certificates are used to secure the communication.
 
 ### Default Ports:
@@ -14,6 +33,8 @@ The Chia node and services come with a JSON RPC API server that allows you to ac
 - Harvester: 8560
 - Wallet: 9256
 - DataLayer: 8562
+- Crawler: 8561
+- Timelord: 8557
 
 ### HTTP/JSON
 
@@ -172,3 +193,164 @@ namespace ChiaExamples
 - **Managed Objects**: This column details the core entities or components that each service oversees.
 - **Associated API**: This column specifies the API class associated with each service. This API class defines the interface for interacting with the corresponding managed objects.
 - **Associated RPC API**: This column lists the RPC API class associated with each service. This RPC API class allows for remote control of the managed objects through Remote Procedure Calls (RPC).
+
+## Log Levels
+
+Added in version 2.5.1, the below RPCs are for interacting with log levels for the various services while they are running running.
+
+### `get_log_level`
+
+Functionality: Get the services current log level
+
+Usage: chia rpc [SERVICE] get_log_level
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Services:
+
+| Type   | Required | Description                                                                                                                                         |
+|:------ |:-------- |:--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STRING | True     | The service to query for its log level; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_log_level
+```
+
+Response:
+
+```json
+{
+  "available_levels": [
+    "CRITICAL",
+    "FATAL",
+    "ERROR",
+    "WARN",
+    "WARNING",
+    "INFO",
+    "DEBUG",
+    "NOTSET"
+  ],
+  "level": "WARNING",
+  "success": true
+}
+```
+
+</details>
+
+### `set_log_level`
+
+Functionality: Set the services current log level
+
+Usage: chia rpc [SERVICE] set_log_level
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Services:
+
+| Type   | Required | Description                                                                                                                                     |
+|:------ |:-------- |:----------------------------------------------------------------------------------------------------------------------------------------------- |
+| STRING | True     | Set the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description                                                                                                                                   |
+|:----- |:------ |:-------- |:--------------------------------------------------------------------------------------------------------------------------------------------- |
+| level | STRING | True     | The log level to set for the designated service; valid levels are: "CRITICAL", "FATAL", "ERROR", "WARN", "WARNING", "INFO", "DEBUG", "NOTSET" |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet set_log_level '
+{
+    "level": "DEBUG"
+}'
+
+```
+
+Response:
+
+```json
+{
+  "available_levels": [
+    "CRITICAL",
+    "FATAL",
+    "ERROR",
+    "WARN",
+    "WARNING",
+    "INFO",
+    "DEBUG",
+    "NOTSET"
+  ],
+  "errors": [],
+  "level": "DEBUG",
+  "success": true
+}
+```
+
+</details>
+
+### `reset_log_level`
+
+Functionality: Reset the services current log level
+
+Usage: chia rpc [SERVICE] reset_log_level
+
+Options:
+
+| Short Command | Long Command | Type | Required | Description                                                         |
+|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
+| -h            | --help       | None | False    | Show a help message and exit                                        |
+
+Request Services:
+
+| Type   | Required | Description                                                                                                                                       |
+|:------ |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STRING | True     | Reset the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet reset_log_level
+```
+
+Response:
+
+```json
+{
+  "available_levels": [
+    "CRITICAL",
+    "FATAL",
+    "ERROR",
+    "WARN",
+    "WARNING",
+    "INFO",
+    "DEBUG",
+    "NOTSET"
+  ],
+  "errors": [],
+  "level": "WARNING",
+  "success": true
+}
+```
+
+</details>
