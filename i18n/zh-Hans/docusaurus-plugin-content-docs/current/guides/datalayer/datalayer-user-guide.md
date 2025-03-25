@@ -66,7 +66,7 @@ This example would require anyone-can-spend DataLayer proofs of inclusion (these
 - [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
 - [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
-- [DataLayer blog post](https://www.chia.net/2022/09/20/enabling-data-for-web3-announcing-chia-datalayer/)
+- [DataLayer blog post](https://www.chia.net/2022/09/21/enabling-data-for-web3-announcing-chia-datalayer/)
 
 :::note
 
