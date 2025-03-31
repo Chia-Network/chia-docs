@@ -4,7 +4,7 @@ title: General Commands
 slug: /walletconnect-commands
 ---
 
-[WalletConnect](https://walletconnect.com) is a communications protocol that allows decentralized applications (dApps) and wallets to securely interact with each other. Chia supports WalletConnect and exposes various RPCs for requesting wallet actions from a web application.
+[WalletConnect](https://walletconnect.network/) is a communications protocol that allows decentralized applications (dApps) and wallets to securely interact with each other. Chia supports WalletConnect and exposes various RPCs for requesting wallet actions from a web application.
 
 For more information, see our WalletConnect [Developer Guide](/walletconnect-developer-guide/).
 
