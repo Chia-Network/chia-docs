@@ -6,6 +6,42 @@ slug: /troubleshooting/node-syncing
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+## Using the Official Database Snapshot Torrent
+
+:::note
+
+If you are upgrading from a version prior to Chia 2.0.0, verify your config file has the correct value under the `full_node` section for `database_path` (v1 vs the current v2): 
+`db/blockchain_v2_CHALLENGE.sqlite`
+
+When starting chia for the first time with the database snapshot it can take upwards of 30 minutes for it to verify the db and load.  
+:::
+
+Using the GUI:
+1. Download the torrent file from https://www.chia.net/downloads/#database-checkpoint (mainnet and testnet database torrents are available)
+2. Use a torrent client to download the full db (bittorrent, qbittorrent, and transmission have be used successfully for this)
+3. Unpack/reassemble the torrent file that was downloaded (on windows one can use 7zip, Mac and linux have built in tools that work for this)
+4. Move the db and associated files to the correct folder (`~\.chia\mainnet\db` is the default location for these files)
+
+Using the CLI (Linux and MacOS):
+```bash
+# Set your network (run this first and change to testnet11 for the testnet db):
+NETWORK="mainnet" 
+
+# Install a torrent client. For MAC install with brew install aria2 (aria is used in the below examples, other torrent clients can be used). 
+sudo apt install aria2
+
+# Download the torrent using the network identifier set earlier. Note this can take a couple of hours depending on network speeds.
+aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir=~/Downloads
+
+# Unpack the DB using the network identifier and wildcard for the date in the file name
+ARCHIVE=$(find ~/Downloads -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this will take upwards of 20-30 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C ~/Downloads || { echo "Error: Extraction failed"; exit 1; } }
+
+# Move the db and associated files to the correct folder. Make sure to update the final directory path if needed and note that any existing files with the same names will be overwritten.
+echo "Moving files to Chia directory - this will take upwards of 5 minutes with no visible progress..." && mv -f ~/Downloads/blockchain_v2_$NETWORK.sqlite ~/.chia/mainnet/db/ && mv -f ~/Downloads/height-to-hash ~/.chia/mainnet/db/ && mv -f ~/Downloads/sub-epoch-summaries ~/.chia/mainnet/db/ 
+```
+
+## Port Forwarding Settings
+
 Forwarding port 8444 can solve many sync issues and it also helps improve Chia's overall network health.
 
 Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networking%29) through which other Chia nodes can communicate with your node. When you set up port forwarding on port 8444, the Chia software on your computer can easily communicate with other nodes and sync the Chia blockchain faster.
@@ -13,8 +49,6 @@ Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networkin
 The network is undergoing rapid growth and expansion. Many newly arriving Chia nodes do not open port 8444, resulting in additional stress to the network. Therefore, it is strongly recommended that you enable port forwarding.
 
 Use [this port checker](https://portchecker.co/) to check if you have port forwarding configured correctly.
-
-## Port Forwarding Settings
 
 Port forwarding is done on your router. How you set it up depends on your router's make and model. Look through your router's manual or just search for "`<your router name and model>` how to port forward" to get started.
 

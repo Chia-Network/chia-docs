@@ -546,12 +546,8 @@ To show hidden files on Mac finder click "COMMAND"+"SHIFT"+"." (period), on linu
 
 ### How do I use the Official Chia Blockchain snapshot torrent?
 
-1. Download the torrent file from https://www.chia.net/downloads/#database-checkpoint
-2. Use a torrent client to download the full db (I have used bittorrent and qbittorrent)
-3. Unpack/reassemble the torrent file that was downloaded (on windows I used 7zip, Mac and linux have built in tools that work for this)
-4. Move the db to the correct folder (~\.chia\mainnet\db\) and update the name to "blockchain_v2_mainnet.sqlite" (removing the date information in the name)
-5. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2)
-6. Launch chia and wait for a bit (the height to hash and peers files need to be built so this can take upwards of 30 minutes)
+The process for using the official database snapshot torrent can be found here: 
+https://docs.chia.net/troubleshooting/node-syncing/#using-the-official-database-snapshot-torrent
 
 ### How do I move the Chia blockchain database to another drive?
 
