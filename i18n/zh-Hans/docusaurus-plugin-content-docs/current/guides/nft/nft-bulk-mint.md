@@ -138,16 +138,6 @@ The bulk minting tool comes with a packaged version of Chia. In order to use the
 chia configure --testnet true
 ```
 
-:::note
-If you previously had been running Chia on mainnet, then your peers table will be populated with mainnet peers.
-When you switch to running on the testnet, the peers listed in this table will time out.
-Eventually the table will be repopulated with testnet peers, but this can take a long time.
-In order to expedite this process, We recommend that you delete your peers tables:
-
-- `~/.chia/mainnet/db/peers.dat`
-- `~/.chia/mainnet/wallet/db/wallet_peers.dat`
-  :::
-
 2. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run:
 
 ```bash
