@@ -9,36 +9,97 @@ import TabItem from '@theme/TabItem';
 ## Using the Official Database Snapshot Torrent
 
 :::note
+This process assumes you already have chia installed and all files are present in their default locations, to confirm make sure the `~/.chia/mainnet/db/` directory exists.
 
-If you are upgrading from a version prior to Chia 2.0.0, verify your config file has the correct value under the `full_node` section for `database_path` (v1 vs the current v2): 
+If you are upgrading from a version prior to Chia 2.0.0, verify your config file has the correct value under the `full_node` section for `database_path` (v1 vs the current v2):
 `db/blockchain_v2_CHALLENGE.sqlite`
 
 When starting chia for the first time with the database snapshot it can take upwards of 30 minutes for it to verify the db and load.  
 :::
 
 Using the GUI:
+
 1. Download the torrent file from https://www.chia.net/downloads/#database-checkpoint (mainnet and testnet database torrents are available)
 2. Use a torrent client to download the full db (bittorrent, qbittorrent, and transmission have be used successfully for this)
 3. Unpack/reassemble the torrent file that was downloaded (on windows one can use 7zip, Mac and linux have built in tools that work for this)
 4. Move the db and associated files to the correct folder (`~\.chia\mainnet\db` is the default location for these files)
 
-Using the CLI (Linux and MacOS):
+Using the CLI (Linux and MacOS only):
+
+<Tabs
+defaultValue="linux"
+groupId="source"
+values={[
+{label: 'Linux', value: 'linux'},
+{label: 'MacOS', value: 'macos'},
+]}>
+<TabItem value="linux">
+
+1. Set your network (change to `testnet11` for the testnet db):
+
 ```bash
-# Set your network (run this first and change to testnet11 for the testnet db):
-NETWORK="mainnet" 
-
-# Install a torrent client. For MAC install with brew install aria2 (aria is used in the below examples, other torrent clients can be used). 
-sudo apt install aria2
-
-# Download the torrent using the network identifier set earlier. Note this can take a couple of hours depending on network speeds.
-aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir=~/Downloads
-
-# Unpack the DB using the network identifier and wildcard for the date in the file name
-ARCHIVE=$(find ~/Downloads -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this will take upwards of 20-30 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C ~/Downloads || { echo "Error: Extraction failed"; exit 1; } }
-
-# Move the db and associated files to the correct folder. Make sure to update the final directory path if needed and note that any existing files with the same names will be overwritten.
-echo "Moving files to Chia directory - this will take upwards of 5 minutes with no visible progress..." && mv -f ~/Downloads/blockchain_v2_$NETWORK.sqlite ~/.chia/mainnet/db/ && mv -f ~/Downloads/height-to-hash ~/.chia/mainnet/db/ && mv -f ~/Downloads/sub-epoch-summaries ~/.chia/mainnet/db/ 
+NETWORK="mainnet"
 ```
+
+2. Install a torrent client (aria is used in the below examples, other torrent clients can be used).
+
+```bash
+sudo apt install aria2
+```
+
+3. Download the torrent using the network identifier set earlier. Note this can take a couple of hours depending on network speeds.
+
+```bash
+aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir=~/Downloads
+```
+
+4. Unpack the DB using the network identifier and wildcard for the date in the file name
+
+```bash
+ARCHIVE=$(find ~/Downloads -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this may take upwards of 35 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C ~/Downloads || { echo "Error: Extraction failed, please verify the file downloaded properly and try again"; } }
+```
+
+5. Move the db and associated files to the correct folder. Make sure to update the final directory path if needed and note that any existing files with the same names will be overwritten.
+
+```bash
+echo "Moving files to Chia directory - this may take upwards of 5 minutes with no visible progress..." && mv -f ~/Downloads/blockchain_v2_$NETWORK.sqlite ~/.chia/mainnet/db/ && mv -f ~/Downloads/height-to-hash ~/.chia/mainnet/db/ && mv -f ~/Downloads/sub-epoch-summaries ~/.chia/mainnet/db/
+```
+
+  </TabItem>
+  <TabItem value="macos">
+
+1. Set your network (change to `testnet11` for the testnet db):
+
+```bash
+NETWORK="mainnet"
+```
+
+2. Install a torrent client (aria is used in the below examples, other torrent clients can be used).
+
+```bash
+brew install aria2
+```
+
+3. Download the torrent using the network identifier set earlier. Note this can take a couple of hours depending on network speeds.
+
+```bash
+aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir=~/Downloads
+```
+
+4. Unpack the DB using the network identifier and wildcard for the date in the file name
+
+```bash
+ARCHIVE=$(find ~/Downloads -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this may take upwards of 35 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C ~/Downloads || { echo "Error: Extraction failed, please verify the file downloaded properly and try again"; } }
+```
+
+5. Move the db and associated files to the correct folder. Make sure to update the final directory path if needed and note that any existing files with the same names will be overwritten.
+
+```bash
+echo "Moving files to Chia directory - this may take upwards of 5 minutes with no visible progress..." && mv -f ~/Downloads/blockchain_v2_$NETWORK.sqlite ~/.chia/mainnet/db/ && mv -f ~/Downloads/height-to-hash ~/.chia/mainnet/db/ && mv -f ~/Downloads/sub-epoch-summaries ~/.chia/mainnet/db/
+```
+
+  </TabItem>
+</Tabs>
 
 ## Port Forwarding Settings
 

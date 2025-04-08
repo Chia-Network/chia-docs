@@ -546,7 +546,7 @@ To show hidden files on Mac finder click "COMMAND"+"SHIFT"+"." (period), on linu
 
 ### How do I use the Official Chia Blockchain snapshot torrent?
 
-The process for using the official database snapshot torrent can be found here: 
+The process for using the official database snapshot torrent can be found here:
 https://docs.chia.net/troubleshooting/node-syncing/#using-the-official-database-snapshot-torrent
 
 ### How do I move the Chia blockchain database to another drive?

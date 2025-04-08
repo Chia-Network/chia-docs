@@ -40,7 +40,7 @@ chia configure --testnet true
 
 This step is optional, but it will speed up syncing with the testnet
 
-The process for using the official database snapshot torrent can be found here: 
+The process for using the official database snapshot torrent can be found here:
 https://docs.chia.net/troubleshooting/node-syncing/#using-the-official-database-snapshot-torrent
 
 ### Start your node and connect to peers
