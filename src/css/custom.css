@@ -82,7 +82,6 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .hero.hero--primary.heroBanner_qdFl {
     color: #42506C;
-    background-image: url("@site/static/img/hero-background.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
