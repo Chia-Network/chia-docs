@@ -80,6 +80,21 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   }
 }
 
+.hero.hero--primary.heroBanner_qdFl {
+    color: #42506C;
+    background-image: url("/img/hero-background.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero.hero--primary .button.button--secondary {
+    color: #42506C;
+    background-color: #E5FE75;
+    border: 1px;
+    border-color: #42506C;
+}
+
 .feature-item {
   margin-bottom: 50px;
 }
