@@ -101,7 +101,7 @@ The following sections list all of the required checks to ensure validity of a b
 23. Check foliage block hash
 24. Check prev block hash for genesis and non-genesis
 25. The filter hash in the Foliage Block must be the hash of the filter
-26. The timestamp in Foliage Block must not be over 5 minutes in the future, and the timestamp must be greater than the previous transaction block timestamp
+26. The timestamp in Foliage Block must not be over 2 minutes in the future, and the timestamp must be greater than the previous transaction block timestamp. (This limit was 5 minutes until soft-fork 2 activated at block height 3886635, 2 Jul, 2023)
 27. Check block height for genesis and non-genesis
 28. Check block weight for genesis and non-genesis
 29. Check challenge chain infusion point VDF
