@@ -97,6 +97,12 @@ p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer__link-item
   html[data-theme='dark'] .breadcrumbs .breadcrumbs__link:hover {
     color: #A8BEF1;
   }
+
+  /* Body Text */
+  html[data-theme='dark'] body,
+  html[data-theme='dark'] p {
+    color: #FFF;
+  }
 }
 
 .footer a {
