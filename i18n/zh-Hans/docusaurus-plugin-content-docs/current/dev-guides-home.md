@@ -3,7 +3,7 @@ title: Dev Guides Home
 slug: /dev-guides-home
 ---
 
-import DevChia from '@site/static/img/home_pages/dev_on_chia.png';
+import DevChia from '@site/static/img/home_pages/chia_dev.png';
 import ChialispIntro from '@site/static/img/home_pages/chialisp_intro.png';
 import SmartCoins from '@site/static/img/home_pages/smart_coins.png';
 import Signatures from '@site/static/img/home_pages/signatures.png';
@@ -29,7 +29,7 @@ import SimulatorGuide from '@site/static/img/home_pages/simulator_guide.png';
 import WalletConnect from '@site/static/img/home_pages/wallet_connect.png';
 
 import GreatChia from '@site/static/img/home_pages/chia_great.png';
-import AppDev from '@site/static/img/home_pages/dev_on_chia.png';
+import AppDev from '@site/static/img/home_pages/chia_dev.png';
 import ToolsSetup from '@site/static/img/home_pages/env_setup.png';
 import ProgrammingClsp from '@site/static/img/home_pages/clsp_programming.png';
 import CoinLifecycle from '@site/static/img/home_pages/coin_lifecycle.png';
