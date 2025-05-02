@@ -10,33 +10,51 @@ Chia blockchain nodes consist of several components that each handle different a
 
 ## Log file Location:
 
-| OS      | Location                                                                      |
-| ------- | ----------------------------------------------------------------------------- |
-| Linux   | `~/.chia/mainnet/log/debug.log`                                               |
-| Windows | `$env:USERPROFILE\.chia\mainnet\log\debug.log` (`C:\Users\<username>\.chia…`) |
-| MacOS   | `$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`)              |
+| OS      | Location                                                         |
+| ------- | ---------------------------------------------------------------- |
+| Linux   | `~/.chia/mainnet/log/debug.log`                                  |
+| Windows | `$env:USERPROFILE\.chia\mainnet\log\debug.log`                   |
+| Windows | `C:\Users\<username>\.chia\mainnet\log\debug.log`                |
+| MacOS   | `$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`) |
 
 ## Log File Management:
 
-By default, Chia allows debug.log to grow to 20MB, and then rotates the file by closing debug.log, renaming it to debug.log.1, and renames any existing older log files to debug.log.x, to a maximum of 7 old log files. If a log rotation is required and all 7 old log files exist, the oldest log file is overwritten with the next earliest file; resulting in a maximum of 160MB of the most recent messages being stored.
+By default, the Chia `debug.log` grows to what is set in `config.yaml` (log_maxbytesrotation: 52428800), then rotates the file by closing `debug.log`, renaming it to `debug.log.1`, and renames any existing older log files to `debug.log.x`, to a maximum of 7 old log files (log_maxfilesrotation: 7). If a log rotation is required and all 7 old log files exist, the oldest log file is overwritten with the next earliest file; resulting in roughly 420MB of the most recent log messages being stored.
 
 ## Log Detail Level:
 
-Chia is shipped with the debug.log only containing messages at the WARN or ERROR level. Many of the messages needed to fully monitor a node are only visible at the INFO level. Changes to the logging level can be done in the `config.yaml` file in the `mainnet/config` folder.
+Chia is shipped with the `debug.log` set to record messages at the `ERROR` and `WARN` levels. Many of the messages needed to fully monitor a node are only visible at the `INFO` level. Changes to the logging level can be done in the `config.yaml` file located in the `/.chia/mainnet/config` folder.
+
+| Log Level | Messages Logged          |
+| --------- | ------------------------ |
+| ERROR     | ERROR                    |
+| WARN      | ERROR, WARN              |
+| INFO      | ERROR, WARN, INFO        |
+| DEBUG     | ERROR, WARN, INFO, DEBUG |
 
 ## Change the Log Level Output:
 
-You are looking for the first reference to logging in the file that looks like this:
+When editing files you should use a plain text editor with word wrap disabled to preserve the yaml format.
+
+You are looking for the first reference to logging in the `config.yaml` file that looks like this (older files may be missing some lines):
 
 ```
-farmer:
   logging: &id001
+    log_backcompat: false
     log_filename: log/debug.log
     log_level: WARN
+    log_maxbytesrotation: 52428800
+    log_maxfilesrotation: 7
     log_stdout: false
+    log_syslog: false
+    log_syslog_host: localhost
+    log_syslog_port: 514
+    log_use_gzip: false
 ```
 
-Change the `log_level` to `INFO`, save the file, and restart the node.
+Change the `log_level` from `WARN` to `INFO`, save the file, and restart the node.
+
+Your options for log levels are `ERROR`, `WARN`, `INFO`, and `DEBUG`.
 
 ## Node Components:
 
