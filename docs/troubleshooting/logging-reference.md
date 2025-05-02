@@ -10,12 +10,12 @@ Chia blockchain nodes consist of several components that each handle different a
 
 ## Log file Location:
 
-| OS      | Location                                                                      |
-| ------- | ----------------------------------------------------------------------------- |
-| Linux   | `~/.chia/mainnet/log/debug.log`                                               |
-| Windows | `$env:USERPROFILE\.chia\mainnet\log\debug.log`                                |
-| Windows | `C:\Users\<username>\.chia\mainnet\log\debug.log`                             |
-| MacOS   | `$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`)              |
+| OS      | Location                                                         |
+| ------- | ---------------------------------------------------------------- |
+| Linux   | `~/.chia/mainnet/log/debug.log`                                  |
+| Windows | `$env:USERPROFILE\.chia\mainnet\log\debug.log`                   |
+| Windows | `C:\Users\<username>\.chia\mainnet\log\debug.log`                |
+| MacOS   | `$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`) |
 
 ## Log File Management:
 
@@ -25,12 +25,12 @@ By default, the Chia `debug.log` grows to what is set in `config.yaml` (log_maxb
 
 Chia is shipped with the `debug.log` set to record messages at the `ERROR` and `WARN` levels. Many of the messages needed to fully monitor a node are only visible at the `INFO` level. Changes to the logging level can be done in the `config.yaml` file located in the `/.chia/mainnet/config` folder.
 
-| Log Level | Messages Logged             |
-| --------- | --------------------------- |
-| ERROR     | ERROR                       |
-| WARN      | ERROR, WARN                 |
-| INFO      | ERROR, WARN, INFO           |
-| DEBUG     | ERROR, WARN, INFO, DEBUG    |
+| Log Level | Messages Logged          |
+| --------- | ------------------------ |
+| ERROR     | ERROR                    |
+| WARN      | ERROR, WARN              |
+| INFO      | ERROR, WARN, INFO        |
+| DEBUG     | ERROR, WARN, INFO, DEBUG |
 
 ## Change the Log Level Output:
 
