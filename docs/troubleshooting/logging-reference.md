@@ -13,7 +13,7 @@ Chia blockchain nodes consist of several components that each handle different a
 | OS      | Location                                                                      |
 | ------- | ----------------------------------------------------------------------------- |
 | Linux   | `~/.chia/mainnet/log/debug.log`                                               |
-| Windows | `$env:USERPROFILE\.chia\mainnet\log\debug.log`                             |
+| Windows | `$env:USERPROFILE\.chia\mainnet\log\debug.log`                                |
 | Windows | `C:\Users\<username>\.chia\mainnet\log\debug.log`                             |
 | MacOS   | `$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`)              |
 
