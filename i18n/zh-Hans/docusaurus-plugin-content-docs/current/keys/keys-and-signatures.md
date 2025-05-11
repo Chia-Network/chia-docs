@@ -5,7 +5,7 @@ slug: /bls-keys
 
 This section will explain the different types of keys in the Chia network. It will also cover how the keys are generated, stored, and used. These systems are designed to be flexible enough to support many different configurations and pooling setups and to be resilient to various attacks.
 
-All Chia keys are [BLS-12-381](https://github.com/zkcrypto/bls12_381) private keys, following the [IETF specification](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/), the [EIP-2333](https://eips.ethereum.org/EIPS/eip-2333) specification for key derivation and [BIP 44 registered](https://github.com/satoshilabs/slips/blob/master/slip-0044.md). Private keys are 32 bytes, public keys 48 bytes, and signatures 96 bytes (public keys are points in G1, signatures are points in G2.)
+All Chia keys are [BLS-12-381](https://github.com/supranational/blst/) private keys, following the [IETF specification](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/), the [EIP-2333](https://eips.ethereum.org/EIPS/eip-2333) specification for key derivation and [BIP 44 registered](https://github.com/satoshilabs/slips/blob/master/slip-0044.md). Private keys are 32 bytes, public keys 48 bytes, and signatures 96 bytes (public keys are points in G1, signatures are points in G2.)
 
 :::warning
 There is a slight difference between Chia's implementation and EIP-2333, as described in the next section.
