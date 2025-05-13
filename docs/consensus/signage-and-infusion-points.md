@@ -51,7 +51,7 @@ sp_quality_string = sha256(quality_string + cc_signage_point)
 required_iterations = (difficulty
     * difficulty_constant_factor
     * int.from_bytes(sp_quality_string, "big", signed=False)
-    // pow(2, 256) * expected_plot_size(size))
+    // (pow(2, 256) * expected_plot_size(size)))
 ```
 
 The difficulty constant factor is based on the initial constants of the blockchain. For Chia, it is _2^67_. The difficulty varies per epoch, as explained in [Section 3.11](/epoch-and-difficulty) 'Section 3.11: Epochs and Difficulty Adjustment'). As you can see, the `sp_quality_string` is converted into a random number between 0 and 1, by dividing it by _2^256_, and then multiplied by the plot size.
