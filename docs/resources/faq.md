@@ -1454,11 +1454,11 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 ### What are the minimum officially supported OS versions?
 
-- MacOS 10.14 Mojave
+- MacOS 13.0 Ventura
 - Windows 10
 - Ubuntu 18.04 (20.04 highly recommended)
 - Raspberry Pi OS 64 or Ubuntu 20.04 for Pi/ARM64 (Not recommended for plotting or timelord)
-- An SSD for storing the blockchain's database. A 256 GB model with 520 MB/s read/write speeds will work just fine and is available for around $30 USD (do not use an SD card as they are not fast enough)
+- An SSD for storing the blockchain's database. A 512 GB or larger model with 520 MB/s read/write speeds will work just fine and is available for around $30 USD (do not use an SD card as they are not fast enough)
 
 ### What versions of Python are supported?
 
@@ -1511,7 +1511,7 @@ shasum -a 256 ~/Downloads/chia-blockchain_1.1.7_amd64.deb
 
 ### Can I use a fast SAS HDD for storing the blockchain's database?
 
-A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as stated above. It can be an external SSD, connected via USB. The database is always growing, but 256 GB should be sufficient until at least 1H 2024.
+A very high-end HDD will not be fast enough, so we recommend a $30 SSD, as stated above. It can be an external SSD, connected via USB, but a dedicated internal connection is preferred. The database is always growing, but 512 GB should be sufficient until at least 1H 2027.
 
 ### Can I run this on a Raspberry Pi 3 or 4?
 
