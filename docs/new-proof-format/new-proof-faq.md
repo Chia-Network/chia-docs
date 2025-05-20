@@ -21,7 +21,7 @@ Initially nothing, to give everyone time to upgrade. When the hard fork becomes 
 
 ### When will I be able to farm with new plots on mainnet?
 
-After the hard fork date, currently expected Q4 2025 (see [timeline](/new-proof-timeline)).
+After the hard fork date, currently expected at height 8’800’000. This is expected to happen around 2026-06-01 (see [timeline](/new-proof-timeline)).
 
 ### When will the old plot format be fully phased out?
 
@@ -33,7 +33,7 @@ Sometime during the transition period. When will be best for you will depend on 
 
 ### With a modern GPU such as a 3090, what will be my expected plot times?
 
-Around - minutes for a - plot (Pending Plot ID Filter and Plot Difficulty settings. Aim will be for 3060 to plot >20TiB/day). See our table of [expected plot times](/new-proof-plotting-requirements#expected-plot-times).
+Around - minutes for a - plot (Pending Plot ID Filter and Plot Difficulty settings. Aim will be for 3060 to plot >20TiB/day). See our table of [expected plot times](/new-proof-plotting-requirements#plotting-performance-and-requirements).
 
 ### Will you also support CPU plotting, and if so, what will be my expected plot times?
 
@@ -67,7 +67,7 @@ In the future we expect extremely high efficiency in compute, however, storage w
 
 This is a similar concept to the plot filter for the existing proof format. [CHIP-48](https://github.com/Chia-Network/chips/pull/160) provides the technical details of this filter. If required, we can push the dates of these adjustments further into the future with a soft fork.
 
-The current proposal is to start the plot ID filter at 32 and cut it in half every two years until it reaches 1. The block heights of the filter adjustments are shown in the table in the next section. 
+The current proposal is to start the plot ID filter at 32 and cut it in half every two years until it reaches 1. The block heights of the filter adjustments are shown in the table in the next section.
 
 ### How many times will I have to replot?
 

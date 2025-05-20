@@ -27,11 +27,13 @@ While the development of this technology is ongoing, we have put together severa
 
 ## Current Blogs and CHIPs
 
-The best place to start learning about the new Proof of Space is to read the blogs. 
+The best place to start learning about the new Proof of Space is to read the blogs.
+
 - The new Proof of Space [blog](https://www.chia.net/2025/05/19/understanding-the-next-generation-proof-of-space/)
 - The timelines for the new Proof of Space [blog](https://www.chia.net/2025/05/19/the-future-of-farming-is-green-and-secure/)
 
 To dive more into the specifications and provide your feedback please refer to the appropriate CHIPs:
+
 - The new Proof of Space [CHIP-48](https://github.com/Chia-Network/chips/pull/160)
 - The timelines for the new Proof of Space [CHIP 49](https://github.com/Chia-Network/chips/pull/161)
 
@@ -40,6 +42,7 @@ All the latest information regarding the new Proof of Space and its associated t
 :::
 
 We have consolidated the high level information from the CHIPs into the below documents but please take note that the CHIPs will contain the most up-to-date information:
+
 - A list of the expected [plotting requirements](/new-proof-plotting-requirements)
 - A list of the expected [farming requirements](/new-proof-farming-requirements)
 - A [timeline](/new-proof-timeline) of when we expect to reach each milestone
@@ -48,5 +51,6 @@ We have consolidated the high level information from the CHIPs into the below do
 - The [technical details](/new-proof-details/) of the new format
 
 ## Blog Archive
+
 - A [blog post](https://www.chia.net/2024/12/11/upcoming-changes-for-chias-new-proof-of-space-format) by Dr. Nick, which takes a deep dive into the plans as of 12/11/2024
 - The original [blog post](https://www.chia.net/2024/08/08/approaching-the-next-generation-of-proof-of-space/) by Dr. Nick, which takes a deep dive into the initial plans for the new Proof Format. Note that this blog is outdated and the new blog should be used for the latest information.
