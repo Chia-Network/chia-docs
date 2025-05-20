@@ -45,10 +45,22 @@ TLS certificates are used to secure the communication.
 The certificates must be used when calling the RPCs from the command line, make sure to use the correct certificates for the services you are calling.
 All endpoints are made with POST with JSON data. The response is a JSON dictionary with a success field, which can be true or false.
 
+#### Curl
+
+When using curl commands ensure that the `--insecure` (or `-k`) flag is used since the chia client relies on self-signed certificates defined with the `--cert` and `--key` flags:
+An example implementation can be found in the chia docker implementation [here](https://github.com/Chia-Network/chia-docker/blob/d00a988368adb2cc26b9ac24e79e0f109e54b5af/docker-healthcheck.sh#L116).
+
+```
+curl --insecure --cert $config_root/config/ssl/full_node/private_full_node.crt \
+     --key $config_root/config/ssl/full_node/private_full_node.key \
+     -d '{ "header_hash": "'$hash'" }' -H "Content-Type: application/json" \
+     -X POST https://localhost:$port/get_block
+```
+
 ### WebSockets
 
 If you are using the Websockets API, you can go directly through the daemon, which routes requests. Each WebSocket message contains the following fields:
-Some examples can be found here: https://github.com/Chia-Mine/chia-agent.
+Some examples can be found [here](https://github.com/Chia-Mine/chia-agent).
 
 ```json
 {
@@ -157,7 +169,7 @@ There is also another client here: https://github.com/freddiecoleman/chia-client
 
 #### C# Example (courtesy of [Kryptomine](https://www.nuget.org/profiles/Kryptomine.ch))
 
-A C# Client can be found on Nuget/Github: https://www.nuget.org/packages/Chia-Client-API
+A C# Client can be found on [Nuget/Github](https://www.nuget.org/packages/Chia-Client-API).
 
 ```C#
 using System;
