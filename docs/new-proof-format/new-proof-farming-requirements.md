@@ -9,45 +9,32 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-This information was updated on 12/11/2024.
+This information was updated on 5/20/2025.
 
 :::
 
 In general, the larger your farm, the more powerful your harvesters will need to be. However, keep in mind that one farm can be broken into multiple harvesters, so it is possible to run a large farm without any high-end equipment.
 
-### Proof Solving Times
+## Proof Solving Times
 
-After a proof of sufficiently high quality is found it needs to be ‘solved’ which reconstructs the full proof so it can be verified by others. Proof-solving hardware requirements depend on the maximum k-size in the farm. Solve times should ideally stay under 8 seconds.
+After a proof of sufficiently high quality is found it needs to be _solved_, which reconstructs the full proof so it can be verified by others. Proof-solving hardware requirements depend on the maximum k-size in the farm. Solve times should ideally stay under 8 seconds. Plot security has been tuned for the Pi 5 to solve a k28 proof in under 8 seconds.
 
-| Plot Size | Raspberry Pi 5    | Ryzen 5600 <br/> (6-core) | Threadripper   | Nvidia 3090    |
-| :-------- | :---------------- | :------------------------ | :------------- | :------------- |
-| k34       | N/A               | N/A                       | N/A            | &#60;8 seconds |
-| k32       | N/A               | &#126;15 seconds          | &#60;8 seconds | 960 ms         |
-| k30       | N/A               | &#60;8 seconds            | &#60;4 seconds | 240 ms         |
-| k28       | &#126;6.8 seconds | &#60;2 seconds            | &#60;1 second  | 60 ms          |
+:::note
+See the [reference code](https://github.com/Chia-Network/pos2-chip) for benchmarking your own system on the Solver.
+:::
 
-### HDD Disk Activity
+| Plot Size | Raspberry Pi 5 | Ryzen 5600 (6-core)  | Threadripper | Nvidia 3060 |
+|-----------|----------------|----------------------|--------------|-------------|
+| k28       | ~6.8 seconds   | ~1 seconds           | < 1 second    | 60 ms       |
+| k30       | ~15.6 seconds  | ~3.3 seconds         | < 3 seconds   | 240 ms      |
+| k32       | N/A            | ~11.7 seconds        | < 8 seconds   | 960 ms      |
 
-Lower k-sizes increase disk activity but lower your minimum hardware requirements for proof solving (see previous section). For SSDs, k28 plots are recommended due to minimal impact on farming performance.
+### HDD Activity
 
-| Plot Size | Full 5TiB <br/> disk load | Full 20TiB <br/> disk load | Full 20TiB <br/> disk load <br/> Benes compression |
-| :-------- | :------------------------ | :------------------------- | :------------------------------------------------- |
-| k34       | &#126;0.025%              | &#126;0.1%                 | &#126;0.2%                                         |
-| k32       | &#126;0.1%                | &#126;0.4%                 | &#126;0.8%                                         |
-| k30       | &#126;0.4%                | &#126;1.5%                 | &#126;3%                                           |
-| k28       | &#126;1.6%                | &#126;6.4%                 | &#126;12.8%                                        |
+Lower k-sizes increase disk activity but reduce minimum hardware requirements for proof solving (see previous section). For SSDs, k28 plots are recommended due to their minimal impact on farming performance, although large farms could benefit from larger k sizes for a proportional reduction in harvesting compute energy to process the Quality Chains. The Plot ID Filter will tune HDD disk activity to the levels shown in the table. Depending on plot filter scheduling and further security analysis we may relax these requirements to lower hdd usage levels.
 
-### Quality Strings Frequency
-
-Quality strings are found when a plot passes several filters, including plot ID, scan, and chain filters. Once found, they are tested against a difficulty filter to determine if they qualify as a block or pool partial win.
-
-**Solo farming:** The frequency of quality strings does not significantly impact farming activity.
-
-**Pool farming:** Increased quality string frequency improves pool size estimation accuracy for smaller farmers, helping stabilize rewards. Farmers with few plots may experience fluctuating estimated space and rewards day-to-day, but over time, rewards will align with actual plotted space.
-
-| Plot Size | Avg. Quality <br/> Strings per hr <br/> per TiB |
-| :-------- | :---------------------------------------------- |
-| k34       | &#126;0.12                                      |
-| k32       | &#126;0.5                                       |
-| k30       | &#126;2.1                                       |
-| k28       | &#126;9.1                                       |
+| Plot Size | Full 5TiB Disk Activity | Full 20TiB Disk Activity |
+|-----------|-------------------------|--------------------------|
+| k28       | ~2.5%                   | ~10%                     | 
+| k30       | ~0.6%                   | ~2.4%                    | 
+| k32       | ~0.23%                  | ~0.9%                    |
