@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ### What is the Chia Cloud Wallet?
 
-The Cloud Wallet is a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain. This makes it easy for newcomers to get started with Chia; it also provides a secure custody solution. In addition, it will eventually include an API for developers in Chia's ecosystem to make dApps that use the Chia blockchain.
+The Cloud Wallet is a platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain. This makes it easy for newcomers to get started with Chia; it also provides a secure custody solution. In addition, it will eventually include an API for developers in Chia's ecosystem to make dApps that use the Chia blockchain.
 
 ### Is the Chia Cloud Wallet available for mainnet?
 
@@ -86,7 +86,7 @@ Feel free to ask questions in the #support channel of [our Discord](https://disc
 
 ### Where can I report a bug?
 
-If you find any bugs, feel free to fill out a [bug report](https://docs.google.com/forms/d/e/1FAIpQLSeIAZAxSwTwZPGUVLs7_XKseoPgOmtBa0qhtWNQwBeoo9adRA/viewform). However, please keep in mind that this is beta software. We are aware of several existing bugs, which we are tracking in a [list](/getting-started/cloud-wallet/known-issues/).
+If you find any bugs, feel free to fill out a [bug report](https://docs.google.com/forms/d/e/1FAIpQLSeIAZAxSwTwZPGUVLs7_XKseoPgOmtBa0qhtWNQwBeoo9adRA/viewform). However, please keep in mind that this is beta software. We are aware of several existing bugs.
 
 If you discover any security issues, you can file a report on our [bug bounty site](https://hackerone.com/chia_network). Thanks for your help!
 

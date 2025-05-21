@@ -107,8 +107,6 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 12. You can also set a custom time for your vault's recovery clawback. This is the amount of time you will need to wait in order to recover your vault. If your 24-word recovery phrase is stolen, then you will have this long to cancel the recovery.
 
-Note that for the testnet beta version of the Cloud Wallet, the default timer is 15 minutes. If this were a real vault running on mainnet, then you would likely want to set the timer to a day or more.
-
 13. Click the `Create` button to create your vault. A "vault faucet" will mint a new vault for you. Your vault's receive address will appear after this process is complete (typically a minute or two).
 
 You are now ready to receive funds in your new vault. Testnet11 uses a test currency called TXCH. To obtain some TXCH, you can visit either our [official faucet site](https://testnet11-faucet.chia.net) or a [community-run faucet](https://txchfaucet.com), and enter your vault's address. You should receive some funds for testing within a few minutes.
