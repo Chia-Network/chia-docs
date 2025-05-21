@@ -57,21 +57,27 @@ See our [farming requirements](/new-proof-farming-requirements) for more detaile
 
 The new plot format allows us to tune a difficulty setting to directly influence plot time. The higher the plot time, the more compression resistant the format becomes. However, we need to balance the difficulty with what should be an acceptable plotting time for most farmers, yet still have enough difficulty for significant compression resistance.
 
+Each plot in the new format has a difficulty setting, which must be between 0 and 255. With each increment of the setting, the plot will require approximately twice as much time to be created. (The hardware requirements to create a plot, as well as its final size are unaffected.)
+
+After the hard fork activates, the network will have a minimum difficulty level for all plots created with the new format. Any plots that were created with an easier difficulty level will be invalid. In order to plan for advancements in technology, the minimum difficulty level will be set to increase every two years going forward. The timeline is intentionally aggressive -- we can relax this schedule with a soft fork if needed.
+
+As a result of the minimum difficulty adjustments, each plot will have an effective expiration time. Farmers can use this data to replot to a difficulty level that makes sense for their setup. [CHIP-49](https://github.com/Chia-Network/chips/pull/161) contains a section titled `Plot difficulty adjustments`, which goes into greater detail.
+
 ### How do you know that compression won’t be possible with the new format?
 
-Compression is always possible, but the incentive will be severely limited. For instance, you could compress 100% of the plot by constructing a plot on the fly in under 30 seconds when a challenge comes in. However, this would require a cluster of the latest GPU’s to achieve, and would cost hundreds of thousands of dollars, just to spoof the space taken up by less than a TB. Alternatively, a farmer could make a plot with just 1 bit dropped per entry, and save ~0.5% of space. However, even this could incur more energy per TiB than the honest farmer.
+Compression is always possible, but the incentive will be severely limited. For instance, you could compress 100% of the plot by constructing a plot on the fly in under 30 seconds when a signage point comes in. However, this would require a cluster of the latest GPUs to achieve, and would cost hundreds of thousands of dollars, just to spoof the space taken up by less than a TB. Alternatively, a farmer could make a plot with just 1 bit dropped per entry, and save ~0.5% of space. However, even this could incur more energy per TiB than the honest farmer.
 
 In the future we expect extremely high efficiency in compute, however, storage will also improve in cost and efficiency during that time. With the advent of extremely low power SSDs when on idle, most farmers will be better off staying with the default plot format. Those farmers looking to squeeze the most out of their system by bit-dropping for extra levels of compression might achieve marginal gains despite higher energy costs per eTiB, but risk needing to replot and adjust their systems based on price fluctuations. If compute efficiency significantly outpaces gains in storage cost and efficiency, we could see bit-dropping with recompute reaching up to 10% space savings with marginal extra % gains in net rewards.
 
 ### Will there still be a plot filter after the new format is available?
 
-This is a similar concept to the plot filter for the existing proof format. [CHIP-48](https://github.com/Chia-Network/chips/pull/160) provides the technical details of this filter. If required, we can push the dates of these adjustments further into the future with a soft fork.
+Yes -- it is a similar concept to the plot filter for the existing proof format. [CHIP-48](https://github.com/Chia-Network/chips/pull/160) provides the technical details of this filter. If required, we can push the dates of these adjustments further into the future with a soft fork.
 
 The current proposal is to start the plot ID filter at 32 and cut it in half every two years until it reaches 1. The block heights of the filter adjustments are shown in the table in the next section.
 
 ### How many times will I have to replot?
 
-Once for the foreseeable 5-year outlook, and possibly much longer. The security of the network against rental attacks should be very strong for at least 10 years.
+This depends on your plots' difficulty level, [as explained above](#what-is-the-difficulty-level-in-the-new-format). For example, if you want to delay replotting for at least six years, you can create your plots with a difficulty level at least three levels above the minimum.
 
 ### What's this about different HDD and SSD plot formats (i.e. what is benes compression)?
 
@@ -88,7 +94,7 @@ Smaller k-sizes, such as k28, lead to increased disk activity, which in turn rai
 
 For HDD-based farms, HDDs consume more power (typically around 50 to 100% more) when actively reading compared to being idle. For example, a large 20TiB HDD filled with k28 plots will be active approximately 6% of the time, compared to 0.4% for k32 plots. This would result in a 3-6% increase in energy consumption when using k28 instead of k32 plots.
 
-For farmers with a large number of drives, it may be more efficient to use a higher-performance recompute machine capable of handling larger k-size plots (e.g., k32) without consuming more power than the additional energy costs incurred by smaller plots. A system like a Mac Mini M1 offers low idle power usage and can efficiently handle k32 plots or larger.
+For farmers with a large number of drives, it may be more efficient to use a higher-performance recompute machine capable of handling larger k-size plots (e.g., k32) without consuming more power than the additional energy costs incurred by smaller plots. A system like a Mac Mini M1 offers low idle power usage and can efficiently handle k32 plots.
 
 The most energy-conscious approach is to leverage an existing system already online that meets the recomputation requirements for larger k-sizes. By running a solver on standby, this system can handle requests for full proofs as needed with negligible impact on its overall energy usage. This method avoids the need for additional dedicated hardware while keeping power consumption minimal.
 
@@ -98,7 +104,7 @@ On 05/19/2025 we published [CHIP-48](https://github.com/Chia-Network/chips/pull/
 
 ### When can I review the source code for plotting?
 
-When the CHIP is released we will have code for plotting and verification available for review.
+The source code is located in the [pos2-chip](https://github.com/Chia-Network/pos2-chip) GitHub repository.
 
 ### Have you decided how long the transition period will be?
 
