@@ -20,8 +20,6 @@ module.exports = {
             'getting-started/cloud-wallet/getting-started',
             'getting-started/cloud-wallet/faq',
             'getting-started/cloud-wallet/tooltips',
-            'getting-started/cloud-wallet/unfinished',
-            'getting-started/cloud-wallet/known-issues',
           ]
         } 
       ],
