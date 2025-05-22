@@ -10,7 +10,7 @@ const katex = require('rehype-katex');
     baseUrl: '/',
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
-    favicon: '/svg/chia-leaf-green.svg',
+    favicon: '/svg/chia-leaf.svg',
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
     trailingSlash: true,
@@ -40,12 +40,12 @@ const katex = require('rehype-katex');
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        image: '/img/og-chia.png',
+        image: '/img/chia-logo-yellow.png',
         navbar: {
           title: 'Chia Docs',
           logo: {
-            alt: 'Chia Logo',
-            src: '/svg/chia-leaf-green.svg',
+            alt: 'Chia Icon',
+            src: '/svg/chia-leaf.svg',
           },
           items: [
             {
@@ -153,6 +153,11 @@ const katex = require('rehype-katex');
           darkTheme: require('./src/theme/prism-dark-theme-chialisp'),
           theme: require('./src/theme/prism-light-theme-chialisp'),
           additionalLanguages: ['powershell', 'lisp'],
+        },
+        colorMode: {
+          defaultMode: 'light',
+          disableSwitch: false,
+          respectPrefersColorScheme: true,
         },
       }),
     themes: [
