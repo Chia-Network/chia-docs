@@ -11,11 +11,9 @@
       }
 
       .cls-3 {
-        fill: #0d3349;
       }
 
       .cls-4 {
-        fill: #5ece71;
         fill-rule: evenodd;
       }
     </style>

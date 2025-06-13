@@ -3,7 +3,7 @@ title: Dev Guides Home
 slug: /dev-guides-home
 ---
 
-import DevChia from '@site/static/img/home_pages/dev_on_chia.png';
+import DevChia from '@site/static/img/home_pages/chia_dev.png';
 import ChialispIntro from '@site/static/img/home_pages/chialisp_intro.png';
 import SmartCoins from '@site/static/img/home_pages/smart_coins.png';
 import Signatures from '@site/static/img/home_pages/signatures.png';
