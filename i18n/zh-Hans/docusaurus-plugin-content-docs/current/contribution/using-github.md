@@ -77,7 +77,7 @@ A fork is a new repository that shares code and visibility settings with the ori
 4. By default, forks are named the same as their upstream repositories. Optionally, to further distinguish your fork, in the "Repository name" field, type a name.
 5. Optionally, in the "Description" field, type a description of your fork.
 6. Optionally, select **Copy the DEFAULT branch only**.
-   For many forking scenarios, such as contributing to open-source projects, you only need to copy the default branch. If you do not select this option, all branches will be copied into the new fork.
+  For many forking scenarios, such as contributing to open-source projects, you only need to copy the default branch. If you do not select this option, all branches will be copied into the new fork.
 7. Click **Create fork**.
 
 :::note
@@ -124,17 +124,17 @@ Note: Before generating a new GPG key, make sure you've verified your email addr
 
 3. Generate a GPG key pair. Since there are multiple versions of GPG, you may need to consult the relevant [man page](https://en.wikipedia.org/wiki/Man_page) to find the appropriate key generation command.
 
-   - If you are on version 2.1.17 or greater, paste the text below to generate a GPG key pair.
+  - If you are on version 2.1.17 or greater, paste the text below to generate a GPG key pair.
 
-   ```shell
-     gpg --full-generate-key
-   ```
+  ```shell
+    gpg --full-generate-key
+  ```
 
-   - If you are not on version 2.1.17 or greater, the gpg --full-generate-key command doesn't work. Paste the text below and skip to step 6.
+  - If you are not on version 2.1.17 or greater, the gpg --full-generate-key command doesn't work. Paste the text below and skip to step 6.
 
-   ```shell
-     gpg --default-new-key-algo rsa4096 --gen-key
-   ```
+  ```shell
+    gpg --default-new-key-algo rsa4096 --gen-key
+  ```
 
 4. At the prompt, specify the kind of key you want, or press `Enter` to accept the default.
 
@@ -145,9 +145,9 @@ Note: Before generating a new GPG key, make sure you've verified your email addr
 7. Verify that your selections are correct.
 
 8. Enter your user ID information.
-   :::note
-   When asked to enter your email address, ensure that you enter the verified email address for your GitHub account. To keep your email address private, use your GitHub-provided no-reply email address. For more information, see "Verifying your email address" and "Setting your commit email address."
-   :::
+  :::note
+  When asked to enter your email address, ensure that you enter the verified email address for your GitHub account. To keep your email address private, use your GitHub-provided no-reply email address. For more information, see "Verifying your email address" and "Setting your commit email address."
+  :::
 
 9. Type a secure passphrase.
 
@@ -231,7 +231,7 @@ At last, you're ready to propose changes into the main project! This is the fina
 1. To do so, head on over to the repository on GitHub where your project lives. For this example, it would be at `https://github.com/<your_username>/chia-docs`.
 2. You'll see a banner indicating that your branch is one commit ahead of chia-docs:main. Click **Contribute** and then **Open a pull request**.
 3. GitHub will bring you to a page that shows the differences between your fork and the Chia-Network/chia-docs repository. Click **Create pull request**.
-   - GitHub will bring you to a page where you can enter a title and a description of your changes. It's important to provide as much useful information and a rationale for why you're making this pull request in the first place. The project owner needs to be able to determine whether your change is as useful to everyone as you think it is.
+  - GitHub will bring you to a page where you can enter a title and a description of your changes. It's important to provide as much useful information and a rationale for why you're making this pull request in the first place. The project owner needs to be able to determine whether your change is as useful to everyone as you think it is.
 4. Finally, click **Create pull request**.
 
 ---

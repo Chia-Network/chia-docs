@@ -17,13 +17,14 @@ This document will use Linux/MacOS RPC syntax. When running rpc commands on Wind
 For example, here is a typical RPC command on Linux and MacOS:
 
 ```powershell
-chia rpc farmer get_reward_targets '{"search_for_private_key": false}'
+chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
 ```
 
-To run the same command on Windows, you need to escape the quotes with backslashes. In other words, add a \ before each double quote, such that:
+To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
-    `"search_for_private_key"` becomes `\"search_for_private_key\"`
-    etc
+```powershell
+chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+```
 
 </details>
 
@@ -38,7 +39,7 @@ Usage: chia rpc farmer [OPTIONS] get_harvesters [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -99,7 +100,7 @@ Usage: chia rpc farmer [OPTIONS] get_harvesters_summary [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -149,14 +150,14 @@ Usage: chia rpc farmer [OPTIONS] get_harvester_plots_duplicates [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+|:--------- |:---------- |:-------- |:-------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
 | page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
 | page_size | INTEGER    | True     | The number of entries per page to list                                           |
@@ -196,14 +197,14 @@ Usage: chia rpc farmer [OPTIONS] get_harvester_plots_invalid [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+|:--------- |:---------- |:-------- |:-------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
 | page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
 | page_size | INTEGER    | True     | The number of entries per page to list                                           |
@@ -243,14 +244,14 @@ Usage: chia rpc farmer [OPTIONS] get_harvester_plots_keys_missing [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+|:--------- |:---------- |:-------- |:-------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
 | page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
 | page_size | INTEGER    | True     | The number of entries per page to list                                           |
@@ -296,14 +297,14 @@ Usage: chia rpc farmer [OPTIONS] get_harvester_plots_valid [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+|:--------- |:---------- |:-------- |:-------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
 | page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
 | page_size | INTEGER    | True     | The number of entries per page to list                                           |
@@ -354,14 +355,14 @@ Usage: chia rpc farmer [OPTIONS] get_pool_login_link [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                                                                               |
-| :---------- | :--------- | :------- | :---------------------------------------------------------------------------------------- |
+| Flag        | Type       | Required | Description                                                                                 |
+|:----------- |:---------- |:-------- |:------------------------------------------------------------------------------------------- |
 | launcher_id | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
 
 <details>
@@ -393,7 +394,7 @@ Usage: chia rpc farmer [OPTIONS] get_pool_state [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -470,14 +471,14 @@ Usage: chia rpc farmer [OPTIONS] get_reward_targets [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                   | Type    | Required | Description                                                                                                                                                                                                                    |
-| :--------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag                     | Type    | Required | Description                                                                                                                                                                                                                    |
+|:------------------------ |:------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | search_for_private_key | BOOLEAN | True     | List whether the private key (sk) is available for both the farmer and pool keys                                                                                                                                               |
 | max_ph_to_search       | INTEGER | False    | The maximum number of puzzle hashes to search [Default: 500] If the wallet's derivation index is large, this number may be insufficient to locate the correct puzzle hashes. In this case, you may need to increase this value |
 
@@ -511,7 +512,7 @@ Usage: chia rpc farmer [OPTIONS] get_routes [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -566,14 +567,14 @@ Usage: chia rpc farmer [OPTIONS] get_signage_point [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag    | Type       | Required | Description                                                                            |
-| :------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
+|:------- |:---------- |:-------- |:-------------------------------------------------------------------------------------- |
 | sp_hash | HEX STRING | True     | The hash of a signage point, listed as `pos_ss_cc_challenge_hash` in the block details |
 
 <details>
@@ -613,7 +614,7 @@ Usage: chia rpc farmer [OPTIONS] get_signage_points [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
@@ -706,16 +707,16 @@ Usage: chia rpc farmer [OPTIONS] set_payout_instructions [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                                                               |
-| :------------------ | :--------- | :------- | :---------------------------------------------------------------------------------------- |
+| Flag                | Type       | Required | Description                                                                                 |
+|:------------------- |:---------- |:-------- |:------------------------------------------------------------------------------------------- |
 | launcher_id         | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
-| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                               |
+| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                                 |
 
 <details>
 <summary>Example</summary>
@@ -745,14 +746,14 @@ Usage: chia rpc farmer [OPTIONS] set_reward_targets [REQUEST]
 Options:
 
 | Short Command | Long Command | Type     | Required | Description                                                                           |
-| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+|:------------- |:------------ |:-------- |:-------- |:------------------------------------------------------------------------------------- |
 | -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
 | -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
 | Flag          | Type       | Required | Description                  |
-| :------------ | :--------- | :------- | :--------------------------- |
+|:------------- |:---------- |:-------- |:---------------------------- |
 | farmer_target | HEX STRING | False    | Set the farmer reward target |
 | pool_target   | HEX STRING | False    | Set the pool reward target   |
 

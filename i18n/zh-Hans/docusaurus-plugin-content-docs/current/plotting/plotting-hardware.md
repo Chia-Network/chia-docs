@@ -7,6 +7,16 @@ slug: /plotting-hardware
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+## New proof format
+
+In 2024, we proposed a new proof format. This format will have slightly different hardware requirements for plotting and farming versus the original format. For more info about the new format, see the following resources:
+
+- [plotting requirements](/new-proof-plotting-requirements)
+- [farming requirements](/new-proof-farming-requirements)
+- [timeline](/new-proof-timeline)
+
+The rest of this page only pertains to the original proof format.
+
 ## Cost/time tradeoffs
 
 生成地块需要计算资源，计算资源越多，生成地块时间越快。 With that in mind, it may be tempting to run out and buy the fastest computer you can find for plotting. But first, you should consider a few important points, and answer some related questions: But first, you should consider a few important points, and answer some related questions:
@@ -57,13 +67,13 @@ The **BladeBit CUDA** plotter requires an NVIDIA GPU with CUDA capability 5.2 an
 
 The following table lists the general plotter types, along with their requirements, for creating k32 plots:
 
-| Processor +<br/>Storage | Plotter <br/> Name(s)                    | Chia <br/> Version | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GB) | RAM<br/>(GB) | Plot<br/>Times<br/>(min.) |
-| :---------------------- | :--------------------------------------- | :----------------- | :-------------- | :------ | :--------------------- | :----------- | :------------------------ |
-| **GPU +<br/> RAM**      | BladeBit CUDA                            | 2.0                | Yes             | GPU     | None                   | 256          | 1-3                       |
-| **GPU +<br/> SSD**      | BladeBit CUDA                            | 2.1                | Yes             | GPU     | 180                    | 128          | 3-5                       |
-| **CPU +<br/> RAM**      | BladeBit RAM                             | 2.0                | Yes             | CPU     | None                   | 416          | 2-5                       |
-| **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                    | 4            | 15-60                     |
-| **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                    | 4            | > 60                      |
+| Processor +<br/>Storage | Plotter <br/> Name(s)                          | Chia <br/> Version | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GB) | RAM<br/>(GB) | Plot<br/>Times<br/>(min.) |
+|:----------------------------- |:---------------------------------------------------- |:------------------------ |:--------------------- |:------- |:---------------------------------- |:------------------ |:------------------------------------- |
+| **GPU +<br/> RAM**      | BladeBit CUDA                                        | 2.0                      | Yes                   | GPU     | None                               | 256                | 1-3                                   |
+| **GPU +<br/> SSD**      | BladeBit CUDA                                        | 2.1                      | Yes                   | GPU     | 180                                | 128                | 3-5                                   |
+| **CPU +<br/> RAM**      | BladeBit RAM                                         | 2.0                      | Yes                   | CPU     | None                               | 416                | 2-5                                   |
+| **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                      | No                    | CPU     | 512                                | 4                  | 15-60                                 |
+| **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                      | No                    | CPU     | 512                                | 4                  | > 60                                  |
 
 :::note
 

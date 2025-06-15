@@ -48,11 +48,11 @@ Let us stress that $\textsf{Chia}$ only requires a single timelord (which runs 
 
 On the other hand, we make no assumptions about the number of VDFs controlled by the adversary. Security as in eq.(2) holds even when assuming the adversary controls an unbounded number of VDFs of speed $vdf_a$.
 
-This assumption comes at a prize: there's a $1.47$ factor by which the adversarial resources are multiplied in eq.(2). This factor is there due to an attack we call "double dipping". This and other attacks will be discussed in §2. For now let us just mention that there's nothing special about the constant $1.47$, it can be lowered to $1+\epsilon$ for any $\epsilon>0$ by increasing the number of blocks that depend on the same challenge (in $\textsf{Chia}$ this is set to at least 16).
+This assumption comes at a price: there's a $1.47$ factor by which the adversarial resources are multiplied in eq.(2). This factor is there due to an attack we call "double dipping". This and other attacks will be discussed in §2. For now let us just mention that there's nothing special about the constant $1.47$, it can be lowered to $1+\epsilon$ for any $\epsilon>0$ by increasing the number of blocks that depend on the same challenge (in $\textsf{Chia}$ this is set to at least 16).
 
 The bound in eq.(1) is not tight in the sense that we don't have an attack that works if we replace "$>$" with "$<$". We have an attack assuming giving the adversary a slightly lower boosting factor of $1.34$
 
-$$ \textrm{double spending in {\sf Chia}\ possible if : }space_h\cdot vdf_h < space_a \cdot vdf_a \cdot 1.34 $$
+$$ \textrm{double spending in {\sf Chia}\ possible if : }space_h\cdot vdf_h < space_a \cdot vdf_a \cdot  1.34 $$
 
 <div class="eqnumber">eq.(3)</div>
 
