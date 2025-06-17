@@ -49,7 +49,7 @@ You can select either General Chia News or Developers News or both to receive em
 
 ### What are the rules and guidelines around using Chia's trademarks and copyrighted materials on my own site or project?
 
-Chia, like all companies, has an obligation to protect and enforce its Trademarks and Copyrights in the relevant jurisdictions. We do this both to ensure that we properly maintain our own responsible use of them, as well as to prevent bad actors from attempting to leverage Chia’s property in an effort to scam the ecosystem or cause other harm. That said, we do want to make it possible for people to talk about Chia, and build tools and platforms that support it’s growth openly. To this effect we have [several guidelines](https://www.chia.net/about#legal) that we hope will help you better understand some “Do’s and Don’ts” as you go about this. (And if you are ever unsure, you are always welcome to email us at [hello@chia.net](mailto:hello@chia.net) with questions about this subject!)
+Chia, like all companies, has an obligation to protect and enforce its Trademarks and Copyrights in the relevant jurisdictions. We do this both to ensure that we properly maintain our own responsible use of them, as well as to prevent bad actors from attempting to leverage Chia’s property in an effort to scam the ecosystem or cause other harm. That said, we do want to make it possible for people to talk about Chia, and build tools and platforms that support it’s growth openly. To this effect we have [several guidelines](https://www.chia.net/ip-trademarks/) that we hope will help you better understand some “Do’s and Don’ts” as you go about this. (And if you are ever unsure, you are always welcome to email us at [hello@chia.net](mailto:hello@chia.net) with questions about this subject!)
 
 ### How do I contact Chia with more questions?
 
@@ -1683,11 +1683,11 @@ This issue only affects developers of Windows .NET applications. It does not aff
 
 ### What are the plans for the project and what are its tokenomics?
 
-This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Project FAQ](https://www.chia.net/faq/).
+This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Chia Blog](https://www.chia.net/blog/).
 
 ### How can I contribute?
 
-You should check out [CONTRIBUTING.md](https://github.com/Chia-Network/chia-blockchain/blob/master/CONTRIBUTING.md) in the repository but the quick answer is to please base your pull requests off the dev branch. The dev branch will only accept rebase merges or squash merges. You can help [translate the application](https://crowdin.com/project/chia-blockchain/) as well. Translating the GUI is especially useful and pretty easy to do with our Crowdin [Chia-Blockchain-GUI](https://crowdin.com/project/chia-blockchain) tool.
+You should check out [CONTRIBUTING.md](https://github.com/Chia-Network/chia-blockchain/blob/master/CONTRIBUTING.md) in the repository but the quick answer is to please base your pull requests off the dev branch. The dev branch will only accept rebase merges or squash merges. You can help [translate the application](https://chia.crowdin.com/chia-blockchain-gui) as well. Translating the GUI is especially useful and pretty easy to do with our Crowdin [Chia-Blockchain-GUI](https://chia.crowdin.com/chia-blockchain-gui) tool.
 
 ### What microphone is Gene using?
 
