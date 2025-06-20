@@ -3,6 +3,14 @@ title: 生成地块常见问题解答
 slug: /plotting-faq
 ---
 
+:::info
+
+In 2024 we proposed a new proof format. Please see our [frequently asked questions](/new-proof-faq) for the new format. For additional information, see our [new proof format](/new-proof-introduction) section.
+
+The questions listed on this page only pertain to the original format.
+
+:::
+
 ## 如果停电会发生什么？
 
 Any plots that were partially made will be invalid. 这可能会留下许多`.tmp`文件，可以将其删除。 在许多情况下，临时文件将会自动删除，但这是一个可能需要手动删除文件的情况。 这不会损坏已经完成的任何现有地块。

@@ -1,6 +1,6 @@
 ---
 title: 区块格式
-slug: /block-format
+slug: /区块格式
 ---
 
 ## 完整块

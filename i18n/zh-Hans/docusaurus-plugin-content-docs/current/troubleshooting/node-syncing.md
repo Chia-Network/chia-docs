@@ -6,19 +6,21 @@ slug: /troubleshooting/node-syncing
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Forwarding port 8444 can solve many sync issues and it also helps improve Chia's overall network health.
+Forwarding port 8444 can solve some sync issues and it also helps improve Chia's overall network health.
 
-Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networking%29) through which other Chia nodes can communicate with your node. When you set up port forwarding on port 8444, the Chia software on your computer can easily communicate with other nodes and sync the Chia blockchain faster.
+Port 8444 is the [port](https://en.wikipedia.org/wiki/Port_%28computer_networking%29) through which other Chia computers can communicate with your PC. When you set up port forwarding on port 8444, the Chia software on your computer allows other nodes to easily communicate and sync the Chia blockchain with your node.
 
-The network is undergoing rapid growth and expansion. Many newly arriving Chia nodes do not open port 8444, resulting in additional stress to the network. Therefore, it is strongly recommended that you enable port forwarding.
+When the network undergoes rapid growth and expansion the newly arriving Chia nodes may not initially open port 8444, resulting in difficulty finding available nodes to sync with. Therefore, it is strongly recommended that you enable port forwarding.
 
-Use [this port checker](https://portchecker.co/) to check if you have port forwarding configured correctly.
+With the Chia software running, use [this port checker](https://portchecker.co/) to check if your IP address is accepting outside connections on port 8444. Further port forwarding configurations may still be necessary on your router (or VPN software).
 
 ## Port Forwarding Settings
 
-Port forwarding is done on your router. How you set it up depends on your router's make and model. Look through your router's manual or just search for "`<your router name and model>` how to port forward" to get started.
+Port forwarding is done on your router (or VPN software). How you set it up depends on your router's make and model. Look through your router's manual or just search for "`<your router name and model>` how to port forward" to get started.
 
-When you enable port forwarding, you are allowing any system on the Internet to connect to your Chia node through port 8444 to the Chia software.
+When you port forward you want to allow outside IP addresses to connect to your main node (computer) through port 8444 to the Chia software.
+
+If your router has UPNP enabled the Chia software by default `enable_upnp: true` will attempt to automatically configure port forwarding, if your router disabled UPNP then you will need to manually configure port forwarding.
 
 Most routers will ask you from where you are allowing and to what you are connecting to. You want to set up port forwarding to allow any outside connection to connect to the IP address of your main node on your network through port 8444. Router manufacturers might call the settings different things, but the concept is always the same: Outside computers connecting through port 8444 to your computer.
 
@@ -27,6 +29,8 @@ Here are the settings most routers will ask for:
 - Set connection type to _TCP_ or _TCP & UDP_
 - Destination (or forwarding) IP address - This is your main node (computer) IP address on your internal network; search online on how to do this for your type of computer. If you search for "what is my IP address" it will give you your external IP address, this is not the one you want.
 - Originating (or from) IP address - Set this to all or sometimes just an asterisk may be used `*`
+
+Running multiple full nodes on the same local network often requires unique IP and Port settings in both the router and Chia software to avoid conflicts, you may also need to disable UPNP `enable_upnp: false` in the Chia `config.yaml` file or your router if it is enabled.
 
 ## Why forward port 8444?
 
@@ -48,23 +52,27 @@ values={[
 
   <TabItem value="mainnet">
 
-    - Mainnet Introducer: `introducer.chia.net:8444`
+```
+- Mainnet Introducer: `introducer.chia.net:8444`
 
-    Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
-    - CNI Operated Full Node: `node.chia.net`
+Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+- CNI Operated Full Node: `node.chia.net`
 
-    Additionally, you can also visit either of the below websites that are frequently updated with available nodes listening on port 8444:
-    - [ChiaNodes.com](https://ChiaNodes.com)
-    - [chia.keva.app](https://chia.keva.app)
+Additionally, you can also visit either of the below websites that are frequently updated with available nodes listening on port 8444:
+- [ChiaNodes.com](https://ChiaNodes.com)
+- [chia.keva.app](https://chia.keva.app)
+```
 
   </TabItem>
   <TabItem value="testnet11">
 
-    - DNS Introducer: `dns-introducer-testnet11.chia.net`
-    - Legacy Introducer: `introducer-testnet11.chia.net:58444`
+```
+- DNS Introducer: `dns-introducer-testnet11.chia.net`
+- Legacy Introducer: `introducer-testnet11.chia.net:58444`
 
-    Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
-    - CNI Operated Full Node: `testnet11-node.chia.net`
+Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
+- CNI Operated Full Node: `testnet11-node.chia.net`
+```
 
   </TabItem>
 </Tabs>
@@ -91,3 +99,27 @@ Setting up a VPN used to be a daunting task, but [Wireguard](https://www.wiregua
 - the home server is configured to route all internet traffic (but not local) through the cloud server, while periodically sending a "keepalive" packet to ensure the connection stays open.
 
 Here is a more detailed write-up with [example wireguard configuration](https://www.kmr.me/posts/wireguard/).
+
+## Community Nodes
+
+:::warning
+
+We **never** recommend connecting to a community node. This section will detail why.
+
+:::
+
+A "community node" (AKA an untrusted node) is a node that other farmers can connect to, in order to avoid having to run their own full node.
+
+While this may seem like a convenient setup, community nodes are inherently not secure, and we therefore never recommend connecting to them. The primary issue is that the community node can steal farmer rewards. The reason for this is because the farmer service was created with the security assumption that it would only connect to a local/trusted node.
+
+This means that:
+
+- The farmer never verifies anything that the node puts into a block
+  - The farmer blind-signs whatever the node sends it
+  - The farmer doesn't verify the reward address
+- The community node can therefore modify the reward address before the farmer signs a block
+- Any modifications we could make to the farmer would have widespread ripple effects to the rest of the node software, so we won't support any such modifications
+
+In summary, if you farm using a community node, that node can steal all of your farming rewards as you earn them. The way to avoid this scenario is to run your own node.
+
+Luckily, a high-powered system is not required to run a Chia node. In fact, the [minimum supported node hardware](https://docs.chia.net/coin-set-costs/#farming-spec) is the Raspberry Pi with a cheap external SSD to hold the database file. In order to expedite the process of syncing your full node, you can download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint).
