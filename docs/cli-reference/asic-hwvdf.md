@@ -56,7 +56,7 @@ Response:
 <summary>Example 2 - Run the ASIC software with auto-frequency, initial frequency, and defined ip</summary>
 
 ```bash
-hw_vdf_client --freq 1500 --auto-freq 60 --ip 192.168.0.122 8000 3
+hw_vdf_client --freq 1500 --auto-freq-period 60 --ip 192.168.0.122 8000 3
 ```
 
 Response:

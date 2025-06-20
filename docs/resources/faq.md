@@ -49,7 +49,7 @@ You can select either General Chia News or Developers News or both to receive em
 
 ### What are the rules and guidelines around using Chia's trademarks and copyrighted materials on my own site or project?
 
-Chia, like all companies, has an obligation to protect and enforce its Trademarks and Copyrights in the relevant jurisdictions. We do this both to ensure that we properly maintain our own responsible use of them, as well as to prevent bad actors from attempting to leverage Chia’s property in an effort to scam the ecosystem or cause other harm. That said, we do want to make it possible for people to talk about Chia, and build tools and platforms that support it’s growth openly. To this effect we have [several guidelines](https://www.chia.net/about#legal) that we hope will help you better understand some “Do’s and Don’ts” as you go about this. (And if you are ever unsure, you are always welcome to email us at [hello@chia.net](mailto:hello@chia.net) with questions about this subject!)
+Chia, like all companies, has an obligation to protect and enforce its Trademarks and Copyrights in the relevant jurisdictions. We do this both to ensure that we properly maintain our own responsible use of them, as well as to prevent bad actors from attempting to leverage Chia’s property in an effort to scam the ecosystem or cause other harm. That said, we do want to make it possible for people to talk about Chia, and build tools and platforms that support it’s growth openly. To this effect we have [several guidelines](https://www.chia.net/ip-trademarks/) that we hope will help you better understand some “Do’s and Don’ts” as you go about this. (And if you are ever unsure, you are always welcome to email us at [hello@chia.net](mailto:hello@chia.net) with questions about this subject!)
 
 ### How do I contact Chia with more questions?
 
@@ -1454,11 +1454,11 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 ### What are the minimum officially supported OS versions?
 
-- MacOS 10.14 Mojave
+- MacOS 13.0 Ventura
 - Windows 10
 - Ubuntu 18.04 (20.04 highly recommended)
 - Raspberry Pi OS 64 or Ubuntu 20.04 for Pi/ARM64 (Not recommended for plotting or timelord)
-- An SSD for storing the blockchain's database. A 256 GB model with 520 MB/s read/write speeds will work just fine and is available for around $30 USD (do not use an SD card as they are not fast enough)
+- An SSD for storing the blockchain's database. A 512 GB or larger model with 520 MB/s read/write speeds will work just fine and is available for around $30 USD (do not use an SD card as they are not fast enough)
 
 ### What versions of Python are supported?
 
@@ -1511,7 +1511,7 @@ shasum -a 256 ~/Downloads/chia-blockchain_1.1.7_amd64.deb
 
 ### Can I use a fast SAS HDD for storing the blockchain's database?
 
-A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as stated above. It can be an external SSD, connected via USB. The database is always growing, but 256 GB should be sufficient until at least 1H 2024.
+A very high-end HDD will not be fast enough, so we recommend a $30 SSD, as stated above. It can be an external SSD, connected via USB, but a dedicated internal connection is preferred. The database is always growing, but 512 GB should be sufficient until at least 1H 2027.
 
 ### Can I run this on a Raspberry Pi 3 or 4?
 
@@ -1683,11 +1683,11 @@ This issue only affects developers of Windows .NET applications. It does not aff
 
 ### What are the plans for the project and what are its tokenomics?
 
-This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Project FAQ](https://www.chia.net/faq/).
+This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Chia Blog](https://www.chia.net/blog/).
 
 ### How can I contribute?
 
-You should check out [CONTRIBUTING.md](https://github.com/Chia-Network/chia-blockchain/blob/master/CONTRIBUTING.md) in the repository but the quick answer is to please base your pull requests off the dev branch. The dev branch will only accept rebase merges or squash merges. You can help [translate the application](https://crowdin.com/project/chia-blockchain/) as well. Translating the GUI is especially useful and pretty easy to do with our Crowdin [Chia-Blockchain-GUI](https://crowdin.com/project/chia-blockchain) tool.
+You should check out [CONTRIBUTING.md](https://github.com/Chia-Network/chia-blockchain/blob/master/CONTRIBUTING.md) in the repository but the quick answer is to please base your pull requests off the dev branch. The dev branch will only accept rebase merges or squash merges. You can help [translate the application](https://chia.crowdin.com/chia-blockchain-gui) as well. Translating the GUI is especially useful and pretty easy to do with our Crowdin [Chia-Blockchain-GUI](https://chia.crowdin.com/chia-blockchain-gui) tool.
 
 ### What microphone is Gene using?
 
