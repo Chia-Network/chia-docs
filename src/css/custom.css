@@ -3,13 +3,59 @@
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #42506C;
-  --ifm-color-primary-dark: #2C323C;
-  --ifm-color-primary-darker: #1c552b;
-  --ifm-color-primary-darkest: #073112;
-  --ifm-color-primary-light: #44b161;
-  --ifm-color-primary-lighter: #6dc585;
-  --ifm-color-primary-lightest: #a7ddb5;
-  --ifm-code-font-size: 95%;
+  --ifm-color-primary-dark: #3b4861;
+  --ifm-color-primary-darker: #38445c;
+  --ifm-color-primary-darkest: #2e384c;
+  --ifm-color-primary-light: #495877;
+  --ifm-color-primary-lighter: #4c5c7c;
+  --ifm-color-primary-lightest: #56688c;
+  --ifm-color-secondary: #42506C;
+  --ifm-link-color: #42506C;
+  --ifm-link-hover-color: #A8BEF1;
+  --ifm-link-hover-decoration: none;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #42506C;
+  --ifm-color-primary-dark: #3b4861;
+  --ifm-color-primary-darker: #38445c;
+  --ifm-color-primary-darkest: #2e384c;
+  --ifm-color-primary-light: #495877;
+  --ifm-color-primary-lighter: #4c5c7c;
+  --ifm-color-primary-lightest: #56688c;
+  --ifm-link-color: #E5FE75;
+  --ifm-link-hover-color: #A8BEF1;
+  --ifm-link-hover-decoration: none;
+}
+
+/* Footer light mode */
+
+.footer a {
+ color: #42506C;
+}
+
+.footer a:hover {
+ color: #A8BEF1;
+}
+
+.footer {
+  background-color: #D2E3FE;
+  color: #42506C;
+}
+
+/* Footer dark mode */
+
+.footer a {
+ color: #42506C;
+}
+
+.footer a:hover {
+ color: #A8BEF1;
+}
+
+.footer {
+  background-color: #D2E3FE;
+  color: #42506C;
 }
 
 /* Fonts */
@@ -17,107 +63,45 @@
 h1 {
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
-  color: #42506C;
 }
 
 /* Apply Poppins Medium to subhead elements */
 .subhead {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  color: #42506C;
 }
 
 /* Apply Poppins Semibold to all H2 and H3 elements */
 h2, h3 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  color: #42506C;
 }
 
 /* Apply Poppins Medium to all H4 elements */
 h4 {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  color: #42506C;
 }
 
 /* Apply Inter Regular to the body and paragraph elements */
 body, p {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  color: #2C323C;
 }
 
 /* Make body and paragraph links bold (light theme) */
-body a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer__link-item),
-p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer__link-item) {
+body a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer),
+p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer) {
   font-weight: bold;
 }
 
-/* Dark  */
+/* Dark mode */
 /* Make body and paragraph links bold (dark theme) */
 @media (prefers-color-scheme: dark) {
-  html[data-theme='dark'] body a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer__link-item),
-  html[data-theme='dark'] p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer__link-item) {
+  html[data-theme='dark'] body a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer),
+  html[data-theme='dark'] p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer) {
     font-weight: bold;
   }
-
-  /* Main headings */
-  html[data-theme='dark'] h3,
-  html[data-theme='dark'] .menu__link,
-  html[data-theme='dark'] .navbar__link,
-  html[data-theme='dark'] .dropdown__link,
-  html[data-theme='dark'] .table-of-contents__link {
-    color: #FFF;
-  }
-
-  /* Active links */
-  html[data-theme='dark'] a,
-  html[data-theme='dark'] #mc_embed_signup h3, /* Mailchimp */
-  html[data-theme='dark'] .menu__link--active,
-  html[data-theme='dark'] .navbar__link--active,
-  html[data-theme='dark'] .dropdown__link--active,
-  html[data-theme='dark'] .tabs-container .tabs__item--active,
-  html[data-theme='dark'] .pagination-nav__label,
-  html[data-theme='dark'] .table-of-contents__link--active,
-  html[data-theme='dark'] .theme-edit-this-page,
-  html[data-theme='dark'] .breadcrumbs .breadcrumbs__link {
-    color: #E5FE75;
-  }
-
-  /* Hovered links */
-  html[data-theme='dark'] a:hover,
-  html[data-theme='dark'] .menu__link:hover,
-  html[data-theme='dark'] .navbar__link:hover,
-  html[data-theme='dark'] .dropdown__link:hover,
-  html[data-theme='dark'] .tabs-container .tabs__item:hover,
-  html[data-theme='dark'] .pagination-nav__label:hover,
-  html[data-theme='dark'] .table-of-contents__link:hover,
-  html[data-theme='dark'] .theme-edit-this-this-page:hover,
-  html[data-theme='dark'] .breadcrumbs .breadcrumbs__link:hover {
-    color: #A8BEF1;
-  }
-
-  /* Body Text */
-  html[data-theme='dark'] body,
-  html[data-theme='dark'] p {
-    color: #FFF;
-  }
-}
-
-.footer a {
-  color: #E5FE75;
-}
-
-.footer a:hover {
-    color: #A8BEF1;
-}
-
-a:hover,
-.navbar__link:hover,
-.dropdown__link:hover,
-.toc-highlight:hover {
-    color: #A8BEF1;
 }
 
 .docusaurus-highlight-code-line {

@@ -88,7 +88,6 @@ const katex = require('rehype-katex');
           ],
         },
         footer: {
-          style: 'dark',
           links: [
             {
               title: 'Approach',
