@@ -110,7 +110,7 @@ Value is stored within a single account or contract. Multiple people can execute
 
 Programmable features are not stored directly on chain. Instead, coins use hashing to allow for later verification of their contents.
 
-Chia's database growth depends on transaction type and utilization but may reach 170 GB annual growth with 100% full blocks (further improvements to database compression are possible). Kryder's Law dictates that storage capacity will grow exponentially in the short-to-medium term, whereas the database will grow linearly. In early 2022, an SSD capable of storing Chia's database cost less than $50. This should hold true for the foreseeable future, even as Chia's database continues to expand.
+Chia's database is expected to grow by around 30 GB annually, which is roughly the same rate as Bitcoin's. Kryder's Law dictates that storage capacity will grow exponentially in the short-to-medium term, whereas the database will grow linearly. In early 2022, an SSD capable of storing Chia's database cost less than $50. This should hold true for the foreseeable future, even as Chia's database continues to expand.
 
 #### Account
 

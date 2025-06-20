@@ -209,7 +209,7 @@ Here is a description of the options used:
 | `-lh`                | The hash of the NFT's license.                                                                       |
 | -en                  | The edition number. Specify if this NFT has multiple editions (multiple identical copies of an NFT). |
 | -et                  | The edition total number. Specify if this NFT has multiple editions.                                 |
-| `-rp`                | The royalty percentage expressed as hundredths of a percent.                                         |
+| `-rp`                | The royalty percentage expressed as tens of thousandths of a percent.                                |
 | `--no-did-ownership` | Disables DID ownership.                                                                              |
 | `-m`                 | The fee for this transaction in XCH.                                                                 |
 

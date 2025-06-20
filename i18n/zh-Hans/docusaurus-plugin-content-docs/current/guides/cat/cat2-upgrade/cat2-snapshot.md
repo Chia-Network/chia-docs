@@ -44,18 +44,17 @@ values={[
 ]}>
 <TabItem value="windows">
 
-1.  If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
+- If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
 :::caution
 Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
-
-:::  
+:::
 
 ```powershell
 Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VERSION>\resources\app.asar.unpacked\daemon\chia.exe"
 ```
 
-2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
@@ -66,29 +65,25 @@ Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VER
 
 - If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
 
-1.  If you previously installed Chia from a **binary build**, then ensure that the `chia` binary's directory is included in your `PATH`.
-
-2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
 ```bash
 . ./activate
-``` ./activate
 ```
 
   </TabItem>
   <TabItem value="macos">
 
-1.  If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
+- If you previously installed Chia from a **binary build**, then set up an alias to the `chia` command:
 
 ```bash
 alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/chia"
 ```
 
-2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
+- If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
 ```bash
 . ./activate
-``` ./activate
 ```
 
   </TabItem>
@@ -115,8 +110,9 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
    3. `START_HEIGHT` - The height of the blockchain to start creating the snapshot from (default: `0`). If you are attempting to obtain all records for your CAT, the recommended start height is `1146800`, which is just before CAT1 was introduced.
    4. `TARGET_HEIGHT` - The height of the blockchain to end the snapshot (no default - must be set). The recommended height is `2311760`, which is the last block at which CAT1 is valid.
 
-   :::caution Running this process with the recommended block heights could take over 40 hours to complete. You may wish to test it first by setting the `TARGET_HEIGHT` to `1146900`. This will pull data from only 100 blocks, which should only take a few seconds.
-:::
+   :::caution
+   Running this process with the recommended block heights could take over 40 hours to complete. You may wish to test it first by setting the `TARGET_HEIGHT` to `1146900`. This will pull data from only 100 blocks, which should only take a few seconds.
+   :::
 
    In order to set these variables, you are recommended to put them into a file called `.env` at the root of the `CAT-addresses` project. The tool will automatically read the variables in this file. For example:
 
@@ -196,7 +192,6 @@ python3 setup.py install
 :::note
 The result may contain several warnings such as `WARNING: The wheel package is not available.` These can be safely ignored.
 :::
-:::
 
 This command may take a few minutes to complete. At the end of the output, you should see something like:
 
@@ -247,7 +242,6 @@ python3 setup_database.py
 :::tip
 If you receive an error message such as `ModuleNotFoundError: No module named 'chia'`, then make sure you can run the `chia` command from this directory and try again.
 :::
-:::
 
 If this command succeeds, then it will output:
 
@@ -292,7 +286,7 @@ python3 start.py
 This command will show its progress according to the block height. If you used the recommended range for `START_HEIGHT` and `TARGET_HEIGHT` in your `.env` file, then this command could take over 40 hours to complete. The reason it takes so long is it needs to process each block, one at a time. If multiple blocks were done in parallel, then there would be a chance that the results would not be accurate. By processing one block at a time, the tool will return the correct results for the range provided.
 
 :::note
-You can only generate a snapshot for each block once. If you attempt to run this command over a range against which it has already been run, you will receive an error containing this message: If you attempt to run this command over a range against which it has already been run, you will receive an error containing this message:
+You can only generate a snapshot for each block once. If you attempt to run this command over a range against which it has already been run, you will receive an error containing this message:
 
 ```
 sqlite3.IntegrityError: UNIQUE constraint failed: coin_create.coin_name
@@ -379,10 +373,10 @@ python3 export.py --output-dir /Users/Username/CAT-addresses/results/CKC_ --tail
 - `<PREFIX>` - a string to be prepended to the output file name
 - `<TAIL-HASH>` - the TAIL hash you obtained from taildatabase.com
 - `--coins` - an **optional** flag that will add information about individual coins to the output (which might be helpful for auditing purposes)
-:::
+  :::
 
 :::note
-This command will not create any directories, so make sure `<OUTPUT-DIR>` already exists before running it. Otherwise, you will receive a `FileNotFoundError`. ::: Otherwise, you will receive a `FileNotFoundError`.
+This command will not create any directories, so make sure `<OUTPUT-DIR>` already exists before running it. Otherwise, you will receive a `FileNotFoundError`.
 :::
 
 ## Fix EOL Characters {#fix-eol}

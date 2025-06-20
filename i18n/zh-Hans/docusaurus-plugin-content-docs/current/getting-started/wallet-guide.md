@@ -95,7 +95,7 @@ Chia Asset Tokens (CATs) are fungible assets on Chia's blockchain. In Chia parla
   <br/>
 
 2. The Chia reference wallet comes with a few included CATs, but most will need to be entered manually. If you want to add one of the included CATs, click the slider next to the CAT you would like to add.
-  Otherwise, click the `+` button:
+   Otherwise, click the `+` button:
 
   <div style={{ textAlign: 'center' }}>
     <img src="/img/offers_img/gui2/02_offers.png" alt="add token"/>
@@ -694,7 +694,6 @@ This is viewable in the offer's details:
 <em>Scroll to the bottom to view coins reserved for the Offer.</em>
 </figcaption>
 </figure>
-
 
 <br/>
 

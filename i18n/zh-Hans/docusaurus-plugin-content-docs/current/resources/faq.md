@@ -24,7 +24,7 @@ Farming uses substantially less electricity than Proof of Work for the same unit
 
 ### What is a VDF/proof of time?
 
-A Verifiable Delay Function (VDF), also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](/timelord-algorithm) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
+A VDF, also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](/timelord-algorithm) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
 
 ### What is a genesis challenge?
 
@@ -32,7 +32,7 @@ A genesis challenge is the first VDF challenge on a network that uses the Proof 
 
 ### What is XCH, TXCH, and mojos?
 
-XCH is the currency symbol for Chia. TXCH is the currency symbol currently being used for testnet chias. TXCH has no value and is only used for testing purposes. Chias and testnet chias can be divided up to 12 decimal places (trillionths). The smallest unit of chia, a trillionth of a chia, is called a mojo, as a tribute to [Mojo Nation](https://en.wikipedia.org/wiki/Mnet_(peer-to-peer_network)#Evil_Geniuses_for_a_Better_Tomorrow), a decentralized file storage platform created in the early 2000s by Zooko Wilcox, Bram Cohen, and others.
+XCH is the currency symbol for Chia. TXCH is the currency symbol currently being used for testnet chias. TXCH has no value and is only used for testing purposes. Chias and testnet chias can be divided up to 12 decimal places (trillionths). The smallest unit of chia, a trillionth of a chia, is called a mojo, as a tribute to [Mojo Nation](<https://en.wikipedia.org/wiki/Mnet_(peer-to-peer_network)#Evil_Geniuses_for_a_Better_Tomorrow>), a decentralized file storage platform created in the early 2000s by Zooko Wilcox, Bram Cohen, and others.
 
 ### Chia vs XCH vs mojo vs chia
 
@@ -311,7 +311,7 @@ On Windows, it has not worked well since the communication speed is not fast eno
 
 ### What is this UPnP Error?
 
-[UPnP](https://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) is an optional setting that allows users to open a port in their router and therefore allow other nodes to connect to them. This is not required, since your node can still make outgoing connections without UPnP.
+[UPnP](ttps://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) is an optional setting that allows users to open a port in their router and therefore allow other nodes to connect to them. This is not required, since your node can still make outgoing connections without UPnP.
 
 For some routers, UPnP is enabled automatically, but for others, you might have to go into your router settings and enable UPnP manually. Sometimes restarting the router is also necessary.
 
@@ -439,10 +439,6 @@ The light wallet protocol has two techniques to sync:
 2. Otherwise, your wallet will sync by connecting to, and downloading from, multiple untrusted nodes, and verifying that the information downloaded from each node is the same
 
 Typically, it is much faster to sync a wallet by connecting to a trusted node. Therefore, if you have access to a synced node that you trust, you may want to add that node to your trusted peers list. _We recommend that you only add your own full nodes to this list_.
-
-### How can I connect to a community node instead of farming with my own full node?
-
-Unfortunately, connecting to a community node is not secure, and we therefore never recommend doing so. See our [node syncing guide](https://docs.chia.net/troubleshooting/node-syncing/#community-nodes) for more info.
 
 #### 先决条件
 
@@ -904,9 +900,9 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ### Where can I buy Chia?
 
-Visit [chia.net/buy-xch](https://chia.net/buy-xch) for instructions on buying Chia. Visit [offers](https://chialisp.com/offers) to learn more about peer-to-peer trading on Chia.
+Visit [chia.net/buy-xch](http://chia.net/buy-xch) for instructions on buying Chia with USDS and [offers](https://chialisp.com/offers) using the Chia light wallet and [Offers](https://chia.net/offers).
 
-There are several exchanges that offer XCH, you can see a list of exchanges supporting XCH on [chialinks](https://chialinks.com/exchanges/) a community created website. This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
+There are also several exchanges that offer XCH. You can see a list of exchanges supporting XCH [here](https://chialinks.com/exchanges/). This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
 ### I was running the light wallet beta app and I upgraded to the latest beta and my offer history disappeared. How do I get that back?
 
@@ -1141,12 +1137,6 @@ This error message occurs when you submit a transaction that does not include a 
 
 ---
 
-## Cloud Wallet
-
-See our dedicated page for [Cloud Wallet FAQs](/getting-started/cloud-wallet/faq).
-
----
-
 ## Offers
 
 ### What are Chia Offers?
@@ -1183,16 +1173,17 @@ You should always check the ID of the asset(s) being offered before accepting an
 Once you've created the offer, you'll need to find someone who will take the other side of it. You can share your offers through the following methods:
 
 - Send your offer file directly to another user
+- [Offerbin](http://offerbin.io) - an open marketplace for Chia Offers
 - [Offerpool.io](https://offerpool.io/) - an open-sourced, decentralized offers database built on top of OrbitDB and IPFS
 - [dexie.space](https://dexie.space/markets) - a decentralized exchange for Chia offers supporting Chia tokens (CATs) and NFTs
 
 ### Why don't I see the offers option in my wallet?
 
-You are probably running a very old version before it was integrated into both the Full Node and Light Wallet options. You should download and install the [latest version](https://www.chia.net/downloads) of the reference software. Now you can farm and use all the new features of the wallet.
+You are probably running the wallet that comes installed with the full node. Be sure to download the standalone lightwallet [here](https://www.chia.net/download/#light-wallet-beta) (and be sure not to install on the same machine as your full node). We will be integrating the new capabilities of the standalone light wallet into the full node so you can farm and use all the new features of the wallet Soon™.
 
 ### How do I know if I'm getting the right exchange value for an offer?
 
-Prices in cryptocurrencies fluctuate all the time. You can review any of the existing decentralized exchanges like Dexie, HashgreenSwap, Offerpool, or TibetSwap to see what trading pairs are trading for in the open market. Alternatively you can find a reputable centralized exchange website that will give you the valuation in local currencies.
+Prices in cryptocurrencies fluctuate all the time. You can review any of the existing DEXes like Hashgreen or Offerbin to see what trading pairs are trading for in the open market. Alternatively you can find a reputable website that will give you the currency valuation for more popular and well known currencies like USDS.
 
 ### Will my Offers sync across different Chia wallets on different machines?
 
@@ -1534,15 +1525,15 @@ From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `S
 
 ### What are the minimum officially supported OS versions?
 
-- MacOS 13.0 Ventura
+- MacOS 10.14 Mojave
 - Windows 10
 - Ubuntu 18.04 (20.04 highly recommended)
 - Raspberry Pi OS 64 or Ubuntu 20.04 for Pi/ARM64 (Not recommended for plotting or timelord)
-- An SSD for storing the blockchain's database. A 512 GB or larger model with 520 MB/s read/write speeds will work just fine and is available for around $30 USD (do not use an SD card as they are not fast enough)
+- An SSD for storing the blockchain's database. A 256 GB model with 520 MB/s read/write speeds will work just fine and is available for around $30 USD (do not use an SD card as they are not fast enough)
 
 ### What versions of Python are supported?
 
-- Chia supports all versions of Python that have not reached their end-of-life. Starting with Chia version 2.0.0, the minimum version of Python supported is 3.8. See the [official Python version list](https://devguide.python.org/versions/) for more info. Starting with Chia version 2.0.0, the minimum version of Python supported is 3.9. See the [official Python version list](https://devguide.python.org/versions/) for more info.
+- Chia supports all versions of Python that have not reached their end-of-life. Starting with Chia version 2.5.0, the minimum version of Python supported is 3.9. See the [official Python version list](https://devguide.python.org/versions/) for more info.
 
 ### How do I verify file checksum?
 
@@ -1590,7 +1581,7 @@ shasum -a 256 ~/Downloads/chia-blockchain_1.1.7_amd64.deb
 
 ### Can I use a fast SAS HDD for storing the blockchain's database?
 
-A very high-end HDD will not be fast enough, so we recommend a $30 SSD, as stated above. It can be an external SSD, connected via USB, but a dedicated internal connection is preferred. The database is always growing, but 512 GB should be sufficient until at least 1H 2027.
+A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as stated above. It can be an external SSD, connected via USB. The database is always growing, but 256 GB should be sufficient until at least 1H 2024.
 
 ### Can I run this on a Raspberry Pi 3 or 4?
 
@@ -1627,14 +1618,14 @@ values={[
 
 If installed just for your user:
 
-```powershell
+````powershell
 Set-Alias -Name chia "C:\Users\
 
 If installed just for your user:
 
 ```powershell
 Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe"
-```
+````
 
 If installed for all users:
 

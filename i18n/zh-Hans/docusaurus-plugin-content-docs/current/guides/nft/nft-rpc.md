@@ -276,7 +276,7 @@ Here is a description of the parameters used in the command:
 | "license_uris"       | A list of URIs containing the license.                                                                                                                              |
 | "license_hash"       | The hash of the license.                                                                                                                                            |
 | "royalty_address"    | The wallet or smart coin address of the creator.                                                                                                                    |
-| "royalty_percentage" | The royalty percentage expressed as hundredths of a percent.                                                                                                        |
+| "royalty_percentage" | The royalty percentage expressed as tens of thousandths of a percent.                                                                                               |
 | "target_address"     | The address of the owner.                                                                                                                                           |
 | "edition_number"     | If this NFT has multiple **editions** (multiple identical copies of an NFT), then this parameter indicates the edition number of this NFT.                          |
 | "edition_total"      | If this NFT has multiple **editions**, then this parameter indicates the total number of editions of this NFT. This parameter should be used with `edition_number`. |
