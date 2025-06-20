@@ -15,13 +15,13 @@ This document will use Linux/MacOS RPC syntax. When running rpc commands on Wind
 For example, here is a typical RPC command on Linux and MacOS:
 
 ```powershell
-chia rpc wallet create_new_wallet '{"wallet_type": "nft_wallet"}'
+chia rpc wallet vc_get '{"vc_id": "13ba084e78475327e41c60df5a108965d7a283f065b5506e266ffb3563937b6c"}'
 ```
 
 To run the same command on Windows, you need to escape the quotes, so it looks like this (the braces have been removed to support the formatting for this page. You still need to use them in your actual commands.):
 
 ```powershell
-chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
+chia rpc wallet vc_get '{\"vc_id\": \"13ba084e78475327e41c60df5a108965d7a283f065b5506e266ffb3563937b6c\"}'
 ```
 
 </details>
@@ -37,14 +37,14 @@ Usage: chia rpc wallet [OPTIONS] vc_add_proofs [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | Type       | Required | Description                                           |
-|:--------- |:---------- |:-------- |:----------------------------------------------------- |
+| :-------- | :--------- | :------- | :---------------------------------------------------- |
 | proofs    | DICTIONARY | True     | A dictionary of key/value pairs to be added as proofs |
 
 <details>
@@ -77,14 +77,14 @@ Usage: chia rpc wallet [OPTIONS] vc_get [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                |
-|:--------- |:------ |:-------- |:------------------------------------------ |
+| :-------- | :----- | :------- | :----------------------------------------- |
 | vc_id     | STRING | True     | The launcher ID of a Verifiable Credential |
 
 This RPC returns the `vc_record` representing the specified Verifiable Credential
@@ -142,14 +142,14 @@ Usage: chia rpc wallet [OPTIONS] vc_get_list [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | Type    | Required | Description                                           |
-|:--------- |:------- |:-------- |:----------------------------------------------------- |
+| :-------- | :------ | :------- | :---------------------------------------------------- |
 | start     | INTEGER | False    | The index to start the list at [default: 0]           |
 | count     | INTEGER | False    | The maximum number of results to return [default: 50] |
 
@@ -214,14 +214,14 @@ Usage: chia rpc wallet [OPTIONS] vc_get_proofs_for_root [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                                              |
-|:--------- |:------ |:-------- |:------------------------------------------------------------------------ |
+| :-------- | :----- | :------- | :----------------------------------------------------------------------- |
 | root      | STRING | True     | The tree hash of a set of proofs that have been stored in the dictionary |
 
 This RPC returns a dictionary of root hashes mapped to dictionaries of key value pairs of 'proofs'.
@@ -258,14 +258,14 @@ Usage: chia rpc wallet [OPTIONS] vc_mint [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
 | Parameter      | Type   | Required | Description                                                                          |
-|:-------------- |:------ |:-------- |:------------------------------------------------------------------------------------ |
+| :------------- | :----- | :------- | :----------------------------------------------------------------------------------- |
 | did_id         | STRING | True     | The ID of the DID that will be minting the VC                                        |
 | target_address | STRING | False    | The address where the VC will be sent upon minting [Default: send to minting wallet] |
 | fee            | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
@@ -431,20 +431,20 @@ Usage: chia rpc wallet [OPTIONS] vc_spend [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter                | Type   | Required | Description                                                                                                         |
-|:------------------------ |:------ |:-------- |:------------------------------------------------------------------------------------------------------------------- |
-| vc_id                    | STRING | True     | The launcher ID of the Verifiable Credential to spend                                                               |
-| new_puzhash              | None   | False    | The puzzle hash where the VC will be sent (can be derived from an XCH address)                                      |
+| Parameter              | Type   | Required | Description                                                                                                         |
+| :--------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------ |
+| vc_id                  | STRING | True     | The launcher ID of the Verifiable Credential to spend                                                               |
+| new_puzhash            | None   | False    | The puzzle hash where the VC will be sent (can be derived from an XCH address)                                      |
 | new_proof_hash         | None   | False    | Can be used to update the vc's proofs -- the new root/proof hash                                                    |
 | provider_inner_puzhash | STRING | False    | Can be used to update the vc's proofs -- the proof provider's inner puzzle hash                                     |
-| reuse_puzhash            | None   | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
-| fee                      | None   | False    | An optional blockchain fee, in mojos                                                                                |
+| reuse_puzhash          | None   | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
+| fee                    | None   | False    | An optional blockchain fee, in mojos                                                                                |
 
 <details>
 <summary>Example</summary>
@@ -649,17 +649,17 @@ Usage: chia rpc wallet [OPTIONS] vc_revoke [REQUEST]
 Options:
 
 | Short Command | Long Command | Type | Required | Description                                                         |
-|:------------- |:------------ |:---- |:-------- |:------------------------------------------------------------------- |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
 | -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
 | -h            | --help       | None | False    | Show a help message and exit                                        |
 
 Request Parameters:
 
-| Parameter      | Type    | Required | Description                                                                                                         |
-|:-------------- |:------- |:-------- |:------------------------------------------------------------------------------------------------------------------- |
-| vc_parent_id | STRING  | True     | The parent ID of the VC coin                                                                                        |
-| reuse_puzhash  | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
-| fee            | INTEGER | False    | An optional blockchain fee, in mojos                                                                                |
+| Parameter     | Type    | Required | Description                                                                                                         |
+| :------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------ |
+| vc_parent_id  | STRING  | True     | The parent ID of the VC coin                                                                                        |
+| reuse_puzhash | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
+| fee           | INTEGER | False    | An optional blockchain fee, in mojos                                                                                |
 
 <details>
 <summary>Example</summary>
