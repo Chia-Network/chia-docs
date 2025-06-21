@@ -10,6 +10,14 @@
   width: 50px;
 }
 
+.featureSvg {
+    fill: #42506C;
+}
+
+html[data-theme='dark'] .featureSvg {
+    fill: #E5FE75;
+}
+
 .button {
   font-size: 14px;
   font-weight: 700;
@@ -19,7 +27,7 @@
   border-radius: 4px;
   letter-spacing: 0.03em;
   color: #fff;
-  background-color: #53c371;
+  background-color: #42506C;
   box-sizing: border-box;
   height: 32px;
   line-height: 32px;
@@ -64,12 +72,12 @@ form {
 }
 
 .emailInput:focus {
-  border-color: #53c371;
+  border-color: #42506C;
   outline: none;
 }
 
 h3 {
-  color: #53c371;
+  color: #42506C;
 }
 
 label {
@@ -77,10 +85,6 @@ label {
   font-size: 16px;
   padding-bottom: 10px;
   font-weight: bold;
-}
-
-#mc_embed_signup.h3 {
-  color: #5ece71;
 }
 
 .mceResponses {
@@ -108,7 +112,7 @@ div.response {
 }
 
 #mce-success-response {
-  color: #5ece71;
+  color: #42506C;
   display: none;
 }
 
