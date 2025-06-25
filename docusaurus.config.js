@@ -50,7 +50,7 @@ const katex = require('rehype-katex');
           items: [
             {
               type: 'doc',
-              docId: 'docs-home',
+              docId: 'chia-blockchain/introduction',
               position: 'left',
               label: 'Docs',
             },

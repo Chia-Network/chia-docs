@@ -1,6 +1,6 @@
 ---
 title: Peer Protocol
-slug: /peer-protocol
+slug: /chia-blockchain/protocol/peer-protocol
 ---
 
 [Peer protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/full_node_protocol.py)
@@ -46,7 +46,7 @@ class RequestTransaction(Streamable):
 
 ## respond_transaction
 
-Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see the [Spend Bundles page](/spend-bundles).
+Response for a `request_transaction` message. Sends a spend bundle to a peer. To see the contents of a `SpendBundle`, see the [Spend Bundles page](/chia-blockchain/coin-set-model/spend-bundles).
 
 ```python
 class RespondTransaction(Streamable):

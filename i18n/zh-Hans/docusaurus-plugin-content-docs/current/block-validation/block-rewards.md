@@ -1,6 +1,6 @@
 ---
 title: Block Rewards
-slug: /block-rewards
+slug: /chia-blockchain/consensus/block-validation/block-rewards
 ---
 
 In Chia, the issuance schedule, also referred to as the block reward schedule, determines how many XCH get created with every block that gets farmed on the network. 1 XCH, or 1 Chia, is equivalent to 1,000,000,000,000 or 1x10^12 or 1 trillion mojos. All consensus code uses mojos; XCH is used as a conveniently larger unit.
@@ -32,7 +32,7 @@ In most cryptocurrencies, the creator of a block pays themselves based on the _c
 
 Fees are also paid at the same time. Let's say a farmer creates a transaction block with 4.9 XCH of outputs, but 5 XCH of inputs (excluding reward claims). In this case, they will receive the remaining 0.1 XCH as a fee, plus their block reward, for a total of 2.1 XCH, in the next transaction block.
 
-Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in the [Mempool page](/mempool).
+Therefore, Chia coins are never destroyed. In a given block, any portion of a spent coin that is not added into a new coin will be sent to the farmer as a fee. This topic is covered in more detail in the [Mempool page](/chia-blockchain/architecture/mempool).
 
 ## Farmer vs Pool reward
 

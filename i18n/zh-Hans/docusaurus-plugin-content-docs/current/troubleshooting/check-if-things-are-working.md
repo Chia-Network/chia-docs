@@ -1,9 +1,9 @@
 ---
 title: Check if Things are Working
-slug: /troubleshooting/check-if-things-are-working
+slug: /reference-client/troubleshooting/check-if-things-are-working
 ---
 
-This doc assumes you know how to use the CLI. Using the CLI is the best way to troubleshoot (and to do everything Chia too). The [Installation page](/installation) and the [CLI Commands Reference page](/cli) have useful info to get you familiar with the CLI.
+This doc assumes you know how to use the CLI. Using the CLI is the best way to troubleshoot (and to do everything Chia too). The [Installation page](/reference-client/install-and-setup/installation) and the [CLI Commands Reference page](/reference-client/cli-reference/cli) have useful info to get you familiar with the CLI.
 
 ## Where to Find Things
 
@@ -82,7 +82,7 @@ Here are some commands you can use to examine `debug.log` for problems.
 
 ## Plotting
 
-You can find the documentation for the `check` command on the [CLI Commands Reference page](/cli#plots-check) page
+You can find the documentation for the `check` command on the [CLI Commands Reference page](/reference-client/cli-reference/cli#plots-check) page
 
 - To check all your plots, run `chia plots check`. This will check all directories you have listed in your `config.yaml` to contain plots.
 - Use `chia plots check -h` to see the options for this command.

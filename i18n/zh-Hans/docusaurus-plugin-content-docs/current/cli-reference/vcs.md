@@ -1,7 +1,7 @@
 ---
 sidebar_label: VCs
 title: Verifiable Credentials
-slug: /vc-cli
+slug: /reference-client/cli-reference/vc-cli
 ---
 
 import Tabs from '@theme/Tabs';

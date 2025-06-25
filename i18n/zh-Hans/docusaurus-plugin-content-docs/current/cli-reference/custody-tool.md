@@ -1,5 +1,5 @@
 ---
-slug: /custody-tool
+slug: /reference-client/cli-reference/custody-tool-cli
 title: Custody Tool
 ---
 

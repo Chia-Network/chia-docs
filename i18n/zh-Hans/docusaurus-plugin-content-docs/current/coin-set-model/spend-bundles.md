@@ -1,6 +1,6 @@
 ---
 title: Spend Bundles
-slug: /spend-bundles
+slug: /chia-blockchain/coin-set-model/spend-bundles
 ---
 
 A spend bundle is a set of spends of multiple coins, which is usually submitted to full nodes for inclusion into the blockchain. In Bitcoin, the equivalent data structure would be the transaction.
@@ -38,7 +38,7 @@ With BLS signatures, farmers combine all three signatures `s1, s2, and s3` into 
 
 This allows the farmer to combine all three spend bundles into one spend bundle, with only one signature, which means less data is transmitted and stored on chain and disk.
 
-Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in the [BLS Keys page](/bls-keys). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
+Another benefit of these aggregate signatures is that when spending multiple coins, users will only transmit one signature, instead of one or more per spend. More information can be found in the [BLS Keys page](/chia-blockchain/keys/keys-and-signatures). You can also read the [code for BLS signatures](https://github.com/Chia-Network/bls-signatures).
 
 ## Coins vs Spend Bundles
 

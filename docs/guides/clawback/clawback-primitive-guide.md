@@ -12,7 +12,7 @@ This document will show you how to use Chia's standalone clawback primitive. Wal
 
 For additional technical resources, see the following:
 
-- [Clawback CLI Reference](/clawback-cli)
+- [Clawback CLI Reference](/reference-client/cli-reference/clawback-cli)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
 - [Clawback user guide](/guides/clawback-user-guide)
 
@@ -167,7 +167,7 @@ Chia Wallet:
    -Wallet ID:             1
 ```
 
-To create the clawback coin from the Sender's wallet, run the [clawback create](/clawback-cli#create) command. The `-t` (Recipient's address) and `-a` (amount in XCH/TXCH) flags are required. By default, the clawback coin will be locked for two weeks. For this demo, we will override the default by using the `-l` flag to specify a timelock period of 600 seconds. We will also use the `-m` flag to include a fee of 0.000275 TXCH.
+To create the clawback coin from the Sender's wallet, run the [clawback create](/reference-client/cli-reference/clawback-cli#create) command. The `-t` (Recipient's address) and `-a` (amount in XCH/TXCH) flags are required. By default, the clawback coin will be locked for two weeks. For this demo, we will override the default by using the `-l` flag to specify a timelock period of 600 seconds. We will also use the `-m` flag to include a fee of 0.000275 TXCH.
 
 :::info
 
@@ -190,7 +190,7 @@ Created Coin with ID: 29056b320b380c0fc4834578ca30318ae9c1d1cddbe39a91197870c4dc
 Coin { parent_coin_info: dcedd4d573679302ee3f2a54fb51c437b8156e8cd5b1c3c08d25cadf83292c3d, puzzle_hash: 13cb7ce11775a5b42754fb382eb94c846e4be677e6d55bf665b23c075a54e930, amount: 100000000000 }
 ```
 
-As a result of running this command, a new clawback coin has been created on the blockchain, the details of which are shown above. To view this coin, along with other clawback coins created by this wallet, run the [clawback show](/clawback-cli#show) command:
+As a result of running this command, a new clawback coin has been created on the blockchain, the details of which are shown above. To view this coin, along with other clawback coins created by this wallet, run the [clawback show](/reference-client/cli-reference/clawback-cli#show) command:
 
 ```bash
 clawback show
@@ -231,7 +231,7 @@ Time left: 518 seconds
 
 The same public/private key pair that created this coin must be used to claw it back.
 
-The Sender will use the [clawback claw](/clawback-cli#claw) command, passing in the ID of the coin to claw back:
+The Sender will use the [clawback claw](/reference-client/cli-reference/clawback-cli#claw) command, passing in the ID of the coin to claw back:
 
 ```bash
 clawback claw -c 29056b320b380c0fc4834578ca30318ae9c1d1cddbe39a91197870c4dc474532 -m 0.000275
@@ -370,7 +370,7 @@ Timelock: 60 seconds
 Time left: 0 seconds
 ```
 
-The value of `Time left:` is `0 seconds`. In most cases (see the info box below for more info), the Recipient can now run the [clawback claim](/clawback-cli#claim) command to claim the coin:
+The value of `Time left:` is `0 seconds`. In most cases (see the info box below for more info), the Recipient can now run the [clawback claim](/reference-client/cli-reference/clawback-cli#claim) command to claim the coin:
 
 ```bash
 clawback claim -c ef4b69e65e99261d6e30c8d2d331a8ed84995f3452b95aaa944f76a0f9af74c5

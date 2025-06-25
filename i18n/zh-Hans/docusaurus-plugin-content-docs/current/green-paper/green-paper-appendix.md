@@ -1,12 +1,12 @@
 ---
 title: Appendix - Chia Green Paper
 sidebar_label: A - Appendix
-slug: /green-paper-appendix
+slug: /chia-blockchain/green-paper/green-paper-appendix
 ---
 
 # A - Building Blocks: PoSpace, VDFs and Signatures
 
-In this section we sketch the main building blocks used in the $\textsf{Chia}$ blockchain: unique digital signatures, proofs of space [<a href="/green-paper-references/#DFKP15">DFKP15</a>; <a href="/green-paper-references/#AAC17">AAC+17</a>] and verifiable delay functions [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Wes20">Wes20</a>]. The definitions are not fully general, but instead tailored to the particular constructions of PoSpace from [<a href="/green-paper-references/#AAC17">AAC+17</a>] and the VDFs [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] based on sequential squaring.
+In this section we sketch the main building blocks used in the $\textsf{Chia}$ blockchain: unique digital signatures, proofs of space [<a href="/chia-blockchain/green-paper/green-paper-references/#DFKP15">DFKP15</a>; <a href="/chia-blockchain/green-paper/green-paper-references/#AAC17">AAC+17</a>] and verifiable delay functions [<a href="/chia-blockchain/green-paper/green-paper-references/#Pie19b">Pie19b</a>; <a href="/chia-blockchain/green-paper/green-paper-references/#BBBF18">BBBF18</a>; <a href="/chia-blockchain/green-paper/green-paper-references/#Wes20">Wes20</a>]. The definitions are not fully general, but instead tailored to the particular constructions of PoSpace from [<a href="/chia-blockchain/green-paper/green-paper-references/#AAC17">AAC+17</a>] and the VDFs [<a href="/chia-blockchain/green-paper/green-paper-references/#Pie19b">Pie19b</a>; <a href="/chia-blockchain/green-paper/green-paper-references/#BBBF18">BBBF18</a>; <a href="/chia-blockchain/green-paper/green-paper-references/#Wes20">Wes20</a>] based on sequential squaring.
 
 ## A.1 (Unique) Digital Signatures
 
@@ -77,11 +77,11 @@ $$
 
 For weakly unique PoSpace we assume that whenever there is more than one proof for a given challenge which passes verification, ${\sf PoSpace.prove}(S,c)$ outputs all of them.
 
-The [<a href="/green-paper-references/#AAC17">AAC+17</a>] PoSpace used in $\textsf{Chia}$ is only _weakly unique_. To be able to focus on the main challenges, we will nonetheless assume a _unique_ PoSpace when analyzing $\textsf{Chia}$ but our analysis can be extended without major difficulties to handle weakly unique PoSpace, things just get a bit more messy.
+The [<a href="/chia-blockchain/green-paper/green-paper-references/#AAC17">AAC+17</a>] PoSpace used in $\textsf{Chia}$ is only _weakly unique_. To be able to focus on the main challenges, we will nonetheless assume a _unique_ PoSpace when analyzing $\textsf{Chia}$ but our analysis can be extended without major difficulties to handle weakly unique PoSpace, things just get a bit more messy.
 
 ### A.2.4 The [AAC+17] PoSpace
 
-We give a very high level outline of the PoSpace from [<a href="/green-paper-references/#AAC17">AAC+17</a>]. The space parameter is given implicitly by a value $\ell\in\mathbb{Z}^+$, the actual space required is approximately $N\approx \ell\cdot 2\cdot 2^{\ell}$ bits (e.g. for $\ell=40$ that's $10$ terabytes). Let $L:=\{0,1\}^\ell$ denote the set of $\ell$ bit strings. Below we denote with $X_{|\ell}$ the $\ell$ bit prefix of a string $X$.
+We give a very high level outline of the PoSpace from [<a href="/chia-blockchain/green-paper/green-paper-references/#AAC17">AAC+17</a>]. The space parameter is given implicitly by a value $\ell\in\mathbb{Z}^+$, the actual space required is approximately $N\approx \ell\cdot 2\cdot 2^{\ell}$ bits (e.g. for $\ell=40$ that's $10$ terabytes). Let $L:=\{0,1\}^\ell$ denote the set of $\ell$ bit strings. Below we denote with $X_{|\ell}$ the $\ell$ bit prefix of a string $X$.
 
 The identity $id:=pk$ together with a hash function ${\sf H}$ defines two functions $f: L\rightarrow L, g:L\times L\rightarrow L$ as
 
@@ -138,7 +138,7 @@ The functions defining a VDF are
 
 ##### $\textsf{VDF.verify}$
 
-> on input $\tau$ outputs ${\sf accept}$ or ${\sf reject}$. <br /><br />$${\sf VDF.verify}(\tau)\in \{{\sf reject},{\sf accept}\}$$ <br /><br />Verifying must be possible in $\ll t$ steps, for existing VDFs verification just takes $\log(t)$ [<a href="/green-paper-references/#Pie19b">Pie19b</a>] or even constant [<a href="/green-paper-references/#Wes20">Wes20</a>] time.
+> on input $\tau$ outputs ${\sf accept}$ or ${\sf reject}$. <br /><br />$${\sf VDF.verify}(\tau)\in \{{\sf reject},{\sf accept}\}$$ <br /><br />Verifying must be possible in $\ll t$ steps, for existing VDFs verification just takes $\log(t)$ [<a href="/chia-blockchain/green-paper/green-paper-references/#Pie19b">Pie19b</a>] or even constant [<a href="/chia-blockchain/green-paper/green-paper-references/#Wes20">Wes20</a>] time.
 
 We have perfect completeness
 
@@ -155,7 +155,7 @@ $$
 {\sf VDF.verify}(\tau')={\sf accept}\quad\textrm{ and }\quad\tau.y\neq \tau'.y\ .
 $$
 
-Note that we only need $\tau.y$ (but not $\tau.\pi$) to be unique, i.e., the proof $\tau.\pi$ showing that $\tau.y$ is the correct value can be malleable. This seems sufficient for all applications of VDFs, but let us mention that in the [<a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] VDFs discussed below also $\tau.\pi$ is unique.
+Note that we only need $\tau.y$ (but not $\tau.\pi$) to be unique, i.e., the proof $\tau.\pi$ showing that $\tau.y$ is the correct value can be malleable. This seems sufficient for all applications of VDFs, but let us mention that in the [<a href="/chia-blockchain/green-paper/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>] VDFs discussed below also $\tau.\pi$ is unique.
 
 **sequentiality:**
 Informally, sequentiality states that for any $t$, an adversary ${\cal A}$ who makes less than $t$ sequential steps will not find an accepting proof on a random challenge. I.e., for some tiny $\epsilon$

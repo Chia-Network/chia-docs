@@ -1,6 +1,6 @@
 ---
 title: FAQ
-slug: /faq
+slug: /chia-blockchain/resources/faq
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,21 +14,21 @@ import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
 
 ### What are harvesters, farmers, full nodes, and timelords?
 
-You can read about each of them and the architecture in the [Architecture Overview page](/architecture-overview). The [Consensus Intro page](/consensus-intro) is the most current documentation, however.
+You can read about each of them and the architecture in the [Architecture Overview page](/chia-blockchain/architecture/architecture-overview). The [Consensus Intro page](/chia-blockchain/consensus/consensus-intro) is the most current documentation, however.
 
 ### What is a proof of space?
 
-A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](/farming-on-many-machines) to manage the whole "farm".
+A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](/reference-client/farming/farming-many-machines) to manage the whole "farm".
 
 Farming uses substantially less electricity than Proof of Work for the same unit of security. You can learn more at [chiapower.org](https://chiapower.org).
 
 ### What is a VDF/proof of time?
 
-A VDF, also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](/timelord-algorithm) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
+A VDF, also known as a proof of time, is a sequential operation that takes a prescribed amount of time to compute (and which cannot be accelerated by parallelism) and which produces an accompanying proof whose result may be quickly verified. This must be done in a group, for which Chia uses ideal class groups. You can learn about them in our [class group document](https://github.com/Chia-Network/oldvdf-competition/blob/master/classgroups.pdf). [Timelords](/chia-blockchain/consensus/timelords) usually run three VDFs at a time for the three internal blockchains of the Chia blockchain. They run as `vdf_client` processes.
 
 ### What is a genesis challenge?
 
-A genesis challenge is the first VDF challenge on a network that uses the Proof of Space and Time consensus. For more info about the genesis challenge for Chia's mainnet, see the [consensus section](/consensus-challenges#genesis-challenge) of this website. For more info about the genesis challenge for Chia's mainnet, see the [consensus section](/consensus-challenges#genesis-challenge) of this website.
+A genesis challenge is the first VDF challenge on a network that uses the Proof of Space and Time consensus. For more info about the genesis challenge for Chia's mainnet, see the [consensus section](/chia-blockchain/consensus/chains/challenges#genesis-challenge) of this website. For more info about the genesis challenge for Chia's mainnet, see the [consensus section](/chia-blockchain/consensus/chains/challenges#genesis-challenge) of this website.
 
 ### What is XCH, TXCH, and mojos?
 
@@ -79,7 +79,7 @@ We believe that more eyes on our code will only make it better. We believe that 
 
 ### Where has Chia advanced the state of the art in applied cryptography?
 
-Chia has created three new core inventions and advanced the interest in, and adoption of, a fourth. Firstly, Chia created the first intended for production [BLS Signatures library](https://github.com/Chia-Network/bls-signatures). Second, Chia is the first production use of Verifiable Delay Functions, or VDFs. Third, Chia created [Proof of Space and Time for Nakamoto consensus](https://docs.chia.net/green-paper-abstract).
+Chia has created three new core inventions and advanced the interest in, and adoption of, a fourth. Firstly, Chia created the first intended for production [BLS Signatures library](https://github.com/Chia-Network/bls-signatures). Second, Chia is the first production use of Verifiable Delay Functions, or VDFs. Third, Chia created [Proof of Space and Time for Nakamoto consensus](https://docs.chia.net/chia-blockchain/green-paper/green-paper-abstract).
 
 Finally, Chia is the first production use of [class groups](https://github.com/Chia-Network/vdf-competition/blob/master/classgroups.pdf) of unknown order which has spawned significant new research into their applicability to cryptography.
 
@@ -95,7 +95,7 @@ When Bitcoin was developed, it was not foreseen that specialized hardware could 
 
 ### What is Chia's inflation?
 
-After the Chia pre-farm, Chia offers farming rewards of 64 chia every 10 minutes. Over the first 12 years the farming rewards will be halved at the end of each 3rd year. From year 13 to infinity, the rewards will remain constant at 4 chia every 10 minutes leading to ever decreasing inflation rates. Chia’s inflation falls through the 0.50% rate 22 years after mainnet launch. More information can be found in our [halving schedule](/block-rewards/#halvings) Over the first 12 years the farming rewards will be halved at the end of each 3rd year. From year 13 to infinity, the rewards will remain constant at 4 chia every 10 minutes leading to ever decreasing inflation rates. Chia’s inflation falls through the 0.50% rate 22 years after mainnet launch. More information can be found in our [halving schedule](/block-rewards/#halvings)
+After the Chia pre-farm, Chia offers farming rewards of 64 chia every 10 minutes. Over the first 12 years the farming rewards will be halved at the end of each 3rd year. From year 13 to infinity, the rewards will remain constant at 4 chia every 10 minutes leading to ever decreasing inflation rates. Chia’s inflation falls through the 0.50% rate 22 years after mainnet launch. More information can be found in our [halving schedule](/chia-blockchain/consensus/block-validation/block-rewards/#halvings) Over the first 12 years the farming rewards will be halved at the end of each 3rd year. From year 13 to infinity, the rewards will remain constant at 4 chia every 10 minutes leading to ever decreasing inflation rates. Chia’s inflation falls through the 0.50% rate 22 years after mainnet launch. More information can be found in our [halving schedule](/chia-blockchain/consensus/block-validation/block-rewards/#halvings)
 
 ### Where is the Chia source code?
 
@@ -115,7 +115,7 @@ The Chia Blockchain comes together from a few different repositories:
 
 ### When did Chia launch mainnet?
 
-Chia launched mainnet on March 19, 2021. Chia launched mainnet on March 19, 2021. You can follow along with code updates across our many repositories outlined [here](/faq#where-is-the-chia-source-code)
+Chia launched mainnet on March 19, 2021. Chia launched mainnet on March 19, 2021. You can follow along with code updates across our many repositories outlined [here](/chia-blockchain/resources/faq#where-is-the-chia-source-code)
 
 ### What is the Chia Strategic Reserve?
 
@@ -125,11 +125,11 @@ Chia Network Inc created 21 million chia at mainnet launch. This is known as the
 
 ### Did Chia have an ICO?
 
-No. No. Chia did not have and is not planning an ICO. Instead, our goal is to take the company’s equity public on an American stock exchange. This way, shareholders can share risk and return with management with transparency and disclosure while we use well understood corporate controls to make binding statements about how Chia Network intends to use the [Strategic Reserve](/faq#what-is-the-chia-strategic-reserve). The chia coin (XCH) is meant to be a useful payment instrument and not an investment opportunity. Chia intends to complete a fully compliant SEC registered equity IPO and will come to market as market-timing is amenable. Instead, our goal is to take the company’s equity public on an American stock exchange. This way, shareholders can share risk and return with management with transparency and disclosure while we use well understood corporate controls to make binding statements about how Chia Network intends to use the [Strategic Reserve](/faq#what-is-the-chia-strategic-reserve). The chia coin (XCH) is meant to be a useful payment instrument and not an investment opportunity. Chia intends to complete a fully compliant SEC registered equity IPO and will come to market as market-timing is amenable.
+No. No. Chia did not have and is not planning an ICO. Instead, our goal is to take the company’s equity public on an American stock exchange. This way, shareholders can share risk and return with management with transparency and disclosure while we use well understood corporate controls to make binding statements about how Chia Network intends to use the [Strategic Reserve](/chia-blockchain/resources/faq#what-is-the-chia-strategic-reserve). The chia coin (XCH) is meant to be a useful payment instrument and not an investment opportunity. Chia intends to complete a fully compliant SEC registered equity IPO and will come to market as market-timing is amenable. Instead, our goal is to take the company’s equity public on an American stock exchange. This way, shareholders can share risk and return with management with transparency and disclosure while we use well understood corporate controls to make binding statements about how Chia Network intends to use the [Strategic Reserve](/chia-blockchain/resources/faq#what-is-the-chia-strategic-reserve). The chia coin (XCH) is meant to be a useful payment instrument and not an investment opportunity. Chia intends to complete a fully compliant SEC registered equity IPO and will come to market as market-timing is amenable.
 
 ### Why do I want to farm Chia?
 
-You can farm Chia on the unused storage of your laptop, desktop, or corporate network and, in return, you have the chance to receive rewards in chia for helping secure the blockchain. Our software allows you to allocate a certain amount of unused disk space to create plots. Since the only resource intensive step is the initial plotting, once you download the Chia node software, your drives will be plotted in the background. Once plotting is complete, your computer will begin farming on your behalf and the software does all the work and tracks your rewards for you. Ongoing farming uses very little network bandwidth and almost no resources other than storage. By making the farming process available to anyone with unused disk space, we are moving towards our goal of a truly decentralized blockchain that will also serve as a cross subsidy to the storage and cloud industry. Visit our [Farming Basics](/farming-basics) doc to get started. Our software allows you to allocate a certain amount of unused disk space to create plots. Since the only resource intensive step is the initial plotting, once you download the Chia node software, your drives will be plotted in the background. Once plotting is complete, your computer will begin farming on your behalf and the software does all the work and tracks your rewards for you. Ongoing farming uses very little network bandwidth and almost no resources other than storage. By making the farming process available to anyone with unused disk space, we are moving towards our goal of a truly decentralized blockchain that will also serve as a cross subsidy to the storage and cloud industry. Visit our [Farming Basics](/farming-basics) doc to get started.
+You can farm Chia on the unused storage of your laptop, desktop, or corporate network and, in return, you have the chance to receive rewards in chia for helping secure the blockchain. Our software allows you to allocate a certain amount of unused disk space to create plots. Since the only resource intensive step is the initial plotting, once you download the Chia node software, your drives will be plotted in the background. Once plotting is complete, your computer will begin farming on your behalf and the software does all the work and tracks your rewards for you. Ongoing farming uses very little network bandwidth and almost no resources other than storage. By making the farming process available to anyone with unused disk space, we are moving towards our goal of a truly decentralized blockchain that will also serve as a cross subsidy to the storage and cloud industry. Visit our [Farming Basics](/reference-client/farming/farming-basics) doc to get started. Our software allows you to allocate a certain amount of unused disk space to create plots. Since the only resource intensive step is the initial plotting, once you download the Chia node software, your drives will be plotted in the background. Once plotting is complete, your computer will begin farming on your behalf and the software does all the work and tracks your rewards for you. Ongoing farming uses very little network bandwidth and almost no resources other than storage. By making the farming process available to anyone with unused disk space, we are moving towards our goal of a truly decentralized blockchain that will also serve as a cross subsidy to the storage and cloud industry. Visit our [Farming Basics](/reference-client/farming/farming-basics) doc to get started.
 
 ### What is the Chia Network Strategy?
 
@@ -139,15 +139,15 @@ Our [Business Whitepaper](https://www.chia.net/whitepaper/) is the definitive do
 
 ### Where can I learn more about the technical details of your consensus algorithm?
 
-Details can be found on the [Consensus](/consensus-intro) page of our docs site.
+Details can be found on the [Consensus](/chia-blockchain/consensus/consensus-intro) page of our docs site.
 
-Additionally, we maintain a list of academic papers and presentations about Chia on our [references page](/references#chias-technical-specs).
+Additionally, we maintain a list of academic papers and presentations about Chia on our [references page](/chia-blockchain/resources/references#chias-technical-specs).
 
 ### What is the difference between mining and farming?
 
 Mining requires expensive single use hardware that consumes exorbitant amounts of electricity. We are mitigating this problem through a fair, eco-friendly, and better blockchain that uses farming to leverage existing empty hard disk space distributed on nodes around the globe. Farming remains decentralized because anyone that has installed our software and has plots can win the next block. Mining requires expensive custom single use hardware and access to electricity at wholesale or better prices which only purpose built corporations can afford to mine. Farming is more decentralized because it relies on empty hard disk space and anyone with a mobile phone, laptop, or corporate network tends to have extra space not currently being used. Unlike mining, once you’re done farming your storage you can repurpose it to, for example, store your family photos.
 
-For more information we have this [blog article](https://www.chia.net/2023/01/18/mining-vs-farming/), or you can refer to our [Farming](/farming-basics) and [Plotting](/plotting-basics) docs.
+For more information we have this [blog article](https://www.chia.net/2023/01/18/mining-vs-farming/), or you can refer to our [Farming](/reference-client/farming/farming-basics) and [Plotting](/reference-client/plotting/plotting-basics) docs.
 
 ### Where can I learn more about Chialisp?
 
@@ -155,11 +155,11 @@ Documentation can be found at [Chialisp.com](https://chialisp.com/).
 
 ### Why is Chia better?
 
-Chia has a new innovative Nakamoto consensus algorithm, [Proof of Space and Time](https://docs.chia.net/green-paper-abstract), that removes the energy demands of Proof of Work from the system. Compared to other cryptocurrencies, Chia has significantly better security due to its more decentralized blockchain by Nakamoto Coefficient. Chia has a newly developed, innovative blockchain programming language called [Chialisp.com](https://chialisp.com/), which is powerful, easy to audit, and secure. Chialisp is a superior on-chain smart transaction development environment that will unlock the security, transparency, and ease of use that cryptocurrencies promise. Chia is also adopting more modern cryptographic tools to enable richer smart transaction capabilities. Chia is taking a new and superior approach to funding, building, and supporting a blockchain via an eventually public, for-profit, open source development company that holds a pre-farm. Chia will use its [Strategic Reserve](/faq#what-is-the-chia-strategic-reserve) to ease the volatility of the coin to mitigate bubbles and crashes and to drive adoption of chia.
+Chia has a new innovative Nakamoto consensus algorithm, [Proof of Space and Time](https://docs.chia.net/chia-blockchain/green-paper/green-paper-abstract), that removes the energy demands of Proof of Work from the system. Compared to other cryptocurrencies, Chia has significantly better security due to its more decentralized blockchain by Nakamoto Coefficient. Chia has a newly developed, innovative blockchain programming language called [Chialisp.com](https://chialisp.com/), which is powerful, easy to audit, and secure. Chialisp is a superior on-chain smart transaction development environment that will unlock the security, transparency, and ease of use that cryptocurrencies promise. Chia is also adopting more modern cryptographic tools to enable richer smart transaction capabilities. Chia is taking a new and superior approach to funding, building, and supporting a blockchain via an eventually public, for-profit, open source development company that holds a pre-farm. Chia will use its [Strategic Reserve](/chia-blockchain/resources/faq#what-is-the-chia-strategic-reserve) to ease the volatility of the coin to mitigate bubbles and crashes and to drive adoption of chia.
 
 ### What is Proof of Space and Time?
 
-Chia developed a new innovative Nakamoto consensus algorithm, [Proof of Space and Time](https://docs.chia.net/green-paper-abstract), that eliminates the energy demands of Proof of Work while maintaining and in some cases enhancing security.
+Chia developed a new innovative Nakamoto consensus algorithm, [Proof of Space and Time](https://docs.chia.net/chia-blockchain/green-paper/green-paper-abstract), that eliminates the energy demands of Proof of Work while maintaining and in some cases enhancing security.
 
 Proof of Space is a cryptographic technique where provers show that they allocate unused hard drive space for storage space. In order to be used as a consensus method, Proof of Space must be tied to Proof of Time. PoT ensures that block times have consistency in the time between them and increases the overall security of the blockchain. In order to be used as a consensus method, Proof of Space must be tied to Proof of Time. PoT ensures that block times have consistency in the time between them and increases the overall security of the blockchain.
 
@@ -173,11 +173,11 @@ Proof of space can be thought of as a way to prove that you are keeping some sto
 
 Proof of time requires a small period of time to pass between blocks. Proof of time is implemented by a Verifiable Delay Function that takes a certain amount of time to compute, but is very fast to verify. The key idea of a VDF is that they require sequential computation, and since having many parallel machines does not yield any benefit, electricity waste is minimized. There will likely be relatively few VDF servers (“Timelords”), as the fastest one will always finish first and it takes only one fast and fair Timelord on the network to complete a block and move the chain forward.
 
-More information can be found in the [Green Paper](https://docs.chia.net/green-paper-abstract).
+More information can be found in the [Green Paper](https://docs.chia.net/chia-blockchain/green-paper/green-paper-abstract).
 
 ### Where can I get answers to questions about running Chia?
 
-You should first read through the [Chia Introduction](https://docs.chia.net/introduction) and [docs FAQ](/faq), check out the wealth of information on our [docs site](https://docs.chia.net/) and join us on [discord](https://discord.gg/chia) in the #support or #general channels. We have also created a good summary of the basics of [creating plots](https://www.chia.net/2021/02/22/plotting-basics/) for Chia. We have also created a good summary of the basics of [creating plots](https://www.chia.net/2021/02/22/plotting-basics/) for Chia.
+You should first read through the [Chia Introduction](https://docs.chia.net/chia-blockchain/introduction) and [docs FAQ](/chia-blockchain/resources/faq), check out the wealth of information on our [docs site](https://docs.chia.net/) and join us on [discord](https://discord.gg/chia) in the #support or #general channels. We have also created a good summary of the basics of [creating plots](https://www.chia.net/2021/02/22/plotting-basics/) for Chia. We have also created a good summary of the basics of [creating plots](https://www.chia.net/2021/02/22/plotting-basics/) for Chia.
 
 ### What is Chia?
 
@@ -211,7 +211,7 @@ txch1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqm6ksh7qddh
 
 #### The Burn Address Explained
 
-[Chia addresses](https://docs.chia.net/docs/04coin-set-model/addresses) are puzzle hashes encoded into the "xch" prefix address format using the [bech32m encoding scheme](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki).
+[Chia addresses](https://docs.chia.net/chia-blockchain/coin-set-model/addresses) are puzzle hashes encoded into the "xch" prefix address format using the [bech32m encoding scheme](https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki).
 
 A traditional bech32m puzzle hash for a burn address is all zeros ending in "dead": `0x000000000000000000000000000000000000000000000000000000000000dead`
 
@@ -229,7 +229,7 @@ Thank you to [r/chia](https://www.reddit.com/r/chia/) member [juraj](https://www
 
 ### How does the transactions_generator work?
 
-Some important changes went into the `transactions_generator` code with the 2.1.0 hard fork. These changes are detailed in the [Block Format](/block-format#transactions_generator-update) page.
+Some important changes went into the `transactions_generator` code with the 2.1.0 hard fork. These changes are detailed in the [Block Format](/chia-blockchain/consensus/block-validation/block-format#transactions_generator-update) page.
 
 ## Plotting
 
@@ -245,13 +245,13 @@ Prior to Chia 2.0, the estimated space constant factor of 0.762 slightly incorre
 
 ### How big are plot sizes (k)?
 
-You can see some example plot sizes, times to plot, and working space needed based on various k's in these [k size tables](/k-sizes). Current working space needed for the default plotting options of a k=32 is 239 GiB and the final file is approximately 101.4 GiB. There is small natural variation in temp space needed and the final file size of each plot. Note that 239 GiB is 256.6 GB.
+You can see some example plot sizes, times to plot, and working space needed based on various k's in these [k size tables](/chia-blockchain/resources/k-sizes). Current working space needed for the default plotting options of a k=32 is 239 GiB and the final file is approximately 101.4 GiB. There is small natural variation in temp space needed and the final file size of each plot. Note that 239 GiB is 256.6 GB.
 
 ### What k-size should you plot?
 
 The minimum plot size is k=32. There is only one reason why you might want to plot larger than k=32: to maximize the total utilization of a given drive or space. A couple of k=33 plots with a majority of k=32 plots can reduce the amount of leftover unused space on a drive.
 
-The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](/consensus-intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
+The reason k=32 was chosen as the minimum plot size was to prevent a short-range replotting attack, which is detailed in our [consensus doc](/chia-blockchain/consensus/consensus-intro). The gist of the attack is that if someone can create a plot in less than ~30 seconds, they could create a new plot that passes the filter for each signage point, and then delete the new plot immediately afterward. This would effectively emulate storing 512 plots, thus turning Chia into PoW.
 
 - Note that this attack does not create a winning plot; it only creates a plot that passes the filter.
 
@@ -261,15 +261,15 @@ k=32 is expected to be the minimum plot size until at least 2026. If and when th
 
 ### What is recommended for plotting?
 
-We think you will want to use used Data Center grade NVMe SSD drives to create your plots. Regular consumer NVMe SSD generally has too low of a [TBW](https://www.enterprisestorageforum.com/storage-hardware/ssd-lifespan.html) rating. One of our community members keeps this handy [SSD Endurance page](/ssd-endurance) up to date so you can compare various SSDs. You should never use your root/OS SSD to plot as it can lead to drive failure and loss of booting. You can plot directly to hard drives and get good results, especially if you plot in parallel to different drives. You can use non-root SSD over Thunderbolt 3 and migrate your plots off to whatever storage you want to keep them on long term. You could even load them on a Raspberry Pi 4 with outdated USB 2.0 drives attached and they will harvest and farm just fine. PC World offers this great [background on current storage technologies](https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html) but this graph gives you a quick view of why we recommend NVMe SSD: ![NVMe SSD vs SATA](/img/plotting-nvme-ssd.png "NVMe SSD is 5.5 times faster than SATA SSD")
+We think you will want to use used Data Center grade NVMe SSD drives to create your plots. Regular consumer NVMe SSD generally has too low of a [TBW](https://www.enterprisestorageforum.com/storage-hardware/ssd-lifespan.html) rating. One of our community members keeps this handy [SSD Endurance page](/reference-client/plotting/ssd-endurance) up to date so you can compare various SSDs. You should never use your root/OS SSD to plot as it can lead to drive failure and loss of booting. You can plot directly to hard drives and get good results, especially if you plot in parallel to different drives. You can use non-root SSD over Thunderbolt 3 and migrate your plots off to whatever storage you want to keep them on long term. You could even load them on a Raspberry Pi 4 with outdated USB 2.0 drives attached and they will harvest and farm just fine. PC World offers this great [background on current storage technologies](https://www.pcworld.com/article/2899351/everything-you-need-to-know-about-nvme.html) but this graph gives you a quick view of why we recommend NVMe SSD: ![NVMe SSD vs SATA](/img/plotting-nvme-ssd.png "NVMe SSD is 5.5 times faster than SATA SSD")
 
 ### Can I plot more than one plot at a time?
 
-Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. You can read the [Installation page](/installation) to learn more. You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
+Yes, using either the GUI or CLI. Over the short run you have a bit more control of plotting using the CLI. You can read the [Installation page](/reference-client/install-and-setup/installation) to learn more. You may have better results if you stagger the start time of parallel plotting processes depending on your hardware setup.
 
 ### Can I make plots on one machine and move it to another machine?
 
-是的。 The [Moving Plots page](/moving-plots) gives you the details. You may also want to consider running a [remote harvester](/farming-on-many-machines). You can also use the same private key set to plot on more than one machine at a time but be aware of the [uPnP issues](/faq#why-should-i-not-run-more-than-one-node-on-a-home-network-and-whats-this-about-upnp).
+是的。 The [Moving Plots page](/reference-client/plotting/moving-plots) gives you the details. You may also want to consider running a [remote harvester](/reference-client/farming/farming-many-machines). You can also use the same private key set to plot on more than one machine at a time but be aware of the [uPnP issues](/chia-blockchain/resources/faq#why-should-i-not-run-more-than-one-node-on-a-home-network-and-whats-this-about-upnp).
 
 ### What is the secondary temp directory `-2`, and how should I set it?
 
@@ -319,11 +319,11 @@ Another option is port forwarding, where you tell your router/NAT to forward req
 
 ### Why should I not run more than one node on a home network and what's this about UPnP?
 
-First, running more than one node with the same private keys on your home network is wasting bandwidth by syncing two copies of the blockchain over your download link. You can get the same results by running one node and [using multiple harvesters](/farming-on-many-machines) on multiple computers. Second, if you have [uPnP](https://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) enabled on both nodes and your home router supports uPnP (and most do) it will cause both of your nodes to not sync the blockchain. You need to disable uPnP on all or all but one node behind a uPnP enabled router. The CLI command `chia configure --enable-upnp false` will turn uPnP off on a node. It requires a restart of the node to take effect. If you disable UPnP on all but one of your nodes then your local router will forward inbound 8444 traffic to the one node and the rest will now be able to connect to the network but just will not accept inbound connections from the network.
+First, running more than one node with the same private keys on your home network is wasting bandwidth by syncing two copies of the blockchain over your download link. You can get the same results by running one node and [using multiple harvesters](/reference-client/farming/farming-many-machines) on multiple computers. Second, if you have [uPnP](https://www.homenethowto.com/ports-and-nat/upnp-automatic-port-forward/) enabled on both nodes and your home router supports uPnP (and most do) it will cause both of your nodes to not sync the blockchain. You need to disable uPnP on all or all but one node behind a uPnP enabled router. The CLI command `chia configure --enable-upnp false` will turn uPnP off on a node. It requires a restart of the node to take effect. If you disable UPnP on all but one of your nodes then your local router will forward inbound 8444 traffic to the one node and the rest will now be able to connect to the network but just will not accept inbound connections from the network.
 
 ### Why does my node have no connections? How can I get more connections?
 
-Step 1. Make sure you are running the most recent version of the Chia software. Check out the [Installation page](/installation).
+Step 1. Make sure you are running the most recent version of the Chia software. Check out the [Installation page](/reference-client/install-and-setup/installation).
 
 Step 2. If your node has no connections, it could be one of many reasons. The most likely reason is that there are no users with space to have new connections, so you cannot connect to them. To solve this, you should try opening port 8444 on your router so other peers can connect to you. Follow the steps in the [Node Syncing page](/node-syncing).
 
@@ -355,11 +355,11 @@ Version 2 of the database is still written in SQLite, but it has undergone a ser
 
 If you install a brand new full node in Chia 1.3 or later, version 2 of the database will be created when you run `chia init`. If you want to stick with version 1, simply run `chia init --v1-db` instead.
 
-If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli). In this case, your options are to download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
+If you were already were running a full node prior to upgrading to Chia 1.3, the upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/reference-client/cli-reference/cli). In this case, your options are to download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
 
 #### About the upgrade process
 
-If you still have a copy of version 1 of the database, you can upgrade it to version 2. This upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/cli/#upgrade). Be sure you have enough free space on the disk that contains your database file to write the new file.
+If you still have a copy of version 1 of the database, you can upgrade it to version 2. This upgrade will not happen automatically. The command to perform the upgrade is `chia db upgrade`. This is documented in detail in our [CLI reference](/reference-client/cli-reference/cli/#upgrade). Be sure you have enough free space on the disk that contains your database file to write the new file.
 
 The upgrade could take several hours. The upgrade could take several hours, so feel free to perform it at your leisure. After the upgrade has completed, run `chia start farmer -r` to restart your farmer and switch to the new database.
 
@@ -480,7 +480,7 @@ Optional (this setting ensures the node is automatically used while starting the
 
 ### How does light wallet syncing work?
 
-This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](/light-clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
+This response will give a non-technical overview of Chia's light wallet syncing process. For technical info, see [our docs site](/chia-blockchain/architecture/light-clients), as well as the [FlyClient White Paper](https://eprint.iacr.org/2019/226.pdf), which details the process from which Chia's light client is based.
 
 First, a bit about addresses in Chia. A single Chia wallet can use up to four billion (2^32) addresses. Hopefully, you won't need more than that! Using multiple addresses can help provide anonymity. Rather than having to sign up for a new account each time you want to receive money, you can simply click "NEW ADDRESS" and _presto_ -- a new address appears. Additionally, each time you receive change from sending money, a new address is automatically generated. Your wallet keeps track of each of the addresses that have been used. As long as your wallet is synced, it always knows how much money you have.
 
@@ -664,7 +664,7 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
 
 :::info
 
-Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. Please refer to the [upgrade instructions](/faq#how-do-i-upgrade-my-version-1-blockchain-database-to-version-2) if your database is version 1.
+Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. Please refer to the [upgrade instructions](/chia-blockchain/resources/faq#how-do-i-upgrade-my-version-1-blockchain-database-to-version-2) if your database is version 1.
 
 :::
 
@@ -732,11 +732,11 @@ These are not trusted peers (for more info, see the [question on connecting to t
 
 ### What is the difference between a Farmer and a Harvester?
 
-可以将收割机视为是农民的一个扩展节点。 收割机检查地块并将结果报告给农民，然后农民将结果提交给区块链。 If setting up harvesters it is important to review the proper way to [farm on many machines](/farming-on-many-machines)
+可以将收割机视为是农民的一个扩展节点。 收割机检查地块并将结果报告给农民，然后农民将结果提交给区块链。 If setting up harvesters it is important to review the proper way to [farm on many machines](/reference-client/farming/farming-many-machines)
 
 ### How do I tell if I'm farming correctly?
 
-If you see plots in the Plots section of the Farm page in the GUI - your plots are being farmed. You will see challenges and proof attempts as they come through in the Last Attempted Proof section however you usually will not have a proof worth sending to the network due to the [plot filter](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). You can additionally see the Total Size of Plots on the Farm view and it will tell you how much unique space is being farmed and statistically how long it should take - on average - to win a block. Also, your node needs to be synced for you to farm properly. In the GUI, check the Full Node page. On the cli, do `chia show -s -c`.
+If you see plots in the Plots section of the Farm page in the GUI - your plots are being farmed. You will see challenges and proof attempts as they come through in the Last Attempted Proof section however you usually will not have a proof worth sending to the network due to the [plot filter](/chia-blockchain/resources/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it). You can additionally see the Total Size of Plots on the Farm view and it will tell you how much unique space is being farmed and statistically how long it should take - on average - to win a block. Also, your node needs to be synced for you to farm properly. In the GUI, check the Full Node page. On the cli, do `chia show -s -c`.
 
 ### Does it matter how fast my internet connection is?
 
@@ -748,7 +748,7 @@ No. You have 30 seconds to respond to challenges.
 
 First, the bad news. Statistically, it would take multiple years to win a reward with a 10-TB farm. ("So you're saying there's a chance...")
 
-Now, the good news. You can join a pool and collect regular rewards, no matter your farm's size! See the [Pool Farming page](/pool-farming) for more info.
+Now, the good news. You can join a pool and collect regular rewards, no matter your farm's size! See the [Pool Farming page](/reference-client/farming/pool-farming) for more info.
 
 ### What is the plot filter and why didn't my plot pass it?
 
@@ -766,7 +766,7 @@ On average there are 9216 signage points per day, or one every 9.375 seconds. On
 
 Some reasons your harvester might miss more than 100 signage points per day:
 
-- Your harvester can't handle its required compute load -- typically this will happen if you are farming with compressed plots. However, even with uncompressed plots, if your harvester sometimes requires more than five seconds to perform its lookups, it may miss some signage points. See our [plotting documentation](/plotting-compression) for more info on how determine the maximum number of plots your harvesters can handle. However, even with uncompressed plots, if your harvester sometimes requires more than five seconds to perform its lookups, it may miss some signage points. See our [plotting documentation](/plotting-compression) for more info on how determine the maximum number of plots your harvesters can handle.
+- Your harvester can't handle its required compute load -- typically this will happen if you are farming with compressed plots. However, even with uncompressed plots, if your harvester sometimes requires more than five seconds to perform its lookups, it may miss some signage points. See our [plotting documentation](/reference-client/plotting/plotting-compression) for more info on how determine the maximum number of plots your harvesters can handle. However, even with uncompressed plots, if your harvester sometimes requires more than five seconds to perform its lookups, it may miss some signage points. See our [plotting documentation](/reference-client/plotting/plotting-compression) for more info on how determine the maximum number of plots your harvesters can handle.
 - Lost connections to peers -- check your peer count by clicking the `FULL NODE` icon in the upper right corner of your farmer GUI. If you only have a few peers, your local network might have a [UPNP issue](#what-is-this-upnp-error). See our question on [obtaining more peer connections](#why-does-my-node-have-no-connections-how-can-i-get-more-connections). If you only have a few peers, your local network might have a [UPNP issue](#what-is-this-upnp-error). See our question on [obtaining more peer connections](#why-does-my-node-have-no-connections-how-can-i-get-more-connections).
 - Changed external IP address -- some ISPs will change the IP address of their customers frequently and without warning. This may be happening to your home network. Your ISP might be able to provide you with more info. Unfortunately, if this is happening, often the only recourse is to pay for a dedicated IP address. This may be happening to your home network. Your ISP might be able to provide you with more info. Unfortunately, if this is happening, often the only recourse is to pay for a dedicated IP address.
 - Changed internal IP address -- your home network might also have changed the IP address of your harvester(s). Your router's settings might provide you with more info. Your router's settings might provide you with more info.
@@ -775,19 +775,19 @@ Some reasons your harvester might miss more than 100 signage points per day:
 
 ### Can I join a farming pool?
 
-Yes you can. Please check the [Pool Farming page](/pool-farming).
+Yes you can. Please check the [Pool Farming page](/reference-client/farming/pool-farming).
 
 ### I have heard that it's recommended that a winning plot be deleted on mainnet?
 
 This was our advice in 2020, long before the launch of mainnet. However, we no longer advise anyone to delete their winning plots.
 
-Some background: The consensus Chia originally used during the testnet phase contained the possibility of an [attack](https://docs.chia.net/consensus-attacks#bribe-trunk) where an attacker who could co-ordinate N deep from the tip of the chain could try to coerce a winning farmer to re-write a historical transaction block. However, before the launch of mainnet, the consensus was updated; this attack is no longer viable. See the link for more details.
+Some background: The consensus Chia originally used during the testnet phase contained the possibility of an [attack](https://docs.chia.netconsensus/attacks-and-countermeasures#bribe-trunk) where an attacker who could co-ordinate N deep from the tip of the chain could try to coerce a winning farmer to re-write a historical transaction block. However, before the launch of mainnet, the consensus was updated; this attack is no longer viable. See the link for more details.
 
 ### Do my plots "wear out" or "go bad"/"go stale" over time? Will I have to regularly re-plot?
 
 No, your plots are virtually unaffected by the passage of time, aside from hardware errors. Even in the presence of bit flips due to aging hardware, plots remain mostly effective. The only cases where you would need to re-plot are: 1. if you are using solo plots (not NFT plots) and wish to join a pool (please see note below) or 2. if hardware speeds advance to the point of a certain k value becoming obsolete (e.g., `k=32` becomes too fast to plot and we ban them, forcing you to replace them with `k≧33` plots). For case 1., you are free to have any mix of solo plots and pool plots if you do not want to re-plot. For case 2., `k=32` is not expected to become outdated until sometime between 2026-2031.
 
-- Note on case 1: We have added a Pooling Protocol that replaces the hard-coded "Pool Public Key" of a plot, with a plotNFT's "Pool Contract Address" - more on this subject can be read here: https://docs.chia.net/pool-farming/#pooling-faq
+- Note on case 1: We have added a Pooling Protocol that replaces the hard-coded "Pool Public Key" of a plot, with a plotNFT's "Pool Contract Address" - more on this subject can be read here: https://docs.chia.net/reference-client/farming/pool-farming/#pooling-faq
 
 ### Is it possible to have a proof but not get a reward?
 
@@ -870,7 +870,7 @@ HD or Hierarchical Deterministic keys are a type of public key/private key schem
 
 ### How many confirmations do I need to trust that a chia transaction is final?
 
-Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](/consensus-analysis#safety "Safety analysis of Chia's consensus").
+Small reorgs in Chia are possible, though rare. In order to be confident that your transaction won't be reorged, you should wait around six blocks, or two minutes, after the first confirmation. More details are available in [our consensus documentation](/chia-blockchain/consensus/analysis#safety "Safety analysis of Chia's consensus").
 
 ### Why is my wallet not synced? Why can I not connect to wallet from the GUI?
 
@@ -997,7 +997,7 @@ Some of the potential causes include:
 
 1. You don't have enough money in your wallet. Double check your wallet's `Total Balance`.
 2. You have enough money, but one or more of your coins are locked. Chia uses the [coin set model](#what-is-the-coin-model) of accounting, where everything is a coin. If some of your coins are part of either a pending transaction or an [Offer](#offers), they have been temporarily locked. In this case, your `Spendable Balance` is less than your `Total Balance`. In order to unlock these coins, cancel any pending offers and click `Actions` --> `Delete Unconfirmed Transactions` in your wallet's `Summary` panel.
-3. The CLVM cost of your transaction is greater than the maximum cost allowed. In order to add a Chia transaction to the blockchain, a certain amount of processing power is required. This is the transaction's _cost_. When sending a single coin or NFT to another wallet, the cost is low. However, if you are attempting to send hundreds of coins or dozens of NFTs in a single transaction, the total cost could be prohibitively high, thus triggering the error. One way to fix this is to break your large transaction into multiple smaller ones -- try sending only the amount indicated in the error message. Another fix is to [combine your coins](/wallet-cli#combine) by opening a command prompt or terminal window and running `chia wallet coins combine`.
+3. The CLVM cost of your transaction is greater than the maximum cost allowed. In order to add a Chia transaction to the blockchain, a certain amount of processing power is required. This is the transaction's _cost_. When sending a single coin or NFT to another wallet, the cost is low. However, if you are attempting to send hundreds of coins or dozens of NFTs in a single transaction, the total cost could be prohibitively high, thus triggering the error. One way to fix this is to break your large transaction into multiple smaller ones -- try sending only the amount indicated in the error message. Another fix is to [combine your coins](/reference-client/cli-reference/wallet-cli#combine) by opening a command prompt or terminal window and running `chia wallet coins combine`.
 
 ### Is there an RPC to list wallet names?
 
@@ -1133,7 +1133,7 @@ Chia version 1.8.2 introduces identical spend aggregation, which addresses some 
 
 ### Why do I see `INVALID_FEE_TOO_CLOSE_TO_ZERO` in my log file?
 
-This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/mempool#fee-required-for-inclusion).
+This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/chia-blockchain/architecture/mempool#fee-required-for-inclusion).
 
 ---
 
@@ -1144,7 +1144,7 @@ This error message occurs when you submit a transaction that does not include a 
 Chia Offers enable a decentralized, peer-to-peer trading of assets on the Chia blockchain. For more information, see our:
 
 - [Technical reference document](https://chialisp.com/offers)
-- [GUI (graphical user interface) tutorial](/getting-started/wallet-guide)
+- [GUI (graphical user interface) tutorial](/reference-client/getting-started/wallet-guide)
 - [Video - Offers GUI Demo](https://youtu.be/Z2FoZSNtttM)
 - [CLI (command line interface) tutorial](/guides/offers-cli-tutorial)
 
@@ -1154,7 +1154,7 @@ When you create an offer, [coins are reserved](https://chialisp.com/offers#offer
 
 ### I plan on making many offers and I want to ensure that my coins aren't locked up?
 
-To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/wallet-cli/).
+To create smaller coins, send money to your own wallet in smaller denominations. For more info, see our [reference doc](https://docs.chia.net/reference-client/cli-reference/wallet-cli/).
 
 ### When canceling an offer, when should I check the "cancel on blockchain" checkbox?
 
@@ -1448,11 +1448,11 @@ No. NFTs can be left unassigned to a Profile.
 
 ### How do I use the CLI for creating and using DIDs and NFTs?
 
-Our [dev guide](/guides/nft-cli) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/did-cli) and [NFTs](/nft-cli).
+Our [dev guide](/guides/nft-cli) will walk you through creating DID and NFT wallets, minting an NFT, adding links and transferring your NFT, all using the CLI. In addition to the dev guide, we have a complete reference with all CLI commands for using [DIDs](/reference-client/cli-reference/did-cli) and [NFTs](/reference-client/cli-reference/nft-cli).
 
 ### What RPC functionality is available for DIDs and NFTs?
 
-We also have a [dev guide geared at using RPCs](/guides/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/did-rpc) and [NFTs](/nft-rpc).
+We also have a [dev guide geared at using RPCs](/guides/reference-client/rpc-reference/nft-rpc). For more details about each of our individual RPCs, see our reference for [DIDs](/reference-client/rpc-reference/did-rpc) and [NFTs](/reference-client/rpc-reference/nft-rpc).
 
 ### What limitations, if any, are there for NFTs on Chia's blockchain?
 
@@ -1487,15 +1487,15 @@ In order to enable notifications, you can either add these settings manually, or
 
 Finally, you need to restart Chia for these settings to be picked up.
 
-Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/wallet-rpc#send_notification).
+Note that for version 1.6.1, messages are sent and received via an RPC only. This is a primitive that will be added to the GUI in a future release. For more information on sending and receiving messages, see our [RPC documentation](/reference-client/rpc-reference/wallet-rpc#send_notification).
 
 ### How can I use the CLI to send an Offer notification to the owner of an NFT?
 
-This process is documented under `Example 2` of the [send_notification](/wallet-rpc#send_notification) RPC doc.
+This process is documented under `Example 2` of the [send_notification](/reference-client/rpc-reference/wallet-rpc#send_notification) RPC doc.
 
 ### How can I sign and verify a message with an NFT?
 
-From the CLI, you can use the `chia wallet nft sign_message` command. See [our CLI documentation](/nft-cli#sign_message) for more details.
+From the CLI, you can use the `chia wallet nft sign_message` command. See [our CLI documentation](/reference-client/cli-reference/nft-cli#sign_message) for more details.
 
 From the GUI, you can sign and verify messages from the `ADVANCED` tab in the `Settings` section. Note that as of February 2023, this has not been included in an official build yet. It is only available in the `main` branch of the [chia-blockchain-gui](https://github.com/Chia-Network/chia-blockchain-gui/) repository. Eventually this will be added to an official build, but for now you can use it at your own risk.
 
@@ -1585,7 +1585,7 @@ A very high-end HDD _might_ be fast enough, but we still recommend a $30 SSD, as
 
 ### Can I run this on a Raspberry Pi 3 or 4?
 
-Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/installation#raspberry-pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
+Raspberry Pi 4 is supported, but Pi 3 is not. Here are the [instructions](/reference-client/install-and-setup/installation#raspberry-pi). This project requires a 64-bit OS. One can install and run harvesters, farmers, and full nodes on the Pi. Plotting on a Pi is feasible now with Chacha8 instead of AES, but the Pi isn't quick. Modern desktops and laptops plot in the 0.07 - 0.10 GiB/minute range and the Pi 4 plots at 0.025 GiB/minute. Pi is also not a candidate for Timelords or VDF clients...
 
 ### How do I upgrade and keep my keys and plots?
 
@@ -1597,7 +1597,7 @@ Windows users can run `C:\Users\&#060;user ID&#062;\AppData\Local\Programs\Chia\
 
 ### I installed Chia with the packaged installer. How do I run CLI commands?
 
-For power users, it is possible to [install Chia from source](/installation#from-source). In this case, you will run Chia from a virtual environment on the command line.
+For power users, it is possible to [install Chia from source](/reference-client/install-and-setup/installation#from-source). In this case, you will run Chia from a virtual environment on the command line.
 
 However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/).
 

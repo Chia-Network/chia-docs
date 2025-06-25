@@ -1,7 +1,7 @@
 ---
 title: Proof of Time (VDFs)
 sidebar_label: Proof of Time
-slug: /proof-of-time
+slug: /chia-blockchain/consensus/proof-of-time
 ---
 
 A Verifiable Delay Function, also referred to as a Proof of Time or VDF, is a proof that a sequential function was executed a certain number of times.
@@ -21,7 +21,7 @@ Figure 3: The Verifier (blockchain) sends a challenge to the Prover (timelord) a
 </figcaption>
 </figure>
 
-Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](/consensus-attacks) become possible.
+Although the following details are not very important for understanding the consensus algorithm, the choice of what VDF to use is relevant, because if an attacker succeeds in obtaining a much faster machine, some [attacks](consensus/attacks-and-countermeasures) become possible.
 
 The VDF used by Chia is repeated squaring in a [class group of unknown order](https://github.com/Chia-Network/vdf-competition/blob/main/classgroups.pdf). There are two main ways to generate a large group that has an unknown order:
 

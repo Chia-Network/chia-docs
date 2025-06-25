@@ -1,7 +1,7 @@
 ---
 sidebar_label: Offers
 title: Offer CLI
-slug: /offer-cli
+slug: /reference-client/cli-reference/offer-cli
 ---
 
 import Tabs from '@theme/Tabs';

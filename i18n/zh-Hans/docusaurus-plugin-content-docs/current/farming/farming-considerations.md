@@ -1,6 +1,6 @@
 ---
 title: Farming Considerations
-slug: /farming-considerations
+slug: /reference-client/farming/farming-considerations
 ---
 
 # 耕种硬件考虑事项

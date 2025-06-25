@@ -1,6 +1,6 @@
 ---
 title: Networking Protocol
-slug: /networking-protocol
+slug: /chia-blockchain/protocol/networking-protocol
 ---
 
 [Shared networking protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/shared_protocol.py)

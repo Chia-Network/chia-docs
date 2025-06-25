@@ -1,7 +1,7 @@
 ---
 sidebar_label: Full Node
 title: Full Node RPC
-slug: /full-node-rpc
+slug: /reference-client/rpc-reference/full-node-rpc
 ---
 
 import Tabs from '@theme/Tabs';

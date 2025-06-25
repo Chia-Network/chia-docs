@@ -1,7 +1,7 @@
 ---
 sidebar_label: Wallet
 title: 钱包 RPC
-slug: /wallet-rpc
+slug: /reference-client/rpc-reference/wallet-rpc
 ---
 
 import Tabs from '@theme/Tabs';
@@ -897,7 +897,7 @@ CAT 348dfae821c76f0a...:
 | wallet_name              | STRING       | False    | The name of the DID wallet [Default: None]                                                                                                                     |
 | amount                   | NUMBER       | True\*   | \*Required if `did_type` is `new`. Specify the initial value of this wallet, in mojos. Minimum value is `1`                                                    |
 
-Note: Because `backup_dids` is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead. If you do not already have a DID, then run [the CLI command](/did-cli#create) to create a DID wallet instead.
+Note: Because `backup_dids` is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/reference-client/cli-reference/did-cli#create) to create a DID wallet instead. If you do not already have a DID, then run [the CLI command](/reference-client/cli-reference/did-cli#create) to create a DID wallet instead.
 
 <details>
 <summary>Example 3 (DID wallet)</summary>
@@ -965,8 +965,8 @@ Profile 1:
 
 Notes:
 
-- When `mode` is `new`, this RPC has a similar functionality to the [create](/dao-cli/#create) DAO CLI command.
-- When `mode` is `existing`, this RPC has a similar functionality to the [add](/dao-cli/#add) DAO CLI command.
+- When `mode` is `new`, this RPC has a similar functionality to the [create](/reference-client/cli-reference/dao-cli/#create) DAO CLI command.
+- When `mode` is `existing`, this RPC has a similar functionality to the [add](/reference-client/cli-reference/dao-cli/#add) DAO CLI command.
 
 <details>
 <summary>Example 4 (New DAO wallet)</summary>
@@ -2401,7 +2401,7 @@ nft1dcw9gfx034mxv2xkv568aupaqlc6em5sn3d2y3kzkt5js2gydr0stfd4ek
 
 We will create an offer for this NFT and use the command line to send an offer directly to its owner.
 
-First, create an Offer file. First, create an Offer file. This can be accomplished with the [create_offer_for_ids](/offer-rpc#create_offer_for_ids) RPC. Offers can also be created from the reference wallet's GUI. Offers can also be created from the reference wallet's GUI.
+First, create an Offer file. First, create an Offer file. This can be accomplished with the [create_offer_for_ids](/reference-client/rpc-reference/offer-rpc#create_offer_for_ids) RPC. Offers can also be created from the reference wallet's GUI. Offers can also be created from the reference wallet's GUI.
 
 Next, post the offer to a URI. Next, post the offer to a URI. In this example, we will use Dexie.
 
@@ -3972,7 +3972,7 @@ Response:
 
 ### `Note`
 
-See our [DID RPC](/did-rpc) page.
+See our [DID RPC](/reference-client/rpc-reference/did-rpc) page.
 
 ---
 
@@ -3980,7 +3980,7 @@ See our [DID RPC](/did-rpc) page.
 
 ### `Note2`
 
-See our [NFT RPC](/nft-rpc) page.
+See our [NFT RPC](/reference-client/rpc-reference/nft-rpc) page.
 
 ---
 
@@ -4402,7 +4402,7 @@ Request Parameters:
 
 :::info
 
-For more info on creating a new data store and obtaining a root hash, see [the DataLayer RPC reference](/datalayer-rpc#create_data_store).
+For more info on creating a new data store and obtaining a root hash, see [the DataLayer RPC reference](/reference-client/rpc-reference/datalayer-rpc#create_data_store).
 
 :::
 

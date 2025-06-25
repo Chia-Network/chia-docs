@@ -1,7 +1,7 @@
 ---
 title: References  - Chia Green Paper
 sidebar_label: References
-slug: /green-paper-references
+slug: /chia-blockchain/green-paper/green-paper-references
 ---
 
 # References

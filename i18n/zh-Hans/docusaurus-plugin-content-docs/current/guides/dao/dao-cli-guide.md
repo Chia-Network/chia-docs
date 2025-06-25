@@ -24,8 +24,8 @@ This is a guide for using Chia DAOs from a command line interface (CLI). To foll
 
 For more information about Chia DAOs, see:
 
-- [DAO CLI Reference](/dao-cli)
-- [DAO RPC Reference](/dao-rpc)
+- [DAO CLI Reference](/reference-client/cli-reference/dao-cli)
+- [DAO RPC Reference](/reference-client/rpc-reference/dao-rpc)
 - [DAO1 CHIP](https://github.com/Chia-Network/chips/pull/93)
 
 ---
@@ -71,7 +71,7 @@ Chia Wallet:
 
 :::warning
 
-In order to create a DAO, your wallet must have at least two coins. If there is only one coin in your wallet, you will get an error. You can use the [coins](/wallet-cli#coins) command to see how many coins your wallet contains. For example:
+In order to create a DAO, your wallet must have at least two coins. If there is only one coin in your wallet, you will get an error. You can use the [coins](/reference-client/cli-reference/wallet-cli#coins) command to see how many coins your wallet contains. For example:
 
 ```bash
 chia wallet coins list
@@ -96,11 +96,11 @@ Coin ID: 0xde53700207e23c74088bd6feaadf39f36248729880ffe112b9420fa27c861d5c
 
 :::note
 
-This guide will use a CLI command to create a DAO. If preferred, you can also create a DAO with the [create_new_wallet](/wallet-rpc/#create_new_wallet) wallet RPC (see Example 4).
+This guide will use a CLI command to create a DAO. If preferred, you can also create a DAO with the [create_new_wallet](/reference-client/rpc-reference/wallet-rpc/#create_new_wallet) wallet RPC (see Example 4).
 
 :::
 
-The command to create a DAO is `chia dao create`. This command contains many options -- see [the documentation](/dao-cli#create) for a complete list. Most of the options are not required. However, we will change several of them because their default values are more appropriate for real-world DAOs.
+The command to create a DAO is `chia dao create`. This command contains many options -- see [the documentation](/reference-client/cli-reference/dao-cli#create) for a complete list. Most of the options are not required. However, we will change several of them because their default values are more appropriate for real-world DAOs.
 
 For this example, we will specify the following values:
 
@@ -282,7 +282,7 @@ The DAO now has 5 TXCH in its treasury. But there isn't much point in creating a
 
 :::note
 
-This guide will use a CLI command to join an existing DAO. If preferred, you can also join a DAO with the [create_new_wallet](/wallet-rpc/#create_new_wallet) wallet RPC (see Example 5).
+This guide will use a CLI command to join an existing DAO. If preferred, you can also join a DAO with the [create_new_wallet](/reference-client/rpc-reference/wallet-rpc/#create_new_wallet) wallet RPC (see Example 5).
 
 :::
 

@@ -22,7 +22,7 @@ Before continuing, you might want to familiarize yourself with the following doc
 
 - [Basic description](/guides/custody-tool-description) of how the custody tool works
 - [Flow chart](https://docs.chia.net/img/chia-custody-tool.png) to visualize how the custody tool works
-- [CLI reference](https://docs.chia.net/custody-tool) for all custody commands used in this tutorial
+- [CLI reference](https://docs.chia.net/reference-client/cli-reference/custody-tool-cli) for all custody commands used in this tutorial
 
 :::info
 
@@ -37,7 +37,7 @@ The custody tool uses many parameters, each of which is important. You are highl
 ### Requirements
 
 - A synced full node (mainnet, testnet, or [simulator](/guides/simulator-user-guide "Simulator user guide"))
-- A synced [Chia wallet](https://docs.chia.net/installation "Chia installation instructions")
+- A synced [Chia wallet](https://docs.chia.net/reference-client/install-and-setup/installation "Chia installation instructions")
 - [Python](https://www.python.org/downloads/ "Python downloads page") 3.9 or greater
 - [Git command line tool](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git "How to install the Git command line tool")
 - [Powershell 6](https://www.howtogeek.com/731885/how-to-check-the-powershell-version-in-windows-10/ "How to check your Powershell version") or greater (Windows only)
@@ -594,7 +594,7 @@ The singleton is now set up. Observers can also use this command to verify that 
 
 If, at any point, you want to export your config's public, immutable information to be used by observer nodes, run `cic export_config -p -f <binary file name>`.
 
-For more info, see the [CLI reference](/custody-tool#export_config).
+For more info, see the [CLI reference](/reference-client/cli-reference/custody-tool-cli#export_config).
 
 ---
 
@@ -630,7 +630,7 @@ This test will run through the complete sequence of withdrawing money from the s
 This command generates an unsigned spend bundle which requires specific keys. Signers can take this spend bundle to an HSM for signing.
 
 To begin the payment process, use the `cic payment` command.
-For this example, we'll use the following arguments (see the [CLI reference](/custody-tool#payment "payment command") for all options):
+For this example, we'll use the following arguments (see the [CLI reference](/reference-client/cli-reference/custody-tool-cli#payment "payment command") for all options):
 
 - `-f` : The name of the file in which to save the unsigned spend bundle
 - `-pks`: The public keys that will be used to sign the withdrawal. Exactly `m` keys must be included. The only keys allowed to sign are those that were originally used in the `derive_root` command

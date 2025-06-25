@@ -56,7 +56,7 @@ Ensure that you have Python 3.7 or later by running:
 - Linux/MacOS -- `python3 --version`
 - Windows -- `python --version`
 
-1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/installation).
+1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/reference-client/install-and-setup/installation).
 
 2. Configure Chia to run on testnet11. For more info, see our [testnet documentation](/guides/crash-course/introduction#getting-on-testnet).
 
@@ -66,7 +66,7 @@ When using the GUI, you have the option of running in `Farming Mode` or `Wallet 
 
 :::info
 
-You can also run Chia's reference wallet from a [command line](/installation#cli) if you prefer.
+You can also run Chia's reference wallet from a [command line](/reference-client/install-and-setup/installation#cli) if you prefer.
 
 :::
 

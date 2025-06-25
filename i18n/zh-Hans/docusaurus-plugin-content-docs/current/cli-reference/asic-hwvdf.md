@@ -1,7 +1,7 @@
 ---
 sidebar_label: ASICs
 title: ASICs HW VDF
-slug: /asic-cli
+slug: /reference-client/cli-reference/asic-hwvdf-cli
 ---
 
 import Tabs from '@theme/Tabs';
@@ -102,7 +102,7 @@ Response:
 
 ## Troubleshooting a Timelord
 
-For troubleshooting steps please refer to the documentation [here](/troubleshooting/timelords).
+For troubleshooting steps please refer to the documentation [here](/reference-client/troubleshooting/timelords).
 
 ---
 
@@ -114,6 +114,6 @@ Join Our [Discord](https://discord.gg/chia) and jump into the #support channel f
 
 ## Timelord FAQ
 
-For FAQ please refer to the documentation [here](/timelord-install#timelord-faq).
+For FAQ please refer to the documentation [here](/reference-client/install-and-setup/timelord-install#timelord-faq).
 
 ---
