@@ -19,3 +19,4 @@ Feel free to report other issues on [our Discord server](https://discord.gg/chia
 - If you are accessing the Cloud Wallet on an Android phone, you may not be able to create a passkey with a Yubikey or other hardware device.
 - We have experienced issues with other combinations of OS and passkey type, especially on mobile devices. These issues are typically related to the device itself, and are out of our control to fix. However, we will work on reporting these limitations more clearly when they occur.
 - If you rename any tokens in your vault, and then create an Offer that involves those tokens, the old names will be displayed in the Offer. We will show the new names soon.
+- The cloud wallet is currently the only wallet that supports vault based offers. This means if you create an offer in the cloud wallet the taker will need to accept the offer in their cloud wallet account.
