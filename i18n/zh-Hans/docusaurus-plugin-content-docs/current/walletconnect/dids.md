@@ -19,12 +19,12 @@ Creates a new DID profile.
 
 #### Output Data
 
-| Parameter  | Type                                               | Description                  |
-| ---------- | -------------------------------------------------- | ---------------------------- |
+| Parameter  | Type                                                                     | Description                  |
+| ---------- | ------------------------------------------------------------------------ | ---------------------------- |
 | `type`     | [`WalletType`](/reference-client/walletconnect/walletconnect#wallettype) | Type of wallet (8 for DIDs). |
-| `myDid`    | `string`                                           | Bech32m encoded DID address. |
-| `walletId` | `number`                                           | Created wallet id.           |
-| `success`  | `boolean`                                          | Backend success status.      |
+| `myDid`    | `string`                                                                 | Bech32m encoded DID address. |
+| `walletId` | `number`                                                                 | Created wallet id.           |
+| `success`  | `boolean`                                                                | Backend success status.      |
 
 ### `chia_setDIDName`
 

@@ -53,12 +53,12 @@ The output is an object of type [`NftInfo`](#nftinfo).
 
 #### Output Data
 
-| Parameter     | Type                                                 | Description             |
-| ------------- | ---------------------------------------------------- | ----------------------- |
-| `nftId`       | `string`                                             | The NFT id.             |
+| Parameter     | Type                                                                       | Description             |
+| ------------- | -------------------------------------------------------------------------- | ----------------------- |
+| `nftId`       | `string`                                                                   | The NFT id.             |
 | `spendBundle` | [`SpendBundle`](/reference-client/walletconnect/walletconnect#spendbundle) | Created spend bundle.   |
-| `success`     | `boolean`                                            | Backend success status. |
-| `walletId`    | `number`                                             | NFT wallet id.          |
+| `success`     | `boolean`                                                                  | Backend success status. |
+| `walletId`    | `number`                                                                   | NFT wallet id.          |
 
 ### `chia_transferNFT`
 
@@ -72,11 +72,11 @@ The output is an object of type [`NftInfo`](#nftinfo).
 
 #### Output Data
 
-| Parameter             | Type                                                 | Description           |
-| --------------------- | ---------------------------------------------------- | --------------------- |
-| `walletId`            | <code>number &#124; number[]</code>                  | NFT wallet id(s).     |
+| Parameter             | Type                                                                       | Description           |
+| --------------------- | -------------------------------------------------------------------------- | --------------------- |
+| `walletId`            | <code>number &#124; number[]</code>                                        | NFT wallet id(s).     |
 | `spendBundle`         | [`SpendBundle`](/reference-client/walletconnect/walletconnect#spendbundle) | Created spend bundle. |
-| `txNum?` _(optional)_ | `number`                                             | Transaction number.   |
+| `txNum?` _(optional)_ | `number`                                                                   | Transaction number.   |
 
 ### `chia_getNFTsCount`
 
@@ -106,11 +106,11 @@ Sets the owner DID associated with a given NFT.
 
 #### Output Data
 
-| Parameter     | Type                                                 | Description             |
-| ------------- | ---------------------------------------------------- | ----------------------- |
-| `walletId`    | `number`                                             | Wallet id.              |
+| Parameter     | Type                                                                       | Description             |
+| ------------- | -------------------------------------------------------------------------- | ----------------------- |
+| `walletId`    | `number`                                                                   | Wallet id.              |
 | `spendBundle` | [`SpendBundle`](/reference-client/walletconnect/walletconnect#spendbundle) | Created spend bundle.   |
-| `success`     | `boolean`                                            | Backend success status. |
+| `success`     | `boolean`                                                                  | Backend success status. |
 
 ## Types
 

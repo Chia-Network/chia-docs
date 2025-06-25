@@ -49,11 +49,11 @@ Sends an amount of CAT mojos in a given wallet to a recipient address.
 
 #### Output Data
 
-| Parameter       | Type                                                             | Description             |
-| --------------- | ---------------------------------------------------------------- | ----------------------- |
+| Parameter       | Type                                                                                   | Description             |
+| --------------- | -------------------------------------------------------------------------------------- | ----------------------- |
 | `transaction`   | [`TransactionRecord`](/reference-client/walletconnect/walletconnect#transactionrecord) | Transaction record.     |
-| `transactionId` | `string`                                                         | Transaction id.         |
-| `success`       | `boolean`                                                        | Backend success status. |
+| `transactionId` | `string`                                                                               | Transaction id.         |
+| `success`       | `boolean`                                                                              | Backend success status. |
 
 ### `chia_addCATToken`
 

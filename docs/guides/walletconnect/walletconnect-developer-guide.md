@@ -24,8 +24,8 @@ For more info, see our WalletConnect [command documentation](/reference-client/w
 
 The following table shows each RPC for Chia WalletConnect dApps, along with a description of what each RPC does, and a link to the equivalent Chia RPC:
 
-| WalletConnect RPC     | Chia Wallet RPC                                                  | Description                                                                                       |
-| :-------------------- | :--------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| WalletConnect RPC     | Chia Wallet RPC                                                                                 | Description                                                                                       |
+| :-------------------- | :---------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
 | addCATtoken           | [create_new_wallet](/reference-client/rpc-reference/wallet-rpc#create_new_wallet)               | Create a new wallet for CATs                                                                      |
 | addVCProofs           | [vc_add_proofs](/reference-client/rpc-reference/vc-rpc/#vc_add_proofs)                          | Add a set of proofs to the DB that can be used when spending a VC                                 |
 | cancelOffer           | [cancel_offer](/reference-client/rpc-reference/wallet-rpc#cancel_offer)                         | Cancel an offer                                                                                   |
@@ -70,4 +70,4 @@ The following table shows each RPC for Chia WalletConnect dApps, along with a de
 | transferNFT           | [nft_transfer_nft](/reference-client/rpc-reference/nft-rpc#nft_transfer_nft)                    | Transfer an NFT to a new wallet address                                                           |
 | spendVC               | [vc_spend](/reference-client/rpc-reference/vc-rpc/#vc_spend)                                    | Add Proofs To Verifiable Credential                                                               |
 | verifySignature       | [verify_signature](/reference-client/rpc-reference/wallet-rpc#verify_signature)                 | Given a public key, message and signature, verify if it is valid                                  |
-| waitForConfirmation   |                                                                  |                                                                                                   |
+| waitForConfirmation   |                                                                                                 |                                                                                                   |
