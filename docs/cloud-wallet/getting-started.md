@@ -10,7 +10,11 @@ Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia b
 
 This guide will show you how to create your first Cloud Wallet vault in a few easy steps.
 
-1. Browse to the [Cloud Wallet website](https://vault.chiatest.net).
+1. Browse to the Chia Cloud Wallet website for [mainnet](https://vault.chia.net).
+
+:::note
+Use the [testnet](https://vault.chiatest.net) instance for testing the cloud wallet with txch.
+:::
 
 2. Click the `Sign Up` button:
 
@@ -109,7 +113,9 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 13. Click the `Create` button to create your vault. A "vault faucet" will mint a new vault for you. Your vault's receive address will appear after this process is complete (typically a minute or two).
 
-You are now ready to receive funds in your new vault. Testnet11 uses a test currency called TXCH. To obtain some TXCH, you can visit either our [official faucet site](https://testnet11-faucet.chia.net) or a [community-run faucet](https://txchfaucet.com), and enter your vault's address. You should receive some funds for testing within a few minutes.
+You are now ready to receive funds in your new vault.
+
+If using the testnet instance of the chia cloud wallet, Testnet11 uses a test currency called TXCH. To obtain some TXCH, you can visit either our [official faucet site](https://testnet11-faucet.chia.net) or a [community-run faucet](https://txchfaucet.com), and enter your vault's address. You should receive some funds for testing within a few minutes.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/cloud-wallet/11_vault_1_txch.png" alt="Vault with 1 txch" width="100%"/>
