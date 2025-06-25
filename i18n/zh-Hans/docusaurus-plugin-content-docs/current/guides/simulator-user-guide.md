@@ -8,8 +8,8 @@ import TabItem from '@theme/TabItem';
 
 This document will guide you through the process of setting up Chia's Simulator. 有关其他技术资源，请参阅以下内容：
 
-- [Simulator RPC API](/simulator-rpc)
-- [Simulator CLI Reference](/simulator-cli)
+- [Simulator RPC API](/reference-client/rpc-reference/simulator-rpc)
+- [Simulator CLI Reference](/reference-client/cli-reference/simulator-cli)
 
 :::note
 It is possible to run the simulator and either Chia's testnet or mainnet simultaneously. This is because the simulator will use its own ports and directories. ::: This is because the simulator will use its own ports and directories.
@@ -19,7 +19,7 @@ It is possible to run the simulator and either Chia's testnet or mainnet simulta
 
 ## 先决条件
 
-The simulator is included in the `chia-blockchain` GitHub repository (the same repository that contains Chia's node, and farmer code). To install this repository, see our instructions to [install Chia from source](/installation#from-source).
+The simulator is included in the `chia-blockchain` GitHub repository (the same repository that contains Chia's node, and farmer code). To install this repository, see our instructions to [install Chia from source](/reference-client/install-and-setup/installation#from-source).
 
 After you have installed from source and have activated your virtual environment (you should see `(venv)` on the left side of your command prompt), you are all set to install the simulator.
 
@@ -29,7 +29,7 @@ If you installed Chia from the binary installation file, you cannot use this ins
 
 ## Setup instructions
 
-The simulator commands can all be accessed under `chia dev sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/simulator-cli).
+The simulator commands can all be accessed under `chia dev sim`. For a full list of the simulator commands, see our [Simulator CLI Reference](/reference-client/cli-reference/simulator-cli).
 
 ### Create the simulator
 
@@ -233,7 +233,7 @@ And farm multiple blocks at once:
 chia dev sim farm --blocks 5
 ```
 
-For more info on this command, see the [CLI documentation](/simulator-cli#farm).
+For more info on this command, see the [CLI documentation](/reference-client/cli-reference/simulator-cli#farm).
 
 ### Edit the configuration
 

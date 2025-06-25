@@ -1,6 +1,6 @@
 ---
 title: Farming on Many Machines
-slug: /farming-on-many-machines
+slug: /reference-client/farming/farming-many-machines
 ---
 
 另一个标题:
@@ -170,7 +170,7 @@ chia start -r farmer
 
 出站的 `new_signage_point_harvester` 消息表示农场节点向您的收割节点发送了挑战，而传入的 `farming_info` 消息表示您的收割节点给出了回应。 而 `new_proof_of_space` 消息表示收割节点找到了对该挑战的证明。 您将会收到比 `new_proof_of_space` 消息更多的 `new_signage_point` 和 `farming_info` 消息。
 
-这是如何找到日志文件： [Where to Find Things](/check-if-things-are-working)
+这是如何找到日志文件： [Where to Find Things](/reference-client/troubleshooting/check-if-things-are-working)
 
 ## 在多台机器上的良好安全实践
 
@@ -187,7 +187,7 @@ chia start -r farmer
 
 #### 在多台机器上生成地块
 
-As stated [above](/farming-on-many-machines#先决条件), run the following command when creating plots:
+As stated [above](/reference-client/farming/farming-many-machines#先决条件), run the following command when creating plots:
 
 ```bash
 chia plots create -f <farmer_key> -p <pool_key>
@@ -197,11 +197,11 @@ When you use the `-f` and `-p` parameters, you do not need to copy the keys to t
 
 #### 在多台机器上进行收割
 
-Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](/farming-on-many-machines#先决条件) steps to keep them in one place while farming.
+Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](/reference-client/farming/farming-many-machines#先决条件) steps to keep them in one place while farming.
 
 ### 钱包保持独立(Separate)
 
-不让钱包受到黑客攻击的一种方法是不让它暴露在互联网上。 以下是如何做到这一点：[Chia钥匙管理](/chia-key-management)。
+不让钱包受到黑客攻击的一种方法是不让它暴露在互联网上。 以下是如何做到这一点：[Chia钥匙管理](/reference-client/install-and-setup/key-management)。
 
 :::info
 用于Chia奖励的奖励地址也应该是一个独立的密钥，并且应该保存在一个离线的机器上。 可以在另一台计算机上生成一个地址，并将该地址放入config.yaml文件中的 farmer.xch_target_address 和 pool.xch_target_address 字段中，这样，如果您的耕种机器受到黑客攻击，就不会丢失以前的奖励。 （[来源](https://github.com/Chia-Network/chia-blockchain/discussions/1116#discussioncomment-420398)）

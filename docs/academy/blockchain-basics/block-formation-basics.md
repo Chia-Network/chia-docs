@@ -115,10 +115,10 @@ A. Temporary storage on the network where transactions are queued before being c
 
 ### Links
 
-- Transaction validation [overview](https://docs.chia.net/block-validation/#body-validation): dives into the requirements for validating the blocks body (which contains the transactions).
-- Block formation [overview](https://docs.chia.net/consensus-foliage): explores the intricacies of the full nodes role in block formation and when transaction blocks are formed.
-- Block Infusion [detailed documentation](https://docs.chia.net/signage-and-infusion-points/): detailed information on how and when blocks are infused in the chain.
-- Mempool [detailed documentation](https://docs.chia.net/mempool/): detailed information on all aspects of mempool inclusion scenarios and how the mempool is updated.
+- Transaction validation [overview](https://docs.chia.net/chia-blockchain/consensus/block-validation/block-validation/#body-validation): dives into the requirements for validating the blocks body (which contains the transactions).
+- Block formation [overview](https://docs.chia.net/chia-blockchain/consensus/chains/foliage): explores the intricacies of the full nodes role in block formation and when transaction blocks are formed.
+- Block Infusion [detailed documentation](https://docs.chia.net/chia-blockchain/consensus/chains/signage-and-infusion-points/): detailed information on how and when blocks are infused in the chain.
+- Mempool [detailed documentation](https://docs.chia.net/chia-blockchain/architecture/mempool/): detailed information on all aspects of mempool inclusion scenarios and how the mempool is updated.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---

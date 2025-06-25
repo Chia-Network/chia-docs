@@ -1,7 +1,7 @@
 ---
 sidebar_label: Offers
 title: Offer RPC
-slug: /offer-rpc
+slug: /reference-client/rpc-reference/offer-rpc
 ---
 
 import Tabs from '@theme/Tabs';

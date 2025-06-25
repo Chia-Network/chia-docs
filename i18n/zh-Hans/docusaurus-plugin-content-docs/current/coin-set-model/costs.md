@@ -1,6 +1,6 @@
 ---
 title: Costs
-slug: /coin-set-costs
+slug: /chia-blockchain/coin-set-model/costs
 ---
 
 Cost is a unit of measurement that represents resources expended to record a transaction in a block. Cost is a unit of measurement that is used to represent the available space in a block. It is measured by the amount of computing power required to execute the programs within it, as well as the physical drive space required to store data on each node's machine.
@@ -15,7 +15,7 @@ It is important to keep the cost usage of programs on the Chia blockchain as low
 
 Cost has several components. First, every CLVM program uses a certain amount of cost during execution, based on the operators and the values they are called on. You can refer to the [Cost page](https://chialisp.com/costs) on the Chialisp website to learn more about the cost of various CLVM operators.
 
-Additionally, certain conditions in a coin spend have a cost associated with them as well. Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/conditions#agg-sig-me), which are expensive operations.
+Additionally, certain conditions in a coin spend have a cost associated with them as well. Additionally, certain conditions in a coin spend have a cost associated with them as well. A few common examples are [`CREATE_COIN`](https://chialisp.com/conditions#create-coin) and [`AGG_SIG_ME`](/chia-blockchain/coin-set-model/conditions#agg-sig-me), which are expensive operations.
 
 Finally, each byte of data that gets added to the blockchain has a cost of 12,000. Spend bundles are created using a serialized format of CLVM programs, calculated by running [opc](https://chialisp.com/commands#serialize) on the original CLVM program. Each two-digit pair of this format is equivalent to one byte, which costs 12,000 to store on the blockchain.
 
@@ -36,7 +36,7 @@ The first question we must answer is how much time elapses between transaction b
 Which is 28.125 seconds.
 
 :::note
-The **average** time between transaction blocks is [51.95 seconds](/consensus-foliage#transaction-block-time). The lower a given time interval between transaction blocks (down to 28.125 seconds), the lower the probability of a transaction block being created in that time interval.
+The **average** time between transaction blocks is [51.95 seconds](/chia-blockchain/consensus/chains/foliage#transaction-block-time). The lower a given time interval between transaction blocks (down to 28.125 seconds), the lower the probability of a transaction block being created in that time interval.
 :::
 
 A transaction block is considered "full" when it contains 2000 outputs. For this document, we'll assume this translates to 1000 vanilla transactions, each with two inputs and two outputs. This would give the network an average of 19.25 (1000/51.95) transactions per second.
@@ -56,7 +56,7 @@ To calculate the total amount of time for a Raspberry Pi 4 to process a full blo
 - The time required to validate 2000 aggregate signatures
   - 10.63 seconds
 
-Therefore, the total amount of time required for a Raspberry Pi 4 to process a full block is 5.2 + 2.2 + 10.63 = 18.03 seconds. This is 10.095 seconds faster than the minimum time between blocks, and 33.92 seconds faster than the average. When considering other factors such as network latency and time required to fetch a full proof ([640 ms on a slow HDD](/proof-of-space#farming)), this still allows plenty of leeway for a Raspberry Pi 4 to stay synced and collect farming rewards.
+Therefore, the total amount of time required for a Raspberry Pi 4 to process a full block is 5.2 + 2.2 + 10.63 = 18.03 seconds. This is 10.095 seconds faster than the minimum time between blocks, and 33.92 seconds faster than the average. When considering other factors such as network latency and time required to fetch a full proof ([640 ms on a slow HDD](/chia-blockchain/consensus/proof-of-space-1.0#farming)), this still allows plenty of leeway for a Raspberry Pi 4 to stay synced and collect farming rewards.
 
 ## Minimum Specs - Syncing {#syncing-specs}
 
@@ -143,7 +143,7 @@ Even this number is not realistic because it assumes that a single program will 
 The below chart contains costs for various transactions on the blockchain, each of these assumes the inputs and outputs have been optimized and represent a best case scenario.
 
 :::note
-The [minimum effective](/mempool/#fee-required-for-inclusion) fee represents 5 x the clvm cost and is the minimum fee recognized by the default consensus rules (any fee less would be the same as 1 mojo). This means one needs to use at least the fees listed below during moderate fee pressure but greater fees might be needed for time sensitive transactions to process in a timely manner.
+The [minimum effective](/chia-blockchain/architecture/mempool/#fee-required-for-inclusion) fee represents 5 x the clvm cost and is the minimum fee recognized by the default consensus rules (any fee less would be the same as 1 mojo). This means one needs to use at least the fees listed below during moderate fee pressure but greater fees might be needed for time sensitive transactions to process in a timely manner.
 
 Please note that the costs and fees listed are for vanilla versions of these transactions, they can vary based on the number of input and output coins needed so consider these the bare minimum. Transactions with a '\*' are listed with a fee of 3 x the minimum effective fee. This is to ensure the fees are more realistic for how coins are distributed in users wallets but note that vanilla versions of these would be 1/3 that which is listed.
 :::

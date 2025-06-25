@@ -1,13 +1,13 @@
 ---
 sidebar_label: Compressed Plots
 title: Compressed Plot Farming
-slug: /farming-compressed-plots
+slug: /reference-client/farming/farming-compressed-plots
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-As detailed in the [plotting](/plotting-basics) section, compressed plots are supported for both plotting and harvesting as of Chia version 2.0. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist.
+As detailed in the [plotting](/reference-client/plotting/plotting-basics) section, compressed plots are supported for both plotting and harvesting as of Chia version 2.0. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist.
 
 :::info
 

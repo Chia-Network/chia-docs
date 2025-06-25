@@ -1,7 +1,7 @@
 ---
 title: 摘要 - Chia绿皮书
 sidebar_label: 摘要
-slug: /green-paper-abstract
+slug: /chia-blockchain/green-paper/green-paper-abstract
 ---
 
 # 绿皮书

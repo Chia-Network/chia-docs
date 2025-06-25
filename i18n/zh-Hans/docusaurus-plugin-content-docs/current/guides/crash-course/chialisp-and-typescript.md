@@ -7,7 +7,7 @@ So far we've been working with the Chia blockchain directly through the terminal
 
 ## RPC Explained
 
-You can interact with the Chia blockchain through the RPC, which is [documented](https://docs.chia.net/rpc/) with sections on the full node, NFTs and more.
+You can interact with the Chia blockchain through the RPC, which is [documented](https://docs.chia.net/reference-client/rpc-reference/rpc/) with sections on the full node, NFTs and more.
 
 Because the RPC is accessible through web requests to localhost, you can build software using the Chia blockchain node. You can create all this code yourself or you can used wrappers that others have created.
 
@@ -28,7 +28,7 @@ This guide is meant to be an example that will give you some basic experience. W
 
 ### Full Node RPC
 
-You can interact with the Chia blockchain through the RPC, which is [documented](https://docs.chia.net/rpc/) with sections on the full node, NFTs and more.
+You can interact with the Chia blockchain through the RPC, which is [documented](https://docs.chia.net/reference-client/rpc-reference/rpc/) with sections on the full node, NFTs and more.
 
 Because the RPC is accessible through web requests to localhost, you can build software using the Chia blockchain node. You can create all this code yourself or you can used wrappers that others have created.
 

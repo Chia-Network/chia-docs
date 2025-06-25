@@ -1,9 +1,9 @@
 ---
 title: Coin Selection
-slug: /coin-selection
+slug: /reference-client/coin-selection
 ---
 
-Chia uses the [Coin Set](/coin-set-intro) model of accounting, under which _everything_ is a coin. When Chia wallets perform certain actions, they must select one or more coins to spend or reserve. (Coin selection is performed automatically by the software; the wallet's user is not involved.) When Chia wallets perform certain actions, they must select one or more coins to spend or reserve. (Coin selection is performed automatically by the software; the wallet's user is not involved.)
+Chia uses the [Coin Set](/chia-blockchain/coin-set-model/intro) model of accounting, under which _everything_ is a coin. When Chia wallets perform certain actions, they must select one or more coins to spend or reserve. (Coin selection is performed automatically by the software; the wallet's user is not involved.) When Chia wallets perform certain actions, they must select one or more coins to spend or reserve. (Coin selection is performed automatically by the software; the wallet's user is not involved.)
 
 Actions that require coin selection include, but are not limited to:
 

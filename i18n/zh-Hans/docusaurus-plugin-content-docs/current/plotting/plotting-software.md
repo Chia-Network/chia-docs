@@ -1,7 +1,7 @@
 ---
 sidebar_label: 生成地块软件
 title: 生成地块软件
-slug: /plotting-software
+slug: /reference-client/plotting/plotting-software
 ---
 
 import Tabs from '@theme/Tabs';
@@ -53,7 +53,7 @@ More info
 - Can also be installed as a [standalone build](#bladebit-standalone)
 - A detailed analysis of BladeBit CUDA's performance was undertaken by [scienceofmining.com](https://scienceofmining.com/20230828-BladeBit/BladeBit%20CUDA%20Performance%20Analysis-1.html)
 
-[CLI documentation](/plotters-cli#cudaplot)
+[CLI documentation](/reference-client/cli-reference/plotter-cli#cudaplot)
 
 **Example command**
 
@@ -91,7 +91,7 @@ More info
 - Open-source, freely available, no dev fee
 - Can also be installed as a [standalone build](#bladebit-standalone)
 
-[CLI documentation](/plotters-cli#ramplot)
+[CLI documentation](/reference-client/cli-reference/plotter-cli#ramplot)
 
 **Example command**
 
@@ -132,7 +132,7 @@ More info
 - 流水线性能（Pipelined performance）以充分利用CPU
 - Can also be installed as a [standalone build](#bladebit-standalone)
 
-[CLI documentation](/plotters-cli#diskplot)
+[CLI documentation](/reference-client/cli-reference/plotter-cli#diskplot)
 
 **Example command**
 
@@ -182,9 +182,9 @@ More info
 
 Getting started
 
-- [CLI documentation](/plotters-cli#drplotter)
+- [CLI documentation](/reference-client/cli-reference/plotter-cli#drplotter)
 - [Introduction to DrPlotter](https://www.youtube.com/watch?v=hQTV7foIRHo&t=3s)
-- Complete instructions for downloading and installing DrPlotter are available on the [DrPlotter GitHub page](https://github.com/drnick23/drplotter/wiki/Installation-Guide).
+- Complete instructions for downloading and installing DrPlotter are available on the [DrPlotter GitHub page](https://github.com/drnick23/drplotter/wiki/installation-Guide).
 
 Abbreviated installation instructions
 
@@ -261,7 +261,7 @@ More info
 - The use of temporary HDD or SSD storage makes it accessible to the majority of farmers
 - 流水线性能（Pipelined performance）以充分利用CPU
 
-[CLI documentation](/plotters-cli#madmax)
+[CLI documentation](/reference-client/cli-reference/plotter-cli#madmax)
 
 **Example command**
 
@@ -298,7 +298,7 @@ More info
 - The use of temporary HDD or SSD storage makes it accessible to the majority of farmers
 - Not optimized for performance
 
-[CLI documentation](/plotters-cli#chiapos)
+[CLI documentation](/reference-client/cli-reference/plotter-cli#chiapos)
 
 **Example command**
 
@@ -375,7 +375,7 @@ It is always possible, and indeed recommended, to create a plot with a few diffe
 
 ## CLI usage
 
-有一个新的`chia`命令用于创建地块，称为`plotters`。 For compatibility, the original command for creating plots `chia plots create` remains in place, however, this will always use the reference ChiaPoS plotter. 要使用其他生成地块软件，必须使用新的`chia plotters`命令。 Command line options differ with each plotter, so be sure to check the available options using `chia plotters <plotter> -h` or by reading the online [CLI documentation](/plotters-cli). 可用的生成地块软件值包括"chiapos"、"bladebit"和"madmax"。
+有一个新的`chia`命令用于创建地块，称为`plotters`。 For compatibility, the original command for creating plots `chia plots create` remains in place, however, this will always use the reference ChiaPoS plotter. 要使用其他生成地块软件，必须使用新的`chia plotters`命令。 Command line options differ with each plotter, so be sure to check the available options using `chia plotters <plotter> -h` or by reading the online [CLI documentation](/reference-client/cli-reference/plotter-cli). 可用的生成地块软件值包括"chiapos"、"bladebit"和"madmax"。
 
 UI界面还具有支持选择生成地块软件的新功能。
 

@@ -1,7 +1,7 @@
 ---
 sidebar_label: Choosing a Compression Level
 title: Choosing a compression level
-slug: /plotting-compression
+slug: /reference-client/plotting/plotting-compression
 ---
 
 import Tabs from '@theme/Tabs';
@@ -61,13 +61,13 @@ The third-party website [xch.farm](https://xch.farm/max-farm-size) has tables fo
 
 ### BladeBit Simulate
 
-The [standalone version of BladeBit](/plotting-software#bladebit-standalone) comes with a simulator that will determine the maximum size of your farm. The basic idea is that you pass in a compressed plot (C1-C9) and it will calculate the maximum number of plots/space your current harvester can handle. The basic idea is that you pass in a compressed plot (C1-C9) and it will calculate the maximum number of plots/space your current harvester can handle.
+The [standalone version of BladeBit](/reference-client/plotting/plotting-software#bladebit-standalone) comes with a simulator that will determine the maximum size of your farm. The basic idea is that you pass in a compressed plot (C1-C9) and it will calculate the maximum number of plots/space your current harvester can handle. The basic idea is that you pass in a compressed plot (C1-C9) and it will calculate the maximum number of plots/space your current harvester can handle.
 
-See the [CLI reference](/plotters-cli#simulate) for a list of options using the simulator.
+See the [CLI reference](/reference-client/cli-reference/plotter-cli#simulate) for a list of options using the simulator.
 
 :::info
 
-The simulator's default values are typically fine, other than the filter size. For context, starting in June 2024 the plot filter will be reduced from 512 to 256. At this point, twice as many plots will pass the filter, so your harvester's workload will effectively double. You are recommended to use `-f 256` with the simulator to prepare for this event. For more information on the plot filter, see our [FAQ](/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it).
+The simulator's default values are typically fine, other than the filter size. For context, starting in June 2024 the plot filter will be reduced from 512 to 256. At this point, twice as many plots will pass the filter, so your harvester's workload will effectively double. You are recommended to use `-f 256` with the simulator to prepare for this event. For more information on the plot filter, see our [FAQ](/chia-blockchain/resources/faq#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it).
 
 :::
 

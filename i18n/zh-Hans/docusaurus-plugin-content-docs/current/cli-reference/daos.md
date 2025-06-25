@@ -1,7 +1,7 @@
 ---
 sidebar_label: DAOs
 title: DAO CLI
-slug: /dao-cli
+slug: /reference-client/cli-reference/dao-cli
 ---
 
 import Tabs from '@theme/Tabs';
@@ -450,7 +450,7 @@ If you only have one coin, an error similar to the following will be shown:
 
 `ValueError: {'error': 'Transaction for 100000 is greater than spendable balance of 0. There may be other transactions pending or our minimum coin amount is too high.', 'success': False}`
 
-You can split one coin into multiple coins by running the [chia wallet coins split](/wallet-cli/#split) command.
+You can split one coin into multiple coins by running the [chia wallet coins split](/reference-client/cli-reference/wallet-cli/#split) command.
 
 :::
 

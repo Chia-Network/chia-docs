@@ -1,6 +1,6 @@
 ---
 title: Node Syncing
-slug: /troubleshooting/node-syncing
+slug: /reference-client/troubleshooting/node-syncing
 ---
 
 import Tabs from '@theme/Tabs';

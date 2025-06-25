@@ -1,7 +1,7 @@
 ---
 title: Rational Attackers - Chia Green Paper
 sidebar_label: 3 - Rational Attackers
-slug: /rational-attackers
+slug: /chia-blockchain/green-paper/rational-attackers
 ---
 
 # 3 - Rational Attackers
@@ -14,7 +14,7 @@ In §3.1 below we first discuss selfish mining and why we don't observe it in Bi
 
 ## 3.1 Selfish Mining in Bitcoin
 
-While Bitcoin prevents double spending assuming a majority of the hashing power is controlled by miners who altruistically follow the protocol, it allows for *selfish mining* [<a href="/green-paper-references/#ES18">ES18</a>] by which a miner with a $\alpha<0.5$ fraction of the hashing power can create more than an $\alpha$ fraction of the blocks and thus gets an unfair share of the block rewards. In some settings this fraction can be as large as $\alpha/(1-\alpha)$ (e.g. a $0.33$ fraction for $\alpha=0.25$).[^1] Selfish mining has not been observed in Bitcoin, and there are various reasons why this is the case
+While Bitcoin prevents double spending assuming a majority of the hashing power is controlled by miners who altruistically follow the protocol, it allows for *selfish mining* [<a href="/chia-blockchain/green-paper/green-paper-references/#ES18">ES18</a>] by which a miner with a $\alpha<0.5$ fraction of the hashing power can create more than an $\alpha$ fraction of the blocks and thus gets an unfair share of the block rewards. In some settings this fraction can be as large as $\alpha/(1-\alpha)$ (e.g. a $0.33$ fraction for $\alpha=0.25$).[^1] Selfish mining has not been observed in Bitcoin, and there are various reasons why this is the case
 
 1.  selfish mining requires either a fairly large fraction of the hashing power or very good control of the network (cf. Footnote [^1]) to be profitable
 
@@ -32,7 +32,7 @@ The Bitcoin blockchain is split in epochs, each with a targeted duration of two 
 
 ## 3.3 Chain Quality
 
-A longest-chain blockchain is said to have _chain quality_ $\rho$ if the fraction of blocks mined by honest miners is at least $\rho$ (with high probability and considering a sufficiently large number of blocks). Chain quality was introduced in [<a href="/green-paper-references/#GKL15">GKL15</a>] as a metric to quantify how susceptible a chain is to selfish mining. Ideally, assuming an adversarial miner who controls an $\alpha$ fraction of the resource, the chain quality should be $\rho=1-\alpha$ as this means that the adversary cannot increase its fraction of blocks by deviating. Chain quality was introduced in [<a href="/green-paper-references/#GKL15">GKL15</a>] as a metric to quantify how susceptible a chain is to selfish mining. Ideally, assuming an adversarial miner who controls an $\alpha$ fraction of the resource, the chain quality should be $\rho=1-\alpha$ as this means that the adversary cannot increase its fraction of blocks by deviating.
+A longest-chain blockchain is said to have _chain quality_ $\rho$ if the fraction of blocks mined by honest miners is at least $\rho$ (with high probability and considering a sufficiently large number of blocks). Chain quality was introduced in [<a href="/chia-blockchain/green-paper/green-paper-references/#GKL15">GKL15</a>] as a metric to quantify how susceptible a chain is to selfish mining. Ideally, assuming an adversarial miner who controls an $\alpha$ fraction of the resource, the chain quality should be $\rho=1-\alpha$ as this means that the adversary cannot increase its fraction of blocks by deviating. Chain quality was introduced in [<a href="/chia-blockchain/green-paper/green-paper-references/#GKL15">GKL15</a>] as a metric to quantify how susceptible a chain is to selfish mining. Ideally, assuming an adversarial miner who controls an $\alpha$ fraction of the resource, the chain quality should be $\rho=1-\alpha$ as this means that the adversary cannot increase its fraction of blocks by deviating.
 
 By the Proposition below delayed gratification and the no slowdown property imply a bound on _chain quality_ which matches the bound proven for Bitcoin (when ignoring network delays).
 

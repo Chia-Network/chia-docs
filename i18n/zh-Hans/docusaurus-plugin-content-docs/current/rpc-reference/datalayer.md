@@ -1,7 +1,7 @@
 ---
 sidebar_label: DataLayer
 title: DataLayer RPC
-slug: /datalayer-rpc
+slug: /reference-client/rpc-reference/datalayer-rpc
 ---
 
 import Tabs from '@theme/Tabs';
@@ -30,7 +30,7 @@ To run the same command on Windows, you need to escape the quotes with backslash
 
 This page includes a comprehensive list of Chia's DataLayer RPC API.
 
-We also have documented the [DataLayer CLI](/datalayer-cli) commands for interacting with the DataLayer.
+We also have documented the [DataLayer CLI](/reference-client/cli-reference/datalayer-cli) commands for interacting with the DataLayer.
 
 By default, the DataLayer RPC API is exposed on port 8562. This is configured in `~/.chia/mainnet/config/config.yaml` under `data_layer:rpc_port`. This port must not be exposed publicly for security concerns.
 

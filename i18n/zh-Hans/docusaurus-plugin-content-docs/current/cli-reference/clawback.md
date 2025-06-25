@@ -1,5 +1,5 @@
 ---
-slug: /clawback-cli
+slug: /reference-client/cli-reference/clawback-cli
 title: Clawback
 ---
 
@@ -13,9 +13,9 @@ These commands are only relevant for the clawback primitive, which is located in
 
 In order to view the commands that are built into the CLI for Chia's reference wallet, see the following `wallet` commands:
 
-- [clawback](/wallet-cli#clawback)
-- [get_transactions](/wallet-cli#get_transactions)
-- [send](/wallet-cli#send-1)
+- [clawback](/reference-client/cli-reference/wallet-cli#clawback)
+- [get_transactions](/reference-client/cli-reference/wallet-cli#get_transactions)
+- [send](/reference-client/cli-reference/wallet-cli#send-1)
 
 :::
 

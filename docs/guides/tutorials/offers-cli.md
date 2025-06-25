@@ -7,7 +7,7 @@ title: Offers - CLI
 
 This tutorial covers Chia offers using the command line interface.
 
-See also our [GUI tutorial](/getting-started/wallet-guide) and our [reference document](https://chialisp.com/offers).
+See also our [GUI tutorial](/reference-client/getting-started/wallet-guide) and our [reference document](https://chialisp.com/offers).
 
 :::note
 This tutorial occasionally references a token called "CAT King Cole" (CKC). This token is for demonstration purposes only.
@@ -43,8 +43,8 @@ Chia's command line interface provides a set of commands to make, take, cancel, 
 
 For more info, see our comprehensive Offers references:
 
-- [CLI](/offer-cli)
-- [RPC](/offer-rpc)
+- [CLI](/reference-client/cli-reference/offer-cli)
+- [RPC](/reference-client/rpc-reference/offer-rpc)
 
 ---
 
@@ -760,7 +760,7 @@ The lesson here is do _not_ use the --insecure flag unless you're certain the of
 
 Under the coin set model, coins can be of any value. When an offer is created, the Maker's wallet must reserve enough coins to meet the requirements of the offer.
 
-The coin set model [has many advantages](/coin-set-intro) over the account model, but it can create some situations that take time to understand.
+The coin set model [has many advantages](/chia-blockchain/coin-set-model/intro) over the account model, but it can create some situations that take time to understand.
 
 For example, let's say a Maker has 1 XCH and 0 USDS:
 
@@ -884,5 +884,5 @@ The CAT1 Standard reached its end of life (EOL) with block 2,311,760 in July 202
 
 - [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
 - [Offers reference](https://chialisp.com/offers)
-- [GUI tutorial](/getting-started/wallet-guide)
-- [Info on the coin set model](/coin-set-intro)
+- [GUI tutorial](/reference-client/getting-started/wallet-guide)
+- [Info on the coin set model](/chia-blockchain/coin-set-model/intro)

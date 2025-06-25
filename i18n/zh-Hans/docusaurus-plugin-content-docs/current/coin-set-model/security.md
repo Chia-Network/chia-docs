@@ -1,5 +1,5 @@
 ---
-slug: /coin-set-security
+slug: /chia-blockchain/coin-set-model/security
 title: Security
 ---
 

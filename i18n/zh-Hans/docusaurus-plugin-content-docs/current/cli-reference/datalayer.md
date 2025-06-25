@@ -1,7 +1,7 @@
 ---
 sidebar_label: DataLayer
 title: DataLayer CLI
-slug: /datalayer-cli
+slug: /reference-client/cli-reference/datalayer-cli
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 This page includes a comprehensive list of Chia's Command Line Interface commands for interacting with the DataLayer.
 
-We also have documented the [RPC API](/datalayer-rpc) for interacting with the DataLayer.
+We also have documented the [RPC API](/reference-client/rpc-reference/datalayer-rpc) for interacting with the DataLayer.
 
 The relevant DataLayer commands can be found by running `chia data`:
 

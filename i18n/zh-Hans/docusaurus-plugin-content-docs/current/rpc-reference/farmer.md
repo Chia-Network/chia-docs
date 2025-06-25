@@ -1,7 +1,7 @@
 ---
 sidebar_label: Farmer
 title: Farmer RPC
-slug: /farmer-rpc
+slug: /reference-client/rpc-reference/farmer-rpc
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,7 +1,7 @@
 ---
 sidebar_label: Harvester
 title: Harvester RPC
-slug: /harvester-rpc
+slug: /reference-client/rpc-reference/harvester-rpc
 ---
 
 import Tabs from '@theme/Tabs';

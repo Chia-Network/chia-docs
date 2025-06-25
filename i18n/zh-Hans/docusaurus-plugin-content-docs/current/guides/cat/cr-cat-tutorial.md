@@ -13,7 +13,7 @@ Credential Restricted Chia Asset Tokens (CR-CATs) are CATs whose ownership is re
 For additional resources, see the following:
 
 - [CHIP-19](https://github.com/Chia-Network/chips/pull/68) -- Restricted CAT Standard
-- [CAT admin](/cat-admin-cli) -- CLI documentation for the CAT admin tool
+- [CAT admin](/reference-client/cli-reference/cat-admin-cli) -- CLI documentation for the CAT admin tool
 - [VC guide](/guides/verifiable-credentials-guide) -- VCs are required in order to use CR-CATs
 - [CAT standard](https://chialisp.com/cats) -- Good to read if you are unfamiliar with Chia Asset Tokens
 
@@ -316,7 +316,7 @@ If you are running a full node, verify that it is synced by running this command
 chia show -s
 ```
 
-For a comprehensive list of all options available with the CAT admin tool, as well as examples of how to use them, see the [CLI reference](/cat-admin-cli).
+For a comprehensive list of all options available with the CAT admin tool, as well as examples of how to use them, see the [CLI reference](/reference-client/cli-reference/cat-admin-cli).
 
 ### Automatic CATs
 
@@ -324,7 +324,7 @@ Before continuing, it is a good idea to verify that new CATs will automatically 
 
 Edit this file and search for `automatically_add_unknown_cats`. You are recommended to set this option's value to `true`. Edit this file and search for `automatically_add_unknown_cats`. You are recommended to set this option's value to `true`. Be sure to restart your wallet if you modify this option, so your new CR-CATs will automatically be added to your wallet.
 
-If you prefer not to use this option, you can also manually add new CATs with the [add_token](/wallet-cli#add_token) command.
+If you prefer not to use this option, you can also manually add new CATs with the [add_token](/reference-client/cli-reference/wallet-cli#add_token) command.
 
 ### Setup summary
 

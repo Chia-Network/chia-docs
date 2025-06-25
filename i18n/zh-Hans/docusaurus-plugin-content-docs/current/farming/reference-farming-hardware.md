@@ -1,6 +1,6 @@
 ---
 title: Reference Farming Hardware
-slug: /reference-farming-hardware
+slug: /reference-client/farming/reference-farming-hardware
 ---
 
 # 参考耕种（Farming）硬件 - 适用于任何规模的耕种

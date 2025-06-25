@@ -48,7 +48,7 @@ Essentially:
 
 ## Getting Started
 
-You can refer to the [Installation page](/installation) to download and install the Chia client. The installer is usually the simplest and we will go through how to set up the `chia` command for CLI use.
+You can refer to the [Installation page](/reference-client/install-and-setup/installation) to download and install the Chia client. The installer is usually the simplest and we will go through how to set up the `chia` command for CLI use.
 
 To make the commands as close as possible across operating systems I recommend Windows users [download Git](https://git-scm.com/download/win), which comes with Git bash. You can of course use Windows Command Prompt or PowerShell, but commands may be slightly different.
 

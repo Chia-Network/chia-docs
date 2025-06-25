@@ -13,7 +13,7 @@ This document is a guide for using the clawback functionality introduced in vers
 If you are a developer or a CLI user, see the following resources for more info:
 
 - [Clawback Standalone Primitive Guide](/guides/clawback-primitive-guide)
-- [Clawback Standalone Primitive CLI Reference](/clawback-cli)
+- [Clawback Standalone Primitive CLI Reference](/reference-client/cli-reference/clawback-cli)
 - [Youtube video explaining clawback](https://www.youtube.com/watch?v=_pC38ulU2js)
 
 In order to use Chia clawbacks, you must have:
@@ -313,9 +313,9 @@ At this point, the transaction is final. It can no longer be clawed back.
 
 The detailed documentation for the clawback CLI commands can be found in the following locations:
 
-- [clawback](/wallet-cli#clawback)
-- [get_transactions](/wallet-cli#get_transactions)
-- [send](/wallet-cli#send-1)
+- [clawback](/reference-client/cli-reference/wallet-cli#clawback)
+- [get_transactions](/reference-client/cli-reference/wallet-cli#get_transactions)
+- [send](/reference-client/cli-reference/wallet-cli#send-1)
 
 ### Clawback
 

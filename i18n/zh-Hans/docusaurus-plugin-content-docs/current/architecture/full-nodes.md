@@ -1,6 +1,6 @@
 ---
 title: 全节点
-slug: /full-node-architecture
+slug: /chia-blockchain/architecture/full-nodes
 ---
 
 Chia点对点系统的核心由全节点组成。 全节点有以下几项责任：

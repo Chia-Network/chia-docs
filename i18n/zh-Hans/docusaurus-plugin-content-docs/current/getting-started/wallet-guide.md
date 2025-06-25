@@ -1,5 +1,5 @@
 ---
-slug: /getting-started/wallet-guide
+slug: /reference-client/getting-started/wallet-guide
 title: Wallet Guide
 ---
 
@@ -662,7 +662,7 @@ The lesson here is do _not_ uncheck the "Cancel on blockchain" checkbox unless y
 
 Under the coin set model, coins can be of any value. When an Offer is created, the Maker's wallet must reserve enough coins to meet the requirements of the Offer.
 
-The coin set model [has many advantages](/coin-set-intro) over the account model, but it can create some situations that take time to understand.
+The coin set model [has many advantages](/chia-blockchain/coin-set-model/intro) over the account model, but it can create some situations that take time to understand.
 
 For example, let's say a Maker has 1 XCH and 0 USDS:
 
@@ -755,4 +755,4 @@ The CAT1 Standard reached its end of life (EOL) with block 2,311,760 in July 202
 - [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
 - [Offers reference](https://chialisp.com/offers)
 - [CLI tutorial](/guides/offers-cli-tutorial)
-- [Info on the coin set model](/coin-set-intro)
+- [Info on the coin set model](/chia-blockchain/coin-set-model/intro)

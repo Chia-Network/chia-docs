@@ -1,6 +1,6 @@
 ---
 title: SSD的耐久性
-slug: /ssd-endurance
+slug: /reference-client/plotting/ssd-endurance
 ---
 
 The fastest plot creation is done completely in memory, but requires a server with a large amount of DRAM (256 GB for BladeBit CUDA, or 416 GB for BladeBit RAM). Most consumer motherboards don't support this much memory, so temporary storage must be used. This typically comes in the form of an SSD. Most consumer motherboards don't support this much memory, so temporary storage must be used. This typically comes in the form of an SSD.

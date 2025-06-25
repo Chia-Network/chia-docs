@@ -1,6 +1,6 @@
 ---
 title: K值大小
-slug: /k-sizes
+slug: /chia-blockchain/resources/k-sizes
 ---
 
 ## K值大小与压缩等级

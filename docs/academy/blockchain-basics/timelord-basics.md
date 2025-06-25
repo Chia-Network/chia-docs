@@ -56,7 +56,7 @@ While at least one Timelord is required for the blockchain to function, anyone c
 ## Common gotchas
 
 - **VDFs and Proofs of Time:** A Verifiable Delay Function, also referred to as a Proof of Time or VDF, is a proof that a sequential function was executed a certain number of times.
-- **Timelords:** Only 1 timelord is needed to keep the chain moving but anyone can run a timelord and multiple timelords on the network ensures resiliency. Some attacks that timelords protect against are documented [here](https://docs.chia.net/consensus-attacks#faster-timelord).
+- **Timelords:** Only 1 timelord is needed to keep the chain moving but anyone can run a timelord and multiple timelords on the network ensures resiliency. Some attacks that timelords protect against are documented [here](https://docs.chia.net/chia-blockchain/consensus/attacks-and-countermeasures#faster-timelord).
 - **Challenges:** Challenges are deterministic meaning one can use the inputs (the previous challenge and Proof of Space) to verify the current challenge's accuracy.
 
 ---
@@ -143,9 +143,9 @@ True
 
 ### Links
 
-- Timelords [detailed documentation](https://docs.chia.net/timelord-algorithm/): details the timelords role in the consensus model.
-- Proofs of Time / VDFs [overview](https://docs.chia.net/proof-of-time/): detailed overview for Proofs of Time and VDFs.
-- Challenges [detailed documentation](https://docs.chia.net/consensus-challenges/): detailed information regarding challenges.
+- Timelords [detailed documentation](https://docs.chia.net/chia-blockchain/consensus/timelords/): details the timelords role in the consensus model.
+- Proofs of Time / VDFs [overview](https://docs.chia.net/chia-blockchain/consensus/proof-of-time/): detailed overview for Proofs of Time and VDFs.
+- Challenges [detailed documentation](https://docs.chia.net/chia-blockchain/consensus/chains/challenges/): detailed information regarding challenges.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---

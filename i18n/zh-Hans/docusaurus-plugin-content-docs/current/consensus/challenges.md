@@ -1,6 +1,6 @@
 ---
 title: Challenges
-slug: /consensus-challenges
+slug: /chia-blockchain/consensus/chains/challenges
 ---
 
 The Chia consensus algorithm relies on timelords running VDFs for periods of time called _sub-slots_, which are adjusted periodically (and automatically) to take around 10 minutes. During every sub-slot, challenges are released by timelords, and a sort of mini lottery starts, where farmers check their plots for proofs of space. When farmers find a proof of space that qualifies, they broadcast it to the network.
@@ -8,7 +8,7 @@ The Chia consensus algorithm relies on timelords running VDFs for periods of tim
 The difficulty adjusts automatically to target 32 winning proofs for the entire network in each sub-slot, or about one winner every 18.75 seconds on average (32 winners per 600 seconds). The winning proofs are infused into the VDF at different times within the sub-slot.
 
 :::info
-A sub-slot is always targeted to last 10 minutes. There is also a period of time called a _slot_. Typically, a slot and a sub-slot are exactly the same thing. However, in order to prevent long-range attacks, slots are required to have at least 16 blocks (and sub-slots are not). If a sub-slot ends with fewer than 16 blocks having been created, the same slot must continue for another sub-slot. See the [Overflow Blocks and Weight page](/overflow-blocks#minimum-block-requirement) (minimum block requirement) for more info.
+A sub-slot is always targeted to last 10 minutes. There is also a period of time called a _slot_. Typically, a slot and a sub-slot are exactly the same thing. However, in order to prevent long-range attacks, slots are required to have at least 16 blocks (and sub-slots are not). If a sub-slot ends with fewer than 16 blocks having been created, the same slot must continue for another sub-slot. See the [Overflow Blocks and Weight page](/chia-blockchain/consensus/chains/overflow-blocks#minimum-block-requirement) (minimum block requirement) for more info.
 :::
 
 The consensus requires farmers to follow the heaviest chain, which is the chain that has the highest accumulated difficulty (usually the chain with the most blocks).
@@ -39,7 +39,7 @@ class ChallengeChainSubSlot(Streamable):
 
 **Challenge**: a sha256 output string. It is used as a proof-of-space challenge for farmers' plots. It is also used for the challenge chain VDF, and is sometimes referred to as a _challenge hash_.
 
-As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in detail in the [Three VDF Chains page](/three-vdf-chains).
+As you can see in Figure 4, there are three VDFs being executed concurrently, each of which serves a different purpose. They are explained in detail in the [Three VDF Chains page](/chia-blockchain/consensus/chains/three-vdf-chains).
 
 In the networking protocol, the three VDF proofs are usually passed around together, in what is called an _end of sub-slot bundle_.
 

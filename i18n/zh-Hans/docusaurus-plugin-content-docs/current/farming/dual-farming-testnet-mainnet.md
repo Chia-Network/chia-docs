@@ -1,6 +1,6 @@
 ---
 title: Dual Farming
-slug: dual-farming-testnet-mainnet
+slug: /reference-client/farming/dual-farming-testnet-mainnet
 ---
 
 import Tabs from '@theme/Tabs';
@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
 
 ## 设置主网安装
 
-对于主网安装，我们将继续使用默认端口和`CHIA_ROOT`，因此这些步骤与标准的[安装说明](/installation)没有区别。
+对于主网安装，我们将继续使用默认端口和`CHIA_ROOT`，因此这些步骤与标准的[安装说明](/reference-client/install-and-setup/installation)没有区别。
 
 ## 设置测试网络安装
 

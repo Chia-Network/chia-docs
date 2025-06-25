@@ -1,7 +1,7 @@
 ---
 sidebar_label: DAOs
 title: DAO RPCs
-slug: /dao-rpc
+slug: /reference-client/rpc-reference/dao-rpc
 ---
 
 import Tabs from '@theme/Tabs';
@@ -17,7 +17,7 @@ Prior to using the DAO alpha primitive, be sure to read the [list of known issue
 
 :::note
 
-The RPC to create a new DAO is a **wallet RPC** called [create_new_wallet](/wallet-rpc/#create_new_wallet), therefore it is not documented here. See Example 7 for details of how this command's options can be used.
+The RPC to create a new DAO is a **wallet RPC** called [create_new_wallet](/reference-client/rpc-reference/wallet-rpc/#create_new_wallet), therefore it is not documented here. See Example 7 for details of how this command's options can be used.
 
 :::
 
