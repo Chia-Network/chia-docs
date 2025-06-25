@@ -1,7 +1,7 @@
 ---
 title: Constants, Variables and Notation - Chia Green Paper
 sidebar_label: 0 - Constants, Variables and Notation
-slug: /chia-blockchain/green-paper/contants-variables-notation
+slug: /chia-blockchain/green-paper/constants-variables-notation
 ---
 
 # 0 - Constants, Variables and Notation
