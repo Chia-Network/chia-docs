@@ -168,6 +168,7 @@ module.exports = {
         items: [
           'cloud-wallet/getting-started',
           'cloud-wallet/faq',
+          'cloud-wallet/known-issues',
           'cloud-wallet/tooltips',
         ]
       },
