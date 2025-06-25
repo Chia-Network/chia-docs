@@ -14,7 +14,7 @@ The Cloud Wallet is a platform for interacting with the Chia blockchain. Assets 
 
 ### Is the Chia Cloud Wallet available for mainnet?
 
-Not yet. It is currently in beta on testnet11.
+Yes. It is in early release as of 6/25/2025 and can be accessed [here](https://vault.chia.net).
 
 ### How can I obtain some TXCH for testnet11?
 
@@ -22,7 +22,8 @@ Visit either our [official faucet site](https://testnet11-faucet.chia.net) or a 
 
 ### How do I get started with the Cloud Wallet?
 
-Visit the [Cloud Wallet website](https://vault.chiatest.net) and sign up for a free account.
+For mainnet visit the [Mainnet Cloud Wallet website](https://vault.chia.net) and sign up for a free account.
+For testnet visit the [Testnet Cloud Wallet website](https://vault.chiatest.net) and sign up for a free account.
 
 ### How is the Cloud Wallet different from other wallets?
 
@@ -86,7 +87,7 @@ Feel free to ask questions in the #support channel of [our Discord](https://disc
 
 ### Where can I report a bug?
 
-If you find any bugs, feel free to fill out a [bug report](https://docs.google.com/forms/d/e/1FAIpQLSeIAZAxSwTwZPGUVLs7_XKseoPgOmtBa0qhtWNQwBeoo9adRA/viewform). However, please keep in mind that this is beta software. We are aware of several existing bugs.
+If you find any bugs, feel free to fill out a [bug report](https://docs.google.com/forms/d/e/1FAIpQLSeIAZAxSwTwZPGUVLs7_XKseoPgOmtBa0qhtWNQwBeoo9adRA/viewform). However, please keep in mind that this is early release software. We are aware of several existing bugs.
 
 If you discover any security issues, you can file a report on our [bug bounty site](https://hackerone.com/chia_network). Thanks for your help!
 
