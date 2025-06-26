@@ -1,13 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #5ece71;
-  --ifm-color-primary-dark: #297e40;
-  --ifm-color-primary-darker: #1c552b;
-  --ifm-color-primary-darkest: #073112;
-  --ifm-color-primary-light: #44b161;
-  --ifm-color-primary-lighter: #6dc585;
-  --ifm-color-primary-lightest: #a7ddb5;
-  --ifm-code-font-size: 95%;
+  --ifm-color-primary: #42506C;
+  --ifm-color-primary-dark: #3b4861;
+  --ifm-color-primary-darker: #38445c;
+  --ifm-color-primary-darkest: #2e384c;
+  --ifm-color-primary-light: #495877;
+  --ifm-color-primary-lighter: #4c5c7c;
+  --ifm-color-primary-lightest: #56688c;
+  --ifm-color-secondary: #42506C;
+  --ifm-link-color: #42506C;
+  --ifm-link-hover-color: #A8BEF1;
+  --ifm-link-hover-decoration: none;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #42506C;
+  --ifm-color-primary-dark: #3b4861;
+  --ifm-color-primary-darker: #38445c;
+  --ifm-color-primary-darkest: #2e384c;
+  --ifm-color-primary-light: #495877;
+  --ifm-color-primary-lighter: #4c5c7c;
+  --ifm-color-primary-lightest: #56688c;
+  --ifm-link-color: #E5FE75;
+  --ifm-link-hover-color: #A8BEF1;
+  --ifm-link-hover-decoration: none;
+}
+
+/* Footer light mode */
+
+.footer a {
+ color: #42506C;
+}
+
+.footer a:hover {
+ color: #A8BEF1;
+}
+
+.footer {
+  background-color: #D2E3FE;
+  color: #42506C;
+}
+
+/* Footer dark mode */
+
+.footer a {
+ color: #42506C;
+}
+
+.footer a:hover {
+ color: #A8BEF1;
+}
+
+.footer {
+  background-color: #D2E3FE;
+  color: #42506C;
+}
+
+/* Fonts */
+/* Apply Poppins Bold to all H1 elements */
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+/* Apply Poppins Medium to subhead elements */
+.subhead {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+/* Apply Poppins Semibold to all H2 and H3 elements */
+h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+/* Apply Poppins Medium to all H4 elements */
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+/* Apply Inter Regular to the body and paragraph elements */
+body, p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* Make body and paragraph links bold (light theme) */
+body a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer),
+p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer) {
+  font-weight: bold;
+}
+
+/* Dark mode */
+/* Make body and paragraph links bold (dark theme) */
+@media (prefers-color-scheme: dark) {
+  html[data-theme='dark'] body a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer),
+  html[data-theme='dark'] p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer) {
+    font-weight: bold;
+  }
 }
 
 .docusaurus-highlight-code-line {
@@ -25,6 +119,20 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   h1.hero__title {
     font-size: 2rem;
   }
+}
+
+.hero.hero--primary.heroBanner_qdFl {
+    color: #42506C;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero.hero--primary .button.button--secondary {
+    color: #42506C;
+    background-color: #E5FE75;
+    border: 1px;
+    border-color: #42506C;
 }
 
 .feature-item {
