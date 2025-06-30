@@ -123,13 +123,11 @@ Note: Before generating a new GPG key, make sure you've verified your email addr
 2. Open Git Bash.
 
 3. Generate a GPG key pair. Since there are multiple versions of GPG, you may need to consult the relevant [man page](https://en.wikipedia.org/wiki/Man_page) to find the appropriate key generation command.
-
    - If you are on version 2.1.17 or greater, paste the text below to generate a GPG key pair.
 
    ```shell
      gpg --full-generate-key
    ```
-
    - If you are not on version 2.1.17 or greater, the gpg --full-generate-key command doesn't work. Paste the text below and skip to step 6.
 
    ```shell

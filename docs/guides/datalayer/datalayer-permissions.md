@@ -42,7 +42,6 @@ Multiple instances of the same service are also possible. The service can be con
 To configure Chia to use DataLayer permissions, you need to add a list of URLs to config.yaml which allows access to the uploaders and downloaders. The settings to configure are new as of 1.8.0. To add them, you have two options:
 
 1. Start from scratch
-
    - Delete or rename `~/.chia/mainnet/config/config.yaml`
    - Run `chia init`; a new copy of config.yaml that contains the new settings will be generated
 
