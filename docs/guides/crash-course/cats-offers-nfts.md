@@ -304,7 +304,7 @@ If someone accepts the offer and the transaction is completed, you will receive 
 
 The first step to getting your offer accepted is to broadcast it in some way.
 
-This file can be uploaded anywhere, but there are many websites out there dedicated to Chia offers. Offer sites include [Offerbin](https://offerbin.io/) and [offerpool](https://offerpool.io/).
+This file can be uploaded anywhere, but there are many websites out there dedicated to Chia offers. Offer sites include [Dexie](https://dexie.space/) and [offerpool](https://offerpool.io/).
 
 You can accept an offer that has been downloaded to your personal machine with the `take_offer` command.
 
