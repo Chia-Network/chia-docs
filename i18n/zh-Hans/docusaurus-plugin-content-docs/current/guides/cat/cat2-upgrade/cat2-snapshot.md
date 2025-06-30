@@ -104,7 +104,6 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
    ```
 
 4. The following environment variables need to be set in order to use this tool:
-
    1. `FULL_NODE_HOSTNAME` - The hostname of the full node to call the RPCs against. This can be `localhost`.
    2. `DB_SOURCE_DIR` - The location of the full node database on the host machine.
    3. `START_HEIGHT` - The height of the blockchain to start creating the snapshot from (default: `0`). If you are attempting to obtain all records for your CAT, the recommended start height is `1146800`, which is just before CAT1 was introduced.

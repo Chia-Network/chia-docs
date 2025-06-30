@@ -452,18 +452,15 @@ Derivation Info:
 Here's how to interpret this output:
 
 - Singleton
-
   - `launcher ID`: This shows the on-chain ID of your singleton
   - `amount left`: This is the current value of the singleton. For now it is zero because it has not yet been funded
   - `amount to claim`: This is the number of mojos currently in the process of being withdrawn. The money is effectively sitting in escrow, and will be able to be withdrawn after the withdrawal timelock has been fulfilled
 
 - Outstanding events
-
   - `PAYMENTS`: If there were a payment in progress, it would be shown here
   - `REKEYS`: If there were a rekey in progress, it would be shown here
 
 - Config
-
   - `current root`: Puzzlehash of the singleton as it is currently configured
   - `withdrawal timelock`: Number of seconds to wait before a withdrawal may be initiated
   - `payment clawback period`: Number of seconds to wait before a withdrawal may be completed. During this period, clawback is possible

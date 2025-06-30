@@ -30,7 +30,6 @@ In the future, we plan to enable decompression at the farmer level. This means t
 
 3. Slide the `Enable compressed plot support` slider to the right, as shown in the above image.
 4. For `Parallel Decompressor Count`, the default value of `1` will be fine for most users. Here are some details:
-
    - This number _only_ affects the amount of memory used for decompression.
    - The amount memory required will vary according to the level of compression. For example, if `Parallel Decompressor Count` is set to `1`, around 600-700 MB of memory will be consumed while decompressing a single C7 plot.
    - The amount of memory required will scale linearly, so setting it to `2` will double the required memory.

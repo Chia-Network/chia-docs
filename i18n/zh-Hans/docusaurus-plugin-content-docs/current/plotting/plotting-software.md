@@ -156,7 +156,6 @@ Plot capabilities
 Requirements
 
 - DrPlotter Minimum Requirements:
-
   - 24GB nvidia 3090 / A5000 / 4090
   - 128GB DDR4 RAM
   - motherboard with a PCIE 4.0 x 16 slot
@@ -164,12 +163,10 @@ Requirements
   - Ubuntu / Debian based system
 
 - DrSolver Minimum Requirements:
-
   - 24GB nvidia 3090
   - Ubuntu / Debian based system
 
 - DrChia Harvester Minimum Requirements:
-
   - ~4GB RAM for every 1PiB of raw disk space
   - Ubuntu / Debian based system
 
