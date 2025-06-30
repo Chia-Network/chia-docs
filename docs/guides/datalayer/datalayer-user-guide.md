@@ -63,8 +63,8 @@ This example would require anyone-can-spend DataLayer proofs of inclusion (these
 
 For additional technical resources, see the following:
 
-- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
-- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
+- [DataLayer RPC API](/reference-client/rpc-reference/datalayer-rpc/ "DataLayer RPC API")
+- [DataLayer CLI Reference](/reference-client/cli-reference/datalayer-cli/ "DataLayer CLI Reference")
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
 - [DataLayer blog post](https://www.chia.net/2022/09/21/enabling-data-for-web3-announcing-chia-datalayer/)
 
@@ -90,7 +90,7 @@ If you have already installed Chia version 1.6 or greater and started the refere
 
 ### Install and Run Chia
 
-DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/installation#from-source) or [run the packaged installer](https://www.chia.net/downloads/).
+DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/reference-client/install-and-setup/installation#from-source) or [run the packaged installer](https://www.chia.net/downloads/).
 
 1. **If you installed from source**, be sure you have activated a virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window).
 
@@ -337,8 +337,8 @@ Keeping all of this in mind, **it is typically safe to insert data sets of up to
 
 Chia DataLayer doesn't have a GUI. The commands in this tutorial will use the command line interface (CLI). As a reminder, here is the complete reference for the CLI, as well as all available Remote Procedure Calls (RPCs):
 
-- [DataLayer RPC API](/datalayer-rpc/ "DataLayer RPC API")
-- [DataLayer CLI Reference](/datalayer-cli/ "DataLayer CLI Reference")
+- [DataLayer RPC API](/reference-client/rpc-reference/datalayer-rpc/ "DataLayer RPC API")
+- [DataLayer CLI Reference](/reference-client/cli-reference/datalayer-cli/ "DataLayer CLI Reference")
 
 ### Create a data store
 
@@ -541,7 +541,7 @@ This requires an on-chain transaction.
 
 Use `update_data_store` to modify your singleton. Actions include `insert` and `delete`. These can also be chained together.
 
-For more example of using this command, see the [CLI reference](/datalayer-cli#update_data_store).
+For more example of using this command, see the [CLI reference](/reference-client/cli-reference/datalayer-cli#update_data_store).
 
 <details>
 <summary>update_data_store -- insert example</summary>

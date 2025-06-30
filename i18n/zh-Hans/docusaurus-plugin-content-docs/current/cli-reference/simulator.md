@@ -1,7 +1,7 @@
 ---
 sidebar_label: Simulator
 title: Simulator CLI Reference
-slug: /simulator-cli
+slug: /reference-client/cli-reference/simulator-cli
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,7 +16,7 @@ This page includes a comprehensive list of Chia's Command Line Interface command
 For more info, see the following:
 
 - [Simulator User Guide](/guides/simulator-user-guide)
-- [Simulator RPC API](/simulator-rpc)
+- [Simulator RPC API](/reference-client/rpc-reference/simulator-rpc)
 
 ---
 

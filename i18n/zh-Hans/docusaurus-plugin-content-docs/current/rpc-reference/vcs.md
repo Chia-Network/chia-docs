@@ -1,7 +1,7 @@
 ---
 sidebar_label: VCs
 title: Verifiable Credentials RPCs
-slug: /vc-rpc
+slug: /reference-client/rpc-reference/vc-rpc
 ---
 
 import Tabs from '@theme/Tabs';

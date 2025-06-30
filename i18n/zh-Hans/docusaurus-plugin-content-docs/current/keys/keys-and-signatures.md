@@ -1,6 +1,6 @@
 ---
 title: BLS Keys
-slug: /bls-keys
+slug: /chia-blockchain/keys/keys-and-signatures
 ---
 
 This section will explain the different types of keys in the Chia network. It will also cover how the keys are generated, stored, and used. These systems are designed to be flexible enough to support many different configurations and pooling setups and to be resilient to various attacks.

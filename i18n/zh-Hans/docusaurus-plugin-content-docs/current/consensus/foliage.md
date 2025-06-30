@@ -1,13 +1,13 @@
 ---
 title: Foliage
-slug: /consensus-foliage
+slug: /chia-blockchain/consensus/chains/foliage
 ---
 
 In the previous diagrams, there is no place for farmers to specify their rewards, since all blocks are canonical. There is also no place to include transactions. Everything we have talked about so far is known as the _trunk_ of the blockchain.
 
 Farmers have no say in how their block is constructed in the trunk, since they must use the exact proof of space, VDFs, and signatures that are specified. In order to include farming rewards, as well as transactions, in the system, we must introduce an additional component to the reward chain called _foliage_.
 
-**Trunk**: The component of blocks and the blockchain which includes VDFs, proofs of space, PoSpace signatures, challenges, and previous trunk blocks, and is completely canonical. The trunk includes each of the [three VDF chains](/three-vdf-chains), but it never refers to the foliage.
+**Trunk**: The component of blocks and the blockchain which includes VDFs, proofs of space, PoSpace signatures, challenges, and previous trunk blocks, and is completely canonical. The trunk includes each of the [three VDF chains](/chia-blockchain/consensus/chains/three-vdf-chains), but it never refers to the foliage.
 
 **Foliage**: An extension of the blocks produced in the reward chain. A block's foliage includes the specification of where rewards should go, which transactions should be included, and what the previous block's foliage is.
 
@@ -65,7 +65,7 @@ The average time between transaction blocks is 52 seconds. Several values are re
 - Sub-slot time = 600 seconds
 - Signage point time = 64 per sub-slot, or 600/64 = 9.375 seconds
 - Average block time = 32 per sub-slot, or 600/32 = 18.75 seconds
-- Minimum signage points from current signage point until infusion_iterations is reached = 3 (See the [Signage and Infusion Points page](/signage-and-infusion-points) for more info.)
+- Minimum signage points from current signage point until infusion_iterations is reached = 3 (See the [Signage and Infusion Points page](/chia-blockchain/consensus/chains/signage-and-infusion-points) for more info.)
 - Minimum time for infusion_iterations to be reached (and therefore, minimum time between transaction blocks) = 3 \* (600/64) = 28.125 seconds
 - Average signage points until infusion_iterations is reached is slightly more than 3.5 (must wait 3 signage points, plus an average wait of about 50% of the next signage point), or around 3.5 \* 9.375 = 32.8125 seconds.
 - To create a transaction block, infusion_iterations first must be met, and then the next block some seconds afterwards will be a transaction block. The total average time for this to happen is around 52 seconds.

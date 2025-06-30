@@ -1,6 +1,6 @@
 ---
 title: 生成地块常见问题解答
-slug: /plotting-faq
+slug: /reference-client/troubleshooting/plotting-faq
 ---
 
 ## 如果停电会发生什么？

@@ -1,7 +1,7 @@
 ---
 sidebar_label: Overview
 title: RPC Overview
-slug: /rpc
+slug: /reference-client/rpc-reference/rpc
 ---
 
 The Chia node and services come with a JSON RPC API server that allows you to access information and control the services. These are accessible via HTTP, WebSockets, or via client SDKs. The ports can be configured in `~/.chia/mainnet/config/config.yaml`. The RPC ports should not be exposed to the internet. TLS certificates are used to secure the communication.

@@ -14,10 +14,10 @@ This document will guide you through the process of creating DIDs that conform t
 
 For detailed instructions on running each of the commands from this tutorial, see:
 
-- [DID CLI reference](/did-cli)
-- [NFT CLI reference](/nft-cli)
-- [DID RPC reference](/did-rpc)
-- [NFT RPC reference](/nft-rpc)
+- [DID CLI reference](/reference-client/cli-reference/did-cli)
+- [NFT CLI reference](/reference-client/cli-reference/nft-cli)
+- [DID RPC reference](/reference-client/rpc-reference/did-rpc)
+- [NFT RPC reference](/reference-client/rpc-reference/nft-rpc)
 
 For more documentation about Chia NFTs and DIDs, see:
 
@@ -144,11 +144,11 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
 
 ### Installing from source
 
-To install Chia from source, follow our [installation guide](https://docs.chia.net/installation), which includes instructions for installing on all supported operating systems.
+To install Chia from source, follow our [installation guide](https://docs.chia.net/reference-client/install-and-setup/installation), which includes instructions for installing on all supported operating systems.
 
 ### Switching to testnet
 
-By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/testnets).
+By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/reference-client/install-and-setup/testnets).
 
 ## Configuration
 

@@ -1,7 +1,7 @@
 ---
 title: 常数、变量和符号 - Chia绿皮书
 sidebar_label: 0 - 常数、变量和符号
-slug: /constants-variables-notation
+slug: /chia-blockchain/green-paper/contants-variables-notation
 ---
 
 # 0 - 常数、变量和符号

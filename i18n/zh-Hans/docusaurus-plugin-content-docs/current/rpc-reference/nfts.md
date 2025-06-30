@@ -1,7 +1,7 @@
 ---
 sidebar_label: NFTs
 title: NFT RPC
-slug: /nft-rpc
+slug: /reference-client/rpc-reference/nft-rpc
 ---
 
 import Tabs from '@theme/Tabs';

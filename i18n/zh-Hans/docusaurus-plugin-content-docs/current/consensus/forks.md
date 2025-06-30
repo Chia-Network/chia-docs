@@ -1,6 +1,6 @@
 ---
 title: Forks
-slug: /consensus-forks
+slug: /chia-blockchain/consensus/forks
 ---
 
 The following table is a comprehensive list of all forks (planned and activated) on Chia's blockchain. It was last updated on 2023-09-10. It was last updated on 2023-09-10.

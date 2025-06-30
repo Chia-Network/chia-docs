@@ -1,7 +1,7 @@
 ---
 title: Recovering from 51% Attacks and Dynamic Availability  - Chia Green Paper
 sidebar_label: 6 - Recovering from 51% Attacks and Dynamic Availability
-slug: /recovering-from-51-percent-attacks
+slug: /chia-blockchain/green-paper/recovering-from-51-percent-attacks
 ---
 
 # 6 - Recovering from 51% Attacks and Dynamic Availability

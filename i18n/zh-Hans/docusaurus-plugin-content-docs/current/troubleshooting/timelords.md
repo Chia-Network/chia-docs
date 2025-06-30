@@ -1,6 +1,6 @@
 ---
 title: Timelords
-slug: /troubleshooting/timelords
+slug: /reference-client/troubleshooting/timelords
 ---
 
 import Tabs from '@theme/Tabs';

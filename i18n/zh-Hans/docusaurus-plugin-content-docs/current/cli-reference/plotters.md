@@ -1,7 +1,7 @@
 ---
 sidebar_label: Plotters
 title: Plotters
-slug: /plotters-cli
+slug: /reference-client/cli-reference/plotter-cli
 ---
 
 import Tabs from '@theme/Tabs';

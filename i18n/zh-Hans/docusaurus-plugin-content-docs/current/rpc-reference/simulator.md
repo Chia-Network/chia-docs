@@ -1,7 +1,7 @@
 ---
 sidebar_label: Simulator
 title: Simulator RPC Reference
-slug: /simulator-rpc
+slug: /reference-client/rpc-reference/simulator-rpc
 ---
 
 ## Intro
@@ -13,7 +13,7 @@ This page includes a comprehensive list of Chia's Remote Procedure Calls for usi
 For more info, see the following:
 
 - [Simulator User Guide](/guides/simulator-user-guide)
-- [Simulator CLI Reference](/simulator-cli)
+- [Simulator CLI Reference](/reference-client/cli-reference/simulator-cli)
 
 ---
 

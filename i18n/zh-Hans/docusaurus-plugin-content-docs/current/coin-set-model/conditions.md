@@ -1,5 +1,5 @@
 ---
-slug: /conditions
+slug: /chia-blockchain/coin-set-model/conditions
 title: Conditions
 ---
 
@@ -49,7 +49,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -77,7 +77,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -105,7 +105,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -133,7 +133,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -162,7 +162,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -191,7 +191,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -215,7 +215,7 @@ The following parameters are expected:
 ### 49 `AGG_SIG_UNSAFE` {#agg-sig-unsafe}
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -239,7 +239,7 @@ In most cases, `AGG_SIG_ME` is the recommended condition for requiring signature
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,200,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,200,000.
 :::
 :::
 
@@ -262,7 +262,7 @@ The following parameters are expected:
 ### 51 `CREATE_COIN` {#create-coin}
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) of 1,800,000.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) of 1,800,000.
 :::
 :::
 
@@ -594,7 +594,7 @@ This condition is part of [CHIP-0011](https://github.com/Chia-Network/chips/blob
 :::
 
 :::note
-This condition adds an additional [CLVM cost](/coin-set-costs/) equal to whatever the value of the first argument is.
+This condition adds an additional [CLVM cost](/chia-blockchain/coin-set-model/costs/) equal to whatever the value of the first argument is.
 :::
 :::
 

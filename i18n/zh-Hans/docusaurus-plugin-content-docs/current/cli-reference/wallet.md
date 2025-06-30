@@ -1,7 +1,7 @@
 ---
 sidebar_label: Wallet
 title: Wallet CLI
-slug: /wallet-cli
+slug: /reference-client/cli-reference/wallet-cli
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,9 +9,9 @@ import TabItem from '@theme/TabItem';
 
 This document is a reference for Chia's `wallet` CLI commands. The following `wallet` commands are documented on their own dedicated pages:
 
-- [DIDs](/did-cli) (Decentralized Identifiers)
-- [NFTs](/nft-cli) (Non-Fungible Tokens)
-- [Offers](/offer-cli)
+- [DIDs](/reference-client/cli-reference/did-cli) (Decentralized Identifiers)
+- [NFTs](/reference-client/cli-reference/nft-cli) (Non-Fungible Tokens)
+- [Offers](/reference-client/cli-reference/offer-cli)
 
 ## Reference
 
@@ -78,7 +78,7 @@ Options:
 
 :::info
 
-By default, it you have more than 200 unspent coins worth less than one million mojos in your wallet, the dust filter will be activated. Any coins that have been filtered will not be listed. You can disable the dust filter by editing `~/.chia/mainnet/config/config.yaml` and changing the value of `xch_spam_amount` to `0`. [More info on the dust filter](/faq#what-is-the-dust-filter).
+By default, it you have more than 200 unspent coins worth less than one million mojos in your wallet, the dust filter will be activated. Any coins that have been filtered will not be listed. You can disable the dust filter by editing `~/.chia/mainnet/config/config.yaml` and changing the value of `xch_spam_amount` to `0`. [More info on the dust filter](/chia-blockchain/resources/faq#what-is-the-dust-filter).
 
 :::
 
@@ -813,7 +813,7 @@ Options:
 
 This command requires a single coin to be specified for splitting. The maximum number of new coins is 500. These coins will be of equal value, and the original coin must contain sufficient funds for the splitting to occur. If any value remains after splitting, this will be stored in a new coin.
 
-Keep in mind that (by default) the [dust filter](/faq#what-is-the-dust-filter) will be activated if you have over 200 coins worth one million mojos in your wallet. Therefore, if you split a coin into more than 200 coins worth less than one million mojos, not all of them will show up in your wallet unless you modify or disable the dust filter (see the above link for instructions).
+Keep in mind that (by default) the [dust filter](/chia-blockchain/resources/faq#what-is-the-dust-filter) will be activated if you have over 200 coins worth one million mojos in your wallet. Therefore, if you split a coin into more than 200 coins worth less than one million mojos, not all of them will show up in your wallet unless you modify or disable the dust filter (see the above link for instructions).
 
 The minimum number of new coins is 1. "Splitting" one coin into one new coin could be useful because a second new coin will be created with the remaining value.
 
@@ -1421,7 +1421,7 @@ Options:
 
 :::info
 
-To set up your wallet to receive notifications, follow [these instructions](/faq#how-do-i-configure-my-system-to-send-and-receive-notifications)
+To set up your wallet to receive notifications, follow [these instructions](/chia-blockchain/resources/faq#how-do-i-configure-my-system-to-send-and-receive-notifications)
 
 :::
 

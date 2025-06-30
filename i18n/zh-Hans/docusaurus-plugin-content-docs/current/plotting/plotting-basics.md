@@ -1,7 +1,7 @@
 ---
 sidebar_label: Basics
 title: 生成地块基础知识
-slug: /plotting-basics
+slug: /reference-client/plotting/plotting-basics
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-The [Beginner's Guide to Farming](/farming-guide) will walk you through the steps required to install Chia and create your first plot. You are recommended to follow it prior to getting into the concepts introduced in this section, reviewing our [plotting basics](https://www.chia.net/2021/02/22/plotting-basics/) helps guide users from a high level perspective. You are recommended to follow it prior to getting into the concepts introduced in this section, reviewing our [plotting basics](https://www.chia.net/2021/02/22/plotting-basics/) helps guide users from a high level perspective.
+The [Beginner's Guide to Farming](/reference-client/getting-started/farming-guide) will walk you through the steps required to install Chia and create your first plot. You are recommended to follow it prior to getting into the concepts introduced in this section, reviewing our [plotting basics](https://www.chia.net/2021/02/22/plotting-basics/) helps guide users from a high level perspective. You are recommended to follow it prior to getting into the concepts introduced in this section, reviewing our [plotting basics](https://www.chia.net/2021/02/22/plotting-basics/) helps guide users from a high level perspective.
 
 :::
 
@@ -29,7 +29,7 @@ Plots are files that consist almost entirely of cryptographic data. Plots are fi
 
 The plotting process is computationally intensive. Depending on a number of factors, the plotting computer, CPU, GPU, RAM, and/or storage devices (such as SSDs) are heavily utilized. However, this process is only performed when _creating_ a plot. The plotting process is computationally intensive. Depending on a number of factors, the plotting computer, CPU, GPU, RAM, and/or storage devices (such as SSDs) are heavily utilized. However, this process is only performed when _creating_ a plot. Afterward, plots can typically be _farmed_ for many years, during which the farming computer, as well as the HDDs that store the plots, will remain mostly idle.
 
-While it is possible to run a Chia farm from a high-end plotting machine, many farmers choose to use low-end systems in order to save money on electricity. For example, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/installation#raspberry-pi) with 4 GB of RAM. As a result of these low requirements, Chia consumes less than 1% as much energy as Bitcoin, while preserving the same level of security. For more details, see [chiapower.org](https://chiapower.org/). For example, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/installation#raspberry-pi) with 4 GB of RAM. As a result of these low requirements, Chia consumes less than 1% as much energy as Bitcoin, while preserving the same level of security. For more details, see [chiapower.org](https://chiapower.org/).
+While it is possible to run a Chia farm from a high-end plotting machine, many farmers choose to use low-end systems in order to save money on electricity. For example, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/reference-client/install-and-setup/installation#raspberry-pi) with 4 GB of RAM. As a result of these low requirements, Chia consumes less than 1% as much energy as Bitcoin, while preserving the same level of security. For more details, see [chiapower.org](https://chiapower.org/). For example, the minimum spec hardware to run a Chia farm is a [Raspberry Pi 4](/reference-client/install-and-setup/installation#raspberry-pi) with 4 GB of RAM. As a result of these low requirements, Chia consumes less than 1% as much energy as Bitcoin, while preserving the same level of security. For more details, see [chiapower.org](https://chiapower.org/).
 
 :::info
 
@@ -76,7 +76,7 @@ Chia's plot format was designed such that higher compression levels would yield 
 
 ## K值大小
 
-_k_, as detailed in the [plotting](/proof-of-space#plotting) section, is a constant value that describes the size of each plot. The minimum k value for Chia is 32, which corresponds to 108.8 GB (101.4 GiB) for uncompressed plots. With each increase in k, the plot size is approximately doubled, as are the resources required for creating the plot. For this reason, k32 is the most common size on the network, accounting for 98% of the netspace.
+_k_, as detailed in the [plotting](/chia-blockchain/consensus/proof-of-space-1.0#plotting) section, is a constant value that describes the size of each plot. The minimum k value for Chia is 32, which corresponds to 108.8 GB (101.4 GiB) for uncompressed plots. With each increase in k, the plot size is approximately doubled, as are the resources required for creating the plot. For this reason, k32 is the most common size on the network, accounting for 98% of the netspace.
 
 :::info
 k32 is the minimum plot size eligible for farming on Chia's **mainnet**. If you want to test plotting and/or farming on a **testnet**, then it is also possible to use k25. These plots are only around 660 MB apiece, so they can be created quickly on a laptop. ::: If you want to test plotting and/or farming on a **testnet**, then it is also possible to use k25. These plots are only around 660 MB apiece, so they can be created quickly on a laptop.
@@ -88,7 +88,7 @@ Although not required, plots larger than k32 may be created. There is not a grea
 
 The level of compression you choose will be highly dependent on your farming setup. The level of compression you choose will be highly dependent on your farming setup. The good news is that even those using a Raspberry Pi for their harvesters will be able to take advantage of the lower levels of compression. Additionally, each step up in compression level requires an exponential increase in computing power, while yielding a linear decrease in plot size. For these reasons, those who are farming with a Raspberry Pi can yield 20% higher rewards by using compressed plots, while those using the most powerful GPUs will see a modest increase over the benefits obtained by the Pi. Namely, C9 plots yield 35% higher rewards than C0 plots. Additionally, each step up in compression level requires an exponential increase in computing power, while yielding a linear decrease in plot size. For these reasons, those who are farming with a Raspberry Pi can yield 20% higher rewards by using compressed plots, while those using the most powerful GPUs will see a modest increase over the benefits obtained by the Pi. Namely, C9 plots yield 35% higher rewards than C0 plots.
 
-The next page will detail the various types of hardware that can be used for creating Chia plots. The next page will detail the various types of hardware that can be used for creating Chia plots. Later, we'll discuss the specific compression levels, including the hardware required to yield each increase in farming rewards and the actual file sizes broken down by [k-size with compression levels](https://docs.chia.net/k-sizes).
+The next page will detail the various types of hardware that can be used for creating Chia plots. The next page will detail the various types of hardware that can be used for creating Chia plots. Later, we'll discuss the specific compression levels, including the hardware required to yield each increase in farming rewards and the actual file sizes broken down by [k-size with compression levels](https://docs.chia.net/chia-blockchain/resources/k-sizes).
 
 ## 如何获得帮助
 
@@ -96,4 +96,4 @@ If you are stumped about some aspect of plotting, farming, or Chia generally, we
 
 - Get help on CNI's official [Discord](https://discord.gg/chia), in the `#farming-and-plotting` and `#support` channels.
 
-- 在[生成地块问答](/plotting-faq)中获取更多问题的解答。
+- 在[生成地块问答](/reference-client/troubleshooting/plotting-faq)中获取更多问题的解答。

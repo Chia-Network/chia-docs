@@ -1,6 +1,6 @@
 ---
 title: Timelords
-slug: /timelord-install
+slug: /reference-client/install-and-setup/timelord-install
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,8 +10,8 @@ import TabItem from '@theme/TabItem';
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
 :::
 
-Timelord architecture information can be found [here](/timelord-architecture).  
-The hw_vdf_client parameter information can be found [here](/asic-cli).
+Timelord architecture information can be found [here](/chia-blockchain/architecture/timelords).  
+The hw_vdf_client parameter information can be found [here](/reference-client/cli-reference/asic-hwvdf-cli).
 
 ---
 
@@ -114,7 +114,7 @@ chia start node timelord &
 
 :::warning
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!  
-Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
+Detailed information about the hw_vdf_client parameters can be found [here](/reference-client/cli-reference/asic-hwvdf-cli).
 :::
 
 #### ASIC Cluster Setup
@@ -162,7 +162,7 @@ chia start node timelord-only
 
 :::info
 On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.  
-Detailed information about the hw_vdf_client parameters can be found [here](/asic-cli).
+Detailed information about the hw_vdf_client parameters can be found [here](/reference-client/cli-reference/asic-hwvdf-cli).
 :::
 
 ```bash
@@ -278,7 +278,7 @@ Check status of the ASIC systemd software:
 
 ## Troubleshooting a Timelord
 
-For troubleshooting steps please refer to the documentation [here](/troubleshooting/timelords).
+For troubleshooting steps please refer to the documentation [here](/reference-client/troubleshooting/timelords).
 
 ---
 

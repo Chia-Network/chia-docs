@@ -1,6 +1,6 @@
 ---
 title: 使用图形用户界面（GUI）
-slug: /using-the-gui
+slug: /reference-client/getting-started/using-the-gui
 ---
 
 ## Getting Things Set Up

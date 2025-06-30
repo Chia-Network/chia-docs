@@ -1,6 +1,6 @@
 ---
 title: Testnets
-slug: /testnets
+slug: /reference-client/install-and-setup/testnets
 ---
 
 :::note
@@ -9,8 +9,8 @@ Testnet 10 is the supported testnet.
 
 Testnet 7 may remain active, but is no longer officially supported by Chia Network Inc.
 Testnets can be used to test the chia software with coins that have no real world value.\
-If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.\
-If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.
+If you want to run the Chia blockchain mainnet, use the [mainnet installation](/reference-client/install-and-setup/installation) instructions.\
+If you want to run the Chia blockchain mainnet, use the [mainnet installation](/reference-client/install-and-setup/installation) instructions.
 
 :::
 
@@ -20,7 +20,7 @@ If you want to run the Chia blockchain mainnet, use the [mainnet installation](/
 
 ### 先决条件
 
-- Chia version higher than 1.2.11 [installed](/installation).
+- Chia version higher than 1.2.11 [installed](/reference-client/install-and-setup/installation).
 - All chia processes have been stopped with `chia stop all-d`.
 
 ### Configure Chia for testnet
@@ -97,7 +97,7 @@ _These instructions are tailored for Linux. A similar approach could likely be f
 
 ### Set Up mainnet installation
 
-For the mainnet installation, we will stick with the default ports and CHIA_ROOT, so these steps are essentially no different than the standard [installation instructions](/installation)
+For the mainnet installation, we will stick with the default ports and CHIA_ROOT, so these steps are essentially no different than the standard [installation instructions](/reference-client/install-and-setup/installation)
 
 ### Set Up testnet installation
 

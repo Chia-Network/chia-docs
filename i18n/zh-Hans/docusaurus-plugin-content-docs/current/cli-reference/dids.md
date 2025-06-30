@@ -1,7 +1,7 @@
 ---
 sidebar_label: DIDs
 title: DID CLI
-slug: /did-cli
+slug: /reference-client/cli-reference/did-cli
 ---
 
 import Tabs from '@theme/Tabs';

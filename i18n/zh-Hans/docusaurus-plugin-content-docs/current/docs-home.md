@@ -47,7 +47,7 @@ Embark on your Chia Network journey with our Beginner Documentation! Uncover the
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/introduction/'>
+        <a href='/chia-blockchain/introduction/'>
           <div class="card">
             <div class="card__image">
               <img src={ChiaIntro} alt='Intro to Chia' />
@@ -58,21 +58,21 @@ Embark on your Chia Network journey with our Beginner Documentation! Uncover the
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/farming-guide/'>
+            <a href='/reference-client/getting-started/farming-guide/'>
               <button class="button button--primary button--block">Start Farming</button>
             </a>
           </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/getting-started/wallet-guide/'>
+            <a href='/reference-client/getting-started/wallet-guide/'>
               <button class="button button--primary button--block">Start Trading</button>
             </a>
           </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/using-the-gui/'>
+        <a href='/reference-client/getting-started/using-the-gui/'>
           <div class="card">
             <div class="card__image">
               <img src={UseGUI} alt='Using the GUI' />
@@ -94,7 +94,7 @@ Explore the advanced features of Chia Network through our comprehensive document
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/installation/'>
+        <a href='/reference-client/install-and-setup/installation/'>
           <div class="card">
             <div class="card__image">
               <img src={AdvancedInstall} alt='Advanced Installation'/>
@@ -105,7 +105,7 @@ Explore the advanced features of Chia Network through our comprehensive document
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/testnets/'>
+        <a href='/reference-client/install-and-setup/testnets/'>
           <div class="card">
             <div class="card__image">
               <img src={Testnets} alt='Testnets' />
@@ -116,7 +116,7 @@ Explore the advanced features of Chia Network through our comprehensive document
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/plotting-basics/'>
+        <a href='/reference-client/plotting/plotting-basics/'>
           <div class="card">
             <div class="card__image">
               <img src={Plotting} alt='Plotting Deep Dive' />
@@ -127,15 +127,15 @@ Explore the advanced features of Chia Network through our comprehensive document
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/farming-basics/'>
+            <a href='/reference-client/farming/farming-basics/'>
               <button class="button button--primary button--block">Start Farming</button>
             </a>
            
-            <a href='/chia-key-management/'>
+            <a href='/reference-client/install-and-setup/key-management/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
            
-            <a href='/rpc/'>
+            <a href='/reference-client/rpc-reference/rpc/'>
               <button class="button button--primary button--block">Explore</button>
             </a>
            
@@ -146,7 +146,7 @@ Explore the advanced features of Chia Network through our comprehensive document
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/chia-key-management/'>
+        <a href='/reference-client/install-and-setup/key-management/'>
           <div class="card">
             <div class="card__image">
               <img src={ReferenceClient} alt='Reference Client Deep Dive' />
@@ -157,7 +157,7 @@ Explore the advanced features of Chia Network through our comprehensive document
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/rpc/'>
+        <a href='/reference-client/rpc-reference/rpc/'>
           <div class="card">
             <div class="card__image">
               <img src={RpcReference} alt='RPC Reference' />
@@ -179,7 +179,7 @@ Explore the advanced features of Chia Network through our comprehensive document
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/walletconnect-commands/'>
+            <a href='/reference-client/walletconnect/walletconnect/'>
               <button class="button button--primary button--block">Explore</button>
             </a>
           </div>
@@ -197,7 +197,7 @@ Navigate Chia Network's Troubleshooting Documentation with precision. Check the 
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/troubleshooting/check-if-things-are-working/'>
+        <a href='/reference-client/troubleshooting/check-if-things-are-working/'>
           <div class="card">
             <div class="card__image">
               <img src={WorkingThings} alt='Check if Things are Working' />
@@ -208,14 +208,14 @@ Navigate Chia Network's Troubleshooting Documentation with precision. Check the 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/troubleshooting/node-syncing/'>
+            <a href='/reference-client/troubleshooting/node-syncing/'>
               <button class="button button--primary button--block">Troubleshoot</button>
             </a>
           </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/troubleshooting/logging-reference/'>
+        <a href='/reference-client/troubleshooting/logging-reference/'>
           <div class="card">
             <div class="card__image">
               <img src={LoggingReference} alt='Logging Reference' />
@@ -237,7 +237,7 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/coin-set-intro/'>
+        <a href='/chia-blockchain/coin-set-model/intro/'>
           <div class="card">
             <div class="card__image">
               <img src={CoinSetModel} alt='CoinSet Model' />
@@ -248,7 +248,7 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/architecture-overview/'>
+        <a href='/chia-blockchain/architecture/architecture-overview/'>
           <div class="card">
             <div class="card__image">
               <img src={Architecture} alt='Architecture' />
@@ -259,7 +259,7 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/consensus-intro/'>
+        <a href='/chia-blockchain/consensus/consensus-intro/'>
           <div class="card">
             <div class="card__image">
               <img src={Consensus} alt='Blockchain Consensus' />
@@ -270,14 +270,14 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/key-architecture/'>
+            <a href='/chia-blockchain/keys/architecture/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/chia-protocol/'>
+        <a href='/chia-blockchain/protocol/protocol/'>
           <div class="card">
             <div class="card__image">
               <img src={Protocol} alt='Protocol' />
@@ -288,14 +288,14 @@ Embark on a knowledge journey through Chia Network's Learn documentation. Delve 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/green-paper-abstract/'>
+            <a href='/chia-blockchain/green-paper/green-paper-abstract/'>
               <button class="button button--primary button--block">Learn</button>
             </a>
           </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/cryptocurrency-intro/'>
+        <a href='/chia-blockchain/resources/cryptocurrency-intro/'>
           <div class="card">
             <div class="card__image">
               <img src={Resources} alt='Resources' />

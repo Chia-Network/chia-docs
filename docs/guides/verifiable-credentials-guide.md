@@ -12,8 +12,8 @@ This document will guide you through the process of minting Verifiable Credentia
 
 For additional resources, see the following:
 
-- [Verifiable Credentials RPC Reference](/vc-rpc)
-- [Verifiable Credentials CLI Reference](/vc-cli)
+- [Verifiable Credentials RPC Reference](/reference-client/rpc-reference/vc-rpc)
+- [Verifiable Credentials CLI Reference](/reference-client/cli-reference/vc-cli)
 - [CHIP-16](https://github.com/Chia-Network/chips/pull/65) -- the standard for Chia VCs
 - [CHIP-17](https://github.com/Chia-Network/chips/pull/66) -- a generic VC metadata structure
 - [CHIP-18](https://github.com/Chia-Network/chips/pull/67) -- a KYC-VC proof structure
@@ -120,11 +120,11 @@ After you have a synced wallet and a DID, you are ready to execute the VC-specif
 
 ## CLI Guide
 
-This section will show you how to mint, transfer, and revoke a VC using Chia's `wallet` [CLI commands](/vc-cli). A similar walk-through using RPCs will be presented in the [next section](#rpc-guide).
+This section will show you how to mint, transfer, and revoke a VC using Chia's `wallet` [CLI commands](/reference-client/cli-reference/vc-cli). A similar walk-through using RPCs will be presented in the [next section](#rpc-guide).
 
 ### Create proofs
 
-First, you must add proofs to the local database. To do this, run the [add_proof_reveal](/vc-cli#add_proof_reveal) command. You can add multiple proofs by reusing the `proof` parameter. For example:
+First, you must add proofs to the local database. To do this, run the [add_proof_reveal](/reference-client/cli-reference/vc-cli#add_proof_reveal) command. You can add multiple proofs by reusing the `proof` parameter. For example:
 
 ```bash
 chia wallet vcs add_proof_reveal --proof test_proof1 --proof test_proof2
@@ -158,7 +158,7 @@ When using the CLI to add proofs, the value of each proof will be `1`. This is n
 
 :::info
 
-If you want to retrieve your original proofs from a proof hash, run the [get_proofs_for_root](/vc-cli#get_proofs_for_root) command:
+If you want to retrieve your original proofs from a proof hash, run the [get_proofs_for_root](/reference-client/cli-reference/vc-cli#get_proofs_for_root) command:
 
 ```bash
 chia wallet vcs get_proofs_for_root --proof-hash f063e22557705b14425b8fca60018796b4364eb6354f45d0b99431a71d3043e5
@@ -178,7 +178,7 @@ Note that this command will only succeed if you have already added the correspon
 
 ### Mint a VC
 
-To mint a VC, run the [mint](/vc-cli#mint) command and use the `-d` parameter to pass in a DID owned by the minting wallet:
+To mint a VC, run the [mint](/reference-client/cli-reference/vc-cli#mint) command and use the `-d` parameter to pass in a DID owned by the minting wallet:
 
 ```bash
 chia wallet vcs mint -d did:chia:1tu7xx74m6rqfew67upf4d7esnx5zj2m66p60lez7we6q7smwr4tqax8m7n -m 0.0001
@@ -222,7 +222,7 @@ Previously, you added your desired proofs to the local database and calculated t
 
 ### Add proofs to a VC
 
-Use the [update_proofs](/vc-cli#update_proofs) command to add proofs to a VC. This command must be run from the proof provider's wallet (the wallet that contains the DID used for minting).
+Use the [update_proofs](/reference-client/cli-reference/vc-cli#update_proofs) command to add proofs to a VC. This command must be run from the proof provider's wallet (the wallet that contains the DID used for minting).
 
 The `--new-proof-hash` parameter is required; this hash was included in the response from running the `add_proof_reveal` command.
 
@@ -271,7 +271,7 @@ Response:
 Proofs added to DB successfully!
 ```
 
-Next, the credential holder can run the [get](/vc-cli#get) command:
+Next, the credential holder can run the [get](/reference-client/cli-reference/vc-cli#get) command:
 
 ```bash
 chia wallet vcs get
@@ -299,9 +299,9 @@ In cases such as this, the proof provider needs to _revoke_ the credentials, ie 
 
 The only wallet that is allowed to revoke credentials is the proof provider's (the wallet that contains the DID used to mint the VC).
 
-In order to run the [revoke](/vc-cli#revoke) command, the proof provider will need to know the parent coin ID (the `-p` parameter). Because VCs are singletons, their parent coin IDs will change every time the VC is spent (every time a change is made).
+In order to run the [revoke](/reference-client/cli-reference/vc-cli#revoke) command, the proof provider will need to know the parent coin ID (the `-p` parameter). Because VCs are singletons, their parent coin IDs will change every time the VC is spent (every time a change is made).
 
-For testing purposes, the **holder's wallet** can obtain the parent coin ID by running the [vc_get](/vc-rpc#vc_get) RPC. The parent coin ID is the value of the `"parent_coin_info"`. In a production environment, the proof provider will track the VC on-chain and obtain this info immediately prior to revoking the VC.
+For testing purposes, the **holder's wallet** can obtain the parent coin ID by running the [vc_get](/reference-client/rpc-reference/vc-rpc#vc_get) RPC. The parent coin ID is the value of the `"parent_coin_info"`. In a production environment, the proof provider will track the VC on-chain and obtain this info immediately prior to revoking the VC.
 
 An example of the revocation command:
 
@@ -344,7 +344,7 @@ Proofs:
 
 ## RPC Guide
 
-This section will show you how to mint, transfer, and revoke a VC using Chia's [wallet RPC](/vc-rpc). The RPC commands will generally give more detailed responses than their CLI equivalents, but the functionality will be mostly the same.
+This section will show you how to mint, transfer, and revoke a VC using Chia's [wallet RPC](/reference-client/rpc-reference/vc-rpc). The RPC commands will generally give more detailed responses than their CLI equivalents, but the functionality will be mostly the same.
 
 <details>
   <summary>Note about Windows command escaping</summary>
@@ -367,7 +367,7 @@ chia rpc wallet vc_get '{\"vc_id\": \"13ba084e78475327e41c60df5a108965d7a283f065
 
 ### Create proofs
 
-First, you must add proofs to the local database. To do this, run the [vc_add_proofs](/vc-rpc#vc_add_proofs) command. `"proofs"` is a dictionary of key-value pairs. Unlike the equivalent CLI command, this command allows you to use any string value.
+First, you must add proofs to the local database. To do this, run the [vc_add_proofs](/reference-client/rpc-reference/vc-rpc#vc_add_proofs) command. `"proofs"` is a dictionary of key-value pairs. Unlike the equivalent CLI command, this command allows you to use any string value.
 
 ```json
 chia rpc wallet vc_add_proofs '{"proofs": {"example_proof_1": "example_value_1", "example_proof_2": "example_value_2"}}'
@@ -396,7 +396,7 @@ In order to construct a Merkle tree from a set of proofs:
 
 With the tree constructed, the root hash can be obtained by recursively traversing the tree, hashing the leaves until the root is reached.
 
-There is not an RPC for calculating the root hash; instead, you will need to obtain it programmatically (unless you use `1` for all values, in which case you can use the [CLI command](/vc-cli#add_proof_reveal)).
+There is not an RPC for calculating the root hash; instead, you will need to obtain it programmatically (unless you use `1` for all values, in which case you can use the [CLI command](/reference-client/cli-reference/vc-cli#add_proof_reveal)).
 
 For example, the following Javascript program will output the root hash of the proofs listed in the `console.log` command:
 
@@ -509,7 +509,7 @@ The script will output the proof hash for the proofs your entered. In this examp
 
 :::info
 
-If you want to retrieve your original proofs from a proof hash, run the [vc_get_proofs_for_root](/vc-rpc#vc_get_proofs_for_root) command. For example:
+If you want to retrieve your original proofs from a proof hash, run the [vc_get_proofs_for_root](/reference-client/rpc-reference/vc-rpc#vc_get_proofs_for_root) command. For example:
 
 ```json
 chia rpc wallet vc_get_proofs_for_root '{"root": "96c9597578333c840f895f30af6d40b9f6c0d69100db1a13ae2e26e4c94acdd3"}'
@@ -533,7 +533,7 @@ Note that this command will only succeed if you have already added the correspon
 
 ### Mint a VC
 
-To mint a VC, run the [vc_mint](/vc-rpc#vc_mint) command. The `did_id` parameter is required. This is the DID owned by the minting wallet. You may also optionally pass in a `target_address`, where the VC will be delivered. If this parameter is missing, the VC will be sent to the same wallet that owns the DID:
+To mint a VC, run the [vc_mint](/reference-client/rpc-reference/vc-rpc#vc_mint) command. The `did_id` parameter is required. This is the DID owned by the minting wallet. You may also optionally pass in a `target_address`, where the VC will be delivered. If this parameter is missing, the VC will be sent to the same wallet that owns the DID:
 
 ```json
 chia rpc wallet vc_mint '{"did_id": "did:chia:1rnvmwp3wmglslk942mwsrmf7dlkluytyna8mgewel44h4ne3nd9slhtddg", "target_address": "txch1yfcclacd6sch2w9dz394zjuq7pqnmz5g7mrqac0hjhwpzmyahe9sqetxaz", "fee": 100000000}'
@@ -669,7 +669,7 @@ Previously, you added your desired proofs to the local database and calculated t
 
 ### Add proofs to a VC
 
-In Chia, a singleton is a primitive standard that allows a coin to be recreated with different properties when it is spent. Chia VCs are singletons; use the [vc_spend](/vc-rpc#vc_spend) command to spend a VC and recreate it with a new set of proofs.
+In Chia, a singleton is a primitive standard that allows a coin to be recreated with different properties when it is spent. Chia VCs are singletons; use the [vc_spend](/reference-client/rpc-reference/vc-rpc#vc_spend) command to spend a VC and recreate it with a new set of proofs.
 
 The `new_proof_hash` parameter is required; this is the root hash you previously obtained.
 
@@ -827,7 +827,7 @@ Response:
 }
 ```
 
-Next, the credential holder can run the [vc_get](/vc-rpc#vc_get) RPC:
+Next, the credential holder can run the [vc_get](/reference-client/rpc-reference/vc-rpc#vc_get) RPC:
 
 ```json
 chia rpc wallet vc_get '{"vc_id": "0xd2097d50519925faa13b224257a4e5ddca4f5234230fc5b1606552325a2d3a4e"}'
@@ -866,7 +866,7 @@ Result:
 }
 ```
 
-The credential holder can also call the [vc_get_list](/vc-rpc#vc_get_list) RPC to get a complete list of VCs controlled by that wallet, along with all stored proofs:
+The credential holder can also call the [vc_get_list](/reference-client/rpc-reference/vc-rpc#vc_get_list) RPC to get a complete list of VCs controlled by that wallet, along with all stored proofs:
 
 ```json
 chia rpc wallet vc_get_list
@@ -922,9 +922,9 @@ In cases such as this, the proof provider needs to _revoke_ the credentials, ie 
 
 The only wallet that is allowed to revoke credentials is the proof provider's (the wallet that contains the DID used to mint the VC).
 
-In order to run the [vc_revoke](/vc-rpc#vc_revoke) command, the proof provider will need to know the parent coin ID (the `vc_parent_id` parameter).
+In order to run the [vc_revoke](/reference-client/rpc-reference/vc-rpc#vc_revoke) command, the proof provider will need to know the parent coin ID (the `vc_parent_id` parameter).
 
-For testing purposes, the **holder's wallet** can obtain the parent coin ID by running the [vc_get](/vc-rpc#vc_get) RPC. In a production environment, the proof provider will track the VC on-chain and obtain this info immediately prior to revoking the VC.
+For testing purposes, the **holder's wallet** can obtain the parent coin ID by running the [vc_get](/reference-client/rpc-reference/vc-rpc#vc_get) RPC. In a production environment, the proof provider will track the VC on-chain and obtain this info immediately prior to revoking the VC.
 
 ```json
 chia rpc wallet vc_get '{"vc_id": "0xd2097d50519925faa13b224257a4e5ddca4f5234230fc5b1606552325a2d3a4e"}'

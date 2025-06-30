@@ -116,8 +116,8 @@ False, a custom-developed flavor of Lisp called Chialisp was developed to be use
 
 ### Links
 
-- General [Security Overview](https://docs.chia.net/coin-set-security): overviews of Chia security and a review of potential attacks.
-- Overview of [Coin Signing](https://docs.chia.net/coin-set-security/#signing): reviews the purpose of signing and when it should be used for coins.
+- General [Security Overview](https://docs.chia.net/chia-blockchain/coin-set-model/security): overviews of Chia security and a review of potential attacks.
+- Overview of [Coin Signing](https://docs.chia.net/chia-blockchain/coin-set-model/security/#signing): reviews the purpose of signing and when it should be used for coins.
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of Chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 

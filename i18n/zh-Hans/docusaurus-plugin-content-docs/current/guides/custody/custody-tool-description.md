@@ -9,7 +9,7 @@ Other relevant documents:
 
 - [Flow chart](/img/chia-custody-tool.png) to visualize how the custody tool works
 - [User guide](/guides/custody-tool-user-guide) to help you get up and running
-- [CLI reference](/custody-tool) for all custody commands used in this tutorial
+- [CLI reference](/reference-client/cli-reference/custody-tool-cli) for all custody commands used in this tutorial
 
 ## Singleton Structure
 

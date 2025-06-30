@@ -85,8 +85,8 @@ What are the two significant benefits of using a plot filter?
 
 ### Links
 
-- More [farming basics](https://docs.chia.net/farming-basics): overviews of plotting, pooling, and rewards.
-- In depth [architecture overview](https://docs.chia.net/architecture-overview): describing the interactions between Farmers, Harvesters, Wallets, etc.
+- More [farming basics](https://docs.chia.net/reference-client/farming/farming-basics): overviews of plotting, pooling, and rewards.
+- In depth [architecture overview](https://docs.chia.net/chia-blockchain/architecture/architecture-overview): describing the interactions between Farmers, Harvesters, Wallets, etc.
 - Chialisp [detailed documentation](https://chialisp.com/): detailed information on all aspects of chialisp.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 

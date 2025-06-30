@@ -74,7 +74,7 @@ the hash of the puzzle that contains the conditions, and the value of the coin.
 
 ## Common gotchas
 
-- **Coinset vs Account:** Chia adopts the coinset model where everything is a coin that has its own set of rules, more information about the coinset model can be found [here](https://docs.chia.net/coin-set-vs-account/). This differs from the account model which instead uses contracts (or accounts) to represent users balances and these balances are what is stored on the chain (as opposed to coins and those coins values).
+- **Coinset vs Account:** Chia adopts the coinset model where everything is a coin that has its own set of rules, more information about the coinset model can be found [here](https://docs.chia.net/chia-blockchain/coin-set-model/coin-set-vs-account/). This differs from the account model which instead uses contracts (or accounts) to represent users balances and these balances are what is stored on the chain (as opposed to coins and those coins values).
 - **Puzzles:** All requirements for spending a coin are contained in the coins puzzle. These puzzles can be simple or complex and effect how, when, and by whom the coin can be spent. The coins puzzle must be determined at the coins creation and cannot be altered thereafter.
 - **Solutions:** The ability to spend a coin is based on the users ability to provide a valid solution for the coins puzzle.
 
@@ -151,9 +151,9 @@ The coinset model.
 
 ### Links
 
-- Detailed [coinset and account model comparisons](https://docs.chia.net/coin-set-vs-account/): details the differences between the coinset and account models including how these differences effect transactions.
-- Overview of [coin puzzles](https://docs.chia.net/coin-set-intro/#puzzles): overviews the role of a coins puzzle and the effect it has on the coins abiltiy to be spent.
-- Security recommendations for [signing solutions](https://docs.chia.net/coin-set-security/#signing): reviews the recommendations for securing puzzles by requiring that solutions are signed to limit those who can spend the coin.
+- Detailed [coinset and account model comparisons](https://docs.chia.net/chia-blockchain/coin-set-model/coin-set-vs-account/): details the differences between the coinset and account models including how these differences effect transactions.
+- Overview of [coin puzzles](https://docs.chia.net/chia-blockchain/coin-set-model/intro/#puzzles): overviews the role of a coins puzzle and the effect it has on the coins abiltiy to be spent.
+- Security recommendations for [signing solutions](https://docs.chia.net/chia-blockchain/coin-set-model/security/#signing): reviews the recommendations for securing puzzles by requiring that solutions are signed to limit those who can spend the coin.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: 联合耕种（Pool Farming）
-slug: /pool-farming
+slug: /reference-client/farming/pool-farming
 ---
 
 由于不断增长的网络空间（network space，netspace），在 Chia 中获得区块奖励会变得非常困难，即便是使用多个硬盘进行耕种的用户，也可能需要数月甚至数年的时间。 联合耕种可以确保持续获得小额但稳定的区块奖励。 例如，独自耕种每20周可以获得2XCH的用户，通过加入联合耕种可以每周以更加稳定的方式获得0.1XCH。
@@ -111,8 +111,8 @@ You can now start creating plots for this Plot NFT, which means these plots will
 
 Detailed instructions can be found in the "How to Plot" page:
 
-- Plotting from the [CLI](/plotting-how-to#cli-plotting)
-- Plotting from the [GUI](/plotting-how-to#图形用户界面gui生成地块)
+- Plotting from the [CLI](/reference-client/plotting/plotting-how-to#cli-plotting)
+- Plotting from the [GUI](/reference-client/plotting/plotting-how-to#图形用户界面gui生成地块)
 
 ### 第五步：管理联合耕种农田。
 
@@ -326,7 +326,7 @@ For example for 340 points in 6 hours, use `P=340, T=21600, L=1.06259482265e-15`
 
 :::info
 
-Note that this calculation is based on the new constant space factor estimation of 0.78005, as detailed in the [space factor table](/k-sizes#new-constant-space-factor).
+Note that this calculation is based on the new constant space factor estimation of 0.78005, as detailed in the [space factor table](/chia-blockchain/resources/k-sizes#new-constant-space-factor).
 
 :::
 

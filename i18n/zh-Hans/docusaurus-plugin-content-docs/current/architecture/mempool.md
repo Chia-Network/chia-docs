@@ -1,6 +1,6 @@
 ---
 title: Mempool
-slug: /mempool
+slug: /chia-blockchain/architecture/mempool
 ---
 
 The mempool (or memory pool) is a collection of transactions stored by full nodes, usually in memory, before they are confirmed on the blockchain. The mempool is not dictated by the consensus rules; a farmer can change how their mempool functions and customize the rules without permission from other full nodes.
@@ -93,7 +93,7 @@ For example, if the original transaction spent coins A and B, then another trans
 The full conditions for replace by fee are:
 
 1. The new spend bundle needs to include at least all the spends in the original one (can include additional spends)
-2. The new spend bundle needs to pay a higher fee per cost than the original one (and higher than the [minimum fee required for inclusion](https://docs.chia.net/mempool/#fee-required-for-inclusion))
+2. The new spend bundle needs to pay a higher fee per cost than the original one (and higher than the [minimum fee required for inclusion](https://docs.chia.net/chia-blockchain/architecture/mempool/#fee-required-for-inclusion))
 3. The new spend bundle needs to pay at least 10000000 mojos more in fees than the original one
 4. If there were any time-locks associated with the original spend, the new spend bundle has to have the same time-lock
 
@@ -109,4 +109,4 @@ For performance reasons, the chia-blockchain codebase currently creates only sma
 
 ## Updating the Mempool
 
-After a new block is added to the blockchain, all full nodes must look at the coins that were spent in that new block, and remove them from the mempool. The full node does not need to reapply every transaction again, since Chia coin spends are deterministic and sandboxed (see the [Coin Set Intro page](/coin-set-intro) for more information). The full node only needs to look at the spent coins in the new block, and if there are any transactions that spend one of those coins, they are removed from the mempool. This means the mempool can be very large, the codebase can be simple, and high performance can be achieved.
+After a new block is added to the blockchain, all full nodes must look at the coins that were spent in that new block, and remove them from the mempool. The full node does not need to reapply every transaction again, since Chia coin spends are deterministic and sandboxed (see the [Coin Set Intro page](/chia-blockchain/coin-set-model/intro) for more information). The full node only needs to look at the spent coins in the new block, and if there are any transactions that spend one of those coins, they are removed from the mempool. This means the mempool can be very large, the codebase can be simple, and high performance can be achieved.

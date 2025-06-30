@@ -1,6 +1,6 @@
 ---
 title: Signage and Infusion Points
-slug: /signage-and-infusion-points
+slug: /chia-blockchain/consensus/chains/signage-and-infusion-points
 ---
 
 Each sub-slot in both the challenge chain and the reward chain is divided into 64 smaller VDFs. Between each of these smaller VDFs is a point called a **signage point**. Timelords publish the VDF output and proof when they reach each signage point.
@@ -31,7 +31,7 @@ Using this challenge, the farmers fetch quality strings for each plot that made 
 
 :::info
 
-For both of our [previous example](/consensus-challenges), as well as the next example, we'll use the following values:
+For both of our [previous example](/chia-blockchain/consensus/chains/challenges), as well as the next example, we'll use the following values:
 
 :::
 
@@ -54,7 +54,7 @@ required_iterations = (difficulty
     // pow(2, 256) * expected_plot_size(size))
 ```
 
-The difficulty constant factor is based on the initial constants of the blockchain. For Chia, it is _2^67_. The difficulty varies per epoch, as explained in [Section 3.11](/epoch-and-difficulty) 'Section 3.11: Epochs and Difficulty Adjustment'). As you can see, the `sp_quality_string` is converted into a random number between 0 and 1, by dividing it by _2^256_, and then multiplied by the plot size.
+The difficulty constant factor is based on the initial constants of the blockchain. For Chia, it is _2^67_. The difficulty varies per epoch, as explained in [Section 3.11](/chia-blockchain/consensus/chains/epoch-and-difficulty) 'Section 3.11: Epochs and Difficulty Adjustment'). As you can see, the `sp_quality_string` is converted into a random number between 0 and 1, by dividing it by _2^256_, and then multiplied by the plot size.
 
 For consensus purposes, the `expected_plot_size` is `((2 * k) + 1) * (2 ** (k - 1)).`, where k>=32\<50. The actual plot size is that value times a constant factor, in bytes. This is because each entry in the plot is around `k+0.5` bits, and there are around `2^(k)` entries. The actual plot size is that value times a constant factor, in bytes. This is because each entry in the plot is around `k+0.5` bits, and there are around `2 ** k` entries.
 
@@ -66,10 +66,10 @@ The **infusion_iterations** is the number of iterations from the start of the su
 infusion_iterations = ( signage_point_iterations + 3 * sp_interval_iterations + required_iterations) % sub-slot_iterations
 ```
 
-Therefore, _infusion_iterations_ will be between 3 and 4 signage points after the current signage point. Farmers must submit their proofs and blocks before the infusion point is reached. The modulus is there to allow overflows into the next sub-slot, if the signage point is near the end of the sub-slot. This is expanded on in [Section 3.9](/overflow-blocks) 'Section 3.9: Overflow Blocks and Weight').
+Therefore, _infusion_iterations_ will be between 3 and 4 signage points after the current signage point. Farmers must submit their proofs and blocks before the infusion point is reached. The modulus is there to allow overflows into the next sub-slot, if the signage point is near the end of the sub-slot. This is expanded on in [Section 3.9](/chia-blockchain/consensus/chains/overflow-blocks) 'Section 3.9: Overflow Blocks and Weight').
 
 :::info
-More information on infusion points is available in the [VDFs page](/proof-of-time#infusion).
+More information on infusion points is available in the [VDFs page](/chia-blockchain/consensus/proof-of-time#infusion).
 :::
 
 <figure>
@@ -84,7 +84,7 @@ Figure 5 shows the infusion point as a green square marked `b1`. The first and l
 At `b1`, the farmer's block gets combined with the VDF output for that point. This creates a new input for the VDF from that point on, i.e. we infuse the farmer's block into the VDF. `b1` is only fully valid after two events have occurred:
 
 1. _infusion_iterations_ has been reached, and
-2. Two VDF proofs have been included: one from `r1` to the signage point and one from `r1` to `b1`. (Actually it's more since there are three VDF chains, explained in [Section 3.8](/three-vdf-chains) 'Section 3.8: Three VDF Chains')).
+2. Two VDF proofs have been included: one from `r1` to the signage point and one from `r1` to `b1`. (Actually it's more since there are three VDF chains, explained in [Section 3.8](/chia-blockchain/consensus/chains/three-vdf-chains) 'Section 3.8: Three VDF Chains')).
 
 In Figure 5, the farmer creates the block at the time of the signage point, `b1'`. However, `b1'` is not finished yet, since it needs the infusion point VDF. Once the _infusion_iterations_ VDF has been released, it is added to `b1'` to form the finished block at `b1`.
 
@@ -107,13 +107,13 @@ After realizing they have won (at the 20th infusion point), the farmer fetches t
 
 ## Rationale for choosing 64 signage points
 
-Chia's original consensus, which was phased out before the launch of mainnet, used a single signage point per 10-minute subslot. This left the network vulnerable to short-range [replotting attacks](/consensus-attacks#replotting), where an attacker initiates a plot's creation after a signage point, and completes the plot before the next infusion point. The attacker could always choose a plot that passes the plot filter (because the signage point is hashed with the subslot challenge and the plot ID in calculating the filter) and then delete the plot after the infusion point. For a 512-filter, this would result in the attacker mimicking 512 plots (~51 TiB). In reality, under the original consensus, they would only need to own single computer capable of creating a plot in less than ten minutes.
+Chia's original consensus, which was phased out before the launch of mainnet, used a single signage point per 10-minute subslot. This left the network vulnerable to short-range [replotting attacks](consensus/attacks-and-countermeasures#replotting), where an attacker initiates a plot's creation after a signage point, and completes the plot before the next infusion point. The attacker could always choose a plot that passes the plot filter (because the signage point is hashed with the subslot challenge and the plot ID in calculating the filter) and then delete the plot after the infusion point. For a 512-filter, this would result in the attacker mimicking 512 plots (~51 TiB). In reality, under the original consensus, they would only need to own single computer capable of creating a plot in less than ten minutes.
 
 :::note
 Technically this isn't an _attack_ because -- even if successful -- the "attacker" wouldn't gain an ability to cheat the network. However the "attacker" _would_ be using the network in an unintended way, effectively turning Chia into a Proof of Work system. Therefore, Chia's new consensus was intentionally designed to discourage this behavior.
 :::
 
-The new consensus was introduced during Chia's beta phase. One of the modifications was to increase the number of signage points to 64 per 10-minute subslot, or one every 9.375 (600/64) seconds, on average. The Challenge Chain was also introduced (see the [Three VDF Chains page](/three-vdf-chains) for more info). The maximum distance between a signage point and the next infusion point is now 4 signage points (see the _infusion_iterations_ formula, above), or 37.5 seconds. This is the maximum amount of time for the attack to be possible, but for it to be consistently applied, the minimum time of 28.125 seconds must be applied. Assuming a few extra seconds for network latency and other factors, the attack is now only possible if one can create a new plot in less than 25 seconds.
+The new consensus was introduced during Chia's beta phase. One of the modifications was to increase the number of signage points to 64 per 10-minute subslot, or one every 9.375 (600/64) seconds, on average. The Challenge Chain was also introduced (see the [Three VDF Chains page](/chia-blockchain/consensus/chains/three-vdf-chains) for more info). The maximum distance between a signage point and the next infusion point is now 4 signage points (see the _infusion_iterations_ formula, above), or 37.5 seconds. This is the maximum amount of time for the attack to be possible, but for it to be consistently applied, the minimum time of 28.125 seconds must be applied. Assuming a few extra seconds for network latency and other factors, the attack is now only possible if one can create a new plot in less than 25 seconds.
 
 :::note
 Keep in mind that this "attack" is really mimicking the ownership of around 51 TiB of storage. Even when it does become possible to run the attack consistently, it will likely be much cheaper to use the network as intended, storing plots on non-volatile storage.
