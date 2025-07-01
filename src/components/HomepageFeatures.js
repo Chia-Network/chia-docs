@@ -81,6 +81,7 @@ export default function HomepageFeatures() {
               <Feature key={idx} {...props} />
             ))}
             {/* Below is the mail chimp signup */}
+            {/*
             <div className={clsx('col col--4')}>
               <div id="mc_embed_signup">
                 <form
@@ -174,6 +175,7 @@ export default function HomepageFeatures() {
                 </form>
               </div>
             </div>
+            */}
           </div>
         </div>
       </section>
