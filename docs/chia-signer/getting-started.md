@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-slug: /cloud-wallet/getting-started
+slug: /chia-signer/getting-started
 ---
 
 import Tabs from '@theme/Tabs';
