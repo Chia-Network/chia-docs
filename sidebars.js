@@ -163,15 +163,23 @@ module.exports = {
       ],
     },
     {
-        type: 'category',
-        label: 'Chia Cloud Wallet',
-        items: [
-          'cloud-wallet/getting-started',
-          'cloud-wallet/faq',
-          'cloud-wallet/known-issues',
-          'cloud-wallet/tooltips',
-        ]
-      },
+      type: 'category',
+      label: 'Chia Cloud Wallet',
+      items: [
+        'cloud-wallet/getting-started',
+        'cloud-wallet/faq',
+        'cloud-wallet/known-issues',
+        'cloud-wallet/tooltips',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Chia Signer App',
+      items: [
+        'chia-signer/getting-started',
+        'chia-signer/faq',
+      ]
+    },
     {
       type: 'category',
       label: 'Chia Reference Client',
