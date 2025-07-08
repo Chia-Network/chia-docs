@@ -15,7 +15,7 @@ The Chia Signer app is a dedicated mobile application currently available for iO
 ### What are the key benefits of using the Chia Signer app?
 
 - **Secure Enclave Protection:** Your private keys are generated and stored within your device's Secure Enclave, a hardware-isolated security component. This means your keys never leave your device and are highly protected against software vulnerabilities.
-- **Clear Transaction Review:** The app displays full transaction details on your device's screen, allowing you to review exactly what you are signing before approval, mitigating risks like "blind signing."
+- **Secure, Device-Based Approval:** The Signer app allows you to securely approve transactions initiated from your Cloud Wallet on a separate, dedicated device.
 - **Enhanced Security:** By separating your signing key from your main Cloud Wallet interface (requiring two devices), it adds a significant layer of security against online threats and unauthorized access.
 
 ### What are the device requirements for the Chia Signer app?

@@ -17,7 +17,7 @@ This guide will show you how to get started with the Chia Signer app, from setti
 **Key Concepts:**
 
 - **Secure Enclave Protection:** Your private keys are generated and stored in your device's Secure Enclave, a dedicated hardware security module, ensuring they never leave your device.
-- **Clear Transaction Review:** The Signer app allows you to review all transaction details on your device's screen before approval, preventing "blind signing."
+- **Secure, Device-Based Approval:** The Signer app allows you to securely approve transactions initiated from your Cloud Wallet on a separate, dedicated device.
 - **Two-Device Requirement:** Currently, the Cloud Wallet and Chia Signer app must be on separate devices (e.g., Cloud Wallet on your computer/phone, Signer on your iPhone).
 
 ## 1. Get the Chia Signer App
