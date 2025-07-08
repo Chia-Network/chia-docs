@@ -15,8 +15,8 @@ The Chia Signer app is a dedicated mobile application currently available for iO
 ### What are the key benefits of using the Chia Signer app?
 
 - **Secure Enclave Protection:** Your private keys are generated and stored within your device's Secure Enclave, a hardware-isolated security component. This means your keys never leave your device and are highly protected against software vulnerabilities.
-- **Secure, Device-Based Approval:** The Signer app allows you to securely approve transactions initiated from your Cloud Wallet on a separate, dedicated device.
-- **Enhanced Security:** By separating your signing key from your main Cloud Wallet interface (requiring two devices), it adds a significant layer of security against online threats and unauthorized access.
+- **Secure, Device-Based Approval:** The Signer app allows you to securely approve transactions initiated from your Chia Cloud Wallet on a separate, dedicated device.
+- **Enhanced Security:** By separating your signing key from your main Chia Cloud Wallet interface (requiring two devices), it adds a significant layer of security against online threats and unauthorized access.
 
 ### What are the device requirements for the Chia Signer app?
 
@@ -35,7 +35,7 @@ After opening the app for the first time, you can tap the `+` button, name your 
 
 ### How do I link my Chia Signer key to a Chia Cloud Wallet vault?
 
-The linking process involves scanning a QR code displayed by your Cloud Wallet using the Signer app. Depending on whether you've already created the key in the Signer app, you can either:
+The linking process involves scanning a QR code displayed by your Chia Cloud Wallet using the Signer app. Depending on whether you've already created the key in the Signer app, you can either:
 
 - Tap on your existing key in the Signer app and select "Link Key," then scan the QR code.
 - Or, from the Signer app's main screen, tap the scan button, scan the QR code, and then select an existing key or create a new one as prompted.
