@@ -185,13 +185,13 @@ p a:not(.navbar__link, .menu__link, .table-of-contents__link, .footer):hover {
 }
 [data-theme='dark'] .hero.hero--primary.heroBanner_qdFl { color: #FFFFFF; }
 .hero.hero--primary .button.button--secondary {
-  color: #42506C;
+  color: #42506C !important;
   background-color: #E5FE75;
   border: 1px;
   border-color: #42506C;
 }
 [data-theme='dark'] .hero.hero--primary .button.button--secondary {
-  color: #2C323C;
+  color: #2C323C !important;
   background-color: #E5FE75;
   border: 1px;
   border-color: #E5FE75;
