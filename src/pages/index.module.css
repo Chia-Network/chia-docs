@@ -3,6 +3,25 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-image: url('/img/hero-background-light.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+[data-theme='dark'] .heroBanner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 50, 60, 0.7); /* Morpheus with 70% opacity */
+  z-index: 1;
+  pointer-events: none;
+}
+
+[data-theme='dark'] .heroBanner > * {
+  position: relative;
+  z-index: 2;
 }
 
 @media screen and (max-width: 966px) {
