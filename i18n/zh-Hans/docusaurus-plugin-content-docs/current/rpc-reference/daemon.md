@@ -1,7 +1,7 @@
 ---
 sidebar_label: Daemon
 title: Daemon RPC
-slug: /daemon-rpc
+slug: /reference-client/rpc-reference/daemon-rpc
 ---
 
 import Tabs from '@theme/Tabs';

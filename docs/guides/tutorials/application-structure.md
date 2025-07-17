@@ -38,7 +38,6 @@ title: Application Structure
 
 - The app needs at a minimum to allow the user to take actions in a comprehensible
   way, which means using a combination of the wallet and node's RPC API to
-
   1. Establish which public and private keys to use when interacting with coins
      on the blockchain via get_transactions, get_coin_record_by_name and
      get_private_key and the master_sk_to_wallet_sk function.

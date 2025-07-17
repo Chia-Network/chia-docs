@@ -1,6 +1,6 @@
 ---
 title: Harvester Protocol
-slug: /harvester-protocol
+slug: /chia-blockchain/protocol/harvester-protocol
 ---
 
 [Harvester protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/harvester_protocol.py)
@@ -21,7 +21,7 @@ class HarvesterHandshake(Streamable):
 
 ## new_signage_point_harvester
 
-This message is a notification from the farmer to the harvester of a new challenge. The harvester first checks which plots pass the plot filter (see the [Harvester Algorithm page](/harvester-algorithm)), and for those that do, fetches the quality. This requires around 7-9 random reads (and thus disk seeks) for each quality. Each plot is expected to have one proof of space (and therefore one quality) on average, so for 50 plots, a harvester would have around 50 qualities. For those qualities that are sufficiently good to win a block or a pool partial, the whole proof is fetched (64 random reads in the plot), and then `new_proof_of_space` is sent to the farmer.
+This message is a notification from the farmer to the harvester of a new challenge. The harvester first checks which plots pass the plot filter (see the [Harvester Algorithm page](/chia-blockchain/consensus/chains/harvester-algorithm)), and for those that do, fetches the quality. This requires around 7-9 random reads (and thus disk seeks) for each quality. Each plot is expected to have one proof of space (and therefore one quality) on average, so for 50 plots, a harvester would have around 50 qualities. For those qualities that are sufficiently good to win a block or a pool partial, the whole proof is fetched (64 random reads in the plot), and then `new_proof_of_space` is sent to the farmer.
 
 ```python
 class NewSignagePointHarvester(Streamable):
@@ -76,7 +76,7 @@ class RequestSignatures(Streamable):
 
 ## respond_signatures
 
-This is a response to `request_signatures`. The local public key is the public key corresponding to the secret key in the plot. To see more about the keys for plots, look at the [BLS Keys page](/bls-keys).
+This is a response to `request_signatures`. The local public key is the public key corresponding to the secret key in the plot. To see more about the keys for plots, look at the [BLS Keys page](/chia-blockchain/keys/keys-and-signatures).
 
 ```python
 class RespondSignatures(Streamable):

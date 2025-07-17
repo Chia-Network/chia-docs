@@ -1,7 +1,7 @@
 ---
 sidebar_label: 硬件
 title: Plotting Hardware
-slug: /plotting-hardware
+slug: /reference-client/plotting/plotting-hardware
 ---
 
 import Tabs from '@theme/Tabs';

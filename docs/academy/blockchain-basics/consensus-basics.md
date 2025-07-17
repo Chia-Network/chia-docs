@@ -134,10 +134,10 @@ What is the current (as of December 2023) ratio of plots that contain eligible p
 
 ### Links
 
-- Consensus [detailed documentation](https://docs.chia.net/consensus-intro): details the Chia consensus including proofs of space and time, timelords, vdfs, and more.
-- Farming [basics](https://docs.chia.net/farming-basics): overviews the farming process and how to get started.
-- Timelords [detailed documentation](https://docs.chia.net/timelord-algorithm): details the timelords role in the consensus model.
-- Plot filter [calculations](https://docs.chia.net/signage-and-infusion-points): overviews the process by which the plot filter effects the number of plots containing eligible proofs.
+- Consensus [detailed documentation](https://docs.chia.net/chia-blockchain/consensus/consensus-intro): details the Chia consensus including proofs of space and time, timelords, vdfs, and more.
+- Farming [basics](https://docs.chia.net/reference-client/farming/farming-basics): overviews the farming process and how to get started.
+- Timelords [detailed documentation](https://docs.chia.net/chia-blockchain/consensus/timelords): details the timelords role in the consensus model.
+- Plot filter [calculations](https://docs.chia.net/chia-blockchain/consensus/chains/signage-and-infusion-points): overviews the process by which the plot filter effects the number of plots containing eligible proofs.
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 
 ---

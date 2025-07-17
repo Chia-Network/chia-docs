@@ -1,7 +1,7 @@
 ---
 title: Introduction - Chia Green Paper
 sidebar_label: 1 - Introduction
-slug: /green-paper-introduction
+slug: /chia-blockchain/green-paper/green-paper-introduction
 ---
 
 # 1 - Introduction
@@ -13,7 +13,7 @@ The **$\textsf{Chia}$ network** ([chia.net](https://chia.net/)) is a permission
     <figcaption>Figure 1: Illustration of one slot (taking around 10 minutes) of the Chia blockchain. For illustration the slot has just 16 (instead 64) signage points and only 4 blocks (the actual chain has a target of 32).</figcaption>
 </figure>
 
-As mentioned, $\textsf{Chia}$ is basically what's called a _longest-chain_ protocol in the literature [<a href="/green-paper-references/#BNPW19">BNPW19</a>; <a href="/green-paper-references/#BDK19">BDK+19</a>]. This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to
+As mentioned, $\textsf{Chia}$ is basically what's called a _longest-chain_ protocol in the literature [<a href="/chia-blockchain/green-paper/green-paper-references/#BNPW19">BNPW19</a>; <a href="/chia-blockchain/green-paper/green-paper-references/#BDK19">BDK+19</a>]. This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to This notion captures blockchain protocols that borrow the main ideas from the Bitcoin blockchain: the parties (called miners in Bitcoin and farmers in Chia) that dedicate resources (hashing power in Bitcoin, disk space in Chia) towards securing the blockchain just need to
 
 1.  listen to the (P2P) network to learn about progress of the chain and to collect transactions.
 
@@ -23,7 +23,7 @@ As mentioned, $\textsf{Chia}$ is basically what's called a _longest-chain_ prot
 
 No other coordination or communication amongst the parties is required. In particular, as the miners in Bitcoin, the farmers in $\textsf{Chia}$ only need to speak up once they find a block and want it to be included in the chain.
 
-Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. In particular, a secure (under dynamic availability) longest-chain protocol based on proofs of space alone does not exist [<a href="/green-paper-references/#BP22">BP22</a>], so Chia's _proofs of space and time_ (PoST) consensus protocol, apart from farmers providing disk space, additionally relies on so called timelords who evaluate verifiable delay functions (VDFs). Figure 2 gives an overview of the formal security proofs and more informal arguments outlined in this document. Figure 2 gives an overview of the formal security proofs and more informal arguments outlined in this document.
+Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. Constructing a secure permissionless blockchain using proofs of space is much more challenging than using proofs of work. In particular, a secure (under dynamic availability) longest-chain protocol based on proofs of space alone does not exist [<a href="/chia-blockchain/green-paper/green-paper-references/#BP22">BP22</a>], so Chia's _proofs of space and time_ (PoST) consensus protocol, apart from farmers providing disk space, additionally relies on so called timelords who evaluate verifiable delay functions (VDFs). Figure 2 gives an overview of the formal security proofs and more informal arguments outlined in this document. Figure 2 gives an overview of the formal security proofs and more informal arguments outlined in this document.
 
 <figure>
     <img src="/img/green-paper/chia-flow.png" alt="Diagram of Chia security and arguments" />
@@ -32,7 +32,7 @@ Constructing a secure permissionless blockchain using proofs of space is much mo
 
 ## 1.1 Security
 
-The Bitcoin blockchain is secure [<a href="/green-paper-references/#GKL15">GKL15</a>] as long as the hashing power $hash_h$ (measured in hashes per second) contributed by honest parties is larger than the hashing power $hash_a$ available to an adversary, i.e.,
+The Bitcoin blockchain is secure [<a href="/chia-blockchain/green-paper/green-paper-references/#GKL15">GKL15</a>] as long as the hashing power $hash_h$ (measured in hashes per second) contributed by honest parties is larger than the hashing power $hash_a$ available to an adversary, i.e.,
 
 $$ hash_h > hash_a $$
 
@@ -68,13 +68,13 @@ $$ hash_h \cdot \left(1-\frac{network\ delay}{block\ arrival\ time}\right)> hash
 
 <div class="eqnumber">eq.(4)</div>
 
-Even with its very slow 10 minutes block arrival time, Bitcoin's orphan rate was measured to be around $1.6\%$ [<a href="/green-paper-references/#DW13">DW13</a>]. As the $\textsf{Chia}$ chain is not a typical hash chain, but an ongoing VDF computation where blocks are infused, there's an elegant way to avoid orphans: the "infusion point" of a block is around $30$ seconds (more precisely, between $28.125$ and $37.5$ seconds) worth of VDF computations after the "signage point" it must refer to, and as long as the network delay is small enough so the block creating/gossiping process takes less than 30 seconds no orphans will occur. In particular, the bound from eq.(2) holds under this very weak network assumption independent of the block arrival time.
+Even with its very slow 10 minutes block arrival time, Bitcoin's orphan rate was measured to be around $1.6\%$ [<a href="/chia-blockchain/green-paper/green-paper-references/#DW13">DW13</a>]. As the $\textsf{Chia}$ chain is not a typical hash chain, but an ongoing VDF computation where blocks are infused, there's an elegant way to avoid orphans: the "infusion point" of a block is around $30$ seconds (more precisely, between $28.125$ and $37.5$ seconds) worth of VDF computations after the "signage point" it must refer to, and as long as the network delay is small enough so the block creating/gossiping process takes less than 30 seconds no orphans will occur. In particular, the bound from eq.(2) holds under this very weak network assumption independent of the block arrival time.
 
 The target block arrival time in $\textsf{Chia}$ is set to $18.75$ seconds (32 blocks per 10 Minutes slot), and while each of those blocks contributes to security, only a subset of these blocks actually carry transactions (roughly $36\%$, that's a block every $51.2$ seconds) in order to ensure that transaction blocks sequentially refer to each other. This prevents issues with inconsistent transactions, as each block producer knows the entire history.
 
 ## 1.3 Game Theoretic Aspects
 
-Apart from proving security assuming the honest parties control a sufficient majority of the resources, to argue that a longest-chain protocol will be secure in the real world we need to justify why rational parties would behave honestly in the first place. In particular, it should not be possible to get more rewards by deviating from the honest mining/farming behavior. While Bitcoin is not fair in this sense due to selfish mining attacks [<a href="/green-paper-references/#ES18">ES18</a>], these attacks are not really practical and have not been observed in the wild for reasons we'll sketch below and discuss in more detail in §3.
+Apart from proving security assuming the honest parties control a sufficient majority of the resources, to argue that a longest-chain protocol will be secure in the real world we need to justify why rational parties would behave honestly in the first place. In particular, it should not be possible to get more rewards by deviating from the honest mining/farming behavior. While Bitcoin is not fair in this sense due to selfish mining attacks [<a href="/chia-blockchain/green-paper/green-paper-references/#ES18">ES18</a>], these attacks are not really practical and have not been observed in the wild for reasons we'll sketch below and discuss in more detail in §3.
 
 #### Fairness in $\textsf{Chia}$
 
@@ -82,15 +82,15 @@ Achieving fairness that is comparable to what Bitcoin achieves is a main design 
 
 #### No-Slowdown
 
-The no-slowdown property was identified as a desirable property for longest-chain blockchains in [<a href="/green-paper-references/#CP19">CP19</a>]. It holds if (even an unbounded) adversary cannot slow down the growth of the chain by participating. We discuss the no-slowdown in $\textsf{Chia}$ and various other chains in §3.5.
+The no-slowdown property was identified as a desirable property for longest-chain blockchains in [<a href="/chia-blockchain/green-paper/green-paper-references/#CP19">CP19</a>]. It holds if (even an unbounded) adversary cannot slow down the growth of the chain by participating. We discuss the no-slowdown in $\textsf{Chia}$ and various other chains in §3.5.
 
 #### Delayed Gratification
 
-The $\textsf{Chia}$ design ensures that proof of space challenges are only revealed once they are needed, and once they're revealed they cannot be influenced any more. This then implies that it's impossible for a selfish farmer to create more blocks by deviating from honest farming, and thus – like in Bitcoin – the only thing a selfish farmer can do is prevent other farmers from adding their fair share of blocks in the current epoch (potentially even losing out on blocks themself). The reason a selfish farmer would do this is in order to enforce a lower difficulty, and thus more rewards for themselves, in the future [<a href="/green-paper-references/#ES18">ES18</a>]. We denote chains with this property as having "delayed gratification".[^1] While delayed gratification doesn't prevent selfish mining, it severely limits the type of selfish mining possible, and we don't expect to observe selfish farming in $\textsf{Chia}$ for the same reasons we don't observe selfish mining in Bitcoin. As mentioned above, in combination with the no-slowdown property it even implies a chain-quality as in Bitcoin.
+The $\textsf{Chia}$ design ensures that proof of space challenges are only revealed once they are needed, and once they're revealed they cannot be influenced any more. This then implies that it's impossible for a selfish farmer to create more blocks by deviating from honest farming, and thus – like in Bitcoin – the only thing a selfish farmer can do is prevent other farmers from adding their fair share of blocks in the current epoch (potentially even losing out on blocks themself). The reason a selfish farmer would do this is in order to enforce a lower difficulty, and thus more rewards for themselves, in the future [<a href="/chia-blockchain/green-paper/green-paper-references/#ES18">ES18</a>]. We denote chains with this property as having "delayed gratification".[^1] While delayed gratification doesn't prevent selfish mining, it severely limits the type of selfish mining possible, and we don't expect to observe selfish farming in $\textsf{Chia}$ for the same reasons we don't observe selfish mining in Bitcoin. As mentioned above, in combination with the no-slowdown property it even implies a chain-quality as in Bitcoin.
 
 ## 1.4 Farmers and Timelords
 
-Constructing a secure blockchain based on proofs of space is significantly more challenging than with proof of work. So the $\textsf{Chia}$ design, as illustrated in Figure 1 is (arguably necessarily) more sophisticated than Bitcoin or other PoW based blockchains, which are basically just hash chains. Apart from proofs of space and standard cryptographic building blocks like hash functions and signature schemes, the security of $\textsf{Chia}$ crucially relies on verifiable delay functions (VDFs) [<a href="/green-paper-references/#BBBF18">BBBF18</a>; <a href="/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>]. Informally, VDFs are functions whose computation is inherently sequential and verifiable and thus serve as a "proof of time".
+Constructing a secure blockchain based on proofs of space is significantly more challenging than with proof of work. So the $\textsf{Chia}$ design, as illustrated in Figure 1 is (arguably necessarily) more sophisticated than Bitcoin or other PoW based blockchains, which are basically just hash chains. Apart from proofs of space and standard cryptographic building blocks like hash functions and signature schemes, the security of $\textsf{Chia}$ crucially relies on verifiable delay functions (VDFs) [<a href="/chia-blockchain/green-paper/green-paper-references/#BBBF18">BBBF18</a>; <a href="/chia-blockchain/green-paper/green-paper-references/#Pie19b">Pie19b</a>; <a href="/green-paper-references/#Wes20">Wes20</a>]. Informally, VDFs are functions whose computation is inherently sequential and verifiable and thus serve as a "proof of time".
 
 We will now shortly sketch how the $\textsf{Chia}$ blockchain is maintained by farmers and timelords.
 

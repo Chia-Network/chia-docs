@@ -1,6 +1,6 @@
 ---
 title: Wallet Protocol
-slug: /wallet-protocol
+slug: /chia-blockchain/protocol/wallet-protocol
 ---
 
 [Wallet protocol source](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/protocols/wallet_protocol.py)

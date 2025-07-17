@@ -1,6 +1,6 @@
 ---
 title: Advanced Installation
-slug: /installation
+slug: /reference-client/install-and-setup/installation
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-This page will go into the details of the various different ways to install Chia. If you already installed Chia as part of the Farming Guide, then feel free to skip ahead to the [Plotting Basics](/plotting-basics) page.
+This page will go into the details of the various different ways to install Chia. If you already installed Chia as part of the Farming Guide, then feel free to skip ahead to the [Plotting Basics](/reference-client/plotting/plotting-basics) page.
 
 :::
 
@@ -16,11 +16,11 @@ There are various ways to install Chia, with the best method depending on what y
 
 - If you simply wish to use the Chia wallet, or to run a farm on a single personal computer, then we recommend installing the GUI from our [official downloads page](https://www.chia.net/downloads) for Windows and MacOS, and for Linux users to install the package [as described below](#using-the-cli). The GUI is the simplest way to interact with the Chia client and ideal for most non-developer use cases.
 
-- If you intend to run a dedicated Chia full node on a server and connect to it programmatically using the [RPC interface](/rpc), the best method would be to install and run Chia via the command line on a proper server environment.
+- If you intend to run a dedicated Chia full node on a server and connect to it programmatically using the [RPC interface](/reference-client/rpc-reference/rpc), the best method would be to install and run Chia via the command line on a proper server environment.
 
 - If you intend to do [Chialisp](https://chialisp.com) development or build projects that leverage Chia, you have the options of either using an installer (the recommended pattern), or installing from source.
 
-- Lastly, if you plan on making contributions to the source code, then installing Chia [from source](/installation#from-source) would be your path.
+- Lastly, if you plan on making contributions to the source code, then installing Chia [from source](/reference-client/install-and-setup/installation#from-source) would be your path.
 
 **_In summary, unless you already knew before reading this page that you should be installing from source, chances are your best path will be to install from our [official downloads page](https://www.chia.net/downloads) or a Linux package, depending on your OS._**
 
@@ -381,7 +381,7 @@ Install Ubuntu 20.04 LTS from the Microsoft Store and run it and complete its in
 
 #### Install from source - WSL2
 
-See [install from source](/installation#from-source) for detailed instruction.
+See [install from source](/reference-client/install-and-setup/installation#from-source) for detailed instruction.
 
 Running a standalone Windows wallet gui is deprecated but may return in later versions. You can run the Windows version and share keys. You can also plot in WSL2 and migrate the plots to a Windows farmed plot directory.
 
@@ -416,7 +416,7 @@ For maximum speed, `-t` and `-2` should be inside the WSL2 filesystem. Something
 
 #### Install from source - Amazon Linux 2
 
-See [install from source](/installation#from-source) for detailed instruction.
+See [install from source](/reference-client/install-and-setup/installation#from-source) for detailed instruction.
 
 #### Install from binary package
 
@@ -684,7 +684,7 @@ NOTE: if you need to disable UPnP - a protocol which automatically sets up port-
 sed -i .bak 's/enable_upnp: True/enable_upnp: False' ~/.chia/mainnet/config/config.yaml
 ```
 
-While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://docs.chia.net/farming-on-many-machines/).
+While you don't absolutely need port 8444 forwarded to your Chia node, it is advised that you do so that other peers may connect to you instead of you solely connecting to them. For the average at-home farmer it is advised you do not disable UPnP unless you absolutely know what you're doing or have another node on your local network already using the port and are planning to [Farm on Many Machines](https://docs.chia.net/reference-client/farming/farming-many-machines/).
 
 ---
 
@@ -692,7 +692,7 @@ While you don't absolutely need port 8444 forwarded to your Chia node, it is adv
 
 That's it! Provided the instructions were followed to the T, and the build is a fresh FreeBSD 11.3 or 11.4, either hardware or FreeNAS jailed, you should be good to go! Now go to town with `chia start node` or whatever floats your boat.
 
-More details can be found in the [Chia Introduction](https://docs.chia.net/introduction).
+More details can be found in the [Chia Introduction](https://docs.chia.net/chia-blockchain/introduction).
 
   </TabItem>
   <TabItem value="OpenBSD" label="OpenBSD">
@@ -843,7 +843,7 @@ It is possible to configure the `CHIA_ROOT` environment variable to another loca
 
 ## CLI
 
-Using the CLI gives greater and more precise control over the various Chia services such as the full node. As of 1.8.2, when installing from an installer or package CLI commands will be automatically added to your path for Windows and Linux. For more details on the commands, read the [CLI Reference](/cli).
+Using the CLI gives greater and more precise control over the various Chia services such as the full node. As of 1.8.2, when installing from an installer or package CLI commands will be automatically added to your path for Windows and Linux. For more details on the commands, read the [CLI Reference](/reference-client/cli-reference/cli).
 
 <Tabs>
   <TabItem value="MacOS" label="MacOS" default>
@@ -992,7 +992,7 @@ chia start farmer
 
 ### Systemd
 
-Linux users who have installed the `chia-blockchain-cli` package using [apt, yum, or dnf](https://docs.chia.net/installation/#using-the-cli) will receive systemd configuration files for initializing and managing the Chia processes. Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd). A user must be specified during the initialization to ensure the resulting process can find the Chia root directory. The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only.
+Linux users who have installed the `chia-blockchain-cli` package using [apt, yum, or dnf](https://docs.chia.net/reference-client/install-and-setup/installation/#using-the-cli) will receive systemd configuration files for initializing and managing the Chia processes. Each Chia service needs to be managed separately with systemd, except for the chia-daemon, which will be initialized automatically when any other Chia service is started with systemd (for example, the data-layer service will not automatically start the wallet service - both need to be started individually with systemd). A user must be specified during the initialization to ensure the resulting process can find the Chia root directory. The included systemd files support the default Chia directory location of `/home/<user>/.chia/mainnet` only.
 
 To start a Chia process with systemd, the command format is `systemctl start chia-<service-name>@<user>`. For example, if starting a Chia full node for the Linux user `ubuntu`, the command would be:
 
@@ -1034,7 +1034,7 @@ If all else fails, rebooting the machine and restarting the chia daemon/processe
 
 ## Testnets
 
-To join a testnet, follow the instructions on [How to Join the Official Testnet](/testnets#join-the-official-testnet).
+To join a testnet, follow the instructions on [How to Join the Official Testnet](/reference-client/install-and-setup/testnets#join-the-official-testnet).
 
 It is recommended that you keep a separate testnet environment by prepending `CHIA_ROOT="~/.chia/testnetx"` to all of your cli commands. For example, `CHIA_ROOT="~/.chia/testnet11" chia init`. An easier way to do this is to run `export CHIA_ROOT="~/.chia/testnet11"` so that all commands will use testnet11 instead of mainnet. You can update all config values to the testnet values by running `chia configure -t true`.
 

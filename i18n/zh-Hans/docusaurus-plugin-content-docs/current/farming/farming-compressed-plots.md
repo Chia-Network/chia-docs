@@ -1,13 +1,13 @@
 ---
 sidebar_label: Compressed Plots
 title: Compressed Plot Farming
-slug: /farming-compressed-plots
+slug: /reference-client/farming/farming-compressed-plots
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-As detailed in the [plotting](/plotting-basics) section, compressed plots are supported for both plotting and harvesting as of Chia version 2.0. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist.
+As detailed in the [plotting](/reference-client/plotting/plotting-basics) section, compressed plots are supported for both plotting and harvesting as of Chia version 2.0. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist. Before you can harvest compressed plots, you need to inform your harvesters of the fact that they exist.
 
 :::info
 
@@ -30,7 +30,6 @@ In the future, we plan to enable decompression at the farmer level. In the futur
 
 3. Slide the `Enable compressed plot support` slider to the right, as shown in the above image.
 4. For `Parallel Decompressor Count`, the default value of `1` will be fine for most users. Here are some details: Here are some details:
-
    - This number _only_ affects the amount of memory used for decompression.
    - The amount memory required will vary according to the level of compression. The amount memory required will vary according to the level of compression. For example, if `Parallel Decompressor Count` is set to `1`, around 600-700 MB of memory will be consumed while decompressing a single C7 plot.
    - The amount of memory required will scale linearly, so setting it to `2` will double the required memory.

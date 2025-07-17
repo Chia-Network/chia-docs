@@ -7,7 +7,7 @@ const FeatureList = [
   {
     title: 'Chia Docs',
     Svg: require('@site/static/svg/chia-docs-icon.svg').default,
-    dest_url: '/docs-home',
+    dest_url: '/chia-blockchain/introduction',
     description: (
       <>
         Documentation regarding the Chia blockchain, consensus, and protocols.

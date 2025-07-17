@@ -1,14 +1,14 @@
 ---
 title: Timelord Contest Overview
-slug: /timelord-contest
+slug: /chia-blockchain/resources/timelord-contest/timelord-contest
 ---
 
 ## ASIC Timelord/Chia Academy Contest
 
 :::note
-Residents in some locations are not eligible, verify your eligibility [here](/timelord-contest-rules/#2-eligibility).
+Residents in some locations are not eligible, verify your eligibility [here](/chia-blockchain/resources/timelord-contest/timelord-contest-rules/#2-eligibility).
 Content becomes public domain upon submission adhering to the [Apache 2 license](https://github.com/Chia-Network/chia-docs/blob/18453e23e64644a2ca84e5761ce1b23d2becdf5b/LICENSE).
-Contest rules can be found [here](/timelord-contest-rules)
+Contest rules can be found [here](/chia-blockchain/resources/timelord-contest/timelord-contest-rules)
 
 :::
 
@@ -56,7 +56,7 @@ Up to 3 individual submissions will be chosen as winners, and each will receive 
 
 ### Where can I find the contest rules?
 
-The rules are on our [docs site](/timelord-contest-rules).
+The rules are on our [docs site](/chia-blockchain/resources/timelord-contest/timelord-contest-rules).
 
 ### What topics are you interested in receiving?
 

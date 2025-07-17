@@ -1,13 +1,13 @@
 ---
 title: 区块格式
-slug: /block-format
+slug: /chia-blockchain/consensus/block-validation/block-format
 ---
 
 ## 完整块
 
 完整块是一个包含验证和添加区块所需的所有信息的数据结构，它包含了在 `N - 1` 高度前所有区块都已添加的基础上，验证并添加高度为 `N`的区块所需的信息。 完整块均通过网络协议发送，有时为了后续向其他节点提供服务，也会存储在磁盘上。
 
-完整块拥有区块链的trunk和foliage的全部字段。 `header_hash`被用作区块标识符， 是以可流式传输的格式体现的 `foliage` 字段的哈希值(见 [序列化协议](/serialization-protocol))。 这样便以确保当前区块和前序区块的数据不被篡改。
+完整块拥有区块链的trunk和foliage的全部字段。 `header_hash`被用作区块标识符， 是以可流式传输的格式体现的 `foliage` 字段的哈希值(见 [序列化协议](/chia-blockchain/protocol/serialization-protocol))。 这样便以确保当前区块和前序区块的数据不被篡改。
 
 - **finished_sub_sots**: List[EndOfSubSlotBundle]: This contains all sub-slots that have been completed since the previous block in the chain (block `N-1`).
 - **reward_chain_block**: RewardChainBlock: This is trunk data for the reward chain and challenge chain, including vdf outputs and proof of space.
@@ -54,7 +54,6 @@ The code for these changes is held in two primary locations:
 Two important changes went into this update:
 
 1. Allow serializing CLVM in a new, more compact form. This doesn't affect how CLVM is executed, it's just a matter of encoding. It does have some important consequences:
-
    - Farmers can effectively stuff more transactions into blocks, because with a more compact encoding, you can fit more for the same byte-cost.
    - The new implementation can take advantage of the de-duplication in the new serialization format, by caching tree-hashes. This effectively de-duplicates the work of hashing puzzles.
 
@@ -65,7 +64,6 @@ Two important changes went into this update:
 2. The generator ROM implementation was ported from CLVM to Rust. This also doesn't affect the behavior of anything (other than the CLVM cost, as explained below). It just speeds up block validation.
 
    About the generator ROM:
-
    - It is the code that invokes the generator in a block.
    - The return value is a list of spends.
    - The ROM validates all spends by checking the puzzle hashes and calling into all puzzles passing in their solutions.

@@ -1,6 +1,6 @@
 ---
 title: 收割机
-slug: /harvester-architecture
+slug: /chia-blockchain/architecture/harvesters
 ---
 
 收割机是一些独立的机器，由农民控制。 在大规模耕作活动中，农民可能与许多收割机连接在一起。
@@ -23,5 +23,5 @@ slug: /harvester-architecture
 Finally, harvesters also maintain a private key for each plot. The blocks are signed with these keys, which is an important concept in Chia. It means that even when a farmer is a member of a pool, the farmer still controls the contents of a block. This is quite different from other blockchains' pooling protocols, where the pool operators are the ones signing the blocks.
 
 :::info
-The harvester algorithm is discussed in greater detail in the [Harvester Algorithm page](/harvester-algorithm).
+The harvester algorithm is discussed in greater detail in the [Harvester Algorithm page](/chia-blockchain/consensus/chains/harvester-algorithm).
 :::

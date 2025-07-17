@@ -116,8 +116,8 @@ k32
 
 ### 链接
 
-- 更多的[耕种基础知识](https://docs.chia.net/farming-basics)：绘图、矿池和奖励的概述。
-- 详细的[架构概述](https://docs.chia.net/architecture-overview)：描述农民、收割机、钱包等之间的交互。
+- 更多的[耕种基础知识](https://docs.chia.net/reference-client/farming/farming-basics)：绘图、矿池和奖励的概述。
+- 详细的[架构概述](https://docs.chia.net/chia-blockchain/architecture/architecture-overview)：描述农民、收割机、钱包等之间的交互。
 - Chialisp[详细文档](https://chialisp.com/)：提供有关Chialisp各个方面的详细信息。
 - Support [in discord](https://discord.gg/chia): for further support join our discord server and ask in the #chialisp or #support channels.
 

@@ -19,8 +19,8 @@ This guide will show you how to get started with DataLayer Permissions. Addition
 - [DataLayer user guide](/guides/datalayer-user-guide) -- You should already be familiar with using DataLayer before working with permissions. This guide will help you to get started
 - [S3 plugin](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/s3_plugin_service.py) -- This is the reference plugin for Amazon S3 integration. It is [discussed](#the-chia-s3-plugin) later in this guide
 - [Source API calls](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer.py) -- In case you want to dig into the source code
-- [CLI documentation](/datalayer-cli) for DataLayer
-- [RPC documentation](/datalayer-rpc) for DataLayer
+- [CLI documentation](/reference-client/cli-reference/datalayer-cli) for DataLayer
+- [RPC documentation](/reference-client/rpc-reference/datalayer-rpc) for DataLayer
 
 ## About DataLayer permissions
 
@@ -42,7 +42,6 @@ Multiple instances of the same service are also possible. The service can be con
 To configure Chia to use DataLayer permissions, you need to add a list of URLs to config.yaml which allows access to the uploaders and downloaders. The settings to configure are new as of 1.8.0. To add them, you have two options:
 
 1. Start from scratch
-
    - Delete or rename `~/.chia/mainnet/config/config.yaml`
    - Run `chia init`; a new copy of config.yaml that contains the new settings will be generated
 
@@ -165,7 +164,7 @@ Request Parameters:
 Response: `{"uploaded": [true|false]}`
 
 :::note
-Chia DataLayer will provide a complete list of DAT files for all generations from the beginning to the end that are needed to reconstruct the entire data. The plugin is expected to check its internal list of files and then upload whatever files might be missing. This is useful when adding a new uploader plugin to an existing deployment, or for troubleshooting. This is triggered automatically when [add_missing_files](/datalayer-cli#add_missing_files) is run on the CLI.
+Chia DataLayer will provide a complete list of DAT files for all generations from the beginning to the end that are needed to reconstruct the entire data. The plugin is expected to check its internal list of files and then upload whatever files might be missing. This is useful when adding a new uploader plugin to an existing deployment, or for troubleshooting. This is triggered automatically when [add_missing_files](/reference-client/cli-reference/datalayer-cli#add_missing_files) is run on the CLI.
 :::
 
 ---

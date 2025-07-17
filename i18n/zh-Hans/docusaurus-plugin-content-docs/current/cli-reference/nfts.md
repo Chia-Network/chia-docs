@@ -1,7 +1,7 @@
 ---
 sidebar_label: NFTs
 title: NFT CLI
-slug: /nft-cli
+slug: /reference-client/cli-reference/nft-cli
 ---
 
 import Tabs from '@theme/Tabs';

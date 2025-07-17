@@ -1,14 +1,14 @@
 ---
 title: Timelords
-slug: /timelord-architecture
+slug: /chia-blockchain/architecture/timelords
 ---
 
-Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/proof-of-time)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
+Timelords support the network by creating sequential proofs of time (using a [Verifiable Delay Function](/chia-blockchain/consensus/proof-of-time)) and broadcasting them approximately every nine seconds. This provides "deterministic randomness", which is used to decide the winning proofs of space.
 
 Since this computation is sequential, very little energy is consumed, as opposed to proof-of-work systems, where computation is parallelizable. For example, if 100 timelords are doing the same computation on a proof of time, they will all create the exact same output.
 
 :::info
-The timelord algorithm is explained in the [Timelord Algorithm page](/timelord-algorithm).
+The timelord algorithm is explained in the [Timelord Algorithm page](/chia-blockchain/consensus/timelords).
 :::
 
 A timelord is required to connect to exactly one full node, typically on the same machine. This connection is verified with a certificate. This 1:1 architecture has a large security benefit: it keeps the timelord sandboxed in its own private network. That way, the full node protocol is the only protocol that requires total security. If more than one full node could connect to the same timelord, it would add a potential attack vector to the network.
@@ -20,7 +20,7 @@ If someone controls the fastest timelord in the world, it doesn't give them much
 Furthermore, an attacker with a significantly faster timelord than anyone else could potentially run a long-range attack against the network with less than 42.7% of the total netspace. For security purposes, it is very important to maintain open designs of VDF hardware.
 
 :::info
-You can learn about potential attacks against Chia's network in the [Attacks and Countermeasures page](/consensus-attacks).
+You can learn about potential attacks against Chia's network in the [Attacks and Countermeasures page](/chia-blockchain/consensus/attacks-and-countermeasures).
 :::
 
 ## Types of Timelords
@@ -39,11 +39,11 @@ It's good to have a few Timelords out there. There can be things like routing fl
 
 The Company plans to run a few Timelords around the world - and some backups too - to ensure that all Farmers and nodes can hear the beat that the Timelords are calling.
 
-For installation and usage documentation please refer [here](/timelord-install).
+For installation and usage documentation please refer [here](/reference-client/install-and-setup/timelord-install).
 
 ## Troubleshooting a Timelord
 
-For troubleshooting steps please refer to the documentation [here](/troubleshooting/timelords).
+For troubleshooting steps please refer to the documentation [here](/reference-client/troubleshooting/timelords).
 
 ## The Future of Timelords
 
@@ -55,7 +55,7 @@ Of course, as technology improves, the ASIC design will need to be updated. Howe
 
 ## Timelords and Attacks
 
-One of the things that is great about [Chia's new consensus](/consensus-intro) is that it makes it almost impossible for a Farmer with a maliciously faster Timelord to selfishly Farm. Due to the way the new consensus works, a Farmer with a faster Timelord is basically compelled to prove time for all the farmers winning blocks around him also. Maliciously running a faster Timelord can give a benefit when attempting to 51% attack the network, so it is still important that over time we push the Timelord speeds as close to the maximum speeds of the silicon processes available. We expect to have the time and the resources to do that right and make open-source hardware versions widely available.
+One of the things that is great about [Chia's new consensus](/chia-blockchain/consensus/consensus-intro) is that it makes it almost impossible for a Farmer with a maliciously faster Timelord to selfishly Farm. Due to the way the new consensus works, a Farmer with a faster Timelord is basically compelled to prove time for all the farmers winning blocks around him also. Maliciously running a faster Timelord can give a benefit when attempting to 51% attack the network, so it is still important that over time we push the Timelord speeds as close to the maximum speeds of the silicon processes available. We expect to have the time and the resources to do that right and make open-source hardware versions widely available.
 
 ## Terminology
 

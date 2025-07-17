@@ -1,7 +1,7 @@
 ---
 sidebar_label: CAT Admin
 title: CAT Admin CLI
-slug: /cat-admin-cli
+slug: /reference-client/cli-reference/cat-admin-cli
 ---
 
 import Tabs from '@theme/Tabs';

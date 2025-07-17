@@ -1,7 +1,7 @@
 ---
 title: Longest-Chain Protocols from Efficient Proof Systems - Chia Green Paper
 sidebar_label: 2 - Longest-Chain Protocols from Efficient Proof Systems
-slug: /longest-chain-protocols
+slug: /chia-blockchain/green-paper/longest-chain-protocols
 ---
 
 # 2 - Longest-Chain Protocols from Efficient Proof Systems

@@ -1,7 +1,7 @@
 ---
 sidebar_label: How To Plot
 title: How To Plot
-slug: /plotting-how-to
+slug: /reference-client/plotting/plotting-how-to
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,7 +13,7 @@ To create plots, you must have:
 - **A pool public key** -- created upon creating a new wallet
 - **A pool contract address** -- created upon creating a new plot NFT
 
-This page will give a basic overview of how to obtain these values. This page will give a basic overview of how to obtain these values. For a detailed description, see the [Beginner's Guide to Farming](/farming-guide).
+This page will give a basic overview of how to obtain these values. This page will give a basic overview of how to obtain these values. For a detailed description, see the [Beginner's Guide to Farming](/reference-client/getting-started/farming-guide).
 
 If you already have a wallet with a plot NFT, feel free to skip to the section for [CLI Plotting](#cli-plotting) or [GUI Plotting](#图形用户界面gui生成地块).
 
@@ -231,13 +231,13 @@ The pool contract address will be displayed automatically when creating a plot i
 
 ## CLI Plotting
 
-If you are unsure which plotter to use, the [Plotting Software](/plotting-software) page will help you to decide.
+If you are unsure which plotter to use, the [Plotting Software](/reference-client/plotting/plotting-software) page will help you to decide.
 
-The [plotters CLI documentation](/plotters-cli) will guide you through using each of the plotters included with Chia. The basic commands to use are as follows: The basic commands to use are as follows:
+The [plotters CLI documentation](/reference-client/cli-reference/plotter-cli) will guide you through using each of the plotters included with Chia. The basic commands to use are as follows: The basic commands to use are as follows:
 
 #### BladeBit CUDA
 
-**Be sure to add `--disk-128` if you have at least 128 GB of RAM, but less than 256 GB.** See the [plotters CLI documentation](/plotters-cli) for more details.
+**Be sure to add `--disk-128` if you have at least 128 GB of RAM, but less than 256 GB.** See the [plotters CLI documentation](/reference-client/cli-reference/plotter-cli) for more details.
 
 :::info
 
@@ -299,7 +299,7 @@ Your plot NFT will appear. In this example, it is called "Harlequin Koala". The 
 
 <br />
 
-Next, you will need to choose a plotter. Next, you will need to choose a plotter. If you are unsure which one to use, see the [Plotting Software](/plotting-software) page for guidance.
+Next, you will need to choose a plotter. Next, you will need to choose a plotter. If you are unsure which one to use, see the [Plotting Software](/reference-client/plotting/plotting-software) page for guidance.
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/how_to_plot/13.png" alt="Choose plotter" />

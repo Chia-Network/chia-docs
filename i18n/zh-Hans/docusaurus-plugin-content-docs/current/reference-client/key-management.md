@@ -1,9 +1,9 @@
 ---
 title: Key Management
-slug: /chia-key-management
+slug: /reference-client/install-and-setup/key-management
 ---
 
-The purpose of this page is to provide guidance on how to setup Chia keys for plotting, farming, receiving rewards and managing your wallet. It does not explain the Chia Keys Architecture. You can find this [Chia Keys Architecture](/key-architecture) explanation. It is mostly CLI focused; sorry GUI users.
+The purpose of this page is to provide guidance on how to setup Chia keys for plotting, farming, receiving rewards and managing your wallet. It does not explain the Chia Keys Architecture. You can find this [Chia Keys Architecture](/chia-blockchain/keys/architecture) explanation. It is mostly CLI focused; sorry GUI users.
 
 ## 1 key (default)
 
