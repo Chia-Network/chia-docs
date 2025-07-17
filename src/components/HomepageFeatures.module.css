@@ -20,13 +20,13 @@ html[data-theme='dark'] .featureSvg {
 
 .button {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   border: none;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   letter-spacing: 0.03em;
-  color: #fff;
+  color: #FFFFFF;
   background-color: #42506C;
   box-sizing: border-box;
   height: 32px;
@@ -39,8 +39,19 @@ html[data-theme='dark'] .featureSvg {
 }
 
 .button:hover {
-  background-color: #777;
+  background-color: #A8BEF1;
   cursor: pointer;
+}
+
+/* Dark mode button styling */
+html[data-theme='dark'] .button {
+  color: #2C323C;
+  background-color: #E5FE75;
+}
+
+html[data-theme='dark'] .button:hover {
+  background-color: #A8BEF1;
+  color: #2C323C;
 }
 
 form {
@@ -55,12 +66,12 @@ form {
 /* positions input field horizontally */
 .emailInput {
   font-size: 15px;
-  border: 1px solid #abb0b2;
+  border: 1px solid #A8BEF1;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  color: #343434;
-  background-color: #fff;
+  color: #2C323C;
+  background-color: #FFFFFF;
   box-sizing: border-box;
   height: 32px;
   padding: 0px 8px;
@@ -76,15 +87,36 @@ form {
   outline: none;
 }
 
+/* Dark mode input styling */
+html[data-theme='dark'] .emailInput {
+  color: #FFFFFF;
+  background-color: #2C323C;
+  border-color: #E5FE75;
+}
+
+html[data-theme='dark'] .emailInput:focus {
+  border-color: #A8BEF1;
+}
+
 h3 {
   color: #42506C;
+}
+
+/* Dark mode heading styling */
+html[data-theme='dark'] h3 {
+  color: #FFFFFF;
 }
 
 label {
   display: block;
   font-size: 16px;
   padding-bottom: 10px;
-  font-weight: bold;
+  font-weight: 600;
+}
+
+/* Dark mode label styling */
+html[data-theme='dark'] label {
+  color: #FFFFFF;
 }
 
 .mceResponses {
@@ -100,7 +132,7 @@ label {
 div.response {
   margin: 1em 0;
   padding: 1em 0.5em 0.5em 0;
-  font-weight: bold;
+  font-weight: 600;
   float: left;
   top: -1.5em;
   z-index: 1;
@@ -114,6 +146,11 @@ div.response {
 #mce-success-response {
   color: #42506C;
   display: none;
+}
+
+/* Dark mode success response styling */
+html[data-theme='dark'] #mce-success-response {
+  color: #E5FE75;
 }
 
 label.error {
