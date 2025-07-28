@@ -6,7 +6,7 @@ slug: /chia-blockchain/green-paper/green-paper-introduction
 
 # 1 - Introduction
 
-The **$\textsf{Chia}$ network** ([chia.net](https://chia.net/)) is a permissionless blockchain that was launched on March 19, 2021. $\textsf{Chia}$ is a "longest-chain" blockchain like Bitcoin, but uses disk-space instead of computation as the main resource to achieve consensus. This holds the promise of being much more ecologically and economically sustainable and more decentralized than a proofs of work (PoW) based blockchain like Bitcoin could be. Figure 1 illustrates one slot of the $\textsf{Chia}$ blockchain. The main aim of this document is to explain the rationale for this rather complicated design.
+The **$\textsf{Chia}$ network** ([chia.net](https://chia.net/)) is a permissionless blockchain that was launched on March 19, 2021. $\textsf{Chia}$ is a "longest-chain" blockchain like Bitcoin, but uses disk-space instead of computation as the main resource to achieve consensus. This holds the promise of being much more ecologically and economically sustainable and more decentralized than a proof of work (PoW) based blockchain like Bitcoin could be. Figure 1 illustrates one slot of the $\textsf{Chia}$ blockchain. The main aim of this document is to explain the rationale for this rather complicated design.
 
 <figure>
 	<img src="/img/green-paper/4chainsX.png" alt="Illustration of one slot of the Chia blockchain" />
@@ -189,7 +189,7 @@ A block $\beta=\{\beta_F,\beta_T\}$ is made of two parts, the foliage block $\be
 
   (${\sf i}{\cal CC}$) For some extra security, the timelord doesn't simply wait till the end of the slot to infuse the signature, but a third VDF is used to fork from ${\cal CC}$ at the infusion point by infusing $\mu_{\sf rc\_sp}$ into ${\cal CC}$, and this fork, called the infused challenge chain ${\sf i}{\cal CC}$, is then infused back to ${\cal CC}$ at the end of the slot.
 
-  (${\cal FC}$) Iff the signage point of this block is later than the infusion point of the last _transaction block_, then this block is also a transaction block. Only in this case its foliage $\beta_F$ is appended to the foliage (hash) chain ${\cal FC}$, and this block becomes a "transaction block".
+  (${\cal FC}$) If the signage point of this block is later than the infusion point of the last _transaction block_, then this block is also a transaction block. Only in this case its foliage $\beta_F$ is appended to the foliage (hash) chain ${\cal FC}$, and this block becomes a "transaction block".
 
 ## 1.8 Space Oddities
 
@@ -205,7 +205,7 @@ In their framework _space_ and also _space and time_ (i.e., the available space 
 
 Work or space are actual resources and we can unambiguous talk about some party holding some amount of the resource at some given point in time. Stake on the other hand is an _internal_ resource defined relative to some chain on which it is recorded and "holding some stake" usually refers to the stake a party controls on the chain that currently is considered the valid one by honest parties.
 
-The main advantage on using stake to secure a longest-chain protocol is the fact that it's extremely sustainable as no external resource is required to secure the chain. But this comes at a prize, one common argument against stake is that the chain is not really permissionless as participating in mining requires acquiring stake from the parties currently controlling it. Also from a security perspective an internal resource is delicate as keys controlling stake _not_ on the current chain can be used to attack the chain. A simple example would be an attack by which a party acquires keys that were valid at some block $B_i$ in the past, but which are no longer valid at the current block and thus are "cheap" (e.g., the party can lend a large amount of stake for a short time, or offer to buy outdated keys), and then uses these keys to fork at block $B_i$ and bootstrap a chain to the present.
+The main advantage on using stake to secure a longest-chain protocol is the fact that it's extremely sustainable as no external resource is required to secure the chain. But this comes at a price, one common argument against stake is that the chain is not really permissionless as participating in mining requires acquiring stake from the parties currently controlling it. Also from a security perspective an internal resource is delicate as keys controlling stake _not_ on the current chain can be used to attack the chain. A simple example would be an attack by which a party acquires keys that were valid at some block $B_i$ in the past, but which are no longer valid at the current block and thus are "cheap" (e.g., the party can lend a large amount of stake for a short time, or offer to buy outdated keys), and then uses these keys to fork at block $B_i$ and bootstrap a chain to the present.
 
 To prevent such attacks some chain require parties to delete old keys, but it's irrational for a party to delete old keys if they can be valuable in the future, say because one can sell them to an attacker (and this is rational if one holds just little stake, so not selling is unlikely to prevent the attack) or because there's a deep reorg and the old keys suddenly become valuable again. Combining stake with VDFs would make such attacks harder, but not prevent them as we'll discuss in §6
 
