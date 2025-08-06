@@ -168,3 +168,9 @@ Transactions with a '\*' are listed with a fee of 3 x the minimum effective fee.
 | **Split 1 Coin into 2**                   | 11,000,000    | 55,000,000 mojo (.000055 xch)     |
 | **Send 1 CAT**                            | 37,000,000    | 555,000,000 mojo (.000555 xch) \* |
 | **Offer 1 CAT coin for 1 CAT coin + fee** | 135,000,000   | 675,000,000 mojo (.000675 xch)    |
+
+### Exact spend bundle costs
+
+[xch.dev](https://xch.dev) has a tool to [generate the exact cost](https://xch.dev/#/tools) for a spend bundle. Simply paste your spend bundle or Offer file to view its CLVM cost, along with its contents. For example, [this spend bundle](https://xch.dev/#/tools/c52710f8834d0320b3f4b94193fe2b4707e397f31d22e767313d72ea8b9a21b0) will spend 33 coins and will incur a CLVM cost of around 536 million.
+
+In addition, the website also lists the exact cost of spend bundles that have already been added to the blockchain. Simply click on a transaction block height, then click on a spent coin to view its cost.
