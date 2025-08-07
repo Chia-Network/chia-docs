@@ -27,11 +27,11 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Chia Network Inc. FAQ',
-    Svg: require('@site/static/svg/chia-logo.svg').default,
-    dest_url: 'https://www.chia.net/faq/',
+    title: 'Chia Academy',
+    Svg: require('@site/static/svg/academy-logo.svg').default,
+    dest_url: 'https://docs.chia.net/academy-home/',
     description: (
-      <>Frequently asked questions about Chia Network Inc., the company.</>
+      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
     ),
   },
   {
@@ -40,14 +40,6 @@ const FeatureList = [
     dest_url: 'https://discord.gg/chia',
     description: (
       <>Chia Official discord server, join for support and to interact with the community.</>
-    ),
-  },
-  {
-    title: 'Chia Academy',
-    Svg: require('@site/static/svg/academy-logo.svg').default,
-    dest_url: 'https://docs.chia.net/academy-home/',
-    description: (
-      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
     ),
   },
 ];
