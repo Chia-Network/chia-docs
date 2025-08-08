@@ -42,6 +42,14 @@ const FeatureList = [
       <>Chia Official discord server, join for support and to interact with the community.</>
     ),
   },
+  {
+    title: 'Chia X Account',
+    Svg: require('@site/static/svg/x-logo.svg').default,
+    dest_url: 'https://x.com/chia_project',
+    description: (
+      <>Chia Official X account, follow for the latest updates and to interact with the community.</>
+    ),
+  },
 ];
 
 function Feature({ Svg, title, description, dest_url }) {
