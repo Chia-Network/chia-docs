@@ -27,11 +27,11 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Chia Network Inc. FAQ',
-    Svg: require('@site/static/svg/chia-logo.svg').default,
-    dest_url: 'https://www.chia.net/faq/',
+    title: 'Chia Academy',
+    Svg: require('@site/static/svg/academy-logo.svg').default,
+    dest_url: 'https://docs.chia.net/academy-home/',
     description: (
-      <>Frequently asked questions about Chia Network Inc., the company.</>
+      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
     ),
   },
   {
@@ -43,11 +43,11 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Chia Academy',
-    Svg: require('@site/static/svg/academy-logo.svg').default,
-    dest_url: 'https://docs.chia.net/academy-home/',
+    title: 'Chia X Account',
+    Svg: require('@site/static/svg/x-logo.svg').default,
+    dest_url: 'https://x.com/chia_project',
     description: (
-      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
+      <>Chia Official X account, follow for the latest updates and to interact with the community.</>
     ),
   },
 ];
@@ -81,6 +81,7 @@ export default function HomepageFeatures() {
               <Feature key={idx} {...props} />
             ))}
             {/* Below is the mail chimp signup */}
+            {/*
             <div className={clsx('col col--4')}>
               <div id="mc_embed_signup">
                 <form
@@ -174,6 +175,7 @@ export default function HomepageFeatures() {
                 </form>
               </div>
             </div>
+            */}
           </div>
         </div>
       </section>
