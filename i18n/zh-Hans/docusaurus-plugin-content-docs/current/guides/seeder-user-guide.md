@@ -11,9 +11,9 @@ It does so by crawling through the network, periodically revisiting known nodes 
 
 The Chia Seeder runs a mini-DNS server. The Chia Seeder runs a mini-DNS server. Anyone can obtain an entry point into Chia’s decentralized and permissionless network via a simple DNS request for reliable node IPs.
 
-The Chia Seeder has very low memory and CPU requirements. It runs a faux full_node process and does not need its own node.
+The Chia Seeder has low memory and CPU requirements. It runs a faux full_node process and does not need its own node.
 
-Chia’s core developers have already been running an instance of the Chia Seeder for some time. You can view the current status of this instance by running: You can view the current status of this instance by running:
+Chia’s core developers have been running an instance of the Chia Seeder for some time. You can view the current status of this instance by running:
 
 ```bash
 # IPv4
@@ -23,13 +23,15 @@ dig dns-introducer.chia.net
 dig -t AAAA dns-introducer.chia.net
 ```
 
-Chia has now decided to release the Seeder as a tool for anyone to maintain their own list of reliable nodes, which contributes to the further decentralization of Chia’s network by taking this tool off of the core team’s hands.
+Chia Network released the Seeder as a tool for anyone to maintain their own list of reliable nodes, which contributes to the further decentralization of Chia’s network by taking this tool off of the core team’s hands.
 
 Features:
 
 - Implements peer statistics and exponentially moving averages over various time-windows, akin to those maintained by its relative, the bitcoin-seeder: https://github.com/sipa/bitcoin-seeder
 - Runs a mini-DNS server on port 53, along with a full node to crawl the network.
 - Stores peer IPs and peer statistics into a database, so that they are persisted across runs.
+
+@dns_xch from Dexie created an [alternate light implemntation}](https://github.com/dexie-space/chia-seeder-light) in Rust that uses 99% less CPU and 66% less RAM.
 
 ## Expectations for Chia Seeder operators
 
@@ -72,13 +74,13 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-Once you have completed freeing up port 53, you will then need to allow the python executable in your venv to have access to port 53:
+Once you have completed freeing up port 53, you will then need to allow the python executable in your venv to have access to port 53. From an activated venv run `whereis python` and use the result in the command below:
 
 ```bash
-sudo setcap CAP_NET_BIND_SERVICE=+eip $(readlink -f /home/{{ user }}/chia-blockchain/venv/bin/python)
+sudo setcap CAP_NET_BIND_SERVICE=+eip $(readlink -f /home/{{ user }}/chia-blockchain/.venv/bin/python)
 ```
 
-Note that anytime you change the python executable by rerunning `sh install.sh` or when `apt` upgrades python, you will need to re-run this command.
+Note that anytime you change the python executable by rerunning `sh install.sh` or when `apt` upgrades python, you will need to re-run this command. Also, the exact path to python has changed as of version 2.4.3 and that new usual default is what is specified above.
 
 ## Configuration
 

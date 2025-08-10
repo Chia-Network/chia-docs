@@ -63,7 +63,7 @@ The cost for minting and modifying NFTs is significantly higher. The following c
 If the mempool is not full, then a 1-mojo fee will be sufficient for any of these spends to be included in the next transaction block. To view the current status of the mempool, see the [Mempool Cost](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&viewPanel=40) table on our dashboard site. (If the green line representing the current mempool cost is close to the red line representing the maximum cost, then the mempool is full, and the following table should be used.)
 
 | Operation                       | Cost (approx) | Min fee (mojos) | Cost in USD at $30/XCH |
-| :------------------------------ | ------------: | :-------------- | :--------------------- |
+|:------------------------------- | -------------:|:--------------- |:---------------------- |
 | Minting NFT without DID         |    53 million | 265 million     | $0.00795               |
 | Minting NFT with DID            |   123 million | 615 million     | $0.01845               |
 | Adding a URI to NFT without DID |    41 million | 205 million     | $0.00615               |
@@ -150,7 +150,7 @@ To install Chia from source, follow our [installation guide](https://docs.chia.n
 
 ### Switching to testnet
 
-By default, Chia will run on mainnet. By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/reference-client/install-and-setup/testnets).
+By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/reference-client/install-and-setup/testnets).
 
 ## Configuration
 
