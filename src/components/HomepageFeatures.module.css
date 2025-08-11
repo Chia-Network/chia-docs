@@ -18,6 +18,19 @@ html[data-theme='dark'] .featureSvg {
     fill: #E5FE75;
 }
 
+.socialSvg {
+  height: 50px;
+  width: 50px;
+}
+
+.socialSvg {
+    fill: #2C323C;
+}
+
+html[data-theme='dark'] .socialSvg {
+    fill: #FFFFFF;
+}
+
 .button {
   font-size: 14px;
   font-weight: 600;
