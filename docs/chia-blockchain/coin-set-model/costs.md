@@ -150,20 +150,27 @@ Please note that the costs and fees listed are for vanilla versions of these tra
 Transactions with a '\*' are listed with a fee of 3 x the minimum effective fee. This is to ensure the fees are more realistic for how coins are distributed in users wallets but note that vanilla versions of these would be 1/3 that which is listed.
 :::
 
-| Transaction Type                  | clvm Cost     | Minimum Effective Fee             |
-| --------------------------------- | ------------- | --------------------------------- |
-| **Full Block (with 50% cap)**     | 5,500,000,000 | 27,500,000,000 mojo (0.0275 xch)  |
-| **Standard Transaction**          | 6,000,000     | 90,000,000 mojo (0.00009 xch) \*  |
-| **PlotNFT Creation**              | 18,000,000    | 90,000,000 mojo (0.00009 xch)     |
-| **Minting NFT with DID**          | 123,000,000   | 615,000,000 mojo (0.000615 xch)   |
-| **Minting NFT without DID**       | 53,000,000    | 265,000,000 mojo (0.000265 xch)   |
-| **Adding URI to NFT with DID**    | 71,000,000    | 355,000,000 mojo (0.000355 xch)   |
-| **Adding URI to NFT without DID** | 41,000,000    | 205,000,000 mojo (0.000205 xch)   |
-| **Transfer NFT with DID**         | 67,000,000    | 335,000,000 mojo (0.000335 xch)   |
-| **Assign DID to NFT**             | 107,000,000   | 535,000,000 mojo (0.000535 xch)   |
-| **Send Clawback Transaction**     | 10,000,000    | 150,000,000 mojo (0.00015 xch) \* |
-| **Claim Clawback Transaction**    | 1,400,000     | 7,000,000 mojo (.000007 xch)      |
-| **Clawback Clawback Transaction** | 15,600,000    | 75,800,000 mojo (.0000758 xch)    |
-| **Combine 500 Farming Rewards**   | 3,100,000,000 | 15,500,000,000 mojo (.0155 xch)   |
-| **Split 1 Coin into 2**           | 11,000,000    | 55,000,000 mojo (.000055 xch)     |
-| **Cat Transaction**               | 37,000,000    | 555,000,000 mojo (.000555 xch) \* |
+| Transaction Type                          | clvm Cost     | Minimum Effective Fee             |
+| ----------------------------------------- | ------------- | --------------------------------- |
+| **Full Block (with 50% cap)**             | 5,500,000,000 | 27,500,000,000 mojo (0.0275 xch)  |
+| **Standard Transaction**                  | 6,000,000     | 90,000,000 mojo (0.00009 xch) \*  |
+| **PlotNFT Creation**                      | 18,000,000    | 90,000,000 mojo (0.00009 xch)     |
+| **Minting NFT with DID**                  | 123,000,000   | 615,000,000 mojo (0.000615 xch)   |
+| **Minting NFT without DID**               | 53,000,000    | 265,000,000 mojo (0.000265 xch)   |
+| **Adding URI to NFT with DID**            | 71,000,000    | 355,000,000 mojo (0.000355 xch)   |
+| **Adding URI to NFT without DID**         | 41,000,000    | 205,000,000 mojo (0.000205 xch)   |
+| **Transfer NFT with DID**                 | 67,000,000    | 335,000,000 mojo (0.000335 xch)   |
+| **Assign DID to NFT**                     | 107,000,000   | 535,000,000 mojo (0.000535 xch)   |
+| **Send Clawback Transaction**             | 10,000,000    | 150,000,000 mojo (0.00015 xch) \* |
+| **Claim Clawback Transaction**            | 1,400,000     | 7,000,000 mojo (.000007 xch)      |
+| **Clawback Clawback Transaction**         | 15,600,000    | 75,800,000 mojo (.0000758 xch)    |
+| **Combine 500 Farming Rewards**           | 3,100,000,000 | 15,500,000,000 mojo (.0155 xch)   |
+| **Split 1 Coin into 2**                   | 11,000,000    | 55,000,000 mojo (.000055 xch)     |
+| **Send 1 CAT**                            | 37,000,000    | 555,000,000 mojo (.000555 xch) \* |
+| **Offer 1 CAT coin for 1 CAT coin + fee** | 135,000,000   | 675,000,000 mojo (.000675 xch)    |
+
+### Exact spend bundle costs
+
+[xch.dev](https://xch.dev) has a tool to [generate the exact cost](https://xch.dev/#/tools) for a spend bundle. Simply paste your spend bundle or Offer file to view its CLVM cost, along with its contents. For example, [this spend bundle](https://xch.dev/#/tools/c52710f8834d0320b3f4b94193fe2b4707e397f31d22e767313d72ea8b9a21b0) will spend 33 coins and will incur a CLVM cost of around 536 million.
+
+In addition, the website also lists the exact cost of spend bundles that have already been added to the blockchain. Simply click on a transaction block height, then click on a spent coin to view its cost.

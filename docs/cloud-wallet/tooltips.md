@@ -39,3 +39,14 @@ This is the amount of time you must wait before a recovery operation can be comp
 ## Signer App
 
 A smartphone app initially available for iPhones made after 2013. The app stores a spend key in its Secure Enclave. This key cannot be copied or removed from the phone, so the only way to steal it is to gain physical access to the device. For this reason, we strongly recommend that you secure the Signer app using your phone’s biometrics.
+
+## Clawback
+
+You can optionally add a time span to a transaction during which you can claw it back. During this time, the recipient can see the incoming transaction, but cannot access the funds. Clawback is primarily useful to prevent sending funds to the wrong address.
+
+For example, Alice sends 1 XCH to Bob, and she adds a 1-hour clawback.
+
+- For the next hour, Bob can see the incoming XCH in his vault's transaction list, but he cannot access it.
+- Let's say Alice accidentally sent the XCH to the wrong address. During the 1-hour clawback period, she can claw the 1 XCH back to her vault.
+- On the other hand, maybe Bob contacts Alice to let her know that he can see the incoming XCH. In this case, Alice can finalize the transaction before the 1-hour timer has expired.
+- After the 1-hour timer has expired, Alice can no longer claw back the funds. The 1 XCH is now automatically counted with Bob's vault balance.
