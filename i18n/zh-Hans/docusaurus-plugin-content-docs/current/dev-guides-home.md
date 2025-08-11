@@ -6,7 +6,7 @@ slug: /dev-guides-home
 import DevChia from '@site/static/img/home_pages/chia_dev.png';
 import ChialispIntro from '@site/static/img/home_pages/chialisp_intro.png';
 import SmartCoins from '@site/static/img/home_pages/smart_coins.png';
-import Signatures from '@site/static/img/home_pages/signatures.png';
+import SignaturesGuide from '@site/static/img/home_pages/signatures_guide.png';
 import State from '@site/static/img/home_pages/state.png';
 import InnerPuzzles from '@site/static/img/home_pages/inner_puzzles.png';
 import CatsOffersNfts from '@site/static/img/home_pages/cats_offers_nfts.png';
