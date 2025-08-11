@@ -522,3 +522,18 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 @media screen and (max-width: 440px) {
   h1.hero__title { font-size: 2rem; }
 }
+
+/* Image optimization for better performance */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  will-change: transform;
+}
+
+/* Optimize carousel images specifically */
+.card__image img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
