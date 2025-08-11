@@ -6,7 +6,7 @@ slug: /dev-guides-home
 import DevChia from '@site/static/img/home_pages/chia_dev.png';
 import ChialispIntro from '@site/static/img/home_pages/chialisp_intro.png';
 import SmartCoins from '@site/static/img/home_pages/smart_coins.png';
-import Signatures from '@site/static/img/home_pages/signatures.png';
+import SignaturesGuide from '@site/static/img/home_pages/signatures_guide.png';
 import State from '@site/static/img/home_pages/state.png';
 import InnerPuzzles from '@site/static/img/home_pages/inner_puzzles.png';
 import CatsOffersNfts from '@site/static/img/home_pages/cats_offers_nfts.png';
@@ -55,7 +55,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/guides/crash-course/introduction/'>
           <div class="card">
             <div class="card__image">
-              <img src={DevChia} alt='Intro to Developing on Chia' />
+              <img src={DevChia} alt='Intro to Developing on Chia' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -66,7 +66,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/guides/crash-course/intro-to-chialisp/'>
           <div class="card">
             <div class="card__image">
-              <img src={ChialispIntro} alt='Intro to Chialisp' />
+              <img src={ChialispIntro} alt='Intro to Chialisp' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -77,7 +77,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/guides/crash-course/smart-coins/'>
           <div class="card">
             <div class="card__image">
-              <img src={SmartCoins} alt='Intro to Smart Coins' />
+              <img src={SmartCoins} alt='Intro to Smart Coins' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -88,7 +88,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/guides/crash-course/signatures/'>
           <div class="card">
             <div class="card__image">
-              <img src={Signatures} alt='Intro to Signatures' />
+              <img src={SignaturesGuide} alt='Intro to Signatures' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -99,7 +99,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/guides/crash-course/state/'>
           <div class="card">
             <div class="card__image">
-              <img src={State} alt='Intro to State' />
+              <img src={State} alt='Intro to State' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -110,7 +110,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/guides/crash-course/inner-puzzles/'>
           <div class="card">
             <div class="card__image">
-              <img src={InnerPuzzles} alt='Intro to Inner Puzzles' />
+              <img src={InnerPuzzles} alt='Intro to Inner Puzzles' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -121,7 +121,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/crash-course/cats-offers-nfts/'>
           <div class="card">
             <div class="card__image">
-              <img src={CatsOffersNfts} alt='Intro to Cats, Offers, and NFTs' />
+              <img src={CatsOffersNfts} alt='Intro to Cats, Offers, and NFTs' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -132,7 +132,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/chialisp-and-typescript/'>
           <div class="card">
             <div class="card__image">
-              <img src={ChialispTypescript} alt='Chialisp and Typescript' />
+              <img src={ChialispTypescript} alt='Chialisp and Typescript' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
