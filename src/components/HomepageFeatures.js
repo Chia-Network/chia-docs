@@ -8,6 +8,7 @@ const FeatureList = [
     title: 'Chia Docs',
     Svg: require('@site/static/svg/chia-docs-icon.svg').default,
     dest_url: '/chia-blockchain/introduction',
+    svgClass: styles.featureSvg,
     description: (
       <>
         Documentation regarding the Chia blockchain, consensus, and protocols.
@@ -18,6 +19,7 @@ const FeatureList = [
     title: 'Chialisp',
     Svg: require('@site/static/svg/chialisp-icon.svg').default,
     dest_url: 'https://chialisp.com',
+    svgClass: styles.featureSvg,
     description: (
       <>
         Documentation and tutorials for Chialisp, our new Turing complete
@@ -27,37 +29,40 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Chia Network Inc. FAQ',
-    Svg: require('@site/static/svg/chia-logo.svg').default,
-    dest_url: 'https://www.chia.net/faq/',
+    title: 'Chia Academy',
+    Svg: require('@site/static/svg/academy-logo.svg').default,
+    dest_url: 'https://docs.chia.net/academy-home/',
+    svgClass: styles.featureSvg,
     description: (
-      <>Frequently asked questions about Chia Network Inc., the company.</>
+      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
     ),
   },
   {
     title: 'Chia Discord Server',
     Svg: require('@site/static/svg/discord-icon.svg').default,
     dest_url: 'https://discord.gg/chia',
+    svgClass: styles.socialSvg,
     description: (
       <>Chia Official discord server, join for support and to interact with the community.</>
     ),
   },
   {
-    title: 'Chia Academy',
-    Svg: require('@site/static/svg/academy-logo.svg').default,
-    dest_url: 'https://docs.chia.net/academy-home/',
+    title: 'Chia X Account',
+    Svg: require('@site/static/svg/x-logo.svg').default,
+    dest_url: 'https://x.com/chia_project',
+    svgClass: styles.socialSvg,
     description: (
-      <>Learn about the Chia Blockchain, its consensus, primitives, on-chain language, and more!</>
+      <>Chia Official X account, follow for the latest updates and to interact with the community.</>
     ),
   },
 ];
 
-function Feature({ Svg, title, description, dest_url }) {
+function Feature({ Svg, title, description, dest_url, svgClass }) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
         <Link href={dest_url}>
-          <Svg className={styles.featureSvg} alt={title} />
+          <Svg className={svgClass} alt={title} />
         </Link>
       </div>
       <div className="text--center padding-horiz--md feature-item">
@@ -81,6 +86,7 @@ export default function HomepageFeatures() {
               <Feature key={idx} {...props} />
             ))}
             {/* Below is the mail chimp signup */}
+            {/*
             <div className={clsx('col col--4')}>
               <div id="mc_embed_signup">
                 <form
@@ -174,6 +180,7 @@ export default function HomepageFeatures() {
                 </form>
               </div>
             </div>
+            */}
           </div>
         </div>
       </section>
