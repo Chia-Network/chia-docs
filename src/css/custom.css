@@ -450,20 +450,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   color: #2C323C;
 }
 
-/* Warning boxes - Periwinkle Pursuit theme */
+/* Warning boxes - red theme */
 .theme-admonition-warning {
-  background-color: #A8BEF1;
-  border-color: #A8BEF1;
-  color: #2C323C;
-}
-
-[data-theme='dark'] .theme-admonition-warning {
-  border-color: #42506C;
-}
-
-[data-theme='light'] .theme-admonition-warning {
-  background-color: #F0F4FF;
-  border-color: #A8BEF1;
+  background-color: #FF6B6B;
+  border-color: #FF6B6B;
   color: #2C323C;
 }
 
@@ -476,6 +466,15 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 [data-theme='dark'] .theme-admonition-note {
   border-color: #42506C;
+}
+
+[data-theme='dark'] .theme-admonition-note a {
+  color: #42506C !important;
+}
+
+[data-theme='dark'] .theme-admonition-note a:hover {
+  color: #2C323C !important;
+  text-decoration: underline;
 }
 
 [data-theme='light'] .theme-admonition-note {
@@ -495,6 +494,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   border-color: #42506C;
 }
 
+[data-theme='dark'] .theme-admonition-tip a {
+  color: #42506C !important;
+}
+
+[data-theme='dark'] .theme-admonition-tip a:hover {
+  color: #2C323C !important;
+  text-decoration: underline;
+}
+
+[data-theme="dark"] .theme-admonition-tip svg {
+  fill: #2C323C;
+}
+
 [data-theme='light'] .theme-admonition-tip {
   background-color: #FDFFEB;
   border-color: #E5FE75;
@@ -510,6 +522,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 [data-theme='dark'] .theme-admonition-caution {
   border-color: #42506C;
+}
+
+[data-theme='dark'] .theme-admonition-caution a {
+  color: #42506C !important;
+}
+
+[data-theme='dark'] .theme-admonition-caution a:hover {
+  color: #2C323C !important;
+  text-decoration: underline;
+}
+
+[data-theme="dark"] .theme-admonition-caution svg {
+  fill: #2C323C;
 }
 
 [data-theme='light'] .theme-admonition-caution {
