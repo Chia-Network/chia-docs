@@ -452,18 +452,8 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* Warning boxes - Periwinkle Pursuit theme */
 .theme-admonition-warning {
-  background-color: #A8BEF1;
-  border-color: #A8BEF1;
-  color: #2C323C;
-}
-
-[data-theme='dark'] .theme-admonition-warning {
-  border-color: #42506C;
-}
-
-[data-theme='light'] .theme-admonition-warning {
-  background-color: #F0F4FF;
-  border-color: #A8BEF1;
+  background-color: #FF6B6B;
+  border-color: #FF6B6B;
   color: #2C323C;
 }
 
