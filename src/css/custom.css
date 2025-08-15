@@ -478,6 +478,15 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   border-color: #42506C;
 }
 
+[data-theme='dark'] .theme-admonition-note a {
+  color: #42506C !important;
+}
+
+[data-theme='dark'] .theme-admonition-note a:hover {
+  color: #2C323C !important;
+  text-decoration: underline;
+}
+
 [data-theme='light'] .theme-admonition-note {
   background-color: #F0F4FF;
   border-color: #A8BEF1;
@@ -495,6 +504,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   border-color: #42506C;
 }
 
+[data-theme='dark'] .theme-admonition-tip a {
+  color: #42506C !important;
+}
+
+[data-theme='dark'] .theme-admonition-tip a:hover {
+  color: #2C323C !important;
+  text-decoration: underline;
+}
+
+[data-theme="dark"] .theme-admonition-tip svg {
+  fill: #2C323C;
+}
+
 [data-theme='light'] .theme-admonition-tip {
   background-color: #FDFFEB;
   border-color: #E5FE75;
@@ -510,6 +532,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 [data-theme='dark'] .theme-admonition-caution {
   border-color: #42506C;
+}
+
+[data-theme='dark'] .theme-admonition-caution a {
+  color: #42506C !important;
+}
+
+[data-theme='dark'] .theme-admonition-caution a:hover {
+  color: #2C323C !important;
+  text-decoration: underline;
+}
+
+[data-theme="dark"] .theme-admonition-caution svg {
+  fill: #2C323C;
 }
 
 [data-theme='light'] .theme-admonition-caution {
