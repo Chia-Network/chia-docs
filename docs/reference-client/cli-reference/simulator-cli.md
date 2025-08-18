@@ -68,7 +68,7 @@ Can't find private CA, creating a new one in /home/user/.chia/simulator/main to 
 SSL file permissions are correct
 Setting the xch destination for the farmer reward (1/8 plus fees, solo and pooling) to txch1y8efcgt9fthxzghw0xcdvru6rnvfpp4ywg0pruuztse0zweh98ws0z7j0q
 Setting the xch destination address for pool reward (7/8 for solo only) to txch1y8efcgt9fthxzghw0xcdvru6rnvfpp4ywg0pruuztse0zweh98ws0z7j0q
-To change the XCH destination addresses, edit the `xch_target_address` entries in /home/user/.chia/simulator/main/config/config.yaml.
+To change the XCH destination addresses, edit the `xch_target_address` entries in /home/user/.chia/simulator/main/config/config.yaml. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 To see your keys, run 'chia keys show --show-mnemonic-seed'
 Please Wait, Generating plots...

@@ -34,6 +34,8 @@ Configuration steps:
 - Remember the fingerprint for the next step
 - Find the "First wallet address": `chia keys show` and copy it
 - Open `~/.chia/mainnet/config/config.yaml`
+
+For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 - Edit: `xch_target_address: XXX` replace it with the newly generated "First wallet address".
   - There should be two occurrence of `xch_target_address`. One under the `farmer` section and the other one under the `pool` section.
 - Save the file and close it.

@@ -17,7 +17,7 @@ The following instructions are for a Linux-based farmer (daemon host) and Window
 
 ### Expose the daemon to the network
 
-In `config.yaml`, change `self_hostname` from `localhost` to `0.0.0.0`. This binds the daemon to all IPv4 addresses on the local machine.
+In `config.yaml`, change `self_hostname` from `localhost` to `0.0.0.0`. This binds the daemon to all IPv4 addresses on the local machine. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 Next, open the port that the daemon is listening on (55400 by default). The UI assumes that the daemon is already running and it will _not_ attempt to start a remote daemon. Using [ufw](https://help.ubuntu.com/community/UFW) and restricting traffic to just the UI's host:
 

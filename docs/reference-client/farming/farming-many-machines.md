@@ -83,6 +83,8 @@ For step 4, you are using a copy of your `/ca` directory from your main machine 
 
 ```bash
 ~/.chia/mainnet/config/config.yaml
+
+For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 ```
 
 Search for the remote **`harvester`**'s farmer_peer section (NOT `full_node`). Enter the local IP address of your main machine (typically `192.168.xxx.yyy`) as the `host` value.

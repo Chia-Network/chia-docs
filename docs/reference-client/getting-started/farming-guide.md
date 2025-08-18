@@ -222,7 +222,7 @@ This screen shows your node's syncing status. In order to farm Chia, your node n
 
 By default, the database will be stored in `~/.chia/mainnet/db`. If you don't want to store it there (for example, if your computer lacks sufficient free space), you will need to change your configuration:
 
-- Edit `~/.chia/mainnet/config/config.yaml` -- this is this primary configuration file for all Chia settings.
+- Edit `~/.chia/mainnet/config/config.yaml` -- this is the primary configuration file for all Chia settings. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 - Search for `database_path` in the `full_node:` section.
   - The default value is `db/blockchain_v2_CHALLENGE.sqlite`.
   - Change the path to the location of your database. For example, to store the database on an external SSD, you might change this to `/media/externalSSD/db/blockchain_v2_CHALLENGE.sqlite`. You do not need to change the name of the .sqlite file.

@@ -100,7 +100,7 @@ For the mainnet installation, we will stick with the default ports and CHIA_ROOT
 :::note
 
 (Optional) Install `yq` to make editing the yaml files easier [https://github.com/mikefarah/yq#install](https://github.com/mikefarah/yq#install).  
-Alternatively, you can manually edit the ports in `config.yaml`.
+Alternatively, you can manually edit the ports in `config.yaml`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 :::
 

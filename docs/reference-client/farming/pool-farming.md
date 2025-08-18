@@ -189,7 +189,7 @@ the GUI before a pool switching operation has finalized. Please click "change po
 The block reward is divided into two components, the pool portion (7/8 of the total reward) and the farmer portion (1/8).
 
 - The pool portion gets paid out to the pool, which will pay you according to their payout schedule. This is configurable in the Pool tab of the GUI: Click the three dots on the upper-right corner of your plot NFT and click "Edit Payout Instructions." This is also configurable in `config.yaml` in the pool_list section under payout_instructions.
-- The farmer portion will go to your farmer target address. This is configurable in the Farm tab of the GUI, or in `config.yaml` under farmer.xch_target_address.
+- The farmer portion will go to your farmer target address. This is configurable in the Farm tab of the GUI, or in `config.yaml` under farmer.xch_target_address. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 ### Self Pooling
 

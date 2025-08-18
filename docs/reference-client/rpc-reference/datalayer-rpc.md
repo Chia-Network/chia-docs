@@ -32,7 +32,7 @@ This page includes a comprehensive list of Chia's DataLayer RPC API.
 
 We also have documented the [DataLayer CLI](/reference-client/cli-reference/datalayer-cli) commands for interacting with the DataLayer.
 
-By default, the DataLayer RPC API is exposed on port 8562. This is configured in `~/.chia/mainnet/config/config.yaml` under `data_layer:rpc_port`. This port must not be exposed publicly for security concerns.
+By default, the DataLayer RPC API is exposed on port 8562. This is configured in `~/.chia/mainnet/config/config.yaml` under `data_layer:rpc_port`. This port must not be exposed publicly for security concerns. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:
 

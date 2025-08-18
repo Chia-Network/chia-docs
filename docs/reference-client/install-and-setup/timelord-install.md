@@ -171,6 +171,8 @@ Once you build the Timelord with `sh install-timelord.sh` in the virtual environ
 - In the `full_node:` section and set `send_uncompact_interval:` to something greater than 0. We recommend `300` seconds there so that your Bluebox has some time to prove through a lot of the un-compacted Proofs of Time before the node drops more into its lap.
 
 # Additional config.yaml change ONLY for running a bluebox timelord on a separate machine from full node
+
+For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 - In the config.yaml of your bluebox timelord, go to the 'timelord:' section under 'full_node_peers' and, modify the 'host' value from 'localhost' to the local IP of your full node (i.e. 192.168.1.3)
 
 ## Start the daemon, timelord-launcher, timelord, and node for a Bluebox timelord + full node running on the same device

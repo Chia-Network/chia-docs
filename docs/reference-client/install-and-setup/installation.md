@@ -839,7 +839,7 @@ All data used by the Chia blockchain is stored at the location set with the `CHI
 
 The blockchain database is stored under the `db` subdirectory. It is possible to copy the database file to use as a backup or put on another machine. To resync the full node from the start, delete the database file and restart the node.
 
-The config file under the `config` subdirectory. Its name is `config.yaml`, and it can be used to find the root cause of problems.
+The config file under the `config` subdirectory. Its name is `config.yaml`, and it can be used to find the root cause of problems. For comprehensive configuration options and examples, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 It is possible to configure the `CHIA_ROOT` environment variable to another location. A common use for this would be to switch it to `~/.chia/testnet` to have a separate config for the testnet.
 

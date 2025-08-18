@@ -23,7 +23,7 @@ By default, the Chia `debug.log` grows to what is set in `config.yaml` (log_maxb
 
 ## Log Detail Level:
 
-Chia is shipped with the `debug.log` set to record messages at the `ERROR` and `WARN` levels. Many of the messages needed to fully monitor a node are only visible at the `INFO` level. Changes to the logging level can be done in the `config.yaml` file located in the `/.chia/mainnet/config` folder.
+Chia is shipped with the `debug.log` set to record messages at the `ERROR` and `WARN` levels. Many of the messages needed to fully monitor a node are only visible at the `INFO` level. Changes to the logging level can be done in the `config.yaml` file located in the `/.chia/mainnet/config` folder. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 | Log Level | Messages Logged          |
 | --------- | ------------------------ |

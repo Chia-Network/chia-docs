@@ -140,12 +140,7 @@ Starting in Chia 2.5.5, a new, more efficient block creation algorithm is availa
 
 **Configurable Timeout**: Block creation now supports a configurable timeout setting via `full_node:block_creation_timeout`, allowing node operators to fine-tune the process based on their network conditions and requirements.
 
-**Example Configuration**:
-```yaml
-full_node:
-  block_creation: 1  # Enable new algorithm
-  block_creation_timeout: 30  # 30 second timeout
-```
+**For detailed configuration options and examples, see the [Configuration Guide](/reference-client/install-and-setup/configuration).**
 
 
 

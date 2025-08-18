@@ -51,7 +51,7 @@ If a node does not receive any message from a peer for a certain period of time,
 
 ## Introducer
 
-Please refer to the [chia seeder documentation](https://docs.chia.net/guides/seeder-user-guide/) for more information on setting up you own chia seeder / introducer and how to have it included in the default chia config.yaml.
+Please refer to the [chia seeder documentation](https://docs.chia.net/guides/seeder-user-guide/) for more information on setting up you own chia seeder / introducer and how to have it included in the default chia config.yaml. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 When a new node joins the network, it randomly connects to existing nodes on the network.
 

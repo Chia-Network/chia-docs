@@ -199,6 +199,7 @@ module.exports = {
           label: 'Install and Setup',
           items: [
             'reference-client/install-and-setup/installation',
+            'reference-client/install-and-setup/configuration',
             'reference-client/install-and-setup/testnets',
             'reference-client/install-and-setup/timelord-install',
             'reference-client/install-and-setup/key-management',

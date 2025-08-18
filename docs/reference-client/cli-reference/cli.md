@@ -72,7 +72,7 @@ If so, `init` migrates these old files to the new version:
 - config (including old SSL files)
 - db
 - wallet
-- Using config.yaml, updates wallet keys and ensures coinbase rewards go to the right wallet puzzlehash.
+- Using config.yaml, updates wallet keys and ensures coinbase rewards go to the right wallet puzzlehash. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 If no old version exists, `init`:
 

@@ -428,7 +428,7 @@ Options:
 
 Request Parameters: None
 
-Note that the auto claim settings are configurable in `~/.chia/mainnet/config/config.yaml` in the `auto_claim:` section.
+Note that the auto claim settings are configurable in `~/.chia/mainnet/config/config.yaml` in the `auto_claim:` section. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 <details>
 <summary>Example</summary>

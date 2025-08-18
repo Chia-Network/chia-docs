@@ -80,7 +80,7 @@ Options:
 
 By default, it you have more than 200 unspent coins worth less than one million mojos in your wallet, the dust filter will be activated.
 Any coins that have been filtered will not be listed.
-You can disable the dust filter by editing `~/.chia/mainnet/config/config.yaml` and changing the value of `xch_spam_amount` to `0`.
+You can disable the dust filter by editing `~/.chia/mainnet/config/config.yaml` and changing the value of `xch_spam_amount` to `0`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 [More info on the dust filter](/chia-blockchain/resources/faq#what-is-the-dust-filter).
 
 :::

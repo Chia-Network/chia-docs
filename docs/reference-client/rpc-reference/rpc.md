@@ -25,7 +25,7 @@ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 
 The Chia node and services come with a JSON RPC API server that allows you to access information and control the services.
 These are accessible via HTTP, WebSockets, or via client SDKs.
-The ports can be configured in `~/.chia/mainnet/config/config.yaml`.
+The ports can be configured in `~/.chia/mainnet/config/config.yaml`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 The RPC ports should not be exposed to the internet.
 TLS certificates are used to secure the communication.
 

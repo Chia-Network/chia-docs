@@ -7,7 +7,7 @@ slug: /reference-client/troubleshooting/farming-faq
 
 When you are first operating Chia and wondering if the software is working, here are some tips to keep you sane.
 
-First off, you'll want to have your configuration set up to do additional logging. The configurations can be found in `config.yaml`. This file is located in `chia/mainnet/config.yaml`.
+First off, you'll want to have your configuration set up to do additional logging. The configurations can be found in `config.yaml`. This file is located in `chia/mainnet/config.yaml`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/your username)/.chia/mainnet/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
 

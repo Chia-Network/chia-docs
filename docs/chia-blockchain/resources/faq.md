@@ -302,7 +302,7 @@ Yes.
 
 ### How do I know if my plots are OK?
 
-Run `chia plots check -n 30` to try 30 sample challenges for each plot. Each of your plots should return a number around 30, which means it found around 100% of the attempted proofs of space. If you're still worried try `-n 100` as more random attempts will give you a more valid assessment that the plots is fine. It really is ok if your plot is within 80%-120%. If some of your plots are missing for some reason you may need to add the directory they are in to your config.yaml file. That can be done in the GUI with the MANAGE PLOT DIRECTORIES button or on the command line with `chia plots add -d [directory]`.
+Run `chia plots check -n 30` to try 30 sample challenges for each plot. Each of your plots should return a number around 30, which means it found around 100% of the attempted proofs of space. If you're still worried try `-n 100` as more random attempts will give you a more valid assessment that the plots is fine. It really is ok if your plot is within 80%-120%. If some of your plots are missing for some reason you may need to add the directory they are in to your config.yaml file. That can be done in the GUI with the MANAGE PLOT DIRECTORIES button or on the command line with `chia plots add -d [directory]`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 ### Can I use USB 3.0 cable connected to SSD/NVME running the Temp files?
 
@@ -334,11 +334,11 @@ The network is undergoing rapid growth and expansion. Many of the newly arrived 
 
 Use this link to check if your router's port 8444 is closed: [https://portchecker.co/](https://portchecker.co/)
 
-Step 3: You might need to disable UPnP in the config file (~/.chia/mainnet/config/config.yaml) or by using the cli command `chia configure -upnp false`. You might have multiple nodes running on the same machine, or in the same wifi network. Make sure to close all Chia applications on your computer. Also check your firewall or antivirus software, which might be blocking connections.
+Step 3: You might need to disable UPnP in the config file (~/.chia/mainnet/config/config.yaml) or by using the cli command `chia configure -upnp false`. You might have multiple nodes running on the same machine, or in the same wifi network. Make sure to close all Chia applications. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration). on your computer. Also check your firewall or antivirus software, which might be blocking connections.
 
 Step 4: Try deleting your peer DB which is located at `~/.chia/mainnet/db/peer_table_node.sqlite`. Close then restart Chia.
 
-Step 5: Edit `~/.chia/mainnet/config/config.yaml`, search for `weight_proof_timeout` and increase it from 180 to 400. If that value is not there, you can add it under the `full_node` section.
+Step 5: Edit `~/.chia/mainnet/config/config.yaml`, search for `weight_proof_timeout` and increase it from 180 to 400. If that value is not there, you can add it under the `full_node` section. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 It can take a few minutes to start receiving peers and several hours to completely sync.
 
@@ -366,7 +366,7 @@ The upgrade could take several hours. After it has completed, run `chia start fa
 
 Note that the new database will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
 
-Because the upgrade from version 1 to 2 of the database is time-consuming, most users will likely only perform it on one of their systems and copy the new database file to their other systems afterward. If you choose this option, be sure to either copy the file _before_ running `chia start farmer -r`, or stop Chia altogether if it is already using the new database. Once the database is swapped from v1 to v2, you also need to update your `config.yaml` to reflect the new v2 database change. Under the `full_node:` section set `database_path: db/blockchain_v1_CHALLENGE.sqlite` to `database_path: db/blockchain_v2_CHALLENGE.sqlite`
+Because the upgrade from version 1 to 2 of the database is time-consuming, most users will likely only perform it on one of their systems and copy the new database file to their other systems afterward. If you choose this option, be sure to either copy the file _before_ running `chia start farmer -r`, or stop Chia altogether if it is already using the new database. Once the database is swapped from v1 to v2, you also need to update your `config.yaml` to reflect the new v2 database change. Under the `full_node:` section set `database_path: db/blockchain_v1_CHALLENGE.sqlite` to `database_path: db/blockchain_v2_CHALLENGE.sqlite`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 :::warning
 If you copy your database file to another computer while Chia is currently using it, you'll risk corrupting it, which will necessitate a full sync from genesis.
@@ -410,7 +410,7 @@ Note that in both modes, the light wallet protocol is always used. This protocol
 
 The following are situations when your wallet will NOT connect to external peers:
 
-- `connect_to_unknown_peers = false` is set in config.yaml, under `wallet:`.
+- `connect_to_unknown_peers = false` is set in config.yaml, under `wallet:`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 - Your wallet is connected to a trusted node (typically this is your local host) AND that node is fully synced.
 
 For example, let's say you're running Chia for the first time and you have not modified `connect_to_unknown_peers`. Here is one potential workflow:
@@ -460,7 +460,7 @@ Network: mainnet    Port: 8444   Rpc Port: 8555
 Node ID: 0ThisisanexampleNodeID7ff9d60f1c3fa270c213c0ad0cb89c01274634a7c3cb9
 ```
 
-2. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows.
+2. Edit config.yaml. This file is located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 Search for the `wallet:` section. It should be near the end of the file. Edit the following values from within this section:
 
@@ -491,7 +491,7 @@ First, a bit about addresses in Chia. A single Chia wallet can use up to four bi
 
 One important thing to remember is that your wallet addresses will always be generated _in the same order_. When you generate a "new" address, you're actually calculating the _next_ address in the sequence. Your wallet doesn't know what the next address will be until it's generated, but the sequence will always be the same. For example, if you generate 50 new addresses (and write them down), and then install Chia on a new computer and import the same wallet, the first 50 addresses you generate will _exactly_ match those from your original computer.
 
-Next, we'll introduce a setting called `initial_num_public_keys`. This setting is part of `config.yaml`, located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows. The default value of this setting is 100. The majority of users should _not_ change it.
+Next, we'll introduce a setting called `initial_num_public_keys`. This setting is part of `config.yaml`, located in `~/.chia/mainnet/config` on Linux and MacOS, and `C:\Users\<username>\.chia\mainnet\config` on Windows. The default value of this setting is 100. The majority of users should _not_ change it. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 You can think of `initial_num_public_keys` as the number of future addresses to examine. It's a window that expands with time (and never contracts). Here's how it works:
 
@@ -550,7 +550,7 @@ To show hidden files on Mac finder click "COMMAND"+"SHIFT"+"." (period), on linu
 2. Use a torrent client to download the full db (I have used bittorrent and qbittorrent)
 3. Unpack/reassemble the torrent file that was downloaded (on windows I used 7zip, Mac and linux have built in tools that work for this)
 4. Move the db to the correct folder (~\.chia\mainnet\db\) and update the name to "blockchain_v2_mainnet.sqlite" (removing the date information in the name)
-5. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2)
+5. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2). For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 6. Launch chia and wait for a bit (the height to hash and peers files need to be built so this can take upwards of 30 minutes)
 
 ### How do I move the Chia blockchain database to another drive?
@@ -599,7 +599,7 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 2. Run the command `chia db upgrade` (you do not need the input or output paths if these are still default). [Upgrade command context](https://docs.chia.net/cli#upgrade).
    - This process will take some time and requires additional space as the v1 db is compacted into the v2 db which leaves the v1 db intact.
    - Remove any `-wal` or `-shm` files that are present in the directory (these are temporary files that should only be removed when all chia processes are stopped).
-3. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2)
+3. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2). For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 4. After the above completes start the chia client.
 5. If all loads up properly (might take ~5-10 minutes to load) then you can safely delete the v1 db found here `~\.chia\mainnet\db\blockchain_v1_mainnet.sqlite`.
 
@@ -611,7 +611,7 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 4. Stop all chia processes if you have not already.
 5. Move the db to the correct folder `~\.chia\mainnet\db\` and update the name to `blockchain_v2_mainnet.sqlite` (removing the date information in the name).
    - Remove any `-wal` or `-shm` files that are present in the directory (these are temporary files that should only be removed when all chia processes are stopped).
-6. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2).
+6. Verify the config file (~\.chia\mainnet\config\config.yaml) has the correct value under the full_node section for `database_path: db/blockchain_v2_CHALLENGE.sqlite` (should only need to change the v1 to v2). For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 7. Launch chia and wait for a bit (the height to hash, sub-epoch, and peers files need to be built so this can take 5-10 minutes).
 
 ### How can I connect to the same full node peers whenever I start Chia?
@@ -630,7 +630,7 @@ By default, when you start a Chia full node, it will attempt to connect to a ran
 
 Steps to connect to the same full node peers:
 
-1. Edit your config file; the default location is `~/.chia/mainnet/config/config.yaml`
+1. Edit your config file; the default location is `~/.chia/mainnet/config/config.yaml`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 2. In the `full_node:` section, you should see the following line: `full_node_peers: []`
    - If you do not see this line, you can either add it manually, or rename your config file and run `chia init` to create a new copy, which will contain this line.
 3. Remove the square brackets (`[]`) and add add new lines with `- host` and `port`. Be sure to indent `port`, even though it does not have a hyphen. For example, to add two mainnet peers, use the following syntax:
@@ -880,7 +880,7 @@ However, sync times for dusted wallets were still measured in days, which was un
 
 The dust filter is a new feature, added in version 1.6.0. It is activated whenever there are at least a certain number of unspent dust coins in the wallet. While activated, the filter ignores any coins considered "dust".
 
-Two new settings have been added to `~/.chia/mainnet/config/config.yaml` in the `wallet` section:
+Two new settings have been added to `~/.chia/mainnet/config/config.yaml` in the `wallet` section. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration):
 
 - `spam_filter_after_n_txs: 200`
 - `xch_spam_amount: 1000000`
@@ -963,7 +963,7 @@ If you want the private keys included, pass `"include_secrets":true` in the data
 
 ### How do I disable the dust filter?
 
-1. Edit `~/.chia/mainnet/config/config.yaml`
+1. Edit `~/.chia/mainnet/config/config.yaml`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 2. If `xch_spam_amount` doesn't exist, add it
 3. Set the value for `xch_spam_amount` to `0` (nothing is dust)
 4. Restart Chia
@@ -989,7 +989,7 @@ Starting in version 1.7.1, Chia's reference wallet will allow you to keep the sa
 
 To set up your wallet to reuse the same receive address:
 
-1. Edit `~/.chia/mainnet/config/config.yaml`
+1. Edit `~/.chia/mainnet/config/config.yaml`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 2. Search for `reuse_public_key_for_change:`
 
 If this parameter doesn't exist, you can add it manually. Under `wallet:` add the following two lines:
@@ -1407,12 +1407,12 @@ Chia Network Inc has no ability to censor content on the Chia blockchain. Howeve
 
 Starting in version 1.6.1, you can send and receive notifications to a specified puzzle hash. This will eventually enable us to support sending an offer to an NFT's owner without having to go through an exchange.
 
-This functionality is disabled by default. It includes two settings in the `wallet:` section of `~/.chia/mainnet/config/config.yaml`:
+This functionality is disabled by default. It includes two settings in the `wallet:` section of `~/.chia/mainnet/config/config.yaml`. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration):
 
 - `accept_notifications` - a boolean to specify whether you want to allow notifications to be received. If this setting is missing, it will automatically be set to `false`. Set to `true` to receive notifications
 - `required_notification_amount` - the amount (in mojos) you require to be sent with a notification in order to receive it. If this setting is not specified, the default of `10000000` (10 million) will be used
 
-In order to enable notifications, you can either add these settings manually, or rename `config.yaml` and run `chia init`. A new copy of `config.yaml` will be created which contains the new settings.
+In order to enable notifications, you can either add these settings manually, or rename `config.yaml` and run `chia init`. A new copy of `config.yaml` will be created which contains the new settings. For comprehensive configuration options, see the [Configuration Guide](/reference-client/install-and-setup/configuration).
 
 Finally, you need to restart Chia for these settings to be picked up.
 
