@@ -21,6 +21,15 @@ Only valid transactions are allowed to enter the mempool. The process of validat
 
 The transaction is also checked against other transactions in the mempool, to ensure there are no conflicts.
 
+### Transaction Deduplication
+
+Starting in Chia 2.5.5, the mempool automatically detects and deduplicates identical spend transactions. When multiple transactions attempt to spend the same coin with identical parameters, only one will be kept in the mempool, reducing memory usage and improving overall performance.
+
+**Behavior**: 
+- Identical spend transactions are automatically deduplicated
+- The transaction with the highest fee is prioritized
+- Duplicate transactions are rejected with appropriate error messages
+
 ## Fee Required for Inclusion
 
 When you submit a transaction, one of several possible scenarios will play out, depending on how full the mempool is, how large of a fee was included, the CLVM cost of the transaction, and other factors. Keep in mind that each farmer has its own copy of the mempool, with its own set of rules. The default mempool behavior discussed in this section will apply to most, but not all, nodes. It is up to each individual farmer to decide which transactions to include upon creating a block.
@@ -84,6 +93,14 @@ This is the final scenario, where every transaction in the mempool has a fee of 
 
 If the mempool from Chia's mainnet reaches this state, the competition for block space will be strong. In order for your transaction to be included, the minimum fee might be significantly higher than it would be in the other scenarios.
 
+### Fast Forward Processing
+
+Starting in Chia 2.5.5, certain transaction types support fast-forward processing, allowing them to be included in blocks more efficiently when specific conditions are met.
+
+**Singleton Fast Forward**: Singleton transactions now support optimized processing, improving block inclusion rates and handling of high-frequency operations.
+
+**Vault Fast Forward**: Vault transactions support enhanced processing with optimized validation and faster state transitions, improving overall mempool throughput for vault operations.
+
 ## Replace by Fee
 
 A transaction can replace another transaction in the mempool if it spends at least the same coins as the original one.
@@ -109,6 +126,31 @@ spend bundle also has one aggregate signature, which is a combination of every s
 
 For performance reasons, the chia-blockchain codebase currently creates only smaller blocks (less than 50% of the maximum size) in order to keep the blockchain smaller and easier to run. This "throttle" is likely to be removed in future versions, after additional optimizations have been performed.
 
+### Enhanced Block Creation (Chia 2.5.5+)
+
+Starting in Chia 2.5.5, a new, more efficient block creation algorithm is available that can be enabled via configuration. This algorithm provides improved performance and better resource utilization during block creation.
+
+**Configuration**: Set `full_node:block_creation` to `1` in your config file to enable the new algorithm.
+
+**Benefits**:
+- Improved block creation performance
+- Better memory management during block creation
+- Enhanced handling of high-transaction-volume scenarios
+- More efficient resource utilization
+
+**Configurable Timeout**: Block creation now supports a configurable timeout setting via `full_node:block_creation_timeout`, allowing node operators to fine-tune the process based on their network conditions and requirements.
+
+**Example Configuration**:
+```yaml
+full_node:
+  block_creation: 1  # Enable new algorithm
+  block_creation_timeout: 30  # 30 second timeout
+```
+
+
+
 ## Updating the Mempool
 
 After a new block is added to the blockchain, all full nodes must look at the coins that were spent in that new block, and remove them from the mempool. The full node does not need to reapply every transaction again, since Chia coin spends are deterministic and sandboxed (see the [Coin Set Intro page](/chia-blockchain/coin-set-model/intro) for more information). The full node only needs to look at the spent coins in the new block, and if there are any transactions that spend one of those coins, they are removed from the mempool. This means the mempool can be very large, the codebase can be simple, and high performance can be achieved.
+
+
