@@ -346,6 +346,64 @@ See our [official NFT reference](/reference-client/cli-reference/nft-cli).
 
 ---
 
+# dev
+
+## mempool
+
+The `chia dev mempool` commands provide developer tools for managing and analyzing the mempool. These commands are available in Chia 2.5.5 and later versions.
+
+### import
+
+Command: `chia dev mempool import [OPTIONS]`
+
+Imports mempool data from a file. This is useful for testing and development purposes.
+
+**Flags**
+
+`-f, --file PATH`: Path to the mempool data file to import.
+
+**Example**
+
+```bash
+chia dev mempool import -f mempool_data.json
+```
+
+### export
+
+Command: `chia dev mempool export [OPTIONS]`
+
+Exports current mempool data to a file. This can be used for analysis or to share mempool state.
+
+**Flags**
+
+`-f, --file PATH`: Path where the exported mempool data will be saved.
+
+**Example**
+
+```bash
+chia dev mempool export -f mempool_export.json
+```
+
+### benchmark
+
+Command: `chia dev mempool benchmark [OPTIONS]`
+
+Benchmarks mempool performance and provides metrics for optimization analysis.
+
+**Flags**
+
+`-n, --num-iterations INTEGER`: Number of benchmark iterations to run. [default: 100]
+
+**Example**
+
+```bash
+chia dev mempool benchmark -n 1000
+```
+
+**Note**: These commands are primarily intended for developers and advanced users. Use with caution in production environments.
+
+---
+
 # Other commands (not all are fully documented)
 
 ```sh
