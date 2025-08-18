@@ -153,4 +153,34 @@ full_node:
 
 After a new block is added to the blockchain, all full nodes must look at the coins that were spent in that new block, and remove them from the mempool. The full node does not need to reapply every transaction again, since Chia coin spends are deterministic and sandboxed (see the [Coin Set Intro page](/chia-blockchain/coin-set-model/intro) for more information). The full node only needs to look at the spent coins in the new block, and if there are any transactions that spend one of those coins, they are removed from the mempool. This means the mempool can be very large, the codebase can be simple, and high performance can be achieved.
 
+## Schema Changes and Migration (Chia 2.5.5+)
+
+Starting in Chia 2.5.5, the mempool has undergone backwards incompatible schema changes to support the new fast-forward functionality and optimizations.
+
+### Backwards Incompatible Changes
+
+**Available in**: Chia 2.5.5 and later versions
+
+The mempool schema has been updated to support:
+- **Fast-forward processing** for singleton and vault transactions
+- **Enhanced transaction deduplication** mechanisms
+- **Improved memory management** and performance optimizations
+
+### Migration Notes
+
+**Important**: These changes are backwards incompatible. Nodes running versions prior to 2.5.5 may experience issues when connecting to nodes running 2.5.5+.
+
+**Required Actions**:
+- **Upgrade all nodes** to Chia 2.5.5+ simultaneously
+- **Clear mempool data** if upgrading from versions prior to 2.5.5
+- **Restart services** after upgrade to ensure new schema is applied
+
+**Downgrade Instructions**:
+If you need to downgrade from Chia 2.5.5+ back to an earlier version, you must first fix the database schema incompatibility. See the [Troubleshooting section](#troubleshooting) for the required database fix command and detailed instructions.
+
+**Impact**:
+- Existing mempool data may not be compatible with new schema
+- Transaction processing behavior has changed (see optimizations above)
+- Performance improvements require full network adoption
+
 

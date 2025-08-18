@@ -131,4 +131,27 @@ class Plot(Streamable):
     plot_public_key: G1Element
     file_size: uint64
     time_modified: uint64
+
+## Plot Filter Computation (Chia 2.5.5+)
+
+Starting in Chia 2.5.5, the harvester protocol has been optimized to ensure that plot filter computation is performed directly on the harvester for improved efficiency and reduced network overhead.
+
+### Enhanced Plot Filter Processing
+
+**Available in**: Chia 2.5.5 and later versions
+
+The harvester now performs optimized plot filter computation using the formula:
+
+`plot filter bits = sha256(plot_id + challenge_hash + sp_hash)`
+
+**Benefits of Harvester-Side Computation**:
+- **Reduced Network Traffic**: Plot filter computation happens locally on the harvester
+- **Improved Performance**: Faster response times for plot filtering decisions
+- **Better Scalability**: Reduced load on the farmer service
+- **Chip 48 Preparation**: This optimization prepares the network for future Chip 48 enhancements
+
+**Implementation Details**:
+- Plot filter computation is performed entirely on the harvester
+- Only plots that pass the filter (starting with 9 zeroes) proceed to quality lookups
+- This optimization maintains the same cryptographic security while improving performance
 ```
