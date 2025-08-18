@@ -129,7 +129,7 @@ Starting in Chia 2.5.5, the mempool has undergone backwards incompatible schema 
 #### Symptoms
 
 - **`Database schema version mismatch`** errors
-- **`Invalid spent_index value`** errors  
+- **`Invalid spent_index value`** errors
 - **Connection refused** when trying to connect to nodes running different versions
 - **Node fails to start** after upgrading from earlier versions
 

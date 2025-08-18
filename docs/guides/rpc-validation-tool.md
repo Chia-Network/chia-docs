@@ -8,21 +8,23 @@ title: RPC Validation Tool
 The RPC Validation Tool is a new utility introduced in Chia Blockchain version 2.5.5 that allows developers and node operators to independently validate the functionality of full node RPC endpoints.
 
 :::info Related Documentation
+
 - **[Full Node RPC Reference](/reference-client/rpc-reference/full-node-rpc)** - Complete documentation of all available RPC endpoints
 - **[RPC Overview](/reference-client/rpc-reference/rpc)** - General information about Chia's RPC system
 - **[Node Troubleshooting](/reference-client/troubleshooting/node-syncing)** - Common node issues and solutions
-:::
+  :::
 
 ## Overview
 
 The `tools/validate_rpcs.py` tool provides a comprehensive way to test and validate that your Chia full node's RPC endpoints are working correctly. This is particularly useful for:
 
 :::note What This Tool Is
+
 - **Type**: Python utility script (not an RPC service)
 - **Purpose**: Tests and validates existing RPC endpoints
 - **Target**: Your running full node's RPC functionality
 - **No New RPCs**: This tool does not add new RPC endpoints
-:::
+  :::
 
 - **Testing RPC functionality** after node updates
 - **Debugging RPC issues** in development environments
@@ -42,6 +44,7 @@ The `tools/validate_rpcs.py` tool provides a comprehensive way to test and valid
 ## Location
 
 The tool is located at:
+
 ```
 tools/validate_rpcs.py
 ```
@@ -56,34 +59,38 @@ python tools/validate_rpcs.py [OPTIONS]
 
 ### Command Line Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--host` | Full node host address | `localhost` |
-| `--port` | Full node RPC port | `8555` |
-| `--cert` | Path to SSL certificate | `~/.chia/mainnet/config/ssl/full_node/private_full_node.crt` |
-| `--key` | Path to SSL private key | `~/.chia/mainnet/config/ssl/full_node/private_full_node.key` |
-| `--timeout` | RPC request timeout in seconds | `30` |
-| `--verbose` | Enable verbose output | `False` |
-| `--help` | Show help message | N/A |
+| Option      | Description                    | Default                                                      |
+| ----------- | ------------------------------ | ------------------------------------------------------------ |
+| `--host`    | Full node host address         | `localhost`                                                  |
+| `--port`    | Full node RPC port             | `8555`                                                       |
+| `--cert`    | Path to SSL certificate        | `~/.chia/mainnet/config/ssl/full_node/private_full_node.crt` |
+| `--key`     | Path to SSL private key        | `~/.chia/mainnet/config/ssl/full_node/private_full_node.key` |
+| `--timeout` | RPC request timeout in seconds | `30`                                                         |
+| `--verbose` | Enable verbose output          | `False`                                                      |
+| `--help`    | Show help message              | N/A                                                          |
 
 ### Example Commands
 
 #### Validate Local Node
+
 ```bash
 python tools/validate_rpcs.py
 ```
 
 #### Validate Remote Node
+
 ```bash
 python tools/validate_rpcs.py --host 192.168.1.100 --port 8555
 ```
 
 #### Validate with Custom Certificates
+
 ```bash
 python tools/validate_rpcs.py --cert /path/to/cert.crt --key /path/to/key.key
 ```
 
 #### Verbose Validation
+
 ```bash
 python tools/validate_rpcs.py --verbose
 ```
@@ -123,6 +130,7 @@ For each RPC endpoint, the tool performs:
 ## Output
 
 ### Success Output
+
 ```
 ✅ RPC Validation Complete
 Total Endpoints Tested: 25
@@ -132,6 +140,7 @@ Validation Time: 12.34 seconds
 ```
 
 ### Error Output
+
 ```
 ❌ RPC Validation Failed
 Total Endpoints Tested: 25
@@ -144,7 +153,9 @@ Failed Endpoints:
 ```
 
 ### Verbose Output
+
 With `--verbose` flag, you'll see detailed information for each endpoint:
+
 ```
 🔍 Testing get_blockchain_state...
   ✅ Response received in 0.15s
@@ -161,27 +172,35 @@ With `--verbose` flag, you'll see detailed information for each endpoint:
 ### Common Issues
 
 #### Connection Refused
+
 ```
 Error: Connection refused to localhost:8555
 ```
+
 **Solution**: Ensure your full node is running and the RPC port is accessible.
 
 #### SSL Certificate Issues
+
 ```
 Error: SSL certificate validation failed
 ```
+
 **Solution**: Verify the certificate and key paths are correct and the files exist.
 
 #### Timeout Errors
+
 ```
 Error: Request timeout after 30 seconds
 ```
+
 **Solution**: Increase the timeout value with `--timeout 60` or check network connectivity.
 
 #### Permission Denied
+
 ```
 Error: Permission denied accessing certificate files
 ```
+
 **Solution**: Ensure proper file permissions on SSL certificate and key files.
 
 ### Debug Mode

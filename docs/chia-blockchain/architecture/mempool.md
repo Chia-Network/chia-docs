@@ -25,7 +25,8 @@ The transaction is also checked against other transactions in the mempool, to en
 
 Starting in Chia 2.5.5, the mempool automatically detects and deduplicates identical spend transactions. When multiple transactions attempt to spend the same coin with identical parameters, only one will be kept in the mempool, reducing memory usage and improving overall performance.
 
-**Behavior**: 
+**Behavior**:
+
 - Identical spend transactions are automatically deduplicated
 - The transaction with the highest fee is prioritized
 - Duplicate transactions are rejected with appropriate error messages
@@ -133,6 +134,7 @@ Starting in Chia 2.5.5, a new, more efficient block creation algorithm is availa
 **Configuration**: Set `full_node:block_creation` to `1` in your config file to enable the new algorithm.
 
 **Benefits**:
+
 - Improved block creation performance
 - Better memory management during block creation
 - Enhanced handling of high-transaction-volume scenarios
@@ -141,13 +143,12 @@ Starting in Chia 2.5.5, a new, more efficient block creation algorithm is availa
 **Configurable Timeout**: Block creation now supports a configurable timeout setting via `full_node:block_creation_timeout`, allowing node operators to fine-tune the process based on their network conditions and requirements.
 
 **Example Configuration**:
+
 ```yaml
 full_node:
-  block_creation: 1  # Enable new algorithm
-  block_creation_timeout: 30  # 30 second timeout
+  block_creation: 1 # Enable new algorithm
+  block_creation_timeout: 30 # 30 second timeout
 ```
-
-
 
 ## Updating the Mempool
 
@@ -162,6 +163,7 @@ Starting in Chia 2.5.5, the mempool has undergone backwards incompatible schema 
 **Available in**: Chia 2.5.5 and later versions
 
 The mempool schema has been updated to support:
+
 - **Fast-forward processing** for singleton and vault transactions
 - **Enhanced transaction deduplication** mechanisms
 - **Improved memory management** and performance optimizations
@@ -171,6 +173,7 @@ The mempool schema has been updated to support:
 **Important**: These changes are backwards incompatible. Nodes running versions prior to 2.5.5 may experience issues when connecting to nodes running 2.5.5+.
 
 **Required Actions**:
+
 - **Upgrade all nodes** to Chia 2.5.5+ simultaneously
 - **Clear mempool data** if upgrading from versions prior to 2.5.5
 - **Restart services** after upgrade to ensure new schema is applied
@@ -179,8 +182,7 @@ The mempool schema has been updated to support:
 If you need to downgrade from Chia 2.5.5+ back to an earlier version, you must first fix the database schema incompatibility. See the [Troubleshooting section](#troubleshooting) for the required database fix command and detailed instructions.
 
 **Impact**:
+
 - Existing mempool data may not be compatible with new schema
 - Transaction processing behavior has changed (see optimizations above)
 - Performance improvements require full network adoption
-
-
