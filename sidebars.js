@@ -486,6 +486,7 @@ module.exports = {
         'guides/tutorials/coin-spend-rpc',
         'guides/seeder-user-guide',
         'guides/simulator-user-guide',
+        'guides/rpc-validation-tool',
         {
           type: 'category',
           label: 'WalletConnect',

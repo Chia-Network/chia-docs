@@ -29,6 +29,10 @@ The ports can be configured in `~/.chia/mainnet/config/config.yaml`.
 The RPC ports should not be exposed to the internet.
 TLS certificates are used to secure the communication.
 
+:::tip Testing RPC Functionality
+Need to validate that your RPC endpoints are working correctly? Use the **[RPC Validation Tool](/guides/rpc-validation-tool)** to test and validate all available RPC functionality.
+:::
+
 ### Default Ports:
 
 - Daemon: 55400
