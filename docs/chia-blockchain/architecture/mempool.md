@@ -179,7 +179,7 @@ The mempool schema has been updated to support:
 - **Restart services** after upgrade to ensure new schema is applied
 
 **Downgrade Instructions**:
-If you need to downgrade from Chia 2.5.5+ back to an earlier version, you must first fix the database schema incompatibility. See the [Troubleshooting section](#troubleshooting) for the required database fix command and detailed instructions.
+If you need to downgrade from Chia 2.5.5+ back to an earlier version, you must first fix the database schema incompatibility. See the [Database Schema Compatibility Issues section](/reference-client/troubleshooting/node-syncing#database-schema-compatibility-issues) for the required database fix command and detailed instructions.
 
 **Impact**:
 
