@@ -131,4 +131,9 @@ class Plot(Streamable):
     plot_public_key: G1Element
     file_size: uint64
     time_modified: uint64
+
+**Implementation Details**:
+- Plot filter computation is performed entirely on the harvester
+- Only plots that pass the filter (starting with 8 zeroes) proceed to quality lookups
+- This optimization maintains the same cryptographic security while improving performance
 ```

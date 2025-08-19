@@ -18,6 +18,10 @@ The [coinset CLI tool](https://github.com/coinset-org/cli) is also capable of re
 
 :::
 
+:::tip Testing and Validation
+Need to test these RPC endpoints? Use the **[RPC Validation Tool](/guides/rpc-validation-tool)** to validate that your full node's RPC functionality is working correctly.
+:::
+
 <details>
   <summary>Note about Windows command escaping</summary>
 

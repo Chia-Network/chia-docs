@@ -119,3 +119,35 @@ This means that:
 In summary, if you farm using a community node, that node can steal all of your farming rewards as you earn them. The way to avoid this scenario is to run your own node.
 
 Luckily, a high-powered system is not required to run a Chia node. In fact, the [minimum supported node hardware](https://docs.chia.net/chia-blockchain/coin-set-model/costs/#farming-spec) is the Raspberry Pi with a cheap external SSD to hold the database file. In order to expedite the process of syncing your full node, you can download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint).
+
+## Database Schema Compatibility Issues
+
+### Chia 2.5.5+ Schema Changes
+
+Starting in Chia 2.5.5, the mempool has undergone backwards incompatible schema changes to support new fast-forward functionality and optimizations. These changes can cause database compatibility issues when connecting nodes running different versions.
+
+#### Symptoms
+
+- **`Database schema version mismatch`** errors
+- **`Invalid spent_index value`** errors
+- **Connection refused** when trying to connect to nodes running different versions
+- **Node fails to start** after upgrading from earlier versions
+
+#### Downgrade Database Fix
+
+If you need to downgrade from Chia 2.5.5+ back to an earlier version, you must first fix the database schema incompatibility. Run this command to reset the spent index values:
+
+```bash
+python -c "import sqlite3, sys, os; conn = sqlite3.connect(os.path.expanduser(sys.argv[1])); cursor = conn.execute('UPDATE coin_record SET spent_index = 0 WHERE spent_index = -1'); print(f'Updated {cursor.rowcount} records'); conn.commit(); conn.close()" <path to the db>
+```
+
+**Replace `<path to the db>`** with the actual path to your Chia database file (typically `~/.chia/mainnet/db/blockchain_v2_mainnet.sqlite`).
+
+**Warning**: This command modifies your blockchain database. Only use it if you are certain you need to downgrade, and always backup your database first.
+
+#### Prevention
+
+- Always upgrade all nodes simultaneously when possible
+- Test upgrades on testnet before applying to mainnet
+- Keep backups of your database before major version changes
+- Ensure all connected nodes are running compatible versions

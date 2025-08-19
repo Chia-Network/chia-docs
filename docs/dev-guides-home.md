@@ -305,6 +305,17 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
+        <a href='/guides/rpc-validation-tool/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SimulatorGuide} alt='RPC Validation Tool' loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
         <a href='/guides/walletconnect/'>
           <div class="card">
             <div class="card__image">
