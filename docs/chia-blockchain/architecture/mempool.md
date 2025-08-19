@@ -175,7 +175,7 @@ The mempool schema has been updated to support:
 **Required Actions**:
 
 - **Upgrade all nodes** to Chia 2.5.5+ simultaneously
-- **Clear mempool data** if upgrading from versions prior to 2.5.5
+- **Clear mempool data** if upgrading from versions prior to 2.5.5, this will occur automatically after restarting services
 - **Restart services** after upgrade to ensure new schema is applied
 
 **Downgrade Instructions**:
