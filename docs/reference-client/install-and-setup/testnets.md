@@ -5,9 +5,9 @@ slug: /reference-client/install-and-setup/testnets
 
 :::note
 
-**testnet11 is the only supported testnet.** Older testnets may remain active, but Chia Network Inc. longer officially supports them.
+**testnet11 is the only supported testnet.** Older testnets may remain active, but Chia Network Inc. no longer officially supports them.
 
-Testnets can be used to test the chia software with coins that have no real world value.  
+Testnets can be used to test the chia software with coins that have no real world value.
 If you want to run the Chia blockchain mainnet, use the [mainnet installation](/docs/reference-client/install-and-setup/installation.md) instructions.
 
 :::
