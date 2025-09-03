@@ -46,13 +46,13 @@ The VDF chains we'll consider (${\cal RC}$ and ${\cal CC}$) will be split into s
 
 The following points on the $\textsf{Chia}$ VDF chains will be defined
 
-| Point                 | Definition                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------------------ |
-| ${\sf cc\_sp}_{i,j}$  | The $j$th **challenge chain signage point** in the $i$th slot (eq.(6))                     |
-| ${\sf rc\_sp}_{i,j}$  | The $j$th **reward chain signage point** in the $i$th slot (eq.(9))                        |
-| ${\sf cc\_sp}(\beta)$ | he ${\sf cc\_sp}_{i,j}$ used as challenge to compute the PoSpace $\sigma$ in block $\beta$ |
-| ${\sf rc\_sp}(\beta)$ | The ${\sf rc\_sp}_{i,j}$ whose signature $\mu_{{\sf rc\_sp}}$ is in $\beta$                |
-| ${\sf rc\_ip}(\beta)$ | The infusion point of $\beta$ into ${\cal RC}$ (eq.(10)                                    |
+| Point                 | Definition                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| ${\sf cc\_sp}_{i,j}$  | The $j$th **challenge chain signage point** in the $i$th slot (eq.(6))                      |
+| ${\sf rc\_sp}_{i,j}$  | The $j$th **reward chain signage point** in the $i$th slot (eq.(9))                         |
+| ${\sf cc\_sp}(\beta)$ | The ${\sf cc\_sp}_{i,j}$ used as challenge to compute the PoSpace $\sigma$ in block $\beta$ |
+| ${\sf rc\_sp}(\beta)$ | The ${\sf rc\_sp}_{i,j}$ whose signature $\mu_{{\sf rc\_sp}}$ is in $\beta$                 |
+| ${\sf rc\_ip}(\beta)$ | The infusion point of $\beta$ into ${\cal RC}$ (eq.(10)                                     |
 
 The _signage point interval_ is the number of VDF steps between signage points, for the $i$th slot it's
 
