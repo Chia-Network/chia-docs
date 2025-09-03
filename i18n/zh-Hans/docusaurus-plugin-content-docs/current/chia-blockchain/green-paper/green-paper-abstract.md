@@ -1,0 +1,23 @@
+---
+title: 摘要 - Chia绿皮书
+sidebar_label: 摘要
+slug: /chia-blockchain/green-paper/green-paper-abstract
+---
+
+# 绿皮书
+
+## 摘要
+
+本文概述了 $\textrm{{\sf Chia}}$ 的共识层背后的基本设计思想和原理，$\textrm{{\sf Chia}}$ 是一种类似于比特币的最长链区块链。 它通过结合空间证明（Proofs of Space）和可验证延迟函数(Verifiable Delay Functions，VDF)实现了与比特币基于工作量证明(Proof of Work，PoW)的中本聪共识相当的安全性保障，同时实现了防止女巫攻击（Sybil resistance）。 This makes $\textrm{{\sf Chia}}$ much more [sustainable](https://chiapower.org/) and also more [decentralized](https://xch.farm/decentralization/) than a PoW based blockchain could be.
+
+我们概述了在用空间证明等高效证明系统替代工作量证明时必须解决的挑战，以及在 $\textrm{{\sf Chia}}$ 中如何解决这些挑战。 Here _efficient_ means that once the resource (like space or stake) is available, computing many proofs is basically as cheap as computing one.
+
+本文不是 $\textrm{{\sf Chia}}$ 的正式规范。 相反，它面向那些希望理解 $\textrm{{\sf Chia}}$ 共识设计选择的读者，以及对来自高效证明系统的无需许可的最长链区块链感兴趣的人。
+
+[Green Paper PDF](https://docs.chia.net/files/ChiaGreenPaper_20241008.pdf) - updated October 8, 2024
+
+---
+
+### 先前版本共识绿皮书
+
+In order to provide historical context, the Green Paper's previous version that discusses a precursor consensus which was never implemented is available here for viewing: [Precursor Green Paper](https://docs.chia.net/files/Precursor-ChiaGreenPaper.pdf).
