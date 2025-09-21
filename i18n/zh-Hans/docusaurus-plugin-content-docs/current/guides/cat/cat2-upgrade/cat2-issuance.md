@@ -64,6 +64,7 @@ python -m venv venv
   ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
   ```
   
   </TabItem>
@@ -72,6 +73,7 @@ python3 -m venv venv
   ```bash
 python3 -m venv venv
 . ./venv/bin/activate
+``` ./venv/bin/activate
   ```
   
   </TabItem>
@@ -164,7 +166,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 - You can run either the light wallet or a full node.
 - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
 - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-  :::
+:::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
@@ -363,7 +365,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 - You can run either the light wallet or a full node.
 - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
 - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-  :::
+:::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
@@ -622,6 +624,7 @@ values={[
 
 ```powershell
 cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+``` 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
 ```
 
   </TabItem>
