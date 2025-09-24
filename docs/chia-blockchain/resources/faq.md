@@ -641,6 +641,7 @@ Steps to connect to the same full node peers:
      - host: <Peer 2 IP address>
        port: <port>
    ```
+
    - Typically, `<port>` will be either 8444 (for mainnet) or 58444 (for most testnets).
 
 :::note
