@@ -713,6 +713,7 @@ Steps to connect to the same full node peers:
 2. In the `full_node:` section, you should see the following line: `full_node_peers: []`
    - If you are upgrading an existing Chia installation, these settings won't be added automatically. In this case, you will need to either add them manually or delete `config.yaml` and run `chia init` to generate a new copy.
 3. Remove the square brackets (`[]`) and add add new lines with `- host` and `port`. Be sure to indent `port`, even though it does not have a hyphen. For example, to add two mainnet peers, use the following syntax:
+
    ```yaml
    full_node_peers:
      - host: <Peer 1 IP address>
