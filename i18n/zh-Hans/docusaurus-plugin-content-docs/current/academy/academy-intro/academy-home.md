@@ -40,7 +40,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={ChialispIntro} alt='Intro to Chialisp' />
+          <img src={ChialispIntro} alt='Intro to Chialisp' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/chialisp-intro'>
@@ -54,7 +54,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={SmartCoins} alt='Smart Coins' />
+          <img src={SmartCoins} alt='Smart Coins' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/chialisp-smart-coin'>
@@ -68,7 +68,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={Signatures} alt='Signatures' />
+          <img src={Signatures} alt='Signatures' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/chialisp-signatures'>
@@ -82,7 +82,7 @@ import DIDs from '@site/static/img/academy/did.png';
         <div class="card-demo">
             <div class="card">
                 <div class="card__image">
-                <img src={InnerPuzzles} alt='Inner Puzzles' />
+                <img src={InnerPuzzles} alt='Inner Puzzles' loading="lazy" decoding="async" />
                 </div>
                 <div class="card__footer">
                 <a href='https://docs.chia.net/chialisp-inner-puzzle'>
@@ -105,7 +105,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={Consensus} alt='Consensus'/>
+          <img src={Consensus} alt='Consensus' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/consensus-basics'>
@@ -119,7 +119,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={Timelords} alt='Timelords' />
+          <img src={Timelords} alt='Timelords' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/timelord-basics'>
@@ -133,7 +133,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={BlockFormation} alt='Block Formation' />
+          <img src={BlockFormation} alt='Block Formation' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/block-formation-basics'>
@@ -147,7 +147,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={CoinSetModel} alt='Coin-Set Model' />
+          <img src={CoinSetModel} alt='Coin-Set Model' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/coinset-basics'>
@@ -161,7 +161,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={Security} alt='Security' />
+          <img src={Security} alt='Security' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/security-basics'>
@@ -184,7 +184,7 @@ import DIDs from '@site/static/img/academy/did.png';
       <div class="card-demo">
         <div class="card">
           <div class="card__image">
-            <img src={FarmingOverview} alt='Farming Overview' />
+            <img src={FarmingOverview} alt='Farming Overview' loading="lazy" decoding="async" />
           </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/farming-overview'>
@@ -198,7 +198,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={ChallengesPlotFilters} alt='Challenges & Plot Filters' />
+          <img src={ChallengesPlotFilters} alt='Challenges & Plot Filters' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/challenges-plot-filters'>
@@ -212,7 +212,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={Pools} alt='Pools' />
+          <img src={Pools} alt='Pools' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/pools'>
@@ -226,7 +226,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={CreatingYourFirstPlot} alt='Creating Your First Plot' />
+          <img src={CreatingYourFirstPlot} alt='Creating Your First Plot' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/first-plot'>
@@ -249,7 +249,7 @@ import DIDs from '@site/static/img/academy/did.png';
       <div class="card-demo">
         <div class="card">
           <div class="card__image">
-            <img src={PrimitivesOverview} alt='Primitives Overview' />
+            <img src={PrimitivesOverview} alt='Primitives Overview' loading="lazy" decoding="async" />
           </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/primitives-overview'>
@@ -263,7 +263,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={NFTs} alt='NFTs' />
+          <img src={NFTs} alt='NFTs' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/academy-nft'>
@@ -277,7 +277,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={DIDs} alt='DIDs' />
+          <img src={DIDs} alt='DIDs' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/academy-did'>
@@ -291,7 +291,7 @@ import DIDs from '@site/static/img/academy/did.png';
     <div class="card-demo">
       <div class="card">
         <div class="card__image">
-          <img src={CATs} alt='CATs' />
+          <img src={CATs} alt='CATs' loading="lazy" decoding="async" />
         </div>
         <div class="card__footer">
           <a href='https://docs.chia.net/academy-cat'>
