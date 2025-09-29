@@ -24,7 +24,7 @@ For the mainnet installation, we will stick with the default ports and `CHIA_ROO
 ## 设置测试网络安装
 
 1. (Optional) Install [yq](https://github.com/mikefarah/yq#install) to make editing the yaml files easier
-  1. Alternatively, you can manually edit the ports in `config.yaml`
+   - Alternatively, you can manually edit the ports in `config.yaml`
 2. 运行以下命令：
 
 ```bash
