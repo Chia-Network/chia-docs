@@ -28,7 +28,9 @@ const katex = require('rehype-katex');
             sidebarPath: require.resolve('./sidebars.js'),
             editUrl: 'https://github.com/Chia-Network/chia-docs/blob/main/',
             remarkPlugins: [math],
-            rehypePlugins: [katex],
+            rehypePlugins: [
+              [katex, { strict: false }]
+            ],
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
