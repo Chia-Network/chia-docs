@@ -6,6 +6,9 @@ slug: /reference-client/getting-started/farming-guide
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import WalletKeyDetails from '@site/static/img/troubleshooting/wallet_key_details.png';
+import WalletKeysPublic from '@site/static/img/faq/wallet_keys_public_key.png';
+import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
 
 So you want to be a Chia farmer? You've come to the right place!
 
@@ -296,7 +299,7 @@ Pools typically require you to wait for 30 minutes before leaving. This is to pr
 
 :::info
 
-Chia's pooling protocol has several significant advantages over pools on other blockchains. Read more about these advantages, as well as the technical details of how the protocol works, in our [pooling section](/docs/chia-blockchain/introduction.md#pooling).
+Chia's pooling protocol has several significant advantages over pools on other blockchains. Read more about these advantages, as well as the technical details of how the protocol works, in our [pooling section](/chia-blockchain/introduction#矿池pooling).
 
 :::
 

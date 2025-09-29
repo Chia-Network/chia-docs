@@ -21,7 +21,8 @@ The RPC to create a new DAO is a **wallet RPC** called [create_new_wallet](/refe
 
 :::
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -63,7 +64,8 @@ Request Parameters:
 | amount                                                      | NUMBER | True     | The amount of funds to add, in mojos                                                                                    |
 | fee                                                         | NUMBER | False    | An optional blockchain fee, in mojos \[Default: 0] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Start by showing the treasury's current balance:
 
@@ -362,7 +364,8 @@ Request Parameters:
 | :----------------------------- | ------ | :------- | :------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The wallet from which to list proposals; must be of type `DAOWallet` |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -426,7 +429,8 @@ Request Parameters:
 | wallet_id   | NUMBER | True     | The ID of the DAO wallet from which to look up a proposal's status. Must be of type `DAOWallet` |
 | proposal_id | STRING | True     | The ID of the proposal whose status you would like to show                                                      |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 First, get all proposals, which will show their IDs:
 
@@ -499,7 +503,8 @@ Request Parameters:
 | :----------------------------- | ------ | :------- | :--------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO wallet from which to show the rules. Must be of type `DAOWallet` |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -547,7 +552,8 @@ Request Parameters:
 | :----------------------------- | ------ | :------- | :------------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO whose treasury balance you would like to show. Must be of type `DAOWallet` |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -589,7 +595,8 @@ Request Parameters:
 | :----------------------------- | ------ | :------- | :---------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The DAO wallet whose ID you would like to retrieve. Must be of type `DAOWallet` |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -625,7 +632,8 @@ Request Parameters:
 | wallet_id   | NUMBER | True     | The DAO wallet where the proposal lives. Must be of type `DAOWallet` |
 | proposal_id | STRING | True     | The ID of the proposal whose details you would like to show                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia rpc wallet dao_parse_proposal '{"wallet_id": 2, "proposal_id": "0x7b10351e130317fc3f7b6d5e50aeb3b8d63db7545ef5e80836913f5741cdbb22"}'

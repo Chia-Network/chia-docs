@@ -19,7 +19,7 @@ VDF proofs span:
 
 In the example in Figure 7, B2 contains a VDF proof from B1 to sp2, and from B1 to B2. B3 contains a proof from B1 to sp3, and from B2 to B3. B2 does not depend at all on B3, but B3 depends on B2, since its VDF is from B2's infusion point.
 
-As discussed in [Signage and Infusion Points page](/docs/chia-blockchain/consensus/chains/signage-and-infusion-points.md), the blocks get created at the signage points, but they are missing the infusion point VDF. Once this VDF is added, the block is finished, and forms part of the blockchain.
+As discussed in [Signage and Infusion Points page](/chia-blockchain/consensus/chains/signage-and-infusion-points), the blocks get created at the signage points, but they are missing the infusion point VDF. Once this VDF is added, the block is finished, and forms part of the blockchain.
 
 The signatures get created and added by the farmers at the signage points, and broadcast to the whole network.
 There are no signatures at the infusion point; the only things added at the infusion point are the VDFs.

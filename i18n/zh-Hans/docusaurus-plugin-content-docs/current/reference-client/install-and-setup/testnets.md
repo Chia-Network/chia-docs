@@ -9,8 +9,8 @@ slug: /reference-client/install-and-setup/testnets
 
 Testnet 7 may remain active, but is no longer officially supported by Chia Network Inc.
 Testnets can be used to test the chia software with coins that have no real world value.\
-If you want to run the Chia blockchain mainnet, use the [mainnet installation](/installation) instructions.
-If you want to run the Chia blockchain mainnet, use the [mainnet installation](/docs/reference-client/install-and-setup/installation.md) instructions.
+If you want to run the Chia blockchain mainnet, use the [mainnet installation](/reference-client/install-and-setup/installation) instructions.
+If you want to run the Chia blockchain mainnet, use the [mainnet installation](/reference-client/install-and-setup/installation) instructions.
 
 :::
 
@@ -20,7 +20,7 @@ If you want to run the Chia blockchain mainnet, use the [mainnet installation](/
 
 ### 先决条件
 
-- Minimum Chia version is 2.1.0 [installed](/docs/reference-client/install-and-setup/installation.md).
+- Minimum Chia version is 2.1.0 [installed](/reference-client/install-and-setup/installation).
 - All chia processes have been stopped with `chia stop all-d`.
 
 ### Configure Chia for testnet

@@ -4,7 +4,8 @@ title: RPC Overview
 slug: /reference-client/rpc-reference/rpc
 ---
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+  <summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -243,7 +244,8 @@ Request Services:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet get_log_level
@@ -295,7 +297,8 @@ Request Parameters:
 | :---- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | level | STRING | True     | The log level to set for the designated service; valid levels are: "CRITICAL", "FATAL", "ERROR", "WARN", "WARNING", "INFO", "DEBUG", "NOTSET" |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet set_log_level '
@@ -348,7 +351,8 @@ Request Services:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet reset_log_level

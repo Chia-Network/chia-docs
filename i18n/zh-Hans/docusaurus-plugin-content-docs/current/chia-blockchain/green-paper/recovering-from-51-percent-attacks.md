@@ -13,10 +13,9 @@ We discussed in §2 the main security issues of a PoSpace based longest-chain b
 {' '}
 
 <figure>
-  <img src='/img/green-paper/table-1.png' />![](/img/green-paper/table-1.png) 
+  <img src='/img/green-paper/table-1.png' />
   <figcaption>
     Table 1: Summary of the ability to heal from malicious majority and provide security under dynamic availability of longest-chain protocols based various proof systems.
-  </figcaption>
   </figcaption>
 </figure>
 

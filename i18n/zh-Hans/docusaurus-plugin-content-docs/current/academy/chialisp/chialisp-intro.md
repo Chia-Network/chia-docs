@@ -180,7 +180,7 @@ So let's get started, the first thing you'll want to do is make sure you have th
 
 ### 可运行的Chialisp和clvm插件
 
-有关如何使用这些插件的信息，请参阅[学院概述](/academy-overview#runnable-chialisp-and-clvm-plugins)
+有关如何使用这些插件的信息，请参阅[学院概述](/academy-overview#可运行的chialisp和clvm插件)
 
 #### Chialisp 插件
 

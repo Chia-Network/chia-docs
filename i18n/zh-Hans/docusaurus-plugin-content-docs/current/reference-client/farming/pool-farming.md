@@ -108,7 +108,7 @@ You can now start creating plots for this Plot NFT, which means these plots will
 Detailed instructions can be found in the "How to Plot" page:
 
 - Plotting from the [CLI](/reference-client/plotting/plotting-how-to#cli-plotting)
-- Plotting from the [GUI](/reference-client/plotting/plotting-how-to#gui-plotting)
+- Plotting from the [GUI](/reference-client/plotting/plotting-how-to#图形用户界面gui生成地块)
 
 ### 第五步：管理联合耕种农田。
 

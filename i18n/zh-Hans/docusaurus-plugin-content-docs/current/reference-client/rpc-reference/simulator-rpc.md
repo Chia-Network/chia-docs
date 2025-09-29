@@ -20,7 +20,8 @@ For more info, see the following:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -63,7 +64,8 @@ Request Parameters:
 | guarantee_tx_block | False    | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
 | blocks                                                       | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                   |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Farm a single block:
 
@@ -82,7 +84,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Farm three transaction blocks:
 
@@ -118,7 +121,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc full_node get_all_blocks
@@ -228,7 +232,8 @@ Request Parameters:
 | :------------------------------------------------------------ | :------- | :----------------------------------------------------------------------------------------------------------------------- |
 | include_spent_coins | False    | Boolean, if `True` then spent coins will be included in the result (Default: `False`) |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc full_node get_all_coins
@@ -288,7 +293,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc full_node get_all_puzzle_hashes
@@ -332,7 +338,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc full_node get_auto_farming
@@ -366,7 +373,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc full_node get_farming_ph
@@ -419,7 +427,8 @@ Request Parameters:
 | revert_all_blocks                                              | False    | Boolean, set to `True` to fork all blocks (Default: `False`) |
 | random_seed                                                                         | False    | String, used to randomize the seed, which will differentiate reorgs                             |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Starting from block 11, we'll revert 3 blocks and create 5 new blocks:
 
@@ -438,7 +447,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Reorg with a random seed:
 
@@ -479,7 +489,8 @@ Request Parameters:
 | num_of_blocks     | False    | The number of blocks to revert (Default: 1)                    |
 | delete_all_blocks | False    | Boolean, set to `True` to revert all blocks (Default: `False`) |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Revert a single block:
 
@@ -498,7 +509,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Delete all blocks -- this will reset the blockchain:
 
@@ -538,7 +550,8 @@ Request Parameters:
 | :----------------------------- | :------- | :---------------------------------------- |
 | auto_farm | True     | Boolean to enable or disable auto farming |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Enable auto farming:
 
@@ -557,7 +570,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Disable auto farming:
 

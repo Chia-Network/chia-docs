@@ -7,7 +7,8 @@ slug: /reference-client/rpc-reference/nft-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -59,7 +60,8 @@ Request Parameters:
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_add_uri '
@@ -182,7 +184,8 @@ A few things to note:
 - When NFTs are traded for other NFTs, no royalties are exchanged
 - Although this RPC has multiple required parameters, the `royalty_percentage` and `amount` are the only values used in these calculations. The `asset` is only required for display in the solution; it's just a naming convention to use `xch` or the `asset_id`
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_calculate_royalties '{
@@ -266,7 +269,8 @@ Request Parameters:
 | :----------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | wallet_id | NUMBER | False    | The ID of the wallet in which to count NFTs [Default: null (count all NFTs)] |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Specify the correct NFT wallet:
 
@@ -286,7 +290,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 If `wallet_id` is not specified, it will be treated as `null`:
 
@@ -306,7 +311,8 @@ Response:
 
 </details>
 
-<details><summary>Example 3</summary>
+<details>
+<summary>Example 3</summary>
 
 If a non-NFT wallet is specified, an error will be thrown:
 
@@ -343,7 +349,8 @@ Request Parameters:
 | :-------------------------- | :----- | :------- | :-------------------- |
 | did_id | NUMBER | True     | The DID ID to examine |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_get_by_did '{"did_id": "did:chia:1kzxqrt8f2h8psr8zuzen9dxgmxx5v35s0rj3jy637qjannu3zlesds0el5"}'
@@ -388,7 +395,8 @@ Request Parameters:
 
 :::
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Get info for an NFT that is owned locally:
 
@@ -438,7 +446,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 In the case where the NFT is not owned by the local wallet, you can obtain info from its NFT ID:
 
@@ -510,7 +519,8 @@ Request Parameters:
 | start_index | NUMBER | False    | The NFT index at which to start retrieving the NFTs [Default: `0`] |
 | num                              | NUMBER | False    | The maximum number of NFTs to retrieve [Default: `0`]              |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_get_nfts '{"wallet_id": 2}'
@@ -569,7 +579,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_get_wallets_with_dids
@@ -613,7 +624,8 @@ Request Parameters:
 | :----------------------------- | :----- | :------- | :----------------------------- |
 | wallet_id | NUMBER | True     | The Wallet ID of an NFT wallet |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_get_wallet_did '{"wallet_id": 5}'
@@ -666,7 +678,8 @@ Request Parameters:
 | fee                                                                                   | NUMBER       | False    | A blockchain fee to be deducted with each mint                                                                                                                                                                                                                                                                                                           |
 | reuse_puzhash                                                    | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml                                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_mint_bulk '{
@@ -794,7 +807,8 @@ Request Parameters:
 | fee                                     | NUMBER       | False    | The one-time blockchain fee to be used upon minting the NFT                                                                                                                                                                       |
 | reuse_puzhash      | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml          |
 
-<details><summary>Example 1 - Mint an NFT without using a DID</summary>
+<details>
+<summary>Example 1 - Mint an NFT without using a DID</summary>
 
 ```json
 chia rpc wallet nft_mint_nft '{
@@ -849,7 +863,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and hashes, as well as royalties</summary>
+<details>
+<summary>Example 2 - Mint an NFT with a DID. Specify data, metadata, and license URIs and hashes, as well as royalties</summary>
 
 ```json
 chia rpc wallet nft_mint_nft '{
@@ -981,7 +996,8 @@ Request Parameters:
 | fee                                                     | NUMBER       | False    | An optional blockchain fee                                                                                                                                                                                               |
 | reuse_puzhash                      | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Move four NFTs from one DID (wallet_id 6) to another (did:chia:1cxw5dqug4gavvgylx88zfkmqv235ryr6j9tvyjwwuga0pa52wjvqavdyar):
 
@@ -1084,7 +1100,8 @@ Request Parameters:
 | fee                                                   | NUMBER  | False    | The one-time blockchain fee to be used upon adding a URI                                                                                                                                                                 |
 | reuse_puzhash                    | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 First, we'll show the details of an NFT that is not associated with a DID:
 
@@ -1260,7 +1277,8 @@ Request Parameters:
 | coin_id        | NUMBER  | True     | The coin_id of the NFT on which to set the status |
 | in_transaction | BOOLEAN | True     | A boolean to set the transaction status for the NFT                    |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
  chia rpc wallet nft_set_nft_status '{"wallet_id": 5, "coin_id": "0xb08c01ace955ce180ce2e0b332b4c8d98d46469078e5191351f025d9cf9117f3", "in_transaction": false}'
@@ -1300,7 +1318,8 @@ Request Parameters:
 | fee                                                     | NUMBER       | False    | An optional blockchain fee                                                                                                                                                                                               |
 | reuse_puzhash                      | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Transfer four NFTs from wallet 6 to a new address (this will also remove them from their DID custody):
 
@@ -1394,7 +1413,8 @@ Request Parameters:
 | fee                                                   | NUMBER     | False    | The one-time blockchain fee to be used upon transferring the NFT                                                                                                                                                         |
 | reuse_puzhash                    | BOOLEAN    | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet nft_transfer_nft '

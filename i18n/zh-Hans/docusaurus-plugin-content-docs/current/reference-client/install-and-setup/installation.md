@@ -20,7 +20,7 @@ There are various ways to install Chia, with the best method depending on what y
 
 - If you intend to do [Chialisp](https://chialisp.com) development or build projects that leverage Chia, you have the options of either using an installer (the recommended pattern), or installing from source.
 
-- Lastly, if you plan on making contributions to the source code, then installing Chia [from source](/docs/reference-client/install-and-setup/installation.md#from-source) would be your path.
+- Lastly, if you plan on making contributions to the source code, then installing Chia [from source](/reference-client/install-and-setup/installation#from-source) would be your path.
 
 **_In summary, unless you already knew before reading this page that you should be installing from source, chances are your best path will be to install from our [official downloads page](https://www.chia.net/downloads) or a Linux package, depending on your OS._**
 
@@ -382,7 +382,7 @@ Install Ubuntu 20.04 LTS from the Microsoft Store and run it and complete its in
 
 #### Install from source - WSL2
 
-See [install from source](/docs/reference-client/install-and-setup/installation.md#from-source) for detailed instruction.
+See [install from source](/reference-client/install-and-setup/installation#from-source) for detailed instruction.
 
 Running a standalone Windows wallet gui is deprecated but may return in later versions. You can run the Windows version and share keys. You can also plot in WSL2 and migrate the plots to a Windows farmed plot directory.
 
@@ -417,7 +417,7 @@ For maximum speed, `-t` and `-2` should be inside the WSL2 filesystem. Something
 
 #### Install from source - Amazon Linux 2
 
-See [install from source](/docs/reference-client/install-and-setup/installation.md#from-source) for detailed instruction.
+See [install from source](/reference-client/install-and-setup/installation#from-source) for detailed instruction.
 
 #### Install from binary package
 
