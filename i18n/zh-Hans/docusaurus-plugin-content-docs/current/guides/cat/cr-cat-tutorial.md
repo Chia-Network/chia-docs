@@ -1,5 +1,5 @@
 ---
-slug: /guides/cr-CAT-tutorial
+slug: /guides/cr-cat-tutorial
 title: CR-CAT Creation Tutorial
 ---
 
@@ -52,7 +52,6 @@ We have faucets available if you don't have sufficient funds to get started:
 It is possible to brick\* funds by sending them to an address without the appropriate credentials, as will be demonstrated later in this guide. You are therefore recommended to test minting CR-CATs on the testnet or on a simulator prior to minting them on mainnet. You are recommended to test minting VCs on the testnet prior to minting them on mainnet. If you are unsure of how to configure your wallet to use the testnet, see our [guide](https://docs.chia.net/guides/chialisp-testnet-setup).
 
 \* Technically, the funds will remain recoverable, but this process will not be easy.
-:::
 :::
 
 ### DID and VC Setup
@@ -251,19 +250,6 @@ Install the CAT admin tool:
 
 ```bash
 pip install .
-``` ./venv/bin/activate
-```
-
-Install all prerequisites:
-
-```bash
-python3 -m pip install --upgrade pip setuptools wheel
-```
-
-Install the CAT admin tool:
-
-```bash
-pip install .
 ```
 
   </TabItem>
@@ -304,8 +290,6 @@ Install the CAT admin tool:
 ```bash
 pip install .
 ```
-```
-
   </TabItem>
 </Tabs>
 
