@@ -32,7 +32,8 @@ Options:
 | -d            | --diff       | TEXT | False    | A previous audit log to diff against this one                                                                                                              |
 | -h            | --help       | None | False    | Show a help message and exit                                                                                                                               |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -108,7 +109,8 @@ Options:
 | -pks          | --pubkeys    | TEXT | True     | A comma separated list of pubkeys that will be signing this spend                                                                                          |
 | -h            | --help       | None | False    | Show a help message and exit                                                                                                                               |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -138,7 +140,8 @@ Options:
 | -f            | --filename   | TEXT | False    | The filepath to dump the spend bundle into                                                                                                                 |
 | -h            | --help       | None | False    | Show a help message and exit                                                                                                                               |
 
-<details><summary>Example -- complete a withdrawal</summary>
+<details>
+<summary>Example -- complete a withdrawal</summary>
 
 Request:
 
@@ -179,7 +182,8 @@ Options:
 | -va           | --validate-against   | TEXT    | False    | Specify a configuration file to check whether it matches the specified parameters                                                                                                                                                                                                                     |
 | -h            | --help               | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                          |
 
-<details><summary>Example -- set up a 2-of-3 root config</summary>
+<details>
+<summary>Example -- set up a 2-of-3 root config</summary>
 
 Request:
 
@@ -213,7 +217,8 @@ Options:
 
 `SPEND_FILE` is an unsigned spend bundle. This command will convert the spend bundle into a QR code and open it into a web browser for printing. You can then scan this QR code, for example using an HSM's QR scanner, for easier signing.
 
-<details><summary>Example -- examine a rekey spend bundle</summary>
+<details>
+<summary>Example -- examine a rekey spend bundle</summary>
 
 Request:
 
@@ -251,7 +256,8 @@ Options:
 | -p            | --public     | None | False    | Enable to export the public information only (default: disabled)                                                                                 |
 | -h            | --help       | None | False    | Show a help message and exit                                                                                                                                                        |
 
-<details><summary>Example -- export the config to export.bin</summary>
+<details>
+<summary>Example -- export the config to export.bin</summary>
 
 Request:
 
@@ -284,7 +290,8 @@ Options:
 | -f            | --filename   | TEXT | False    | The filepath to dump the spend bundle into                                                                                                                 |
 | -h            | --help       | None | False    | Show a help message and exit                                                                                                                               |
 
-<details><summary>Example -- move to a 4-of-5 config</summary>
+<details>
+<summary>Example -- move to a 4-of-5 config</summary>
 
 Request:
 
@@ -320,7 +327,8 @@ Options:
 | -sp           | --slow-penalty        | TEXT | True     | The time penalty for performing a slow rekey (in seconds)                                                                             |
 | -h            | --help                | None | False    | Show a help message and exit                                                                                                                             |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -356,7 +364,8 @@ Options:
 |               | --fee             | INTEGER | False    | Fee to use for the launch transaction (in mojos) [default: 0]                                |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                        |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -388,7 +397,8 @@ Options:
 | -p            | --prefix     | TEXT | False    | The prefix to use when encoding the address (default: xch)                                                              |
 | -h            | --help       | None | False    | Show a help message and exit                                                                                                                               |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -424,7 +434,8 @@ Options:
 | -at           | --amount-threshold          | INTEGER | False    | The minimum amount required of a payment in order for it to be absorbed [default: 1000000000000 or 1 XCH][0 means "absorb everything"] |
 | -h            | --help                      | None    | False    | Show a help message and exit                                                                                                                                                                                                                                   |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -461,7 +472,8 @@ Options:
 | -m            | --fee             | INTEGER | False    | The fee to attach to this spend (in mojos)                                                                                                                       |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                        |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -494,7 +506,8 @@ Options:
 | -d            | --derivation | None | False    | Enable to display the private details of the private config (default: disabled)                                                                                                    |
 | -h            | --help       | None | False    | Show a help message and exit                                                                                                                                                                                          |
 
-<details><summary>Example -- show the configuration and derivation</summary>
+<details>
+<summary>Example -- show the configuration and derivation</summary>
 
 Request:
 
@@ -556,7 +569,8 @@ Options:
 | -new          | --new-configuration | TEXT | True     | The configuration you would like to rekey the singleton to                                                                                                 |
 | -h            | --help              | None | False    | Show a help message and exit                                                                                                                               |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -590,7 +604,8 @@ Options:
 | -s            | --show          | None    | False    | Enable to show a summary of the singleton after sync is complete (default: disabled)                                                                             |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                                                        |
 
-<details><summary>Example -- sync and show the config</summary>
+<details>
+<summary>Example -- sync and show the config</summary>
 
 Request:
 
@@ -633,7 +648,8 @@ Options:
 | -db           | --db-path       | TEXT | True     | The file path to initialize/find the sync database at (default: ./sync (\*\*\*\*\*\*).sqlite)                 |
 | -h            | --help          | None | False    | Show a help message and exit                                                                                                                                                                        |
 
-<details><summary>Example -- update config after rekey</summary>
+<details>
+<summary>Example -- update config after rekey</summary>
 
 Request:
 
@@ -684,7 +700,8 @@ Usage: `hsmgen`
 
 There are no options with this command. It will simply generate and display a single secret exponent.
 
-<details><summary>Example 1 -- display key</summary>
+<details>
+<summary>Example 1 -- display key</summary>
 
 The basic command displays a new secret exponent.
 
@@ -701,7 +718,8 @@ se12celrk5asn0f3w49dxpxe5hg6sg88ezdvp89hpgdqspwj6e03yfq9e6yw4
 ```
 
 </details>
-<details><summary>Example 2 -- save a key to a file</summary>
+<details>
+<summary>Example 2 -- save a key to a file</summary>
 
 Request:
 
@@ -725,7 +743,8 @@ Usage: `hsmgen <secret exponent>`
 
 A secret exponent (required) is the only argument allowed.
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Derive and display a public key from a file containing a secret exponent:
 
@@ -741,7 +760,8 @@ bls123813eh73c2cttvqytzjfnjdhnme7ah8mzsc9yzsf2y40mvhfa9rt5nha20jw50ld8h98w9u2wc0
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Calculate a public key from a file containing a secret exponent and save it to another file:
 
@@ -782,7 +802,8 @@ This command is normally run from an HSM with a QR scanner attached.
 On Linux, this command will display a QR code to the screen to be scanned.
 On Windows, the QR display isn't working.
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 This example will block until the scan is complete.
 
@@ -800,7 +821,8 @@ waiting for qrint-encoded signing requests
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 This example will not block.
 
@@ -838,7 +860,8 @@ Optional arguments:
 
 Note that `hex-encoded-signature` is a list. To add more signatures, append more arguments.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Create a signed spend bundle from two signatures and output to a text file:
 
@@ -868,7 +891,8 @@ Optional arguments:
 
 -h, --help show a help message and exit
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -898,7 +922,8 @@ Optional arguments:
 
 -h, --help show a help message and exit
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 

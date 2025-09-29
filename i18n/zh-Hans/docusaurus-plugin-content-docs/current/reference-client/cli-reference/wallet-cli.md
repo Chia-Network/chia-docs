@@ -31,7 +31,8 @@ Options:
 | -f            | --fingerprint     | INTEGER | False    | The wallet fingerprint you wish to add the token to                                                                                          |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Add the Spacebucks token:
 
@@ -86,7 +87,8 @@ You can disable the dust filter by editing `~/.chia/mainnet/config/config.yaml` 
 
 Example 1 will give a baseline:
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 List all coins for a given fingerprint:
 
@@ -130,7 +132,8 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 The following examples all use the same coin state that was obtained in Example 1:
 
-<details><summary>Example 2: exclude small coins</summary>
+<details>
+<summary>Example 2: exclude small coins</summary>
 
 Exclude coins smaller than 0.1 XCH:
 
@@ -158,7 +161,8 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details><summary>Example 3: exclude large coins</summary>
+<details>
+<summary>Example 3: exclude large coins</summary>
 
 Exclude coins larger than 0.00001 XCH. Note that there is one coin of exactly that value. It is included:
 
@@ -189,7 +193,8 @@ Coin ID: 0x2749503fb302b9654fc9f0dabd88787083ad341aaeee4a2bac113feb92ae59fc
 
 </details>
 
-<details><summary>Example 4: exclude specific coins</summary>
+<details>
+<summary>Example 4: exclude specific coins</summary>
 
 Use the `--exclude-coin` flag multiple times to exclude individual coins:
 
@@ -223,7 +228,8 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details><summary>Example 5: exclude specific amounts</summary>
+<details>
+<summary>Example 5: exclude specific amounts</summary>
 
 Use the `--exclude-amount` flag multiple times to exclude specific amounts. Note that if multiple coins have the same amount, they will all be excluded:
 
@@ -254,7 +260,8 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details><summary>Example 6: disable pagination</summary>
+<details>
+<summary>Example 6: disable pagination</summary>
 
 The `--no-paginate` flag will cause _all_ coins to be listed with no additional input from the user:
 
@@ -294,7 +301,8 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details><summary>Example 7: list a CAT</summary>
+<details>
+<summary>Example 7: list a CAT</summary>
 
 First, list all assets in the wallet:
 
@@ -388,7 +396,8 @@ Options:
 |               | --smallest-first  | None    | False    | Sort coins from smallest to largest (this is the default behavior)                                                                                                     |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                              |
 
-<details><summary>Example 1: specific coins</summary>
+<details>
+<summary>Example 1: specific coins</summary>
 
 First, list all coins, without pagination:
 
@@ -492,7 +501,8 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details><summary>Example 2: enable min/max thresholds</summary>
+<details>
+<summary>Example 2: enable min/max thresholds</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -590,7 +600,8 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details><summary>Example 3: combine the two smallest coins</summary>
+<details>
+<summary>Example 3: combine the two smallest coins</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -683,7 +694,8 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details><summary>Example 4: largest first / target amount</summary>
+<details>
+<summary>Example 4: largest first / target amount</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -751,7 +763,8 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details><summary>Example 5: error case</summary>
+<details>
+<summary>Example 5: error case</summary>
 
 Start by listing all coins of at least 0.9 XCH:
 
@@ -787,7 +800,8 @@ This shows that you cannot combine a single coin. Lowering (or removing) the `--
 
 </details>
 
-<details><summary>Example 6: default settings</summary>
+<details>
+<summary>Example 6: default settings</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -882,7 +896,8 @@ Therefore, if you split a coin into more than 200 coins worth less than one mill
 
 The minimum number of new coins is 1. "Splitting" one coin into one new coin could be useful because a second new coin will be created with the remaining value.
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 First, list the coins available:
 
@@ -966,7 +981,8 @@ Coin ID: 0x27049c58aad594bdb83a0f191098f438218cbd7066700342034709afb2470c0d
 
 </details>
 
-<details><summary>Example 2: split a CAT</summary>
+<details>
+<summary>Example 2: split a CAT</summary>
 
 Start by listing the CATs in `Wallet ID: 4`:
 
@@ -1057,7 +1073,8 @@ Options:
 
 Note that wallet will automatically detect whether the transactions should be reverted (clawed back) or claimed.
 
-<details><summary>Example 1: clawback</summary>
+<details>
+<summary>Example 1: clawback</summary>
 
 First, create the clawback. This is a normal `send` command, with an extra `--clawback` timer:
 
@@ -1118,7 +1135,8 @@ Created at: 2023-06-14 13:17:33
 
 </details>
 
-<details><summary>Example 2: claim</summary>
+<details>
+<summary>Example 2: claim</summary>
 
 Set up a clawback send transaction with a 60-second clawback window:
 
@@ -1198,7 +1216,8 @@ Options:
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet delete_unconfirmed_transactions --fingerprint 2121994410
@@ -1231,7 +1250,8 @@ Options:
 | -l            | --latest-address  | None    | False    | Show the most recently created wallet receive address [default: enabled] |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Get a new address:
 
@@ -1263,7 +1283,8 @@ Options:
 | -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet get_derivation_index --fingerprint 2121994410
@@ -1296,7 +1317,8 @@ Options:
 | -v            | --verbose                    | None    | False    | Show verbose output [default: disabled]                                  |
 | -h            | --help                       | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet get_transaction --fingerprint 2121994410 --tx_id 1b32a7f42c88b70924e3ec70d2a377b2b5c5f28de14736a3e2b5d411dec98c06
@@ -1340,7 +1362,8 @@ Options:
 |               | --clawback          | None    | False    | Only show clawback transactions [default: disabled]                            |
 | -h            | --help              | None    | False    | Show a help message and exit                                                                                                                       |
 
-<details><summary>Example 1: Show a single XCH transaction</summary>
+<details>
+<summary>Example 1: Show a single XCH transaction</summary>
 
 Start by showing all wallets associated with the current fingerprint:
 
@@ -1389,7 +1412,8 @@ Created at: 2023-08-01 19:55:51
 
 </details>
 
-<details><summary>Example 2: Show all transactions from a CAT</summary>
+<details>
+<summary>Example 2: Show all transactions from a CAT</summary>
 
 Start by showing all wallets associated with the current fingerprint:
 
@@ -1505,7 +1529,8 @@ Options:
 |               | --all             | None    | False    | All notifications can be deleted (they will be recovered during resync) [default: disabled] |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                       |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Delete all notifications:
 
@@ -1546,7 +1571,8 @@ To set up your wallet to receive notifications, follow [these instructions](/chi
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet notifications get --fingerprint 2121994410
@@ -1582,7 +1608,8 @@ Options:
 | -m            | --fee             | TEXT    | False    | The fee for the transaction                                                                                                                                                                                    |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                                                   |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Send a test notification:
 
@@ -1625,7 +1652,8 @@ Options:
 |               | --clawback_time | INTEGER | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature A positive number will enable this feature |
 | -h            | --help                               | None    | False    | Show a help message and exit                                                                                                                                          |
 
-<details><summary>Example 1: send with memo</summary>
+<details>
+<summary>Example 1: send with memo</summary>
 
 Send 1000 mojos with a test memo:
 
@@ -1643,7 +1671,8 @@ Run 'chia wallet get_transaction -f 3792481086 -tx 0x6fbac9409dbdef3cfa8a8fd82be
 
 </details>
 
-<details><summary>Example 2: clawback</summary>
+<details>
+<summary>Example 2: clawback</summary>
 
 Send 1 TXCH and include a 3600-second (1 hour) clawback:
 
@@ -1714,7 +1743,8 @@ Options:
 | -w            | --wallet_type | TEXT    | False    | Choose a specific wallet type to return, choose from the following: [standard_wallet \\| atomic_swap \\| authorized_payee \\| multi_sig \\| custody \\| cat \\| recoverable \\| decentralized_id \\| pooling_wallet \\| nft \\| data_layer \\| data_layer_offer] |
 | -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet show --fingerprint 2121994410
@@ -1777,7 +1807,8 @@ Options:
 | -m            | --hex_message | TEXT    | True     | The hex message you want sign                                                                                                                |
 | -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet sign_message --fingerprint 2121994410 --address xch1jp5thqu3dhwkvvh5p77lvlackddrd9q2zpt58zs6yqr2c4yvregs69ayqr --hex_message 0xdeadbeef
@@ -1810,7 +1841,8 @@ Options:
 | -i            | --index           | INTEGER | True     | Index to set. Must be greater than the current derivation index                                                              |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet update_derivation_index --fingerprint 2121994410 --index 475

@@ -45,7 +45,8 @@ Options:
 |               | --wallet-rpc-port     | INTEGER | False    | The RPC port the wallet service is running on                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |               | --help                | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-<details><summary>Example 1 - select a coin from the wallet with a value of at least 1 XCH (1 trillion mojos)</summary>
+<details>
+<summary>Example 1 - select a coin from the wallet with a value of at least 1 XCH (1 trillion mojos)</summary>
 
 Request:
 
@@ -68,7 +69,8 @@ The "parent_coin_info", "puzzle_hash", and "amount" values are hashed together t
 
 </details>
 
-<details><summary>Example 2 - Push a transaction to the network, currying an inner puzzle hash into the TAIL</summary>
+<details>
+<summary>Example 2 - Push a transaction to the network, currying an inner puzzle hash into the TAIL</summary>
 
 Request:
 
@@ -89,7 +91,8 @@ After pushing the transaction, the new ID and Eve Coin (singleton parent coin) w
 
 </details>
 
-<details><summary>Example 3 - Mint a new CR-CAT</summary>
+<details>
+<summary>Example 3 - Mint a new CR-CAT</summary>
 
 First, select a coin to use for the minting. Flags included in this example (CR-specific flags are in **bold**):
 
@@ -191,7 +194,8 @@ Options:
 | -pr           | --prefix                      | TEXT    | True     | Address prefix [default: xch]                                                                                                                                                                                         |
 |               | --help                        | NONE    | False    | Show a help message and exit                                                                                                                                                                                                                                                              |
 
-<details><summary>Create a coin tree from a CSV file, currying a coin ID that was obtained from the cats command</summary>
+<details>
+<summary>Create a coin tree from a CSV file, currying a coin ID that was obtained from the cats command</summary>
 
 ```bash
 secure_the_bag --tail .\reference_tails\genesis_by_coin_id.clsp.hex --amount 1000000000000 --secure-the-bag-targets-path C:\Users\User\Downloads\spacebucks.csv --prefix txch --curry 0x8f4dbff8df3f6aa9303eb47625cf8f09d885f1ad6a2d440582cb6bd45f53d2e8
@@ -229,7 +233,8 @@ Options:
 | -lw           | --leaf-width                  | INTEGER | True     | Secure the bag leaf width (number of tokens to unwind in one block) [default: 100]                |
 |               | --help                        | NONE    | False    | Show a help message and exit                                                                                                                                                             |
 
-<details><summary>Unwind a bag that has been secured with the above example, using a puzzle hash</summary>
+<details>
+<summary>Unwind a bag that has been secured with the above example, using a puzzle hash</summary>
 
 ```bash
 unwind_the_bag --eve-coin-id 9fe3e95308949cb9c49333f829922dc7118cd3e2fdf365cde669b47852ce3a7b --tail-hash 9c39398afb1d7ffa03a589f60e5e39f2ae4572ff7048e689fe3128c339581b2d --secure-the-bag-targets-path C:\Users\User\Downloads\spacebucks.csv --unwind-fee 500000 --wallet-id 1 --unwind-target-puzzle-hash af85d83ff01ec4b6f37d85d038e68736adc6cc9bb2c48c9d0973605448f73f3f

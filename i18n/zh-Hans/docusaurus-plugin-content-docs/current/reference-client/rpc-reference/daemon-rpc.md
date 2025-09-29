@@ -9,7 +9,8 @@ import TabItem from '@theme/TabItem';
 
 This document provides a comprehensive reference to Chia's Daemon RPC API.
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+  <summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -139,7 +140,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon exit
@@ -178,7 +180,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_routes
@@ -233,7 +236,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_status
@@ -267,7 +271,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_version
@@ -308,7 +313,8 @@ Request Parameters:
 | count                                                             | NUMBER  | False    | Number of addresses to list [Default: 1]                                                    |
 | non_observer_derivation | BOOLEAN | False    | Set to `True` to use non-observer derivation [Default: `False`]                             |
 
-<details><summary>Example 1: default</summary>
+<details>
+<summary>Example 1: default</summary>
 
 The default behavior is to show the first address for all fingerprints.
 
@@ -340,7 +346,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2: custom</summary>
+<details>
+<summary>Example 2: custom</summary>
 
 Show two addresses from one fingerprint, starting at index 100:
 
@@ -387,7 +394,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon is_keyring_locked
@@ -425,7 +433,8 @@ Request Parameters:
 | :------ | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | service | STRING | TRUE     | The service to query; valid examples include, but are not limited to, "chia_data_layer", "chia_data_layer_http", "chia_wallet", "chia_full_node", "chia_harvester", "chia_farmer", "chia_introducer", "chia_timelord", "chia_timelord_launcher", "chia_full_node_simulator", "chia_seeder", "chia_crawler", "wallet_ui" |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Query whether the Chia wallet service is running:
 
@@ -462,7 +471,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon keyring_status
@@ -508,7 +518,8 @@ Request Parameters:
 | :------ | :----- | :------- | :---------------------------------- |
 | service | STRING | TRUE     | The name of the service to register |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon register_service '{"service": "chia_wallet"}'
@@ -545,7 +556,8 @@ Request Parameters:
 | :-------------------------------------- | :----- | :------- | :-------------------------------------------------------------------------------- |
 | current_passphrase | STRING | True     | The current passphrase; if entered correctly, it will be removed from the keyring |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Remove the real passphrase:
 
@@ -564,7 +576,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Attempt to remove a fake passphrase:
 
@@ -600,7 +613,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon running_services
@@ -647,7 +661,8 @@ Request Parameters:
 | passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                                                                                                                                                                                           |
 | save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. [Default: False] [Default: False] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon set_keyring_passphrase '{"current_passphrase": "", "new_passphrase": "12345678", "passphrase_hint": "It has eight characters"}'
@@ -686,7 +701,8 @@ Request Parameters:
 | service | STRING  | True     | The service to start                                                                                                                                   |
 | testing | Boolean | False    | If `true`, then test the start_service RPC [Default: `false`] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Start the wallet service:
 
@@ -727,7 +743,8 @@ Request Parameters:
 | :------ | :----- | :------- | :------------------ |
 | service | STRING | True     | The service to stop |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Stop the wallet service:
 
@@ -767,7 +784,8 @@ Request Parameters:
 | :--- | :----- | :------- | :---------------------------------------------------------------------------------------------------- |
 | key  | STRING | False    | The key to unlock [Default: None] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon unlock_keyring '{"key": "12345678"}'
@@ -805,7 +823,8 @@ Request Parameters:
 | :--- | :----- | :------- | :--------------- |
 | key  | STRING | True     | The key to check |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon validate_keyring_passphrase '{"key": "12345678"}'
@@ -845,7 +864,8 @@ Request Parameters:
 | :----------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | fingerprints | NUMBER | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Show the keys for one specific fingerprint:
 
@@ -886,7 +906,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_plotters
@@ -977,7 +998,8 @@ Request Parameters:
 | :--- | :----- | :------- | :---------------------------------- |
 | id   | STRING | True     | The ID of the plot to stop creating |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon stop_plotting '{"id": "68607640-4dfc-4946-9a0d-186beec3b8f8"}'
@@ -1026,7 +1048,8 @@ Requirements for the mnemonic word list:
 - Each word must be in the [BIP-39 word list](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt)
 - The mnemonic must form a valid private key
 
-<details><summary>Example 1: success</summary>
+<details>
+<summary>Example 1: success</summary>
 
 The following example adheres to each of the above rules:
 
@@ -1045,7 +1068,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2: invalid length</summary>
+<details>
+<summary>Example 2: invalid length</summary>
 
 The mnemonic must be either 12 or 24 words. Else, an error will be returned. For example: Else, an error will be returned. For example:
 
@@ -1064,7 +1088,8 @@ Response:
 
 </details>
 
-<details><summary>Example 3: invalid word</summary>
+<details>
+<summary>Example 3: invalid word</summary>
 
 Each word must be in the BIP-39 word list. Else, an error will be returned. For example: Else, an error will be returned. For example:
 
@@ -1083,7 +1108,8 @@ Response:
 
 </details>
 
-<details><summary>Example 4: Invalid word order</summary>
+<details>
+<summary>Example 4: Invalid word order</summary>
 
 If the mnemonic is 12 or 24 words, and each word is in the BIP-39 word list, the final check is that the words form a valid mnemonic phrase. For example: For example:
 
@@ -1171,7 +1197,8 @@ Request Parameters:
 
 Note that this command will fail if the OS key ring is locked.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon delete_key_by_fingerprint '{"fingerprint": 1542304282}'
@@ -1224,7 +1251,8 @@ Request Parameters: None
 
 Note that this command will fail if the OS key ring is locked.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_all_private_keys
@@ -1269,7 +1297,8 @@ Request Parameters: None
 
 Note that this command will fail if the OS key ring is locked.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_first_private_key
@@ -1308,7 +1337,8 @@ Request Parameters:
 | :---------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
 | fingerprint | INTEGER | False    | The fingerprint to look up [Default: get the first key] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_key_for_fingerprint '{"fingerprint": 1542304282}'
@@ -1348,7 +1378,8 @@ Request Parameters:
 | fingerprint                          | INTEGER | True     | The fingerprint whose key you want to look up                                                                                           |
 | include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_key '{"fingerprint": 1542304282}'
@@ -1391,7 +1422,8 @@ Request Parameters:
 | :----------------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
 | include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_keys
@@ -1436,7 +1468,8 @@ Request Parameters:
 | :---------- | :------ | :------- | :-------------------------------------------- |
 | fingerprint | INTEGER | True     | The fingerprint whose key you want to look up |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_public_key '{"fingerprint": 1542304282}'
@@ -1474,7 +1507,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon get_public_keys
@@ -1519,7 +1553,8 @@ Request Parameters:
 | fingerprint | INTEGER | True     | The fingerprint whose label you want to set |
 | label       | STRING  | True     | The new label                               |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon set_label '{"fingerprint": 1542304282, "label": "New Label"}'
@@ -1575,7 +1610,8 @@ Request Parameters:
 | :---------- | :------ | :------- | :--------------------------------------------- |
 | fingerprint | INTEGER | True     | The fingerprint whose label you want to delete |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc daemon delete_label '{"fingerprint": 1542304282}'

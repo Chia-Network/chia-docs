@@ -27,7 +27,8 @@ Options:
 | -r            | --root-only       | None    | False    | If this flag is set, do not add the proofs to the DB, just output the root from the specified proofs [Default: not set] |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                                |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Add two proofs:
 
@@ -43,7 +44,8 @@ Proofs added to DB successfully!
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Get the root hash of the tree created from adding two proofs:
 
@@ -77,7 +79,8 @@ Options:
 | -c            | --count           | INTEGER | False    | How many results to return [default: 50]                                                  |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet vcs get -f 2108245669
@@ -114,7 +117,8 @@ Options:
 
 Note that if the root is not currently stored in the VC, the command will fail.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Search for a hash currently stored in the VC:
 
@@ -154,7 +158,8 @@ Options:
 |               | --transaction-file | TEXT    | False    | A file to write relevant transactions to                                                                                                                      |
 | -h            | --help             | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 A DID is required in order to mint a new VC. If the proof provider does not already have a DID, use the `did create` command to create one. For example:
 
@@ -234,7 +239,8 @@ Options:
 |               | --transaction-file     | TEXT    | False    | A file to write relevant transactions to                                                                                                                                                                                                                                                                             |
 | -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                                         |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Revoke the proofs from a VC. A few notes: A few notes:
 
@@ -302,7 +308,8 @@ Options:
 |               | --transaction-file     | TEXT    | False    | A file to write relevant transactions to                                                                                                                                                                                                                                                                             |
 | -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                                         |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Update the proofs. A few notes: A few notes:
 

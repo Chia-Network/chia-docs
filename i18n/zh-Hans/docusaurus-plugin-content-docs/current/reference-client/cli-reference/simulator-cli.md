@@ -39,7 +39,8 @@ Options:
 | -a            | --auto-farm                           | BOOLEAN | False    | Enable or Disable auto farming (Default: True)                                |
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                                     |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Use all default values, with no keys present on the local machine.
 
@@ -168,7 +169,8 @@ Genesis block generated, exiting.
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Use all default values, with a key and plots already generated:
 
@@ -205,7 +207,8 @@ Genesis block already exists, exiting.
 
 </details>
 
-<details><summary>Example 3</summary>
+<details>
+<summary>Example 3</summary>
 
 Add a mnemonic seed for a key that does not yet exist on this machine.
 
@@ -307,7 +310,8 @@ Options:
 
 Auto farming is enabled by default. The examples will show you how to disable/enable it.
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Disable auto farming:
 
@@ -323,7 +327,8 @@ Auto farming is now off
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Enable auto farming:
 
@@ -356,7 +361,8 @@ Options:
 | -a            | --target-address  | TEXT    | False    | Block reward address. If not specified, the default address will be used      |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                  |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Farm one transaction block using the default values:
 
@@ -373,7 +379,8 @@ Block Height is now: 2
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Farm multiple transaction blocks:
 
@@ -390,7 +397,8 @@ Block Height is now: 5
 
 </details>
 
-<details><summary>Example 3</summary>
+<details>
+<summary>Example 3</summary>
 
 Farm multiple blocks (transaction or non-transaction):
 
@@ -407,7 +415,8 @@ Block Height is now: 8
 
 </details>
 
-<details><summary>Example 4</summary>
+<details>
+<summary>Example 4</summary>
 
 Farm a transaction block and send the reward to a different address.
 
@@ -490,7 +499,8 @@ Options:
 | -d            | --disable_prompt | None    | False    | Disable confirmation prompt when force reverting, only works in conjunction with `-f` (Default: prompt is enabled)                                                                                                 |
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                                                                                                          |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Revert the transactions from one block and advance the chain by one block:
 
@@ -507,7 +517,8 @@ Block Height is now: 11
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Revert transactions from three blocks and advance the chain by five blocks:
 
@@ -524,7 +535,8 @@ Block Height is now: 17
 
 </details>
 
-<details><summary>Example 3</summary>
+<details>
+<summary>Example 3</summary>
 
 Revert all transactions in the blockchain (note that this could take several minutes):
 
@@ -557,7 +569,8 @@ Options:
 | -w            | --wallet     | None | False    | Enable to start wallet (Default: disabled)             |
 | -h            | --help       | None | False    | Show a help message and exit                                                              |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Use the default values. This will start the daemon and the simulator, but not the wallet:
 
@@ -575,7 +588,8 @@ chia_full_node_simulator: started
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Status before this example: Simulator is running and wallet is not running.
 
@@ -614,7 +628,8 @@ Options:
 | -a            | --show_addresses  | None    | False    | Enable to show the balances of all addresses (Default: disabled)                                                                                         |
 | -h            | --help                                 | None    | False    | Show a help message and exit                                                                                                                                                                |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Show the status using the default values:
 
@@ -655,7 +670,8 @@ Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4ua
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Include key info with the status (CAUTION: this includes the key's seed phrase):
 
@@ -708,7 +724,8 @@ Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4ua
 
 </details>
 
-<details><summary>Example 3</summary>
+<details>
+<summary>Example 3</summary>
 
 Show all coins, including reward coins:
 
@@ -768,7 +785,8 @@ Created at: 2022-09-27 23:50:07
 
 </details>
 
-<details><summary>Example 4</summary>
+<details>
+<summary>Example 4</summary>
 
 Show the balance of each address:
 
@@ -829,7 +847,8 @@ Options: Stop running services
 | -w            | --wallet     | None | False    | Enable to stop the wallet (Default: disabled) |
 | -h            | --help       | None | False    | Show a help message and exit                                                     |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Stop the simulator with the default values:
 
@@ -858,7 +877,8 @@ The response shows that the daemon and wallet are still running:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Stop the simulator, daemon, and wallet:
 

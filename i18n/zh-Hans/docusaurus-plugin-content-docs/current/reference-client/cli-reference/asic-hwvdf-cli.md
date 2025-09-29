@@ -29,7 +29,8 @@ Options:
 | --list             | TEXT    | False    | list available devices and exit                                                                                                        |
 | --help             | None    | False    | Show a help message and exit                                                                                                           |
 
-<details><summary>Example 1 - Run the ASIC software with defaults</summary>
+<details>
+<summary>Example 1 - Run the ASIC software with defaults</summary>
 
 ```bash
 hw_vdf_client 8000 3
@@ -51,7 +52,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2 - Run the ASIC software with auto-frequency, initial frequency, and defined ip</summary>
+<details>
+<summary>Example 2 - Run the ASIC software with auto-frequency, initial frequency, and defined ip</summary>
 
 ```bash
 hw_vdf_client --freq 1500 --auto-freq-period 60 --ip 192.168.0.122 8000 3
@@ -73,7 +75,8 @@ Response:
 
 </details>
 
-<details><summary>Example 3 - Run the ASIC software with defined ip and only 1 vdf (i.e. defaults for cluster)</summary>
+<details>
+<summary>Example 3 - Run the ASIC software with defined ip and only 1 vdf (i.e. defaults for cluster)</summary>
 
 ```bash
 hw_vdf_client --ip 192.168.0.122 8000 1

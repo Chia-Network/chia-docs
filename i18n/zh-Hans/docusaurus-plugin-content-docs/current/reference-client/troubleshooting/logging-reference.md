@@ -13,9 +13,9 @@ Chia blockchain nodes consist of several components that each handle different a
 | OS      | Location                                                                            |
 | ------- | ----------------------------------------------------------------------------------- |
 | Linux   | `~/.chia/mainnet/log/debug.log`                                                     |
-| Windows | `$env:USERPROFILE\.chia\mainnet\log\debug.log`                                  |
+| Windows | `\$env:USERPROFILE\.chia\mainnet\log\debug.log`                                  |
 | Windows | `C:\Users\<username>\.chia\mainnet\log\debug.log`                             |
-| MacOS   | `$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`) |
+| MacOS   | `\$HOME/.chia/mainnet/log/debug.log` (`/Users/<username>/.chia…`) |
 
 ## Log File Management:
 
@@ -181,7 +181,7 @@ You can also use strings from any other log lines in the below command to search
 
 Functionality: Output log lines that contain the string in terminal
 
-Usage: `find "$HOME/.chia/mainnet/log" -type f -exec grep -Hn "[STRING]" {} \;`
+Usage: `find "\$HOME/.chia/mainnet/log" -type f -exec grep -Hn "[STRING]" {} \;`
 
 Options:
 
@@ -192,12 +192,13 @@ Options:
 | `: WARNING`     | WARNING                    | Outputs all warning log lines                        |
 | `proofs. Time:` | INFO                       | Outputs all proof check log lines                    |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
 ```bash
-find "$HOME/.chia/mainnet/log" -type f -exec grep -Hn "ing service" {} \;
+find "\$HOME/.chia/mainnet/log" -type f -exec grep -Hn "ing service" {} \;
 ```
 
 Response:
@@ -229,7 +230,7 @@ You can also use strings from any other log lines in the below command to search
 
 Functionality: Output log lines that contain the string in powershell
 
-Usage: `Get-ChildItem -Path $env:USERPROFILE\.chia\mainnet\log\ -recurse |  Select-String -Pattern "[STRING]"`
+Usage: `Get-ChildItem -Path \$env:USERPROFILE\.chia\mainnet\log\ -recurse |  Select-String -Pattern "[STRING]"`
 
 Options:
 
@@ -240,12 +241,13 @@ Options:
 | `: WARNING`     | WARNING                    | Outputs all warning log lines                        |
 | `proofs. Time:` | INFO                       | Outputs all proof check log lines                    |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
 ```bash
-Get-ChildItem -Path $env:USERPROFILE\.chia\mainnet\log\ -recurse |  Select-String -Pattern "ing service"
+Get-ChildItem -Path \$env:USERPROFILE\.chia\mainnet\log\ -recurse |  Select-String -Pattern "ing service"
 ```
 
 Response:
