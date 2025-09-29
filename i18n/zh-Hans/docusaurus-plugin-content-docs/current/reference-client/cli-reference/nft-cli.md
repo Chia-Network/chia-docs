@@ -17,13 +17,13 @@ Usage: chia wallet nft create [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -di           | --did-id          | TEXT    | False    | DID Id to use                                                                                                                                                 |
-| -n            | --name            | TEXT    | False    | Set the NFT wallet name                                                                                                                                       |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -di           | --did-id          | TEXT    | False    | DID Id to use                                                                                            |
+| -n            | --name            | TEXT    | False    | Set the NFT wallet name                                                                                  |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 :::details Example 1 - Create an NFT wallet that is not linked to a DID
 
@@ -54,6 +54,7 @@ Successfully created an NFT wallet with id 4 on key 4288332900
 ```
 
 :::
+
 <details>
 <summary>Show both of these NFT wallets</summary>
 
@@ -111,25 +112,25 @@ Usage: chia wallet nft mint [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                  | Type    | Required | Description                                                                                                                                                                                                          |
-| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                        |
-| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                                                   |
-| -i            | --id                          | INTEGER | True     | Id of the NFT wallet to use                                                                                                                                                                                          |
-| -u            | --uris                        | TEXT    | True     | Comma separated list of content URIs                                                                                                                                                                                 |
-| -nh           | --hash                        | TEXT    | True     | NFT content hash                                                                                                                                                                                                     |
-| -mu           | --metadata-uris               | TEXT    | False    | Comma separated list of metadata URIs                                                                                                                                                                                |
-| -mh           | --metadata-hash               | TEXT    | False    | NFT metadata hash                                                                                                                                                                                                    |
-| -lu           | --license-uris                | TEXT    | False    | Comma separated list of license URIs                                                                                                                                                                                 |
-| -lh           | --license-hash                | TEXT    | False    | NFT license hash                                                                                                                                                                                                     |
-| -ra           | --royalty-address             | TEXT    | False    | Royalty address                                                                                                                                                                                                      |
-| -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75% [default: 0] |
-| -ta           | --target-address              | TEXT    | False    | Target address                                                                                                                                                                                                       |
-| -en           | --edition-number              | INTEGER | False    | NFT edition number [default: 1]                                                                                                                  |
-| -et           | --edition-total               | INTEGER | False    | NFT edition total number [default: 1]                                                                                                            |
-| -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                                                                |
-|               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default                                                                                                   |
-| -h            | --help                        | None    | False    | Show a help message and exit                                                                                                                                                                                         |
+| Short Command | Long Command                  | Type    | Required | Description                                                                                              |
+| :------------ | :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id                          | INTEGER | True     | Id of the NFT wallet to use                                                                              |
+| -u            | --uris                        | TEXT    | True     | Comma separated list of content URIs                                                                     |
+| -nh           | --hash                        | TEXT    | True     | NFT content hash                                                                                         |
+| -mu           | --metadata-uris               | TEXT    | False    | Comma separated list of metadata URIs                                                                    |
+| -mh           | --metadata-hash               | TEXT    | False    | NFT metadata hash                                                                                        |
+| -lu           | --license-uris                | TEXT    | False    | Comma separated list of license URIs                                                                     |
+| -lh           | --license-hash                | TEXT    | False    | NFT license hash                                                                                         |
+| -ra           | --royalty-address             | TEXT    | False    | Royalty address                                                                                          |
+| -rp           | --royalty-percentage-fraction | INTEGER | False    | NFT royalty percentage fraction in basis points. Example: 175 would represent 1.75% [default: 0]         |
+| -ta           | --target-address              | TEXT    | False    | Target address                                                                                           |
+| -en           | --edition-number              | INTEGER | False    | NFT edition number [default: 1]                                                                          |
+| -et           | --edition-total               | INTEGER | False    | NFT edition total number [default: 1]                                                                    |
+| -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default       |
+| -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example 1 - Mint an NFT that is not associated with a DID</summary>
@@ -307,15 +308,15 @@ Usage: chia wallet nft set_did [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                                                                                   |
-| -di           | --did-id          | TEXT    | True     | DID ID to set on the NFT                                                                                                                                      |
-| -ni           | --nft-coin-id     | TEXT    | True     | Coin ID of the NFT coin to set the DID on                                                                                                                     |
-| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                         |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
+| -di           | --did-id          | TEXT    | True     | DID ID to set on the NFT                                                                                 |
+| -ni           | --nft-coin-id     | TEXT    | True     | Coin ID of the NFT coin to set the DID on                                                                |
+| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example</summary>
@@ -344,13 +345,13 @@ Usage: chia wallet nft sign_message [OPTIONS]
 
 Options:
 
-| Short Command | Long Command                       | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :--------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port                  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint                      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -i            | --nft_id      | TEXT    | True     | NFT ID you want to use for signing                                                                                                                            |
-| -m            | --hex_message | TEXT    | True     | The message you want to sign                                                                                                                                  |
-| -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                                  |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --nft_id          | TEXT    | True     | NFT ID you want to use for signing                                                                       |
+| -m            | --hex_message     | TEXT    | True     | The message you want to sign                                                                             |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example 1: Basic signing</summary>
@@ -477,14 +478,14 @@ Usage: chia wallet nft list [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                                                                                   |
-|               | --num             | INTEGER | False    | Number of NFTs to return                                                                                                                                      |
-|               | --start-index     | INTEGER | False    | Which starting index to start listing NFTs from                                                                                                               |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
+|               | --num             | INTEGER | False    | Number of NFTs to return                                                                                 |
+|               | --start-index     | INTEGER | False    | Which starting index to start listing NFTs from                                                          |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example 1 - Show NFTs from a wallet that is not associated with a DID</summary>
@@ -576,12 +577,12 @@ Usage: chia wallet nft get_info [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin for which to show info                                                                                                                     |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin for which to show info                                                                |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example</summary>
@@ -633,15 +634,15 @@ Usage: chia wallet nft transfer [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                                                                                   |
-| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin to transfer                                                                                                                                |
-| -ta           | --target-address  | TEXT    | True     | Target recipient wallet address                                                                                                                               |
-| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                        |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
+| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin to transfer                                                                           |
+| -ta           | --target-address  | TEXT    | True     | Target recipient wallet address                                                                          |
+| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example 1 - Send an NFT from a wallet not associated with a DID</summary>
@@ -711,17 +712,17 @@ Usage: chia wallet nft add_uri [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required                           | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| -wp           | --wallet-rpc-port | INTEGER | False                              | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False                              | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -i            | --id              | INTEGER | True                               | Id of the NFT wallet to use                                                                                                                                   |
-| -ni           | --nft-coin-id     | TEXT    | True                               | Id of the NFT coin to update                                                                                                                                  |
-| -u            | --uri             | TEXT    | True (see INFO) | Data URI to add to the NFT                                                                                                                                    |
-| -mu           | --metadata-uri    | TEXT    | True (see INFO) | Metadata URI to add to the NFT                                                                                                                                |
-| -lu           | --license-uri     | TEXT    | True (see INFO) | License URI to add to the NFT                                                                                                                                 |
-| -m            | --fee             | TEXT    | False                              | Set the fees per transaction, in XCH. [default: 0]                        |
-| -h            | --help            | None    | False                              | Show a help message and exit                                                                                                                                  |
+| Short Command | Long Command      | Type    | Required        | Description                                                                                              |
+| :------------ | :---------------- | :------ | :-------------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False           | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint     | INTEGER | False           | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id              | INTEGER | True            | Id of the NFT wallet to use                                                                              |
+| -ni           | --nft-coin-id     | TEXT    | True            | Id of the NFT coin to update                                                                             |
+| -u            | --uri             | TEXT    | True (see INFO) | Data URI to add to the NFT                                                                               |
+| -mu           | --metadata-uri    | TEXT    | True (see INFO) | Metadata URI to add to the NFT                                                                           |
+| -lu           | --license-uri     | TEXT    | True (see INFO) | License URI to add to the NFT                                                                            |
+| -m            | --fee             | TEXT    | False           | Set the fees per transaction, in XCH. [default: 0]                                                       |
+| -h            | --help            | None    | False           | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example</summary>
@@ -778,15 +779,15 @@ Usage: chia wallet nft set_did [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Short Command | Long Command      | Type    | Required | Description                                                                                              |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
-| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                                                                                   |
-| -di           | --did-id          | TEXT    | True     | DID Id to set on the NFT                                                                                                                                      |
-| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin on which to set the DID                                                                                                                    |
-| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                        |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| -i            | --id              | INTEGER | True     | Id of the NFT wallet to use                                                                              |
+| -di           | --did-id          | TEXT    | True     | DID Id to set on the NFT                                                                                 |
+| -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin on which to set the DID                                                               |
+| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example</summary>

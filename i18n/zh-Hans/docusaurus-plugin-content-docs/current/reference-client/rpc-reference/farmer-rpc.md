@@ -156,11 +156,11 @@ Options:
 
 Request Parameters:
 
-| Flag                           | Type       | Required | Description                                                                                           |
-| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
+| Flag      | Type       | Required | Description                                                                      |
+| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
-| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
+| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
+| page_size | INTEGER    | True     | The number of entries per page to list                                           |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
@@ -203,11 +203,11 @@ Options:
 
 Request Parameters:
 
-| Flag                           | Type       | Required | Description                                                                                           |
-| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
+| Flag      | Type       | Required | Description                                                                      |
+| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
-| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
+| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
+| page_size | INTEGER    | True     | The number of entries per page to list                                           |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
@@ -250,11 +250,11 @@ Options:
 
 Request Parameters:
 
-| Flag                           | Type       | Required | Description                                                                                           |
-| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
+| Flag      | Type       | Required | Description                                                                      |
+| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
-| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
+| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
+| page_size | INTEGER    | True     | The number of entries per page to list                                           |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
@@ -303,11 +303,11 @@ Options:
 
 Request Parameters:
 
-| Flag                           | Type       | Required | Description                                                                                           |
-| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
+| Flag      | Type       | Required | Description                                                                      |
+| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
-| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
+| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
+| page_size | INTEGER    | True     | The number of entries per page to list                                           |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
@@ -361,8 +361,8 @@ Options:
 
 Request Parameters:
 
-| Flag                             | Type       | Required | Description                                                                                                                                              |
-| :------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag        | Type       | Required | Description                                                                               |
+| :---------- | :--------- | :------- | :---------------------------------------------------------------------------------------- |
 | launcher_id | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
 
 <details>
@@ -467,9 +467,9 @@ Options:
 
 Request Parameters:
 
-| Flag                                                                                  | Type    | Required | Description                                                                                                                                                                                                                                                                                                        |
-| :------------------------------------------------------------------------------------ | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| search_for_private_key | BOOLEAN | True     | List whether the private key (sk) is available for both the farmer and pool keys                                                                                                                                                                                                                |
+| Flag                   | Type    | Required | Description                                                                                                                                                                                                                    |
+| :--------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| search_for_private_key | BOOLEAN | True     | List whether the private key (sk) is available for both the farmer and pool keys                                                                                                                                               |
 | max_ph_to_search       | INTEGER | False    | The maximum number of puzzle hashes to search [Default: 500] If the wallet's derivation index is large, this number may be insufficient to locate the correct puzzle hashes. In this case, you may need to increase this value |
 
 <details>
@@ -563,8 +563,8 @@ Options:
 
 Request Parameters:
 
-| Flag                         | Type       | Required | Description                                                                            |
-| :--------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| Flag    | Type       | Required | Description                                                                            |
+| :------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
 | sp_hash | HEX STRING | True     | The hash of a signage point, listed as `pos_ss_cc_challenge_hash` in the block details |
 
 <details>
@@ -703,10 +703,10 @@ Options:
 
 Request Parameters:
 
-| Flag                                     | Type       | Required | Description                                                                                                                                              |
-| :--------------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag                | Type       | Required | Description                                                                               |
+| :------------------ | :--------- | :------- | :---------------------------------------------------------------------------------------- |
 | launcher_id         | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
-| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                                                                                              |
+| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                               |
 
 <details>
 <summary>Example</summary>
@@ -742,8 +742,8 @@ Options:
 
 Request Parameters:
 
-| Flag                               | Type       | Required | Description                  |
-| :--------------------------------- | :--------- | :------- | :--------------------------- |
+| Flag          | Type       | Required | Description                  |
+| :------------ | :--------- | :------- | :--------------------------- |
 | farmer_target | HEX STRING | False    | Set the farmer reward target |
 | pool_target   | HEX STRING | False    | Set the pool reward target   |
 

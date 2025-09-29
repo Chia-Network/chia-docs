@@ -290,6 +290,7 @@ Install the CAT admin tool:
 ```bash
 pip install .
 ```
+
   </TabItem>
 </Tabs>
 

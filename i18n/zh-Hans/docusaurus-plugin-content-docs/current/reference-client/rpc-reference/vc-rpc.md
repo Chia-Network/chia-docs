@@ -83,9 +83,9 @@ Options:
 
 Request Parameters:
 
-| Parameter                  | Type   | Required | Description                                |
-| :------------------------- | :----- | :------- | :----------------------------------------- |
-| vc_id | STRING | True     | The launcher ID of a Verifiable Credential |
+| Parameter | Type   | Required | Description                                |
+| :-------- | :----- | :------- | :----------------------------------------- |
+| vc_id     | STRING | True     | The launcher ID of a Verifiable Credential |
 
 This RPC returns the `vc_record` representing the specified Verifiable Credential
 
@@ -148,8 +148,8 @@ Options:
 
 Request Parameters:
 
-| Parameter | Type    | Required | Description                                                                                                               |
-| :-------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------ |
+| Parameter | Type    | Required | Description                                           |
+| :-------- | :------ | :------- | :---------------------------------------------------- |
 | start     | INTEGER | False    | The index to start the list at [default: 0]           |
 | count     | INTEGER | False    | The maximum number of results to return [default: 50] |
 
@@ -264,11 +264,11 @@ Options:
 
 Request Parameters:
 
-| Parameter                           | Type   | Required | Description                                                                                                                                              |
-| :---------------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| did_id         | STRING | True     | The ID of the DID that will be minting the VC                                                                                                            |
+| Parameter      | Type   | Required | Description                                                                          |
+| :------------- | :----- | :------- | :----------------------------------------------------------------------------------- |
+| did_id         | STRING | True     | The ID of the DID that will be minting the VC                                        |
 | target_address | STRING | False    | The address where the VC will be sent upon minting [Default: send to minting wallet] |
-| fee                                 | NUMBER | False    | An optional blockchain fee, in mojos                                                                                                                     |
+| fee            | NUMBER | False    | An optional blockchain fee, in mojos                                                 |
 
 This RPC returns a `vc_record` containing all the information of the soon-to-be-confirmed VC, as well as any relevant transactions.
 
@@ -437,14 +437,14 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                        | Type   | Required | Description                                                                                                                                                                             |
-| :--------------------------------------------------------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| vc_id                                       | STRING | True     | The launcher ID of the Verifiable Credential to spend                                                                                                                                   |
-| new_puzhash                                 | None   | False    | The puzzle hash where the VC will be sent (can be derived from an XCH address)                                                                                       |
-| new_proof_hash         | None   | False    | Can be used to update the vc's proofs -- the new root/proof hash                                                                                                                        |
-| provider_inner_puzhash | STRING | False    | Can be used to update the vc's proofs -- the proof provider's inner puzzle hash                                                                                                         |
-| reuse_puzhash                               | None   | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
-| fee                                                              | None   | False    | An optional blockchain fee, in mojos                                                                                                                                                    |
+| Parameter              | Type   | Required | Description                                                                                                         |
+| :--------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------ |
+| vc_id                  | STRING | True     | The launcher ID of the Verifiable Credential to spend                                                               |
+| new_puzhash            | None   | False    | The puzzle hash where the VC will be sent (can be derived from an XCH address)                                      |
+| new_proof_hash         | None   | False    | Can be used to update the vc's proofs -- the new root/proof hash                                                    |
+| provider_inner_puzhash | STRING | False    | Can be used to update the vc's proofs -- the proof provider's inner puzzle hash                                     |
+| reuse_puzhash          | None   | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
+| fee                    | None   | False    | An optional blockchain fee, in mojos                                                                                |
 
 <details>
 <summary>Example</summary>
@@ -656,11 +656,11 @@ Options:
 
 Request Parameters:
 
-| Parameter                                              | Type    | Required | Description                                                                                                                                                                             |
-| :----------------------------------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| vc_parent_id | STRING  | True     | The parent ID of the VC coin                                                                                                                                                            |
-| reuse_puzhash                     | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
-| fee                                                    | INTEGER | False    | An optional blockchain fee, in mojos                                                                                                                                                    |
+| Parameter     | Type    | Required | Description                                                                                                         |
+| :------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------ |
+| vc_parent_id  | STRING  | True     | The parent ID of the VC coin                                                                                        |
+| reuse_puzhash | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
+| fee           | INTEGER | False    | An optional blockchain fee, in mojos                                                                                |
 
 <details>
 <summary>Example</summary>

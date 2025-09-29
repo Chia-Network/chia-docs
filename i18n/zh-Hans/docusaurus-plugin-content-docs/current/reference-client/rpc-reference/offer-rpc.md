@@ -43,11 +43,11 @@ Options:
 
 Request Parameters:
 
-| Flag                          | Type    | Required | Description                                                                                                                                                                                                     |
-| :---------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| trade_id | STRING  | True     | The `trade_id` of the Offer to cancel. Can be retrieved from an Offer file by calling `cdv inspect spendbundles <offer_file>`                                                                   |
-| fee                           | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                               |
-| secure                        | BOOLEAN | False    | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally [Default: `true`] |
+| Flag     | Type    | Required | Description                                                                                                                   |
+| :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| trade_id | STRING  | True     | The `trade_id` of the Offer to cancel. Can be retrieved from an Offer file by calling `cdv inspect spendbundles <offer_file>` |
+| fee      | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                                    |
+| secure   | BOOLEAN | False    | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally [Default: `true`]   |
 
 :::note
 
@@ -89,13 +89,13 @@ Options:
 
 Request Parameters:
 
-| Flag                            | Type    | Required | Description                                                                                                                                                       |
-| :------------------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| secure                          | BOOLEAN | True     | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally                                         |
-| fee                             | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`] |
-| batch_size | NUMBER  | False    | The number of Offers to cancel in one batch [Default: `5`]                                    |
-| cancel_all | BOOLEAN | False    | Cancel all Offers [Default: `false`]                                                          |
-| asset_id   | STRING  | False    | The ID of the asset to cancel; only used when `cancel_all` is `false` [Default: `xch`]        |
+| Flag       | Type    | Required | Description                                                                                               |
+| :--------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
+| secure     | BOOLEAN | True     | If `true`, then "cancel on blockchain," ie spend the coins being offered. If `false`, then cancel locally |
+| fee        | NUMBER  | False    | An optional fee (in mojos) to include with the cancellation [Default: `0`]                                |
+| batch_size | NUMBER  | False    | The number of Offers to cancel in one batch [Default: `5`]                                                |
+| cancel_all | BOOLEAN | False    | Cancel all Offers [Default: `false`]                                                                      |
+| asset_id   | STRING  | False    | The ID of the asset to cancel; only used when `cancel_all` is `false` [Default: `xch`]                    |
 
 <details>
 <summary>Example</summary>
@@ -187,19 +187,19 @@ Options:
 
 Request Parameters:
 
-| Flag                                                      | Type    | Required | Description                                                                                                                                                                                                        |
-| :-------------------------------------------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer                                                     | OBJECT  | True     | A dictionary `[str, int]` of the Offer to create (see the examples below for specifics)                                                                                                         |
-| fee                                                       | NUMBER  | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]                                                         |
-| validate_only                        | BOOLEAN | False    | Set to `true` to verify the validity of a potential Offer, rather than actually creating an Offer [Default: `false`]                           |
-| driver_dict                          | OBJECT  | False    | A dictionary `[str, Any]` containing metadata of the asset being requested, for example an NFT's on-chain metadata                                                                                                 |
-| min_coin_amount | NUMBER  | False    | The minimum coin size to be included in the Offer [Default: `0`]                                                                               |
-| max_coin_amount | NUMBER  | False    | The maximum coin size to be included in the Offer [Default: `0`]                                                                               |
-| solver                                                    |         | False    | Default: None                                                                                                                                                                                      |
-| min_height                           | NUMBER  | False    | The minimum block height that must be reached before this Offer becomes valid [Default: `null` (not used)]                  |
-| min_time                             | NUMBER  | False    | The minimum UNIX timestamp that must be reached before this Offer becomes valid [Default: `null` (not used)]                |
-| max_height                           | NUMBER  | False    | The maximum block height where this Offer is still considered valid, aka the expiry height [Default: `null` (not used)]     |
-| max_time                             | NUMBER  | False    | The maximum UNIX timestamp where this Offer is stil considered valid, aka the expiry timestamp [Default: `null` (not used)] |
+| Flag            | Type    | Required | Description                                                                                                                 |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| offer           | OBJECT  | True     | A dictionary `[str, int]` of the Offer to create (see the examples below for specifics)                                     |
+| fee             | NUMBER  | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]                                                         |
+| validate_only   | BOOLEAN | False    | Set to `true` to verify the validity of a potential Offer, rather than actually creating an Offer [Default: `false`]        |
+| driver_dict     | OBJECT  | False    | A dictionary `[str, Any]` containing metadata of the asset being requested, for example an NFT's on-chain metadata          |
+| min_coin_amount | NUMBER  | False    | The minimum coin size to be included in the Offer [Default: `0`]                                                            |
+| max_coin_amount | NUMBER  | False    | The maximum coin size to be included in the Offer [Default: `0`]                                                            |
+| solver          |         | False    | Default: None                                                                                                               |
+| min_height      | NUMBER  | False    | The minimum block height that must be reached before this Offer becomes valid [Default: `null` (not used)]                  |
+| min_time        | NUMBER  | False    | The minimum UNIX timestamp that must be reached before this Offer becomes valid [Default: `null` (not used)]                |
+| max_height      | NUMBER  | False    | The maximum block height where this Offer is still considered valid, aka the expiry height [Default: `null` (not used)]     |
+| max_time        | NUMBER  | False    | The maximum UNIX timestamp where this Offer is stil considered valid, aka the expiry timestamp [Default: `null` (not used)] |
 
 :::note
 
@@ -696,16 +696,16 @@ Options:
 
 Request Parameters:
 
-| Flag                                                           | Type    | Required | Description                                                                                                                                                                                                                                                                                                                         |
-| :------------------------------------------------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| start                                                          | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                                                                                                                                                                            |
-| end                                                            | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                                                                                                                                                                            |
-| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show Offers that originated from this wallet [Default: `false`]                                                                                                                                                                                |
-| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any Offers with a status of `CONFIRMED` [Default: `false`]                                                                                                                                                                                |
-| include_completed                         | BOOLEAN | False    | If `true`, show completed Offers [Default: `false`]                                                                                                                                                                                                             |
-| sort_key                                  | STRING  | False    | Optionally change the sort order of the results, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
-| reverse                                                        | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                                                                                                                                                               |
-| file_contents                             | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`]                                                                                                                                |
+| Flag                 | Type    | Required | Description                                                                                                                                                                                                                                |
+| :------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start                | NUMBER  | False    | The first Offer to display, inclusive [Default: `0`]                                                                                                                                                                                       |
+| end                  | NUMBER  | False    | The last Offer to display, exclusive [Default: `10`]                                                                                                                                                                                       |
+| exclude_my_offers    | BOOLEAN | False    | If `true`, don't show Offers that originated from this wallet [Default: `false`]                                                                                                                                                           |
+| exclude_taken_offers | BOOLEAN | False    | If `true`, don't show any Offers with a status of `CONFIRMED` [Default: `false`]                                                                                                                                                           |
+| include_completed    | BOOLEAN | False    | If `true`, show completed Offers [Default: `false`]                                                                                                                                                                                        |
+| sort_key             | STRING  | False    | Optionally change the sort order of the results, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
+| reverse              | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                                                                                                                                          |
+| file_contents        | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`]                                                                                                                           |
 
 <details>
 <summary>Example</summary>
@@ -798,9 +798,9 @@ Options:
 
 Request Parameters:
 
-| Flag                               | Type    | Required | Description                                                                                                                                                                                          |
-| :--------------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| trade_id      | STRING  | True     | The `trade_id` of the Offer                                                                                                                                                                          |
+| Flag          | Type    | Required | Description                                                                                                      |
+| :------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| trade_id      | STRING  | True     | The `trade_id` of the Offer                                                                                      |
 | file_contents | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`] |
 
 <details>
@@ -932,9 +932,9 @@ Options:
 
 Request Parameters:
 
-| Flag     | Type    | Required | Description                                                                                                                               |
-| :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| offer    | STRING  | True     | The text of the Offer to summarize                                                                                                        |
+| Flag     | Type    | Required | Description                                                           |
+| :------- | :------ | :------- | :-------------------------------------------------------------------- |
+| offer    | STRING  | True     | The text of the Offer to summarize                                    |
 | advanced | BOOLEAN | False    | Show advanced information, including expiration time [Default: false] |
 
 <details>
@@ -1046,10 +1046,10 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type      | Required | Description                                                                                                                                                |
-| :---- | :-------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer | FILE PATH | True     | The text of the Offer to take (must be in the `PENDING_ACCEPT` state)                                                                   |
-| fee   | NUMBER    | False    | An optional fee (in mojos) to include with the Offer [Default: `0`] |
+| Flag  | Type      | Required | Description                                                           |
+| :---- | :-------- | :------- | :-------------------------------------------------------------------- |
+| offer | FILE PATH | True     | The text of the Offer to take (must be in the `PENDING_ACCEPT` state) |
+| fee   | NUMBER    | False    | An optional fee (in mojos) to include with the Offer [Default: `0`]   |
 
 <details>
 <summary>Example</summary>

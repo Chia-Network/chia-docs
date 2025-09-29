@@ -51,11 +51,12 @@ values={[
 
 Be sure to replace `username` with your actual username for both the `.crt` and `.key` file.```powershell
 wscat -n --cert C:\Users\
-```
+
+````
 
 ```powershell
 wscat -n --cert C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.crt --key C:\Users\<username>\.chia\mainnet\config\ssl\daemon\private_daemon.key -c wss://0.0.0.0:55400
-```
+````
 
   </TabItem>
   <TabItem value="linux">
@@ -306,11 +307,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                              | Type    | Required | Description                                                                                                                                                     |
-| :---------------------------------------------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fingerprints                                                      | NUMBER  | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
-| index                                                             | NUMBER  | False    | Starting index for addresses to list [Default: 0]                                           |
-| count                                                             | NUMBER  | False    | Number of addresses to list [Default: 1]                                                    |
+| Flag                    | Type    | Required | Description                                                                                 |
+| :---------------------- | :------ | :------- | :------------------------------------------------------------------------------------------ |
+| fingerprints            | NUMBER  | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
+| index                   | NUMBER  | False    | Starting index for addresses to list [Default: 0]                                           |
+| count                   | NUMBER  | False    | Number of addresses to list [Default: 1]                                                    |
 | non_observer_derivation | BOOLEAN | False    | Set to `True` to use non-observer derivation [Default: `False`]                             |
 
 <details>
@@ -429,8 +430,8 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type   | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| :------ | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag    | Type   | Required | Description                                                                                                                                                                                                                                                                                                             |
+| :------ | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | service | STRING | TRUE     | The service to query; valid examples include, but are not limited to, "chia_data_layer", "chia_data_layer_http", "chia_wallet", "chia_full_node", "chia_harvester", "chia_farmer", "chia_introducer", "chia_timelord", "chia_timelord_launcher", "chia_full_node_simulator", "chia_seeder", "chia_crawler", "wallet_ui" |
 
 <details>
@@ -552,8 +553,8 @@ Options:
 
 Request Parameters:
 
-| Flag                                    | Type   | Required | Description                                                                       |
-| :-------------------------------------- | :----- | :------- | :-------------------------------------------------------------------------------- |
+| Flag               | Type   | Required | Description                                                                       |
+| :----------------- | :----- | :------- | :-------------------------------------------------------------------------------- |
 | current_passphrase | STRING | True     | The current passphrase; if entered correctly, it will be removed from the keyring |
 
 <details>
@@ -654,11 +655,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                    | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                          |
-| :-------------------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)                                                                                                                                                                                                                                                                             |
-| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long                                                                                                                                                                                                                                                                                    |
-| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                                                                                                                                                                                           |
+| Flag               | Type    | Required | Description                                                                                                                                                                                  |
+| :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| current_passphrase | STRING  | True     | The current passphrase (if none, use an empty string)                                                                                                                                        |
+| new_passphrase     | STRING  | True     | The new passphrase, by default must be at least 8 characters long                                                                                                                            |
+| passphrase_hint    | STRING  | False    | The new passphrase hint, if one is desired                                                                                                                                                   |
 | save_passphrase    | BOOLEAN | False    | Whether to save the new passphrase to your system's secure credential store, thus allowing Chia to access your keys without prompting for your passphrase. [Default: False] [Default: False] |
 
 <details>
@@ -696,9 +697,9 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type    | Required | Description                                                                                                                                            |
-| :------ | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| service | STRING  | True     | The service to start                                                                                                                                   |
+| Flag    | Type    | Required | Description                                                   |
+| :------ | :------ | :------- | :------------------------------------------------------------ |
+| service | STRING  | True     | The service to start                                          |
 | testing | Boolean | False    | If `true`, then test the start_service RPC [Default: `false`] |
 
 <details>
@@ -780,8 +781,8 @@ Options:
 
 Request Parameters:
 
-| Flag | Type   | Required | Description                                                                                           |
-| :--- | :----- | :------- | :---------------------------------------------------------------------------------------------------- |
+| Flag | Type   | Required | Description                       |
+| :--- | :----- | :------- | :-------------------------------- |
 | key  | STRING | False    | The key to unlock [Default: None] |
 
 <details>
@@ -860,8 +861,8 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type   | Required | Description                                                                                                                                                     |
-| :----------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag         | Type   | Required | Description                                                                                 |
+| :----------- | :----- | :------- | :------------------------------------------------------------------------------------------ |
 | fingerprints | NUMBER | False    | List the keys for the specified fingerprints only [Default: list keys for all fingerprints] |
 
 <details>
@@ -959,23 +960,23 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type    | Required | Description                                                                                                                             |
-| :-------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| service   | STRING  | True     | The plotting service to use                                                                                                             |
-| plotter   | STRING  | False    | The plotter to use [Default: "chiapos"]                             |
-| delay     | INTEGER | False    | The number of seconds to delay before starting to plot [Default: 0] |
-| parallel  | BOOLEAN | False    | Set to create multiple plots in parallel [Default: false]           |
-| k         | INTEGER | True     | The k-size of the plot to create                                                                                                        |
-| overrideK | BOOLEAN | True     | Set to `true` to create a plot smaller than k-32                                                                                        |
-| r         | INTEGER | True     | The number of threads to use for creating the plot(s)                                                                |
-| b         | INTEGER | True     | Size of the buffer, in MB                                                                                                               |
-| u         | INTEGER | True     | Number of buckets                                                                                                                       |
-| e         | BOOLEAN | True     | Set to `true` to disable bitfield                                                                                                       |
-| t         | STRING  | True     | The temporary directory where the plot will be created                                                                                  |
-| d         | STRING  | True     | The destination where the plot will be moved after it has been created                                                                  |
-| x         | BOOLEAN | True     | Set to `true` to skip moving the plot after it has been created                                                                         |
-| n         | INTEGER | False    | The number of plots to create [Default: 1]                          |
-| queue     | STRING  | False    | The type of plotting queue [Default: "default"]                     |
+| Flag      | Type    | Required | Description                                                            |
+| :-------- | :------ | :------- | :--------------------------------------------------------------------- |
+| service   | STRING  | True     | The plotting service to use                                            |
+| plotter   | STRING  | False    | The plotter to use [Default: "chiapos"]                                |
+| delay     | INTEGER | False    | The number of seconds to delay before starting to plot [Default: 0]    |
+| parallel  | BOOLEAN | False    | Set to create multiple plots in parallel [Default: false]              |
+| k         | INTEGER | True     | The k-size of the plot to create                                       |
+| overrideK | BOOLEAN | True     | Set to `true` to create a plot smaller than k-32                       |
+| r         | INTEGER | True     | The number of threads to use for creating the plot(s)                  |
+| b         | INTEGER | True     | Size of the buffer, in MB                                              |
+| u         | INTEGER | True     | Number of buckets                                                      |
+| e         | BOOLEAN | True     | Set to `true` to disable bitfield                                      |
+| t         | STRING  | True     | The temporary directory where the plot will be created                 |
+| d         | STRING  | True     | The destination where the plot will be moved after it has been created |
+| x         | BOOLEAN | True     | Set to `true` to skip moving the plot after it has been created        |
+| n         | INTEGER | False    | The number of plots to create [Default: 1]                             |
+| queue     | STRING  | False    | The type of plotting queue [Default: "default"]                        |
 
 ---
 
@@ -1034,9 +1035,9 @@ Options:
 
 Request Parameters:
 
-| Flag     | Type   | Required | Description                                                                                                          |
-| :------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------- |
-| mnemonic | STRING | True     | The mnemonic word list (see below for details)                                                    |
+| Flag     | Type   | Required | Description                                      |
+| :------- | :----- | :------- | :----------------------------------------------- |
+| mnemonic | STRING | True     | The mnemonic word list (see below for details)   |
 | label    | STRING | False    | The label to assign for this key [Default: None] |
 
 Requirements for the mnemonic word list:
@@ -1145,8 +1146,8 @@ Options:
 
 Request Parameters:
 
-| Flag                           | Type   | Required |
-| :----------------------------- | :----- | :------- |
+| Flag      | Type   | Required |
+| :-------- | :----- | :------- |
 | root_path | STRING | True     |
 
 ---
@@ -1333,8 +1334,8 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type    | Required | Description                                                                                                                 |
-| :---------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| Flag        | Type    | Required | Description                                             |
+| :---------- | :------ | :------- | :------------------------------------------------------ |
 | fingerprint | INTEGER | False    | The fingerprint to look up [Default: get the first key] |
 
 <details>
@@ -1373,9 +1374,9 @@ Options:
 
 Request Parameters:
 
-| Flag                                 | Type    | Required | Description                                                                                                                             |
-| :----------------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| fingerprint                          | INTEGER | True     | The fingerprint whose key you want to look up                                                                                           |
+| Flag            | Type    | Required | Description                                                         |
+| :-------------- | :------ | :------- | :------------------------------------------------------------------ |
+| fingerprint     | INTEGER | True     | The fingerprint whose key you want to look up                       |
 | include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
 <details>
@@ -1418,8 +1419,8 @@ Options:
 
 Request Parameters:
 
-| Flag                                 | Type    | Required | Description                                                                                                                             |
-| :----------------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag            | Type    | Required | Description                                                         |
+| :-------------- | :------ | :------- | :------------------------------------------------------------------ |
 | include_secrets | BOOLEAN | False    | Set to `true` to include secrets in the response [Default: `false`] |
 
 <details>

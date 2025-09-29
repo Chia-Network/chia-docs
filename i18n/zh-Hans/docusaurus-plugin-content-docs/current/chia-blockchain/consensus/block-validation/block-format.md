@@ -54,7 +54,6 @@ The code for these changes is held in two primary locations:
 Two important changes went into this update:
 
 1. Allow serializing CLVM in a new, more compact form. This doesn't affect how CLVM is executed, it's just a matter of encoding. It does have some important consequences:
-
    - Farmers can effectively stuff more transactions into blocks, because with a more compact encoding, you can fit more for the same byte-cost.
    - The new implementation can take advantage of the de-duplication in the new serialization format, by caching tree-hashes. This effectively de-duplicates the work of hashing puzzles.
 
@@ -65,12 +64,11 @@ Two important changes went into this update:
 2. The generator ROM implementation was ported from CLVM to Rust. This also doesn't affect the behavior of anything (other than the CLVM cost, as explained below). It just speeds up block validation.
 
    About the generator ROM:
-
    - It is the code that invokes the generator in a block.
    - The return value is a list of spends.
    - The ROM validates all spends by checking the puzzle hashes and calling into all puzzles passing in their solutions.
    - The work done by the ROM no longer charges a CLVM cost, which has two primary benefits:
-      - It allows farmers to put more transactions into blocks.
-      - It makes it easier for the farmer to predict the total cost of a block as it's including transactions.
+     - It allows farmers to put more transactions into blocks.
+     - It makes it easier for the farmer to predict the total cost of a block as it's including transactions.
 
 [CHIP-0011](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0011.md#block-generator-optimizations) contains more info about the generator optimizations.

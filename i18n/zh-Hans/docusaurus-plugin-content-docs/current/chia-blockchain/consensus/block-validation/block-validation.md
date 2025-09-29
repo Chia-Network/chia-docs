@@ -94,8 +94,10 @@ The following sections list all of the required checks to ensure validity of a b
 18. Check unfinished reward chain block hash
 19. Check pool target max height
 20. Check pre-farm puzzle hashes for genesis block.
-   - If pospace has a pool pk, check pool target signature. Should not check this for genesis block.
-   - Otherwise, the plot is associated with a contract puzzle hash, not a public key, so check pool contract ph
+
+- If pospace has a pool pk, check pool target signature. Should not check this for genesis block.
+- Otherwise, the plot is associated with a contract puzzle hash, not a public key, so check pool contract ph
+
 21. Check extension data if applicable. None for mainnet.
 22. Check if foliage block is present
 23. Check foliage block hash
@@ -136,7 +138,7 @@ The following sections list all of the required checks to ensure validity of a b
 13. Check for duplicate outputs in additions.
 14. Check for duplicate spends inside block.
 15. Check if removals exist and were not previously spent. (coin_db up to the fork point + fork block + this_block).
-   Be careful with forks and with ephemeral coins (added and removed in same block).
+    Be careful with forks and with ephemeral coins (added and removed in same block).
 16. Check that the total coin amount for added is \<= removed.
 17. Check that the assert fee sum \<= fees, and that each reserved fee is non-negative.
 18. Check that the fee amount + farmer reward \< maximum coin amount.

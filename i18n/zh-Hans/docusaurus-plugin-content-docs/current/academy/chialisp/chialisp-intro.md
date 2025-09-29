@@ -78,7 +78,7 @@ So let's get started, the first thing you'll want to do is make sure you have th
 ## 常见问题
 
 - **run vs brun:** `run` 用于序列化并运行 Chialisp 谜题，而 `brun` 用于运行 clvm 序列化的谜题，通常用于传递参数。
-- **括号（Parentheses）：**Chialisp 是完全括号前缀表示法编程语言家族的一部分，可以[追溯](https://en.wikipedia.org/wiki/Lisp_(programming_language))到上世纪 50 年代的 LISP 1。 这些语言的一个显而易见的特点是它们使用括号来表示列表（lists）。 建议在编写这些语言时使用具有适当语法高亮功能的集成开发环境，以确保所有括号都处于正确的位置。 为了帮助解决这个问题，这里有一个适用于 Visual Studio 的 [Chialisp 语言服务器扩展](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp)。
+- **括号（Parentheses）：**Chialisp 是完全括号前缀表示法编程语言家族的一部分，可以[追溯](<https://en.wikipedia.org/wiki/Lisp_(programming_language)>)到上世纪 50 年代的 LISP 1。 这些语言的一个显而易见的特点是它们使用括号来表示列表（lists）。 建议在编写这些语言时使用具有适当语法高亮功能的集成开发环境，以确保所有括号都处于正确的位置。 为了帮助解决这个问题，这里有一个适用于 Visual Studio 的 [Chialisp 语言服务器扩展](https://marketplace.visualstudio.com/items?itemName=ChiaNetwork.chialisp)。
 - **前缀表示法：**Chialisp 作为 LISP 家族的一部分，使用前缀表示法。 这意味着函数或运算符首先出现，其参数紧随其后。
 
 ---

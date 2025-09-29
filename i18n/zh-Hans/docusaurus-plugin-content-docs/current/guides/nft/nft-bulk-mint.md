@@ -102,20 +102,20 @@ python -m venv venv
   </TabItem>
   <TabItem value="linux">
 
-```bash
+````bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-```
+````
 
   </TabItem>
   <TabItem value="macos">
 
-```bash
+````bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-```
+````
 
   </TabItem>
 </Tabs>
@@ -145,7 +145,7 @@ If you previously had been running Chia on mainnet, then your peers table will b
 
 - `~/.chia/mainnet/db/peers.dat`
 - `~/.chia/mainnet/wallet/db/wallet_peers.dat`
-:::
+  :::
 
 2. We recommend that you use `INFO` level logging instead of the default `WARNING` level. To do this, run:
 

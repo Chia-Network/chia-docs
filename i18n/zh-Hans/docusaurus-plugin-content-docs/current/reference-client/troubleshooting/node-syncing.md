@@ -54,10 +54,10 @@ values={[
 
     ```
     - Mainnet Introducer: `introducer.chia.net:8444`
-    
+
     Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
     - CNI Operated Full Node: `node.chia.net`
-    
+
     Additionally, you can also visit either of the below websites that are frequently updated with available nodes listening on port 8444:
     - [ChiaNodes.com](https://ChiaNodes.com)
     - [chia.keva.app](https://chia.keva.app)
@@ -69,7 +69,7 @@ values={[
     ```
     - DNS Introducer: `dns-introducer-testnet11.chia.net`
     - Legacy Introducer: `introducer-testnet11.chia.net:58444`
-    
+
     Note: please only use the CNI operated nodes as a last resort for connecting to peers, these nodes might be running different client versions and are not intended to be used as trusted full nodes.
     - CNI Operated Full Node: `testnet11-node.chia.net`
     ```

@@ -61,12 +61,12 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                                                                                                      |
-| :----- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| id     | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                                        |
-| urls   | TEXT    | True     | A list of URLs where the mirror will reside                                                                                      |
+| Flag   | Type    | Required | Description                                                                                                      |
+| :----- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| id     | TEXT    | True     | The hexadecimal ID of the store to mirror                                                                        |
+| urls   | TEXT    | True     | A list of URLs where the mirror will reside                                                                      |
 | amount | INTEGER | True     | The number of mojos to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
-| fee    | TEXT    | False    | Set the fee for the transaction, in mojos                                                                                        |
+| fee    | TEXT    | False    | Set the fee for the transaction, in mojos                                                                        |
 
 <details>
 <summary>Example</summary>
@@ -106,8 +106,8 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type    | Required | Description                                                                                                                                                                     |
-| :--------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Flag       | Type    | Required | Description                                                                                                                                  |
+| :--------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | ids        | TEXT    | False    | A list of hexadecimal store IDs to restore (default: all subscribed stores)                                                                  |
 | override   | BOOLEAN | False    | If `True`, will overwrite files that already exist (default: `False`)                                                                        |
 | foldername | TEXT    | False    | The name of the folder where the files to be restored are located (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`) |
@@ -181,12 +181,12 @@ Options:
 
 Request Parameters:
 
-| Flag                                                      | Type    | Required | Description                                                                                                                                                                                                                            |
-| :-------------------------------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id                                                        | TEXT    | True     | The hexadecimal store ID                                                                                                                                                                                                               |
-| changelist                                                | TEXT    | True     | A string representing the changelist                                                                                                                                                                                                   |
+| Flag            | Type    | Required | Description                                                                                                                                   |
+| :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | TEXT    | True     | The hexadecimal store ID                                                                                                                      |
+| changelist      | TEXT    | True     | A string representing the changelist                                                                                                          |
 | submit_on_chain | BOOLEAN | False    | Specify whether to submit the update to the blockchain (`True`), or to store it locally (`False`). Default: `True` (See info box for details) |
-| fee                                                       | TEXT    | False    | Set the fee for the transaction, in mojos                                                                                                                                                                                              |
+| fee             | TEXT    | False    | Set the fee for the transaction, in mojos                                                                                                     |
 
 :::info
 
@@ -399,11 +399,11 @@ Options:
 
 Request Parameters:
 
-| Flag                          | Type    | Required | Description                                                                                                                                                                                                                                                                                             |
-| :---------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| trade_id | TEXT    | True     | The `trade_id` of the offer. This is displayed with the response of the [make_offer](#make_offer) RPC                                                                                                                                                              |
-| secure                        | BOOLEAN | True     | If `true`, the offer will be canceled on the blockchain, making it impossible to be accepted later. If `false`, the offer will only be canceled locally. We recommend that you set this to `true` unless you are certain that the offer file has not left your computer |
-| fee                           | TEXT    | False    | If `secure` is `true`, this will set the fee for the transaction, in mojos. If `secure` is `false`, the fee will be ignored                                                                                                                                                             |
+| Flag     | Type    | Required | Description                                                                                                                                                                                                                                                             |
+| :------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| trade_id | TEXT    | True     | The `trade_id` of the offer. This is displayed with the response of the [make_offer](#make_offer) RPC                                                                                                                                                                   |
+| secure   | BOOLEAN | True     | If `true`, the offer will be canceled on the blockchain, making it impossible to be accepted later. If `false`, the offer will only be canceled locally. We recommend that you set this to `true` unless you are certain that the offer file has not left your computer |
+| fee      | TEXT    | False    | If `secure` is `true`, this will set the fee for the transaction, in mojos. If `secure` is `false`, the fee will be ignored                                                                                                                                             |
 
 <details>
 <summary>Example </summary>
@@ -479,8 +479,8 @@ Options:
 
 Request Parameters:
 
-| Flag                          | Type | Required | Description              |
-| :---------------------------- | :--- | :------- | :----------------------- |
+| Flag     | Type | Required | Description              |
+| :------- | :--- | :------- | :----------------------- |
 | store_id | TEXT | True     | The hexadecimal store ID |
 
 <details>
@@ -737,10 +737,10 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description                                                                                                   |
-| :--- | :--- | :------- | :------------------------------------------------------------------------------------------------------------ |
+| Flag | Type | Required | Description                                                                              |
+| :--- | :--- | :------- | :--------------------------------------------------------------------------------------- |
 | id   | TEXT | True     | The `coin_id` of the mirror to delete, obtainable by running [get_mirrors](#get_mirrors) |
-| fee  | TEXT | False    | Set the fee for the transaction, in mojos                                                                     |
+| fee  | TEXT | False    | Set the fee for the transaction, in mojos                                                |
 
 <details>
 <summary>Example 1</summary>
@@ -852,11 +852,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                    | Type   | Required | Description                                                                                                                       |
-| :------------------------------------------------------ | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| id                                                      | TEXT   | True     | The hexadecimal store ID                                                                                                          |
-| root_hash                          | TEXT   | False    | The root hash from which to obtain data                                                                                           |
-| page                                                    | NUMBER | False    | Enables pagination of the output and requests a specific page                                                                     |
+| Flag          | Type   | Required | Description                                                                                       |
+| :------------ | :----- | :------- | :------------------------------------------------------------------------------------------------ |
+| id            | TEXT   | True     | The hexadecimal store ID                                                                          |
+| root_hash     | TEXT   | False    | The root hash from which to obtain data                                                           |
+| page          | NUMBER | False    | Enables pagination of the output and requests a specific page                                     |
 | max_page_size | NUMBER | False    | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
 
 :::info
@@ -911,12 +911,12 @@ Options:
 
 Request Parameters:
 
-|                           Flag                          |  Type  | Required | Description                                                                                                                       |
-| :-----------------------------------------------------: | :----: | :------: | :-------------------------------------------------------------------------------------------------------------------------------- |
-|                            id                           |  TEXT  |   True   | The hexadecimal store ID                                                                                                          |
-|              root_hash             |  TEXT  |   False  | The root hash from which to obtain data                                                                                           |
-|                           page                          | NUMBER |   False  | Enables pagination of the output and requests a specific page                                                                     |
-| max_page_size | NUMBER |   False  | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
+|     Flag      |  Type  | Required | Description                                                                                       |
+| :-----------: | :----: | :------: | :------------------------------------------------------------------------------------------------ |
+|      id       |  TEXT  |   True   | The hexadecimal store ID                                                                          |
+|   root_hash   |  TEXT  |  False   | The root hash from which to obtain data                                                           |
+|     page      | NUMBER |  False   | Enables pagination of the output and requests a specific page                                     |
+| max_page_size | NUMBER |  False   | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
 
 :::info
 
@@ -1040,12 +1040,12 @@ Options:
 
 Request Parameters:
 
-| Flag                                                    | Type   | Required | Description                                                                                                                       |
-| :------------------------------------------------------ | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| id                                                      | TEXT   | True     | The hexadecimal store ID                                                                                                          |
-| hash_1                             | TEXT   | True     | The first hash to compare                                                                                                         |
-| hash_2                             | TEXT   | True     | The second hash to compare                                                                                                        |
-| page                                                    | NUMBER | False    | Enables pagination of the output and requests a specific page                                                                     |
+| Flag          | Type   | Required | Description                                                                                       |
+| :------------ | :----- | :------- | :------------------------------------------------------------------------------------------------ |
+| id            | TEXT   | True     | The hexadecimal store ID                                                                          |
+| hash_1        | TEXT   | True     | The first hash to compare                                                                         |
+| hash_2        | TEXT   | True     | The second hash to compare                                                                        |
+| page          | NUMBER | False    | Enables pagination of the output and requests a specific page                                     |
 | max_page_size | NUMBER | False    | Set how many bytes to be included in a page. Only used if pagination is enabled. Default is 40 MB |
 
 :::info
@@ -1225,10 +1225,10 @@ Options:
 
 Request Parameters:
 
-| Flag                          | Type        | Required | Description                                 |
-| :---------------------------- | :---------- | :------- | :------------------------------------------ |
+| Flag     | Type        | Required | Description                                 |
+| :------- | :---------- | :------- | :------------------------------------------ |
 | store_id | TEXT        | True     | The hexadecimal store ID                    |
-| keys                          | STRING LIST | True     | A list of keys for which to retrieve proofs |
+| keys     | STRING LIST | True     | A list of keys for which to retrieve proofs |
 
 The proof is a proof of inclusion that a given key, value pair is in the specified datalayer store by chaining the Merkle hashes up to the published on-chain root hash.
 
@@ -1601,10 +1601,10 @@ Options:
 
 Request Parameters:
 
-| Flag                           | Type | Required | Description                             |
-| :----------------------------- | :--- | :------- | :-------------------------------------- |
-| id                             | TEXT | True     | The hexadecimal store ID                |
-| key                            | TEXT | True     | The hexadecimal key                     |
+| Flag      | Type | Required | Description                             |
+| :-------- | :--- | :------- | :-------------------------------------- |
+| id        | TEXT | True     | The hexadecimal store ID                |
+| key       | TEXT | True     | The hexadecimal key                     |
 | root_hash | TEXT | False    | The root hash from which to obtain data |
 
 :::info
@@ -1985,9 +1985,9 @@ Options:
 
 Request Parameters:
 
-| Flag | Type | Required | Description                                                                              |
-| :--- | :--- | :------- | :--------------------------------------------------------------------------------------- |
-| id   | TEXT | True     | The hexadecimal store ID                                                                 |
+| Flag | Type | Required | Description                                                              |
+| :--- | :--- | :------- | :----------------------------------------------------------------------- |
+| id   | TEXT | True     | The hexadecimal store ID                                                 |
 | urls | TEXT | True     | A list of URLs where the data store resides. This list can be left blank |
 
 <details>
@@ -2086,10 +2086,10 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type | Required | Description                                                                                                                               |
-| :---- | :--- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag  | Type | Required | Description                                                                                            |
+| :---- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
 | offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
-| fee   | TEXT | False    | Set the fee for the offer, in mojos                                                                                                       |
+| fee   | TEXT | False    | Set the fee for the offer, in mojos                                                                    |
 
 <details>
 <summary>Example</summary>
@@ -2246,8 +2246,8 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type | Required | Description                                                                                                                               |
-| :---- | :--- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag  | Type | Required | Description                                                                                            |
+| :---- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
 | offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
 
 <details>
@@ -2308,11 +2308,11 @@ Options:
 
 Request Parameters:
 
-| Flag                                                        | Type   | Required | Description                                                                                                                                                                                                                            |
-| :---------------------------------------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| store_proofs                           | STRING | True     | The proof to verify; requires a `proofs` parameter, which must contain the following parameters: `key_clvm_hash`, `value_clvm_hash`, `node_hash`, `layers`. See the example for usage. |
-| coin_id                                | STRING | True     | The ID of the coin to retrieve                                                                                                                                                                                                         |
-| inner_puzzle_hash | STRING | True     | The proof's inner puzzle hash                                                                                                                                                                                                          |
+| Flag              | Type   | Required | Description                                                                                                                                                                            |
+| :---------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| store_proofs      | STRING | True     | The proof to verify; requires a `proofs` parameter, which must contain the following parameters: `key_clvm_hash`, `value_clvm_hash`, `node_hash`, `layers`. See the example for usage. |
+| coin_id           | STRING | True     | The ID of the coin to retrieve                                                                                                                                                         |
+| inner_puzzle_hash | STRING | True     | The proof's inner puzzle hash                                                                                                                                                          |
 
 Notes about this command:
 
@@ -2410,8 +2410,8 @@ Options:
 
 Request Parameters:
 
-|             Flag             | Type | Required | Description                                                                            |
-| :--------------------------: | :--: | :------: | :------------------------------------------------------------------------------------- |
+|  Flag   | Type | Required | Description                                                                            |
+| :-----: | :--: | :------: | :------------------------------------------------------------------------------------- |
 | node_id | TEXT |   True   | The hex ID of the node to close, obtainable from [`get_connections`](#get_connections) |
 
 <details>
