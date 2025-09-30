@@ -8,7 +8,13 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This guide will help developers to create dApps on Chia's blockchain using [WalletConnect](https://walletconnect.com/). It will be expanded upon as more tools are introduced.
+WalletConnect allows users to connect dApps to their cryptocurrency wallets. Chia's reference wallet supports WalletConnect for a variety of dApps.
+
+:::info
+
+WalletConnect Inc (the company behind the WalletConnect product) has been rebranded to [Reown](https://reown.com/). However, the WalletConnect product lives on in the form of [walletconnect.network](https://walletconnect.network/). We will continue to refer to WalletConnect by its original name on this site.
+
+:::
 
 For more info, see our WalletConnect [command documentation](/reference-client/walletconnect/walletconnect/).
 

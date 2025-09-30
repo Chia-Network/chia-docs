@@ -150,7 +150,7 @@ To install Chia from source, follow our [installation guide](https://docs.chia.n
 
 ### Switching to testnet
 
-By default, Chia will run on mainnet. By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/reference-client/install-and-setup/testnets).
+By default, Chia will run on mainnet. To switch to the testnet (recommended) for this guide, see [our testnet instructions](https://docs.chia.net/reference-client/install-and-setup/testnets).
 
 ## Configuration
 

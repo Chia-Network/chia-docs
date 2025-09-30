@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This guide will show you how to use [WalletConnect](https://walletconnect.com/) to connect a sample dApp to your Chia reference wallet.
+This guide will show you how to use [WalletConnect](https://walletconnect.network/) to connect a sample dApp to your Chia reference wallet.
 
 :::note a few notes
 

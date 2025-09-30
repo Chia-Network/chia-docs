@@ -55,7 +55,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
         <a href='/guides/crash-course/introduction/'>
           <div class="card">
             <div class="card__image">
-              <img src={DevChia} alt='Intro to Developing on Chia' />
+              <img src={DevChia} alt='Intro to Developing on Chia' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -63,31 +63,43 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/crash-course/intro-to-chialisp/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/crash-course/intro-to-chialisp/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={ChialispIntro} alt='Intro to Chialisp' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/crash-course/smart-coins/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/crash-course/smart-coins/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SmartCoins} alt='Intro to Smart Coins' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/crash-course/signatures/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/crash-course/signatures/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SignaturesGuide} alt='Intro to Signatures' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
         <a href='/guides/crash-course/state/'>
           <div class="card">
             <div class="card__image">
-              <img src={State} alt='Intro to State' />
+              <img src={State} alt='Intro to State' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -95,24 +107,32 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/crash-course/inner-puzzles/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/crash-course/inner-puzzles/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={InnerPuzzles} alt='Intro to Inner Puzzles' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/crash-course/cats-offers-nfts/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/crash-course/cats-offers-nfts/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={CatsOffersNfts} alt='Intro to Cats, Offers, and NFTs' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
         <a href='/chialisp-and-typescript/'>
           <div class="card">
             <div class="card__image">
-              <img src={ChialispTypescript} alt='Chialisp and Typescript' />
+              <img src={ChialispTypescript} alt='Chialisp and Typescript' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -134,7 +154,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
         <a href='/guides/nft-developer-guide/'>
           <div class="card">
             <div class="card__image">
-              <img src={Nfts} alt='NFTs'/>
+              <img src={Nfts} alt='NFTs' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -145,7 +165,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
         <a href='/guides/cat-developer-guide/'>
           <div class="card">
             <div class="card__image">
-              <img src={Cats} alt='CATs' />
+              <img src={Cats} alt='CATs' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -156,7 +176,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
         <a href='/guides/datalayer-developer-guide/'>
           <div class="card">
             <div class="card__image">
-              <img src={DataLayer} alt='DataLayer™' />
+              <img src={DataLayer} alt='DataLayer™' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -167,7 +187,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
         <a href='/guides/clawback-developer-guide/'>
           <div class="card">
             <div class="card__image">
-              <img src={Clawback} alt='Clawback' />
+              <img src={Clawback} alt='Clawback' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -178,7 +198,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
         <a href='/guides/offers-developer-guide/'>
           <div class="card">
             <div class="card__image">
-              <img src={Offers} alt='Offers' />
+              <img src={Offers} alt='Offers' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -189,7 +209,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
         <a href='/guides/daos-developer-guide/'>
           <div class="card">
             <div class="card__image">
-              <img src={Daos} alt='DAOs' />
+              <img src={Daos} alt='DAOs' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -200,7 +220,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
         <a href='/guides/verifiable-credentials-guide'>
           <div class="card">
             <div class="card__image">
-              <img src={Vcs} alt='Verifiable Credentials' />
+              <img src={Vcs} alt='Verifiable Credentials' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -222,7 +242,7 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
         <a href='/guides/application-structure-tutorial/'>
           <div class="card">
             <div class="card__image">
-              <img src={AppStructure} alt='Application Structure' />
+              <img src={AppStructure} alt='Application Structure' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -230,17 +250,21 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/custom-puzzle-lock-tutorial/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/custom-puzzle-lock-tutorial/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={PuzzleLock} alt='Custom Puzzle Lock' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
         <a href='/guides/custody-tool/'>
           <div class="card">
             <div class="card__image">
-              <img src={CustodyTool} alt='Custody Tool' />
+              <img src={CustodyTool} alt='Custody Tool' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -248,17 +272,21 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/coin-spend-rpc-tutorial/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/coin-spend-rpc-tutorial/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={RpcCoinSpend} alt='RPC Coin Spend' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
         <a href='/guides/seeder-user-guide/'>
           <div class="card">
             <div class="card__image">
-              <img src={SeederGuide} alt='Seeder User Guide' />
+              <img src={SeederGuide} alt='Seeder User Guide' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -266,17 +294,36 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/simulator-user-guide/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/simulator-user-guide/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SimulatorGuide} alt='Simulator User Guide' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/walletconnect/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/rpc-validation-tool/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SimulatorGuide} alt='RPC Validation Tool' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
+    </c-li>
+    <c-li class="carousel-item">
+      <div class="card-demo">
+        <a href='/guides/walletconnect/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={WalletConnect} alt='WalletConnect' loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </a>
+      </div>
     </c-li>
   </c-ol>
 </section>
@@ -291,24 +338,32 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
   <c-ol class="carousel-inner">
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/why-chia-is-great-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/why-chia-is-great-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={GreatChia} alt='Why Chia is Great' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/developing-applications-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/developing-applications-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={AppDev} alt='Developing Chia Applications' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
         <a href='/guides/tools-and-setup-video-series/'>
           <div class="card">
             <div class="card__image">
-              <img src={ToolsSetup} alt='Tools and Setup' />
+              <img src={ToolsSetup} alt='Tools and Setup' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -319,7 +374,7 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
         <a href='/guides/programming-chialisp-video-series/'>
           <div class="card">
             <div class="card__image">
-              <img src={ProgrammingClsp} alt='Programming in ChiaLisp' />
+              <img src={ProgrammingClsp} alt='Programming in ChiaLisp' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -327,17 +382,21 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/coin-lifecycle-and-testing-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/coin-lifecycle-and-testing-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={CoinLifecycle} alt='Coin Lifecycle' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
         <a href='/guides/singleton-contracts-video-series/'>
           <div class="card">
             <div class="card__image">
-              <img src={SingletonContracts} alt='Singleton Contracts' />
+              <img src={SingletonContracts} alt='Singleton Contracts' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -345,17 +404,21 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/state-coins-announcements-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/state-coins-announcements-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={StateCoinsAnnounce} alt='State, Coins, and Announcements' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
         <a href='/guides/security-arguments-signing-video-series/'>
           <div class="card">
             <div class="card__image">
-              <img src={SecArgSign} alt='Security, Arguments, and Signing' />
+              <img src={SecArgSign} alt='Security, Arguments, and Signing' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -366,7 +429,7 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
         <a href='/guides/announcements-oracles-video-series/'>
           <div class="card">
             <div class="card__image">
-              <img src={AnnounceOracle} alt='Announcements and Oracles' />
+              <img src={AnnounceOracle} alt='Announcements and Oracles' loading="lazy" decoding="async" />
             </div>
           </div>
         </a>
@@ -374,17 +437,25 @@ Dive into the Video Series of Chia Network's Developer Guides for a dynamic lear
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/single-issuance-cat-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/single-issuance-cat-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={SiCats} alt='Single Issuance CATs' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-            <a href='/guides/multiple-issuance-cat-video-series/'>
-              <button class="button button--primary button--block">Learn</button>
-            </a>
+        <a href='/guides/multiple-issuance-cat-video-series/'>
+          <div class="card">
+            <div class="card__image">
+              <img src={MiCats} alt='Multiple Issuance CATs' loading="lazy" decoding="async" />
+            </div>
           </div>
+        </a>
+      </div>
     </c-li>
   </c-ol>
 </section>
