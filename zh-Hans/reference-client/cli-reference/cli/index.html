@@ -5,8 +5,8 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">CLI Overview | Chia Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.chia.net/zh-Hans/img/chia-logo-yellow.png"><meta data-rh="true" name="twitter:image" content="https://docs.chia.net/zh-Hans/img/chia-logo-yellow.png"><meta data-rh="true" property="og:url" content="https://docs.chia.net/zh-Hans/reference-client/cli-reference/cli/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="CLI Overview | Chia Documentation"><meta data-rh="true" name="description" content="This page should provide additional high-level documentation and explanation beyond just chia -h."><meta data-rh="true" property="og:description" content="This page should provide additional high-level documentation and explanation beyond just chia -h."><link data-rh="true" rel="icon" href="/zh-Hans/svg/chia-leaf.svg"><link data-rh="true" rel="canonical" href="https://docs.chia.net/zh-Hans/reference-client/cli-reference/cli/"><link data-rh="true" rel="alternate" href="https://docs.chia.net/reference-client/cli-reference/cli/" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.chia.net/zh-Hans/reference-client/cli-reference/cli/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.chia.net/reference-client/cli-reference/cli/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Overview","item":"https://docs.chia.net/zh-Hans/reference-client/cli-reference/cli"}]}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
 <script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/zh-Hans/assets/css/styles.7564ccf3.css">
-<script src="/zh-Hans/assets/js/runtime~main.d54e1e6d.js" defer="defer"></script>
-<script src="/zh-Hans/assets/js/main.51410a49.js" defer="defer"></script>
+<script src="/zh-Hans/assets/js/runtime~main.62170549.js" defer="defer"></script>
+<script src="/zh-Hans/assets/js/main.57b802a1.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
@@ -132,10 +132,10 @@ The <code>show</code> command can be used to check your current points balance. 
 <p><code>--no_indexes</code>: (optional) Create backup without indexes.</p>
 <p><strong>Database backup notes</strong></p>
 <ul>
-<li>This will vacuum (compress) and backup your database and may take several hours to complete. Use at your own leisure.</li>
+<li>This will vacuum (compress) and backup your database and may take several hours to complete. Use at your own leisure. Use at your own leisure.</li>
 <li>You do not need to stop your Chia node while performing the upgrade.</li>
 <li>The new database file will be written to the same folder as the original with &quot;vacuumed_&quot; prepended to the name.</li>
-<li>To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove &quot;vacuumed_&quot;, and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file.</li>
+<li>To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove &quot;vacuumed_&quot;, and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file. Note the initial start will take extra time as the client verifies the backup db file.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="validate"><a href="https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py" target="_blank" rel="noopener noreferrer">validate</a><a href="#validate" class="hash-link" aria-label="validate的直接链接" title="validate的直接链接">​</a></h2>
 <p>Command: <code>chia db validate [add flags and parameters]</code></p>
@@ -144,7 +144,7 @@ The <code>show</code> command can be used to check your current points balance. 
 <p><code>--validate-blocks</code>: (optional) Validate consistency of properties of the encoded blocks and block records. Note this will increase the validation time.</p>
 <p><strong>Database validate notes</strong></p>
 <ul>
-<li>This will validate your database and may take several hours to complete. Use at your own leisure.</li>
+<li>This will validate your database and may take several hours to complete. Use at your own leisure. Use at your own leisure.</li>
 <li>You do not need to stop your Chia node while performing the upgrade.</li>
 <li>This will start by processing the latest block and traverse to the first block.</li>
 </ul>
@@ -165,9 +165,8 @@ The <code>show</code> command can be used to check your current points balance. 
 <p>Command: <code>chia keys derive child-key [OPTIONS]</code></p>
 <p><strong>Flags</strong></p>
 <p><code>-t</code>, <code>--type</code> <code>[farmer|pool|wallet|local|backup|singleton|pool_auth]</code>: Type of child key to derive.</p>
-<p><code>-p</code>, <code>--derive-from-hd-path</code> <code>[TEXT]</code>: Derive child keys rooted from a specific HD path. Indices ending in an &#x27;n&#x27; indicate that non-observer derivation should used at that index.</p>
-<br>
-<p>Example HD path: m/12381n/8444n/2/</p>
+<p><code>-p</code>, <code>--derive-from-hd-path</code> <code>[TEXT]</code>: Derive child keys rooted from a specific HD path. Indices ending in an &#x27;n&#x27; indicate that non-observer derivation should used at that index. <br>
+Example HD path: m/12381n/8444n/2/</p>
 <p><code>-i</code>, <code>--index</code> <code>[INTEGER]</code>: Index of the first child key to derive. (Index 0 is the first child key.)</p>
 <p><code>-n</code>, <code>--count</code> <code>[INTEGER]</code>: Number of child keys to derive, starting at index.</p>
 <p><code>-d</code>, <code>--non-observer-derivation</code>: Derive keys using non-observer derivation. [default: False]</p>
