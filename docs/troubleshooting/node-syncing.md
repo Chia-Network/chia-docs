@@ -22,7 +22,7 @@ Using the GUI:
 1. Download the torrent file from https://www.chia.net/downloads/#database-checkpoint (mainnet and testnet database torrents are available)
 2. Use a torrent client to download the full db (bittorrent, qbittorrent, and transmission have be used successfully for this)
 3. Unpack/reassemble the torrent file that was downloaded (on windows one can use 7zip, Mac and linux have built in tools that work for this)
-4. Move the db and associated files to the correct folder (`~\.chia\mainnet\db` is the default location for these files)
+4. Move the db and associated files to the correct folder (`~/.chia/mainnet/db/` is the default location for these files)
 
 Using the CLI (Linux and MacOS only):
 
@@ -50,19 +50,19 @@ sudo apt install aria2
 3. Download the torrent using the network identifier set earlier. Note this can take a couple of hours depending on network speeds.
 
 ```bash
-aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir=~/Downloads
+aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir="$HOME/Downloads"
 ```
 
 4. Unpack the DB using the network identifier and wildcard for the date in the file name
 
 ```bash
-ARCHIVE=$(find ~/Downloads -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this may take upwards of 35 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C ~/Downloads || { echo "Error: Extraction failed, please verify the file downloaded properly and try again"; } }
+ARCHIVE=$(find "$HOME/Downloads" -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this may take upwards of 35 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C "$HOME/Downloads" || { echo "Error: Extraction failed, please verify the file downloaded properly and try again"; } }
 ```
 
 5. Move the db and associated files to the correct folder. Make sure to update the final directory path if needed and note that any existing files with the same names will be overwritten.
 
 ```bash
-echo "Moving files to Chia directory - this may take upwards of 5 minutes with no visible progress..." && mv -f ~/Downloads/blockchain_v2_$NETWORK.sqlite ~/.chia/mainnet/db/ && mv -f ~/Downloads/height-to-hash ~/.chia/mainnet/db/ && mv -f ~/Downloads/sub-epoch-summaries ~/.chia/mainnet/db/
+echo "Moving files to Chia directory - this may take upwards of 5 minutes with no visible progress..." && mv -f "$HOME/Downloads/blockchain_v2_$NETWORK.sqlite" ~/.chia/mainnet/db/ && mv -f "$HOME/Downloads/height-to-hash" ~/.chia/mainnet/db/ && mv -f "$HOME/Downloads/sub-epoch-summaries" ~/.chia/mainnet/db/
 ```
 
   </TabItem>
@@ -83,19 +83,19 @@ brew install aria2
 3. Download the torrent using the network identifier set earlier. Note this can take a couple of hours depending on network speeds.
 
 ```bash
-aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir=~/Downloads
+aria2c --seed-time=0 "https://torrents.chia.net/databases/$NETWORK/$NETWORK.latest.tar.gz.torrent" --dir="$HOME/Downloads"
 ```
 
 4. Unpack the DB using the network identifier and wildcard for the date in the file name
 
 ```bash
-ARCHIVE=$(find ~/Downloads -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this may take upwards of 35 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C ~/Downloads || { echo "Error: Extraction failed, please verify the file downloaded properly and try again"; } }
+ARCHIVE=$(find "$HOME/Downloads" -name "$NETWORK.*.tar.gz" -type f | sort -r | head -n1) && echo "Extracting $ARCHIVE - this may take upwards of 35 minutes with no visible progress..." && { tar -xf "$ARCHIVE" -C "$HOME/Downloads" || { echo "Error: Extraction failed, please verify the file downloaded properly and try again"; } }
 ```
 
 5. Move the db and associated files to the correct folder. Make sure to update the final directory path if needed and note that any existing files with the same names will be overwritten.
 
 ```bash
-echo "Moving files to Chia directory - this may take upwards of 5 minutes with no visible progress..." && mv -f ~/Downloads/blockchain_v2_$NETWORK.sqlite ~/.chia/mainnet/db/ && mv -f ~/Downloads/height-to-hash ~/.chia/mainnet/db/ && mv -f ~/Downloads/sub-epoch-summaries ~/.chia/mainnet/db/
+echo "Moving files to Chia directory - this may take upwards of 5 minutes with no visible progress..." && mv -f "$HOME/Downloads/blockchain_v2_$NETWORK.sqlite" ~/.chia/mainnet/db/ && mv -f "$HOME/Downloads/height-to-hash" ~/.chia/mainnet/db/ && mv -f "$HOME/Downloads/sub-epoch-summaries" ~/.chia/mainnet/db/
 ```
 
   </TabItem>
