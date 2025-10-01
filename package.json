@@ -21,7 +21,7 @@
   "dependencies": {
     "@docsearch/react": "^4.1.0",
     "@docusaurus/core": "^3.5.2",
-    "@docusaurus/plugin-google-gtag": "^3.8.1",
+    "@docusaurus/plugin-google-gtag": "^3.9.1",
     "@docusaurus/preset-classic": "^3.8.1",
     "@easyops-cn/docusaurus-search-local": "^0.52.1",
     "@mdx-js/react": "^3.1.1",
