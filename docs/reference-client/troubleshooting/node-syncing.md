@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 :::note
 This process assumes you already have chia installed and all files are present in their default locations, to confirm make sure the `~/.chia/mainnet/db/` directory exists.
 
-If you are upgrading from a version prior to Chia 2.0.0, verify your config file has the correct value under the `full_node` section for `database_path` (v1 vs the current v2):
+If you are upgrading from a version prior to Chia 2.1.0, verify your config file (`~/.chia/mainnet/config/config.yaml`) has the correct value under the `full_node` section for `database_path` (v1 vs the current v2):
 `db/blockchain_v2_CHALLENGE.sqlite`
 
 When starting chia for the first time with the database snapshot it can take upwards of 30 minutes for it to verify the db and load.  
