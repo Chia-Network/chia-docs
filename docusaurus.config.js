@@ -1,5 +1,5 @@
-const math = require('remark-math');
-const katex = require('rehype-katex');
+const math = require('remark-math').default;
+const katex = require('rehype-katex').default;
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (
   module.exports = {
@@ -9,7 +9,11 @@ const katex = require('rehype-katex');
     url: 'https://docs.chia.net',
     baseUrl: '/',
     onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
+    markdown: {
+      hooks: {
+        onBrokenMarkdownLinks: 'warn',
+      },
+    },
     favicon: '/svg/chia-leaf.svg',
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
