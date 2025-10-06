@@ -550,8 +550,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* Image optimization for better performance */
 img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  image-rendering: auto;
   will-change: transform;
 }
 
