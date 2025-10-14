@@ -40,20 +40,8 @@ chia configure --testnet true
 
 This step is optional, but it will speed up syncing with the testnet
 
-- Linux users: `wget https://databases.chia.net/file/chia-public-databases/blockchain_v2_testnet10.sqlite.gz` while in the directory (a v1 DB is also available, but no longer updated).
-- Windows users: download it from [https://downloads.chia.net/testnet10/](https://downloads.chia.net/testnet10/) and move it to the db folder in the mainnet/ directory in the Chia root folder (i.e. \~/.chia/mainnet/db is the database directory).
-
-:::note
-
-_Make sure to unzip the database before continuing to the next step._
-
-:::
-
-:::tip
-
-Prior to starting your node, it is recommended to delete `peers.dat`, located in `~/.chia/mainnet/db`. If you don't delete this file you might see `WARNING  Invalid handshake with peer` in your log file. The reason for this is that peers.dat will contain mainnet peers, which are not running on the testnet. If you do see these warnings, there's no requirement to take further action -- they'll eventually stop appearing as your invalid peers are replaced with valid ones.
-
-:::
+The process for using the official database snapshot torrent can be found here:
+https://docs.chia.net/reference-client/troubleshooting/node-syncing/#using-the-official-database-snapshot-torrent
 
 ### Start your node and connect to peers
 
