@@ -59,7 +59,7 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet, you can download it from the [iOS App Store](https://apps.apple.com/app/chia-signer/id6504493785).
 
-Note: The Chia Signer app currently is only built for iOS devices. We will build an Android version of the app in the future.
+  Note: The Chia Signer app currently is only built for iOS devices. We will build an Android version of the app in the future.
 
   <div style={{ textAlign: 'left' }}>
     <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>

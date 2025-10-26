@@ -4,8 +4,7 @@ title: RPC Overview
 slug: /reference-client/rpc-reference/rpc
 ---
 
-<details>
-  <summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -238,14 +237,13 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                       |
-| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Type   | Required | Description                                                                                                                                                                                                 |
+| :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | STRING | True     | The service to query for its log level; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_log_level
@@ -287,18 +285,17 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                   |
-| :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type   | Required | Description                                                                                                                                                                                             |
+| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | STRING | True     | Set the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters:
 
-| Flag  | Type   | Required | Description                                                                                                                                   |
-| :---- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag  | Type   | Required | Description                                                                                                                                                   |
+| :---- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | level | STRING | True     | The log level to set for the designated service; valid levels are: "CRITICAL", "FATAL", "ERROR", "WARN", "WARNING", "INFO", "DEBUG", "NOTSET" |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet set_log_level '
@@ -345,14 +342,13 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                     |
-| :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type   | Required | Description                                                                                                                                                                                               |
+| :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | STRING | True     | Reset the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet reset_log_level

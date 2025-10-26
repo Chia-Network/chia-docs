@@ -6,9 +6,6 @@ slug: /reference-client/getting-started/farming-guide
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import WalletKeyDetails from '@site/static/img/troubleshooting/wallet_key_details.png';
-import WalletKeysPublic from '@site/static/img/faq/wallet_keys_public_key.png';
-import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
 
 So you want to be a Chia farmer? You've come to the right place!
 
@@ -202,9 +199,9 @@ This screen shows your node's syncing status. In order to farm Chia, your node n
 
 1. Sync from genesis -- the above image shows this happening. Your node will connect with up to 80 peers and download information for each block. This is the most secure way to sync a node, and the only way to be sure that the information is accurate. However, it will take at least a few days, and possibly a week or more to sync from genesis, depending on your node's speed, your internet connection, and the quality of the peers to which you connect.
 2. Download a checkpoint database -- this option will allow you to sync much faster, but you have to trust that the information is accurate. For most users, this will be a worthwhile tradeoff.
-   - Head to our official [checkpoint download page](https://www.chia.net/downloads/#database-checkpoint) and click the `Torrent` link for the mainnet Database.
-   - When your download has completed, use [BitTorrent](https://www.bittorrent.com/) to open it; be sure to verify it with the checksum listed on the download page.
-   - Move the database to the appropriate destination (see below).
+  - Head to our official [checkpoint download page](https://www.chia.net/downloads/#database-checkpoint) and click the `Torrent` link for the mainnet Database.
+  - When your download has completed, use [BitTorrent](https://www.bittorrent.com/) to open it; be sure to verify it with the checksum listed on the download page.
+  - Move the database to the appropriate destination (see below).
 
 :::warning
 
@@ -299,7 +296,7 @@ Pools typically require you to wait for 30 minutes before leaving. This is to pr
 
 :::info
 
-Chia's pooling protocol has several significant advantages over pools on other blockchains. Read more about these advantages, as well as the technical details of how the protocol works, in our [pooling section](/chia-blockchain/introduction#矿池pooling).
+Chia's pooling protocol has several significant advantages over pools on other blockchains. Read more about these advantages, as well as the technical details of how the protocol works, in our [pooling section](/docs/chia-blockchain/introduction.md#pooling).
 
 :::
 

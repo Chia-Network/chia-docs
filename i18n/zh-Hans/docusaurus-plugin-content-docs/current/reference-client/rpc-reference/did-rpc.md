@@ -7,8 +7,7 @@ slug: /reference-client/rpc-reference/did-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<details>
-<summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -45,17 +44,16 @@ Options:
 
 Request Parameters:
 
-| Parameter                | Required | Description                                                                                                                 |
-| :----------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| wallet_type              | True     | This must be set to `did_wallet` in order to create a DID wallet                                                            |
-| did_type                 | True     | Set this to `new` to create a new DID                                                                                       |
-| amount                   | True     | Number of mojos to add to the DID initially. Minimum value is `1`                                                           |
-| backup_dids              | True     | A list of DIDs to be used for recovery. Must match actual DIDs                                                              |
+| Parameter                                                                                                    | Required | Description                                                                                                                                 |
+| :----------------------------------------------------------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| wallet_type                                                                             | True     | This must be set to `did_wallet` in order to create a DID wallet                                                                            |
+| did_type                                                                                | True     | Set this to `new` to create a new DID                                                                                                       |
+| amount                                                                                                       | True     | Number of mojos to add to the DID initially. Minimum value is `1`                                                           |
+| backup_dids                                                                             | True     | A list of DIDs to be used for recovery. Must match actual DIDs                                                              |
 | num_of_backup_ids_needed | True     | The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
-| fee                      | False    | An optional blockchain fee, in mojos                                                                                        |
+| fee                                                                                                          | False    | An optional blockchain fee, in mojos                                                                                                        |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet create_new_wallet '{"wallet_type": "did_wallet", "did_type": "new", "amount": 1, "backup_dids": ["did:chia:13p5fdxgm8e2pngdwp8m088t0etp7rgzx9ye2ju8v5ackcyg7t9nqx2um83"], "num_of_backup_ids_needed": 1, "fee": 10000000}'
@@ -120,15 +118,14 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                  |
-| :-------- | :------- | :------------------------------------------- |
+| Parameter                      | Required | Description                                  |
+| :----------------------------- | :------- | :------------------------------------------- |
 | wallet_id | True     | The Wallet ID for which to create the attest |
 | coin_name | True     | The coin to use for the attest               |
-| pubkey    | True     | The public key to use for the attest         |
-| puzhash   | True     | The puzzle hash to use for the attest        |
+| pubkey                         | True     | The public key to use for the attest         |
+| puzhash                        | True     | The puzzle hash to use for the attest        |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 For this example, we'll use a pre-existing DID. First, obtain the `coin_id` (`coin_name`):
 
@@ -230,12 +227,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                        |
-| :-------- | :------- | :----------------------------------------------------------------- |
+| Parameter                      | Required | Description                                                        |
+| :----------------------------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the coin info |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_create_backup_file '{"wallet_id": 3}' > wallet2.bak
@@ -271,15 +267,14 @@ Options:
 
 Request Parameters:
 
-| Parameter          | Type   | Required | Description                                                                                                                         |
-| :----------------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| coin_id            | STRING | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
+| Parameter                                                    | Type   | Required | Description                                                                                                                                         |
+| :----------------------------------------------------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| coin_id                                 | STRING | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
 | recovery_list_hash | STRING | False    | Override the recovery list hash of the DID. Only set this if your last DID spend updated the recovery list                          |
-| num_verification   | NUMBER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
-| metadata           | STRING | False    | The new whole metadata in json format                                                                                               |
+| num_verification                        | NUMBER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
+| metadata                                                     | STRING | False    | The new whole metadata in json format                                                                                                               |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 If the DID belongs to the current wallet, the command should succeed:
 
@@ -298,8 +293,7 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 If the DID does not belong to this wallet, the command will fail:
 
@@ -332,12 +326,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                        |
-| :-------- | :------- | :----------------------------------------------------------------- |
+| Parameter                      | Required | Description                                                        |
+| :----------------------------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the coin info |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_get_current_coin_info '{"wallet_id": 3}'
@@ -375,12 +368,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                   |
-| :-------- | :------- | :------------------------------------------------------------ |
+| Parameter                      | Required | Description                                                   |
+| :----------------------------- | :------- | :------------------------------------------------------------ |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the DID info |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_get_did '{"wallet_id": 3}'
@@ -416,12 +408,11 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type   | Required | Description                                                                       |
-| :------ | :----- | :------- | :-------------------------------------------------------------------------------- |
+| Flag                         | Type   | Required | Description                                                                                          |
+| :--------------------------- | :----- | :------- | :--------------------------------------------------------------------------------------------------- |
 | coin_id | NUMBER | True     | The coin ID of the DID get info (can be in the `0x618...` or `did:chia:16` format |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_get_info '{"coin_id": "0x618a2eee48b111517cbd4f8d11889dc78396c9bcbad11c135dcbedb12f60b58b"}'
@@ -463,12 +454,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                                   |
-| :-------- | :------- | :---------------------------------------------------------------------------- |
+| Parameter                      | Required | Description                                                                   |
+| :----------------------------- | :------- | :---------------------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the recovery information |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_get_information_needed_for_recovery '{"wallet_id": 2}'
@@ -509,12 +499,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                        |
-| :-------- | :------- | :----------------------------------------------------------------- |
+| Parameter                      | Required | Description                                                        |
+| :----------------------------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the metadata list |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_get_metadata '{"wallet_id": 3}'
@@ -552,12 +541,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                         |
-| :-------- | :------- | :------------------------------------------------------------------ |
+| Parameter                      | Required | Description                                                         |
+| :----------------------------- | :------- | :------------------------------------------------------------------ |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the public key |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_get_pubkey '{"wallet_id": 2}'
@@ -591,12 +579,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                        |
-| :-------- | :------- | :----------------------------------------------------------------- |
+| Parameter                      | Required | Description                                                        |
+| :----------------------------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the recovery list |
 
-<details>
-<summary>Example:</summary>
+<details><summary>Example:</summary>
 
 ```json
 chia rpc wallet did_get_recovery_list '{"wallet_id": 3}'
@@ -635,12 +622,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                              |
-| :-------- | :------- | :------------------------------------------------------- |
+| Parameter                      | Required | Description                                              |
+| :----------------------------- | :------- | :------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet on which to get the name |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_get_wallet_name '{"wallet_id": 3}'
@@ -675,14 +661,13 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type   | Required | Description                                                     |
-| :------------------- | :----- | :------- | :-------------------------------------------------------------- |
+| Flag                                      | Type   | Required | Description                                                     |
+| :---------------------------------------- | :----- | :------- | :-------------------------------------------------------------- |
 | wallet_id            | NUMBER | True     | The Wallet ID of the DID wallet from which to spend the message |
 | coin_announcements   | LIST   | False    | A list of coin announcements to include with the spend          |
 | puzzle_announcements | LIST   | False    | A list of puzzle announcements to include with the spend        |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_message_spend '{"wallet_id": 5}'
@@ -729,16 +714,15 @@ Options:
 
 Request Parameters:
 
-| Parameter   | Required | Description                                                                                                     |
-| :---------- | :------- | :-------------------------------------------------------------------------------------------------------------- |
-| wallet_id   | True     | The Wallet ID of the DID wallet to recover                                                                      |
-| attest_data | True     | A list of attest files to be used for recovery                                                                  |
-| pubkey      | False    | The public key of the wallet to recover. If this is not provided, a temporary public key will be used instead   |
-| puzhash     | False    | The puzzle hash of the wallet to recover. If this is not provided, a temporary puzzle hash will be used instead |
-| fee         | False    | An optional blockchain fee, in mojos                                                                            |
+| Parameter                        | Required | Description                                                                                                                     |
+| :------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| wallet_id   | True     | The Wallet ID of the DID wallet to recover                                                                                      |
+| attest_data | True     | A list of attest files to be used for recovery                                                                                  |
+| pubkey                           | False    | The public key of the wallet to recover. If this is not provided, a temporary public key will be used instead   |
+| puzhash                          | False    | The puzzle hash of the wallet to recover. If this is not provided, a temporary puzzle hash will be used instead |
+| fee                              | False    | An optional blockchain fee, in mojos                                                                                            |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 There are several steps involved in performing a DID recovery spend. We'll go through them one at a time here.
 
@@ -1069,13 +1053,12 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                              |
-| :-------- | :------- | :------------------------------------------------------- |
+| Parameter                      | Required | Description                                              |
+| :----------------------------- | :------- | :------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet on which to set the name |
-| name      | True     | The new name of the DID wallet                           |
+| name                           | True     | The new name of the DID wallet                           |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_set_wallet_name '{"wallet_id": 3, "name": "My DID Wallet"}'
@@ -1131,16 +1114,15 @@ Options:
 
 Request Parameters:
 
-| Parameter          | Required | Description                                                                                                                                                                              |
-| :----------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id          | True     | The Wallet ID of the DID wallet to transfer                                                                                                                                              |
-| inner_address      | True     | The address of the inner puzzle to which to transfer the DID                                                                                                                             |
-| fee                | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| with_recovery_info | False    | If `True`, transfer recovery info [Default: `True`]                                                                                                                                      |
-| reuse_puzhash      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Parameter                                                    | Required | Description                                                                                                                                                                                                              |
+| :----------------------------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                               | True     | The Wallet ID of the DID wallet to transfer                                                                                                                                                                              |
+| inner_address                           | True     | The address of the inner puzzle to which to transfer the DID                                                                                                                                                             |
+| fee                                                          | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
+| with_recovery_info | False    | If `True`, transfer recovery info [Default: `True`]                                                                                                  |
+| reuse_puzhash                           | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_transfer_did '{"wallet_id": 4, "inner_address": "txch1r2hc8zaxmqetkwuqz99nspwa7dlhnyx6uuxlt8srrsd2n7pscwfqgjhy7h"}'
@@ -1220,15 +1202,14 @@ Options:
 
 Request Parameters:
 
-| Parameter     | Required | Description                                                                                                                                                                              |
-| :------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id     | True     | The Wallet ID of the DID wallet for which to update the metadata                                                                                                                         |
-| metadata      | False    | The updated metadata                                                                                                                                                                     |
-| fee           | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| Parameter                          | Required | Description                                                                                                                                                                                                              |
+| :--------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id     | True     | The Wallet ID of the DID wallet for which to update the metadata                                                                                                                                                         |
+| metadata                           | False    | The updated metadata                                                                                                                                                                                                     |
+| fee                                | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
 | reuse_puzhash | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet did_update_metadata '{"wallet_id": 3, "metadata": {"foo": "bar", "something": 5}}'
@@ -1261,16 +1242,15 @@ Options:
 
 Request Parameters:
 
-| Parameter                  | Required | Description                                                                                                                                                                              |
-| :------------------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id                  | True     | The Wallet ID of the DID wallet for which to update the recovery IDs                                                                                                                     |
-| new_list                   | True     | The new recovery ID list. Each item from this list will be appended to the existing list                                                                                                 |
-| num_verifications_required | False    | Optionally set the number of IDs required for wallet recovery. If not set, then the entire updated list will be required by default                                                      |
-| fee                        | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| reuse_puzhash              | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Parameter                                                            | Required | Description                                                                                                                                                                                                              |
+| :------------------------------------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                       | True     | The Wallet ID of the DID wallet for which to update the recovery IDs                                                                                                                                                     |
+| new_list                                        | True     | The new recovery ID list. Each item from this list will be appended to the existing list                                                                                                                 |
+| num_verifications_required | False    | Optionally set the number of IDs required for wallet recovery. If not set, then the entire updated list will be required by default                                                                      |
+| fee                                                                  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
+| reuse_puzhash                                   | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 To show an example, first we need at least one DID to be used for recovery. In this case, we'll create two and use them both.
 

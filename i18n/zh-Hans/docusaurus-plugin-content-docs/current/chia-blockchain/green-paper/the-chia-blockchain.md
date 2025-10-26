@@ -18,11 +18,11 @@ In this section we finally outline the design of the $\textsf{Chia}$ blockchain
 
 ### 5.1.1 Variables
 
-| 变量             | Definition                                                                                                                 |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 变量                                    | Definition                                                                                                                                                                    |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | $T_i$            | Time parameter of $i$-th slot (# of VDF steps per sub-slot). Recalibrated once per day for 10 minutes per sub-slot target. |
-| $\mathsf{spi}_i$ | $$\mathsf{spi}_i \stackrel{\text{\tiny def}}{=} \frac{T_i}{64}$$                                                           |
-| $D_i$            | Difficulty parameter of $i$-th slot. Recalibrated once per day for 32 blocks per slot target                               |
+| $\mathsf{spi}_i$ | $$\mathsf{spi}_i \stackrel{\text{\tiny def}}{=} \frac{T_i}{64}$$                                                                                                         |
+| $D_i$            | Difficulty parameter of $i$-th slot. Recalibrated once per day for 32 blocks per slot target                                                                  |
 
 ### 5.1.2 Step to Epoch
 
@@ -34,24 +34,24 @@ To describe the $\textsf{Chia}$ chains it will be convenient to introduce some 
 
 The VDF chains we'll consider (${\cal RC}$ and ${\cal CC}$) will be split into slots where the starting point of a new slot will always be an infusion point. For a point ${\sf point}={\cal V}[t]$ on such a chain we denote with
 
-| Point                 | Definition                                                                                                                                                                                                                          |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ${\sf point}.{\sf D}$ | the total depth, i.e., the number of steps of this point since genesis                                                                                                                                                              |
-| ${\sf point}.{\sf d}$ | the depth of this point in the current slot                                                                                                                                                                                         |
-| ${\sf point}.{\sf t}$ | the depth of this point in its VDF                                                                                                                                                                                                  |
-| ${\sf point}.{\sf x}$ | the value of the VDF chain at this point                                                                                                                                                                                            |
-| ${\sf point}.\pi$     | a proof certifying the VDF computation up to this point                                                                                                                                                                             |
-| ${\sf point}^+$       | If ${\sf point}$ is an infusion point where some value $v$ gets infused, then we denote with ${\sf point}$ the point before infusion, and with $${\sf point}^+ = {\sf VDF.sample}({\sf point}.{\sf x},v)$$ the point after infusion |
+| Point                                 | Definition                                                                                                                                                                                                                              |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ${\sf point}.{\sf D}$ | the total depth, i.e., the number of steps of this point since genesis                                                                                                                                  |
+| ${\sf point}.{\sf d}$ | the depth of this point in the current slot                                                                                                                                                                                             |
+| ${\sf point}.{\sf t}$ | the depth of this point in its VDF                                                                                                                                                                                                      |
+| ${\sf point}.{\sf x}$ | the value of the VDF chain at this point                                                                                                                                                                                                |
+| ${\sf point}.\pi$     | a proof certifying the VDF computation up to this point                                                                                                                                                                                 |
+| ${\sf point}^+$                       | If ${\sf point}$ is an infusion point where some value $v$ gets infused, then we denote with ${\sf point}$ the point before infusion, and with $${\sf point}^+ = {\sf VDF.sample}({\sf point}.{\sf x},v)$$ the point after infusion |
 
 The following points on the $\textsf{Chia}$ VDF chains will be defined
 
-| Point                 | Definition                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------------------ |
-| ${\sf cc\_sp}_{i,j}$  | The $j$th **challenge chain signage point** in the $i$th slot (eq.(6))                     |
-| ${\sf rc\_sp}_{i,j}$  | The $j$th **reward chain signage point** in the $i$th slot (eq.(9))                        |
-| ${\sf cc\_sp}(\beta)$ | he ${\sf cc\_sp}_{i,j}$ used as challenge to compute the PoSpace $\sigma$ in block $\beta$ |
-| ${\sf rc\_sp}(\beta)$ | The ${\sf rc\_sp}_{i,j}$ whose signature $\mu_{{\sf rc\_sp}}$ is in $\beta$                |
-| ${\sf rc\_ip}(\beta)$ | The infusion point of $\beta$ into ${\cal RC}$ (eq.(10)                                    |
+| Point                                                          | Definition                                                                                                                   |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| ${\sf cc\_sp}_{i,j}$                                          | The $j$th **challenge chain signage point** in the $i$th slot (eq.(6)) |
+| ${\sf rc\_sp}_{i,j}$                                          | The $j$th **reward chain signage point** in the $i$th slot (eq.(9))    |
+| ${\sf cc\_sp}(\beta)$ | he ${\sf cc\_sp}_{i,j}$ used as challenge to compute the PoSpace $\sigma$ in block $\beta$                                  |
+| ${\sf rc\_sp}(\beta)$ | The ${\sf rc\_sp}_{i,j}$ whose signature $\mu_{{\sf rc\_sp}}$ is in $\beta$      |
+| ${\sf rc\_ip}(\beta)$ | The infusion point of $\beta$ into ${\cal RC}$ (eq.(10)                |
 
 The _signage point interval_ is the number of VDF steps between signage points, for the $i$th slot it's
 
