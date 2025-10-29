@@ -6,7 +6,7 @@ slug: /cloud-wallet/getting-started
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain. The Cloud Wallet is currently in beta, running on testnet11.
+Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain.
 
 This guide will show you how to create your first Cloud Wallet vault in a few easy steps.
 
