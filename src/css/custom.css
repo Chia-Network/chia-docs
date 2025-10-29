@@ -561,3 +561,16 @@ img {
   height: auto;
   max-width: 100%;
 }
+
+/* Theme-aware images for light/dark mode */
+.theme-image-dark {
+  display: none;
+}
+
+[data-theme='dark'] .theme-image-light {
+  display: none;
+}
+
+[data-theme='dark'] .theme-image-dark {
+  display: block;
+}
