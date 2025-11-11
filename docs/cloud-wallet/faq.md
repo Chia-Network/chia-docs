@@ -208,16 +208,21 @@ Yes
 ## Buy XCH
 
 ### Who can use Buy XCH?
+
 Buy XCH is currently available for users with US based, ACH-enabled bank accounts compatible with Stripes payment system. We are working to expand to other regions.
 
 ### How does the Buy XCH Process work?
+
 Securely link your bank account and complete a purchase in the Cloud Wallet. A clawback transaction appears in your vault immediately for the purchased XCH. A day or so after the payment is initiated, the funds will leave your bank. Once your payment settles (usually within four business days) the clawback transaction is finalized and your XCH is ready to spend.
 
 ### Why do I see a “pending” transaction in my vault?
+
 XCH purchase transactions use Chia’s Clawback 2.0 feature ensuring that if your bank payment does not clear, the transaction can be safely reversed.
 
 ### What does “Finalizing“ a Clawback Transaction mean?
+
 Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender finalize a transaction early, immediately releasing the funds to the recipient. This enhanced flexibility is used in Buy XCH to complete your transaction as soon as your bank payment clears.
 
 ### What are the purchase limits for Buy XCH?
+
 Users currently have a minimum of $25 and a daily maximum of $100. These limits help keep the system stable and secure during rollout.
