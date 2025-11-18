@@ -225,4 +225,4 @@ Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender fi
 
 ### What are the purchase limits for Buy XCH?
 
-Users currently have a minimum of $25 and a daily maximum of $150. These limits help keep the system stable and secure during rollout.
+Users currently have a minimum of \$25 and a daily maximum of \$200. These limits help keep the system stable and secure during rollout.

@@ -22,7 +22,7 @@ Before you can buy XCH, you'll need to have a Cloud Wallet account and at least 
 ## Purchase Limits
 
 - **Minimum purchase**: \$25 USD
-- **Maximum purchase**: \$150 USD
+- **Maximum purchase**: \$200 USD
 
 ## Buying XCH
 
@@ -35,7 +35,7 @@ Before you can buy XCH, you'll need to have a Cloud Wallet account and at least 
   <img src="/img/cloud-wallet/buy-xch-01_navigation_dark.png" alt="Navigate to Buy XCH screen" width="100%" className="theme-image-dark"/>
 </div>
 
-3. Enter the amount you want to purchase in USD. The minimum is \$25 and the maximum is \$150, then click `Next`:
+3. Enter the amount you want to purchase in USD. The minimum is \$25 and the maximum is \$200, then click `Next`:
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/buy-xch-02_enter_amount_light.png" alt="Enter purchase amount" width="100%" className="theme-image-light"/>
@@ -79,7 +79,7 @@ Once your payment is processed, the XCH will be deposited into your vault. ACH t
 If you encounter any issues while buying XCH:
 
 - Ensure your vault has been fully created and an address is available
-- Verify your purchase amount is between \$25 and \$150
+- Verify your purchase amount is between \$25 and \$200
 - Check that your bank account information is correct in Stripe
 - Ensure your bank account has sufficient funds
 - For additional support, visit the #support channel in [our Discord](https://discord.gg/chia)
