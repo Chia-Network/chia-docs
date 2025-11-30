@@ -22,8 +22,7 @@ The [coinset CLI tool](https://github.com/coinset-org/cli) is also capable of re
 Need to test these RPC endpoints? Use the **[RPC Validation Tool](/guides/rpc-validation-tool)** to validate that your full node's RPC functionality is working correctly.
 :::
 
-<details>
-  <summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -58,8 +57,8 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                  |
-| :---------- | :--------- | :------- | :--------------------------- |
+| Flag                             | Type       | Required | Description                  |
+| :------------------------------- | :--------- | :------- | :--------------------------- |
 | header_hash | HEX STRING | True     | The header hash of the block |
 
 :::note
@@ -69,14 +68,13 @@ for spent coins, use the [get_puzzle_and_solution](#get_puzzle_and_solution) API
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
-````mdx-code-block
+```mdx-code-block
   ```json
   chia rpc full_node get_additions_and_removals '{"header_hash": "0xfb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8"}'
   ```
-````
+```
 
 Response:
 
@@ -351,8 +349,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -390,8 +387,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -781,8 +777,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -826,12 +821,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                                         |
-| :---------- | :--------- | :------- | :-------------------------------------------------- |
+| Flag                             | Type       | Required | Description                                                                            |
+| :------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------- |
 | header_hash | HEX STRING | True     | Header hash (block identifier) of the block to get. |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Note that some blocks (such as the one from this example) are not transaction blocks:
 
@@ -942,8 +936,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1070,14 +1063,13 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type    | Required | Description                                                         |
-| :------------------ | :------ | :------- | :------------------------------------------------------------------ |
-| start               | INTEGER | True     | The start height                                                    |
-| end                 | INTEGER | True     | The end height (non-inclusive)                                      |
+| Flag                                                          | Type    | Required | Description                                                                                                                             |
+| :------------------------------------------------------------ | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| start                                                         | INTEGER | True     | The start height                                                                                                                        |
+| end                                                           | INTEGER | True     | The end height (non-inclusive)                                                                                       |
 | exclude_header_hash | BOOLEAN | False    | Whether to exclude the header hash in the response [Default: false] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1351,8 +1343,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1394,12 +1385,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description               |
-| :---------- | :--------- | :------- | :------------------------ |
+| Flag                             | Type       | Required | Description               |
+| :------------------------------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1478,13 +1468,12 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type    | Required | Description                    |
-| :---- | :------ | :------- | :----------------------------- |
+| Flag  | Type    | Required | Description                                       |
+| :---- | :------ | :------- | :------------------------------------------------ |
 | start | INTEGER | True     | The start height (inclusive)   |
 | end   | INTEGER | True     | The end height (non-inclusive) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Get two block records (`3 300 000` and `3 300 001`):
 
@@ -1648,8 +1637,8 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                 |
-| :----- | :------ | :------- | :------------------------------------------ |
+| Flag   | Type    | Required | Description                                                                              |
+| :----- | :------ | :------- | :--------------------------------------------------------------------------------------- |
 | height | INTEGER | True     | The height to get (must be \<= peak height) |
 
 :::note
@@ -1658,8 +1647,7 @@ Note that not all blocks will have all fields set here (depending on transaction
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1758,8 +1746,8 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description               |
-| :---------- | :--------- | :------- | :------------------------ |
+| Flag                             | Type       | Required | Description               |
+| :------------------------------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
 :::note
@@ -1768,8 +1756,7 @@ Keep in mind that most blocks do not contain any transactions. These blocks will
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2016,8 +2003,8 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description               |
-| :---------- | :--------- | :------- | :------------------------ |
+| Flag                             | Type       | Required | Description               |
+| :------------------------------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
 :::note
@@ -2026,8 +2013,7 @@ Keep in mind that most blocks do not contain any transactions. These blocks will
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2136,15 +2122,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                                         |
-| :------------------ | :--------- | :------- | :------------------------------------------------------------------ |
-| hint                | HEX STRING | True     | The hint to examine                                                 |
-| start_height        | INTEGER    | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER    | False    | The block height at which to end the search                         |
+| Flag                                                          | Type       | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| hint                                                          | HEX STRING | True     | The hint to examine                                                                    |
+| start_height                             | INTEGER    | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER    | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN    | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2207,15 +2192,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type             | Required | Description                                                         |
-| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
-| names               | HEX STRING ARRAY | True     | A list of coin_ids to examine                                       |
-| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER          | False    | The block height at which to end the search                         |
+| Flag                                                          | Type             | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
+| names                                                         | HEX STRING ARRAY | True     | A list of coin_ids to examine                                     |
+| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2278,15 +2262,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type             | Required | Description                                                         |
-| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
-| parent_ids          | HEX STRING ARRAY | True     | A list of parent IDs to examine                                     |
-| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER          | False    | The block height at which to end the search                         |
+| Flag                                                          | Type             | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
+| parent_ids                               | HEX STRING ARRAY | True     | A list of parent IDs to examine                                                        |
+| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2361,15 +2344,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                                         |
-| :------------------ | :--------- | :------- | :------------------------------------------------------------------ |
-| puzzle_hash         | HEX STRING | True     | The puzzle hash to search for                                       |
-| start_height        | INTEGER    | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER    | False    | The block height at which to end the search                         |
+| Flag                                                          | Type       | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| puzzle_hash                              | HEX STRING | True     | The puzzle hash to search for                                                          |
+| start_height                             | INTEGER    | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER    | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN    | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2468,15 +2450,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type             | Required | Description                                                         |
-| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
-| puzzle_hashes       | HEX STRING ARRAY | True     | An array of puzzle hashes to examine                                |
-| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER          | False    | The block height at which to end the search                         |
+| Flag                                                          | Type             | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
+| puzzle_hashes                            | HEX STRING ARRAY | True     | An array of puzzle hashes to examine                                                   |
+| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2561,8 +2542,7 @@ The `name` (coin ID) can be obtained by hashing the Coin object: `sha256(parent 
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2611,11 +2591,11 @@ Options:
 
 Request Parameters:
 
-| Parameter    | Type          | Required | Description                                                                                                                         |
-| :----------- | :------------ | :------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter                         | Type          | Required | Description                                                                                                                                                               |
+| :-------------------------------- | :------------ | :------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | spend_bundle | FILENAME      | True\*   | The spend bundle file (in json format) for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified) |
-| cost         | INTEGER       | True\*   | The CLVM cost for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified)                          |
-| target_times | INTEGER ARRAY | True     | An array of the targeted times for transaction inclusion, in seconds. Each targeted time must be at least 0                         |
+| cost                              | INTEGER       | True\*   | The CLVM cost for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified)                                             |
+| target_times | INTEGER ARRAY | True     | An array of the targeted times for transaction inclusion, in seconds. Each targeted time must be at least 0                                               |
 
 :::note
 
@@ -2624,8 +2604,7 @@ Request Parameters:
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Obtain a fee estimate for a spendbundle with a CLVM cost of 20 million. Targeted inclusion times are 1, 5, and 10 minutes.
 
@@ -2681,12 +2660,11 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type       | Required | Description                                                  |
-| :---- | :--------- | :------- | :----------------------------------------------------------- |
+| Flag                       | Type       | Required | Description                                                                     |
+| :------------------------- | :--------- | :------- | :------------------------------------------------------------------------------ |
 | tx_id | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Start by obtaining all of the mempool tx IDs:
 
@@ -2855,12 +2833,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                        |
-| :-------- | :----- | :------- | :--------------------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                                        |
+| :----------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------- |
 | coin_name | STRING | True     | The ID of the coin to retreive. Must be in the mempool in order to return a result |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2981,8 +2958,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3021,13 +2997,12 @@ Options:
 
 Request Parameters:
 
-| Flag                    | Type       | Required | Description           |
-| :---------------------- | :--------- | :------- | :-------------------- |
+| Flag                                                                                   | Type       | Required | Description           |
+| :------------------------------------------------------------------------------------- | :--------- | :------- | :-------------------- |
 | older_block_header_hash | HEX STRING | True     | The start header hash |
 | newer_block_header_hash | HEX STRING | True     | The end header hash   |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3070,10 +3045,10 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type       | Required | Description                        |
-| :------ | :--------- | :------- | :--------------------------------- |
+| Flag                         | Type       | Required | Description                        |
+| :--------------------------- | :--------- | :------- | :--------------------------------- |
 | coin_id | HEX STRING | True     | Coin ID of the coin to look up     |
-| height  | INTEGER    | True     | Height at which the coin was spent |
+| height                       | INTEGER    | True     | Height at which the coin was spent |
 
 :::note
 
@@ -3083,8 +3058,7 @@ By definition, coins that are unspent do not have their original puzzle or solut
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3130,10 +3104,10 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type       | Required | Description                                                                      |
-| :------------- | :--------- | :------- | :------------------------------------------------------------------------------- |
-| sp_hash        | HEX STRING | True\*   | The hash of the output for a signage point (if it's in the middle of a sub slot) |
-| challenge_hash | HEX STRING | True\*   | The challenge_hash for the subslot (if it's an end of sub slot challenge)        |
+| Flag                                | Type       | Required | Description                                                                                                       |
+| :---------------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------------------- |
+| sp_hash        | HEX STRING | True\*   | The hash of the output for a signage point (if it's in the middle of a sub slot)               |
+| challenge_hash | HEX STRING | True\*   | The challenge_hash for the subslot (if it's an end of sub slot challenge) |
 
 :::note
 
@@ -3141,8 +3115,7 @@ Request Parameters:
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3234,8 +3207,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3316,8 +3288,7 @@ blocks after it.
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3566,8 +3537,7 @@ This RPC returns `200` if successful. It is lightweight and can be queried often
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3605,12 +3575,11 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type | Required | Description                     |
-| :----------- | :--- | :------- | :------------------------------ |
+| Flag                              | Type | Required | Description                     |
+| :-------------------------------- | :--- | :------- | :------------------------------ |
 | spend_bundle | JSON | True     | Spend bundle to submit, in JSON |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json

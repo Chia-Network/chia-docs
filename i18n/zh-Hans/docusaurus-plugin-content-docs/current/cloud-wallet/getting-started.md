@@ -6,7 +6,7 @@ slug: /cloud-wallet/getting-started
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain. The Cloud Wallet is currently in beta, running on testnet11.
+Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain.
 
 This guide will show you how to create your first Cloud Wallet vault in a few easy steps.
 
@@ -59,11 +59,11 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet, you can download it from the [iOS App Store](https://apps.apple.com/app/chia-signer/id6504493785).
 
-Note: The Chia Signer app currently is only built for iOS devices. We will build an Android version of the app in the future.
+   Note: The Chia Signer app currently is only built for iOS devices. We will build an Android version of the app in the future.
 
-  <div style={{ textAlign: 'left' }}>
-    <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>
-  </div>
+   <div style={{ textAlign: 'left' }}>
+     <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>
+   </div>
 
 4. From the Chia Signer app, tap the `+` button in the upper-right corner to add a new key:
 
