@@ -45,7 +45,7 @@ jobs:
       - name: Check for Prettier issues
         run: npm run check:prettier
       - name: Upload build to artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: build
           path: build
