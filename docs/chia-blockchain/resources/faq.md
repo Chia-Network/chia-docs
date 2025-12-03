@@ -822,7 +822,7 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ### Where can I buy Chia?
 
-Visit [chia.net/buy-xch](https://chia.net/buy-xch) for instructions on buying Chia. Visit [offers](https://chialisp.com/offers) to learn more about peer-to-peer trading on Chia.
+Visit [chia.net/buy-xch](https://www.chia.net/buy-xch) for instructions on buying Chia. Visit [offers](https://chialisp.com/offers) to learn more about peer-to-peer trading on Chia.
 
 There are several exchanges that offer XCH, you can see a list of exchanges supporting XCH on [chialinks](https://chialinks.com/exchanges/) a community created website. This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
