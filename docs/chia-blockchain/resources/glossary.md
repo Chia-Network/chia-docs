@@ -44,7 +44,7 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 - **dApp** - Decentralized Application.
 
-- **DataLayer™** - Datalayer connects an offchain database to the chia blockchain via merkel tree hashes ensuring any and all changes to the database are transparent and auditable. https://chia.net/chia-datalayer.
+- **DataLayer™** - Datalayer connects an offchain database to the chia blockchain via merkel tree hashes ensuring any and all changes to the database are transparent and auditable. https://www.chia.net/chia-datalayer.
 
 - **Decentralised ID (DID)** - A decentralised ID is a smart contract that enables a wallet to act as an ID which can create messages to other IDs. Based on the work of the [identity foundation](https://identity.foundation/).
 

@@ -6,7 +6,7 @@ slug: /chia-blockchain/green-paper/green-paper-introduction
 
 # 1 - Introduction
 
-The **$\textsf{Chia}$ network** ([chia.net](https://chia.net/)) is a permissionless blockchain that was launched on March 19, 2021. $\textsf{Chia}$ is a "longest-chain" blockchain like Bitcoin, but uses disk-space instead of computation as the main resource to achieve consensus. This holds the promise of being much more ecologically and economically sustainable and more decentralized than a proof of work (PoW) based blockchain like Bitcoin could be. Figure 1 illustrates one slot of the $\textsf{Chia}$ blockchain. The main aim of this document is to explain the rationale for this rather complicated design.
+The **$\textsf{Chia}$ network** ([chia.net](https://www.chia.net/)) is a permissionless blockchain that was launched on March 19, 2021. $\textsf{Chia}$ is a "longest-chain" blockchain like Bitcoin, but uses disk-space instead of computation as the main resource to achieve consensus. This holds the promise of being much more ecologically and economically sustainable and more decentralized than a proof of work (PoW) based blockchain like Bitcoin could be. Figure 1 illustrates one slot of the $\textsf{Chia}$ blockchain. The main aim of this document is to explain the rationale for this rather complicated design.
 
 <figure>
 	<img src="/img/green-paper/4chainsX.png" alt="Illustration of one slot of the Chia blockchain" /><figcaption>Figure 1: Illustration of one slot (taking around 10 minutes) of the Chia blockchain. For illustration the slot has just 16 (instead 64) signage points and only 4 blocks (the actual chain has a target of 32).</figcaption>
