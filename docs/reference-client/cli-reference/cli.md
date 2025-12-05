@@ -103,8 +103,7 @@ Command: `chia start {service}`
 | timelord          | X         |        |        |           | X        | X                 |               |            |                     |
 | timelord-only     |           |        |        |           | X        |                   | X             |            |                     |
 | timelord-launcher |           |        |        |           |          | X                 |               |            |                     |
-| wallet            | X         | X      |        |           |          |                   |               |            |                     |
-| wallet-only       |           | X      |        |           |          |                   |               |            |                     |
+| wallet            |           | X      |        |           |          |                   |               |            |                     |
 | introducer        |           |        |        |           |          |                   |               | X          |                     |
 | simulator         |           |        |        |           |          |                   |               |            | X                   |
 
