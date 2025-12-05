@@ -344,7 +344,7 @@ Proofs:
 
 ## RPC Guide
 
-This section will show you how to mint, transfer, and revoke a VC using Chia's [wallet RPC](/reference-client/rpc-reference/vc-rpc). This section will show you how to mint, transfer, and revoke a VC using Chia's [wallet RPC](/vc-rpc). The RPC commands will generally give more detailed responses than their CLI equivalents, but the functionality will be mostly the same.
+This section will show you how to mint, transfer, and revoke a VC using Chia's [wallet RPC](/reference-client/rpc-reference/vc-rpc). The RPC commands will generally give more detailed responses than their CLI equivalents, but the functionality will be mostly the same.
 
 <details>
   <summary>Note about Windows command escaping</summary>

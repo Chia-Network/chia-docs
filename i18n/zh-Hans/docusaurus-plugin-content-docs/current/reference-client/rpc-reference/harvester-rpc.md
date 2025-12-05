@@ -9,7 +9,8 @@ import TabItem from '@theme/TabItem';
 
 This document provides a comprehensive reference to Chia's Harvester RPC API.
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -54,7 +55,8 @@ Note that the new directory must already exist on the system
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 First, add the directory to the local file system:
 
@@ -105,7 +107,8 @@ As long as this command includes the required `filename` flag, it will always ou
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc harvester delete_plot '{"filename": "/plots/plot-k25-2022-07-11-19-22-a2ece0fd13e017f7b88911be5f91aa1e1866c89964c863f743f5c92e07118805.plot"}'
@@ -148,7 +151,8 @@ The plots will be grouped into three categories:
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc harvester get_plots
@@ -207,7 +211,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc harvester get_plot_directories
@@ -244,7 +249,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 {
@@ -297,7 +303,8 @@ If successful, this command will output `"success": true`
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc harvester refresh_plots
@@ -340,7 +347,8 @@ As long as this command includes the required `dirname` flag, it will always out
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc harvester remove_plot_directory '{"dirname": "/plots_new"}'

@@ -30,7 +30,7 @@ If you are more of a visual learner, JM made a video outlining the steps from th
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QpgXr3aeU5g" title="Farming on multiple systems" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## 先决条件
+## 先决条件 {#prerequisites}
 
 - First, make sure Chia is installed on all machines and initialized by running the following command:
 

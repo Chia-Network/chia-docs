@@ -49,7 +49,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Fingerprint of the wallet to use                                                                                                                                                             |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Create one mirror with multiple URLs:
 
@@ -85,7 +86,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Fingerprint of the wallet to use                                                                                                                                                      |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 For this example, there is one local store:
 
@@ -164,7 +166,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                    |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 To clear all pending roots, you need to enter the store ID. An example of this which also disables prompting: An example of this which also disables prompting:
 
@@ -206,7 +209,8 @@ Options:
 | -f            | --fingerprint   | INTEGER |   False  | Set the fingerprint to specify which wallet to use                                                                                                                                    |
 | -h            | --help          | None    |   False  | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Create a new data store:
 
@@ -356,7 +360,8 @@ Options:
 | -f            | --fingerprint                  | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                    |
 | -h            | --help                         | None    | False    | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data delete_mirror -c b5756487c17fe3a2628e45a9d3d42e89231af718bb1735e6c8441e07ec005f9d -m 0.000001
@@ -398,7 +403,8 @@ If an item is larger than `max-page-size`, an error will be thrown.
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_keys --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f
@@ -446,7 +452,8 @@ If an item is larger than `max-page-size`, an error will be thrown.
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_keys_values --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f
@@ -505,7 +512,8 @@ If an item is larger than `max-page-size`, an error will be thrown.
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_kv_diff --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f -hash_1 0x26e60dd9b493eee1f6781fc13dd025e0bfafcde5a103c95dd087d91bd848d406 -hash_2 0xc2dc94c2a85d7db4cfdd1d907bcc441c8fce595db2e2075b973fb8171e2f19a2
@@ -550,7 +558,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                           |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_mirrors -i 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f
@@ -594,7 +603,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                           |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_owned_stores
@@ -638,7 +648,8 @@ The proof is a proof of inclusion that a given key, value pair is in the specifi
 
 A user can generate a proof for multiple k,v pairs in the same datastore.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_proof --id 7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e -k 0x0003
@@ -686,7 +697,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                    |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_root --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f
@@ -722,7 +734,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                    |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_root_history --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f
@@ -781,7 +794,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                    |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_subscriptions
@@ -825,7 +839,8 @@ Options:
 
 If the `root_hash` matches the `target_root_hash`, then the store is synced.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_sync_status -store 39114b28a3674b6c2c0ed65d3518842fd17f9df46794f49cd223f9f3a463f09d
@@ -866,7 +881,8 @@ Options:
 | -f            | --fingerprint                    | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                    |
 |               | --help                           | None    | False    | Show a help message and exit                                                                                                                                                          |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data get_value --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f --key 0004
@@ -901,7 +917,8 @@ Options:
 
 Note that currently `check` is the only sub-command under the `plugins` command. This command is shown in the example.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data plugins check
@@ -939,7 +956,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                           |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data remove_subscription -store 8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d -u http://www.example.com:8575
@@ -971,7 +989,8 @@ Options:
 | -f            | --fingerprint   | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                           |
 | -h            | --help          | None    | False    | Show a help message and exit                                                                                                                                 |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Subscribe to a data store without specifying any URLs:
 
@@ -1005,7 +1024,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Subscribe to a data store using multiple URLs where that store resides:
 
@@ -1069,7 +1089,8 @@ The `unsubscribe` command may or may not delete any data, depending on which ver
 
 Example:
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data unsubscribe -store 8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d
@@ -1118,7 +1139,8 @@ A few notes on the `-d` / `--changelist` option:
 
 The following examples will show the basic functionality of this command.
 
-<details><summary>Example 1 -- Insert a single key/value pair</summary>
+<details>
+<summary>Example 1 -- Insert a single key/value pair</summary>
 
 ```bash
 chia data update_data_store --id=1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f -d '[{"action":"insert", "key":"0003", "value":"abc123"}]'
@@ -1135,7 +1157,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2 -- Delete a single key</summary>
+<details>
+<summary>Example 2 -- Delete a single key</summary>
 
 ```bash
 chia data update_data_store --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f --changelist '[{"action":"delete", "key":"0003"}]'
@@ -1152,7 +1175,8 @@ Response:
 
 </details>
 
-<details><summary>Example 3 -- Insert two keys</summary>
+<details>
+<summary>Example 3 -- Insert two keys</summary>
 
 ```bash
 chia data update_data_store --id 1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f --changelist '[{"action":"insert", "key":"0x0004", "value":"123abc"},{"action":"insert", "key":"0005", "value":"0xbeadfeed"}]'
@@ -1197,7 +1221,8 @@ Response:
 
 </details>
 
-<details><summary>Example 4 -- Show that you may not overwrite an existing key</summary>
+<details>
+<summary>Example 4 -- Show that you may not overwrite an existing key</summary>
 
 ```bash
 chia data update_data_store --id=1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f -d '[{"action":"insert", "key":"0004", "value":"0123456789abcdef"}]'
@@ -1211,7 +1236,8 @@ Exception from 'data': {'error': 'Key already present: 0004', 'success': False}
 
 </details>
 
-<details><summary>Example 5 -- Delete and add the same key in the same command</summary>
+<details>
+<summary>Example 5 -- Delete and add the same key in the same command</summary>
 
 ```bash
 chia data update_data_store --id=1a119374fc7d7055d3419fdcd7f93065f28a1e4acacdf9c73b933b27b685550f -d '[{"action":"delete", "key":"0004"}, {"action":"insert", "key":"0004", "value":"0123456789abcdef"}]'
@@ -1240,7 +1266,8 @@ Response:
 
 </details>
 
-<details><summary>Example 6 -- Show a key/value pair that was inserted into the Climate Warehouse</summary>
+<details>
+<summary>Example 6 -- Show a key/value pair that was inserted into the Climate Warehouse</summary>
 
 ```bash
 [{"action":"insert","key":"70726f6a6563747c37353339656336392d636238652d343464362d383832332d653062313135303162643433","value":"7b2263757272656e745265676973747279223a2243756c7469766f222c2272656769737472794f664f726967696e223a2243756c7469766f222c226f726967696e50726f6a6563744964223a224d6163546573743135222c2270726f6772616d223a224d6163546573743135222c2270726f6a6563744964223a224d6163546573743135222c2270726f6a6563744e616d65223a224d6163546573743135222c2270726f6a6563744c696e6b223a224d6163546573743135222c2270726f6a656374446576656c6f706572223a224d6163546573743135222c22736563746f72223a22456e6572677920646973747269627574696f6e222c2270726f6a65637454797065223a224f7a6f6e65204465706c6574696e67205375627374616e636573222c22636f766572656442794e4443223a224f757473696465204e4443222c226e6463496e666f726d6174696f6e223a224d6163546573743135222c2270726f6a656374537461747573223a22436f6d706c65746564222c22756e69744d6574726963223a2274434f3265222c226d6574686f646f6c6f6779223a22426173656c696e65204d6574686f646f6c6f677920666f72206465636f6d706f736974696f6e206f66204e324f2066726f6d206578697374696e672061646970696320616369642070726f64756374696f6e20706c616e7473202d2d2d2056657273696f6e20332e30222c2270726f6a65637454616773223a224d6163546573743135222c2276616c69646174696f6e426f6479223a22436172626f6e20436865636b2028496e646961292050726976617465204c74642e222c2270726f6a65637453746174757344617465223a22323032302d30332d32385430303a30303a30302e3030305a222c2276616c69646174696f6e44617465223a22323032322d30332d30315430303a30303a30302e3030305a222c2277617265686f75736550726f6a6563744964223a2237353339656336392d636238652d343464362d383832332d653062313135303162643433222c2274696d65537461676564223a313634363639343630322c226f7267556964223a2230623039643861653437626665323731366263323532383231333463653661613931616333646364663933363335616338656436626362333031626234636238227d"}]
@@ -1318,7 +1345,8 @@ The proof to validate requires several fields:
 
 Each of these fields is output with the [get_proof](#get_proof) command. For more examples, see chia-blockchain [PR #16845](https://github.com/Chia-Network/chia-blockchain/pull/16845).
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia data verify_proof -p '{"coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756", "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f", "store_proofs": {"proofs": [{"key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1","layers": [], "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb", "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"}], "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"}}'

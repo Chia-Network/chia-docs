@@ -251,19 +251,6 @@ Install the CAT admin tool:
 
 ```bash
 pip install .
-``` ./venv/bin/activate
-```
-
-Install all prerequisites:
-
-```bash
-python3 -m pip install --upgrade pip setuptools wheel
-```
-
-Install the CAT admin tool:
-
-```bash
-pip install .
 ```
 
   </TabItem>
@@ -303,7 +290,6 @@ Install the CAT admin tool:
 
 ```bash
 pip install .
-```
 ```
 
   </TabItem>

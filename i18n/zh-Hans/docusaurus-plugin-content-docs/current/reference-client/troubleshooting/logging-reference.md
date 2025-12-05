@@ -192,7 +192,8 @@ Options:
 | `: WARNING`     | WARNING                    | Outputs all warning log lines                        |
 | `proofs. Time:` | INFO                       | Outputs all proof check log lines                    |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 
@@ -240,7 +241,8 @@ Options:
 | `: WARNING`     | WARNING                    | Outputs all warning log lines                        |
 | `proofs. Time:` | INFO                       | Outputs all proof check log lines                    |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Request:
 

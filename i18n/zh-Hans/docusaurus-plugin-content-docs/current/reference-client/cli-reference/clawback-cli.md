@@ -85,7 +85,8 @@ In this case, the Recipient needs to wait for one more block to be farmed before
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 First, the Sender creates a new clawback coin with a 60-second timelock:
 
@@ -255,7 +256,8 @@ Options: Clawback an unclaimed coin
 | -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                                                                                 |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Let's say the following clawback coin exists:
 
@@ -327,7 +329,8 @@ Options:
 | -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                                                                                 |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 For this example, we will use two wallets: a Sender and a Recipient. The Sender has a balance of 10 TXCH and the Recipient has 0 TXCH.
 
@@ -415,7 +418,8 @@ Options:
 | -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                                                                                 |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 The Sender can show a Clawback coin without passing in the Coin ID:
 
@@ -438,7 +442,8 @@ Time left: 518 seconds
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Anyone other than the sender needs to pass in the Coin ID in order to show a Clawback coin:
 

@@ -7,7 +7,8 @@ slug: /reference-client/rpc-reference/vc-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -46,7 +47,8 @@ Request Parameters:
 | :-------- | :--------- | :------- | :---------------------------------------------------- |
 | proofs    | DICTIONARY | True     | A dictionary of key/value pairs to be added as proofs |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Add two example proofs:
 
@@ -87,7 +89,8 @@ Request Parameters:
 
 This RPC returns the `vc_record` representing the specified Verifiable Credential
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet vc_get '{"vc_id": "0x75ea50e79d6020c655306bc27208fc454d656c3d45246763146a626cca17871d"}'
@@ -152,7 +155,8 @@ Request Parameters:
 
 This RPC returns all `vc_records` in the specified range, along with any proofs associated with the roots contained within.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 In this example, there are two existing credentials:
 
@@ -222,7 +226,8 @@ Request Parameters:
 
 This RPC returns a dictionary of root hashes mapped to dictionaries of key value pairs of 'proofs'.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet vc_get_proofs_for_root '{"root": "96c9597578333c840f895f30af6d40b9f6c0d69100db1a13ae2e26e4c94acdd3"}'
@@ -267,7 +272,8 @@ Request Parameters:
 
 This RPC returns a `vc_record` containing all the information of the soon-to-be-confirmed VC, as well as any relevant transactions.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 If the Proof Provider does not yet have a DID, you can mint one now:
 
@@ -440,7 +446,8 @@ Request Parameters:
 | reuse_puzhash                               | None   | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
 | fee                                                              | None   | False    | An optional blockchain fee, in mojos                                                                                                                                                    |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet vc_spend '{"vc_id": "0x75ea50e79d6020c655306bc27208fc454d656c3d45246763146a626cca17871d", "new_puzhash": "0x0b56c02785c476c05612e800cb1493d6a2c08d75bde3305159087b179eb736b2", "new_proof_hash": "96c9597578333c840f895f30af6d40b9f6c0d69100db1a13ae2e26e4c94acdd3", "fee": 100000000}'
@@ -655,7 +662,8 @@ Request Parameters:
 | reuse_puzhash                     | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from [Default: generate new puzzle hash] |
 | fee                                                    | INTEGER | False    | An optional blockchain fee, in mojos                                                                                                                                                    |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 First, the proof provider can obtain the VC's `parent_coin_info` by calling `vc_get` on the launcher ID:
 
@@ -831,7 +839,8 @@ In order to obtain a proof hash:
 
 The following example accomplishes each of these steps in Javascript:
 
-<details><summary>Javascript Example</summary>
+<details>
+<summary>Javascript Example</summary>
 
 In order to run this example:
 

@@ -7,7 +7,8 @@ slug: /reference-client/rpc-reference/datalayer-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -67,7 +68,8 @@ Request Parameters:
 | amount | INTEGER | True     | The number of mojos to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
 | fee    | TEXT    | False    | Set the fee for the transaction, in mojos                                                                                        |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Create one mirror with multiple URLs:
 
@@ -110,7 +112,8 @@ Request Parameters:
 | override   | BOOLEAN | False    | If `True`, will overwrite files that already exist (default: `False`)                                                                        |
 | foldername | TEXT    | False    | The name of the folder where the files to be restored are located (default: `~/.chia/mainnet/data_layer/db/server_files_location_<network>`) |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 For this example, there is one owned store:
 
@@ -204,7 +207,8 @@ A few notes on the `changelist` option:
 
 The following examples will show the basic functionality of this command.
 
-<details><summary>Example 1 -- Insert a single key/value pair</summary>
+<details>
+<summary>Example 1 -- Insert a single key/value pair</summary>
 
 ```json
 chia rpc data_layer batch_update '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "changelist":[{"action":"insert", "key":"0003", "value":"abc123"}]}'
@@ -221,7 +225,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2 -- Delete a single key</summary>
+<details>
+<summary>Example 2 -- Delete a single key</summary>
 
 ```json
 chia rpc data_layer batch_update '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "changelist":[{"action":"delete", "key":"0003"}]}'
@@ -238,7 +243,8 @@ Response:
 
 </details>
 
-<details><summary>Example 3 -- Insert two keys</summary>
+<details>
+<summary>Example 3 -- Insert two keys</summary>
 
 ```json
 chia rpc data_layer batch_update '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "changelist":[{"action":"insert", "key":"0x0004", "value":"123abc"},{"action":"insert", "key":"0005", "value":"0xbeadfeed"}]}'
@@ -283,7 +289,8 @@ Response:
 
 </details>
 
-<details><summary>Example 4 -- Show that you may not overwrite an existing key</summary>
+<details>
+<summary>Example 4 -- Show that you may not overwrite an existing key</summary>
 
 ```json
 chia rpc data_layer batch_update '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "changelist":[{"action":"insert", "key":"0002", "value":"0123456789abcdef"}]}'
@@ -297,7 +304,8 @@ Request failed: {'error': 'Key already present: 0002', 'success': False}
 
 </details>
 
-<details><summary>Example 5 -- Delete and add the same key in the same command</summary>
+<details>
+<summary>Example 5 -- Delete and add the same key in the same command</summary>
 
 ```json
 chia rpc data_layer batch_update '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "changelist":[{"action":"delete", "key":"0002"},{"action":"insert", "key":"0002", "value":"0123456789abcdef"}]}'
@@ -329,7 +337,8 @@ Response:
 
 </details>
 
-<details><summary>Example 6 -- Show a key/value pair that was inserted into the Climate Warehouse</summary>
+<details>
+<summary>Example 6 -- Show a key/value pair that was inserted into the Climate Warehouse</summary>
 
 ```json
 [
@@ -396,7 +405,8 @@ Request Parameters:
 | secure                        | BOOLEAN | True     | If `true`, the offer will be canceled on the blockchain, making it impossible to be accepted later. If `false`, the offer will only be canceled locally. We recommend that you set this to `true` unless you are certain that the offer file has not left your computer |
 | fee                           | TEXT    | False    | If `secure` is `true`, this will set the fee for the transaction, in mojos. If `secure` is `false`, the fee will be ignored                                                                                                                                                             |
 
-<details><summary>Example </summary>
+<details>
+<summary>Example </summary>
 
 Cancel an offer on-chain, using "secure":"true":
 
@@ -431,7 +441,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example </summary>
+<details>
+<summary>Example </summary>
 
 ```json
 chia rpc data_layer check_plugins
@@ -472,7 +483,8 @@ Request Parameters:
 | :---------------------------- | :--- | :------- | :----------------------- |
 | store_id | TEXT | True     | The hexadecimal store ID |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer clear_pending_roots '{"store_id":"2772c8108e19f9fa98ff7bc7d4bafd821319bc90af6b610d086b85f4c21fa816"}'
@@ -515,7 +527,8 @@ Request Parameters:
 | :--- | :--- | :------- | :---------------------------------------- |
 | fee  | TEXT | False    | Set the fee for the transaction, in mojos |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer create_data_store '{"fee":"1000"}'
@@ -689,7 +702,8 @@ Request Parameters:
 
 Example:
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer delete_key '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "key":"0001", "fee":"100000"}'
@@ -728,7 +742,8 @@ Request Parameters:
 | id   | TEXT | True     | The `coin_id` of the mirror to delete, obtainable by running [get_mirrors](#get_mirrors) |
 | fee  | TEXT | False    | Set the fee for the transaction, in mojos                                                                     |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 ```json
 chia rpc data_layer delete_mirror '{"id":"0x9a2132858b81907875a65123e592b7aea80b23724202ac21bba0aedf583f7427"}'
@@ -744,7 +759,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 If you attempt to delete a mirror you did not create, this will fail:
 
@@ -782,7 +798,8 @@ Request Parameters:
 | id   | TEXT | True     | The hexadecimal store ID                 |
 | hash | TEXT | True     | The hash from which to display ancestors |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 First get the root hash of a data store:
 
@@ -859,7 +876,8 @@ If an item is larger than `max_page_size`, an error will be thrown.
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_keys '{"id":"0x8f9601eba73a276d5b9e12fbec52b113217e89a55831ae1d80bca48462fbaea7", "root_hash": "0x9527cc5e43bf93062423221e9bec761cbc3f24a0811cb0738da2419dfe7649f7"}'
@@ -917,7 +935,8 @@ If an item is larger than `max_page_size`, an error will be thrown.
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 First, we'll show show an example that does not specify the root hash.
 This will result in stale data being displayed, per the above message.
@@ -1037,7 +1056,8 @@ If an item is larger than `max_page_size`, an error will be thrown.
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_kv_diff '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a", "hash_1":"0x7e193b814080e50aa7780bcf71fd0422a0397ad3e57dc1eac71d93183efb39ba", "hash_2":"0x2477500c19f0ddfb147049769ce54425a4c4e2994a25e63e51c389cb8f0e912f"}'
@@ -1086,7 +1106,8 @@ Request Parameters:s
 | :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_local_root '{"id":"8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d"}'
@@ -1124,7 +1145,8 @@ Request Parameters:
 | :--- | :--- | :------- | :-------------------------------------------------------- |
 | id   | TEXT | True     | The hexadecimal ID of the store for which to list mirrors |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_mirrors '{"id":"0x1ad0908e248f48cc3e9b3cf8f68c748d2e3c5a2a933765032d3222086231ea5e"}'
@@ -1166,7 +1188,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_owned_stores
@@ -1211,7 +1234,8 @@ The proof is a proof of inclusion that a given key, value pair is in the specifi
 
 A user can generate a proof for multiple k,v pairs in the same datastore.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_proof '{"store_id": "7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e", "keys": ["0x0003"]}'
@@ -1263,7 +1287,8 @@ Request Parameters:
 | :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Get the root hash of an owned store:
 
@@ -1284,7 +1309,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Get the root hash of a subscribed store. Notice that an invalid hash is shown:
 
@@ -1326,7 +1352,8 @@ Request Parameters:
 | :--- | :--- | :------- | :------------------------------ |
 | ids  | TEXT | True     | A list of hexadecimal store IDs |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 For this example, the first store is subscribed, so it will return an invalid root hash. The second store is owned, so the root hash will be valid:
 
@@ -1379,7 +1406,8 @@ Request Parameters:
 | :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_root_history '{"id":"0x1163ac212bd5fe00efa86f8d3c4958cda08924870800d72dc332f508a1b2e35a"}'
@@ -1454,7 +1482,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_routes
@@ -1532,7 +1561,8 @@ Request Parameters:
 | :--- | :--- | :------- | :----------------------- |
 | id   | TEXT | True     | The hexadecimal store ID |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_sync_status '{"id": "39114b28a3674b6c2c0ed65d3518842fd17f9df46794f49cd223f9f3a463f09d"}'
@@ -1586,7 +1616,8 @@ This parameter is obtainable by calling the [get_root](#get_root) RPC.
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Obtain the value for key `0x0001`. Pass in the `root_hash` to ensure the latest value is obtained:
 
@@ -1629,7 +1660,8 @@ Request Parameters:
 | value | TEXT | True     | The hexadecimal value                     |
 | fee   | TEXT | False    | Set the fee for the transaction, in mojos |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 This example will create a key/value pair without `0x` prefixing:
 
@@ -1648,7 +1680,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 This example will create a key/value pair with `0x` prefixing:
 
@@ -1693,7 +1726,8 @@ Request Parameters:
 You must own the store listed as the `maker`, and you must be subscribed to the store listed as the `taker`, as will be demonstrated in the example.
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Before the offer is created, here are the Maker's store ID, keys and values:
 
@@ -1896,7 +1930,8 @@ Request Parameters:
 | id   | TEXT | True     | The hexadecimal store ID                 |
 | urls | TEXT | True     | A list of URLs from which to unsubscribe |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer remove_subscriptions '{"id":"8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d", "urls":["http://www.example.com:8575"]}'
@@ -1955,7 +1990,8 @@ Request Parameters:
 | id   | TEXT | True     | The hexadecimal store ID                                                                 |
 | urls | TEXT | True     | A list of URLs where the data store resides. This list can be left blank |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 Subscribe to a data store without specifying any URLs:
 
@@ -1973,7 +2009,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 Subscribe to a data store using multiple URLs where that store resides:
 
@@ -2008,7 +2045,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer subscriptions
@@ -2053,7 +2091,8 @@ Request Parameters:
 | offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
 | fee   | TEXT | False    | Set the fee for the offer, in mojos                                                                                                       |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 This example will use the offer file created in the [make_offer](#make_offer) example.
 
@@ -2173,7 +2212,8 @@ The `unsubscribe` RPC may or may not delete any data, depending on which version
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer unsubscribe '{"id":"8f6ed792bbbf5216f8e55064793f74ce01286b9c1d542cc4a357cf7f8712df1d"}'
@@ -2210,7 +2250,8 @@ Request Parameters:
 | :---- | :--- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | offer | TEXT | False    | The offer, in JSON format (the output from the `make_offer` RPC). Includes Maker and Taker information |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 This example will show a successful verification. It will use the offer file created in the [make_offer](#make_offer) example.
 
@@ -2233,7 +2274,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2</summary>
+<details>
+<summary>Example 2</summary>
 
 This example will show an **unsuccessful** verification. It will use the offer file created in the [make_offer](#make_offer) example, with one byte modified to simulate file corruption:
 
@@ -2284,7 +2326,8 @@ Notes about this command:
 
 For more help with constructing the `store_proofs` JSON, see the output from the [get_proof](#get_proof) RPC. For more examples, see chia-blockchain [PR #16845](https://github.com/Chia-Network/chia-blockchain/pull/16845).
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer verify_proof '{"coin_id": "0x774e5f9ba7a8afbfa7fd2050347b4a2d400d3cd530637a18b61b094bb5a0f756", "inner_puzzle_hash": "0x875cc80014bc72f2028c27500d5b44bf6906cd13ad16d7b5f4a5da77a06c8c2f", "store_proofs": {"proofs": [{"key_clvm_hash": "0xa143e7ffd81147f136f921fef88760c46c7a05f15b81995f9c5cfed2a737a3f1","layers": [], "node_hash": "0xe488fa1bf0f712b224df0daf312b3d479f80e3a330d4bebd8f26a0d52dc0ebbb", "value_clvm_hash": "0xed052604ee4ff3996c15ef9b2cb0925233a2e78b6168bb6e67d133e074109b42"}], "store_id": "0x7de232eecc08dc5e524ad42fad205c9ec7dd3f342677edb7c2e139c51f55d40e"}}'
@@ -2329,7 +2372,8 @@ Request Parameters:
 | :---------- | :----- | :------- | :----------------------------------- |
 | fingerprint | STRING | True     | The fingerprint of the wallet to use |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer wallet_log_in '{"fingerprint":"3404181419"}'
@@ -2370,7 +2414,8 @@ Request Parameters:
 | :--------------------------: | :--: | :------: | :------------------------------------------------------------------------------------- |
 | node_id | TEXT |   True   | The hex ID of the node to close, obtainable from [`get_connections`](#get_connections) |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer close_connection '{"node_id":"0x8e961b617579d476419003728d6d71ab1b182f7d962e5db16f61ebfb157d771b"}'
@@ -2420,7 +2465,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer get_connections
@@ -2476,7 +2522,8 @@ Request Parameters:
 
 Example:
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer open_connection '{"host":"localhost", "port":"58444"}'
@@ -2509,7 +2556,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc data_layer stop_node

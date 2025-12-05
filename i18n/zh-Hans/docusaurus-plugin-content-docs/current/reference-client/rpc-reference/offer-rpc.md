@@ -7,7 +7,8 @@ slug: /reference-client/rpc-reference/offer-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<details><summary>Note about Windows command escaping</summary>
+<details>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -54,7 +55,8 @@ If you set `secure` to `false`, then the Offer will not be canceled on the block
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet cancel_offer '{"trade_id": "0x039492f84708b8a585ddaa0dd44fa8db1a6afdad799b0900e37dfc9097f1f351", "secure": false}'
@@ -95,7 +97,8 @@ Request Parameters:
 | cancel_all | BOOLEAN | False    | Cancel all Offers [Default: `false`]                                                          |
 | asset_id   | STRING  | False    | The ID of the asset to cancel; only used when `cancel_all` is `false` [Default: `xch`]        |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet cancel_offers '{"secure": true, "batch_fee": 1, "batch_size": 2}'
@@ -148,7 +151,8 @@ The Offer is not valid if it is in any of the following states:
 
 :::
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet check_offer_validity '{"offer": "offer1qqr83wcuu2rykcmqvpsxzgqq4gnsn0v2w6gchlaawrmeju4af4arrwu5s2kvce6at3nhmsa4v03kvgvc8furkat55swhlsmpwjj86a9ylhljq8mfs7jw6p044wxg9a7lhhuwphnff6my6aujm3m37wvl6q0kzy3tde6nh7w9j6d0nlchdsgk628m7aktm6jfqa47hwwnj705chexjdkhufx3fd9zegkcwhfknvg9auleg2neqcjpcj8mjehmfeks7gazhwlz4ffam6ukt3wwddlya3qah92s4wgqhr73797a5fyq68clmcfmhc85auqtzmuvure07v84jch8vzcwldm0qdf4uwatuj4xtjfxadlp37x8xf8nupxtz7jl7reyvj2fg9q5t057kfe95e2jdftx5etj2f6k2kjfdx48zmjwdx55j4jfwf4xzj24295hnxd7gfz425j72x99jc2kf9py56dxtxu62an2g4lxzkvwsegk5s27hed9j52f0eqhykn206h9vnnxt66mtqvw3ft85cqam9935q4wlmd45q9u7t5t86dl3g37vrrghz8aelwgga99mg3e0uylklaume8alal4xtksxxynga2v2echu8ksx4xnjsym2f5xv56wveex5hn34f0yzzkgadxu27dqvx4wyyssnxdmzcyn5tlsl0v0tnsalqhlwgly708udd0n9ee5q0lqnhm7hul7m8e6cxn3he9u3sz546dwmxtualtc0h5f89knj34tdmkrrvknf0pzat0ju7hm3a7hz7raqqkfalm408a6jtm6xn9a0lhchxu5z4dhf7wandtdah3qjdh844tjanauwj73kjap8ga08qujwarxwljxvalq3w88ll5vcra379zflxglfrvhwa844090t2cc53pafme08pcaa625hmzaw9hf320ekrc9zhdkmw484cr9zp3tclgr4fdrxv52xvegsdlqdefln5a47zuzfu7t8hh7f3y0fd5dcqktrt57ntn30xm6nja58d8kfh8rsct4lypkfyq0npsh2sxwddqvkk4rqdk03c5jz90yfs4glll3w888k40ml09v39n6xhpdhlz85lm9mcdjlsujrck85alr6lceqjgl0etsp9tv98mq48hkmvulalxn9vgn0nht9k6sayee0mdwyfp0wd67ewknh64pxsppf3gprjxwmgsdmrfj4l8ejtukh846a43sh036d6a3e80gkmjdmf3nfu0qr50vxrg0nmezadj5hkku0srmhefz57xxw5re2na6pku46t5neaaq5fzkda9kwcrqzramre95yeayjwnvk7cgqrw7kzddne7778jslravahl4ua8v2tklam7v9x0yc63l7mu7j8xkeu7t4unqs72l9q0th3npxakcgeynt8uaksf2edgpjtc07techllaakccnazlwm9ehu4wc08dhk7ufjn576jkwzem9m88jlhl3l3wtelltvvnvhvgvd5zq543hprajzagvtsamxaxn2vt4lzn83aagcvw8rt65l57a88ua4a0ls70tekewukd805hq9xeuwj9uy89pvgf4zyq053kluthp3d4z7h8vaa4nv75tmwlc5y3duk7l4aylcmwaqrdljzl4gjm62nuxdgftl0lqh9m7xmeaha0t7dc0tp3wrwah94w7xaltkvnq460f8l09atlnd0vueveq3glt7mka5xk28fas8hawnqamaa80nfhdr7jna5qvldunsnhh70ra78ze5ycatyhplvmlhc0xf8skk4fklj2pkwtxh30xwr03qr9ckmz7r97dwe8hlaajk0t6664dahv6y78anx29pmgxkdzmk3zj57am2ngdh05u699ce8k0qrrp5f3eccrkarcssjm4950tv63cfmf8dnh5nl9vp8w7hagjjuwm6udnftt24le2wnd79kadf4jxxrmuh5myxte6vh2sky9vlvnc3j2wjm079msdng0uan048n0t09lmsnn0mfl2teylev3avfgdupa32x57tjxe6t86phk6ypgrk4e2x92kasy447ds0te305gdsrrdvl9d8vurct22gqel9z8dh2pg2y3zdxjpa9t4ga98agazj4s3grz5g2cldpq5zez2jpdevdc7p28mfzrkru7nsk9vgdv9x7jmn9edtf5fn69xw84sxjaacjdemhdfsqaxu49dlzm0aq4rk0ptpxclwncekuk4yu29tgakdl53uwfdkaavr8dnmweljt66csujmjkeeznhecn9cx5aaw9du02wkkp09qkd8kmjyqtqqv6yzy7lk89vq"}'
@@ -214,7 +218,8 @@ Your log file will contain `ASSERT_SECONDS_ABSOLUTE_FAILED` in this case, but th
 
 :::
 
-<details><summary>Example 1: sell an NFT</summary>
+<details>
+<summary>Example 1: sell an NFT</summary>
 
 This example will create an Offer to sell an NFT. First, list the NFTs in the local wallet. For example:
 
@@ -353,7 +358,8 @@ It does not contain any sensitive information. A "thief" only has two options: a
 
 </details>
 
-<details><summary>Example 2: buy an NFT</summary>
+<details>
+<summary>Example 2: buy an NFT</summary>
 
 This example will create an Offer to buy an NFT. This example will create an Offer to buy an NFT. By definition, the NFT cannot be in your wallet, so you first need to query the blockchain to obtain an NFT's info based on its ID alone:
 
@@ -527,7 +533,8 @@ chia rpc wallet create_offer_for_ids '{ "offer":{ "1":-100000000000,"b4158076fee
 
 </details>
 
-<details><summary>Example 3: Expiring Offer</summary>
+<details>
+<summary>Example 3: Expiring Offer</summary>
 
 In this example, we will offer 0.1 CATs (`Launcher ID: 91aa...004r`) in exchange for 1 TXCH (`Wallet ID: 1`). In addition, we will add an expiry timestamp so that this Offer will expire on Jan. 1, 2024:
 
@@ -598,7 +605,8 @@ Response:
 
 </details>
 
-<details><summary>Example 4: Offer in time window</summary>
+<details>
+<summary>Example 4: Offer in time window</summary>
 
 **Per the above note, this example will create a valid Offer, but the reference wallet currently (as of 2.1.0) will not be able to read it.**
 
@@ -699,7 +707,8 @@ Request Parameters:
 | reverse                                                        | BOOLEAN | False    | If `true`, reverse the results [Default: `false`]                                                                                                                                                                                                               |
 | file_contents                             | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`]                                                                                                                                |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Show the first Offer:
 
@@ -794,7 +803,8 @@ Request Parameters:
 | trade_id      | STRING  | True     | The `trade_id` of the Offer                                                                                                                                                                          |
 | file_contents | BOOLEAN | False    | If `true`, return a summary for the Offer. If `false`, only return the Offer's basic metadata [Default: `false`] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```json
 chia rpc wallet get_offer '{"trade_id": "0x0958db8393a63dab6b2afa78abbfe91a0487e5b06e25174ec8c49d383f18afc0"}'
@@ -885,7 +895,8 @@ Options:
 
 Request Parameters: None
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia rpc wallet get_offers_count
@@ -926,7 +937,8 @@ Request Parameters:
 | offer    | STRING  | True     | The text of the Offer to summarize                                                                                                        |
 | advanced | BOOLEAN | False    | Show advanced information, including expiration time [Default: false] |
 
-<details><summary>Example 1</summary>
+<details>
+<summary>Example 1</summary>
 
 The `offer` parameter is the pasted contents of an Offer file:
 
@@ -976,7 +988,8 @@ Response:
 
 </details>
 
-<details><summary>Example 2: with advanced details</summary>
+<details>
+<summary>Example 2: with advanced details</summary>
 
 This example will show the Offer's expiration timestamp (`max_time`):
 
@@ -1038,7 +1051,8 @@ Request Parameters:
 | offer | FILE PATH | True     | The text of the Offer to take (must be in the `PENDING_ACCEPT` state)                                                                   |
 | fee   | NUMBER    | False    | An optional fee (in mojos) to include with the Offer [Default: `0`] |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 To take an Offer, paste its contents in the RPC call:
 

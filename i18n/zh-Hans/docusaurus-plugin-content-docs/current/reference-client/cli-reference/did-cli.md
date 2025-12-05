@@ -28,7 +28,8 @@ Options:
 | -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                     |
 | -h            | --help            | None    | False    | Show a help message and exit.                                                                                                                              |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Create a new DID:
 
@@ -94,7 +95,8 @@ Options:
 | -n            | --num_verification                        | INTEGER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number           |
 | -h            | --help                                                         | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Locate a DID owned by the local wallet:
 
@@ -130,7 +132,8 @@ Options:
 
 Note that `coin_id` could pertain to any DID, not just those owned by this wallet.
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Get the latest details of a DID from a coin ID:
 
@@ -173,7 +176,8 @@ Options:
 | -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
 | -h            | --help            | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Get info for DID with ID 2:
 
@@ -209,7 +213,8 @@ Options:
 | -ca           | --coin_announcements   | TEXT    | False    | The list of coin announcement hex strings, split by commas (`,`)                                                                           |
 | -h            | --help                                      | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Create a default message spend bundle from a DID wallet:
 
@@ -256,7 +261,8 @@ Options:
 | -n            | --name            | TEXT    | True     | Set the DID wallet name                                                                                                                                       |
 | -h            | --help            | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 Set the name for Wallet ID 2 to `New Name`:
 
@@ -324,7 +330,8 @@ Options:
 | -m            | --hex_message | TEXT    | True     | The message you want to sign                                                                                                                                  |
 | -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet did sign_message -f 590161281 -i did:chia:1cxw5dqug4gavvgylx88zfkmqv235ryr6j9tvyjwwuga0pa52wjvqavdyar --hex_message "This is a test message."
@@ -361,7 +368,8 @@ Options:
 |               | --reuse                               | None    | False    | Reuse existing address for the change                                                                                                                         |
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details><summary>Example</summary>
+<details>
+<summary>Example</summary>
 
 ```bash
 chia wallet did transfer -i 4 -ta xch1gdhch02gp6352plffxqy7ppaar2dvtnek6p2cc79nc5apqzae37sktag6l

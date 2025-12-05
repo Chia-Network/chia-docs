@@ -259,7 +259,7 @@ chia plotters chiapos -t <temp dir> -d <destination dir> -f <farmer key> -p <poo
 
 Regardless of which plotter you choose, it's a good idea to experiment with the optional parameters in order to optimize the plotting process for your hardware.
 
-## 图形用户界面（GUI）生成地块
+## 图形用户界面（GUI）生成地块 {#gui-plotting}
 
 From the Chia application, click the `Farm` icon and click `ADD A PLOT`:
 

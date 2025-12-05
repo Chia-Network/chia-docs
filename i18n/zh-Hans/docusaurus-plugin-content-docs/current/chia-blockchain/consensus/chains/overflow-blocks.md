@@ -5,7 +5,7 @@ slug: /chia-blockchain/consensus/chains/overflow-blocks
 
 ## Overflow Blocks
 
-For a farmer to create a block, their required_iterations must be less than sub-slot_iterations / 64, as described in the [Signage and Infusion Points page](/docs/chia-blockchain/consensus/chains/signage-and-infusion-points.md). This means that infusion_iterations might be greater than the sub-slot_iterations, and therefore the infusion must happen in the next sub-slot.
+For a farmer to create a block, their required_iterations must be less than sub-slot_iterations / 64, as described in the [Signage and Infusion Points page](/chia-blockchain/consensus/chains/signage-and-infusion-points). This means that infusion_iterations might be greater than the sub-slot_iterations, and therefore the infusion must happen in the next sub-slot.
 
 **Overflow block**: a block whose infusion point is in a different sub-slot than its signage point.
 
