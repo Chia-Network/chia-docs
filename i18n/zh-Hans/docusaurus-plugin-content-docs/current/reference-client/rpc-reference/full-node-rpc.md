@@ -75,9 +75,8 @@ for spent coins, use the [get_puzzle_and_solution](#get_puzzle_and_solution) API
 ````mdx-code-block
   ```json
   chia rpc full_node get_additions_and_removals '{"header_hash": "0xfb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8"}'
+  ```
 ````
-
-`````
 
 Response:
 
@@ -330,9 +329,8 @@ Response:
   ],
   "success": true
 }
-`````
-
-`````
+```
+````
 
 </details>
 
@@ -360,7 +358,7 @@ Request Parameters: None
 ```json
 chia rpc full_node get_aggsig_additional_data
 ```
-`````
+````
 
 Response:
 
