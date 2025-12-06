@@ -128,7 +128,7 @@ What is the Chialisp puzzle for squaring a passed argument?
 
 Links to additional reading materials, videos, or external resources may be provided for learners who wish to delve deeper into the lessons subject.
 
-### Runnable Chialisp and clvm plugins
+### Runnable Chialisp and clvm plugins {#runnable-chialisp-and-clvm-plugins}
 
 Runnable plugins are for Chialisp and clvm are provided with all applicable lessons. Take some time to familiarize yourself with the tools and learn how to best make use of them throughout the lessons.  
 Each plugin has a series of components:

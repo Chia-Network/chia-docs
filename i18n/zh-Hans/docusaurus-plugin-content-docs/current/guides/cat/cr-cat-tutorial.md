@@ -566,7 +566,6 @@ Response:
 
 ```bash
 Submitting transaction...
-Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 3152280463 -tx 0xab577bdce7fdd1be8b4e0634ad69aa5cff66f6d9dc7d26e0119d1a3a740f91e8' to get status
 ```
