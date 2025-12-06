@@ -31,7 +31,7 @@ After installing and opening the app for the first time:
 1. **Add Key:** Tap the `+` button, usually located in the upper-right corner of the app's main screen.
 2. **Name Your Key:** Enter a descriptive name for your key (e.g., "My Vault Key" or "Main Signer Key").
 3. **Generate Key:** Select the option to "Generate Key" (currently, the only option is to create a hardware key directly in your device's Secure Enclave). Tap `Generate Key`. (NOTE: Software key options planned for the future).
-    - Your device will securely generate and store a new private key within its Secure Enclave.
+   - Your device will securely generate and store a new private key within its Secure Enclave.
 4. **View Key:** Your newly created key will now appear on the app's main screen.
 
 ## 3) Link Your Chia Signer Key to a Chia Cloud Wallet Vault
@@ -41,24 +41,24 @@ This step connects your secure key in the Signer app to a specific vault created
 1. **Initiate Linking (from Chia Cloud Wallet):** On your separate device (where you access your Chia Cloud Wallet), you will begin the process of creating or linking a vault as described [here](/cloud-wallet/getting-started). The Chia Cloud Wallet will display a **QR Code**.
 
 2. **Link Key from Chia Signer App:**
-    There are two primary methods to link a key, depending on whether you've already created the key in the Signer app or are linking for the first time:
-    - **Method A: Linking an Existing Key (Key selected in Step 2)**
-        1. Open the Chia Signer app and ensure your existing key is visible on the main screen.
-        2. Tap on the specific key you wish to link.
-        3. Locate and tap the "Link Key" button (this will activate your device's camera).
-        4. Use your device's camera to scan the QR code displayed by your Chia Cloud Wallet.
+   There are two primary methods to link a key, depending on whether you've already created the key in the Signer app or are linking for the first time:
+   - **Method A: Linking an Existing Key (Key selected in Step 2)**
+     1. Open the Chia Signer app and ensure your existing key is visible on the main screen.
+     2. Tap on the specific key you wish to link.
+     3. Locate and tap the "Link Key" button (this will activate your device's camera).
+     4. Use your device's camera to scan the QR code displayed by your Chia Cloud Wallet.
 
-    - **Method B: Linking and/or Creating a Key via Main Screen Scan**
-        1. From the Chia Signer app's main screen, tap the scan button (often located in the lower-middle part of the screen, resembling a QR code scanner icon). This will activate your device's camera.
-        2. Use your device's camera to scan the QR code displayed by your Chia Cloud Wallet.
-        3. After scanning, the app will prompt you to "Choose a key."
-            - If you have existing keys, select the one you wish to link.
-            - If you need to create a new key, select Generate Key and follow the steps to name and create your key.
+   - **Method B: Linking and/or Creating a Key via Main Screen Scan**
+     1. From the Chia Signer app's main screen, tap the scan button (often located in the lower-middle part of the screen, resembling a QR code scanner icon). This will activate your device's camera.
+     2. Use your device's camera to scan the QR code displayed by your Chia Cloud Wallet.
+     3. After scanning, the app will prompt you to "Choose a key."
+        - If you have existing keys, select the one you wish to link.
+        - If you need to create a new key, select Generate Key and follow the steps to name and create your key.
 
 3. **Confirm Link:**
-    - Regardless of the method used, after selecting or creating your key, confirm the link. Tap the `Link key` button (if not already pressed).
-    - The Signer app will communicate with the Chia Cloud Wallet to establish the secure link.
-    - If successful, you will typically see a confirmation, such as a green checkmark, on both the Signer app and the Chia Cloud Wallet interface.
+   - Regardless of the method used, after selecting or creating your key, confirm the link. Tap the `Link key` button (if not already pressed).
+   - The Signer app will communicate with the Chia Cloud Wallet to establish the secure link.
+   - If successful, you will typically see a confirmation, such as a green checkmark, on both the Signer app and the Chia Cloud Wallet interface.
 
 ## 4) Sign Transactions with the Chia Signer App
 
@@ -68,5 +68,5 @@ Once linked, your Signer app becomes the gatekeeper for all transactions from th
 2. **Receive Signing Request (on Chia Signer App):** The Chia Signer app will automatically receive a transaction signing request. You will see a notification or the app will open, displaying the transaction details.
 3. **Review Details:** **Carefully review all the transaction details** shown on your Chia Signer app screen (e.g., recipient address, amount, fee). This is your last chance to verify the transaction before it is sent.
 4. **Sign Transaction:** If the details are correct, scroll down and tap the `Sign transaction` button within the Chia Signer app.
-    - Your device may require a biometric (Face ID/Touch ID) or passcode confirmation to authorize the signing.
+   - Your device may require a biometric (Face ID/Touch ID) or passcode confirmation to authorize the signing.
 5. **Confirmation:** Once signed, the transaction is sent to the Chia network via your Chia Cloud Wallet, and you should see a confirmation message on both the Signer app and the Chia Cloud Wallet.

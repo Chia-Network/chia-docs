@@ -213,7 +213,7 @@ A subtle but important difference between stake and space is the fact that space
 
 We refer to attacks exploiting this fact as _replotting attacks_. The most basic design choice to harden a chain against replotting attacks is to make sure that challenges arrive at a sufficiently high rate so that substantial replotting in-between two challenges is not feasible. Moreover the plot filter (which dictates what fraction of plots must be accessed with every challenge) cannot be chosen too aggressively as more aggressive filters makes potential replotting attacks easier.
 
-A fundamental fact about PoSpace that crucially relies on replotting is that _no PoSpace based longest-chain protocol secure under dynamic availability exists_ [<a href="/chia-blockchain/green-paper/green-paper-references/#BP22">BP22</a>], we'll discuss their result in more detail in §6.2.3. $\textsf{Chia}$ overcomes this no-go theorem by using VDFs, we discuss security under dynamic availability and healing from malicious majority in the work, stake and space setting in §6.
+A fundamental fact about PoSpace that crucially relies on replotting is that *no PoSpace based longest-chain protocol secure under dynamic availability exists* [<a href="/chia-blockchain/green-paper/green-paper-references/#BP22">BP22</a>], we'll discuss their result in more detail in §6.2.3. $\textsf{Chia}$ overcomes this no-go theorem by using VDFs, we discuss security under dynamic availability and healing from malicious majority in the work, stake and space setting in §6.
 
 [^1]: According to Wikipedia, _delayed gratification_ is the resistance to the temptation of an immediate pleasure in the hope of obtaining a valuable and long-lasting reward in the long-term.
 

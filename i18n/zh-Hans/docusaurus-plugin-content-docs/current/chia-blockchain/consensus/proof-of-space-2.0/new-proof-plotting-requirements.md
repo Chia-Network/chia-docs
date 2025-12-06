@@ -21,8 +21,8 @@ The new proof of space format supports plots as small as 1.6 GiB. Due to symmetr
 Subject to change pending final parameters.
 :::
 
-| Plot Size | All RAM                                            |
-| :-------- | :------------------------------------------------- |
+| Plot Size | All RAM        |
+| :-------- | :------------- |
 | k32       | &#126;10.6 GiB |
 | k30       | &#126;4.2 GiB  |
 | k28       | &#126;1.6 GiB  |
@@ -35,9 +35,9 @@ CPU plotting will be possible but will be less efficient than GPU. All times sho
 Pending Plot ID Filter and Plot Difficulty settings. Aim will be for 3060 to plot >20TiB/day
 :::
 
-| Plot Size             | RAM Requirement                      | Raspberry Pi 5             | Ryzen 5600 (6-core) | Nvidia 3090                                                      |
-| --------------------- | ------------------------------------ | -------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
-| k28                   | - GiB (min - MiB) | ~- minutes | ~- minutes             | ~ seconds _(min - MiB VRAM)_  |
-| k30                   | - GiB (min - MiB) | N/A                        | ~- minutes             | ~- seconds _(min - MiB VRAM)_ |
-| k32                   | - GiB (min - GiB) | N/A                        | ~- hours               | ~- minutes _(min - GiB VRAM)_ |
-| **Plotted space/day** | —                                    | Up to - GiB                | Up to - GiB                            | Up to - TiB                                                      |
+| Plot Size             | RAM Requirement   | Raspberry Pi 5 | Ryzen 5600 (6-core) | Nvidia 3090                   |
+| --------------------- | ----------------- | -------------- | ------------------- | ----------------------------- |
+| k28                   | - GiB (min - MiB) | ~- minutes     | ~- minutes          | ~ seconds _(min - MiB VRAM)_  |
+| k30                   | - GiB (min - MiB) | N/A            | ~- minutes          | ~- seconds _(min - MiB VRAM)_ |
+| k32                   | - GiB (min - GiB) | N/A            | ~- hours            | ~- minutes _(min - GiB VRAM)_ |
+| **Plotted space/day** | —                 | Up to - GiB    | Up to - GiB         | Up to - TiB                   |

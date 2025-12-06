@@ -47,7 +47,6 @@ If you are more of a visual learner, JM made a video outlining the steps from th
   ```
 
   Options to make this directory accessible include:
-
   - Share the directory on a network drive
   - Copy it using a USB key
   - Do a network copy to each harvester

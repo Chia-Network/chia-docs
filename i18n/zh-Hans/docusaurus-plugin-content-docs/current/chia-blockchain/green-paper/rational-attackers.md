@@ -14,7 +14,7 @@ In §3.1 below we first discuss selfish mining and why we don't observe it in Bi
 
 ## 3.1 Selfish Mining in Bitcoin
 
-While Bitcoin prevents double spending assuming a majority of the hashing power is controlled by miners who altruistically follow the protocol, it allows for _selfish mining_ \[<a href="/chia-blockchain/green-paper/green-paper-references/#ES18">ES18</a>] by which a miner with a $\alpha<0.5$ fraction of the hashing power can create more than an $\alpha$ fraction of the blocks and thus gets an unfair share of the block rewards. In some settings this fraction can be as large as $\alpha/(1-\alpha)$ (e.g. a $0.33$ fraction for $\alpha=0.25$).[^1] Selfish mining has not been observed in Bitcoin, and there are various reasons why this is the case
+While Bitcoin prevents double spending assuming a majority of the hashing power is controlled by miners who altruistically follow the protocol, it allows for *selfish mining* \[<a href="/chia-blockchain/green-paper/green-paper-references/#ES18">ES18</a>] by which a miner with a $\alpha<0.5$ fraction of the hashing power can create more than an $\alpha$ fraction of the blocks and thus gets an unfair share of the block rewards. In some settings this fraction can be as large as $\alpha/(1-\alpha)$ (e.g. a $0.33$ fraction for $\alpha=0.25$).[^1] Selfish mining has not been observed in Bitcoin, and there are various reasons why this is the case
 
 1. selfish mining requires either a fairly large fraction of the hashing power or very good control of the network (cf. Footnote [^1]) to be profitable
 

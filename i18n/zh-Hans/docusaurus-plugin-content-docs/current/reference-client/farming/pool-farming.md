@@ -48,14 +48,14 @@ For more info, see our [blog post](https://www.chia.net/2023/03/19/introducing-c
 主要有两个选项：
 
 1. 独自耕种：这个联合耕种农田不会连接到任何联合耕种服务器，1.75 XCH将直接进入你的钱包。 这与旧的（原始）地块（OG）不同，因为旧地块永远锁定在独自耕种状态。
-  使用命令行：
+   使用命令行：
 
 ```bash
 chia plotnft create -s local
 ```
 
 2. 连接联合耕种：加入一个联合耕种池，并在生成地块后立即开始耕种。
-  使用命令行：
+   使用命令行：
 
 ```bash
 chia plotnft create -s pool -u https://bar.examplepool.org

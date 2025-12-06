@@ -18,14 +18,14 @@ You can install our [example WalletConnect dApp](https://github.com/Chia-Network
 
 Logs in to a wallet key (account), as identified by its fingerprint.
 
-| Parameter     | Type     | Description                         |
-| ------------- | -------- | ----------------------------------- |
+| Parameter     | Type     | Description         |
+| ------------- | -------- | ------------------- |
 | `fingerprint` | `number` | Wallet fingerprint. |
 
 #### Output Data
 
-| Parameter     | Type      | Description                             |
-| ------------- | --------- | --------------------------------------- |
+| Parameter     | Type      | Description             |
+| ------------- | --------- | ----------------------- |
 | `fingerprint` | `number`  | Wallet fingerprint.     |
 | `success`     | `boolean` | Backend success status. |
 
@@ -33,22 +33,22 @@ Logs in to a wallet key (account), as identified by its fingerprint.
 
 Gets the wallet's master public key.
 
-| Parameter     | Type     | Description                         |
-| ------------- | -------- | ----------------------------------- |
+| Parameter     | Type     | Description         |
+| ------------- | -------- | ------------------- |
 | `fingerprint` | `number` | Wallet fingerprint. |
 
 #### Output Data
 
-| Parameter | Type     | Description                                    |
-| --------- | -------- | ---------------------------------------------- |
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
 | `pubkey`  | `string` | Hex encoded master public key. |
 
 ### `chia_getWallets`
 
 Gets a list of wallet ids associated with the current account.
 
-| Parameter     | Type      | Description                                  |
-| ------------- | --------- | -------------------------------------------- |
+| Parameter     | Type      | Description                  |
+| ------------- | --------- | ---------------------------- |
 | `includeData` | `boolean` | Whether to include metadata. |
 
 #### Output Data
@@ -59,8 +59,8 @@ The output is a value of type [`WalletInfo`](/reference-client/walletconnect/wal
 
 Gets a transaction record by its id.
 
-| Parameter       | Type     | Description                     |
-| --------------- | -------- | ------------------------------- |
+| Parameter       | Type     | Description     |
+| --------------- | -------- | --------------- |
 | `transactionId` | `string` | Transaction id. |
 
 #### Output Data
@@ -71,8 +71,8 @@ The output is a value of type [`TransactionRecord`](/reference-client/walletconn
 
 Gets the various wallet balances for a given wallet id, as shown in the GUI.
 
-| Parameter                                   | Type     | Description                                      |
-| ------------------------------------------- | -------- | ------------------------------------------------ |
+| Parameter                | Type     | Description                      |
+| ------------------------ | -------- | -------------------------------- |
 | `walletId?` _(optional)_ | `number` | Wallet id to get the balance of. |
 
 #### Output Data
@@ -83,8 +83,8 @@ The output is a value of type [`WalletBalance`](/reference-client/walletconnect/
 
 Gets the address of the current derivation index.
 
-| Parameter                                   | Type     | Description                                      |
-| ------------------------------------------- | -------- | ------------------------------------------------ |
+| Parameter                | Type     | Description                      |
+| ------------------------ | -------- | -------------------------------- |
 | `walletId?` _(optional)_ | `number` | Wallet id to get the address of. |
 
 #### Output Data
@@ -95,8 +95,8 @@ The output is a bech32m encoded address of type `string`.
 
 Gets the address of the next derivation index.
 
-| Parameter                                     | Type      | Description                                           |
-| --------------------------------------------- | --------- | ----------------------------------------------------- |
+| Parameter                  | Type      | Description                           |
+| -------------------------- | --------- | ------------------------------------- |
 | `walletId?` _(optional)_   | `number`  | Wallet id to get the address of.      |
 | `newAddress?` _(optional)_ | `boolean` | Whether to increase derivation index. |
 
@@ -108,19 +108,19 @@ The output is a bech32m encoded address of type `string`.
 
 Sends an amount of mojos in a given wallet to a recipient address.
 
-| Parameter                                              | Type       | Description                                                             |
-| ------------------------------------------------------ | ---------- | ----------------------------------------------------------------------- |
-| `amount`                                               | `number`   | Amount in mojos.                                        |
-| `fee`                                                  | `number`   | Transaction fee in mojos.                               |
-| `address`                                              | `string`   | Bech32m encoded recipient address.                      |
-| `walletId?` _(optional)_            | `number`   | Wallet id to use coins from.                            |
-| `waitForConfirmation?` _(optional)_ | `boolean`  | Whether to wait for inclusion in a block.               |
-| `memos?` _(optional)_               | `string[]` | A list of coin memos (such as hint). |
+| Parameter                           | Type       | Description                               |
+| ----------------------------------- | ---------- | ----------------------------------------- |
+| `amount`                            | `number`   | Amount in mojos.                          |
+| `fee`                               | `number`   | Transaction fee in mojos.                 |
+| `address`                           | `string`   | Bech32m encoded recipient address.        |
+| `walletId?` _(optional)_            | `number`   | Wallet id to use coins from.              |
+| `waitForConfirmation?` _(optional)_ | `boolean`  | Whether to wait for inclusion in a block. |
+| `memos?` _(optional)_               | `string[]` | A list of coin memos (such as hint).      |
 
 #### Output Data
 
-| Parameter       | Type                                                                                   | Description                             |
-| --------------- | -------------------------------------------------------------------------------------- | --------------------------------------- |
+| Parameter       | Type                                                                                   | Description             |
+| --------------- | -------------------------------------------------------------------------------------- | ----------------------- |
 | `transaction`   | [`TransactionRecord`](/reference-client/walletconnect/walletconnect#transactionrecord) | Transaction record.     |
 | `transactionId` | `string`                                                                               | Transaction id.         |
 | `success`       | `boolean`                                                                              | Backend success status. |
@@ -135,15 +135,15 @@ In order to ensure the message being signed isn't a transaction, the message is 
 
 ---
 
-| Parameter | Type     | Description                                              |
-| --------- | -------- | -------------------------------------------------------- |
+| Parameter | Type     | Description                              |
+| --------- | -------- | ---------------------------------------- |
 | `message` | `string` | Message to sign.                         |
 | `id`      | `string` | DID to sign the message with the key of. |
 
 #### Output Data
 
-| Parameter      | Type      | Description                                      |
-| -------------- | --------- | ------------------------------------------------ |
+| Parameter      | Type      | Description                      |
+| -------------- | --------- | -------------------------------- |
 | `latestCoinId` | `string`  | Latest DID singleton coin id.    |
 | `pubkey`       | `string`  | Hex encoded DID public key.      |
 | `signature`    | `string`  | Hex encoded BLS12-381 signature. |
@@ -160,15 +160,15 @@ In order to ensure the message being signed isn't a transaction, the message is 
 
 ---
 
-| Parameter | Type     | Description                                                  |
-| --------- | -------- | ------------------------------------------------------------ |
+| Parameter | Type     | Description                                  |
+| --------- | -------- | -------------------------------------------- |
 | `message` | `string` | Message to sign.                             |
 | `address` | `string` | Address to sign the message with the key of. |
 
 #### Output Data
 
-| Parameter     | Type      | Description                                      |
-| ------------- | --------- | ------------------------------------------------ |
+| Parameter     | Type      | Description                      |
+| ------------- | --------- | -------------------------------- |
 | `pubkey`      | `string`  | Hex encoded address public key.  |
 | `signature`   | `string`  | Hex encoded BLS12-381 signature. |
 | `signingMode` | `string`  | Signing mode used.               |
@@ -178,18 +178,18 @@ In order to ensure the message being signed isn't a transaction, the message is 
 
 Verifies a signature over a message from a given public key.
 
-| Parameter                                      | Type     | Description                                      |
-| ---------------------------------------------- | -------- | ------------------------------------------------ |
-| `message`                                      | `string` | Message to verify.               |
-| `pubkey`                                       | `string` | Hex encoded public key.          |
-| `signature`                                    | `string` | Hex encoded BLS12-381 signature. |
+| Parameter                   | Type     | Description                      |
+| --------------------------- | -------- | -------------------------------- |
+| `message`                   | `string` | Message to verify.               |
+| `pubkey`                    | `string` | Hex encoded public key.          |
+| `signature`                 | `string` | Hex encoded BLS12-381 signature. |
 | `address?` _(optional)_     | `string` | Address used for signing.        |
 | `signingMode?` _(optional)_ | `string` | Signing mode used.               |
 
 #### Output Data
 
-| Parameter | Type      | Description                                     |
-| --------- | --------- | ----------------------------------------------- |
+| Parameter | Type      | Description                     |
+| --------- | --------- | ------------------------------- |
 | `isValid` | `boolean` | Whether the signature is valid. |
 | `success` | `boolean` | Backend success status.         |
 
@@ -199,8 +199,8 @@ Gets the current sync status of the wallet.
 
 #### Output Data
 
-| Parameter            | Type      | Description                                              |
-| -------------------- | --------- | -------------------------------------------------------- |
+| Parameter            | Type      | Description                              |
+| -------------------- | --------- | ---------------------------------------- |
 | `genesisInitialized` | `boolean` | Whether the genesis is initialized.      |
 | `synced`             | `boolean` | Whether the wallet is fully synced.      |
 | `syncing`            | `boolean` | Whether the wallet is currently syncing. |
@@ -210,26 +210,26 @@ Gets the current sync status of the wallet.
 
 ### WalletInfo
 
-| Parameter | Type                                                                     | Description                                                                 |
-| --------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| `id`      | `number`                                                                 | The wallet id.                                              |
-| `name`    | `string`                                                                 | The name of the wallet.                                     |
-| `type`    | [`WalletType`](/reference-client/walletconnect/walletconnect#wallettype) | The type of the wallet.                                     |
+| Parameter | Type                                                                     | Description                              |
+| --------- | ------------------------------------------------------------------------ | ---------------------------------------- |
+| `id`      | `number`                                                                 | The wallet id.                           |
+| `name`    | `string`                                                                 | The name of the wallet.                  |
+| `type`    | [`WalletType`](/reference-client/walletconnect/walletconnect#wallettype) | The type of the wallet.                  |
 | `data`    | `any`                                                                    | Extra info (unused for standard wallet). |
-| `meta`    | `any`                                                                    | Metadata specific to each wallet type.                      |
+| `meta`    | `any`                                                                    | Metadata specific to each wallet type.   |
 
 #### CAT Metadata
 
-| Parameter | Type     | Description                   |
-| --------- | -------- | ----------------------------- |
+| Parameter | Type     | Description   |
+| --------- | -------- | ------------- |
 | `assetId` | `string` | Asset id.     |
 | `name`    | `string` | Display name. |
 
 #### NFT Metadata
 
-| Parameter | Type     | Description                |
-| --------- | -------- | -------------------------- |
-| `did`     | `string` | Owner DID. |
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| `did`     | `string` | Owner DID.  |
 
 ### WalletType
 
@@ -250,25 +250,25 @@ Gets the current sync status of the wallet.
 
 ### TransactionRecord
 
-| Parameter           | Type                                                                                                                  | Description                                            |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| `confirmedAtHeight` | `number`                                                                                                              | Block height the tx was confirmed.     |
-| `createdAtTime`     | `number`                                                                                                              | The timestamp when the tx was created. |
-| `toPuzzleHash`      | `string`                                                                                                              | The destination puzzle hash.           |
-| `amount`            | `number`                                                                                                              | The amount sent in mojos.              |
-| `feeAmount`         | `number`                                                                                                              | The transaction fee in mojos.          |
-| `confirmed`         | `boolean`                                                                                                             | Whether the tx was confirmed.          |
-| `sent`              | `number`                                                                                                              | Number of peers the tx was sent to.    |
-| `sentTo`            | [`Peer[]`](/reference-client/walletconnect/walletconnect#peer)                                                        | The peers the tx has been sent to.     |
+| Parameter           | Type                                                                                              | Description                            |
+| ------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| `confirmedAtHeight` | `number`                                                                                          | Block height the tx was confirmed.     |
+| `createdAtTime`     | `number`                                                                                          | The timestamp when the tx was created. |
+| `toPuzzleHash`      | `string`                                                                                          | The destination puzzle hash.           |
+| `amount`            | `number`                                                                                          | The amount sent in mojos.              |
+| `feeAmount`         | `number`                                                                                          | The transaction fee in mojos.          |
+| `confirmed`         | `boolean`                                                                                         | Whether the tx was confirmed.          |
+| `sent`              | `number`                                                                                          | Number of peers the tx was sent to.    |
+| `sentTo`            | [`Peer[]`](/reference-client/walletconnect/walletconnect#peer)                                    | The peers the tx has been sent to.     |
 | `spendBundle`       | <code>[SpendBundle](/reference-client/walletconnect/walletconnect#spendbundle) &#124; null</code> | The associated spend bundle.           |
-| `additions`         | [`Coin[]`](/reference-client/walletconnect/walletconnect#coin)                                                        | Created coins in the block.            |
-| `removals`          | [`Coin[]`](/reference-client/walletconnect/walletconnect#coin)                                                        | Spent coins in the block.              |
-| `walletId`          | `number`                                                                                                              | The wallet id.                         |
-| `toAddress`         | `string`                                                                                                              | The bech32m encoded `to_puzzle_hash`.  |
-| `trade_id`          | <code>string &#124; null</code>                                                                   |                                                        |
-| `type`              | [`TransactionType`](/reference-client/walletconnect/walletconnect#transactiontype)                                    | The type of transaction.               |
-| `name`              | `string`                                                                                                              | The transaction's id.                  |
-| `memos`             | `Memo[]`                                                                                                              | The memos associated with the tx.      |
+| `additions`         | [`Coin[]`](/reference-client/walletconnect/walletconnect#coin)                                    | Created coins in the block.            |
+| `removals`          | [`Coin[]`](/reference-client/walletconnect/walletconnect#coin)                                    | Spent coins in the block.              |
+| `walletId`          | `number`                                                                                          | The wallet id.                         |
+| `toAddress`         | `string`                                                                                          | The bech32m encoded `to_puzzle_hash`.  |
+| `trade_id`          | <code>string &#124; null</code>                                                                   |                                        |
+| `type`              | [`TransactionType`](/reference-client/walletconnect/walletconnect#transactiontype)                | The type of transaction.               |
+| `name`              | `string`                                                                                          | The transaction's id.                  |
+| `memos`             | `Memo[]`                                                                                          | The memos associated with the tx.      |
 
 ### TransactionType
 
@@ -289,11 +289,11 @@ This is a tuple with the following parameters.
 
 ---
 
-| Parameter                                       | Type                                                                               | Description                                |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------ |
+| Parameter                    | Type                                                                               | Description                |
+| ---------------------------- | ---------------------------------------------------------------------------------- | -------------------------- |
 | `peerId` _(item 1)_          | `string`                                                                           | Peer id.                   |
 | `inclusionStatus` _(item 2)_ | [`InclusionStatus`](/reference-client/walletconnect/walletconnect#inclusionstatus) | Inclusion status.          |
-| `errorMessage` _(item 3)_    | <code>string &#124; null</code>                                | Error message, if present. |
+| `errorMessage` _(item 3)_    | <code>string &#124; null</code>                                                    | Error message, if present. |
 
 ### InclusionStatus
 
@@ -305,31 +305,31 @@ This is a tuple with the following parameters.
 
 ### SpendBundle
 
-| Parameter             | Type                                                                     | Description                                                |
-| --------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| Parameter             | Type                                                                     | Description                                |
+| --------------------- | ------------------------------------------------------------------------ | ------------------------------------------ |
 | `coinSpends`          | [`CoinSpend[]`](/reference-client/walletconnect/walletconnect#coinspend) | The coin spends.                           |
 | `aggregatedSignature` | `string`                                                                 | The G2Element of the aggregated signature. |
 
 ### CoinSpend
 
-| Parameter      | Type                                                         | Description                                                      |
-| -------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Parameter      | Type                                                         | Description                                      |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------ |
 | `coin`         | [`Coin`](/reference-client/walletconnect/walletconnect#coin) | The coin that is being spent.                    |
 | `puzzleReveal` | `string`                                                     | The puzzle reveal in serialized CLVM hex format. |
 | `solution`     | `string`                                                     | The solution in serialized CLVM hex format.      |
 
 ### Coin
 
-| Parameter      | Type     | Description                          |
-| -------------- | -------- | ------------------------------------ |
+| Parameter      | Type     | Description          |
+| -------------- | -------- | -------------------- |
 | `parentCoinId` | `string` | The parent coin id.  |
 | `puzzleHash`   | `string` | The puzzle hash.     |
 | `amount`       | `number` | The amount in mojos. |
 
 ### WalletBalance
 
-| Parameter                  | Type     | Description                                               |
-| -------------------------- | -------- | --------------------------------------------------------- |
+| Parameter                  | Type     | Description                               |
+| -------------------------- | -------- | ----------------------------------------- |
 | `confirmedWalletBalance`   | `number` | The confirmed balance.                    |
 | `unconfirmedWalletBalance` | `number` | The unconfirmed balance.                  |
 | `spendableBalance`         | `number` | The spendable balance.                    |

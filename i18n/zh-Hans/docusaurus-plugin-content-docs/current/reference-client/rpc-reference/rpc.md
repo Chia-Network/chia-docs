@@ -238,8 +238,8 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                                                                                 |
-| :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type   | Required | Description                                                                                                                                       |
+| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
 | STRING | True     | The service to query for its log level; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters: None
@@ -287,14 +287,14 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                                                                             |
-| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Type   | Required | Description                                                                                                                                   |
+| :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | STRING | True     | Set the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters:
 
-| Flag  | Type   | Required | Description                                                                                                                                                   |
-| :---- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Flag  | Type   | Required | Description                                                                                                                                   |
+| :---- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | level | STRING | True     | The log level to set for the designated service; valid levels are: "CRITICAL", "FATAL", "ERROR", "WARN", "WARNING", "INFO", "DEBUG", "NOTSET" |
 
 <details>
@@ -345,8 +345,8 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                                                                               |
-| :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type   | Required | Description                                                                                                                                     |
+| :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | STRING | True     | Reset the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
 
 Request Parameters: None

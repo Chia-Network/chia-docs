@@ -68,7 +68,7 @@ VDF chains give two basic security guarantees, the first is immutability analogo
 
 ---
 
-**Proposition 3** (immutability and sequentiality of VDF chains). _Like a hash chain, a VDF chain is _immutable_ in the sense that it's computationally infeasible to come up with two different VDF chains_
+**Proposition 3** (immutability and sequentiality of VDF chains). _Like a hash chain, a VDF chain is \_immutable_ in the sense that it's computationally infeasible to come up with two different VDF chains\_
 
 $$
 {\cal V}=z_0,\tau_1,z_1,\tau_2,z_2,\ldots,\tau_\ell

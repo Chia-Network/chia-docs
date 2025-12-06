@@ -45,14 +45,14 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                                                                    | Required | Description                                                                                                                                 |
-| :----------------------------------------------------------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| wallet_type                                                                             | True     | This must be set to `did_wallet` in order to create a DID wallet                                                                            |
-| did_type                                                                                | True     | Set this to `new` to create a new DID                                                                                                       |
-| amount                                                                                                       | True     | Number of mojos to add to the DID initially. Minimum value is `1`                                                           |
-| backup_dids                                                                             | True     | A list of DIDs to be used for recovery. Must match actual DIDs                                                              |
+| Parameter                | Required | Description                                                                                                                 |
+| :----------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| wallet_type              | True     | This must be set to `did_wallet` in order to create a DID wallet                                                            |
+| did_type                 | True     | Set this to `new` to create a new DID                                                                                       |
+| amount                   | True     | Number of mojos to add to the DID initially. Minimum value is `1`                                                           |
+| backup_dids              | True     | A list of DIDs to be used for recovery. Must match actual DIDs                                                              |
 | num_of_backup_ids_needed | True     | The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
-| fee                                                                                                          | False    | An optional blockchain fee, in mojos                                                                                                        |
+| fee                      | False    | An optional blockchain fee, in mojos                                                                                        |
 
 <details>
 <summary>Example</summary>
@@ -120,12 +120,12 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                  |
-| :----------------------------- | :------- | :------------------------------------------- |
+| Parameter | Required | Description                                  |
+| :-------- | :------- | :------------------------------------------- |
 | wallet_id | True     | The Wallet ID for which to create the attest |
 | coin_name | True     | The coin to use for the attest               |
-| pubkey                         | True     | The public key to use for the attest         |
-| puzhash                        | True     | The puzzle hash to use for the attest        |
+| pubkey    | True     | The public key to use for the attest         |
+| puzhash   | True     | The puzzle hash to use for the attest        |
 
 <details>
 <summary>Example</summary>
@@ -230,8 +230,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                                        |
-| :----------------------------- | :------- | :----------------------------------------------------------------- |
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the coin info |
 
 <details>
@@ -271,12 +271,12 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                    | Type   | Required | Description                                                                                                                                         |
-| :----------------------------------------------------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| coin_id                                 | STRING | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
+| Parameter          | Type   | Required | Description                                                                                                                         |
+| :----------------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| coin_id            | STRING | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
 | recovery_list_hash | STRING | False    | Override the recovery list hash of the DID. Only set this if your last DID spend updated the recovery list                          |
-| num_verification                        | NUMBER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
-| metadata                                                     | STRING | False    | The new whole metadata in json format                                                                                                               |
+| num_verification   | NUMBER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
+| metadata           | STRING | False    | The new whole metadata in json format                                                                                               |
 
 <details>
 <summary>Example 1</summary>
@@ -332,8 +332,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                                        |
-| :----------------------------- | :------- | :----------------------------------------------------------------- |
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the coin info |
 
 <details>
@@ -375,8 +375,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                                   |
-| :----------------------------- | :------- | :------------------------------------------------------------ |
+| Parameter | Required | Description                                                   |
+| :-------- | :------- | :------------------------------------------------------------ |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the DID info |
 
 <details>
@@ -416,8 +416,8 @@ Options:
 
 Request Parameters:
 
-| Flag                         | Type   | Required | Description                                                                                          |
-| :--------------------------- | :----- | :------- | :--------------------------------------------------------------------------------------------------- |
+| Flag    | Type   | Required | Description                                                                       |
+| :------ | :----- | :------- | :-------------------------------------------------------------------------------- |
 | coin_id | NUMBER | True     | The coin ID of the DID get info (can be in the `0x618...` or `did:chia:16` format |
 
 <details>
@@ -463,8 +463,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                                                   |
-| :----------------------------- | :------- | :---------------------------------------------------------------------------- |
+| Parameter | Required | Description                                                                   |
+| :-------- | :------- | :---------------------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the recovery information |
 
 <details>
@@ -509,8 +509,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                                        |
-| :----------------------------- | :------- | :----------------------------------------------------------------- |
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the metadata list |
 
 <details>
@@ -552,8 +552,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                                         |
-| :----------------------------- | :------- | :------------------------------------------------------------------ |
+| Parameter | Required | Description                                                         |
+| :-------- | :------- | :------------------------------------------------------------------ |
 | wallet_id | True     | The Wallet ID of the DID wallet from which to obtain the public key |
 
 <details>
@@ -591,8 +591,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                                        |
-| :----------------------------- | :------- | :----------------------------------------------------------------- |
+| Parameter | Required | Description                                                        |
+| :-------- | :------- | :----------------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet for which to get the recovery list |
 
 <details>
@@ -635,8 +635,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                              |
-| :----------------------------- | :------- | :------------------------------------------------------- |
+| Parameter | Required | Description                                              |
+| :-------- | :------- | :------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet on which to get the name |
 
 <details>
@@ -675,8 +675,8 @@ Options:
 
 Request Parameters:
 
-| Flag                                      | Type   | Required | Description                                                     |
-| :---------------------------------------- | :----- | :------- | :-------------------------------------------------------------- |
+| Flag                 | Type   | Required | Description                                                     |
+| :------------------- | :----- | :------- | :-------------------------------------------------------------- |
 | wallet_id            | NUMBER | True     | The Wallet ID of the DID wallet from which to spend the message |
 | coin_announcements   | LIST   | False    | A list of coin announcements to include with the spend          |
 | puzzle_announcements | LIST   | False    | A list of puzzle announcements to include with the spend        |
@@ -729,13 +729,13 @@ Options:
 
 Request Parameters:
 
-| Parameter                        | Required | Description                                                                                                                     |
-| :------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| wallet_id   | True     | The Wallet ID of the DID wallet to recover                                                                                      |
-| attest_data | True     | A list of attest files to be used for recovery                                                                                  |
-| pubkey                           | False    | The public key of the wallet to recover. If this is not provided, a temporary public key will be used instead   |
-| puzhash                          | False    | The puzzle hash of the wallet to recover. If this is not provided, a temporary puzzle hash will be used instead |
-| fee                              | False    | An optional blockchain fee, in mojos                                                                                            |
+| Parameter   | Required | Description                                                                                                     |
+| :---------- | :------- | :-------------------------------------------------------------------------------------------------------------- |
+| wallet_id   | True     | The Wallet ID of the DID wallet to recover                                                                      |
+| attest_data | True     | A list of attest files to be used for recovery                                                                  |
+| pubkey      | False    | The public key of the wallet to recover. If this is not provided, a temporary public key will be used instead   |
+| puzhash     | False    | The puzzle hash of the wallet to recover. If this is not provided, a temporary puzzle hash will be used instead |
+| fee         | False    | An optional blockchain fee, in mojos                                                                            |
 
 <details>
 <summary>Example</summary>
@@ -1069,10 +1069,10 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                                              |
-| :----------------------------- | :------- | :------------------------------------------------------- |
+| Parameter | Required | Description                                              |
+| :-------- | :------- | :------------------------------------------------------- |
 | wallet_id | True     | The Wallet ID of the DID wallet on which to set the name |
-| name                           | True     | The new name of the DID wallet                           |
+| name      | True     | The new name of the DID wallet                           |
 
 <details>
 <summary>Example</summary>
@@ -1131,13 +1131,13 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                    | Required | Description                                                                                                                                                                                                              |
-| :----------------------------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id                               | True     | The Wallet ID of the DID wallet to transfer                                                                                                                                                                              |
-| inner_address                           | True     | The address of the inner puzzle to which to transfer the DID                                                                                                                                                             |
-| fee                                                          | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
-| with_recovery_info | False    | If `True`, transfer recovery info [Default: `True`]                                                                                                  |
-| reuse_puzhash                           | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Parameter          | Required | Description                                                                                                                                                                              |
+| :----------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id          | True     | The Wallet ID of the DID wallet to transfer                                                                                                                                              |
+| inner_address      | True     | The address of the inner puzzle to which to transfer the DID                                                                                                                             |
+| fee                | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| with_recovery_info | False    | If `True`, transfer recovery info [Default: `True`]                                                                                                                                      |
+| reuse_puzhash      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>
@@ -1220,11 +1220,11 @@ Options:
 
 Request Parameters:
 
-| Parameter                          | Required | Description                                                                                                                                                                                                              |
-| :--------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id     | True     | The Wallet ID of the DID wallet for which to update the metadata                                                                                                                                                         |
-| metadata                           | False    | The updated metadata                                                                                                                                                                                                     |
-| fee                                | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
+| Parameter     | Required | Description                                                                                                                                                                              |
+| :------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id     | True     | The Wallet ID of the DID wallet for which to update the metadata                                                                                                                         |
+| metadata      | False    | The updated metadata                                                                                                                                                                     |
+| fee           | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
 | reuse_puzhash | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
@@ -1261,13 +1261,13 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                            | Required | Description                                                                                                                                                                                                              |
-| :------------------------------------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id                                       | True     | The Wallet ID of the DID wallet for which to update the recovery IDs                                                                                                                                                     |
-| new_list                                        | True     | The new recovery ID list. Each item from this list will be appended to the existing list                                                                                                                 |
-| num_verifications_required | False    | Optionally set the number of IDs required for wallet recovery. If not set, then the entire updated list will be required by default                                                                      |
-| fee                                                                  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
-| reuse_puzhash                                   | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Parameter                  | Required | Description                                                                                                                                                                              |
+| :------------------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                  | True     | The Wallet ID of the DID wallet for which to update the recovery IDs                                                                                                                     |
+| new_list                   | True     | The new recovery ID list. Each item from this list will be appended to the existing list                                                                                                 |
+| num_verifications_required | False    | Optionally set the number of IDs required for wallet recovery. If not set, then the entire updated list will be required by default                                                      |
+| fee                        | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| reuse_puzhash              | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 <details>
 <summary>Example</summary>

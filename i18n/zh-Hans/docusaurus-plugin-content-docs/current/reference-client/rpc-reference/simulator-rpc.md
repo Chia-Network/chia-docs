@@ -58,11 +58,11 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                    | Required | Description                                                                                                                                                                                                                                                                |
-| :----------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| address                                                      | True     | The address to use to farm the block                                                                                                                                                                                                                                       |
+| Parameter          | Required | Description                                                                                                                                                                                                          |
+| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address            | True     | The address to use to farm the block                                                                                                                                                                                 |
 | guarantee_tx_block | False    | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
-| blocks                                                       | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                   |
+| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
 
 <details>
 <summary>Example 1</summary>
@@ -228,8 +228,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                     | Required | Description                                                                                                              |
-| :------------------------------------------------------------ | :------- | :----------------------------------------------------------------------------------------------------------------------- |
+| Parameter           | Required | Description                                                                           |
+| :------------------ | :------- | :------------------------------------------------------------------------------------ |
 | include_spent_coins | False    | Boolean, if `True` then spent coins will be included in the result (Default: `False`) |
 
 <details>
@@ -420,12 +420,12 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                                                                | Required | Description                                                                                     |
-| :------------------------------------------------------------------------------------------------------- | :------- | :---------------------------------------------------------------------------------------------- |
-| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                 |
-| num_of_new_blocks                         | False    | The number of blocks to add (Default: 1)                     |
-| revert_all_blocks                                              | False    | Boolean, set to `True` to fork all blocks (Default: `False`) |
-| random_seed                                                                         | False    | String, used to randomize the seed, which will differentiate reorgs                             |
+| Parameter            | Required | Description                                                         |
+| :------------------- | :------- | :------------------------------------------------------------------ |
+| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                        |
+| num_of_new_blocks    | False    | The number of blocks to add (Default: 1)                            |
+| revert_all_blocks    | False    | Boolean, set to `True` to fork all blocks (Default: `False`)        |
+| random_seed          | False    | String, used to randomize the seed, which will differentiate reorgs |
 
 <details>
 <summary>Example 1</summary>
@@ -484,8 +484,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                                                   | Required | Description                                                                                       |
-| :---------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------ |
+| Parameter         | Required | Description                                                    |
+| :---------------- | :------- | :------------------------------------------------------------- |
 | num_of_blocks     | False    | The number of blocks to revert (Default: 1)                    |
 | delete_all_blocks | False    | Boolean, set to `True` to revert all blocks (Default: `False`) |
 
@@ -546,8 +546,8 @@ Options:
 
 Request Parameters:
 
-| Parameter                      | Required | Description                               |
-| :----------------------------- | :------- | :---------------------------------------- |
+| Parameter | Required | Description                               |
+| :-------- | :------- | :---------------------------------------- |
 | auto_farm | True     | Boolean to enable or disable auto farming |
 
 <details>
