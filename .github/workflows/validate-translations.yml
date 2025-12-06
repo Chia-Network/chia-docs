@@ -1,0 +1,44 @@
+name: Validate Translations
+
+on:
+  pull_request:
+    paths:
+      - 'i18n/**'
+      - 'scripts/validate-translations.js'
+      - 'package.json'
+  push:
+    branches:
+      - 'main'
+      - 'long_lived/**'
+      - 'release/**'
+    paths:
+      - 'i18n/**'
+      - 'scripts/validate-translations.js'
+      - 'package.json'
+
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow_ref, github.event.pull_request.number) || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate translation files
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate translations
+        run: npm run validate:translations
+

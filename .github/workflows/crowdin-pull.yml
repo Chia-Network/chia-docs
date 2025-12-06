@@ -75,8 +75,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Compile Updated translations
         run: |
-          npm install
           npm run locale
           (git add . && git commit -m "Compiled Translations" && git push origin ${{ env.localization_branch_name }}) || true
+
+      - name: Validate translations
+        run: |
+          npm run validate:translations || (echo "Translation validation failed. Please check the errors above." && exit 1)
