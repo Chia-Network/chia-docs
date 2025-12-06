@@ -1,5 +1,5 @@
 ---
-slug: /guides/cr-cat-tutorial
+slug: /guides/cr-CAT-tutorial
 title: CR-CAT Creation Tutorial
 ---
 
@@ -52,6 +52,7 @@ We have faucets available if you don't have sufficient funds to get started:
 It is possible to brick\* funds by sending them to an address without the appropriate credentials, as will be demonstrated later in this guide. You are therefore recommended to test minting CR-CATs on the testnet or on a simulator prior to minting them on mainnet. You are recommended to test minting VCs on the testnet prior to minting them on mainnet. If you are unsure of how to configure your wallet to use the testnet, see our [guide](https://docs.chia.net/guides/chialisp-testnet-setup).
 
 \* Technically, the funds will remain recoverable, but this process will not be easy.
+:::
 :::
 
 ### DID and VC Setup
@@ -564,7 +565,6 @@ chia wallet send -i 5 -a 100 -m 0.0001 -t txch1hsyj53wz3wzznxdd0kupk075yj2muew8q
 Response:
 
 ```bash
-Submitting transaction...
 Submitting transaction...
 Transaction submitted to nodes: [{'peer_id': 'b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
 Run 'chia wallet get_transaction -f 3152280463 -tx 0xab577bdce7fdd1be8b4e0634ad69aa5cff66f6d9dc7d26e0119d1a3a740f91e8' to get status

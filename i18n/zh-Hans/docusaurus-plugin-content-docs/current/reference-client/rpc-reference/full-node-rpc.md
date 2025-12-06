@@ -23,7 +23,7 @@ Need to test these RPC endpoints? Use the **[RPC Validation Tool](/guides/rpc-va
 :::
 
 <details>
-  <summary>Note about Windows command escaping</summary>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 

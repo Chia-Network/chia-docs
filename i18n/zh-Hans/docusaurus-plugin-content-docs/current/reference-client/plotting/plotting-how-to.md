@@ -15,7 +15,7 @@ To create plots, you must have:
 
 This page will give a basic overview of how to obtain these values. For a detailed description, see the [Beginner's Guide to Farming](/reference-client/getting-started/farming-guide).
 
-If you already have a wallet with a plot NFT, feel free to skip to the section for [CLI Plotting](#cli-plotting) or [GUI Plotting](#图形用户界面gui生成地块).
+If you already have a wallet with a plot NFT, feel free to skip to the section for [CLI Plotting](#cli-plotting) or [GUI Plotting](#gui-plotting).
 
 ## Public Keys
 
@@ -259,7 +259,7 @@ chia plotters chiapos -t <temp dir> -d <destination dir> -f <farmer key> -p <poo
 
 Regardless of which plotter you choose, it's a good idea to experiment with the optional parameters in order to optimize the plotting process for your hardware.
 
-## 图形用户界面（GUI）生成地块
+## 图形用户界面（GUI）生成地块 {#gui-plotting}
 
 From the Chia application, click the `Farm` icon and click `ADD A PLOT`:
 

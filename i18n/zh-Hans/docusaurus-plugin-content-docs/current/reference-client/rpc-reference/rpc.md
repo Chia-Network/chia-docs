@@ -5,7 +5,7 @@ slug: /reference-client/rpc-reference/rpc
 ---
 
 <details>
-  <summary>Note about Windows command escaping</summary>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 

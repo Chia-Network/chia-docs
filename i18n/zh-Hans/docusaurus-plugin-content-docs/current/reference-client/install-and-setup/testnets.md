@@ -10,7 +10,6 @@ slug: /reference-client/install-and-setup/testnets
 Testnet 7 may remain active, but is no longer officially supported by Chia Network Inc.
 Testnets can be used to test the chia software with coins that have no real world value.\
 If you want to run the Chia blockchain mainnet, use the [mainnet installation](/reference-client/install-and-setup/installation) instructions.
-If you want to run the Chia blockchain mainnet, use the [mainnet installation](/reference-client/install-and-setup/installation) instructions.
 
 :::
 
@@ -38,8 +37,6 @@ chia configure --testnet true
 
 ### (Opt) Download the official testnet db
 
-This step is optional, but it will speed up syncing with the testnet
-
 The process for using the official database snapshot torrent can be found here:
 https://docs.chia.net/reference-client/troubleshooting/node-syncing/#using-the-official-database-snapshot-torrent
 
@@ -48,9 +45,6 @@ https://docs.chia.net/reference-client/troubleshooting/node-syncing/#using-the-o
 ```bash
 # Start your node
 chia start farmer
-
-# Once the node has started, connect to the testnet introducer
-chia peer full_node -a testnet10-node.chia.net:58444
 
 # Check sync status
 chia show -s`
@@ -92,7 +86,7 @@ For the mainnet installation, we will stick with the default ports and CHIA_ROOT
 :::note
 
 (Optional) Install `yq` to make editing the yaml files easier [https://github.com/mikefarah/yq#install](https://github.com/mikefarah/yq#install).\
-Alternatively, you can manually edit the ports in `config.yaml`.\
+Alternatively, you can manually edit the ports in `config.yaml`.  
 Alternatively, you can manually edit the ports in `config.yaml`.
 
 :::

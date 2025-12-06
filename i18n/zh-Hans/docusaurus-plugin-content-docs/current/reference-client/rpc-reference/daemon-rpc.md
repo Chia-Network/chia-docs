@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 This document provides a comprehensive reference to Chia's Daemon RPC API.
 
 <details>
-  <summary>Note about Windows command escaping</summary>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 

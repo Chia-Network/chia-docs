@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 本文档提供了Chia钱包RPC API 的全面参考(不包含DID及NFT，这两者有专门的章节介绍)。
 
 <details>
-  <summary>Note about Windows command escaping</summary>
+<summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 

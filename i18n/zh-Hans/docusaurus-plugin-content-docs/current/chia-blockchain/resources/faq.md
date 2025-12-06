@@ -562,8 +562,8 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
 1. Stop all chia processes.
 2. Locate the database file you want to move.
    - Blockchain db: `~/.chia/mainnet/db/blockchain_v2_CHALLENGE.sqlite`
-   - Wallet db: `~/.chia/mainnet/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite`\
-     **Note:** `CHALLENGE` will either be mainnet or testnet based on your selected network.\
+   - Wallet db: `~/.chia/mainnet/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite`  
+     **Note:** `CHALLENGE` will either be mainnet or testnet based on your selected network.  
      **Note:** `KEY` will be the fingerprint of your wallet.
 3. Copy the database file(s) you want to move to their new location.
 4. Update the applicable config.yaml parameters from the table below.
