@@ -79,10 +79,17 @@ jobs:
         run: npm install
 
       - name: Compile Updated translations
-        run: |
-          npm run locale
-          (git add . && git commit -m "Compiled Translations" && git push origin ${{ env.localization_branch_name }}) || true
+        run: npm run locale
+
+      - name: Format translations
+        run: npx prettier --write --ignore-path .gitignore --ignore-path .prettierignore i18n/
 
       - name: Validate translations
         run: |
           npm run validate:translations || (echo "Translation validation failed. Please check the errors above." && exit 1)
+
+      - name: Commit and push formatted and compiled translations
+        run: |
+          git add .
+          git commit -m "Format and compile translations" || true
+          git push origin ${{ env.localization_branch_name }} || true
