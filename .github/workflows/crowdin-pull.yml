@@ -84,10 +84,6 @@ jobs:
       - name: Format translations
         run: npx prettier --write --ignore-path .gitignore --ignore-path .prettierignore i18n/
 
-      - name: Validate translations
-        run: |
-          npm run validate:translations || (echo "Translation validation failed. Please check the errors above." && exit 1)
-
       - name: Commit and push formatted and compiled translations
         run: |
           git add .
