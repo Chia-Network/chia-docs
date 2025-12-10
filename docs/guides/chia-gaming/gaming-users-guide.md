@@ -9,6 +9,12 @@ This user guide is intended to help developers test their gaming implementations
 
 :::
 
+:::warning Session Persistence
+
+**Game sessions are not saved.** If you refresh your browser or clear browser storage (localStorage, cache, etc.), your game session will be lost and you will need to create a new session. **This can result in lost funds if a session is interrupted during gameplay.** Do not refresh your browser or clear browser data while a game is in progress.
+
+:::
+
 ## Intro
 
 This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). The system uses coinset.org for blockchain data and WalletConnect for wallet transactions. Both services are required for gameplay.

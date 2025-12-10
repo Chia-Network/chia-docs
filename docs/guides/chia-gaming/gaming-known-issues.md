@@ -40,6 +40,8 @@ The easy developer configuration is still in development. Currently, developers 
 
 - **Chia Wallet does not raise to the foreground when a WalletConnect auth dialog appears**: The chia reference wallet will be updated to automatically come to the foreground when authentication is required, but this does not currently occur. Users need to manually bring the wallet application to the foreground.
 
+- **Save and load/reload is not functional**: Game sessions are not persisted. If a user refreshes their browser or clears browser storage (localStorage, cache, etc.), the game session will be lost and a new session will need to be created. **This can lead to lost funds if a session is interrupted during gameplay.**
+
 ### Performance Issues
 
 - **Handshaking on-chain takes a long time**: Before the game starts, 3 nodes (player wallet nodes and coinset.org) have to observe 2 on-chain transactions (in order). The lobby will take a long time to appear for Bob (Player 2). This is expected behavior due to blockchain confirmation requirements, but the wait time can be significant.
