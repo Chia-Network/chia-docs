@@ -5,7 +5,7 @@ title: Krunk Rules
 
 :::warning Coming Soon
 
-Krunk will be available in a future release. The rules below are based on current known game mechanics and may be subject to change.
+Krunk will be available in a future release. The rules below are based on current known game mechanics and are subject to change.
 
 :::
 
@@ -23,7 +23,7 @@ Krunk is a word guessing game where players try to guess each other's chosen wor
 
 ### Word Selection
 
-1. Each player secretly picks a word from the dictionary
+1. Each player secretly picks a word from the provided dictionary
 2. The word must be a valid dictionary word
 3. Both players select their words simultaneously
 
@@ -67,10 +67,10 @@ The amount shown at the start is what you'll receive if you guess correctly on t
 
 ## Game Flow
 
-1. **Pick Word**: Choose a word for your opponent to guess (must be from dictionary)
+1. **Pick Word**: Choose a word for your opponent to guess (must be from the provided dictionary)
 2. **Make Guesses**: Make up to 5 guesses of your opponent's word:
+   - Wait for opponent to pick their word
    - First guess
-   - Wait for opponent to pick their word (may be skipped)
    - Second guess (or go to finish)
    - Third guess (or go to finish)
    - Fourth guess (or go to finish)

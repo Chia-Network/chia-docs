@@ -39,7 +39,7 @@ The partner will assume full responsibility for the project following the comple
 
 - **Infrastructure Management:** Manage all backend and hosting infrastructure, ensuring platform stability, performance, and security.
 
-- **Blockchain Integration:** Maintain the existing WalletConnect integration and the logic for state channel setup, winnings, and error handling.
+- **Blockchain Integration:** Maintain the existing wallet integrations including the logic for state channel setup, winnings, and error handling.
 
 - **Security:** Conduct ongoing API security scanning and vulnerability management.
 

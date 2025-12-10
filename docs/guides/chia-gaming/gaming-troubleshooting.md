@@ -81,11 +81,11 @@ This troubleshooting guide addresses common issues developers and users may enco
 - **Verify Project ID**: Ensure your WalletConnect Project ID is correctly configured in `resources/gaming-fe/src/constants/env.ts`.
 - **Check Network Settings**: Ensure you're using the correct network (testnet vs mainnet) and that the chain_id matches.
 - **WalletConnect Support**: For WalletConnect registration and account issues, refer to the [WalletConnect documentation](https://walletconnect.com) and your WalletConnect account dashboard for troubleshooting.
-- **Review WalletConnect Guide**: See the [WalletConnect Developer Guide](/guides/walletconnect-developer-guide) for detailed setup instructions.
+- **Review WalletConnect Guide**: See the [WalletConnect Developer Guide](/walletconnect-developer-guide) for detailed setup instructions.
 
 #### Network Configuration Issues
 
-**Symptoms**: Application can't connect to blockchain or coinset.org.
+**Symptoms**: Application can't connect to the blockchain via coinset.org.
 
 **Solutions**:
 
@@ -121,7 +121,7 @@ This troubleshooting guide addresses common issues developers and users may enco
 
 #### Simulator Not Working
 
-**Symptoms**: Simulator mode doesn't function correctly.
+**Symptoms**: Simulator mode does not function correctly.
 
 **Solutions**:
 
@@ -131,7 +131,7 @@ This troubleshooting guide addresses common issues developers and users may enco
 
 #### Logs Not Appearing
 
-**Symptoms**: Can't see application logs for debugging.
+**Symptoms**: Can not see application logs for debugging.
 
 **Solutions**:
 
@@ -149,13 +149,13 @@ This troubleshooting guide addresses common issues developers and users may enco
 
 ### Connection Issues
 
-#### WalletConnect Won't Connect
+#### WalletConnect Will Not Connect
 
 **Symptoms**: Unable to connect Chia wallet via WalletConnect.
 
 **Solutions**:
 
-- **Check Wallet Version**: Ensure you're using Chia 2.5.7 or later.
+- **Check Wallet Version**: Ensure you are using Chia 2.5.7 or later.
 - **Check Wallet Sync**: Verify your wallet is synced with the blockchain.
 - **Clear WalletConnect Cache**: Use the option in the UI to clear the WalletConnect cache, then try connecting again.
 - **Try Reconnecting**: Disconnect and reconnect WalletConnect.
@@ -213,7 +213,7 @@ This troubleshooting guide addresses common issues developers and users may enco
 
 ### Session Management Issues
 
-#### Can't End Session
+#### Can Not End Session
 
 **Symptoms**: Unable to end a game session.
 
@@ -222,7 +222,6 @@ This troubleshooting guide addresses common issues developers and users may enco
 - **Wait for Current Hand**: Complete or forfeit the current hand/game before ending the session.
 - **Check Balance**: If ending due to insufficient balance, ensure the session can be properly closed.
 - **Wait for Opponent**: If opponent is still active, wait for them to complete their turn or end their session.
-- **Close Browser**: As a last resort, closing the browser will end the session, but both players should keep browsers open until shutdown completes (see [Known Issues](/guides/gaming-known-issues)).
 
 #### Session Ends Unexpectedly
 

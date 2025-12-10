@@ -15,7 +15,7 @@ This guide walks through testing a Chia Gaming implementation with two players (
 
 :::note Handshaking Timing
 
-Each blockchain peak (transaction block) takes approximately 1 minute. The handshake requires 2 on-chain transactions to be observed, so expect several minutes of waiting time. The handshake status will be displayed on-screen, and completion results in the screen changing to the game screen.
+Each transaction block takes approximately 1 minute. The handshake requires 2 on-chain transactions to be observed, so expect several minutes of waiting time. The handshake status will be displayed on-screen, and completion results in the screen changing to the game screen.
 
 :::
 
@@ -23,8 +23,8 @@ Each blockchain peak (transaction block) takes approximately 1 minute. The hands
 
 1. **Visit the game server**: Navigate to the game server URL.
 
-   <!-- ![Lobby Screen](/img/gaming/calpoker-lobby.png) -->
-   _[Image placeholder: Lobby Screen - calpoker-lobby.png]_
+   <!-- ![WalletConnect Screen](/img/gaming/calpoker-walletConnect.png) -->
+   _[Image placeholder: walletConnect Screen - calpoker-lobby.png]_
 
    _Screenshot from alpha - UI may change_
 
@@ -34,13 +34,18 @@ Each blockchain peak (transaction block) takes approximately 1 minute. The hands
 
 4. **Start a New Room**: Create a new game room and copy the invitation URL.
 
+   <!-- ![Lobby Screen](/img/gaming/calpoker-lobby.png) -->
+   _[Image placeholder: Lobby Screen - calpoker-lobby.png]_
+
+   _Screenshot from alpha - UI may change_
+
 5. **Send the Invitation URL to Bob**: Share the room invitation URL with the second player (Bob).
 
 ## Player 2: Bob
 
 1. **Paste URL**: Paste the invitation URL into a browser that does not share session state with Alice (e.g., another computer, or an incognito/private window).
 
-2. **Wait for Handshake**: Wait for several blockchain peaks until the handshake is complete. The handshake status will be displayed on-screen, showing the progress of the blockchain transactions.
+2. **Wait for Handshake**: Wait until the handshake is complete. The handshake status will be displayed on-screen.
 
    <!-- ![Handshake in Progress](/img/gaming/calpoker-handshake.png) -->
    _[Image placeholder: Handshake in Progress - calpoker-handshake.png]_
@@ -51,7 +56,7 @@ Each blockchain peak (transaction block) takes approximately 1 minute. The hands
 
 :::warning Handshaking Time
 
-Handshaking on-chain takes a long time. Before the game starts, 3 full nodes (player wallet nodes and coinset.org) have to observe 2 on-chain transactions (in order). Each blockchain peak takes approximately 1 minute, so expect several minutes of waiting time. The lobby will take a long time to appear for Bob.
+Handshaking on-chain takes a long time. Before the game starts, 3 nodes (player wallet nodes and coinset.org) have to observe 2 on-chain transactions (in order). Each blockchain peak takes approximately 1 minute, so expect several minutes of waiting time. The lobby may take a several minutes to appear for Bob.
 
 :::
 
@@ -63,32 +68,7 @@ If the handshake seems to hang, check your Chia wallet for any pending WalletCon
 
 ## Gameplay
 
-Once both players are connected and the handshake is complete, you can begin playing. The current release includes **California Poker**, with **Space Poker** and **Krunk** coming in future releases.
-
-### California Poker
-
-<!-- ![New Game - Card Selection](/img/gaming/calpoker-cards-selected.png) -->
-_[Image placeholder: New Game - Card Selection - calpoker-cards-selected.png]_
-
-_Screenshot from alpha - UI may change_
-
-For detailed rules and gameplay mechanics, see the [California Poker Rules](/guides/gaming-california-poker-rules).
-
-### Space Poker
-
-:::note Coming Soon
-
-Space Poker will be available in a future release. See [Space Poker Rules](/guides/gaming-space-poker-rules) for information about this upcoming game.
-
-:::
-
-### Krunk
-
-:::note Coming Soon
-
-Krunk will be available in a future release. See [Krunk Rules](/guides/gaming-krunk-rules) for information about this upcoming game.
-
-:::
+Once both players are connected and the handshake is complete, you can begin playing. The current release includes **[California Poker](/guides/gaming-california-poker-rules)**, with **[Space Poker](/guides/gaming-space-poker-rules)** and **[Krunk](/guides/gaming-krunk-rules)** coming in future releases.
 
 ## Game Completion
 
