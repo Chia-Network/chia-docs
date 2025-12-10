@@ -447,6 +447,37 @@ module.exports = {
           },
           items: ['guides/dao/dao-cli-guide', 'guides/dao/dao-known-issues'],
         },
+        {
+          type: 'category',
+          label: 'Gaming',
+          collapsible: true,
+          collapsed: true,
+          link: {
+            type: 'generated-index',
+            slug: '/guides/gaming',
+            title: 'Gaming',
+            description:
+              "These guides will guide you through developing and testing gaming implementations on Chia.",
+          },
+          items: [
+            'guides/chia-gaming/gaming-developers-guide',
+            'guides/chia-gaming/gaming-users-guide',
+            {
+              type: 'category',
+              label: 'Game Rules',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                'guides/chia-gaming/gaming-california-poker-rules',
+                'guides/chia-gaming/gaming-space-poker-rules',
+                'guides/chia-gaming/gaming-krunk-rules',
+              ],
+            },
+            'guides/chia-gaming/gaming-troubleshooting',
+            'guides/chia-gaming/gaming-known-issues',
+            'guides/chia-gaming/gaming-partner-rfp',
+          ],
+        },
         'guides/verifiable-credentials-guide',
       ],
     },
