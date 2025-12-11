@@ -8,5 +8,17 @@ files: [
     {
       source: '/docs/**/*',
       translation: '/i18n/%osx_locale%/docusaurus-plugin-content-docs/current/**/%original_file_name%',
+      skip_untranslated_strings: false
     },
   ]
+
+# NOTE: Skip patterns for technical content should be configured in Crowdin web UI:
+# Project Settings > Files > File Settings > Skip strings matching patterns
+# Recommended patterns to skip:
+# - ^import .* from (import statements)
+# - ^``` (code blocks)
+# - ^<[A-Z] (MDX component opening tags)
+# - ^</[A-Z] (MDX component closing tags)
+# - ^\[/.*\]\(/ (absolute file paths in links)
+# - \{#.*\}$ (anchor IDs in headings)
+# - import .* from .*@site/static (image imports)

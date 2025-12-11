@@ -216,7 +216,7 @@ After the transaction has been finalized (typically 1-3 minutes), the details of
 
 The pool contract address will be displayed automatically when creating a plot in the GUI.
 
-## CLI Plotting
+## CLI Plotting {#cli-plotting}
 
 If you are unsure which plotter to use, the [Plotting Software](/reference-client/plotting/plotting-software) page will help you to decide.
 
@@ -268,7 +268,7 @@ chia plotters chiapos -t <temp dir> -d <destination dir> -f <farmer key> -p <poo
 
 Regardless of which plotter you choose, it's a good idea to experiment with the optional parameters in order to optimize the plotting process for your hardware.
 
-## GUI Plotting
+## GUI Plotting {#gui-plotting}
 
 From the Chia application, click the `Farm` icon and click `ADD A PLOT`:
 

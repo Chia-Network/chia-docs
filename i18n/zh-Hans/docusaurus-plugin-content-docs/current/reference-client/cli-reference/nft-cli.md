@@ -25,7 +25,8 @@ Options:
 | -n            | --name            | TEXT    | False    | Set the NFT wallet name                                                                                  |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-:::details Example 1 - Create an NFT wallet that is not linked to a DID
+<details>
+<summary>Example 1 - Create an NFT wallet that is not linked to a DID</summary>
 
 Create an NFT Wallet:
 
@@ -39,9 +40,10 @@ Response:
 Successfully created an NFT wallet with id 3 on key 4288332900
 ```
 
-:::
+</details>
 
-:::details Example 2 - Create an NFT wallet that is linked to a DID, specifying the fingerprint and name
+<details>
+<summary>Example 2 - Create an NFT wallet that is linked to a DID, specifying the fingerprint and name</summary>
 
 ```bash
 chia wallet nft create -f 4288332900 -di did:chia:17jvhl9z8zj6jma2uxk4mqj22p90hfpf29svlvlyalu8ksyefsvpql7f403 -n "DID-linked NFT Wallet"
@@ -53,8 +55,7 @@ Response:
 Successfully created an NFT wallet with id 4 on key 4288332900
 ```
 
-:::
-
+</details>
 <details>
 <summary>Show both of these NFT wallets</summary>
 

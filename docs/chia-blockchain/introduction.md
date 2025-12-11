@@ -30,7 +30,7 @@ Each transaction in Chia must contain at least one coin spend. In order to spend
 For more information, check out the [Coin Set Intro page](/chia-blockchain/coin-set-model/intro) and the [Chialisp.com](https://chialisp.com) website.
 :::
 
-## Pooling
+## Pooling {#pooling}
 
 Like many other blockchains, Chia allows pooling to smooth out the reward structure for smaller farmers. However, Chia's pooling protocol has three unique features.
 

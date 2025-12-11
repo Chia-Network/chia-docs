@@ -30,7 +30,7 @@ Chia使用硬币模型来跟踪网络的状态。 在这个模型中，硬币（
 For more information, check out the [Coin Set Intro page](/chia-blockchain/coin-set-model/intro) and the [Chialisp.com](https://chialisp.com) website.
 :::
 
-## 矿池（Pooling）
+## 矿池（Pooling） {#pooling}
 
 与许多其他区块链一样，Chia允许连接矿池来确保小规模的农民能够平滑的获得奖励。 然而，Chia的矿池协议具有三个独特的特点。
 

@@ -36,7 +36,8 @@ Options:
 | -a            | --filter-amount   | INTEGER | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]           |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
-:::details Example
+<details>
+<summary>Example</summary>
 
 Start with a wallet with some XCH or TXCH:
 
@@ -123,7 +124,7 @@ CAT 07e809aa0324acaf...:
 
 From here, you can add funds, create proposals, vote on proposals, etc.
 
-:::
+</details>
 
 ---
 
@@ -152,7 +153,7 @@ Options:
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 Start by showing the current wallet status:
 
@@ -258,7 +259,7 @@ Options:
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 ```bash
 chia dao balance -i 2
@@ -299,7 +300,7 @@ Options:
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                                        |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 First, show the status of a proposal:
 
@@ -454,7 +455,7 @@ You can split one coin into multiple coins by running the [chia wallet coins spl
 :::
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 This example will create a DAO with the following options:
 
@@ -586,7 +587,7 @@ The votes need to be minted from the treasury's funds, so your DAO will need to 
 :::
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 This example will show how to create a proposal to mint 100 DAO CATs and deliver them to another wallet.
 
@@ -701,7 +702,7 @@ Options:
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 Be sure to have some CATs locked up for voting. To view the number of CATs that have been locked, run `chia wallet show`:
 
@@ -839,7 +840,7 @@ Options:
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 Let's say a DAO has the following rules:
 
@@ -924,7 +925,7 @@ Options:
 This command will unlock tokens that have been locked for voting, provided that there are no active proposals that these CATs have voted on. This command will automatically determine which CATs are available to be unlocked.
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 First, obtain the current state of the DAO tokens:
 
@@ -1012,7 +1013,7 @@ Options:
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 Get the ID of an existing treasury:
 
@@ -1051,7 +1052,7 @@ If the `-c` flag is included, then all open _and_ closed proposals will be liste
 To show the details of a specific proposal, use the [show_proposal](#show_proposal) command.
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 ```bash
 chia dao list_proposals -i 2
@@ -1100,7 +1101,7 @@ Options:
 This command will lock the specified number of tokens, thereby making them available for voting.
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 Before locking the tokens, show the current status of the DAO's wallets:
 
@@ -1229,7 +1230,7 @@ Options:
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 Let's say this is the state of the wallet:
 
@@ -1315,7 +1316,7 @@ Options:
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 ```bash
 chia dao rules -i 2
@@ -1354,7 +1355,7 @@ Options:
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 ```bash
 chia dao show_proposal -i 2 -p 0x372a3e3d7f502a542d3c926588b62d5ca580d4ff60a158740563470f2114ef2d
@@ -1408,7 +1409,7 @@ Options:
 | -h            | --help                                | None    | False    | Show a help message and exit                                                                             |
 
 <details>
-   <summary>Example</summary>
+<summary>Example</summary>
 
 Start by showing the status of a proposal:
 

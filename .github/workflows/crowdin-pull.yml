@@ -75,8 +75,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Compile Updated translations
+        run: npm run locale
+
+      - name: Format translations
+        run: npx prettier --write --ignore-path .gitignore --ignore-path .prettierignore i18n/
+
+      - name: Commit and push formatted and compiled translations
         run: |
-          npm install
-          npm run locale
-          (git add . && git commit -m "Compiled Translations" && git push origin ${{ env.localization_branch_name }}) || true
+          git add .
+          git commit -m "Format and compile translations" || true
+          git push origin ${{ env.localization_branch_name }} || true
