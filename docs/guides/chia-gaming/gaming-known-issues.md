@@ -36,7 +36,7 @@ The easy developer configuration is still in development. Currently, developers 
 
 ### Gameplay Issues
 
-- **Funds left on-chain after shutdown**: Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain and not be returned to the users. **This affects all games played with a live WalletConnect instance.**
+- **Funds left on-chain after shutdown**: When using a live WalletConnect instance, funds will be left on-chain after shutdown. Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue. This is a high priority issue which we are working to fix ASAP.**
 
 - **When you leave the game, both sides have to keep browser open until shutdown completes**: Both players must keep their browsers open until the shutdown process completes. Closing the browser prematurely may cause issues.
 
