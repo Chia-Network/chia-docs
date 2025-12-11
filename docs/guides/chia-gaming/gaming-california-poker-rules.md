@@ -5,7 +5,7 @@ title: California Poker Rules
 
 ## Objective
 
-California Poker is a card game where players exchange cards and compete to make the best five-card poker hand. Each player receives 8 cards, selects 4 to keep, and swaps the other 4 to their opponent. The player who can make the best five-card poker hand from their 8 cards after swapping wins.
+California Poker is a card game where players exchange cards and compete to make the best five-card poker hand. Each player receives 8 cards with all 16 cards visible to both players, selects 4 to swap with the other player, and keeps the other 4. The player who can make the best five-card poker hand from their 8 cards after swapping wins.
 
 ## Setup
 
