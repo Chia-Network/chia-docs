@@ -9,6 +9,12 @@ This is an **alpha release** of the Chia Gaming system. The codebase is subject 
 
 :::
 
+:::danger Funds Left On-Chain
+
+**When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue.**
+
+:::
+
 :::note Easy Developer Config Coming Soon
 
 The easy developer configuration is still in development. Currently, parameters need to be manually coded. See the [Manual Configuration](#manual-configuration) section below for details.
@@ -62,6 +68,7 @@ For common setup issues and solutions (Docker version, permissions, etc.), see t
 1. **Get the Codebase**: Choose one of the following options:
 
    **Option A: Clone the Repository**:
+
    ```bash
    git clone https://github.com/Chia-Network/chia-gaming.git
    cd chia-gaming
@@ -138,6 +145,12 @@ For development, it is recommended to use the simulator for testing game logic w
 5. Paste the room link to join as the second player using the simulator
 
 **Using Live WalletConnect (Advanced Testing):**
+
+:::danger Funds Left On-Chain
+
+**When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue.**
+
+:::
 
 :::important Two Separate Wallet Instances Required
 

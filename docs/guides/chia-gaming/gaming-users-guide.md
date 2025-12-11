@@ -15,6 +15,12 @@ This user guide is intended to help developers test their gaming implementations
 
 :::
 
+:::danger Funds Left On-Chain
+
+**When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue.**
+
+:::
+
 ## Intro
 
 This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). The system uses coinset.org for blockchain data and WalletConnect for wallet transactions. Both services are required for gameplay.
@@ -30,17 +36,25 @@ Each transaction block takes approximately 1 minute. The handshake requires 2 on
 1. **Visit the game server**: Navigate to the game server URL.
 
    <!-- ![WalletConnect Screen](/img/gaming/calpoker-walletConnect.png) -->
+
    _[Image placeholder: walletConnect Screen - calpoker-lobby.png]_
 
    _Screenshot from alpha - UI may change_
 
 2. **Connect with WalletConnect**: Use WalletConnect to connect your Chia wallet to the game. For live WalletConnect testing, do not select "Simulator".
 
+   :::danger Funds Left On-Chain
+
+   **When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue.**
+
+   :::
+
 3. **Check Your Light Wallet**: You should see a "getWalletBalance" request in your Chia Light Wallet. Choose "remember this decision" and confirm the request.
 
 4. **Start a New Room**: Create a new game room and copy the invitation URL.
 
    <!-- ![Lobby Screen](/img/gaming/calpoker-lobby.png) -->
+
    _[Image placeholder: Lobby Screen - calpoker-lobby.png]_
 
    _Screenshot from alpha - UI may change_
@@ -54,6 +68,7 @@ Each transaction block takes approximately 1 minute. The handshake requires 2 on
 2. **Wait for Handshake**: Wait until the handshake is complete. The handshake status will be displayed on-screen.
 
    <!-- ![Handshake in Progress](/img/gaming/calpoker-handshake.png) -->
+
    _[Image placeholder: Handshake in Progress - calpoker-handshake.png]_
 
    _Screenshot from alpha - UI may change_
@@ -79,6 +94,7 @@ Once both players are connected and the handshake is complete, you can begin pla
 ## Game Completion
 
 <!-- ![Game Completion](/img/gaming/calpoker-completion.png) -->
+
 _[Image placeholder: Game Completion - calpoker-completion.png]_
 
 _Screenshot from alpha - UI may change_

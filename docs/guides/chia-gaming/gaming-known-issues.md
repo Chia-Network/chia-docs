@@ -36,6 +36,8 @@ The easy developer configuration is still in development. Currently, developers 
 
 ### Gameplay Issues
 
+- **Funds left on-chain after shutdown**: Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain and not be returned to the users. **This affects all games played with a live WalletConnect instance.**
+
 - **When you leave the game, both sides have to keep browser open until shutdown completes**: Both players must keep their browsers open until the shutdown process completes. Closing the browser prematurely may cause issues.
 
 - **Chia Wallet does not raise to the foreground when a WalletConnect auth dialog appears**: The chia reference wallet will be updated to automatically come to the foreground when authentication is required, but this does not currently occur. Users need to manually bring the wallet application to the foreground.
