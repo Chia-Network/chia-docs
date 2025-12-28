@@ -19,17 +19,16 @@ Usage: `chia wallet did create [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -n            | --name            | TEXT    | False    | Set the DID wallet name [default: None]                                                                  |
-| -a            | --amount          | INTEGER | False    | Set the DID amount in mojos. Value must be an odd number. [default: 1]                                   |
-| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
-| -h            | --help            | None    | False    | Show a help message and exit.                                                                            |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                                |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml              |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                         |
+| -n            | --name            | TEXT    | False    | Set the DID wallet name [default: None]                                                                |
+| -a            | --amount          | INTEGER | False    | Set the DID amount in mojos. Value must be an odd number. [default: 1] |
+| -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                     |
+| -h            | --help            | None    | False    | Show a help message and exit.                                                                                                                              |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Create a new DID:
 
@@ -85,18 +84,17 @@ Usage: `chia wallet did find_lost [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command         | Type    | Required | Description                                                                                                                         |
-| :------------ | :------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port    | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                            |
-| -f            | --fingerprint        | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                     |
-| -id           | --coin_id            | TEXT    | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID   |
-| -m            | --metadata           | TEXT    | False    | The new whole metadata in json format                                                                                               |
-| -r            | --recovery_list_hash | TEXT    | False    | Override the recovery list hash of the DID. Only set this if your last DID spend updated the recovery list                          |
-| -n            | --num_verification   | INTEGER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number |
-| -h            | --help               | None    | False    | Show a help message and exit.                                                                                                       |
+| Short Command | Long Command                                                   | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :------------------------------------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -wp           | --wallet-rpc-port                                              | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                                                  | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                               |
+| -id           | --coin_id                                 | TEXT    | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID             |
+| -m            | --metadata                                                     | TEXT    | False    | The new whole metadata in json format                                                                                                                         |
+| -r            | --recovery_list_hash | TEXT    | False    | Override the recovery list hash of the DID. Only set this if your last DID spend updated the recovery list                                    |
+| -n            | --num_verification                        | INTEGER | False    | Override the required verification number of the DID. Only set this if your last DID spend updated the required verification number           |
+| -h            | --help                                                         | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Locate a DID owned by the local wallet:
 
@@ -122,18 +120,17 @@ Usage: `chia wallet did get_details [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                 |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                          |
-| -id           | --coin_id         | TEXT    | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID                        |
-| -l            | --latest          | None    | False    | If the `coin_id` is not the latest coin ID of this DID, set this flag to receive the latest DID information (not allowed if the `coin_id` is the DID ID) |
-| -h            | --help            | None    | False    | Show a help message and exit.                                                                                                                            |
+| Short Command | Long Command                   | Type    | Required | Description                                                                                                                                                                 |
+| :------------ | :----------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port              | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml               |
+| -f            | --fingerprint                  | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                             |
+| -id           | --coin_id | TEXT    | True     | The DID ID, launcher ID, or latest coin ID of the DID you want to recover. The most time-efficient of these is the latest coin ID                           |
+| -l            | --latest                       | None    | False    | If the `coin_id` is not the latest coin ID of this DID, set this flag to receive the latest DID information (not allowed if the `coin_id` is the DID ID) |
+| -h            | --help                         | None    | False    | Show a help message and exit.                                                                                                                               |
 
 Note that `coin_id` could pertain to any DID, not just those owned by this wallet.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Get the latest details of a DID from a coin ID:
 
@@ -169,15 +166,14 @@ Usage: `chia wallet did get_did [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -h            | --help            | None    | False    | Show a help message and exit.                                                                            |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
+| -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
+| -h            | --help            | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Get info for DID with ID 2:
 
@@ -204,17 +200,16 @@ Usage: `chia wallet did message_spend [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command           | Type    | Required | Description                                                                                              |
-| :------------ | :--------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -i            | --id                   | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -pa           | --puzzle_announcements | TEXT    | False    | The list of puzzle announcement hex strings, split by commas (`,`)                                       |
-| -ca           | --coin_announcements   | TEXT    | False    | The list of coin announcement hex strings, split by commas (`,`)                                         |
-| -h            | --help                 | None    | False    | Show a help message and exit.                                                                            |
+| Short Command | Long Command                                | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :------------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -wp           | --wallet-rpc-port                           | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                               | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
+| -i            | --id                                        | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
+| -pa           | --puzzle_announcements | TEXT    | False    | The list of puzzle announcement hex strings, split by commas (`,`)                                                                         |
+| -ca           | --coin_announcements   | TEXT    | False    | The list of coin announcement hex strings, split by commas (`,`)                                                                           |
+| -h            | --help                                      | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Create a default message spend bundle from a DID wallet:
 
@@ -253,16 +248,15 @@ Usage: `chia wallet did get_did [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                  |
-| -n            | --name            | TEXT    | True     | Set the DID wallet name                                                                                  |
-| -h            | --help            | None    | False    | Show a help message and exit.                                                                            |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
+| -i            | --id              | INTEGER | True     | ID of the wallet to use                                                                                                                                       |
+| -n            | --name            | TEXT    | True     | Set the DID wallet name                                                                                                                                       |
+| -h            | --help            | None    | False    | Show a help message and exit.                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Set the name for Wallet ID 2 to `New Name`:
 
@@ -322,16 +316,15 @@ Usage: `chia wallet did sign_message [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -i            | --did_id          | TEXT    | True     | DID ID you want to use for signing                                                                       |
-| -m            | --hex_message     | TEXT    | True     | The message you want to sign                                                                             |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command                       | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :--------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -wp           | --wallet-rpc-port                  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
+| -i            | --did_id      | TEXT    | True     | DID ID you want to use for signing                                                                                                                            |
+| -m            | --hex_message | TEXT    | True     | The message you want to sign                                                                                                                                  |
+| -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet did sign_message -f 590161281 -i did:chia:1cxw5dqug4gavvgylx88zfkmqv235ryr6j9tvyjwwuga0pa52wjvqavdyar --hex_message "This is a test message."
@@ -357,19 +350,18 @@ Usage: `chia wallet did transfer [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -i            | --id              | INTEGER | True     | ID of the DID wallet to transfer                                                                         |
-| -ta           | --target-address  | TEXT    | True     | Target recipient wallet address                                                                          |
-| -r            | --reset_recovery  | None    | False    | Set this flag if you want to reset the recovery DID settings (they will not be transferred with the DID) |
-| -m            | --fee             | TEXT    | False    | An optional transaction fee, in XCH                                                                      |
-|               | --reuse           | None    | False    | Reuse existing address for the change                                                                    |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -wp           | --wallet-rpc-port                     | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint                         | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
+| -i            | --id                                  | INTEGER | True     | ID of the DID wallet to transfer                                                                                                                              |
+| -ta           | --target-address                      | TEXT    | True     | Target recipient wallet address                                                                                                                               |
+| -r            | --reset_recovery | None    | False    | Set this flag if you want to reset the recovery DID settings (they will not be transferred with the DID)                                   |
+| -m            | --fee                                 | TEXT    | False    | An optional transaction fee, in XCH                                                                                                                           |
+|               | --reuse                               | None    | False    | Reuse existing address for the change                                                                                                                         |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet did transfer -i 4 -ta xch1gdhch02gp6352plffxqy7ppaar2dvtnek6p2cc79nc5apqzae37sktag6l
@@ -434,13 +426,13 @@ Usage: `chia wallet did update_metadata [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
-| -i            | --id              | INTEGER | True     | ID of the DID wallet to use                                                                              |
-| -m            | --metadata        | TEXT    | True     | The new whole metadata in json format                                                                    |
-|               | --reuse           | None    | False    | Set this flag to reuse existing address for the change                                                   |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
+| -i            | --id              | INTEGER | True     | ID of the DID wallet to use                                                                                                                                   |
+| -m            | --metadata        | TEXT    | True     | The new whole metadata in json format                                                                                                                         |
+|               | --reuse           | None    | False    | Set this flag to reuse existing address for the change                                                                                                        |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
 ---
