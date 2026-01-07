@@ -73,7 +73,7 @@ There likely isn't so much of a pure game writing business in there. Games shoul
 
 - Yes there is an appetite for a Partner(s) who can deliver beyond platform maintenance including bringing an existing gaming user base and further developing the gaming primitives. The long term vision for Chia gaming is of it being an ecosystem involving multiple, possibly many vendors interacting via open source protocols.
 
-There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc and CNI doing some amount of direct participation and/or funding others who are contributing to it.
+There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc; with CNI doing some amount of direct participation and/or funding others who are contributing to it.
 
 ### What's the existing infrastructure, where is it hosted and how is it managed? Do we have an idea of traffic one would need to support?
 
@@ -89,7 +89,7 @@ There's an open question of who maintains the standard for interoperability whic
 
 The long term vision for Chia gaming is of it being an ecosystem involving multiple, possibly many vendors interacting via open source protocols.
 
-There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc and CNI doing some amount of direct participation and/or funding others who are contributing to it.
+There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc; with CNI doing some amount of direct participation and/or funding others who are contributing to it.
 
 ### After the official handoff, will the partner have full ownership of the product roadmap, or will Chia Network Inc. retain approval or veto rights over feature development, UX changes, or monetization strategies?
 
@@ -131,10 +131,10 @@ There's an open question of who maintains the standard for interoperability whic
 
 - Yes, the long term vision for Chia gaming is of it being an ecosystem involving multiple vendors interacting via open source protocols.
 
-There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc and CNI doing some amount of direct participation and/or funding others who are contributing to it.
+There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc; with CNI doing some amount of direct participation and/or funding others who are contributing to it.
 
 ### Is there an expectation that the partner will contribute improvements to the core state channel or Chialisp logic back to Chia Network Inc., or will the partner's technical development be fully independent after handover?
 
 - Yes we do expect the Partner(s) to contribute to the long term vision for Chia gaming. The vision being an ecosystem involving multiple vendors interacting via open source protocols.
 
-There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc and CNI doing some amount of direct participation and/or funding others who are contributing to it.
+There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc; with CNI doing some amount of direct participation and/or funding others who are contributing to it.
