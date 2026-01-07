@@ -475,7 +475,16 @@ module.exports = {
             },
             'guides/chia-gaming/gaming-troubleshooting',
             'guides/chia-gaming/gaming-known-issues',
-            'guides/chia-gaming/gaming-partner-rfp',
+            {
+              type: 'category',
+              label: 'Gaming RFP',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                'guides/chia-gaming/gaming-partner-rfp',
+                'guides/chia-gaming/gaming-partner-rfp-qa',
+              ],
+            },
           ],
         },
         'guides/verifiable-credentials-guide',
