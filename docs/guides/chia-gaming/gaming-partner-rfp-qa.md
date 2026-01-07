@@ -138,4 +138,3 @@ There's an open question of who maintains the standard for interoperability whic
 - Yes we do expect the Partner(s) to contribute to the long term vision for Chia gaming. The vision being an ecosystem involving multiple vendors interacting via open source protocols.
 
 There's an open question of who maintains the standard for interoperability which the whole ecosystem uses. That should be a consensus-driven process with several vendors participating including Chia Network Inc and CNI doing some amount of direct participation and/or funding others who are contributing to it.
-
