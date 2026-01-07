@@ -121,7 +121,7 @@ There's an open question of who maintains the standard for interoperability whic
 
 ### For the demo submission phase, are there specific features, capabilities, or scenarios the demo must demonstrate, or is the format and scope at the partner's discretion?
 
-- We would like to see an proof of concept of your proposed solutions. This proof of concept need not be feature complete but progress, code quality, and functionality will all be evaluated with the intention that the potential Partner(s) need to show they can develop towards their proposed solutions.
+- We would like to see a proof of concept of your proposed solutions. This proof of concept need not be feature complete but progress, code quality, and functionality will all be evaluated with the intention that the potential Partner(s) need to show they can develop towards their proposed solutions.
 
 ### Will Chia Network Inc. consider existing operational tools and infrastructure built for the Chia Gaming ecosystem (such as game room trackers or monitoring systems) as evidence of capability and commitment?
 
