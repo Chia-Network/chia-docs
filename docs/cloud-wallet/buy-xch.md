@@ -71,7 +71,7 @@ Before you can buy XCH, you'll need to have a Cloud Wallet account and at least 
   <img src="/img/cloud-wallet/buy-xch-06_confirmation_dark.png" alt="Order confirmation" width="100%" className="theme-image-dark"/>
 </div>
 
-Once your payment is processed, the XCH will be deposited into your vault. ACH transfers are processed through Stripe and typically take 3-5 business days to complete.
+Once your payment is processed, the XCH will be deposited into your vault. ACH transfers are processed through Stripe and typically completes within 7 business days.
 
 ## Troubleshooting
 
