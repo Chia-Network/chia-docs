@@ -1226,6 +1226,7 @@ Request Parameters:
 | target_coin_amount | INTEGER    | False    | Select coins until this amount (in XCH or CAT) is reached. Combine all selected coins into one coin [Default: None] |
 | coin_num_limit     | INTEGER    | False    | Combine up to this many coins [Default: 500]                                                                        |
 | fee                | INTEGER    | False    | An optional blockchain fee, in mojos                                                                                |
+| push               | BOOLEAN    | False    | Option to push the transaction to the chain or not (default: false)                                                 |
 
 :::warning
 
@@ -1263,7 +1264,7 @@ It is not recommended to increase the value of `coin_num_limit` to a value highe
 For this example, combine as many coins as are required until a target of 2 trillion mojos is reached. Include a blockchain fee of 25 million mojos:
 
 ```json
-chia rpc wallet combine_coins '{"wallet_id": 1, "target_coin_amount": 2000000000000, "number_of_coins": 2, "fee": 25000000}'
+chia rpc wallet combine_coins '{"wallet_id": 1, "target_coin_amount": 2000000000000, "number_of_coins": 2, "fee": 25000000, "push": true}'
 ```
 
 Response:
@@ -3695,6 +3696,7 @@ Request Parameters:
 | number_of_coins | INTEGER | True     | The number of new coins to create, excluding the remainder coin (minimum 1, maximum 500) |
 | amount_per_coin | INTEGER | True     | The amount of each newly created coin, in the units of the coin (ex. XCH, CAT, etc)      |
 | fee             | INTEGER | False    | An optional blockchain fee, in mojos                                                     |
+| push            | BOOLEAN | False    | Option to push the transaction to the chain or not (default: false)                      |
 
 :::info
 
@@ -3717,7 +3719,7 @@ The minimum number of new coins is 1. "Splitting" one coin into one new coin cou
 Split a coin into three new coins of 100 mojos apiece, plus a remainder coin. Include a blockchain fee of 25 million mojos.
 
 ```json
- chia rpc wallet split_coins '{"wallet_id": 1, "target_coin_id": "0x0451adca5edd164d524fea976792b73e8f745b8210fa8f890fca34a3d258a8d7", "number_of_coins": 3, "amount_per_coin": 100, "fee": 25000000}'
+ chia rpc wallet split_coins '{"wallet_id": 1, "target_coin_id": "0x0451adca5edd164d524fea976792b73e8f745b8210fa8f890fca34a3d258a8d7", "number_of_coins": 3, "amount_per_coin": 100, "fee": 25000000, "push": true}'
 ```
 
 Response:
