@@ -213,7 +213,7 @@ Buy XCH is currently available for users with US based, ACH-enabled bank account
 
 ### How does the Buy XCH Process work?
 
-Securely link your bank account and complete a purchase in the Cloud Wallet. A clawback transaction appears in your vault immediately for the purchased XCH. A day or so after the payment is initiated, the funds will leave your bank. Once your payment settles (usually within four business days) the clawback transaction is finalized and your XCH is ready to spend.
+Securely link your bank account and complete a purchase in the Cloud Wallet. A clawback transaction appears in your vault immediately for the purchased XCH. A day or so after the payment is initiated, the funds will leave your bank. Once your payment settles (usually within seven business days) the clawback transaction is finalized and your XCH is ready to spend.
 
 ### Why do I see a “pending” transaction in my vault?
 
