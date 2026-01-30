@@ -14,7 +14,7 @@ const katex = require('rehype-katex').default;
         onBrokenMarkdownLinks: 'warn',
       },
     },
-    favicon: '/svg/chia-leaf.svg',
+    favicon: '/svg/favicon.svg',
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
     trailingSlash: true,
