@@ -176,6 +176,14 @@ No, but it doesn't use clear signing yet, either. The user is shown the details 
 
 No, the Chia Signer app is only for signing transactions. You will need to use either a password or a passkey to sign into your Cloud Wallet account.
 
+### Can I use the same phone as a signer for multiple vaults or accounts?
+
+Yes. The Chia Signer app is quite flexible. It supports multiple hardware keys within the app, as well as using a hardware key as a signer for multiple Cloud Wallet accounts and vaults.
+
+However, you should still consider your security posture before reusing a hardware key. For example, if you want to use a single key for two separate accounts, both of which you control, then this is generally safe. On the other hand, if you want to share one Chia Signer device between multiple people, then this requires a high degree of trust between all parties.
+
+In general, as more vaults, Cloud Wallet accounts, hardware keys, and software keys are being added to the same Chia Signer device, the security of that device decreases. Always consider the risk of your phone being lost or stolen, along with the consequences if that were to happen.
+
 ## Security and privacy
 
 ### Will CNI be able to freeze and/or confiscate my assets?
