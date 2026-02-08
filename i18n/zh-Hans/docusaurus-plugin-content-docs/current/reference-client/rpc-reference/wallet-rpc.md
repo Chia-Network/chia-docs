@@ -9,8 +9,7 @@ import TabItem from '@theme/TabItem';
 
 本文档提供了Chia钱包RPC API 的全面参考(不包含DID及NFT，这两者有专门的章节介绍)。
 
-<details>
-  <summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -45,12 +44,11 @@ Options:
 
 Request Parameters:
 
-| Flag     | Type       | Required | Description                |
-| :------- | :--------- | :------- | :------------------------- |
+| Flag     | Type       | Required | Description    |
+| :------- | :--------- | :------- | :------------- |
 | mnemonic | TEXT ARRAY | True     | 一个24字助记词，表示为数组 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet add_key '{"mnemonic": ["hint", "dice", "session", "fun", "budget", "strong", "album", "lava", "tackle", "sudden", "garage", "people", "bundle", "federal", "chest", "process", "vicious", "behave", "nephew", "zero", "vital", "ocean", "artist", "lawsuit"]}'
@@ -84,13 +82,12 @@ Options:
 
 Request Parameters:
 
-| Flag             | Type   | Required | Description                                                        |
-| :--------------- | :----- | :------- | :----------------------------------------------------------------- |
-| fingerprint      | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
-| max_ph_to_search | NUMBER | False    | 要搜索的拼图哈希的最大数量[默认：100]                              |
+| Flag                                                                            | Type   | Required | Description                                                               |
+| :------------------------------------------------------------------------------ | :----- | :------- | :------------------------------------------------------------------------ |
+| fingerprint                                                                     | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show`        |
+| max_ph_to_search | NUMBER | False    | 要搜索的拼图哈希的最大数量[默认：100] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet check_delete_key '{"fingerprint": 874731676, "max_ph_to_search": 200}'
@@ -133,8 +130,7 @@ Request Parameters: None
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet delete_all_keys
@@ -171,8 +167,7 @@ Request Parameters:
 | :---------- | :----- | :------- | :----------------------------------------------------------------- |
 | fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet delete_key '{"fingerprint": 874731676}'
@@ -205,8 +200,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet generate_mnemonic
@@ -265,8 +259,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_logged_in_fingerprint
@@ -310,8 +303,7 @@ This RPC will show the private key and seed phrase for the given fingerprint. Us
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_private_key '{"fingerprint": 2473794447}'
@@ -352,8 +344,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_public_keys
@@ -391,8 +382,7 @@ Request Parameters:
 | :---------- | :----- | :------- | :----------------------------------------------------------------- |
 | fingerprint | NUMBER | True     | The wallet's fingerprint, obtainable by running `chia wallet show` |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet log_in '{"fingerprint": 2818719465}'
@@ -430,8 +420,7 @@ Request Parameters: None
 
 Note that the auto claim settings are configurable in `~/.chia/mainnet/config/config.yaml` in the `auto_claim:` section.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_auto_claim
@@ -468,8 +457,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_height_info
@@ -503,8 +491,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_network_info
@@ -539,8 +526,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_sync_status
@@ -580,8 +566,7 @@ Request Parameters:
 | :----- | :----- | :------- | :--------------------------------------------------- |
 | height | NUMBER | True     | The block height for which to retrieve the timestamp |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 This example is from testnet10, so the timestamp won't match the equivalent call on mainnet:
 
@@ -617,9 +602,9 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type       | Required | Description                                                          |
-| :----------- | :--------- | :------- | :------------------------------------------------------------------- |
-| transactions | TEXT ARRAY | True     | A list of transactions to push                                       |
+| Flag         | Type       | Required | Description                                                                                                                                                 |
+| :----------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| transactions | TEXT ARRAY | True     | A list of transactions to push                                                                                                                              |
 | fee          | NUMBER     | False    | Add a transaction fee (in mojos) for the entire request [Default: 0] |
 
 :::info note
@@ -645,8 +630,8 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type | Required | Description                            |
-| :----------- | :--- | :------- | :------------------------------------- |
+| Flag                              | Type | Required | Description                                               |
+| :-------------------------------- | :--- | :------- | :-------------------------------------------------------- |
 | spend_bundle | TEXT | True     | The spend bundle (transaction) to push |
 
 ---
@@ -666,17 +651,16 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type    | Required | Description                                                              |
-| :--------- | :------ | :------- | :----------------------------------------------------------------------- |
-| enabled    | BOOLEAN | TRUE     | Set to `true` to enable auto claim, or `false` to disable it             |
+| Flag                            | Type    | Required | Description                                                              |
+| :------------------------------ | :------ | :------- | :----------------------------------------------------------------------- |
+| enabled                         | BOOLEAN | TRUE     | Set to `true` to enable auto claim, or `false` to disable it             |
 | tx_fee     | NUMBER  | TRUE     | The default transaction fee to be used for claims, in mojos              |
 | min_amount | NUMBER  | TRUE     | The minimum value, in mojos, of a claim to be included in the auto claim |
 | batch_size | NUMBER  | TRUE     | The maximum number of claims to process in one spend bundle              |
 
 If one or more flags is missing, this RPC will succeed and set the missing flag back to the default value.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Start by obtaining a baseline:
 
@@ -733,12 +717,11 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                      |
-| :----- | :------ | :------- | :----------------------------------------------- |
+| Flag   | Type    | Required | Description                                                                                                          |
+| :----- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------- |
 | enable | BOOLEAN | False    | Set to `true` to enable resync [Default: `true`] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
  chia rpc wallet set_wallet_resync_on_startup
@@ -773,22 +756,21 @@ Options:
 
 Request Parameters (all wallet types):
 
-| Flag        | Type   | Required | Description                                                                                                           |
-| :---------- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------- |
+| Flag                             | Type   | Required | Description                                                                                                                           |
+| :------------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | wallet_type | STRING | True     | The type of wallet to create. Must be one of `cat_wallet`, `did_wallet`, `dao_wallet`, `nft_wallet`, or `pool_wallet` |
-| fee         | NUMBER | False    | An optional blockchain fee, in mojos                                                                                  |
+| fee                              | NUMBER | False    | An optional blockchain fee, in mojos                                                                                                  |
 
 `cat_wallet` Parameters:
 
-| Flag     | Type   | Required | Description                                                                                         |
-| :------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
-| mode     | STRING | True     | Must be either `new` or `existing`                                                                  |
-| name     | STRING | False    | The name of the wallet to create or modify [Default: `CAT` followed by the beginning of the CAT ID] |
-| amount   | NUMBER | True\*   | \*Required if `mode` is `new`. Specify the value, in mojos, of this wallet                          |
-| asset_id | STRING | True\*   | \*Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update                  |
+| Flag                          | Type   | Required | Description                                                                                                                                                             |
+| :---------------------------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mode                          | STRING | True     | Must be either `new` or `existing`                                                                                                                                      |
+| name                          | STRING | False    | The name of the wallet to create or modify [Default: `CAT` followed by the beginning of the CAT ID] |
+| amount                        | NUMBER | True\*   | \*Required if `mode` is `new`. Specify the value, in mojos, of this wallet                                                                              |
+| asset_id | STRING | True\*   | \*Required if `mode` is `existing`. Specify the `asset_id` of the wallet to update                                                                      |
 
-<details>
-<summary>Example 1 (CAT wallet with name)</summary>
+<details><summary>Example 1 (CAT wallet with name)</summary>
 
 Create a new CAT wallet called `test` and send it 100 mojos:
 
@@ -838,8 +820,7 @@ test:
 
 </details>
 
-<details>
-<summary>Example 2 (CAT wallet without name)</summary>
+<details><summary>Example 2 (CAT wallet without name)</summary>
 
 Create a new CAT wallet without specifying a name:
 
@@ -895,19 +876,18 @@ CAT 348dfae821c76f0a...:
 
 `did_wallet` Parameters:
 
-| Flag                     | Type         | Required | Description                                                                                                                                                    |
-| :----------------------- | :----------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| did_type                 | STRING       | True     | Must be either `new` or `recovery`. If `recovery`, then each of the following parameters will be ignored                                                       |
-| backup_dids              | STRING ARRAY | True\*   | \*Required if `did_type` is `new`. An array of backup DID IDs to be used for recovery. Must match actual DIDs                                                  |
+| Flag                                                                                                         | Type         | Required | Description                                                                                                                                                                                    |
+| :----------------------------------------------------------------------------------------------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| did_type                                                                                | STRING       | True     | Must be either `new` or `recovery`. If `recovery`, then each of the following parameters will be ignored                                                                       |
+| backup_dids                                                                             | STRING ARRAY | True\*   | \*Required if `did_type` is `new`. An array of backup DID IDs to be used for recovery. Must match actual DIDs                                                  |
 | num_of_backup_ids_needed | NUMBER       | True\*   | \*Required if `did_type` is `new`. The number of backup DIDs required for recovery. Minimum value is `1`, maximum value is the number of DIDs in `backup_dids` |
-| metadata                 | DICT         | False    | The metadata of the DID                                                                                                                                        |
-| wallet_name              | STRING       | False    | The name of the DID wallet [Default: None]                                                                                                                     |
-| amount                   | NUMBER       | True\*   | \*Required if `did_type` is `new`. Specify the initial value of this wallet, in mojos. Minimum value is `1`                                                    |
+| metadata                                                                                                     | DICT         | False    | The metadata of the DID                                                                                                                                                                        |
+| wallet_name                                                                             | STRING       | False    | The name of the DID wallet [Default: None]                                                                                 |
+| amount                                                                                                       | NUMBER       | True\*   | \*Required if `did_type` is `new`. Specify the initial value of this wallet, in mojos. Minimum value is `1`                                                    |
 
 Note: Because `backup_dids` is required, you must already have access to a DID in order to run this RPC for a did_wallet. If you do not already have a DID, then run [the CLI command](/reference-client/cli-reference/did-cli#create) to create a DID wallet instead.
 
-<details>
-<summary>Example 3 (DID wallet)</summary>
+<details><summary>Example 3 (DID wallet)</summary>
 
 Create a new DID wallet with one backup DID:
 
@@ -959,24 +939,23 @@ Profile 1:
 
 `dao_wallet` Parameters:
 
-| Flag           | Type      | Required | Description                                                                                                                |
-| :------------- | :-------- | :------- | :------------------------------------------------------------------------------------------------------------------------- |
-| mode           | STRING    | True     | Must be either `new` or `existing`                                                                                         |
-| name           | STRING    | False    | A name to give to the DAO new/existing wallet [Default: None]                                                              |
-| dao_rules      | JSON DICT | True\*   | \*Required if `mode` is `new`; this is a json dictionary of the new DAO's rules                                            |
+| Flag                                                     | Type      | Required | Description                                                                                                                                                                                                       |
+| :------------------------------------------------------- | :-------- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mode                                                     | STRING    | True     | Must be either `new` or `existing`                                                                                                                                                                                |
+| name                                                     | STRING    | False    | A name to give to the DAO new/existing wallet [Default: None]                                                                                 |
+| dao_rules                           | JSON DICT | True\*   | \*Required if `mode` is `new`; this is a json dictionary of the new DAO's rules                                                                                                                                   |
 | amount_of_cats | NUMBER    | False\*  | \*Only used if `mode` is `new`; this is the number of DAO CATs (in mojos) to create when initializing the DAO [Default: 0] |
-| filter-amount  | NUMBER    | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]                             |
-| fee            | NUMBER    | False\*  | \*Only used if `mode` is `new`; this is a blockchain fee to add to the transaction to create the DAO treasury [Default: 0] |
-| fee_for_cat    | NUMBER    | False\*  | \*Only used if `mode` is `new`; this is a blockchain fee to add to the transaction to create the DAO CATs [Default: 0]     |
-| treasury_id    | STRING    | True\*   | \*Required if `mode` is `existing`; this is the treasury ID of the DAO to join                                             |
+| filter-amount                                            | NUMBER    | False    | The minimum number of votes a proposal needs before the wallet will recognise it \[default: 1]                                               |
+| fee                                                      | NUMBER    | False\*  | \*Only used if `mode` is `new`; this is a blockchain fee to add to the transaction to create the DAO treasury [Default: 0]                    |
+| fee_for_cat    | NUMBER    | False\*  | \*Only used if `mode` is `new`; this is a blockchain fee to add to the transaction to create the DAO CATs [Default: 0]                        |
+| treasury_id                         | STRING    | True\*   | \*Required if `mode` is `existing`; this is the treasury ID of the DAO to join                                                                                                                                    |
 
 Notes:
 
 - When `mode` is `new`, this RPC has a similar functionality to the [create](/reference-client/cli-reference/dao-cli/#create) DAO CLI command.
 - When `mode` is `existing`, this RPC has a similar functionality to the [add](/reference-client/cli-reference/dao-cli/#add) DAO CLI command.
 
-<details>
-<summary>Example 4 (New DAO wallet)</summary>
+<details><summary>Example 4 (New DAO wallet)</summary>
 
 Create a new wallet with some basic DAO rules; also mint CATs and include transaction fees:
 
@@ -992,8 +971,7 @@ For this example, we'll use the wallet with ID <code>7</code>. This wallet is ty
 
 </details>
 
-<details>
-<summary>Example 5 (Join existing DAO)</summary>
+<details><summary>Example 5 (Join existing DAO)</summary>
 
 To join a DAO, set `mode` to `existing`:
 
@@ -1011,13 +989,12 @@ The type of wallet to create. The type of wallet to create. Must be one of <code
 
 `nft_wallet` Parameters:
 
-| Flag   | Type   | Required | Description                                                        |
-| :----- | :----- | :------- | :----------------------------------------------------------------- |
-| did_id | STRING | False    | Associate a DID with the new NFT wallet                            |
-| name   | STRING | False    | The name of the wallet to create or modify [Default: `NFT Wallet`] |
+| Flag                        | Type   | Required | Description                                                                                                                            |
+| :-------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| did_id | STRING | False    | Associate a DID with the new NFT wallet                                                                                                |
+| name                        | STRING | False    | The name of the wallet to create or modify [Default: `NFT Wallet`] |
 
-<details>
-<summary>Example 6 (NFT wallet without DID)</summary>
+<details><summary>Example 6 (NFT wallet without DID)</summary>
 
 Create a new NFT wallet that is not associated with a DID:
 
@@ -1037,8 +1014,7 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 7 (NFT wallet with DID)</summary>
+<details><summary>Example 7 (NFT wallet with DID)</summary>
 
 Create an NFT wallet that is associated with a DID. First, create the DID: First, create the DID:
 
@@ -1073,12 +1049,12 @@ Response:
 
 `pool_wallet` Parameters:
 
-| Flag                    | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| :---------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mode                    | STRING  | True     | Must be either `new` of `recovery`. However, `recovery` has not been implemented, so currently (version 1.6) it will automatically fail                                                                                                                                                                                                                                                                                                                                                                                          |
-| initial_target_state    | STRING  | True     | This info should be sent from the daemon. `PoolState` is a type that is serialized to the blockchain to track the state of the user's pool singleton `target_puzzle_hash` is either the pool address, or the self-pooling address that pool rewards will be paid to. `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state |
-| p2_singleton_delayed_ph | STRING  | True\*   | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| p2_singleton_delay_time | INTEGER | False    | The time (in seconds) to delay payments [Default: None ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Flag                                                                                   | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| :------------------------------------------------------------------------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mode                                                                                   | STRING  | True     | Must be either `new` of `recovery`. However, `recovery` has not been implemented, so currently (version 1.6) it will automatically fail                                                                                                                                                                                                                                                                                                                                                                                                       |
+| initial_target_state                         | STRING  | True     | This info should be sent from the daemon. `PoolState` is a type that is serialized to the blockchain to track the state of the user's pool singleton `target_puzzle_hash` is either the pool address, or the self-pooling address that pool rewards will be paid to. `target_puzzle_hash` is NOT the `p2_singleton` puzzle that block rewards are sent to. The `p2_singleton` address is the initial address, and the `target_puzzle_hash` is the final destination. `relative_lock_height` is zero when in `SELF_POOLING` state |
+| p2_singleton_delayed_ph | STRING  | True\*   | \*Required if `mode` is `new`. This is the puzzle hash to which payouts will go                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| p2_singleton_delay_time | INTEGER | False    | The time (in seconds) to delay payments [Default: None ]                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ---
 
@@ -1097,33 +1073,32 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type    | Required | Description                                                              |
-| :----------- | :------ | :------- | :----------------------------------------------------------------------- |
+| Flag                              | Type    | Required | Description                                                                                                                                  |
+| :-------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | include_data | BOOLEAN | False    | Set to `true` to include all coin info for this wallet [Default: `true`] |
-| type         | INTEGER | False    | The type of wallet to retrieve. See below for valid types                |
+| type                              | INTEGER | False    | The type of wallet to retrieve. See below for valid types                                                                    |
 
 Valid wallet types (the `type` parameter) include the following integers:
 
-| Name             | type |
-| :--------------- | ---: |
-| STANDARD_WALLET  |    0 |
-| ATOMIC_SWAP      |    2 |
-| AUTHORIZED_PAYEE |    3 |
-| MULTI_SIG        |    4 |
-| CUSTODY          |    5 |
-| CAT              |    6 |
-| RECOVERABLE      |    7 |
-| DECENTRALIZED_ID |    8 |
-| POOLING_WALLET   |    9 |
-| NFT              |   10 |
-| DATA_LAYER       |   11 |
+| Name                                                       | type |
+| :--------------------------------------------------------- | ---: |
+| STANDARD_WALLET                       |    0 |
+| ATOMIC_SWAP                           |    2 |
+| AUTHORIZED_PAYEE                      |    3 |
+| MULTI_SIG                             |    4 |
+| CUSTODY                                                    |    5 |
+| CAT                                                        |    6 |
+| RECOVERABLE                                                |    7 |
+| DECENTRALIZED_ID                      |    8 |
+| POOLING_WALLET                        |    9 |
+| NFT                                                        |   10 |
+| DATA_LAYER                            |   11 |
 | DATA_LAYER_OFFER |   12 |
-| VC               |   13 |
+| VC                                                         |   13 |
 
 More types may be added in the future. See [wallet_types.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/util/wallet_types.py) for an up-to-date list of valid types.
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Get all info for all wallets:
 
@@ -1150,8 +1125,7 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Get NFT wallet info (NFT type = 10):
 
@@ -1203,15 +1177,16 @@ Options:
 
 Request Parameters:
 
-| Flag               | Type       | Required | Description                                                                                                         |
-| :----------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------ |
-| wallet_id          | TEXT       | True     | The wallet ID for the origin of the transaction                                                                     |
-| number_of_coins    | INTEGER    | True     | The number of coins to combine [Default: combine all coins, up to `coin_num_limit`]                                 |
-| largest_first      | BOOLEAN    | False    | Set to `True` to prioritize combining the largest coins first [Default: False]                                      |
-| target_coin_ids    | TEXT ARRAY | False    | Only combine these coins [Default: Disabled]                                                                        |
+| Flag                                                         | Type       | Required | Description                                                                                                                                                                                                                |
+| :----------------------------------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                               | TEXT       | True     | The wallet ID for the origin of the transaction                                                                                                                                                                            |
+| number_of_coins    | INTEGER    | True     | The number of coins to combine [Default: combine all coins, up to `coin_num_limit`]                                                                    |
+| largest_first                           | BOOLEAN    | False    | Set to `True` to prioritize combining the largest coins first [Default: False]                                                                         |
+| target_coin_ids    | TEXT ARRAY | False    | Only combine these coins [Default: Disabled]                                                                                                           |
 | target_coin_amount | INTEGER    | False    | Select coins until this amount (in XCH or CAT) is reached. Combine all selected coins into one coin [Default: None] |
-| coin_num_limit     | INTEGER    | False    | Combine up to this many coins [Default: 500]                                                                        |
-| fee                | INTEGER    | False    | An optional blockchain fee, in mojos                                                                                |
+| coin_num_limit     | INTEGER    | False    | Combine up to this many coins [Default: 500]                                                                                                           |
+| fee                                                          | INTEGER    | False    | An optional blockchain fee, in mojos                                                                                                                                                                                       |
+| push                                                         | BOOLEAN    | False    | Option to push the transaction to the chain or not (default: false)                                                                                                                     |
 
 :::warning
 
@@ -1249,7 +1224,7 @@ It is not recommended to increase the value of `coin_num_limit` to a value highe
 For this example, combine as many coins as are required until a target of 2 trillion mojos is reached. Include a blockchain fee of 25 million mojos:
 
 ```json
-chia rpc wallet combine_coins '{"wallet_id": 1, "target_coin_amount": 2000000000000, "number_of_coins": 2, "fee": 25000000}'
+chia rpc wallet combine_coins '{"wallet_id": 1, "target_coin_amount": 2000000000000, "number_of_coins": 2, "fee": 25000000, "push": true}'
 ```
 
 Response:
@@ -1401,8 +1376,7 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 First, list some coins to combine. The following command will list all coins in the wallet. (It is also possible to obtain a more nuanced listing by running the [list](/reference-client/cli-reference/wallet-cli/#list) command):
 
@@ -1615,18 +1589,18 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type         | Required | Description                                                                                |
-| :------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------- |
-| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                            |
-| additions            | TEXT ARRAY   | True     | A list of puzzle hashes and amounts to be included                                         |
-| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                               |
-| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                               |
-| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                          |
-| coins                | TEXT ARRAY   | True     | A list of coins to include                                                                 |
-| exclude_coins        | TEXT ARRAY   | True     | A list of coins to exclude                                                                 |
-| coin_announcements   | TEXT ARRAY   | False    | A list of coin announcements, which includes `coin_id`, `message`, and `morph_bytes`       |
-| puzzle_announcements | TEXT ARRAY   | False    | A list of puzzle announcements, which includes `puzzle_hash`, `message`, and `morph_bytes` |
-| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                       |
+| Flag                                                           | Type         | Required | Description                                                                                                      |
+| :------------------------------------------------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                 | TEXT         | True     | The wallet ID for the origin of the transaction                                                                  |
+| additions                                                      | TEXT ARRAY   | True     | A list of puzzle hashes and amounts to be included                                                               |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0] |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0] |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                |
+| coins                                                          | TEXT ARRAY   | True     | A list of coins to include                                                                                       |
+| exclude_coins                             | TEXT ARRAY   | True     | A list of coins to exclude                                                                                       |
+| coin_announcements                        | TEXT ARRAY   | False    | A list of coin announcements, which includes `coin_id`, `message`, and `morph_bytes`                             |
+| puzzle_announcements                      | TEXT ARRAY   | False    | A list of puzzle announcements, which includes `puzzle_hash`, `message`, and `morph_bytes`                       |
+| fee                                                            | NUMBER       | False    | An optional blockchain fee, in mojos                                                                             |
 
 ---
 
@@ -1645,12 +1619,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                                                                            |
-| :-------- | :------- | :--------------------------------------------------------------------------------------------------------------------- |
+| Parameter | Required | Description                                                                                                                                                                                                                                                                    |
+| :-------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ids       | False    | Set to delete notifications only from the specified IDs. [Default: delete from all IDs] [Default: delete from all IDs] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet delete_notifications
@@ -1683,12 +1656,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                            |
-| :-------- | :----- | :------- | :----------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                            |
+| :----------------------------- | :----- | :------- | :----------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet from which to delete transactions |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet delete_unconfirmed_transactions '{"wallet_id": 2}'
@@ -1721,14 +1693,13 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type   | Required | Description                                                                                |
-| :---- | :----- | :------- | :----------------------------------------------------------------------------------------- |
+| Flag  | Type   | Required | Description                                                                                                                |
+| :---- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------- |
 | index | NUMBER | True     | The new derivation index. The new derivation index. Must be larger than the previous index |
 
 Note: The derivation index is the minimum number of addresses the wallet will examine. It's not possible to decrease this number. It's not possible to decrease this number.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet extend_derivation_index '{"index": 436}'
@@ -1764,8 +1735,7 @@ Request Parameters:
 
 None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_coin_records
@@ -1816,15 +1786,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                         |
-| :------------------ | :--------- | :------- | :-------------------------------------------------- |
-| names               | TEXT ARRAY | True     | A list of coin names from which to retrieve records |
-| start_height        | NUMBER     | False    | The block height at which to start the query        |
-| end_height          | NUMBER     | False    | The block height at which to end the query          |
-| include_spent_coins | BOOLEAN    | False    | Include spent coins in the result [Default: false]  |
+| Flag                                                          | Type       | Required | Description                                                                                                            |
+| :------------------------------------------------------------ | :--------- | :------- | :--------------------------------------------------------------------------------------------------------------------- |
+| names                                                         | TEXT ARRAY | True     | A list of coin names from which to retrieve records                                                                    |
+| start_height                             | NUMBER     | False    | The block height at which to start the query                                                                           |
+| end_height                               | NUMBER     | False    | The block height at which to end the query                                                                             |
+| include_spent_coins | BOOLEAN    | False    | Include spent coins in the result [Default: false] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_coin_records_by_names '{"names": ["0xeb17e80fcb72f15bfb28924f0bcd684df626646dca282bc88098cb0d59ffe1bb"]}'
@@ -1870,8 +1839,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_current_derivation_index
@@ -1905,8 +1873,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_farmed_amount
@@ -1944,13 +1911,12 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type    | Required | Description                                                                    |
-| :---------- | :------ | :------- | :----------------------------------------------------------------------------- |
+| Flag                             | Type    | Required | Description                                                                    |
+| :------------------------------- | :------ | :------- | :----------------------------------------------------------------------------- |
 | wallet_id   | TEXT    | True     | The ID of the wallet from which to obtain the next address                     |
 | new_address | BOOLEAN | True     | If `true`, then create a new address, else display the latest existing address |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_next_address '{"wallet_id": 2, "new_address": false}'
@@ -1985,14 +1951,13 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                                                                                                                     |
-| :-------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| Parameter | Required | Description                                                                                                                                                                                                                                                                             |
+| :-------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ids       | False    | Set to receive notifications only from the specified IDs. [Default: receive from all IDs] [Default: receive from all IDs]       |
 | start     | False    | The number corresponding to the first notification to list. [Default: the first notification] [Default: the first notification] |
 | end       | False    | The number corresponding to the last notification to list. [Default: the last notification] [Default: the last notification]    |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 If no parameters are set, then all notifications will be listed from all IDs:
 
@@ -2034,17 +1999,16 @@ Options:
 
 Request Parameters:
 
-| Flag                  | Type         | Required | Description                                                          |
-| :-------------------- | :----------- | :------- | :------------------------------------------------------------------- |
-| wallet_id             | NUMBER       | True     | The ID of the wallet from which to display coins                     |
+| Flag                                                            | Type         | Required | Description                                                                                                                              |
+| :-------------------------------------------------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                  | NUMBER       | True     | The ID of the wallet from which to display coins                                                                                         |
 | min_coin_amount       | NUMBER       | False    | The smallest coin to be selected in this query [Default: No minimum] |
 | max_coin_amount       | NUMBER       | False    | The largest coin to be selected in this query [Default: No maximum]  |
-| excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                    |
-| excluded_coins        | TEXT ARRAY   | False    | A list of coins to exclude                                           |
-| excluded_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                        |
+| excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                        |
+| excluded_coins                             | TEXT ARRAY   | False    | A list of coins to exclude                                                                                                               |
+| excluded_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                                            |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 List all unspent coins from wallet 1:
 
@@ -2094,12 +2058,11 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type | Required | Description                                                                                                                  |
-| :------------- | :--- | :------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| Flag                                | Type | Required | Description                                                                                                                                                       |
+| :---------------------------------- | :--- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | transaction_id | TEXT | True     | The ID of the transaction to obtain. This is listed as `name` in the output of the [get_transactions](#get_transactions) RPC |
 
-<details>
-<summary>Notes about transactions</summary>
+<details><summary>Notes about transactions</summary>
 The transaction history is not deterministic due to heuristics we use to counter privacy features of the blockchain. This means, a couple of details cannot be fetched fully:
 - The transaction IDs can and will change if you resync the wallet
 - Transactions of assets other than xch (cat, nft, ...) which include a fee will cause a second fee-transaction in the xch currency wallet (wallet 1)
@@ -2111,8 +2074,7 @@ The transaction history is not deterministic due to heuristics we use to counter
 For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
 </details>
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_transaction '{"transaction_id": "0x43f6811a4daf18622fc7f132f5166a1246056b4a983b7befccb7e4b2e2c57f3b"}'
@@ -2177,17 +2139,16 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type    | Required | Description                                                                                                                                                                                                            |
-| :--------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id  | NUMBER  | True     | The Wallet ID of the wallet from which to obtain transactions                                                                                                                                                          |
-| start      | NUMBER  | False    | The sequence number of the first transaction to show [Default: 0]                                                                                                                                                      |
-| end        | NUMBER  | False    | The sequence number of the last transaction to show [Default: 50]                                                                                                                                                      |
+| Flag                            | Type    | Required | Description                                                                                                                                                                                                                                                                                                     |
+| :------------------------------ | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id  | NUMBER  | True     | The Wallet ID of the wallet from which to obtain transactions                                                                                                                                                                                                                                                   |
+| start                           | NUMBER  | False    | The sequence number of the first transaction to show [Default: 0]                                                                                                                                                                           |
+| end                             | NUMBER  | False    | The sequence number of the last transaction to show [Default: 50]                                                                                                                                                                           |
 | sort_key   | NUMBER  | False    | Specify the key for sorting, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
-| reverse    | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]                                                                                                                                                    |
-| to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]                                                                                                                                                       |
+| reverse                         | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]                                                                                                                                                                         |
+| to_address | STRING  | False    | Only include transactions with this `to_address` [Default: None]                                                                                                                                                                            |
 
-<details>
-<summary>Notes about transactions</summary>
+<details><summary>Notes about transactions</summary>
 By default, the function lists the oldest transactions first. This is recommended for building a transaction history due to pagination.
 If reverse is set to true, it lists the newest transactions first. This is most useful for fetching recent transactions.
 
@@ -2204,8 +2165,7 @@ The transaction history is not deterministic due to heuristics we use to counter
 
 </details>
 
-<details>
-<summary>Example 1: List a single XCH transaction</summary>
+<details><summary>Example 1: List a single XCH transaction</summary>
 
 Start by listing all wallets associated with the currently synced fingerprint:
 
@@ -2321,8 +2281,7 @@ chia rpc wallet get_transactions '{"wallet_id": 1, "start": 3, "end": 4}'
 
 </details>
 
-<details>
-<summary>Example 2: List all transactions for a CAT</summary>
+<details><summary>Example 2: List all transactions for a CAT</summary>
 
 Start by listing all wallets associated with the currently synced fingerprint:
 
@@ -2444,12 +2403,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type | Required | Description                                              |
-| :-------- | :--- | :------- | :------------------------------------------------------- |
+| Flag                           | Type | Required | Description                                              |
+| :----------------------------- | :--- | :------- | :------------------------------------------------------- |
 | wallet_id | TEXT | True     | The wallet ID from which to obtain the transaction count |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_transaction_count '{"wallet_id": 2}'
@@ -2484,12 +2442,11 @@ Options:
 
 Request Parameters:
 
-| Parameter      | TYPE   | Required | Description                                              |
-| :------------- | :----- | :------- | :------------------------------------------------------- |
+| Parameter                           | TYPE   | Required | Description                                              |
+| :---------------------------------- | :----- | :------- | :------------------------------------------------------- |
 | transaction_id | STRING | True     | The ID of the transaction for which to retrieve the memo |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_transaction_memo '{"transaction_id": "0x21899b89bf36154e44c2277e9bfb6cff0574d7e9df4e100b782b03ab2476e171"}'
@@ -2527,12 +2484,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                  |
-| :-------- | :----- | :------- | :----------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                  |
+| :----------------------------- | :----- | :------- | :----------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The Wallet ID of the wallet from which to obtain the balance |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_wallet_balance '{"wallet_id": 1}'
@@ -2577,12 +2533,11 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type | Required | Description                                                                                |
-| :--------- | :--- | :------- | :----------------------------------------------------------------------------------------- |
+| Flag                            | Type | Required | Description                                                                                                                                                    |
+| :------------------------------ | :--- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | wallet_ids | LIST | False    | A list of Wallet IDs from which to obtain the balance [Default: list info for all wallets] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Get the balance and other info for wallets 1 and 2:
 
@@ -2643,17 +2598,16 @@ Options:
 
 Request Parameters:
 
-| Flag                  | Type         | Required | Description                                                          |
-| :-------------------- | :----------- | :------- | :------------------------------------------------------------------- |
-| wallet_id             | NUMBER       | True     | The ID of the wallet from which to select coins                      |
-| amount                | NUMBER       | True     | The number of mojos to select                                        |
+| Flag                                                            | Type         | Required | Description                                                                                                                              |
+| :-------------------------------------------------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                  | NUMBER       | True     | The ID of the wallet from which to select coins                                                                                          |
+| amount                                                          | NUMBER       | True     | The number of mojos to select                                                                                                            |
 | min_coin_amount       | NUMBER       | False    | The smallest coin to be selected in this query [Default: No minimum] |
 | max_coin_amount       | NUMBER       | False    | The largest coin to be selected in this query [Default: No maximum]  |
-| excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                    |
-| excluded_coins        | TEXT ARRAY   | False    | A list of coins to exclude                                           |
+| excluded_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                        |
+| excluded_coins                             | TEXT ARRAY   | False    | A list of coins to exclude                                                                                                               |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Select 1000 mojos. Note that in this wallet, the smallest coin is worth `999 996 796` mojos, so that coin is selected:
 
@@ -2678,8 +2632,7 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Attempt to select 1000 mojos with `max_coin_amount` set to `10 000`. As in the previous example, the smallest coin in the wallet is worth `999 996 796` mojos, so the coin selection will fail:
 
@@ -2719,8 +2672,7 @@ Request Parameters:
 | amount    | NUMBER     | True     | The number of mojos to include with this message    |
 | fee       | NUMBER     | False    | An optional blockchain fee, in mojos                |
 
-<details>
-<summary>Example 1: Send a generic message</summary>
+<details><summary>Example 1: Send a generic message</summary>
 
 ```json
 chia rpc wallet send_notification '{"target": "8c436f983d5bcbdb92d6d029a4113da580f2fc43b943e92ddf06a9f54e5f5003", "message": "fadedcab", "amount": 10000000, "fee": 10000000}'
@@ -2796,8 +2748,7 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2: Send an NFT notification</summary>
+<details><summary>Example 2: Send an NFT notification</summary>
 
 In this example, we will attempt to buy the following NFT:
 
@@ -3011,21 +2962,20 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type         | Required | Description                                                                                                                                                                              |
-| :------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                                                                                                          |
-| address              | TEXT         | True     | The destination address                                                                                                                                                                  |
-| amount               | NUMBER       | True     | The number of mojos to send                                                                                                                                                              |
-| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                                                                                               |
-| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                                                                                                             |
-| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                                                                                                             |
-| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                                                                        |
-| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                                                                                            |
-| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Flag                                                           | Type         | Required | Description                                                                                                                                                                                                              |
+| :------------------------------------------------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                 | TEXT         | True     | The wallet ID for the origin of the transaction                                                                                                                                                                          |
+| address                                                        | TEXT         | True     | The destination address                                                                                                                                                                                                  |
+| amount                                                         | NUMBER       | True     | The number of mojos to send                                                                                                                                                                                              |
+| fee                                                            | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
+| memos                                                          | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                                                                                                                               |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                                                                         |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                                                                         |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                                                                                                        |
+| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                                                                                                                            |
+| reuse_puzhash                             | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet send_transaction '{"wallet_id": 1, "address": "xch1fev2qaclwpcue9kx4p39dzfxpzaavvcz5v3lhx77cxha7f0tjjlsngh5k0", "amount": 1000, "fee": 1, "memos":["memo1"]}'
@@ -3110,16 +3060,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                        |
-| :-------- | :--------- | :------- | :----------------------------------------------------------------- |
-| wallet_id | TEXT       | True     | The wallet ID for the origin of the transaction                    |
-| additions | TEXT ARRAY | True     | A list of puzzle hashes, amounts, and memos to be included         |
-| coins     | TEXT ARRAY | False    | Optional declaration of coins to be used                           |
-| fee       | NUMBER     | False    | An optional blockchain fee, in mojos                               |
-| push      | BOOLEAN    | False    | Option to push the transaction to the chain or not (default: true) |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
+| wallet_id | TEXT       | True     | The wallet ID for the origin of the transaction                                                       |
+| additions                      | TEXT ARRAY | True     | A list of puzzle hashes, amounts, and memos to be included                                            |
+| coins                          | TEXT ARRAY | False    | Optional declaration of coins to be used                                                              |
+| fee                            | NUMBER     | False    | An optional blockchain fee, in mojos                                                                  |
+| push                           | BOOLEAN    | False    | Option to push the transaction to the chain or not (default: true) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet send_transaction_multi '{"wallet_id": 1, "additions": [{"amount": 1000, "puzzle_hash": "0xd826f3ef83e1752771426f90eadb24e42a78948cb7f747da85c05daab1b1e156"},{"amount": 500, "puzzle_hash": "0x45d4b5bd3f1e2c28483cae0eab27921adabff3300cb7d1241ba1a9628727197d", "memos": ["hello", "world"]}],"fee": 100}'
@@ -3127,7 +3076,7 @@ chia rpc wallet send_transaction_multi '{"wallet_id": 1, "additions": [{"amount"
 
 Response:
 
-````mdx-code-block
+```mdx-code-block
   ```json
   {
     "success": true,
@@ -3315,9 +3264,8 @@ Response:
       }
     ]
   }
-````
-
-````
+  ```
+```
 
 </details>
 
@@ -3343,12 +3291,11 @@ Request Parameters:
 | address   | STRING | True     | The address to use for signing. The address to use for signing. Must possess the key for this address |
 | message   | STRING | True     | The message to include with the signature                                                                                             |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet sign_message_by_address '{"address":"xch1q94gd4hd62ecx08d0kuagmp5cr8umrwtcvatfupmd7uyzhuf4c4sy2zd46", "message":"test"}'
-````
+```
 
 Response:
 
@@ -3379,13 +3326,12 @@ Options:
 
 Request Parameters:
 
-| Parameter | TYPE   | Required | Description                                                                                             |
-| :-------- | :----- | :------- | :------------------------------------------------------------------------------------------------------ |
+| Parameter | TYPE   | Required | Description                                                                                                             |
+| :-------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------- |
 | id        | STRING | True     | The DID or NFT ID to use for signing. Must possess the key for this ID Must possess the key for this ID |
-| message   | STRING | True     | The message to include with the signature                                                               |
+| message   | STRING | True     | The message to include with the signature                                                                               |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet sign_message_by_id '{"id":"nft12dfld077vn3ywp4vdx9ljg96k89kpr6jlqwkm7lgaf3g8jwn2l4q6eytqs", "message":"test"}'
@@ -3420,16 +3366,15 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type         | Required | Description                                                                                                        |
-| :--------- | :----------- | :------- | :----------------------------------------------------------------------------------------------------------------- |
-| coin_ids   | STRING ARRAY | True     | List of coin IDs to be spent                                                                                       |
+| Flag                            | Type         | Required | Description                                                                                                                                                                                                                      |
+| :------------------------------ | :----------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| coin_ids   | STRING ARRAY | True     | List of coin IDs to be spent                                                                                                                                                                                                     |
 | batch_size | NUMBER       | False    | The number of coins to spend per bundle, [Default: `batch_size` obtainable from [get_auto_claim](#get_auto_claim)] |
-| fee        | NUMBER       | False    | An optional blockchain fee, in mojos                                                                               |
+| fee                             | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                                                             |
 
 When examining the on-chain metadata for a transaction, a coin with `"type": 6` is a clawback coin to be received by this wallet, and a coin with `"type": 7` is a clawback coin sent from this wallet.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 First, list a clawback transaction. For this example, we will specify the `to_address`.
 
@@ -3676,13 +3621,14 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type    | Required | Description                                                                              |
-| :-------------- | :------ | :------- | :--------------------------------------------------------------------------------------- |
-| wallet_id       | TEXT    | True     | The wallet ID for the origin of the transaction                                          |
-| target_coin_id  | TEXT    | True     | The ID of the coin to split                                                              |
+| Flag                                                      | Type    | Required | Description                                                                                                 |
+| :-------------------------------------------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
+| wallet_id                            | TEXT    | True     | The wallet ID for the origin of the transaction                                                             |
+| target_coin_id  | TEXT    | True     | The ID of the coin to split                                                                                 |
 | number_of_coins | INTEGER | True     | The number of new coins to create, excluding the remainder coin (minimum 1, maximum 500) |
-| amount_per_coin | INTEGER | True     | The amount of each newly created coin, in XCH                                            |
-| fee             | INTEGER | False    | An optional blockchain fee, in mojos                                                     |
+| amount_per_coin | INTEGER | True     | The amount of each newly created coin, in XCH                                                               |
+| fee                                                       | INTEGER | False    | An optional blockchain fee, in mojos                                                                        |
+| push                                                      | BOOLEAN | False    | Option to push the transaction to the chain or not (default: false)      |
 
 :::info
 
@@ -3705,7 +3651,7 @@ The minimum number of new coins is 1. "Splitting" one coin into one new coin cou
 Split a coin into three new coins of 100 mojos apiece, plus a remainder coin. Include a blockchain fee of 25 million mojos.
 
 ```json
- chia rpc wallet split_coins '{"wallet_id": 1, "target_coin_id": "0x0451adca5edd164d524fea976792b73e8f745b8210fa8f890fca34a3d258a8d7", "number_of_coins": 3, "amount_per_coin": 100, "fee": 25000000}'
+ chia rpc wallet split_coins '{"wallet_id": 1, "target_coin_id": "0x0451adca5edd164d524fea976792b73e8f745b8210fa8f890fca34a3d258a8d7", "number_of_coins": 3, "amount_per_coin": 100, "fee": 25000000, "push": true}'
 ```
 
 Response:
@@ -3884,13 +3830,13 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type | Required | Description                                                                                       |
-| :----------- | :--- | :------- | :------------------------------------------------------------------------------------------------ |
+| Flag                              | Type | Required | Description                                                                                                                                                                                |
+| :-------------------------------- | :--- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | signing_mode | TEXT | False    | Specify the type of signature to verify \[Default: BLS with hex input\] (see below for more info) |
-| pubkey       | TEXT | True     | The public key of the signature to verify                                                         |
-| message      | TEXT | True     | The message to verify                                                                             |
-| signature    | TEXT | True     | The signature to verify                                                                           |
-| address      | TEXT | True     | The address, which must be derived from `pubkey`                                                  |
+| pubkey                            | TEXT | True     | The public key of the signature to verify                                                                                                                                                  |
+| message                           | TEXT | True     | The message to verify                                                                                                                                                                      |
+| signature                         | TEXT | True     | The signature to verify                                                                                                                                                                    |
+| address                           | TEXT | True     | The address, which must be derived from `pubkey`                                                                                                                                           |
 
 The signing mode strings are [stored in an enum](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/types/signing_mode.py). As of Chia 2.0.0, valid signing mode strings include:
 
@@ -3927,14 +3873,13 @@ Options:
 
 Request Parameters:
 
-| Flag     | Type    | Required | Description                                                                                                                                                                                    |
-| :------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| secure   | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
-| trade_id | TEXT    | True     | The ID of the offer to cancel                                                                                                                                                                  |
-| fee      | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                           |
+| Flag                          | Type    | Required | Description                                                                                                                                                                                                                       |
+| :---------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| secure                        | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
+| trade_id | TEXT    | True     | The ID of the offer to cancel                                                                                                                                                                                                     |
+| fee                           | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                              |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet cancel_offer '{"secure": true, "trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5", "fee": 1}'
@@ -3967,16 +3912,15 @@ Options:
 
 Request Parameters:
 
-| Flag       | Type    | Required | Description                                                                                                                                                                                    |
-| :--------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| secure     | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
-| batch_fee  | NUMBER  | False    | The fee, in mojos, to add to each batch cancellation [Default: 0]                                                                                                                              |
-| batch_size | NUMBER  | False    | The number of offers to cancel in each batch [Default: 5]                                                                                                                                      |
-| cancel_all | BOOLEAN | False    | Set to `true` to cancel all offers for all assets [Default: `false`]                                                                                                                           |
-| asset_id   | TEXT    | False    | If `cancel_all` is false, then only cancel the specified type of asset [Default: `xch`]                                                                                                        |
+| Flag                            | Type    | Required | Description                                                                                                                                                                                                                       |
+| :------------------------------ | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| secure                          | BOOLEAN | True     | Set to `true` to cancel on the blockchain by spending the coin(s) being offered; set to `false` to cancel in the wallet only. If `false`, the offer could still be taken if it has been shared |
+| batch_fee  | NUMBER  | False    | The fee, in mojos, to add to each batch cancellation [Default: 0]                                                                                             |
+| batch_size | NUMBER  | False    | The number of offers to cancel in each batch [Default: 5]                                                                                                     |
+| cancel_all | BOOLEAN | False    | Set to `true` to cancel all offers for all assets [Default: `false`]                                                                                          |
+| asset_id   | TEXT    | False    | If `cancel_all` is false, then only cancel the specified type of asset [Default: `xch`]                                                                       |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet cancel_offers '{"secure": true}'
@@ -4009,12 +3953,11 @@ Options:
 
 Request Parameters:
 
-| Flag     | Type | Required | Description                                                                                                                                 |
-| :------- | :--- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| Flag                          | Type | Required | Description                                                                                                                                                 |
+| :---------------------------- | :--- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | asset_id | TEXT | True     | The ID of the CAT whose name you would like to retrieve. This CAT must be listed in your `DEFAULT_CATS`, ie the CATs your wallet recognizes |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet cat_asset_id_to_name '{"asset_id": "1f9fd0d4a1221241df986f042e014c056571062c82a5ba9b88c866c92808e1a9"}'
@@ -4049,12 +3992,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                  |
-| :-------- | :----- | :------- | :----------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                  |
+| :----------------------------- | :----- | :------- | :----------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The wallet ID of the CAT whose ID you would like to retrieve |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet cat_get_asset_id '{"wallet_id": 2}'
@@ -4089,12 +4031,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                    |
-| :-------- | :----- | :------- | :------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                    |
+| :----------------------------- | :----- | :------- | :------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The wallet ID of the CAT whose name you would like to retrieve |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet cat_get_name '{"wallet_id": 2}'
@@ -4129,13 +4070,12 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                              |
-| :-------- | :----- | :------- | :------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                              |
+| :----------------------------- | :----- | :------- | :------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The ID of the wallet whose name you would like to change |
-| name      | TEXT   | True     | The new name for the wallet                              |
+| name                           | TEXT   | True     | The new name for the wallet                              |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet cat_set_name '{"wallet_id": 2, "name": "New CAT Wallet"}'
@@ -4169,26 +4109,25 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type         | Required | Description                                                                                                                                                                              |
-| :------------------- | :----------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wallet_id            | TEXT         | True     | The wallet ID for the origin of the transaction                                                                                                                                          |
-| additions            | TEXT ARRAY   | True\*   | \*Must include either `additions` or `amount`. A list of puzzle hashes and amounts to be included                                                                                        |
-| amount               | NUMBER       | True\*   | \*Must include either `additions` or `amount`. The number of mojos to send                                                                                                               |
-| inner_address        | TEXT         | True     | The destination address                                                                                                                                                                  |
-| memos                | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                                                                                               |
-| coins                | TEXT ARRAY   | False    | A list of coins to include in the spend                                                                                                                                                  |
-| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                                                                                                             |
-| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                                                                                                             |
-| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                                                                        |
-| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                                                                                            |
-| fee                  | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| extra_delta          | TEXT         | False\*  | The CAT's `extra_delta` parameter; \*If specified, then `tail_reveal` and `tail_solution` must also be specified                                                                         |
-| tail_reveal          | TEXT         | False\*  | The CAT's `tail_reveal` parameter; \*If specified, then `extra_delta` and `tail_solution` must also be specified                                                                         |
-| tail_solution        | TEXT         | False\*  | The CAT's `tail_solution` parameter; \*If specified, then `extra_delta` and `tail_reveal` must also be specified                                                                         |
-| reuse_puzhash        | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Flag                                                           | Type         | Required | Description                                                                                                                                                                                                              |
+| :------------------------------------------------------------- | :----------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                 | TEXT         | True     | The wallet ID for the origin of the transaction                                                                                                                                                                          |
+| additions                                                      | TEXT ARRAY   | True\*   | \*Must include either `additions` or `amount`. A list of puzzle hashes and amounts to be included                                                                                                        |
+| amount                                                         | NUMBER       | True\*   | \*Must include either `additions` or `amount`. The number of mojos to send                                                                                                                               |
+| inner_address                             | TEXT         | True     | The destination address                                                                                                                                                                                                  |
+| memos                                                          | TEXT ARRAY   | False    | An optional array of memos to be sent with the transaction                                                                                                                                                               |
+| coins                                                          | TEXT ARRAY   | False    | A list of coins to include in the spend                                                                                                                                                                                  |
+| min_coin_amount      | NUMBER       | False    | The minimum coin amount to send [Default: 0]                                                                                                         |
+| max_coin_amount      | NUMBER       | False    | The maximum coin amount to send [Default: 0]                                                                                                         |
+| exclude_coin_amounts | NUMBER ARRAY | False    | A list of coin amounts to exclude                                                                                                                                                                                        |
+| exclude_coin_ids     | TEXT ARRAY   | False    | A list of coin IDs to exclude                                                                                                                                                                                            |
+| fee                                                            | NUMBER       | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
+| extra_delta                               | TEXT         | False\*  | The CAT's `extra_delta` parameter; \*If specified, then `tail_reveal` and `tail_solution` must also be specified                                                                                                         |
+| tail_reveal                               | TEXT         | False\*  | The CAT's `tail_reveal` parameter; \*If specified, then `extra_delta` and `tail_solution` must also be specified                                                                                                         |
+| tail_solution                             | TEXT         | False\*  | The CAT's `tail_solution` parameter; \*If specified, then `extra_delta` and `tail_reveal` must also be specified                                                                                                         |
+| reuse_puzhash                             | BOOLEAN      | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet cat_spend '{"wallet_id": 7, "amount": 1, "inner_address": "xch19mpn09rnn62nlur7h05naeeq2m6lprdr48f3cgt9j6s8a2h3kk6qdydujd", "fee": 1}'
@@ -4296,8 +4235,7 @@ Request Parameters:
 | :---- | :--- | :------- | :--------------------------------- |
 | offer | TEXT | True     | The contents of the offer to check |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet check_offer_validity '{"offer": "offer1qqzh3wcuu2rykcmqvpsxygqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65y2cmwttg00ht60xnjly6zhduf0h9hmedaq67yh89uafrzctmgrka06llmvv9uhze9tqqpd38v8zcv4x32hhe7wueh4t8vd9cn6uhqk7vejppfygfgtje8usle5c5ukqmlw72va4pv8mweg5ztmcakwex27z9uamchklr2mtk7ax4tadcte8hq98380vuxcnfkjxndkjxrdk68rdk69rdk68ga95mfr2xhump4wrstastammnc2aav3hrd4ej8gexus0gje2urasruamdvrwvas9wm56mykj42pj6cp0vlymr5daw8k9e780kxd46wsh9u4e4tk7dw49w2epylahdz44aq2kj4ypthrsme4qwdncgdnwhlcw2amlhhsl6z0wlca7573y7knevrjjz4kpg80gnrlmlx7q6lh2rdtll6j6kh72t66vmwn25gwh5eqsd6wpqc6yqkn9luteq6nz0hh7yln3r7ct9yqecrfh95lyzace38xayytnu7x2fl4whv40e6etxehv03mwzdlnfttaxckmea7xle3hs0tzvlmdlch7qjzul97gymhjsew40ef2vmf6m8m4ntw0x08ceu7xkxm0fxjut754n9qd2anljlwpk49z4472n65af226w03fha2j7hyshuuh8gdr68z3a67atjcnl07vswj0clutncre6wt4la0au8vdlmxjn7fe8mqald7l8rh2hgls66uxhutuzdqmnr0ljlkyulq5t67rru25jnxjjyxntvllt2n4j244utj7ahu6avas47nlhrah2p5uursd0uteccgjtncy6e62uvn6tathamz0m0rfweuaaq5mevp6klth99dhf0f6hcqksxfpqmvhlpvyrtj2qjmvnwyr96saajuyp8vm70h7vhtw93vkmj7llmquru84g0vv80fd3eg65vhfrlm5yrgzs4pa95el4wa6w9nfkgvvazzek9eef4kd6zr6rjue6culxd8wdg5dglrevft9lc7hfljuc70hx9uq587fl64gp3s467zj58nvdaawuet3lvft8hvynv5j83tlg5phaeteme079hw6xn5dn54tm602ln2vgknvammql8fe7zuqzvfq20gc9s4d4"}'
@@ -4331,16 +4269,16 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type    | Required | Description                                                                                                                                                                              |
-| :-------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer           | TEXT    | True     | The offer to create                                                                                                                                                                      |
-| validate_only   | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                                                          |
-| driver_dict     | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                |
-| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none]                                                                                                                          |
-| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                                                          |
-| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
-| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Flag                                                      | Type    | Required | Description                                                                                                                                                                                                              |
+| :-------------------------------------------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| offer                                                     | TEXT    | True     | The offer to create                                                                                                                                                                                                      |
+| validate_only                        | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                      |
+| driver_dict                          | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                                                |
+| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none]                                                                                      |
+| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                      |
+| solver                                                    | TEXT    | False    | A marshalled solver                                                                                                                                                                                                      |
+| fee                                                       | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
+| reuse_puzhash                        | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 ---
 
@@ -4359,19 +4297,18 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type    | Required | Description                                                                                                                                                                                                            |
-| :------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| start                | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                                                                                                                                                            |
-| end                  | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                                                                                                                                                            |
-| exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]                                                                                                                                                        |
-| exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false]                                                                                                                                          |
-| include_completed    | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]                                                                                                                                                  |
-| sort_key             | NUMBER  | False    | Specify the key for sorting, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
-| reverse              | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]                                                                                                                                                    |
-| file_contents        | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]                                                                                                                                                   |
+| Flag                                                           | Type    | Required | Description                                                                                                                                                                                                                                                                                                     |
+| :------------------------------------------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start                                                          | NUMBER  | False    | The sequence number of the first offer to show [Default: 0]                                                                                                                                                                                 |
+| end                                                            | NUMBER  | False    | The sequence number of the last offer to show [Default: 10]                                                                                                                                                                                 |
+| exclude_my_offers    | BOOLEAN | False    | Set to `true` to exclude offers you originated [Default: false]                                                                                                                                                                             |
+| exclude_taken_offers | BOOLEAN | False    | Set to `true` to exclude offers that have already been taken [Default: false]                                                                                                                                                               |
+| include_completed                         | BOOLEAN | False    | Set to `true` to include offers that have been taken [Default: false]                                                                                                                                                                       |
+| sort_key                                  | NUMBER  | False    | Specify the key for sorting, [sort_keys members](https://github.com/Chia-Network/chia-blockchain/blob/5f6c336e757534d3a36b1a03612e05b412a18c61/chia/wallet/transaction_sorting.py#L6) [Default: `confirmed_at_height`] |
+| reverse                                                        | BOOLEAN | False    | Set to `true` to sort the results in reverse order [Default: false]                                                                                                                                                                         |
+| file_contents                             | BOOLEAN | False    | Set to `true` to display the contents of each offer [Default: false]                                                                                                                                                                        |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_all_offers
@@ -4443,8 +4380,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Get the default CAT list:
 
@@ -4501,13 +4437,12 @@ Options:
 
 Request Parameters:
 
-| Flag          | Type | Required | Description                                                                                                                      |
-| :------------ | :--- | :------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| trade_id      | TEXT | True     | The offer's ID                                                                                                                   |
+| Flag                               | Type | Required | Description                                                                                                                                                      |
+| :--------------------------------- | :--- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| trade_id      | TEXT | True     | The offer's ID                                                                                                                                                   |
 | file_contents | TEXT | False    | The contents of the offer. The contents of the offer. Required if the offer's info is not stored in the database for this wallet |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_offer '{"trade_id": "c4d9f06599e4ba30edfabecc72a03db7d7e86c003ab83520002a844cfebf2ef5"}'
@@ -4583,8 +4518,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_offers_count
@@ -4620,13 +4554,12 @@ Options:
 
 Request Parameters:
 
-| Flag     | Type    | Required | Description                                                 |
-| :------- | :------ | :------- | :---------------------------------------------------------- |
-| offer    | TEXT    | True     | The offer for which to retrieve a summary                   |
+| Flag     | Type    | Required | Description                                                                                                                     |
+| :------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| offer    | TEXT    | True     | The offer for which to retrieve a summary                                                                                       |
 | advanced | BOOLEAN | False    | Set to `true` to show a detailed summary [Default: `false`] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_offer_summary '{"offer": "offer1qqzh3wcuu2rykcmqvpsxygqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65y2cmwttg00ht60xnjly6zhduf0h9hmedaq67yh89uafrzctmgrka06llmvv9uhze9tqqpd38v8zcv4x32hhe7wueh4t8vd9cn6uhqk7vejppfygfgtje8usle5c5ukqmlw72va4pv8mweg5ztmcakwex27z9uamchklr2mtk7ax4tadcte8hq98380vuxcnfkjxndkjxrdk68rdk69rdk68ga95mfr2xhump4wrstastammnc2aav3hrd4ej8gexus0gje2urasruamdvrwvas9wm56mykj42pj6cp0vlymr5daw8k9e780kxd46wsh9u4e4tk7dw49w2epylahdz44aq2kj4ypthrsme4qwdncgdnwhlcw2amlhhsl6z0wlca7573y7knevrjjz4kpg80gnrlmlx7q6lh2rdtll6j6kh72t66vmwn25gwh5eqsd6wpqc6yqkn9luteq6nz0hh7yln3r7ct9yqecrfh95lyzace38xayytnu7x2fl4whv40e6etxehv03mwzdlnfttaxckmea7xle3hs0tzvlmdlch7qjzul97gymhjsew40ef2vmf6m8m4ntw0x08ceu7xkxm0fxjut754n9qd2anljlwpk49z4472n65af226w03fha2j7hyshuuh8gdr68z3a67atjcnl07vswj0clutncre6wt4la0au8vdlmxjn7fe8mqald7l8rh2hgls66uxhutuzdqmnr0ljlkyulq5t67rru25jnxjjyxntvllt2n4j244utj7ahu6avas47nlhrah2p5uursd0uteccgjtncy6e62uvn6tathamz0m0rfweuaaq5mevp6klth99dhf0f6hcqksxfpqmvhlpvyrtj2qjmvnwyr96saajuyp8vm70h7vhtw93vkmj7llmquru84g0vv80fd3eg65vhfrlm5yrgzs4pa95el4wa6w9nfkgvvazzek9eef4kd6zr6rjue6culxd8wdg5dglrevft9lc7hfljuc70hx9uq587fl64gp3s467zj58nvdaawuet3lvft8hvynv5j83tlg5phaeteme079hw6xn5dn54tm602ln2vgknvammql8fe7zuqzvfq20gc9s4d4", "advanced": true}'
@@ -4674,8 +4607,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_stray_cats
@@ -4709,17 +4641,16 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type    | Required | Description                                                                                                                                                                              |
-| :-------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer           | TEXT    | True     | The offer to create                                                                                                                                                                      |
-| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for taking the offer [Default: none]                                                                                                                   |
-| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for taking the offer [Default: none]                                                                                                                   |
-| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
-| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Flag                                                      | Type    | Required | Description                                                                                                                                                                                                              |
+| :-------------------------------------------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| offer                                                     | TEXT    | True     | The offer to create                                                                                                                                                                                                      |
+| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for taking the offer [Default: none]                                                                               |
+| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for taking the offer [Default: none]                                                                               |
+| solver                                                    | TEXT    | False    | A marshalled solver                                                                                                                                                                                                      |
+| fee                                                       | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                     |
+| reuse_puzhash                        | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet take_offer '{"offer": "offer1qqzh3wcuu2rykcmqvpsxvgqqwc7hynr6hum6e0mnf72sn7uvvkpt68eyumkhelprk0adeg42nlelk2mpagr90qq0a37v8lc9pfxkwhdhlns4tnwtx933g0gsj06neuds6jjugly4k5x7we0x39h9ur65kfq0nl5ef86n4uv9hlnlhhqs4zu99cwjzf6fp675f8gne67qh42lhyhlxuemvtgqtwftqcjr4t524a70nhx9u2emrfwv7h9c94nxvsv2eqz2rujflx87vxp84jxh6hjnh0grq7mk29q6l78drkfjks408w79ahu6x6alhf420fw27fec0mufmmrp2y6d5sqmdksg6dksgcdk3gcdxn60gdx6gz347qcdtjuz7vxl7uu7zhtt50cmdwv32yfh9r7yx2hq7vylhvmrqmn8vrt7uxje4542svkkqtm8cxuar0tea3w0pmaend2n58e09wd2ahnr4ftjx2f8ldmg4d0gz4s4eq2acuz7vurnv7xrue4h7rkh7aaaa87snmh78038yf8447tqvks4dswpm6ycl7me8jxhu65m6al74k44lsj7hnxmy642z4exc8rxssgxx3qp5e0lzugx4hlada38auvlkqefpx2q6vm9c9nmlnjvfqfd3a9zaln6wf7y9hn4289cu9chjjha0wkmejcd56dmlaln80cakqe0jmln0uq58ek2uufhf9enazlz55e4nah0ntxhujdw03tmufvak7z09ckadt7gqj4t9laluraacee9z4ujekmy7e04w7h229nmtnnlul2ntkckge0rnvhvan4e42xtjzz07l7p7wsz8dlwll9mhv734uuj2t7hxlu0hesm6a7h29x7pfmjmrn0xgut0u0lstxcnr7j3vmjd8565g532cn2lwm5ad27vtzuh4dm8h0h29hk7460lcgx8txung0pl7pzxnyjpwhwjhrflj62flk7nkug7f7d8m04kurr09s2tmewvkd6u478yuqz6g75yramlqzsjvxxfxtaqdg5d0vnp5tmsumnlmx6ejudykahm7wm8uup3tn7rpa63d79x9992fhaud82s5dqwqgr5my703zjparwu8e2t6fedl2lvl0gvww3g73s9le8hqh3el00xma08qh3y6cku6vlu4jal0xh204xd07dymgtr0lfdnknmr8nhe0mhwalcj6pa4z2vux3qu3jc8mdhtmxl5uppk256uk6r794af5xfsuhxwp5a6sdcmwexlg5hhkgw3d66ycj42cc6l8lw3w4td8wu330lszmvzklqry5zxm8t34psew5z6g9k70lm0aaxkghx5afmhxqwtl7f9kycy9uhdhmdchlzesfphs89gmsz7c9nref02n4nau8h2hn7hdpg0sm4h0t9zrrnc6ajdev7s88a90lwpj6r2k782sz4kllpdn077hdvr7ua68g5e0e674h6e5008zvzavnra64c6v6p8nf33zkuulxsppk4ywx2wmdj0e66j82a8l5m4e5ajzw67dchhsuua9hafr3y4qcm2m0cthf8wf4ka2ts0m0hst0cjntnkfghphysfjm7egnych2mc3wly2827ln2ltqxv32wwkx7flukf7rg4tr25j38774tpq5lqc8l5tvv3mdjcl4llgyqrnekfxyz26de6"}'
@@ -4817,11 +4748,11 @@ Options:
 
 Request Parameters:
 
-| Flag             | Type   | Required | Description                                                                                         |
-| :--------------- | :----- | :------- | :-------------------------------------------------------------------------------------------------- |
-| wallet_id        | NUMBER | True     | The Wallet ID to which to absorb funds (must be of type `POOLING_WALLET`)                           |
+| Flag                                                                            | Type   | Required | Description                                                                                                                                                             |
+| :------------------------------------------------------------------------------ | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                                  | NUMBER | True     | The Wallet ID to which to absorb funds (must be of type `POOLING_WALLET`)                                                                            |
 | max_spends_in_tx | NUMBER | False    | The maximum number of reward transactions to roll into the absorb transaction [Default: no maximum] |
-| fee              | NUMBER | False    | An optional blockchain fee, in mojos                                                                |
+| fee                                                                             | NUMBER | False    | An optional blockchain fee, in mojos                                                                                                                                    |
 
 :::note
 
@@ -4846,16 +4777,15 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type   | Required | Description                                                                                    |
-| :------------------- | :----- | :------- | :--------------------------------------------------------------------------------------------- |
-| wallet_id            | NUMBER | True     | The Wallet ID to use to join the pool (must be of type `POOLING_WALLET`)                       |
-| target_puzzlehash    | TEXT   | True     | This is the target of where rewards will be sent to from the singleton. Controlled by the pool |
-| pool_url             | TEXT   | True     | The URL of the pool to join                                                                    |
-| relative_lock_height | NUMBER | True     | The number of blocks required to wait when attempting to leave the pool                        |
-| fee                  | NUMBER | False    | An optional blockchain fee, in mojos                                                           |
+| Flag                                                           | Type   | Required | Description                                                                                                    |
+| :------------------------------------------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------- |
+| wallet_id                                 | NUMBER | True     | The Wallet ID to use to join the pool (must be of type `POOLING_WALLET`)                    |
+| target_puzzlehash                         | TEXT   | True     | This is the target of where rewards will be sent to from the singleton. Controlled by the pool |
+| pool_url                                  | TEXT   | True     | The URL of the pool to join                                                                                    |
+| relative_lock_height | NUMBER | True     | The number of blocks required to wait when attempting to leave the pool                                        |
+| fee                                                            | NUMBER | False    | An optional blockchain fee, in mojos                                                                           |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Join Spacepool:
 
@@ -4996,10 +4926,10 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                              |
-| :-------- | :----- | :------- | :----------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                                 |
+| :----------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------ |
 | wallet_id | NUMBER | True     | The Wallet ID to use for self-pooling (must be of type `POOLING_WALLET`) |
-| fee       | NUMBER | False    | An optional blockchain fee, in mojos                                     |
+| fee                            | NUMBER | False    | An optional blockchain fee, in mojos                                                        |
 
 :::info
 
@@ -5007,8 +4937,7 @@ This command will only succeed if `wallet_id` is a member of a pool.
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Leave Spacepool:
 
@@ -5149,12 +5078,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                     |
-| :-------- | :----- | :------- | :------------------------------------------------------------------------------ |
+| Flag                           | Type   | Required | Description                                                                                        |
+| :----------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------- |
 | wallet_id | NUMBER | True     | The Wallet ID for which to obtain the status (must be of type `POOLING_WALLET`) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet pw_status '{"wallet_id": 9}'
@@ -5222,8 +5150,7 @@ For more info on creating a new data store and obtaining a root hash, see [the D
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet create_new_dl '{"fee": 1, "root": "0x0000000000000000000000000000000000000000000000000000000000000000"}'
@@ -5363,13 +5290,12 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type   | Required | Description                           |
-| :------ | :----- | :------- | :------------------------------------ |
+| Flag                         | Type   | Required | Description                           |
+| :--------------------------- | :----- | :------- | :------------------------------------ |
 | coin_id | TEXT   | True     | The `coin_id` of the mirror to delete |
-| fee     | NUMBER | False    | An optional blockchain fee, in mojos  |
+| fee                          | NUMBER | False    | An optional blockchain fee, in mojos  |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_delete_mirror '{"coin_id": "a6f36cf305c59db988ee0c1c39546ae9577ce75fd9cabe18cdacf94d8168077b", "fee": 1}'
@@ -5448,12 +5374,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
+| Flag                             | Type | Required | Description                             |
+| :------------------------------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_get_mirrors '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
@@ -5495,15 +5420,14 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type   | Required | Description                                                  |
-| :------------- | :----- | :------- | :----------------------------------------------------------- |
-| launcher_id    | TEXT   | True     | The launcher ID of the DataLayer wallet                      |
+| Flag                                | Type   | Required | Description                                                                                                                      |
+| :---------------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| launcher_id    | TEXT   | True     | The launcher ID of the DataLayer wallet                                                                                          |
 | min_generation | NUMBER | False    | The first generation of singleton to show [Default: none]    |
 | max_generation | NUMBER | False    | The last generation of the singleton to show [Default: none] |
 | num_results    | NUMBER | False    | The number of results to show [Default: show all results]    |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_history '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
@@ -5569,13 +5493,12 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type    | Required | Description                                            |
-| :------------- | :------ | :------- | :----------------------------------------------------- |
-| launcher_id    | TEXT    | True     | The launcher ID of the DataLayer wallet                |
+| Flag                                | Type    | Required | Description                                                                                                                |
+| :---------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------- |
+| launcher_id    | TEXT    | True     | The launcher ID of the DataLayer wallet                                                                                    |
 | only_confirmed | BOOLEAN | False    | Only show the latest confirmed record [Default: false] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_latest_singleton '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
@@ -5623,15 +5546,14 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                                                                                                                     |
-| :---------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| launcher_id | TEXT       | True     | The launcher ID of the DataLayer wallet                                                                                         |
-| urls        | TEXT ARRAY | True     | A list of URLs to be used for the mirror                                                                                        |
-| amount      | NUMBER     | True     | The value of the mirror (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
-| fee         | NUMBER     | False    | An optional blockchain fee, in mojos                                                                                            |
+| Flag                             | Type       | Required | Description                                                                                                                                                        |
+| :------------------------------- | :--------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| launcher_id | TEXT       | True     | The launcher ID of the DataLayer wallet                                                                                                                            |
+| urls                             | TEXT ARRAY | True     | A list of URLs to be used for the mirror                                                                                                                           |
+| amount                           | NUMBER     | True     | The value of the mirror (in mojos) to spend to create the mirror. In theory, mirrors with a higher `amount` will be prioritized |
+| fee                              | NUMBER     | False    | An optional blockchain fee, in mojos                                                                                                                               |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_new_mirror '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "urls":["http://www.example.com:8575", "http://www.example2.com:8575"], "amount":10, "fee": 1}'
@@ -5717,8 +5639,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_owned_singletons
@@ -5784,13 +5705,12 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
+| Flag                             | Type | Required | Description                             |
+| :------------------------------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
-| root        | TEXT | True     | The root hash of an existing data store |
+| root                             | TEXT | True     | The root hash of an existing data store |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_singletons_by_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "root": "0x0000000000000000000000000000000000000000000000000000000000000000"}'
@@ -5840,12 +5760,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
+| Flag                             | Type | Required | Description                             |
+| :------------------------------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_stop_tracking '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
@@ -5878,12 +5797,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type | Required | Description                             |
-| :---------- | :--- | :------- | :-------------------------------------- |
+| Flag                             | Type | Required | Description                             |
+| :------------------------------- | :--- | :------- | :-------------------------------------- |
 | launcher_id | TEXT | True     | The launcher ID of the DataLayer wallet |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
  chia rpc wallet dl_track_new '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e"}'
@@ -5937,14 +5855,13 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type   | Required | Description                             |
-| :---------- | :----- | :------- | :-------------------------------------- |
+| Flag                             | Type   | Required | Description                             |
+| :------------------------------- | :----- | :------- | :-------------------------------------- |
 | launcher_id | TEXT   | True     | The launcher ID of the DataLayer wallet |
 | new_root    | TEXT   | True     | The new root hash of the data store     |
-| fee         | NUMBER | False    | An optional blockchain fee, in mojos    |
+| fee                              | NUMBER | False    | An optional blockchain fee, in mojos    |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet dl_update_root '{"launcher_id": "0x4aecd65d5fd0dcac59ef41ad5a74134e38b3e8334aebb1356972b7e9c793a09e", "new_root": "0x0000000000000000000000000000000000000000000000000000000000000000", "fee": 1}'
@@ -6027,12 +5944,11 @@ Note: Inherited from RPC Server
 
 Request Parameters:
 
-| Flag    | Type | Required | Description                                                      |
-| :------ | :--- | :------- | :--------------------------------------------------------------- |
+| Flag                         | Type | Required | Description                                                                           |
+| :--------------------------- | :--- | :------- | :------------------------------------------------------------------------------------ |
 | node_id | TEXT | True     | The hex ID of the node to close, obtainable from get_connections |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet close_connection '{"node_id":"0x8e961b617579d476419003728d6d71ab1b182f7d962e5db16f61ebfb157d771b"}'
@@ -6058,8 +5974,7 @@ Note: Inherited from RPC Server
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_connections
@@ -6097,8 +6012,7 @@ Functionality: List all available RPC routes
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_routes
@@ -6255,8 +6169,7 @@ Request Parameters:
 | host | TEXT    | True     | The IP or URL of the node to connect to              |
 | port | INTEGER | True     | The port through which to connect to the remote node |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet open_connection '{"host":"localhost", "port":"8444"}'
@@ -6282,8 +6195,7 @@ Note: Inherited from RPC Server
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet stop_node
