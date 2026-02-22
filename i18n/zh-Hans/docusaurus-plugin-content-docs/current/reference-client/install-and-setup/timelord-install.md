@@ -25,16 +25,14 @@ Running a timelord on a farming machine will reduce the efficiency of the farmer
 Requirements:
 
 1. Software Timelord
-   - With the release of ASIC timelords, software timelords will have a near impossible time competing. It is recommended to only run a software timelord for experimentation and learning purposes.
-   - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
-
+  - With the release of ASIC timelords, software timelords will have a near impossible time competing. It is recommended to only run a software timelord for experimentation and learning purposes.
+  - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
 2. Bluebox Timelord
-   - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
-
+  - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
 3. ASIC Timelord
-   - The ASIC hardware
-   - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
-   - Two USB-C cables (one for power and one for data). Preferably USB-C to USB-C but we have successfully tested USB-A to USB-C without too much performance loss.
+  - The ASIC hardware
+  - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
+  - Two USB-C cables (one for power and one for data). Preferably USB-C to USB-C but we have successfully tested USB-A to USB-C without too much performance loss.
 
 Dependencies:
 
