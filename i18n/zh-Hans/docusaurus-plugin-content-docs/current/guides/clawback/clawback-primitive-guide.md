@@ -102,20 +102,20 @@ python -m venv venv
   </TabItem>
   <TabItem value="linux">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   <TabItem value="macos">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   </Tabs>

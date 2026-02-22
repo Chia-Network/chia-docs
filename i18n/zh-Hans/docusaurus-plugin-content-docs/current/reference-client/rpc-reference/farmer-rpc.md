@@ -9,8 +9,7 @@ import TabItem from '@theme/TabItem';
 
 This document provides a comprehensive reference to Chia's Farmer RPC API.
 
-<details>
-<summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -45,8 +44,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvesters
@@ -106,8 +104,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvesters_summary
@@ -156,16 +153,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_duplicates '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 1}'
@@ -203,16 +199,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_invalid '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 1}'
@@ -250,16 +245,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_keys_missing '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 5}'
@@ -303,16 +297,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_valid '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 1}'
@@ -361,12 +354,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                                                                               |
-| :---------- | :--------- | :------- | :---------------------------------------------------------------------------------------- |
+| Flag                             | Type       | Required | Description                                                                                                                                              |
+| :------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | launcher_id | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_pool_login_link '{"launcher_id": "0x55244acf3017c2fc245020b46600827047dce8f54c982adaf95248ff2e955ad8"}'
@@ -400,8 +392,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_pool_state
@@ -467,13 +458,12 @@ Options:
 
 Request Parameters:
 
-| Flag                   | Type    | Required | Description                                                                                                                                                                                                                    |
-| :--------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| search_for_private_key | BOOLEAN | True     | List whether the private key (sk) is available for both the farmer and pool keys                                                                                                                                               |
+| Flag                                                                                  | Type    | Required | Description                                                                                                                                                                                                                                                                                                        |
+| :------------------------------------------------------------------------------------ | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| search_for_private_key | BOOLEAN | True     | List whether the private key (sk) is available for both the farmer and pool keys                                                                                                                                                                                                                |
 | max_ph_to_search       | INTEGER | False    | The maximum number of puzzle hashes to search [Default: 500] If the wallet's derivation index is large, this number may be insufficient to locate the correct puzzle hashes. In this case, you may need to increase this value |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_reward_targets '{"search_for_private_key": false}'
@@ -508,8 +498,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_routes
@@ -563,12 +552,11 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type       | Required | Description                                                                            |
-| :------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| Flag                         | Type       | Required | Description                                                                            |
+| :--------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------- |
 | sp_hash | HEX STRING | True     | The hash of a signage point, listed as `pos_ss_cc_challenge_hash` in the block details |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_signage_point '{"sp_hash": "0xd1d48067e1a355e69808201db516008c3d71c88d8c07fcee7c790f725e56e9ac"}'
@@ -610,8 +598,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_signage_points
@@ -703,13 +690,12 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                                                               |
-| :------------------ | :--------- | :------- | :---------------------------------------------------------------------------------------- |
+| Flag                                     | Type       | Required | Description                                                                                                                                              |
+| :--------------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | launcher_id         | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
-| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                               |
+| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                                                                                              |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer set_payout_instructions '{"launcher_id": "0x55244acf3017c2fc245020b46600827047dce8f54c982adaf95248ff2e955ad8", "payout_instructions": "19d5a0c14e294e48451959819e8c7407c1a06f4f81c69a943ac86433a9ff29e6"}'
@@ -742,13 +728,12 @@ Options:
 
 Request Parameters:
 
-| Flag          | Type       | Required | Description                  |
-| :------------ | :--------- | :------- | :--------------------------- |
+| Flag                               | Type       | Required | Description                  |
+| :--------------------------------- | :--------- | :------- | :--------------------------- |
 | farmer_target | HEX STRING | False    | Set the farmer reward target |
 | pool_target   | HEX STRING | False    | Set the pool reward target   |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Set both targets:
 

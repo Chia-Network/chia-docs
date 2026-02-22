@@ -14,7 +14,7 @@ The Cloud Wallet is a platform for interacting with the Chia blockchain. Assets 
 
 ### Is the Chia Cloud Wallet available for mainnet?
 
-是的。 It is in early release as of 6/25/2025 and can be accessed [here](https://vault.chia.net).
+Yes, the Chia Cloud Wallet was released on 10/29/2025 and can be accessed [here](https://vault.chia.net).
 
 ### How can I obtain some TXCH for testnet11?
 
@@ -176,6 +176,14 @@ No, but it doesn't use clear signing yet, either. The user is shown the details 
 
 No, the Chia Signer app is only for signing transactions. You will need to use either a password or a passkey to sign into your Cloud Wallet account.
 
+### Can I use the same phone as a signer for multiple vaults or accounts?
+
+是的。 The Chia Signer app is quite flexible. It supports multiple hardware keys within the app, as well as using a hardware key as a signer for multiple Cloud Wallet accounts and vaults.
+
+However, you should still consider your security posture before reusing a hardware key. For example, if you want to use a single key for two separate accounts, both of which you control, then this is generally safe. On the other hand, if you want to share one Chia Signer device between multiple people, then this requires a high degree of trust between all parties.
+
+In general, as more vaults, Cloud Wallet accounts, hardware keys, and software keys are being added to the same Chia Signer device, the security of that device decreases. Always consider the risk of your phone being lost or stolen, along with the consequences if that were to happen.
+
 ## Security and privacy
 
 ### Will CNI be able to freeze and/or confiscate my assets?
@@ -204,3 +212,25 @@ In addition, in the future we plan to support vaults with multiple receive addre
 ### Will the Chia Signer app be open source?
 
 Yes
+
+## Buy XCH
+
+### Who can use Buy XCH?
+
+Buy XCH is currently available for users with US based, ACH-enabled bank accounts compatible with Stripes payment system. We are working to expand to other regions.
+
+### How does the Buy XCH Process work?
+
+Securely link your bank account and complete a purchase in the Cloud Wallet. A clawback transaction appears in your vault immediately for the purchased XCH. A day or so after the payment is initiated, the funds will leave your bank. Once your payment settles (usually within seven business days) the clawback transaction is finalized and your XCH is ready to spend.
+
+### Why do I see a “pending” transaction in my vault?
+
+XCH purchase transactions use Chia’s Clawback 2.0 feature ensuring that if your bank payment does not clear, the transaction can be safely reversed.
+
+### What does “Finalizing“ a Clawback Transaction mean?
+
+Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender finalize a transaction early, immediately releasing the funds to the recipient. This enhanced flexibility is used in Buy XCH to complete your transaction as soon as your bank payment clears.
+
+### What are the purchase limits for Buy XCH?
+
+Users currently have a minimum purchase limit of \$25. Limits help keep the system stable and secure during rollout.
