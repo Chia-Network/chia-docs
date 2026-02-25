@@ -213,11 +213,11 @@ Recovery providers can only be used as recovery keys. We recommend using one if 
 - Can also be used as a "last resort" recovery signer in a multisig setup
 - Recovery providers will typically charge a fee for their services
 
-### Broadcast Messages
+## Broadcast Messages
 
 Token issuers can send messages to holders of their tokens. These messages can be broadcast for a number of reasons, such as notifying users of an upcoming airdrop. You can subscribe to any issuer to receive their messages.
 
-### Topics
+## Topics
 
 Token issuers can send messages with a variety of different topics. You can subscribe to your choice of topics, for example:
 
