@@ -28,7 +28,6 @@ Instant Recovery is only available when you still possess your vault's spend key
 
 If you no longer have access to your vault's spend key, then you can perform a Timelocked Recovery by using your vault's recovery key. For example, if you use the Chia Signer app and your phone is lost, damaged, or stolen, you can change your vault's spend key to a new device. You will need to sign the recovery transaction with your vault's recovery key. You will also need to wait for the recovery clawback to expire before you can complete the recovery.
 
-
 ## Spend Key
 
 This is a vault’s primary key used for signing transactions. It can be either a passkey or a hardware key from the Chia Signer app.
