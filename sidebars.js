@@ -143,6 +143,24 @@ module.exports = {
             'chia-blockchain/resources/glossary',
             {
               type: 'category',
+              label: 'Generator Identity',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'generated-index',
+                slug: '/chia-blockchain/resources/generator-identity',
+                title: 'Generator Identity',
+                description:
+                  "The 3.0 hard fork includes an updated generator identity, created by Richard Kiss. It transitions generator identity and cost calculation from serialization-based to content-addressable methods.",
+              },
+              items: [
+                'chia-blockchain/resources/generator-identity/analysis',
+                'chia-blockchain/resources/generator-identity/github-gist',
+                'chia-blockchain/resources/generator-identity/technical-specification',
+              ],
+            },
+            {
+              type: 'category',
               label: 'Timelord Contest',
               collapsible: true,
               collapsed: true,
