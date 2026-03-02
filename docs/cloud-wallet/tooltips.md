@@ -10,17 +10,17 @@ This page contains tooltip links from the Cloud Wallet. It provides some basic i
 
 ## Recovery
 
-This is the process of rekeying a vault. If your spend key is lost or stolen, you can swap it out for a new one. For example, if someone steals your smartphone where your Chia Signer app is installed, you can obtain a new phone, install the Chia Signer app, and create a new hardware key. You can then instruct your vault to replace the stolen key with the new one. The recovery process also allows you to change your recovery key if desired.
+This is the process of rekeying a vault. It will allow you to change any combination of your vault's spend key, recovery key, and recovery timelock. There are two types of recovery, explained in the following sections: Instant and Timelocked.
 
 ### Instant Recovery
 
-If you still have access to your spend key, you can recovery your vault without having to wait for the clawback period to expire. There are three primary use cases for Instant Recovery:
+If you still have access to your spend key, you can recover your vault without having to wait for the clawback period to expire. There are three primary use cases for Instant Recovery (also known as Instant Rekey):
 
 1. **New Device** -- If you use the Chia Signer app, then your vault's spend key is stored in your smartphone's Secure Element. It can never be copied or moved to another device, so when you obtain a new phone, you will need to recover your vault. As long as you still have your original phone, you can instantly rekey your vault to use your new device.
 
-2. **Emergency Recovery** -- If an adversary obtains a copy of your recovery key (for example, your 24-word phrase), they can attempt to recover your vault in order to drain its funds. However, they will need to wait for the recovery clawback period to expire before doing so. You will receive an email as a warning that the recovery attempt is in progress. As long as you still have your spend key (e.g. your smart phone or your passkey), you can cancel the recovery attempt, and instantly change your vault's recovery phrase to a new one. The adversary will no longer be able to attempt to steal your funds.
+2. **Emergency Recovery** -- If an adversary obtains a copy of your recovery key (for example, your 24-word phrase), then the adversary can attempt to recover your vault in order to drain its funds. However, they will need to wait for the recovery clawback period to expire before doing so. You will receive an email as a warning that the recovery attempt is in progress. As long as you still have your spend key (e.g. your smart phone or your passkey), you can cancel the recovery attempt, and instantly rekey your vault's recovery phrase to a new one. The adversary will no longer be able to attempt to steal your funds.
 
-3. **New User (Multisig)** -- It's also possible to rekey a multisig vault by using the Instant Recovery feature. For example, if one member of a 2-of-3 multisig vault is leaving the organization, you can instantly swap out that user's key for a new one.
+3. **New User (Multisig)** -- It's also possible to rekey a multisig vault by using the Instant Recovery feature. For example, if one member of a 2-of-3 multisig vault is leaving the organization, you can instantly rekey that user's key in favor of a new one.
 
 Instant Recovery is only available when you still possess your vault's spend key. If you no longer have that key, then you will need to perform a Timelocked Recovery.
 
