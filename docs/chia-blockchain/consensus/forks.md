@@ -3,7 +3,7 @@ title: Forks
 slug: /chia-blockchain/consensus/forks
 ---
 
-The following table is a comprehensive list of all forks (planned and activated) on Chia's blockchain. It was last updated on 2024-12-19.
+The following table is a comprehensive list of all forks (planned and activated) on Chia's blockchain. It was last updated on 2026-03-03.
 
 | Activation Block | Activation Date | Type | Build | Status    | Description                                                                                                                                                    |
 | :--------------- | :-------------- | :--- | :---- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,3 +15,5 @@ The following table is a comprehensive list of all forks (planned and activated)
 | `5 716 000`      | 2024-07-30      | Soft | 2.3.0 | Activated | [CHIP-25](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0025.md) -- Chialisp Message Conditions                                                   |
 | `5 940 000`      | 2024-09-17      | Soft | 2.4.0 | Activated | Disallow infinity G1 points                                                                                                                                    |
 | `6 800 000`      | 2025-03-22      | Soft | 2.5.0 | Activated | [CHIP-36](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0036.md) -- keccak256 CLVM operator                                                       |
+| `8 655 000`      | 2026-04         | Soft | 2.6.0 | Released  | Increased preliminary support for V2 plot format -- [Release notes](https://github.com/Chia-Network/chia-blockchain/releases/tag/2.6.0)                        |
+| `9 562 000`      | 2026-11         | Hard | 3.0.0 | Planned   | [CHIP-48](https://github.com/Chia-Network/chips/pull/160), [CHIP-49](https://github.com/Chia-Network/chips/pull/161) -- New Proof of Space                     |
