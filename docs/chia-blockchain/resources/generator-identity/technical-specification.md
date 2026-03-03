@@ -267,7 +267,7 @@ This roughly **doubles the potential storage per block** for someone willing to 
 
 ### Cost Coefficient Fitting
 
-**Tools**: Analysis scripts in this repository (see [ANALYSIS_WORKFLOW.md](ANALYSIS_WORKFLOW.md) for details)
+**Tools**: Analysis scripts are in GitHub; see [ANALYSIS_WORKFLOW.md](https://github.com/richardkiss/generator-identity-hf-analysis/blob/main/docs/ANALYSIS_WORKFLOW.md)
 
 **Data**:
 
@@ -418,7 +418,7 @@ This means:
 
 The following design questions need reviewer input before finalizing the cost model:
 
-> **Note**: For a more radical alternative approach, see [Generator as Witness Proposal](GENERATOR_AS_WITNESS_PROPOSAL.md), which proposes not committing to the generator at all (treating it as pure witness). This is presented for discussion but is not part of the current implementation plan.
+> **Note**: For a more radical alternative approach, see [Generator as Witness Proposal](https://github.com/richardkiss/generator-identity-hf-analysis/blob/main/docs/GENERATOR_AS_WITNESS_PROPOSAL.md), which proposes not committing to the generator at all (treating it as pure witness). This is presented for discussion but is not part of the current implementation plan.
 
 ### Question 1: Unifying SHA256 Tree Hash Cost Models
 
