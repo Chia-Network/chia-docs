@@ -9,32 +9,69 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-This information was updated on 5/20/2025.
+This information was updated on March 3, 2026.
 
 :::
 
-In general, the larger your farm, the more powerful your harvesters will need to be. However, keep in mind that one farm can be broken into multiple harvesters, so it is possible to run a large farm without any high-end equipment.
-
 ## Proof Solving Times
 
-After a proof of sufficiently high quality is found it needs to be _solved_, which reconstructs the full proof so it can be verified by others. Proof-solving hardware requirements depend on the maximum k-size in the farm. Solve times should ideally stay under 8 seconds. Plot security has been tuned for the Pi 5 to solve a k28 proof in under 8 seconds.
+After a sufficiently high-quality Quality String is found, the solver reconstructs the full 128 x-values for network verification. Solve time depends on the maximum plot strength in the farm. The Pi5 solves a k=28 proof in under 8 seconds at strengths up to +4.
+
+| Strength | Raspberry Pi 5 | M3 Pro            | Ryzen 9 9950X    |
+| -------- | -------------- | ----------------- | ---------------- |
+| base     | ~4.3 s         | ~340 ms           | ~220 ms          |
+| +1       | ~4.5 s         | ~370 ms           | ~240 ms          |
+| +2       | ~4.9 s         | ~450 ms           | ~280 ms          |
+| +3       | ~5.7 s         | ~660 ms           | ~400 ms          |
+| +4       | ~7.3 s         | ~1.1 s            | ~615 ms          |
+| +5       | ~10 s          | ~1.9 s            | ~1.1 s           |
+| +6       | ~17 s          | ~3.7 s            | ~1.9 s           |
+| +7       | ~30 s          | ~7.3 s            | ~3.7 s           |
+| +8       | —              | ~14.5 s           | ~7.3 s           |
+| +n       | —              | ~2^(n−8) × 14.5 s | ~2^(n−8) × 7.3 s |
+
+Strengths +5 and above are capped at effective plot filter 8192 until the scheduled filter adjustments take effect.
 
 :::note
 See the [reference code](https://github.com/Chia-Network/pos2-chip) for benchmarking your own system on the Solver.
 :::
 
-| Plot Size | Raspberry Pi 5 | Ryzen 5600 (6-core) | Threadripper | Nvidia 3060 |
-| --------- | -------------- | ------------------- | ------------ | ----------- |
-| k28       | ~6.8 seconds   | ~1 seconds          | < 1 second   | 60 ms       |
-| k30       | ~15.6 seconds  | ~3.3 seconds        | < 3 seconds  | 240 ms      |
-| k32       | N/A            | ~11.7 seconds       | < 8 seconds  | 960 ms      |
+#### HDD Activity
 
-### HDD Activity
+HDD activity depends on plot grouping, plot strength, and disk capacity. The table below assumes 10 ms random access and 250 MB/s sequential read. Higher plot strength increases the Effective Plot Filter proportionally, reducing average load.
 
-Lower k-sizes increase disk activity but reduce minimum hardware requirements for proof solving (see previous section). For SSDs, k28 plots are recommended due to their minimal impact on farming performance, although large farms could benefit from larger k sizes for a proportional reduction in harvesting compute energy to process the Quality Chains. The Plot ID Filter will tune HDD disk activity to the levels shown in the table. Depending on plot filter scheduling and further security analysis we may relax these requirements to lower hdd usage levels.
+| Disk Capacity | Strength (eff. plot filter) | Group Size | Max load/challenge | Avg load | Bandwidth/day |
+| ------------- | --------------------------- | ---------- | ------------------ | -------- | ------------- |
+| 5 TB          | base (512)                  | 1          | ~4.48%             | ~2.09%   | ~42 MB        |
+| 5 TB          | base (512)                  | 16         | ~0.85%             | ~0.13%   | ~42 MB        |
+| 5 TB          | +1 (1024)                   | 16         | ~0.64%             | ~0.07%   | ~21 MB        |
+| 5 TB          | +2 (2048)                   | 16         | ~0.43%             | ~0.03%   | ~10 MB        |
+| 5 TB          | +3 (4096)                   | 16         | ~0.21%             | ~0.01%   | ~5 MB         |
+| 20 TB         | base (512)                  | 1          | ~12.4%             | ~8.4%    | ~170 MB       |
+| 20 TB         | base (512)                  | 2          | ~7.4%              | ~4.2%    | ~170 MB       |
+| 20 TB         | base (512)                  | 16         | ~2.2%              | ~0.52%   | ~170 MB       |
+| 20 TB         | base (512)                  | 32         | ~1.31%             | ~0.27%   | ~170 MB       |
+| 20 TB         | base (512)                  | 64         | ~0.89%             | ~0.14%   | ~170 MB       |
+| 20 TB         | base (512)                  | 100        | ~0.69%             | ~0.09%   | ~170 MB       |
+| 20 TB         | base (512)                  | 1000       | ~0.47%             | ~0.01%   | ~170 MB       |
+| 100 TB        | base (512)                  | 32         | ~3.42%             | ~1.32%   | ~850 MB       |
+| 100 TB        | base (512)                  | 64         | ~2.15%             | ~0.65%   | ~850 MB       |
+| 100 TB        | base (512)                  | 100        | ~1.85%             | ~0.46%   | ~850 MB       |
+| 100 TB        | base (512)                  | 1000       | ~0.47%             | ~0.05%   | ~850 MB       |
 
-| Plot Size | Full 5TiB Disk Activity | Full 20TiB Disk Activity |
-| --------- | ----------------------- | ------------------------ |
-| k28       | ~2.5%                   | ~10%                     |
-| k30       | ~0.6%                   | ~2.4%                    |
-| k32       | ~0.23%                  | ~0.9%                    |
+Plots in a group can be assigned a `meta_group` (up to 256). The effective plot filter guarantees that grouped plots with different meta groups never pass the same challenge, reducing peak load toward the average. For example, 202 meta groups × 100 grouped plots = 20,200 plots, where peak load converges to ~0.09%.
+
+Total daily bandwidth is low, so even large group counts can be read well within the challenge response window.
+
+#### Harvester Farm Size Support
+
+Chaining Proof Fragments at challenge time is the primary CPU cost. The table below shows single-thread Pi5 limits (conservative, since the Pi5 has 4 threads and other harvester tasks are comparatively light).
+
+| CPU               | Avg Plot Strength | Supported Farm Size (PiB)                         |
+| ----------------- | ----------------- | ------------------------------------------------- |
+| Pi5 single-thread | base              | 1.2                                               |
+| Pi5 single-thread | +1                | 2.4                                               |
+| Pi5 single-thread | +2                | 4.8                                               |
+| Pi5 single-thread | +3                | 9.6                                               |
+| Pi5 single-thread | +4                | 19.2                                              |
+| Pi5 single-thread | +n                | 1.2 × 2^n (capped by effective plot filter at +4) |
