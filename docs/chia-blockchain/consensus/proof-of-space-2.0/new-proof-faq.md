@@ -123,6 +123,10 @@ No. If you have 10 groups with one meta group, then each group will pass (or not
 
 On the other hand, if you have 10 groups, each of which is assigned a unique meta group, then you have a guarantee that at most one of your plots groups will pass the filter at a given signage point.
 
+### What is the largest farm size supported in PoS v2?
+
+There is no effective limit. This is because each group can declare its own meta groups. For example, group A can have plots with group indices 0..65535 within meta group 0. The same group can then have an additional 65,536 plots within meta group 1, and so. Each of the 256 available meta groups can have 65,536 plots assigned to it, so the maximum group size is 2^8 * 2^16 = 2^24 (16,777,216) plots, or around 16.8 PB for a single group. Farmers can create as many groups as they want, so there farm can grow arbitrarily large (there technically is a limit due to the length of a plot ID, but this is such a large number, it's essentially unlimited).
+
 ### How do you know that compression won’t be possible with the new format?
 
 Compression is always possible, but the incentive will be severely limited. For instance, you could compress 100% of the plot by constructing a plot on the fly in under 30 seconds when a signage point comes in. However, this would require a cluster of the latest GPUs to achieve, and would cost hundreds of thousands of dollars, just to spoof the space taken up by less than a TB. Alternatively, a farmer could make a plot with just 1 bit dropped per entry, and save ~0.5% of space. However, even this could incur more energy per TiB than the honest farmer.
