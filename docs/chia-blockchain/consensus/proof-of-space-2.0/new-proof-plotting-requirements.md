@@ -58,3 +58,15 @@ RAM and storage requirements depend on group size:
 | 1 + n            | 4 GB        | 2 GB                   | (12 + n) GB                |
 
 Temporary storage can substitute for RAM. At higher strengths the relative impact of swap latency decreases.
+
+### MacOS Virtual Memory Compression
+
+When plotting on a MacOS device that uses Apple silicon, there is an important OS quirk to consider. As part of their unified memory approach, MacOS uses Virtual Memory Compression to "compress" programs in memory when they are inactive, and then decompress them when they are accessed again. Compression often begins when the program is closed.
+
+Virtual Memory Compression allows Apple silicon to use less RAM than its Intel counterparts in many situations. However, for Chia plotting, it degrades performance. Chia's plotting applications are designed to pull from as much available RAM as possible in order to speed up the process of creating a plot. The first time you open a plotting application after a fresh reboot, RAM is allocated as expected. When the application is closed, the OS remembers that it requires several GB of RAM. The next time the application is opened, the process is compressed in RAM, which degrades performance.
+
+For more info about Virtual Memory Compression, see Apple's [Memory Usage Performance Guidelines](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html). This [blog post](https://blog.greggant.com/posts/2024/07/03/macos-memory-management.html) also explains what is happening at a high level.
+
+Unfortunately, CNI has no control over how memory is managed on MacOS. Fortunately, there's an easy fix for this issue. In order to avoid Virtual Memory Compression when running any plotting tools, only start the application after a fresh reboot. If this is the first time the application has been run since rebooting, MacOS will not have a record of how much memory is required to run it, so Virtual Memory Compression won't be applied. As long as the application remains open, it can continue to create plots without the application being compressed or decompressed. If you close the application, then you should reboot before running it again.
+
+The quirk described in this section only applies to MacOS. Windows and Linux systems are unaffected.
