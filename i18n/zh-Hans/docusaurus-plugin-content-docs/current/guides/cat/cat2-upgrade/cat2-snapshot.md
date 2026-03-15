@@ -49,7 +49,7 @@ values={[
 :::caution
 Ensure that you replace `<USERNAME>` and `<VERSION>` with the actual folders
 
-:::
+:::  
 
 ```powershell
 Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VERSION>\resources\app.asar.unpacked\daemon\chia.exe"
@@ -70,10 +70,10 @@ Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\chia-blockchain\app-<VER
 
 2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
-````bash
+```bash
 . ./activate
 ``` ./activate
-````
+```
 
   </TabItem>
   <TabItem value="macos">
@@ -86,10 +86,10 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
 
 2.  If you previously installed Chia **from source**, then navigate to the `chia-blockchain` directory and activate your virtual environment:
 
-````bash
+```bash
 . ./activate
 ``` ./activate
-````
+```
 
   </TabItem>
 </Tabs>
@@ -115,7 +115,7 @@ alias chia="/Applications/Chia.app/Contents/Resources/app.asar.unpacked/daemon/c
    4. `TARGET_HEIGHT` - The height of the blockchain to end the snapshot (no default - must be set). The recommended height is `2311760`, which is the last block at which CAT1 is valid.
 
    :::caution Running this process with the recommended block heights could take over 40 hours to complete. You may wish to test it first by setting the `TARGET_HEIGHT` to `1146900`. This will pull data from only 100 blocks, which should only take a few seconds.
-   :::
+:::
 
    In order to set these variables, you are recommended to put them into a file called `.env` at the root of the `CAT-addresses` project. The tool will automatically read the variables in this file. For example:
 
@@ -378,7 +378,7 @@ python3 export.py --output-dir /Users/Username/CAT-addresses/results/CKC_ --tail
 - `<PREFIX>` - a string to be prepended to the output file name
 - `<TAIL-HASH>` - the TAIL hash you obtained from taildatabase.com
 - `--coins` - an **optional** flag that will add information about individual coins to the output (which might be helpful for auditing purposes)
-  :::
+:::
 
 :::note
 This command will not create any directories, so make sure `<OUTPUT-DIR>` already exists before running it. Otherwise, you will receive a `FileNotFoundError`. ::: Otherwise, you will receive a `FileNotFoundError`.
