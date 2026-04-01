@@ -188,6 +188,12 @@ In general, as more vaults, Cloud Wallet accounts, hardware keys, and software k
 
 ## Security and privacy
 
+### Does Chia Network have access to my vault keys, or can CNI recover my vault if I lose them?
+
+**No.** Chia Network, Inc. (CNI) does **not** have access to your vault’s **spend keys** or **recovery keys**. Those credentials stay with you—on your devices, with your passkey provider, or wherever you stored your recovery material—and are not held by CNI in a form that would let us sign transactions or recovery on your behalf.
+
+If you permanently lose access to **both** your spend key and your recovery key (including any usable backup of your recovery phrase), **CNI cannot recover your keys or restore access to your vault**. Self-custody means there is no master key or back door; only someone who holds the required keys can spend or complete recovery.
+
 ### Will CNI be able to freeze and/or confiscate my assets?
 
 No. CNI won't custody any of your assets, so it won't have the ability to freeze or confiscate them. If the Cloud Wallet website were forcibly shut down, you would still have the ability to spend your assets because you would still be in control of the keys associated with your vault. However, the infrastructure to accomplish this would need to be rebuilt.

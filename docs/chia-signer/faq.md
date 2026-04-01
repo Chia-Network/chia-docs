@@ -50,6 +50,12 @@ The linking process involves scanning a QR code displayed by your Chia Cloud Wal
 
 When you initiate a transaction from your linked Chia Cloud Wallet, the Chia Signer app on your signing device will receive a request. You will review the transaction details presented on the Signer app's screen and, if correct, tap "Sign transaction." Your device may require a biometric (Face ID, Touch ID, fingerprint) or passcode confirmation to authorize the signing.
 
+### Does Chia Network have access to my Signer keys, or can CNI recover my vault if I lose both keys?
+
+**No.** Chia Network, Inc. (CNI) does **not** have access to your **spend keys** or **recovery keys**, whether they are held in the Chia Signer app, as passkeys, or as a BLS recovery phrase you manage yourself. Signing material is generated and kept under your control; CNI does not hold copies in a form that would let us sign on your behalf.
+
+If you permanently lose access to **both** your spend key and your recovery key (including backups), **CNI cannot recover your keys or restore vault access for you**.
+
 ### Is an Android version of the Chia Signer app available?
 
 Yes, the android version is currently in beta: [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
