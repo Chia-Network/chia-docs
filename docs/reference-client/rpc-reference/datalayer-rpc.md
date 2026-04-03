@@ -32,6 +32,8 @@ This page includes a comprehensive list of Chia's DataLayer RPC API.
 
 We also have documented the [DataLayer CLI](/reference-client/cli-reference/datalayer-cli) commands for interacting with the DataLayer.
 
+Chia **strongly recommends** using DataLayer with a **trusted full node fully synced** to chain tip for production and security-sensitive workloads. To reach a synced state faster than syncing from genesis, use an official [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) and follow [Using the Official Database Snapshot Torrent](/reference-client/troubleshooting/node-syncing#using-the-official-database-snapshot-torrent). If the full node cannot run on the same machine as DataLayer, point this client at a synced full node **you own and operate** elsewhere and configure [trusted peers](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them); **only** add nodes you control—never mark community or third-party hosts as trusted.
+
 By default, the DataLayer RPC API is exposed on port 8562. This is configured in `~/.chia/mainnet/config/config.yaml` under `data_layer:rpc_port`. This port must not be exposed publicly for security concerns.
 
 Commands that modify the blockchain include an optional fee. This fee can be specified in two ways:

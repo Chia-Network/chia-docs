@@ -126,7 +126,19 @@ If you ever need to display your address, run `chia keys show`. This command wil
 
 ### Configure Chia to run DataLayer
 
-At this point, you should have installed and started Chia. You should also have a synced wallet with some XCH (0.01 XCH is sufficient to get started). You do _not_ need a synced full node.
+At this point, you should have installed and started Chia. You should also have a synced wallet with some XCH (0.01 XCH is sufficient to get started). **Chia strongly recommends** using DataLayer with a **trusted full node that is fully synced** to chain tip. That keeps on-chain state, confirmations, and mempool behavior accurate and under your control. Relying on Wallet Mode only, or on a full node that is still catching up, is **not recommended** for production or security-sensitive use.
+
+:::info Full node on a different machine
+
+When you **cannot** run a full node on the same system as DataLayer, point this client at a **synced full node you own and operate** elsewhere (for example another server or workstation in your environment). Configure it using [What are trusted peers and how do I add them?](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them). **Add trusted peers only for infrastructure you control.** Anyone who operates the node you mark as trusted can influence the chain tip, blocks, and related state your wallet trusts—so community nodes, hosted strangers' nodes, and other third parties must **not** be added as trusted peers for DataLayer or production wallets.
+
+:::
+
+:::tip Faster full-node sync
+
+Syncing from genesis can take a long time. Download an official [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) and follow [Using the Official Database Snapshot Torrent](/reference-client/troubleshooting/node-syncing#using-the-official-database-snapshot-torrent) for step-by-step setup—usually much faster than syncing from scratch.
+
+:::
 
 :::info
 
@@ -267,20 +279,22 @@ As shown in the above image:
 
 Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. When Chia starts, it will automatically enable both of the DataLayer services.
 
-5. If the dot to the left of `WALLET` is green (indicating that your wallet is synced), then you may proceed. If it is still orange, then you need to wait for it turn green before continuing.
+5. Before you continue, confirm the following in the Chia GUI:
 
-:::info
+   - The dot to the left of `WALLET` is green (wallet synced). If it is orange, wait until it turns green.
+   - If `FULL NODE` appears in the sidebar, the dot to the left of `FULL NODE` must be green (local full node synced to chain tip). If it is orange, wait until it turns green.
+   - If `FULL NODE` does **not** appear (Wallet Mode) because your full node runs on another machine, complete [trusted peer setup](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them) first: only your own synced full node(s), `connect_to_unknown_peers: false`, and verify with `chia wallet show` that the wallet lists `-Trusted: True` as in the FAQ. Do not proceed while the wallet is syncing from default untrusted peers.
 
-Regardless of the status of `FULL NODE`, you may safely proceed with this tutorial:
+:::info Full node status
 
-- Orange dot = full node is syncing
-- Green dot = full node is synced
-- `FULL NODE` is missing = you are running in `Wallet Mode`
+- Orange dot = full node is still syncing; wait before relying on DataLayer for important work.
+- Green dot = full node is synced to chain tip (recommended before continuing this guide).
+- Missing `FULL NODE` usually means Wallet Mode. Default behavior (syncing from many **untrusted** peers) is **not** acceptable for production DataLayer. Either run a **local** full node (checkpoint download above can speed that up) or use Wallet Mode **only** with a remote full node **you operate**, configured strictly as [trusted peers](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them)—never community or third-party nodes you do not control.
 
 :::
 
 <div style={{ textAlign: 'center' }}>
-    <img src="/img/data_layer/10_synced.png" alt="Synced wallet" />
+    <img src="/img/data_layer/10_synced.png" alt="Wallet and full node both synced (green)" />
 </div>
 <br />
 

@@ -413,7 +413,7 @@ module.exports = {
             slug: '/guides/datalayer-developer-guide',
             title: 'DataLayer™ Developer Guide',
             description:
-              "These guides will guide you through interacting with DataLayer™.",
+              "These guides will guide you through interacting with DataLayer™. Chia strongly recommends a trusted full node synced to chain tip; see the user guide for details and faster sync options.",
           },
           items: [
             'guides/datalayer/datalayer-user-guide',
