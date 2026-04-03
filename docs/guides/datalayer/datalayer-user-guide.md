@@ -280,7 +280,6 @@ As shown in the above image:
 Finally, you need to restart Chia. Close the GUI and run steps 3 and 6 above. When Chia starts, it will automatically enable both of the DataLayer services.
 
 5. Before you continue, confirm the following in the Chia GUI:
-
    - The dot to the left of `WALLET` is green (wallet synced). If it is orange, wait until it turns green.
    - If `FULL NODE` appears in the sidebar, the dot to the left of `FULL NODE` must be green (local full node synced to chain tip). If it is orange, wait until it turns green.
    - If `FULL NODE` does **not** appear (Wallet Mode) because your full node runs on another machine, complete [trusted peer setup](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them) first: only your own synced full node(s), `connect_to_unknown_peers: false`, and verify with `chia wallet show` that the wallet lists `-Trusted: True` as in the FAQ. Do not proceed while the wallet is syncing from default untrusted peers.
