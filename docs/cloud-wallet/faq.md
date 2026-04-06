@@ -89,7 +89,7 @@ Feel free to ask questions in the #support channel of [our Discord](https://disc
 
 ### Where can I report a bug?
 
-If you find any bugs, feel free to fill out the in-app reporting form accessible by clicking you profile image in the top right then "Report an Issue". 
+If you find any bugs, feel free to fill out the in-app reporting form accessible by clicking you profile image in the top right then "Report an Issue".
 
 If you discover any security issues, you can file a report on our [bug bounty site](https://hackerone.com/chia_network). Thanks for your help!
 

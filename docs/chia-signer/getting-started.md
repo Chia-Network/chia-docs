@@ -48,7 +48,7 @@ After installing and opening the app for the first time:
 
 The Android app is in **beta**. When you first start the app, it checks whether your device supports **hardware-backed key storage** through Android’s [Keystore](https://developer.android.com/privacy-and-security/keystore) system. Depending on the device, that may use:
 
-- **StrongBox** — dedicated tamper-resistant hardware (a discrete secure module) used for Android’s hardware-backed Keystore on devices that ship StrongBox, or  
+- **StrongBox** — dedicated tamper-resistant hardware (a discrete secure module) used for Android’s hardware-backed Keystore on devices that ship StrongBox, or
 - **TEE-backed Keystore** — keys handled inside a Trusted Execution Environment when StrongBox is not available but the device still offers hardware-isolated key storage.
 
 If the device **does not** provide the required hardware backing, the app will only offer **software keys**.
@@ -56,7 +56,6 @@ If the device **does not** provide the required hardware backing, the app will o
 ### Generate Key on Android
 
 3.  **Generate Key:** Tap **Generate Key** and follow the prompts.
-
     - **Hardware available:** You can create **hardware-backed keys** (private key material remains in secure hardware).
     - **No suitable hardware:** You can create **software keys** only. **Each time** you create a key, the app **alerts you** that you are creating a **software key** (not hardware-protected).
 
