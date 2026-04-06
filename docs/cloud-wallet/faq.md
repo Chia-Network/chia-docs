@@ -15,6 +15,7 @@ The Cloud Wallet is a platform for interacting with the Chia blockchain. Assets 
 ### Is the Chia Cloud Wallet available for mainnet?
 
 Yes, the Chia Cloud Wallet was released on 10/29/2025 and can be accessed [here](https://vault.chia.net).
+The testnet version of the Chia Cloud Wallet can be accessed [here](https://vault.chiatest.net/).
 
 ### How can I obtain some TXCH for testnet11?
 
@@ -24,6 +25,7 @@ Visit either our [official faucet site](https://testnet11-faucet.chia.net) or a 
 
 For mainnet visit the [Mainnet Cloud Wallet website](https://vault.chia.net) and sign up for a free account.
 For testnet visit the [Testnet Cloud Wallet website](https://vault.chiatest.net) and sign up for a free account.
+You can refer to our [Getting Started Guide](/cloud-wallet/getting-started) for help setting up your account.
 
 ### How is the Cloud Wallet different from other wallets?
 
@@ -87,7 +89,7 @@ Feel free to ask questions in the #support channel of [our Discord](https://disc
 
 ### Where can I report a bug?
 
-If you find any bugs, feel free to fill out a [bug report](https://docs.google.com/forms/d/e/1FAIpQLSeIAZAxSwTwZPGUVLs7_XKseoPgOmtBa0qhtWNQwBeoo9adRA/viewform). However, please keep in mind that this is early release software. We are aware of several existing bugs.
+If you find any bugs, feel free to fill out the in-app reporting form accessible by clicking you profile image in the top right then "Report an Issue".
 
 If you discover any security issues, you can file a report on our [bug bounty site](https://hackerone.com/chia_network). Thanks for your help!
 
@@ -133,14 +135,16 @@ Yes! The Chia blockchain is a public ledger, so anyone can build software to mon
 
 ### What is the Chia Signer app?
 
-The Chia Signer app turns your smartphone into a hardware wallet. The app uses your phone's Secure Enclave to create a vault spend key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it. You can download it from the [iOS App Store](https://apps.apple.com/app/chia-signer/id6504493785).
+The Chia Signer app turns your smartphone into a hardware wallet. The app uses **hardware-protected storage** on your phone (Secure Enclave on iOS; hardware-backed keystore / StrongBox on supported Android devices, the Android app is in **beta**) to create a vault spend key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it.
+
+Download **iOS** from the [App Store](https://apps.apple.com/app/chia-signer/id6504493785). **Android** is in **beta** on [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 :::info
 
 Currently, in order to use the Chia Signer app, you will need two separate devices:
 
 1. A computer or phone to access your vault
-2. An iOS device on which the Chia Signer app is installed
+2. A smartphone (iOS, or Android in beta) with the Chia Signer app installed
 
 You cannot use both the Cloud Wallet and the Chia Signer app on the same device yet. However, we do intend to enable this functionality in a future release.
 
@@ -148,25 +152,23 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 ### Is the Chia Signer app available for both Android and iOS?
 
-It is currently only available for iOS. We will build an Android version in the future.
+Yes.
+
+**iOS:** [App Store](https://apps.apple.com/app/chia-signer/id6504493785).
+
+**Android** (beta): [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 ### On which iOS devices is the Chia Signer app supported?
 
-The app has two requirements for iOS devices:
+See the [App Store listing](https://apps.apple.com/app/chia-signer/id6504493785) for the current minimum OS version and device compatibility. In general, the app targets **iOS 15 or later** on devices with a **Secure Enclave**.
 
-1. The device must run iOS 15 or later
-2. The device must have a Secure Enclave
+### On which Android devices is the Chia Signer app supported?
 
-The following devices meet both of these requirements:
-
-- iPhone models beginning with the iPhone 6
-- iPad models beginning with the iPad mini 4
-
-Be sure to double check that your device is running at least iOS 15 prior to installing the Chia Signer app.
+The Android app is in **beta**. Supported devices and OS requirements are shown on the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer). The Play Store is the most up-to-date source for compatibility.
 
 ### Is it safe to install the Chia Signer app on a second-hand device?
 
-Yes -- just be sure to do a factory reset of the device first. See [Apple's support site](https://support.apple.com/guide/iphone/iph7a2a9399b/ios) for instructions.
+Yes -- just be sure to **factory reset** the device first so any prior owner's data and keys are wiped. For **iOS**, see [Apple's support site](https://support.apple.com/guide/iphone/iph7a2a9399b/ios). For **Android**, see [Google's guide to resetting your device](https://support.google.com/android/answer/6088915).
 
 ### Does the Chia Signer app use blind signing?
 
@@ -185,6 +187,12 @@ However, you should still consider your security posture before reusing a hardwa
 In general, as more vaults, Cloud Wallet accounts, hardware keys, and software keys are being added to the same Chia Signer device, the security of that device decreases. Always consider the risk of your phone being lost or stolen, along with the consequences if that were to happen.
 
 ## Security and privacy
+
+### Does Chia Network have access to my vault keys, or can CNI recover my vault if I lose them?
+
+**No.** Chia Network, Inc. (CNI) does **not** have access to your vault’s **spend keys** or **recovery keys**. Those credentials stay with you—on your devices, with your passkey provider, or wherever you stored your recovery material—and are not held by CNI in a form that would let us sign transactions or recovery on your behalf.
+
+If you permanently lose access to **both** your spend key and your recovery key (including any usable backup of your recovery phrase), **CNI cannot recover your keys or restore access to your vault**. Self-custody means there is no master key or back door; only someone who holds the required keys can spend or complete recovery.
 
 ### Will CNI be able to freeze and/or confiscate my assets?
 

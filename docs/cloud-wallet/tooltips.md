@@ -16,7 +16,7 @@ This is the process of rekeying a vault. It will allow you to change any combina
 
 If you still have access to your spend key, you can recover your vault without having to wait for the clawback period to expire. There are three primary use cases for Instant Recovery (also known as Instant Rekey):
 
-1. **New Device** -- If you use the Chia Signer app, then your vault's spend key is stored in your smartphone's Secure Element. It can never be copied or moved to another device, so when you obtain a new phone, you will need to recover your vault. As long as you still have your original phone, you can instantly rekey your vault to use your new device.
+1. **New Device** -- If you use the Chia Signer app, then your vault's spend key is stored in hardware-protected storage on your smartphone. It can never be copied or moved to another device, so when you obtain a new phone, you will need to recover your vault. As long as you still have your original phone, you can instantly rekey your vault to use your new device.
 
 2. **Emergency Recovery** -- If an adversary obtains a copy of your recovery key (for example, your 24-word phrase), then the adversary can attempt to recover your vault in order to drain its funds. However, they will need to wait for the recovery clawback period to expire before doing so. You will receive an email as a warning that the recovery attempt is in progress. As long as you still have your spend key (e.g. your smart phone or your passkey), you can cancel the recovery attempt, and instantly rekey your vault's recovery phrase to a new one. The adversary will no longer be able to attempt to steal your funds.
 
@@ -54,7 +54,7 @@ This is the amount of time you must wait before a recovery operation can be comp
 
 ## Signer App
 
-A smartphone app initially available for iPhones made after 2013. The app stores a spend key in its Secure Enclave. This key cannot be copied or removed from the phone, so the only way to steal it is to gain physical access to the device. For this reason, we strongly recommend that you secure the Signer app using your phone’s biometrics.
+A smartphone app for **iOS** and **Android** (Android is in **beta**). The app stores a spend key in hardware-protected storage on the device (Secure Enclave on iOS; hardware-backed keystore / StrongBox on supported Android devices). This key cannot be copied or removed from the phone, so the only way to steal it is to gain physical access to the device. For this reason, we strongly recommend that you secure the Signer app using your phone’s biometrics. **iOS:** [App Store](https://apps.apple.com/app/chia-signer/id6504493785). **Android** (beta): [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 ## Clawback
 
@@ -75,7 +75,7 @@ Please read this section before deciding on which types of keys to use in your v
 
 ### App (Hardware key)
 
-Create a key in your iPhone's Secure Enclave (coming soon for Android phones). This key can never be removed from your device. See our [Getting Started Guide](/chia-signer/getting-started/) for more info.
+Create a hardware-backed key in your device's secure hardware (Secure Enclave on iOS; hardware-backed keystore on Android, currently in beta). This key can never be removed from your device. See our [Getting Started Guide](/chia-signer/getting-started/) for more info.
 
 #### Bottom Line
 
