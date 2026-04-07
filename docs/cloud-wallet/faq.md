@@ -117,6 +117,10 @@ You can use your spend key to send your funds to a new vault.
 
 A recovery key can only be used for recovering a vault. If this key is stolen, the thief will not immediately be able to steal your funds. However, they will likely attempt to recover your vault. In this case, the watchtower will send you an email notifying you that your vault is now in recovery mode. The recovery can only be completed after a preset timer has expired. Until this time, you can cancel the recovery and move your funds to a new vault.
 
+### If I initiate a recovery, and wait for the clawback timer to expire, and then someone steals my recovery key, can the thief swap my keys for theirs without having to re-initiate a recovery?
+
+No. When you initiate the recovery, you lock in the new keys. The only way to change them is to cancel the recovery and re-initiate it. After the timer expires, the only two options are 1) complete the recovery with exactly the keys you entered, or 2) cancel the recovery and start over. If the thief only has your recovery key, then there is no option to change the keys without waiting for the recovery clawback timer to expire.
+
 ## Watchtowers
 
 ### What is a watchtower?

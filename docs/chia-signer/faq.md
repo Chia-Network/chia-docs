@@ -34,10 +34,29 @@ Currently, no. For security purposes, you need two separate devices: one for acc
 
 ### How do I create a new key within the Chia Signer app?
 
-Tap the `+` button, name your key, and select **Generate Key**.
+Tap the ellipsis (the `...` button in the upper-right corner), then tap the `+ Add Key` button, name your key, optionally change the emoji, and select **Generate Key**. We recommend that you leave the `Secure your key` slider enabled.
+
+You also have the option to create either a `Hardware key` (a spend key) or a `Software key` (a recovery key). If you choose `Hardware key`, then the key's location will depend on your phone's hardware and OS:
 
 - **iOS:** The app creates a hardware-backed key in the Secure Enclave.
-- **Android** (beta): On first start, the app checks for hardware-backed Keystore support (StrongBox or TEE per your device). If supported, you get hardware-backed keys. If not, you can create software keys only, and the app alerts you each time that the new key is a software key.
+- **Android** (beta): On first start, the app checks for hardware-backed Keystore support. Depending on your phone's manufacturer and model, one of three options will be selected automatically:
+  - StrongBox
+    - most secure option
+    - uses a dedicated Hardware Security Module (HSM)
+    - resistant to hardware tampering
+    - only available on select Android devices ([list of currently supported devices](https://www.android-device-security.org/database/?sortBy=COUNT%20Lab%20Strongbox%20True;COUNT%20Lab%20Strongbox%20False&order=-1&show=Strongbox&Strongbox=True&realMeasurementsOnly=true))
+  - Trusted Execution Environment (TEE)
+    - less secure than StrongBox
+    - separates secure and non-secure execution environments
+    - available on most Android devices
+  - Neither
+    - least secure option
+    - Signer app will fall back to using a software key
+    - Signer app will alert you each time that the new key is a software key
+
+### Is a TEE secure enough to be used with the Android Signer app?
+
+This depends on your risk assessment. A key stored in a TEE is at a higher risk of compromise than one stored in a StrongBox. [This article](https://www.comviva.com/blog/safeguarding-cryptographic-keys-implementing-tee-and-strongbox-in-android-applications/) describes the differences between the environments. If you feel that a TEE is not secure enough (for example, if you plan to store large amounts of funds in a Cloud Wallet vault), then you can acquire a device with a StrongBox for the highest level of security available on an Android device.
 
 ### How do I link my Chia Signer key to a Chia Cloud Wallet vault?
 

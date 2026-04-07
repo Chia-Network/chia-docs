@@ -31,7 +31,7 @@ This guide will show you how to get started with the Chia Signer app, from setti
 
 After installing and opening the app for the first time:
 
-1.  **Add Key:** Tap the `+` button, usually located in the upper-right corner of the app's main screen.
+1.  **Add Key:** Tap the ellipsis (the `...` button in the upper-right corner), then tap the `+ Add Key` button.
 2.  **Name Your Key:** Enter a descriptive name for your key (e.g., "My Vault Key" or "Main Signer Key").
 
 <Tabs groupId="signer-create-key">
