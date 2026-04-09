@@ -11,6 +11,8 @@ This page includes a comprehensive list of Chia's Command Line Interface command
 
 We also have documented the [RPC API](/reference-client/rpc-reference/datalayer-rpc) for interacting with the DataLayer.
 
+Chia **strongly recommends** using DataLayer with a **trusted full node fully synced** to chain tip for production and security-sensitive workloads. To reach a synced state faster than syncing from genesis, use an official [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) and follow [Using the Official Database Snapshot Torrent](/reference-client/troubleshooting/node-syncing#using-the-official-database-snapshot-torrent). If the full node cannot run on the same machine as DataLayer, point this client at a synced full node **you own and operate** elsewhere and configure [trusted peers](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them); **only** add nodes you control—never mark community or third-party hosts as trusted.
+
 The relevant DataLayer commands can be found by running `chia data`:
 
 ```bash

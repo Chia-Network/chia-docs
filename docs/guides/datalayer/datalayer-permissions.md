@@ -16,7 +16,7 @@ DataLayer Permissions give owners of data stores a method to gate participation,
 
 This guide will show you how to get started with DataLayer Permissions. Additional resources include:
 
-- [DataLayer user guide](/guides/datalayer-user-guide) -- You should already be familiar with using DataLayer before working with permissions. This guide will help you to get started
+- [DataLayer user guide](/guides/datalayer-user-guide) -- You should already be familiar with using DataLayer before working with permissions. This guide will help you to get started. Follow its full-node guidance (trusted node, synced to chain tip) for production. If the full node runs on another machine you operate, use [trusted peers](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them)—never third-party or community nodes marked as trusted.
 - [S3 plugin](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/s3_plugin_service.py) -- This is the reference plugin for Amazon S3 integration. It is [discussed](#the-chia-s3-plugin) later in this guide
 - [Source API calls](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer.py) -- In case you want to dig into the source code
 - [CLI documentation](/reference-client/cli-reference/datalayer-cli) for DataLayer
