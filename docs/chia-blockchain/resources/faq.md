@@ -1361,6 +1361,16 @@ Chia Friends was an airdrop of 10,000 NFTs. While Chia Network Inc gave these NF
 
 The Holiday 21 tokens were an airdrop of CATs for farmers who farmed a block in 2021. These tokens are redeemable for a Holiday NFT until November 10th, 2023. For more information please refer to our blog article about the [Holiday NFTs](https://www.chia.net/2022/12/08/the-holiday-nfts-are-here/).
 
+### Can I still redeem my CH21 token?
+
+The CH21 token had two redemption options:
+
+1. **Holiday 2021 NFT** - The NFT redemption window closed on November 10, 2023.
+
+2. **Chia Store discount (10% off)** - The Chia Store discount redemption at [ch21.chia.net](https://ch21.chia.net) will close on **April 30, 2026**.
+
+After April 30, 2026, CH21 tokens will no longer be redeemable for any goods or discounts from Chia Network. Unredeemed tokens will remain in your wallet and can be traded on the secondary market. For background on the original airdrop, see the [Happy Holidays from Chia!](https://www.chia.net/2021/12/21/happy-holidays-from-chia/) blog post.
+
 ### Can I donate directly to the Marmot Recovery Foundation?
 
 You sure can! [The Marmot Recovery Foundation website](http://marmots.org/how-you-can-help/donate-now/) lists a variety of ways to donate to the cause of saving the Vancouver Island marmot from extinction.
