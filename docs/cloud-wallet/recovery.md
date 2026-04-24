@@ -23,7 +23,6 @@ Primary use cases:
 
 3. Lost recovery key. If you still have your spend key but never backed up your recovery phrase (or lost it), you are not stuck forever: use Instant Recovery to install a new recovery key without waiting.
 
-
 ### Requirements
 
 - You must still possess the vault’s current spend key. Instant Recovery is not available if the spend key is lost, stolen in a way you cannot use, or otherwise inaccessible. In those cases you use Timelocked Recovery with your recovery key (if you have it).
@@ -52,13 +51,12 @@ If you lose both your spend key and your recovery key (with no usable backup), n
 
 ## Which should I use?
 
-| Situation | Path |
-| --- | --- |
-| You still have your spend key | Instant Recovery: fast rekey, no clawback wait for the rekey itself. |
-| You lost your spend key (or cannot use it) | Timelocked Recovery: use your recovery phrase and wait for the clawback period before completing recovery. |
-| Your recovery key is compromised | Cancel any pending timelocked recovery with your spend key during the clawback window, then Instant Recovery to rotate to a new recovery key. |
+| Situation                                  | Path                                                                                                                                          |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| You still have your spend key              | Instant Recovery: fast rekey, no clawback wait for the rekey itself.                                                                          |
+| You lost your spend key (or cannot use it) | Timelocked Recovery: use your recovery phrase and wait for the clawback period before completing recovery.                                    |
+| Your recovery key is compromised           | Cancel any pending timelocked recovery with your spend key during the clawback window, then Instant Recovery to rotate to a new recovery key. |
 
 ## Recovery clawback
 
 When a vault is created, you set a recovery clawback duration (a waiting period). If someone starts timelocked recovery, that timer must elapse before the recovery can finish. The delay gives the legitimate owner, who may still have the spend key, time to see an alert (for example by email) and cancel a malicious attempt. Instant Recovery does not replace this mechanism for the timelocked path; it is the fast path when the spend key is still yours.
-
