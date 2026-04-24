@@ -107,7 +107,7 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 11. Next, copy the 24 words to a safe location. You will need to recall these words in order to recover your vault, so don't lose them.
 
-12. You can also set a custom time for your vault's recovery clawback. This is the amount of time you will need to wait in order to recover your vault. If your 24-word recovery phrase is stolen, then you will have this long to cancel the recovery.
+12. You can also set a custom time for your vault's recovery clawback. This is the amount of time you will need to wait in order to recover your vault. If your 24-word recovery phrase is stolen, then you will have this long to cancel the recovery. For how Instant Recovery and timelocked recovery work together, see the [Recovery](/cloud-wallet/recovery) guide.
 
 13. Click the `Create` button to create your vault. A "vault faucet" will mint a new vault for you. Your vault's receive address will appear after this process is complete (typically a minute or two).
 

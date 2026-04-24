@@ -10,7 +10,7 @@ This page contains tooltip links from the Cloud Wallet. It provides some basic i
 
 ## Recovery
 
-This is the process of rekeying a vault. It will allow you to change any combination of your vault's spend key, recovery key, and recovery timelock. There are two types of recovery, explained in the following sections: Instant and Timelocked.
+This is the process of rekeying a vault. It will allow you to change any combination of your vault's spend key, recovery key, and recovery timelock. There are two types of recovery, explained in the following sections: Instant and Timelocked. More information about recovery is available on the [Recovery](/cloud-wallet/recovery) guide.
 
 ### Instant Recovery
 
@@ -50,7 +50,7 @@ If you use a BLS key as the recovery key, you will be given a series of 24 words
 
 ## Recovery Timer
 
-This is the amount of time you must wait before a recovery operation can be completed. The timer is set upon the vault’s creation, and it can only be modified during a recovery. For example, when you create a vault, if you set this timer to 3 days, then after you initiate a recovery, you will need to wait for 3 days to complete it. During that time, you can cancel the recovery. The reason this timer exists is so that if someone steals your recovery key, you can cancel any recovery attempts, and send your assets to a new vault.
+This is the amount of time you must wait before a recovery operation can be completed. The timer is set upon the vault’s creation, and it can only be modified during a recovery. For example, when you create a vault, if you set this timer to 3 days, then after you initiate a recovery, you will need to wait for 3 days to complete it. During that time, you can cancel the recovery. The reason this timer exists is so that if someone steals your recovery key, you can cancel recovery attempts during the window, then use Instant Recovery to rotate your recovery key while you still have your spend key. See the [Recovery](/cloud-wallet/recovery) guide.
 
 ## Signer App
 
