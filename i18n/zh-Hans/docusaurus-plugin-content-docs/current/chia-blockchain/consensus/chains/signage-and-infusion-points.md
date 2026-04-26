@@ -92,7 +92,7 @@ Recall that in this example,
 - _sub-slot_iterations = 100,000,000_
 - _sp_interval_iterations = 1,562,500_
 
-For each of the 64 signage points, as they are released to the network every 9.375 seconds, or every 1.5625M iterations, the farmer computes the plot filter and sees how many plots pass. For each passing plot, the farmer calculates required*iterations. For each passing plot, the farmer calculates \_required_iterations*.
+For each of the 64 signage points, as they are released to the network every 9.375 seconds, or every 1.5625M iterations, the farmer computes the plot filter and sees how many plots pass. For each passing plot, the farmer calculates required_iterations. For each passing plot, the farmer calculates _required_iterations_.
 
 Let's say the farmer calculates _required_iterations < 1,562,500_ once in the sub-slot. (We'll assume the exact _required_iterations = 782,800_ in this instance.) Figure 5 shows this happening at the 20th signage point.
 
