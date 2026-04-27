@@ -3,7 +3,7 @@ title: Recovery
 slug: /cloud-wallet/recovery
 ---
 
-In the Cloud Wallet, recovery means rekeying your vault: you change one or more of the vault’s spend key, recovery key, and/or recovery timelock. Recovery does not move your coins to a different vault by itself; it updates which keys and rules control the vault you already have.
+In the Cloud Wallet, recovery means rekeying your vault: you change one or more of the vault’s spend key, recovery key, and/or recovery timelock. Recovery does not move your coins to a different vault by itself; it updates which keys and recovery timelock/clawback rules control the vault you already have.
 
 There are two ways to recover a vault: Instant Recovery and Timelocked Recovery. They address different situations depending on whether you still have your spend key.
 
@@ -19,13 +19,13 @@ Primary use cases:
 
 1. New device. If you use the Chia Signer app, your spend key lives in hardware-backed storage on your phone and cannot be copied to another device. When you get a new phone, you migrate by rekeying. As long as you still have the old device, you can use Instant Recovery to point the vault at keys on the new device.
 
-2. Emergency or compromised recovery key. If someone else gets your recovery material (for example your 24-word phrase) and starts timelocked recovery, they must wait for the recovery clawback period. You will receive an email alert for the attempted recovery. You cancel that recovery with your spend key during the clawback window, then use Instant Recovery to set a new recovery key so the compromised recovery key is no longer valid.
+2. Emergency or compromised recovery key. If someone else gets your recovery material (for example your 24-word phrase) and starts a timelocked recovery, they must wait for the recovery clawback timer to expire. You will receive an email alert for the attempted recovery. You cancel that recovery with your spend key during the clawback window, then use Instant Recovery to set a new recovery key so the compromised recovery key is no longer valid.
 
 3. Lost recovery key. If you still have your spend key but never backed up your recovery phrase (or lost it), you are not stuck forever: use Instant Recovery to install a new recovery key without waiting.
 
 ### Requirements
 
-- You must still possess the vault’s current spend key. Instant Recovery is not available if the spend key is lost, stolen in a way you cannot use, or otherwise inaccessible. In those cases you use Timelocked Recovery with your recovery key (if you have it).
+You must still possess the vault’s current spend key. Instant Recovery is not available if the spend key is lost, stolen in a way you cannot use, or otherwise inaccessible. In those cases you use Timelocked Recovery with your recovery key (if you have it).
 
 ### How it works (high level)
 
@@ -37,7 +37,7 @@ Timelocked Recovery is for when you no longer have access to your spend key, for
 
 ### What you need
 
-- Your recovery key (for example your 24-word recovery phrase for a BLS recovery key).
+Your recovery key (for example your 24-word recovery phrase for a BLS recovery key).
 
 ### What to expect
 
@@ -59,4 +59,4 @@ If you lose both your spend key and your recovery key (with no usable backup), n
 
 ## Recovery clawback
 
-When a vault is created, you set a recovery clawback duration (a waiting period). If someone starts timelocked recovery, that timer must elapse before the recovery can finish. The delay gives the legitimate owner, who may still have the spend key, time to see an alert (for example by email) and cancel a malicious attempt. Instant Recovery does not replace this mechanism for the timelocked path; it is the fast path when the spend key is still yours.
+When a vault is created, you set a recovery clawback duration (a waiting period). If someone starts a timelocked recovery, that timer must elapse before the recovery can finish. The delay gives the legitimate owner, who may still have the spend key, time to see an alert (for example by email) and cancel a malicious attempt. Instant Recovery does not replace this mechanism for the timelocked path; it is the fast path when the spend key is still yours.

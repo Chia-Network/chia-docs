@@ -113,11 +113,11 @@ However, the current setup is not secure against wrench attacks, where the thief
 
 ### What happens if I lose my recovery key?
 
-If you still have your spend key, use [Instant Recovery](/cloud-wallet/recovery) to set a new recovery key in a single on-chain step. You confirm the change and sign with your current spend key, with no recovery clawback wait. See the [Recovery](/cloud-wallet/recovery) guide for context. If you have lost both your spend key and any usable backup of your recovery phrase, you cannot regain access to the vault.
+If you still have your spend key, use [Instant Recovery](/cloud-wallet/recovery/#instant-recovery) to set a new recovery key in a single on-chain step. You confirm the change and sign with your current spend key, with no recovery clawback wait. See the [Recovery](/cloud-wallet/recovery) guide for context. If you have lost both your spend key and any usable backup of your recovery phrase, you cannot regain access to the vault.
 
 ### What happens if my recovery key is stolen? Will all of my funds be stolen?
 
-A recovery key can only be used for recovering a vault. If this key is stolen, the thief will not immediately be able to steal your funds. However, they will likely attempt to recover your vault. In this case, the watchtower will send you an email notifying you that your vault is now in recovery mode. The recovery can only be completed after a preset timer has expired. Until then, you can cancel the recovery with your spend key during the clawback window. After you cancel, use [Instant Recovery](/cloud-wallet/recovery) to rotate your compromised recovery key to a new one so the stolen material no longer works. (You can still move funds to a new vault if you prefer, but Instant Recovery is the direct way to fix the keys on your existing vault.)
+A recovery key can only be used for recovering a vault. If this key is stolen, the thief will not immediately be able to steal your funds. However, they will likely attempt to recover your vault. In this case, the watchtower will send you an email notifying you that your vault is now in recovery mode. The recovery can only be completed after a preset timer has expired. Until then, you can cancel the recovery with your spend key during the clawback window. After you cancel, use [Instant Recovery](/cloud-wallet/recovery/#instant-recovery) to rotate your compromised recovery key to a new one so the stolen material no longer works. (You can still move funds to a new vault if you prefer, but Instant Recovery is the direct way to fix the keys on your existing vault.)
 
 ### If I initiate a recovery, and wait for the clawback timer to expire, and then someone steals my recovery key, can the thief swap my keys for theirs without having to re-initiate a recovery?
 
@@ -137,7 +137,7 @@ Yes. During Instant Recovery you can update any combination of spend key, recove
 
 ### What happens if someone initiates a malicious recovery on my vault?
 
-You receive an email alert. If you still have your spend key, cancel the recovery during the clawback window, then use [Instant Recovery](/cloud-wallet/recovery) to set a new recovery key so the attacker’s copy of the old recovery material cannot be used again. See [Recovery](/cloud-wallet/recovery).
+You receive an email alert. If you still have your spend key and the malicious actor is using timelocked recovery, log into the Chia Cloud Wallet to cancel recovery during the clawback window using your spend key, then use [Instant Recovery](/cloud-wallet/recovery/#instant-recovery) to set a new recovery key so the attacker’s copy of the old recovery material cannot be used again. Note - if the attacker has gained access to your spend key they can use instant recovery to rekey both the spend and recovery key in which there is nothing you nor we at Chia Network, Inc. can do to recover the vault or stop the attacker. See [Recovery](/cloud-wallet/recovery).
 
 ## Watchtowers
 
