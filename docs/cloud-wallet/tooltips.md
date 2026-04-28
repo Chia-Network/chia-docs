@@ -36,6 +36,22 @@ This is a vault’s primary key used for signing transactions. It can be either 
 
 This key can only be used for recovering a vault. It cannot be used for signing transactions. Currently it must be a BLS key. In the future, we will also enable passkeys, as well as hardware and software keys from the Chia Signer app.
 
+## Vault Config
+
+Restoring a vault, or importing a vault on a new platform, is not as simple as restoring/importing a BLS wallet. While the singleton that controls your vault is stored on the blockchain, certain information necessary to restore or import your vault (launcher ID, signer public key, recovery information, etc) is not readily available. This information comprises your vault's _config_. Without it, you may not be able to restore/import your vault in the future.
+
+We will only retain the config for your vault while it is active on the Chia Cloud platform. If you delete your vault or account, then in order to restore or import your vault later, you will need to supply a copy of your vault's config. Fortunately, none of the information contained within your vault's config is private, so it is not necessary to safeguard it to the same degree as a mnemonic phrase from a BLS wallet.
+
+We recommend that you save at least one copy of your vault's config in a location that you can access later, such as a password manager. To do this, click the `Edit` button from your vault, then click `Download Config`. A file called `vault-config-<vault name>.json` will be saved to your computer. Be sure to copy this file to one or more permanent locations.
+
+Note that whenever you recover your vault, its config will change. You will therefore need to download a new copy of your vault's config after each recovery is completed.
+
+:::warning
+
+If you delete your vault, and fail to retain a copy of its most recent config, then all funds contained within will likely be permanently lost.
+
+:::
+
 ## Transaction Fee
 
 A fee for speeding up your transaction’s confirmation time if the network is busy. Testnet11 is often being dusted with small transactions, so we recommend including a fee whenever possible. Typically 0.001 TXCH is sufficient for fast confirmation on testnet11.
