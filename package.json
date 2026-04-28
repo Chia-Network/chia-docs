@@ -20,20 +20,23 @@
   },
   "dependencies": {
     "@docsearch/react": "^4.6.2",
-    "@docusaurus/core": "^3.9.1",
-    "@docusaurus/plugin-google-gtag": "^3.9.1",
-    "@docusaurus/preset-classic": "^3.9.1",
+    "@docusaurus/core": "^3.10.0",
+    "@docusaurus/plugin-google-gtag": "^3.10.0",
+    "@docusaurus/preset-classic": "^3.10.0",
     "@easyops-cn/docusaurus-search-local": "^0.55.1",
     "@mdx-js/react": "^3.1.1",
     "clvm-lib": "^1.0.1",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-icons": "^5.6.0",
     "react-simple-code-editor": "^0.14.1",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
+  },
+  "overrides": {
+    "follow-redirects": "1.16.0"
   },
   "browserslist": {
     "production": [
