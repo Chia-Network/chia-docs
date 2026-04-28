@@ -62,11 +62,11 @@ If the device **does not** provide the required hardware backing, the app will o
 </TabItem>
 </Tabs>
 
-5.  **View Key:** Your newly created key will now appear on the app's main screen.
+4.  **View Key:** Your newly created key will now appear on the app's main screen.
 
 ## 3. Link Your Chia Signer Key to a Chia Cloud Wallet Vault
 
-This step connects your secure key in the Signer app to a specific vault created in the Chia Cloud Wallet.
+This step connects your secure key in the Signer app to a specific vault created in the Chia Cloud Wallet. Your spend key cannot be copied off the device; so when you get a new phone and still have your old phone you will want to use your spend key to instantly rekey your vault, if you do not have your old phone you will need to use your recovery phrase and timelocked recovery to rekey your vault. See the [Recovery](/cloud-wallet/recovery) guide.
 
 1.  **Initiate Linking (from Chia Cloud Wallet):** On your separate device (where you access your Chia Cloud Wallet), you will begin the process of creating or linking a vault as described [here](/cloud-wallet/getting-started). The Chia Cloud Wallet will display a **QR Code**.
 
