@@ -32,7 +32,7 @@ A genesis challenge is the first VDF challenge on a network that uses the Proof 
 
 ### What is XCH, TXCH, and mojos?
 
-XCH is the currency symbol for Chia. TXCH is the currency symbol currently being used for testnet chias. TXCH has no value and is only used for testing purposes. Chias and testnet chias can be divided up to 12 decimal places (trillionths). The smallest unit of chia, a trillionth of a chia, is called a mojo, as a tribute to [Mojo Nation](<https://en.wikipedia.org/wiki/Mnet_(peer-to-peer_network)#Evil_Geniuses_for_a_Better_Tomorrow>), a decentralized file storage platform created in the early 2000s by Zooko Wilcox, Bram Cohen, and others.
+XCH is the currency symbol for Chia. TXCH is the currency symbol currently being used for testnet chias. TXCH has no value and is only used for testing purposes. Chias and testnet chias can be divided up to 12 decimal places (trillionths). The smallest unit of chia, a trillionth of a chia, is called a mojo, as a tribute to [Mojo Nation](https://en.wikipedia.org/wiki/Mnet_\(peer-to-peer_network\)#Evil_Geniuses_for_a_Better_Tomorrow), a decentralized file storage platform created in the early 2000s by Zooko Wilcox, Bram Cohen, and others.
 
 ### Chia vs XCH vs mojo vs chia
 
@@ -101,17 +101,17 @@ After the Chia pre-farm, Chia offers farming rewards of 64 chia every 10 minutes
 
 The Chia Blockchain comes together from a few different repositories:
 
-| Repository                                                                 | Contents                                                                      |
-| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [chia-blockchain](https://github.com/Chia-Network/chia-blockchain)         | Consensus code, networking, and reference Chialisp implementations.           |
-| [chia-blockchain-gui](https://github.com/Chia-Network/chia-blockchain-gui) | An Electron/React graphical user interface to the plotter, node, and wallets. |
-| [clvm](https://github.com/Chia-Network/clvm)                               | Chialisp Virtual Machine in Python                                            |
-| [clvm-rs](https://github.com/Chia-Network/clvm_rs)                         | Chialisp Virtual Machine in Rust for security and performance.                |
-| [chiapos](https://github.com/Chia-Network/chiapos)                         | Creating plots and verifying Proofs of Space.                                 |
-| [chiavdf](https://github.com/Chia-Network/chiavdf)                         | Proofs of time/VDFs and Timelords.                                            |
-| [bls-signatures](https://github.com/Chia-Network/bls-signatures)           | IETF standard BLS-12-381 signature scheme.                                    |
-| [clvm_tools](https://github.com/Chia-Network/clvm_tools)                   | Tools for Chialisp and CLVM.                                                  |
-| [Chia Network Organization](https://github.com/Chia-Network)               | Contains all of the public Chia repos released by Chia Network                |
+| Repository                                                                    | Contents                                                                                      |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [chia-blockchain](https://github.com/Chia-Network/chia-blockchain)            | Consensus code, networking, and reference Chialisp implementations.           |
+| [chia-blockchain-gui](https://github.com/Chia-Network/chia-blockchain-gui)    | An Electron/React graphical user interface to the plotter, node, and wallets. |
+| [clvm](https://github.com/Chia-Network/clvm)                                  | Chialisp Virtual Machine in Python                                                            |
+| [clvm-rs](https://github.com/Chia-Network/clvm_rs)                            | Chialisp Virtual Machine in Rust for security and performance.                |
+| [chiapos](https://github.com/Chia-Network/chiapos)                            | Creating plots and verifying Proofs of Space.                                 |
+| [chiavdf](https://github.com/Chia-Network/chiavdf)                            | Proofs of time/VDFs and Timelords.                                            |
+| [bls-signatures](https://github.com/Chia-Network/bls-signatures)              | IETF standard BLS-12-381 signature scheme.                                    |
+| [clvm_tools](https://github.com/Chia-Network/clvm_tools) | Tools for Chialisp and CLVM.                                                  |
+| [Chia Network Organization](https://github.com/Chia-Network)                  | Contains all of the public Chia repos released by Chia Network                                |
 
 ### When did Chia launch mainnet?
 
@@ -562,19 +562,19 @@ We strongly urge using a fast ssd to store the blockchain database. Using a slow
 1. Stop all chia processes.
 2. Locate the database file you want to move.
    - Blockchain db: `~/.chia/mainnet/db/blockchain_v2_CHALLENGE.sqlite`
-   - Wallet db: `~/.chia/mainnet/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite`\
-     **Note:** `CHALLENGE` will either be mainnet or testnet based on your selected network.\
+   - Wallet db: `~/.chia/mainnet/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite`  
+     **Note:** `CHALLENGE` will either be mainnet or testnet based on your selected network.  
      **Note:** `KEY` will be the fingerprint of your wallet.
 3. Copy the database file(s) you want to move to their new location.
 4. Update the applicable config.yaml parameters from the table below.
    - Config file: `~/.chia/mainnet/config/config.yaml`
 
-| Database              | Config.yaml Parameter      | Default                                             | New Location                                                             |
-| --------------------- | -------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------ |
-| Blockchain            | full_node: database_path:  | db/blockchain_v1_CHALLENGE.sqlite                   | \<NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite                   |
-| Blockchain peer table | full_node: peer_db_path:   | db/peer_table_node.sqlite                           | \<NEW_LOCATION_PATH>/db/peer_table_node.sqlite                           |
-| Wallet                | wallet: database_path:     | wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite | \<NEW_LOCATION_PATH>/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite |
-| Wallet peer table     | wallet: wallet_peers_path: | wallet/db/wallet_peers.sqlite                       | \<NEW_LOCATION_PATH>/wallet/db/wallet_peers.sqlite                       |
+| Database              | Config.yaml Parameter                                                                                   | Default                                                                                                                                                 | New Location                                                                                                                                                                                                                                     |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Blockchain            | full_node: database_path:                     | db/blockchain_v1_CHALLENGE.sqlite                                                             | \<NEW_LOCATION_PATH>/db/blockchain_v1_CHALLENGE.sqlite                                                             |
+| Blockchain peer table | full_node: peer_db_path: | db/peer_table_node.sqlite                                                                     | \<NEW_LOCATION_PATH>/db/peer_table_node.sqlite                                                                     |
+| Wallet                | wallet: database_path:                                             | wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite | \<NEW_LOCATION_PATH>/wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite |
+| Wallet peer table     | wallet: wallet_peers_path:                    | wallet/db/wallet_peers.sqlite                                                                                      | \<NEW_LOCATION_PATH>/wallet/db/wallet_peers.sqlite                                                                                      |
 
 **Note:** This information has been adapted from the [Spacefarmers guide](https://wiki.spacefarmers.io/guides/farming/movedb).
 
@@ -1361,6 +1361,16 @@ Chia Friends was an airdrop of 10,000 NFTs. While Chia Network Inc gave these NF
 
 The Holiday 21 tokens were an airdrop of CATs for farmers who farmed a block in 2021. These tokens are redeemable for a Holiday NFT until November 10th, 2023. For more information please refer to our blog article about the <a href="https://www.chia.net/2022/12/08/the-holiday-nfts-are-here/">Holiday NFTs</a>. These tokens are redeemable for a Holiday NFT until November 10th, 2023. For more information please refer to our blog article about the [Holiday NFTs](https://www.chia.net/2022/12/08/the-holiday-nfts-are-here/).
 
+### Can I still redeem my CH21 token?
+
+The CH21 token had two redemption options:
+
+1. **Holiday 2021 NFT** - The NFT redemption window closed on November 10, 2023.
+
+2. **Chia Store discount (10% off)** - The Chia Store discount redemption at [ch21.chia.net](https://ch21.chia.net) will close on **April 30, 2026**.
+
+After April 30, 2026, CH21 tokens will no longer be redeemable for any goods or discounts from Chia Network. Unredeemed tokens will remain in your wallet and can be traded on the secondary market. For background on the original airdrop, see the [Happy Holidays from Chia!](https://www.chia.net/2021/12/21/happy-holidays-from-chia/) blog post.
+
 ### Can I donate directly to the Marmot Recovery Foundation?
 
 You sure can! [The Marmot Recovery Foundation website](http://marmots.org/how-you-can-help/donate-now/) lists a variety of ways to donate to the cause of saving the Vancouver Island marmot from extinction.
@@ -1543,14 +1553,13 @@ values={[
 
 (Be sure to use powershell and update &lt;username&gt; to match the name of the user that installed Chia.)If installed just for your user:```powershell
 Set-Alias -Name chia "C:\Users\
-
-````
+```
 
 If installed just for your user:
 
 ```powershell
 Set-Alias -Name chia "C:\Users\<USERNAME>\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe"
-````
+```
 
 If installed for all users:
 

@@ -6,7 +6,7 @@ slug: /cloud-wallet/getting-started
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain. The Cloud Wallet is currently in beta, running on testnet11.
+Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain.
 
 This guide will show you how to create your first Cloud Wallet vault in a few easy steps.
 
@@ -43,7 +43,7 @@ Congratulations, you're all set to create your first vault!
 Currently, in order to use the Chia Signer app, you will need two separate devices:
 
 1. A computer or phone to access your vault
-2. An iOS device on which the Chia Signer app is installed
+2. A smartphone (iOS, or Android in beta) with the Chia Signer app installed
 
 You cannot use both the Cloud Wallet and the Chia Signer app on the same device yet. However, we do intend to enable this functionality in a future release.
 
@@ -57,13 +57,11 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 2. Give your vault a name, for example `My Signer Vault`.
 
-3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet, you can download it from the [iOS App Store](https://apps.apple.com/app/chia-signer/id6504493785).
+3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet: **iOS** — [App Store](https://apps.apple.com/app/chia-signer/id6504493785); **Android** (beta) — [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
-Note: The Chia Signer app currently is only built for iOS devices. We will build an Android version of the app in the future.
-
-  <div style={{ textAlign: 'left' }}>
-    <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>
-  </div>
+   <div style={{ textAlign: 'left' }}>
+     <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>
+   </div>
 
 4. From the Chia Signer app, tap the `+` button in the upper-right corner to add a new key:
 
@@ -71,7 +69,7 @@ Note: The Chia Signer app currently is only built for iOS devices. We will build
   <img src="/img/cloud-wallet/04_new_key.png" alt="Create a new key" width="40%"/>
 </div>
 
-5. Give your new key a name, for example `My Key`. Currently, the only option is to create a hardware key directly in your device's Secure Enclave. Tap `Generate Key`:
+5. Give your new key a name, for example `My Key`. Currently, the only option is to create a hardware-backed key in your device's secure hardware (Secure Enclave on iOS; hardware-backed keystore on Android, which is in beta). Tap `Generate Key`:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/cloud-wallet/05_generate_key.png" alt="Generate a hardware key" width="40%"/>
@@ -109,7 +107,7 @@ Note: The Chia Signer app currently is only built for iOS devices. We will build
 
 11. Next, copy the 24 words to a safe location. You will need to recall these words in order to recover your vault, so don't lose them.
 
-12. You can also set a custom time for your vault's recovery clawback. This is the amount of time you will need to wait in order to recover your vault. If your 24-word recovery phrase is stolen, then you will have this long to cancel the recovery.
+12. You can also set a custom time for your vault's recovery clawback. This is the amount of time you will need to wait in order to recover your vault. If your 24-word recovery phrase is stolen, then you will have this long to cancel the recovery. For how Instant Recovery and timelocked recovery work together, see the [Recovery](/cloud-wallet/recovery) guide.
 
 13. Click the `Create` button to create your vault. A "vault faucet" will mint a new vault for you. Your vault's receive address will appear after this process is complete (typically a minute or two).
 
