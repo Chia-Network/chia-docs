@@ -6728,3 +6728,30 @@ chia rpc wallet reset_log_level '{}'
 Response matches `set_log_level`.
 
 </details>
+
+---
+
+### `healthz`
+
+Functionality: Lightweight liveness check from the RPC server.
+
+Usage: chia rpc wallet [OPTIONS] healthz [REQUEST]
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet healthz
+```
+
+Response:
+
+```json
+{
+  "success": true
+}
+```
+
+</details>
