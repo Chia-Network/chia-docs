@@ -15,9 +15,15 @@ Prior to using the DAO alpha primitive, be sure to read the [list of known issue
 
 :::
 
+:::info Removed from the reference client in Chia 2.5.3
+
+The proof-of-concept DAO wallet and all `dao_*` wallet RPCs were removed in [Chia blockchain 2.5.3](https://github.com/Chia-Network/chia-blockchain/blob/main/CHANGELOG.md#253-chia-blockchain-2025-03-25) (March 2025). Current releases do not register these commands on `chia rpc wallet get_routes`. The reference below is historical only.
+
+:::
+
 :::note
 
-The RPC to create a new DAO is a **wallet RPC** called [create_new_wallet](/reference-client/rpc-reference/wallet-rpc/#create_new_wallet), therefore it is not documented here. See Example 7 for details of how this command's options can be used.
+Creating a DAO wallet historically used the [create_new_wallet](/reference-client/rpc-reference/wallet-rpc/#create_new_wallet) wallet RPC (see Example 7). That flow applied to clients that still shipped the DAO wallet; it is not available on supported releases after the removal above.
 
 :::
 
@@ -40,7 +46,39 @@ chia rpc wallet dao_get_treasury_balance '{\"wallet_id\": 2}'
 
 </details>
 
-## Reference
+The sections below document **wallet** RPCs (`chia rpc wallet`) from when the DAO wallet still existed. On current releases, start from [Wallet RPC](/reference-client/rpc-reference/wallet-rpc); `chia rpc wallet get_routes` does not expose `dao_*` commands after the removal noted above.
+
+### `get_routes`
+
+Functionality: List every path on the wallet RPC server (`WalletRpcApi` plus shared `RpcServer` routes).
+
+Usage: chia rpc wallet [OPTIONS] get_routes [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_routes
+```
+
+Response:
+
+The canonical sorted list is on [Wallet RPC — get_routes](/reference-client/rpc-reference/wallet-rpc#get_routes).
+
+</details>
+
+---
+
+## Historical reference (pre–DAO wallet removal)
 
 ### `dao_add_funds_to_treasury`
 
