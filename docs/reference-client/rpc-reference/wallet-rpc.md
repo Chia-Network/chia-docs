@@ -6632,3 +6632,39 @@ Response:
 ```
 
 </details>
+
+---
+
+### `get_log_level`
+
+Functionality: Returns the root logger level and accepted level names for `set_log_level`.
+
+Usage: chia rpc wallet [OPTIONS] get_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_log_level
+```
+
+Response:
+
+```json
+{
+  "available_levels": ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"],
+  "level": "WARNING",
+  "success": true
+}
+```
+
+</details>
