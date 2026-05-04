@@ -28,6 +28,12 @@ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 
 These methods are [wallet RPC](/reference-client/rpc-reference/wallet-rpc) calls: use `chia rpc wallet` with the command name (for example `did_get_did`). They are implemented on `WalletRpcApi` in the Chia reference client, together with the rest of the wallet. The HTTP server also registers shared routes from `RpcServer` (connections, version, logging, health, and so on). The full sorted list of all wallet HTTP paths is given in [get_routes on the wallet RPC page](/reference-client/rpc-reference/wallet-rpc#get_routes).
 
+:::info Removed in Chia 2.5.7
+
+The reference client stopped exposing these wallet RPCs in [Chia blockchain 2.5.7](https://github.com/Chia-Network/chia-blockchain/blob/main/CHANGELOG.md#257-chia-blockchain-2025-11-12) (November 2025): `did_create_attest`, `did_get_information_needed_for_recovery`, `did_get_recovery_list`, `did_recovery_spend`, and `did_update_recovery_ids`. They are not documented here because they are no longer returned by `chia rpc wallet get_routes` on supported releases.
+
+:::
+
 ### `get_routes`
 
 Functionality: List every path on the wallet RPC server: all `WalletRpcApi` handlers plus the shared `RpcServer` routes.
