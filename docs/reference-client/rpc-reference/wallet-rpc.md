@@ -6499,3 +6499,36 @@ chia rpc wallet gather_signing_info '{"spends": []}'
 ```
 
 </details>
+
+---
+
+### `apply_signatures`
+
+Functionality: Applies collected `SigningResponse` entries to the provided spends and returns signed transactions ready for submission.
+
+Usage: chia rpc wallet [OPTIONS] apply_signatures [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag              | Type  | Required | Description                    |
+| :---------------- | :---- | :------- | :----------------------------- |
+| spends            | ARRAY | True     | Same `Spend` list as signing |
+| signing_responses | ARRAY | True     | Responses from your signer   |
+
+Response: `signed_transactions` (pass to `submit_transactions`).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet apply_signatures '{"spends": [], "signing_responses": []}'
+```
+
+</details>
