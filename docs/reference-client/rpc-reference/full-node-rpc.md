@@ -3174,6 +3174,48 @@ If the connection cannot be established, the response is `{"success": false, "er
 
 ---
 
+### `close_connection`
+
+Functionality: Closes existing peer connections whose `node_id` matches the given 32-byte node identifier.
+
+Usage: chia rpc full_node [OPTIONS] close_connection [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag    | Type       | Required | Description                                                 |
+| :------ | :--------- | :------- | :---------------------------------------------------------- |
+| node_id | HEX STRING | True     | Remote peer node ID (same format as reported by connections) |
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node close_connection '{"node_id": "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab"}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{}
+```
+````
+
+If no connection matches, the RPC fails with an error indicating the node ID was not found.
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
