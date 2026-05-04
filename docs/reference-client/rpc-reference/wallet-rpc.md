@@ -514,6 +514,7 @@ Response:
 
 ```json
 {
+  "genesis_challenge": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000000",
   "network_name": "mainnet",
   "network_prefix": "xch",
   "success": true
