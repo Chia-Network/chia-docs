@@ -1081,7 +1081,8 @@ Request Parameters:
 | :------------------ | :------ | :------- | :------------------------------------------------------------------ |
 | start               | INTEGER | True     | The start height                                                    |
 | end                 | INTEGER | True     | The end height (non-inclusive)                                      |
-| exclude_header_hash | BOOLEAN | False    | Whether to exclude the header hash in the response [Default: false] |
+| exclude_header_hash | BOOLEAN | False    | Whether to omit `header_hash` on each block in the response [Default: false] |
+| exclude_reorged     | BOOLEAN | False    | When true, skip blocks whose hash no longer matches the canonical chain at that height (forked blocks) [Default: false] |
 
 <details>
 <summary>Example</summary>
