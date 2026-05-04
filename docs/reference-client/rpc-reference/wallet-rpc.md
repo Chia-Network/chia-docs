@@ -4558,15 +4558,15 @@ Options:
 
 Request Parameters:
 
-| Flag                  | Type    | Required | Description                                                                        |
-| :-------------------- | :------ | :------- | :--------------------------------------------------------------------------------- |
-| wallet_id             | INTEGER | True     | CR-CAT wallet id                                                                   |
-| min_amount_to_claim   | INTEGER | True     | Minimum amount (in mojos) required to include a coin when claiming pending funds |
-| fee                   | INTEGER | False    | Blockchain fee in mojos                                                            |
-| reuse_puzhash         | BOOLEAN | False    | Standard transaction flag (see other wallet TX RPCs)                              |
-| push                  | BOOLEAN | False    | Whether to push the transaction to the full node                                  |
-| sign                  | BOOLEAN | False    | Whether to sign automatically                                                      |
-| allow_unsynced        | BOOLEAN | False    | Allow when wallet is not fully synced                                              |
+| Flag                | Type    | Required | Description                                                                      |
+| :------------------ | :------ | :------- | :------------------------------------------------------------------------------- |
+| wallet_id           | INTEGER | True     | CR-CAT wallet id                                                                 |
+| min_amount_to_claim | INTEGER | True     | Minimum amount (in mojos) required to include a coin when claiming pending funds |
+| fee                 | INTEGER | False    | Blockchain fee in mojos                                                          |
+| reuse_puzhash       | BOOLEAN | False    | Standard transaction flag (see other wallet TX RPCs)                             |
+| push                | BOOLEAN | False    | Whether to push the transaction to the full node                                 |
+| sign                | BOOLEAN | False    | Whether to sign automatically                                                    |
+| allow_unsynced      | BOOLEAN | False    | Allow when wallet is not fully synced                                            |
 
 :::note
 
@@ -4947,10 +4947,10 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type          | Required | Description                                |
-| :-------- | :------------ | :------- | :----------------------------------------- |
-| wallet_id | INTEGER       | True     | Remote wallet id                           |
-| coin_ids  | ARRAY OF HEX  | True     | Coin names (IDs) to register for tracking |
+| Flag      | Type         | Required | Description                               |
+| :-------- | :----------- | :------- | :---------------------------------------- |
+| wallet_id | INTEGER      | True     | Remote wallet id                          |
+| coin_ids  | ARRAY OF HEX | True     | Coin names (IDs) to register for tracking |
 
 <details>
 <summary>Example</summary>
@@ -6485,9 +6485,9 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type  | Required | Description                          |
-| :----- | :---- | :------- | :----------------------------------- |
-| spends | ARRAY | True     | List of `Spend` objects to sign for  |
+| Flag   | Type  | Required | Description                         |
+| :----- | :---- | :------- | :---------------------------------- |
+| spends | ARRAY | True     | List of `Spend` objects to sign for |
 
 Response: `signing_instructions` (use with `execute_signing_instructions` or an external signer).
 
@@ -6517,8 +6517,8 @@ Options:
 
 Request Parameters:
 
-| Flag              | Type  | Required | Description                    |
-| :---------------- | :---- | :------- | :----------------------------- |
+| Flag              | Type  | Required | Description                  |
+| :---------------- | :---- | :------- | :--------------------------- |
 | spends            | ARRAY | True     | Same `Spend` list as signing |
 | signing_responses | ARRAY | True     | Responses from your signer   |
 
@@ -6550,9 +6550,9 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type  | Required | Description                 |
-| :------------------- | :---- | :------- | :-------------------------- |
-| signed_transactions  | ARRAY | True     | `SignedTransaction` list  |
+| Flag                | Type  | Required | Description              |
+| :------------------ | :---- | :------- | :----------------------- |
+| signed_transactions | ARRAY | True     | `SignedTransaction` list |
 
 Response: `mempool_ids` (one per submitted spend bundle).
 
@@ -6582,10 +6582,10 @@ Options:
 
 Request Parameters:
 
-| Flag                 | Type    | Required | Description                                |
-| :------------------- | :------ | :------- | :----------------------------------------- |
-| signing_instructions | OBJECT  | True     | `SigningInstructions` payload            |
-| partial_allowed      | BOOLEAN | False    | Allow partial results [Default: false]     |
+| Flag                 | Type    | Required | Description                            |
+| :------------------- | :------ | :------- | :------------------------------------- |
+| signing_instructions | OBJECT  | True     | `SigningInstructions` payload          |
+| partial_allowed      | BOOLEAN | False    | Allow partial results [Default: false] |
 
 Response: `signing_responses` for `apply_signatures`.
 
@@ -6661,7 +6661,14 @@ Response:
 
 ```json
 {
-  "available_levels": ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"],
+  "available_levels": [
+    "CRITICAL",
+    "ERROR",
+    "WARNING",
+    "INFO",
+    "DEBUG",
+    "NOTSET"
+  ],
   "level": "WARNING",
   "success": true
 }
@@ -6686,8 +6693,8 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type   | Required | Description |
-| :---- | :----- | :------- | :---------- |
+| Flag  | Type   | Required | Description    |
+| :---- | :----- | :------- | :------------- |
 | level | STRING | True     | Log level name |
 
 <details>
