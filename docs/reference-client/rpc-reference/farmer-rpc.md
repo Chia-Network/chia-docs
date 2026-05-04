@@ -495,11 +495,11 @@ Response:
 
 ### `connect_to_solver`
 
-Functionality: Disconnect any existing SOLVER peer connections, then open a new client connection to the **Solver** service at the given host and port. The Solver turns **partial proofs** from harvesters into full proofs of space. That pipeline exists for **V2 plots**, which belong to **Proof of Space 2 (PoS2)**. It does **not** apply to legacy **PoS1** farming with classic (**V1**) plots, where the harvester already returns a complete proof and no Solver is involved.
+Functionality: Disconnect any existing SOLVER peer connections, then open a new client connection to the Solver service at the given host and port. The Solver turns partial proofs from harvesters into full proofs of space. That pipeline is for V2 plots used with Proof of Space 2 (PoS2). Legacy PoS1 farming with classic V1 plots does not use it; the harvester already returns a complete proof.
 
 :::info PoS2 is still months away for most farmers
 
-**Proof of Space 2 (PoS2)** and **V2** plot farming are not yet what typical mainnet farmers run day to day; wider activation is still **months out**. Until you are actually farming **V2 plots under PoS2**, you **do not** need a Solver connection—this RPC is optional and **will not help** PoS1 / classic-plot setups. It is documented here because the client already exposes the route for when PoS2/V2 farming becomes relevant.
+Proof of Space 2 and V2 plot farming are not yet what typical mainnet farmers run day to day; wider activation is still months away. Until you are farming V2 plots under PoS2, you do not need a Solver connection. This RPC does nothing useful for PoS1 or classic plots; it is documented because the client exposes the route for when PoS2 and V2 farming become relevant.
 
 :::
 
