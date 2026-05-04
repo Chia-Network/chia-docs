@@ -1077,11 +1077,11 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type    | Required | Description                                                         |
-| :------------------ | :------ | :------- | :------------------------------------------------------------------ |
-| start               | INTEGER | True     | The start height                                                    |
-| end                 | INTEGER | True     | The end height (non-inclusive)                                      |
-| exclude_header_hash | BOOLEAN | False    | Whether to omit `header_hash` on each block in the response [Default: false] |
+| Flag                | Type    | Required | Description                                                                                                             |
+| :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------- |
+| start               | INTEGER | True     | The start height                                                                                                        |
+| end                 | INTEGER | True     | The end height (non-inclusive)                                                                                          |
+| exclude_header_hash | BOOLEAN | False    | Whether to omit `header_hash` on each block in the response [Default: false]                                            |
 | exclude_reorged     | BOOLEAN | False    | When true, skip blocks whose hash no longer matches the canonical chain at that height (forked blocks) [Default: false] |
 
 <details>
@@ -2619,13 +2619,13 @@ Options:
 
 Request Parameters:
 
-| Parameter    | Type          | Required | Description                                                                                                                                 |
-| :----------- | :------------ | :------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| target_times | INTEGER ARRAY | True     | Target inclusion horizons in seconds (each value must be ≥ 0). Used both for the estimate request and echoed in the response.                  |
-| spend_bundle | OBJECT        | True\*   | JSON spend bundle dict. The node derives CLVM cost via mempool pre-validation. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.) |
-| cost         | INTEGER       | True\*   | Explicit CLVM cost to estimate against. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.)                                      |
+| Parameter    | Type          | Required | Description                                                                                                                                                                                                                                                                                                       |
+| :----------- | :------------ | :------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| target_times | INTEGER ARRAY | True     | Target inclusion horizons in seconds (each value must be ≥ 0). Used both for the estimate request and echoed in the response.                                                                                                                                                                                     |
+| spend_bundle | OBJECT        | True\*   | JSON spend bundle dict. The node derives CLVM cost via mempool pre-validation. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.)                                                                                                                                                                   |
+| cost         | INTEGER       | True\*   | Explicit CLVM cost to estimate against. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.)                                                                                                                                                                                                          |
 | spend_type   | STRING        | True\*   | Named preset cost (multiplied by `spend_count`). Valid values: `send_xch_transaction`, `cat_spend`, `take_offer`, `cancel_offer`, `nft_set_nft_did`, `nft_transfer_nft`, `create_new_pool_wallet`, `pw_absorb_rewards`, `create_new_did_wallet`. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.) |
-| spend_count  | INTEGER       | False    | When using `spend_type`, multiply the preset cost by this integer [Default: 1]                                                               |
+| spend_count  | INTEGER       | False    | When using `spend_type`, multiply the preset cost by this integer [Default: 1]                                                                                                                                                                                                                                    |
 
 :::note
 
@@ -2692,10 +2692,10 @@ Options:
 
 Request Parameters:
 
-| Flag             | Type       | Required | Description                                                                                       |
-| :--------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------ |
-| tx_id            | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item                                      |
-| include_pending  | BOOLEAN    | False    | When true, include mempool items that are not yet fully validated / pending [Default: false]       |
+| Flag            | Type       | Required | Description                                                                                  |
+| :-------------- | :--------- | :------- | :------------------------------------------------------------------------------------------- |
+| tx_id           | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item                                 |
+| include_pending | BOOLEAN    | False    | When true, include mempool items that are not yet fully validated / pending [Default: false] |
 
 <details>
 <summary>Example</summary>
@@ -3086,8 +3086,8 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type    | Required | Description                                                                                                                                                         |
-| :-------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Flag      | Type    | Required | Description                                                                                                                                                            |
+| :-------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | node_type | INTEGER | False    | Filter by node role: `1` FULL_NODE, `2` HARVESTER, `3` FARMER, `4` TIMELORD, `5` INTRODUCER, `6` WALLET, `7` DATA_LAYER, `8` SOLVER. Omit to include every connection. |
 
 <details>
@@ -3144,9 +3144,9 @@ Options:
 
 Request Parameters:
 
-| Flag | Type    | Required | Description                          |
-| :--- | :------ | :------- | :----------------------------------- |
-| host | STRING  | True     | Hostname or IP of the remote peer   |
+| Flag | Type    | Required | Description                           |
+| :--- | :------ | :------- | :------------------------------------ |
+| host | STRING  | True     | Hostname or IP of the remote peer     |
 | port | INTEGER | True     | Port of the remote peer’s Chia server |
 
 <details>
@@ -3189,8 +3189,8 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type       | Required | Description                                                 |
-| :------ | :--------- | :------- | :---------------------------------------------------------- |
+| Flag    | Type       | Required | Description                                                  |
+| :------ | :--------- | :------- | :----------------------------------------------------------- |
 | node_id | HEX STRING | True     | Remote peer node ID (same format as reported by connections) |
 
 <details>
