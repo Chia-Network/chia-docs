@@ -3258,6 +3258,45 @@ Response:
 
 ---
 
+### `get_version`
+
+Functionality: Returns the Chia reference client version string that the node was built with.
+
+Usage: chia rpc full_node [OPTIONS] get_version [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node get_version
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "success": true,
+  "version": "2.6.0"
+}
+```
+````
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
