@@ -4543,6 +4543,50 @@ Response:
 
 ---
 
+### `crcat_approve_pending`
+
+Functionality: Moves CR-CAT coins that are awaiting approval into the wallet’s spendable balance (claims pending-approval balance). Builds and pushes transactions subject to standard transaction parameters.
+
+Usage: chia rpc wallet [OPTIONS] crcat_approve_pending [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                  | Type    | Required | Description                                                                        |
+| :-------------------- | :------ | :------- | :--------------------------------------------------------------------------------- |
+| wallet_id             | INTEGER | True     | CR-CAT wallet id                                                                   |
+| min_amount_to_claim   | INTEGER | True     | Minimum amount (in mojos) required to include a coin when claiming pending funds |
+| fee                   | INTEGER | False    | Blockchain fee in mojos                                                            |
+| reuse_puzhash         | BOOLEAN | False    | Standard transaction flag (see other wallet TX RPCs)                              |
+| push                  | BOOLEAN | False    | Whether to push the transaction to the full node                                  |
+| sign                  | BOOLEAN | False    | Whether to sign automatically                                                      |
+| allow_unsynced        | BOOLEAN | False    | Allow when wallet is not fully synced                                              |
+
+:::note
+
+`min_amount_to_claim` filters which pending coins are included; set it to `0` or a small value to claim all pending balance per implementation defaults where applicable.
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet crcat_approve_pending '{"wallet_id": 5, "min_amount_to_claim": 1, "fee": 1000}'
+```
+
+Response follows other transaction endpoints (`transactions`, `unsigned_transactions`, etc., populated by the `@tx_endpoint` wrapper).
+
+</details>
+
+---
+
 ### `get_offer`
 
 Functionality: Show the details of one offer
