@@ -6467,3 +6467,35 @@ Response:
 ```
 
 </details>
+
+---
+
+### `gather_signing_info`
+
+Functionality: Builds signing instructions for the given spends (offline / hardware-wallet friendly flow). Pair with `apply_signatures` and `submit_transactions`.
+
+Usage: chia rpc wallet [OPTIONS] gather_signing_info [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag   | Type  | Required | Description                          |
+| :----- | :---- | :------- | :----------------------------------- |
+| spends | ARRAY | True     | List of `Spend` objects to sign for  |
+
+Response: `signing_instructions` (use with `execute_signing_instructions` or an external signer).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet gather_signing_info '{"spends": []}'
+```
+
+</details>
