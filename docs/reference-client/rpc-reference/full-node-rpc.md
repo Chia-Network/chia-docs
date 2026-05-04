@@ -3071,6 +3071,64 @@ Response:
 
 ---
 
+### `get_connections`
+
+Functionality: Lists active peer connections for the full node’s server. Optionally filter by peer protocol role.
+
+Usage: chia rpc full_node [OPTIONS] get_connections [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag      | Type    | Required | Description                                                                                                                                                         |
+| :-------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| node_type | INTEGER | False    | Filter by node role: `1` FULL_NODE, `2` HARVESTER, `3` FARMER, `4` TIMELORD, `5` INTRODUCER, `6` WALLET, `7` DATA_LAYER, `8` SOLVER. Omit to include every connection. |
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node get_connections '{}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "connections": [
+    {
+      "bytes_read": 142950063,
+      "bytes_written": 2420659,
+      "creation_time": 1678170508.123,
+      "last_message_time": 1678171624.456,
+      "local_port": 8444,
+      "node_id": "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
+      "peer_host": "203.0.113.10",
+      "peer_port": 8444,
+      "peer_server_port": 8444,
+      "type": 1
+    }
+  ],
+  "success": true
+}
+```
+````
+
+The `type` field matches the peer’s `NodeType` (see request table above).
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
