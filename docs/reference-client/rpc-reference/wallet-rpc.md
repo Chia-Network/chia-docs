@@ -6564,3 +6564,36 @@ chia rpc wallet submit_transactions '{"signed_transactions": []}'
 ```
 
 </details>
+
+---
+
+### `execute_signing_instructions`
+
+Functionality: Executes signing instructions (hardware wallet, remote signer, etc.) and returns `signing_responses`. Often used with output from `gather_signing_info`.
+
+Usage: chia rpc wallet [OPTIONS] execute_signing_instructions [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type    | Required | Description                                |
+| :------------------- | :------ | :------- | :----------------------------------------- |
+| signing_instructions | OBJECT  | True     | `SigningInstructions` payload            |
+| partial_allowed      | BOOLEAN | False    | Allow partial results [Default: false]     |
+
+Response: `signing_responses` for `apply_signatures`.
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet execute_signing_instructions '{"signing_instructions": {}, "partial_allowed": false}'
+```
+
+</details>
