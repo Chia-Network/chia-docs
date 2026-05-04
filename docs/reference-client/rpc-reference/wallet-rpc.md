@@ -4888,6 +4888,39 @@ This RPC will only succeed if the wallet has accumulated unspent coinbase reward
 
 ---
 
+### `register_remote_coins`
+
+Functionality: Registers remote (watch-only) coin IDs with a **remote** wallet so they are tracked. The wallet must be a `RemoteWallet` instance for `wallet_id`.
+
+Usage: chia rpc wallet [OPTIONS] register_remote_coins [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag      | Type          | Required | Description                                |
+| :-------- | :------------ | :------- | :----------------------------------------- |
+| wallet_id | INTEGER       | True     | Remote wallet id                           |
+| coin_ids  | ARRAY OF HEX  | True     | Coin names (IDs) to register for tracking |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet register_remote_coins '{"wallet_id": 2, "coin_ids": ["0xabc...", "0xdef..."]}'
+```
+
+Response: empty object on success.
+
+</details>
+
+---
+
 ### `pw_join_pool`
 
 Functionality: Join a pool
