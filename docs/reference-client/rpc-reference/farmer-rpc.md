@@ -501,6 +501,8 @@ Functionality: Disconnect any existing SOLVER peer connections, then open a new 
 
 Proof of Space 2 and V2 plot farming are not yet what typical mainnet farmers run day to day; wider activation is still months away. Until you are farming V2 plots under PoS2, you do not need a Solver connection. This RPC does nothing useful for PoS1 or classic plots; it is documented because the client exposes the route for when PoS2 and V2 farming become relevant.
 
+For milestone dates and rollout expectations, see the [Proof of Space 2 timeline](/chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline). The PoS2 proof format is specified in [CHIP-48](https://github.com/Chia-Network/chips/pull/160); activation timing and related hard-fork items are in [CHIP-49](https://github.com/Chia-Network/chips/pull/161).
+
 :::
 
 Usage: chia rpc farmer [OPTIONS] connect_to_solver [REQUEST]
