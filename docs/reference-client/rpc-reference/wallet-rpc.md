@@ -6668,3 +6668,35 @@ Response:
 ```
 
 </details>
+
+---
+
+### `set_log_level`
+
+Functionality: Sets the root logging level for the wallet process.
+
+Usage: chia rpc wallet [OPTIONS] set_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description |
+| :---- | :----- | :------- | :---------- |
+| level | STRING | True     | Log level name |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet set_log_level '{"level": "INFO"}'
+```
+
+Response includes `level`, `available_levels`, `errors`, and `success`.
+
+</details>
