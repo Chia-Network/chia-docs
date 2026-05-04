@@ -3129,6 +3129,51 @@ The `type` field matches the peer’s `NodeType` (see request table above).
 
 ---
 
+### `open_connection`
+
+Functionality: Opens an outbound connection from this full node to another peer (`host` / `port`).
+
+Usage: chia rpc full_node [OPTIONS] open_connection [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type    | Required | Description                          |
+| :--- | :------ | :------- | :----------------------------------- |
+| host | STRING  | True     | Hostname or IP of the remote peer   |
+| port | INTEGER | True     | Port of the remote peer’s Chia server |
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node open_connection '{"host": "introducer.chia.net", "port": 8444}'
+```
+````
+
+Response on success:
+
+````mdx-code-block
+```json
+{
+  "success": true
+}
+```
+````
+
+If the connection cannot be established, the response is `{"success": false, "error": "could not connect to ..."}`.
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
