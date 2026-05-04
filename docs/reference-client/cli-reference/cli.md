@@ -25,6 +25,20 @@ Some examples:
 
 As with the rest of this project, this doc is a work-in-progress. Feel free to browse the [source code](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/cmds) or the [Chia Proof of Space Construction Document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) for more insight in the meantime.
 
+## Related CLI references
+
+This page is an overview. Deeper command documentation lives in topic pages, for example:
+
+- [Wallet CLI](/reference-client/cli-reference/wallet-cli)
+- [Offers](/reference-client/cli-reference/offer-cli)
+- [Verifiable Credentials (VC)](/reference-client/cli-reference/vc-cli)
+- [Clawback](/reference-client/cli-reference/clawback-cli)
+- [Simulator](/reference-client/cli-reference/simulator-cli)
+- [Plotters](/reference-client/cli-reference/plotter-cli)
+- [DID](/reference-client/cli-reference/did-cli) and [NFT](/reference-client/cli-reference/nft-cli)
+- [DAO CLI](/reference-client/cli-reference/dao-cli) (historical: the DAO wallet was [removed in Chia 2.5.3](https://github.com/Chia-Network/chia-blockchain/blob/main/CHANGELOG.md#253-chia-blockchain-2025-03-25))
+- HTTP RPC (for `chia rpc …`): [Wallet RPC](/reference-client/rpc-reference/wallet-rpc) and the other service pages under [RPC reference](/reference-client/rpc-reference/rpc)
+
 # Locate the `chia` binary executable
 
 ## Mac
@@ -81,31 +95,36 @@ If no old version exists, `init`:
 
 # start
 
-Command: `chia start {service}`
+Command: `chia start [OPTIONS] GROUP [GROUP ...]`
 
-- Service `node` will start only the full node.
-- Service `farmer` will start the farmer, harvester, a full node, and the wallet.
-- positional arguments:
-  \{all,node,harvester,farmer,farmer-no-wallet,farmer-only,timelord,timelord-only,timelord-launcher-only,wallet,wallet-only,introducer,simulator}
+Pass one or more **service group** names. The exact mapping is defined in the reference client as [`SERVICES_FOR_GROUP`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/util/service_groups.py) in `chia/util/service_groups.py` (if this table and your install disagree, treat the source file and `chia start -h` as canonical).
 
 **Flags**
 
 `-r, --restart`: Restart of running processes
 
-|                   | Full Node | Wallet | Farmer | Harvester | Timelord | Timelord Launcher | Timelord-Only | Introducer | Full Node Simulator |
-| ----------------- | --------- | ------ | ------ | --------- | -------- | ----------------- | ------------- | ---------- | ------------------- |
-| all               | X         | X      | X      | X         | X        | X                 |               |            |                     |
-| node              | X         |        |        |           |          |                   |               |            |                     |
-| harvester         |           |        |        | X         |          |                   |               |            |                     |
-| farmer            | X         | X      | X      | X         |          |                   |               |            |                     |
-| farmer-no-wallet  | X         |        | X      | X         |          |                   |               |            |                     |
-| farmer-only       |           |        | X      |           |          |                   |               |            |                     |
-| timelord          | X         |        |        |           | X        | X                 |               |            |                     |
-| timelord-only     |           |        |        |           | X        |                   | X             |            |                     |
-| timelord-launcher |           |        |        |           |          | X                 |               |            |                     |
-| wallet            |           | X      |        |           |          |                   |               |            |                     |
-| introducer        |           |        |        |           |          |                   |               | X          |                     |
-| simulator         |           |        |        |           |          |                   |               |            | X                   |
+**Service groups** (internal service names in parentheses where helpful):
+
+| Group | What gets started |
+| ----- | ------------------- |
+| `all` | Full node, wallet, farmer, harvester, timelord, timelord launcher, DataLayer (`chia_data_layer`, `chia_data_layer_http`) |
+| `daemon` | (no processes; reserved) |
+| `data` | Wallet, DataLayer (`chia_data_layer`) |
+| `data_layer_http` | DataLayer HTTP service only |
+| `node` | Full node only |
+| `harvester` | Harvester only |
+| `farmer` | Full node, wallet, farmer, harvester |
+| `farmer-no-wallet` | Full node, farmer, harvester (no wallet) |
+| `farmer-only` | Farmer service only |
+| `timelord` | Full node, timelord, timelord launcher |
+| `timelord-only` | Timelord only |
+| `timelord-launcher-only` | Timelord launcher only |
+| `wallet` | Wallet only |
+| `introducer` | Introducer |
+| `simulator` | Full node (simulator) |
+| `crawler` | Crawler |
+| `seeder` | Crawler and seeder |
+| `seeder-only` | Seeder only |
 
 # plotters
 
