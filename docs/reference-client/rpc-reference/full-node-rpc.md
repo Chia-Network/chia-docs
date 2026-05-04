@@ -942,6 +942,12 @@ Options:
 
 Request Parameters: None
 
+:::note
+
+`average_block_time` is an estimate of the average time in seconds between transaction blocks (computed when the chain has sufficient history); it may be `null` on a very short chain or before the node has synced relevant blocks.
+
+:::
+
 <details>
 <summary>Example</summary>
 
@@ -957,6 +963,7 @@ Response:
 ```json
 {
   "blockchain_state": {
+    "average_block_time": 18,
     "block_max_cost": 11000000000,
     "difficulty": 1976,
     "genesis_challenge_initialized": true,
