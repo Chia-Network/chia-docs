@@ -2689,9 +2689,10 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type       | Required | Description                                                  |
-| :---- | :--------- | :------- | :----------------------------------------------------------- |
-| tx_id | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item |
+| Flag             | Type       | Required | Description                                                                                       |
+| :--------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------ |
+| tx_id            | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item                                      |
+| include_pending  | BOOLEAN    | False    | When true, include mempool items that are not yet fully validated / pending [Default: false]       |
 
 <details>
 <summary>Example</summary>
