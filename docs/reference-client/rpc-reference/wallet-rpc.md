@@ -1871,6 +1871,48 @@ Response:
 
 ---
 
+### `get_puzzle_and_solution`
+
+Functionality: Fetches the CLVM puzzle reveal and solution for a **spent** coin. The wallet looks up the coin, then requests the full node (via a connected peer) to resolve the spend that matches the spent height.
+
+Usage: chia rpc wallet [OPTIONS] get_puzzle_and_solution [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag      | Type       | Required | Description        |
+| :-------- | :--------- | :------- | :----------------- |
+| coin_name | HEX STRING | True     | The coin ID (name) |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_puzzle_and_solution '{"coin_name": "0x7a639649fa2b6b4233cab7bf98b3da01be182afba622eb377011ac0940cd83c8"}'
+```
+
+Response:
+
+```json
+{
+  "puzzle_reveal": "0xff02ffff01...",
+  "solution": "0xffa0...",
+  "success": true
+}
+```
+
+Returns hex-encoded `puzzle_reveal` and `solution` for the spend. Fails if the coin is missing, unspent, or the full node cannot return the spend.
+
+</details>
+
+---
+
 ### `get_current_derivation_index`
 
 Functionality: Obtain the current derivation index for the current wallet
