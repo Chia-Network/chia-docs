@@ -6597,3 +6597,38 @@ chia rpc wallet execute_signing_instructions '{"signing_instructions": {}, "part
 ```
 
 </details>
+
+---
+
+### `get_version`
+
+Functionality: Returns the Chia reference client version string.
+
+Usage: chia rpc wallet [OPTIONS] get_version [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_version
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "version": "2.6.0"
+}
+```
+
+</details>
