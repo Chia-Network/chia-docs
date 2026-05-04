@@ -2608,36 +2608,37 @@ Response:
 
 Functionality: Obtain an estimated fee for one or more targeted times for a transaction to be included in the blockchain.
 
-Usage: chia rpc wallet [OPTIONS] get_fee_estimate [REQUEST]
+Usage: chia rpc full_node [OPTIONS] get_fee_estimate [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Parameter    | Type          | Required | Description                                                                                                                         |
-| :----------- | :------------ | :------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| spend_bundle | FILENAME      | True\*   | The spend bundle file (in json format) for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified) |
-| cost         | INTEGER       | True\*   | The CLVM cost for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified)                          |
-| target_times | INTEGER ARRAY | True     | An array of the targeted times for transaction inclusion, in seconds. Each targeted time must be at least 0                         |
+| Parameter    | Type          | Required | Description                                                                                                                                 |
+| :----------- | :------------ | :------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| target_times | INTEGER ARRAY | True     | Target inclusion horizons in seconds (each value must be ≥ 0). Used both for the estimate request and echoed in the response.                  |
+| spend_bundle | OBJECT        | True\*   | JSON spend bundle dict. The node derives CLVM cost via mempool pre-validation. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.) |
+| cost         | INTEGER       | True\*   | Explicit CLVM cost to estimate against. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.)                                      |
+| spend_type   | STRING        | True\*   | Named preset cost (multiplied by `spend_count`). Valid values: `send_xch_transaction`, `cat_spend`, `take_offer`, `cancel_offer`, `nft_set_nft_did`, `nft_transfer_nft`, `create_new_pool_wallet`, `pw_absorb_rewards`, `create_new_did_wallet`. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.) |
+| spend_count  | INTEGER       | False    | When using `spend_type`, multiply the preset cost by this integer [Default: 1]                                                               |
 
 :::note
 
-- If `spend_bundle` is specified, then the cost of that spend bundle will first be obtained, followed by obtaining the estimated fee for that cost. Therefore, it is computationally cheaper to use `cost` than it is to use `spend_bundle`, other other factors being equal.
-- This RPC takes into account the current size of the mempool relative to its maximum size, as well as the fee in mojos per cost (5 by default)
+- The request must contain **exactly one** of `spend_bundle`, `cost`, or `spend_type`. Using `cost` avoids validating a spend bundle and is typically cheaper than `spend_bundle`.
+- If `spend_type` is used, the node applies a fixed internal cost preset for that wallet operation type; multiply by `spend_count` when batching multiple operations.
+- This RPC takes into account mempool size relative to its maximum, recent blocks, and the fee estimator’s view of the mempool.
 
 :::
 
 <details>
 <summary>Example</summary>
 
-Obtain a fee estimate for a spendbundle with a CLVM cost of 20 million. Targeted inclusion times are 1, 5, and 10 minutes.
-
-Note that this example was completed at a time when the mempool was not busy, so the fee estimates are all `0`.
+Obtain a fee estimate for a CLVM cost of 20 million mojos. Targeted inclusion times are 1, 5, and 10 minutes. Numeric results depend on mempool pressure and the fee estimator.
 
 ````mdx-code-block
 ```json
@@ -2651,7 +2652,7 @@ Response:
 ```json
 {
   "current_fee_rate": 0.0342163071650677,
-  "estimates": [684326.1433013539, 4077.432021994343, 4077.432021994343],
+  "estimates": [684326, 4077, 4077],
   "fee_rate_last_block": 0.0,
   "fees_last_block": 0,
   "full_node_synced": true,
@@ -2669,6 +2670,8 @@ Response:
 }
 ```
 ````
+
+`estimates` are total mojos suggested for the given `cost` (or derived cost) at each `target_times` entry, sorted to be non-increasing.
 
 </details>
 
