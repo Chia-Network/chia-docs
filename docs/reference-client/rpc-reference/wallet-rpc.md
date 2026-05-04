@@ -5490,6 +5490,34 @@ Response:
 
 ---
 
+### `dl_verify_proof`
+
+Functionality: Verifies a DataLayer proof of inclusion for a singleton coin. The JSON body must be a full `DLProof` (`store_proofs`, `coin_id`, `inner_puzzle_hash`). The wallet uses your connected full node to validate the proof.
+
+Usage: chia rpc wallet [OPTIONS] dl_verify_proof [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request parameters are the `DLProof` streamable fields. See the `DLProof` type in the Chia reference client; proofs are typically produced by DataLayer tooling. Related: [DataLayer RPC](/reference-client/rpc-reference/datalayer-rpc).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet dl_verify_proof @proof.json
+```
+
+Response includes `success`, whether the on-chain root matches (`current_root`), and `verified_clvm_hashes` with per-key verification details.
+
+</details>
+
+---
+
 ### `dl_get_mirrors`
 
 Functionality: Get all of the mirrors for a specific singleton
