@@ -26,6 +26,38 @@ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 
 </details>
 
+These methods are [wallet RPC](/reference-client/rpc-reference/wallet-rpc) calls: use `chia rpc wallet` with the command name (for example `create_offer_for_ids`). They are implemented on `WalletRpcApi` in the Chia reference client, together with the rest of the wallet. The HTTP server also registers shared routes from `RpcServer` (connections, version, logging, health, and so on). The full sorted list of all wallet HTTP paths is given in [get_routes on the wallet RPC page](/reference-client/rpc-reference/wallet-rpc#get_routes).
+
+### `get_routes`
+
+Functionality: List every path on the wallet RPC server: all `WalletRpcApi` handlers plus the shared `RpcServer` routes.
+
+Usage: chia rpc wallet [OPTIONS] get_routes [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_routes
+```
+
+Response:
+
+The response is a JSON object with `success` and a `routes` array. The canonical sorted list is kept in one place: [Wallet RPC — get_routes](/reference-client/rpc-reference/wallet-rpc#get_routes).
+
+</details>
+
+---
+
 ## Reference
 
 ### `cancel_offer`
