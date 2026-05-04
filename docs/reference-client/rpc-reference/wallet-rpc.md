@@ -6700,3 +6700,31 @@ chia rpc wallet set_log_level '{"level": "INFO"}'
 Response includes `level`, `available_levels`, `errors`, and `success`.
 
 </details>
+
+---
+
+### `reset_log_level`
+
+Functionality: Resets logging to the level from wallet service configuration.
+
+Usage: chia rpc wallet [OPTIONS] reset_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (use `{}`).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet reset_log_level '{}'
+```
+
+Response matches `set_log_level`.
+
+</details>
