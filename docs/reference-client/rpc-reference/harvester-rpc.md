@@ -7,7 +7,7 @@ slug: /reference-client/rpc-reference/harvester-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document provides a comprehensive reference to Chia's Harvester RPC API.
+This document provides a comprehensive reference to Chia's Harvester RPC API. Routes defined on `HarvesterRpcApi` are merged with the shared HTTP RPC routes from `RpcServer` (for example connection management, logging, version, and health checks).
 
 <details>
   <summary>Note about Windows command escaping</summary>
@@ -223,11 +223,95 @@ Response:
 ```json
 {
     "directories": [
-        "/plots"
+        "/plots",
         "/plots_new"
     ],
     "success": true
 }
+```
+
+</details>
+
+---
+
+### `get_harvester_config`
+
+Functionality: Return the current harvester runtime configuration (GPU use, decompressor threads, plot scan behavior, and plot refresh interval).
+
+Usage: chia rpc harvester [OPTIONS] get_harvester_config [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc harvester get_harvester_config
+```
+
+Response:
+
+```json
+{
+  "decompressor_thread_count": 0,
+  "disable_cpu_affinity": false,
+  "enforce_gpu_index": false,
+  "gpu_index": 0,
+  "parallel_decompressor_count": 0,
+  "recursive_plot_scan": false,
+  "refresh_parameter_interval_seconds": 120,
+  "use_gpu_harvesting": false
+}
+```
+
+</details>
+
+---
+
+### `update_harvester_config`
+
+Functionality: Update harvester configuration. Only keys present in the request are applied; omitted keys keep their current values. Persisted configuration is updated through the harvester service.
+
+Usage: chia rpc harvester [OPTIONS] update_harvester_config [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters (all optional):
+
+| Flag                               | Type    | Description                                                                                    |
+| :--------------------------------- | :------ | :--------------------------------------------------------------------------------------------- |
+| use_gpu_harvesting                 | BOOLEAN | Enable or disable GPU harvesting                                                               |
+| gpu_index                          | INTEGER | GPU device index                                                                               |
+| enforce_gpu_index                  | BOOLEAN | Whether to enforce the configured GPU index                                                    |
+| disable_cpu_affinity               | BOOLEAN | Disable CPU affinity pinning for harvester workers                                             |
+| parallel_decompressor_count        | INTEGER | Number of parallel decompressors                                                                 |
+| decompressor_thread_count          | INTEGER | Thread count for decompressors                                                                 |
+| recursive_plot_scan                | BOOLEAN | Whether to scan plot directories recursively                                                   |
+| refresh_parameter_interval_seconds | INTEGER | Seconds between plot refresh parameter updates; must be at least **3** or the call raises an error |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc harvester update_harvester_config '{"recursive_plot_scan": true, "refresh_parameter_interval_seconds": 120}'
+```
+
+Response:
+
+```json
+{}
 ```
 
 </details>
@@ -253,29 +337,36 @@ Request Parameters: None
 <summary>Example</summary>
 
 ```json
-{
-  "routes": [
-    "/get_plots",
-    "/refresh_plots",
-    "/delete_plot",
-    "/add_plot_directory",
-    "/get_plot_directories",
-    "/remove_plot_directory",
-    "/get_connections",
-    "/open_connection",
-    "/close_connection",
-    "/stop_node",
-    "/get_routes",
-    "/healthz"
-  ],
-  "success": true
-}
+chia rpc harvester get_routes
 ```
 
 Response:
 
 ```json
-chia rpc harvester get_routes
+{
+  "routes": [
+    "/add_plot_directory",
+    "/close_connection",
+    "/delete_plot",
+    "/get_connections",
+    "/get_harvester_config",
+    "/get_log_level",
+    "/get_network_info",
+    "/get_plot_directories",
+    "/get_plots",
+    "/get_routes",
+    "/get_version",
+    "/healthz",
+    "/open_connection",
+    "/refresh_plots",
+    "/remove_plot_directory",
+    "/reset_log_level",
+    "/set_log_level",
+    "/stop_node",
+    "/update_harvester_config"
+  ],
+  "success": true
+}
 ```
 
 </details>
