@@ -3216,6 +3216,48 @@ If no connection matches, the RPC fails with an error indicating the node ID was
 
 ---
 
+### `stop_node`
+
+Functionality: Requests a graceful shutdown of the service via the RPC server’s `stop_cb` (same mechanism as a normal node stop).
+
+Usage: chia rpc full_node [OPTIONS] stop_node [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (send `{}`).
+
+:::warning
+
+Stops the full node process. Use only on nodes you control; do not expose the RPC port publicly.
+
+:::
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node stop_node '{}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{}
+```
+````
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
