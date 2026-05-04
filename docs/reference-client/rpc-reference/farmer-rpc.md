@@ -7,7 +7,7 @@ slug: /reference-client/rpc-reference/farmer-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document provides a comprehensive reference to Chia's Farmer RPC API.
+This document provides a comprehensive reference to Chia's Farmer RPC API. Routes defined on `FarmerRpcApi` are merged with the shared HTTP RPC routes from `RpcServer` (for example connection management, logging, version, and health checks).
 
 <details>
   <summary>Note about Windows command escaping</summary>
@@ -493,6 +493,54 @@ Response:
 
 ---
 
+### `connect_to_solver`
+
+Functionality: Disconnect any existing SOLVER peer connections, then open a new client connection to the solver at the given host and port.
+
+Usage: chia rpc farmer [OPTIONS] connect_to_solver [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type    | Required | Description                                   |
+| :--- | :------ | :------- | :-------------------------------------------- |
+| host | STRING  | True     | Hostname or IP address of the solver peer     |
+| port | INTEGER | True     | Port of the solver (`peer_server_port`)       |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc farmer connect_to_solver '{"host": "127.0.0.1", "port": 8449}'
+```
+
+Response (success):
+
+```json
+{
+  "success": true
+}
+```
+
+Response (could not connect):
+
+```json
+{
+  "success": false,
+  "error": "Could not connect to solver at 127.0.0.1:8449"
+}
+```
+
+</details>
+
+---
+
 ### `get_routes`
 
 Functionality: List all available RPC routes
@@ -520,25 +568,31 @@ Response:
 ```json
 {
   "routes": [
-    "/get_signage_point",
-    "/get_signage_points",
-    "/get_reward_targets",
-    "/set_reward_targets",
-    "/get_pool_state",
-    "/set_payout_instructions",
-    "/get_harvesters",
-    "/get_harvesters_summary",
-    "/get_harvester_plots_valid",
+    "/close_connection",
+    "/connect_to_solver",
+    "/get_connections",
+    "/get_harvester_plots_duplicates",
     "/get_harvester_plots_invalid",
     "/get_harvester_plots_keys_missing",
-    "/get_harvester_plots_duplicates",
+    "/get_harvester_plots_valid",
+    "/get_harvesters",
+    "/get_harvesters_summary",
+    "/get_log_level",
+    "/get_network_info",
     "/get_pool_login_link",
-    "/get_connections",
-    "/open_connection",
-    "/close_connection",
-    "/stop_node",
+    "/get_pool_state",
+    "/get_reward_targets",
     "/get_routes",
-    "/healthz"
+    "/get_signage_point",
+    "/get_signage_points",
+    "/get_version",
+    "/healthz",
+    "/open_connection",
+    "/reset_log_level",
+    "/set_log_level",
+    "/set_payout_instructions",
+    "/set_reward_targets",
+    "/stop_node"
   ],
   "success": true
 }
