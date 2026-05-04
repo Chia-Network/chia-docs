@@ -3337,6 +3337,53 @@ Response:
 
 ---
 
+### `set_log_level`
+
+Functionality: Sets the root logger to the given level for this process. Returns the new level, available levels, whether the change succeeded, and any validation errors.
+
+Usage: chia rpc full_node [OPTIONS] set_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description                         |
+| :---- | :----- | :------- | :---------------------------------- |
+| level | STRING | True     | Name of a logging level (see above) |
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node set_log_level '{"level": "INFO"}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "available_levels": ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"],
+  "errors": [],
+  "level": "INFO",
+  "success": true
+}
+```
+````
+
+The `errors` array lists unknown or invalid level strings when `success` is false.
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
