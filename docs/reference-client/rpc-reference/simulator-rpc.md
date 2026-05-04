@@ -58,11 +58,11 @@ Options:
 
 Request Parameters:
 
-| Parameter          | Required | Description                                                                                                                                                                                                          |
-| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| address            | True     | The address to use to farm the block                                                                                                                                                                                 |
+| Parameter          | Required | Description                                                                                                                                                                                                     |
+| :----------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address            | True     | The address to use to farm the block                                                                                                                                                                            |
 | guarantee_tx_block | False    | JSON boolean: `true` forces each farmed block to be a **transaction** block (`farm_new_transaction_block`). `false` uses `farm_new_block` (next block may or may not be a transaction block). Default: `false`. |
-| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
+| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                           |
 
 <details>
 <summary>Example 1</summary>
@@ -420,11 +420,11 @@ Options:
 
 Request Parameters:
 
-| Parameter            | Required | Description                                                         |
-| :------------------- | :------- | :------------------------------------------------------------------ |
-| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                        |
-| num_of_new_blocks    | False    | The number of blocks to add (Default: 1)                            |
-| revert_all_blocks    | False    | Boolean, set to `True` to fork all blocks (Default: `False`)        |
+| Parameter            | Required | Description                                                                                                                                                                                                            |
+| :------------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                                                                                                                                                                           |
+| num_of_new_blocks    | False    | The number of blocks to add (Default: 1)                                                                                                                                                                               |
+| revert_all_blocks    | False    | Boolean, set to `True` to fork all blocks (Default: `False`)                                                                                                                                                           |
 | random_seed          | False    | JSON boolean (default `true`): when `true`, the reorg uses a fresh random `bytes32` seed; when `false`, no random seed is passed (deterministic path). **Not** a string seed value—the request key name is historical. |
 
 <details>
