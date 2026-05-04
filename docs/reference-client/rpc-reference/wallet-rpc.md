@@ -6532,3 +6532,35 @@ chia rpc wallet apply_signatures '{"spends": [], "signing_responses": []}'
 ```
 
 </details>
+
+---
+
+### `submit_transactions`
+
+Functionality: Submits already-signed transactions to the wallet / full node; returns mempool IDs for each.
+
+Usage: chia rpc wallet [OPTIONS] submit_transactions [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type  | Required | Description                 |
+| :------------------- | :---- | :------- | :-------------------------- |
+| signed_transactions  | ARRAY | True     | `SignedTransaction` list  |
+
+Response: `mempool_ids` (one per submitted spend bundle).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet submit_transactions '{"signed_transactions": []}'
+```
+
+</details>
