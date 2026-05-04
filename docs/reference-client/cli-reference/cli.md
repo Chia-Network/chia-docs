@@ -105,26 +105,26 @@ Pass one or more **service group** names. The exact mapping is defined in the re
 
 **Service groups** (internal service names in parentheses where helpful):
 
-| Group | What gets started |
-| ----- | ------------------- |
-| `all` | Full node, wallet, farmer, harvester, timelord, timelord launcher, DataLayer (`chia_data_layer`, `chia_data_layer_http`) |
-| `daemon` | (no processes; reserved) |
-| `data` | Wallet, DataLayer (`chia_data_layer`) |
-| `data_layer_http` | DataLayer HTTP service only |
-| `node` | Full node only |
-| `harvester` | Harvester only |
-| `farmer` | Full node, wallet, farmer, harvester |
-| `farmer-no-wallet` | Full node, farmer, harvester (no wallet) |
-| `farmer-only` | Farmer service only |
-| `timelord` | Full node, timelord, timelord launcher |
-| `timelord-only` | Timelord only |
-| `timelord-launcher-only` | Timelord launcher only |
-| `wallet` | Wallet only |
-| `introducer` | Introducer |
-| `simulator` | Full node (simulator) |
-| `crawler` | Crawler |
-| `seeder` | Crawler and seeder |
-| `seeder-only` | Seeder only |
+| Group                    | What gets started                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `all`                    | Full node, wallet, farmer, harvester, timelord, timelord launcher, DataLayer (`chia_data_layer`, `chia_data_layer_http`) |
+| `daemon`                 | (no processes; reserved)                                                                                                 |
+| `data`                   | Wallet, DataLayer (`chia_data_layer`)                                                                                    |
+| `data_layer_http`        | DataLayer HTTP service only                                                                                              |
+| `node`                   | Full node only                                                                                                           |
+| `harvester`              | Harvester only                                                                                                           |
+| `farmer`                 | Full node, wallet, farmer, harvester                                                                                     |
+| `farmer-no-wallet`       | Full node, farmer, harvester (no wallet)                                                                                 |
+| `farmer-only`            | Farmer service only                                                                                                      |
+| `timelord`               | Full node, timelord, timelord launcher                                                                                   |
+| `timelord-only`          | Timelord only                                                                                                            |
+| `timelord-launcher-only` | Timelord launcher only                                                                                                   |
+| `wallet`                 | Wallet only                                                                                                              |
+| `introducer`             | Introducer                                                                                                               |
+| `simulator`              | Full node (simulator)                                                                                                    |
+| `crawler`                | Crawler                                                                                                                  |
+| `seeder`                 | Crawler and seeder                                                                                                       |
+| `seeder-only`            | Seeder only                                                                                                              |
 
 # plotters
 
