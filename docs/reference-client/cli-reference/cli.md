@@ -49,19 +49,19 @@ Then, running the `chia -h` command should work.
 
 There is more than one `chia.exe` binary; the GUI is `Chia.exe` (two of these!) and the CLI is `chia.exe`. They are found in different places. Note the big C versus the little c.
 
-The CLI one is the one referred to in this document, and for version 2.1.0 installed for the user it can be found at
+The CLI is the one this document refers to. A typical per-user install layout (paths can vary by Chia version and install options) is:
 
 ```bash
 ~\AppData\Local\Programs\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
 
-If installed for all users it can be found at
+If installed for all users, a common location is:
 
 ```bash
 C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe
 ```
 
-# [init](https://github.com/Chia-Network/chia-blockchain/blob/master/src/cmds/init.py)
+# [init](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/init.py)
 
 Command: `chia init`
 
@@ -109,7 +109,7 @@ Command: `chia start {service}`
 
 # plotters
 
-In 2.1.0 the option to use different plotters including compressed plotter was introduced. Each plotter has slightly different hardware requirements and may need slightly different options specified.
+The reference client supports several plotters (including third-party and compressed-plot options). Each plotter has slightly different hardware requirements and may need slightly different options specified.
 The cli reference for all plotters can be found in the [Plotters CLI Page](/reference-client/cli-reference/plotter-cli). Learn more about the alternative plotters in the [Alternative Plotters page](/reference-client/plotting/plotting-software).
 
 ## plotnft
@@ -139,7 +139,7 @@ To create a Plot NFT, use `chia plotnft create -u https://poolnamehere.com`, ent
 To switch pools, you can use `chia plotnft join`, and to leave a pool (switch to self farming), use `chia plotnft leave`.
 The `show` command can be used to check your current points balance. CLI plotting with `create_plots` is the same as before, but the `-p` is replaced with `-c`, and the pool contract address from `chia plotnft show` should be used here.
 
-## [Plots check](https://github.com/Chia-Network/chia-blockchain/blob/master/src/plotting/check_plots.py)
+## [Plots check](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/plotting/check_plots.py)
 
 Command: `chia plots check -n [num checks] -l -g [substring]`
 
@@ -172,7 +172,7 @@ Running the command with `-n 10` or `-n 20` is good for a very minor check, but 
 
 Consider using `-n 30` to get a statistically better idea.
 
-For more detail, you can read about the DiskProver commands in [chiapos](https://github.com/Chia-Network/chiapos/blob/master/src/prover_disk.hpp)
+For more detail, you can read about the DiskProver commands in [chiapos](https://github.com/Chia-Network/chiapos/blob/main/src/prover_disk.hpp)
 
 **What does the ratio of full proofs vs expected proofs mean?**
 
@@ -242,7 +242,7 @@ Command: `chia db validate [add flags and parameters]`
 
 # keys
 
-## [derive](https://github.com/Chia-Network/chia-blockchain/blob/2f2593661c842b70a0e848752f12777f2df3ed18/chia/cmds/keys.py#L139)
+## [derive](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/keys.py)
 
 Command: `chia keys derive [OPTIONS] COMMAND [ARGS]`
 
@@ -259,7 +259,7 @@ Command: `chia keys derive [OPTIONS] COMMAND [ARGS]`
 - The valid values for `COMMAND` are `child-key`, `search`, and `wallet-address`.
 - See below for details and example commands.
 
-### [child-key](https://github.com/Chia-Network/chia-blockchain/blob/2f2593661c842b70a0e848752f12777f2df3ed18/chia/cmds/keys.py#L271)
+### [child-key](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/keys.py)
 
 Command: `chia keys derive child-key [OPTIONS]`
 
@@ -289,7 +289,7 @@ Example HD path: m/12381n/8444n/2/
 
 - Generate a mnemonic seed and show the farmer pubkeys 10-14 derived from that seed: `chia keys derive --mnemonic-seed-filename <(chia keys generate_and_print | sed -n 2p) child-key -i 10 -n 5 -t farmer`
 
-### [search](https://github.com/Chia-Network/chia-blockchain/blob/2f2593661c842b70a0e848752f12777f2df3ed18/chia/cmds/keys.py#L162)
+### [search](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/keys.py)
 
 Command: `chia keys derive search [OPTIONS] [SEARCH_TERMS]...`
 
@@ -309,7 +309,7 @@ Command: `chia keys derive search [OPTIONS] [SEARCH_TERMS]...`
 
 - Search for a wallet address: `chia keys derive search -t address -l 100 <xch address>`
 
-### [wallet-address](https://github.com/Chia-Network/chia-blockchain/blob/2f2593661c842b70a0e848752f12777f2df3ed18/chia/cmds/keys.py#L234)
+### [wallet-address](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/keys.py)
 
 Command: `chia keys derive wallet-address [OPTIONS]`
 
@@ -403,7 +403,21 @@ chia dev mempool benchmark -n 1000
 
 ---
 
+# data (DataLayer)
+
+The `chia data` command group is the CLI for the Chia DataLayer. For the full subcommand list and examples, see the [DataLayer CLI reference](/reference-client/cli-reference/datalayer-cli).
+
+---
+
+# solver
+
+The `chia solver` command group talks to the standalone Solver service (partial proofs → full proofs for V2 plots / PoS2-era farming). Run `chia solver -h`; current releases provide **`get_state`**. For connecting the farmer to a Solver over HTTP RPC, see [`connect_to_solver`](/reference-client/rpc-reference/farmer-rpc#connect_to_solver) on the Farmer RPC page.
+
+---
+
 # Other commands (not all are fully documented)
+
+The following sample output is aligned with the top-level Click groups registered in [`chia/cmds/chia.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/chia.py) (`version` and `run_daemon` are registered on the root CLI in the same file). **Your local `chia -h` may list commands in a different order.** The **`beta`** command exists in the client but is **hidden** from help unless your build exposes it.
 
 ```sh
 $ chia
@@ -418,28 +432,28 @@ Options:
   -h, --help                  Show this message and exit.
 
 Commands:
-  completion  Generate shell completion
-  configure   Modify configuration
-  dao         Create, manage or show state of DAOs
-  data        Manage your data
-  db          Manage the blockchain database
-  dev         Developer commands and tools
-  farm        Manage your farm
-  init        Create or migrate the configuration
-  keys        Manage your keys
-  netspace    Estimate total farmed space on the network
-  passphrase  Manage your keyring passphrase
-  peer        Show, or modify peering connections
-  plotnft     Manage your plot NFTs
-  plots       Manage your plots
-  plotters    Advanced plotting options
-  rpc         RPC Client
-  run_daemon  Runs chia daemon
-  show        Show node information
-  start       Start service groups
-  stop        Stop services
-  version     Show chia version
-  wallet      Manage your wallet
+  completion    Generate shell completion
+  configure     Modify configuration
+  data          Manage your data (DataLayer)
+  db            Manage the blockchain database
+  dev           Developer commands and tools
+  farm          Manage your farm
+  init          Create or migrate the configuration
+  keys          Manage your keys
+  netspace      Estimate total farmed space on the network
+  passphrase    Manage your keyring passphrase
+  peer          Show, or modify peering connections
+  plotnft       Manage your plot NFTs
+  plots         Manage your plots
+  plotters      Advanced plotting options
+  rpc           RPC Client
+  run_daemon    Runs chia daemon
+  show          Show node information
+  solver        Manage your solver
+  start         Start service groups
+  stop          Stop services
+  version       Show chia version
+  wallet        Manage your wallet
 
 ```
 
