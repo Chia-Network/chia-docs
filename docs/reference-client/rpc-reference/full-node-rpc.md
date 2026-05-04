@@ -3384,6 +3384,36 @@ The `errors` array lists unknown or invalid level strings when `success` is fals
 
 ---
 
+### `reset_log_level`
+
+Functionality: Restores logging to the level configured for this service in config (`log_level`, falling back to the default).
+
+Usage: chia rpc full_node [OPTIONS] reset_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (send `{}`).
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node reset_log_level '{}'
+```
+````
+
+The JSON response matches `set_log_level`: current `level`, `available_levels`, `errors`, and `success`.
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
