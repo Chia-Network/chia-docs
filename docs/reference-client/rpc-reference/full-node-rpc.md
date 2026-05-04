@@ -2978,6 +2978,58 @@ Response:
 
 ---
 
+### `create_block_generator`
+
+Functionality: Builds a candidate block generator from the current mempool against the latest peak (simulated block construction). This call can be CPU- and memory-intensive and is intended for advanced diagnostics or tooling, not routine wallet use.
+
+Usage: chia rpc full_node [OPTIONS] create_block_generator [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (send `{}`).
+
+:::warning
+
+Requires an initialized blockchain with a peak and an active mempool. If there is no peak, the response contains empty generator fields.
+
+:::
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node create_block_generator '{}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "additions": [],
+  "cost": 0,
+  "generator": "0x",
+  "refs": [],
+  "removals": [],
+  "sig": "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "success": true
+}
+```
+````
+
+`generator` is the serialized block program; `refs` lists generator ref heights; `additions` and `removals` are coins; `sig` is the aggregated signature; `cost` is the CLVM cost of the generated bundle.
+
+</details>
+
+---
+
 ### `get_network_info`
 
 Functionality: Retrieves information about the current network
