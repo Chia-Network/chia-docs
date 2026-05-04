@@ -3297,6 +3297,46 @@ Response:
 
 ---
 
+### `get_log_level`
+
+Functionality: Returns the current root logger level name and the list of levels accepted by `set_log_level`.
+
+Usage: chia rpc full_node [OPTIONS] get_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node get_log_level
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "available_levels": ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"],
+  "level": "WARNING",
+  "success": true
+}
+```
+````
+
+</details>
+
+---
+
 ### `get_network_space`
 
 Functionality: Retrieves an estimate of the netspace, which is the total plotted space of all farmers, in bytes
