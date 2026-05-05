@@ -514,6 +514,7 @@ Response:
 
 ```json
 {
+  "genesis_challenge": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000000",
   "network_name": "mainnet",
   "network_prefix": "xch",
   "success": true
@@ -1865,6 +1866,48 @@ Response:
   "success": true
 }
 ```
+
+</details>
+
+---
+
+### `get_puzzle_and_solution`
+
+Functionality: Fetches the CLVM puzzle reveal and solution for a **spent** coin. The wallet looks up the coin, then requests the full node (via a connected peer) to resolve the spend that matches the spent height.
+
+Usage: chia rpc wallet [OPTIONS] get_puzzle_and_solution [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag      | Type       | Required | Description        |
+| :-------- | :--------- | :------- | :----------------- |
+| coin_name | HEX STRING | True     | The coin ID (name) |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_puzzle_and_solution '{"coin_name": "0x7a639649fa2b6b4233cab7bf98b3da01be182afba622eb377011ac0940cd83c8"}'
+```
+
+Response:
+
+```json
+{
+  "puzzle_reveal": "0xff02ffff01...",
+  "solution": "0xffa0...",
+  "success": true
+}
+```
+
+Returns hex-encoded `puzzle_reveal` and `solution` for the spend. Fails if the coin is missing, unspent, or the full node cannot return the spend.
 
 </details>
 
@@ -4500,6 +4543,50 @@ Response:
 
 ---
 
+### `crcat_approve_pending`
+
+Functionality: Moves CR-CAT coins that are awaiting approval into the wallet’s spendable balance (claims pending-approval balance). Builds and pushes transactions subject to standard transaction parameters.
+
+Usage: chia rpc wallet [OPTIONS] crcat_approve_pending [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                | Type    | Required | Description                                                                      |
+| :------------------ | :------ | :------- | :------------------------------------------------------------------------------- |
+| wallet_id           | INTEGER | True     | CR-CAT wallet id                                                                 |
+| min_amount_to_claim | INTEGER | True     | Minimum amount (in mojos) required to include a coin when claiming pending funds |
+| fee                 | INTEGER | False    | Blockchain fee in mojos                                                          |
+| reuse_puzhash       | BOOLEAN | False    | Standard transaction flag (see other wallet TX RPCs)                             |
+| push                | BOOLEAN | False    | Whether to push the transaction to the full node                                 |
+| sign                | BOOLEAN | False    | Whether to sign automatically                                                    |
+| allow_unsynced      | BOOLEAN | False    | Allow when wallet is not fully synced                                            |
+
+:::note
+
+`min_amount_to_claim` filters which pending coins are included; set it to `0` or a small value to claim all pending balance per implementation defaults where applicable.
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet crcat_approve_pending '{"wallet_id": 5, "min_amount_to_claim": 1, "fee": 1000}'
+```
+
+Response follows other transaction endpoints (`transactions`, `unsigned_transactions`, etc., populated by the `@tx_endpoint` wrapper).
+
+</details>
+
+---
+
 ### `get_offer`
 
 Functionality: Show the details of one offer
@@ -4842,6 +4929,39 @@ Request Parameters:
 This RPC will only succeed if the wallet has accumulated unspent coinbase rewards.
 
 :::
+
+---
+
+### `register_remote_coins`
+
+Functionality: Registers remote (watch-only) coin IDs with a **remote** wallet so they are tracked. The wallet must be a `RemoteWallet` instance for `wallet_id`.
+
+Usage: chia rpc wallet [OPTIONS] register_remote_coins [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag      | Type         | Required | Description                               |
+| :-------- | :----------- | :------- | :---------------------------------------- |
+| wallet_id | INTEGER      | True     | Remote wallet id                          |
+| coin_ids  | ARRAY OF HEX | True     | Coin names (IDs) to register for tracking |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet register_remote_coins '{"wallet_id": 2, "coin_ids": ["0xabc...", "0xdef..."]}'
+```
+
+Response: empty object on success.
+
+</details>
 
 ---
 
@@ -5442,6 +5562,34 @@ Response:
   ]
 }
 ```
+
+</details>
+
+---
+
+### `dl_verify_proof`
+
+Functionality: Verifies a DataLayer proof of inclusion for a singleton coin. The JSON body must be a full `DLProof` (`store_proofs`, `coin_id`, `inner_puzzle_hash`). The wallet uses your connected full node to validate the proof.
+
+Usage: chia rpc wallet [OPTIONS] dl_verify_proof [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request parameters are the `DLProof` streamable fields. See the `DLProof` type in the Chia reference client; proofs are typically produced by DataLayer tooling. Related: [DataLayer RPC](/reference-client/rpc-reference/datalayer-rpc).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet dl_verify_proof @proof.json
+```
+
+Response includes `success`, whether the on-chain root matches (`current_root`), and `verified_clvm_hashes` with per-key verification details.
 
 </details>
 
@@ -6123,130 +6271,137 @@ Response:
 ```json
 {
   "routes": [
-    "/log_in",
-    "/get_logged_in_fingerprint",
-    "/get_public_keys",
-    "/get_private_key",
-    "/generate_mnemonic",
     "/add_key",
-    "/delete_key",
-    "/check_delete_key",
-    "/delete_all_keys",
-    "/set_wallet_resync_on_startup",
-    "/get_sync_status",
-    "/get_height_info",
-    "/push_tx",
-    "/push_transactions",
-    "/farm_block",
-    "/get_timestamp_for_height",
-    "/set_auto_claim",
-    "/get_auto_claim",
-    "/get_initial_freeze_period",
-    "/get_network_info",
-    "/get_wallets",
-    "/create_new_wallet",
-    "/get_wallet_balance",
-    "/get_wallet_balances",
-    "/get_transaction",
-    "/get_transactions",
-    "/get_transaction_count",
-    "/get_next_address",
-    "/send_transaction",
-    "/send_transaction_multi",
-    "/spend_clawback_coins",
-    "/get_coin_records",
-    "/get_farmed_amount",
-    "/create_signed_transaction",
-    "/delete_unconfirmed_transactions",
-    "/select_coins",
-    "/get_spendable_coins",
-    "/get_coin_records_by_names",
-    "/get_current_derivation_index",
-    "/extend_derivation_index",
-    "/get_notifications",
-    "/delete_notifications",
-    "/send_notification",
-    "/sign_message_by_address",
-    "/sign_message_by_id",
-    "/verify_signature",
-    "/get_transaction_memo",
-    "/cat_set_name",
-    "/cat_asset_id_to_name",
-    "/cat_get_name",
-    "/get_stray_cats",
-    "/cat_spend",
-    "/cat_get_asset_id",
-    "/create_offer_for_ids",
-    "/get_offer_summary",
-    "/check_offer_validity",
-    "/take_offer",
-    "/get_offer",
-    "/get_all_offers",
-    "/get_offers_count",
+    "/apply_signatures",
     "/cancel_offer",
     "/cancel_offers",
-    "/get_cat_list",
-    "/did_set_wallet_name",
-    "/did_get_wallet_name",
-    "/did_update_recovery_ids",
-    "/did_update_metadata",
-    "/did_get_pubkey",
-    "/did_get_did",
-    "/did_recovery_spend",
-    "/did_get_recovery_list",
-    "/did_get_metadata",
-    "/did_create_attest",
-    "/did_get_information_needed_for_recovery",
-    "/did_get_current_coin_info",
+    "/cat_asset_id_to_name",
+    "/cat_get_asset_id",
+    "/cat_get_name",
+    "/cat_set_name",
+    "/cat_spend",
+    "/check_delete_key",
+    "/check_offer_validity",
+    "/close_connection",
+    "/combine_coins",
+    "/crcat_approve_pending",
+    "/create_new_dl",
+    "/create_new_wallet",
+    "/create_offer_for_ids",
+    "/create_signed_transaction",
+    "/delete_all_keys",
+    "/delete_key",
+    "/delete_notifications",
+    "/delete_unconfirmed_transactions",
     "/did_create_backup_file",
-    "/did_transfer_did",
-    "/did_message_spend",
-    "/did_get_info",
     "/did_find_lost_did",
-    "/nft_mint_nft",
-    "/nft_count_nfts",
-    "/nft_get_nfts",
-    "/nft_get_by_did",
-    "/nft_set_nft_did",
-    "/nft_set_nft_status",
-    "/nft_get_wallet_did",
-    "/nft_get_wallets_with_dids",
-    "/nft_get_info",
-    "/nft_transfer_nft",
+    "/did_get_current_coin_info",
+    "/did_get_did",
+    "/did_get_info",
+    "/did_get_metadata",
+    "/did_get_pubkey",
+    "/did_get_wallet_name",
+    "/did_message_spend",
+    "/did_set_wallet_name",
+    "/did_transfer_did",
+    "/did_update_metadata",
+    "/dl_delete_mirror",
+    "/dl_get_mirrors",
+    "/dl_history",
+    "/dl_latest_singleton",
+    "/dl_new_mirror",
+    "/dl_owned_singletons",
+    "/dl_singletons_by_root",
+    "/dl_stop_tracking",
+    "/dl_track_new",
+    "/dl_update_multiple",
+    "/dl_update_root",
+    "/dl_verify_proof",
+    "/execute_signing_instructions",
+    "/extend_derivation_index",
+    "/gather_signing_info",
+    "/generate_mnemonic",
+    "/get_all_offers",
+    "/get_auto_claim",
+    "/get_cat_list",
+    "/get_coin_records",
+    "/get_coin_records_by_names",
+    "/get_connections",
+    "/get_current_derivation_index",
+    "/get_farmed_amount",
+    "/get_height_info",
+    "/get_log_level",
+    "/get_logged_in_fingerprint",
+    "/get_network_info",
+    "/get_next_address",
+    "/get_notifications",
+    "/get_offer",
+    "/get_offer_summary",
+    "/get_offers_count",
+    "/get_private_key",
+    "/get_public_keys",
+    "/get_puzzle_and_solution",
+    "/get_routes",
+    "/get_spendable_coins",
+    "/get_stray_cats",
+    "/get_sync_status",
+    "/get_timestamp_for_height",
+    "/get_transaction",
+    "/get_transaction_count",
+    "/get_transaction_memo",
+    "/get_transactions",
+    "/get_version",
+    "/get_wallet_balance",
+    "/get_wallet_balances",
+    "/get_wallets",
+    "/healthz",
+    "/log_in",
     "/nft_add_uri",
     "/nft_calculate_royalties",
+    "/nft_count_nfts",
+    "/nft_get_by_did",
+    "/nft_get_info",
+    "/nft_get_nfts",
+    "/nft_get_wallet_did",
+    "/nft_get_wallets_with_dids",
     "/nft_mint_bulk",
+    "/nft_mint_nft",
     "/nft_set_did_bulk",
+    "/nft_set_nft_did",
+    "/nft_set_nft_status",
     "/nft_transfer_bulk",
+    "/nft_transfer_nft",
+    "/open_connection",
+    "/push_transactions",
+    "/push_tx",
+    "/pw_absorb_rewards",
     "/pw_join_pool",
     "/pw_self_pool",
-    "/pw_absorb_rewards",
     "/pw_status",
-    "/create_new_dl",
-    "/dl_track_new",
-    "/dl_stop_tracking",
-    "/dl_latest_singleton",
-    "/dl_singletons_by_root",
-    "/dl_update_root",
-    "/dl_update_multiple",
-    "/dl_history",
-    "/dl_owned_singletons",
-    "/dl_get_mirrors",
-    "/dl_new_mirror",
-    "/dl_delete_mirror",
-    "/vc_mint",
+    "/register_remote_coins",
+    "/reset_log_level",
+    "/select_coins",
+    "/send_notification",
+    "/send_transaction",
+    "/send_transaction_multi",
+    "/set_auto_claim",
+    "/set_log_level",
+    "/set_wallet_resync_on_startup",
+    "/sign_message_by_address",
+    "/sign_message_by_id",
+    "/spend_clawback_coins",
+    "/split_coins",
+    "/stop_node",
+    "/submit_transactions",
+    "/take_offer",
+    "/vc_add_proofs",
     "/vc_get",
     "/vc_get_list",
-    "/vc_spend",
-    "/vc_add_proofs",
     "/vc_get_proofs_for_root",
+    "/vc_mint",
     "/vc_revoke",
-    "/get_connections",
-    "/open_connection",
-    "/close_connection",
-    "/stop_node",
-    "/get_routes",
-    "/healthz"
+    "/vc_spend",
+    "/verify_signature"
   ],
   "success": true
 }
@@ -6301,6 +6456,393 @@ Request Parameters: None
 
 ```json
 chia rpc wallet stop_node
+```
+
+Response:
+
+```json
+{
+  "success": true
+}
+```
+
+</details>
+
+---
+
+### `gather_signing_info`
+
+Functionality: Builds signing instructions for the given spends (offline / hardware-wallet friendly flow). Pair with `apply_signatures` and `submit_transactions`.
+
+Usage: chia rpc wallet [OPTIONS] gather_signing_info [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag   | Type  | Required | Description                         |
+| :----- | :---- | :------- | :---------------------------------- |
+| spends | ARRAY | True     | List of `Spend` objects to sign for |
+
+Response: `signing_instructions` (use with `execute_signing_instructions` or an external signer).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet gather_signing_info '{
+  "spends": [
+    {
+      "coin": {
+        "amount": 21999981855456,
+        "parent_coin_id": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+        "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+      },
+      "puzzle": "0xff02ffff01ff02...ff018080",
+      "solution": "0xff80ffff01ffff3c...ff8080"
+    }
+  ]
+}'
+```
+
+This request uses a real spend shape and non-empty payload, matching the structures returned by wallet transaction-building RPCs on this page.
+
+</details>
+
+---
+
+### `apply_signatures`
+
+Functionality: Applies collected `SigningResponse` entries to the provided spends and returns signed transactions ready for submission.
+
+Usage: chia rpc wallet [OPTIONS] apply_signatures [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag              | Type  | Required | Description                  |
+| :---------------- | :---- | :------- | :--------------------------- |
+| spends            | ARRAY | True     | Same `Spend` list as signing |
+| signing_responses | ARRAY | True     | Responses from your signer   |
+
+Response: `signed_transactions` (pass to `submit_transactions`).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet apply_signatures '{
+  "spends": [
+    {
+      "coin": {
+        "amount": 21999981855456,
+        "parent_coin_id": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+        "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+      },
+      "puzzle": "0xff02ffff01ff02...ff018080",
+      "solution": "0xff80ffff01ffff3c...ff8080"
+    }
+  ],
+  "signing_responses": [
+    {
+      "hook": "0x5164cb7113616036c959df00ffa45f0a06e1f1c8d04ac3c811b0f20f591c6d26",
+      "signature": "0xa71cf8d85b4f30aeb63e0f6e1f478f55f19f5dba8cd5f6d9a2746f4d30f15c3f..."
+    }
+  ]
+}'
+```
+
+Response returns `signed_transactions` suitable for `submit_transactions`.
+
+</details>
+
+---
+
+### `submit_transactions`
+
+Functionality: Submits already-signed transactions to the wallet / full node; returns mempool IDs for each.
+
+Usage: chia rpc wallet [OPTIONS] submit_transactions [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                | Type  | Required | Description              |
+| :------------------ | :---- | :------- | :----------------------- |
+| signed_transactions | ARRAY | True     | `SignedTransaction` list |
+
+Response: `mempool_ids` (one per submitted spend bundle).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet submit_transactions '{
+  "signed_transactions": [
+    {
+      "transaction_info": {
+        "spends": [
+          {
+            "coin": {
+              "amount": 21999981855456,
+              "parent_coin_id": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+              "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+            },
+            "puzzle": "0xff02ffff01ff02...ff018080",
+            "solution": "0xff80ffff01ffff3c...ff8080"
+          }
+        ]
+      },
+      "signatures": [
+        {
+          "type": "bls_12381_aug_scheme",
+          "signature": "0xa71cf8d85b4f30aeb63e0f6e1f478f55f19f5dba8cd5f6d9a2746f4d30f15c3f..."
+        }
+      ]
+    }
+  ]
+}'
+```
+
+Response returns `mempool_ids` for the submitted bundles.
+
+</details>
+
+---
+
+### `execute_signing_instructions`
+
+Functionality: Executes signing instructions (hardware wallet, remote signer, etc.) and returns `signing_responses`. Often used with output from `gather_signing_info`.
+
+Usage: chia rpc wallet [OPTIONS] execute_signing_instructions [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                 | Type    | Required | Description                            |
+| :------------------- | :------ | :------- | :------------------------------------- |
+| signing_instructions | OBJECT  | True     | `SigningInstructions` payload          |
+| partial_allowed      | BOOLEAN | False    | Allow partial results [Default: false] |
+
+Response: `signing_responses` for `apply_signatures`.
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet execute_signing_instructions '{
+  "signing_instructions": {
+    "key_hints": {
+      "path_hints": [
+        {
+          "path": [12381, 8444, 2, 19],
+          "root_fingerprint": "0x428c4870"
+        }
+      ],
+      "sum_hints": [
+        {
+          "final_pubkey": "0x8b3488cda8b3a32bcb74058bfb10c93a642d987908e6aec880dc85bf81b4b872b9f2cc6e08df73f62019ff593a2de1fd",
+          "fingerprints": ["0x619bc5cd"],
+          "synthetic_offset": "0x64771976abb4a834675485d405228f1d42de0fe66ff8a15fcccb3edc5318ffed"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "fingerprint": "0xb995704b",
+        "hook": "0x5164cb7113616036c959df00ffa45f0a06e1f1c8d04ac3c811b0f20f591c6d26",
+        "message": "0x45c51f68a927c0a5cab76e23821c14ed48508a03680d0f2b8171110fd424a381..."
+      }
+    ]
+  },
+  "partial_allowed": false
+}'
+```
+
+Response returns `signing_responses` for `apply_signatures`.
+
+</details>
+
+---
+
+### `get_version`
+
+Functionality: Returns the Chia reference client version string.
+
+Usage: chia rpc wallet [OPTIONS] get_version [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_version
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "version": "2.6.0"
+}
+```
+
+</details>
+
+---
+
+### `get_log_level`
+
+Functionality: Returns the root logger level and accepted level names for `set_log_level`.
+
+Usage: chia rpc wallet [OPTIONS] get_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_log_level
+```
+
+Response:
+
+```json
+{
+  "available_levels": [
+    "CRITICAL",
+    "FATAL",
+    "ERROR",
+    "WARN",
+    "WARNING",
+    "INFO",
+    "DEBUG",
+    "NOTSET"
+  ],
+  "level": "INFO",
+  "success": true
+}
+```
+
+A wallet log-level change applies to the wallet process only. To set a different level on the full node, call the same endpoints on the `full_node` service (`chia rpc full_node get_log_level` / `set_log_level`).
+
+</details>
+
+---
+
+### `set_log_level`
+
+Functionality: Sets the root logging level for the wallet process.
+
+Usage: chia rpc wallet [OPTIONS] set_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description    |
+| :---- | :----- | :------- | :------------- |
+| level | STRING | True     | Log level name |
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet set_log_level '{"level": "INFO"}'
+```
+
+Response includes `level`, `available_levels`, `errors`, and `success`.
+
+</details>
+
+---
+
+### `reset_log_level`
+
+Functionality: Resets logging to the level from wallet service configuration.
+
+Usage: chia rpc wallet [OPTIONS] reset_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (use `{}`).
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet reset_log_level '{}'
+```
+
+Response matches `set_log_level`.
+
+</details>
+
+---
+
+### `healthz`
+
+Functionality: Lightweight liveness check from the RPC server.
+
+Usage: chia rpc wallet [OPTIONS] healthz [REQUEST]
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet healthz
 ```
 
 Response:
