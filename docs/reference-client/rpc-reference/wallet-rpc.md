@@ -6495,8 +6495,22 @@ Response: `signing_instructions` (use with `execute_signing_instructions` or an 
 <summary>Example</summary>
 
 ```json
-chia rpc wallet gather_signing_info '{"spends": []}'
+chia rpc wallet gather_signing_info '{
+  "spends": [
+    {
+      "coin": {
+        "amount": 21999981855456,
+        "parent_coin_id": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+        "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+      },
+      "puzzle": "0xff02ffff01ff02...ff018080",
+      "solution": "0xff80ffff01ffff3c...ff8080"
+    }
+  ]
+}'
 ```
+
+This request uses a real spend shape and non-empty payload, matching the structures returned by wallet transaction-building RPCs on this page.
 
 </details>
 
@@ -6528,8 +6542,28 @@ Response: `signed_transactions` (pass to `submit_transactions`).
 <summary>Example</summary>
 
 ```json
-chia rpc wallet apply_signatures '{"spends": [], "signing_responses": []}'
+chia rpc wallet apply_signatures '{
+  "spends": [
+    {
+      "coin": {
+        "amount": 21999981855456,
+        "parent_coin_id": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+        "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+      },
+      "puzzle": "0xff02ffff01ff02...ff018080",
+      "solution": "0xff80ffff01ffff3c...ff8080"
+    }
+  ],
+  "signing_responses": [
+    {
+      "hook": "0x5164cb7113616036c959df00ffa45f0a06e1f1c8d04ac3c811b0f20f591c6d26",
+      "signature": "0xa71cf8d85b4f30aeb63e0f6e1f478f55f19f5dba8cd5f6d9a2746f4d30f15c3f..."
+    }
+  ]
+}'
 ```
+
+Response returns `signed_transactions` suitable for `submit_transactions`.
 
 </details>
 
@@ -6560,8 +6594,34 @@ Response: `mempool_ids` (one per submitted spend bundle).
 <summary>Example</summary>
 
 ```json
-chia rpc wallet submit_transactions '{"signed_transactions": []}'
+chia rpc wallet submit_transactions '{
+  "signed_transactions": [
+    {
+      "transaction_info": {
+        "spends": [
+          {
+            "coin": {
+              "amount": 21999981855456,
+              "parent_coin_id": "0xedee4defe510196869f53da7877236e56a0b097640b48c1b6c1a20bb92257a16",
+              "puzzle_hash": "0x58d4fa1f9b0069a41119662f38457ac2ff35ddf74b9fd01762e3da2c97112d3e"
+            },
+            "puzzle": "0xff02ffff01ff02...ff018080",
+            "solution": "0xff80ffff01ffff3c...ff8080"
+          }
+        ]
+      },
+      "signatures": [
+        {
+          "type": "bls_12381_aug_scheme",
+          "signature": "0xa71cf8d85b4f30aeb63e0f6e1f478f55f19f5dba8cd5f6d9a2746f4d30f15c3f..."
+        }
+      ]
+    }
+  ]
+}'
 ```
+
+Response returns `mempool_ids` for the submitted bundles.
 
 </details>
 
@@ -6593,8 +6653,36 @@ Response: `signing_responses` for `apply_signatures`.
 <summary>Example</summary>
 
 ```json
-chia rpc wallet execute_signing_instructions '{"signing_instructions": {}, "partial_allowed": false}'
+chia rpc wallet execute_signing_instructions '{
+  "signing_instructions": {
+    "key_hints": {
+      "path_hints": [
+        {
+          "path": [12381, 8444, 2, 19],
+          "root_fingerprint": "0x428c4870"
+        }
+      ],
+      "sum_hints": [
+        {
+          "final_pubkey": "0x8b3488cda8b3a32bcb74058bfb10c93a642d987908e6aec880dc85bf81b4b872b9f2cc6e08df73f62019ff593a2de1fd",
+          "fingerprints": ["0x619bc5cd"],
+          "synthetic_offset": "0x64771976abb4a834675485d405228f1d42de0fe66ff8a15fcccb3edc5318ffed"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "fingerprint": "0xb995704b",
+        "hook": "0x5164cb7113616036c959df00ffa45f0a06e1f1c8d04ac3c811b0f20f591c6d26",
+        "message": "0x45c51f68a927c0a5cab76e23821c14ed48508a03680d0f2b8171110fd424a381..."
+      }
+    ]
+  },
+  "partial_allowed": false
+}'
 ```
+
+Response returns `signing_responses` for `apply_signatures`.
 
 </details>
 
@@ -6663,16 +6751,20 @@ Response:
 {
   "available_levels": [
     "CRITICAL",
+    "FATAL",
     "ERROR",
+    "WARN",
     "WARNING",
     "INFO",
     "DEBUG",
     "NOTSET"
   ],
-  "level": "WARNING",
+  "level": "INFO",
   "success": true
 }
 ```
+
+A wallet log-level change applies to the wallet process only. To set a different level on the full node, call the same endpoints on the `full_node` service (`chia rpc full_node get_log_level` / `set_log_level`).
 
 </details>
 
