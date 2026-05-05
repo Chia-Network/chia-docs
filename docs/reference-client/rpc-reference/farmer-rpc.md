@@ -7,7 +7,9 @@ slug: /reference-client/rpc-reference/farmer-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document provides a comprehensive reference to Chia's Farmer RPC API.
+This document provides a comprehensive reference to Chia's Farmer RPC API. Routes defined on `FarmerRpcApi` are merged with the shared HTTP RPC routes from `RpcServer` (connection management, logging, version, and health checks).
+
+For Proof of Space 2 (PoS2) farming with V2 plots, connect to a Solver peer with [`connect_to_solver`](#connect_to_solver); solver HTTP endpoints are documented under [Solver RPC](/reference-client/rpc-reference/solver-rpc).
 
 <details>
   <summary>Note about Windows command escaping</summary>
