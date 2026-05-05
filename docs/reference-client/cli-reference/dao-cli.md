@@ -7,17 +7,25 @@ slug: /reference-client/cli-reference/dao-cli
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document contains a comprehensive reference of Chia DAO CLI commands and options.
+This page previously documented the `chia dao` command group for the proof-of-concept DAO wallet in older Chia clients.
 
-:::warning
+:::info Removed from the reference client in Chia 2.5.3
 
-Chia DAOs are currently an _alpha_ primitive. This means that DAOs are not yet ready for production use, but you can still test them on either a simulator or a testnet. **We recommend against creating DAOs with this primitive on mainnet!**
+The proof-of-concept DAO wallet and the **`chia dao`** CLI were removed in [Chia blockchain 2.5.3](https://github.com/Chia-Network/chia-blockchain/blob/main/CHANGELOG.md#253-chia-blockchain-2025-03-25) (March 2025). Current releases do not ship a `dao` subcommand on `chia -h`. The command reference below is **historical only** and does not apply to supported releases.
 
-Prior to using the DAO alpha primitive, be sure to read the [list of known issues](/dao-known-issues).
+For the same context on HTTP RPC, see [DAO RPC](/reference-client/rpc-reference/dao-rpc).
 
 :::
 
-## Reference
+:::warning
+
+The content below described an _alpha_ DAO primitive when it still existed. **Do not rely on it for current installs.**
+
+Prior discussion of known issues: [list of known issues](/dao-known-issues).
+
+:::
+
+## Historical reference (pre–DAO wallet removal)
 
 ## `add`
 
