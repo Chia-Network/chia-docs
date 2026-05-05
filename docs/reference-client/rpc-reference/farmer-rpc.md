@@ -597,12 +597,18 @@ Response:
     "/get_harvester_plots_keys_missing",
     "/get_harvester_plots_duplicates",
     "/get_pool_login_link",
+    "/connect_to_solver",
+    "/get_network_info",
     "/get_connections",
     "/open_connection",
     "/close_connection",
     "/stop_node",
     "/get_routes",
-    "/healthz"
+    "/get_version",
+    "/healthz",
+    "/get_log_level",
+    "/set_log_level",
+    "/reset_log_level"
   ],
   "success": true
 }
