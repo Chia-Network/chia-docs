@@ -7,7 +7,7 @@ slug: /reference-client/rpc-reference/daemon-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document provides a comprehensive reference to Chia's Daemon RPC API.
+This document provides a comprehensive reference to Chia's Daemon RPC API over HTTPS/WebSockets (`chia/daemon/server.py`). Command names come from the daemon's command mapping (see `get_routes`). `chia rpc daemon` wraps these for local CLI use.
 
 <details>
   <summary>Note about Windows command escaping</summary>
@@ -166,7 +166,7 @@ Response:
 
 ### `get_routes`
 
-Functionality: List all available Daemon RPC routes
+Functionality: List all websocket command names exposed by the daemon (same set as `get_command_mapping()` in the daemon server).
 
 Usage: chia rpc daemon [OPTIONS] get_routes [REQUEST]
 
@@ -191,26 +191,27 @@ Response:
 ```json
 {
   "routes": [
-    "start_service",
-    "start_plotting",
-    "stop_plotting",
-    "stop_service",
-    "is_running",
-    "running_services",
-    "is_keyring_locked",
-    "keyring_status",
-    "unlock_keyring",
-    "validate_keyring_passphrase",
-    "set_keyring_passphrase",
-    "remove_keyring_passphrase",
     "exit",
-    "register_service",
-    "get_status",
-    "get_version",
+    "get_keys_for_plotting",
+    "get_network_info",
     "get_plotters",
     "get_routes",
+    "get_status",
+    "get_version",
     "get_wallet_addresses",
-    "get_keys_for_plotting"
+    "is_keyring_locked",
+    "is_running",
+    "keyring_status",
+    "register_service",
+    "remove_keyring_passphrase",
+    "running_services",
+    "set_keyring_passphrase",
+    "start_plotting",
+    "start_service",
+    "stop_plotting",
+    "stop_service",
+    "unlock_keyring",
+    "validate_keyring_passphrase"
   ],
   "success": true
 }

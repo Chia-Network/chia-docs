@@ -28,7 +28,7 @@ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 
 ## Intro
 
-This page includes a comprehensive list of Chia's DataLayer RPC API.
+This page includes a comprehensive list of Chia's DataLayer RPC API. Routes implemented on `DataLayerRpcApi` are merged with the shared HTTP routes from `RpcServer` (connections, network info, version, logging, health checks, and graceful shutdown).
 
 We also have documented the [DataLayer CLI](/reference-client/cli-reference/datalayer-cli) commands for interacting with the DataLayer.
 
@@ -1471,9 +1471,9 @@ Response:
 
 ### `get_routes`
 
-Functionality: Show a comprehensive list of RPC routes for the DataLayer
+Functionality: List every HTTP path on the DataLayer RPC server (`DataLayerRpcApi` plus shared `RpcServer` routes).
 
-Usage: chia rpc data_layer [OPTIONS] get_routes
+Usage: chia rpc data_layer [OPTIONS] get_routes [REQUEST]
 
 Options:
 
@@ -1496,45 +1496,52 @@ Response:
 ```json
 {
   "routes": [
-    "/wallet_log_in",
-    "/create_data_store",
-    "/get_owned_stores",
-    "/batch_update",
-    "/submit_pending_root",
-    "/get_value",
-    "/get_keys",
-    "/get_keys_values",
-    "/get_ancestors",
-    "/get_root",
-    "/get_local_root",
-    "/get_roots",
-    "/delete_key",
-    "/insert",
-    "/subscribe",
-    "/unsubscribe",
     "/add_mirror",
-    "/delete_mirror",
-    "/get_mirrors",
-    "/remove_subscriptions",
-    "/subscriptions",
-    "/get_kv_diff",
-    "/get_root_history",
     "/add_missing_files",
-    "/make_offer",
-    "/take_offer",
-    "/verify_offer",
+    "/batch_update",
     "/cancel_offer",
-    "/get_sync_status",
     "/check_plugins",
     "/clear_pending_roots",
-    "/get_proof",
-    "/verify_proof",
-    "/get_connections",
-    "/open_connection",
     "/close_connection",
-    "/stop_node",
+    "/create_data_store",
+    "/delete_key",
+    "/delete_mirror",
+    "/get_ancestors",
+    "/get_connections",
+    "/get_keys",
+    "/get_keys_values",
+    "/get_kv_diff",
+    "/get_local_root",
+    "/get_log_level",
+    "/get_mirrors",
+    "/get_network_info",
+    "/get_owned_stores",
+    "/get_proof",
+    "/get_root",
+    "/get_root_history",
+    "/get_roots",
     "/get_routes",
-    "/healthz"
+    "/get_sync_status",
+    "/get_value",
+    "/get_version",
+    "/healthz",
+    "/insert",
+    "/make_offer",
+    "/multistore_batch_update",
+    "/open_connection",
+    "/remove_subscriptions",
+    "/reset_log_level",
+    "/set_log_level",
+    "/stop_node",
+    "/submit_all_pending_roots",
+    "/submit_pending_root",
+    "/subscribe",
+    "/subscriptions",
+    "/take_offer",
+    "/unsubscribe",
+    "/verify_offer",
+    "/verify_proof",
+    "/wallet_log_in"
   ],
   "success": true
 }
