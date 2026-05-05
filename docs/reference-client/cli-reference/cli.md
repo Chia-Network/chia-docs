@@ -105,6 +105,10 @@ Pass one or more **service group** names. The exact mapping is defined in the re
 
 **Service groups** (internal service names in parentheses where helpful):
 
+:::warning
+`chia start all` literally starts every service group, including timelord and timelord launcher. Only use `all` if this machine is intentionally configured to run timelord components.
+:::
+
 | Group                    | What gets started                                                                                                        |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
 | `all`                    | Full node, wallet, farmer, harvester, timelord, timelord launcher, DataLayer (`chia_data_layer`, `chia_data_layer_http`) |
@@ -422,19 +426,19 @@ chia dev mempool benchmark -n 1000
 
 ---
 
-# data (DataLayer)
+## data (DataLayer)
 
 The `chia data` command group is the CLI for the Chia DataLayer. For the full subcommand list and examples, see the [DataLayer CLI reference](/reference-client/cli-reference/datalayer-cli).
 
 ---
 
-# solver
+## solver
 
 The `chia solver` command group talks to the standalone Solver service (partial proofs → full proofs for V2 plots / PoS2-era farming). Run `chia solver -h`; current releases provide **`get_state`**. For connecting the farmer to a Solver over HTTP RPC, see [`connect_to_solver`](/reference-client/rpc-reference/farmer-rpc#connect_to_solver) on the Farmer RPC page.
 
 ---
 
-# Other commands (not all are fully documented)
+## Other commands (not all are fully documented)
 
 The following sample output is aligned with the top-level Click groups registered in [`chia/cmds/chia.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/chia.py) (`version` and `run_daemon` are registered on the root CLI in the same file). **Your local `chia -h` may list commands in a different order.** The **`beta`** command exists in the client but is **hidden** from help unless your build exposes it.
 
