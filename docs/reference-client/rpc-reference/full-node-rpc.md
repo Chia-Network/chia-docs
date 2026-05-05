@@ -944,7 +944,7 @@ Request Parameters: None
 
 :::note
 
-`average_block_time` is an estimate of the average time in seconds between transaction blocks (computed when the chain has sufficient history); it may be `null` on a very short chain or before the node has synced relevant blocks.
+`average_block_time` is the average time in seconds between blocks (not specifically transaction blocks). The protocol target is 18.75 seconds, and this value is truncated in the response (for example `18`). It may be `null` on a very short chain or before the node has synced relevant blocks. If this value drifts by more than a few seconds for a sustained period, netspace likely changed since the latest difficulty adjustment.
 
 :::
 
@@ -2993,7 +2993,7 @@ Options:
 
 Request Parameters: None (send `{}`).
 
-:::warning
+:::info
 
 Requires an initialized blockchain with a peak and an active mempool. If there is no peak, the response contains empty generator fields.
 
@@ -3004,7 +3004,7 @@ Requires an initialized blockchain with a peak and an active mempool. If there i
 
 ````mdx-code-block
 ```json
-chia rpc full_node create_block_generator '{}'
+chia rpc full_node create_block_generator
 ```
 ````
 
@@ -3013,12 +3013,29 @@ Response:
 ````mdx-code-block
 ```json
 {
-  "additions": [],
-  "cost": 0,
-  "generator": "0x",
+  "additions": [
+    {
+      "amount": 499993713061,
+      "parent_coin_info": "0xb9792e0b3f30e636499a5d556514ae94398a90d1462760952d46ab526c3e4e90",
+      "puzzle_hash": "0x712d36b40c8202ad230f082f76416dc0a3828817fee70bd45da4f9fe8bcc6880"
+    },
+    {
+      "amount": 1000000000000,
+      "parent_coin_info": "0xb9792e0b3f30e636499a5d556514ae94398a90d1462760952d46ab526c3e4e90",
+      "puzzle_hash": "0x83e00e39cfd151b957b9ad244c089285a8b507efe68e3a0eae6d7fb045cad570"
+    }
+  ],
+  "cost": 13662942,
+  "generator": "0xff01ffffffa0cadd2124b7e96e21aeec29c3f135d2bb9057abbe7d579129812866f1d005384a...",
   "refs": [],
-  "removals": [],
-  "sig": "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "removals": [
+    {
+      "amount": 749999941681,
+      "parent_coin_info": "0xc76892cda4119c4b0abf14c2e432c623614873dcbb3dc974ea4b8f4efc49fceb",
+      "puzzle_hash": "0x3a9edc60a69f0add50e9655b8e5e28cfa21e7b86467544426bfd092b95d37451"
+    }
+  ],
+  "sig": "0xa97ffddfad72703e2af85e3ce7c8c59246921f24c4a0e6bbc96ec51800425f0ef403d01dd9fd5a85254dedcc4d1ff858...",
   "success": true
 }
 ```
@@ -3095,7 +3112,7 @@ Request Parameters:
 
 ````mdx-code-block
 ```json
-chia rpc full_node get_connections '{}'
+chia rpc full_node get_connections '{"node_type": 1}'
 ```
 ````
 
@@ -3123,7 +3140,7 @@ Response:
 ```
 ````
 
-The `type` field matches the peer’s `NodeType` (see request table above).
+The `type` field matches the peer's `NodeType` (see request table above). This example uses `node_type: 1` to show full-node peers only.
 
 </details>
 
@@ -3326,8 +3343,17 @@ Response:
 ````mdx-code-block
 ```json
 {
-  "available_levels": ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"],
-  "level": "WARNING",
+  "available_levels": [
+    "CRITICAL",
+    "FATAL",
+    "ERROR",
+    "WARN",
+    "WARNING",
+    "INFO",
+    "DEBUG",
+    "NOTSET"
+  ],
+  "level": "INFO",
   "success": true
 }
 ```
