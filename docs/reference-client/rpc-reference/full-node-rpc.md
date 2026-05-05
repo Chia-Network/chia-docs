@@ -3134,7 +3134,19 @@ Response:
       "last_message_time": 1678171624.456,
       "local_port": 8444,
       "node_id": "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
-      "peer_host": "203.0.113.10",
+      "peer_host": "127.0.0.1",
+      "peer_port": 8444,
+      "peer_server_port": 8444,
+      "type": 1
+    },
+    {
+      "bytes_read": 870298,
+      "bytes_written": 51,
+      "creation_time": 1678170601.001,
+      "last_message_time": 1678171624.456,
+      "local_port": 8444,
+      "node_id": "17f2d4b4e0c8b3b8f86e6b2c6a5f6f6e4c3a2f1e0d9c8b7a6f5e4d3c2b1a0987",
+      "peer_host": "192.168.1.20",
       "peer_port": 8444,
       "peer_server_port": 8444,
       "type": 1
@@ -3145,7 +3157,7 @@ Response:
 ```
 ````
 
-The `type` field matches the peer's `NodeType` (see request table above). This example uses `node_type: 1` to show full-node peers only.
+The `type` field matches the peer's `NodeType` (see request table above). This example uses `node_type: 1` to show full-node peers only; your own peers and counts will vary based on current network connectivity.
 
 </details>
 
