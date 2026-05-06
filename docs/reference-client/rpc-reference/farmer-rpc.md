@@ -7,7 +7,9 @@ slug: /reference-client/rpc-reference/farmer-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document provides a comprehensive reference to Chia's Farmer RPC API.
+This document provides a comprehensive reference to Chia's Farmer RPC API. Routes defined on `FarmerRpcApi` are merged with the shared HTTP RPC routes from `RpcServer` (connection management, logging, version, and health checks).
+
+For Proof of Space 2 (PoS2) farming with V2 plots, connect to a Solver peer with [`connect_to_solver`](#connect_to_solver); solver HTTP endpoints are documented under [Solver RPC](/reference-client/rpc-reference/solver-rpc).
 
 <details>
   <summary>Note about Windows command escaping</summary>
@@ -493,6 +495,68 @@ Response:
 
 ---
 
+### `connect_to_solver`
+
+Functionality: Disconnect any existing SOLVER peer connections, then open a new client connection to the Solver service at the given host and port. The Solver turns partial proofs from harvesters into full proofs of space. That pipeline is for V2 plots used with Proof of Space 2 (PoS2). Legacy PoS1 farming with classic V1 plots does not use it; the harvester already returns a complete proof.
+
+:::info PoS2 is still months away for most farmers
+
+Proof of Space 2 and V2 plot farming are not yet what typical mainnet farmers run day to day; wider activation is still months away. Until you are farming V2 plots under PoS2, you do not need a Solver connection. This RPC does nothing useful for PoS1 or classic plots; it is documented because the client exposes the route for when PoS2 and V2 farming become relevant.
+
+For milestone dates and rollout expectations, see the [Proof of Space 2 timeline](/chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline). The PoS2 proof format is specified in [CHIP-48](https://github.com/Chia-Network/chips/pull/160); activation timing and related hard-fork items are in [CHIP-49](https://github.com/Chia-Network/chips/pull/161).
+
+:::
+
+Usage: chia rpc farmer [OPTIONS] connect_to_solver [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type    | Required | Description                               |
+| :--- | :------ | :------- | :---------------------------------------- |
+| host | STRING  | True     | Hostname or IP address of the solver peer |
+| port | INTEGER | True     | Port of the solver (`peer_server_port`)   |
+
+:::note
+
+Use `port` as the solver **peer** listening port (`solver.port` in `config.yaml`; **8666** by default). That is different from the solver JSON-RPC TLS port (`solver.rpc_port`, **8667**). For solver HTTP endpoints (`chia rpc solver …`), see [Solver RPC](/reference-client/rpc-reference/solver-rpc).
+
+:::
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc farmer connect_to_solver '{"host": "127.0.0.1", "port": 8666}'
+```
+
+Response (success):
+
+```json
+{
+  "success": true
+}
+```
+
+Response (could not connect):
+
+```json
+{
+  "success": false,
+  "error": "Could not connect to solver at 127.0.0.1:8666"
+}
+```
+
+</details>
+
+---
+
 ### `get_routes`
 
 Functionality: List all available RPC routes
@@ -533,12 +597,18 @@ Response:
     "/get_harvester_plots_keys_missing",
     "/get_harvester_plots_duplicates",
     "/get_pool_login_link",
+    "/connect_to_solver",
+    "/get_network_info",
     "/get_connections",
     "/open_connection",
     "/close_connection",
     "/stop_node",
     "/get_routes",
-    "/healthz"
+    "/get_version",
+    "/healthz",
+    "/get_log_level",
+    "/set_log_level",
+    "/reset_log_level"
   ],
   "success": true
 }
