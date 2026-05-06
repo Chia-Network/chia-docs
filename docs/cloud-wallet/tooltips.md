@@ -256,15 +256,15 @@ The transaction is a draft. Your coins are still in your vault, but they are loc
 
 ### Transaction SIGNED
 
-The transaction is **fully signed** on your side; it has **not** necessarily been **accepted into the mempool** yet. The Chia Cloud Wallet will typically submit it automatically—once broadcast is accepted, the status moves to **Transaction MEMPOOL**.
+The transaction is fully signed on your side and has not necessarily been accepted into the mempool yet. The Chia Cloud Wallet will typically submit it automatically; once broadcast is accepted, the status moves to Transaction MEMPOOL.
 
-If the mempool is busy or the fee is too low, it can take noticeable time before submission succeeds—waits of up to about 45 minutes **before** the status advances beyond **Transaction SIGNED** are not unusual.
+If the mempool is busy or the fee is too low, it can take noticeable time before submission succeeds—waits of up to about 45 minutes before the status advances beyond Transaction SIGNED are not unusual.
 
-**Action:** Wait for the status to advance (usually to **Transaction MEMPOOL**); if the transaction **remains only** in **Transaction SIGNED** for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+**Action:** Wait for the status to advance (usually to Transaction MEMPOOL); if the transaction stays in Transaction SIGNED for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
 
 ### Transaction MEMPOOL
 
-The transaction **has been submitted to the mempool** (broadcast accepted). The associated coins have left your available balance, but the transaction is not yet confirmed in a block. If the mempool is busy and the fee is not large enough, waits of up to about 45 minutes **for block inclusion** are common.
+The transaction has been submitted to the mempool (broadcast accepted). The associated coins have left your available balance, but the transaction is not yet confirmed in a block. If the mempool is busy and the fee is not large enough, waits of up to about 45 minutes for block inclusion are common.
 
 **Action:** Wait for the network to include the transaction in a block; if the transaction remains in this state for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
 
@@ -366,7 +366,7 @@ The clawback transaction has been submitted to the blockchain. **Action:** Wait 
 
 ## Vault state
 
-These labels match high-level status shown in the Chia Cloud Wallet UI (heading names follow the in-app strings where noted). They overlap with [Vault recovery states](#vault-recovery-states) when a recovery is in progress. Unless referring to the **Chia Cloud Wallet** product by name, descriptions use **vault** for your custody.
+These labels match high-level status shown in the Chia Cloud Wallet UI (heading names follow the in-app strings where noted). They overlap with [Vault recovery states](#vault-recovery-states) when a recovery is in progress. Unless referring to the Chia Cloud Wallet product by name, descriptions use vault for your custody.
 
 ### Vault READY
 
@@ -378,7 +378,7 @@ The vault singleton has been minted and is in the mempool; the vault is not full
 
 ### Vault VAULT_RECOVERY_TIMELOCK
 
-The vault is in a recovery flow and the recovery timelock is active. You may be able to claw back the recovery or, after the timelock has passed, complete recovery; see **Recovery TIMELOCK** under [Vault recovery states](#vault-recovery-states).
+The vault is in a recovery flow and the recovery timelock is active. You may be able to claw back the recovery or, after the timelock has passed, complete recovery; see Recovery TIMELOCK under [Vault recovery states](#vault-recovery-states).
 
 ### Vault VAULT_RECOVERY_TIMELOCK_COMPLETE
 
