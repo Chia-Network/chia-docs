@@ -256,9 +256,9 @@ The transaction is a draft. Your coins are still in your vault, but they are loc
 
 ### Transaction SIGNED
 
-The transaction is fully signed on your side and has not necessarily been accepted into the mempool yet. The Chia Cloud Wallet will typically submit it automatically; once broadcast is accepted, the status moves to Transaction MEMPOOL.
+The transaction is signed on your side; it has not been accepted into the mempool yet. The Chia Cloud Wallet will submit it automatically and once broadcast is accepted in the mempool, the status will update to Transaction MEMPOOL.
 
-If the mempool is busy or the fee is too low, it can take noticeable time before submission succeeds—waits of up to about 45 minutes before the status advances beyond Transaction SIGNED are not unusual.
+If the mempool is busy or the fee is too low, it can take noticeable time before submission succeeds. Waits of up to about 45 minutes before the status advances beyond Transaction SIGNED are not unusual.
 
 **Action:** Wait for the status to advance (usually to Transaction MEMPOOL); if the transaction stays in Transaction SIGNED for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
 
