@@ -247,15 +247,24 @@ These labels describe the lifecycle of a transaction in your vault. For more on 
 
 ### Transaction UNSIGNED
 
-The transaction is a draft and coins are still in your vault but are locked in reserve for the transaction. **Action:** Sign the transaction and it will be submitted to the mempool or delete the transaction to unlock the coins for use in another transaction.
+The transaction is a draft. Your coins are still in your vault, but they are locked in reserve for the transaction.
+
+**Action:** Do one of the following:
+
+- Sign the transaction, after which it will automatically be submitted to the mempool.
+- Delete the transaction, which will unlock the coins for future use.
 
 ### Transaction SIGNED
 
-Transaction is ready for submission to the mempool. **Action:** The transaction will be automatically submitted to the blockchain; if the transaction remains in this state for more than 10 minutes please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+The transaction has been submitted to the mempool and is waiting for inclusion in a block; it is not confirmed on-chain yet. If the mempool is busy and the fee is not large enough, it is not unusual to wait up to 45 minutes in this state.
+
+**Action:** Wait for confirmation; if the transaction remains in this state for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
 
 ### Transaction MEMPOOL
 
-The transaction has been submitted to the blockchain and the associated coins have left your available balance but are not yet confirmed. **Action:** Wait for the network to include the transaction in a block; if the transaction remains in this state for more than 10 minutes please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+The transaction has been submitted to the mempool. The associated coins have left your available balance but the transaction is not yet confirmed in a block. If the mempool is busy and the fee is not large enough, waits of up to about 45 minutes are common.
+
+**Action:** Wait for the network to include the transaction in a block; if the transaction remains in this state for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
 
 ### Transaction PENDING
 
@@ -283,11 +292,11 @@ The offer is active and available for others to accept (others will need a copy 
 
 ### Offer MEMPOOL
 
-An acceptance of the offer has been broadcast to the network. The associated coins have left your available balance but are not yet confirmed. **Action:** Wait for the transaction to be included in a block; if the transaction remains in this state for more than 10 minutes please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+An acceptance of the offer has been broadcast to the network. The associated coins have left your available balance but are not yet confirmed. **Action:** Wait for the transaction to be included in a block; if the transaction remains in this state for more than 45 minutes please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
 
 ### Offer SETTLED
 
-The trade is successful and the exchange of coins is final. **Action:** None. The offer is complete.
+The trade was successful and the exchange of coins is final. **Action:** None. The offer is complete.
 
 ### Offer RE_ORG
 
@@ -355,11 +364,11 @@ The clawback transaction has been submitted to the blockchain. **Action:** Wait 
 
 ## Wallet state
 
-These labels describe high-level vault status. They overlap with [Vault recovery states](#vault-recovery-states) when a recovery is in progress.
+These labels describe high-level vault status in the Cloud Wallet UI. They overlap with [Vault recovery states](#vault-recovery-states) when a recovery is in progress. Descriptions below refer to your **vault** consistently.
 
 ### Wallet READY
 
-The wallet is available for transfers and normal operations.
+The vault is ready for transfers and normal operations.
 
 ### Wallet VAULT_PENDING_CREATE
 
