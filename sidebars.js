@@ -265,6 +265,7 @@ module.exports = {
             'reference-client/rpc-reference/nft-rpc',
             'reference-client/rpc-reference/offer-rpc',
             'reference-client/rpc-reference/simulator-rpc',
+            'reference-client/rpc-reference/solver-rpc',
             'reference-client/rpc-reference/vc-rpc',
             'reference-client/rpc-reference/wallet-rpc',
             'reference-client/rpc-reference/farmer-rpc',
