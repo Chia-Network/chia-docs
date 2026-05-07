@@ -9,13 +9,9 @@ import TabItem from '@theme/TabItem';
 
 # CLI Commands Reference
 
-This page should provide additional high-level documentation and explanation beyond just `chia -h`.
+This **CLI overview** is the entry point for command-line usage, similar to the [RPC overview](/reference-client/rpc-reference/rpc) for JSON-RPC. It explains global options, where the `chia` binary lives, and links into **service CLI pages** that mirror the **RPC reference** layout ([Full Node CLI](/reference-client/cli-reference/full-node-cli), [Farmer CLI](/reference-client/cli-reference/farmer-cli), [Harvester CLI](/reference-client/cli-reference/harvester-cli), [Solver CLI](/reference-client/cli-reference/solver-cli), wallet and asset topics, and more).
 
-This is not meant to be comprehensive, because often the `-h` (help) text is clear enough. We recommend fully investigating with the `-h` switch before looking elsewhere.
-
-To better understand what a command's options are, append `-h` at the end to see options and explanations.
-
-Some examples:
+Always check `chia -h` and `chia <command> -h` for the exact flags your build exposes. Examples:
 
 - `chia -h`
 - `chia plots -h`
@@ -23,11 +19,28 @@ Some examples:
 - `chia plotters madmax -h`
 - `chia start -h`
 
-As with the rest of this project, this doc is a work-in-progress. Feel free to browse the [source code](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/cmds) or the [Chia Proof of Space Construction Document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) for more insight in the meantime.
+Browse [`chia/cmds`](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/cmds) for implementation details.
 
-## Related CLI references {#related-cli-references}
+## Global options {#global-options}
 
-This page is an overview. Deeper command documentation lives in topic pages, for example:
+The root `chia` command accepts:
+
+| Option                       | Description                                                                                                       |
+| :--------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `--root-path PATH`           | Configuration and data root (default: platform-specific mainnet directory under `.chia`).                         |
+| `--keys-root-path PATH`      | Keyring file root (default: `.chia_keys`).                                                                        |
+| `--passphrase-file FILENAME` | Read the keyring passphrase from a file or descriptor so non-interactive runs can unlock the keychain when valid. |
+
+## CLI reference map {#related-cli-references}
+
+**Chain and farming stack** (parallel to full node / farmer / harvester RPC pages):
+
+- [Full Node CLI](/reference-client/cli-reference/full-node-cli): `chia show`, `chia netspace`, `chia peer full_node`
+- [Farmer CLI](/reference-client/cli-reference/farmer-cli): `chia farm`, `chia plotnft`, solver connection helpers
+- [Harvester CLI](/reference-client/cli-reference/harvester-cli): `chia peer harvester`, plot directories, remote harvester notes
+- [Solver CLI](/reference-client/cli-reference/solver-cli): `chia solver`
+
+**Wallet and assets:**
 
 - [Wallet CLI](/reference-client/cli-reference/wallet-cli)
 - [Offers](/reference-client/cli-reference/offer-cli)
@@ -37,7 +50,11 @@ This page is an overview. Deeper command documentation lives in topic pages, for
 - [Plotters](/reference-client/cli-reference/plotter-cli)
 - [DID](/reference-client/cli-reference/did-cli) and [NFT](/reference-client/cli-reference/nft-cli)
 - [DAO CLI](/reference-client/cli-reference/dao-cli) (historical: the DAO wallet was [removed in Chia 2.5.3](https://github.com/Chia-Network/chia-blockchain/blob/main/CHANGELOG.md#253-chia-blockchain-2025-03-25))
-- HTTP RPC (for `chia rpc …`): [Wallet RPC](/reference-client/rpc-reference/wallet-rpc) and the other service pages under [RPC reference](/reference-client/rpc-reference/rpc)
+
+**Other:**
+
+- [DataLayer CLI](/reference-client/cli-reference/datalayer-cli) (`chia data`)
+- HTTP JSON-RPC from the shell: [RPC overview](/reference-client/rpc-reference/rpc) and per-service pages such as [Wallet RPC](/reference-client/rpc-reference/wallet-rpc)
 
 # Locate the `chia` binary executable
 
@@ -139,32 +156,31 @@ The cli reference for all plotters can be found in the [Plotters CLI Page](/refe
 
 ## plotnft {#plotnft}
 
-Using the CLI, you can perform the same operations as with the GUI. There is a new command, called `chia plotnft`. Type `chia plotnft -h` to see all the available sub-commands:
+`chia plotnft` manages plot NFTs and pool membership through the wallet RPC. Run `chia plotnft -h` for subcommands (`show`, `create`, `join`, `leave`, `claim`, `inspect`, `get_login_link`, and others). Full reference and examples: [Farmer CLI, Plot NFT](/reference-client/cli-reference/farmer-cli#plot-nft).
 
-```
-» chia plotnft -h
-Usage: chia plotnft [OPTIONS] COMMAND [ARGS]...
+## plots {#plots}
 
-Options:
-  -h, --help  Show this message and exit.
+Plot directory and validation commands. Source: [`chia/cmds/plots.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plots.py). For MadMax, Bladebit, and other plotters, see [Plotters CLI](/reference-client/cli-reference/plotter-cli).
 
-Commands:
-  claim           Claim rewards from a plot NFT
-  create          Create a plot NFT
-  get_login_link  Create a login link for a pool. To get the launcher id, use
-                  plotnft show.
+### `chia plots show`
 
-  inspect         Get Detailed plotnft information as JSON
-  join            Join a plot NFT to a Pool
-  leave           Leave a pool and return to self-farming
-  show            Show plotnft information
-```
+Lists directories configured for plot search (same paths the harvester uses).
 
-To create a Plot NFT, use `chia plotnft create -u https://poolnamehere.com`, entering the URL of the pool you want to use. To create a plot NFT in self-farming mode, do `chia plotnft create -s local`.
-To switch pools, you can use `chia plotnft join`, and to leave a pool (switch to self farming), use `chia plotnft leave`.
-The `show` command can be used to check your current points balance. CLI plotting with `create_plots` is the same as before, but the `-p` is replaced with `-c`, and the pool contract address from `chia plotnft show` should be used here.
+### `chia plots add`
 
-## [Plots check](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/plotting/check_plots.py) {#plots-check}
+Usage: `chia plots add -d DIRECTORY`
+
+Adds a plot directory to `config.yaml` so farming software will scan it.
+
+### `chia plots remove`
+
+Usage: `chia plots remove -d DIRECTORY`
+
+Removes a plot directory from the configured search list.
+
+### Plots check {#plots-check}
+
+Source: [`chia/plotting/check_plots.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/plotting/check_plots.py).
 
 Command: `chia plots check -n [num checks] -l -g [substring]`
 
@@ -436,7 +452,46 @@ The `chia data` command group is the CLI for the Chia DataLayer. For the full su
 
 ## solver {#solver}
 
-The `chia solver` command group talks to the standalone Solver service (partial proofs → full proofs for V2 plots / PoS2-era farming). Run `chia solver -h`; current releases provide `get_state`. For connecting the farmer to a Solver over HTTP RPC, see `connect_to_solver` on the [Farmer RPC](/reference-client/rpc-reference/farmer-rpc) page.
+The `chia solver` command group queries the standalone Solver service. See [Solver CLI](/reference-client/cli-reference/solver-cli) for subcommands and farmer integration (`chia farm connect-solver`, [Farmer RPC](/reference-client/rpc-reference/farmer-rpc)).
+
+---
+
+## configure {#configure}
+
+Usage: `chia configure [OPTIONS]`
+
+Writes updates to `config.yaml` under your Chia root. Restart running services after changes. Source: [`chia/cmds/configure.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/configure.py).
+
+| Option                                         | Description                                                       |
+| :--------------------------------------------- | :---------------------------------------------------------------- |
+| `-t`, `--testnet`                              | `true`/`t` or `false`/`f` for testnet profile.                    |
+| `--set-node-introducer`                        | Introducer `IP:Port` for the node.                                |
+| `--set-farmer-peer`                            | Farmer address for a **remote harvester** (`IP:Port`).            |
+| `--set-solver-peer`                            | Solver `IP:Port` for the farmer.                                  |
+| `--set-solver-trusted-peers-only`              | `true`/`false` for solver trusted-peer mode.                      |
+| `--set-fullnode-port`                          | Full node port (updates related peer defaults).                   |
+| `--set-harvester-port`                         | Harvester port.                                                   |
+| `--set-log-level`, `--log-level`, `-log-level` | One of `CRITICAL`, `ERROR`, `WARNING`, `INFO`, `DEBUG`, `NOTSET`. |
+| `--enable-upnp`, `--upnp`, `-upnp`             | Enable or disable UPnP (`true`/`false`).                          |
+| `--set_outbound-peer-count`                    | Target outbound peer count.                                       |
+| `--set-peer-count`                             | Target peer count.                                                |
+| `--set-peer-connect-timeout`                   | Peer connect timeout (seconds).                                   |
+| `--crawler-db-path`                            | Crawler database path.                                            |
+| `--crawler-minimum-version-count`              | Crawler minimum version reporting threshold.                      |
+| `--seeder-domain-name`                         | Seeder DNS domain.                                                |
+| `--seeder-nameserver`                          | Seeder nameserver.                                                |
+
+## passphrase {#passphrase}
+
+Usage: `chia passphrase COMMAND`
+
+Manage the keyring passphrase (`set`, `remove`, and related subcommands). Source: [`chia/cmds/passphrase.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/passphrase.py). Run `chia passphrase -h`. Optional files `--passphrase-file` and `--current-passphrase-file` avoid interactive prompts.
+
+## stop {#stop}
+
+Usage: `chia stop [OPTIONS] GROUP [GROUP ...]`
+
+Stops service groups via the daemon. Use `-d` / `--daemon` to stop the daemon itself. `GROUP` values match the same service groups as **`chia start`** (see the **start** section on this page). Source: [`chia/cmds/stop.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/stop.py).
 
 ---
 
@@ -444,30 +499,30 @@ The `chia solver` command group talks to the standalone Solver service (partial 
 
 Every command below is registered on the root CLI in [`chia/cmds/chia.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/chia.py) (along with `version` and `run_daemon` in the same file). Run `chia <command> -h` for subcommands and flags. Your local `chia -h` may list commands in a different order than this table.
 
-| Command      | Summary                                                            | Documented on this site                                                                                                                                    |
-| :----------- | :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `completion` | Generate shell completion scripts                                  | No dedicated page; run `chia completion -h`.                                                                                                               |
-| `configure`  | Modify `config.yaml` (testnet, peers, ports, logging, and similar) | No dedicated section; run `chia configure -h`. Source: [`configure.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/configure.py). |
-| `data`       | DataLayer CLI                                                      | [DataLayer CLI](/reference-client/cli-reference/datalayer-cli) and [data (DataLayer)](#data-datalayer) above.                                              |
-| `db`         | Blockchain database upgrade, backup, validate                      | [Database commands](#db).                                                                                                                                  |
-| `dev`        | Developer tools (simulator, mempool tools, …)                      | [dev](#dev) (mempool); full simulator: [Simulator CLI](/reference-client/cli-reference/simulator-cli).                                                     |
-| `farm`       | Farm status and operations                                         | No dedicated section; run `chia farm -h`. Example: `chia farm summary` (also mentioned under [Checking Logs and Status](#checking-logs-and-status)).       |
-| `init`       | Create or migrate configuration                                    | [init](#init).                                                                                                                                             |
-| `keys`       | Key management and derivation                                      | [keys](#keys).                                                                                                                                             |
-| `netspace`   | Estimate total network space                                       | No dedicated section; run `chia netspace -h`.                                                                                                              |
-| `passphrase` | Keyring passphrase                                                 | No dedicated section; run `chia passphrase -h`.                                                                                                            |
-| `peer`       | List or change peer connections                                    | No dedicated section; run `chia peer -h`.                                                                                                                  |
-| `plotnft`    | Plot NFT (pooling)                                                 | [plotnft](#plotnft).                                                                                                                                       |
-| `plots`      | Plot directories and plot checks                                   | [Plots check](#plots-check); other subcommands: run `chia plots -h`.                                                                                       |
-| `plotters`   | Launch bundled and third-party plotters                            | [plotters](#plotters).                                                                                                                                     |
-| `rpc`        | Call JSON-RPC from the shell (“RPC client”)                        | HTTP RPC reference hub: [RPC introduction](/reference-client/rpc-reference/rpc); run `chia rpc -h` for CLI usage.                                          |
-| `run_daemon` | Run the Chia daemon process                                        | Used when starting services; run `chia run_daemon -h`.                                                                                                     |
-| `show`       | Show blockchain and node status                                    | No dedicated section; run `chia show -h` (example: `chia show -s` below).                                                                                  |
-| `solver`     | Talk to the Solver service                                         | [solver](#solver).                                                                                                                                         |
-| `start`      | Start service groups                                               | [start](#start).                                                                                                                                           |
-| `stop`       | Stop service groups or daemon                                      | No dedicated section; run `chia stop -h`.                                                                                                                  |
-| `version`    | Print the installed client version                                 | Run `chia version`.                                                                                                                                        |
-| `wallet`     | Wallet, offers, NFTs, DIDs, VCs, clawback, …                       | [Wallet CLI](/reference-client/cli-reference/wallet-cli) and linked topic pages in [Related CLI references](#related-cli-references).                      |
+| Command      | Summary                                                            | Documented on this site                                                                                                                                                                                                                             |
+| :----------- | :----------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `completion` | Generate shell completion scripts                                  | Run `chia completion -h`.                                                                                                                                                                                                                           |
+| `configure`  | Modify `config.yaml` (testnet, peers, ports, logging, and similar) | [configure](#configure).                                                                                                                                                                                                                            |
+| `data`       | DataLayer CLI                                                      | [DataLayer CLI](/reference-client/cli-reference/datalayer-cli) and [data (DataLayer)](#data-datalayer) above.                                                                                                                                       |
+| `db`         | Blockchain database upgrade, backup, validate                      | [Database commands](#db).                                                                                                                                                                                                                           |
+| `dev`        | Developer tools (simulator, mempool tools, …)                      | [dev](#dev) (mempool); full simulator: [Simulator CLI](/reference-client/cli-reference/simulator-cli).                                                                                                                                              |
+| `farm`       | Farm status and operations                                         | [Farmer CLI](/reference-client/cli-reference/farmer-cli); example: `chia farm summary` under [Checking Logs and Status](#checking-logs-and-status).                                                                                                 |
+| `init`       | Create or migrate configuration                                    | [init](#init).                                                                                                                                                                                                                                      |
+| `keys`       | Key management and derivation                                      | [keys](#keys).                                                                                                                                                                                                                                      |
+| `netspace`   | Estimate total network space                                       | [Full Node CLI](/reference-client/cli-reference/full-node-cli) (`chia netspace`).                                                                                                                                                                   |
+| `passphrase` | Keyring passphrase                                                 | [passphrase](#passphrase).                                                                                                                                                                                                                          |
+| `peer`       | List or change peer connections                                    | [Full Node CLI](/reference-client/cli-reference/full-node-cli) (`peer full_node`), [Farmer CLI](/reference-client/cli-reference/farmer-cli), [Harvester CLI](/reference-client/cli-reference/harvester-cli); run `chia peer -h` for all node types. |
+| `plotnft`    | Plot NFT (pooling)                                                 | [plotnft](#plotnft) and [Farmer CLI](/reference-client/cli-reference/farmer-cli#plot-nft).                                                                                                                                                          |
+| `plots`      | Plot directories and plot checks                                   | [plots](#plots).                                                                                                                                                                                                                                    |
+| `plotters`   | Launch bundled and third-party plotters                            | [plotters](#plotters).                                                                                                                                                                                                                              |
+| `rpc`        | Call JSON-RPC from the shell (“RPC client”)                        | [RPC introduction](/reference-client/rpc-reference/rpc); run `chia rpc -h` for CLI usage.                                                                                                                                                           |
+| `run_daemon` | Run the Chia daemon process                                        | Used when starting services; run `chia run_daemon -h`.                                                                                                                                                                                              |
+| `show`       | Show blockchain and node status                                    | [Full Node CLI](/reference-client/cli-reference/full-node-cli); example: `chia show -s` below.                                                                                                                                                      |
+| `solver`     | Talk to the Solver service                                         | [solver](#solver), [Solver CLI](/reference-client/cli-reference/solver-cli).                                                                                                                                                                        |
+| `start`      | Start service groups                                               | [start](#start).                                                                                                                                                                                                                                    |
+| `stop`       | Stop service groups or daemon                                      | [stop](#stop).                                                                                                                                                                                                                                      |
+| `version`    | Print the installed client version                                 | Run `chia version`.                                                                                                                                                                                                                                 |
+| `wallet`     | Wallet, offers, NFTs, DIDs, VCs, clawback, …                       | [Wallet CLI](/reference-client/cli-reference/wallet-cli) and [CLI reference map](#related-cli-references).                                                                                                                                          |
 
 Non-group commands on the same root CLI:
 
