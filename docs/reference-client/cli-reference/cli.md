@@ -168,6 +168,7 @@ Options:
   -h, --help  Show this message and exit.
 
 Commands:
+  change_payout_instructions  Change the payout instructions for a pool.
   claim           Claim rewards from a plot NFT
   create          Create a plot NFT
   get_login_link  Create a login link for a pool. To get the launcher id, use plotnft show.
@@ -182,8 +183,14 @@ Commands:
 
 ```bash
 chia plotnft show
-chia plotnft create -u https://pool.example.com
-chia plotnft create -s local
+chia plotnft create -s pool -u https://pool.example.com -m 0.00005
+chia plotnft create -s local -m 0.00005
+```
+
+Response:
+
+```
+(Multi-line plot NFT status from `show`, or transaction output from `create` — see [Farmer CLI](/reference-client/cli-reference/farmer-cli#plot-nft) for the full option tables.)
 ```
 
 </details>
@@ -200,17 +207,19 @@ The `chia db` commands upgrade the blockchain database format, create a vacuumed
 
 Implementation: [`db_upgrade_cmd`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
 
-Command: `chia db upgrade [OPTIONS]`
+Functionality: Upgrade a v1 blockchain SQLite database to the v2 format.
 
-**Flags**
+Usage: `chia db upgrade [OPTIONS]`
 
-`--input [PATH]`: Optional v1 database input file.
+Options:
 
-`--output [PATH]`: Optional v2 output path (must not exist unless workflow allows).
-
-`--no-update-config`: Do not rewrite `config.yaml` to point at the new database (also applies when using a custom output path in typical setups).
-
-`--force`: Proceed despite warnings when the upgrade tool would otherwise stop.
+| Short Command | Long Command         | Type | Required | Description                                                                                            |
+| :------------ | :------------------- | :--- | :------- | :----------------------------------------------------------------------------------------------------- |
+|               | `--input`            | PATH | False    | Input database file (defaults follow the upgrade tool when omitted).                                   |
+|               | `--output`           | PATH | False    | Output database file (must not exist unless the workflow allows overwriting).                          |
+|               | `--no-update-config` | None | False    | Do not update `config.yaml` to point at the new database (also applies with many custom output paths). |
+|               | `--force`            | None | False    | Force conversion despite warnings.                                                                     |
+| `-h`          | `--help`             | None | False    | Show a help message and exit.                                                                          |
 
 **Database upgrade notes**
 
@@ -229,19 +238,29 @@ chia db upgrade
 chia db upgrade --input ~/.chia/mainnet/db/blockchain_v1_mainnet.sqlite --output ~/.chia/mainnet/db/blockchain_v2_mainnet.sqlite
 ```
 
+Response:
+
+```
+(Progress and completion messages from the upgrade tool; failures print FAILED: … with a reason.)
+```
+
 </details>
 
 ### backup {#backup}
 
 Implementation: [`db_backup_cmd`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
 
-Command: `chia db backup [OPTIONS]`
+Functionality: Create a vacuumed backup of the blockchain database using SQLite `VACUUM INTO`.
 
-**Flags**
+Usage: `chia db backup [OPTIONS]`
 
-`--backup_file [PATH]`: Optional backup path. Default writes next to the active database.
+Options:
 
-`--no_indexes`: Write the backup without indexes.
+| Short Command | Long Command    | Type | Required | Description                                                    |
+| :------------ | :-------------- | :--- | :------- | :------------------------------------------------------------- |
+|               | `--backup_file` | PATH | False    | Backup destination path (default next to the active database). |
+|               | `--no_indexes`  | None | False    | Create backup without indexes.                                 |
+| `-h`          | `--help`        | None | False    | Show a help message and exit.                                  |
 
 **Database backup notes**
 
@@ -258,19 +277,29 @@ chia db backup
 chia db backup --backup_file ~/chia-db-backup.sqlite
 ```
 
+Response:
+
+```
+(Status lines from the vacuum/backup step; long runs may take hours on large databases.)
+```
+
 </details>
 
 ### validate {#validate}
 
 Implementation: [`db_validate_cmd`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
 
-Command: `chia db validate [OPTIONS]`
+Functionality: Validate the v2 blockchain database structure (does not verify proofs).
 
-**Flags**
+Usage: `chia db validate [OPTIONS]`
 
-`--db [PATH]`: Database file to validate (defaults to the configured blockchain database).
+Options:
 
-`--validate-blocks`: Also validate encoded blocks and block records (slower).
+| Short Command | Long Command        | Type | Required | Description                                                                 |
+| :------------ | :------------------ | :--- | :------- | :-------------------------------------------------------------------------- |
+|               | `--db`              | PATH | False    | Database file to validate (defaults to the configured blockchain database). |
+|               | `--validate-blocks` | None | False    | Also validate encoded blocks and block records (slower).                    |
+| `-h`          | `--help`            | None | False    | Show a help message and exit.                                               |
 
 **Database validate notes**
 
@@ -284,6 +313,12 @@ Command: `chia db validate [OPTIONS]`
 ```bash
 chia db validate
 chia db validate --validate-blocks
+```
+
+Response:
+
+```
+(Validation progress from tip toward genesis; failures print FAILED: … .)
 ```
 
 </details>
