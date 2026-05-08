@@ -109,26 +109,26 @@ Usage: `chia plots create [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command              | Type    | Required | Description                                                                 |
-| :------------ | :------------------------ | :------ | :------- | :-------------------------------------------------------------------------- |
-| `-k`          | `--size`                  | INTEGER | False    | Plot k-size [default: 32]                                                   |
-|               | `--override-k`            | None    | False    | Allow k smaller than 32 (no short flag)                                     |
-| `-n`          | `--num`                   | INTEGER | False    | Number of plots [default: 1]                                                |
-| `-b`          | `--buffer`                | INTEGER | False    | Sort buffer MB [default: 3389]                                              |
-| `-r`          | `--num_threads`           | INTEGER | False    | Threads [default: 2]                                                        |
-| `-u`          | `--buckets`               | INTEGER | False    | Buckets [default: 128]                                                      |
-| `-a`          | `--alt_fingerprint`       | INTEGER | False    | Alternative key fingerprint                                                 |
-| `-c`          | `--pool_contract_address` | TEXT    | False    | Pool reward address (when alt fingerprint and pool public key are not used) |
-| `-f`          | `--farmer_public_key`     | TEXT    | False    | Farmer public key hex                                                       |
-| `-p`          | `--pool_public_key`       | TEXT    | False    | Pool public key hex                                                         |
-| `-t`          | `--tmp_dir`               | PATH    | False    | Temp directory [default: `.`]                                               |
-| `-2`          | `--tmp2_dir`              | PATH    | False    | Second temp directory                                                       |
-| `-d`          | `--final_dir`             | PATH    | False    | Final plot directory [default: `.`]                                         |
-| `-i`          | `--plotid`                | TEXT    | False    | Plot ID hex (debug)                                                         |
-| `-m`          | `--memo`                  | TEXT    | False    | Memo hex (debug)                                                            |
-| `-e`          | `--nobitfield`            | None    | False    | Disable bitfield                                                            |
-| `-x`          | `--exclude_final_dir`     | None    | False    | Do not add final dir to harvester plot list                                 |
-| `-h`          | `--help`                  | None    | False    | Show a help message and exit                                                |
+| Short Command | Long Command              | Type    | Required | Description                                                                                  |
+| :------------ | :------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------- |
+| `-k`          | `--size`                  | INTEGER | False    | Plot k-size [default: 32]                                                                    |
+|               | `--override-k`            | None    | False    | Allow k smaller than 32 (no short flag)                                                      |
+| `-n`          | `--num`                   | INTEGER | False    | Number of plots [default: 1]                                                                 |
+| `-b`          | `--buffer`                | INTEGER | False    | Sort buffer MB [default: 3389]                                                               |
+| `-r`          | `--num_threads`           | INTEGER | False    | Threads [default: 2]                                                                         |
+| `-u`          | `--buckets`               | INTEGER | False    | Buckets [default: 128]                                                                       |
+| `-a`          | `--alt_fingerprint`       | INTEGER | False    | Alternative key fingerprint                                                                  |
+| `-c`          | `--pool_contract_address` | TEXT    | False    | Pool contract address (only used if alternative fingerprint and pool public key are not set) |
+| `-f`          | `--farmer_public_key`     | TEXT    | False    | Farmer public key hex                                                                        |
+| `-p`          | `--pool_public_key`       | TEXT    | False    | Pool public key hex                                                                          |
+| `-t`          | `--tmp_dir`               | PATH    | False    | Temp directory [default: `.`]                                                                |
+| `-2`          | `--tmp2_dir`              | PATH    | False    | Second temp directory                                                                        |
+| `-d`          | `--final_dir`             | PATH    | False    | Final plot directory [default: `.`]                                                          |
+| `-i`          | `--plotid`                | TEXT    | False    | Plot ID hex (debug)                                                                          |
+| `-m`          | `--memo`                  | TEXT    | False    | Memo hex (debug)                                                                             |
+| `-e`          | `--nobitfield`            | None    | False    | Disable bitfield                                                                             |
+| `-x`          | `--exclude_final_dir`     | None    | False    | Do not add final dir to harvester plot list                                                  |
+| `-h`          | `--help`                  | None    | False    | Show a help message and exit                                                                 |
 
 <details>
 <summary>Example</summary>
