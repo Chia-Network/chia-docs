@@ -193,11 +193,26 @@ chia plotnft create -s local -m 0.00005
 
 Response:
 
+`show` output is produced by [`plotnft_funcs.show`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plotnft_funcs.py) (wallet height, sync status, then per-wallet lines). Abbreviated:
+
 ````mdx-code-block
 ```text
-(Multi-line plot NFT status from `show`, or transaction output from `create` — see [Farmer CLI](/reference-client/cli-reference/farmer-cli#plot-nft) for the full option tables.)
+Wallet height: 4100123
+Sync status: Synced
+Wallet ID: 3
+Current state: SELF_POOLING
+Current state from block height: 3050000
+Launcher ID: 0x7f8e9d0c1b2a345678901234567890abcdef1234567890abcdef1234567890
+Target address (not for plotting): xch1jgfdw46k802z8e5ms70mywcahtwj7wur46x8z69uchpvgazmyjqsr92pf
+Number of plots: 8
+Owner public key: 0xabcdef01...
+Pool contract address (use ONLY for plotting - do not send money to this address): xch1qpuzafwenx85x8stjslepmumcyu09t23zppgyq6wlsq5xtxw75xs00xewp
+Claimable balance: 0.0 xch
+
 ```
 ````
+
+`create` prints `Will create a plot NFT…` and then [`transaction_submitted_msg`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/cmds_util.py) / [`transaction_status_msg`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/cmds_util.py) when the transaction is submitted (see [Farmer CLI](/reference-client/cli-reference/farmer-cli#plot-nft)).
 
 </details>
 
@@ -248,11 +263,23 @@ chia db upgrade --input ~/.chia/mainnet/db/blockchain_v1_mainnet.sqlite --output
 
 Response:
 
+[`convert_v1_to_v2`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db_upgrade_func.py) prints progress lines; when `config.yaml` is updated, [`db_upgrade_func`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db_upgrade_func.py) also prints:
+
 ````mdx-code-block
 ```text
-(Progress and completion messages from the upgrade tool; failures print FAILED: … with a reason.)
+-- Opening file for reading: /home/user/.chia/mainnet/db/blockchain_v1_mainnet.sqlite
+-- Opening file for writing: /home/user/.chia/mainnet/db/blockchain_v2_mainnet.sqlite
+-- Initializing v2 version
+-- Peak: … Height: …
+-- DB v1 to v2 conversion started
+-- [1/4] Converting full_blocks
+…
+updating config.yaml
+database_path: db/blockchain_v2_CHALLENGE.sqlite
 ```
 ````
+
+On failure, messages include `conversion failed with error:` or `LEAVING PREVIOUS DB FILE UNTOUCHED` (see source).
 
 </details>
 
@@ -291,9 +318,15 @@ chia db backup --backup_file ~/chia-db-backup.sqlite
 
 Response:
 
+[`db_backup_func`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db_backup_func.py) / [`backup_db`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db_backup_func.py):
+
 ````mdx-code-block
 ```text
-(Status lines from the vacuum/backup step; long runs may take hours on large databases.)
+reading from blockchain database: /home/user/.chia/mainnet/db/blockchain_v2_mainnet.sqlite
+writing to backup file: /home/user/.chia/mainnet/db/vacuumed_blockchain_v2_mainnet.sqlite
+
+
+Database backup finished : /home/user/.chia/mainnet/db/vacuumed_blockchain_v2_mainnet.sqlite
 ```
 ````
 
@@ -333,11 +366,22 @@ chia db validate --validate-blocks
 
 Response:
 
+[`db_validate_func`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db_validate_func.py) / [`validate_v2`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db_validate_func.py) print opening paths, peak, traversal progress, then:
+
 ````mdx-code-block
 ```text
-(Validation progress from tip toward genesis; failures print FAILED: … .)
+opening file for reading: /home/user/.chia/mainnet/db/blockchain_v2_mainnet.sqlite
+peak hash: fb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8
+peak height: 3339504
+traversing the full chain
+…
+
+
+DATABASE IS VALID: /home/user/.chia/mainnet/db/blockchain_v2_mainnet.sqlite
 ```
 ````
+
+(`peak hash` is printed with Python `bytes` repr; long runs emit intermediate progress.)
 
 </details>
 
