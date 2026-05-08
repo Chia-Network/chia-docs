@@ -8,7 +8,7 @@ There is no top-level `chia harvester` command group. Start the harvester with `
 
 HTTP JSON-RPC methods and payloads are documented on [Harvester RPC](/reference-client/rpc-reference/harvester-rpc). Use `chia rpc harvester <method> '<json>'` the same way as other services (see [RPC overview](/reference-client/rpc-reference/rpc)).
 
-Sources: [`chia/cmds/peer.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer.py), [`chia/cmds/plots.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plots.py).
+Sources: [`chia/cmds/peer.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer.py), [`chia/cmds/peer_funcs.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer_funcs.py), [`chia/cmds/plots.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plots.py).
 
 ## Reference
 
@@ -39,11 +39,17 @@ chia peer harvester -c
 
 Response:
 
+Same [`print_connections`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer_funcs.py) formatting as `chia peer full_node -c`, but peers reflect harvester connections (often fewer rows):
+
 ````mdx-code-block
 ```text
-(List of peers reported by the harvester RPC; empty if only local farming.)
+Connections:
+Type      IP                                      Ports       NodeID      Last Connect      MiB Up|Dwn
+FARMER    127.0.0.1                               8447/8448    f3e4d5c6... Jan 15 12:00:01      0.1|    2.4
 ```
 ````
+
+If there are no peers, you still get the two header lines plus no connection rows.
 
 </details>
 

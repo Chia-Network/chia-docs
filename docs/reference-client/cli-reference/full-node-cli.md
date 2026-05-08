@@ -6,7 +6,7 @@ slug: /reference-client/cli-reference/full-node-cli
 
 Commands that talk to the full node use its RPC interface (default port 8555, `full_node.rpc_port` in `config.yaml`). HTTP JSON-RPC methods are listed on [Full Node RPC](/reference-client/rpc-reference/full-node-rpc).
 
-Sources: [`chia/cmds/show.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/show.py), [`chia/cmds/netspace.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/netspace.py), [`chia/cmds/peer.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer.py).
+Sources: [`chia/cmds/show.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/show.py), [`chia/cmds/show_funcs.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/show_funcs.py), [`chia/cmds/netspace.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/netspace.py), [`chia/cmds/netspace_funcs.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/netspace_funcs.py), [`chia/cmds/peer.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer.py), [`chia/cmds/peer_funcs.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer_funcs.py).
 
 ## Reference
 
@@ -43,11 +43,29 @@ chia show -f
 
 Response:
 
+`-s` uses [`print_blockchain_state`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/show_funcs.py). Synced node excerpt (hashes and ports vary):
+
 ````mdx-code-block
 ```text
-(Current blockchain state or fee tables from the full node; format is multi-line text and JSON-like summaries from RPC responses.)
+Network: mainnet    Port: 8444   RPC Port: 8555
+Node ID: b4de30abc123…
+Genesis Challenge: eeb0582…
+
+Current Blockchain Status: Full Node Synced
+
+Peak: Hash: 0xfb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8
+      Time: Wed Jan 15 2025 12:00:00 UTC                 Height:    3339504
+
+Estimated network space: 20.000 EiB
+Current difficulty: 8192
+Current VDF sub_slot_iters: 135266304
+
+  Height: |   Hash:
+  3339504 | 0xfb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8
 ```
 ````
+
+`-f` prints JSON from [`get_fee_estimate`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/show_funcs.py) followed by formatted mempool / fee-rate tables (`Mempool max cost`, `Fee Rate Estimates:`, etc.).
 
 </details>
 
@@ -85,11 +103,27 @@ chia netspace -d 192
 
 Response:
 
+Printed by [`netstorge_async`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/netspace_funcs.py); last line uses [`format_bytes`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/cmds_util.py) on `get_network_space`:
+
 ````mdx-code-block
 ```text
-(Estimated effective farm space over the chosen window, printed from the netspace helper.)
+Older Block
+Block Height: 3339312
+Weight:           9876543210
+VDF Iterations:   123456789012345
+Header Hash:      0xaa11bb22…
+
+Newer Block
+Block Height: 3339504
+Weight:           9876654321
+VDF Iterations:   123456790012345
+Header Hash:      0xfb7891e9…
+
+18.500 EiB
 ```
 ````
+
+If the peak is missing you may see `No blocks in blockchain`.
 
 </details>
 
@@ -125,11 +159,18 @@ chia peer full_node -a 203.0.113.5:8444
 
 Response:
 
+`-c` lists connections via [`print_connections`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer_funcs.py):
+
 ````mdx-code-block
 ```text
-(List of peers or confirmation after add/remove; errors surface TLS or connectivity problems.)
+Connections:
+Type      IP                                      Ports       NodeID      Last Connect      MiB Up|Dwn
+FULL_NODE 203.0.113.5                             8444/8444    a1b2c3d4... Jan 15 12:00:01      1.2|   99.3
+                                                  -Height:  3339504    -Hash: fb7891e9...
 ```
 ````
+
+`-a` prints `Connecting to 203.0.113.5, 8444` then any RPC error string from `open_connection`.
 
 </details>
 
