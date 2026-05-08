@@ -6,7 +6,7 @@ slug: /reference-client/cli-reference/farmer-cli
 
 Commands that query farming and pooling state through the farmer and wallet RPC clients. Default farmer RPC port is 8559 (`farmer.rpc_port`). JSON-RPC methods are documented on [Farmer RPC](/reference-client/rpc-reference/farmer-rpc).
 
-Sources: [`chia/cmds/farm.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm.py), [`chia/cmds/plotnft.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plotnft.py).
+Sources: [`chia/cmds/farm.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm.py), [`chia/cmds/farm_funcs.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm_funcs.py), [`chia/cmds/plotnft.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plotnft.py), [`chia/cmds/plotnft_funcs.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plotnft_funcs.py).
 
 ## Reference
 
@@ -39,18 +39,26 @@ chia farm summary -fp 8559 -p 8555
 
 Response:
 
+Shape follows [`summary`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm_funcs.py) (`print` calls). Illustrative synced farm with one local harvester (amounts and sizes vary):
+
 ````mdx-code-block
 ```text
 Farming status: Farming
 Total chia farmed: 2.5
 User transaction fees: 0.001
 Block rewards: 2.499
-Last height farmed: 1500000
-...
+Last height farmed: 4100000
+Local Harvester
+   120 plots of size: 12.345 TiB on-disk, 11.800 TiBe (effective)
+Plot count for all harvesters: 120
+Total size of plots: 12.345 TiB, 11.800 TiBe (effective)
+Estimated network space: 20.000 EiB
+Expected time to win: 3 weeks
+Note: log into your key using 'chia wallet show' to see rewards for each key
 ```
 ````
 
-(Exact lines depend on sync state, services running, and wallet connectivity; connection errors list the RPC port that failed.)
+Other branches print different first lines for `Farming status:` (`Not available`, `Syncing`, `Not synced or not connected to peers`, `Not running`). If the farmer RPC is down: `Plot count: Unknown` / `Total size of plots: Unknown` / `Estimated network space: Unknown`. Wallet offline shows `For details on farmed rewards and fees you should run 'chia start wallet'...`.
 
 </details>
 
@@ -81,11 +89,12 @@ chia farm challenges -l 10
 
 Response:
 
+Each line is formatted in [`challenges`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm_funcs.py):
+
 ````mdx-code-block
 ```text
-Hash: 0x... Index: 40
-Hash: 0x... Index: 41
-...
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 42
+Hash: 0xb2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890ab Index: 43
 ```
 ````
 
@@ -117,11 +126,16 @@ chia farm connect-solver 192.0.2.10:8666
 
 Response:
 
+[`solver_connect`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm_funcs.py) on success:
+
 ````mdx-code-block
 ```text
-(Confirmation or status from the farmer RPC client; connection errors appear if the farmer is not running.)
+✓ Updated config with solver peer 192.0.2.10:8666
+✓ Connected to solver at 192.0.2.10:8666
 ```
 ````
+
+Other outcomes include `Solver address must be in format [IP:Port]`, `✗ Failed to update config: …`, `✗ Could not connect to farmer. Make sure farmer is running.`, or `✗ Failed to connect to solver: …`.
 
 </details>
 
@@ -157,11 +171,26 @@ chia plotnft show -f 2121994410
 
 Response:
 
+Printed by [`pprint_pool_wallet_state`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plotnft_funcs.py) / [`pprint_all_pool_wallet_state`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plotnft_funcs.py). Example for a self-pooling wallet (addresses and ids vary):
+
 ````mdx-code-block
 ```text
-(Multi-line listing of plot NFT wallets, launcher ids, pool state, and URLs — format matches your wallet and plot NFT count.)
+Wallet height: 4100123
+Sync status: Synced
+Wallet ID: 3
+Current state: SELF_POOLING
+Current state from block height: 3050000
+Launcher ID: 0x7f8e9d0c1b2a345678901234567890abcdef1234567890abcdef1234567890
+Target address (not for plotting): xch1jgfdw46k802z8e5ms70mywcahtwj7wur46x8z69uchpvgazmyjqsr92pf
+Number of plots: 8
+Owner public key: 0xabcdef...
+Pool contract address (use ONLY for plotting - do not send money to this address): xch1qpuzafwenx85x8stjslepmumcyu09t23zppgyq6wlsq5xtxw75xs00xewp
+Claimable balance: 0.0 xch
+
 ```
 ````
+
+Pool-farming states add lines such as `Current pool URL:`, `Current difficulty:`, `Points balance:`, and payout lines from the same function.
 
 </details>
 
@@ -186,29 +215,25 @@ Options:
 <details>
 <summary>Example</summary>
 
-Create a self-farming plot NFT:
-
 ````mdx-code-block
 ```bash
-chia plotnft create -s local -m 0.00005
-```
-````
-
-Create and join a pool (example URL):
-
-````mdx-code-block
-```bash
-chia plotnft create -s pool -u https://pool.example.com -m 0.00005
+chia plotnft create -s local -m 0.00005 -y
 ```
 ````
 
 Response:
 
+[`create`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plotnft_funcs.py) prints intent, then on submission uses [`transaction_submitted_msg`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/cmds_util.py) and [`transaction_status_msg`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/cmds_util.py):
+
 ````mdx-code-block
 ```text
-(Transaction submission and confirmation prompts or summaries from the wallet — exact text depends on prompts and fees.)
+Will create a plot NFT.
+Transaction submitted to nodes: [{'peer_id': 'abcd1234…', 'inclusion_status': 'SUCCESS', 'error_msg': None}]
+Run 'chia wallet get_transaction -f 2121994410 -tx 0xd4e5f6a7b8c9012345678901234567890abcdef1234567890abcdef1234567890' to get status
 ```
 ````
+
+(`sent_to` entries mirror mempool submission status objects; exact JSON varies. Pool mode first prints pool headers from `create_pool_args` when fetching pool info.)
 
 </details>
 
