@@ -30,14 +30,17 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia farm summary
 chia farm summary -fp 8559 -p 8555
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 Farming status: Farming
 Total chia farmed: 2.5
 User transaction fees: 0.001
@@ -45,6 +48,7 @@ Block rewards: 2.499
 Last height farmed: 1500000
 ...
 ```
+````
 
 (Exact lines depend on sync state, services running, and wallet connectivity; connection errors list the RPC port that failed.)
 
@@ -69,17 +73,21 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia farm challenges -l 10
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 Hash: 0x... Index: 40
 Hash: 0x... Index: 41
 ...
 ```
+````
 
 </details>
 
@@ -101,15 +109,19 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia farm connect-solver 192.0.2.10:8666
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Confirmation or status from the farmer RPC client; connection errors appear if the farmer is not running.)
 ```
+````
 
 </details>
 
@@ -137,15 +149,19 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia plotnft show -f 2121994410
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Multi-line listing of plot NFT wallets, launcher ids, pool state, and URLs — format matches your wallet and plot NFT count.)
 ```
+````
 
 </details>
 
@@ -172,21 +188,27 @@ Options:
 
 Create a self-farming plot NFT:
 
+````mdx-code-block
 ```bash
 chia plotnft create -s local -m 0.00005
 ```
+````
 
 Create and join a pool (example URL):
 
+````mdx-code-block
 ```bash
 chia plotnft create -s pool -u https://pool.example.com -m 0.00005
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Transaction submission and confirmation prompts or summaries from the wallet — exact text depends on prompts and fees.)
 ```
+````
 
 </details>
 

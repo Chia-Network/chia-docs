@@ -26,16 +26,20 @@ Options:
 <details>
 <summary>Example (CLI)</summary>
 
+````mdx-code-block
 ```bash
 chia solver get_state
 chia solver get_state -sp 8667
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (JSON-style solver status when the service is running; if the solver is stopped you get a connection error naming the host and port.)
 ```
+````
 
 </details>
 
@@ -44,17 +48,21 @@ Response:
 
 See also Windows quoting notes on [RPC overview](/reference-client/rpc-reference/rpc).
 
+````mdx-code-block
 ```bash
 chia rpc solver get_state '{}'
 ```
+````
 
 Response:
 
+````mdx-code-block
 ```json
 {
   "started": true
 }
 ```
+````
 
 When TLS services are down, the client prints a connection error instead of JSON.
 

@@ -31,15 +31,19 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia peer harvester -c
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (List of peers reported by the harvester RPC; empty if only local farming.)
 ```
+````
 
 </details>
 

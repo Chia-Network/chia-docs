@@ -34,16 +34,20 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia show -s
 chia show -f
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Current blockchain state or fee tables from the full node; format is multi-line text and JSON-like summaries from RPC responses.)
 ```
+````
 
 </details>
 
@@ -73,15 +77,19 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia netspace -d 192
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Estimated effective farm space over the chosen window, printed from the netspace helper.)
 ```
+````
 
 </details>
 
@@ -108,16 +116,20 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia peer full_node -c
 chia peer full_node -a 203.0.113.5:8444
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (List of peers or confirmation after add/remove; errors surface TLS or connectivity problems.)
 ```
+````
 
 </details>
 
