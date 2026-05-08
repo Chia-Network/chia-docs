@@ -18,14 +18,14 @@ Usage: `chia farm summary [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command           | Type    | Required | Description                                                                                               |
-| :------------ | :--------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------- |
-| `-p`          | `--rpc-port`           | INTEGER | False    | Full node RPC port (see `full_node.rpc_port` in `config.yaml`).                                         |
-| `-wp`         | `--wallet-rpc-port`    | INTEGER | False    | Wallet RPC port (see `wallet.rpc_port`).                                                                  |
-| `-hp`         | `--harvester-rpc-port` | INTEGER | False    | Harvester RPC port for the local harvester (see `harvester.rpc_port`).                                  |
-| `-fp`         | `--farmer-rpc-port`    | INTEGER | False    | Farmer RPC port (see `farmer.rpc_port`).                                                                  |
-| `-i`          | `--include-pool-rewards` | None | False    | Include pool farming rewards in displayed totals.                                                       |
-| `-h`          | `--help`               | None    | False    | Show a help message and exit.                                                                           |
+| Short Command | Long Command             | Type    | Required | Description                                                            |
+| :------------ | :----------------------- | :------ | :------- | :--------------------------------------------------------------------- |
+| `-p`          | `--rpc-port`             | INTEGER | False    | Full node RPC port (see `full_node.rpc_port` in `config.yaml`).        |
+| `-wp`         | `--wallet-rpc-port`      | INTEGER | False    | Wallet RPC port (see `wallet.rpc_port`).                               |
+| `-hp`         | `--harvester-rpc-port`   | INTEGER | False    | Harvester RPC port for the local harvester (see `harvester.rpc_port`). |
+| `-fp`         | `--farmer-rpc-port`      | INTEGER | False    | Farmer RPC port (see `farmer.rpc_port`).                               |
+| `-i`          | `--include-pool-rewards` | None    | False    | Include pool farming rewards in displayed totals.                      |
+| `-h`          | `--help`                 | None    | False    | Show a help message and exit.                                          |
 
 <details>
 <summary>Example</summary>
@@ -72,11 +72,11 @@ Usage: `chia farm challenges [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command        | Type    | Required | Description                                                                 |
-| :------------ | :------------------ | :------ | :------- | :-------------------------------------------------------------------------- |
-| `-fp`         | `--farmer-rpc-port` | INTEGER | False    | Farmer RPC port.                                                            |
-| `-l`          | `--limit`           | INTEGER | False    | Max challenges to print; `0` disables the limit [default: 20].             |
-| `-h`          | `--help`            | None    | False    | Show a help message and exit.                                              |
+| Short Command | Long Command        | Type    | Required | Description                                                    |
+| :------------ | :------------------ | :------ | :------- | :------------------------------------------------------------- |
+| `-fp`         | `--farmer-rpc-port` | INTEGER | False    | Farmer RPC port.                                               |
+| `-l`          | `--limit`           | INTEGER | False    | Max challenges to print; `0` disables the limit [default: 20]. |
+| `-h`          | `--help`            | None    | False    | Show a help message and exit.                                  |
 
 <details>
 <summary>Example</summary>
@@ -110,10 +110,10 @@ Usage: `chia farm connect-solver [OPTIONS] SOLVER_ADDRESS`
 
 Options:
 
-| Short Command | Long Command        | Type    | Required | Description                     |
-| :------------ | :------------------ | :------ | :------- | :------------------------------ |
-| `-fp`         | `--farmer-rpc-port` | INTEGER | False    | Farmer RPC port.                |
-| `-h`          | `--help`            | None    | False    | Show a help message and exit.   |
+| Short Command | Long Command        | Type    | Required | Description                   |
+| :------------ | :------------------ | :------ | :------- | :---------------------------- |
+| `-fp`         | `--farmer-rpc-port` | INTEGER | False    | Farmer RPC port.              |
+| `-h`          | `--help`            | None    | False    | Show a help message and exit. |
 
 <details>
 <summary>Example</summary>
@@ -153,12 +153,12 @@ Usage: `chia plotnft show [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command       | Type    | Required | Description                                                                                       |
-| :------------ | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------ |
-| `-f`          | `--fingerprint`    | INTEGER | False    | Fingerprint of the wallet to use.                                                                |
-| `-wp`         | `--wallet-rpc_port`| INTEGER | False    | Wallet RPC port (see `wallet.rpc_port` in `config.yaml`).                                       |
-| `-i`          | `--id`             | INTEGER | False    | Wallet id to use.                                                                                 |
-| `-h`          | `--help`           | None    | False    | Show a help message and exit.                                                                    |
+| Short Command | Long Command        | Type    | Required | Description                                               |
+| :------------ | :------------------ | :------ | :------- | :-------------------------------------------------------- |
+| `-f`          | `--fingerprint`     | INTEGER | False    | Fingerprint of the wallet to use.                         |
+| `-wp`         | `--wallet-rpc_port` | INTEGER | False    | Wallet RPC port (see `wallet.rpc_port` in `config.yaml`). |
+| `-i`          | `--id`              | INTEGER | False    | Wallet id to use.                                         |
+| `-h`          | `--help`            | None    | False    | Show a help message and exit.                             |
 
 <details>
 <summary>Example</summary>
@@ -202,15 +202,15 @@ Usage: `chia plotnft create [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command       | Type        | Required | Description                                                                                   |
-| :------------ | :----------------- | :---------- | :------- | :-------------------------------------------------------------------------------------------- |
-| `-f`          | `--fingerprint`    | INTEGER     | False    | Fingerprint of the wallet to use.                                                            |
-| `-wp`         | `--wallet-rpc_port`| INTEGER     | False    | Wallet RPC port.                                                                             |
-| `-s`          | `--state`          | CHOICE  | True     | `local` (self-farming) or `pool` (see `chia plotnft create -h`).                              |
-| `-u`          | `--pool-url`       | TEXT        | False    | HTTPS host:port of the pool; required when `--state` is `pool`.                               |
-| `-m`          | `--fee`            | XCH         | True     | Fee per transaction in XCH (used twice: singleton creation and init) [default: 0].             |
-| `-y`          | `--yes`            | None        | False    | No prompts.                                                                                  |
-| `-h`          | `--help`           | None        | False    | Show a help message and exit.                                                                |
+| Short Command | Long Command        | Type    | Required | Description                                                                        |
+| :------------ | :------------------ | :------ | :------- | :--------------------------------------------------------------------------------- |
+| `-f`          | `--fingerprint`     | INTEGER | False    | Fingerprint of the wallet to use.                                                  |
+| `-wp`         | `--wallet-rpc_port` | INTEGER | False    | Wallet RPC port.                                                                   |
+| `-s`          | `--state`           | CHOICE  | True     | `local` (self-farming) or `pool` (see `chia plotnft create -h`).                   |
+| `-u`          | `--pool-url`        | TEXT    | False    | HTTPS host:port of the pool; required when `--state` is `pool`.                    |
+| `-m`          | `--fee`             | XCH     | True     | Fee per transaction in XCH (used twice: singleton creation and init) [default: 0]. |
+| `-y`          | `--yes`             | None    | False    | No prompts.                                                                        |
+| `-h`          | `--help`            | None    | False    | Show a help message and exit.                                                      |
 
 <details>
 <summary>Example</summary>
@@ -239,14 +239,14 @@ Run 'chia wallet get_transaction -f 2121994410 -tx 0xd4e5f6a7b8c9012345678901234
 
 ### Other `chia plotnft` subcommands
 
-| Command                      | Purpose                                                                       |
-| :--------------------------- | :---------------------------------------------------------------------------- |
-| `join`                       | Join a plot NFT to a pool (`-u` pool URL required).                           |
-| `leave`                      | Leave a pool and return to self-farming.                                      |
-| `claim`                      | Claim pool rewards.                                                           |
-| `inspect`                    | Detailed plot NFT JSON (wallet options `-f`, `-wp`, `-i`).                   |
-| `get_login_link`             | Pool login link (`-l` / `--launcher_id` required).                            |
-| `change_payout_instructions` | Update payout address (`-l` launcher id, `-a` address).                       |
+| Command                      | Purpose                                                    |
+| :--------------------------- | :--------------------------------------------------------- |
+| `join`                       | Join a plot NFT to a pool (`-u` pool URL required).        |
+| `leave`                      | Leave a pool and return to self-farming.                   |
+| `claim`                      | Claim pool rewards.                                        |
+| `inspect`                    | Detailed plot NFT JSON (wallet options `-f`, `-wp`, `-i`). |
+| `get_login_link`             | Pool login link (`-l` / `--launcher_id` required).         |
+| `change_payout_instructions` | Update payout address (`-l` launcher id, `-a` address).    |
 
 Run `chia plotnft <command> -h` for the full option table of each subcommand.
 
