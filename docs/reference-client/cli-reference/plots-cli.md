@@ -21,19 +21,23 @@ Usage: `chia plots show`
 
 List directories where the harvester searches for plots:
 
+````mdx-code-block
 ```bash
 chia plots show
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 Directories where plots are being searched for:
 Note that subdirectories must be added manually
 Add with 'chia plots add -d [dir]' and remove with 'chia plots remove -d [dir]' Scan and check plots with 'chia plots check'
 
 /home/user/plots
 ```
+````
 
 (Your paths will differ.)
 
@@ -57,15 +61,19 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia plots add -d /mnt/chia/plots
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 Successfully added: /mnt/chia/plots
 ```
+````
 
 </details>
 
@@ -87,15 +95,19 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia plots remove -d /mnt/old-plots
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 Successfully removed: /mnt/old-plots
 ```
+````
 
 </details>
 
@@ -133,15 +145,19 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia plots create -k 32 -n 1 -t /tmp/chia -d /plots/final
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Plotting progress output; format depends on Chiapos and logging.)
 ```
+````
 
 </details>
 
@@ -171,15 +187,19 @@ Options:
 
 Run a standard check on paths matching `DriveA`:
 
+````mdx-code-block
 ```bash
 chia plots check -n 30 -g DriveA
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Per-plot challenge results and a summary of proofs versus expected counts.)
 ```
+````
 
 </details>
 
@@ -188,15 +208,19 @@ Response:
 
 List duplicate plot IDs only:
 
+````mdx-code-block
 ```bash
 chia plots check -l -n 0
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Output lists any duplicate plot filenames / IDs found.)
 ```
+````
 
 </details>
 
