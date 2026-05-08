@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # CLI Commands Reference
 
-This **CLI overview** is the entry point for command-line usage, similar to the [RPC overview](/reference-client/rpc-reference/rpc) for JSON-RPC. It explains global options, where the `chia` binary lives, and links into **service CLI pages** that mirror the **RPC reference** layout ([Full Node CLI](/reference-client/cli-reference/full-node-cli), [Farmer CLI](/reference-client/cli-reference/farmer-cli), [Harvester CLI](/reference-client/cli-reference/harvester-cli), [Solver CLI](/reference-client/cli-reference/solver-cli), wallet and asset topics, and more).
+This **CLI overview** is the entry point for command-line usage, similar to the [RPC overview](/reference-client/rpc-reference/rpc) for JSON-RPC. It documents global options, where the `chia` binary lives, and links into service CLI pages listed in the [CLI reference map](#related-cli-references).
 
 Always check `chia -h` and `chia <command> -h` for the exact flags your build exposes. Examples:
 
@@ -21,7 +21,7 @@ Always check `chia -h` and `chia <command> -h` for the exact flags your build ex
 
 Browse [`chia/cmds`](https://github.com/Chia-Network/chia-blockchain/tree/main/chia/cmds) for implementation details.
 
-## Global options {#global-options}
+## Global CLI options {#global-cli-options}
 
 The root `chia` command accepts:
 
@@ -48,6 +48,7 @@ The root `chia` command accepts:
 - [Clawback](/reference-client/cli-reference/clawback-cli)
 - [Simulator](/reference-client/cli-reference/simulator-cli)
 - [Plotters](/reference-client/cli-reference/plotter-cli)
+- [Plots CLI](/reference-client/cli-reference/plots-cli)
 - [DID](/reference-client/cli-reference/did-cli) and [NFT](/reference-client/cli-reference/nft-cli)
 - [DAO CLI](/reference-client/cli-reference/dao-cli) (historical: the DAO wallet was [removed in Chia 2.5.3](https://github.com/Chia-Network/chia-blockchain/blob/main/CHANGELOG.md#253-chia-blockchain-2025-03-25))
 
@@ -156,130 +157,136 @@ The cli reference for all plotters can be found in the [Plotters CLI Page](/refe
 
 ## plotnft {#plotnft}
 
-`chia plotnft` manages plot NFTs and pool membership through the wallet RPC. Run `chia plotnft -h` for subcommands (`show`, `create`, `join`, `leave`, `claim`, `inspect`, `get_login_link`, and others). Full reference and examples: [Farmer CLI, Plot NFT](/reference-client/cli-reference/farmer-cli#plot-nft).
+`chia plotnft` manages plot NFTs and pool membership through the wallet RPC. Command tables, pooling flows, and more examples are on [Farmer CLI, Plot NFT](/reference-client/cli-reference/farmer-cli#plot-nft).
+
+Subcommands from `chia plotnft -h`:
+
+```text
+Usage: chia plotnft [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  claim           Claim rewards from a plot NFT
+  create          Create a plot NFT
+  get_login_link  Create a login link for a pool. To get the launcher id, use plotnft show.
+  inspect         Get Detailed plotnft information as JSON
+  join            Join a plot NFT to a Pool
+  leave           Leave a pool and return to self-farming
+  show            Show plotnft information
+```
+
+<details>
+<summary>Example</summary>
+
+```bash
+chia plotnft show
+chia plotnft create -u https://pool.example.com
+chia plotnft create -s local
+```
+
+</details>
 
 ## plots {#plots}
 
-Plot directory and validation commands. Source: [`chia/cmds/plots.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plots.py). For MadMax, Bladebit, and other plotters, see [Plotters CLI](/reference-client/cli-reference/plotter-cli).
-
-### `chia plots show`
-
-Lists directories configured for plot search (same paths the harvester uses).
-
-### `chia plots add`
-
-Usage: `chia plots add -d DIRECTORY`
-
-Adds a plot directory to `config.yaml` so farming software will scan it.
-
-### `chia plots remove`
-
-Usage: `chia plots remove -d DIRECTORY`
-
-Removes a plot directory from the configured search list.
-
-### Plots check {#plots-check}
-
-Source: [`chia/plotting/check_plots.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/plotting/check_plots.py).
-
-Command: `chia plots check -n [num checks] -l -g [substring]`
-
-First, this looks in all plot directories from your config.yaml. You can check those directories with `chia plots show`. This command will check whether plots are valid given the plot's associated keys and your machine's stored Chia keys, as well as test the plot with challenges to identify found plots vs. expected number of plots.
-
-`-g` check only plots with directory or file name containing case-sensitive [substring].
-**If `-g` isn't specified all plots in every plot directory in your config.yaml will be checked.**
-
-Examples for using `-g`
-
-- Check plots within a long directory name like `/mnt/chia/DriveA` can use `chia plots check -g DriveA`
-- Check only k33 plots can use `chia plots check -g k33`
-- Check plots created on October 31, 2020 can use `chia plots check -g 2020-10-31`
-
-`-l` allows you to find duplicate plots by ID. It checks all plot directories listed in config.yaml and lists out any plot filenames with the same filename ending; `*-[64 char plot ID].plot`. You should use `-l -n 0` if you only want to check for duplicates.
-
-`-n` represents the number of challenges given. If you don't include an `-n` integer, the default is 30. For instance, if `-n` is 30, then 30 challenges will be given to each plot. The challenges count from 5 (minimum) to `-n`, and are not random.
-
-Each plot will take each challenge and:
-
-- Get the quality for the challenge (Is there a proof of space? You should expect 1 proof per challenge, but there may be 0 or more than 1.)
-- Get the full proof(s) for the challenge if a proof was present
-- Validate that the # of full proofs matches the # of expected quality proofs.
-
-Finally, you'll see a report the final true proofs vs. expected proofs.
-
-Therefore, if `-n` is 20, you would expect 20 proofs, but your plot may have more or fewer.
-
-Running the command with `-n 10` or `-n 20` is good for a very minor check, but won't actually give you much information about if the plots are actually high-quality or not.
-
-Consider using `-n 30` to get a statistically better idea.
-
-For more detail, you can read about the DiskProver commands in [chiapos](https://github.com/Chia-Network/chiapos/blob/main/src/prover_disk.hpp)
-
-**What does the ratio of full proofs vs expected proofs mean?**
-
-- If the ratio is >1, your plot was relatively lucky for this run of challenges.
-- If the ratio is \<1, your plot was relatively unlucky.
-  - This shouldn't really concern you unless your ratio is \<0.70 # If so, do a more thorough `chia plots check` by increasing your `-n`
-
-The plots check challenge is a static challenge. For example if you run a plots check 20 times, with 30 tries against the same file, it will produce the same result every time. So while you may see a plot ratio \<< 1 for a plot check with `x` number of tries, it does not mean that the plot itself is worthless. It just means that given these static challenges, the plot is producing however many proofs. As the number of tries (`-n`) increases, we would expect the ratio to not be \<< 1. Since Mainnet is live, and given that the blockchain has new challenges with every signage point - just because a plot is having a bad time with one specific challenge, does not mean it has the same results versus another challenge. "Number of plots" and "k-size" are much more influential factors at winning blocks than "proofs produced per challenge".
-
-**In theory**, a plot with a ratio >> 1 would be more likely to win challenges on the blockchain. Likewise, a plot with a ratio \<< 1 would be less likely to win. However, in practice, this isn't actually going to be noticeable. Therefore, don't worry if your plot check ratios are less than 1, unless they're _significantly_ less than 1 for _many_ `-n`.
+The `chia plots` command group lists configured directories, adds or removes plot search paths, can run legacy `create`, and validates plots with `check`. Full option tables and `plots check` guidance are on [Plots CLI](/reference-client/cli-reference/plots-cli) (including [Plots check](/reference-client/cli-reference/plots-cli#plots-check)). For Bladebit, MadMax, and other external plotters, see [Plotters CLI](/reference-client/cli-reference/plotter-cli).
 
 ## db {#db}
 
-## [upgrade](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+The `chia db` commands upgrade the blockchain database format, create a vacuumed backup, or validate an existing file. Paths usually follow `full_node.database_path` in `config.yaml` under your Chia root. Source module: [`chia/cmds/db.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py).
 
-Command: `chia db upgrade [add flags and parameters]`
+### upgrade {#upgrade}
+
+Implementation: [`db_upgrade_cmd`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+
+Command: `chia db upgrade [OPTIONS]`
 
 **Flags**
 
-`--input [PATH]`: (optional) Specify a database input file. Must be a v1 database.
+`--input [PATH]`: Optional v1 database input file.
 
-`--output [PATH]`: (optional) Specify a database output file. Can be any name, but must not already exist.
+`--output [PATH]`: Optional v2 output path (must not exist unless workflow allows).
 
-`--no-update-config` Don't update the config file to point to your new database. When specifying a custom output file, the config will not be updated regardless.
+`--no-update-config`: Do not rewrite `config.yaml` to point at the new database (also applies when using a custom output path in typical setups).
+
+`--force`: Proceed despite warnings when the upgrade tool would otherwise stop.
 
 **Database upgrade notes**
 
 - This will upgrade your database from version 1 to version 2, which is around 45% smaller and slightly faster.
 - The upgrade could take several hours to complete. Use at your own leisure.
 - You do not need to stop your Chia node while performing the upgrade.
-- The new database file will be written to the same folder as the original. The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this — plan accordingly_. After the version 2 file has been created, you can stop Chia and move/delete your version 1 file, which will free up enough space to move your version 2 file to the original folder. Finally, update the references in config.yaml to point to your version 2 file.
+- The new database file will be written to the same folder as the original. The current size requirement (2nd quarter 2022) is around 55 GB. _Note that the database is always growing, so the size requirement for the v2 database will have gone up by the time you are reading this, so plan free disk space accordingly._ After the version 2 file has been created, you can stop Chia and move/delete your version 1 file, which will free up enough space to move your version 2 file to the original folder. Finally, update the references in config.yaml to point to your version 2 file.
 - After the upgrade has completed, run `chia start farmer -r`. This will restart your farmer, and begin using your new database. Note that it will have the same peak as version 1 at the time you _initiated_ the upgrade. Your node will still need to run a short sync to fetch the remaining blocks that had gotten added while the upgrade was being performed.
 - For more information on the new database version, see our [FAQ](https://docs.chia.net/chia-blockchain/resources/faq/#what-is-the-new-database).
 
-## [backup](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+<details>
+<summary>Example</summary>
 
-Command: `chia db backup [add flags and parameters]`
+```bash
+chia db upgrade
+chia db upgrade --input ~/.chia/mainnet/db/blockchain_v1_mainnet.sqlite --output ~/.chia/mainnet/db/blockchain_v2_mainnet.sqlite
+```
+
+</details>
+
+### backup {#backup}
+
+Implementation: [`db_backup_cmd`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+
+Command: `chia db backup [OPTIONS]`
 
 **Flags**
 
-`--backup_file [PATH]`: (optional) Specifies the backup file and location. Default will create the backup in the same directory as the database.
+`--backup_file [PATH]`: Optional backup path. Default writes next to the active database.
 
-`--no_indexes`: (optional) Create backup without indexes.
+`--no_indexes`: Write the backup without indexes.
 
 **Database backup notes**
 
 - This will vacuum (compress) and backup your database and may take several hours to complete. Use at your own leisure.
-- You do not need to stop your Chia node while performing the upgrade.
-- The new database file will be written to the same folder as the original with "vacuumed\_" prepended to the name.
-- To use the backup database: Close the chia client, remove/delete the main database, rename the backup database to remove "vacuumed\_", and restart the chia client. Note the initial start will take extra time as the client verifies the backup db file.
+- You do not need to stop your Chia node during backup.
+- The new database file will be written to the same folder as the original with `vacuumed_` prepended to the name unless you pass `--backup_file`.
+- To use the backup database: close the Chia client, remove or rename the main database, rename the backup to replace it, and restart the client. The first start may take longer while the client verifies the file.
 
-## [validate](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+<details>
+<summary>Example</summary>
 
-Command: `chia db validate [add flags and parameters]`
+```bash
+chia db backup
+chia db backup --backup_file ~/chia-db-backup.sqlite
+```
+
+</details>
+
+### validate {#validate}
+
+Implementation: [`db_validate_cmd`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/db.py)
+
+Command: `chia db validate [OPTIONS]`
 
 **Flags**
 
-`--db [PATH]`: (optional) Specifies which database file to validate. Default will use the default database and path.
+`--db [PATH]`: Database file to validate (defaults to the configured blockchain database).
 
-`--validate-blocks`: (optional) Validate consistency of properties of the encoded blocks and block records. Note this will increase the validation time.
+`--validate-blocks`: Also validate encoded blocks and block records (slower).
 
 **Database validate notes**
 
-- This will validate your database and may take several hours to complete. Use at your own leisure.
-- You do not need to stop your Chia node while performing the upgrade.
-- This will start by processing the latest block and traverse to the first block.
+- Validation may take several hours on a full chain database.
+- You do not need to stop your Chia node while validating.
+- Processing starts from the tip and walks toward genesis.
+
+<details>
+<summary>Example</summary>
+
+```bash
+chia db validate
+chia db validate --validate-blocks
+```
+
+</details>
 
 ## keys {#keys}
 
@@ -388,9 +395,11 @@ See our [official NFT reference](/reference-client/cli-reference/nft-cli).
 
 ## dev {#dev}
 
-## mempool
+Developer-focused commands (experimental or diagnostic). Mempool helpers below target Chia 2.5.5 and later. For the simulator service, see [Simulator CLI](/reference-client/cli-reference/simulator-cli).
 
-The `chia dev mempool` commands provide developer tools for managing and analyzing the mempool. These commands are available in Chia 2.5.5 and later versions.
+### mempool
+
+The `chia dev mempool` commands manage or inspect mempool data for development and testing.
 
 ### import
 
@@ -452,7 +461,7 @@ The `chia data` command group is the CLI for the Chia DataLayer. For the full su
 
 ## solver {#solver}
 
-The `chia solver` command group queries the standalone Solver service. See [Solver CLI](/reference-client/cli-reference/solver-cli) for subcommands and farmer integration (`chia farm connect-solver`, [Farmer RPC](/reference-client/rpc-reference/farmer-rpc)).
+The `chia solver` command group queries the standalone Solver service. See [Solver CLI](/reference-client/cli-reference/solver-cli). To attach the farmer to a solver peer via RPC, see `connect_to_solver` on [Farmer RPC](/reference-client/rpc-reference/farmer-rpc). CLI helper: [`chia farm connect-solver`](/reference-client/cli-reference/farmer-cli#chia-farm-connect-solver).
 
 ---
 
@@ -466,7 +475,7 @@ Writes updates to `config.yaml` under your Chia root. Restart running services a
 | :--------------------------------------------- | :---------------------------------------------------------------- |
 | `-t`, `--testnet`                              | `true`/`t` or `false`/`f` for testnet profile.                    |
 | `--set-node-introducer`                        | Introducer `IP:Port` for the node.                                |
-| `--set-farmer-peer`                            | Farmer address for a **remote harvester** (`IP:Port`).            |
+| `--set-farmer-peer`                            | Farmer address for a remote harvester (`IP:Port`).                |
 | `--set-solver-peer`                            | Solver `IP:Port` for the farmer.                                  |
 | `--set-solver-trusted-peers-only`              | `true`/`false` for solver trusted-peer mode.                      |
 | `--set-fullnode-port`                          | Full node port (updates related peer defaults).                   |
@@ -513,7 +522,7 @@ Every command below is registered on the root CLI in [`chia/cmds/chia.py`](https
 | `passphrase` | Keyring passphrase                                                 | [passphrase](#passphrase).                                                                                                                                                                                                                          |
 | `peer`       | List or change peer connections                                    | [Full Node CLI](/reference-client/cli-reference/full-node-cli) (`peer full_node`), [Farmer CLI](/reference-client/cli-reference/farmer-cli), [Harvester CLI](/reference-client/cli-reference/harvester-cli); run `chia peer -h` for all node types. |
 | `plotnft`    | Plot NFT (pooling)                                                 | [plotnft](#plotnft) and [Farmer CLI](/reference-client/cli-reference/farmer-cli#plot-nft).                                                                                                                                                          |
-| `plots`      | Plot directories and plot checks                                   | [plots](#plots).                                                                                                                                                                                                                                    |
+| `plots`      | Plot directories and plot checks                                   | [plots](#plots), [Plots CLI](/reference-client/cli-reference/plots-cli).                                                                                                                                                                            |
 | `plotters`   | Launch bundled and third-party plotters                            | [plotters](#plotters).                                                                                                                                                                                                                              |
 | `rpc`        | Call JSON-RPC from the shell (“RPC client”)                        | [RPC introduction](/reference-client/rpc-reference/rpc); run `chia rpc -h` for CLI usage.                                                                                                                                                           |
 | `run_daemon` | Run the Chia daemon process                                        | Used when starting services; run `chia run_daemon -h`.                                                                                                                                                                                              |

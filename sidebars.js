@@ -284,6 +284,7 @@ module.exports = {
             'reference-client/cli-reference/nft-cli',
             'reference-client/cli-reference/offer-cli',
             'reference-client/cli-reference/plotter-cli',
+            'reference-client/cli-reference/plots-cli',
             'reference-client/cli-reference/simulator-cli',
             'reference-client/cli-reference/solver-cli',
             'reference-client/cli-reference/vc-cli',

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 This document provides a comprehensive reference to Chia's Solver RPC API. Routes defined on `SolverRpcApi` are merged with the shared HTTP RPC routes from `RpcServer` (for example connection management, logging, version, and health checks).
 
-The Solver participates in Proof of Space 2 (PoS2) farming with V2 plots. Farmers open a **peer** connection to the solver using [`connect_to_solver`](/reference-client/rpc-reference/farmer-rpc#connect_to_solver) on the farmer RPC (typically peer port **8666**, `solver.port`). **This page documents the Solver's HTTPS JSON-RPC interface** on `solver.rpc_port` (default **8667**).
+The Solver participates in Proof of Space 2 (PoS2) farming with V2 plots. Farmers open a peer connection to the solver using `connect_to_solver` on [Farmer RPC](/reference-client/rpc-reference/farmer-rpc) (typically peer port 8666, `solver.port`). This page documents the Solver's HTTPS JSON-RPC interface on `solver.rpc_port` (default 8667).
 
 :::note Peer port versus RPC port
 
