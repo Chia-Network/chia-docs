@@ -161,6 +161,7 @@ The cli reference for all plotters can be found in the [Plotters CLI Page](/refe
 
 Subcommands from `chia plotnft -h`:
 
+````mdx-code-block
 ```text
 Usage: chia plotnft [OPTIONS] COMMAND [ARGS]...
 
@@ -177,21 +178,26 @@ Commands:
   leave           Leave a pool and return to self-farming
   show            Show plotnft information
 ```
+````
 
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia plotnft show
 chia plotnft create -s pool -u https://pool.example.com -m 0.00005
 chia plotnft create -s local -m 0.00005
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Multi-line plot NFT status from `show`, or transaction output from `create` — see [Farmer CLI](/reference-client/cli-reference/farmer-cli#plot-nft) for the full option tables.)
 ```
+````
 
 </details>
 
@@ -233,16 +239,20 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia db upgrade
 chia db upgrade --input ~/.chia/mainnet/db/blockchain_v1_mainnet.sqlite --output ~/.chia/mainnet/db/blockchain_v2_mainnet.sqlite
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Progress and completion messages from the upgrade tool; failures print FAILED: … with a reason.)
 ```
+````
 
 </details>
 
@@ -272,16 +282,20 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia db backup
 chia db backup --backup_file ~/chia-db-backup.sqlite
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Status lines from the vacuum/backup step; long runs may take hours on large databases.)
 ```
+````
 
 </details>
 
@@ -310,16 +324,20 @@ Options:
 <details>
 <summary>Example</summary>
 
+````mdx-code-block
 ```bash
 chia db validate
 chia db validate --validate-blocks
 ```
+````
 
 Response:
 
-```
+````mdx-code-block
+```text
 (Validation progress from tip toward genesis; failures print FAILED: … .)
 ```
+````
 
 </details>
 
