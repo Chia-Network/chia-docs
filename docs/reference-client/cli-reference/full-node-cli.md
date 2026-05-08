@@ -8,26 +8,41 @@ Commands that talk to the full node use its RPC interface (default port 8555, `f
 
 Sources: [`chia/cmds/show.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/show.py), [`chia/cmds/netspace.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/netspace.py), [`chia/cmds/peer.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer.py).
 
+## Reference
+
 ## `chia show`
+
+Functionality: Query blockchain and fee data through the full node. At least one main option is required (`no_args_is_help`); legacy connection flags still parse but print migration hints.
 
 Usage: `chia show [OPTIONS]`
 
-Shows blockchain and fee information via the full node. At least one option is required (`no_args_is_help`).
+Options:
 
-| Option                                 | Description                                                             |
-| :------------------------------------- | :---------------------------------------------------------------------- |
-| `-p`, `--rpc-port`                     | Full node RPC port (see `full_node.rpc_port` in `config.yaml`).         |
-| `-f`, `--fee`                          | Show fee information.                                                   |
-| `-s`, `--state`                        | Show current blockchain state (sync height, peak hash, recent headers). |
-| `-bh`, `--block-header-hash-by-height` | Look up a block header hash by height (`INTEGER`).                      |
-| `-b`, `--block-by-header-hash`         | Look up a block by header hash (`TEXT`).                                |
+| Short Command | Long Command                    | Type    | Required | Description                                                     |
+| :------------ | :------------------------------ | :------ | :------- | :-------------------------------------------------------------- |
+| `-p`          | `--rpc-port`                    | INTEGER | False    | Full node RPC port (see `full_node.rpc_port` in `config.yaml`). |
+| `-wp`         | `--wallet-rpc-port`             | INTEGER | False    | Parsed for compatibility; prints a message that it is unused.   |
+| `-f`          | `--fee`                         | None    | False    | Show fee information.                                           |
+| `-s`          | `--state`                       | None    | False    | Show current blockchain state (sync, peak, recent headers).     |
+| `-c`          | `--connections`                 | None    | False    | Renamed: prints guidance to use `chia peer full_node -c`.       |
+| `-a`          | `--add-connection`              | TEXT    | False    | Renamed: prints guidance to use `chia peer full_node -a`.       |
+| `-r`          | `--remove-connection`           | TEXT    | False    | Renamed: prints guidance to use `chia peer full_node -r`.       |
+| `-bh`         | `--block-header-hash-by-height` | INTEGER | False    | Look up a block header hash by height.                          |
+| `-b`          | `--block-by-header-hash`        | TEXT    | False    | Look up a block by header hash.                                 |
+| `-h`          | `--help`                        | None    | False    | Show a help message and exit.                                   |
 
 <details>
 <summary>Example</summary>
 
 ```bash
 chia show -s
-chia show --fee
+chia show -f
+```
+
+Response:
+
+```
+(Current blockchain state or fee tables from the full node; format is multi-line text and JSON-like summaries from RPC responses.)
 ```
 
 </details>
@@ -38,17 +53,22 @@ chia show --fee
 
 :::
 
+---
+
 ## `chia netspace`
+
+Functionality: Estimate total network space from full node chain data.
 
 Usage: `chia netspace [OPTIONS]`
 
-Estimates total network space from full node chain data.
+Options:
 
-| Option                       | Description                                                                                     |
-| :--------------------------- | :---------------------------------------------------------------------------------------------- |
-| `-p`, `--rpc-port`           | Full node RPC port.                                                                             |
-| `-d`, `--delta-block-height` | Block spacing for the estimate (default `4608`, about one day). Use `192` for roughly one hour. |
-| `-s`, `--start`              | Newest block height to anchor the calculation (default: peak).                                  |
+| Short Command | Long Command           | Type    | Required | Description                                                                   |
+| :------------ | :--------------------- | :------ | :------- | :---------------------------------------------------------------------------- |
+| `-p`          | `--rpc-port`           | INTEGER | False    | Full node RPC port.                                                           |
+| `-d`          | `--delta-block-height` | TEXT    | False    | Block spacing for the estimate [default: 4608]. Use `192` for about one hour. |
+| `-s`          | `--start`              | TEXT    | False    | Newest block height to anchor the calculation (default: peak).                |
+| `-h`          | `--help`               | None    | False    | Show a help message and exit.                                                 |
 
 <details>
 <summary>Example</summary>
@@ -57,20 +77,33 @@ Estimates total network space from full node chain data.
 chia netspace -d 192
 ```
 
+Response:
+
+```
+(Estimated effective farm space over the chosen window, printed from the netspace helper.)
+```
+
 </details>
+
+---
 
 ## `chia peer full_node`
 
-Usage: `chia peer full_node [OPTIONS]`
+Functionality: Inspect or change full node peer connections (same RPC service as `chia show`).
 
-Inspect or change full node peer connections (same RPC service as `chia show`).
+Usage: `chia peer [OPTIONS] NODE_TYPE`
 
-| Option                      | Description                                                    |
-| :-------------------------- | :------------------------------------------------------------- |
-| `-p`, `--rpc-port`          | RPC port for the service you are addressing (here: full node). |
-| `-c`, `--connections`       | List peers connected to this full node.                        |
-| `-a`, `--add-connection`    | Connect to another node `ip:port`.                             |
-| `-r`, `--remove-connection` | Remove a peer by the first 8 characters of its node id.        |
+Use `full_node` as `NODE_TYPE` for full-node peers. Supported values include `base`, `farmer`, `wallet`, `full_node`, `harvester`, `data_layer`, `simulator`, and `solver` (see `chia peer -h`).
+
+Options:
+
+| Short Command | Long Command          | Type    | Required | Description                                                       |
+| :------------ | :-------------------- | :------ | :------- | :---------------------------------------------------------------- |
+| `-p`          | `--rpc-port`          | INTEGER | False    | RPC port for the service you address (`full_node.rpc_port` here). |
+| `-c`          | `--connections`       | None    | False    | List peers connected to this node type.                           |
+| `-a`          | `--add-connection`    | TEXT    | False    | Connect to another node `ip:port`.                                |
+| `-r`          | `--remove-connection` | TEXT    | False    | Remove a peer by the first 8 characters of its node id.           |
+| `-h`          | `--help`              | None    | False    | Show a help message and exit.                                     |
 
 <details>
 <summary>Example</summary>
@@ -80,9 +113,15 @@ chia peer full_node -c
 chia peer full_node -a 203.0.113.5:8444
 ```
 
+Response:
+
+```
+(List of peers or confirmation after add/remove; errors surface TLS or connectivity problems.)
+```
+
 </details>
 
-Other `chia peer <node_type>` targets (`farmer`, `wallet`, `harvester`, `data_layer`, `simulator`, `solver`) are documented on [Farmer CLI](/reference-client/cli-reference/farmer-cli), [Harvester CLI](/reference-client/cli-reference/harvester-cli), and related pages as applicable.
+Other `chia peer <node_type>` targets (`farmer`, `wallet`, `harvester`, `data_layer`, `simulator`, `solver`, …) use the same option shape with that service’s RPC port — see [Farmer CLI](/reference-client/cli-reference/farmer-cli), [Harvester CLI](/reference-client/cli-reference/harvester-cli), and related pages.
 
 ## Related
 

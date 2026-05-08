@@ -4,22 +4,29 @@ title: Harvester CLI
 slug: /reference-client/cli-reference/harvester-cli
 ---
 
-There is no top-level `chia harvester` group. Start the harvester with `chia start harvester` (see the `start` section on the [CLI overview](/reference-client/cli-reference/cli)) or via groups such as `farmer`. CLI operations below use the harvester RPC (default port 8560, `harvester.rpc_port`) or plot paths from `config.yaml`.
+There is no top-level `chia harvester` command group. Start the harvester with `chia start harvester` (see the `start` section on the [CLI overview](/reference-client/cli-reference/cli)) or via groups such as `farmer`. CLI operations below use the harvester RPC (default port 8560, `harvester.rpc_port`) or plot paths from `config.yaml`.
 
 HTTP JSON-RPC methods and payloads are documented on [Harvester RPC](/reference-client/rpc-reference/harvester-rpc). Use `chia rpc harvester <method> '<json>'` the same way as other services (see [RPC overview](/reference-client/rpc-reference/rpc)).
 
 Sources: [`chia/cmds/peer.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/peer.py), [`chia/cmds/plots.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/plots.py).
 
+## Reference
+
 ## `chia peer harvester`
 
-Usage: `chia peer harvester [OPTIONS]`
+Functionality: List or modify peer connections for the harvester RPC service.
 
-| Option                      | Description                                         |
-| :-------------------------- | :-------------------------------------------------- |
-| `-p`, `--rpc-port`          | Harvester RPC port.                                 |
-| `-c`, `--connections`       | List connections for this harvester.                |
-| `-a`, `--add-connection`    | Add a connection `ip:port`.                         |
-| `-r`, `--remove-connection` | Remove a peer by the first 8 characters of node id. |
+Usage: `chia peer [OPTIONS] harvester`
+
+Options:
+
+| Short Command | Long Command          | Type    | Required | Description                                         |
+| :------------ | :-------------------- | :------ | :------- | :-------------------------------------------------- |
+| `-p`          | `--rpc-port`          | INTEGER | False    | Harvester RPC port (`harvester.rpc_port`).          |
+| `-c`          | `--connections`       | None    | False    | List connections for this harvester.                |
+| `-a`          | `--add-connection`    | TEXT    | False    | Add a connection `ip:port`.                         |
+| `-r`          | `--remove-connection` | TEXT    | False    | Remove a peer by the first 8 characters of node id. |
+| `-h`          | `--help`              | None    | False    | Show a help message and exit.                       |
 
 <details>
 <summary>Example</summary>
@@ -28,7 +35,15 @@ Usage: `chia peer harvester [OPTIONS]`
 chia peer harvester -c
 ```
 
+Response:
+
+```
+(List of peers reported by the harvester RPC; empty if only local farming.)
+```
+
 </details>
+
+---
 
 ## Plot directories
 

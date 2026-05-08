@@ -8,25 +8,55 @@ The Solver service accepts JSON-RPC over TLS on port 8667 by default (`solver.rp
 
 Sources: [`chia/cmds/solver.py`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/solver.py).
 
-## `chia solver`
+## Reference
 
-### `chia solver get_state`
+## `chia solver get_state`
+
+Functionality: Return runtime state from the Solver service over the CLI helper (same data as `chia rpc solver get_state`).
 
 Usage: `chia solver get_state [OPTIONS]`
 
-Returns runtime state from the Solver service.
+Options:
 
-| Option                     | Description                                               |
-| :------------------------- | :-------------------------------------------------------- |
-| `-sp`, `--solver-rpc-port` | Solver RPC port (see `solver.rpc_port` in `config.yaml`). |
+| Short Command | Long Command        | Type    | Required | Description                                               |
+| :------------ | :------------------ | :------ | :------- | :-------------------------------------------------------- |
+| `-sp`         | `--solver-rpc-port` | INTEGER | False    | Solver RPC port (see `solver.rpc_port` in `config.yaml`). |
+| `-h`          | `--help`            | None    | False    | Show a help message and exit.                             |
 
 <details>
-<summary>Example</summary>
+<summary>Example (CLI)</summary>
 
 ```bash
 chia solver get_state
+chia solver get_state -sp 8667
+```
+
+Response:
+
+```
+(JSON-style solver status when the service is running; if the solver is stopped you get a connection error naming the host and port.)
+```
+
+</details>
+
+<details>
+<summary>Example (`chia rpc`)</summary>
+
+See also Windows quoting notes on [RPC overview](/reference-client/rpc-reference/rpc).
+
+```bash
 chia rpc solver get_state '{}'
 ```
+
+Response:
+
+```json
+{
+  "started": true
+}
+```
+
+When TLS services are down, the client prints a connection error instead of JSON.
 
 </details>
 
