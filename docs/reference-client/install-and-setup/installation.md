@@ -437,6 +437,22 @@ pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniu
   </TabItem>
   <TabItem value="FreeBSD" label="FreeBSD">
 
+{/_ Legacy anchors preserved for external links _/}
+<span id="upgrading-existing-chia-installs"></span>
+<span id="why-this-manual-installation"></span>
+<span id="notes-on-freenas-truenas"></span>
+<span id="other-notes"></span>
+<span id="discouraged"></span>
+<span id="pre-requisite-package-installation"></span>
+<span id="gcc-notes"></span>
+<span id="install-rust-python-and-everything-else"></span>
+<span id="repo-cloning-and-virtual-environment-venv-activation"></span>
+<span id="building-py-cryptography-from-ports"></span>
+<span id="clvm_rs"></span>
+<span id="install-py-cryptography-to-the-venv"></span>
+<span id="chia-modifications-and-building-chia-itself"></span>
+<span id="installed-and-ready-to-farm"></span>
+
 :::warning Community-Supported
 FreeBSD is not officially supported by the Chia team. These instructions are community-contributed and may lag behind the latest release. If you encounter issues, please report them in [chia-blockchain discussions](https://github.com/Chia-Network/chia-blockchain/discussions/8763).
 :::
@@ -520,6 +536,11 @@ chia configure --enable-upnp false
 
   </TabItem>
   <TabItem value="OpenBSD" label="OpenBSD">
+
+{/_ Legacy anchors preserved for external links _/}
+<span id="gui-build--usage"></span>
+<span id="prerequisite-package-installation"></span>
+<span id="launch-gui"></span>
 
 :::warning Community-Supported
 OpenBSD is not officially supported by the Chia team. These instructions are community-contributed and may lag behind the latest release.
