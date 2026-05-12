@@ -437,7 +437,8 @@ pip install --extra-index-url https://pypi.chia.net/simple chia-blockchain miniu
   </TabItem>
   <TabItem value="FreeBSD" label="FreeBSD">
 
-{/_ Legacy anchors preserved for external links _/}
+<!-- Legacy anchors preserved for external links -->
+
 <span id="upgrading-existing-chia-installs"></span>
 <span id="why-this-manual-installation"></span>
 <span id="notes-on-freenas-truenas"></span>
@@ -537,7 +538,8 @@ chia configure --enable-upnp false
   </TabItem>
   <TabItem value="OpenBSD" label="OpenBSD">
 
-{/_ Legacy anchors preserved for external links _/}
+<!-- Legacy anchors preserved for external links -->
+
 <span id="gui-build--usage"></span>
 <span id="prerequisite-package-installation"></span>
 <span id="launch-gui"></span>
