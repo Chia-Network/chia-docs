@@ -240,3 +240,146 @@ Token issuers can send messages with a variety of different topics. You can subs
 - /company/general
 - /company/airdrops
 - /company/meetups/miami
+
+## Transaction states
+
+These labels describe the lifecycle of a transaction in your vault. For more on clawbacks and pending activity, see [Clawback](#clawback) and the [FAQ](/cloud-wallet/faq/).
+
+### Transaction UNSIGNED
+
+The transaction is a draft. Your coins are still in your vault, but they are locked in reserve for the transaction.
+
+**Action:** Do one of the following:
+
+- Sign the transaction, after which it will automatically be submitted to the mempool.
+- Delete the transaction, which will unlock the coins for future use.
+
+### Transaction SIGNED
+
+The transaction is signed on your side; it has not been accepted into the mempool yet. The Chia Cloud Wallet will submit it automatically and once broadcast is accepted in the mempool, the status will update to Transaction MEMPOOL.
+
+If the mempool is busy or the fee is too low, it can take noticeable time before submission succeeds. Waits of up to about 45 minutes before the status advances beyond Transaction SIGNED are not unusual.
+
+**Action:** Wait for the status to advance (usually to Transaction MEMPOOL); if the transaction stays in Transaction SIGNED for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+
+### Transaction MEMPOOL
+
+The transaction has been submitted to the mempool (broadcast accepted). The associated coins have left your available balance, but the transaction is not yet confirmed in a block. If the mempool is busy and the fee is not large enough, waits of up to about 45 minutes for block inclusion are common.
+
+**Action:** Wait for the network to include the transaction in a block; if the transaction remains in this state for more than 45 minutes, please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+
+### Transaction PENDING
+
+The transaction is being prepared or is waiting on another step (for example vault coordination or signer availability) before it can be submitted or advance to the mempool. It is not yet fully signed or broadcast. **Action:** Complete any prompts or signing steps in the Cloud Wallet; if the status does not change for an extended time, refresh the app or contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+
+### Transaction SETTLED
+
+Transaction has completed and coins have successfully transferred to the destination. **Action:** None. Transaction is complete.
+
+### Transaction RE_ORG
+
+This transaction was part of a blockchain re-org and coins have not been transferred. **Action:** Confirm the coin status with the other party of the transaction and ensure they resync their vault as needed; you will likely need to recreate and submit this transaction from the initiating vault. If questions arise please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+
+### Transaction INVALID
+
+The transaction failed (likely due to low fees or a conflict) and coins have not been transferred. **Action:** Re-create the transaction with corrected details.
+
+## Offer states
+
+These labels describe the lifecycle of an offer. For context on vault-based offers, see [Known issues](/cloud-wallet/known-issues/).
+
+### Offer OPEN
+
+The offer is active and available for others to accept (others will need a copy of the offer file to accept it). Coins are reserved in your vault and may have been moved to an offer reservation address controlled by your vault (based on whether you enabled the auto-split feature when creating the offer). **Action:** Wait for a counterparty to accept or cancel the offer if you no longer wish to trade.
+
+### Offer MEMPOOL
+
+An acceptance of the offer has been broadcast to the network. The associated coins have left your available balance but are not yet confirmed. **Action:** Wait for the transaction to be included in a block; if the transaction remains in this state for more than 45 minutes please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+
+### Offer SETTLED
+
+The trade was successful and the exchange of coins is final. **Action:** None. The offer is complete.
+
+### Offer RE_ORG
+
+This offer was part of a blockchain re-org and coins have not been transferred. **Action:** Confirm the coin status with the other party and ensure they resync their vault as needed; you may need to recreate or resubmit this offer. If questions arise please contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+
+### Offer EXPIRED
+
+The time limit for this offer has passed and coins are no longer reserved. **Action:** Create a new offer if you still wish to trade.
+
+### Offer INVALID
+
+The offer can no longer be fulfilled (e.g., coins were spent elsewhere or fees were too low). **Action:** Remove the offer and create a new one with available funds.
+
+### Offer PENDING
+
+The offer is being prepared, validated, or updated; reserved coins may still be settling into the correct shape for the offer. **Action:** Wait for the status to advance to Open or another terminal state; if it stays pending for an extended time, try refreshing or contact our support team with the in-app form or in [discord](https://discord.gg/chia).
+
+## Vault recovery states
+
+These are workflow states during a vault [recovery](#recovery). See [Instant Recovery](#instant-recovery) and [Timelocked Recovery](#timelocked-recovery) for types of recovery.
+
+### Recovery IDLE
+
+No recovery is in progress, or the last recovery-related transaction has settled and the vault is no longer in an active recovery workflow. **Action:** None unless you intend to start or continue a recovery.
+
+### Recovery AWAITING_REVIEW
+
+A recovery request has been submitted and is waiting for review by a [recovery provider](#recovery-provider), when one is configured. **Action:** Wait for the provider; follow any email or in-app instructions. If nothing changes for an unusually long time, contact the recovery provider or support with the in-app form or in [discord](https://discord.gg/chia).
+
+### Recovery PENDING
+
+The recovery request is waiting for your signature (after provider approval, if applicable, or when using a direct recovery path). **Action:** Open the signing flow and complete the required signatures.
+
+### Recovery SIGNED
+
+The recovery transaction has been signed on your side but has not yet been submitted to the blockchain. **Action:** Wait for submission; if it remains here, retry or check connectivity, or contact support with the in-app form or in [discord](https://discord.gg/chia).
+
+### Recovery SUBMITTED
+
+The recovery transaction has been submitted to the blockchain and is awaiting confirmation or further processing. **Action:** Wait for block inclusion; see [Transaction MEMPOOL](#transaction-mempool) if you need general context on mempool behavior.
+
+### Recovery TIMELOCK
+
+The recovery has been processed by blockchain sync: your vault is in the recovery timelock period described under [Recovery timer](#recovery-timer) and [Recovery clawback](#recovery-clawback). **Action:** Monitor the timer; you can cancel the recovery with the spend key during this window if appropriate, or wait until the timelock completes.
+
+### Recovery TIMELOCK_COMPLETE
+
+The recovery timelock has completed according to chain state. You may [claw back](#clawback) the recovery attempt or finish the recovery, depending on your situation. **Action:** Follow the Cloud Wallet prompts to either complete recovery or cancel it.
+
+### Recovery FINISH_SIGNED
+
+The transaction to finish recovery has been signed but not yet submitted. **Action:** Wait for broadcast or complete any remaining submit step.
+
+### Recovery FINISH_SUBMITTED
+
+The finish-recovery transaction has been submitted to the blockchain. **Action:** Wait for confirmation before assuming recovery is complete.
+
+### Recovery CLAWBACK_SIGNED
+
+The transaction to claw back the recovery attempt has been signed but not yet submitted. **Action:** Wait for broadcast or complete any remaining submit step.
+
+### Recovery CLAWBACK_SUBMITTED
+
+The clawback transaction has been submitted to the blockchain. **Action:** Wait for confirmation and verify vault status in the vault.
+
+## Vault state
+
+These labels match high-level status shown in the Chia Cloud Wallet UI (heading names follow the in-app strings where noted). They overlap with [Vault recovery states](#vault-recovery-states) when a recovery is in progress. Unless referring to the Chia Cloud Wallet product by name, descriptions use vault for your custody.
+
+### Vault READY
+
+The vault is ready for transfers and normal operations.
+
+### Vault VAULT_PENDING_CREATE
+
+The vault singleton has been minted and is in the mempool; the vault is not fully ready until creation confirms.
+
+### Vault VAULT_RECOVERY_TIMELOCK
+
+The vault is in a recovery flow and the recovery timelock is active. You may be able to claw back the recovery or, after the timelock has passed, complete recovery; see Recovery TIMELOCK under [Vault recovery states](#vault-recovery-states).
+
+### Vault VAULT_RECOVERY_TIMELOCK_COMPLETE
+
+The vault’s recovery timelock has completed on chain. You can claw back the recovery attempt or finish recovery. **Action:** Follow in-app steps; see **Recovery TIMELOCK_COMPLETE** under [Vault recovery states](#vault-recovery-states).
