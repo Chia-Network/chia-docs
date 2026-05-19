@@ -471,12 +471,6 @@ pkg install bash git cmake gmake gmp rust python311 py311-sqlite3
 
 Adjust the Python version number (`python311`, `py311-sqlite3`) if your ports tree provides a different minor version (3.11, 3.12, etc.) as long as it is 3.10 or above.
 
-Bash is required because `install.sh` uses bash-specific syntax. If your login shell is not bash, either switch it or run `bash` before proceeding:
-
-```bash
-chsh -s /usr/local/bin/bash
-```
-
 Optional but recommended for remote sessions:
 
 ```bash
@@ -495,6 +489,18 @@ sh install.sh
 ```
 
 `install.sh` detects FreeBSD via `uname`, sets `MAKE=gmake` and `BUILD_VDF_CLIENT=N`, creates a Python virtual environment, installs Poetry, and resolves all dependencies from `pyproject.toml`.
+
+:::note miniupnpc build failure
+On some FreeBSD versions, Poetry may fail to build `miniupnpc` from source. If `install.sh` exits with errors related to `miniupnpc`, install it into the virtual environment manually and then re-run:
+
+```bash
+. ./.venv/bin/activate
+pip install miniupnpc
+deactivate
+sh install.sh
+```
+
+:::
 
 After installation completes, activate the environment and initialize Chia:
 
