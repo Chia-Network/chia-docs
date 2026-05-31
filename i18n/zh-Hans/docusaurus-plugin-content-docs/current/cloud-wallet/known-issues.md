@@ -6,7 +6,7 @@ slug: /cloud-wallet/known-issues
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This list was last updated on 2025-07-28. In addition to the items shown here, there are several minor UI/UX issues that we will also fix.
+This list was last updated on 2025-09-30. In addition to the items shown here, there are several minor UI/UX issues that we will also fix.
 
 If you find any issues that you think are security related, please file a report at our [HackerOne site](https://hackerone.com/chia_network).
 
@@ -19,9 +19,6 @@ Feel free to report other issues on [our Discord server](https://discord.gg/chia
 - If you have a brand new vault, you might not be able to create a new Offer until your vault has submitted at least one transaction. We are working on a fix for this issue. In the meantime, a workaround is to send XCH or a CAT to yourself from your own vault. After this initial transaction, the vault will not encounter the issue again.
 - If you are accessing the Cloud Wallet on an Android phone, you may not be able to create a passkey with a Yubikey or other hardware device.
 - We have experienced issues with other combinations of OS and passkey type, especially on mobile devices. These issues are typically related to the device itself, and are out of our control to fix. However, we will work on reporting these limitations more clearly when they occur.
-- If you rename any tokens in your vault, and then create an Offer that involves those tokens, the old names will be displayed in the Offer. We will show the new names soon.
-- The cloud wallet is currently the only wallet that supports vault based offers. This means if you create an offer in the cloud wallet the taker will need to accept the offer in their cloud wallet account.
-- In some circumstances such as receiving a payout from a pool, the transaction list does not properly update and show the transactions. Generally the balance is updated properly but in rare cases it is not. We are resolving these issues to ensure the balance and transaction list is properly updated. The funds are still in the wallet even when these are not shown.
 
 ## Resolved Previously Known Issues
 

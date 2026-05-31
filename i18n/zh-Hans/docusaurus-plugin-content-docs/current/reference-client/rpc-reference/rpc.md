@@ -4,8 +4,7 @@ title: RPC Overview
 slug: /reference-client/rpc-reference/rpc
 ---
 
-<details>
-  <summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -41,6 +40,7 @@ Need to validate that your RPC endpoints are working correctly? Use the **[RPC V
 - Harvester: 8560
 - Wallet: 9256
 - DataLayer: 8562
+- Solver: 8667
 - Crawler: 8561
 - Timelord: 8557
 
@@ -202,13 +202,14 @@ namespace ChiaExamples
 
 | Service           | Managed Objects                                                                                       | Associated API                                                                                               | Associated RPC API                                                                                          |
 | ----------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| FarmerService     | [Farmer](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/farmer/farmer.py)             | [FarmerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/farmer/farmer_api.py)             | [FarmerRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/farmer_rpc_api.py)        |
+| FarmerService     | [Farmer](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/farmer/farmer.py)             | [FarmerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/farmer/farmer_api.py)             | [FarmerRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/farmer/farmer_rpc_api.py)     |
 | FullNodeService   | [FullNode](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/full_node.py)     | [FullNodeAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/full_node_api.py)     | [FullNodeRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/full_node_rpc_api.py)   |
 | HarvesterService  | [Harvester](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/harvester/harvester.py)    | [HarvesterAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/harvester/harvester_api.py)    | [HarvesterRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/harvester_rpc_api.py)  |
 | IntroducerService | [Introducer](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/introducer/introducer.py) | [IntroducerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/introducer/introducer_api.py) | [FullNodeRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/full_node_rpc_api.py)   |
 | CrawlerService    | [Crawler](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/seeder/crawler.py)           | [CrawlerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/seeder/crawler_api.py)           | [CrawlerRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/crawler_rpc_api.py)      |
 | DataLayerService  | [DataLayer](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer.py)  | [DataLayerAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer_api.py)  | [DataLayerRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/data_layer_rpc_api.py) |
 | TimelordService   | [Timelord](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/timelord/timelord.py)       | [TimelordAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/timelord/timelord_api.py)       | [TimelordRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/timelord_rpc_api.py)    |
+| SolverService     | [Solver](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/solver/solver.py)             | [SolverAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/solver/solver_api.py)             | [SolverRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/solver/solver_rpc_api.py)     |
 | WalletService     | [WalletNode](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/wallet_node.py)    | [WalletNodeAPI](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/wallet_node_api.py)    | [WalletRpcApi](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/rpc/wallet_rpc_api.py)        |
 
 **Explanation:**
@@ -238,14 +239,13 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                       |
-| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| STRING | True     | The service to query for its log level; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+| Type   | Required | Description                                                                                                                                                                                                           |
+| :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STRING | True     | The service to query for its log level; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "solver", "timelord", "wallet" |
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet get_log_level
@@ -287,18 +287,17 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                   |
-| :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| STRING | True     | Set the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+| Type   | Required | Description                                                                                                                                                                                                       |
+| :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STRING | True     | Set the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "solver", "timelord", "wallet" |
 
 Request Parameters:
 
-| Flag  | Type   | Required | Description                                                                                                                                   |
-| :---- | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag  | Type   | Required | Description                                                                                                                                                   |
+| :---- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | level | STRING | True     | The log level to set for the designated service; valid levels are: "CRITICAL", "FATAL", "ERROR", "WARN", "WARNING", "INFO", "DEBUG", "NOTSET" |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet set_log_level '
@@ -345,14 +344,13 @@ Options:
 
 Request Services:
 
-| Type   | Required | Description                                                                                                                                     |
-| :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
-| STRING | True     | Reset the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "timelord", "wallet" |
+| Type   | Required | Description                                                                                                                                                                                                         |
+| :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| STRING | True     | Reset the log level for this service; valid examples include: "crawler", "data_layer", "farmer", "full_node", "harvester", "solver", "timelord", "wallet" |
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc wallet reset_log_level

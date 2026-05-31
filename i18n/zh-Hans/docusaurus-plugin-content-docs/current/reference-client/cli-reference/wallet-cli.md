@@ -23,16 +23,15 @@ Usage: chia wallet add_token [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -id           | --asset-id        | TEXT    | True     | The Asset ID of the coin you wish to add/rename (the treehash of the TAIL program)                           |
-| -n            | --token-name      | TEXT    | False    | The name you wish to designate to the token                                                                  |
-| -f            | --fingerprint     | INTEGER | False    | The wallet fingerprint you wish to add the token to                                                          |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -id           | --asset-id        | TEXT    | True     | The Asset ID of the coin you wish to add/rename (the treehash of the TAIL program)                                        |
+| -n            | --token-name      | TEXT    | False    | The name you wish to designate to the token                                                                                                  |
+| -f            | --fingerprint     | INTEGER | False    | The wallet fingerprint you wish to add the token to                                                                                          |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Add the Spacebucks token:
 
@@ -62,19 +61,19 @@ Usage: chia wallet coins list [OPTIONS]
 
 Options:
 
-| Short Command | Long Command       | Type    | Required | Description                                                                                                       |
-| :------------ | :----------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- |
-| -p            | --wallet-rpc-port  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml      |
-| -f            | --fingerprint      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
-| -i            | --id               | INTEGER | False    | Id of the wallet to use [default: 1]                                                                              |
-| -u            | --show-unconfirmed | BOOLEAN | False    | Separately display unconfirmed coins [default: false]                                                             |
-|               | --min-amount       | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                         |
-|               | --max-amount       | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                         |
-|               | --exclude-coin     | TEXT    | False    | Prevent this coin from being included (can be reused to exclude multiple coins)                                   |
-|               | --exclude-amount   | TEXT    | False    | Exclude any coins with this amount from being included (can be reused to exclude multiple amounts)                |
-|               | --paginate         | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
-|               | --no-paginate      | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
-| -h            | --help             | None    | False    | Show a help message and exit                                                                                      |
+| Short Command | Long Command       | Type    | Required | Description                                                                                                                                  |
+| :------------ | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| -p            | --wallet-rpc-port  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -i            | --id               | INTEGER | False    | Id of the wallet to use [default: 1]                                     |
+| -u            | --show-unconfirmed | BOOLEAN | False    | Separately display unconfirmed coins [default: false]                    |
+|               | --min-amount       | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                                 |
+|               | --max-amount       | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                                 |
+|               | --exclude-coin     | TEXT    | False    | Prevent this coin from being included (can be reused to exclude multiple coins)                                           |
+|               | --exclude-amount   | TEXT    | False    | Exclude any coins with this amount from being included (can be reused to exclude multiple amounts)                        |
+|               | --paginate         | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled                   |
+|               | --no-paginate      | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled            |
+| -h            | --help             | None    | False    | Show a help message and exit                                                                                                                 |
 
 :::info
 
@@ -87,8 +86,7 @@ You can disable the dust filter by editing `~/.chia/mainnet/config/config.yaml` 
 
 Example 1 will give a baseline:
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 List all coins for a given fingerprint:
 
@@ -132,8 +130,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 The following examples all use the same coin state that was obtained in Example 1:
 
-<details>
-<summary>Example 2: exclude small coins</summary>
+<details><summary>Example 2: exclude small coins</summary>
 
 Exclude coins smaller than 0.1 XCH:
 
@@ -161,8 +158,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details>
-<summary>Example 3: exclude large coins</summary>
+<details><summary>Example 3: exclude large coins</summary>
 
 Exclude coins larger than 0.00001 XCH. Note that there is one coin of exactly that value. It is included:
 
@@ -193,8 +189,7 @@ Coin ID: 0x2749503fb302b9654fc9f0dabd88787083ad341aaeee4a2bac113feb92ae59fc
 
 </details>
 
-<details>
-<summary>Example 4: exclude specific coins</summary>
+<details><summary>Example 4: exclude specific coins</summary>
 
 Use the `--exclude-coin` flag multiple times to exclude individual coins:
 
@@ -228,8 +223,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details>
-<summary>Example 5: exclude specific amounts</summary>
+<details><summary>Example 5: exclude specific amounts</summary>
 
 Use the `--exclude-amount` flag multiple times to exclude specific amounts. Note that if multiple coins have the same amount, they will all be excluded:
 
@@ -260,8 +254,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details>
-<summary>Example 6: disable pagination</summary>
+<details><summary>Example 6: disable pagination</summary>
 
 The `--no-paginate` flag will cause _all_ coins to be listed with no additional input from the user:
 
@@ -301,8 +294,7 @@ Coin ID: 0x1c51b470e3fc7f97e155fd72e464f2192426d35857d78777a2a9c08358252eeb
 
 </details>
 
-<details>
-<summary>Example 7: list a CAT</summary>
+<details><summary>Example 7: list a CAT</summary>
 
 First, list all assets in the wallet:
 
@@ -380,24 +372,23 @@ Usage: chia wallet coins combine [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                            |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -p            | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                           |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                     |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                                   |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                                               |
+| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -p            | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                              |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                        |
+| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                  |
 | -a            | --target-amount   | TEXT    | False    | Select coins until this amount (in XCH or CAT) is reached. Combine all selected coins into one coin, which will have a value of at least target-amount |
-|               | --min-amount      | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units [default: disabled]                                                                            |
-|               | --exclude-amount  | TEXT    | False    | Exclude any coins with this amount from being included (can be reused                                                                                  |
-| -n            | --number-of-coins | INTEGER | False    | The number of coins we are combining [default: 500]                                                                                                    |
-|               | --max-amount      | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units [default: disabled]                                                                            |
-| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                                                                  |
-|               | --input-coin      | TEXT    | False    | Only combine coins with these ids (can be reused)                                                                                                      |
-|               | --largest-first   | None    | False    | Sort coins from largest to smallest [default: smallest-first]                                                                                          |
-|               | --smallest-first  | None    | False    | Sort coins from smallest to largest (this is the default behavior)                                                                                     |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                           |
+|               | --min-amount      | TEXT    | False    | Ignore coins worth less then this much XCH or CAT units [default: disabled]                                           |
+|               | --exclude-amount  | TEXT    | False    | Exclude any coins with this amount from being included (can be reused                                                                                                  |
+| -n            | --number-of-coins | INTEGER | False    | The number of coins we are combining [default: 500]                                                                   |
+|               | --max-amount      | TEXT    | False    | Ignore coins worth more then this much XCH or CAT units [default: disabled]                                           |
+| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                                 |
+|               | --input-coin      | TEXT    | False    | Only combine coins with these ids (can be reused)                                                                                                                      |
+|               | --largest-first   | None    | False    | Sort coins from largest to smallest [default: smallest-first]                                                         |
+|               | --smallest-first  | None    | False    | Sort coins from smallest to largest (this is the default behavior)                                                                                                     |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                              |
 
-<details>
-<summary>Example 1: specific coins</summary>
+<details><summary>Example 1: specific coins</summary>
 
 First, list all coins, without pagination:
 
@@ -501,8 +492,7 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details>
-<summary>Example 2: enable min/max thresholds</summary>
+<details><summary>Example 2: enable min/max thresholds</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -600,8 +590,7 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details>
-<summary>Example 3: combine the two smallest coins</summary>
+<details><summary>Example 3: combine the two smallest coins</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -694,8 +683,7 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details>
-<summary>Example 4: largest first / target amount</summary>
+<details><summary>Example 4: largest first / target amount</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -763,8 +751,7 @@ Coin ID: 0xbeaf029a3a09792d5f77193c7efa1de09d46e85dde0e0acdb5e53e41237ccf1a
 
 </details>
 
-<details>
-<summary>Example 5: error case</summary>
+<details><summary>Example 5: error case</summary>
 
 Start by listing all coins of at least 0.9 XCH:
 
@@ -800,8 +787,7 @@ This shows that you cannot combine a single coin. Lowering (or removing) the `--
 
 </details>
 
-<details>
-<summary>Example 6: default settings</summary>
+<details><summary>Example 6: default settings</summary>
 
 Start by listing all coins, with pagination disabled:
 
@@ -872,16 +858,16 @@ Usage: chia wallet coins split [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | -p            | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -n            | --number-of-coins | INTEGER | True     | The number of new coins to create, excluding the remainder coin (minimum 1, maximum 500)                     |
-| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
-| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in XCH                                                                |
-| -t            | --target-coin-id  | TEXT    | True     | The coin id of the coin we are splitting                                                                     |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                     |
+| -n            | --number-of-coins | INTEGER | True     | The number of new coins to create, excluding the remainder coin (minimum 1, maximum 500)                                  |
+| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                    |
+| -a            | --amount-per-coin | TEXT    | True     | The amount of each newly created coin, in XCH                                                                                                |
+| -t            | --target-coin-id  | TEXT    | True     | The coin id of the coin we are splitting                                                                                                     |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
 This command requires a single coin to be specified for splitting.
 The maximum number of new coins is 500. These coins will be of equal value, and the original coin must contain sufficient funds for the splitting to occur.
@@ -896,8 +882,7 @@ Therefore, if you split a coin into more than 200 coins worth less than one mill
 
 The minimum number of new coins is 1. "Splitting" one coin into one new coin could be useful because a second new coin will be created with the remaining value.
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 First, list the coins available:
 
@@ -981,8 +966,7 @@ Coin ID: 0x27049c58aad594bdb83a0f191098f438218cbd7066700342034709afb2470c0d
 
 </details>
 
-<details>
-<summary>Example 2: split a CAT</summary>
+<details><summary>Example 2: split a CAT</summary>
 
 Start by listing the CATs in `Wallet ID: 4`:
 
@@ -1062,19 +1046,18 @@ Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                         |
-| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                        |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                  |
-| -ids          | --tx_ids          | TEXT    | True     | IDs of the Clawback transactions you want to revert or claim. Separate multiple IDs by comma (,) Separate multiple IDs by comma (,) |
-| -m            | --fee             | TEXT    | False    | A fee to add to the offer when it gets taken, in XCH [default: 0]                                                                   |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                        |
+| Short Command | Long Command                  | Type    | Required | Description                                                                                                                                                                               |
+| :------------ | :---------------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port             | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                              |
+| -i            | --id                          | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                  |
+| -f            | --fingerprint                 | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                        |
+| -ids          | --tx_ids | TEXT    | True     | IDs of the Clawback transactions you want to revert or claim. Separate multiple IDs by comma (,) Separate multiple IDs by comma (,) |
+| -m            | --fee                         | TEXT    | False    | A fee to add to the offer when it gets taken, in XCH [default: 0]                                                     |
+| -h            | --help                        | None    | False    | Show a help message and exit                                                                                                                                                              |
 
 Note that wallet will automatically detect whether the transactions should be reverted (clawed back) or claimed.
 
-<details>
-<summary>Example 1: clawback</summary>
+<details><summary>Example 1: clawback</summary>
 
 First, create the clawback. This is a normal `send` command, with an extra `--clawback` timer:
 
@@ -1135,8 +1118,7 @@ Created at: 2023-06-14 13:17:33
 
 </details>
 
-<details>
-<summary>Example 2: claim</summary>
+<details><summary>Example 2: claim</summary>
 
 Set up a clawback send transaction with a 60-second clawback window:
 
@@ -1209,15 +1191,14 @@ Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                     |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet delete_unconfirmed_transactions --fingerprint 2121994410
@@ -1241,17 +1222,16 @@ Usage: chia wallet get_address [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -n            | --new-address     | None    | False    | Create a new wallet receive address [default: disabled]                                                      |
-| -l            | --latest-address  | None    | False    | Show the most recently created wallet receive address [default: enabled]                                     |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                     |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -n            | --new-address     | None    | False    | Create a new wallet receive address [default: disabled]                  |
+| -l            | --latest-address  | None    | False    | Show the most recently created wallet receive address [default: enabled] |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Get a new address:
 
@@ -1277,14 +1257,13 @@ Usage: chia wallet get_derivation_index [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet get_derivation_index --fingerprint 2121994410
@@ -1308,17 +1287,16 @@ Usage: chia wallet get_transaction [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -i,           | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -tx           | --tx_id           | TEXT    | True     | Transaction id to search for                                                                                 |
-| -v            | --verbose         | None    | False    | Show verbose output [default: disabled]                                                                      |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command                 | Type    | Required | Description                                                                                                                                  |
+| :------------ | :--------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port            | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint                | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -i,           | --id                         | INTEGER | False    | ID of the wallet to use [default: 1]                                     |
+| -tx           | --tx_id | TEXT    | True     | Transaction id to search for                                                                                                                 |
+| -v            | --verbose                    | None    | False    | Show verbose output [default: disabled]                                  |
+| -h            | --help                       | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet get_transaction --fingerprint 2121994410 --tx_id 1b32a7f42c88b70924e3ec70d2a377b2b5c5f28de14736a3e2b5d411dec98c06
@@ -1346,24 +1324,23 @@ Usage: chia wallet get_transactions [OPTIONS]
 
 Options:
 
-| Short Command | Long Command        | Type    | Required | Description                                                                                                       |
-| :------------ | :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- | --------- | -------------------------- |
-| -wp           | --wallet-rpc-port   | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml      |
-| -f            | --fingerprint       | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
-| -i            | --id                | INTEGER | False    | ID of the wallet to use [default: 1]                                                                              |
-| -o            | --offset            | INTEGER | False    | Skip transactions from the beginning of the list [default: 0]                                                     |
-| -l            | --limit             | INTEGER | False    | Max number of transactions to return [default: 4294967295]                                                        |
-| -v            | --verbose           | None    | False    | Show verbose output [default: disabled]                                                                           |
-|               | --paginate          | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
-|               | --no-paginate       | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
-|               | --sort-by-height    | None    | False    | Sort transactions by height [default: disabled]                                                                   |
-|               | --sort-by-relevance | None    | False    | Sort transactions by \{confirmed \\                                                                               | height \\ | time\} [default: disabled] |
-|               | --reverse           | None    | False    | Reverse the transaction ordering [default: disabled]                                                              |
-|               | --clawback          | None    | False    | Only show clawback transactions [default: disabled]                                                               |
-| -h            | --help              | None    | False    | Show a help message and exit                                                                                      |
+| Short Command | Long Command        | Type    | Required | Description                                                                                                                                        |
+| :------------ | :------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port   | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml       |
+| -f            | --fingerprint       | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                 |
+| -i            | --id                | INTEGER | False    | ID of the wallet to use [default: 1]                                           |
+| -o            | --offset            | INTEGER | False    | Skip transactions from the beginning of the list [default: 0]                  |
+| -l            | --limit             | INTEGER | False    | Max number of transactions to return [default: 4294967295]                     |
+| -v            | --verbose           | None    | False    | Show verbose output [default: disabled]                                        |
+|               | --paginate          | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled                         |
+|               | --no-paginate       | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled                  |
+|               | --sort-by-height    | None    | False    | Sort transactions by height [default: disabled]                                |
+|               | --sort-by-relevance | None    | False    | Sort transactions by \{confirmed \\| height \\| time\} [default: disabled] |
+|               | --reverse           | None    | False    | Reverse the transaction ordering [default: disabled]                           |
+|               | --clawback          | None    | False    | Only show clawback transactions [default: disabled]                            |
+| -h            | --help              | None    | False    | Show a help message and exit                                                                                                                       |
 
-<details>
-<summary>Example 1: Show a single XCH transaction</summary>
+<details><summary>Example 1: Show a single XCH transaction</summary>
 
 Start by showing all wallets associated with the current fingerprint:
 
@@ -1412,8 +1389,7 @@ Created at: 2023-08-01 19:55:51
 
 </details>
 
-<details>
-<summary>Example 2: Show all transactions from a CAT</summary>
+<details><summary>Example 2: Show all transactions from a CAT</summary>
 
 Start by showing all wallets associated with the current fingerprint:
 
@@ -1521,16 +1497,15 @@ Usage: chia wallet notifications delete [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -i            | --id              | TEXT    | False    | A specific notification ID to delete                                                                         |
-|               | --all             | None    | False    | All notifications can be deleted (they will be recovered during resync) [default: disabled]                  |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                                        |
+| :------------ | :---------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                       |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                 |
+| -i            | --id              | TEXT    | False    | A specific notification ID to delete                                                                                                                                               |
+|               | --all             | None    | False    | All notifications can be deleted (they will be recovered during resync) [default: disabled] |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                       |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Delete all notifications:
 
@@ -1556,14 +1531,14 @@ Usage: chia wallet notifications get [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -i            | --id              | TEXT    | False    | The specific notification ID to show                                                                         |
-| -s            | --start           | INTEGER | False    | The number of notifications to skip                                                                          |
-| -e            | --end             | INTEGER | False    | The number of notifications to stop at                                                                       |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -i            | --id              | TEXT    | False    | The specific notification ID to show                                                                                                         |
+| -s            | --start           | INTEGER | False    | The number of notifications to skip                                                                                                          |
+| -e            | --end             | INTEGER | False    | The number of notifications to stop at                                                                                                       |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
 :::info
 
@@ -1571,8 +1546,7 @@ To set up your wallet to receive notifications, follow [these instructions](/chi
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet notifications get --fingerprint 2121994410
@@ -1598,18 +1572,17 @@ Usage: chia wallet notifications send [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -t            | --to-address      | TEXT    | True     | The address to send the notification to                                                                      |
-| -a            | --amount          | TEXT    | False    | The amount (in XCH) to send to get the notification past the recipient's spam filter [default: 0.00001]      |
-| -n            | --message         | TEXT    | True     | The message of the notification                                                                              |
-| -m            | --fee             | TEXT    | False    | The fee for the transaction                                                                                  |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                                                                    |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                                                   |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                                             |
+| -t            | --to-address      | TEXT    | True     | The address to send the notification to                                                                                                                                                                        |
+| -a            | --amount          | TEXT    | False    | The amount (in XCH) to send to get the notification past the recipient's spam filter [default: 0.00001] |
+| -n            | --message         | TEXT    | True     | The message of the notification                                                                                                                                                                                |
+| -m            | --fee             | TEXT    | False    | The fee for the transaction                                                                                                                                                                                    |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                                                                   |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Send a test notification:
 
@@ -1635,25 +1608,24 @@ Usage: chia wallet send [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                                           |
-| :------------ | :---------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                          |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                    |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                                                                  |
-| -a            | --amount          | TEXT    | True     | How much chia to send, in XCH or CAT units                                                                                                            |
-| -e            | --memo            | TEXT    | False    | Additional memo for the transaction                                                                                                                   |
-| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                                                                 |
-| -t            | --address         | TEXT    | True     | Address to send the XCH                                                                                                                               |
-| -o            | --override        | None    | False    | Submits transaction without checking for unusual values [default: disabled]                                                                           |
-| -ma           | --min-coin-amount | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                                                             |
-| -l            | --max-coin-amount | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                                                             |
-|               | --exclude-coin    | TEXT    | False    | Exclude this coin from being spent                                                                                                                    |
-|               | --reuse           | None    | False    | Set this flag to reuse an existing address for the change [default: not set]                                                                          |
-|               | --clawback_time   | INTEGER | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature A positive number will enable this feature |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                          |
+| Short Command | Long Command                         | Type    | Required | Description                                                                                                                                                           |
+| :------------ | :----------------------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                    | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                          |
+| -f            | --fingerprint                        | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                    |
+| -i            | --id                                 | INTEGER | False    | ID of the wallet to use [default: 1]                                                              |
+| -a            | --amount                             | TEXT    | True     | How much chia to send, in XCH or CAT units                                                                                                                            |
+| -e            | --memo                               | TEXT    | False    | Additional memo for the transaction                                                                                                                                   |
+| -m            | --fee                                | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                             |
+| -t            | --address                            | TEXT    | True     | Address to send the XCH                                                                                                                                               |
+| -o            | --override                           | None    | False    | Submits transaction without checking for unusual values [default: disabled]                       |
+| -ma           | --min-coin-amount                    | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                                                          |
+| -l            | --max-coin-amount                    | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                                                          |
+|               | --exclude-coin                       | TEXT    | False    | Exclude this coin from being spent                                                                                                                                    |
+|               | --reuse                              | None    | False    | Set this flag to reuse an existing address for the change [default: not set]                      |
+|               | --clawback_time | INTEGER | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature A positive number will enable this feature |
+| -h            | --help                               | None    | False    | Show a help message and exit                                                                                                                                          |
 
-<details>
-<summary>Example 1: send with memo</summary>
+<details><summary>Example 1: send with memo</summary>
 
 Send 1000 mojos with a test memo:
 
@@ -1671,8 +1643,7 @@ Run 'chia wallet get_transaction -f 3792481086 -tx 0x6fbac9409dbdef3cfa8a8fd82be
 
 </details>
 
-<details>
-<summary>Example 2: clawback</summary>
+<details><summary>Example 2: clawback</summary>
 
 Send 1 TXCH and include a 3600-second (1 hour) clawback:
 
@@ -1736,15 +1707,14 @@ Usage: chia wallet show [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- | -------------- | ------------------- | ------------ | ---------- | ------ | -------------- | ------------------- | ----------------- | ------ | ------------- | ----------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -w            | --wallet_type     | TEXT    | False    | Choose a specific wallet type to return, choose from the following: [standard_wallet \\                      | atomic_swap \\ | authorized_payee \\ | multi_sig \\ | custody \\ | cat \\ | recoverable \\ | decentralized_id \\ | pooling_wallet \\ | nft \\ | data_layer \\ | data_layer_offer] |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command                       | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| :------------ | :--------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -f            | --fingerprint                      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| -w            | --wallet_type | TEXT    | False    | Choose a specific wallet type to return, choose from the following: [standard_wallet \\| atomic_swap \\| authorized_payee \\| multi_sig \\| custody \\| cat \\| recoverable \\| decentralized_id \\| pooling_wallet \\| nft \\| data_layer \\| data_layer_offer] |
+| -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet show --fingerprint 2121994410
@@ -1799,16 +1769,15 @@ Usage: chia wallet sign_message [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -a            | --address         | TEXT    | True     | The address you want to use for signing                                                                      |
-| -m            | --hex_message     | TEXT    | True     | The hex message you want sign                                                                                |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command                       | Type    | Required | Description                                                                                                                                  |
+| :------------ | :--------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port                  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint                      | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -a            | --address                          | TEXT    | True     | The address you want to use for signing                                                                                                      |
+| -m            | --hex_message | TEXT    | True     | The hex message you want sign                                                                                                                |
+| -h            | --help                             | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet sign_message --fingerprint 2121994410 --address xch1jp5thqu3dhwkvvh5p77lvlackddrd9q2zpt58zs6yqr2c4yvregs69ayqr --hex_message 0xdeadbeef
@@ -1834,15 +1803,14 @@ Usage: chia wallet update_derivation_index [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                  |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -i            | --index           | INTEGER | True     | Index to set. Must be greater than the current derivation index                                              |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                           |
+| -i            | --index           | INTEGER | True     | Index to set. Must be greater than the current derivation index                                                              |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                 |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```bash
 chia wallet update_derivation_index --fingerprint 2121994410 --index 475
