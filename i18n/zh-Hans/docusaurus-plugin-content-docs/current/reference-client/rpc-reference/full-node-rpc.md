@@ -22,8 +22,7 @@ The [coinset CLI tool](https://github.com/coinset-org/cli) is also capable of re
 Need to test these RPC endpoints? Use the **[RPC Validation Tool](/guides/rpc-validation-tool)** to validate that your full node's RPC functionality is working correctly.
 :::
 
-<details>
-  <summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -58,8 +57,8 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                  |
-| :---------- | :--------- | :------- | :--------------------------- |
+| Flag                             | Type       | Required | Description                  |
+| :------------------------------- | :--------- | :------- | :--------------------------- |
 | header_hash | HEX STRING | True     | The header hash of the block |
 
 :::note
@@ -69,14 +68,13 @@ for spent coins, use the [get_puzzle_and_solution](#get_puzzle_and_solution) API
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
-````mdx-code-block
+```mdx-code-block
   ```json
   chia rpc full_node get_additions_and_removals '{"header_hash": "0xfb7891e9a4a9ca6f8a633e0632d82c2502f425526754f71aee5a55d6ad3933d8"}'
   ```
-````
+```
 
 Response:
 
@@ -351,8 +349,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -390,8 +387,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -781,8 +777,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -826,12 +821,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                                         |
-| :---------- | :--------- | :------- | :-------------------------------------------------- |
+| Flag                             | Type       | Required | Description                                                                            |
+| :------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------- |
 | header_hash | HEX STRING | True     | Header hash (block identifier) of the block to get. |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Note that some blocks (such as the one from this example) are not transaction blocks:
 
@@ -942,8 +936,13 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+:::note
+
+`average_block_time` is the average time in seconds between blocks (not specifically transaction blocks). The protocol target is 18.75 seconds, and this value is truncated in the response (for example `18`). It may be `null` on a very short chain or before the node has synced relevant blocks. If this value drifts by more than a few seconds for a sustained period, netspace likely changed since the latest difficulty adjustment.
+
+:::
+
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -957,6 +956,7 @@ Response:
 ```json
 {
   "blockchain_state": {
+    "average_block_time": 18,
     "block_max_cost": 11000000000,
     "difficulty": 1976,
     "genesis_challenge_initialized": true,
@@ -1070,14 +1070,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type    | Required | Description                                                         |
-| :------------------ | :------ | :------- | :------------------------------------------------------------------ |
-| start               | INTEGER | True     | The start height                                                    |
-| end                 | INTEGER | True     | The end height (non-inclusive)                                      |
-| exclude_header_hash | BOOLEAN | False    | Whether to exclude the header hash in the response [Default: false] |
+| Flag                                                          | Type    | Required | Description                                                                                                                                                                                                    |
+| :------------------------------------------------------------ | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start                                                         | INTEGER | True     | The start height                                                                                                                                                                                               |
+| end                                                           | INTEGER | True     | The end height (non-inclusive)                                                                                                                                                              |
+| exclude_header_hash | BOOLEAN | False    | Whether to omit `header_hash` on each block in the response [Default: false]                                                               |
+| exclude_reorged                          | BOOLEAN | False    | When true, skip blocks whose hash no longer matches the canonical chain at that height (forked blocks) [Default: false] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1351,8 +1351,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1394,12 +1393,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description               |
-| :---------- | :--------- | :------- | :------------------------ |
+| Flag                             | Type       | Required | Description               |
+| :------------------------------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1478,13 +1476,12 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type    | Required | Description                    |
-| :---- | :------ | :------- | :----------------------------- |
+| Flag  | Type    | Required | Description                                       |
+| :---- | :------ | :------- | :------------------------------------------------ |
 | start | INTEGER | True     | The start height (inclusive)   |
 | end   | INTEGER | True     | The end height (non-inclusive) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Get two block records (`3 300 000` and `3 300 001`):
 
@@ -1648,8 +1645,8 @@ Options:
 
 Request Parameters:
 
-| Flag   | Type    | Required | Description                                 |
-| :----- | :------ | :------- | :------------------------------------------ |
+| Flag   | Type    | Required | Description                                                                              |
+| :----- | :------ | :------- | :--------------------------------------------------------------------------------------- |
 | height | INTEGER | True     | The height to get (must be \<= peak height) |
 
 :::note
@@ -1658,8 +1655,7 @@ Note that not all blocks will have all fields set here (depending on transaction
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -1758,8 +1754,8 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description               |
-| :---------- | :--------- | :------- | :------------------------ |
+| Flag                             | Type       | Required | Description               |
+| :------------------------------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
 :::note
@@ -1768,8 +1764,7 @@ Keep in mind that most blocks do not contain any transactions. These blocks will
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2016,8 +2011,8 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description               |
-| :---------- | :--------- | :------- | :------------------------ |
+| Flag                             | Type       | Required | Description               |
+| :------------------------------- | :--------- | :------- | :------------------------ |
 | header_hash | HEX STRING | True     | The block's `header_hash` |
 
 :::note
@@ -2026,8 +2021,7 @@ Keep in mind that most blocks do not contain any transactions. These blocks will
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2136,15 +2130,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                                         |
-| :------------------ | :--------- | :------- | :------------------------------------------------------------------ |
-| hint                | HEX STRING | True     | The hint to examine                                                 |
-| start_height        | INTEGER    | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER    | False    | The block height at which to end the search                         |
+| Flag                                                          | Type       | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| hint                                                          | HEX STRING | True     | The hint to examine                                                                    |
+| start_height                             | INTEGER    | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER    | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN    | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2207,15 +2200,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type             | Required | Description                                                         |
-| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
-| names               | HEX STRING ARRAY | True     | A list of coin_ids to examine                                       |
-| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER          | False    | The block height at which to end the search                         |
+| Flag                                                          | Type             | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
+| names                                                         | HEX STRING ARRAY | True     | A list of coin_ids to examine                                     |
+| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2278,15 +2270,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type             | Required | Description                                                         |
-| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
-| parent_ids          | HEX STRING ARRAY | True     | A list of parent IDs to examine                                     |
-| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER          | False    | The block height at which to end the search                         |
+| Flag                                                          | Type             | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
+| parent_ids                               | HEX STRING ARRAY | True     | A list of parent IDs to examine                                                        |
+| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2361,15 +2352,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                                         |
-| :------------------ | :--------- | :------- | :------------------------------------------------------------------ |
-| puzzle_hash         | HEX STRING | True     | The puzzle hash to search for                                       |
-| start_height        | INTEGER    | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER    | False    | The block height at which to end the search                         |
+| Flag                                                          | Type       | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| puzzle_hash                              | HEX STRING | True     | The puzzle hash to search for                                                          |
+| start_height                             | INTEGER    | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER    | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN    | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2468,15 +2458,14 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type             | Required | Description                                                         |
-| :------------------ | :--------------- | :------- | :------------------------------------------------------------------ |
-| puzzle_hashes       | HEX STRING ARRAY | True     | An array of puzzle hashes to examine                                |
-| start_height        | INTEGER          | False    | The block height at which to begin the search                       |
-| end_height          | INTEGER          | False    | The block height at which to end the search                         |
+| Flag                                                          | Type             | Required | Description                                                                            |
+| :------------------------------------------------------------ | :--------------- | :------- | :------------------------------------------------------------------------------------- |
+| puzzle_hashes                            | HEX STRING ARRAY | True     | An array of puzzle hashes to examine                                                   |
+| start_height                             | INTEGER          | False    | The block height at which to begin the search                                          |
+| end_height                               | INTEGER          | False    | The block height at which to end the search                                            |
 | include_spent_coins | BOOLEAN          | False    | A boolean indicating whether to include spent coins (default=false) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2561,8 +2550,7 @@ The `name` (coin ID) can be obtained by hashing the Coin object: `sha256(parent 
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2600,36 +2588,36 @@ Response:
 
 Functionality: Obtain an estimated fee for one or more targeted times for a transaction to be included in the blockchain.
 
-Usage: chia rpc wallet [OPTIONS] get_fee_estimate [REQUEST]
+Usage: chia rpc full_node [OPTIONS] get_fee_estimate [REQUEST]
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description                                                         |
-| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------ |
-| -j            | --json-file  | TEXT | False    | Instead of REQUEST, provide a json file containing the request data |
-| -h            | --help       | None | False    | Show a help message and exit                                        |
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
 
 Request Parameters:
 
-| Parameter    | Type          | Required | Description                                                                                                                         |
-| :----------- | :------------ | :------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| spend_bundle | FILENAME      | True\*   | The spend bundle file (in json format) for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified) |
-| cost         | INTEGER       | True\*   | The CLVM cost for which to estimate the fee (\* Exactly one of `spend_bundle` or `cost` must be specified)                          |
-| target_times | INTEGER ARRAY | True     | An array of the targeted times for transaction inclusion, in seconds. Each targeted time must be at least 0                         |
+| Parameter                         | Type          | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| :-------------------------------- | :------------ | :------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| target_times | INTEGER ARRAY | True     | Target inclusion horizons in seconds (each value must be ≥ 0). Used both for the estimate request and echoed in the response.                                                                                                                                                                                                                                        |
+| spend_bundle | OBJECT        | True\*   | JSON spend bundle dict. The node derives CLVM cost via mempool pre-validation. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.)                                                                                                                                                                                                      |
+| cost                              | INTEGER       | True\*   | Explicit CLVM cost to estimate against. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.)                                                                                                                                                                                                                                                             |
+| spend_type   | STRING        | True\*   | Named preset cost (multiplied by `spend_count`). Valid values: `send_xch_transaction`, `cat_spend`, `take_offer`, `cancel_offer`, `nft_set_nft_did`, `nft_transfer_nft`, `create_new_pool_wallet`, `pw_absorb_rewards`, `create_new_did_wallet`. (\* Exactly **one** of `spend_bundle`, `cost`, or `spend_type`.) |
+| spend_count  | INTEGER       | False    | When using `spend_type`, multiply the preset cost by this integer [Default: 1]                                                                                                                                                                                                                                                                      |
 
 :::note
 
-- If `spend_bundle` is specified, then the cost of that spend bundle will first be obtained, followed by obtaining the estimated fee for that cost. Therefore, it is computationally cheaper to use `cost` than it is to use `spend_bundle`, other other factors being equal.
-- This RPC takes into account the current size of the mempool relative to its maximum size, as well as the fee in mojos per cost (5 by default)
+- The request must contain **exactly one** of `spend_bundle`, `cost`, or `spend_type`. Using `cost` avoids validating a spend bundle and is typically cheaper than `spend_bundle`.
+- If `spend_type` is used, the node applies a fixed internal cost preset for that wallet operation type; multiply by `spend_count` when batching multiple operations.
+- This RPC takes into account mempool size relative to its maximum, recent blocks, and the fee estimator’s view of the mempool.
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
-Obtain a fee estimate for a spendbundle with a CLVM cost of 20 million. Targeted inclusion times are 1, 5, and 10 minutes.
-
-Note that this example was completed at a time when the mempool was not busy, so the fee estimates are all `0`.
+Obtain a fee estimate for a CLVM cost of 20 million mojos. Targeted inclusion times are 1, 5, and 10 minutes. Numeric results depend on mempool pressure and the fee estimator.
 
 ````mdx-code-block
 ```json
@@ -2643,7 +2631,7 @@ Response:
 ```json
 {
   "current_fee_rate": 0.0342163071650677,
-  "estimates": [684326.1433013539, 4077.432021994343, 4077.432021994343],
+  "estimates": [684326, 4077, 4077],
   "fee_rate_last_block": 0.0,
   "fees_last_block": 0,
   "full_node_synced": true,
@@ -2661,6 +2649,8 @@ Response:
 }
 ```
 ````
+
+`estimates` are total mojos suggested for the given `cost` (or derived cost) at each `target_times` entry, sorted to be non-increasing.
 
 </details>
 
@@ -2681,12 +2671,12 @@ Options:
 
 Request Parameters:
 
-| Flag  | Type       | Required | Description                                                  |
-| :---- | :--------- | :------- | :----------------------------------------------------------- |
-| tx_id | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item |
+| Flag                                 | Type       | Required | Description                                                                                                                                                      |
+| :----------------------------------- | :--------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tx_id           | HEX STRING | True     | The spend bundle hash (tx ID) for which to retrieve the item                                                                                  |
+| include_pending | BOOLEAN    | False    | When true, include mempool items that are not yet fully validated / pending [Default: false] |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Start by obtaining all of the mempool tx IDs:
 
@@ -2855,12 +2845,11 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type   | Required | Description                                                                        |
-| :-------- | :----- | :------- | :--------------------------------------------------------------------------------- |
+| Flag                           | Type   | Required | Description                                                                                        |
+| :----------------------------- | :----- | :------- | :------------------------------------------------------------------------------------------------- |
 | coin_name | STRING | True     | The ID of the coin to retreive. Must be in the mempool in order to return a result |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2966,6 +2955,79 @@ Response:
 
 ---
 
+### `create_block_generator`
+
+Functionality: Builds a candidate block generator from the current mempool against the latest peak (simulated block construction). This call can be CPU- and memory-intensive and is intended for advanced diagnostics or tooling, not routine wallet use.
+
+Usage: chia rpc full_node [OPTIONS] create_block_generator [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (send `{}`).
+
+:::info
+
+Requires an initialized blockchain with a peak and an active mempool. If there is no peak, the response contains empty generator fields.
+
+:::
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node create_block_generator
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "additions": [
+    {
+      "amount": 499993713061,
+      "parent_coin_info": "0xb9792e0b3f30e636499a5d556514ae94398a90d1462760952d46ab526c3e4e90",
+      "puzzle_hash": "0x712d36b40c8202ad230f082f76416dc0a3828817fee70bd45da4f9fe8bcc6880"
+    },
+    {
+      "amount": 1000000000000,
+      "parent_coin_info": "0xb9792e0b3f30e636499a5d556514ae94398a90d1462760952d46ab526c3e4e90",
+      "puzzle_hash": "0x83e00e39cfd151b957b9ad244c089285a8b507efe68e3a0eae6d7fb045cad570"
+    }
+  ],
+  "cost": 13662942,
+  "generator": "0xff01ffffffa0cadd2124b7e96e21aeec29c3f135d2bb9057abbe7d579129812866f1d005384affff02ffff01ff02ffff01ff02ffff03ff0bffff01ff02ffff03ffff09ff05ffff1dff0bffff1effff0bff0bffff02ff06ffff04ff02ffff04ff17ff8080808080808080ffff01ff02ff17ff2f80ffff01ff088080ff0180ffff01ff04ffff04ff04ffff04ff05ffff04fffe84016b6b7fff80808080fffe820db78080ff0180ffff04ffff01ff32ff02ffff03ffff07ff0580ffff01ff0bffff0102ffff02ff06ffff04ff02ffff04ff09ff80808080ffff02ff06ffff04ff02ffff04ff0dff8080808080ffff01ff0bffff0101ff058080ff0180ff018080ffff04ffff01b0aaa7438398700e566695c0b517ef2fb4bb3d88b554caf3532ae0f3eae58ee9059b86beb1278fa9f3e322c71b678eeb44ff018080ff8600ae9f784ef4ffff80ffff01ffff3dffa0adc99692cc9455dc549686e9e998f8eb7be27686df6ea8729883f0d9e964de408080ff808080ffffa0c76892cda4119c4b0abf14c2e432c623614873dcbb3dc974ea4b8f4efc49fcebffff02fffe81abffff04ffff01b0aa77ea04f9f6ba2d552a452bbc6760189b620e71592b72492729254a17250ce58bbd461573c7803dfcc68225f55ff220ff018080ff8600ae9f7ae831ffff80ffff01ffff3cffa0fe72234c2676abec275c3dc3057d9428833be8d9580be57f689e8733240d86ff80ffff33ffa083e00e39cfd151b957b9ad244c089285a8b507efe68e3a0eae6d7fb045cad570ff8600e8d4a51000ff8080ffff33ffa0712d36b40c8202ad230f082f76416dc0a3828817fee70bd45da4f9fe8bcc6880ff857469f299a580ffff34ff835b8d808080ff8080808080",
+  "refs": [],
+  "removals": [
+    {
+      "amount": 749999941681,
+      "parent_coin_info": "0xc76892cda4119c4b0abf14c2e432c623614873dcbb3dc974ea4b8f4efc49fceb",
+      "puzzle_hash": "0x3a9edc60a69f0add50e9655b8e5e28cfa21e7b86467544426bfd092b95d37451"
+    },
+    {
+      "amount": 749999771380,
+      "parent_coin_info": "0xcadd2124b7e96e21aeec29c3f135d2bb9057abbe7d579129812866f1d005384a",
+      "puzzle_hash": "0x9f85ecd85958012961a3dd73dc15289229eed9857fb4916fcdc6b624f0e6e2f1"
+    }
+  ],
+  "sig": "0xa97ffddfad72703e2af85e3ce7c8c59246921f24c4a0e6bbc96ec51800425f0ef403d01dd9fd5a85254dedcc4d1ff858015e5cec3a733850e6f25c4c3bad227fa0c2da73475840dad032d700ec30bcdc5a633a954c6a36196104fb43378c28b6",
+  "success": true
+}
+```
+````
+
+`generator` is the serialized block program; `refs` lists generator ref heights; `additions` and `removals` are coins; `sig` is the aggregated signature; `cost` is the CLVM cost of the generated bundle.
+
+</details>
+
+---
+
 ### `get_network_info`
 
 Functionality: Retrieves information about the current network
@@ -2981,8 +3043,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -2995,12 +3056,369 @@ Response:
 ````mdx-code-block
 ```json
 {
+  "genesis_challenge": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000000",
   "network_name": "mainnet",
   "network_prefix": "xch",
   "success": true
 }
 ```
 ````
+
+</details>
+
+---
+
+### `get_connections`
+
+Functionality: Lists active peer connections for the full node’s server. Optionally filter by peer protocol role.
+
+Usage: chia rpc full_node [OPTIONS] get_connections [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                           | Type    | Required | Description                                                                                                                                                                                                                                                      |
+| :----------------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| node_type | INTEGER | False    | Filter by node role: `1` FULL_NODE, `2` HARVESTER, `3` FARMER, `4` TIMELORD, `5` INTRODUCER, `6` WALLET, `7` DATA_LAYER, `8` SOLVER. Omit to include every connection. |
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node get_connections '{"node_type": 1}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "connections": [
+    {
+      "bytes_read": 142950063,
+      "bytes_written": 2420659,
+      "creation_time": 1678170508.123,
+      "last_message_time": 1678171624.456,
+      "local_port": 8444,
+      "node_id": "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab",
+      "peer_host": "127.0.0.1",
+      "peer_port": 8444,
+      "peer_server_port": 8444,
+      "type": 1
+    },
+    {
+      "bytes_read": 870298,
+      "bytes_written": 51,
+      "creation_time": 1678170601.001,
+      "last_message_time": 1678171624.456,
+      "local_port": 8444,
+      "node_id": "17f2d4b4e0c8b3b8f86e6b2c6a5f6f6e4c3a2f1e0d9c8b7a6f5e4d3c2b1a0987",
+      "peer_host": "192.168.1.20",
+      "peer_port": 8444,
+      "peer_server_port": 8444,
+      "type": 1
+    }
+  ],
+  "success": true
+}
+```
+````
+
+The `type` field matches the peer's `NodeType` (see request table above). This example uses `node_type: 1` to show full-node peers only; your own peers and counts will vary based on current network connectivity.
+
+</details>
+
+---
+
+### `open_connection`
+
+Functionality: Opens an outbound connection from this full node to another peer (`host` / `port`).
+
+Usage: chia rpc full_node [OPTIONS] open_connection [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type    | Required | Description                           |
+| :--- | :------ | :------- | :------------------------------------ |
+| host | STRING  | True     | Hostname or IP of the remote peer     |
+| port | INTEGER | True     | Port of the remote peer’s Chia server |
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node open_connection '{"host": "introducer.chia.net", "port": 8444}'
+```
+````
+
+Response on success:
+
+````mdx-code-block
+```json
+{
+  "success": true
+}
+```
+````
+
+If the connection cannot be established, the response is `{"success": false, "error": "could not connect to ..."}`.
+
+</details>
+
+---
+
+### `close_connection`
+
+Functionality: Closes existing peer connections whose `node_id` matches the given 32-byte node identifier.
+
+Usage: chia rpc full_node [OPTIONS] close_connection [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag                         | Type       | Required | Description                                                                     |
+| :--------------------------- | :--------- | :------- | :------------------------------------------------------------------------------ |
+| node_id | HEX STRING | True     | Remote peer node ID (same format as reported by connections) |
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node close_connection '{"node_id": "b3d9de85d29931c10050b56c7afb91c99141943fc81ff2d1a8425e52be0d08ab"}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{}
+```
+````
+
+If no connection matches, the RPC fails with an error indicating the node ID was not found.
+
+</details>
+
+---
+
+### `stop_node`
+
+Functionality: Requests a graceful shutdown of the service via the RPC server’s `stop_cb` (same mechanism as a normal node stop).
+
+Usage: chia rpc full_node [OPTIONS] stop_node [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (send `{}`).
+
+:::warning
+
+Stops the full node process. Use only on nodes you control; do not expose the RPC port publicly.
+
+:::
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node stop_node '{}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{}
+```
+````
+
+</details>
+
+---
+
+### `get_version`
+
+Functionality: Returns the Chia reference client version string that the node was built with.
+
+Usage: chia rpc full_node [OPTIONS] get_version [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node get_version
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "success": true,
+  "version": "2.6.0"
+}
+```
+````
+
+</details>
+
+---
+
+### `get_log_level`
+
+Functionality: Returns the current root logger level name and the list of levels accepted by `set_log_level`.
+
+Usage: chia rpc full_node [OPTIONS] get_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node get_log_level
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "available_levels": [
+    "CRITICAL",
+    "FATAL",
+    "ERROR",
+    "WARN",
+    "WARNING",
+    "INFO",
+    "DEBUG",
+    "NOTSET"
+  ],
+  "level": "INFO",
+  "success": true
+}
+```
+````
+
+</details>
+
+---
+
+### `set_log_level`
+
+Functionality: Sets the root logger to the given level for this process. Returns the new level, available levels, whether the change succeeded, and any validation errors.
+
+Usage: chia rpc full_node [OPTIONS] set_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag  | Type   | Required | Description                                            |
+| :---- | :----- | :------- | :----------------------------------------------------- |
+| level | STRING | True     | Name of a logging level (see above) |
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node set_log_level '{"level": "INFO"}'
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "available_levels": ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"],
+  "errors": [],
+  "level": "INFO",
+  "success": true
+}
+```
+````
+
+The `errors` array lists unknown or invalid level strings when `success` is false.
+
+</details>
+
+---
+
+### `reset_log_level`
+
+Functionality: Restores logging to the level configured for this service in config (`log_level`, falling back to the default).
+
+Usage: chia rpc full_node [OPTIONS] reset_log_level [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None (send `{}`).
+
+<details><summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node reset_log_level '{}'
+```
+````
+
+The JSON response matches `set_log_level`: current `level`, `available_levels`, `errors`, and `success`.
 
 </details>
 
@@ -3021,13 +3439,12 @@ Options:
 
 Request Parameters:
 
-| Flag                    | Type       | Required | Description           |
-| :---------------------- | :--------- | :------- | :-------------------- |
+| Flag                                                                                   | Type       | Required | Description           |
+| :------------------------------------------------------------------------------------- | :--------- | :------- | :-------------------- |
 | older_block_header_hash | HEX STRING | True     | The start header hash |
 | newer_block_header_hash | HEX STRING | True     | The end header hash   |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3070,10 +3487,10 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type       | Required | Description                        |
-| :------ | :--------- | :------- | :--------------------------------- |
+| Flag                         | Type       | Required | Description                        |
+| :--------------------------- | :--------- | :------- | :--------------------------------- |
 | coin_id | HEX STRING | True     | Coin ID of the coin to look up     |
-| height  | INTEGER    | True     | Height at which the coin was spent |
+| height                       | INTEGER    | True     | Height at which the coin was spent |
 
 :::note
 
@@ -3083,8 +3500,7 @@ By definition, coins that are unspent do not have their original puzzle or solut
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3130,10 +3546,10 @@ Options:
 
 Request Parameters:
 
-| Flag           | Type       | Required | Description                                                                      |
-| :------------- | :--------- | :------- | :------------------------------------------------------------------------------- |
-| sp_hash        | HEX STRING | True\*   | The hash of the output for a signage point (if it's in the middle of a sub slot) |
-| challenge_hash | HEX STRING | True\*   | The challenge_hash for the subslot (if it's an end of sub slot challenge)        |
+| Flag                                | Type       | Required | Description                                                                                                       |
+| :---------------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------------------- |
+| sp_hash        | HEX STRING | True\*   | The hash of the output for a signage point (if it's in the middle of a sub slot)               |
+| challenge_hash | HEX STRING | True\*   | The challenge_hash for the subslot (if it's an end of sub slot challenge) |
 
 :::note
 
@@ -3141,8 +3557,7 @@ Request Parameters:
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3234,8 +3649,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3249,40 +3663,45 @@ Response:
 ```json
 {
   "routes": [
-    "/get_blockchain_state",
+    "/close_connection",
+    "/create_block_generator",
+    "/get_additions_and_removals",
+    "/get_aggsig_additional_data",
+    "/get_all_mempool_items",
+    "/get_all_mempool_tx_ids",
     "/get_block",
-    "/get_blocks",
     "/get_block_count_metrics",
-    "/get_block_record_by_height",
     "/get_block_record",
+    "/get_block_record_by_height",
     "/get_block_records",
     "/get_block_spends",
     "/get_block_spends_with_conditions",
-    "/get_unfinished_block_headers",
-    "/get_network_space",
-    "/get_additions_and_removals",
-    "/get_initial_freeze_period",
-    "/get_network_info",
-    "/get_recent_signage_point_or_eos",
-    "/get_coin_records_by_puzzle_hash",
-    "/get_coin_records_by_puzzle_hashes",
+    "/get_blockchain_state",
+    "/get_blocks",
     "/get_coin_record_by_name",
+    "/get_coin_records_by_hint",
     "/get_coin_records_by_names",
     "/get_coin_records_by_parent_ids",
-    "/get_coin_records_by_hint",
-    "/push_tx",
-    "/get_puzzle_and_solution",
-    "/get_all_mempool_tx_ids",
-    "/get_all_mempool_items",
+    "/get_coin_records_by_puzzle_hash",
+    "/get_coin_records_by_puzzle_hashes",
+    "/get_connections",
+    "/get_fee_estimate",
+    "/get_log_level",
     "/get_mempool_item_by_tx_id",
     "/get_mempool_items_by_coin_name",
-    "/get_fee_estimate",
-    "/get_connections",
-    "/open_connection",
-    "/close_connection",
-    "/stop_node",
+    "/get_network_info",
+    "/get_network_space",
+    "/get_puzzle_and_solution",
+    "/get_recent_signage_point_or_eos",
     "/get_routes",
-    "/healthz"
+    "/get_unfinished_block_headers",
+    "/get_version",
+    "/healthz",
+    "/open_connection",
+    "/push_tx",
+    "/reset_log_level",
+    "/set_log_level",
+    "/stop_node"
   ],
   "success": true
 }
@@ -3316,8 +3735,7 @@ blocks after it.
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3566,8 +3984,7 @@ This RPC returns `200` if successful. It is lightweight and can be queried often
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
@@ -3605,12 +4022,11 @@ Options:
 
 Request Parameters:
 
-| Flag         | Type | Required | Description                     |
-| :----------- | :--- | :------- | :------------------------------ |
+| Flag                              | Type | Required | Description                     |
+| :-------------------------------- | :--- | :------- | :------------------------------ |
 | spend_bundle | JSON | True     | Spend bundle to submit, in JSON |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ````mdx-code-block
 ```json
