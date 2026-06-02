@@ -1,255 +1,198 @@
 ---
 slug: /guides/gaming-troubleshooting
-title: Troubleshooting Guide
+title: Troubleshooting
 ---
 
-This troubleshooting guide addresses common issues developers and users may encounter when working with the Chia Gaming system.
+<!-- Legacy anchors preserved for external links -->
+
+<span id="developer-troubleshooting"></span>
+<span id="build-and-deployment-issues"></span>
+<span id="docker-build-fails"></span>
+<span id="containers-wont-start"></span>
+<span id="code-changes-not-reflecting"></span>
+<span id="configuration-issues"></span>
+<span id="walletconnect-connection-fails"></span>
+<span id="network-configuration-issues"></span>
+<span id="port-configuration-issues"></span>
+<span id="development-environment-issues"></span>
+<span id="simulator-not-working"></span>
+<span id="logs-not-appearing"></span>
+<span id="user-troubleshooting"></span>
+<span id="connection-issues"></span>
+<span id="gameplay-issues"></span>
+<span id="session-management-issues"></span>
+<span id="getting-additional-help"></span>
 
 ## Developer Troubleshooting
 
-### Build and Deployment Issues
+## Build Issues
 
-#### Docker Build Fails
+### Rust / WASM
 
-**Symptoms**: The `./build-docker-images.sh` command fails with errors.
+**`wasm-pack` not found or wrong version:**
 
-**Solutions**:
+```bash
+cargo install wasm-pack --version 0.13.1
+```
 
-- **Check Docker Version**: Ensure you have the latest Docker version. Install via Snap instead of apt if needed:
-  ```bash
-  sudo snap install docker
-  ```
-- **Check Docker Permissions**: Ensure your user is in the docker group:
-  ```bash
-  sudo usermod -aG docker $USER
-  newgrp docker
-  ```
-- **Check Disk Space**: Ensure you have sufficient disk space for Docker images:
-  ```bash
-  df -h
-  docker system df
-  ```
-- **Clean Docker Cache**: Try cleaning Docker's build cache:
-  ```bash
-  docker system prune -a
-  ```
-- **Check Logs**: Review the build output for specific error messages.
+**WASM build fails with clang errors (macOS):**
 
-#### Containers Won't Start
+```bash
+brew install llvm
+# Build scripts auto-detect Homebrew LLVM paths
+```
 
-**Symptoms**: Docker containers fail to start or immediately exit.
+**`wasm32-unknown-unknown` target not installed:**
 
-**Solutions**:
+```bash
+rustup target add wasm32-unknown-unknown
+```
 
-- **Check Port Availability**: Ensure ports 3000, 3001, and 5800 are not already in use:
-  ```bash
-  sudo lsof -i :3000
-  sudo lsof -i :3001
-  sudo lsof -i :5800
-  ```
-- **Check Container Logs**: View container logs for error messages:
-  ```bash
-  docker ps -a  # Get container IDs
-  docker logs <container-id>
-  ```
-- **Verify Configuration**: Ensure all manual configuration steps have been completed correctly (see [Manual Configuration](/guides/gaming-developers-guide#manual-configuration)).
+### Node.js / pnpm
 
-#### Code Changes Not Reflecting
+**`pnpm` not found or wrong version:**
 
-**Symptoms**: After making code changes, the changes don't appear when running the application.
+```bash
+corepack enable
+corepack prepare pnpm@10.33.0 --activate
+```
 
-**Solutions**:
+**`ERR_PNPM_IGNORED_BUILDS` warnings:**
 
-- **Rebuild Images**: Code changes require rebuilding Docker images:
-  ```bash
-  ./build-docker-images.sh
-  ```
-- **Check Build Output**: Verify the build completed successfully and your changes were included.
-- **Restart Containers**: Ensure containers were restarted after the build:
-  ```bash
-  docker ps  # Verify containers are running
-  ```
+This is harmless. Silence with:
 
-### Configuration Issues
+```bash
+cd front-end && pnpm approve-builds
+cd lobby && pnpm approve-builds
+```
 
-#### WalletConnect Connection Fails
+**Node version too old:**
 
-**Symptoms**: Unable to connect wallet via WalletConnect.
+The project requires Node.js 20+. Check your version with `node --version`.
 
-**Solutions**:
+### Chialisp / Hex Files
 
-- **Verify Project ID**: Ensure your WalletConnect Project ID is correctly configured in `resources/gaming-fe/src/constants/env.ts`.
-- **Check Network Settings**: Ensure you're using the correct network (testnet vs mainnet) and that the chain_id matches.
-- **WalletConnect Support**: For WalletConnect registration and account issues, refer to the [WalletConnect documentation](https://walletconnect.com) and your WalletConnect account dashboard for troubleshooting.
-- **Review WalletConnect Guide**: See the [WalletConnect Developer Guide](/walletconnect-developer-guide) for detailed setup instructions.
+**Missing `.hex` files:**
 
-#### Network Configuration Issues
+```bash
+find clsp -name '*.hex' -delete
+cp build.rs.disabled build.rs
+cargo build
+```
 
-**Symptoms**: Application can't connect to the blockchain via coinset.org.
+This recompiles all `.clsp` sources to `.hex` via the Rust build script.
 
-**Solutions**:
+## Runtime Issues
 
-- **Verify Network Settings**: Check that `agg_sig_additional` and `chain_id` are set correctly for your target network (testnet or mainnet).
-- **Test Network Connectivity**: Verify the backend can reach coinset.org:
-  ```bash
-  # For mainnet
-  curl https://coinset.org
-  # For testnet
-  curl https://testnet11.api.coinset.org
-  ```
-- **Check Firewall**: Ensure firewall rules allow outbound connections to coinset.org.
-- **Verify Content Security Policy**: Check that CSP headers in `resources/nginx/game.conf` and `resources/lobby-service/src/index.ts` include the correct coinset.org URLs.
+### Simulator
 
-#### Port Configuration Issues
+**Simulator not responding on port 5800:**
 
-**Symptoms**: Can't access the application on expected ports.
+```bash
+# Build and run the simulator
+cargo build --features sim-server --bin chia-gaming-sim
+./target/debug/chia-gaming-sim
+```
 
-**Solutions**:
+The simulator uses hardcoded ports: 5800 (HTTP) and 5801 (WebSocket). Ensure nothing else is using these ports.
 
-- **Check Port Bindings**: Verify Docker port mappings are correct:
-  ```bash
-  docker ps  # Check port mappings
-  ```
-- **Check Default Ports**: Default ports are:
-  - 3000: Frontend web interface
-  - 3001: Lobby server API
-  - 5800: Simulator service
-- **Check Port Availability**: Ensure ports aren't already in use by another application.
-- **Review Port Documentation**: See the [Game Server](https://github.com/Chia-Network/chia-gaming/blob/main/resources/nginx/GAME.md) and [Lobby Server](https://github.com/Chia-Network/chia-gaming/blob/main/resources/nginx/LOBBY.md) documentation for port configuration.
+**Port conflicts with tracker:**
 
-### Development Environment Issues
+The tracker defaults to port 5801 if `PORT` is not set, which conflicts with the simulator WebSocket port. Always set `PORT` explicitly:
 
-#### Simulator Not Working
+From a **source checkout** (local demo):
 
-**Symptoms**: Simulator mode does not function correctly.
+```bash
+PORT=3003 node lobby/lobby-service/dist/index-rollup.cjs --self 'http://localhost:3003' --dir ./lobby/lobby-frontend/serve
+```
 
-**Solutions**:
+From an **Alpha 2 release zip** (`service.js` at the archive root):
 
-- **Verify Simulator Enabled**: Ensure the simulator option is enabled in the UI.
-- **Check Browser Console**: Open browser developer tools and check for JavaScript errors.
-- **Verify Backend Connection**: Ensure the game server is running and accessible.
+```bash
+PORT=3003 node service.js --self 'http://localhost:3003' --dir /path/to/extracted-lobby-archive
+```
 
-#### Logs Not Appearing
+### Player App
 
-**Symptoms**: Can not see application logs for debugging.
+**Blank page or JS errors:**
 
-**Solutions**:
+- Verify WASM files exist in `front-end/dist/` (`chia_gaming_wasm.js`, `chia_gaming_wasm_bg.wasm`)
+- Verify `.hex` files exist in `clsp/` directories
+- Check browser console for 404 errors on assets
 
-- **View Docker Logs**: Use Docker logs to view container output:
-  ```bash
-  docker logs -f <container-id>
-  ```
-- **Check Log Levels**: Verify log levels are set appropriately in the configuration.
-- **Check Container Status**: Ensure containers are running:
-  ```bash
-  docker ps
-  ```
+**`build-meta.json` errors:**
+
+The player app reads `build-meta.json` from the server root to determine the asset base path. If this file is missing or malformed, assets will fail to load. The `run-local-demo.sh` script generates this automatically.
+
+### Tracker
+
+**Tracker iframe not loading:**
+
+- Verify the tracker is running on a **different origin** from the player app
+- Check the browser console for CSP (Content Security Policy) errors
+- Verify the `--self` flag matches the public URL of the tracker
+
+**WebSocket connection failures:**
+
+- Verify the tracker's `--self` URL is accessible from both players' browsers
+- Check for firewall or proxy rules blocking WebSocket upgrades
+- Ensure the tracker process is still running
+
+## WalletConnect Issues
+
+### Connection
+
+**WalletConnect pairing fails:**
+
+- Ensure the Chia wallet is **2.7.1 or later** (minimum)
+- Check that the wallet's WalletConnect feature is enabled
+- Try regenerating the pairing URI by refreshing the player app
+
+**"No matching key" or namespace errors:**
+
+The gaming system requires specific WalletConnect methods. Ensure your wallet supports the `chia` namespace with the required methods. See `front-end/src/constants/wallet-connect.ts` in the repository for the full list.
+
+### During Gameplay
+
+**Handshake hangs:**
+
+1. Check your Chia wallet for pending approval requests
+2. Confirm each wallet is connected, synced, and has no pending WalletConnect approvals
+3. Check the browser console for WebSocket errors
+4. Ensure both players are connected to the same tracker
+
+**Transaction not confirming:**
+
+- Each transaction block takes approximately 1 minute
+- Channel opening uses one on-chain spend bundle; confirmation can take several minutes (about 1 minute per peak)
+- If a transaction is stuck, check the mempool via your wallet
+
+**Wallet disconnects mid-game:**
+
+- Reconnect the wallet via WalletConnect; stalled operations resume when the wallet is back (`CONNECTIVITY.md`)
+- Session data may remain in browser localStorage, but do not refresh the page during an active game
+- If the session is abandoned, channel coins follow on-chain timeout rules (see [Known Issues](/guides/gaming-known-issues))
 
 ## User Troubleshooting
 
 ### Connection Issues
 
-#### WalletConnect Will Not Connect
+**Shutdown hangs or incomplete:**
 
-**Symptoms**: Unable to connect Chia wallet via WalletConnect.
-
-**Solutions**:
-
-- **Check Wallet Version**: Ensure you are using Chia 2.5.7 or later.
-- **Check Wallet Sync**: Verify your wallet is synced with the blockchain.
-- **Clear WalletConnect Cache**: Use the option in the UI to clear the WalletConnect cache, then try connecting again.
-- **Try Reconnecting**: Disconnect and reconnect WalletConnect.
-- **Check Browser**: Try a different browser or clear browser cache.
-- **Verify Network**: Ensure you're on the correct network (testnet vs mainnet) that matches the game server configuration.
-- **WalletConnect Support**: For WalletConnect-specific issues, refer to the [WalletConnect documentation](https://walletconnect.com) and your WalletConnect account dashboard for troubleshooting.
-
-#### Handshake Never Completes
-
-**Symptoms**: Handshake process seems to hang or never completes.
-
-**Solutions**:
-
-- **Check for Pending WalletConnect Requests**: Check your Chia wallet for any pending WalletConnect requests. The wallet may have a request waiting for approval that needs to be confirmed before the handshake can proceed. This is a common cause of handshake delays.
-- **Wait Longer**: Handshaking requires 2 on-chain transactions. Each blockchain peak takes approximately 1 minute, so expect several minutes of waiting.
-- **Check Handshake Status**: Look for on-screen status indicators showing handshake progress.
-- **Verify Wallet Connection**: Ensure both players' wallets are properly connected and synced.
-- **Check Network**: Verify both players have network connectivity and can reach coinset.org.
-- **Try Restarting**: If handshake has been waiting for an unusually long time (10+ minutes), try restarting the connection.
-
-### Gameplay Issues
-
-#### Game Won't Start
-
-**Symptoms**: After handshake completes, game doesn't begin.
-
-**Solutions**:
-
-- **Check Browser Console**: Open browser developer tools (F12) and check for errors.
-- **Verify Both Players Connected**: Ensure both players have successfully connected their wallets.
-- **Check Balance**: Verify both players have sufficient balance for the game stake.
-- **Refresh Page**: Try refreshing the page and reconnecting.
-
-#### Cards or Game Elements Not Displaying
-
-**Symptoms**: Game interface appears but cards or other elements are missing.
-
-**Solutions**:
-
-- **Check Browser Compatibility**: Ensure you're using a modern, supported browser (Chrome, Firefox, Safari, Edge).
-- **Clear Browser Cache**: Clear your browser cache and reload the page.
-- **Check JavaScript**: Ensure JavaScript is enabled in your browser.
-- **Check Console**: Open browser developer tools and check for JavaScript errors.
-
-#### Game Freezes or Becomes Unresponsive
-
-**Symptoms**: Game stops responding to input or freezes.
-
-**Solutions**:
-
-- **Check Network Connection**: Verify you have a stable internet connection.
-- **Refresh Page**: Try refreshing the page (note: this may end the current game session).
-- **Check Browser Console**: Look for error messages in the browser console.
-- **Wait for Opponent**: Some game states require waiting for the opponent's action.
+- Both players should keep the browser open until shutdown completes
+- Check each wallet for pending WalletConnect approvals
 
 ### Session Management Issues
 
-#### Can Not End Session
+**Lost session after refresh:**
 
-**Symptoms**: Unable to end a game session.
+- Sessions are not restored from the server; refreshing clears in-progress UI state
+- Channel coins may remain on-chain until timeout if you abandon mid-game
 
-**Solutions**:
+### Firewall / Proxy
 
-- **Wait for Current Hand**: Complete or forfeit the current hand/game before ending the session.
-- **Check Balance**: If ending due to insufficient balance, ensure the session can be properly closed.
-- **Wait for Opponent**: If opponent is still active, wait for them to complete their turn or end their session.
+**WebSocket connections blocked:**
 
-#### Session Ends Unexpectedly
-
-**Symptoms**: Game session ends without user action.
-
-**Possible Causes**:
-
-- **Insufficient Balance**: One or both players may have insufficient balance to continue.
-- **On-Chain Transaction**: Session may have moved on-chain, requiring session end.
-- **Opponent Ended**: The opponent may have ended the session.
-- **Network Issues**: Network connectivity problems may have caused the session to end.
-
-**Solutions**:
-
-- **Check End Screen**: The end screen will show the reason for ending.
-- **Verify Balance**: Ensure you have sufficient balance for the game stake.
-- **Check Network**: Verify network connectivity is stable.
-
-## Getting Additional Help
-
-If you continue to experience issues after trying these troubleshooting steps:
-
-1. **Check Known Issues**: Review the [Known Issues](/guides/gaming-known-issues) document for documented problems and workarounds.
-
-2. **Review Documentation**:
-   - [Developers Guide](/guides/gaming-developers-guide)
-   - [Users Guide](/guides/gaming-users-guide)
-
-3. **Check Repository**: Review the [chia-gaming repository](https://github.com/Chia-Network/chia-gaming) for additional information and issue reports.
-
-4. **Support**: For additional support, visit the [Gaming channel](https://discord.com/channels/1034523881404370984/1275119503273103381) in the official Chia Discord server.
+- Ensure your network allows WebSocket connections (HTTP Upgrade)
+- If behind a corporate proxy, WebSocket traffic may be blocked
+- The tracker uses standard HTTP ports; configure your proxy to allow WebSocket upgrades on the tracker's port
