@@ -11,10 +11,10 @@ The Chia Gaming system enables trustless two-player games using **state channels
 
 The system consists of:
 
-- **Player App** — Static HTML/JS/CSS/WASM application that runs entirely in the browser. Contains the WASM game engine, game UIs, and the code that talks to a blockchain interface.
-- **Tracker** — A lobby and WebSocket relay service. Provides matchmaking and ferries game messages between peers. Trackers are third-party code; anyone can run one.
-- **Chia wallet (live play)** — Connected via WalletConnect. The player app reads chain state and submits transactions through the wallet (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`). A full node on the same machine is not required for players; the wallet handles chain interaction.
-- **Simulator (development)** — Optional local service (`chia-gaming-sim`, ports 5800/5801) used instead of WalletConnect when testing without real XCH. Configured in `front-end/src/settings.ts`.
+- **Player App**: Static HTML/JS/CSS/WASM application that runs entirely in the browser. Contains the WASM game engine, game UIs, and the code that talks to a blockchain interface.
+- **Tracker**: A lobby and WebSocket relay service. Provides matchmaking and ferries game messages between peers. Trackers are third-party code; anyone can run one.
+- **Chia wallet (live play)**: Connected via WalletConnect. The player app reads chain state and submits transactions through the wallet (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`). A full node on the same machine is not required for players; the wallet handles chain interaction.
+- **Simulator (development)**: Optional local service (`chia-gaming-sim`, ports 5800/5801) used instead of WalletConnect when testing without real XCH. Configured in `front-end/src/settings.ts`.
 
 ## State Channels
 
@@ -24,7 +24,7 @@ A state channel is a mechanism that allows two parties to transact off-chain whi
 2. **Play**: Game moves happen off-chain, with each state update signed by both parties
 3. **Close**: The final state is settled on-chain, distributing funds according to the game outcome
 
-The key insight is that either party can unilaterally close the channel at any time by posting the latest agreed-upon state to the blockchain. This means neither player needs to trust the other — if one party disappears or misbehaves, the other can always recover their funds.
+The key insight is that either party can unilaterally close the channel at any time by posting the latest agreed-upon state to the blockchain. This means neither player needs to trust the other; if one party disappears or misbehaves, the other can always recover their funds.
 
 ## Coin Hierarchy
 
@@ -48,7 +48,7 @@ The "potato" is a conceptual token that alternates between players, determining 
 - Both players sign each state transition
 - The latest signed state is always available for on-chain settlement
 
-The name comes from "hot potato" — you hold it when it's your turn, and pass it when you've made your move. The potato carries:
+The name comes from "hot potato": you hold it when it's your turn, and pass it when you've made your move. The potato carries:
 
 - The current game state
 - The sequence number
@@ -57,7 +57,7 @@ The name comes from "hot potato" — you hold it when it's your turn, and pass i
 
 ## Referee Pattern
 
-Each game type implements a **referee** — a Chialisp puzzle that can validate game moves on-chain. During normal play, the referee is never invoked because both players agree on the game state. However, if a dispute arises:
+Each game type implements a **referee**: a Chialisp puzzle that can validate game moves on-chain. During normal play, the referee is never invoked because both players agree on the game state. However, if a dispute arises:
 
 1. Either player posts the game state on-chain
 2. The referee puzzle validates each subsequent move
@@ -67,7 +67,7 @@ The referee ensures that even if the off-chain communication breaks down, the ga
 
 ### Game Handlers
 
-Each game implements a **handler** — Rust code that manages the game logic off-chain. Handlers are responsible for:
+Each game implements a **handler**: Rust code that manages the game logic off-chain. Handlers are responsible for:
 
 - Validating incoming moves from the opponent
 - Computing the next game state
@@ -118,6 +118,10 @@ The player app communicates with the Chia wallet via WalletConnect using the `ch
 | `chia_getCoinRecordsByNames` | Look up specific coin records                     |
 | `chia_getPuzzleAndSolution`  | Get puzzle/solution for spent coins               |
 
+### Channel open (handshake)
+
+Opening a channel uses **one** on-chain spend bundle, but each wallet still goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, two `chia_createOfferForIds` calls, one per player’s funding share, and `chia_pushTransactions`). Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
+
 ## Security Model
 
 The security of the system rests on several guarantees:
@@ -134,7 +138,7 @@ The frontend is split into two separately-deployed applications:
 
 ### Player App
 
-- Fully static (HTML/JS/CSS/WASM) — no server-side logic
+- Fully static (HTML/JS/CSS/WASM): no server-side logic
 - Contains the WASM game engine compiled from Rust
 - Handles WalletConnect integration
 - Manages game state in browser localStorage

@@ -19,13 +19,13 @@ This is an **alpha release** of the Chia Gaming system. The codebase is subject 
 
 This guide covers the development, testing, and deployment process for the Chia Gaming system. The system consists of two deployable artifacts:
 
-1. **Player App** — A fully static HTML/JS/CSS/WASM application that players run in their browser. It contains the wallet connection, WASM game engine, and all game UIs. No server-side logic, no cookies, no server-side sessions.
-2. **Tracker** — A separate service that provides a lobby UI (loaded as an iframe inside the player app) and a WebSocket relay that ferries game messages between peers. Trackers are third-party code — anyone can run one.
+1. **Player App**: A fully static HTML/JS/CSS/WASM application that players run in their browser. It contains the wallet connection, WASM game engine, and all game UIs. No server-side logic, no cookies, no server-side sessions.
+2. **Tracker**: A separate service that provides a lobby UI (loaded as an iframe inside the player app) and a WebSocket relay that ferries game messages between peers. Trackers are third-party code; anyone can run one.
 
 To follow this guide, you will need:
 
 - Linux or macOS operating system
-- Rust (stable) with the `wasm32-unknown-unknown` target
+- Rust (stable; pinned in the repo’s `rust-toolchain.toml`) with the `wasm32-unknown-unknown` target
 - Node.js 20+ and pnpm 10.33+
 - wasm-pack 0.13.1
 - Chia wallet **2.7.1 or later** (required minimum for Alpha 2; earlier wallet versions are not supported)
@@ -50,7 +50,7 @@ For information about becoming a gaming partner, see the [Gaming Partner RFP](/g
 ### Developer Dependencies
 
 - **Operating System**: Linux or macOS
-- **Rust** (stable) with `wasm32-unknown-unknown` target:
+- **Rust** (stable) with `wasm32-unknown-unknown` target: the [chia-gaming `rust-toolchain.toml`](https://github.com/Chia-Network/chia-gaming/blob/main/rust-toolchain.toml) pins the channel and targets when you build from a clone:
   ```bash
   rustup target add wasm32-unknown-unknown
   ```
@@ -99,8 +99,8 @@ cd chia-gaming
 
 Flags:
 
-- `--skip-build` — skip all build steps, use existing artifacts
-- `--force-build` — `cargo clean` before building
+- `--skip-build`: skip all build steps, use existing artifacts
+- `--force-build`: `cargo clean` before building
 
 Press Ctrl-C to stop all services.
 
@@ -110,8 +110,8 @@ Press Ctrl-C to stop all services.
 
 **Alpha 2 binaries:** Download from the [chia-gaming Releases](https://github.com/Chia-Network/chia-gaming/releases) page on the Alpha 2 release tag. Those assets are the **staged** archives from `tools/build-deploy.sh` (`.zip` and `.tgz` with the same contents):
 
-- `chia-gaming-YYYYMMDD-HASH.zip` — player app (`index.html`, `build-meta.json`, `app/<nonce>/` with JS, CSS, WASM, and `clsp/`)
-- `chia-gaming-lobby-YYYYMMDD-HASH.zip` — tracker (same staging layout, plus `service.js` at the archive root)
+- `chia-gaming-YYYYMMDD-HASH.zip`: player app (`index.html`, `build-meta.json`, `app/<nonce>/` with JS, CSS, WASM, and `clsp/`)
+- `chia-gaming-lobby-YYYYMMDD-HASH.zip`: tracker (same staging layout, plus `service.js` at the archive root)
 
 Build them yourself with `./tools/build-deploy.sh` from source (see [DEPLOYING.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEPLOYING.md)). The staged layout matches what `run-local-demo.sh` assembles locally (file copies under `front-end/serve` and `lobby/lobby-frontend/serve`).
 
@@ -128,10 +128,10 @@ For production packaging or partial rebuilds. Run commands from the repo root. T
 **1. Chialisp (.hex files):**
 
 ```bash
-find clsp -name '*.hex' -delete
-cp build.rs.disabled build.rs
-cargo build
+./tools/build-chialisp.sh
 ```
+
+This script clears stale `.hex` files, enables the Rust build script, and compiles all `.clsp` sources, the same step `run-local-demo.sh` uses.
 
 **2. WASM (browser target):**
 
@@ -247,7 +247,7 @@ Key points:
 
 - The player app and tracker must be served from **different origins** (the lobby loads inside an iframe)
 - WASM files and `.hex` chialisp files must be under the same `basePath` as `index.js`
-- No simulator in production — players connect their Chia wallet via WalletConnect
+- No simulator in production: players connect their Chia wallet via WalletConnect
 - Use `tools/build-deploy.sh` to produce deployment zip archives (see [DEPLOYING.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEPLOYING.md))
 
 ## Manual Configuration
@@ -256,8 +256,8 @@ Key points:
 
 **Alpha 2 supports mainnet only.** The player app is wired for mainnet in source:
 
-- `front-end/src/constants/env.ts` — `CHAIN_ID = 'chia:mainnet'`
-- `src/common/constants.rs` — `AGG_SIG_ME_ADDITIONAL_DATA` is the mainnet value
+- `front-end/src/constants/env.ts`: `CHAIN_ID = 'chia:mainnet'`
+- `src/common/constants.rs`: `AGG_SIG_ME_ADDITIONAL_DATA` is the mainnet value
 
 There is no supported testnet configuration for Alpha 2. Use the **simulator** (`run-local-demo.sh`) for development without mainnet XCH. Do not change these constants for testnet unless you are doing unsupported custom experimentation.
 
@@ -269,8 +269,8 @@ The repository ships a default WalletConnect **Project ID** in `front-end/src/co
 
 Once you have your Project ID, update:
 
-1. **Project ID**: `front-end/src/constants/env.ts` — update `PROJECT_ID` (and `RELAY_URL` if needed)
-2. **Chain and methods**: `front-end/src/constants/wallet-connect.ts` — update `REQUIRED_NAMESPACES` / `ChiaMethod` if the wallet API changes (must match what the player app calls in `RealBlockchainInterface.ts`)
+1. **Project ID**: `front-end/src/constants/env.ts`: update `PROJECT_ID` (and `RELAY_URL` if needed)
+2. **Chain and methods**: `front-end/src/constants/wallet-connect.ts`: update `REQUIRED_NAMESPACES` / `ChiaMethod` if the wallet API changes (must match what the player app calls in `RealBlockchainInterface.ts`)
 
 ### Port Configuration
 

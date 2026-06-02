@@ -75,12 +75,10 @@ The project requires Node.js 20+. Check your version with `node --version`.
 **Missing `.hex` files:**
 
 ```bash
-find clsp -name '*.hex' -delete
-cp build.rs.disabled build.rs
-cargo build
+./tools/build-chialisp.sh
 ```
 
-This recompiles all `.clsp` sources to `.hex` via the Rust build script.
+This recompiles all `.clsp` sources to `.hex` (same script used by `run-local-demo.sh` and `tools/build-deploy.sh`).
 
 ## Runtime Issues
 
@@ -175,6 +173,8 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 
 ## User Troubleshooting
 
+For documented limitations and workarounds, see [Known Issues](/guides/gaming-known-issues).
+
 ### Connection Issues
 
 **Shutdown hangs or incomplete:**
@@ -196,3 +196,18 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 - Ensure your network allows WebSocket connections (HTTP Upgrade)
 - If behind a corporate proxy, WebSocket traffic may be blocked
 - The tracker uses standard HTTP ports; configure your proxy to allow WebSocket upgrades on the tracker's port
+
+## Getting Additional Help
+
+If you continue to experience issues after trying these troubleshooting steps:
+
+1. **Check Known Issues**: Review the [Known Issues](/guides/gaming-known-issues) document for documented problems and workarounds.
+
+2. **Review Documentation**:
+   - [Developers Guide](/guides/gaming-developers-guide)
+   - [Users Guide](/guides/gaming-users-guide)
+   - [Architecture](/guides/gaming-architecture)
+
+3. **Check Repository**: Review the [chia-gaming repository](https://github.com/Chia-Network/chia-gaming) for additional information and issue reports.
+
+4. **Support**: For additional support, visit the [Gaming channel](https://discord.com/channels/1034523881404370984/1275119503273103381) in the official Chia Discord server.

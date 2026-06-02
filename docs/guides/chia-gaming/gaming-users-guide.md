@@ -25,6 +25,12 @@ This user guide is intended to help developers test their gaming implementations
 
 This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). For live testing, each player connects a Chia wallet (**2.7.1 or later**; required minimum for Alpha 2) via WalletConnect. The player app reads chain state and submits transactions through the wallet connection (see `front-end/src/hooks/RealBlockchainInterface.ts` in the chia-gaming repository). A tracker service relays lobby and game messages between the two browsers.
 
+:::warning Mainnet only (Alpha 2)
+
+Live WalletConnect play requires a **mainnet** Chia wallet. Alpha 2 does not support testnet. Use **Simulator** mode in the player app for development without mainnet XCH.
+
+:::
+
 :::important Two players, two wallets
 
 Live WalletConnect testing requires **two separate wallet installations** (for example two computers, or two user profiles each with its own wallet). You cannot run both players from the same wallet on one machine. See the [Developers Guide](/guides/gaming-developers-guide) testing section for details.
@@ -33,7 +39,7 @@ Live WalletConnect testing requires **two separate wallet installations** (for e
 
 :::note Handshaking Timing
 
-Each peak (block) on mainnet takes approximately 1 minute. Opening a channel uses **one** on-chain spend bundle (both players co-sign the combined funding transaction during the A–F handshake; see `OVERVIEW.md` in the chia-gaming repository). Each wallet must see that transaction confirm and the channel reach **Active** before play begins, so expect several minutes of waiting. The UI shows handshake progress during this period.
+Each peak (block) on mainnet takes approximately 1 minute. Opening a channel uses **one** on-chain spend bundle (both players co-sign the combined funding transaction during the A–F handshake; see `OVERVIEW.md` in the chia-gaming repository). Each wallet must still approve **several** WalletConnect requests during the handshake (coin selection, funding offers, and pushing the transaction), not just one prompt. Each wallet must see that transaction confirm and the channel reach **Active** before play begins, so expect several minutes of waiting. The UI shows handshake progress during this period.
 
 :::
 
@@ -73,7 +79,7 @@ If the handshake seems to hang, check your Chia wallet for any pending WalletCon
 
 ## Gameplay
 
-Once both players are connected and the handshake is complete, choose a game in the lobby. Alpha 2 includes **[California Poker](/guides/gaming-california-poker-rules)** (CalPoker) and **[Space Poker](/guides/gaming-space-poker-rules)** as early releases—on-chain Chialisp, rules, and UI for both may still change. **[Krunk](/guides/gaming-krunk-rules)** is coming soon.
+Once both players are connected and the handshake is complete, choose a game in the lobby. Alpha 2 includes **[California Poker](/guides/gaming-california-poker-rules)** (CalPoker) and **[Space Poker](/guides/gaming-space-poker-rules)** as early releases; on-chain Chialisp, rules, and UI for both may still change. **[Krunk](/guides/gaming-krunk-rules)** is coming soon.
 
 ## Game Completion
 
