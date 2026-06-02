@@ -50,7 +50,7 @@ In this example:
 
 - First guess "RATES" had one letter (S) in the word but wrong position
 - Second guess "SPOIL" had two letters (S and L) in wrong positions
-- Third guess "MOUSY" had three letters correct (O, U, Y) with two in right positions
+- Third guess "MOUSY" had three letters correct (O, U, Y) in right positions
 - Fourth guess "BOSSY" was correct
 
 ## Scoring and Rewards
