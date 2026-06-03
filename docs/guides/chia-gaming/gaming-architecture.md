@@ -63,7 +63,7 @@ Each game type implements a **referee**: a Chialisp puzzle that can validate gam
 2. The referee puzzle validates each subsequent move
 3. After a timeout or game completion, the referee distributes funds
 
-The referee ensures that even if the off-chain communication breaks down, the game can always be completed fairly on-chain (albeit more slowly and at transaction cost).
+The referee ensures that even if the off-chain communication breaks down, the game can always be completed fairly, on-chain (albeit more slowly and at transaction cost).
 
 ### Game Handlers
 
