@@ -10,7 +10,7 @@ If you would like to contribute localization translations, please visit our [Cro
 
 ## Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator, and deployed with Github Pages.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator, and deployed with GitHub Pages.
 
 ### Installation
 
@@ -42,9 +42,9 @@ $ npm run serve
 
 This command serves the static content in the `build` directory.
 
-### Commands run in github CI
+### Commands run in GitHub CI
 
-These are the commands being run in the github CI, run them all locally in this order to ensure there are no issues building and serving the content prior to submitting a pr:
+These are the commands being run in the GitHub CI, run them all locally in this order to ensure there are no issues building and serving the content prior to submitting a pr:
 
 ```
 $ npm install
