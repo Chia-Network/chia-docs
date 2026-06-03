@@ -9,34 +9,39 @@ This is an **alpha release** of the Chia Gaming system. The codebase is subject 
 
 :::
 
-:::danger Funds Left On-Chain
+<!-- Legacy anchors preserved for external links -->
 
-**When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue. This is a high priority issue which we are working to fix ASAP.**
-
-:::
-
-:::note Easy Developer Config Coming Soon
-
-The easy developer configuration is still in development. Currently, parameters need to be manually coded. See the [Manual Configuration](#manual-configuration) section below for details.
-
-:::
+<span id="setup-and-build"></span>
+<span id="running-individual-services"></span>
+<span id="ports-and-domain-updates"></span>
 
 ## Intro
 
-This guide covers the development, testing, and deployment process for the Chia Gaming system. The system consists of two Docker images: the lobby server and the game code server.
+This guide covers the development, testing, and deployment process for the Chia Gaming system. The system consists of two deployable artifacts:
+
+1. **Player App**: A fully static HTML/JS/CSS/WASM application that players run in their browser. It contains the wallet connection, WASM game engine, and all game UIs. No server-side logic, no cookies, no server-side sessions.
+2. **Tracker**: A separate service that provides a lobby UI (loaded as an iframe inside the player app) and a WebSocket relay that ferries game messages between peers. Trackers are third-party code; anyone can run one.
 
 To follow this guide, you will need:
 
-- Linux operating system
-- Docker (latest version recommended)
-- Chia 2.5.7 (for WalletConnect testing)
+- Linux or macOS operating system
+- Rust (stable; pinned in the repo’s `rust-toolchain.toml`) with the `wasm32-unknown-unknown` target
+- Node.js 20+ and pnpm 10.33+
+- wasm-pack 0.13.1
+- Chia wallet **2.7.1 or later** (required minimum for Alpha 2; earlier wallet versions are not supported)
 - Access to the [chia-gaming repository](https://github.com/Chia-Network/chia-gaming)
+
+:::note Alpha 2 games
+
+**California Poker** and **Space Poker** are playable in Alpha 2 as early releases; on-chain Chialisp, rules, and UI may change. **Krunk** is not yet available in the player app.
+
+:::
 
 For game rules and mechanics, see:
 
 - [California Poker Rules](/guides/gaming-california-poker-rules)
-- [Space Poker Rules](/guides/gaming-space-poker-rules) (coming soon)
-- [Krunk Rules](/guides/gaming-krunk-rules) (coming soon)
+- [Space Poker Rules](/guides/gaming-space-poker-rules)
+- [Krunk Rules](/guides/gaming-krunk-rules)
 
 For information about becoming a gaming partner, see the [Gaming Partner RFP](/guides/gaming-partner-rfp).
 
@@ -44,87 +49,130 @@ For information about becoming a gaming partner, see the [Gaming Partner RFP](/g
 
 ### Developer Dependencies
 
-- **Operating System**: Linux
-- **Containerization**: Docker (latest version recommended)
-- **Chia Wallet**: Chia 2.5.7 (only needed for live WalletConnect testing/playthroughs, not required for simulator testing)
-- **Codebase**: Access to the [chia-gaming repository](https://github.com/Chia-Network/chia-gaming) or the [Docker images](https://github.com/Chia-Network/chia-gaming/releases)
-- **Testing (Optional)**: Firefox or Chrome, and their respective Selenium drivers for running automated tests
+- **Operating System**: Linux or macOS
+- **Rust** (stable) with `wasm32-unknown-unknown` target: the [chia-gaming `rust-toolchain.toml`](https://github.com/Chia-Network/chia-gaming/blob/main/rust-toolchain.toml) pins the channel and targets when you build from a clone:
+  ```bash
+  rustup target add wasm32-unknown-unknown
+  ```
+- **wasm-pack** 0.13.1:
+  ```bash
+  cargo install wasm-pack --version 0.13.1
+  ```
+- **Node.js 20+** and **pnpm 10.33+**:
+  ```bash
+  corepack enable
+  corepack prepare pnpm@10.33.0 --activate
+  ```
+- **macOS only**: Homebrew LLVM for WASM builds (`brew install llvm`). Build scripts automatically detect and use it.
+- **Chia Wallet**: Chia **2.7.1 or later** (required minimum for Alpha 2; only needed for live WalletConnect testing, not required for simulator testing)
+- **Codebase**: Access to the [chia-gaming repository](https://github.com/Chia-Network/chia-gaming) or the release artifacts
 
 ### User Dependencies
 
-- **Chia Wallet**: Chia 2.5.7 (light wallet, full node not required)
-- **Blockchain Data**: The backend connects to coinset.org for blockchain data. Users' wallets perform transaction spends via WalletConnect. Both services are required for gameplay.
+- **Chia wallet**: **2.7.1 or later** (required minimum for Alpha 2; light wallet is sufficient; a local full node is not required for players)
+- **WalletConnect (live play)**: Each player connects their wallet via WalletConnect. The player app uses wallet RPC methods (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`) through that connection (`front-end/src/hooks/RealBlockchainInterface.ts`).
+- **Simulator (development)**: For testing without real XCH, use simulator mode and the `chia-gaming-sim` binary started by `run-local-demo.sh` (HTTP port 5800, WebSocket port 5801; see `front-end/src/settings.ts`).
 
 :::tip Common Issues
 
-For common setup issues and solutions (Docker version, permissions, etc.), see the [Known Issues](/guides/gaming-known-issues) document.
+For common setup issues and solutions, see the [Known Issues](/guides/gaming-known-issues) document.
 
 :::
 
 ## Development Workflow
 
-### Setup and Build
+### Quick Start (Local Demo)
 
-1. **Get the Codebase**: Choose one of the following options:
+The fastest way to get started is `run-local-demo.sh`, which builds everything (including `tools/build-chialisp.sh` and a `--dev` WASM build for faster iteration) and starts three services:
 
-   **Option A: Clone the Repository**:
+```bash
+git clone https://github.com/Chia-Network/chia-gaming.git
+cd chia-gaming
+./run-local-demo.sh
+```
 
-   ```bash
-   git clone https://github.com/Chia-Network/chia-gaming.git
-   cd chia-gaming
-   ```
+| Service    | Default URL                                                       | Override env var          |
+| ---------- | ----------------------------------------------------------------- | ------------------------- |
+| Player app | `http://localhost:3002`                                           | `GAME_PORT`               |
+| Tracker    | `http://localhost:3003`                                           | `TRACKER_PORT`            |
+| Simulator  | `http://localhost:5800` (HTTP), `ws://localhost:5801` (WebSocket) | `SIM_PORT`, `SIM_WS_PORT` |
 
-   **Option B: Use Docker Images from Releases**:
-   Download the Docker images from the [chia-gaming releases page](https://github.com/Chia-Network/chia-gaming/releases).
+Flags:
 
-2. **Install Dependencies**: Ensure all developer dependencies (Linux, Docker, Chia 2.5.7) are installed and configured.
+- `--skip-build`: skip all build steps, use existing artifacts
+- `--force-build`: `cargo clean` before building
 
-3. **Manual Configuration (Optional)**: If you need to customize network settings, WalletConnect project info, ports, or domain, see the [Manual Configuration](#manual-configuration) section below.
+Press Ctrl-C to stop all services.
 
-4. **Build Docker Images**:
+### Using Release Artifacts
 
-   ```bash
-   ./build-docker-images.sh
-   ```
+**Local development:** `./run-local-demo.sh` builds everything, assembles the nonce-based staging trees (`build-meta.json`, assets under `app/<nonce>/`), and starts the player app, tracker, and simulator.
 
-   This command automatically configures both Docker images, compiles any new code within those images, and then launches both the lobby server and game code server.
+**Alpha 2 binaries:** Download from the [chia-gaming Releases](https://github.com/Chia-Network/chia-gaming/releases) page on the Alpha 2 release tag. Those assets are the **staged** archives from `tools/build-deploy.sh` (`.zip` and `.tgz` with the same contents):
 
-   :::note Port Configuration
+- `chia-gaming-YYYYMMDD-HASH.zip`: player app (`index.html`, `build-meta.json`, `app/<nonce>/` with JS, CSS, WASM, and `clsp/`)
+- `chia-gaming-lobby-YYYYMMDD-HASH.zip`: tracker (same staging layout, plus `service.js` at the archive root)
 
-   Ports are manually coded in the `build-docker-images.sh` and `run-docker-demo.sh` scripts. The default ports are:
-   - **Port 3000**: Frontend web interface (game UI)
-   - **Port 3001**: Lobby server API
-   - **Port 5800**: Simulator service
+Build them yourself with `./tools/build-deploy.sh` from source (see [DEPLOYING.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEPLOYING.md)). The staged layout matches what `run-local-demo.sh` assembles locally (file copies under `front-end/serve` and `lobby/lobby-frontend/serve`).
 
-   To change ports, edit these scripts directly.
+To run the tracker from a release zip:
 
-   :::
+```bash
+PORT=3003 node service.js --self 'https://your-tracker.example' --dir /path/to/extracted-lobby-archive
+```
 
-5. **Run Docker Images** (if not automatically started):
+### Building Step by Step
 
-   ```bash
-   ./run-docker-demo.sh
-   ```
+For production packaging or partial rebuilds. Run commands from the repo root. The full sequence is documented in [DEPLOYING.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEPLOYING.md) and mirrored in `tools/build-deploy.sh`.
 
-   Note: The build command automatically runs this once complete.
+**1. Chialisp (.hex files):**
+
+```bash
+./tools/build-chialisp.sh
+```
+
+This script clears stale `.hex` files, enables the Rust build script, and compiles all `.clsp` sources, the same step `run-local-demo.sh` uses.
+
+**2. WASM (browser target):**
+
+```bash
+cd wasm && wasm-pack build --out-dir=../front-end/dist --release --target=web
+```
+
+For development, use `--dev` instead of `--release` (faster builds, larger output).
+
+**3. Player app (frontend JS/CSS):**
+
+```bash
+cd front-end && pnpm install --frozen-lockfile && pnpm run build
+```
+
+**4. Lobby frontend:**
+
+```bash
+cd lobby && pnpm install --frozen-lockfile
+pnpm --filter chia-gaming-lobby-frontend run build
+```
+
+If `pnpm install` in `lobby/` warns about ignored build scripts, that is expected (see [Known Issues](/guides/gaming-known-issues)). `tools/build-deploy.sh` uses `pnpm install --frozen-lockfile --ignore-scripts` in `lobby/` for production builds.
+
+**5. Lobby service:**
+
+```bash
+cd lobby && pnpm --filter chia-gaming-lobby-service run build
+```
+
+**6. Simulator (development only):**
+
+```bash
+cargo build --features sim-server --bin chia-gaming-sim
+```
 
 ### Making Code Changes
 
-:::note Repository Required
-
-To make code changes, you must have cloned the repository (Option A from the Setup and Build section). Code changes cannot be made when using Docker images from releases (Option B).
-
-:::
-
 1. **Edit Source Code**: Make your changes to the codebase.
 
-2. **Rebuild Docker Images**: After making changes, rebuild the Docker images:
-
-   ```bash
-   ./build-docker-images.sh
-   ```
-
-   This will recompile your changes and restart the services.
+2. **Rebuild**: After making changes, rebuild the affected components. For quick iteration, use `--skip-build` with `run-local-demo.sh` if you only changed frontend code, or rebuild individual steps as needed.
 
 3. **Test Changes**: Use the simulator (recommended) or live WalletConnect to test your modifications.
 
@@ -132,184 +180,111 @@ To make code changes, you must have cloned the repository (Option A from the Set
 
 :::note Simulator Recommended
 
-For development, it is recommended to use the simulator for testing game logic without interacting with a real WalletConnect instance.
+For development, it is recommended to use the simulator for testing game logic without interacting with a real Chia wallet.
 
 :::
 
 **Using Simulator (Recommended for Development):**
 
-1. Navigate to the game server URL (typically `http://localhost:3000`)
-2. Enable the simulator option in the UI
-3. Create a room and copy the generated room link
-4. Open a different web browser, user profile, or incognito/private window
-5. Paste the room link to join as the second player using the simulator
+1. Start the local demo with `./run-local-demo.sh`
+2. Navigate to the player app URL (`http://localhost:3002`)
+3. Enable the simulator option in the UI
+4. Create a room and copy the generated room link
+5. Open a different web browser, user profile, or incognito/private window
+6. Paste the room link to join as the second player using the simulator
 
 **Using Live WalletConnect (Advanced Testing):**
 
-:::danger Funds Left On-Chain
-
-**When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue. This is a high priority issue which we are working to fix ASAP.**
-
-:::
-
 :::important Two Separate Wallet Instances Required
 
-When testing with live WalletConnect (not simulator), you **must** use two different Chia wallet instances. You cannot use the same wallet or installation for both players. The easiest approach is to deploy the gaming system to a URL accessible by both computers and use two different systems (computers) with separate wallet installations.
+When testing with live WalletConnect (not simulator), you **must** use two different Chia wallet instances. You cannot use the same wallet or installation for both players. The easiest approach is to deploy the gaming system to a URL accessible by both computers and use two different systems with separate wallet installations.
 
 :::
 
 1. Deploy the gaming system to a URL accessible by both computers (does not need to be publicly accessible; local network, VPN, or other private network setup is sufficient)
-2. Use two different computers or systems, each with its own Chia wallet installation
+2. Use two different computers or systems, each with its own Chia wallet installation (2.7.1 or later)
 3. Each player connects their separate wallet via WalletConnect
 4. Follow the standard game flow with both players using their respective wallets
 
 ### Viewing Logs
 
-View Docker container logs for debugging:
+View service logs for debugging:
 
 ```bash
-# View all container logs
-docker ps  # Get container IDs
-docker logs <container-id>
-
-# Follow logs in real-time
-docker logs -f <container-id>
+# Logs appear in the terminal where run-local-demo.sh is running
+# For more control, run services separately (see Building Step by Step)
 ```
-
-### Running Individual Services
-
-For development, you may want to run services separately. See the repository documentation:
-
-- **Lobby Server**: See the [Lobby Server documentation](https://github.com/Chia-Network/chia-gaming/blob/main/resources/nginx/LOBBY.md) for running the lobby service individually
-- **Game Server**: See the [Game Server documentation](https://github.com/Chia-Network/chia-gaming/blob/main/resources/nginx/GAME.md) for running the game service individually
 
 ## Verification
 
 After building and launching the system, verify it's working correctly:
 
-1. **Check Docker Containers**: Ensure both containers are running:
+1. **Check Services**: Ensure all three services are accessible:
 
    ```bash
-   docker ps
+   curl http://localhost:3002  # Player app
+   curl http://localhost:3003  # Tracker
+   curl -X POST http://localhost:5800/get_peak  # Simulator
    ```
 
-   You should see containers for both the lobby server and game server.
-
 2. **Test with Simulator**:
-   - Navigate to `http://localhost:3000` (or your configured port)
+   - Navigate to `http://localhost:3002`
    - Enable simulator mode
    - Create a room and test the connection
 
 3. **Test with Live WalletConnect**:
-   - Connect a Chia wallet via WalletConnect
+   - Connect a Chia wallet (2.7.1 or later) via WalletConnect
    - Verify the connection is established
    - Test creating a room
 
-4. **Check Network Connectivity**: Ensure the backend can reach coinset.org:
-   ```bash
-   # For mainnet
-   curl https://coinset.org
-   # For testnet
-   curl https://testnet11.api.coinset.org
-   ```
+4. **Check WalletConnect (live play only)**: Confirm each test wallet is connected, synced, and approving pending requests in the Chia wallet UI.
 
 ## Deploy to Production
 
-:::warning Config Directory Not Yet Available
+For detailed deployment instructions including asset layout, caching rules, and production configuration, see the [DEPLOYING.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEPLOYING.md) in the chia-gaming repository.
 
-The config directory feature is not yet implemented. This is a [known issue](/guides/gaming-known-issues#easy-developer-configuration-not-available). Currently, you must manually update configuration values in the codebase as described in the [Manual Configuration](#manual-configuration) section.
+Key points:
 
-:::
-
-1. **Manual Configuration**: Update all necessary production-specific configurations manually in the codebase (e.g., live network settings, correct ports, production domain).
-
-2. **Build Images**: Build the production Docker images:
-
-   ```bash
-   ./build-docker-images.sh
-   ```
-
-3. **Launch Images**: Launch the built Docker images on your production server(s).
-
-:::note Distribution
-
-Each image (lobby server and game code server) can be launched on separate physical or virtual servers. Once the config directory feature is available, you'll be able to update the relevant server address parameters through configuration files.
-
-:::
+- The player app and tracker must be served from **different origins** (the lobby loads inside an iframe)
+- WASM files and `.hex` chialisp files must be under the same `basePath` as `index.js`
+- No simulator in production: players connect their Chia wallet via WalletConnect
+- Use `tools/build-deploy.sh` to produce deployment zip archives (see [DEPLOYING.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEPLOYING.md))
 
 ## Manual Configuration
 
-:::warning Manual Configuration Required
+### Network (mainnet only)
 
-The easy developer configuration is still in development. Currently, developers must manually update various parameters in the codebase before building and deploying.
+**Alpha 2 supports mainnet only.** The player app is wired for mainnet in source:
 
-:::
+- `front-end/src/constants/env.ts`: `CHAIN_ID = 'chia:mainnet'`
+- `src/common/constants.rs`: `AGG_SIG_ME_ADDITIONAL_DATA` is the mainnet value
 
-### Network Updates
-
-To configure the network settings (e.g., switching to testnet), update the following files:
-
-1. **agg_sig_additional change to testnet constant**:
-   - File: `src/common/constants.rs`
-   - Location: Line 32
-   - Update the `AGG_SIG_ME_ADDITIONAL_DATA` constant to the testnet value. Replace the mainnet array with:
-     ```rust
-     pub const AGG_SIG_ME_ADDITIONAL_DATA: [u8; 32] = [
-         0xe3, 0xb0, 0xc4, 0x42, 0x98, 0xfc, 0x1c, 0x14, 0x9a, 0xfb, 0xf4, 0xc8, 0x99, 0x6f, 0xb9, 0x24,
-         0x27, 0xae, 0x41, 0xe4, 0x64, 0x9b, 0x93, 0x4c, 0xa4, 0x95, 0x99, 0x1b, 0x78, 0x52, 0xb8, 0x55,
-     ];
-     ```
-   - [View in repository](https://github.com/Chia-Network/chia-gaming/blob/e716262cdf907e007af26c137a90f50d25ffa344/src/common/constants.rs#L32)
-
-2. **chain_id to testnet**:
-   - File: `resources/gaming-fe/src/constants/env.ts`
-   - Location: Line 3
-   - Update the `chain_id` to testnet: `chia:testnet`
-   - [View in repository](https://github.com/Chia-Network/chia-gaming/blob/e716262cdf907e007af26c137a90f50d25ffa344/resources/gaming-fe/src/constants/env.ts#L3)
-
-3. **coinset URL for testnet**:
-   - Update **all instances** of `coinset.org` to the testnet endpoint: `https://testnet11.api.coinset.org`
-   - This includes (but is not limited to):
-     - File: `resources/nginx/game.conf` (Content Security Policy header, line 17)
-     - File: `resources/lobby-service/src/index.ts` (Content Security Policy header, line 48)
-     - Any other files that reference `coinset.org`
-   - [View examples in repository](https://github.com/Chia-Network/chia-gaming/blob/e716262cdf907e007af26c137a90f50d25ffa344/resources/nginx/game.conf#L17)
+There is no supported testnet configuration for Alpha 2. Use the **simulator** (`run-local-demo.sh`) for development without mainnet XCH. Do not change these constants for testnet unless you are doing unsupported custom experimentation.
 
 ### WalletConnect Project Info Updates
 
 To configure WalletConnect settings, you'll need to obtain a WalletConnect Project ID. For registration and troubleshooting, refer to the [WalletConnect documentation](https://walletconnect.com) and your WalletConnect account dashboard.
 
-Once you have your Project ID, update the following:
+The repository ships a default WalletConnect **Project ID** in `front-end/src/constants/env.ts` for development. **Production or partner deployments should register their own project** at [WalletConnect Cloud](https://cloud.walletconnect.com) and replace that value before building the player app.
 
-1. **Project ID**:
-   - File: `resources/gaming-fe/src/constants/env.ts`
-   - Location: Line 1
-   - Update the WalletConnect project ID with your registered Project ID
-   - [View in repository](https://github.com/Chia-Network/chia-gaming/blob/e716262cdf907e007af26c137a90f50d25ffa344/resources/gaming-fe/src/constants/env.ts#L1)
+Once you have your Project ID, update:
 
-2. **Project Info**:
-   - File: `resources/gaming-fe/src/constants/wallet-connect.ts`
-   - Location: Line 52
-   - Update the WalletConnect project information with your project details
-   - [View in repository](https://github.com/Chia-Network/chia-gaming/blob/e716262cdf907e007af26c137a90f50d25ffa344/resources/gaming-fe/src/constants/wallet-connect.ts#L52)
+1. **Project ID**: `front-end/src/constants/env.ts`: update `PROJECT_ID` (and `RELAY_URL` if needed)
+2. **Chain and methods**: `front-end/src/constants/wallet-connect.ts`: update `REQUIRED_NAMESPACES` / `ChiaMethod` if the wallet API changes (must match what the player app calls in `RealBlockchainInterface.ts`)
 
-### Ports and Domain Updates
+### Port Configuration
 
-**Default Ports:**
+Default ports for `run-local-demo.sh`:
 
-The default Docker configuration exposes the following ports:
+- **Port 3002**: Player app (frontend web interface)
+- **Port 3003**: Tracker (lobby + relay service)
+- **Port 5800**: Simulator (HTTP)
+- **Port 5801**: Simulator (WebSocket)
 
-- **Port 3000**: Frontend web interface (game UI)
-- **Port 3001**: Lobby server API
-- **Port 5800**: Simulator service
+Override with environment variables:
 
-:::note Port Configuration
+```bash
+GAME_PORT=4000 TRACKER_PORT=4001 ./run-local-demo.sh
+```
 
-Ports are manually coded in the Docker build and run commands within `build-docker-images.sh` and `run-docker-demo.sh`. To change ports, edit these scripts directly.
-
-:::
-
-For production deployments, ports and domain should be configured via the methods documented in the repository:
-
-- **Game Server**: See the [Game Server documentation](https://github.com/Chia-Network/chia-gaming/blob/main/resources/nginx/GAME.md#using-the-archive-and-script) for configuring ports and domain
-- **Lobby Server**: See the [Lobby Server documentation](https://github.com/Chia-Network/chia-gaming/blob/main/resources/nginx/LOBBY.md#using-the-archive-and-script) for configuring ports and domain
+For production deployments, see the [DEPLOYING.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEPLOYING.md) in the repository for port and domain configuration.

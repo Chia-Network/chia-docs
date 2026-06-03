@@ -482,6 +482,7 @@ module.exports = {
           items: [
             'guides/chia-gaming/gaming-developers-guide',
             'guides/chia-gaming/gaming-users-guide',
+            'guides/chia-gaming/gaming-architecture',
             {
               type: 'category',
               label: 'Game Rules',
