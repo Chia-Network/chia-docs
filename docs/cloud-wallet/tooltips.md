@@ -38,7 +38,11 @@ This key can only be used for recovering a vault. It cannot be used for signing 
 
 ## Transaction Fee
 
-A fee for speeding up your transaction’s confirmation time if the network is busy. Testnet11 is often being dusted with small transactions, so we recommend including a fee whenever possible. Typically 0.001 TXCH is sufficient for fast confirmation on testnet11.
+A fee for speeding up your transaction’s confirmation time if the network is busy.
+
+On mainnet, this fee is expressed in `XCH`. The recommended amount will depend on how busy the network is.
+
+On testnets, this fee is expressed in `TXCH`. A fee of 0.001 TXCH is often necessary -- and typically sufficient -- on these networks.
 
 ## Recovery Clawback
 
