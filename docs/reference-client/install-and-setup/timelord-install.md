@@ -107,6 +107,36 @@ Main Machine (ASIC 1)  --------------------------
 For an ASIC cluster you will need to follow the below install steps on the main machine to include the chia node, timelord-only, and ASIC software processes are all being run on the main machine.  
 The additional ASIC hosts will only need the ASIC software installed (noted in the below install instructions).
 
+When the timelord and ASIC software run on different machines (not localhost-only), update `~/.chia/mainnet/config/config.yaml` on the **timelord host** before starting services:
+
+- Set `timelord.vdf_server.host` to `0.0.0.0` so the timelord listens for remote `hw_vdf_client` TCP connections (default port `8000`).
+- Add each ASIC machine's LAN IP to `timelord.vdf_clients.ip`. The timelord accepts only VDF clients whose source IP appears in this list.
+- On each ASIC host, point `hw_vdf_client` at the timelord with `--ip <timelord-host-ip>` (see [ASIC HW VDF CLI](/reference-client/cli-reference/asic-hwvdf-cli)).
+- When using hardware VDF clients only, set `timelord_launcher.process_count` to `0` so the timelord launcher does not spawn local software `vdf_client` processes.
+
+Example `timelord` section (adjust IPs for your cluster):
+
+```yaml
+timelord:
+  vdf_server:
+    host: 0.0.0.0
+    port: 8000
+  vdf_clients:
+    ip:
+      - 127.0.0.1
+      - <asic-host-ip>
+```
+
+Replace `<asic-host-ip>` with the source IP of each ASIC machine. Add one entry per remote ASIC host.
+
+On each remote ASIC host:
+
+```bash
+hw_vdf_client --ip <timelord-host-ip> 8000 1
+```
+
+Use `1` for `N_VDFS` on cluster nodes that run a single engine; see the install steps below for localhost examples.
+
 ```bash
 # Install packages
 sudo apt-get update
