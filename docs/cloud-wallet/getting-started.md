@@ -99,10 +99,10 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
   <img src="/img/cloud-wallet/09_link_key.png" alt="Link your key to your vault" width="40%"/>
 </div>
 
-10. If a green check box appears over the QR code, then your signer app was successfully linked to your vault:
+10. When linking succeeds, a green checkmark appears over the QR code on the Cloud Wallet page (this is a status indicator, not a checkbox you need to click):
 
 <div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/10_key_linked.png" alt="Signer successfully linked" width="100%"/>
+  <img src="/img/cloud-wallet/10_key_linked.png" alt="Green checkmark indicating the signer was successfully linked" width="100%"/>
 </div>
 
 11. Next, copy the 24 words to a safe location. You will need to recall these words in order to recover your vault, so don't lose them.
