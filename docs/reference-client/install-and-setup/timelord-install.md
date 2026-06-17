@@ -107,6 +107,20 @@ Main Machine (ASIC 1)  --------------------------
 For an ASIC cluster you will need to follow the below install steps on the main machine to include the chia node, timelord-only, and ASIC software processes are all being run on the main machine.  
 The additional ASIC hosts will only need the ASIC software installed (noted in the below install instructions).
 
+When the timelord and ASIC software run on different machines (not localhost-only), update `~/.chia/mainnet/config/config.yaml` before starting services:
+
+- On the machine running the Chia timelord, set `vdf_server` to listen on all interfaces: `0.0.0.0`.
+- Point `vdf_clients` at the IP address of each ASIC host so the timelord can reach the hardware VDF clients.
+
+Example using `yq` on the timelord host:
+
+```bash
+yq -i '.timelord.vdf_server.host = "0.0.0.0"' ~/.chia/mainnet/config/config.yaml
+yq -i '.timelord_launcher.vdf_clients[0].host = "<asic-host-ip>"' ~/.chia/mainnet/config/config.yaml
+```
+
+Replace `<asic-host-ip>` with the LAN IP of the ASIC machine. Adjust the `vdf_clients` list if you run multiple ASIC hosts in a cluster.
+
 ```bash
 # Install packages
 sudo apt-get update
