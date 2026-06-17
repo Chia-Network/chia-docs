@@ -26,11 +26,12 @@ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 :::warning Large integers in JSON responses
 Some RPC responses include integers larger than `Number.MAX_SAFE_INTEGER` (2^53 - 1). Parsers that treat JSON numbers as IEEE-754 doubles may lose precision or fail.
 
-Routes that return especially large values include:
+Full node routes that return especially large values include:
 
-- `get_blockchain_state` (network space in the `BlockchainState` payload)
-- `get_network_space`
-- `get_all_puzzle_hashes`
+- `get_blockchain_state` (`blockchain_state.space`, a network-space estimate)
+- `get_network_space` (`space` in the response)
+
+The simulator full node also exposes `get_all_puzzle_hashes`, which can return large coin amounts in its `puzzle_hashes` map.
 
 When building clients in JavaScript or other languages with limited integer types, treat these fields as strings or use a bigint-capable JSON parser. Verify behavior against a live node if your stack coerces JSON numbers automatically.
 :::
