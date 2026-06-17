@@ -23,6 +23,21 @@ chia rpc wallet create_new_wallet '{\"wallet_type\": \"nft_wallet\"}'
 
 </details>
 
+<span id="large-integers-in-json-responses"></span>
+
+:::warning Large integers in JSON responses
+Some RPC responses include integers larger than `Number.MAX_SAFE_INTEGER` (2^53 - 1). Parsers that treat JSON numbers as IEEE-754 doubles may lose precision or fail.
+
+Full node routes that return especially large values include:
+
+- [`get_blockchain_state`](/reference-client/rpc-reference/full-node-rpc#get_blockchain_state) (`blockchain_state.space`, a network-space estimate)
+- [`get_network_space`](/reference-client/rpc-reference/full-node-rpc#get_network_space) (`space` in the response)
+
+The simulator full node also exposes [`get_all_puzzle_hashes`](/reference-client/rpc-reference/simulator-rpc#get_all_puzzle_hashes), which can return large coin amounts in its `puzzle_hashes` map.
+
+Each affected endpoint documents the precise fields on its reference page. When building clients in JavaScript or other languages with limited integer types, treat these fields as strings or use a bigint-capable JSON parser. Verify behavior against a live node if your stack coerces JSON numbers automatically.
+:::
+
 The Chia node and services come with a JSON RPC API server that allows you to access information and control the services.
 These are accessible via HTTP, WebSockets, or via client SDKs.
 The ports can be configured in `~/.chia/mainnet/config/config.yaml`.

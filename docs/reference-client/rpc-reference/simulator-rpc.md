@@ -293,6 +293,12 @@ Options:
 
 Request Parameters: None
 
+:::note
+
+Coin amounts in the `puzzle_hashes` map can exceed `Number.MAX_SAFE_INTEGER` (2^53 - 1). JavaScript and other IEEE-754 JSON parsers may lose precision; use a bigint-capable parser or treat these values as strings. See [RPC overview — large integers](/reference-client/rpc-reference/rpc#large-integers-in-json-responses).
+
+:::
+
 <details>
 <summary>Example</summary>
 
