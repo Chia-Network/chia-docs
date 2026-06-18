@@ -93,7 +93,7 @@ Proof of Work solves the double-spend problem -- only one computer can create a 
 Each node in the network maintains active connections with a few other random nodes. If a user wants to make a transaction, they send it to any node in the network, which automatically broadcasts it to their peers. Because each node is connected to a unique set of peers, the transaction quickly gets propagated to every node in the network. The nodes then save the transaction, including all other pending transactions, locally in memory. This is called the _mempool_.
 
 :::info
-For more info on Chia's mempool, see the [Mempool page](/chia-blockchain/architecture/mempool).
+For more info on Chia's mempool, see the [Mempool page](/chia-blockchain/architecture/mempool/intro/).
 :::
 
 In order for each node to search for a proof, it must assemble a block to hash against. It does this by including transactions from the mempool, and it will most likely choose the pending transactions that pay the highest fee. A transaction fee market is thus created, where the supply is the total transactions per second (TPS) that the system supports, and the demand is based on the number of transactions in the mempool. A transaction is said to be "confirmed" once it is included inside a block which has the required proof of work.

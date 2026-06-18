@@ -143,7 +143,7 @@ Even this number is not realistic because it assumes that a single program will 
 The below chart contains costs for various transactions on the blockchain, each of these assumes the inputs and outputs have been optimized and represent a best case scenario.
 
 :::note
-The [minimum effective](/chia-blockchain/architecture/mempool/#fee-required-for-inclusion) fee represents 5 x the clvm cost and is the minimum fee recognized by the default consensus rules (any fee less would be the same as 1 mojo).
+The [minimum effective](/chia-blockchain/architecture/mempool/fees/#fee-required-for-inclusion) fee represents 5 x the clvm cost and is the minimum fee recognized by the default consensus rules (any fee less would be the same as 1 mojo).
 This means one needs to use at least the fees listed below during moderate fee pressure but greater fees might be needed for time sensitive transactions to process in a timely manner.
 
 Please note that the costs and fees listed are for vanilla versions of these transactions, they can vary based on the number of input and output coins needed so consider these the bare minimum.

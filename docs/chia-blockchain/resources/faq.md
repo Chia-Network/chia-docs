@@ -1055,7 +1055,7 @@ Chia version 1.8.2 introduces identical spend aggregation, which addresses some 
 
 ### Why do I see `INVALID_FEE_TOO_CLOSE_TO_ZERO` in my log file?
 
-This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/chia-blockchain/architecture/mempool#fee-required-for-inclusion).
+This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/chia-blockchain/architecture/mempool/fees#fee-required-for-inclusion).
 
 ---
 
