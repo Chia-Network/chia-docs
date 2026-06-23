@@ -950,7 +950,7 @@ Request Parameters: None
 
 :::note
 
-`blockchain_state.space` is a network-space estimate in bytes (`uint128` in the node). It can exceed `Number.MAX_SAFE_INTEGER` (2^53 - 1). JavaScript and other IEEE-754 JSON parsers may lose precision; use a bigint-capable parser or treat the value as a string. See [RPC overview — large integers](/reference-client/rpc-reference/rpc#large-integers-in-json-responses).
+`blockchain_state.space` is a network-space estimate in bytes (`uint128` in the node). It can exceed `Number.MAX_SAFE_INTEGER` (2^53 - 1). JavaScript and other IEEE-754 JSON parsers may lose precision; use a bigint-capable parser or treat the value as a string. See [RPC overview — large integers](/reference-client/rpc-reference/rpc).
 
 :::
 
@@ -3485,7 +3485,7 @@ Request Parameters:
 
 :::note
 
-The response `space` field is a netspace estimate in bytes (`uint128` in the node). Values often exceed `Number.MAX_SAFE_INTEGER` (2^53 - 1). JavaScript and other IEEE-754 JSON parsers may lose precision; use a bigint-capable parser or treat the value as a string. See [RPC overview — large integers](/reference-client/rpc-reference/rpc#large-integers-in-json-responses).
+The response `space` field is a netspace estimate in bytes (`uint128` in the node). Values often exceed `Number.MAX_SAFE_INTEGER` (2^53 - 1). JavaScript and other IEEE-754 JSON parsers may lose precision; use a bigint-capable parser or treat the value as a string. See [RPC overview — large integers](/reference-client/rpc-reference/rpc).
 
 :::
 
