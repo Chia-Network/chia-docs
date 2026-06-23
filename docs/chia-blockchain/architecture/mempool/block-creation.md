@@ -3,11 +3,15 @@ title: Block Creation
 slug: /chia-blockchain/architecture/mempool/block-creation
 ---
 
+:::info
+
+Keep in mind that the logic discussed here is only guaranteed to be valid on farms that use the default mempool, as described in the [intro](/chia-blockchain/architecture/mempool/intro/#default-mempool) section. Farmers are allowed to customize, or even remove, their own mempools, so the default logic is not universal.
+
+:::
+
 When the farmer makes a block, they will select the highest fee-per-cost transactions from the mempool until they reach the maximum block size. These spend bundles are combined into one large spend bundle, which is guaranteed to be valid, since all spend bundles in the mempool must spend disjointed coins.
 
-Coin spends cannot impact other coin spends, which is a very nice property of UTXO systems, and allows parallelization of validation and block creation. The aggregate spend bundle also has one aggregate signature, which is a combination of every signature from every transaction in that block.
-
-For performance reasons, the chia-blockchain codebase currently creates only smaller blocks (less than 50% of the maximum size) in order to keep the blockchain smaller and easier to run. This "throttle" is likely to be removed in future versions, after additional optimizations have been performed.
+For example, in the coin set model, Coin A can have a rule that says "I can only be spent in the same block as Coin B is spent," but Coin A is not allowed to spend Coin B directly. This property allows for the parallelization of validation and block creation -- as long as a block's input and output amounts match up, and every coin that is spent in the same block follows its own rules, the block will be valid. Because of this, the aggregate spend bundle has a single aggregate signature, which is a combination of every signature from every transaction in that block.
 
 ### Implementation
 
@@ -19,23 +23,25 @@ The algorithm for picking transactions has been designed to have linear complexi
 
 ### Picking transactions
 
-The mempool data structure maintains all mempool items ordered by fee per cost, highest fee first.
+As stated above, the mempool data structure maintains all mempool items ordered by fee per cost, highest fee first.
 
-This lets the mempool pick transactions one at a time until the block is full (the cost limit is reached) and maximize the fee the farmer collects.
+This lets the mempool pick transactions one at a time until either the mempool is empty, or the block is full (the cost limit is reached), which therefore will maximize the fee the farmer collects.
 
-Until Q2 2025, we would pick transactions as a separate step from serializing the resulting block generator. This limited us to pick transactions until we estimated to have reached the block cost limit, assuming CLVM compression would not save us anything. The problem with this was that if puzzles compressed well, the size cost of the block was over estimated and the final block therefore was not as full as it could have been. This was noted on testnet11 with a full mempool, but some blocks were farmed only 11% full.
+Prior to version 2.5.4, the mempool picked transactions as a separate step from serializing the resulting block generator. This limited the mempool to picking transactions until it estimated to have reached the block cost limit, assuming CLVM compression would not save anything. The problem with this was that if puzzles compressed well, the size cost of the block was overestimated. The final block therefore was not as full as it could have been. This was noted on testnet11 with a full mempool, but some blocks were farmed only 11% full.
 
 This logic is implemented in [chia/full_node/mempool.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/mempool.py) in `create_block_generator()`.
 
-Since Q2 2025, we use a new algorithm (`create_block_generator2()`) which interleaves picking transactions and serializing them (in compressed form). This way, we have a good understanding of the exact cost of the block and can keep filling it with more transactions if the previous ones compressed well.
+Beginning in version 2.5.4 (Q2 2025), the mempool uses a new algorithm (`create_block_generator2()`) which interleaves picking transactions and serializing them (in compressed form). This way, we have a good understanding of the exact cost of the bloc, and can keep filling it with more transactions if the previous ones compressed well.
 
 Additionally, we use a new algorithm for serialization and compression which has an order of magnitude speedup. Some of this is eaten up more effectively filling blocks, so there’s more to serialize.
+
+For more info about these changes, see [clvm_rs PR #562](https://github.com/Chia-Network/clvm_rs/pull/562) (the speedup itself) and [chia-blockchain PR #19270](https://github.com/Chia-Network/chia-blockchain/pull/19270) (the mempool block-building algorithm).
 
 ### Fast forward spends
 
 As we build the block generator, fast forward spends must be chained together. i.e. all but the first spend must be rebased to spend the output singleton of the previous spend. This applies to spends of a standard singleton that satisfies the conditions to be eligible for fast-forward. For more details, see the section on fast forward spends.
 
-Implemented in [chia/full_node/eligible_coin_spends.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/eligible_coin_spends.py)
+Fast forward was implemented in [chia/full_node/eligible_coin_spends.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/eligible_coin_spends.py) as part of [PR #16919](https://github.com/Chia-Network/chia-blockchain/pull/16919). It was first added to version 2.2.0 in February 2024.
 
 ### Dedup spends
 

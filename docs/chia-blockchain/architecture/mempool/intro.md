@@ -3,9 +3,20 @@ title: Intro
 slug: /chia-blockchain/architecture/mempool/intro
 ---
 
-The mempool (or memory pool) is a collection of transactions stored by full nodes, usually in memory, before they are confirmed on the blockchain. The mempool is not dictated by the consensus rules; a farmer can change how their mempool functions and customize the rules without permission from other full nodes.
+The mempool (or memory pool) is a collection of transactions stored by full nodes, usually in memory, before they are confirmed on the blockchain. 
 
-The mempool is a required facet of Chia due to the decentralized nature of the blockchain. Transaction blocks occur approximately every 52 seconds, and it's impossible to predict who will win a block. Therefore, all transactions must be broadcast to the whole network and stored locally until they are confirmed. Additionally, it is normal to have more pending transactions than can fit in a single block, so the mempool also acts as a queue for inclusion into the blockchain.
+:::info
+### Default Mempool
+
+The mempool is not dictated by the consensus rules; a farmer can change how their personal mempool functions and customize the rules without obtaining any permissions. Farmers can even decline to use a mempool altogether.
+
+However, the majority of farmers opt to use the default mempool, which ships with the default farming software. The documentation in the following pages therefore only pertains to this version.
+
+While you may be tempted to simplify your mental model of the mempool by thinking of the _default_ as the _only_ version, do keep in mind that some farmers will, in fact, use a customized version that doesn't follow all of (or any of) the logic discussed here.
+
+:::
+
+The mempool is a recommended facet of Chia due to the decentralized nature of the blockchain. Transaction blocks occur approximately every 52 seconds, and it's impossible to predict who will win a block. Therefore, all transactions must be broadcast to the whole network and stored locally until they are confirmed. Additionally, it is normal to have more pending transactions than can fit in a single block, so the mempool also acts as a queue for inclusion into the blockchain.
 
 For more information about the mempool, see our [blog post](https://www.chia.net/2024/01/12/getting-to-know-the-mempool-and-transaction-fees/) on this subject.
 
