@@ -45,19 +45,31 @@ Fast forward was implemented in [chia/full_node/eligible_coin_spends.py](https:/
 
 ### Dedup spends
 
-When we encounter a spend that’s eligible for deduplication, we record the exact solution it’s being spent with. Any subsequent mempool items spending the same coin must also use an identical solution. If it isn’t, the mempool item is not considered for inclusion in the block. The dedup spend that has the highest fee-per-cost decides which solution will be used in the block, as it’s deduplicated. Spends eligible for deduplication are allowed to conflict in the mempool. For details, see the section on identical spend deduplication below.
+When we encounter a spend that’s eligible for deduplication, we record the exact solution it’s being spent with. Any subsequent mempool items spending the same coin must also use an identical solution. Otherwise, the mempool item is not considered for inclusion in the block. The dedup spend that has the highest fee-per-cost decides which solution will be used in the block, as it’s deduplicated. Spends eligible for deduplication are allowed to conflict in the mempool. For details, see the section on identical spend deduplication below.
 
 Implemented in [chia/full_node/eligible_coin_spends.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/eligible_coin_spends.py)
+
+:::info
+
+Identical [Spend Deduplication](/chia-blockchain/architecture/mempool/isd/) (ISD) is separate from [Replace by Fee](/chia-blockchain/architecture/mempool/rbf/) (RBF), even though they both replace one spend with another.
+
+In the case of RBF, a spend bundle is replaced by a different spend bundle with a higher fee. The replacement spend can include additional coin spends, as long as the rules listed in the RBF page are followed.
+
+In the case of ISD, the spends must be identical. Because of this constraint, the RBF rules do not apply.
+
+:::
 
 ### Serializing
 
 Until Q1 2025, serialization of the block generator happened as a separate step. This takes the CLVM tree structure and flattens it into a buffer. This can be expensive because we also deduplicate identical sub-trees (referred to as CLVM compression). The original algorithm could take multiple seconds to serialize a full block, even on fast computers. Since Q1 2025, serialization has been integrated with picking transactions, to make sure we keep adding more until we hit the cost limit in _serialized form_.
 
+The updated serialization was prepared in [chia-blockchain PR #29207](https://github.com/Chia-Network/chia-blockchain/pull/19207) and completed in [chia-blockchain PR #19270](https://github.com/Chia-Network/chia-blockchain/pull/19270) as part of version 2.5.5. This latter PR introduced `create_block_generator2()` in the `Mempool` class, which picks transactions and serializes/compresses them incrementally. This allows blocks to be filled up to the cost limit, even with compression applied.
+
 ### Compute cost
 
 Until Q1 2025, after creating the block generator, we would run it, just to measure its cost. We need to specify the cost in the `TransactionsInfo` field. In the new block creation function we predict the exact cost of the block by knowing the cost of the bytes, conditions and executing each puzzle.
 
-The first hard fork, where we no longer pay for the generator ROM, greatly simplified this task.
+The first hard fork, where we no longer pay for the generator ROM, greatly simplified this task. This fork occurred in version 2.1.0. It activated at block `5'496'000`, as documented in the [forks](/chia-blockchain/consensus/forks/) page.
 
 Implemented in [chia/simulator/block_tools.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/simulator/block_tools.py) in `compute_block_cost()`
 
@@ -67,9 +79,9 @@ Implemented in [chia/full_node/full_node.py](https://github.com/Chia-Network/chi
 
 ### Enhanced Block Creation (Chia 2.5.5+)
 
-Starting in Chia 2.5.5, a new, more efficient block creation algorithm is available that can be enabled via configuration. This algorithm provides improved performance and better resource utilization during block creation.
+Starting in Chia 2.5.5, a new, more efficient block creation algorithm was made available. Starting in 2.6.1 ([PR #20578](https://github.com/Chia-Network/chia-blockchain/pull/20578)), this became the default. This algorithm provides improved performance and better resource utilization during block creation by picking and serializing incrementally in batches. It also handles [Identical Spend Deduplication](/chia-blockchain/architecture/mempool/isd/) and [singleton fast-forward](/chia-blockchain/architecture/mempool/fast-forward/) inline.
 
-**Configuration**: Set `full_node:block_creation` to `1` in your config file to enable the new algorithm.
+**Configuration** (default): Set `full_node:block_creation` to `1` in your config file to enable the new algorithm.
 
 **Benefits**:
 
@@ -87,3 +99,5 @@ full_node:
   block_creation: 1 # Enable new algorithm
   block_creation_timeout: 30 # 30 second timeout
 ```
+
+In the legacy mode (`full_node:block_creation: 0`), all transactions are first picked, and then serialized in one shot. Compression savings aren't known during selection, so blocks may be under-filled.

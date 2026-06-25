@@ -5,7 +5,18 @@ slug: /chia-blockchain/architecture/mempool/fast-forward
 
 Fast-forward spends is a way for a singleton transaction to be applied to future versions of the singleton. This enables offer files to refer to singletons by coin ID, even though the coin ID changes for every singleton spend.
 
-Spending a coin whose outer puzzle is the `singleton_top_layer_v1_1`, is automatically considered eligible for fast-forward by the mempool, as long as it satisfies certain restrictions. These restrictions are outlined below, with motivation.
+Spending a coin whose outer puzzle is the `singleton_top_layer_v1_1`, is automatically considered eligible for fast-forward by the mempool, as long as it satisfies certain restrictions:
+* [Immutable puzzle](#immutable-puzzle)
+* [Immutable amount](#immutable-amount) (other than the singleton layer)
+* [Certain conditions excluded](#conditions)
+  * [Specific coin ID](#coin-id)
+  * [Coin announcements](#coin-announcements)
+  * [AGG_SIG_PARENT_*](#parent-coin-id) (other than the singleton layer)
+  * [Relative timelocks](#relative-timelocks)
+  * [ASSERT_BIRTH_*](#created-height-and-timestamp)
+  * [ASSERT_CONCURRENT_SPEND](#concurrent-spends)
+  * [*_MESSAGE](#messages)
+  * [ASSERT_EPHEMERAL](#ephemeral-spends)
 
 Singletons are documented in [chialisp.com/singletons](https://chialisp.com/singletons/)
 
@@ -22,6 +33,8 @@ When changing which coin is being spent, we simply create a new lineage proof us
 As long as the inner puzzle doesn’t make any commitments to anything related to the coin being spent or its parent, the new solution should be valid.
 
 The function to parse the puzzle and solution and to generate a new solution can be found in `chia_rs`, in [chia-consensus/src/fast_forward.rs](https://github.com/Chia-Network/chia_rs/blob/main/crates/chia-consensus/src/fast_forward.rs).
+
+Singleton fast forward was introduced in [PR #16919](https://github.com/Chia-Network/chia-blockchain/pull/16919) in January 2024. The first release to include it was 2.2.1. As stated previously, this documentation only covers the reference mempool. Other mempools may choose to omit singleton fast forward as a feature.
 
 ### Use cases
 
@@ -96,7 +109,7 @@ This is implemented in `MempoolVisitor::condition()`, in [chia-consensus/src/con
 
 #### Ephemeral Spends
 
-Any spend asserting its coin to be ephemeral cannot be eligible for fast forward because FF spends don’t have an order. We order them, arbitrarily, in block generation. This is implemented in the `parse_conditions()` function found in [chia-consensus/src/conditions.rs](https://github.com/Chia-Network/chia_rs/blob/main/crates/chia-consensus/src/conditions.rs)
+Any spend asserting its coin to be ephemeral cannot be eligible for fast forward (FF) because FF spends don’t have an order. We order them, arbitrarily, in block generation. This is implemented in the `parse_conditions()` function found in [chia-consensus/src/conditions.rs](https://github.com/Chia-Network/chia_rs/blob/main/crates/chia-consensus/src/conditions.rs)
 
 Additionally, any spend whose output coin is also spent by the same spend bundle should also not be eligible for fast-forward, as it would invalidate the spend bundle.
 
