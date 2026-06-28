@@ -8,7 +8,7 @@ slug: /reference-client/rpc-reference/simulator-rpc
 
 The simulator gives you complete control of a private Chia blockchain, including the ability to advance and revert blocks as needed.
 
-This page includes a comprehensive list of Chia's Remote Procedure Calls for using the simulator.
+This page documents **simulator-only** full node RPCs (block farming, reorgs, chain inspection). The simulator’s HTTP API is `SimulatorFullNodeRpcApi`, which **extends** the standard [`FullNodeRpcApi`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/full_node_rpc_api.py) with the routes below, and still exposes every normal full node route plus the shared [RPC server](/reference-client/rpc-reference/full-node-rpc) helpers (`get_network_info`, `get_connections`, `healthz`, logging, etc.). For all non-simulator endpoints, see [Full node RPC](/reference-client/rpc-reference/full-node-rpc).
 
 For more info, see the following:
 
@@ -20,8 +20,7 @@ For more info, see the following:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<details>
-<summary>Note about Windows command escaping</summary>
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -58,14 +57,13 @@ Options:
 
 Request Parameters:
 
-| Parameter          | Required | Description                                                                                                                                                                                                          |
-| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| address            | True     | The address to use to farm the block                                                                                                                                                                                 |
-| guarantee_tx_block | False    | Set to `True` to farm a transaction block (ie, farm new blocks until a tx block is farmed); set to `False` to farm the next block, which could also be a transaction block, but is not guaranteed (Default: `False`) |
-| blocks             | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                |
+| Parameter                                                    | Required | Description                                                                                                                                                                                                                                                                                                                           |
+| :----------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| address                                                      | True     | The address to use to farm the block                                                                                                                                                                                                                                                                                                  |
+| guarantee_tx_block | False    | JSON boolean: `true` forces each farmed block to be a **transaction** block (`farm_new_transaction_block`). `false` uses `farm_new_block` (next block may or may not be a transaction block). Default: `false`. |
+| blocks                                                       | False    | Number of blocks to farm. If `guarantee_tx_block` is `True`, then each block will be a transaction block (Default: 1)                                                                                                                                                              |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Farm a single block:
 
@@ -84,13 +82,12 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Farm three transaction blocks:
 
 ```json
-chia rpc full_node farm_block '{"address": "txch1v3wjjapxvepyadvr2wgp7272md84lv6kmaxyxm4lq5le2jcc90zqkxhgv6", "guarantee_tx_block": "True", "blocks": 3}'
+chia rpc full_node farm_block '{"address": "txch1v3wjjapxvepyadvr2wgp7272md84lv6kmaxyxm4lq5le2jcc90zqkxhgv6", "guarantee_tx_block": true, "blocks": 3}'
 ```
 
 Response:
@@ -108,7 +105,7 @@ Response:
 
 ### `get_all_blocks`
 
-Functionality: Return a list of all blocks in the blockhain
+Functionality: Return a list of all blocks in the blockchain
 
 Usage: chia rpc full_node [OPTIONS] get_all_blocks [REQUEST]
 
@@ -121,11 +118,10 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
-chia rpc full_node get_all_blocks
+chia rpc full_node get_all_blocks '{}'
 ```
 
 Response (abbreviated):
@@ -228,15 +224,14 @@ Options:
 
 Request Parameters:
 
-| Parameter           | Required | Description                                                                           |
-| :------------------ | :------- | :------------------------------------------------------------------------------------ |
+| Parameter                                                     | Required | Description                                                                                                              |
+| :------------------------------------------------------------ | :------- | :----------------------------------------------------------------------------------------------------------------------- |
 | include_spent_coins | False    | Boolean, if `True` then spent coins will be included in the result (Default: `False`) |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
-chia rpc full_node get_all_coins
+chia rpc full_node get_all_coins '{}'
 ```
 
 Response (abbreviated):
@@ -293,11 +288,16 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+:::note
+
+Coin amounts in the `puzzle_hashes` map can exceed `Number.MAX_SAFE_INTEGER` (2^53 - 1). JavaScript and other IEEE-754 JSON parsers may lose precision; use a bigint-capable parser or treat these values as strings. See [RPC overview — large integers](/reference-client/rpc-reference/rpc#large-integers-in-json-responses).
+
+:::
+
+<details><summary>Example</summary>
 
 ```json
-chia rpc full_node get_all_puzzle_hashes
+chia rpc full_node get_all_puzzle_hashes '{}'
 ```
 
 Response:
@@ -338,11 +338,10 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
-chia rpc full_node get_auto_farming
+chia rpc full_node get_auto_farming '{}'
 ```
 
 Response:
@@ -373,11 +372,10 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
-chia rpc full_node get_farming_ph
+chia rpc full_node get_farming_ph '{}'
 ```
 
 Response:
@@ -395,7 +393,7 @@ You can then use `cdv encode` to convert this puzzle hash to an address:
 cdv encode --prefix txch 5fb3e0ccc23760a7f917a81e7872cc921f9ddbc86582dfb4f64eee66fad5e740
 ```
 
-Response:
+Example `cdv` output:
 
 ```bash
 txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4uaqq9x4yd2
@@ -420,15 +418,14 @@ Options:
 
 Request Parameters:
 
-| Parameter            | Required | Description                                                         |
-| :------------------- | :------- | :------------------------------------------------------------------ |
-| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                        |
-| num_of_new_blocks    | False    | The number of blocks to add (Default: 1)                            |
-| revert_all_blocks    | False    | Boolean, set to `True` to fork all blocks (Default: `False`)        |
-| random_seed          | False    | String, used to randomize the seed, which will differentiate reorgs |
+| Parameter                                                                                                | Required | Description                                                                                                                                                                                                                                                                                                  |
+| :------------------------------------------------------------------------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| num_of_blocks_to_rev | False    | The number of blocks to go back (Default: 1)                                                                                                                                                                                                                              |
+| num_of_new_blocks                         | False    | The number of blocks to add (Default: 1)                                                                                                                                                                                                                                  |
+| revert_all_blocks                                              | False    | Boolean, set to `True` to fork all blocks (Default: `False`)                                                                                                                                                                                                              |
+| random_seed                                                                         | False    | JSON boolean (default `true`): when `true`, the reorg uses a fresh random `bytes32` seed; when `false`, no random seed is passed (deterministic path). **Not** a string seed value—the request key name is historical. |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Starting from block 11, we'll revert 3 blocks and create 5 new blocks:
 
@@ -447,13 +444,12 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
-Reorg with a random seed:
+Reorg while disabling the random seed parameter:
 
 ```json
-chia rpc full_node reorg_blocks '{"random_seed": "aaaaaa"}'
+chia rpc full_node reorg_blocks '{"random_seed": false}'
 ```
 
 Response:
@@ -484,13 +480,12 @@ Options:
 
 Request Parameters:
 
-| Parameter         | Required | Description                                                    |
-| :---------------- | :------- | :------------------------------------------------------------- |
+| Parameter                                                   | Required | Description                                                                                       |
+| :---------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------ |
 | num_of_blocks     | False    | The number of blocks to revert (Default: 1)                    |
 | delete_all_blocks | False    | Boolean, set to `True` to revert all blocks (Default: `False`) |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Revert a single block:
 
@@ -509,13 +504,12 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Delete all blocks -- this will reset the blockchain:
 
 ```json
-chia rpc full_node revert_blocks '{"delete_all_blocks": "True"}'
+chia rpc full_node revert_blocks '{"delete_all_blocks": true}'
 ```
 
 Response:
@@ -546,12 +540,11 @@ Options:
 
 Request Parameters:
 
-| Parameter | Required | Description                               |
-| :-------- | :------- | :---------------------------------------- |
+| Parameter                      | Required | Description                               |
+| :----------------------------- | :------- | :---------------------------------------- |
 | auto_farm | True     | Boolean to enable or disable auto farming |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Enable auto farming:
 
@@ -570,8 +563,7 @@ Response:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Disable auto farming:
 
@@ -584,6 +576,82 @@ Response:
 ```json
 {
   "auto_farm_enabled": false,
+  "success": true
+}
+```
+
+</details>
+
+---
+
+### `get_routes`
+
+Functionality: Returns every HTTP RPC path registered on this simulator full node: **standard full node** endpoints, **RPC server** helpers (`get_network_info`, `get_connections`, `healthz`, log level, etc.), and **simulator-only** routes (`/farm_block`, `/get_all_blocks`, `/reorg_blocks`, …). Paths are sorted alphabetically here for parity with `chia-blockchain` `main`; your client may return a different order.
+
+Usage: chia rpc full_node [OPTIONS] get_routes [REQUEST]
+
+Request Parameters: None
+
+<details><summary>Example</summary>
+
+```json
+chia rpc full_node get_routes
+```
+
+Response (paths merged from `FullNodeRpcApi`, `RpcServer`, and `SimulatorFullNodeRpcApi`):
+
+```json
+{
+  "routes": [
+    "/close_connection",
+    "/create_block_generator",
+    "/farm_block",
+    "/get_additions_and_removals",
+    "/get_aggsig_additional_data",
+    "/get_all_blocks",
+    "/get_all_coins",
+    "/get_all_mempool_items",
+    "/get_all_mempool_tx_ids",
+    "/get_all_puzzle_hashes",
+    "/get_auto_farming",
+    "/get_block",
+    "/get_block_count_metrics",
+    "/get_block_record",
+    "/get_block_record_by_height",
+    "/get_block_records",
+    "/get_block_spends",
+    "/get_block_spends_with_conditions",
+    "/get_blockchain_state",
+    "/get_blocks",
+    "/get_coin_record_by_name",
+    "/get_coin_records_by_hint",
+    "/get_coin_records_by_names",
+    "/get_coin_records_by_parent_ids",
+    "/get_coin_records_by_puzzle_hash",
+    "/get_coin_records_by_puzzle_hashes",
+    "/get_connections",
+    "/get_farming_ph",
+    "/get_fee_estimate",
+    "/get_log_level",
+    "/get_mempool_item_by_tx_id",
+    "/get_mempool_items_by_coin_name",
+    "/get_network_info",
+    "/get_network_space",
+    "/get_puzzle_and_solution",
+    "/get_recent_signage_point_or_eos",
+    "/get_routes",
+    "/get_unfinished_block_headers",
+    "/get_version",
+    "/healthz",
+    "/open_connection",
+    "/push_tx",
+    "/reorg_blocks",
+    "/reset_log_level",
+    "/revert_blocks",
+    "/set_auto_farming",
+    "/set_log_level",
+    "/stop_node"
+  ],
   "success": true
 }
 ```
