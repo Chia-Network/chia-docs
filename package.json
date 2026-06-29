@@ -36,7 +36,9 @@
     "remark-math": "^6.0.0"
   },
   "overrides": {
-    "follow-redirects": "1.16.0"
+    "follow-redirects": "1.16.0",
+    "serialize-javascript": ">=7.0.5",
+    "uuid": ">=11.1.1"
   },
   "browserslist": {
     "production": [
