@@ -33,7 +33,21 @@ module.exports = {
             'chia-blockchain/architecture/pools',
             'chia-blockchain/architecture/wallets',
             'chia-blockchain/architecture/light-clients',
-            'chia-blockchain/architecture/mempool',
+            {
+              type: 'category',
+              label: 'Mempool',
+              items: [
+                'chia-blockchain/architecture/mempool/intro',
+                'chia-blockchain/architecture/mempool/fees',
+                'chia-blockchain/architecture/mempool/block-creation',
+                'chia-blockchain/architecture/mempool/time-locks',
+                'chia-blockchain/architecture/mempool/rbf',
+                'chia-blockchain/architecture/mempool/fast-forward',
+                'chia-blockchain/architecture/mempool/isd',
+                'chia-blockchain/architecture/mempool/updates',
+                'chia-blockchain/architecture/mempool/migration',
+              ],
+            },
           ],
         },
         {
