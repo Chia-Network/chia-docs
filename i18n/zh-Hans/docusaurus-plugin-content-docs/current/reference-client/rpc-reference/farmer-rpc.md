@@ -7,10 +7,11 @@ slug: /reference-client/rpc-reference/farmer-rpc
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This document provides a comprehensive reference to Chia's Farmer RPC API.
+This document provides a comprehensive reference to Chia's Farmer RPC API. Routes defined on `FarmerRpcApi` are merged with the shared HTTP RPC routes from `RpcServer` (connection management, logging, version, and health checks).
 
-<details>
-<summary>Note about Windows command escaping</summary>
+For Proof of Space 2 (PoS2) farming with V2 plots, connect to a Solver peer with [`connect_to_solver`](#connect_to_solver); solver HTTP endpoints are documented under [Solver RPC](/reference-client/rpc-reference/solver-rpc).
+
+<details><summary>Note about Windows command escaping</summary>
 
 This document will use Linux/MacOS RPC syntax. When running rpc commands on Windows, you'll need to escape all quotes with backslashes.
 
@@ -45,8 +46,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvesters
@@ -106,8 +106,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvesters_summary
@@ -156,16 +155,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_duplicates '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 1}'
@@ -203,16 +201,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_invalid '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 1}'
@@ -250,16 +247,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_keys_missing '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 5}'
@@ -303,16 +299,15 @@ Options:
 
 Request Parameters:
 
-| Flag      | Type       | Required | Description                                                                      |
-| :-------- | :--------- | :------- | :------------------------------------------------------------------------------- |
+| Flag                           | Type       | Required | Description                                                                                           |
+| :----------------------------- | :--------- | :------- | :---------------------------------------------------------------------------------------------------- |
 | node_id   | HEX STRING | True     | This node's `node_id`, obtainable from the [get_harvesters](#get_harvesters) RPC |
-| page      | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                       |
-| page_size | INTEGER    | True     | The number of entries per page to list                                           |
+| page                           | INTEGER    | True     | The page in the results sequence to list (starts with `0`)                         |
+| page_size | INTEGER    | True     | The number of entries per page to list                                                                |
 
 Note that the request parameters are automatically combined to create `PlotInfoRequestData`.
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_harvester_plots_valid '{"node_id": "0xbefeeb05fa599f07c5be2b94b2d872b2516f03101ed49cc53312f086de197913", "page": 0, "page_size": 1}'
@@ -361,12 +356,11 @@ Options:
 
 Request Parameters:
 
-| Flag        | Type       | Required | Description                                                                               |
-| :---------- | :--------- | :------- | :---------------------------------------------------------------------------------------- |
+| Flag                             | Type       | Required | Description                                                                                                                                              |
+| :------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | launcher_id | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_pool_login_link '{"launcher_id": "0x55244acf3017c2fc245020b46600827047dce8f54c982adaf95248ff2e955ad8"}'
@@ -400,8 +394,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_pool_state
@@ -467,13 +460,12 @@ Options:
 
 Request Parameters:
 
-| Flag                   | Type    | Required | Description                                                                                                                                                                                                                    |
-| :--------------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| search_for_private_key | BOOLEAN | True     | List whether the private key (sk) is available for both the farmer and pool keys                                                                                                                                               |
+| Flag                                                                                  | Type    | Required | Description                                                                                                                                                                                                                                                                                                        |
+| :------------------------------------------------------------------------------------ | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| search_for_private_key | BOOLEAN | True     | List whether the private key (sk) is available for both the farmer and pool keys                                                                                                                                                                                                                |
 | max_ph_to_search       | INTEGER | False    | The maximum number of puzzle hashes to search [Default: 500] If the wallet's derivation index is large, this number may be insufficient to locate the correct puzzle hashes. In this case, you may need to increase this value |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_reward_targets '{"search_for_private_key": false}'
@@ -486,6 +478,67 @@ Response:
   "farmer_target": "xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j",
   "pool_target": "xch1xdm7s8fq4kdrq28lulnhxcxq8h6gcsf0y5j643vqx4ec3z9dhq7sqxsa9j",
   "success": true
+}
+```
+
+</details>
+
+---
+
+### `connect_to_solver`
+
+Functionality: Disconnect any existing SOLVER peer connections, then open a new client connection to the Solver service at the given host and port. The Solver turns partial proofs from harvesters into full proofs of space. That pipeline is for V2 plots used with Proof of Space 2 (PoS2). Legacy PoS1 farming with classic V1 plots does not use it; the harvester already returns a complete proof.
+
+:::info PoS2 is still months away for most farmers
+
+Proof of Space 2 and V2 plot farming are not yet what typical mainnet farmers run day to day; wider activation is still months away. Until you are farming V2 plots under PoS2, you do not need a Solver connection. This RPC does nothing useful for PoS1 or classic plots; it is documented because the client exposes the route for when PoS2 and V2 farming become relevant.
+
+For milestone dates and rollout expectations, see the [Proof of Space 2 timeline](/chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline). The PoS2 proof format is specified in [CHIP-48](https://github.com/Chia-Network/chips/pull/160); activation timing and related hard-fork items are in [CHIP-49](https://github.com/Chia-Network/chips/pull/161).
+
+:::
+
+Usage: chia rpc farmer [OPTIONS] connect_to_solver [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters:
+
+| Flag | Type    | Required | Description                                                |
+| :--- | :------ | :------- | :--------------------------------------------------------- |
+| host | STRING  | True     | Hostname or IP address of the solver peer                  |
+| port | INTEGER | True     | Port of the solver (`peer_server_port`) |
+
+:::note
+
+Use `port` as the solver **peer** listening port (`solver.port` in `config.yaml`; **8666** by default). That is different from the solver JSON-RPC TLS port (`solver.rpc_port`, **8667**). For solver HTTP endpoints (`chia rpc solver …`), see [Solver RPC](/reference-client/rpc-reference/solver-rpc).
+
+:::
+
+<details><summary>Example</summary>
+
+```json
+chia rpc farmer connect_to_solver '{"host": "127.0.0.1", "port": 8666}'
+```
+
+Response (success):
+
+```json
+{
+  "success": true
+}
+```
+
+Response (could not connect):
+
+```json
+{
+  "success": false,
+  "error": "Could not connect to solver at 127.0.0.1:8666"
 }
 ```
 
@@ -508,8 +561,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_routes
@@ -533,12 +585,18 @@ Response:
     "/get_harvester_plots_keys_missing",
     "/get_harvester_plots_duplicates",
     "/get_pool_login_link",
+    "/connect_to_solver",
+    "/get_network_info",
     "/get_connections",
     "/open_connection",
     "/close_connection",
     "/stop_node",
     "/get_routes",
-    "/healthz"
+    "/get_version",
+    "/healthz",
+    "/get_log_level",
+    "/set_log_level",
+    "/reset_log_level"
   ],
   "success": true
 }
@@ -563,12 +621,11 @@ Options:
 
 Request Parameters:
 
-| Flag    | Type       | Required | Description                                                                            |
-| :------ | :--------- | :------- | :------------------------------------------------------------------------------------- |
+| Flag                         | Type       | Required | Description                                                                            |
+| :--------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------- |
 | sp_hash | HEX STRING | True     | The hash of a signage point, listed as `pos_ss_cc_challenge_hash` in the block details |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_signage_point '{"sp_hash": "0xd1d48067e1a355e69808201db516008c3d71c88d8c07fcee7c790f725e56e9ac"}'
@@ -610,8 +667,7 @@ Options:
 
 Request Parameters: None
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer get_signage_points
@@ -703,13 +759,12 @@ Options:
 
 Request Parameters:
 
-| Flag                | Type       | Required | Description                                                                               |
-| :------------------ | :--------- | :------- | :---------------------------------------------------------------------------------------- |
+| Flag                                     | Type       | Required | Description                                                                                                                                              |
+| :--------------------------------------- | :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | launcher_id         | HEX STRING | True     | The launcher_id from your pool, obtainable from the [get_pool_state](#get_pool_state) RPC |
-| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                               |
+| payout_instructions | HEX STRING | True     | The puzzle hash to be used as the new `payout_instructions`                                                                                              |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 ```json
 chia rpc farmer set_payout_instructions '{"launcher_id": "0x55244acf3017c2fc245020b46600827047dce8f54c982adaf95248ff2e955ad8", "payout_instructions": "19d5a0c14e294e48451959819e8c7407c1a06f4f81c69a943ac86433a9ff29e6"}'
@@ -742,13 +797,12 @@ Options:
 
 Request Parameters:
 
-| Flag          | Type       | Required | Description                  |
-| :------------ | :--------- | :------- | :--------------------------- |
+| Flag                               | Type       | Required | Description                  |
+| :--------------------------------- | :--------- | :------- | :--------------------------- |
 | farmer_target | HEX STRING | False    | Set the farmer reward target |
 | pool_target   | HEX STRING | False    | Set the pool reward target   |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Set both targets:
 
