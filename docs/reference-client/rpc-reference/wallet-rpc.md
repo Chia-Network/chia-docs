@@ -1987,6 +1987,41 @@ Response:
 
 ---
 
+### `get_full_node_peer_count`
+
+Functionality: Returns the number of full node peers currently connected to the wallet node
+
+Usage: chia rpc wallet [OPTIONS] get_full_node_peer_count [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_full_node_peer_count
+```
+
+Response:
+
+```json
+{
+  "peer_count": 1,
+  "success": true
+}
+```
+
+</details>
+
+---
+
 ### `get_next_address`
 
 Functionality: Get the next address in the HD tree, with the option to show the latest address
