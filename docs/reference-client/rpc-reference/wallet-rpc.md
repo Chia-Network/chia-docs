@@ -4432,6 +4432,7 @@ Request Parameters:
 | max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                                                          |
 | solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
 | fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| offer_only      | BOOLEAN | False    | If `true`, return only the offer itself without creating a trade record or transactions. The response will contain the `offer` string but `trade_record` will be `null` and `transactions` will be empty [Default: false] |
 | reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
 
 ---
