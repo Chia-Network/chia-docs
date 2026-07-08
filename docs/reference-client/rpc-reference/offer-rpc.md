@@ -232,6 +232,7 @@ Request Parameters:
 | min_time        | NUMBER  | False    | The minimum UNIX timestamp that must be reached before this Offer becomes valid [Default: `null` (not used)]                |
 | max_height      | NUMBER  | False    | The maximum block height where this Offer is still considered valid, aka the expiry height [Default: `null` (not used)]     |
 | max_time        | NUMBER  | False    | The maximum UNIX timestamp where this Offer is stil considered valid, aka the expiry timestamp [Default: `null` (not used)] |
+| offer_only      | BOOLEAN | False    | If `true`, return only the offer without creating a trade record or transactions. The response keeps the same shape but `trade_record` will be `null` and `transactions` / `unsigned_transactions` will be empty. Useful when the full response would exceed WebSocket payload limits [Default: `false`] |
 
 :::note
 
@@ -247,6 +248,12 @@ In addition, of the four absolute time lock flags, the reference wallet will onl
 The other three **(**`min_height`, `min_time`, and `max_height`**)** are each enforced on the blockchain, but the reference wallet will not currently understand that the time locks need to be applied until it submits the Offer spendbundle to the mempool.
 For this reason, if you use the reference wallet to accept an Offer that uses any of these three flags, the transaction will be initiated, but will fail.
 Your log file will contain `ASSERT_SECONDS_ABSOLUTE_FAILED` in this case, but the GUI will continue to show the pending transaction as if it were still valid.
+
+:::
+
+:::info `offer_only` behavior change in 2.7.2
+
+Prior to 2.7.2, setting `offer_only` to `true` returned a different, trimmed response type that omitted `trade_record`, `transactions`, and `unsigned_transactions` fields entirely. Starting in 2.7.2, the response always uses the same shape as a normal `create_offer_for_ids` response, but with `trade_record` set to `null` and `transactions` / `unsigned_transactions` set to empty lists. This makes it easier to deserialize at call sites without type-checking the response format.
 
 :::
 
