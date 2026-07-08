@@ -3830,6 +3830,7 @@ Response:
     "/get_coin_records_by_puzzle_hash",
     "/get_coin_records_by_puzzle_hashes",
     "/get_connections",
+    "/get_constants",
     "/get_fee_estimate",
     "/get_log_level",
     "/get_mempool_item_by_tx_id",

@@ -6364,6 +6364,7 @@ Response:
     "/get_connections",
     "/get_current_derivation_index",
     "/get_farmed_amount",
+    "/get_full_node_peer_count",
     "/get_height_info",
     "/get_log_level",
     "/get_logged_in_fingerprint",
