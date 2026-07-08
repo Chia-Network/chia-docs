@@ -1987,6 +1987,49 @@ Response:
 
 ---
 
+### `get_fee_estimate`
+
+Functionality: Retrieve a fee estimate (in mojos per CLVM cost) from a connected full node peer. This allows wallet clients to get fee guidance without calling the full node RPC directly. Requires the wallet to be connected to at least one full node peer.
+
+Usage: chia rpc wallet [OPTIONS] get_fee_estimate [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_fee_estimate
+```
+
+Response:
+
+```json
+{
+  "fee_per_cost": 0,
+  "success": true
+}
+```
+
+</details>
+
+:::note
+
+The returned `fee_per_cost` value is in mojos per 1 CLVM cost. A value of `0` indicates that the mempool is not currently congested.
+
+If the wallet is not connected to a full node peer, this RPC will return an error.
+
+:::
+
+---
+
 ### `get_full_node_peer_count`
 
 Functionality: Returns the number of full node peers currently connected to the wallet node
@@ -6365,6 +6408,7 @@ Response:
     "/get_connections",
     "/get_current_derivation_index",
     "/get_farmed_amount",
+    "/get_fee_estimate",
     "/get_full_node_peer_count",
     "/get_height_info",
     "/get_log_level",
