@@ -2610,6 +2610,102 @@ Response:
 
 ---
 
+### `get_constants`
+
+Functionality: Returns the consensus constants for the current network (e.g. mainnet, testnet)
+
+Usage: chia rpc full_node [OPTIONS] get_constants [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+````mdx-code-block
+```json
+chia rpc full_node get_constants
+```
+````
+
+Response:
+
+````mdx-code-block
+```json
+{
+  "constants": {
+    "AGG_SIG_AMOUNT_ADDITIONAL_DATA": "0x0f7d90dff95ef7b5ef11cfb79e2e4cd6f7252e8d2cfc6d5e7916e9ba6df68b19",
+    "AGG_SIG_ME_ADDITIONAL_DATA": "0xccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb",
+    "AGG_SIG_PARENT_ADDITIONAL_DATA": "0x5e25e0935d33e96112f46a7d4d08b3d18af51ef523ccef2f2e0dbace0f9de773",
+    "AGG_SIG_PARENT_AMOUNT_ADDITIONAL_DATA": "0x4ad57e3a9b6a14d6d5d3b80f6cc72ec25d59d5ea39a43eae7ee8e46081ed7a07",
+    "AGG_SIG_PARENT_PUZZLE_ADDITIONAL_DATA": "0x29a34e3ed5a47b8e5c0a5d9e09ea4db7e2d0f9d6c4b8e2a1f5c3d7b6a0e4f8c2",
+    "AGG_SIG_PUZZLE_ADDITIONAL_DATA": "0x3d8ea74c2ba36f6e8ae2b3fe16b5bd8dd6c33c47b8e0a3f9c2d1e5b4a7f0d6e8",
+    "AGG_SIG_PUZZLE_AMOUNT_ADDITIONAL_DATA": "0x9f4a2c8e1b5d3f7a0c6e2b4d8f1a3c5e7b9d0f2a4c6e8b0d2f4a6c8e0b2d4f6",
+    "BLOCKS_CACHE_SIZE": 5120,
+    "COST_PER_BYTE": 12000,
+    "DIFFICULTY_CHANGE_MAX_FACTOR": 3,
+    "DIFFICULTY_CONSTANT_FACTOR": "0x80000000000000000",
+    "DIFFICULTY_STARTING": 7,
+    "DISCRIMINANT_SIZE_BITS": 1024,
+    "EPOCH_BLOCKS": 4608,
+    "GENESIS_CHALLENGE": "0xccd5bb71183532bff220ba46c268991a00000000000000000000000000000000",
+    "GENESIS_PRE_FARM_FARMER_PUZZLE_HASH": "0x3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af",
+    "GENESIS_PRE_FARM_POOL_PUZZLE_HASH": "0xd23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc",
+    "HARD_FORK2_HEIGHT": 4294967290,
+    "HARD_FORK_HEIGHT": 5496000,
+    "MAX_BLOCK_COST_CLVM": 11000000000,
+    "MAX_BLOCK_COUNT_PER_REQUESTS": 32,
+    "MAX_COIN_AMOUNT": 18446744073709551615,
+    "MAX_FUTURE_TIME2": 120,
+    "MAX_GENERATOR_REF_LIST_SIZE": 512,
+    "MAX_PLOT_SIZE_V1": 50,
+    "MAX_PLOT_STRENGTH": 32,
+    "MAX_SUB_SLOT_BLOCKS": 128,
+    "MAX_VDF_WITNESS_SIZE": 64,
+    "MEMPOOL_BLOCK_BUFFER": 10,
+    "MIN_BLOCKS_PER_CHALLENGE_BLOCK": 16,
+    "MIN_PLOT_SIZE_V1": 32,
+    "MIN_PLOT_STRENGTH": 2,
+    "NUMBER_OF_TIMESTAMPS": 11,
+    "NUMBER_ZERO_BITS_PLOT_FILTER_V1": 9,
+    "NUMBER_ZERO_BITS_PLOT_FILTER_V2": 5,
+    "NUM_SPS_SUB_SLOT": 64,
+    "NUM_SP_INTERVALS_EXTRA": 3,
+    "PLOT_FILTER_128_HEIGHT": 10542000,
+    "PLOT_FILTER_32_HEIGHT": 20643000,
+    "PLOT_FILTER_64_HEIGHT": 15592000,
+    "PLOT_FILTER_V2_FIRST_ADJUSTMENT_HEIGHT": 4294967291,
+    "PLOT_FILTER_V2_SECOND_ADJUSTMENT_HEIGHT": 4294967292,
+    "PLOT_FILTER_V2_THIRD_ADJUSTMENT_HEIGHT": 4294967293,
+    "PLOT_SIZE_V2": 28,
+    "PLOT_V1_PHASE_OUT_EPOCH_BITS": 8,
+    "POOL_SUB_SLOT_ITERS": 37600000000,
+    "SIGNIFICANT_BITS": 8,
+    "SLOT_BLOCKS_TARGET": 32,
+    "SOFT_FORK8_HEIGHT": 8655000,
+    "SOFT_FORK9_HEIGHT": 8655000,
+    "SUB_EPOCH_BLOCKS": 384,
+    "SUB_SLOT_ITERS_STARTING": 134217728,
+    "SUB_SLOT_TIME_TARGET": 600,
+    "TESTNET": false,
+    "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
+    "WEIGHT_PROOF_THRESHOLD": 2
+  },
+  "success": true
+}
+```
+````
+
+</details>
+
+---
+
 ### `get_fee_estimate`
 
 Functionality: Obtain an estimated fee for one or more targeted times for a transaction to be included in the blockchain.
@@ -3734,6 +3830,7 @@ Response:
     "/get_coin_records_by_puzzle_hash",
     "/get_coin_records_by_puzzle_hashes",
     "/get_connections",
+    "/get_constants",
     "/get_fee_estimate",
     "/get_log_level",
     "/get_mempool_item_by_tx_id",
