@@ -2028,6 +2028,16 @@ If the wallet is not connected to a full node peer, this RPC will return an erro
 
 :::
 
+:::info How it works
+
+This is a simplified wrapper around the full node's [`get_fee_estimate`](/reference-client/rpc-reference/full-node-rpc#get_fee_estimate) RPC. The full node version accepts `target_times`, `cost`, and an optional `spend_bundle` as request parameters.
+
+The wallet version takes no parameters — it automatically uses the current UTC timestamp as a single time target and requests the fee estimate from a connected full node peer via the wallet-to-full-node protocol. The result is a single `fee_per_cost` value representing the estimated fee rate at the current moment.
+
+Use this endpoint when you want a quick fee estimate without needing to specify custom time targets or cost values. For more granular control (e.g., estimating fees across multiple time horizons), use the [full node `get_fee_estimate`](/reference-client/rpc-reference/full-node-rpc#get_fee_estimate) RPC directly.
+
+:::
+
 ---
 
 ### `get_full_node_peer_count`
