@@ -2346,7 +2346,8 @@ The transaction history is not deterministic due to heuristics we use to counter
 - The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
 - For your offers which were accepted by a 3rd Party , the incoming coins are being marked as incoming transaction, not as incoming trade
 - When cancelling offers, the cancellation Transactions are being shown as transaction, not as trade
-For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+  For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+
 </details>
 
 <details>
@@ -4476,17 +4477,17 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type    | Required | Description                                                                                                                                                                              |
-| :-------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer           | TEXT    | True     | The offer to create                                                                                                                                                                      |
-| validate_only   | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                                                          |
-| driver_dict     | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                |
-| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none]                                                                                                                          |
-| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                                                          |
-| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
-| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
+| Flag            | Type    | Required | Description                                                                                                                                                                                                                                                                                            |
+| :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| offer           | TEXT    | True     | The offer to create                                                                                                                                                                                                                                                                                    |
+| validate_only   | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                                                                                                                                                                        |
+| driver_dict     | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                                                                                                                              |
+| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none]                                                                                                                                                                                                                                        |
+| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                                                                                                                                                                        |
+| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                                                                                                                                    |
+| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                                                                                                   |
 | offer_only      | BOOLEAN | False    | If `true`, return only the offer without creating a trade record or transactions. The response keeps the same shape but `trade_record` will be `null` and `transactions` / `unsigned_transactions` will be empty. Useful when the full response would exceed WebSocket payload limits [Default: false] |
-| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml                                                                                                               |
 
 ---
 
