@@ -1,6 +1,6 @@
 ---
 title: Identical Spend Deduplication
-slug: /chia-blockchain/architecture/mempool/isd
+slug: /chia-blockchain/architecture/mempool/identical-spend-deduplication
 ---
 
 Only valid transactions are allowed to enter the mempool. The process of validating transactions is similar to the process of validating blocks. This includes running CLVM, checking conditions, validating signatures, and checking that the coins to be spent are currently unspent and valid.
@@ -9,7 +9,7 @@ The transaction is also checked against other transactions in the mempool, to en
 
 ### Transaction Deduplication
 
-Starting in Chia 2.5.5, the mempool automatically detects and deduplicates identical spend transactions. When multiple transactions attempt to spend the same coin with identical parameters, only one will be kept in the mempool, reducing memory usage and improving overall performance.
+Beginning in Chia 1.8.2, and upgraded in 2.5.5, the mempool automatically detects and deduplicates identical spend transactions. When multiple transactions attempt to spend the same coin with identical parameters, only one will be kept in the mempool, reducing memory usage and improving overall performance.
 
 **Behavior**:
 
@@ -66,7 +66,7 @@ Conditions: `SEND_MESSAGE`, `RECEIVE_MESSAGE`
 
 ### Replacement
 
-A spend that supports Dedup is not considered in conflict with an existing spend of the same coin that also supports Dedup. The new spend must also use the exact same solution as the existing spend. The mempool implementation checks that the solution `bytes` are identical.
+A spend that supports dedup is not considered in conflict with an existing spend of the same coin that also supports dedup. The new spend must also use the exact same solution as the existing spend. The mempool implementation checks that the solution `bytes` are identical.
 
 ### Security considerations
 

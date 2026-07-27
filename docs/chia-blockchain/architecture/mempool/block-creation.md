@@ -5,7 +5,7 @@ slug: /chia-blockchain/architecture/mempool/block-creation
 
 :::info
 
-Keep in mind that the logic discussed here is only guaranteed to be valid on farms that use the default mempool, as described in the [intro](/chia-blockchain/architecture/mempool/intro/#default-mempool) section. Farmers are allowed to customize, or even remove, their own mempools, so the default logic is not universal.
+Keep in mind that the logic discussed here is only guaranteed to be valid on farms that use the default mempool, as described in the [intro](/chia-blockchain/architecture/mempool/#default-mempool) section. Farmers are allowed to customize, or even remove, their own mempools, so the default logic is not universal.
 
 :::
 
@@ -43,6 +43,8 @@ As we build the block generator, fast forward spends must be chained together. i
 
 Fast forward was implemented in [chia/full_node/eligible_coin_spends.py](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/full_node/eligible_coin_spends.py) as part of [PR #16919](https://github.com/Chia-Network/chia-blockchain/pull/16919). It was first added to version 2.2.0 in February 2024.
 
+For more information, see the [fast forward](/chia-blockchain/architecture/mempool/fast-forward) page.
+
 ### Dedup spends
 
 When we encounter a spend that’s eligible for deduplication, we record the exact solution it’s being spent with. Any subsequent mempool items spending the same coin must also use an identical solution. Otherwise, the mempool item is not considered for inclusion in the block. The dedup spend that has the highest fee-per-cost decides which solution will be used in the block, as it’s deduplicated. Spends eligible for deduplication are allowed to conflict in the mempool. For details, see the section on identical spend deduplication below.
@@ -51,7 +53,7 @@ Implemented in [chia/full_node/eligible_coin_spends.py](https://github.com/Chia-
 
 :::info
 
-Identical [Spend Deduplication](/chia-blockchain/architecture/mempool/isd/) (ISD) is separate from [Replace by Fee](/chia-blockchain/architecture/mempool/rbf/) (RBF), even though they both replace one spend with another.
+Identical [Spend Deduplication](/chia-blockchain/architecture/mempool/identical-spend-deduplication/) (ISD) is separate from [Replace by Fee](/chia-blockchain/architecture/mempool/replace-by-fee/) (RBF), even though they both replace one spend with another.
 
 In the case of RBF, a spend bundle is replaced by a different spend bundle with a higher fee. The replacement spend can include additional coin spends, as long as the rules listed in the RBF page are followed.
 
@@ -79,7 +81,7 @@ Implemented in [chia/full_node/full_node.py](https://github.com/Chia-Network/chi
 
 ### Enhanced Block Creation (Chia 2.5.5+)
 
-Starting in Chia 2.5.5, a new, more efficient block creation algorithm was made available. Starting in 2.6.1 ([PR #20578](https://github.com/Chia-Network/chia-blockchain/pull/20578)), this became the default. This algorithm provides improved performance and better resource utilization during block creation by picking and serializing incrementally in batches. It also handles [Identical Spend Deduplication](/chia-blockchain/architecture/mempool/isd/) and [singleton fast-forward](/chia-blockchain/architecture/mempool/fast-forward/) inline.
+Starting in Chia 2.5.5, a new, more efficient block creation algorithm was made available. Starting in 2.6.1 ([PR #20578](https://github.com/Chia-Network/chia-blockchain/pull/20578)), this became the default. This algorithm provides improved performance and better resource utilization during block creation by picking and serializing incrementally in batches. It also handles [Identical Spend Deduplication](/chia-blockchain/architecture/mempool/identical-spend-deduplication/) and [singleton fast-forward](/chia-blockchain/architecture/mempool/fast-forward/) inline.
 
 **Configuration** (default): Set `full_node:block_creation` to `1` in your config file to enable the new algorithm.
 
@@ -90,14 +92,14 @@ Starting in Chia 2.5.5, a new, more efficient block creation algorithm was made 
 - Enhanced handling of high-transaction-volume scenarios
 - More efficient resource utilization
 
-**Configurable Timeout**: Block creation now supports a configurable timeout setting via `full_node:block_creation_timeout`, allowing node operators to fine-tune the process based on their network conditions and requirements.
+**Configurable Timeout**: Block creation now supports a configurable timeout setting (default: [two seconds](https://github.com/Chia-Network/chia-blockchain/blob/0d5a394cf996a49626e009b3f8ac10ed645b74c3/chia/util/initial-config.yaml#L330)) via `full_node:block_creation_timeout`, allowing node operators to fine-tune the process based on their network conditions and requirements.
 
 **Example Configuration**:
 
 ```yaml
 full_node:
   block_creation: 1 # Enable new algorithm
-  block_creation_timeout: 30 # 30 second timeout
+  block_creation_timeout: 2 # 2 second timeout
 ```
 
 In the legacy mode (`full_node:block_creation: 0`), all transactions are first picked, and then serialized in one shot. Compression savings aren't known during selection, so blocks may be under-filled.

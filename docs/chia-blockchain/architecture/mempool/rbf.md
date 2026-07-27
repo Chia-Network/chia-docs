@@ -1,6 +1,6 @@
 ---
 title: Replace by Fee
-slug: /chia-blockchain/architecture/mempool/rbf
+slug: /chia-blockchain/architecture/mempool/replace-by-fee
 ---
 
 A transaction can replace another transaction in the mempool if it spends at least the same coins as the original one.
@@ -10,7 +10,8 @@ For example, if the original transaction spent coins A and B, then another trans
 The full conditions for replace by fee are:
 
 1. The new spend bundle needs to include at least all the spends in the original one (the super set rule)
-2. The new spend bundle needs to pay a higher fee per cost than the original one (and higher than the [minimum fee required for inclusion](https://docs.chia.net/chia-blockchain/architecture/mempool/#fee-required-for-inclusion))
+2. The new spend bundle needs to pay a higher fee per cost than the original one (and higher than the [minimum fee required for inclusion](/chia-blockchain/architecture/mempool/fees/)
+           /chia-blockchain/architecture/mempool/#fee-required-for-inclusion
 3. The new spend bundle needs to pay at least 10000000 mojos more in fees than the original one
 4. If there were any time-locks associated with the original spend, the new spend bundle has to have the same time lock (the time lock rule)
 5. The new spend bundle must not change any of the existing spend’s eligibility for fast forward or dedup (the fast forward rule)

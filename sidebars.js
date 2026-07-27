@@ -44,7 +44,6 @@ module.exports = {
                 'chia-blockchain/architecture/mempool/rbf',
                 'chia-blockchain/architecture/mempool/fast-forward',
                 'chia-blockchain/architecture/mempool/isd',
-                'chia-blockchain/architecture/mempool/updates',
                 'chia-blockchain/architecture/mempool/migration',
               ],
             },
