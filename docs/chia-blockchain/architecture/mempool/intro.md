@@ -3,9 +3,10 @@ title: Intro
 slug: /chia-blockchain/architecture/mempool/
 ---
 
-The mempool (a portmanteau of "memory pool") is a collection of transactions stored by full nodes, usually in memory, before they are confirmed on the blockchain. 
+The mempool (a portmanteau of "memory pool") is a collection of transactions stored by full nodes, usually in memory, before they are confirmed on the blockchain.
 
 :::info
+
 ### Default Mempool
 
 The mempool is not dictated by the consensus rules; a farmer can change how their personal mempool functions and customize the rules without obtaining any permissions. Farmers can even decline to use a mempool altogether.

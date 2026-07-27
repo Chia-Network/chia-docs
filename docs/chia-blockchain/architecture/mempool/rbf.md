@@ -11,7 +11,7 @@ The full conditions for replace by fee are:
 
 1. The new spend bundle needs to include at least all the spends in the original one (the super set rule)
 2. The new spend bundle needs to pay a higher fee per cost than the original one (and higher than the [minimum fee required for inclusion](/chia-blockchain/architecture/mempool/fees/)
-           /chia-blockchain/architecture/mempool/#fee-required-for-inclusion
+   /chia-blockchain/architecture/mempool/#fee-required-for-inclusion
 3. The new spend bundle needs to pay at least 10000000 mojos more in fees than the original one
 4. If there were any time-locks associated with the original spend, the new spend bundle has to have the same time lock (the time lock rule)
 5. The new spend bundle must not change any of the existing spend’s eligibility for fast forward or dedup (the fast forward rule)

@@ -6,17 +6,18 @@ slug: /chia-blockchain/architecture/mempool/fast-forward
 Fast-forward spends is a way for a singleton transaction to be applied to future versions of the singleton. This enables offer files to refer to singletons by coin ID, even though the coin ID changes for every singleton spend.
 
 Spending a coin whose outer puzzle is the `singleton_top_layer_v1_1`, is automatically considered eligible for fast-forward by the mempool, as long as it satisfies certain restrictions:
-* [Immutable puzzle](#immutable-puzzle)
-* [Immutable amount](#immutable-amount) (other than the singleton layer)
-* [Certain conditions excluded](#conditions)
-  * [Specific coin ID](#coin-id)
-  * [Coin announcements](#coin-announcements)
-  * [AGG_SIG_PARENT_*](#parent-coin-id) (other than the singleton layer)
-  * [Relative timelocks](#relative-timelocks)
-  * [ASSERT_BIRTH_*](#created-height-and-timestamp)
-  * [ASSERT_CONCURRENT_SPEND](#concurrent-spends)
-  * [*_MESSAGE](#messages)
-  * [ASSERT_EPHEMERAL](#ephemeral-spends)
+
+- [Immutable puzzle](#immutable-puzzle)
+- [Immutable amount](#immutable-amount) (other than the singleton layer)
+- [Certain conditions excluded](#conditions)
+  - [Specific coin ID](#coin-id)
+  - [Coin announcements](#coin-announcements)
+  - [AGG*SIG_PARENT*\*](#parent-coin-id) (other than the singleton layer)
+  - [Relative timelocks](#relative-timelocks)
+  - [ASSERT*BIRTH*\*](#created-height-and-timestamp)
+  - [ASSERT_CONCURRENT_SPEND](#concurrent-spends)
+  - [\*\_MESSAGE](#messages)
+  - [ASSERT_EPHEMERAL](#ephemeral-spends)
 
 Singletons are documented in [chialisp.com/singletons](https://chialisp.com/singletons/)
 
