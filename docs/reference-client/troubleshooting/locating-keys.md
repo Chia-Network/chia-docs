@@ -32,18 +32,21 @@ Never share your private / secret keys or mnemonics with anyone. These give acce
 ### Locating Keys in the GUI
 
 1. In the top right corner select logout:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletLogout} alt='Logout of the Chia wallet' />
 </div>
 <br />
 
 2. Using the desired keys menu, select details:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletKeyDetails} alt='Select Details for a Chia keyset' />
 </div>
 <br />
 
 3. View and copy the needed keyset:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletKeysOverview} alt='Chia keys detail screen' />
 </div>

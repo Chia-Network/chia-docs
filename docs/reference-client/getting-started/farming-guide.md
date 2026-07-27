@@ -141,18 +141,21 @@ Never share your private / secret keys or mnemonics with anyone. These give acce
 :::
 
 1. In the top right corner select logout:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletLogout} alt='Logout of the Chia wallet' />
 </div>
 <br />
 
 2. Using the desired keys menu, select details:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletKeyDetails} alt='Select Details for a Chia keyset' />
 </div>
 <br />
 
 3. View and copy the **Public Key** to the field on the Faucet page:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletKeysPublic} alt='Chia keys detail screen, Public Key highlighted' />
 </div>

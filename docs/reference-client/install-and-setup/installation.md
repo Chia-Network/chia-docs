@@ -886,12 +886,14 @@ C:\Program Files\Chia\resources\app.asar.unpacked\daemon\chia.exe
 
   </TabItem>
   <TabItem value="Linux" label="Linux">
-  
-  The CLI commands are stored in the following location:
-  ```
-  /usr/bin/chia
-  ```
-  This location should already be included in your system's PATH, so you should be able to run `chia` directly from the command line without any further setup.
+
+The CLI commands are stored in the following location:
+
+```
+/usr/bin/chia
+```
+
+This location should already be included in your system's PATH, so you should be able to run `chia` directly from the command line without any further setup.
 
   </TabItem>
 </Tabs>

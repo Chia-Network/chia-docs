@@ -60,20 +60,20 @@ python -m venv venv
 
   </TabItem>
   <TabItem value="linux">
-  
-  ```bash
-  python3 -m venv venv
-  . ./venv/bin/activate
-  ```
-  
+
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
+
   </TabItem>
   <TabItem value="macos">
-  
-  ```bash
-  python3 -m venv venv
-  . ./venv/bin/activate
-  ```
-  
+
+```bash
+python3 -m venv venv
+. ./venv/bin/activate
+```
+
   </TabItem>
   </Tabs>
 
@@ -95,18 +95,18 @@ python -m pip install --upgrade pip setuptools wheel
 
   </TabItem>
   <TabItem value="linux">
-  
-  ```bash
-  python3 -m pip install --upgrade pip setuptools wheel
-  ```
-  
+
+```bash
+python3 -m pip install --upgrade pip setuptools wheel
+```
+
   </TabItem>
   <TabItem value="macos">
-  
-  ```bash
-  python3 -m pip install --upgrade pip setuptools wheel
-  ```
-  
+
+```bash
+python3 -m pip install --upgrade pip setuptools wheel
+```
+
   </TabItem>
   </Tabs>
 
@@ -207,10 +207,10 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4
 
   </TabItem>
   <TabItem value="macos">
-  
-  ```bash
-  cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
-  ```
+
+```bash
+cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
+```
 
   </TabItem>
   </Tabs>
