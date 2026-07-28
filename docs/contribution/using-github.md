@@ -67,6 +67,7 @@ A fork is a new repository that shares code and visibility settings with the ori
 
 1. On GitHub.com, navigate to the [Chia-Network/chia-docs](https://github.com/Chia-Network/chia-docs) repository.
 2. In the top-right corner of the page, click Fork.
+
 <div style={{ textAlign: 'left' }}>
   <img src={ForkButton} alt='Fork a Repository in Github' />
 </div>
@@ -207,6 +208,7 @@ The below information has been adapted from the [Github docs](https://docs.githu
 :::
 
 1. In the upper-right corner of any page, click your profile photo, then click `Settings`.
+
 <div style={{ textAlign: 'left' }}>
   <img src={AddGPG} height="600" alt='Add a GPG Key to Your Github Account' />
 </div>

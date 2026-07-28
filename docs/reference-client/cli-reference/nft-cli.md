@@ -27,7 +27,7 @@ Options:
 
 <details>
 <summary>Example 1 - Create an NFT wallet that is not linked to a DID</summary>
- 
+
 Create an NFT Wallet:
 
 ```bash
