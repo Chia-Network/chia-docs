@@ -47,6 +47,7 @@ If you are more of a visual learner, JM made a video outlining the steps from th
   ```
 
   Options to make this directory accessible include:
+
   - Share the directory on a network drive
   - Copy it using a USB key
   - Do a network copy to each harvester
@@ -174,7 +175,7 @@ In other words, _only use the keys specific to your machine's purpose_.
 
 #### 在多台机器上生成地块
 
-As stated [above](/reference-client/farming/farming-many-machines#先决条件), run the following command when creating plots:
+As stated [above](/reference-client/farming/farming-many-machines#prerequisites), run the following command when creating plots:
 
 ```bash
 chia plots create -f <farmer_key> -p <pool_key>
@@ -184,7 +185,7 @@ When you use the `-f` and `-p` parameters, you do not need to copy the keys to t
 
 #### 在多台机器上进行收割
 
-Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](/reference-client/farming/farming-many-machines#先决条件) steps to keep them in one place while farming.
+Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](/reference-client/farming/farming-many-machines#prerequisites) steps to keep them in one place while farming.
 
 ### 钱包保持独立(Separate)
 
