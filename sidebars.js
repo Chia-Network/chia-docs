@@ -199,6 +199,7 @@ module.exports = {
       items: [
         'cloud-wallet/getting-started',
         'cloud-wallet/buy-xch',
+        'cloud-wallet/in-app-support',
         'cloud-wallet/recovery',
         'cloud-wallet/faq',
         'cloud-wallet/known-issues',

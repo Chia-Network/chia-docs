@@ -81,4 +81,4 @@ If you encounter any issues while buying XCH:
 - Verify your purchase amount is within the purchase limits
 - Check that your bank account information is correct in Stripe
 - Ensure your bank account has sufficient funds
-- For additional support, visit the #support channel in [our Discord](https://discord.gg/chia)
+- For additional support, use [In App Support](/cloud-wallet/in-app-support)
