@@ -85,11 +85,11 @@ Yes. With the current setup, the `Free` tier's single-signature vaults use the s
 
 ### Where can I go for support?
 
-Feel free to ask questions in the #support channel of [our Discord](https://discord.gg/chia).
+Open your account menu and choose `Support` to create and track tickets in the Cloud Wallet. See the [In App Support](/cloud-wallet/in-app-support) guide for details.
 
 ### Where can I report a bug?
 
-If you find any bugs, feel free to fill out the in-app reporting form accessible by clicking you profile image in the top right then "Report an Issue".
+Create a ticket with the `Bug Report` type from the Support screen. See [In App Support](/cloud-wallet/in-app-support).
 
 If you discover any security issues, you can file a report on our [bug bounty site](https://hackerone.com/chia_network). Thanks for your help!
 
