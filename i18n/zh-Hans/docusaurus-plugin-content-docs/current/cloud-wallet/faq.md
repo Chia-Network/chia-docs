@@ -14,7 +14,8 @@ The Cloud Wallet is a platform for interacting with the Chia blockchain. Assets 
 
 ### Is the Chia Cloud Wallet available for mainnet?
 
-是的。 It is in early release as of 6/25/2025 and can be accessed [here](https://vault.chia.net).
+Yes, the Chia Cloud Wallet was released on 10/29/2025 and can be accessed [here](https://vault.chia.net).
+The testnet version of the Chia Cloud Wallet can be accessed [here](https://vault.chiatest.net/).
 
 ### How can I obtain some TXCH for testnet11?
 
@@ -24,6 +25,7 @@ Visit either our [official faucet site](https://testnet11-faucet.chia.net) or a 
 
 For mainnet visit the [Mainnet Cloud Wallet website](https://vault.chia.net) and sign up for a free account.
 For testnet visit the [Testnet Cloud Wallet website](https://vault.chiatest.net) and sign up for a free account.
+You can refer to our [Getting Started Guide](/cloud-wallet/getting-started) for help setting up your account.
 
 ### How is the Cloud Wallet different from other wallets?
 
@@ -87,7 +89,7 @@ Feel free to ask questions in the #support channel of [our Discord](https://disc
 
 ### Where can I report a bug?
 
-If you find any bugs, feel free to fill out a [bug report](https://docs.google.com/forms/d/e/1FAIpQLSeIAZAxSwTwZPGUVLs7_XKseoPgOmtBa0qhtWNQwBeoo9adRA/viewform). However, please keep in mind that this is early release software. We are aware of several existing bugs.
+If you find any bugs, feel free to fill out the in-app reporting form accessible by clicking you profile image in the top right then "Report an Issue".
 
 If you discover any security issues, you can file a report on our [bug bounty site](https://hackerone.com/chia_network). Thanks for your help!
 
@@ -96,6 +98,8 @@ If you discover any security issues, you can file a report on our [bug bounty si
 Currently the only tier you can choose is the `Free` tier, which only allows you to create one vault. In the future we will enable the `Pro` and `Enterprise` tiers, which enable multiple vaults, along with several other features.
 
 ## Recovery
+
+For a conceptual overview of Instant Recovery and timelocked recovery, see the [Recovery](/cloud-wallet/recovery) guide.
 
 ### What happens if I lose my spend key?
 
@@ -109,11 +113,31 @@ However, the current setup is not secure against wrench attacks, where the thief
 
 ### What happens if I lose my recovery key?
 
-You can use your spend key to send your funds to a new vault.
+If you still have your spend key, use [Instant Recovery](/cloud-wallet/recovery/#instant-recovery) to set a new recovery key in a single on-chain step. You confirm the change and sign with your current spend key, with no recovery clawback wait. See the [Recovery](/cloud-wallet/recovery) guide for context. If you have lost both your spend key and any usable backup of your recovery phrase, you cannot regain access to the vault.
 
 ### What happens if my recovery key is stolen? Will all of my funds be stolen?
 
-A recovery key can only be used for recovering a vault. If this key is stolen, the thief will not immediately be able to steal your funds. However, they will likely attempt to recover your vault. In this case, the watchtower will send you an email notifying you that your vault is now in recovery mode. The recovery can only be completed after a preset timer has expired. Until this time, you can cancel the recovery and move your funds to a new vault.
+A recovery key can only be used for recovering a vault. If this key is stolen, the thief will not immediately be able to steal your funds. However, they will likely attempt to recover your vault. In this case, the watchtower will send you an email notifying you that your vault is now in recovery mode. The recovery can only be completed after a preset timer has expired. Until then, you can cancel the recovery with your spend key during the clawback window. After you cancel, use [Instant Recovery](/cloud-wallet/recovery/#instant-recovery) to rotate your compromised recovery key to a new one so the stolen material no longer works. (You can still move funds to a new vault if you prefer, but Instant Recovery is the direct way to fix the keys on your existing vault.)
+
+### If I initiate a recovery, and wait for the clawback timer to expire, and then someone steals my recovery key, can the thief swap my keys for theirs without having to re-initiate a recovery?
+
+No. When you initiate the recovery, you lock in the new keys. The only way to change them is to cancel the recovery and re-initiate it. After the timer expires, the only two options are 1) complete the recovery with exactly the keys you entered, or 2) cancel the recovery and start over. If the thief only has your recovery key, then there is no option to change the keys without waiting for the recovery clawback timer to expire.
+
+### What is Instant Recovery?
+
+Instant Recovery lets you rekey your vault immediately using your current spend key: you can change your spend key, recovery key, recovery timelock, or any combination of those, in one confirmed transaction, without waiting for the recovery clawback timer. Common reasons include getting a new phone (Chia Signer keys cannot be copied off the old device), replacing a lost recovery phrase while you still can sign, or rotating a compromised recovery key after you cancel a malicious timelocked recovery. Details: [Recovery](/cloud-wallet/recovery).
+
+### When should I use Instant Recovery vs Timelocked Recovery?
+
+If you still have your spend key, use Instant Recovery. If you cannot use your spend key anymore but you do have your recovery phrase (recovery key), use Timelocked Recovery and wait for the clawback period before completing recovery. See [Recovery](/cloud-wallet/recovery).
+
+### Can I use Instant Recovery to change just my recovery key (or just my timelock) without changing my spend key?
+
+是的。 During Instant Recovery you can update any combination of spend key, recovery key, and recovery timelock. You are not required to rotate everything at once.
+
+### What happens if someone initiates a malicious recovery on my vault?
+
+You receive an email alert. If you still have your spend key and the malicious actor is using timelocked recovery, log into the Chia Cloud Wallet to cancel recovery during the clawback window using your spend key, then use [Instant Recovery](/cloud-wallet/recovery/#instant-recovery) to set a new recovery key so the attacker’s copy of the old recovery material cannot be used again. Note - if the attacker has gained access to your spend key they can use instant recovery to rekey both the spend and recovery key in which there is nothing you nor we at Chia Network, Inc. can do to recover the vault or stop the attacker. See [Recovery](/cloud-wallet/recovery).
 
 ## Watchtowers
 
@@ -133,14 +157,16 @@ Yes! The Chia blockchain is a public ledger, so anyone can build software to mon
 
 ### What is the Chia Signer app?
 
-The Chia Signer app turns your smartphone into a hardware wallet. The app uses your phone's Secure Enclave to create a vault spend key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it. You can download it from the [iOS App Store](https://apps.apple.com/app/chia-signer/id6504493785).
+The Chia Signer app turns your smartphone into a hardware wallet. The app uses **hardware-protected storage** on your phone (Secure Enclave on iOS; hardware-backed keystore / StrongBox on supported Android devices, the Android app is in **beta**) to create a vault spend key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it.
+
+Download **iOS** from the [App Store](https://apps.apple.com/app/chia-signer/id6504493785). **Android** is in **beta** on [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 :::info
 
 Currently, in order to use the Chia Signer app, you will need two separate devices:
 
 1. A computer or phone to access your vault
-2. An iOS device on which the Chia Signer app is installed
+2. A smartphone (iOS, or Android in beta) with the Chia Signer app installed
 
 You cannot use both the Cloud Wallet and the Chia Signer app on the same device yet. However, we do intend to enable this functionality in a future release.
 
@@ -148,25 +174,23 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 ### Is the Chia Signer app available for both Android and iOS?
 
-It is currently only available for iOS. We will build an Android version in the future.
+是的。
+
+**iOS:** [App Store](https://apps.apple.com/app/chia-signer/id6504493785).
+
+**Android** (beta): [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 ### On which iOS devices is the Chia Signer app supported?
 
-The app has two requirements for iOS devices:
+See the [App Store listing](https://apps.apple.com/app/chia-signer/id6504493785) for the current minimum OS version and device compatibility. In general, the app targets **iOS 15 or later** on devices with a **Secure Enclave**.
 
-1. The device must run iOS 15 or later
-2. The device must have a Secure Enclave
+### On which Android devices is the Chia Signer app supported?
 
-The following devices meet both of these requirements:
-
-- iPhone models beginning with the iPhone 6
-- iPad models beginning with the iPad mini 4
-
-Be sure to double check that your device is running at least iOS 15 prior to installing the Chia Signer app.
+The Android app is in **beta**. Supported devices and OS requirements are shown on the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer). The Play Store is the most up-to-date source for compatibility.
 
 ### Is it safe to install the Chia Signer app on a second-hand device?
 
-Yes -- just be sure to do a factory reset of the device first. See [Apple's support site](https://support.apple.com/guide/iphone/iph7a2a9399b/ios) for instructions.
+Yes -- just be sure to **factory reset** the device first so any prior owner's data and keys are wiped. For **iOS**, see [Apple's support site](https://support.apple.com/guide/iphone/iph7a2a9399b/ios). For **Android**, see [Google's guide to resetting your device](https://support.google.com/android/answer/6088915).
 
 ### Does the Chia Signer app use blind signing?
 
@@ -176,7 +200,21 @@ No, but it doesn't use clear signing yet, either. The user is shown the details 
 
 No, the Chia Signer app is only for signing transactions. You will need to use either a password or a passkey to sign into your Cloud Wallet account.
 
+### Can I use the same phone as a signer for multiple vaults or accounts?
+
+是的。 The Chia Signer app is quite flexible. It supports multiple hardware keys within the app, as well as using a hardware key as a signer for multiple Cloud Wallet accounts and vaults.
+
+However, you should still consider your security posture before reusing a hardware key. For example, if you want to use a single key for two separate accounts, both of which you control, then this is generally safe. On the other hand, if you want to share one Chia Signer device between multiple people, then this requires a high degree of trust between all parties.
+
+In general, as more vaults, Cloud Wallet accounts, hardware keys, and software keys are being added to the same Chia Signer device, the security of that device decreases. Always consider the risk of your phone being lost or stolen, along with the consequences if that were to happen.
+
 ## Security and privacy
+
+### Does Chia Network have access to my vault keys, or can CNI recover my vault if I lose them?
+
+**No.** Chia Network, Inc. (CNI) does **not** have access to your vault’s **spend keys** or **recovery keys**. Those credentials stay with you—on your devices, with your passkey provider, or wherever you stored your recovery material—and are not held by CNI in a form that would let us sign transactions or recovery on your behalf.
+
+If you permanently lose access to **both** your spend key and your recovery key (including any usable backup of your recovery phrase), **CNI cannot recover your keys or restore access to your vault**. Self-custody means there is no master key or back door; only someone who holds the required keys can spend or complete recovery.
 
 ### Will CNI be able to freeze and/or confiscate my assets?
 
@@ -204,3 +242,25 @@ In addition, in the future we plan to support vaults with multiple receive addre
 ### Will the Chia Signer app be open source?
 
 Yes
+
+## Buy XCH
+
+### Who can use Buy XCH?
+
+Buy XCH is currently available for users with US based, ACH-enabled bank accounts compatible with Stripes payment system. We are working to expand to other regions.
+
+### How does the Buy XCH Process work?
+
+Securely link your bank account and complete a purchase in the Cloud Wallet. A clawback transaction appears in your vault immediately for the purchased XCH. A day or so after the payment is initiated, the funds will leave your bank. Once your payment settles (usually within seven business days) the clawback transaction is finalized and your XCH is ready to spend.
+
+### Why do I see a “pending” transaction in my vault?
+
+XCH purchase transactions use Chia’s Clawback 2.0 feature ensuring that if your bank payment does not clear, the transaction can be safely reversed.
+
+### What does “Finalizing“ a Clawback Transaction mean?
+
+Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender finalize a transaction early, immediately releasing the funds to the recipient. This enhanced flexibility is used in Buy XCH to complete your transaction as soon as your bank payment clears.
+
+### What are the purchase limits for Buy XCH?
+
+Users currently have a minimum purchase limit of \$25. Limits help keep the system stable and secure during rollout.

@@ -16,7 +16,7 @@ Under normal circumstances, an attacker can create a malicious proposal to drain
 
 However, prior to creating this proposal, the attacker can use proposal spam to improve the chances of the attack's success.
 
-The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. To release the coins, launch the wallet from `main`, and then run the [release_coins](/reference-client/cli-reference/dao-cli#release_coins) command.
+The DAO wallet subscribes to `PROPOSAL` coins by hinting the `TREASURY_ID` in the `memos` field upon the coin's creation. To release the coins, launch the wallet from `main`, and then run the [release_coins](/dao-cli#release_coins) command.
 
 - There is a limit on the number of items a `full_node` will return to a wallet based on a subscribed puzzle_hash (including hinted coins): \* `trusted_max_subscribe_response_items`: 500000 \* `max_subscribe_response_items`: 100000
 - Mitigation: This issue only exists in the 2.1.2 release.

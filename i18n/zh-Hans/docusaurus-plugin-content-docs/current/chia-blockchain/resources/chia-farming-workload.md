@@ -31,12 +31,12 @@ The proof of space construction and the [Proof of Space page](/chia-blockchain/c
 
 We can estimate the storage workload on a given drive capacity (measured in TB, terabytes) by knowing the k size selected and n number of plots that fit on the drive.
 
-| Drive size (TB) |   4 |   8 |  10 |  12 |  14 |  16 |  18 |  20 |
-| --------------- | --: | --: | --: | --: | --: | --: | --: | --: |
-| k value         |  32 |  32 |  32 |  32 |  32 |  32 |  32 |  32 |
-| Number of plots |  36 |  73 |  91 | 110 | 128 | 146 | 165 | 183 |
-| k value         |  34 |  34 |  34 |  34 |  34 |  34 |  34 |  34 |
-| Number of plots |   8 |  17 |  21 |  25 |  30 |  34 |  38 |  43 |
+| Drive size (TB) |  4 |  8 | 10 |  12 |  14 |  16 |  18 |  20 |
+| ---------------------------------- | -: | -: | -: | --: | --: | --: | --: | --: |
+| k value                            | 32 | 32 | 32 |  32 |  32 |  32 |  32 |  32 |
+| Number of plots                    | 36 | 73 | 91 | 110 | 128 | 146 | 165 | 183 |
+| k value                            | 34 | 34 | 34 |  34 |  34 |  34 |  34 |  34 |
+| Number of plots                    |  8 | 17 | 21 |  25 |  30 |  34 |  38 |  43 |
 
 Events per day, plots passing filter = signage points per day ✕ n plots / filter constant
 number of reads =(Events per day, plots passing filter ✕ IO Proof quality check) +(IO Full proof of space ✕ Partials per day\
@@ -76,24 +76,24 @@ Hard disk drive reliability is rated at a specified amount of data read and writ
 
 Data was collected across a sample size of drives of varying capacity, as detailed in the system configuration. The duration of the measured data was 48 hours with a scraping period of 5s.
 
-| capacity | Sample Size | bandwidth (kB/s) | IOPS | blocksize (kB) | latency (ms) |
-| -------- | ----------- | ---------------- | ---- | -------------- | ------------ |
-| 8        | 3           | 3.45             | 0.23 | 14.76          | 5.18         |
-| 10       | 2           | 4.17             | 0.28 | 14.72          | 7.04         |
-| 12       | 16          | 5.03             | 0.34 | 14.69          | 7.11         |
-| 14       | 2           | 6.02             | 0.41 | 14.72          | 5.21         |
-| 16       | 27          | 6.20             | 0.44 | 14.14          | 6.27         |
-| 18       | 44          | 7.46             | 0.51 | 14.57          | 5.53         |
-| Total    | 94          | 6.46             | 0.45 | 14.48          | 6.02         |
+| capacity | Sample Size | bandwidth (kB/s) | IOPS                 | blocksize (kB) | latency (ms) |
+| -------- | ----------- | ----------------------------------- | -------------------- | --------------------------------- | ------------------------------- |
+| 8        | 3           | 3.45                | 0.23 | 14.76             | 5.18            |
+| 10       | 2           | 4.17                | 0.28 | 14.72             | 7.04            |
+| 12       | 16          | 5.03                | 0.34 | 14.69             | 7.11            |
+| 14       | 2           | 6.02                | 0.41 | 14.72             | 5.21            |
+| 16       | 27          | 6.20                | 0.44 | 14.14             | 6.27            |
+| 18       | 44          | 7.46                | 0.51 | 14.57             | 5.53            |
+| Total    | 94          | 6.46                | 0.45 | 14.48             | 6.02            |
 
 We compare the modeled metrics of an 18TB drive to the measure data collected
 
-| Metric                     | Estimated/Modeled | Measured  |
-| -------------------------- | ----------------- | --------- |
-| Bandwidth per drive (kB/s) | 4.59 kB/s         | 7.46 kB/s |
-| IOPS                       | 0.33              | 0.51      |
-| Disk busy time             | 0.136%            | 0.24%     |
-| Latency per request (ms)   | 4.3               | 6.02      |
+| Metric                                        | Estimated/Modeled         | Measured                  |
+| --------------------------------------------- | ------------------------- | ------------------------- |
+| Bandwidth per drive (kB/s) | 4.59 kB/s | 7.46 kB/s |
+| IOPS                                          | 0.33      | 0.51      |
+| Disk busy time                                | 0.136%    | 0.24%     |
+| Latency per request (ms)   | 4.3       | 6.02      |
 
 Disk IOPS
 
@@ -156,8 +156,8 @@ numerator is the total count of data errors detected over the full TBW rating fo
 
 Consumer HDDs are rated for less than 1 error per 10<sup>14</sup> (sometimes shown as UBER of 10<sup>-14</sup>). This means that if a consumer reads on 800TB of data, they would expect a single read error on average.
 
-| Device         | UBER   | Data read per error |
-| -------------- | ------ | ------------------- |
+| Device         | UBER    | Data read per error |
+| -------------- | ------- | ------------------- |
 | Consumer HDD   | 10\-14 | 800 TB              |
 | Enterprise HDD | 10\-15 | 8 PB                |
 | SSD            | 10\-17 | 800 PB              |
