@@ -107,7 +107,7 @@ On `Offers you created`, each open offer supports `View Details`, `Copy Offer`, 
 
 3. Click `Confirm Cancellation` and sign if the app requests a signature.
 
-On-chain cancellation permanently cancels the offer on the blockchain. Off-chain cancellation only helps if the offer has not already been widely shared. See [Known Issues](/cloud-wallet/known-issues) for current cancellation limitations.
+On-chain cancellation permanently cancels the offer on the blockchain. See [Known Issues](/cloud-wallet/known-issues) for current cancellation limitations.
 
 ## Tips
 
