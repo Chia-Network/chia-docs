@@ -1346,21 +1346,21 @@ Usage: chia wallet get_transactions [OPTIONS]
 
 Options:
 
-| Short Command | Long Command        | Type    | Required | Description                                                                                                       |
+| Short Command | Long Command | Type | Required | Description |
 | :------------ | :------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------------------- | --------- | -------------------------- |
-| -wp           | --wallet-rpc-port   | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml      |
-| -f            | --fingerprint       | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                |
-| -i            | --id                | INTEGER | False    | ID of the wallet to use [default: 1]                                                                              |
-| -o            | --offset            | INTEGER | False    | Skip transactions from the beginning of the list [default: 0]                                                     |
-| -l            | --limit             | INTEGER | False    | Max number of transactions to return [default: 4294967295]                                                        |
-| -v            | --verbose           | None    | False    | Show verbose output [default: disabled]                                                                           |
-|               | --paginate          | None    | False    | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled        |
-|               | --no-paginate       | None    | False    | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
-|               | --sort-by-height    | None    | False    | Sort transactions by height [default: disabled]                                                                   |
-|               | --sort-by-relevance | None    | False    | Sort transactions by \{confirmed \\                                                                               | height \\ | time\} [default: disabled] |
-|               | --reverse           | None    | False    | Reverse the transaction ordering [default: disabled]                                                              |
-|               | --clawback          | None    | False    | Only show clawback transactions [default: disabled]                                                               |
-| -h            | --help              | None    | False    | Show a help message and exit                                                                                      |
+| -wp | --wallet-rpc-port | INTEGER | False | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f | --fingerprint | INTEGER | False | Set the fingerprint to specify which wallet to use |
+| -i | --id | INTEGER | False | ID of the wallet to use [default: 1] |
+| -o | --offset | INTEGER | False | Skip transactions from the beginning of the list [default: 0] |
+| -l | --limit | INTEGER | False | Max number of transactions to return [default: 4294967295] |
+| -v | --verbose | None | False | Show verbose output [default: disabled] |
+| | --paginate | None | False | Prompt for each page of data. Defaults to enabled for interactive consoles, otherwise defaults to disabled |
+| | --no-paginate | None | False | Do not prompt for each page of data. Defaults to disabled for interactive consoles, otherwise defaults to enabled |
+| | --sort-by-height | None | False | Sort transactions by height [default: disabled] |
+| | --sort-by-relevance | None | False | Sort transactions by \{confirmed \\ | height \\ | time\} [default: disabled] |
+| | --reverse | None | False | Reverse the transaction ordering [default: disabled] |
+| | --clawback | None | False | Only show clawback transactions [default: disabled] |
+| -h | --help | None | False | Show a help message and exit |
 
 <details>
 <summary>Example 1: Show a single XCH transaction</summary>
@@ -1736,12 +1736,12 @@ Usage: chia wallet show [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
+| Short Command | Long Command | Type | Required | Description |
 | :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- | -------------- | ------------------- | ------------ | ---------- | ------ | -------------- | ------------------- | ----------------- | ------ | ------------- | ----------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -w            | --wallet_type     | TEXT    | False    | Choose a specific wallet type to return, choose from the following: [standard_wallet \\                      | atomic_swap \\ | authorized_payee \\ | multi_sig \\ | custody \\ | cat \\ | recoverable \\ | decentralized_id \\ | pooling_wallet \\ | nft \\ | data_layer \\ | data_layer_offer] |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| -wp | --wallet-rpc-port | INTEGER | False | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f | --fingerprint | INTEGER | False | Set the fingerprint to specify which wallet to use |
+| -w | --wallet_type | TEXT | False | Choose a specific wallet type to return, choose from the following: [standard_wallet \\ | atomic_swap \\ | authorized_payee \\ | multi_sig \\ | custody \\ | cat \\ | recoverable \\ | decentralized_id \\ | pooling_wallet \\ | nft \\ | data_layer \\ | data_layer_offer] |
+| -h | --help | None | False | Show a help message and exit |
 
 <details>
 <summary>Example</summary>

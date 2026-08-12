@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=24.14.1"
   },
   "scripts": {
     "docusaurus": "docusaurus",
@@ -19,24 +19,26 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docsearch/react": "^4.6.3",
-    "@docusaurus/core": "^3.10.0",
-    "@docusaurus/plugin-google-gtag": "^3.10.0",
-    "@docusaurus/preset-classic": "^3.10.0",
-    "@easyops-cn/docusaurus-search-local": "^0.55.1",
+    "@docsearch/react": "^4.7.0",
+    "@docusaurus/core": "^3.10.2",
+    "@docusaurus/plugin-google-gtag": "^3.10.2",
+    "@docusaurus/preset-classic": "^3.10.2",
+    "@easyops-cn/docusaurus-search-local": "^0.55.3",
     "@mdx-js/react": "^3.1.1",
     "clvm-lib": "^1.0.1",
-    "prettier": "^3.8.2",
+    "prettier": "^3.9.6",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "react-icons": "^5.6.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.8",
+    "react-icons": "^5.7.0",
     "react-simple-code-editor": "^0.14.1",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
   },
   "overrides": {
-    "follow-redirects": "1.16.0"
+    "follow-redirects": "1.16.0",
+    "serialize-javascript": ">=7.0.5",
+    "uuid": ">=11.1.1"
   },
   "browserslist": {
     "production": [

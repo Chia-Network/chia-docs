@@ -207,7 +207,7 @@ You might receive an error such as ERROR: Failed building wheel for CAT-admin-to
 ---
 
 <br/>
-    
+
 Your environment should be all set, but let's make sure:
 
 - Run `cats --help`. You should get a usage statement.

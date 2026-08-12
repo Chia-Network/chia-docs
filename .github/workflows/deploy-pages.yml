@@ -12,7 +12,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container: node:20-alpine
+    container: node:24-alpine
     steps:
       - name: 'Install deps'
         run: |
@@ -20,7 +20,7 @@ jobs:
       - name: Add safe Git directory
         uses: Chia-Network/actions/git-mark-workspace-safe@main
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7.0.1
       - name: Set up commit signing
         uses: Chia-Network/actions/commit-sign/gpg@main
         with:

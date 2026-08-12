@@ -1987,6 +1987,94 @@ Response:
 
 ---
 
+### `get_fee_estimate`
+
+Functionality: Retrieve a fee estimate (in mojos per CLVM cost) from a connected full node peer. This allows wallet clients to get fee guidance without calling the full node RPC directly. Requires the wallet to be connected to at least one full node peer.
+
+Usage: chia rpc wallet [OPTIONS] get_fee_estimate [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_fee_estimate
+```
+
+Response:
+
+```json
+{
+  "fee_per_cost": 0,
+  "success": true
+}
+```
+
+</details>
+
+:::note
+
+The returned `fee_per_cost` value is in mojos per 1 CLVM cost. A value of `0` indicates that the mempool is not currently congested.
+
+If the wallet is not connected to a full node peer, this RPC will return an error.
+
+:::
+
+:::info How it works
+
+This is a simplified wrapper around the full node's [`get_fee_estimate`](/reference-client/rpc-reference/full-node-rpc#get_fee_estimate) RPC. The full node version accepts `target_times`, `cost`, and an optional `spend_bundle` as request parameters.
+
+The wallet version takes no parameters — it automatically uses the current UTC timestamp as a single time target and requests the fee estimate from a connected full node peer via the wallet-to-full-node protocol. The result is a single `fee_per_cost` value representing the estimated fee rate at the current moment.
+
+Use this endpoint when you want a quick fee estimate without needing to specify custom time targets or cost values. For more granular control (e.g., estimating fees across multiple time horizons), use the [full node `get_fee_estimate`](/reference-client/rpc-reference/full-node-rpc#get_fee_estimate) RPC directly.
+
+:::
+
+---
+
+### `get_full_node_peer_count`
+
+Functionality: Returns the number of full node peers currently connected to the wallet node
+
+Usage: chia rpc wallet [OPTIONS] get_full_node_peer_count [REQUEST]
+
+Options:
+
+| Short Command | Long Command | Type     | Required | Description                                                                           |
+| :------------ | :----------- | :------- | :------- | :------------------------------------------------------------------------------------ |
+| -j            | --json-file  | FILENAME | False    | Optionally instead of REQUEST you can provide a json file containing the request data |
+| -h            | --help       | None     | False    | Show a help message and exit                                                          |
+
+Request Parameters: None
+
+<details>
+<summary>Example</summary>
+
+```json
+chia rpc wallet get_full_node_peer_count
+```
+
+Response:
+
+```json
+{
+  "peer_count": 1,
+  "success": true
+}
+```
+
+</details>
+
+---
+
 ### `get_next_address`
 
 Functionality: Get the next address in the HD tree, with the option to show the latest address
@@ -2258,7 +2346,8 @@ The transaction history is not deterministic due to heuristics we use to counter
 - The transaction time is a rough estimate. When an offer is accepted, the individual transactions of one offer can/will have slightly differing transaction times
 - For your offers which were accepted by a 3rd Party , the incoming coins are being marked as incoming transaction, not as incoming trade
 - When cancelling offers, the cancellation Transactions are being shown as transaction, not as trade
-For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+  For accurate records, you should keep a local record of transactions (TXs) and the Offer files made.
+
 </details>
 
 <details>
@@ -4388,16 +4477,17 @@ Options:
 
 Request Parameters:
 
-| Flag            | Type    | Required | Description                                                                                                                                                                              |
-| :-------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| offer           | TEXT    | True     | The offer to create                                                                                                                                                                      |
-| validate_only   | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                                                          |
-| driver_dict     | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                |
-| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none]                                                                                                                          |
-| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                                                          |
-| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                      |
-| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                     |
-| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml |
+| Flag            | Type    | Required | Description                                                                                                                                                                                                                                                                                            |
+| :-------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| offer           | TEXT    | True     | The offer to create                                                                                                                                                                                                                                                                                    |
+| validate_only   | BOOLEAN | False    | Only validate the offer instead of creating it [Default: false]                                                                                                                                                                                                                                        |
+| driver_dict     | DICT    | True     | A dictionary of keys and values associated with the offer                                                                                                                                                                                                                                              |
+| min_coin_amount | NUMBER  | False    | The minimum coin amount to select for the offer [Default: none]                                                                                                                                                                                                                                        |
+| max_coin_amount | NUMBER  | False    | The maximum coin amount to select for the offer [Default: none]                                                                                                                                                                                                                                        |
+| solver          | TEXT    | False    | A marshalled solver                                                                                                                                                                                                                                                                                    |
+| fee             | NUMBER  | False    | An optional blockchain fee, in mojos                                                                                                                                                                                                                                                                   |
+| offer_only      | BOOLEAN | False    | If `true`, return only the offer without creating a trade record or transactions. The response keeps the same shape but `trade_record` will be `null` and `transactions` / `unsigned_transactions` will be empty. Useful when the full response would exceed WebSocket payload limits [Default: false] |
+| reuse_puzhash   | BOOLEAN | False    | If `true`, will not generate a new puzzle hash / address for this transaction only. Note that setting this parameter to `true` will override the global default setting from config.yaml                                                                                                               |
 
 ---
 
@@ -6329,6 +6419,8 @@ Response:
     "/get_connections",
     "/get_current_derivation_index",
     "/get_farmed_amount",
+    "/get_fee_estimate",
+    "/get_full_node_peer_count",
     "/get_height_info",
     "/get_log_level",
     "/get_logged_in_fingerprint",

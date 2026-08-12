@@ -10,7 +10,7 @@ This list was last updated on 2025-09-30. In addition to the items shown here, t
 
 If you find any issues that you think are security related, please file a report at our [HackerOne site](https://hackerone.com/chia_network).
 
-Feel free to report other issues on [our Discord server](https://discord.gg/chia).
+Feel free to report other issues through [In App Support](/cloud-wallet/in-app-support).
 
 ## Cloud Wallet Known Issues
 
@@ -23,7 +23,7 @@ Feel free to report other issues on [our Discord server](https://discord.gg/chia
 ## Resolved Previously Known Issues
 
 :::note
-Let us know on [our Discord server](https://discord.gg/chia) if you are still experiencing these issues:
+Let us know through [In App Support](/cloud-wallet/in-app-support) if you are still experiencing these issues:
 :::
 
 - The signer popups in the Cloud Wallet and Signer app for certain transaction types currently show incomplete details. This is only a display issue that we will fix soon. The signature requests themselves do work as designed.

@@ -11,53 +11,47 @@ This user guide is intended to help developers test their gaming implementations
 
 :::warning Session Persistence
 
-**Game sessions are not saved.** If you refresh your browser or clear browser storage (localStorage, cache, etc.), your game session will be lost and you will need to create a new session. **This can result in lost funds if a session is interrupted during gameplay.** Do not refresh your browser or clear browser data while a game is in progress.
+**Game sessions are not saved.** If you refresh your browser or clear browser storage (localStorage, cache, etc.), your game session will be lost and you will need to create a new session. Do not refresh your browser or clear browser data while a game is in progress.
 
 :::
 
-:::danger Funds Left On-Chain
+:::note Funds on shutdown (Alpha 2)
 
-**When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue. This is a high priority issue which we are working to fix ASAP.**
+**Fixed in Alpha 2:** Earlier alpha builds could leave one stake worth of funds on-chain after a live WalletConnect session shut down. Alpha 2 returns channel funds on shutdown. If you test an older build, use the simulator for development until you are on Alpha 2.
 
 :::
 
 ## Intro
 
-This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). The system uses coinset.org for blockchain data and WalletConnect for wallet transactions. Both services are required for gameplay.
+This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). For live testing, each player connects a Chia wallet (**2.7.1 or later**; required minimum for Alpha 2) via WalletConnect. The player app reads chain state and submits transactions through the wallet connection (see `front-end/src/hooks/RealBlockchainInterface.ts` in the chia-gaming repository). A tracker service relays lobby and game messages between the two browsers.
+
+:::warning Mainnet only (Alpha 2)
+
+Live WalletConnect play requires a **mainnet** Chia wallet. Alpha 2 does not support testnet. Use **Simulator** mode in the player app for development without mainnet XCH.
+
+:::
+
+:::important Two players, two wallets
+
+Live WalletConnect testing requires **two separate wallet installations** (for example two computers, or two user profiles each with its own wallet). You cannot run both players from the same wallet on one machine. See the [Developers Guide](/guides/gaming-developers-guide) testing section for details.
+
+:::
 
 :::note Handshaking Timing
 
-Each transaction block takes approximately 1 minute. The handshake requires 2 on-chain transactions to be observed, so expect several minutes of waiting time. The handshake status will be displayed on-screen, and completion results in the screen changing to the game screen.
+Each peak (block) on mainnet takes approximately 1 minute. Opening a channel uses **one** on-chain spend bundle (both players co-sign the combined funding transaction during the A–F handshake; see `OVERVIEW.md` in the chia-gaming repository). Each wallet must still approve **several** WalletConnect requests during the handshake (coin selection, funding offers, and pushing the transaction), not just one prompt. Each wallet must see that transaction confirm and the channel reach **Active** before play begins, so expect several minutes of waiting. The UI shows handshake progress during this period.
 
 :::
 
 ## Player 1: Alice
 
-1. **Visit the game server**: Navigate to the game server URL.
+1. **Visit the player app**: Navigate to the player app URL (e.g. `http://localhost:3002` for local development).
 
-   <!-- ![WalletConnect Screen](/img/gaming/calpoker-walletConnect.png) -->
-
-   _[Image placeholder: walletConnect Screen - calpoker-lobby.png]_
-
-   _Screenshot from alpha - UI may change_
-
-2. **Connect with WalletConnect**: Use WalletConnect to connect your Chia wallet to the game. For live WalletConnect testing, do not select "Simulator".
-
-   :::danger Funds Left On-Chain
-
-   **When using a live WalletConnect instance, funds will be left on-chain after shutdown.** Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue.**
-
-   :::
+2. **Connect with WalletConnect**: Use WalletConnect to connect a Chia wallet (2.7.1 or later) to the game. For live WalletConnect testing, do not select "Simulator".
 
 3. **Check Your Light Wallet**: You should see a "getWalletBalance" request in your Chia Light Wallet. Choose "remember this decision" and confirm the request.
 
 4. **Start a New Room**: Create a new game room and copy the invitation URL.
-
-   <!-- ![Lobby Screen](/img/gaming/calpoker-lobby.png) -->
-
-   _[Image placeholder: Lobby Screen - calpoker-lobby.png]_
-
-   _Screenshot from alpha - UI may change_
 
 5. **Send the Invitation URL to Bob**: Share the room invitation URL with the second player (Bob).
 
@@ -65,19 +59,15 @@ Each transaction block takes approximately 1 minute. The handshake requires 2 on
 
 1. **Paste URL**: Paste the invitation URL into a browser that does not share session state with Alice (e.g., another computer, or an incognito/private window).
 
-2. **Wait for Handshake**: Wait until the handshake is complete. The handshake status will be displayed on-screen.
+2. **Connect Wallet**: Connect your separate Chia wallet (2.7.1 or later) via WalletConnect.
 
-   <!-- ![Handshake in Progress](/img/gaming/calpoker-handshake.png) -->
-
-   _[Image placeholder: Handshake in Progress - calpoker-handshake.png]_
-
-   _Screenshot from alpha - UI may change_
+3. **Wait for Handshake**: Wait until the handshake is complete. The handshake status will be displayed on-screen.
 
    Once complete, the screen will automatically change to the game lobby screen.
 
 :::warning Handshaking Time
 
-Handshaking on-chain takes a long time. Before the game starts, 3 nodes (player wallet nodes and coinset.org) have to observe 2 on-chain transactions (in order). Each blockchain peak takes approximately 1 minute, so expect several minutes of waiting time. The lobby may take a several minutes to appear for Bob.
+Handshaking on-chain takes a long time. Before the game starts, the channel-creation transaction must confirm and both wallets must see the channel become **Active**. Each peak takes approximately 1 minute, so expect several minutes of waiting. The lobby may take several minutes to appear for Bob.
 
 :::
 
@@ -89,15 +79,9 @@ If the handshake seems to hang, check your Chia wallet for any pending WalletCon
 
 ## Gameplay
 
-Once both players are connected and the handshake is complete, you can begin playing. The current release includes **[California Poker](/guides/gaming-california-poker-rules)**, with **[Space Poker](/guides/gaming-space-poker-rules)** and **[Krunk](/guides/gaming-krunk-rules)** coming in future releases.
+Once both players are connected and the handshake is complete, choose a game in the lobby. Alpha 2 includes **[California Poker](/guides/gaming-california-poker-rules)** (CalPoker) and **[Space Poker](/guides/gaming-space-poker-rules)** as early releases; on-chain Chialisp, rules, and UI for both may still change. **[Krunk](/guides/gaming-krunk-rules)** is coming soon.
 
 ## Game Completion
-
-<!-- ![Game Completion](/img/gaming/calpoker-completion.png) -->
-
-_[Image placeholder: Game Completion - calpoker-completion.png]_
-
-_Screenshot from alpha - UI may change_
 
 After a game completes, you'll see the results screen with options to start a new hand or end the session.
 

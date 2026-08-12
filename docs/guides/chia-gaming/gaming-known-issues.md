@@ -3,49 +3,93 @@ slug: /guides/gaming-known-issues
 title: Known Issues
 ---
 
-This document lists known issues for the Chia Gaming system, organized by developer and user-facing concerns.
+:::warning Alpha Release
 
-:::tip Troubleshooting
-
-If you're experiencing issues not listed here, or need help resolving these known issues, see the [Troubleshooting Guide](/guides/gaming-troubleshooting) for detailed solutions and workarounds.
+This is an **alpha release**. Expect issues and breaking changes. The following known issues are being tracked and worked on.
 
 :::
 
+:::tip Troubleshooting
+
+For steps to resolve common problems, see the [Troubleshooting Guide](/guides/gaming-troubleshooting).
+
+:::
+
+<!-- Legacy anchors preserved for external links -->
+
+<span id="developer-issues"></span>
+<span id="common-setup-issues"></span>
+<span id="easy-developer-configuration-not-available"></span>
+<span id="user-facing-issues"></span>
+<span id="uiux-issues"></span>
+<span id="gameplay-issues"></span>
+<span id="performance-issues"></span>
+
+## Game Availability
+
+**California Poker (CalPoker)** and **Space Poker** are available in Alpha 2 as early releases. On-chain Chialisp, rules, and UI for both games are still undergoing changes.
+
+**Krunk** is coming soon.
+
 ## Developer Issues
-
-### Common Setup Issues
-
-| Issue              | Solution                                                                                                                                                                                                                 |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Old Docker Version | Install Docker via Snap instead of apt to ensure you get the latest stable version.                                                                                                                                      |
-| Docker Permissions | Docker often installs with root privileges. To allow your user to run Docker commands without sudo:<br/>1. Run: `sudo usermod -aG docker $USER`<br/>2. Run: `newgrp docker`<br/>3. Reattempt the image build or command. |
 
 ### Easy Developer Configuration Not Available
 
-The easy developer configuration is still in development. Currently, developers must manually update various parameters in the codebase before building and deploying.
+The config-directory workflow described in older material is not available. Network, WalletConnect, and port settings are updated in the codebase. See the [Manual Configuration](/guides/gaming-developers-guide#manual-configuration) section in the Developers Guide.
 
-**Workaround**: See the [Manual Configuration section](/guides/gaming-developers-guide#manual-configuration) in the Developers Guide for detailed instructions on how to manually configure network settings, WalletConnect project info, ports, and domain.
+### WASM Build Failures on macOS
+
+**Problem**: WASM builds may fail with clang-related errors on macOS.
+
+**Workaround**: Install Homebrew LLVM (`brew install llvm`). Build scripts detect Homebrew LLVM paths automatically. See the [Developers Guide](/guides/gaming-developers-guide) prerequisites.
+
+### `ERR_PNPM_IGNORED_BUILDS` Warning
+
+**Problem**: During `pnpm install` you may see warnings about ignored build scripts for `@parcel/watcher` and `esbuild`.
+
+**Impact**: This is harmless. Those packages ship pre-built native binaries as fallbacks, so the build completes without running those scripts.
+
+**Resolution**: Run `pnpm approve-builds` once in `front-end/` or `lobby/` and commit the updated `.pnpm-approve-builds` file to silence the warning. The lobby build in `tools/build-deploy.sh` also uses `pnpm install --ignore-scripts` in `lobby/` for the same reason.
 
 ## User-Facing Issues
 
-### UI/UX Issues
+### "Generate Room" button contrast (fixed in Alpha 2)
 
-- **"Generate Room" button is light-gray on medium-gray**: The button may be difficult to see due to low contrast between the button color and background.
+**Status:** **Fixed in Alpha 2.** Earlier builds used low-contrast styling for the Generate Room control.
 
-- **UX has limited information regarding what is happening during handshake**: The interface will be improved to provide better feedback about the current state of operations, particularly during handshaking and connection processes.
+### Handshake progress feedback (fixed in Alpha 2)
 
-### Gameplay Issues
+**Status:** **Fixed in Alpha 2.** The UI now shows clearer progress during the handshake and channel-confirmation phases.
 
-- **Funds left on-chain after shutdown**: When using a live WalletConnect instance, funds will be left on-chain after shutdown. Upon shutdown, a new game is created, leading to one game's worth of funds being left on-chain and not returned to users. For example, if the game stake is 10 mojo, then 10 mojos will remain on-chain after shutting down the session (once per lobby not per game). **Use the simulator for development to avoid this issue. This is a high priority issue which we are working to fix ASAP.**
+### Funds left on-chain after shutdown (fixed in Alpha 2)
 
-- **When you leave the game, both sides have to keep browser open until shutdown completes**: Both players must keep their browsers open until the shutdown process completes. Closing the browser prematurely may cause issues.
+**Status:** **Fixed in Alpha 2.** Older alpha builds could leave one game stake on-chain after ending a live WalletConnect session. Current Alpha 2 builds return channel funds on shutdown. If you still see stranded coins, confirm you are on an Alpha 2 build and not an older artifact.
 
-- **Chia Wallet does not raise to the foreground when a WalletConnect auth dialog appears**: The chia reference wallet will be updated to automatically come to the foreground when authentication is required, but this does not currently occur. Users need to manually bring the wallet application to the foreground.
+- **Keep browsers open until shutdown completes**: Both players should keep the browser open until cooperative shutdown finishes. Closing early can interrupt the shutdown flow.
+- **Chia Wallet does not come to the foreground for WalletConnect**: When the wallet needs approval, you may need to switch to the wallet app manually.
 
-- **Save and load/reload is not functional**: Game sessions are not persisted. If a user refreshes their browser or clears browser storage (localStorage, cache, etc.), the game session will be lost and a new session will need to be created. **This can lead to lost funds if a session is interrupted during gameplay.**
+### Session Persistence
 
-### Performance Issues
+**Problem**: Game sessions are stored in browser localStorage. Refreshing the page or clearing browser data loses the session.
 
-- **Handshaking on-chain takes a long time**: Before the game starts, 3 nodes (player wallet nodes and coinset.org) have to observe 2 on-chain transactions (in order). The lobby will take a long time to appear for Bob (Player 2). This is expected behavior due to blockchain confirmation requirements, but the wait time can be significant.
+**Impact**: If a session is lost mid-game, channel coins remain on-chain until timeout. Funds are not necessarily lost permanently, but coins may be locked until the timeout expires.
 
-- **Game server and lobby server interaction**: The current implementation of how the game server and lobby server interact may have performance limitations. This connection may be refactored in future versions to improve performance and scalability.
+**Workaround**: Do not refresh or clear browser data during active games.
+
+### Handshake Timing
+
+**Problem**: Opening a channel requires one on-chain spend bundle to confirm; both wallets must see the channel reach **Active**, which takes several minutes on mainnet (~1 minute per peak). During the handshake, each wallet must also approve **several** WalletConnect requests (`chia_selectCoins`, `chia_createOfferForIds`, and `chia_pushTransactions`), not a single tap.
+
+**Impact**: Player 2 may wait a long time before the lobby appears. This is expected for on-chain handshakes. If progress stalls, check both wallets for pending approvals.
+
+### Pending WalletConnect Requests
+
+**Problem**: The Chia wallet may have pending WalletConnect requests that are not immediately visible, so the handshake or gameplay can appear stuck.
+
+**Workaround**: Check the Chia wallet application for pending approval requests.
+
+### Tracker WebSocket Relay
+
+**Problem**: Game messages are relayed through the tracker WebSocket. If that connection drops for an extended time, play stalls.
+
+**Impact**: Brief outages may recover via tracker auto-reconnect; a lost peer pairing may require re-matching on the tracker (see `CONNECTIVITY.md` in the chia-gaming repository).

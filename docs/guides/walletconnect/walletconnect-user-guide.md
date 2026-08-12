@@ -230,8 +230,8 @@ Returning to the sample dApp, a new dialog with the response will appear. In thi
     <img src="/img/walletconnect/07_dapp.png" alt="Showing next address" />
   </div>
   <br />
-  
-  You have now installed, configured, and used the sample dApp. Feel free to test the other functions, as well as create your own!
+
+You have now installed, configured, and used the sample dApp. Feel free to test the other functions, as well as create your own!
 
 ---
 

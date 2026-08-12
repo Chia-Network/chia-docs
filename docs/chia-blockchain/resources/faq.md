@@ -728,18 +728,21 @@ Never share your private / secret keys or mnemonics with anyone. These give acce
 :::
 
 1. In the top right corner select logout:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletLogout} alt='Logout of the Chia wallet' />
 </div>
 <br />
 
 2. Using the desired keys menu, select details:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletKeyDetails} alt='Select Details for a Chia keyset' />
 </div>
 <br />
 
 3. View and copy the **Public Key** to the field on the Faucet page:
+
 <div style={{ textAlign: 'center' }}>
   <img src={WalletKeysPublic} alt='Chia keys detail screen, Public Key highlighted' />
 </div>
@@ -1055,7 +1058,7 @@ Chia version 1.8.2 introduces identical spend aggregation, which addresses some 
 
 ### Why do I see `INVALID_FEE_TOO_CLOSE_TO_ZERO` in my log file?
 
-This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/chia-blockchain/architecture/mempool#fee-required-for-inclusion).
+This error message occurs when you submit a transaction that does not include a high enough fee, for example when the network is quite busy. Try submitting the transaction again with a higher fee (100 million mojos will generally suffice for standard transactions). For more details, see our [mempool documentation](/chia-blockchain/architecture/mempool/fees).
 
 ---
 

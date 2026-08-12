@@ -21,7 +21,7 @@ The blockchain consensus code does not operate with addresses; addresses are onl
 
 Spacescan.io has a handy bi-directional [bech32m \<\> puzzle hash converter](https://www.spacescan.io/xch/tools/puzzlehashconvertor).
 
-# Chia Burn Address
+## Chia Burn Address
 
 You can send unwanted tokens to this addresses to make them unspendable:
 

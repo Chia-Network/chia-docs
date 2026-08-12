@@ -3,6 +3,12 @@ slug: /guides/gaming-california-poker-rules
 title: California Poker Rules
 ---
 
+:::note Early Alpha Release
+
+California Poker (CalPoker) is available in Alpha 2. On-chain Chialisp, rules, and UI may change as development continues.
+
+:::
+
 ## Objective
 
 California Poker is a card game where players exchange cards and compete to make the best five-card poker hand. Each player receives 8 cards with all 16 cards visible to both players, selects 4 to swap with the other player, and keeps the other 4. The player who can make the best five-card poker hand from their 8 cards after swapping wins.
