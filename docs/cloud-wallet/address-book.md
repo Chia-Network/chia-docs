@@ -9,8 +9,6 @@ This guide shows how to save contacts in the Chia Cloud Wallet Address Book and 
 
 You need a Cloud Wallet account. If you have not signed up yet, follow the [Getting Started Guide](/cloud-wallet/getting-started) first.
 
-Address Book may not appear in the left-hand menu on every plan. If you do not see it, your account does not have this feature enabled.
-
 :::
 
 ## Prerequisites
@@ -93,7 +91,6 @@ You can still paste any valid address directly without using a saved contact.
 
 ## Troubleshooting
 
-- Confirm Address Book appears in the left-hand menu for your account
 - Ensure every contact has a name and at least one valid email
 - Use only `xch` or `txch` bech32m addresses in the Addresses section
 - If send suggestions do not appear, confirm the contact has at least one saved address
