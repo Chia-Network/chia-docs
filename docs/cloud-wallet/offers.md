@@ -9,8 +9,6 @@ This guide shows how to create, accept, share, and cancel Offers in the Chia Clo
 
 You need a Cloud Wallet account and at least one vault. If you have not created a vault yet, follow the [Getting Started Guide](/cloud-wallet/getting-started) first.
 
-Offers may not appear in the left-hand menu on every plan. If you do not see `Offers`, your account does not have this feature enabled.
-
 :::
 
 ## Prerequisites
@@ -39,7 +37,7 @@ If you have unsigned offer transactions waiting, a `Pending Signature` section a
 
 2. Under `Select Vault`, choose the vault that will fund the offer.
 
-3. Under `Assets Offered`, select assets you currently hold in that vault (XCH, tokens, or NFTs when NFT features are enabled). Enter amounts as needed, and use `Add Another` to offer more than one asset.
+3. Under `Assets Offered`, select assets you currently hold in that vault (XCH, tokens, or NFTs). Enter amounts as needed, and use `Add Another` to offer more than one asset.
 
 4. Under `Assets Requested`, choose what you want in return (`XCH`, `Tokens`, or `NFTs`). You can request assets you do not already hold. For tokens, you can pick a known token or use `+ Add token details` with an asset id. Leaving requested assets empty creates a one-sided offer; the app asks you to confirm with `Nothing Requested` before continuing.
 
@@ -105,7 +103,7 @@ On `Offers you created`, each open offer supports `View Details`, `Copy Offer`, 
 
 1. Choose `Cancel Offer` from the created list or details page.
 
-2. Review the cancellation options. Cancelling usually submits an on-chain cancellation transaction with a `Transaction Fee`. Some accounts may also offer `Cancel off-chain` when that option is enabled for your plan.
+2. Review the cancellation options. Cancelling submits an on-chain cancellation transaction with a `Transaction Fee`.
 
 3. Click `Confirm Cancellation` and sign if the app requests a signature.
 
@@ -119,7 +117,6 @@ On-chain cancellation permanently cancels the offer on the blockchain. Off-chain
 
 ## Troubleshooting
 
-- Confirm `Offers` appears in the left-hand menu for your account
 - Verify the selected vault has finished minting and has an address
 - For create or accept failures, check balances, NFT ownership, and that the offer has not expired or already been taken
 - For signing problems, confirm your Signer app or passkey can approve the `Confirm Offer` request
