@@ -66,17 +66,17 @@ Other branches print different first lines for `Farming status:` (`Not available
 
 ## `chia farm challenges`
 
-Functionality: Print recent signage-point challenges from the farmer.
+Functionality: Print recent signage points from the farmer. Each line is one signage point: `Hash` is the challenge hash, and `Index` is that challenge's signage-point index (`0` to `63`). Do not treat consecutive lines with the same hash as different challenges.
 
 Usage: `chia farm challenges [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command        | Type    | Required | Description                                                    |
-| :------------ | :------------------ | :------ | :------- | :------------------------------------------------------------- |
-| `-fp`         | `--farmer-rpc-port` | INTEGER | False    | Farmer RPC port.                                               |
-| `-l`          | `--limit`           | INTEGER | False    | Max challenges to print; `0` disables the limit [default: 20]. |
-| `-h`          | `--help`            | None    | False    | Show a help message and exit.                                  |
+| Short Command | Long Command        | Type    | Required | Description                                                                       |
+| :------------ | :------------------ | :------ | :------- | :-------------------------------------------------------------------------------- |
+| `-fp`         | `--farmer-rpc-port` | INTEGER | False    | Farmer RPC port.                                                                  |
+| `-l`          | `--limit`           | INTEGER | False    | Limit the number of challenges shown. Use `0` to disable the limit [default: 20]. |
+| `-h`          | `--help`            | None    | False    | Show a help message and exit.                                                     |
 
 <details>
 <summary>Example</summary>
@@ -89,12 +89,20 @@ chia farm challenges -l 10
 
 Response:
 
-Each line is formatted in [`challenges`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm_funcs.py):
+[`challenges`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm_funcs.py) prints the newest signage points first (newest `limit` rows when `-l` is set). Within one challenge the hash repeats while the index changes:
 
 ````mdx-code-block
 ```text
-Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 42
-Hash: 0xb2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890ab Index: 43
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 63
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 62
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 61
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 60
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 59
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 58
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 57
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 56
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 55
+Hash: 0xa1b2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890 Index: 54
 ```
 ````
 
@@ -104,7 +112,7 @@ Hash: 0xb2c3d4e5f6789012345678901234567890abcd1234567890abcd1234567890ab Index: 
 
 ## `chia farm connect-solver` {#chia-farm-connect-solver}
 
-Functionality: Point the farmer at a Solver service (`host:port`). The same integration is available over farmer RPC as `connect_to_solver` on [Farmer RPC](/reference-client/rpc-reference/farmer-rpc). See also [Solver CLI](/reference-client/cli-reference/solver-cli).
+Functionality: Point the farmer at a Solver service using `host:port` (hostname or IP plus port). Node IDs are not accepted; [`solver_connect`](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/cmds/farm_funcs.py) parses the argument with `parse_host_port`. The same integration is available over farmer RPC as `connect_to_solver` on [Farmer RPC](/reference-client/rpc-reference/farmer-rpc). See also [Solver CLI](/reference-client/cli-reference/solver-cli).
 
 Usage: `chia farm connect-solver [OPTIONS] SOLVER_ADDRESS`
 
