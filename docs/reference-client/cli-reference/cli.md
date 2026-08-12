@@ -218,6 +218,10 @@ Claimable balance: 0.0 xch
 
 ## plots {#plots}
 
+<!-- Legacy anchors preserved for external links -->
+
+<span id="plots-check"></span>
+
 The `chia plots` command group lists configured directories, adds or removes plot search paths, can run legacy `create`, and validates plots with `check`. Full option tables and `plots check` guidance are on [Plots CLI](/reference-client/cli-reference/plots-cli) (including [Plots check](/reference-client/cli-reference/plots-cli#plots-check)). For Bladebit, MadMax, and other external plotters, see [Plotters CLI](/reference-client/cli-reference/plotter-cli).
 
 ## db {#db}
