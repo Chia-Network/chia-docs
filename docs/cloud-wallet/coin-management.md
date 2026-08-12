@@ -9,8 +9,6 @@ This guide shows how to view, split, and combine coins in a Chia Cloud Wallet va
 
 You need a Cloud Wallet account and at least one vault. If you have not created a vault yet, follow the [Getting Started Guide](/cloud-wallet/getting-started) first.
 
-Coin Management may not be available on every plan. If you do not see `Manage Coins`, your account does not have this feature enabled.
-
 :::
 
 ## Prerequisites
@@ -108,7 +106,6 @@ The coins screen may also offer `Sweep Coins` or `Sweep Tokens`, which gathers s
 
 ## Troubleshooting
 
-- Confirm `Manage Coins` appears on the vault `More` menu or token page for your account
 - Only settled, unlocked coins can be selected for split or combine
 - If spendable balance looks low, check for pending transactions or coins reserved by open Offers
 - For signing problems, confirm your Signer app or passkey can approve the split or combine request
