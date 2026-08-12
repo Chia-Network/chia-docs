@@ -14,9 +14,9 @@ Feel free to report other issues through [In App Support](/cloud-wallet/in-app-s
 
 ## Cloud Wallet Known Issues
 
-- All Offer cancellations in the Cloud Wallet will currently be performed on-chain. We plan to support off-chain cancellation soon.
+- All Offer cancellations in the Cloud Wallet will currently be performed on-chain. We plan to support off-chain cancellation soon. For create, accept, share, and cancel steps, see the [Offers](/cloud-wallet/offers) guide.
 - Under certain circumstances, it is possible to end up with coins from your vault being locked, with no easy way to access them. We will update this soon so that the coins will become accessible again. Even if this does happen, it will not result in a loss of funds. Some examples of when this might occur include when someone cancels an Offer in the same block in which someone else attempts to accept it, and after an Offer expires.
-- If you have a brand new vault, you might not be able to create a new Offer until your vault has submitted at least one transaction. We are working on a fix for this issue. In the meantime, a workaround is to send XCH or a CAT to yourself from your own vault. After this initial transaction, the vault will not encounter the issue again.
+- If you have a brand new vault, you might not be able to create a new Offer until your vault has submitted at least one transaction. We are working on a fix for this issue. In the meantime, a workaround is to send XCH or a CAT to yourself from your own vault. After this initial transaction, the vault will not encounter the issue again. See [Offers](/cloud-wallet/offers).
 - If you are accessing the Cloud Wallet on an Android phone, you may not be able to create a passkey with a Yubikey or other hardware device.
 - We have experienced issues with other combinations of OS and passkey type, especially on mobile devices. These issues are typically related to the device itself, and are out of our control to fix. However, we will work on reporting these limitations more clearly when they occur.
 
