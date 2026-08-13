@@ -15,7 +15,7 @@ You need a Cloud Wallet account. If you have not signed up yet, follow the [Gett
 
 - An active [Chia Cloud Wallet](https://vault.chia.net/) account
 - At least one contact email to store (required for every contact)
-- Optional Chia addresses (`xch` or `txch`) to save for sending
+- Optional Chia addresses to save for sending
 
 ## Open Address Book
 
@@ -36,7 +36,7 @@ You need a Cloud Wallet account. If you have not signed up yet, follow the [Gett
 
 2. Under `Emails`, enter at least one email address. Use `+ Add Another` for more emails. Contacts must have at least one email.
 
-3. Under `Addresses`, optionally add Chia addresses. Each row has a short name (label) and an `Address` (`xch` or `txch`). Use `+ Add Another` for more addresses.
+3. Under `Addresses`, optionally add Chia addresses. Each row has a short name (label) and an `Address`. Use `+ Add Another` for more addresses.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/address-book-02_create_light.png" alt="Create Contact form with name, emails, and addresses" width="100%" className="theme-image-light"/>
@@ -92,6 +92,6 @@ You can still paste any valid address directly without using a saved contact.
 ## Troubleshooting
 
 - Ensure every contact has a name and at least one valid email
-- Use only `xch` or `txch` bech32m addresses in the Addresses section
+- Use a valid Chia address in the Addresses section
 - If send suggestions do not appear, confirm the contact has at least one saved address
 - For additional support, use [In App Support](/cloud-wallet/in-app-support)
