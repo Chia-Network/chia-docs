@@ -33,8 +33,8 @@ CAT denominations, as well as the rules behind issuance and melting, can take so
 - In a similar vein, Chia Network Inc. has made the design decision to map 1 CAT to 1000 mojos. This ratio will be the same for all CATs.
 
   :::caution
-  Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
-  :::
+Theoretically, it would be possible to set the CAT:mojo ratio to something other than 1:1000 for a specific CAT, but we strongly recommend against doing this. The Chia reference wallet will not support CATs with a ratio other than 1:1000. Additionally, if you created your own wallet with support for different ratios, users of this wallet would almost certainly be confused and accidentally spend too much or too little money, by multiple orders of magnitude. Please don't attempt this.
+:::
 
 - The melt value of a single token is 1000 mojos. This remains true regardless of the token's face value or its circulating supply.
 - A token's face value and its melt value are not necessarily correlated, let alone matched.
@@ -56,7 +56,7 @@ Ensure that you have Python 3.7 or later by running:
 - Linux/MacOS -- `python3 --version`
 - Windows -- `python --version`
 
-1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/reference-client/install-and-setup/installation).
+1. Install the latest version of Chia's reference wallet. For more info, see our [installation guide](/installation). For more info, see our [installation guide](/reference-client/install-and-setup/installation).
 
 2. Configure Chia to run on testnet11. Configure Chia to run on testnet10. For more info, see our [testnet documentation](/guides/crash-course/introduction#getting-on-testnet).
 
@@ -145,10 +145,10 @@ pip install chia-dev-tools --no-deps
 
 Install pytest:
 
-````bash
+```bash
 pip install pytest
 ``` ./venv/bin/activate
-````
+```
 
 Install the prerequisites:
 
@@ -226,14 +226,13 @@ pip install pytest
 :::note
 You might receive an error such as ERROR: Failed building wheel for CAT-admin-tool. This is likely safe to ignore. As long as you can run cats --help without errors, the tool has been installed properly.
 :::
-
-````
+```
 
 Install Chia dev tools:
 
 ```bash
 pip install chia-dev-tools --no-deps
-````
+```
 
 Install pytest:
 
@@ -243,7 +242,7 @@ pip install pytest
 
 :::note
 You might receive an error such as ERROR: Failed building wheel for CAT-admin-tool. This is likely safe to ignore. As long as you can run cats --help without errors, the tool has been installed properly.
-:::
+:::  
 
   </TabItem>
 </Tabs>

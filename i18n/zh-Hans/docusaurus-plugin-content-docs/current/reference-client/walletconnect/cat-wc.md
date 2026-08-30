@@ -10,14 +10,14 @@ slug: /reference-client/walletconnect/cat-wc
 
 Gets the wallet name and id of a given CAT, by its asset id.
 
-| Parameter | Type     | Description |
-| --------- | -------- | ----------- |
-| `assetId` | `string` | Asset id.   |
+| Parameter | Type     | Description               |
+| --------- | -------- | ------------------------- |
+| `assetId` | `string` | Asset id. |
 
 #### Output Data
 
-| Parameter  | Type      | Description             |
-| ---------- | --------- | ----------------------- |
+| Parameter  | Type      | Description                             |
+| ---------- | --------- | --------------------------------------- |
 | `name`     | `string`  | Wallet name.            |
 | `walletId` | `number`  | Wallet id.              |
 | `success`  | `boolean` | Backend success status. |
@@ -26,9 +26,9 @@ Gets the wallet name and id of a given CAT, by its asset id.
 
 Gets the asset id of a CAT by its wallet id.
 
-| Parameter  | Type     | Description |
-| ---------- | -------- | ----------- |
-| `walletId` | `number` | Wallet id.  |
+| Parameter  | Type     | Description                |
+| ---------- | -------- | -------------------------- |
+| `walletId` | `number` | Wallet id. |
 
 #### Output Data
 
@@ -38,19 +38,19 @@ The output is a hex encoded asset id of type `string`.
 
 Sends an amount of CAT mojos in a given wallet to a recipient address.
 
-| Parameter                           | Type       | Description                               |
-| ----------------------------------- | ---------- | ----------------------------------------- |
-| `walletId`                          | `number`   | CAT wallet id to use coins from.          |
-| `amount`                            | `number`   | Amount in mojos.                          |
-| `fee`                               | `number`   | Transaction fee in mojos.                 |
-| `address`                           | `string`   | Bech32m encoded recipient address.        |
-| `waitForConfirmation?` _(optional)_ | `boolean`  | Whether to wait for inclusion in a block. |
-| `memos?` _(optional)_               | `string[]` | A list of coin memos (such as hint).      |
+| Parameter                                              | Type       | Description                                                             |
+| ------------------------------------------------------ | ---------- | ----------------------------------------------------------------------- |
+| `walletId`                                             | `number`   | CAT wallet id to use coins from.                        |
+| `amount`                                               | `number`   | Amount in mojos.                                        |
+| `fee`                                                  | `number`   | Transaction fee in mojos.                               |
+| `address`                                              | `string`   | Bech32m encoded recipient address.                      |
+| `waitForConfirmation?` _(optional)_ | `boolean`  | Whether to wait for inclusion in a block.               |
+| `memos?` _(optional)_               | `string[]` | A list of coin memos (such as hint). |
 
 #### Output Data
 
-| Parameter       | Type                                                                                   | Description             |
-| --------------- | -------------------------------------------------------------------------------------- | ----------------------- |
+| Parameter       | Type                                                                                   | Description                             |
+| --------------- | -------------------------------------------------------------------------------------- | --------------------------------------- |
 | `transaction`   | [`TransactionRecord`](/reference-client/walletconnect/walletconnect#transactionrecord) | Transaction record.     |
 | `transactionId` | `string`                                                                               | Transaction id.         |
 | `success`       | `boolean`                                                                              | Backend success status. |
@@ -59,8 +59,8 @@ Sends an amount of CAT mojos in a given wallet to a recipient address.
 
 Imports a CAT by its asset id into the wallet, and assigns a name to it.
 
-| Parameter | Type     | Description  |
-| --------- | -------- | ------------ |
+| Parameter | Type     | Description                  |
+| --------- | -------- | ---------------------------- |
 | `assetId` | `string` | Asset id.    |
 | `name`    | `string` | Wallet name. |
 
