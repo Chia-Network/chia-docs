@@ -48,6 +48,8 @@ Options:
 |               |    --override     |  None   |  False   | Creates offer without checking for unusual values                                                        |
 |               |    --valid-at     | INTEGER |  False   | UNIX timestamp at which the associated transactions become valid                                         |
 |               |   --expires-at    | INTEGER |  False   | UNIX timestamp at which the associated transactions expire                                               |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
 |      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                             |
 
 ---
@@ -67,6 +69,8 @@ Options:
 |      -e       |  --examine-only   |  None   |  False   | Print the summary of the offer file but do not take it                                                   |
 |      -m       |       --fee       |  TEXT   |  False   | The fee to use when pushing the completed offer                                                          |
 |               |      --reuse      |  None   |  False   | Set this flag to reuse an existing address for the offer [Default: generate a new address]               |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
 |      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                             |
 
 ---
@@ -86,6 +90,8 @@ Options:
 |      -id      |       --id        |  TEXT   |   True   | The offer ID that you wish to cancel                                                                                     |
 |               |    --insecure     |  None   |  False   | Set this flag to disable making an on-chain transaction and simply mark the offer as canceled [Default: cancel on-chain] |
 |      -m       |       --fee       |  TEXT   |  False   | The fee to use when canceling the offer securely                                                                         |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                                 |
 |      -h       |      --help       |  None   |  False   | Show a help message and exit                                                                                             |
 
 ---

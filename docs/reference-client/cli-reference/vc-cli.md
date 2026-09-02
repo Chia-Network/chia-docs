@@ -156,6 +156,15 @@ Options:
 |               | --push             | None    | False    | Push the transaction to the network [Default: True]                                                      |
 |               | --no-push          | None    | False    | Do not push the transaction to the network [Default: False]                                              |
 |               | --transaction-file | TEXT    | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help             | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -237,6 +246,15 @@ Options:
 |               | --push                 | None    | False    | Push the transaction to the network [Default: True]                                                                                                                         |
 |               | --no-push              | None    | False    | Do not push the transaction to the network [Default: False]                                                                                                                 |
 |               | --transaction-file     | TEXT    | False    | A file to write relevant transactions to                                                                                                                                    |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                                                                                            |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                                                                                                  |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                                                                                              |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                                                                                               |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                                                                                          |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                           |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                                                                                     |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                                                                                     |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                                                                                       |
 | -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                |
 
 <details>
@@ -306,6 +324,15 @@ Options:
 |               | --push                 | None    | False    | Push the transaction to the network [Default: True]                                                                                                                         |
 |               | --no-push              | None    | False    | Do not push the transaction to the network [Default: False]                                                                                                                 |
 |               | --transaction-file     | TEXT    | False    | A file to write relevant transactions to                                                                                                                                    |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                                                                                            |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                                                                                                  |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                                                                                              |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                                                                                               |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                                                                                          |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                           |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                                                                                     |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                                                                                     |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                                                                                       |
 | -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                |
 
 <details>

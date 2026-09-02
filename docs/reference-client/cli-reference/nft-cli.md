@@ -131,6 +131,17 @@ Options:
 | -et           | --edition-total               | INTEGER | False    | NFT edition total number [default: 1]                                                                    |
 | -m            | --fee                         | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
 |               | --no-did-ownership            | None    | False    | Disable DID ownership support. If this flag is not set, then DID ownership is supported by default       |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help                        | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -317,6 +328,17 @@ Options:
 | -di           | --did-id          | TEXT    | True     | DID ID to set on the NFT                                                                                 |
 | -ni           | --nft-coin-id     | TEXT    | True     | Coin ID of the NFT coin to set the DID on                                                                |
 | -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH [default: 0]                                                        |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -643,6 +665,17 @@ Options:
 | -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin to transfer                                                                           |
 | -ta           | --target-address  | TEXT    | True     | Target recipient wallet address                                                                          |
 | -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -723,6 +756,17 @@ Options:
 | -mu           | --metadata-uri    | TEXT    | True (see INFO) | Metadata URI to add to the NFT                                                                           |
 | -lu           | --license-uri     | TEXT    | True (see INFO) | License URI to add to the NFT                                                                            |
 | -m            | --fee             | TEXT    | False           | Set the fees per transaction, in XCH. [default: 0]                                                       |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help            | None    | False           | Show a help message and exit                                                                             |
 
 <details>
@@ -788,6 +832,17 @@ Options:
 | -di           | --did-id          | TEXT    | True     | DID Id to set on the NFT                                                                                 |
 | -ni           | --nft-coin-id     | TEXT    | True     | Id of the NFT coin on which to set the DID                                                               |
 | -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
