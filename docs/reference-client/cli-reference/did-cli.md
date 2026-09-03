@@ -26,6 +26,17 @@ Options:
 | -n            | --name            | TEXT    | False    | Set the DID wallet name [default: None]                                                                  |
 | -a            | --amount          | INTEGER | False    | Set the DID amount in mojos. Value must be an odd number. [default: 1]                                   |
 | -m            | --fee             | TEXT    | False    | Set the fees per transaction, in XCH. [default: 0]                                                       |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help            | None    | False    | Show a help message and exit.                                                                            |
 
 <details>
@@ -211,6 +222,17 @@ Options:
 | -i            | --id                   | INTEGER | True     | ID of the wallet to use                                                                                  |
 | -pa           | --puzzle_announcements | TEXT    | False    | The list of puzzle announcement hex strings, split by commas (`,`)                                       |
 | -ca           | --coin_announcements   | TEXT    | False    | The list of coin announcement hex strings, split by commas (`,`)                                         |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
 | -h            | --help                 | None    | False    | Show a help message and exit.                                                                            |
 
 <details>
@@ -366,6 +388,16 @@ Options:
 | -r            | --reset_recovery  | None    | False    | Set this flag if you want to reset the recovery DID settings (they will not be transferred with the DID) |
 | -m            | --fee             | TEXT    | False    | An optional transaction fee, in XCH                                                                      |
 |               | --reuse           | None    | False    | Reuse existing address for the change                                                                    |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 <details>
@@ -441,6 +473,16 @@ Options:
 | -i            | --id              | INTEGER | True     | ID of the DID wallet to use                                                                              |
 | -m            | --metadata        | TEXT    | True     | The new whole metadata in json format                                                                    |
 |               | --reuse           | None    | False    | Set this flag to reuse existing address for the change                                                   |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
 | -h            | --help            | None    | False    | Show a help message and exit                                                                             |
 
 ---
