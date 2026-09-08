@@ -1062,25 +1062,25 @@ Usage: chia wallet delete_unconfirmed_transactions [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -ids          | --tx_ids          | TEXT    | True     | IDs of the Clawback transactions you want to revert or claim. Separate multiple IDs by comma (,)             |
-| -m            | --fee             | TEXT    | False    | A fee to add to the offer when it gets taken, in XCH [default: 0]                                            |
-|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
-|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
-|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
-|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
-|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
-|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
-|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
-|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
-| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
-| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
-|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command            | Type      | Required | Description                                                                                                  |
+| :------------ | :---------------------- | :-------- | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port       | INTEGER   | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -i            | --id                    | INTEGER   | False    | ID of the wallet to use [default: 1]                                                                         |
+| -f            | --fingerprint           | INTEGER   | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -ids          | --tx_ids                | TEXT      | True     | IDs of the Clawback transactions you want to revert or claim. Separate multiple IDs by comma (,)             |
+| -m            | --fee                   | TEXT      | False    | A fee to add to the offer when it gets taken, in XCH [default: 0]                                            |
+|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                          |
+|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                     |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                             |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                                   |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                               |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                                |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                           |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                            |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                      |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                      |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                        |
+| -h            | --help                  | None      | False    | Show a help message and exit                                                                                 |
 
 Note that wallet will automatically detect whether the transactions should be reverted (clawed back) or claimed.
 
@@ -1609,21 +1609,21 @@ Usage: chia wallet notifications send [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -t            | --to-address      | TEXT    | True     | The address to send the notification to                                                                      |
-| -a            | --amount          | TEXT    | False    | The amount (in XCH) to send to get the notification past the recipient's spam filter [default: 0.00001]      |
-| -n            | --message         | TEXT    | True     | The message of the notification                                                                              |
-| -m            | --fee             | TEXT    | False    | The fee for the transaction                                                                                  |
-|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
-|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
-|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
-|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
-|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
-|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command           | Type      | Required | Description                                                                                                  |
+| :------------ | :--------------------- | :-------- | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port      | INTEGER   | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint          | INTEGER   | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -t            | --to-address           | TEXT      | True     | The address to send the notification to                                                                      |
+| -a            | --amount               | TEXT      | False    | The amount (in XCH) to send to get the notification past the recipient's spam filter [default: 0.00001]      |
+| -n            | --message              | TEXT      | True     | The message of the notification                                                                              |
+| -m            | --fee                  | TEXT      | False    | The fee for the transaction                                                                                  |
+|               | --push / --no-push     | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                          |
+|               | --transaction-file-out | TEXT      | False    | A file to write relevant transactions to                                                                     |
+|               | --valid-at             | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                             |
+|               | --expires-at           | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                                   |
+|               | --include-coin         | HEXSTRING | False    | Include this coin in the spend                                                                               |
+|               | --primary-coin         | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                                |
+| -h            | --help                 | None      | False    | Show a help message and exit                                                                                 |
 
 <details>
 <summary>Example</summary>
@@ -1652,29 +1652,29 @@ Usage: chia wallet send [OPTIONS]
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                  |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                           |
-| -i            | --id              | INTEGER | False    | ID of the wallet to use [default: 1]                                                                         |
-| -a            | --amount          | TEXT    | True     | How much chia to send, in XCH or CAT units                                                                   |
-| -e            | --memo            | TEXT    | False    | Additional memo for the transaction                                                                          |
-| -m            | --fee             | TEXT    | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
-| -t            | --address         | TEXT    | True     | Address to send the XCH                                                                                      |
-| -o            | --override        | None    | False    | Submits transaction without checking for unusual values [default: disabled]                                  |
-| -ma           | --min-coin-amount | TEXT    | False    | Ignore coins worth less then this much (XCH or CAT units)                                                    |
-| -l            | --max-coin-amount | TEXT    | False    | Ignore coins worth more then this much (XCH or CAT units)                                                    |
-|               | --exclude-coin    | TEXT    | False    | Exclude this coin from being spent                                                                           |
-|               | --reuse           | None    | False    | Set this flag to reuse an existing address for the change [default: not set]                                 |
-|               | --clawback_time   | INTEGER | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature   |
-|               | --push / --no-push      | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                      |
-|               | --transaction-file-out  | TEXT      | False    | A file to write relevant transactions to                                                                 |
-|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
-|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
-|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
-|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
-|               | --exclude-amount  | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                 |
+| Short Command | Long Command           | Type      | Required | Description                                                                                                  |
+| :------------ | :--------------------- | :-------- | :------- | :----------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port      | INTEGER   | False    | Set the port where the Wallet is hosting the RPC interface. See the `rpc_port` under `wallet` in config.yaml |
+| -f            | --fingerprint          | INTEGER   | False    | Set the fingerprint to specify which wallet to use                                                           |
+| -i            | --id                   | INTEGER   | False    | ID of the wallet to use [default: 1]                                                                         |
+| -a            | --amount               | TEXT      | True     | How much chia to send, in XCH or CAT units                                                                   |
+| -e            | --memo                 | TEXT      | False    | Additional memo for the transaction                                                                          |
+| -m            | --fee                  | TEXT      | False    | Set the fees for the transaction, in XCH [default: 0]                                                        |
+| -t            | --address              | TEXT      | True     | Address to send the XCH                                                                                      |
+| -o            | --override             | None      | False    | Submits transaction without checking for unusual values [default: disabled]                                  |
+| -ma           | --min-coin-amount      | TEXT      | False    | Ignore coins worth less then this much (XCH or CAT units)                                                    |
+| -l            | --max-coin-amount      | TEXT      | False    | Ignore coins worth more then this much (XCH or CAT units)                                                    |
+|               | --exclude-coin         | TEXT      | False    | Exclude this coin from being spent                                                                           |
+|               | --reuse                | None      | False    | Set this flag to reuse an existing address for the change [default: not set]                                 |
+|               | --clawback_time        | INTEGER   | False    | The seconds that the recipient needs to wait to claim the fund. A positive number will enable this feature   |
+|               | --push / --no-push     | BOOLEAN   | False    | Push the transaction to the network [default: push]                                                          |
+|               | --transaction-file-out | TEXT      | False    | A file to write relevant transactions to                                                                     |
+|               | --valid-at             | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                             |
+|               | --expires-at           | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                                   |
+|               | --include-coin         | HEXSTRING | False    | Include this coin in the spend                                                                               |
+|               | --primary-coin         | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                                |
+|               | --exclude-amount       | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                            |
+| -h            | --help                 | None      | False    | Show a help message and exit                                                                                 |
 
 <details>
 <summary>Example 1: send with memo</summary>
