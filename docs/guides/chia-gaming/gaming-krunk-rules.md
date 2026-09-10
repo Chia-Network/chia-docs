@@ -3,9 +3,9 @@ slug: /guides/gaming-krunk-rules
 title: Krunk Rules
 ---
 
-:::warning Coming Soon
+:::note Beta
 
-Krunk will be available in a future release. The rules below are based on current known game mechanics and are subject to change.
+Krunk is a beta reference game (an atomic pair of Wordle-style hands). On-chain Chialisp, rules, and UI may still change.
 
 :::
 
@@ -61,7 +61,7 @@ The amount you win depends on how many guesses it takes you to find the word:
 - **3rd guess**: 20% of the amount posted
 - **4th guess**: 5% of the amount posted
 - **5th guess**: 1% of the amount posted
-- **6th guess or more**: Nothing (0%)
+- **All 5 guesses wrong**: Nothing — the word-picker keeps that game's pot
 
 The amount shown at the start is what you'll receive if you guess correctly on the first or second try.
 

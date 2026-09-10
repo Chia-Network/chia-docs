@@ -3,9 +3,9 @@ slug: /guides/gaming-california-poker-rules
 title: California Poker Rules
 ---
 
-:::note Early Alpha Release
+:::note Beta
 
-California Poker (CalPoker) is available in Alpha 2. On-chain Chialisp, rules, and UI may change as development continues.
+California Poker (CalPoker) is a beta reference game. On-chain Chialisp, rules, and UI may still change.
 
 :::
 

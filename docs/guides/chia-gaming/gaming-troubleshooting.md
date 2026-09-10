@@ -32,7 +32,7 @@ title: Troubleshooting
 **`wasm-pack` not found or wrong version:**
 
 ```bash
-cargo install wasm-pack --version 0.13.1
+cargo install wasm-pack --version 0.15.0
 ```
 
 **WASM build fails with clang errors (macOS):**
@@ -63,22 +63,22 @@ This is harmless. Silence with:
 
 ```bash
 cd front-end && pnpm approve-builds
-cd lobby && pnpm approve-builds
+cd hub && pnpm approve-builds
 ```
 
 **Node version too old:**
 
-The project requires Node.js 20+. Check your version with `node --version`.
+The project requires Node.js 22+. Check your version with `node --version`.
 
 ### Chialisp / Hex Files
 
-**Missing `.hex` files:**
+**Missing compiled CLVM artifacts:**
 
 ```bash
 ./tools/build-chialisp.sh
 ```
 
-This recompiles all `.clsp` sources to `.hex` (same script used by `run-local-demo.sh` and `tools/build-deploy.sh`).
+This recompiles all `.clsp` sources (same script used by `run-local-demo.sh` and `tools/build-deploy.sh`). The compiler emits `.hex` and then `.clvm.bin` runtime artifacts.
 
 ## Runtime Issues
 
@@ -92,22 +92,22 @@ cargo build --features sim-server --bin chia-gaming-sim
 ./target/debug/chia-gaming-sim
 ```
 
-The simulator uses hardcoded ports: 5800 (HTTP) and 5801 (WebSocket). Ensure nothing else is using these ports.
+The simulator uses a **single** port: 5800 for HTTP (`GET|POST /health`) and WebSocket (`/ws`). Ensure nothing else is using this port.
 
-**Port conflicts with tracker:**
+**Port conflicts with hub:**
 
-The tracker defaults to port 5801 if `PORT` is not set, which conflicts with the simulator WebSocket port. Always set `PORT` explicitly:
+The hub defaults to port 5801 if `PORT` is not set. Always set `PORT` explicitly:
 
 From a **source checkout** (local demo):
 
 ```bash
-PORT=3003 node lobby/lobby-service/dist/index-rollup.cjs --self 'http://localhost:3003' --dir ./lobby/lobby-frontend/serve
+PORT=3003 node hub/hub-service/dist/index-rollup.cjs --self 'http://localhost:3003' --dir ./hub/hub-frontend/serve
 ```
 
-From an **Alpha 2 release zip** (`service.js` at the archive root):
+From a **release zip** (`service.js` at the archive root):
 
 ```bash
-PORT=3003 node service.js --self 'http://localhost:3003' --dir /path/to/extracted-lobby-archive
+PORT=3003 node service.js --self 'http://localhost:3003' --dir /path/to/extracted-hub-archive
 ```
 
 ### Player App
@@ -115,26 +115,28 @@ PORT=3003 node service.js --self 'http://localhost:3003' --dir /path/to/extracte
 **Blank page or JS errors:**
 
 - Verify WASM files exist in `front-end/dist/` (`chia_gaming_wasm.js`, `chia_gaming_wasm_bg.wasm`)
-- Verify `.hex` files exist in `clsp/` directories
+- Verify Chialisp build artifacts exist (run `./tools/build-chialisp.sh`)
 - Check browser console for 404 errors on assets
 
 **`build-meta.json` errors:**
 
 The player app reads `build-meta.json` from the server root to determine the asset base path. If this file is missing or malformed, assets will fail to load. The `run-local-demo.sh` script generates this automatically.
 
-### Tracker
+<span id="tracker"></span>
 
-**Tracker iframe not loading:**
+### Hub
 
-- Verify the tracker is running on a **different origin** from the player app
+**Hub iframe not loading:**
+
+- Verify the hub is running on a **different origin** from the player app
 - Check the browser console for CSP (Content Security Policy) errors
-- Verify the `--self` flag matches the public URL of the tracker
+- Verify the `--self` flag matches the public URL of the hub
 
 **WebSocket connection failures:**
 
-- Verify the tracker's `--self` URL is accessible from both players' browsers
+- Verify the hub's `--self` URL is accessible from both players' browsers
 - Check for firewall or proxy rules blocking WebSocket upgrades
-- Ensure the tracker process is still running
+- Ensure the hub process is still running
 
 ## WalletConnect Issues
 
@@ -144,6 +146,7 @@ The player app reads `build-meta.json` from the server root to determine the ass
 
 - Ensure the Chia wallet is **2.7.1 or later** (minimum)
 - Check that the wallet's WalletConnect feature is enabled
+- Confirm the player-app network setting matches the wallet (mainnet or testnet11)
 - Try regenerating the pairing URI by refreshing the player app
 
 **"No matching key" or namespace errors:**
@@ -157,7 +160,7 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 1. Check your Chia wallet for pending approval requests
 2. Confirm each wallet is connected, synced, and has no pending WalletConnect approvals
 3. Check the browser console for WebSocket errors
-4. Ensure both players are connected to the same tracker
+4. Ensure both players are connected to the same hub and the same network
 
 **Transaction not confirming:**
 
@@ -168,7 +171,7 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 **Wallet disconnects mid-game:**
 
 - Reconnect the wallet via WalletConnect; stalled operations resume when the wallet is back (`CONNECTIVITY.md`)
-- Session data may remain in browser localStorage, but do not refresh the page during an active game
+- Session data remains in IndexedDB across a page reload; do not clear site data during an active session
 - If the session is abandoned, channel coins follow on-chain timeout rules (see [Known Issues](/guides/gaming-known-issues))
 
 ## User Troubleshooting
@@ -179,15 +182,16 @@ For documented limitations and workarounds, see [Known Issues](/guides/gaming-kn
 
 **Shutdown hangs or incomplete:**
 
-- Both players should keep the browser open until shutdown completes
+- Both players should keep the app open until shutdown completes
 - Check each wallet for pending WalletConnect approvals
 
 ### Session Management Issues
 
-**Lost session after refresh:**
+**Resume / Start Over after reload:**
 
-- Sessions are not restored from the server; refreshing clears in-progress UI state
-- Channel coins may remain on-chain until timeout if you abandon mid-game
+- A normal reload should restore the session from IndexedDB
+- If the Resume / Start Over dialog appears, choose **Resume** unless you intend to abandon the local copy
+- Clearing site data cannot be undone from the server; channel coins may remain on-chain until timeout if you abandon mid-game
 
 ### Firewall / Proxy
 
@@ -195,7 +199,7 @@ For documented limitations and workarounds, see [Known Issues](/guides/gaming-kn
 
 - Ensure your network allows WebSocket connections (HTTP Upgrade)
 - If behind a corporate proxy, WebSocket traffic may be blocked
-- The tracker uses standard HTTP ports; configure your proxy to allow WebSocket upgrades on the tracker's port
+- The hub uses standard HTTP ports; configure your proxy to allow WebSocket upgrades on the hub's port
 
 ## Getting Additional Help
 

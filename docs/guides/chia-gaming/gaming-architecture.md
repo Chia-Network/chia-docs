@@ -11,10 +11,10 @@ The Chia Gaming system enables trustless two-player games using **state channels
 
 The system consists of:
 
-- **Player App**: Static HTML/JS/CSS/WASM application that runs entirely in the browser. Contains the WASM game engine, game UIs, and the code that talks to a blockchain interface.
-- **Tracker**: A lobby and WebSocket relay service. Provides matchmaking and ferries game messages between peers. Trackers are third-party code; anyone can run one.
+- **Player App**: Static HTML/JS/CSS/WASM application that runs entirely in the browser (or Electron). Contains the WASM game engine, game UIs, and the code that talks to a blockchain interface.
+- **Hub**: Matchmaking UI and WebSocket relay. Provides a player list and challenges, and ferries game messages between peers. Hubs are third-party code; anyone can run one.
 - **Chia wallet (live play)**: Connected via WalletConnect. The player app reads chain state and submits transactions through the wallet (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`). A full node on the same machine is not required for players; the wallet handles chain interaction.
-- **Simulator (development)**: Optional local service (`chia-gaming-sim`, ports 5800/5801) used instead of WalletConnect when testing without real XCH. Configured in `front-end/src/settings.ts`.
+- **Simulator (development)**: Optional local service (`chia-gaming-sim`, port 5800: HTTP `/health` and WebSocket `/ws`) used instead of WalletConnect when testing without real XCH. Configured in `front-end/src/settings.ts`.
 
 ## State Channels
 
@@ -37,7 +37,7 @@ Funding coins (one per player) → launcher → Channel Coin
 
 - **Channel Coin**: Holds the channel funds after the handshake. Controlled by a 2-of-2 aggregate key; off-chain play updates signed unroll commitments without moving the channel coin until shutdown or dispute.
 - **Unroll Coin**: Represents the latest mutually-agreed state with a sequence number. A higher sequence number preempts a lower one during dispute resolution.
-- **Game coins**: Created when a game starts within the channel. Each is governed by a referee puzzle (Chialisp) for that game type; on-chain moves are validated against that puzzle if a dispute is forced.
+- **Game coins**: Created when a game is forced on-chain. Each is governed by a referee puzzle (Chialisp) for that game type; on-chain moves are validated against that puzzle if a dispute is forced.
 
 ## The Potato Protocol
 
@@ -48,12 +48,7 @@ The "potato" is a conceptual token that alternates between players, determining 
 - Both players sign each state transition
 - The latest signed state is always available for on-chain settlement
 
-The name comes from "hot potato": you hold it when it's your turn, and pass it when you've made your move. The potato carries:
-
-- The current game state
-- The sequence number
-- Signatures from both parties on the previous state
-- The proposed next state (unsigned by the receiver until they accept)
+The name comes from "hot potato": you hold it when it's your turn, and pass it when you've made your move. Each potato pass is a batch of game actions plus half-signatures over the new unroll commitment. See `OVERVIEW.md` in the chia-gaming repository for the batch protocol, handshake (messages A–F), and handler phases.
 
 ## Referee Pattern
 
@@ -65,16 +60,14 @@ Each game type implements a **referee**: a Chialisp puzzle that can validate gam
 
 The referee ensures that even if the off-chain communication breaks down, the game can always be completed fairly, on-chain (albeit more slowly and at transaction cost).
 
-### Game Handlers
+<!-- Legacy anchors preserved for external links -->
+<span id="game-handlers"></span>
 
-Each game implements a **handler**: Rust code that manages the game logic off-chain. Handlers are responsible for:
+### Game packages
 
-- Validating incoming moves from the opponent
-- Computing the next game state
-- Generating the appropriate Chialisp evidence for on-chain validation (if needed)
-- Managing game-specific state (cards, boards, scores)
+Each game is a **package** under `games/<key>/` with CLVM rules (`clsp/`), a TypeScript/React UI (`ui/`), and optional Rust tests. Packages register in `games/registry.json`. Off-chain **handlers** and on-chain **validators** are Chialisp programs inside the package; the Rust host (`src/session_phases/`, `src/channel_state/`, `src/referee/`) runs the channel, potato, and referee without game-specific presentation logic.
 
-The handler architecture allows new games to be added without modifying the core channel infrastructure.
+To add a game, follow [`GAME_WRITING_GUIDE.md`](https://github.com/Chia-Network/chia-gaming/blob/main/GAME_WRITING_GUIDE.md). Handler calling conventions are in [`HANDLER_GUIDE.md`](https://github.com/Chia-Network/chia-gaming/blob/main/HANDLER_GUIDE.md) and `clsp/handler_api.md`.
 
 ## Connection Types
 
@@ -83,22 +76,26 @@ Per the connectivity model in the chia-gaming repository (`CONNECTIVITY.md`), th
 | Axis    | Purpose                                     | How it is reached                          |
 | ------- | ------------------------------------------- | ------------------------------------------ |
 | Wallet  | Sign spends, read balances and coin records | WalletConnect (live) or simulator (dev)    |
-| Tracker | Lobby UI (iframe) and message relay         | WebSocket to the tracker you joined        |
-| Peer    | Opponent game traffic                       | Relayed over the tracker's WebSocket       |
+| Hub     | Matchmaking UI (iframe) and message relay   | WebSocket to the hub you joined            |
+| Peer    | Opponent game traffic                       | Relayed over the hub's WebSocket           |
 | Session | In-progress channel obligation              | Local state + on-chain coins; not a socket |
 
 ### Session Rollover
 
-Session state (channel progress, pairing token, and related data) is stored in browser `localStorage`. The **tracker** connection can auto-reconnect with backoff after transient outages (`CONNECTIVITY.md`). There is no guaranteed “reconnect to the same peer” after a hard disconnect; both players may need to re-match on a tracker. Clearing browser storage loses the session. Wallet disconnect stalls signing until the wallet is reconnected; the session obligation on-chain remains.
+Durable session state is stored in **IndexedDB** (one complete session record). localStorage holds only small preferences (for example hub URL and network). A page reload is supposed to restore the session; the player app treats reload like a dropped remote connection and reconnects the wallet and hub.
 
-### Tracker Availability
+The **hub** connection auto-reconnects with backoff after transient outages (`CONNECTIVITY.md`). Peer traffic rides on the hub WebSocket: if the hub is down, the peer is down. Transient hub or peer loss degrades the session (yellow “pings look stuck”) rather than automatically going on-chain; the player can reconnect or choose **Go on-chain**. Clearing site data loses the local session; the on-chain obligation remains until shutdown or timeout. Wallet disconnect stalls signing until the wallet is reconnected.
 
-The tracker is only required for:
+<span id="tracker-availability"></span>
 
-- Initial matchmaking (creating/joining rooms)
+### Hub Availability
+
+The hub is only required for:
+
+- Initial matchmaking (player list and challenges)
 - Relaying messages between peers during gameplay
 
-It is **not** required for on-chain settlement. If the tracker disappears permanently, players can still close the channel on-chain using their locally-stored state.
+It is **not** required for on-chain settlement. If the hub disappears permanently, players can still close the channel on-chain using their locally stored state.
 
 ## WalletConnect Integration
 
@@ -117,10 +114,11 @@ The player app communicates with the Chia wallet via WalletConnect using the `ch
 | `chia_registerRemoteCoins`   | Register channel coins for observation            |
 | `chia_getCoinRecordsByNames` | Look up specific coin records                     |
 | `chia_getPuzzleAndSolution`  | Get puzzle/solution for spent coins               |
+| `chia_getFullNodePeerCount`  | Wallet peer-count check                           |
 
 ### Channel open (handshake)
 
-Opening a channel uses **one** on-chain spend bundle, but each wallet still goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, two `chia_createOfferForIds` calls, one per player’s funding share, and `chia_pushTransactions`). Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
+Opening a channel still lands as **one** on-chain funding transaction, but each wallet goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, `chia_createOfferForIds` for that player’s funding share, and `chia_pushTransactions`). Handshake F is only the receiver’s acceptance; each player locally combines the E and F halves, validates the result, and submits the assembled spend. Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
 
 ## Security Model
 
@@ -129,7 +127,7 @@ The security of the system rests on several guarantees:
 1. **Unilateral close**: Either player can always close the channel on-chain
 2. **Latest state wins**: Higher sequence numbers always supersede lower ones
 3. **Timeout protection**: If one player disappears during an on-chain dispute, the other can claim funds after a timeout
-4. **Tracker is a relay, not a co-signer**: The tracker ferries lobby and game messages; it does not hold channel keys or settle balances. Players still rely on signed off-chain state and on-chain puzzles for security.
+4. **Hub is a relay, not a co-signer**: The hub ferries matchmaking and game messages; it does not hold channel keys or settle balances. Players still rely on signed off-chain state and on-chain puzzles for security.
 5. **Wallet isolation**: The player app never has access to private keys; all signing happens in the wallet via WalletConnect
 
 ## Frontend Architecture
@@ -141,15 +139,17 @@ The frontend is split into two separately-deployed applications:
 - Fully static (HTML/JS/CSS/WASM): no server-side logic
 - Contains the WASM game engine compiled from Rust
 - Handles WalletConnect integration
-- Manages game state in browser localStorage
-- Loads the tracker's lobby UI in an iframe
+- Persists durable session state in IndexedDB
+- Loads the hub's matchmaking UI in an iframe
 
-### Tracker (Lobby + Relay)
+<span id="tracker-lobby--relay"></span>
+
+### Hub (Matchmaking + Relay)
 
 - Express + WebSocket service
-- Serves the lobby UI (room creation, matchmaking)
+- Serves the hub UI (player list, challenges, optional different buy-ins per player)
 - Relays game messages between connected peers
 - Loaded inside an iframe within the player app
 - Must be on a **different origin** from the player app (security boundary)
 
-This separation ensures that the tracker (which is third-party code) cannot access the player app's WalletConnect session or game state.
+This separation ensures that the hub (which is third-party code) cannot access the player app's WalletConnect session or game state.
