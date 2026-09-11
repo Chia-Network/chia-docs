@@ -45,15 +45,17 @@ Each peak (block) on mainnet takes approximately 1 minute. Opening a channel sti
 
 3. **Check Your Light Wallet** (live play): You should see a `chia_getWalletBalance` request in your Chia Light Wallet. Choose "remember this decision" and confirm the request.
 
-4. **Connect to a hub**: Enter the hub URL (e.g. `http://localhost:3003` for local development) and connect. The hub UI loads in an iframe. It finds opponents and relays messages; it cannot take funds or change game outcomes.
+4. **Set a transaction fee** (live play): In the player app Wallet tab, set **Transaction fee** (mojos or XCH). The default is **0**. On a busy mempool, a zero fee may not confirm. A nonzero fee below **100,000,000 mojos** is treated as zero and can be rejected; use `0` or at least that amount. Simulator play does not need a fee.
 
-5. **Appear as available**: Once connected, Alice is listed for matchmaking on that hub.
+5. **Connect to a hub**: Enter the hub URL (e.g. `http://localhost:3003` for local development) and connect. The hub UI loads in an iframe. It finds opponents and relays messages; it cannot take funds or change game outcomes.
+
+6. **Appear as available**: Once connected, Alice is listed for matchmaking on that hub.
 
 ## Player 2: Bob
 
 1. **Open a separate browser**: Use a browser that does not share session state with Alice (e.g., another computer, or an incognito/private window).
 
-2. **Connect a chain backend**: Simulator, or a **separate** Chia wallet (2.7.1 or later) via WalletConnect. Both players must use the same network (simulator, mainnet, or testnet11).
+2. **Connect a chain backend**: Simulator, or a **separate** Chia wallet (2.7.1 or later) via WalletConnect. Both players must use the same network (simulator, mainnet, or testnet11). For live play, set a **transaction fee** the same way as Alice.
 
 3. **Connect to the same hub**: Enter the same hub URL Alice used.
 

@@ -166,6 +166,7 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 
 - Each transaction block takes approximately 1 minute
 - Channel opening uses one on-chain spend bundle; confirmation can take several minutes (about 1 minute per peak)
+- For live WalletConnect play, check the **Transaction fee** in the player app Wallet tab. Default is 0. A nonzero fee below 100,000,000 mojos is treated as zero and can be rejected (`INVALID_FEE_TOO_CLOSE_TO_ZERO`)
 - If a transaction is stuck, check the mempool via your wallet
 
 **Wallet disconnects mid-game:**

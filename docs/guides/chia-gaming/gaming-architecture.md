@@ -109,6 +109,7 @@ The player app communicates with the Chia wallet via WalletConnect using the `ch
 | `chia_getHeightInfo`         | Get current blockchain height                     |
 | `chia_selectCoins`           | Select coins for channel funding                  |
 | `chia_createOfferForIds`     | Create offers (used in channel open)              |
+| `chia_sendTransaction`       | Sign a separate fee spend that is aggregated into the protocol bundle |
 | `chia_pushTransactions`      | Push signed transactions to the mempool           |
 | `chia_createNewRemoteWallet` | Create a remote wallet for tracking channel coins |
 | `chia_registerRemoteCoins`   | Register channel coins for observation            |
@@ -118,7 +119,9 @@ The player app communicates with the Chia wallet via WalletConnect using the `ch
 
 ### Channel open (handshake)
 
-Opening a channel still lands as **one** on-chain funding transaction, but each wallet goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, `chia_createOfferForIds` for that player’s funding share, and `chia_pushTransactions`). Handshake F is only the receiver’s acceptance; each player locally combines the E and F halves, validates the result, and submits the assembled spend. Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
+Opening a channel still lands as **one** on-chain funding transaction, but each wallet goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, `chia_createOfferForIds` for that player’s funding share, `chia_sendTransaction` if a fee is set, and `chia_pushTransactions`). Handshake F is only the receiver’s acceptance; each player locally combines the E and F halves, validates the result, and submits the assembled spend. Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
+
+Live WalletConnect play can attach a **transaction fee** from the player app Wallet tab (mojos or XCH). The default is **0**. Chia’s mempool treats a fee below **100,000,000 mojos** as effectively zero (`front-end/src/constants/fees.ts`); a nonzero fee in that range can be rejected instead of admitted as free. Simulator sessions do not use this fee path.
 
 ## Security Model
 

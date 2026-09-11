@@ -72,7 +72,7 @@ For information about becoming a gaming partner, see the [Gaming Partner RFP](/g
 ### User Dependencies
 
 - **Chia wallet**: **2.7.1 or later** (light wallet is sufficient; a local full node is not required for players)
-- **WalletConnect (live play)**: Each player connects their wallet via WalletConnect. The player app uses wallet RPC methods (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`) through that connection (`front-end/src/hooks/RealBlockchainInterface.ts`).
+- **WalletConnect (live play)**: Each player connects their wallet via WalletConnect. The player app uses wallet RPC methods (for example `chia_getCoinRecordsByNames`, `chia_sendTransaction`, `chia_pushTransactions`) through that connection (`front-end/src/hooks/RealBlockchainInterface.ts`). Set a **transaction fee** in the Wallet tab for live spends; default is 0. Fees below 100,000,000 mojos are treated as zero (`front-end/src/constants/fees.ts`) and can be rejected by the mempool.
 - **Simulator (development)**: For testing without real XCH, use simulator mode and the `chia-gaming-sim` binary started by `run-local-demo.sh` (single port 5800: HTTP `/health` and WebSocket `/ws`; see `front-end/src/settings.ts`).
 
 :::tip Common Issues
@@ -209,7 +209,7 @@ When testing with live WalletConnect (not simulator), you **must** use two diffe
 
 1. Deploy the gaming system to a URL accessible by both computers (does not need to be publicly accessible; local network, VPN, or other private network setup is sufficient)
 2. Use two different computers or systems, each with its own Chia wallet installation (2.7.1 or later)
-3. Each player connects their separate wallet via WalletConnect
+3. Each player connects their separate wallet via WalletConnect and, for live chain, sets a **transaction fee** in the Wallet tab (default 0; see [Manual Configuration](#manual-configuration))
 4. Both players connect to the **same hub**, then one player challenges the other
 
 ### Viewing Logs
@@ -267,6 +267,10 @@ The player app has a **mainnet / testnet** preference. WalletConnect uses `chia:
 Live play requires the connected wallet to be on the same network the player app selected. A cross-network match is rejected before consent. For development without real XCH, use the **simulator**.
 
 Optional CI/testing overrides: `CHIA_GAMING_CHAIN_ID` and `CHIA_GAMING_GENESIS_CHALLENGE` (or the matching `window.__CHIA_GAMING_*__` values).
+
+### Transaction fees
+
+Live WalletConnect spends can include a fee from the player app **Wallet** tab (`defaultFee` in session preferences). Default is **0**. The mempool treats a fee below **100,000,000 mojos** as effectively zero (`MIN_NONZERO_FEE_MOJOS` in `front-end/src/constants/fees.ts`); the UI refuses to save a nonzero value in that range. The fee spend is signed with `chia_sendTransaction` and aggregated into the protocol bundle before `chia_pushTransactions`. Simulator play does not use this path.
 
 ### WalletConnect Project Info Updates
 

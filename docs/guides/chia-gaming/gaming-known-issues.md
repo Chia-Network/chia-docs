@@ -65,7 +65,7 @@ The config-directory workflow described in older material is not available. Netw
 
 ### Handshake Timing
 
-**Problem**: Opening a channel requires one on-chain spend bundle to confirm; both wallets must see the channel reach **Active**, which takes several minutes on mainnet (~1 minute per peak). During the handshake, each wallet must also approve **several** WalletConnect requests (`chia_selectCoins`, `chia_createOfferForIds`, and `chia_pushTransactions`), not a single tap.
+**Problem**: Opening a channel requires one on-chain spend bundle to confirm; both wallets must see the channel reach **Active**, which takes several minutes on mainnet (~1 minute per peak). During the handshake, each wallet must also approve **several** WalletConnect requests (`chia_selectCoins`, `chia_createOfferForIds`, `chia_sendTransaction` when a fee is set, and `chia_pushTransactions`), not a single tap.
 
 **Impact**: The challenged player may wait a long time before the channel is playable. This is expected for on-chain handshakes. If progress stalls, check both wallets for pending approvals.
 
