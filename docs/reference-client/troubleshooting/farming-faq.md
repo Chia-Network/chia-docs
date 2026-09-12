@@ -9,7 +9,7 @@ When you are first operating Chia and wondering if the software is working, here
 
 First off, you'll want to have your configuration set up to do additional logging. The configurations can be found in `config.yaml`. This file is located in `chia/mainnet/config.yaml`.
 
-The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/your username)/.chia/mainnet/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
+The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/(your username)/.chia/mainnet/config/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
 
 Shut down Chia before config access. Open `config.yaml` and edit the first `log_level`, setting it `INFO` instead of `WARNING`. Save the file.
 
