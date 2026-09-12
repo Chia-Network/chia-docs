@@ -7,7 +7,7 @@ slug: /reference-client/troubleshooting/farming-faq
 
 When you are first operating Chia and wondering if the software is working, here are some tips to keep you sane.
 
-First off, you'll want to have your configuration set up to do additional logging. The configurations can be found in `config.yaml`. This file is located in `chia/mainnet/config.yaml`.
+First off, you'll want to have your configuration set up to do additional logging. The configurations can be found in `config.yaml`. This file is usually located in `chia/mainnet/config/config.yaml`.
 
 The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/(your username)/.chia/mainnet/config/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
 
@@ -17,7 +17,7 @@ Now, you can relaunch Chia. Give it 20 minutes to run.
 
 Opening the log file while Chia is running, you'll see additional messages. You can find `debug.log` in the `log` directory right next to `config` directory accessed earlier.
 
-Log files are very informative. Once a log fills to 20mb another is created. If there are too many you can delete some of them.
+Log files are very informative. Once a log fills to roughly 50mb another is created. If there are too many you can delete some of them.
 
 Inside what you are looking for are these lines:
 
