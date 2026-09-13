@@ -7,9 +7,9 @@ slug: /reference-client/troubleshooting/farming-faq
 
 如果是首次使用 Chia 并想知道软件是否正常工作时，以下是一些建议，可以帮助到你。
 
-首先，需要修改配置以进行额外的日志记录。 The configurations can be found in `config.yaml`. This file is located in `chia/mainnet/config.yaml`.
+首先，需要修改配置以进行额外的日志记录。 The configurations can be found in `config.yaml`. This file is usually located in `chia/mainnet/config/config.yaml`.
 
-The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/your username)/.chia/mainnet/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
+The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/(your username)/.chia/mainnet/config/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
 
 在修改配置之前，请关闭 Chia。 Open `config.yaml` and edit the first `log_level`, setting it `INFO` instead of `WARNING`. 保存文件。
 
@@ -17,7 +17,7 @@ The location of the `.chia` folder varies, On windows you'll want to look in `C:
 
 在 Chia 运行时打开日志文件，将看到额外的消息。 You can find `debug.log` in the `log` directory right next to `config` directory accessed earlier.
 
-日志文件包含许多信息。 一旦日志填满了 20mb，将创建另一个日志文件。 如果有太多日志文件，可以删除其中一些。
+日志文件包含许多信息。 Once a log fills to roughly 50mb another is created. 如果有太多日志文件，可以删除其中一些。
 
 Inside what you are looking for are these lines:
 

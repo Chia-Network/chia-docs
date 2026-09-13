@@ -108,6 +108,20 @@ Right now, you have a fork of the chia-docs repository, but you do not have the 
 
 All Chia related Github repos require the signing of commits, follow the outlined process to setup automated commit signing for the Github Desktop Application.
 
+You can sign commits with **GPG** (below) or **SSH**. GitHub documents both in [About commit signature verification](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification).
+
+#### SSH commit signing
+
+:::info
+The below information has been adapted from the [GitHub docs on SSH commit signature verification](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification#ssh-commit-signature-verification).
+:::
+
+1. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and add the public key to your GitHub account under **Settings → SSH and GPG keys**.
+2. [Tell Git to sign commits with SSH](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key): set `git config --global gpg.format ssh` and `git config --global user.signingkey` to your public key path (for example `~/.ssh/id_ed25519.pub`).
+3. Enable signing: `git config --global commit.gpgsign true` (Git uses this setting for SSH signing as well when `gpg.format` is `ssh`).
+
+SSH-signed commits show as **Verified** on GitHub when the signing key is on your account.
+
 #### Generating a New GPG Key
 
 :::info
@@ -123,6 +137,7 @@ Note: Before generating a new GPG key, make sure you've verified your email addr
 2. Open Git Bash.
 
 3. Generate a GPG key pair. Since there are multiple versions of GPG, you may need to consult the relevant [man page](https://en.wikipedia.org/wiki/Man_page) to find the appropriate key generation command.
+
    - If you are on version 2.1.17 or greater, paste the text below to generate a GPG key pair.
 
    ```shell
