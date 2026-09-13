@@ -10,8 +10,8 @@ slug: /reference-client/walletconnect/did-wc
 
 Creates a new DID profile.
 
-| Parameter              | Type       | Description                   |
-| ---------------------- | ---------- | ----------------------------- |
+| Parameter              | Type       | Description                                   |
+| ---------------------- | ---------- | --------------------------------------------- |
 | `amount`               | `number`   | Amount in mojos.              |
 | `fee`                  | `number`   | Transaction fee in mojos.     |
 | `backupDids`           | `string[]` | Associated backup DIDs.       |
@@ -19,25 +19,25 @@ Creates a new DID profile.
 
 #### Output Data
 
-| Parameter  | Type                                                                     | Description                  |
-| ---------- | ------------------------------------------------------------------------ | ---------------------------- |
+| Parameter  | Type                                                                     | Description                                                     |
+| ---------- | ------------------------------------------------------------------------ | --------------------------------------------------------------- |
 | `type`     | [`WalletType`](/reference-client/walletconnect/walletconnect#wallettype) | Type of wallet (8 for DIDs). |
-| `myDid`    | `string`                                                                 | Bech32m encoded DID address. |
-| `walletId` | `number`                                                                 | Created wallet id.           |
-| `success`  | `boolean`                                                                | Backend success status.      |
+| `myDid`    | `string`                                                                 | Bech32m encoded DID address.                    |
+| `walletId` | `number`                                                                 | Created wallet id.                              |
+| `success`  | `boolean`                                                                | Backend success status.                         |
 
 ### `chia_setDIDName`
 
 Sets the name of a DID wallet.
 
-| Parameter  | Type     | Description  |
-| ---------- | -------- | ------------ |
+| Parameter  | Type     | Description                  |
+| ---------- | -------- | ---------------------------- |
 | `walletId` | `number` | Wallet id.   |
 | `name`     | `string` | Wallet name. |
 
 #### Output Data
 
-| Parameter  | Type      | Description             |
-| ---------- | --------- | ----------------------- |
+| Parameter  | Type      | Description                             |
+| ---------- | --------- | --------------------------------------- |
 | `walletId` | `number`  | Wallet id.              |
 | `success`  | `boolean` | Backend success status. |

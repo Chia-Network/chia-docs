@@ -30,17 +30,16 @@ Usage: `chia dev sim create [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command     | Type    | Required | Description                                                                   |
-| :------------ | :--------------- | :------ | :------- | :---------------------------------------------------------------------------- |
-| -f            | --fingerprint    | INTEGER | False    | Use your fingerprint to skip the key prompt                                   |
-| -r            | --reward_address | TEXT    | False    | Use this address instead of the default farming address                       |
-| -p            | --plot-directory | TEXT    | False    | Set the directory in which to create/store plots (Default: 'simulator/plots') |
-| -m            | --mnemonic       | TEXT    | False    | Add a new key to the keychain using the specified mnemonic                    |
-| -a            | --auto-farm      | BOOLEAN | False    | Enable or Disable auto farming (Default: True)                                |
-| -h            | --help           | None    | False    | Show a help message and exit                                                  |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                                      |
+| :------------ | :------------------------------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| -f            | --fingerprint                         | INTEGER | False    | Use your fingerprint to skip the key prompt                                                                      |
+| -r            | --reward_address | TEXT    | False    | Use this address instead of the default farming address                                                          |
+| -p            | --plot-directory                      | TEXT    | False    | Set the directory in which to create/store plots (Default: 'simulator/plots') |
+| -m            | --mnemonic                            | TEXT    | False    | Add a new key to the keychain using the specified mnemonic                                                       |
+| -a            | --auto-farm                           | BOOLEAN | False    | Enable or Disable auto farming (Default: True)                                |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                                     |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Use all default values, with no keys present on the local machine.
 
@@ -169,8 +168,7 @@ Genesis block generated, exiting.
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Use all default values, with a key and plots already generated:
 
@@ -207,8 +205,7 @@ Genesis block already exists, exiting.
 
 </details>
 
-<details>
-<summary>Example 3</summary>
+<details><summary>Example 3</summary>
 
 Add a mnemonic seed for a key that does not yet exist on this machine.
 
@@ -310,8 +307,7 @@ Options:
 
 Auto farming is enabled by default. The examples will show you how to disable/enable it.
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Disable auto farming:
 
@@ -327,8 +323,7 @@ Auto farming is now off
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Enable auto farming:
 
@@ -354,15 +349,14 @@ Usage: `chia dev sim farm [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                              |
-| :------------ | :---------------- | :------ | :------- | :----------------------------------------------------------------------- |
-| -b            | --blocks          | INTEGER | False    | Number of blocks to create (Default: 1)                                  |
-| -n            | --non-transaction | None    | False    | Enable to allow non-transaction blocks (Default: disabled)               |
-| -a            | --target-address  | TEXT    | False    | Block reward address. If not specified, the default address will be used |
-| -h            | --help            | None    | False    | Show a help message and exit                                             |
+| Short Command | Long Command      | Type    | Required | Description                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :-------------------------------------------------------------------------------------------- |
+| -b            | --blocks          | INTEGER | False    | Number of blocks to create (Default: 1)                    |
+| -n            | --non-transaction | None    | False    | Enable to allow non-transaction blocks (Default: disabled) |
+| -a            | --target-address  | TEXT    | False    | Block reward address. If not specified, the default address will be used      |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                  |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Farm one transaction block using the default values:
 
@@ -379,8 +373,7 @@ Block Height is now: 2
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Farm multiple transaction blocks:
 
@@ -397,8 +390,7 @@ Block Height is now: 5
 
 </details>
 
-<details>
-<summary>Example 3</summary>
+<details><summary>Example 3</summary>
 
 Farm multiple blocks (transaction or non-transaction):
 
@@ -415,8 +407,7 @@ Block Height is now: 8
 
 </details>
 
-<details>
-<summary>Example 4</summary>
+<details><summary>Example 4</summary>
 
 Farm a transaction block and send the reward to a different address.
 
@@ -490,17 +481,16 @@ Usage: `chia dev sim revert [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command     | Type    | Required | Description                                                                                                                                                                        |
-| :------------ | :--------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -b            | --blocks         | INTEGER | False    | Number of blocks to go back (Default: 1)                                                                                                                                           |
-| -n            | --new_blocks     | INTEGER | False    | Number of new blocks to add during a reorg (Default: 1)                                                                                                                            |
-| -r            | --reset          | None    | False    | Enable to revert all transactions to the genesis block (Default: disabled)                                                                                                         |
-| -f            | --force          | None    | False    | Enable to forcefully delete blocks, this is not a reorg but might be needed in very special circumstances. Note: Use with caution, this will break all wallets (Default: disabled) |
-| -d            | --disable_prompt | None    | False    | Disable confirmation prompt when force reverting, only works in conjunction with `-f` (Default: prompt is enabled)                                                                 |
-| -h            | --help           | None    | False    | Show a help message and exit                                                                                                                                                       |
+| Short Command | Long Command                          | Type    | Required | Description                                                                                                                                                                                                                                           |
+| :------------ | :------------------------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -b            | --blocks                              | INTEGER | False    | Number of blocks to go back (Default: 1)                                                                                                                                                                           |
+| -n            | --new_blocks     | INTEGER | False    | Number of new blocks to add during a reorg (Default: 1)                                                                                                                                                            |
+| -r            | --reset                               | None    | False    | Enable to revert all transactions to the genesis block (Default: disabled)                                                                                                                                         |
+| -f            | --force                               | None    | False    | Enable to forcefully delete blocks, this is not a reorg but might be needed in very special circumstances. Note: Use with caution, this will break all wallets (Default: disabled) |
+| -d            | --disable_prompt | None    | False    | Disable confirmation prompt when force reverting, only works in conjunction with `-f` (Default: prompt is enabled)                                                                                                 |
+| -h            | --help                                | None    | False    | Show a help message and exit                                                                                                                                                                                                                          |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Revert the transactions from one block and advance the chain by one block:
 
@@ -517,8 +507,7 @@ Block Height is now: 11
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Revert transactions from three blocks and advance the chain by five blocks:
 
@@ -535,8 +524,7 @@ Block Height is now: 17
 
 </details>
 
-<details>
-<summary>Example 3</summary>
+<details><summary>Example 3</summary>
 
 Revert all transactions in the blockchain (note that this could take several minutes):
 
@@ -563,14 +551,13 @@ Usage: `chia dev sim start [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command | Type | Required | Description                                            |
-| :------------ | :----------- | :--- | :------- | :----------------------------------------------------- |
+| Short Command | Long Command | Type | Required | Description                                                                               |
+| :------------ | :----------- | :--- | :------- | :---------------------------------------------------------------------------------------- |
 | -r            | --restart    | None | False    | Enable to restart running services (Default: disabled) |
 | -w            | --wallet     | None | False    | Enable to start wallet (Default: disabled)             |
-| -h            | --help       | None | False    | Show a help message and exit                           |
+| -h            | --help       | None | False    | Show a help message and exit                                                              |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Use the default values. This will start the daemon and the simulator, but not the wallet:
 
@@ -588,8 +575,7 @@ chia_full_node_simulator: started
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Status before this example: Simulator is running and wallet is not running.
 
@@ -619,17 +605,16 @@ Usage: `chia dev sim status [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| -f            | --fingerprint     | INTEGER | False    | Get detailed information on this fingerprint.                                                                                            |
-| -k            | --show_key        | None    | False    | Enable to show detailed key information, including seed phrase (Default: disabled)                                                       |
+| Short Command | Long Command                           | Type    | Required | Description                                                                                                                                                                                 |
+| :------------ | :------------------------------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -f            | --fingerprint                          | INTEGER | False    | Get detailed information on this fingerprint.                                                                                                                               |
+| -k            | --show_key        | None    | False    | Enable to show detailed key information, including seed phrase (Default: disabled)                                                                       |
 | -c            | --show_coins      | None    | False    | Enable to show all unspent coins (Default: disabled). When enabled, this does not show reward coins unless used in conjunction with `-i` |
 | -i            | --include_rewards | None    | False    | Enable to show rewards coins (Default: disabled). This option must be used in conjunction with `-c`                                      |
-| -a            | --show_addresses  | None    | False    | Enable to show the balances of all addresses (Default: disabled)                                                                         |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                                                             |
+| -a            | --show_addresses  | None    | False    | Enable to show the balances of all addresses (Default: disabled)                                                                                         |
+| -h            | --help                                 | None    | False    | Show a help message and exit                                                                                                                                                                |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Show the status using the default values:
 
@@ -670,8 +655,7 @@ Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4ua
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Include key info with the status (CAUTION: this includes the key's seed phrase):
 
@@ -724,8 +708,7 @@ Current Farming address: txch1t7e7pnxzxas207gh4q08sukvjg0emk7gvkpdld8kfmhxd7k4ua
 
 </details>
 
-<details>
-<summary>Example 3</summary>
+<details><summary>Example 3</summary>
 
 Show all coins, including reward coins:
 
@@ -785,8 +768,7 @@ Created at: 2022-09-27 23:50:07
 
 </details>
 
-<details>
-<summary>Example 4</summary>
+<details><summary>Example 4</summary>
 
 Show the balance of each address:
 
@@ -841,14 +823,13 @@ Usage: `chia dev sim stop [OPTIONS]`
 
 Options: Stop running services
 
-| Short Command | Long Command | Type | Required | Description                                   |
-| :------------ | :----------- | :--- | :------- | :-------------------------------------------- |
+| Short Command | Long Command | Type | Required | Description                                                                      |
+| :------------ | :----------- | :--- | :------- | :------------------------------------------------------------------------------- |
 | -d            | --daemon     | None | False    | Enable to stop the daemon (Default: disabled) |
 | -w            | --wallet     | None | False    | Enable to stop the wallet (Default: disabled) |
-| -h            | --help       | None | False    | Show a help message and exit                  |
+| -h            | --help       | None | False    | Show a help message and exit                                                     |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 Stop the simulator with the default values:
 
@@ -877,8 +858,7 @@ The response shows that the daemon and wallet are still running:
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Stop the simulator, daemon, and wallet:
 
