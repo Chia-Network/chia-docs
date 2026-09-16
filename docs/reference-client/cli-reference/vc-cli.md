@@ -146,17 +146,26 @@ Usage: chia wallet vcs mint [OPTIONS]
 
 Options:
 
-| Short Command | Long Command       | Type    | Required | Description                                                                                              |
-| :------------ | :----------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port  | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -f            | --fingerprint      | INTEGER | False    | Set the fingerprint to specify which key to use as the issuing wallet                                    |
-| -d            | --did              | TEXT    | True     | The DID of the VC's proof provider. Must be owned by the issuing wallet                                  |
-| -t            | --target-address   | TEXT    | False    | The address to send the VC to once it's minted [Default: send to minting wallet]                         |
-| -m            | --fee              | TEXT    | False    | Blockchain fee for mint transaction, in XCH                                                              |
-|               | --push             | None    | False    | Push the transaction to the network [Default: True]                                                      |
-|               | --no-push          | None    | False    | Do not push the transaction to the network [Default: False]                                              |
-|               | --transaction-file | TEXT    | False    | A file to write relevant transactions to                                                                 |
-| -h            | --help             | None    | False    | Show a help message and exit                                                                             |
+| Short Command | Long Command            | Type      | Required | Description                                                                                              |
+| :------------ | :---------------------- | :-------- | :------- | :------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port       | INTEGER   | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
+| -f            | --fingerprint           | INTEGER   | False    | Set the fingerprint to specify which key to use as the issuing wallet                                    |
+| -d            | --did                   | TEXT      | True     | The DID of the VC's proof provider. Must be owned by the issuing wallet                                  |
+| -t            | --target-address        | TEXT      | False    | The address to send the VC to once it's minted [Default: send to minting wallet]                         |
+| -m            | --fee                   | TEXT      | False    | Blockchain fee for mint transaction, in XCH                                                              |
+|               | --push                  | None      | False    | Push the transaction to the network [Default: True]                                                      |
+|               | --no-push               | None      | False    | Do not push the transaction to the network [Default: False]                                              |
+|               | --transaction-file      | TEXT      | False    | A file to write relevant transactions to                                                                 |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                         |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                               |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                           |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                            |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                       |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                        |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                  |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                  |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                    |
+| -h            | --help                  | None      | False    | Show a help message and exit                                                                             |
 
 <details>
 <summary>Example</summary>
@@ -225,19 +234,28 @@ Usage: chia wallet vcs revoke [OPTIONS]
 
 Options:
 
-| Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                 |
-| :------------ | :--------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
-| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                             |
-| -p            | --parent-coin-id       | TEXT    | True\*   | The ID of the parent coin of the VC (\*optional if VC ID is used)                                                                                                           |
-| -l            | --vc-id TEXT           | TEXT    | True\*   | The launcher ID of the VC to revoke (must be tracked by wallet) (\*optional if Parent ID is used)                                                                           |
-| -m            | --fee                  | TEXT    | False    | Blockchain fee for revocation transaction, in XCH                                                                                                                           |
-|               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
-|               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
-|               | --push                 | None    | False    | Push the transaction to the network [Default: True]                                                                                                                         |
-|               | --no-push              | None    | False    | Do not push the transaction to the network [Default: False]                                                                                                                 |
-|               | --transaction-file     | TEXT    | False    | A file to write relevant transactions to                                                                                                                                    |
-| -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                |
+| Short Command | Long Command            | Type      | Required | Description                                                                                                                                                                 |
+| :------------ | :---------------------- | :-------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port       | INTEGER   | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
+| -f            | --fingerprint           | INTEGER   | False    | Set the fingerprint to specify which key to use                                                                                                                             |
+| -p            | --parent-coin-id        | TEXT      | True\*   | The ID of the parent coin of the VC (\*optional if VC ID is used)                                                                                                           |
+| -l            | --vc-id TEXT            | TEXT      | True\*   | The launcher ID of the VC to revoke (must be tracked by wallet) (\*optional if Parent ID is used)                                                                           |
+| -m            | --fee                   | TEXT      | False    | Blockchain fee for revocation transaction, in XCH                                                                                                                           |
+|               | --reuse-puzhash         | None      | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
+|               | --generate-new-puzhash  | None      | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
+|               | --push                  | None      | False    | Push the transaction to the network [Default: True]                                                                                                                         |
+|               | --no-push               | None      | False    | Do not push the transaction to the network [Default: False]                                                                                                                 |
+|               | --transaction-file      | TEXT      | False    | A file to write relevant transactions to                                                                                                                                    |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                                                                                            |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                                                                                                  |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                                                                                              |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                                                                                               |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                                                                                          |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                           |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                                                                                     |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                                                                                     |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                                                                                       |
+| -h            | --help                  | None      | False    | Show a help message and exit                                                                                                                                                |
 
 <details>
 <summary>Example</summary>
@@ -293,20 +311,29 @@ Usage: chia wallet vcs update_proofs [OPTIONS]
 
 Options:
 
-| Short Command | Long Command           | Type    | Required | Description                                                                                                                                                                 |
-| :------------ | :--------------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -wp           | --wallet-rpc-port      | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
-| -f            | --fingerprint          | INTEGER | False    | Set the fingerprint to specify which key to use                                                                                                                             |
-| -l            | --vc-id                | TEXT    | True     | The launcher ID of the VC whose proofs should be updated                                                                                                                    |
-| -t            | --new-puzhash          | TEXT    | False    | The puzzle hash to which to send the VC after the proofs have been updated                                                                                                  |
-| -p            | --new-proof-hash       | TEXT    | True     | The new proof hash to update the VC to                                                                                                                                      |
-| -m            | --fee                  | TEXT    | False    | Blockchain fee for update transaction, in XCH                                                                                                                               |
-|               | --reuse-puzhash        | None    | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
-|               | --generate-new-puzhash | None    | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
-|               | --push                 | None    | False    | Push the transaction to the network [Default: True]                                                                                                                         |
-|               | --no-push              | None    | False    | Do not push the transaction to the network [Default: False]                                                                                                                 |
-|               | --transaction-file     | TEXT    | False    | A file to write relevant transactions to                                                                                                                                    |
-| -h            | --help                 | None    | False    | Show a help message and exit                                                                                                                                                |
+| Short Command | Long Command            | Type      | Required | Description                                                                                                                                                                 |
+| :------------ | :---------------------- | :-------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -wp           | --wallet-rpc-port       | INTEGER   | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml                                                                    |
+| -f            | --fingerprint           | INTEGER   | False    | Set the fingerprint to specify which key to use                                                                                                                             |
+| -l            | --vc-id                 | TEXT      | True     | The launcher ID of the VC whose proofs should be updated                                                                                                                    |
+| -t            | --new-puzhash           | TEXT      | False    | The puzzle hash to which to send the VC after the proofs have been updated                                                                                                  |
+| -p            | --new-proof-hash        | TEXT      | True     | The new proof hash to update the VC to                                                                                                                                      |
+| -m            | --fee                   | TEXT      | False    | Blockchain fee for update transaction, in XCH                                                                                                                               |
+|               | --reuse-puzhash         | None      | False    | If this flag is set, then send the VC back to the same puzzle hash it came from (ignored if `--generate-new-puzhash` is also specified) [Default: generate new puzzle hash] |
+|               | --generate-new-puzhash  | None      | False    | If this flag is set, then send the VC to a new puzzle hash. This is the default behavior, and setting this flag will override the `--reuse-puzhash` flag if it is also set  |
+|               | --push                  | None      | False    | Push the transaction to the network [Default: True]                                                                                                                         |
+|               | --no-push               | None      | False    | Do not push the transaction to the network [Default: False]                                                                                                                 |
+|               | --transaction-file      | TEXT      | False    | A file to write relevant transactions to                                                                                                                                    |
+|               | --valid-at              | INTEGER   | False    | UNIX timestamp at which the associated transactions become valid                                                                                                            |
+|               | --expires-at            | INTEGER   | False    | UNIX timestamp at which the associated transactions expire                                                                                                                  |
+|               | --include-coin          | HEXSTRING | False    | Include this coin in the spend                                                                                                                                              |
+|               | --primary-coin          | HEXSTRING | False    | Use this coin as the primary coin that creates the conditions                                                                                                               |
+|               | --exclude-coin          | HEXSTRING | False    | Exclude this coin from being spent                                                                                                                                          |
+|               | --exclude-amount        | XCH       | False    | Exclude any coins with this XCH or CAT amount from being included                                                                                                           |
+| -ma           | --min-coin-amount       | XCH       | False    | Ignore coins worth less than this much XCH or CAT units                                                                                                                     |
+| -l            | --max-coin-amount       | XCH       | False    | Ignore coins worth more than this much XCH or CAT units                                                                                                                     |
+|               | --reuse / --new-address | BOOLEAN   | False    | Reuse existing address for the change                                                                                                                                       |
+| -h            | --help                  | None      | False    | Show a help message and exit                                                                                                                                                |
 
 <details>
 <summary>Example</summary>

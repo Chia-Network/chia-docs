@@ -35,3 +35,19 @@ The time lock rule does not look at `ASSERT_SECONDS_*`.
 ### Fast forward rule
 
 The fast forward rule mitigates an attack where a user issues a fast-forward spend A, an attacker replaces it with AB which causes A to no longer support fast forward. For example, spending the output of A will prevent it from supporting fast forward. This is likely to cause A to fail to spend its singleton, effectively evicting it.
+
+### Sniping
+
+In cryptocurrency terms, transaction "sniping" occurs when a new transaction supersedes a pending one, typically with a higher blockchain fee. Often, the entity performing the snipe is a bot. Many people view this as an unfair practice because a bot can act faster than a human. [This Medium article](https://medium.com/coinmonks/what-is-token-sniping-measures-to-stop-token-sniping-b28fb3deed55) explains sniping as it applies across various blockchain ecosystems.
+
+#### False hypothetical example
+
+In Chia, one might expect sniping to occur with NFT Offers. For example, Alice (a human) attempts to take an Offer to buy an NFT. While the transaction is still in the mempool, Bob (a bot) takes the same Offer, and includes a higher blockchain fee. Because of the higher fee, Bob's transaction is accepted instead of Alice's.
+
+#### How the superset rule prevents sniping
+
+Offer sniping, as laid out in the example, isn't possible in the default mempool. This is intentional, and by design -- the default mempool's [superset rule](#super-set-rule) prevents it from happening. This rule requires a strict superset in order for RBF to be applied. In the example, Bob's attempt at sniping would _replace_ Alice's original spend, so the mempool will reject it.
+
+This default behavior does come with the tradeoff that farmers won't maximize their blockchain fees. Farmers could implement a custom mempool which eliminates this tradeoff by allowing sniping. This wouldn't violate any consensus rules, and therefore would produce valid blocks, but it would differ from the default mempool's rules.
+
+To reiterate, the default mempool intentionally contains the superset rule in order to prevent sniping.
