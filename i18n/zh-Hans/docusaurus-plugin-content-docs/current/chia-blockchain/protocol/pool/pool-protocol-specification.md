@@ -208,12 +208,12 @@ See [Farmer authentication](#farmer-authentication) for the specification of
 
 This is a BLS signature of the hashed serialization of the following data in the given order:
 
-| Element              | Type    |
-| -------------------- | ------- |
-| method_name          | string  |
-| launcher_id          | bytes32 |
-| target_puzzle_hash   | bytes32 |
-| authentication_token | uint64  |
+| Element                                                      | Type    |
+| ------------------------------------------------------------ | ------- |
+| method_name                             | string  |
+| launcher_id                             | bytes32 |
+| target_puzzle_hash | bytes32 |
+| authentication_token                    | uint64  |
 
 where `method_name` must be the serialized string `"get_farmer"`, the parameters must be serialized and hashed
 according to [Signature validation](#signature-validation) and the signature must be signed by the private key of the
@@ -492,12 +492,12 @@ See [Farmer authentication](#farmer-authentication) for the specification of
 
 This is a BLS signature of the hashed serialization of the following data in the given order:
 
-| Element              | Type    |
-| -------------------- | ------- |
-| method_name          | string  |
-| launcher_id          | bytes32 |
-| target_puzzle_hash   | bytes32 |
-| authentication_token | uint64  |
+| Element                                                      | Type    |
+| ------------------------------------------------------------ | ------- |
+| method_name                             | string  |
+| launcher_id                             | bytes32 |
+| target_puzzle_hash | bytes32 |
+| authentication_token                    | uint64  |
 
 where `method_name` must be the serialized string `"get_login"` and `target_puzzle_hash`
 is pool's target puzzle hash (see [GET /pool_info](#get-pool_info)). The parameters must be serialized and hashed
