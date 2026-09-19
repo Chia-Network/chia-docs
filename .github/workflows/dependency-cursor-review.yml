@@ -77,6 +77,26 @@ jobs:
           ref: ${{ steps.target_pr.outputs.head_sha }}
           persist-credentials: false
 
+      - name: Ensure malware verdict formatter script
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          script=".github/scripts/malware_verdict_formatter.py"
+          if [ -f "$script" ]; then
+            echo "Formatter script present on PR head."
+            exit 0
+          fi
+          default_branch="${{ github.event.repository.default_branch }}"
+          echo "Formatter missing on PR head; retrieving from origin/${default_branch}."
+          # checkout uses persist-credentials: false; one-shot Basic auth for this fetch only.
+          auth_basic="$(printf 'x-access-token:%s' "${GH_TOKEN}" | base64 | tr -d '\n')"
+          git -c "http.extraheader=AUTHORIZATION: basic ${auth_basic}" \
+            fetch --no-tags --depth=1 origin "${default_branch}"
+          mkdir -p .github/scripts
+          git checkout "FETCH_HEAD" -- "${script}"
+
       - name: Install Cursor CLI
         shell: bash
         run: |
@@ -921,81 +941,25 @@ jobs:
 
           python3 - <<'PY'
           import json
-          import re
+          import sys
+          from pathlib import Path
 
-          VERDICT_RE = re.compile(
-              r"(?m)(?:"
-              r"^[ \t]*(?:\*\*Verdict[ \t]*:[ \t]*(benign|malicious)(?:[ \t]*\*\*|(?=\b))|Verdict[ \t]*:[ \t]*(benign|malicious)\b)"
-              r"|"
-              r"(?<=[.!?:;])(?:\*\*Verdict[ \t]*:[ \t]*(benign|malicious)[ \t]*\*\*|Verdict[ \t]*:[ \t]*(benign|malicious)\b)"
-              r")",
-              re.IGNORECASE,
-          )
+          for _script_dir in (
+            Path(".github/scripts"),
+            Path("internal/workflowscripts"),
+          ):
+            if (_script_dir / "malware_verdict_formatter.py").is_file():
+              sys.path.insert(0, str(_script_dir.resolve()))
+              break
+          else:
+            raise RuntimeError(
+              "malware_verdict_formatter.py not found under .github/scripts/. "
+              "Run repo-content-updater managed-files for dependency-cursor-review "
+              "(config companion_files pulls in malware-verdict-formatter automatically) "
+              "or use managed-files group:dependency-cursor-review."
+            )
 
-          def _verdict_value(match: re.Match) -> str:
-            for idx in (1, 2, 3, 4):
-              token = match.group(idx)
-              if token:
-                return token.lower()
-            raise ValueError("missing verdict token")
-
-          def _removal_span(text: str, match: re.Match) -> tuple[int, int]:
-            return match.start(), match.end()
-
-          def _orphan_trailing_bold_span(text: str, match: re.Match) -> tuple[int, int] | None:
-            matched = text[match.start() : match.end()]
-            stripped = matched.lstrip(" \t")
-            if not (stripped.startswith("**") and not stripped.endswith("**")):
-              return None
-
-            line_end = text.find("\n", match.end())
-            if line_end == -1:
-              line_end = len(text)
-            suffix = text[match.end() : line_end]
-            trailing = re.search(r"\*\*[ \t]*$", suffix)
-            if not trailing:
-              return None
-            return match.end() + trailing.start(), match.end() + trailing.end()
-
-          def _merge_spans(spans: list[tuple[int, int]]) -> list[tuple[int, int]]:
-            if not spans:
-              return []
-
-            ordered = sorted(spans)
-            merged = [ordered[0]]
-            for start, end in ordered[1:]:
-              prev_start, prev_end = merged[-1]
-              if start <= prev_end:
-                merged[-1] = (prev_start, max(prev_end, end))
-              else:
-                merged.append((start, end))
-            return merged
-
-          def format_malware_review_verdict(text: str) -> str:
-            if not text or not text.strip():
-              return text
-
-            matches = list(VERDICT_RE.finditer(text))
-            if not matches:
-              return text
-
-            verdict_value = _verdict_value(matches[-1])
-            spans: list[tuple[int, int]] = []
-            for found in matches:
-              spans.append(_removal_span(text, found))
-              orphan = _orphan_trailing_bold_span(text, found)
-              if orphan:
-                spans.append(orphan)
-
-            cleaned = text
-            for start, end in reversed(_merge_spans(spans)):
-              cleaned = cleaned[:start] + cleaned[end:]
-            cleaned = re.sub(r"\n{3,}", "\n\n", cleaned.strip())
-
-            bold_line = f"**Verdict: {verdict_value}**"
-            if cleaned:
-              return f"{bold_line}\n\n{cleaned}"
-            return bold_line
+          from malware_verdict_formatter import format_malware_review_verdict
 
           def load_any(path):
             try:
