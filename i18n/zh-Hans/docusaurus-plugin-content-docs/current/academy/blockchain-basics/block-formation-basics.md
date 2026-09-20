@@ -94,9 +94,9 @@ False, it is timelords that **infuse** blocks to the chain and the role of full 
 
 What is the Mempool?
 
-A. Temporary storage on the network where transactions are queued before being confirmed.\
-The amount of system memory the blockchain can access.\
-The total size of all current plots on the network.\
+A. Temporary storage on the network where transactions are queued before being confirmed.  
+The amount of system memory the blockchain can access.  
+The total size of all current plots on the network.  
 Another name for the chia blockchain database.
 
 :::

@@ -23,7 +23,7 @@ Prior wins (or lack thereof) do not determine new wins. 如果预计获得奖励
 
 To combat the infrequency and inconsistency of winning, you can [join a pool](/reference-client/farming/pool-farming). It works similar to a lottery pool. Instead of occasionally earning a large reward, you will frequently earn a small payment. In the long run, pooling and solo-farming (aka **self-pooling**) will yield the same result (minus any pool fee), but pooling is much more predictable, and recommended for most farmers.
 
-An additional benefit of pooling is instant feedback as to whether your farm is running properly. 如果是独自耕种，可能会不确定自己是否真的能赢得一个区块。 如果是独自耕种，可能会不确定自己是否真的能赢得一个区块。
+An additional benefit of pooling is instant feedback as to whether your farm is running properly. 如果是独自耕种，可能会不确定自己是否真的能赢得一个区块。如果是独自耕种，可能会不确定自己是否真的能赢得一个区块。
 
 Chia设计了官方的联合耕种协议（pooling protocol），以一种其他加密货币从未尝试过的方式引入了矿池。 This allows for officially-supported predictability without compromising on decentralization.
 
@@ -35,8 +35,8 @@ Every three years, there is a scheduled halving of the block reward. Every three
 
 以下是完整的区块奖励计划：
 
-| 年份  | 区块奖励  | XCH / 10 mins |
-| ----- | --------- | ------------- |
+| 年份    | 区块奖励                      | XCH / 10 mins |
+| ----- | ------------------------- | ------------- |
 | 1-3   | 2.0 XCH   | 64            |
 | 4-6   | 1.0 XCH   | 32            |
 | 7-9   | 0.5 XCH   | 16            |
@@ -45,4 +45,4 @@ Every three years, there is a scheduled halving of the block reward. Every three
 
 Starting with year 13, block rewards are forever locked in at an average of 4 XCH every 10 minutes.
 
-随着时间的推移，新产生的XCH相对于现有XCH的比例将下降。 因此，Chia的通货膨胀率将持续下降。 Chia's inflation falls through 0.5% 22 years after mainnet launch.
+随着时间的推移，新产生的XCH相对于现有XCH的比例将下降。因此，Chia的通货膨胀率将持续下降。 Chia's inflation falls through 0.5% 22 years after mainnet launch.
