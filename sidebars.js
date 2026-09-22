@@ -198,6 +198,7 @@ module.exports = {
       label: 'Chia Cloud Wallet',
       items: [
         'cloud-wallet/getting-started',
+        'cloud-wallet/address-book',
         'cloud-wallet/buy-xch',
         'cloud-wallet/in-app-support',
         'cloud-wallet/recovery',
