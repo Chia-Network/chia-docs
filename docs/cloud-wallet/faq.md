@@ -75,7 +75,7 @@ In the reference wallet, the key used for signing transactions is located on the
 
 We plan to release three tiers with the Cloud Wallet:
 
-- Free Tier – currently available, albeit in beta form. It includes one vault, with a single key for spending and a single key for recovery. The free tier will provide easy onboarding for new users, and will offer a more secure solution than what exists in most of the industry.
+- Free Tier – currently available. It includes one vault, with a single key for spending and a single key for recovery. The free tier will provide easy onboarding for new users, and will offer a more secure solution than what exists in most of the industry.
 - Prosumer Tier (coming soon) – will include support for multisig vaults, as well as some advanced trading tools. This will be the perfect solution for individuals and small groups who want to share custody, as well as for high-frequency traders. It will be available for a monthly fee.
 - Enterprise Tier (coming soon) – will provide custody, management, and support solutions for large enterprises.
 
@@ -157,16 +157,16 @@ Yes! The Chia blockchain is a public ledger, so anyone can build software to mon
 
 ### What is the Chia Signer app?
 
-The Chia Signer app turns your smartphone into a hardware wallet. The app uses **hardware-protected storage** on your phone (Secure Enclave on iOS; hardware-backed keystore / StrongBox on supported Android devices, the Android app is in **beta**) to create a vault spend key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it.
+The Chia Signer app turns your smartphone into a hardware wallet. The app uses **hardware-protected storage** on your phone (Secure Enclave on iOS; hardware-backed keystore / StrongBox on supported Android devices) to create a vault spend key. This key cannot be removed from the device, so a thief would need to gain physical access to your phone in order to steal it.
 
-Download **iOS** from the [App Store](https://apps.apple.com/app/chia-signer/id6504493785). **Android** is in **beta** on [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
+The app is available for both [Apple](https://apps.apple.com/app/chia-signer/id6504493785), and [Android](https://play.google.com/store/apps/details?id=net.chia.android.signer) devices.
 
 :::info
 
 Currently, in order to use the Chia Signer app, you will need two separate devices:
 
 1. A computer or phone to access your vault
-2. A smartphone (iOS, or Android in beta) with the Chia Signer app installed
+2. A smartphone (iOS or Android) with the Chia Signer app installed
 
 You cannot use both the Cloud Wallet and the Chia Signer app on the same device yet. However, we do intend to enable this functionality in a future release.
 
@@ -178,7 +178,7 @@ Yes.
 
 **iOS:** [App Store](https://apps.apple.com/app/chia-signer/id6504493785).
 
-**Android** (beta): [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
+**Android:** [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 ### On which iOS devices is the Chia Signer app supported?
 
@@ -186,7 +186,7 @@ See the [App Store listing](https://apps.apple.com/app/chia-signer/id6504493785)
 
 ### On which Android devices is the Chia Signer app supported?
 
-The Android app is in **beta**. Supported devices and OS requirements are shown on the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer). The Play Store is the most up-to-date source for compatibility.
+Supported devices and OS requirements are shown on the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer). The Play Store is the most up-to-date source for compatibility.
 
 ### Is it safe to install the Chia Signer app on a second-hand device?
 
@@ -194,7 +194,19 @@ Yes -- just be sure to **factory reset** the device first so any prior owner's d
 
 ### Does the Chia Signer app use blind signing?
 
-No, but it doesn't use clear signing yet, either. The user is shown the details of the transaction before signing it. This info is significantly more detailed than what can be seen on the small screens of most hardware wallets. However, the end user needs to trust that CNI's servers have not been compromised, so it also isn't clear signing. The light amount of trust required should be sufficient for most users. However, for users who want to sign large transfers with the Chia Signer app, we plan to develop true clear signing in the future.
+No, the most recent iOS and Android versions of the Chia Signer app use clear signing. For more information, see our dedicated [clear signing page](/chia-signer/clear-signing).
+
+### What are blind signing and clear signing?
+
+In general, blind signing is where you sign a transaction without verifying exactly what you are signing. You have to trust that the software requesting the signature has not been compromised.
+
+Clear signing is the opposite of blind signing -- your software has verified what you are signing. This removes the need to trust that the requesting device has not been compromised.
+
+When the Chia Signer app receives a signature request in the form of a spend bundle, it does an independent verification by querying the blockchain to reconstruct the original spend bundle. If the requester (typically the Cloud Wallet) is compromised, it can lie to the Chia Signer app. However, because of the extra step of independent verification against the public blockchain, the app will know if it is being lied to. It will then tell you that the results don't match, and discourage you from authorizing the signature.
+
+### Is clear signing enabled by default?
+
+Yes. In the rare case where clear signing cannot be established, you will be asked if you want to switch to legacy (blind) signing. Absent such a request/warning, the app will always use clear signing.
 
 ### Can I use the Chia Signer app to sign into my Cloud Wallet account?
 
