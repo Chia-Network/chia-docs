@@ -11,10 +11,11 @@ The Chia Gaming system enables trustless two-player games using **state channels
 
 The system consists of:
 
-- **Player App**: Static HTML/JS/CSS/WASM application that runs entirely in the browser (or Electron). Contains the WASM game engine, game UIs, and the code that talks to a blockchain interface.
-- **Hub**: Matchmaking UI and WebSocket relay. Provides a player list and challenges, and ferries game messages between peers. Hubs are third-party code; anyone can run one.
+- **Player app (hosted)**: Static HTML/JS/CSS/WASM on any web server. Players open it in a browser. The local demo includes a **simulator** option for play without real XCH.
+- **Player app (Electron desktop)**: The **same** React + WASM bundle, packaged as a native installer (`desktop/`, `tools/build-electron.sh`). Origin is `chiagaming://app`. The desktop shell hides the simulator, allowlists hub origins, and does not replace the hub.
+- **Hub**: Matchmaking UI and WebSocket relay. Provides a player list and challenges, and ferries game messages between peers. Hubs are third-party code; anyone can run one. Required for both hosted and desktop players.
 - **Chia wallet (live play)**: Connected via WalletConnect. The player app reads chain state and submits transactions through the wallet (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`). A full node on the same machine is not required for players; the wallet handles chain interaction.
-- **Simulator (development)**: Optional local service (`chia-gaming-sim`, port 5800: HTTP `/health` and WebSocket `/ws`) used instead of WalletConnect when testing without real XCH. Configured in `front-end/src/settings.ts`.
+- **Simulator (development, hosted/web build only)**: Optional local service (`chia-gaming-sim`, port 5800: HTTP `/health` and WebSocket `/ws`) used instead of WalletConnect when testing without real XCH. Configured in `front-end/src/settings.ts`. Not shown in the Electron app.
 
 ## State Channels
 
@@ -75,16 +76,16 @@ Per the connectivity model in the chia-gaming repository (`CONNECTIVITY.md`), th
 
 | Axis    | Purpose                                     | How it is reached                          |
 | ------- | ------------------------------------------- | ------------------------------------------ |
-| Wallet  | Sign spends, read balances and coin records | WalletConnect (live) or simulator (dev)    |
-| Hub     | Matchmaking UI (iframe) and message relay   | WebSocket to the hub you joined            |
+| Wallet  | Sign spends, read balances and coin records | WalletConnect (live). Simulator in the hosted/web build only; hidden in Electron |
+| Hub     | Matchmaking UI (iframe) and message relay   | WebSocket to the hub you joined (desktop: origin must be allowlisted) |
 | Peer    | Opponent game traffic                       | Relayed over the hub's WebSocket           |
 | Session | In-progress channel obligation              | Local state + on-chain coins; not a socket |
 
 ### Session Rollover
 
-Durable session state is stored in **IndexedDB** (one complete session record). localStorage holds only small preferences (for example hub URL and network). A page reload is supposed to restore the session; the player app treats reload like a dropped remote connection and reconnects the wallet and hub.
+Durable session state is stored in **IndexedDB** (one complete session record). localStorage holds only small preferences (for example hub URL and network). A reload should restore the session; the player app treats reload like a dropped remote connection and reconnects the wallet and hub. In Electron that storage lives under `chiagaming://app`, not a website origin.
 
-The **hub** connection auto-reconnects with backoff after transient outages (`CONNECTIVITY.md`). Peer traffic rides on the hub WebSocket: if the hub is down, the peer is down. Transient hub or peer loss degrades the session (yellow “pings look stuck”) rather than automatically going on-chain; the player can reconnect or choose **Go on-chain**. Clearing site data loses the local session; the on-chain obligation remains until shutdown or timeout. Wallet disconnect stalls signing until the wallet is reconnected.
+The **hub** connection auto-reconnects with backoff after transient outages (`CONNECTIVITY.md`). Peer traffic rides on the hub WebSocket: if the hub is down, the peer is down. Transient hub or peer loss degrades the session (yellow “pings look stuck”) rather than automatically going on-chain; the player can reconnect or choose **Go on-chain**. Clearing site data (hosted) or app data (desktop) loses the local session; the on-chain obligation remains until shutdown or timeout. Wallet disconnect stalls signing until the wallet is reconnected.
 
 <span id="tracker-availability"></span>
 
@@ -108,8 +109,7 @@ The player app communicates with the Chia wallet via WalletConnect using the `ch
 | `chia_getNextAddress`        | Get a receive address                             |
 | `chia_getHeightInfo`         | Get current blockchain height                     |
 | `chia_selectCoins`           | Select coins for channel funding                  |
-| `chia_createOfferForIds`     | Create offers (used in channel open)              |
-| `chia_sendTransaction`       | Sign a separate fee spend that is aggregated into the protocol bundle |
+| `chia_createOfferForIds`     | Create offers (channel open and optional fee spend) |
 | `chia_pushTransactions`      | Push signed transactions to the mempool           |
 | `chia_createNewRemoteWallet` | Create a remote wallet for tracking channel coins |
 | `chia_registerRemoteCoins`   | Register channel coins for observation            |
@@ -119,9 +119,9 @@ The player app communicates with the Chia wallet via WalletConnect using the `ch
 
 ### Channel open (handshake)
 
-Opening a channel still lands as **one** on-chain funding transaction, but each wallet goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, `chia_createOfferForIds` for that player’s funding share, `chia_sendTransaction` if a fee is set, and `chia_pushTransactions`). Handshake F is only the receiver’s acceptance; each player locally combines the E and F halves, validates the result, and submits the assembled spend. Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
+Opening a channel still lands as **one** on-chain funding transaction, but each wallet goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, `chia_createOfferForIds` for that player’s funding share and for an optional fee offer, and `chia_pushTransactions`). Handshake F is only the receiver’s acceptance; each player locally combines the E and F halves, validates the result, and submits the assembled spend. Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
 
-Live WalletConnect play can attach a **transaction fee** from the player app Wallet tab (mojos or XCH). The default is **0**. Chia’s mempool treats a fee below **100,000,000 mojos** as effectively zero (`front-end/src/constants/fees.ts`); a nonzero fee in that range can be rejected instead of admitted as free. Simulator sessions do not use this fee path.
+Live WalletConnect play can attach a **transaction fee** from the player app Wallet tab (mojos or XCH). The default is **0**. Chia’s mempool treats a fee below **100,000,000 mojos** as effectively zero (`front-end/src/constants/fees.ts`); a nonzero fee in that range can be rejected instead of admitted as free. A configured fee is a validate-only `chia_createOfferForIds` offer, converted in WASM and aggregated into the protocol bundle. If that offer cannot be signed, the protocol spend is still submitted without a fee and the UI warns. Simulator sessions do not use this fee path.
 
 ## Security Model
 
@@ -135,15 +135,26 @@ The security of the system rests on several guarantees:
 
 ## Frontend Architecture
 
-The frontend is split into two separately-deployed applications:
+The frontend is one player bundle plus a separately deployed hub. The player bundle is either **hosted** as static files or **packaged** in Electron; both load the hub iframe.
 
 ### Player App
+
+The **hosted** form of the player bundle (static files in a browser):
 
 - Fully static (HTML/JS/CSS/WASM): no server-side logic
 - Contains the WASM game engine compiled from Rust
 - Handles WalletConnect integration
 - Persists durable session state in IndexedDB
-- Loads the hub's matchmaking UI in an iframe
+- Loads the hub's matchmaking UI in an iframe (session credential via origin-restricted `postMessage`, not in the iframe URL)
+- Local/web builds can use the simulator
+
+### Player App (Electron desktop)
+
+- Same `front-end/` bundle as the hosted app, inside a sandboxed Electron shell (`desktop/`)
+- Custom scheme `chiagaming://app` (not `file://`), so storage and WASM behave like the hosted origin
+- Simulator button is hidden; connect with WalletConnect
+- Still talks to a **hosted hub** over the network; the shell allowlists hub origins (`config.json` `hubOrigins`, plus hubs entered in the picker)
+- Does not include the hub service. Build with `tools/build-electron.sh`. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
 
 <span id="tracker-lobby--relay"></span>
 
@@ -152,7 +163,7 @@ The frontend is split into two separately-deployed applications:
 - Express + WebSocket service
 - Serves the hub UI (player list, challenges, optional different buy-ins per player)
 - Relays game messages between connected peers
-- Loaded inside an iframe within the player app
-- Must be on a **different origin** from the player app (security boundary)
+- Loaded inside an iframe within the player app (hosted or Electron)
+- Must be on a **different origin** from the player app (security boundary). The player app passes a hub session credential with origin-restricted `postMessage`, not in the iframe URL.
 
 This separation ensures that the hub (which is third-party code) cannot access the player app's WalletConnect session or game state.

@@ -3,9 +3,9 @@ slug: /guides/gaming-known-issues
 title: Known Issues
 ---
 
-:::warning Beta Release
+:::warning Early beta
 
-This is a **beta**. Expect issues and breaking changes. The following known issues are being tracked and worked on.
+This is an **early beta**. Expect issues and breaking changes. Compatibility is best-effort. The following known issues are being tracked and worked on.
 
 :::
 
@@ -65,7 +65,7 @@ The config-directory workflow described in older material is not available. Netw
 
 ### Handshake Timing
 
-**Problem**: Opening a channel requires one on-chain spend bundle to confirm; both wallets must see the channel reach **Active**, which takes several minutes on mainnet (~1 minute per peak). During the handshake, each wallet must also approve **several** WalletConnect requests (`chia_selectCoins`, `chia_createOfferForIds`, `chia_sendTransaction` when a fee is set, and `chia_pushTransactions`), not a single tap.
+**Problem**: Opening a channel requires one on-chain spend bundle to confirm; both wallets must see the channel reach **Active**, which takes several minutes on mainnet (~1 minute per peak). During the handshake, each wallet must also approve **several** WalletConnect requests (`chia_selectCoins`, `chia_createOfferForIds` including an optional fee offer, and `chia_pushTransactions`), not a single tap.
 
 **Impact**: The challenged player may wait a long time before the channel is playable. This is expected for on-chain handshakes. If progress stalls, check both wallets for pending approvals.
 
@@ -77,7 +77,7 @@ The config-directory workflow described in older material is not available. Netw
 
 ### Session Persistence
 
-**Problem**: Durable session state lives in IndexedDB (plus small preferences in localStorage). Clearing site data, using another profile, or choosing **Start Over** drops the local session.
+**Problem**: Durable session state lives in IndexedDB (plus small preferences in localStorage). Clearing site data, using another profile, wiping Electron app data, or choosing **Start Over** drops the local session.
 
 **Impact**: Channel coins remain on-chain until timeout or shutdown. Funds are not necessarily lost permanently, but they can stay locked until the protocol resolves.
 
@@ -93,6 +93,6 @@ The config-directory workflow described in older material is not available. Netw
 
 ### Shutdown Interrupted
 
-**Problem**: Closing the browser during cooperative shutdown can interrupt the shutdown flow.
+**Problem**: Closing the player app (browser tab or Electron window) during cooperative shutdown can interrupt the shutdown flow.
 
 **Workaround**: Both players should keep the app open until cooperative shutdown finishes.

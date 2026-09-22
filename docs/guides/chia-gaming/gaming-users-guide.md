@@ -11,17 +11,19 @@ This user guide is intended to help developers test their gaming implementations
 
 :::note Session persistence
 
-Game sessions are persisted in the browser (IndexedDB, with a few small preferences in localStorage). Reloading the player app should restore an in-progress session. Clearing site data, using a different browser profile, or choosing **Start Over** still abandons the local copy of that session. Channel coins on-chain are independent of the browser: if you abandon a live session, funds follow on-chain timeout and shutdown rules.
+Game sessions are persisted in the player app (IndexedDB, with a few small preferences in localStorage). Reloading should restore an in-progress session. Clearing site data, wiping Electron app data, using a different browser profile, or choosing **Start Over** still abandons the local copy of that session. Channel coins on-chain are independent of the client: if you abandon a live session, funds follow on-chain timeout and shutdown rules.
 
 :::
 
 ## Intro
 
-This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). For live testing, each player connects a Chia wallet (**2.7.1 or later**) via WalletConnect. The player app reads chain state and submits transactions through the wallet connection (see `front-end/src/hooks/RealBlockchainInterface.ts` in the chia-gaming repository). A **hub** service provides matchmaking and relays game messages between the two browsers.
+This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). You can run the **hosted** player app in a browser or the **Electron** desktop app — both use the same game bundle. For live testing, each player connects a Chia wallet (**2.7.1 or later**) via WalletConnect. A **hub** service still provides matchmaking and relays game messages; the desktop app does not include a hub.
+
+The hosted/web build can use **Simulator** for development without real XCH. The Electron app hides the simulator and is WalletConnect-only. Both players must use the same network (simulator, mainnet, or testnet11) and the **same hub**.
 
 :::note Network
 
-Live WalletConnect play uses the network selected in the player app (**mainnet** or **testnet11**). Both players and both wallets must be on the same network. Use **Simulator** mode in the player app for development without real XCH.
+Live WalletConnect play uses the network selected in the player app (**mainnet** or **testnet11**). Both players and both wallets must be on the same network.
 
 :::
 
@@ -39,23 +41,23 @@ Each peak (block) on mainnet takes approximately 1 minute. Opening a channel sti
 
 ## Player 1: Alice
 
-1. **Visit the player app**: Navigate to the player app URL (e.g. `http://localhost:3002` for local development).
+1. **Open the player app**: Hosted URL (e.g. `http://localhost:3002`) or the Electron desktop app. See the [Developers Guide](/guides/gaming-developers-guide) for how those two packagings differ.
 
-2. **Connect a chain backend**: Use WalletConnect to connect a Chia wallet (2.7.1 or later), or select **Simulator** for local development. For live testing, do not select Simulator.
+2. **Connect a chain backend**: **Link Wallet** (WalletConnect, 2.7.1 or later) for live testing. In the hosted/web build you can instead choose **Continue with Simulator**. Electron does not show the simulator.
 
 3. **Check Your Light Wallet** (live play): You should see a `chia_getWalletBalance` request in your Chia Light Wallet. Choose "remember this decision" and confirm the request.
 
 4. **Set a transaction fee** (live play): In the player app Wallet tab, set **Transaction fee** (mojos or XCH). The default is **0**. On a busy mempool, a zero fee may not confirm. A nonzero fee below **100,000,000 mojos** is treated as zero and can be rejected; use `0` or at least that amount. Simulator play does not need a fee.
 
-5. **Connect to a hub**: Enter the hub URL (e.g. `http://localhost:3003` for local development) and connect. The hub UI loads in an iframe. It finds opponents and relays messages; it cannot take funds or change game outcomes.
+5. **Connect to a hub**: Enter the hub URL (e.g. `http://localhost:3003` for local development) and connect. The hub UI loads in an iframe. It finds opponents and relays messages; it cannot take funds or change game outcomes. In Electron, a new hub origin is allowlisted and the window reloads once so the CSP can include it.
 
 6. **Appear as available**: Once connected, Alice is listed for matchmaking on that hub.
 
 ## Player 2: Bob
 
-1. **Open a separate browser**: Use a browser that does not share session state with Alice (e.g., another computer, or an incognito/private window).
+1. **Open a separate client**: Use a second computer, a private/incognito window, or a second Electron install that does not share Alice’s session storage.
 
-2. **Connect a chain backend**: Simulator, or a **separate** Chia wallet (2.7.1 or later) via WalletConnect. Both players must use the same network (simulator, mainnet, or testnet11). For live play, set a **transaction fee** the same way as Alice.
+2. **Connect a chain backend**: Simulator (hosted/web only), or a **separate** Chia wallet (2.7.1 or later) via WalletConnect. Both players must use the same network (simulator, mainnet, or testnet11). For live play, set a **transaction fee** the same way as Alice.
 
 3. **Connect to the same hub**: Enter the same hub URL Alice used.
 

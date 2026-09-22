@@ -3,9 +3,9 @@ slug: /guides/gaming-developers-guide
 title: Developers Guide
 ---
 
-:::warning Beta Release
+:::warning Early beta
 
-This is a **beta** of the Chia Gaming system. Wire formats, persistence, and APIs can still change. Use this system for development and testing.
+This is an **early beta** of the Chia Gaming system. It works, but bugs are still likely. Compatibility is best-effort: wire formats, persistence, and APIs can still change. Use this system for development and testing.
 
 :::
 
@@ -17,10 +17,21 @@ This is a **beta** of the Chia Gaming system. Wire formats, persistence, and API
 
 ## Intro
 
-This guide covers development, testing, and deployment for the Chia Gaming system. The system consists of two deployable artifacts:
+This guide covers development, testing, and deployment for the Chia Gaming system.
 
-1. **Player App**: A fully static HTML/JS/CSS/WASM application that players run in their browser (or in the Electron desktop shell). It contains the wallet connection, WASM game engine, and all game UIs. No server-side logic, no cookies, no server-side sessions.
-2. **Hub**: A separate service that provides matchmaking UI (loaded as an iframe inside the player app) and a WebSocket relay that ferries game messages between peers. Hubs are third-party code; anyone can run one.
+The **player app** is one React + WASM bundle (`front-end/`). It contains the wallet connection, game engine, and all game UIs. No server-side logic, no cookies, no server-side sessions. That same bundle ships two ways:
+
+| | **Hosted player app** | **Electron desktop** |
+| --- | --- | --- |
+| What it is | Static HTML/JS/CSS/WASM on any web server | Native installer wrapping that same bundle in a hardened Electron shell (`desktop/`) |
+| How players open it | Browser URL (local demo: `http://localhost:3002`) | Installed app (`chiagaming://app`) |
+| Simulator | Available in the local/web build | Hidden — desktop is live WalletConnect only |
+| Hub | Still required (iframe + WebSocket on a **different origin**) | Same hub; the shell allowlists hub origins |
+| Build | `./run-local-demo.sh` or `./tools/build-deploy.sh` | `./tools/build-electron.sh --platform=mac` (or `win` / `linux`) |
+
+A **hub** is a separate service: matchmaking UI (iframe inside the player app) and a WebSocket relay between peers. Hubs are third-party code; anyone can run one. The desktop app does **not** replace the hub — you still run or join one.
+
+Details of the desktop shell (CSP, network allowlist, `config.json`) are in [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
 
 To follow this guide, you will need:
 
@@ -72,7 +83,7 @@ For information about becoming a gaming partner, see the [Gaming Partner RFP](/g
 ### User Dependencies
 
 - **Chia wallet**: **2.7.1 or later** (light wallet is sufficient; a local full node is not required for players)
-- **WalletConnect (live play)**: Each player connects their wallet via WalletConnect. The player app uses wallet RPC methods (for example `chia_getCoinRecordsByNames`, `chia_sendTransaction`, `chia_pushTransactions`) through that connection (`front-end/src/hooks/RealBlockchainInterface.ts`). Set a **transaction fee** in the Wallet tab for live spends; default is 0. Fees below 100,000,000 mojos are treated as zero (`front-end/src/constants/fees.ts`) and can be rejected by the mempool.
+- **WalletConnect (live play)**: Each player connects their wallet via WalletConnect. The player app uses wallet RPC methods (for example `chia_getCoinRecordsByNames`, `chia_createOfferForIds`, `chia_pushTransactions`) through that connection (`front-end/src/hooks/RealBlockchainInterface.ts`). Set a **transaction fee** in the Wallet tab for live spends; default is 0. Fees below 100,000,000 mojos are treated as zero (`front-end/src/constants/fees.ts`) and can be rejected by the mempool.
 - **Simulator (development)**: For testing without real XCH, use simulator mode and the `chia-gaming-sim` binary started by `run-local-demo.sh` (single port 5800: HTTP `/health` and WebSocket `/ws`; see `front-end/src/settings.ts`).
 
 :::tip Common Issues
@@ -106,7 +117,7 @@ Flags:
 
 Press Ctrl-C to stop all services.
 
-You can play on the simulator or on live chain with the files hosted locally. Live WalletConnect play needs Chia Wallet **2.7.1 or later** with spendable funds (the repository documents a practical minimum of **1000 mojos** for mainnet smoke tests).
+You can play on the simulator or on live chain with the files hosted locally. Live WalletConnect play needs Chia Wallet **2.7.1 or later** with spendable funds (the repository documents a practical minimum of **1000 mojos** for mainnet smoke tests). To try the same player bundle as a desktop app instead of `:3002`, keep the hub (and simulator, if you need it) from this script and launch Electron from [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md) — the desktop UI hides the simulator.
 
 ### Using Release Artifacts
 
@@ -114,10 +125,14 @@ You can play on the simulator or on live chain with the files hosted locally. Li
 
 **Release binaries:** Download from the [chia-gaming Releases](https://github.com/Chia-Network/chia-gaming/releases) page. Those assets are the **staged** archives from `tools/build-deploy.sh` (`.zip` and `.tgz` with the same contents):
 
-- `chia-gaming-YYYYMMDD-HASH.zip`: player app (`index.html`, `build-meta.json`, `app/<nonce>/` with JS, CSS, WASM, and compiled CLVM)
+- `chia-gaming-YYYYMMDD-HASH.zip`: **hosted** player app (`index.html`, `build-meta.json`, `app/<nonce>/` with JS, CSS, WASM, and compiled CLVM)
 - `chia-gaming-hub-YYYYMMDD-HASH.zip`: hub (same staging layout, plus `service.js` at the archive root)
 
-Build them yourself with `./tools/build-deploy.sh` from source (see [DEVELOPMENT.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEVELOPMENT.md)). The staged layout matches what `run-local-demo.sh` assembles locally (file copies under `front-end/serve` and `hub/hub-frontend/serve`).
+Those zips are what you extract onto a web server. They are **not** the Electron installers.
+
+Build the hosted archives with `./tools/build-deploy.sh` (see [DEVELOPMENT.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEVELOPMENT.md)). The staged layout matches what `run-local-demo.sh` assembles locally (file copies under `front-end/serve` and `hub/hub-frontend/serve`).
+
+**Electron desktop:** `./tools/build-electron.sh --platform=mac` (or `win` / `linux`) builds the same player bundle, then packages installers under `desktop/release/`. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md). The hub is still a separate process.
 
 To run the hub from a release zip:
 
@@ -251,10 +266,10 @@ For detailed deployment instructions including asset layout, caching rules, and 
 
 Key points:
 
-- The player app and hub must be served from **different origins** (the hub UI loads inside an iframe)
+- The **hosted** player app and hub must be served from **different origins** (the hub UI loads inside an iframe)
 - WASM files and compiled CLVM artifacts must be under the same `basePath` as `index.js`
-- No simulator in production: players connect their Chia wallet via WalletConnect
-- Use `tools/build-deploy.sh` to produce deployment zip/tgz archives
+- No simulator in a production **hosted** deploy or in the **Electron** app: players connect a Chia wallet via WalletConnect
+- Use `tools/build-deploy.sh` for hosted zip/tgz archives; use `tools/build-electron.sh` for desktop installers. Both wrap the same `front-end/` bundle. The hub is packaged only with `build-deploy.sh`.
 
 ## Manual Configuration
 
@@ -270,7 +285,7 @@ Optional CI/testing overrides: `CHIA_GAMING_CHAIN_ID` and `CHIA_GAMING_GENESIS_C
 
 ### Transaction fees
 
-Live WalletConnect spends can include a fee from the player app **Wallet** tab (`defaultFee` in session preferences). Default is **0**. The mempool treats a fee below **100,000,000 mojos** as effectively zero (`MIN_NONZERO_FEE_MOJOS` in `front-end/src/constants/fees.ts`); the UI refuses to save a nonzero value in that range. The fee spend is signed with `chia_sendTransaction` and aggregated into the protocol bundle before `chia_pushTransactions`. Simulator play does not use this path.
+Live WalletConnect spends can include a fee from the player app **Wallet** tab (`defaultFee` in session preferences). Default is **0**. The mempool treats a fee below **100,000,000 mojos** as effectively zero (`MIN_NONZERO_FEE_MOJOS` in `front-end/src/constants/fees.ts`); the UI refuses to save a nonzero value in that range. A nonzero fee is built as a validate-only `chia_createOfferForIds` offer, converted in WASM, and aggregated into the protocol bundle before `chia_pushTransactions`. If the wallet cannot sign that fee offer, the app still submits the protocol spend **without** a fee and warns. Simulator play does not use this path.
 
 ### WalletConnect Project Info Updates
 

@@ -131,10 +131,11 @@ The player app reads `build-meta.json` from the server root to determine the ass
 - Verify the hub is running on a **different origin** from the player app
 - Check the browser console for CSP (Content Security Policy) errors
 - Verify the `--self` flag matches the public URL of the hub
+- **Electron:** the hub origin must be on the desktop allowlist (`hubOrigins` in the app `config.json`, or typed into the in-app picker). A newly trusted hub reloads the window once. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
 
 **WebSocket connection failures:**
 
-- Verify the hub's `--self` URL is accessible from both players' browsers
+- Verify the hub's `--self` URL is accessible from both players' browsers or desktop apps
 - Check for firewall or proxy rules blocking WebSocket upgrades
 - Ensure the hub process is still running
 
@@ -167,6 +168,7 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 - Each transaction block takes approximately 1 minute
 - Channel opening uses one on-chain spend bundle; confirmation can take several minutes (about 1 minute per peak)
 - For live WalletConnect play, check the **Transaction fee** in the player app Wallet tab. Default is 0. A nonzero fee below 100,000,000 mojos is treated as zero and can be rejected (`INVALID_FEE_TOO_CLOSE_TO_ZERO`)
+- If the UI warns that the configured fee was not applied, the protocol spend was still submitted **without** a fee (the wallet could not sign the fee offer)
 - If a transaction is stuck, check the mempool via your wallet
 
 **Wallet disconnects mid-game:**
