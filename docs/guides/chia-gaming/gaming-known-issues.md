@@ -29,6 +29,12 @@ For steps to resolve common problems, see the [Troubleshooting Guide](/guides/ga
 
 **California Poker (CalPoker)**, **Space Poker**, and **Krunk** are available as beta reference games. On-chain Chialisp, rules, and UI are still undergoing changes.
 
+### Cloud Wallet not ready
+
+**Problem**: The player app may show a **Cloud Wallet** control, but that integration is not complete.
+
+**Workaround**: Use **Link Wallet** (WalletConnect) for live testing. Treat Cloud Wallet as unavailable until the product enables it.
+
 ## Developer Issues
 
 ### Easy Developer Configuration Not Available
@@ -74,6 +80,12 @@ The config-directory workflow described in older material is not available. Netw
 **Problem**: The Chia wallet may have pending WalletConnect requests that are not immediately visible, so the handshake or gameplay can appear stuck.
 
 **Workaround**: Check the Chia wallet application for pending approval requests. The Chia Wallet may not come to the foreground for WalletConnect; switch to the wallet app manually when approval is needed.
+
+### Wallet account mismatch on reconnect
+
+**Problem**: A live session is bound to the wallet account that funded it. If you reconnect a different account, the app treats that as a mismatch and does not apply funding or cleanup to the new account.
+
+**Workaround**: Reconnect the same wallet (same account) that opened the channel. If you cannot recover that account, follow on-chain timeout and shutdown rules for the channel coins.
 
 ### Session Persistence
 
