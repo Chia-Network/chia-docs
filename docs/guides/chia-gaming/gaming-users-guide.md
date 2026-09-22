@@ -17,9 +17,9 @@ Game sessions are persisted in the player app (IndexedDB, with a few small prefe
 
 ## Intro
 
-This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). You can run the **hosted** player app in a browser or the **Electron** desktop app — both use the same game bundle. For live testing, each player connects a Chia wallet (**2.7.1 or later**) via WalletConnect. A **hub** service still provides matchmaking and relays game messages; the desktop app does not include a hub.
+This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). You can run the **hosted** player app in a browser or the **Electron** desktop app — both use the same game bundle. For live testing, each player connects a Chia wallet (**2.7.1 or later**) via **Link Wallet** (WalletConnect). A **hub** service still provides matchmaking and relays game messages; the desktop app does not include a hub.
 
-The hosted/web build can use **Simulator** for development without real XCH. The Electron app hides the simulator and is WalletConnect-only. Both players must use the same network (simulator, mainnet, or testnet11) and the **same hub**.
+The hosted/web build can use **Simulator** for development without real XCH. The Electron app hides the simulator; use **Link Wallet** for live play. A Cloud Wallet option may appear in the UI, but that integration is not complete yet. Both players must use the same network (simulator, mainnet, or testnet11) and the **same hub**.
 
 :::note Network
 
@@ -43,9 +43,9 @@ Each peak (block) on mainnet takes approximately 1 minute. Opening a channel sti
 
 1. **Open the player app**: Hosted URL (e.g. `http://localhost:3002`) or the Electron desktop app. See the [Developers Guide](/guides/gaming-developers-guide) for how those two packagings differ.
 
-2. **Connect a chain backend**: **Link Wallet** (WalletConnect, 2.7.1 or later) for live testing. In the hosted/web build you can instead choose **Continue with Simulator**. Electron does not show the simulator.
+2. **Connect a chain backend**: **Link Wallet** (WalletConnect, 2.7.1 or later) for live testing. In the hosted/web build you can instead choose **Continue with Simulator**. Electron does not show the simulator. Do not use Cloud Wallet for testing yet.
 
-3. **Check Your Light Wallet** (live play): You should see a `chia_getWalletBalance` request in your Chia Light Wallet. Choose "remember this decision" and confirm the request.
+3. **Check Your Light Wallet** (live play): You should see a `chia_getWalletBalance` request in your Chia Light Wallet. Choose "remember this decision" and confirm the request. Later reconnects should use the **same** wallet account that funded the channel.
 
 4. **Set a transaction fee** (live play): In the player app Wallet tab, set **Transaction fee** (mojos or XCH). The default is **0**. On a busy mempool, a zero fee may not confirm. A nonzero fee below **100,000,000 mojos** is treated as zero and can be rejected; use `0` or at least that amount. Simulator play does not need a fee.
 

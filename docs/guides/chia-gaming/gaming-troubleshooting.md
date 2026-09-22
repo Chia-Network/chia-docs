@@ -173,9 +173,15 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 
 **Wallet disconnects mid-game:**
 
-- Reconnect the wallet via WalletConnect; stalled operations resume when the wallet is back (`CONNECTIVITY.md`)
+- Reconnect the **same** wallet account via WalletConnect; stalled operations resume when that wallet is back (`CONNECTIVITY.md`)
+- If a different account is connected, the app shows a mismatch and will not apply funding or cleanup to it
 - Session data remains in IndexedDB across a page reload; do not clear site data during an active session
 - If the session is abandoned, channel coins follow on-chain timeout rules (see [Known Issues](/guides/gaming-known-issues))
+
+**Cloud Wallet button unavailable or incomplete:**
+
+- Cloud Wallet integration is in progress but not complete
+- Use **Link Wallet** (WalletConnect) for live play
 
 ## User Troubleshooting
 
