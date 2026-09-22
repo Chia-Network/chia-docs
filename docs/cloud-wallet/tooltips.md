@@ -58,7 +58,7 @@ This is the amount of time you must wait before a recovery operation can be comp
 
 ## Signer App
 
-A smartphone app for **iOS** and **Android** (Android is in **beta**). The app stores a spend key in hardware-protected storage on the device (Secure Enclave on iOS; hardware-backed keystore / StrongBox on supported Android devices). This key cannot be copied or removed from the phone, so the only way to steal it is to gain physical access to the device. For this reason, we strongly recommend that you secure the Signer app using your phone’s biometrics. **iOS:** [App Store](https://apps.apple.com/app/chia-signer/id6504493785). **Android** (beta): [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
+A smartphone app for **iOS** and **Android**. The app stores a spend key in hardware-protected storage on the device (Secure Enclave on iOS; hardware-backed keystore / StrongBox on supported Android devices). This key cannot be copied or removed from the phone, so the only way to steal it is to gain physical access to the device. For this reason, we strongly recommend that you secure the Signer app using your phone’s biometrics. **iOS:** [App Store](https://apps.apple.com/app/chia-signer/id6504493785). **Android**: [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 ## Clawback
 
@@ -79,7 +79,7 @@ Please read this section before deciding on which types of keys to use in your v
 
 ### App (Hardware key)
 
-Create a hardware-backed key in your device's secure hardware (Secure Enclave on iOS; hardware-backed keystore on Android, currently in beta). This key can never be removed from your device. See our [Getting Started Guide](/chia-signer/getting-started/) for more info.
+Create a hardware-backed key in your device's secure hardware (Secure Enclave on iOS; hardware-backed keystore on Android). This key can never be removed from your device. See our [Getting Started Guide](/chia-signer/getting-started/) for more info.
 
 #### Bottom Line
 
