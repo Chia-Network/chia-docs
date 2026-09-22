@@ -14,7 +14,7 @@ The system consists of:
 - **Player app (hosted)**: Static HTML/JS/CSS/WASM on any web server. Players open it in a browser. The local demo includes a **simulator** option for play without real XCH.
 - **Player app (Electron desktop)**: The **same** React + WASM bundle, packaged as a native installer (`desktop/`, `tools/build-electron.sh`). Origin is `chiagaming://app`. The desktop shell hides the simulator, allowlists hub origins, and does not replace the hub.
 - **Hub**: Matchmaking UI and WebSocket relay. Provides a player list and challenges, and ferries game messages between peers. Hubs are third-party code; anyone can run one. Required for both hosted and desktop players.
-- **Chia wallet (live play)**: Connected via WalletConnect. The player app reads chain state and submits transactions through the wallet (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`). A full node on the same machine is not required for players; the wallet handles chain interaction.
+- **Chia wallet (live play)**: Connected via WalletConnect (`Link Wallet`). The player app reads chain state and submits transactions through the wallet (for example `chia_getCoinRecordsByNames`, `chia_pushTransactions`). A full node on the same machine is not required for players; the wallet handles chain interaction. A **Cloud Wallet** connection path is in progress but not complete; use WalletConnect for live play today.
 - **Simulator (development, hosted/web build only)**: Optional local service (`chia-gaming-sim`, port 5800: HTTP `/health` and WebSocket `/ws`) used instead of WalletConnect when testing without real XCH. Configured in `front-end/src/settings.ts`. Not shown in the Electron app.
 
 ## State Channels
@@ -62,6 +62,7 @@ Each game type implements a **referee**: a Chialisp puzzle that can validate gam
 The referee ensures that even if the off-chain communication breaks down, the game can always be completed fairly, on-chain (albeit more slowly and at transaction cost).
 
 <!-- Legacy anchors preserved for external links -->
+
 <span id="game-handlers"></span>
 
 ### Game packages
@@ -74,18 +75,20 @@ To add a game, follow [`GAME_WRITING_GUIDE.md`](https://github.com/Chia-Network/
 
 Per the connectivity model in the chia-gaming repository (`CONNECTIVITY.md`), the **blockchain itself is not a connection**; it is the ground truth. What you connect to in the player app are three operational axes plus session state:
 
-| Axis    | Purpose                                     | How it is reached                          |
-| ------- | ------------------------------------------- | ------------------------------------------ |
-| Wallet  | Sign spends, read balances and coin records | WalletConnect (live). Simulator in the hosted/web build only; hidden in Electron |
-| Hub     | Matchmaking UI (iframe) and message relay   | WebSocket to the hub you joined (desktop: origin must be allowlisted) |
-| Peer    | Opponent game traffic                       | Relayed over the hub's WebSocket           |
-| Session | In-progress channel obligation              | Local state + on-chain coins; not a socket |
+| Axis    | Purpose                                     | How it is reached                                                                                                           |
+| ------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Wallet  | Sign spends, read balances and coin records | WalletConnect (live). Simulator in the hosted/web build only; hidden in Electron. Cloud Wallet integration is not ready yet |
+| Hub     | Matchmaking UI (iframe) and message relay   | WebSocket to the hub you joined (desktop: origin must be allowlisted)                                                       |
+| Peer    | Opponent game traffic                       | Relayed over the hub's WebSocket                                                                                            |
+| Session | In-progress channel obligation              | Local state + on-chain coins; not a socket                                                                                  |
 
 ### Session Rollover
 
 Durable session state is stored in **IndexedDB** (one complete session record). localStorage holds only small preferences (for example hub URL and network). A reload should restore the session; the player app treats reload like a dropped remote connection and reconnects the wallet and hub. In Electron that storage lives under `chiagaming://app`, not a website origin.
 
 The **hub** connection auto-reconnects with backoff after transient outages (`CONNECTIVITY.md`). Peer traffic rides on the hub WebSocket: if the hub is down, the peer is down. Transient hub or peer loss degrades the session (yellow “pings look stuck”) rather than automatically going on-chain; the player can reconnect or choose **Go on-chain**. Clearing site data (hosted) or app data (desktop) loses the local session; the on-chain obligation remains until shutdown or timeout. Wallet disconnect stalls signing until the wallet is reconnected.
+
+A live session binds to one wallet account (provider scope). Reconnecting that same account resumes work. Connecting a different account is treated as a mismatch: the app does not apply funding or cleanup to the wrong wallet.
 
 <span id="tracker-availability"></span>
 
@@ -102,20 +105,21 @@ It is **not** required for on-chain settlement. If the hub disappears permanentl
 
 The player app communicates with the Chia wallet via WalletConnect using the `chia` namespace. The following methods are used:
 
-| Method                       | Purpose                                           |
-| ---------------------------- | ------------------------------------------------- |
-| `chia_getWallets`            | List available wallets                            |
-| `chia_getWalletBalance`      | Check available balance                           |
-| `chia_getNextAddress`        | Get a receive address                             |
-| `chia_getHeightInfo`         | Get current blockchain height                     |
-| `chia_selectCoins`           | Select coins for channel funding                  |
-| `chia_createOfferForIds`     | Create offers (channel open and optional fee spend) |
-| `chia_pushTransactions`      | Push signed transactions to the mempool           |
-| `chia_createNewRemoteWallet` | Create a remote wallet for tracking channel coins |
-| `chia_registerRemoteCoins`   | Register channel coins for observation            |
-| `chia_getCoinRecordsByNames` | Look up specific coin records                     |
-| `chia_getPuzzleAndSolution`  | Get puzzle/solution for spent coins               |
-| `chia_getFullNodePeerCount`  | Wallet peer-count check                           |
+| Method                       | Purpose                                                |
+| ---------------------------- | ------------------------------------------------------ |
+| `chia_getWallets`            | List available wallets                                 |
+| `chia_getWalletBalance`      | Check available balance                                |
+| `chia_getNextAddress`        | Get a receive address                                  |
+| `chia_getHeightInfo`         | Get current blockchain height                          |
+| `chia_selectCoins`           | Select coins for channel funding                       |
+| `chia_createOfferForIds`     | Create offers (channel open and optional fee spend)    |
+| `chia_cancelOffer`           | Cancel an offer when the protocol needs to withdraw it |
+| `chia_pushTransactions`      | Push signed transactions to the mempool                |
+| `chia_createNewRemoteWallet` | Create a remote wallet for tracking channel coins      |
+| `chia_registerRemoteCoins`   | Register channel coins for observation                 |
+| `chia_getCoinRecordsByNames` | Look up specific coin records                          |
+| `chia_getPuzzleAndSolution`  | Get puzzle/solution for spent coins                    |
+| `chia_getFullNodePeerCount`  | Wallet peer-count check                                |
 
 ### Channel open (handshake)
 
@@ -131,7 +135,7 @@ The security of the system rests on several guarantees:
 2. **Latest state wins**: Higher sequence numbers always supersede lower ones
 3. **Timeout protection**: If one player disappears during an on-chain dispute, the other can claim funds after a timeout
 4. **Hub is a relay, not a co-signer**: The hub ferries matchmaking and game messages; it does not hold channel keys or settle balances. Players still rely on signed off-chain state and on-chain puzzles for security.
-5. **Wallet isolation**: The player app never has access to private keys; all signing happens in the wallet via WalletConnect
+5. **Wallet isolation**: The player app never has access to private keys; live signing happens in the connected wallet (WalletConnect today)
 
 ## Frontend Architecture
 
@@ -143,18 +147,19 @@ The **hosted** form of the player bundle (static files in a browser):
 
 - Fully static (HTML/JS/CSS/WASM): no server-side logic
 - Contains the WASM game engine compiled from Rust
-- Handles WalletConnect integration
+- Handles WalletConnect integration (`Link Wallet`) for live play
 - Persists durable session state in IndexedDB
 - Loads the hub's matchmaking UI in an iframe (session credential via origin-restricted `postMessage`, not in the iframe URL)
 - Local/web builds can use the simulator
+- Cloud Wallet support is under development and not ready for use
 
 ### Player App (Electron desktop)
 
 - Same `front-end/` bundle as the hosted app, inside a sandboxed Electron shell (`desktop/`)
 - Custom scheme `chiagaming://app` (not `file://`), so storage and WASM behave like the hosted origin
-- Simulator button is hidden; connect with WalletConnect
+- Simulator button is hidden; use **Link Wallet** (WalletConnect) for live play
 - Still talks to a **hosted hub** over the network; the shell allowlists hub origins (`config.json` `hubOrigins`, plus hubs entered in the picker)
-- Does not include the hub service. Build with `tools/build-electron.sh`. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
+- Does not include the hub service. Build with `tools/build-electron.sh`, or download desktop installers from [chia-gaming Releases](https://github.com/Chia-Network/chia-gaming/releases) when published. Early beta installers may be unsigned. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
 
 <span id="tracker-lobby--relay"></span>
 
