@@ -21,17 +21,19 @@ This guide covers development, testing, and deployment for the Chia Gaming syste
 
 The **player app** is one React + WASM bundle (`front-end/`). It contains the wallet connection, game engine, and all game UIs. No server-side logic, no cookies, no server-side sessions. That same bundle ships two ways:
 
-| | **Hosted player app** | **Electron desktop** |
-| --- | --- | --- |
-| What it is | Static HTML/JS/CSS/WASM on any web server | Native installer wrapping that same bundle in a hardened Electron shell (`desktop/`) |
-| How players open it | Browser URL (local demo: `http://localhost:3002`) | Installed app (`chiagaming://app`) |
-| Simulator | Available in the local/web build | Hidden — desktop is live WalletConnect only |
-| Hub | Still required (iframe + WebSocket on a **different origin**) | Same hub; the shell allowlists hub origins |
-| Build | `./run-local-demo.sh` or `./tools/build-deploy.sh` | `./tools/build-electron.sh --platform=mac` (or `win` / `linux`) |
+|                     | **Hosted player app**                                         | **Electron desktop**                                                                                                 |
+| ------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| What it is          | Static HTML/JS/CSS/WASM on any web server                     | Native installer wrapping that same bundle in a hardened Electron shell (`desktop/`)                                 |
+| How players open it | Browser URL (local demo: `http://localhost:3002`)             | Installed app (`chiagaming://app`)                                                                                   |
+| Simulator           | Available in the local/web build                              | Hidden — use **Link Wallet** for live play                                                                           |
+| Hub                 | Still required (iframe + WebSocket on a **different origin**) | Same hub; the shell allowlists hub origins                                                                           |
+| Build               | `./run-local-demo.sh` or `./tools/build-deploy.sh`            | `./tools/build-electron.sh --platform=mac` (or `win` / `linux`), or download installers from Releases when published |
 
 A **hub** is a separate service: matchmaking UI (iframe inside the player app) and a WebSocket relay between peers. Hubs are third-party code; anyone can run one. The desktop app does **not** replace the hub — you still run or join one.
 
-Details of the desktop shell (CSP, network allowlist, `config.json`) are in [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
+Details of the desktop shell (CSP, network allowlist, `config.json`) are in [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md). Early beta desktop installers may be unsigned; expect OS warnings until signing is in place.
+
+A **Cloud Wallet** connection option is under development and is not ready for use. For live testing, use **Link Wallet** (WalletConnect).
 
 To follow this guide, you will need:
 
@@ -83,8 +85,9 @@ For information about becoming a gaming partner, see the [Gaming Partner RFP](/g
 ### User Dependencies
 
 - **Chia wallet**: **2.7.1 or later** (light wallet is sufficient; a local full node is not required for players)
-- **WalletConnect (live play)**: Each player connects their wallet via WalletConnect. The player app uses wallet RPC methods (for example `chia_getCoinRecordsByNames`, `chia_createOfferForIds`, `chia_pushTransactions`) through that connection (`front-end/src/hooks/RealBlockchainInterface.ts`). Set a **transaction fee** in the Wallet tab for live spends; default is 0. Fees below 100,000,000 mojos are treated as zero (`front-end/src/constants/fees.ts`) and can be rejected by the mempool.
+- **WalletConnect (live play)**: Each player connects their wallet via **Link Wallet**. The player app uses wallet RPC methods (for example `chia_getCoinRecordsByNames`, `chia_createOfferForIds`, `chia_cancelOffer`, `chia_pushTransactions`) through that connection (`front-end/src/hooks/RealBlockchainInterface.ts`). Set a **transaction fee** in the Wallet tab for live spends; default is 0. Fees below 100,000,000 mojos are treated as zero (`front-end/src/constants/fees.ts`) and can be rejected by the mempool. Reconnect the same wallet account that funded the session; a different account is treated as a mismatch and is not used for funding or cleanup.
 - **Simulator (development)**: For testing without real XCH, use simulator mode and the `chia-gaming-sim` binary started by `run-local-demo.sh` (single port 5800: HTTP `/health` and WebSocket `/ws`; see `front-end/src/settings.ts`).
+- **Cloud Wallet**: Integration is in progress but not complete. Do not rely on the Cloud Wallet button for testing yet.
 
 :::tip Common Issues
 
@@ -123,16 +126,16 @@ You can play on the simulator or on live chain with the files hosted locally. Li
 
 **Local development:** `./run-local-demo.sh` builds everything, assembles the nonce-based staging trees (`build-meta.json`, assets under `app/<nonce>/`), and starts the player app, hub, and simulator.
 
-**Release binaries:** Download from the [chia-gaming Releases](https://github.com/Chia-Network/chia-gaming/releases) page. Those assets are the **staged** archives from `tools/build-deploy.sh` (`.zip` and `.tgz` with the same contents):
+**Release binaries:** Download from the [chia-gaming Releases](https://github.com/Chia-Network/chia-gaming/releases) page when assets are published for an early beta cut. Hosted player and hub archives come from `tools/build-deploy.sh` (`.zip` and `.tgz` with the same contents). Filenames are either a date-and-hash stamp or a release tag name, depending on how the archive was built:
 
-- `chia-gaming-YYYYMMDD-HASH.zip`: **hosted** player app (`index.html`, `build-meta.json`, `app/<nonce>/` with JS, CSS, WASM, and compiled CLVM)
-- `chia-gaming-hub-YYYYMMDD-HASH.zip`: hub (same staging layout, plus `service.js` at the archive root)
+- `chia-gaming-<stamp>.zip` / `.tgz`: **hosted** player app (`index.html`, `build-meta.json`, `app/<nonce>/` with JS, CSS, WASM, and compiled CLVM)
+- `chia-gaming-hub-<stamp>.zip` / `.tgz`: hub (same staging layout, plus `service.js` at the archive root)
 
-Those zips are what you extract onto a web server. They are **not** the Electron installers.
+Those archives are what you extract onto a web server. They are **not** the Electron installers.
 
-Build the hosted archives with `./tools/build-deploy.sh` (see [DEVELOPMENT.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEVELOPMENT.md)). The staged layout matches what `run-local-demo.sh` assembles locally (file copies under `front-end/serve` and `hub/hub-frontend/serve`).
+Build the hosted archives with `./tools/build-deploy.sh` (see [DEVELOPMENT.md](https://github.com/Chia-Network/chia-gaming/blob/main/DEVELOPMENT.md)). Pass `--release-version=<tag>` when you want tag-named archives instead of the default date-hash form. The staged layout matches what `run-local-demo.sh` assembles locally (file copies under `front-end/serve` and `hub/hub-frontend/serve`).
 
-**Electron desktop:** `./tools/build-electron.sh --platform=mac` (or `win` / `linux`) builds the same player bundle, then packages installers under `desktop/release/`. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md). The hub is still a separate process.
+**Electron desktop:** Installers may also appear on the same Releases page, or you can build them with `./tools/build-electron.sh --platform=mac` (or `win` / `linux`). That packages the same player bundle under `desktop/release/`. The hub is still a separate process. Early beta installers may be unsigned, so the OS may warn before opening the app. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
 
 To run the hub from a release zip:
 
@@ -268,8 +271,9 @@ Key points:
 
 - The **hosted** player app and hub must be served from **different origins** (the hub UI loads inside an iframe)
 - WASM files and compiled CLVM artifacts must be under the same `basePath` as `index.js`
-- No simulator in a production **hosted** deploy or in the **Electron** app: players connect a Chia wallet via WalletConnect
-- Use `tools/build-deploy.sh` for hosted zip/tgz archives; use `tools/build-electron.sh` for desktop installers. Both wrap the same `front-end/` bundle. The hub is packaged only with `build-deploy.sh`.
+- No simulator in a production **hosted** deploy or in the **Electron** app: players connect a Chia wallet via WalletConnect (`Link Wallet`)
+- Cloud Wallet integration is not complete; do not require it for a production deploy yet
+- Use `tools/build-deploy.sh` for hosted zip/tgz archives; use `tools/build-electron.sh` for desktop installers. Both wrap the same `front-end/` bundle. The hub is packaged only with `build-deploy.sh`. Early beta desktop installers may be unsigned.
 
 ## Manual Configuration
 
