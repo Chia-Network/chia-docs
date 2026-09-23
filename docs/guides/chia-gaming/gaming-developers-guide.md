@@ -21,12 +21,12 @@ This guide covers development, testing, and deployment for the Chia Gaming syste
 
 The **player app** is one React + WASM bundle (`front-end/`). It contains the wallet connection, game engine, and all game UIs. No server-side logic, no cookies, no server-side sessions. That same bundle ships two ways:
 
-|                     | **Hosted player app**                                         | **Electron desktop**                                                                                                 |
-| ------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| What it is          | Static HTML/JS/CSS/WASM on any web server                     | Native installer wrapping that same bundle in a hardened Electron shell (`desktop/`)                                 |
-| How players open it | Browser URL (local demo: `http://localhost:3002`)             | Installed app (`chiagaming://app`)                                                                                   |
-| Simulator           | Available in the local/web build                              | Hidden — use **Link Wallet** for live play                                                                           |
-| Hub                 | Still required (iframe + WebSocket on a **different origin**) | Same hub; the shell allowlists hub origins                                                                           |
+|                     | **Hosted player app**                                         | **Electron desktop**                                                                                                                                               |
+| ------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| What it is          | Static HTML/JS/CSS/WASM on any web server                     | Native installer wrapping that same bundle in a hardened Electron shell (`desktop/`)                                                                               |
+| How players open it | Browser URL (local demo: `http://localhost:3002`)             | Installed app (`chiagaming://app`)                                                                                                                                 |
+| Simulator           | Available in the local/web build                              | Hidden — use **Link Wallet** for live play                                                                                                                         |
+| Hub                 | Still required (iframe + WebSocket on a **different origin**) | Same hub; the shell allowlists hub origins                                                                                                                         |
 | Build               | `./run-local-demo.sh` or `./tools/build-deploy.sh`            | `./tools/build-electron.sh --platform=mac` (or `win` / `linux`), or download [0.4.0-beta.1](https://github.com/Chia-Network/chia-gaming/releases/tag/0.4.0-beta.1) |
 
 A **hub** is a separate service: matchmaking UI (iframe inside the player app) and a WebSocket relay between peers. Hubs are third-party code; anyone can run one. The desktop app does **not** replace the hub — you still run or join one.
