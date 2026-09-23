@@ -3,9 +3,9 @@ slug: /guides/gaming-space-poker-rules
 title: Space Poker Rules
 ---
 
-:::warning Early Alpha Release
+:::note Beta
 
-Space Poker is included in Alpha 2 as an early release. On-chain Chialisp, rules, and UI may change before general availability. The rules below match the current implementation in the [chia-gaming](https://github.com/Chia-Network/chia-gaming) repository (`clsp/games/spacepoker/`).
+Space Poker is a beta reference game. On-chain Chialisp, rules, and UI may still change. The rules below match the current implementation in the [chia-gaming](https://github.com/Chia-Network/chia-gaming) repository (`games/spacepoker/`).
 
 :::
 
@@ -128,7 +128,7 @@ Stack limits are enforced by validator state: total committed chips per player c
 3. **Pre-flop**: Coin toss (if needed), then check/raise and call/raise until the street closes.
 4. **Flop → Turn → River**: Each street: opener check/raises, opponent calls or raises, then the next board cards appear.
 5. **Showdown**: River call or final reveal; pot split by hand comparison.
-6. **Next hand or session end**: Start another hand from the lobby if balances allow, or shut down the channel (clean shutdown returns funds in Alpha 2 builds).
+6. **Next hand or session end**: Start another hand if balances allow, or shut down the channel (clean shutdown returns funds when both players cooperate).
 
 ## Session end
 

@@ -3,9 +3,9 @@ slug: /guides/gaming-california-poker-rules
 title: California Poker Rules
 ---
 
-:::note Early Alpha Release
+:::note Beta
 
-California Poker (CalPoker) is available in Alpha 2. On-chain Chialisp, rules, and UI may change as development continues.
+California Poker (CalPoker) is a beta reference game. On-chain Chialisp, rules, and UI may still change.
 
 :::
 
@@ -23,8 +23,8 @@ California Poker is a card game where players exchange cards and compete to make
 ### Card Selection Phase
 
 1. Both players view their 8 cards simultaneously and can see their opponents cards
-2. Each player selects 4 cards to keep
-3. The 4 cards not selected are automatically swapped with the opponent
+2. Each player selects **4 cards to swap** with the opponent (the other 4 are kept)
+3. After both players submit, those 4 selected cards are exchanged
 4. Players wait for their opponent to complete their selection
 
 ### Hand Evaluation
