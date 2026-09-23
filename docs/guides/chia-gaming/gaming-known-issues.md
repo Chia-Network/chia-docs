@@ -35,6 +35,12 @@ For steps to resolve common problems, see the [Troubleshooting Guide](/guides/ga
 
 **Workaround**: Use **Link Wallet** (WalletConnect) for live testing. Treat Cloud Wallet as unavailable until the product enables it.
 
+### Unsigned desktop installers (0.4.0-beta.1)
+
+**Problem**: The macOS and Windows installers in **[0.4.0-beta.1](https://github.com/Chia-Network/chia-gaming/releases/tag/0.4.0-beta.1)** are unsigned. macOS Gatekeeper and Windows SmartScreen warnings are expected.
+
+**Workaround**: Verify the download against the SHA-256 checksum file on the same release (`SHA256SUMS-mac.txt` or `SHA256SUMS-win.txt`). Allow the app through the OS prompt only if the checksum matches.
+
 ## Developer Issues
 
 ### Easy Developer Configuration Not Available
@@ -89,11 +95,11 @@ The config-directory workflow described in older material is not available. Netw
 
 ### Session Persistence
 
-**Problem**: Durable session state lives in IndexedDB (plus small preferences in localStorage). Clearing site data, using another profile, wiping Electron app data, or choosing **Start Over** drops the local session.
+**Problem**: Durable session state lives in IndexedDB (plus small preferences in localStorage). Clearing site data, using another profile, wiping Electron app data, or choosing **Start over** drops the local session.
 
 **Impact**: Channel coins remain on-chain until timeout or shutdown. Funds are not necessarily lost permanently, but they can stay locked until the protocol resolves.
 
-**Workaround**: Do not clear site data during an active session. A normal page reload should restore the session; if the Resume / Start Over dialog appears, choose Resume unless you intend to abandon the local copy.
+**Workaround**: Do not clear site data during an active session. A normal page reload should restore the session; if the previously-saved-state dialog appears, choose **Resume Session** unless you intend to abandon the local copy.
 
 <span id="tracker-websocket-relay"></span>
 
@@ -101,7 +107,7 @@ The config-directory workflow described in older material is not available. Netw
 
 **Problem**: Game messages are relayed through the hub WebSocket. If that connection drops for an extended time, play stalls. Peer traffic requires the hub.
 
-**Impact**: Brief outages may recover via hub auto-reconnect and show a yellow “pings look stuck” state. That does **not** automatically move the session on-chain; the player can wait for reconnect or choose **Go on-chain** (see `CONNECTIVITY.md` in the chia-gaming repository).
+**Impact**: Brief outages may recover via hub auto-reconnect and show a yellow “Peer pings look stuck” state. That does **not** automatically move the session on-chain; the player can wait for reconnect or choose **Go On Chain** (see `CONNECTIVITY.md` in the chia-gaming repository).
 
 ### Shutdown Interrupted
 

@@ -167,7 +167,7 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 
 - Each transaction block takes approximately 1 minute
 - Channel opening uses one on-chain spend bundle; confirmation can take several minutes (about 1 minute per peak)
-- For live WalletConnect play, check the **Transaction fee** in the player app Wallet tab. Default is 0. A nonzero fee below 100,000,000 mojos is treated as zero and can be rejected (`INVALID_FEE_TOO_CLOSE_TO_ZERO`)
+- For live WalletConnect play, check the **Transaction fee** in the player app Wallet tab. The default is 100,000,000 mojos (0.0001 XCH). You can set 0. A nonzero fee below 100,000,000 mojos is treated as zero and can be rejected (`INVALID_FEE_TOO_CLOSE_TO_ZERO`)
 - If the UI warns that the configured fee was not applied, the protocol spend was still submitted **without** a fee (the wallet could not sign the fee offer)
 - If a transaction is stuck, check the mempool via your wallet
 
@@ -180,8 +180,13 @@ The gaming system requires specific WalletConnect methods. Ensure your wallet su
 
 **Cloud Wallet button unavailable or incomplete:**
 
-- Cloud Wallet integration is in progress but not complete
+- Cloud Wallet is disabled in the UI (`Cloud Wallet is temporarily unavailable`)
 - Use **Link Wallet** (WalletConnect) for live play
+
+**Desktop installer blocked by the OS:**
+
+- 0.4.0-beta.1 macOS and Windows installers are unsigned; Gatekeeper and SmartScreen warnings are expected
+- Verify the file against `SHA256SUMS-mac.txt` or `SHA256SUMS-win.txt` on [0.4.0-beta.1](https://github.com/Chia-Network/chia-gaming/releases/tag/0.4.0-beta.1) before allowing it
 
 ## User Troubleshooting
 
@@ -196,10 +201,10 @@ For documented limitations and workarounds, see [Known Issues](/guides/gaming-kn
 
 ### Session Management Issues
 
-**Resume / Start Over after reload:**
+**Resume Session / Start over after reload:**
 
 - A normal reload should restore the session from IndexedDB
-- If the Resume / Start Over dialog appears, choose **Resume** unless you intend to abandon the local copy
+- If the previously-saved-state dialog appears, choose **Resume Session** unless you intend to abandon the local copy
 - Clearing site data cannot be undone from the server; channel coins may remain on-chain until timeout if you abandon mid-game
 
 ### Firewall / Proxy

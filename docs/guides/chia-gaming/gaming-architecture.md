@@ -49,7 +49,7 @@ The "potato" is a conceptual token that alternates between players, determining 
 - Both players sign each state transition
 - The latest signed state is always available for on-chain settlement
 
-The name comes from "hot potato": you hold it when it's your turn, and pass it when you've made your move. Each potato pass is a batch of game actions plus half-signatures over the new unroll commitment. See `OVERVIEW.md` in the chia-gaming repository for the batch protocol, handshake (messages A–F), and handler phases.
+The name comes from "hot potato": you hold it when it's your turn, and pass it when you've made your move. Each potato pass is a batch of game actions plus half-signatures over the new unroll commitment. See `OVERVIEW.md` in the chia-gaming repository for the batch protocol, handshake (messages A–D), and handler phases.
 
 ## Referee Pattern
 
@@ -86,7 +86,7 @@ Per the connectivity model in the chia-gaming repository (`CONNECTIVITY.md`), th
 
 Durable session state is stored in **IndexedDB** (one complete session record). localStorage holds only small preferences (for example hub URL and network). A reload should restore the session; the player app treats reload like a dropped remote connection and reconnects the wallet and hub. In Electron that storage lives under `chiagaming://app`, not a website origin.
 
-The **hub** connection auto-reconnects with backoff after transient outages (`CONNECTIVITY.md`). Peer traffic rides on the hub WebSocket: if the hub is down, the peer is down. Transient hub or peer loss degrades the session (yellow “pings look stuck”) rather than automatically going on-chain; the player can reconnect or choose **Go on-chain**. Clearing site data (hosted) or app data (desktop) loses the local session; the on-chain obligation remains until shutdown or timeout. Wallet disconnect stalls signing until the wallet is reconnected.
+The **hub** connection auto-reconnects with backoff after transient outages (`CONNECTIVITY.md`). Peer traffic rides on the hub WebSocket: if the hub is down, the peer is down. Transient hub or peer loss degrades the session (yellow “Peer pings look stuck”) rather than automatically going on-chain; the player can reconnect or choose **Go On Chain**. Clearing site data (hosted) or app data (desktop) loses the local session; the on-chain obligation remains until shutdown or timeout. Wallet disconnect stalls signing until the wallet is reconnected.
 
 A live session binds to one wallet account (provider scope). Reconnecting that same account resumes work. Connecting a different account is treated as a mismatch: the app does not apply funding or cleanup to the wrong wallet.
 
@@ -123,9 +123,9 @@ The player app communicates with the Chia wallet via WalletConnect using the `ch
 
 ### Channel open (handshake)
 
-Opening a channel still lands as **one** on-chain funding transaction, but each wallet goes through **several** WalletConnect steps during the A–F handshake (for example `chia_selectCoins`, `chia_createOfferForIds` for that player’s funding share and for an optional fee offer, and `chia_pushTransactions`). Handshake F is only the receiver’s acceptance; each player locally combines the E and F halves, validates the result, and submits the assembled spend. Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
+Opening a channel still lands as **one** on-chain funding transaction, but each wallet goes through **several** WalletConnect steps during the A–D handshake (for example `chia_selectCoins`, `chia_createOfferForIds` for that player’s funding share and for an optional fee offer, and `chia_pushTransactions`). Handshake D is the receiver’s acceptance; each player locally combines the C and D halves, validates the result, and submits the assembled spend. Approve each request in the Chia wallet; a missing approval can make the handshake look stuck even though only one transaction is submitted on chain.
 
-Live WalletConnect play can attach a **transaction fee** from the player app Wallet tab (mojos or XCH). The default is **0**. Chia’s mempool treats a fee below **100,000,000 mojos** as effectively zero (`front-end/src/constants/fees.ts`); a nonzero fee in that range can be rejected instead of admitted as free. A configured fee is a validate-only `chia_createOfferForIds` offer, converted in WASM and aggregated into the protocol bundle. If that offer cannot be signed, the protocol spend is still submitted without a fee and the UI warns. Simulator sessions do not use this fee path.
+Live WalletConnect play can attach a **transaction fee** from the player app Wallet tab (mojos or XCH). The default is **100,000,000 mojos** (0.0001 XCH). You can set **0** for a free transaction. Chia’s mempool treats a fee below **100,000,000 mojos** as effectively zero (`front-end/src/constants/fees.ts`); a nonzero fee in that range can be rejected instead of admitted as free. A configured fee is a validate-only `chia_createOfferForIds` offer, converted in WASM and aggregated into the protocol bundle. If that offer cannot be signed, the protocol spend is still submitted without a fee and the UI warns. Simulator sessions do not use this fee path.
 
 ## Security Model
 
@@ -159,7 +159,7 @@ The **hosted** form of the player bundle (static files in a browser):
 - Custom scheme `chiagaming://app` (not `file://`), so storage and WASM behave like the hosted origin
 - Simulator button is hidden; use **Link Wallet** (WalletConnect) for live play
 - Still talks to a **hosted hub** over the network; the shell allowlists hub origins (`config.json` `hubOrigins`, plus hubs entered in the picker)
-- Does not include the hub service. Build with `tools/build-electron.sh`, or download desktop installers from [chia-gaming Releases](https://github.com/Chia-Network/chia-gaming/releases) when published. Early beta installers may be unsigned. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
+- Does not include the hub service. Build with `tools/build-electron.sh`, or download desktop installers from [0.4.0-beta.1](https://github.com/Chia-Network/chia-gaming/releases/tag/0.4.0-beta.1). The macOS and Windows installers in that beta are unsigned. See [`desktop/README.md`](https://github.com/Chia-Network/chia-gaming/blob/main/desktop/README.md).
 
 <span id="tracker-lobby--relay"></span>
 

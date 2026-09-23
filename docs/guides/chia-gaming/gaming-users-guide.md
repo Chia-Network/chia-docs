@@ -5,19 +5,19 @@ title: Users Guide
 
 :::important For Developers
 
-This user guide is intended to help developers test their gaming implementations. **Chia Network Inc will not host a version of this for users to play.** Before following this guide, developers must install and set up the gaming system. See the [Developers Guide](/guides/gaming-developers-guide) for installation and setup instructions.
+This user guide is intended to help developers test their gaming implementations. **Chia Network Inc will not host a version of this for users to play.** Get the current cut from **[0.4.0-beta.1](https://github.com/Chia-Network/chia-gaming/releases/tag/0.4.0-beta.1)** (hosted player/hub archives or a desktop installer), or build from the [Developers Guide](/guides/gaming-developers-guide). You still need a hub.
 
 :::
 
 :::note Session persistence
 
-Game sessions are persisted in the player app (IndexedDB, with a few small preferences in localStorage). Reloading should restore an in-progress session. Clearing site data, wiping Electron app data, using a different browser profile, or choosing **Start Over** still abandons the local copy of that session. Channel coins on-chain are independent of the client: if you abandon a live session, funds follow on-chain timeout and shutdown rules.
+Game sessions are persisted in the player app (IndexedDB, with a few small preferences in localStorage). Reloading should restore an in-progress session. Clearing site data, wiping Electron app data, using a different browser profile, or choosing **Start over** still abandons the local copy of that session. Channel coins on-chain are independent of the client: if you abandon a live session, funds follow on-chain timeout and shutdown rules.
 
 :::
 
 ## Intro
 
-This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). You can run the **hosted** player app in a browser or the **Electron** desktop app — both use the same game bundle. For live testing, each player connects a Chia wallet (**2.7.1 or later**) via **Link Wallet** (WalletConnect). A **hub** service still provides matchmaking and relays game messages; the desktop app does not include a hub.
+This guide walks through testing a Chia Gaming implementation with two players (Alice and Bob). You can run the **hosted** player app in a browser or the **Electron** desktop app — both use the same game bundle. Download those from **[0.4.0-beta.1](https://github.com/Chia-Network/chia-gaming/releases/tag/0.4.0-beta.1)**, or host a local demo from the [Developers Guide](/guides/gaming-developers-guide). For live testing, each player connects a Chia wallet (**2.7.1 or later**) via **Link Wallet** (WalletConnect). A **hub** service still provides matchmaking and relays game messages; the desktop app does not include a hub.
 
 The hosted/web build can use **Simulator** for development without real XCH. The Electron app hides the simulator; use **Link Wallet** for live play. A Cloud Wallet option may appear in the UI, but that integration is not complete yet. Both players must use the same network (simulator, mainnet, or testnet11) and the **same hub**.
 
@@ -35,7 +35,7 @@ Live WalletConnect testing requires **two separate wallet installations** (for e
 
 :::note Handshaking Timing
 
-Each peak (block) on mainnet takes approximately 1 minute. Opening a channel still lands as **one** on-chain funding transaction. During the A–F handshake each player signs their own funding half; each side then locally combines those halves and submits the assembled spend (see `OVERVIEW.md` in the chia-gaming repository). Each wallet must still approve **several** WalletConnect requests (coin selection, funding offers, and pushing the transaction), not just one prompt. Each wallet must see that transaction confirm and the channel reach **Active** before play begins, so expect several minutes of waiting. The UI shows handshake progress during this period.
+Each peak (block) on mainnet takes approximately 1 minute. Opening a channel still lands as **one** on-chain funding transaction. During the A–D handshake each player signs their own funding half; each side then locally combines the C and D halves and submits the assembled spend (see `OVERVIEW.md` in the chia-gaming repository). Each wallet must still approve **several** WalletConnect requests (coin selection, funding offers, and pushing the transaction), not just one prompt. Each wallet must see that transaction confirm and the channel reach **Active** before play begins, so expect several minutes of waiting. The UI shows handshake progress during this period.
 
 :::
 
@@ -47,7 +47,7 @@ Each peak (block) on mainnet takes approximately 1 minute. Opening a channel sti
 
 3. **Check Your Light Wallet** (live play): You should see a `chia_getWalletBalance` request in your Chia Light Wallet. Choose "remember this decision" and confirm the request. Later reconnects should use the **same** wallet account that funded the channel.
 
-4. **Set a transaction fee** (live play): In the player app Wallet tab, set **Transaction fee** (mojos or XCH). The default is **0**. On a busy mempool, a zero fee may not confirm. A nonzero fee below **100,000,000 mojos** is treated as zero and can be rejected; use `0` or at least that amount. Simulator play does not need a fee.
+4. **Set a transaction fee** (live play): In the player app Wallet tab, set **Transaction fee** (mojos or XCH). The default is **100,000,000 mojos** (0.0001 XCH). You can set **0** for a free transaction; on a busy mempool a zero fee may not confirm. A nonzero fee below **100,000,000 mojos** is treated as zero and can be rejected. Simulator play does not need a fee.
 
 5. **Connect to a hub**: Enter the hub URL (e.g. `http://localhost:3003` for local development) and connect. The hub UI loads in an iframe. It finds opponents and relays messages; it cannot take funds or change game outcomes. In Electron, a new hub origin is allowlisted and the window reloads once so the CSP can include it.
 
