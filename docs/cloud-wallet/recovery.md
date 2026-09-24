@@ -58,7 +58,7 @@ If you lose both your spend key and your recovery key (with no usable backup), n
 | You still have your spend key                                                      | Instant Recovery: fast rekey, no clawback wait for the rekey itself.                                                                                                                                                                                |
 | You lost your spend key (or cannot use it)                                         | Timelocked Recovery: use your recovery phrase and wait for the clawback period before completing recovery.                                                                                                                                          |
 | Your recovery key is compromised                                                   | Cancel any pending timelocked recovery with your spend key during the clawback window, then Instant Recovery to rotate to a new recovery key.                                                                                                       |
-| You cannot or do not want to use the Cloud Wallet, and the vault has been upgraded | Recovery with [Chia Vault Recover](https://github.com/hoffmang9/chia-vault-recover) or another compatible wallet, using your recovery phrase. See [Recover without the Cloud Wallet](/cloud-wallet/vault-upgrade#recover-without-the-cloud-wallet). |
+| You cannot or do not want to use the Cloud Wallet, and the vault has been upgraded | Recovery with [Chia Vault Recover](https://github.com/Chia-Network/chia-vault-recover) or another compatible wallet, using your recovery phrase. See [Recover without the Cloud Wallet](/cloud-wallet/vault-upgrade#recover-without-the-cloud-wallet). |
 
 ## Recovery clawback
 

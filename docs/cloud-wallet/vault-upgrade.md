@@ -37,7 +37,7 @@ Importing vaults into the Cloud Wallet is not supported at this time. Importing 
 
 :::
 
-After the upgrade confirms, you can still recover in the Cloud Wallet with [Instant Recovery or Timelocked Recovery](/cloud-wallet/recovery). You can also recover without the Cloud Wallet, using [Chia Vault Recover](https://github.com/hoffmang9/chia-vault-recover) or another compatible wallet.
+After the upgrade confirms, you can still recover in the Cloud Wallet with [Instant Recovery or Timelocked Recovery](/cloud-wallet/recovery). You can also recover without the Cloud Wallet, using [Chia Vault Recover](https://github.com/Chia-Network/chia-vault-recover) or another compatible wallet.
 
 Download the app from that repository. The README covers install, the command-line flags, and the macOS Gatekeeper prompt for unsigned binaries.
 

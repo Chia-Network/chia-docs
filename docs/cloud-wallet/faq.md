@@ -129,7 +129,7 @@ Instant Recovery lets you rekey your vault immediately using your current spend 
 
 ### Can I recover an upgraded vault without the Cloud Wallet?
 
-Yes, after the vault upgrade has confirmed. The upgrade keeps your keys and publishes an on-chain recovery hint. [Chia Vault Recover](https://github.com/hoffmang9/chia-vault-recover) or another compatible wallet can read that hint and recover the vault from your 24-word recovery phrase. Importing vaults into the Cloud Wallet is not supported at this time. Importing a vault into a different wallet, or using a different tool to perform wallet operations, can remove your access to that vault in the Cloud Wallet.
+Yes, after the vault upgrade has confirmed. The upgrade keeps your keys and publishes an on-chain recovery hint. [Chia Vault Recover](https://github.com/Chia-Network/chia-vault-recover) or another compatible wallet can read that hint and recover the vault from your 24-word recovery phrase. Importing vaults into the Cloud Wallet is not supported at this time. Importing a vault into a different wallet, or using a different tool to perform wallet operations, can remove your access to that vault in the Cloud Wallet.
 
 ### When should I use Instant Recovery vs Timelocked Recovery?
 
