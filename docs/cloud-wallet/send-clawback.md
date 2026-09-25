@@ -37,6 +37,8 @@ For a short conceptual overview, see [Clawback](/cloud-wallet/tooltips#clawback)
 
 4. Enter the recipient, amount, fee, and optional memo as usual.
 
+   When the network is busy, include a fee that is likely to confirm promptly. Clawback actions (`Claw Back`, `Finalize`, and later `Push Through`) are only available after this send confirms on-chain—not while it is still in the mempool. If confirmation takes longer than the clawback window you set, the window can expire before you can use those options, which defeats the purpose of clawback.
+
 5. In the `Clawback` card, set `Days`, `Hours`, and/or `Minutes` for the window during which you can reclaim the funds.
 
    - Limits: days up to 365, hours up to 23, minutes up to 59
@@ -50,11 +52,16 @@ For a short conceptual overview, see [Clawback](/cloud-wallet/tooltips#clawback)
 
 6. Click `Send`, then sign the transaction.
 
-After confirmation, the outbound transfer shows as pending while clawback is active. Transaction detail can show `Clawback Expiry` and a settle countdown such as `Settles` with a relative time.
+After the send confirms on-chain, the outbound transfer shows as pending while clawback is active. Open the transaction for details such as `Clawback Expiry` and a settle countdown (for example `Settles` with a relative time). From that details screen you can `Claw Back Transaction` or `Finalize Transaction` while the window is open.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/send-clawback-02_tx_details_light.png" alt="Clawback transaction details with Claw Back and Finalize actions" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/send-clawback-02_tx_details_dark.png" alt="Clawback transaction details with Claw Back and Finalize actions" width="100%" className="theme-image-dark"/>
+</div>
 
 ## Claw back before expiry
 
-Use this if you sent to the wrong address or need to reclaim the XCH while the window is still open.
+Use this if you sent to the wrong address or need to reclaim the XCH while the window is still open. The send must already be confirmed on-chain so these actions appear on the transaction details screen.
 
 1. Open the pending clawback transaction from your vault activity.
 
@@ -65,13 +72,13 @@ Use this if you sent to the wrong address or need to reclaim the XCH while the w
 The funds return to your vault after the clawback transaction confirms. This requires another on-chain fee and signature.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/send-clawback-02_claw_back_light.png" alt="Claw Back Transaction confirmation" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/send-clawback-02_claw_back_dark.png" alt="Claw Back Transaction confirmation" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/send-clawback-03_claw_back_light.png" alt="Claw Back Transaction confirmation" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/send-clawback-03_claw_back_dark.png" alt="Claw Back Transaction confirmation" width="100%" className="theme-image-dark"/>
 </div>
 
 ## Finalize before expiry
 
-If the recipient confirms they can see the incoming XCH and you want to release it early, use `Finalize Transaction`.
+If the recipient confirms they can see the incoming XCH and you want to release it early, use `Finalize Transaction` on the same confirmed transaction details screen.
 
 1. Open the pending clawback transaction.
 
@@ -92,5 +99,7 @@ The app may show: you can no longer claw back this transaction, but you can stil
 - Clawback fields appear only on XCH vault Send; token and NFT sends do not include clawback at this time
 - Set at least one of Days, Hours, or Minutes greater than zero to enable clawback
 - Prefer recipients on Cloud Wallet or another clawback-capable wallet (such as Sage)
+- `Claw Back`, `Finalize`, and `Push Through` appear only after the original send confirms on-chain (not while it is in the mempool)
+- Under fee pressure, use a sufficient fee so confirmation is unlikely to outlast your clawback window
 - Claw back, finalize, and push through each need a fee and a new signature
 - For additional support, use [In App Support](/cloud-wallet/in-app-support)
