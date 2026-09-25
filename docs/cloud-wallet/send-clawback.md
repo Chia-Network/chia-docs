@@ -9,7 +9,7 @@ This guide shows how to add a clawback window when sending XCH from a Cloud Wall
 
 You need a Cloud Wallet account and at least one vault. If you have not created a vault yet, follow the [Getting Started Guide](/cloud-wallet/getting-started) first.
 
-Clawback on send applies to **XCH** vault sends only. Token and NFT sends do not include this clawback card.
+Clawback on send applies to **XCH** vault sends only. Token and NFT sends do not include this clawback card at this time.
 
 :::
 
@@ -83,13 +83,13 @@ Finalizing releases the funds to the recipient immediately instead of waiting fo
 
 ## Push through after expiry
 
-After the clawback window ends, you can no longer claw the funds back. If the recipient’s wallet does not support clawbacks, choose `Push Through` (modal: `Push Through Transaction`) to deliver the funds, then sign.
+After the clawback window ends, you can no longer claw the funds back. If the recipient’s wallet does not support clawbacks, choose `Push Through` to deliver the funds, then sign.
 
 The app may show: you can no longer claw back this transaction, but you can still push the funds to the recipient if their wallet doesn’t support clawbacks.
 
 ## Troubleshooting
 
-- Clawback fields appear only on XCH vault Send, not on token or NFT send
+- Clawback fields appear only on XCH vault Send; token and NFT sends do not include clawback at this time
 - Set at least one of Days, Hours, or Minutes greater than zero to enable clawback
 - Prefer recipients on Cloud Wallet or another clawback-capable wallet (such as Sage)
 - Claw back, finalize, and push through each need a fee and a new signature
