@@ -259,7 +259,7 @@ XCH purchase transactions use Chia’s Clawback 2.0 feature ensuring that if you
 
 ### What does “Finalizing“ a Clawback Transaction mean?
 
-Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender finalize a transaction early, immediately releasing the funds to the recipient. This enhanced flexibility is used in Buy XCH to complete your transaction as soon as your bank payment clears.
+Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender finalize a transaction early, immediately releasing the funds to the recipient. This is used in Buy XCH when your bank payment clears, and you can also finalize early on an XCH send that used clawback. See [Send Clawback](/cloud-wallet/send-clawback).
 
 ### What are the purchase limits for Buy XCH?
 

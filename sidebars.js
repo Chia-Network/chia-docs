@@ -200,6 +200,7 @@ module.exports = {
         'cloud-wallet/getting-started',
         'cloud-wallet/address-book',
         'cloud-wallet/buy-xch',
+        'cloud-wallet/send-clawback',
         'cloud-wallet/in-app-support',
         'cloud-wallet/recovery',
         'cloud-wallet/faq',
