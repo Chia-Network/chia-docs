@@ -198,6 +198,7 @@ module.exports = {
       label: 'Chia Cloud Wallet',
       items: [
         'cloud-wallet/getting-started',
+        'cloud-wallet/address-book',
         'cloud-wallet/tokens',
         'cloud-wallet/buy-xch',
         'cloud-wallet/in-app-support',
@@ -497,7 +498,7 @@ module.exports = {
             slug: '/guides/gaming',
             title: 'Gaming',
             description:
-              "These guides will guide you through developing and testing gaming implementations on Chia.",
+              'Guides for developing, testing, and playing Chia Gaming (state-channel) implementations.',
           },
           items: [
             'guides/chia-gaming/gaming-developers-guide',
