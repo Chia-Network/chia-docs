@@ -71,6 +71,10 @@ For example, Alice sends 1 XCH to Bob, and she adds a 1-hour clawback.
 - On the other hand, maybe Bob contacts Alice to let her know that he can see the incoming XCH. In this case, Alice can finalize the transaction before the 1-hour timer has expired.
 - After the 1-hour timer has expired, Alice can no longer claw back the funds. If Bob’s wallet supports clawbacks, the XCH settles to him; if not, Alice can still push the funds through.
 
+## XCHandles
+
+An XCHandle is a human-readable name (for example `@alice`) that resolves to a Chia wallet address. In the Cloud Wallet Send form you can enter an XCHandle instead of pasting an address. The app looks the handle up, shows the resolved address, and records the handle on outbound transfers when available. Handles use `@` plus 3–63 lowercase letters or digits. See the [XCHandles](/cloud-wallet/xch-handles) guide and [xchandles.com](https://xchandles.com/).
+
 ## Key Types
 
 The Chia Cloud Wallet allows a number of different key types to be used as both spend keys and recovery keys. However, while the Cloud Wallet is quite flexible in this regard, not every key type is appropriate in every situation.
