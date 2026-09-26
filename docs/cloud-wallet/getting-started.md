@@ -43,7 +43,7 @@ Congratulations, you're all set to create your first vault!
 Currently, in order to use the Chia Signer app, you will need two separate devices:
 
 1. A computer or phone to access your vault
-2. A smartphone (iOS, or Android in beta) with the Chia Signer app installed
+2. A smartphone (iOS or Android) with the Chia Signer app installed
 
 You cannot use both the Cloud Wallet and the Chia Signer app on the same device yet. However, we do intend to enable this functionality in a future release.
 
@@ -57,7 +57,7 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
 
 2. Give your vault a name, for example `My Signer Vault`.
 
-3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet: **iOS** — [App Store](https://apps.apple.com/app/chia-signer/id6504493785); **Android** (beta) — [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
+3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet: **iOS** — [App Store](https://apps.apple.com/app/chia-signer/id6504493785); **Android** — [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
    <div style={{ textAlign: 'left' }}>
      <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>
@@ -69,7 +69,7 @@ You cannot use both the Cloud Wallet and the Chia Signer app on the same device 
   <img src="/img/cloud-wallet/04_new_key.png" alt="Create a new key" width="40%"/>
 </div>
 
-5. Give your new key a name, for example `My Key`. Currently, the only option is to create a hardware-backed key in your device's secure hardware (Secure Enclave on iOS; hardware-backed keystore on Android, which is in beta). Tap `Generate Key`:
+5. Give your new key a name, for example `My Key`. Currently, the only option is to create a hardware-backed key in your device's secure hardware (Secure Enclave on iOS; hardware-backed keystore on Android). Tap `Generate Key`:
 
 <div style={{ textAlign: 'left' }}>
   <img src="/img/cloud-wallet/05_generate_key.png" alt="Generate a hardware key" width="40%"/>

@@ -213,6 +213,7 @@ module.exports = {
       label: 'Chia Signer App',
       items: [
         'chia-signer/getting-started',
+        'chia-signer/clear-signing',
         'chia-signer/faq',
       ]
     },
