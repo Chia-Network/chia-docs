@@ -25,7 +25,7 @@ This lesson is an overview of DIDs.
 
 <summary> Expand for the full script </summary>
 
-0:00\
+0:00  
 DIDs, or decentralized identifiers, provide a way to identify users or organizations in a decentralized way. DIDs can be used as account identifiers.
 
 0:20
