@@ -3,7 +3,7 @@ title: Coin Management
 slug: /cloud-wallet/coin-management
 ---
 
-This guide shows how to view, split, and combine coins in a Chia Cloud Wallet vault.
+This guide shows how to view, split, combine, and sweep coins in a Chia Cloud Wallet vault.
 
 :::info
 
@@ -14,7 +14,7 @@ You need a Cloud Wallet account and at least one vault. If you have not created 
 ## Prerequisites
 
 - An active [Chia Cloud Wallet](https://vault.chia.net/) account with at least one vault that holds XCH or tokens
-- Access to your vault spend key (Chia Signer app or passkey) to sign split and combine transactions
+- Access to your vault spend key (Chia Signer app or passkey) to sign split, combine, and sweep transactions
 
 ## Open Manage Coins
 
@@ -31,13 +31,15 @@ You can open Coin Management from a vault or from a specific token.
   <img src="/img/cloud-wallet/coin-management-01_menu_dark.png" alt="Open Manage Coins from the vault More menu" width="100%" className="theme-image-dark"/>
 </div>
 
+The XCH coins screen is titled `Manage Coins`.
+
 ### From a token
 
 1. Open the vault, go to the `Tokens` tab, and open the token.
 
 2. Click `Manage Coins` on the token page.
 
-The token coins screen uses the same split and combine flows, with labels such as `Split Tokens` and `Combine Tokens` where applicable.
+The token coins screen is titled `Manage Tokens` and uses the same split, combine, and sweep flows, with labels such as `Split Tokens` and `Combine Tokens` where applicable.
 
 ## Read the coins list
 
@@ -52,11 +54,11 @@ The coins screen shows your balance and a table of coins for that asset.
   <img src="/img/cloud-wallet/coin-management-02_list_dark.png" alt="Manage Coins list with balances and coin rows" width="100%" className="theme-image-dark"/>
 </div>
 
-Common columns include coin id, amount, created block height, and spent height when spent coins are included.
+Common columns include coin id (`Coin` or `Token`), `Amount`, `Created` (block height), and `Spent` when spent coins are included.
 
 ## Split coins
 
-Split turns one or more selected coins into smaller coins. This is useful before creating Offers or when you want smaller denominations.
+Split turns one or more selected coins into smaller coins. This is useful when you want smaller denominations.
 
 1. Select one or more selectable coins. Each selected coin must have an amount greater than the minimum unit for that asset.
 
@@ -65,17 +67,17 @@ Split turns one or more selected coins into smaller coins. This is useful before
 3. Review the selected coins and set a `Fee` if needed.
 
 4. Choose how to split:
-   - Leave `Split by Coin Value` off to set `Number of Coins to Create` (2 to 500)
-   - Turn `Split by Coin Value` on to set `Value of Each New Coin`
+   - Leave `Split by Coin Value` (or `Split by Token Value`) off to set `Number of Coins to Create` (2 to 500)
+   - Turn `Split by Coin Value` (or `Split by Token Value`) on to set `Value of Each New Coin` (or `Value of Each New Token`)
 
-5. Review `Output Coins` (and any remainder), then click `Submit`.
+5. Review `Output Coins` (or `Output Tokens`) and any remainder, then click `Submit`.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/coin-management-03_split_light.png" alt="Split Coins modal with fee and output preview" width="100%" className="theme-image-light"/>
   <img src="/img/cloud-wallet/coin-management-03_split_dark.png" alt="Split Coins modal with fee and output preview" width="100%" className="theme-image-dark"/>
 </div>
 
-6. Confirm and sign the signature request. The modal closes after the request is created; finish signing with your passkey or Chia Signer app.
+6. Confirm the `Split Coins` signature request (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
 For XCH, the fee comes from the selected coins. For tokens, the fee is paid in XCH and does not reduce the token output amounts.
 
@@ -87,7 +89,7 @@ Combine merges two or more selected coins into one.
 
 2. Click `Combine Coins` (or `Combine Tokens`).
 
-3. Review the selected coins, set a `Fee` if needed, and confirm the `Output Coin Value`.
+3. Review the selected coins, set a `Fee` if needed, and confirm the `Output Coin Value` (or `Output Token Value`).
 
 4. Click `Combine`.
 
@@ -96,17 +98,28 @@ Combine merges two or more selected coins into one.
   <img src="/img/cloud-wallet/coin-management-04_combine_dark.png" alt="Combine Coins modal with selected coins and output value" width="100%" className="theme-image-dark"/>
 </div>
 
-5. Confirm and sign the signature request.
+5. Confirm the `Combine Coins` signature request (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
-If you select too many coins for a single combine, reduce the selection and combine in batches. If the fee would make the output amount zero or negative, lower the fee.
+A single combine can include up to 500 XCH coins or 100 tokens. If you select too many, reduce the selection and combine in batches. If the fee would make the output amount zero or negative, lower the fee.
 
-## Related actions
+## Sweep coins
 
-The coins screen may also offer `Sweep Coins` or `Sweep Tokens`, which gathers small coins under a maximum amount. Sweep also requires a signature.
+`Sweep Coins` (or `Sweep Tokens`) finds your smallest coins that are each worth no more than a maximum amount you set, then combines them. Use it to reduce wallet clutter. Sweep does not require a prior selection.
+
+1. Click `Sweep Coins` (or `Sweep Tokens`).
+
+2. Set `Maximum Coin Amount` (or `Maximum Token Amount`). Only coins at or below that amount are included.
+
+3. Set `Maximum Number of Coins` (or `Maximum Number of Tokens`). The limit is 500 for XCH and 100 for tokens.
+
+4. Set a `Fee` if needed, then click `Sweep`.
+
+5. Confirm and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
 ## Troubleshooting
 
 - Only settled, unlocked coins can be selected for split or combine
-- If spendable balance looks low, check for pending transactions or coins reserved by open Offers
-- For signing problems, confirm your Signer app or passkey can approve the split or combine request
+- If spendable balance looks low, check for pending transactions or coins reserved by open offers
+- If the vault is still being minted, wait until this clears: `This vault is currently being minted. You cannot perform transactions until the minting process is complete.`
+- For signing problems, confirm your Chia Signer app or passkey can approve the split, combine, or sweep request
 - For additional support, use [In App Support](/cloud-wallet/in-app-support)
