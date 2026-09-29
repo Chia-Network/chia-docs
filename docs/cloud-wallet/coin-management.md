@@ -45,8 +45,11 @@ The token coins screen is titled `Manage Tokens` and uses the same split, combin
 
 The coins screen shows your balance and a table of coins for that asset.
 
-- Total balance and `Spendable` balance appear at the top. Spendable can be lower than total when some coins are locked by pending transactions.
-- Use `Include Pending` or `Include Spent` to show those coins. They are visible for inspection but are not selectable for split or combine.
+- Total balance and `Spendable` balance appear at the top. Spendable can be lower than total when some coins are locked by pending transactions or reserved by open offers.
+- By default the list shows settled, unspent coins you can act on. Two toggles add more rows for inspection only:
+  - `Include Pending` — coins tied to transactions that are not fully settled yet (for example still confirming). Useful when spendable balance looks lower than you expect and you want to see what is locked.
+  - `Include Spent` — coins that have already been spent. Useful for history and for matching amounts to past transactions.
+  Pending and spent coins appear in the list when enabled, but they are not selectable for split or combine.
 - Selectable coins are settled and unlocked. Coins linked to an open offer may show a marker that the coin is linked to an open offer.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
