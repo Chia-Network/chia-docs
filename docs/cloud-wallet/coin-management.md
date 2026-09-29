@@ -49,7 +49,7 @@ The coins screen shows your balance and a table of coins for that asset.
 - By default the list shows settled, unspent coins you can act on. Two toggles add more rows for inspection only:
   - `Include Pending` — coins tied to transactions that are not fully settled yet (for example still confirming). Useful when spendable balance looks lower than you expect and you want to see what is locked.
   - `Include Spent` — coins that have already been spent. Useful for history and for matching amounts to past transactions.
-  Pending and spent coins appear in the list when enabled, but they are not selectable for split or combine.
+    Pending and spent coins appear in the list when enabled, but they are not selectable for split or combine.
 - Selectable coins are settled and unlocked. Coins linked to an open offer may show a marker that the coin is linked to an open offer.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
