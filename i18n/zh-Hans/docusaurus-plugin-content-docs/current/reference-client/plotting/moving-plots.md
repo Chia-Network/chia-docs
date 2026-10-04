@@ -3,7 +3,7 @@ title: 移动地块
 slug: /reference-client/plotting/moving-plots
 ---
 
-地块以文件形式存储。 它们可以从一个目录移动到另一个目录，甚至可以移动到另一台机器(操作系统无关紧要)。 Back in 2021, plots took many hours to create with the original ChiaPoS plotter. A typical plotting process went something like this: A typical plotting process went something like this:
+地块以文件形式存储。它们可以从一个目录移动到另一个目录，甚至可以移动到另一台机器(操作系统无关紧要)。 Back in 2021, plots took many hours to create with the original ChiaPoS plotter. A typical plotting process went something like this: A typical plotting process went something like this:
 
 1. ChiaPoS Phases 1-3: Create a plot on an SSD (1-8 hours)
 2. ChiaPoS Phase 4: Move the new plot to an HDD (10-15 minutes)
