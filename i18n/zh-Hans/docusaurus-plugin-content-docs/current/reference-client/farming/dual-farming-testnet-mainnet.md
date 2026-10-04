@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 :::info
 
 （译注：本文关于切换到测试网的方法已经过时，不再具有参考意义，因此本文为机翻）
-这些说明适用于Linux。 在MacOS上可以采用类似的方法。
+这些说明适用于Linux。在MacOS上可以采用类似的方法。
 
 :::
 
-在某些情况下，您可能希望在主网上耕种的同时，在其中一个测试网络上也进行耕种，而不会将它们从主网中移除。 这是可以实现的，但需要额外的工作来为测试网络Chia安装设置唯一的端口。
+在某些情况下，您可能希望在主网上耕种的同时，在其中一个测试网络上也进行耕种，而不会将它们从主网中移除。这是可以实现的，但需要额外的工作来为测试网络Chia安装设置唯一的端口。
 
 有几个设置的选项。 You can either ensure you have the `CHIA_ROOT` set to unique values for each instance you want to run, or else run the installations on separate users. These instructions will show setting a specific `CHIA_ROOT`.
 
@@ -24,7 +24,7 @@ For the mainnet installation, we will stick with the default ports and `CHIA_ROO
 ## 设置测试网络安装
 
 1. (Optional) Install [yq](https://github.com/mikefarah/yq#install) to make editing the yaml files easier
-   - Alternatively, you can manually edit the ports in `config.yaml`
+   1. Alternatively, you can manually edit the ports in `config.yaml`
 2. 运行以下命令：
 
 ```bash

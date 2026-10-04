@@ -94,10 +94,8 @@ The following sections list all of the required checks to ensure validity of a b
 18. Check unfinished reward chain block hash
 19. Check pool target max height
 20. Check pre-farm puzzle hashes for genesis block.
-
-- If pospace has a pool pk, check pool target signature. Should not check this for genesis block.
-- Otherwise, the plot is associated with a contract puzzle hash, not a public key, so check pool contract ph
-
+    - If pospace has a pool pk, check pool target signature. Should not check this for genesis block.
+    - Otherwise, the plot is associated with a contract puzzle hash, not a public key, so check pool contract ph
 21. Check extension data if applicable. None for mainnet.
 22. Check if foliage block is present
 23. Check foliage block hash
