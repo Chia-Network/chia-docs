@@ -88,13 +88,13 @@ Your purchase involves two things happening on two different timelines.
 
 ## Quick reference
 
-| Step | What you need | Time required |
-| --- | --- | --- |
-| Create account | Email | 1–2 minutes |
-| Verify identity | Government ID + selfie | Instant for most users |
-| Connect bank | Bank login (instant) or routing and account number (manual) | Instant to a couple of days |
-| Buy XCH | Minimum \$25 | Under a minute to place |
-| Full access to funds | — | Usually within a few days; hold expires at 14 days at the latest |
+| Step                 | What you need                                               | Time required                                                    |
+| -------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------- |
+| Create account       | Email                                                       | 1–2 minutes                                                      |
+| Verify identity      | Government ID + selfie                                      | Instant for most users                                           |
+| Connect bank         | Bank login (instant) or routing and account number (manual) | Instant to a couple of days                                      |
+| Buy XCH              | Minimum \$25                                                | Under a minute to place                                          |
+| Full access to funds | —                                                           | Usually within a few days; hold expires at 14 days at the latest |
 
 ## Troubleshooting
 
