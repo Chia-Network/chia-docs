@@ -55,7 +55,7 @@ Go to [vault.chia.net](https://vault.chia.net/) for mainnet. Use [vault.chiatest
   <img src="/img/cloud-wallet/getting-started-06_create_vault_dark.png" alt="Name the vault and link a Chia Signer spend key" width="100%" className="theme-image-dark"/>
 </div>
 
-   Use **Passkey** only if you do not have an iPhone or Android phone. That passkey is also your login. Losing it affects both signing in and signing transactions.
+Use **Passkey** only if you do not have an iPhone or Android phone. That passkey is also your login. Losing it affects both signing in and signing transactions.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/getting-started-06_passkey_spend_light.png" alt="Passkey selected as the vault spend key" width="100%" className="theme-image-light"/>
