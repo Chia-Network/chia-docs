@@ -19,7 +19,7 @@ ACH bank transfer is the only accepted payment method. Stripe processes the tran
 
 ## Create your Chia Cloud Wallet account
 
-1. Go to [vault.chia.net](https://vault.chia.net/) and create a Chia Cloud Wallet account, or log in if you already have one.
+1. Go to [vault.chia.net](https://vault.chia.net/) and log in. If you do not have an account and a vault yet, follow [Getting Started](/cloud-wallet/getting-started) first.
 2. Open the **Buy XCH** tab (the \$ icon).
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
@@ -72,19 +72,29 @@ Once you are verified, or on any return visit, buying is simple.
 
 ## What happens after you buy
 
-Your purchase involves two things happening on two different timelines.
+Your XCH shows up right away, but you get full access only after your bank payment clears. The XCH and your bank payment move on two separate timelines:
 
-:::info XCH delivered, with a safety hold
+<ol className="purchase-timeline">
+  <li>
+    <span className="purchase-timeline__when">Right away</span>
+    <span className="purchase-timeline__event"><span className="badge badge--primary">XCH</span>Appears in your vault with a safety hold.</span>
+    <span className="purchase-timeline__event"><span className="badge badge--secondary">Bank</span>Your ACH payment starts.</span>
+  </li>
+  <li>
+    <span className="purchase-timeline__when">3 to 5 business days</span>
+    <span className="purchase-timeline__event"><span className="badge badge--secondary">Bank</span>Your payment settles.</span>
+  </li>
+  <li>
+    <span className="purchase-timeline__when">1 to 3 days later</span>
+    <span className="purchase-timeline__event"><span className="badge badge--primary">XCH</span>The hold lifts and you have full access. This is what usually happens.</span>
+  </li>
+  <li className="purchase-timeline__limit">
+    <span className="purchase-timeline__when">14 days at the latest</span>
+    <span className="purchase-timeline__event"><span className="badge badge--primary">XCH</span>The hold always ends by this date.</span>
+  </li>
+</ol>
 
-**XCH arrives immediately, but with a safety hold.** As soon as you buy, you will see the XCH in your wallet, along with the latest date you will get full access to it. This hold is called a clawback, and it exists to protect against payment reversals.
-
-**Your bank payment (ACH) takes 3 to 5 business days to settle.** This is standard for ACH transfers and happens on the banking side, not on Chia.
-
-**The clawback hold is set for 14 days** to build in a buffer for weekends and holidays.
-
-**In practice, your hold usually lifts early.** Once your payment settles, the clawback is released within 1 to 3 days, typically well before the 14-day deadline.
-
-:::
+The safety hold is called a clawback. It protects against payment reversals, such as a bank transfer that fails after the XCH is delivered. The app shows the latest date your hold will lift. The 14-day limit leaves room for weekends and bank holidays.
 
 ## Quick reference
 

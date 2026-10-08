@@ -3,9 +3,7 @@ title: Getting Started
 slug: /cloud-wallet/getting-started
 ---
 
-Create a Chia Cloud Wallet account, then a vault to hold your XCH. The first time takes a few minutes.
-
-Go to [vault.chia.net](https://vault.chia.net/) for mainnet. Use [vault.chiatest.net](https://vault.chiatest.net/) to try the wallet with testnet TXCH.
+Set up a Chia Cloud Wallet at [vault.chia.net](https://vault.chia.net/). You will create an account, then a vault to hold your XCH. It takes a few minutes.
 
 ## Create an account
 
@@ -48,7 +46,7 @@ Go to [vault.chia.net](https://vault.chia.net/) for mainnet. Use [vault.chiatest
 
 2. Name the vault.
 
-3. Choose a spend key. **App (Hardware Key)** is the usual choice. Cloud Wallet and the Chia Signer app need to be on two different devices. On the same device, use **Link via Chia Signer App**. On another device, scan the QR code. Create the key in the Signer app first. See [Chia Signer](/chia-signer/getting-started).
+3. Choose a spend key. **App (Hardware Key)** is the usual choice. On the same device, use **Link via Chia Signer App**. On another device, scan the QR code. Create the key in the Signer app first. See [Chia Signer](/chia-signer/getting-started).
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/getting-started-06_create_vault_light.png" alt="Name the vault and link a Chia Signer spend key" width="100%" className="theme-image-light"/>
@@ -92,9 +90,7 @@ Use **Passkey** only if you do not have an iPhone or Android phone. That passkey
   <img src="/img/cloud-wallet/getting-started-11_vault_created_dark.png" alt="New vault while the receive address is being minted" width="100%" className="theme-image-dark"/>
 </div>
 
-On testnet, request TXCH from the [official faucet](https://testnet11-faucet.chia.net/) with that address.
-
-To buy XCH into this vault on mainnet, see [Buy XCH](/cloud-wallet/buy-xch).
+To buy XCH into this vault, see [Buy XCH](/cloud-wallet/buy-xch).
 
 ## Sending funds
 
@@ -107,3 +103,7 @@ Open the vault and click **Send XCH**. Enter the destination, amount, and an opt
 - Help inside the app: [In App Support](/cloud-wallet/in-app-support)
 - Signer setup and signing: [Chia Signer](/chia-signer/getting-started)
 - Common questions: [FAQ](/cloud-wallet/faq)
+
+## Using testnet
+
+Developers can try Cloud Wallet with testnet TXCH at [vault.chiatest.net](https://vault.chiatest.net/). Account and vault setup work the same way as on mainnet. After the vault is created, request TXCH from the [official faucet](https://testnet11-faucet.chia.net/) or the [community faucet](https://txchfaucet.com/) using the vault's receive address. Funds usually arrive within a few minutes.
