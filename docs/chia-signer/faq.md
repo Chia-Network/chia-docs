@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ### What is the Chia Signer app?
 
-The Chia Signer app is a dedicated mobile application for iOS and Android that provides an enhanced layer of security for your Chia Wallet transactions. On iOS, keys are stored in the Secure Enclave. Android is currently in **beta**; on first launch the app checks for hardware-backed key storage via Android’s Keystore (including StrongBox or TEE-backed storage when the device supports it). If suitable hardware is not available, you can still use software keys; the app warns you on each software key creation that the key is not hardware-protected.
+The Chia Signer app is a dedicated mobile application for iOS and Android that provides an enhanced layer of security for your Chia Wallet transactions. On iOS, keys are stored in the Secure Enclave. On Android, on first launch the app checks for hardware-backed key storage via Android’s Keystore (including StrongBox or TEE-backed storage when the device supports it). If suitable hardware is not available, you can still use software keys; the app warns you on each software key creation that the key is not hardware-protected.
 
 ### What are the key benefits of using the Chia Signer app?
 
@@ -24,13 +24,13 @@ The Chia Signer app is a dedicated mobile application for iOS and Android that p
 
 - See the [App Store listing](https://apps.apple.com/app/chia-signer/id6504493785) for compatible devices and the minimum iOS version. In general, you need iOS 15 or later and a Secure Enclave.
 
-**Android** (beta)
+**Android**
 
-- The Android app is in **beta**. Use the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer) for compatible devices, OS version, and install eligibility. Hardware-backed keys require device support for Android’s hardware-backed Keystore (e.g. StrongBox or TEE); see Google’s [Keystore documentation](https://developer.android.com/privacy-and-security/keystore). Devices without that backing use software keys with in-app notices at creation time as these keys are inherently less secure than hardware keys.
+- Use the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer) for compatible devices, OS version, and install eligibility. Hardware-backed keys require device support for Android’s hardware-backed Keystore (e.g. StrongBox or TEE); see Google’s [Keystore documentation](https://developer.android.com/privacy-and-security/keystore). Devices without that backing use software keys with in-app notices at creation time as these keys are inherently less secure than hardware keys.
 
 ### Can I use the Chia Cloud Wallet and the Chia Signer app on the same device?
 
-Currently, no. For security purposes, you need two separate devices: one for accessing your Chia Cloud Wallet (e.g., a computer or another phone) and a separate smartphone with the Chia Signer app (iOS, or Android in beta). Using both on the same device is planned for a future release.
+Currently, no. For security purposes, you need two separate devices: one for accessing your Chia Cloud Wallet (e.g., a computer or another phone) and a separate smartphone with the Chia Signer app (iOS or Android). Using both on the same device is planned for a future release.
 
 ### How do I create a new key within the Chia Signer app?
 
@@ -39,7 +39,7 @@ Tap the ellipsis (the `...` button in the upper-right corner), then tap the `+ A
 You also have the option to create either a `Hardware key` (a spend key) or a `Software key` (a recovery key). If you choose `Hardware key`, then the key's location will depend on your phone's hardware and OS:
 
 - **iOS:** The app creates a hardware-backed key in the Secure Enclave.
-- **Android** (beta): On first start, the app checks for hardware-backed Keystore support. Depending on your phone's manufacturer and model, one of three options will be selected automatically:
+- **Android:** On first start, the app checks for hardware-backed Keystore support. Depending on your phone's manufacturer and model, one of three options will be selected automatically:
   - StrongBox
     - most secure option
     - uses a dedicated Hardware Security Module (HSM)
@@ -85,7 +85,7 @@ If you permanently lose access to **both** your spend key and your recovery key 
 
 ### Is an Android version of the Chia Signer app available?
 
-Yes, the android version is currently in beta: [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
+Yes: [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 ### Can the Chia Signer app be used as the Chia Cloud Wallet recovery key?
 
