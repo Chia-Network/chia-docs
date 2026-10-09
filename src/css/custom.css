@@ -574,3 +574,57 @@ img {
 [data-theme='dark'] .theme-image-dark {
   display: block;
 }
+
+/* Vertical timeline used on the Buy XCH page */
+.purchase-timeline {
+  list-style: none;
+  margin: 1.5rem 0 1.5rem 0.5rem;
+  padding: 0;
+}
+
+.purchase-timeline li {
+  position: relative;
+  margin: 0;
+  padding: 0 0 1.5rem 1.75rem;
+  border-left: 2px solid var(--ifm-color-emphasis-300);
+}
+
+.purchase-timeline li:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+
+.purchase-timeline li::before {
+  content: '';
+  position: absolute;
+  top: 0.3rem;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+}
+
+.purchase-timeline li.purchase-timeline__limit::before {
+  background: var(--ifm-background-color);
+  border: 2px solid var(--ifm-color-primary);
+}
+
+.purchase-timeline__when {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.purchase-timeline__event {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.purchase-timeline__event .badge {
+  flex-shrink: 0;
+  min-width: 3.25rem;
+  text-align: center;
+}
