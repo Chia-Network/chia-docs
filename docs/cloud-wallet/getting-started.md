@@ -3,146 +3,107 @@ title: Getting Started
 slug: /cloud-wallet/getting-started
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+Set up a Chia Cloud Wallet at [vault.chia.net](https://vault.chia.net/). You will create an account, then a vault to hold your XCH. It takes a few minutes.
 
-Welcome to the Chia Cloud Wallet, a new platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain.
+## Create an account
 
-This guide will show you how to create your first Cloud Wallet vault in a few easy steps.
+1. Click **Sign Up**.
 
-1. Browse to the Chia Cloud Wallet website for [mainnet](https://vault.chia.net).
-
-:::note
-Use the [testnet](https://vault.chiatest.net) instance for testing the cloud wallet with txch.
-:::
-
-2. Click the `Sign Up` button:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/01_front_page.png" alt="Welcome to the Cloud Wallet" width="100%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-01_login_light.png" alt="Chia Cloud Wallet login page with Sign Up" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-01_login_dark.png" alt="Chia Cloud Wallet login page with Sign Up" width="100%" className="theme-image-dark"/>
 </div>
 
-3. Enter your email address and click `Continue`.
+2. Choose the **Free** plan, enter your email, and click **Continue**. Pro and Enterprise are not available yet.
 
-4. Within a few minutes, you should receive an email with the subject "Chia cloud wallet email verification link". Click the link in the email.
-
-5. Enter your name and click `Set new Passkey`:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/02_set_passkey.png" alt="Set a new passkey" width="100%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-02_signup_light.png" alt="Choose a plan and enter an email" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-02_signup_dark.png" alt="Choose a plan and enter an email" width="100%" className="theme-image-dark"/>
 </div>
 
-6. You will be given a variety of options for adding a new passkey, for example in a hardware key, a password manager, or the OS keychain. This passkey will be your primary method for signing into the Cloud Wallet. It can also be used for signing Chia transactions.
+3. Enter the 6-digit code sent to your email and click **Verify**.
 
-Congratulations, you're all set to create your first vault!
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-03_verify_email_light.png" alt="Verify your email with a 6-digit code" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-03_verify_email_dark.png" alt="Verify your email with a 6-digit code" width="100%" className="theme-image-dark"/>
+</div>
+
+4. Enter your name, name the passkey, and click **Set New Passkey**. This passkey is how you sign in. The Chia Signer app cannot be used as the login passkey.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-04_passkey_light.png" alt="Set a name and a login passkey" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-04_passkey_dark.png" alt="Set a name and a login passkey" width="100%" className="theme-image-dark"/>
+</div>
 
 ## Create a vault
 
-:::info
+1. On **Add Your First Vault**, click **Create** on **Single Signature Vault**.
 
-Currently, in order to use the Chia Signer app, you will need two separate devices:
-
-1. A computer or phone to access your vault
-2. A smartphone (iOS, or Android in beta) with the Chia Signer app installed
-
-You cannot use both the Cloud Wallet and the Chia Signer app on the same device yet. However, we do intend to enable this functionality in a future release.
-
-:::
-
-1. The free tier of the Cloud Wallet only allows you to create a single vault, so you will need to choose from one of the two options. Let's create a vault using the Chia Signer app:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-05_add_vault_light.png" alt="Add your first vault" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-05_add_vault_dark.png" alt="Add your first vault" width="100%" className="theme-image-dark"/>
 </div>
 
-2. Give your vault a name, for example `My Signer Vault`.
+2. Name the vault.
 
-3. You will need to scan the QR code using your Chia Signer app. If you don't have the app yet: **iOS** — [App Store](https://apps.apple.com/app/chia-signer/id6504493785); **Android** (beta) — [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
+3. Choose a spend key. **App (Hardware Key)** is the usual choice. On the same device, use **Link via Chia Signer App**. On another device, scan the QR code. Create the key in the Signer app first. See [Chia Signer](/chia-signer/getting-started).
 
-   <div style={{ textAlign: 'left' }}>
-     <img src="/img/cloud-wallet/03_choose_vault_type.png" alt="Create vault with signer app" width="100%"/>
-   </div>
-
-4. From the Chia Signer app, tap the `+` button in the upper-right corner to add a new key:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/04_new_key.png" alt="Create a new key" width="40%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-06_create_vault_light.png" alt="Name the vault and link a Chia Signer spend key" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-06_create_vault_dark.png" alt="Name the vault and link a Chia Signer spend key" width="100%" className="theme-image-dark"/>
 </div>
 
-5. Give your new key a name, for example `My Key`. Currently, the only option is to create a hardware-backed key in your device's secure hardware (Secure Enclave on iOS; hardware-backed keystore on Android, which is in beta). Tap `Generate Key`:
+Use **Passkey** only if you do not have an iPhone or Android phone. That passkey is also your login. Losing it affects both signing in and signing transactions.
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/05_generate_key.png" alt="Generate a hardware key" width="40%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-06_passkey_spend_light.png" alt="Passkey selected as the vault spend key" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-06_passkey_spend_dark.png" alt="Passkey selected as the vault spend key" width="100%" className="theme-image-dark"/>
 </div>
 
-6. Your new key will show up in the app's main screen. Tap the button in the lower-middle part of the app and scan the QR code:
+4. Leave **Watchtower Notifications** on so you get an email if someone starts a recovery. Add another email address when you can. See [Watchtowers](/cloud-wallet/faq#watchtowers). Click **Next**.
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/06_scan_button.png" alt="Tap the scan button" width="40%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-07_watchtower_light.png" alt="Watchtower notifications enabled on create vault" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-07_watchtower_dark.png" alt="Watchtower notifications enabled on create vault" width="100%" className="theme-image-dark"/>
 </div>
 
-7. Tap `Choose a key`:
+5. Write down the 24-word recovery phrase, in order, and store it somewhere safe. Chia does not keep a copy. You need these words to recover the vault. See [Recovery](/cloud-wallet/recovery).
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/07_choose_key.png" alt="Tap the Choose a key button" width="40%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-08_recovery_phrase_light.png" alt="24-word recovery phrase" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-08_recovery_phrase_dark.png" alt="24-word recovery phrase" width="100%" className="theme-image-dark"/>
 </div>
 
-8. Tap your new key:
+6. You can set a recovery clawback window before the vault is created. That is how long you have to cancel a recovery if the phrase is stolen. The default is fine for most people. Details are in [Recovery](/cloud-wallet/recovery).
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/08_new_key.png" alt="Tap your new key" width="40%"/>
+7. Enter the highlighted words to confirm the phrase, check the box, and click **Create**.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-10_verify_phrase_light.png" alt="Verify the recovery phrase before creating the vault" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-10_verify_phrase_dark.png" alt="Verify the recovery phrase before creating the vault" width="100%" className="theme-image-dark"/>
 </div>
 
-9. Tap the `Link key` button:
+8. The vault is minted in about a minute or two. The receive address appears when that finishes.
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/09_link_key.png" alt="Link your key to your vault" width="40%"/>
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-11_vault_created_light.png" alt="New vault while the receive address is being minted" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-11_vault_created_dark.png" alt="New vault while the receive address is being minted" width="100%" className="theme-image-dark"/>
 </div>
 
-10. When linking succeeds, a green checkmark appears over the QR code on the Cloud Wallet page (this is a status indicator, not a checkbox you need to click):
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/10_key_linked.png" alt="Green checkmark indicating the signer was successfully linked" width="100%"/>
-</div>
-
-11. Next, copy the 24 words to a safe location. You will need to recall these words in order to recover your vault, so don't lose them.
-
-12. You can also set a custom time for your vault's recovery clawback. This is the amount of time you will need to wait in order to recover your vault. If your 24-word recovery phrase is stolen, then you will have this long to cancel the recovery. For how Instant Recovery and timelocked recovery work together, see the [Recovery](/cloud-wallet/recovery) guide.
-
-13. Click the `Create` button to create your vault. A "vault faucet" will mint a new vault for you. Your vault's receive address will appear after this process is complete (typically a minute or two).
-
-You are now ready to receive funds in your new vault.
-
-If using the testnet instance of the chia cloud wallet, Testnet11 uses a test currency called TXCH. To obtain some TXCH, you can visit either our [official faucet site](https://testnet11-faucet.chia.net) or a [community-run faucet](https://txchfaucet.com), and enter your vault's address. You should receive some funds for testing within a few minutes.
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/11_vault_1_txch.png" alt="Vault with 1 txch" width="100%"/>
-</div>
+To buy XCH into this vault, see [Buy XCH](/cloud-wallet/buy-xch).
 
 ## Sending funds
 
-Your vault uses the Chia Signer app to sign transactions. Click the `Send` button to begin the process of sending funds.
+Open the vault and click **Send XCH**. Enter the destination, amount, and an optional fee, then sign with the vault spend key. A passkey vault asks for the passkey on this device. A Signer vault sends a signature request to the Chia Signer app. Confirm the details match, then approve.
 
-1. Enter a destination address, amount to send, and an optional blockchain fee, then click `Send`:
+- Clawback on a send: [Send Clawback](/cloud-wallet/send-clawback)
+- Saved recipients: [Address Book](/cloud-wallet/address-book)
+- CATs and other assets: [Tokens](/cloud-wallet/tokens)
+- Lost spend key or phrase: [Recovery](/cloud-wallet/recovery)
+- Help inside the app: [In App Support](/cloud-wallet/in-app-support)
+- Signer setup and signing: [Chia Signer](/chia-signer/getting-started)
+- Common questions: [FAQ](/cloud-wallet/faq)
 
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/12_send_funds.png" alt="Enter info and click Send" width="100%"/>
-</div>
+## Using testnet
 
-2. You will be shown the details of the transaction:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/13_tx_details.png" alt="View transaction details" width="100%"/>
-</div>
-
-3. Simultaneously, your device with the Chia Signer app should receive a push notification with a signature request. This notification will contain the details of the transaction. Scroll through this request to ensure that everything matches what you see from the Cloud Wallet, and tap `Sign transaction`:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/14_signature_request.png" alt="Signature request" width="40%"/>
-</div>
-
-4. You should see a "success" message on both the Chia Signer app and the Cloud Wallet:
-
-<div style={{ textAlign: 'left' }}>
-  <img src="/img/cloud-wallet/15_successfully_signed.png" alt="Successfully signed" width="100%"/>
-</div>
+Developers can try Cloud Wallet with testnet TXCH at [vault.chiatest.net](https://vault.chiatest.net/). Account and vault setup work the same way as on mainnet. After the vault is created, request TXCH from the [official faucet](https://testnet11-faucet.chia.net/) or the [community faucet](https://txchfaucet.com/) using the vault's receive address. Funds usually arrive within a few minutes.

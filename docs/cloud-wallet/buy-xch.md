@@ -3,82 +3,114 @@ title: Buy XCH
 slug: /cloud-wallet/buy-xch
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-This guide will show you how to purchase XCH directly within the Chia Cloud Wallet using ACH bank transfers via Stripe.
+Buying XCH takes a few minutes to set up the first time. After that, most purchases take less than a minute to place. You pay from a US bank account, and the XCH is delivered to a vault you control.
 
 :::info
 
-Before you can buy XCH, you'll need to have a Cloud Wallet account and at least one vault. If you haven't created a vault yet, please follow the [Getting Started Guide](/cloud-wallet/getting-started) first.
+You need a Cloud Wallet account and at least one vault. If you have not created a vault yet, follow the [Getting Started Guide](/cloud-wallet/getting-started) first.
+
+ACH bank transfer is the only accepted payment method. Stripe processes the transfer. Chia never stores your bank login credentials.
 
 :::
 
-## Prerequisites
+<!-- Legacy anchors preserved for external links -->
 
-- An active [Chia Cloud Wallet](https://vault.chia.net/) account with at least one vault
-- A US bank account for ACH transfers
+<span id="prerequisites"></span>
 
-## Purchase Limits
+## Create your Chia Cloud Wallet account
 
-- **Minimum purchase**: \$25 USD
-
-## Buying XCH
-
-1. Log in to your [Chia Cloud Wallet](https://vault.chia.net/) account.
-
-2. Navigate to the `Buy XCH` screen from the left-hand menu:
+1. Go to [vault.chia.net](https://vault.chia.net/) and log in. If you do not have an account and a vault yet, follow [Getting Started](/cloud-wallet/getting-started) first.
+2. Open the **Buy XCH** tab (the \$ icon).
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/buy-xch-01_navigation_light.png" alt="Navigate to Buy XCH screen" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/buy-xch-01_navigation_dark.png" alt="Navigate to Buy XCH screen" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/buy-xch-01_navigation_light.png" alt="Vaults home with the Buy XCH dollar icon in the left menu" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/buy-xch-01_navigation_dark.png" alt="Vaults home with the Buy XCH dollar icon in the left menu" width="100%" className="theme-image-dark"/>
 </div>
 
-3. Enter the amount you want to purchase in USD. The minimum is within the purchase limits, then click `Next`:
+## Verify your identity
+
+First-time buyers only. This is a one-time step. Stripe hosts the identity check, so that part of the flow is not shown here.
+
+1. Click **Verify My Identity**.
+2. Agree to the data policy to start the process.
+3. Take a photo of a valid government ID and a selfie, then upload both. Stripe checks these instantly for most users. A small number of applicants are declined at this stage.
+4. Once you are verified, connect a bank account one of two ways:
+   - **Instant:** choose your bank from the list and log in with your bank credentials. Verification is immediate.
+   - **Manual:** enter your bank routing and account numbers. This option can take a couple of days to verify.
+5. You can save your bank details for future purchases. Right now, **ACH bank transfer is the only accepted payment method**.
+
+<span id="buying-xch"></span>
+
+## Buy XCH
+
+Once you are verified, or on any return visit, buying is simple.
+
+1. Enter the amount you want to buy, in USD or XCH, and choose the vault that should receive it. The exchange rate updates as you type.
+   <span id="purchase-limits"></span>
+   - Minimum purchase: **\$25**
+   - Maximum purchase: varies by user, and your limit increases as you complete more successful purchases
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/buy-xch-02_enter_amount_light.png" alt="Enter purchase amount" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/buy-xch-02_enter_amount_dark.png" alt="Enter purchase amount" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/buy-xch-02_enter_amount_light.png" alt="Buy XCH amount and vault selection" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/buy-xch-02_enter_amount_dark.png" alt="Buy XCH amount and vault selection" width="100%" className="theme-image-dark"/>
 </div>
 
-4. Select a saved bank account, or add a new one:
-   - **Saved accounts**: If you have previously saved bank accounts, they will appear in a list for you to choose from
-   - **Add new account**: Click the "US bank account" option to add a new bank account
+2. Click **Next**, then choose a saved bank account or a new US bank account. For a new account, pick your bank and sign in. Stripe handles that login. Manual entry of a routing and account number is available when bank login is not.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/buy-xch-03_select_bank_light.png" alt="Select or add bank account" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/buy-xch-03_select_bank_dark.png" alt="Select or add bank account" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/buy-xch-03_select_bank_light.png" alt="US bank account payment step with a bank search" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/buy-xch-03_select_bank_dark.png" alt="US bank account payment step with a bank search" width="100%" className="theme-image-dark"/>
 </div>
 
-5. If you're adding a new bank account, follow the Stripe popup prompts to provide your bank account information and complete the setup:
+3. Review the payment method, exchange rate, amount, and total, then click **Buy XCH**.
+4. On the confirmation dialog, read the hold notice, check both boxes, and click **Next**.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/buy-xch-04_stripe_add_bank_light.png" alt="Stripe popup to add bank account" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/buy-xch-04_stripe_add_bank_dark.png" alt="Stripe popup to add bank account" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/buy-xch-06_confirmation_light.png" alt="Purchase confirmation dialog with the hold notice" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/buy-xch-06_confirmation_dark.png" alt="Purchase confirmation dialog with the hold notice" width="100%" className="theme-image-dark"/>
 </div>
 
-6. Review the transaction details, including the amount of XCH you'll receive, the bank account to be used, and any applicable fees. Click `Next` to continue:
+## What happens after you buy
 
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/buy-xch-05_review_light.png" alt="Review transaction details" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/buy-xch-05_review_dark.png" alt="Review transaction details" width="100%" className="theme-image-dark"/>
-</div>
+Your XCH shows up right away, but you get full access only after your bank payment clears. The XCH and your bank payment move on two separate timelines:
 
-7. Review the confirmation screen and click `Next`. This completes the order. The order details will appear in the order list on the right side of the screen:
+<ol className="purchase-timeline">
+  <li>
+    <span className="purchase-timeline__when">Right away</span>
+    <span className="purchase-timeline__event"><span className="badge badge--primary">XCH</span>Appears in your vault with a safety hold.</span>
+    <span className="purchase-timeline__event"><span className="badge badge--secondary">Bank</span>Your ACH payment starts.</span>
+  </li>
+  <li>
+    <span className="purchase-timeline__when">3 to 5 business days</span>
+    <span className="purchase-timeline__event"><span className="badge badge--secondary">Bank</span>Your payment settles.</span>
+  </li>
+  <li>
+    <span className="purchase-timeline__when">1 to 3 days later</span>
+    <span className="purchase-timeline__event"><span className="badge badge--primary">XCH</span>The hold lifts and you have full access. This is what usually happens.</span>
+  </li>
+  <li className="purchase-timeline__limit">
+    <span className="purchase-timeline__when">14 days at the latest</span>
+    <span className="purchase-timeline__event"><span className="badge badge--primary">XCH</span>The hold always ends by this date.</span>
+  </li>
+</ol>
 
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/buy-xch-06_confirmation_light.png" alt="Order confirmation" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/buy-xch-06_confirmation_dark.png" alt="Order confirmation" width="100%" className="theme-image-dark"/>
-</div>
+The safety hold is called a clawback. It protects against payment reversals, such as a bank transfer that fails after the XCH is delivered. The app shows the latest date your hold will lift. The 14-day limit leaves room for weekends and bank holidays.
 
-Once your payment is processed, the XCH will be deposited into your vault. ACH transfers are processed through Stripe and typically completes within 7 business days.
+## Quick reference
+
+| Step                 | What you need                                               | Time required                                                    |
+| -------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------- |
+| Create account       | Email                                                       | 1–2 minutes                                                      |
+| Verify identity      | Government ID + selfie                                      | Instant for most users                                           |
+| Connect bank         | Bank login (instant) or routing and account number (manual) | Instant to a couple of days                                      |
+| Buy XCH              | Minimum \$25                                                | Under a minute to place                                          |
+| Full access to funds | —                                                           | Usually within a few days; hold expires at 14 days at the latest |
 
 ## Troubleshooting
 
-If you encounter any issues while buying XCH:
+If you run into a problem while buying XCH:
 
-- Ensure your vault has been fully created and an address is available
-- Verify your purchase amount is within the purchase limits
-- Check that your bank account information is correct in Stripe
-- Ensure your bank account has sufficient funds
-- For additional support, use [In App Support](/cloud-wallet/in-app-support)
+- Confirm the vault is fully created and has an address
+- Confirm the purchase amount is at least \$25 and within your current limit
+- Confirm the bank account has sufficient funds
+- For anything else, use [In App Support](/cloud-wallet/in-app-support)
