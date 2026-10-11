@@ -37,8 +37,7 @@ py -m venv venv
 py -m pip install --upgrade pip setuptools wheel
 pip install .
 ```
-
-````
+```
 
   </TabItem>
   <TabItem value="linux-macos">
@@ -53,7 +52,7 @@ pip install .
 ``` ./venv/bin/activate
 python -m pip install --upgrade pip setuptools wheel
 pip install .
-````
+```
 
   </TabItem>
 </Tabs>
