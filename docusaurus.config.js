@@ -82,7 +82,7 @@ const katex = require('rehype-katex').default;
               position: 'right',
             },
             {
-              href: 'https://chia.net',
+              href: 'https://www.chia.net/',
               label: 'Chia Network',
               position: 'right',
             },
@@ -100,7 +100,7 @@ const katex = require('rehype-katex').default;
               items: [
                 {
                   label: 'White Paper',
-                  to: 'https://chia.net/approach',
+                  to: 'https://www.chia.net/white-paper/',
                 },
               ],
             },
@@ -109,7 +109,7 @@ const katex = require('rehype-katex').default;
               items: [
                 {
                   label: 'Green Paper',
-                  to: 'https://chia.net/greenpaper',
+                  to: '/chia-blockchain/green-paper/green-paper-abstract',
                 },
                 {
                   label: 'Consensus 1.1',
@@ -139,20 +139,20 @@ const katex = require('rehype-katex').default;
               items: [
                 {
                   label: 'About',
-                  to: 'https://chia.net/about',
+                  to: 'https://www.chia.net/about/',
                 },
                 {
                   label: 'Blog',
-                  to: 'https://chia.net/blog',
+                  to: 'https://www.chia.net/blog/',
                 },
                 {
                   label: 'Contact',
-                  to: 'https://chia.net/contact',
+                  to: 'https://www.chia.net/contact/',
                 },
               ],
             },
           ],
-          copyright: `© ${new Date().getFullYear()} Chia Network Inc., Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://chia.net/terms">Terms</a>`,
+          copyright: `© ${new Date().getFullYear()} Chia Network Inc., Licensed under the <a href="https://github.com/Chia-Network/chia-docs/blob/main/LICENSE" target="_blank">Apache License, Version 2.0</a> | <a href="https://www.chia.net/terms/">Terms</a>`,
         },
         prism: {
           darkTheme: require('./src/theme/prism-dark-theme-chialisp'),

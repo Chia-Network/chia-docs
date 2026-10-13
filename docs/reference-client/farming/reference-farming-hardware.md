@@ -9,13 +9,13 @@ slug: /reference-client/farming/reference-farming-hardware
 
 The easiest way to get started in Chia is by attaching a USB hard drive to a desktop computer, or installing a SATA hard drive. The minimum amount of storage needed to farm is only a single plot! Beginners should start with a few drives to make it worth running the farm, and earn a few dollars per month. You can you use your desktop computer to create the plots (see plotting). There are companies like Evergreen that make it one step easier and remove the plotting step by offering a pre-plotted drive and a mobile app. Plotting is going to be the limiting factor for curious farmers because their desktop or laptop may not have enough compute and temporary SSD storage that is suitable for plotting, but filling up a single drive with plots is fairly easy even for beginners.
 
-<img src="https://www.chia.net/wp-content/uploads/2023/04/Hard-Drive-Standard.webp" width="300" />
+<img src="/img/farming-hardware/hard-drive.png" alt="Illustration of a single 3.5-inch hard drive" width="300" />
 
 ## Hobbyist
 
 Once you get to a few hundred terabytes, think about a dedicated desktop computer for Chia farming, a NAS, or an external storage enclosure. A general rule of thumb is to look at the cost per slot (per drive) attached so you don’t end up spending more money to store the disks than the disks themselves!
 
-<img src="https://www.chia.net/wp-content/uploads/2023/04/nas-glass.jpg" width="300" />
+<img src="/img/farming-hardware/nas.png" alt="Illustration of a multi-bay NAS enclosure" width="300" />
 
 ### NAS
 
@@ -33,10 +33,10 @@ A standard full tower desktop can hold 8-12 3.5in HDDs. These cases are user fri
 
 Pros are shooting for over a petabyte of storage, where more advanced tactics come into play. These can include GPU plotting, HBAs (host bus adapters), and used enterprise storage servers. Used enterprise storage gear is a great place to start, since servers with high drive count can be found inexpensively on eBay and other used markets. Older JBODs that house 24-45 drives can be found for a few hundred dollars used. While these are cost-effective, they do require the farmer to learn about enterprise storage protocols and infrastructure like SAS. Pros generally mix consumer and enterprise gear to be ruthlessly cost-efficient with their purchases.
 
-<img src="https://www.chia.net/wp-content/uploads/2023/04/desktop-farmer.webp?" width="300" />
+<img src="/img/farming-hardware/desktop-farmer.png" alt="Illustration of a full tower desktop computer with internal drive bays" width="300" />
 
 ## Serious
 
 Serious Chia farmers that are going for multiple petabytes will start having to enter the world of server racks. Thankfully, data centers around the world have already engineered the best way to store an extremely large amount of storage in server racks. A serious farmer will be using JBODs. A JBOD, or "Just a bunch of disks" is a device dedicated to housing a large number of hard disk drives, and does not contain any integrated compute resources. A JBOD is typically made up of an enclosure, enclosure slots that identify each drive individually, a SAS expander and backplane, fans, and power supplies. All the disks in a JBOD can be accessed by a single SAS cable connected to a host server or desktop through a HBA (host bus adapter) which converts a PCIe slot to SAS. Serious farmers will put many of these JBODs in a rack to get extremely dense storage, which can achieve over 10 petabytes in a single rack using modern JBODs and high-capacity HDDs.
 
-<img src="https://www.chia.net/wp-content/uploads/2023/04/Rack-Scael-Edit-2.webp" width="300" />
+<img src="/img/farming-hardware/server-rack.png" alt="Illustration of a server rack filled with JBOD storage enclosures" width="300" />

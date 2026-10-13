@@ -9,7 +9,7 @@ All consensus code uses mojos; XCH is used as a conveniently larger unit.
 
 ## Strategic Reserve (pre-farm)
 
-The first block of the network pays out 21 million XCH, divided into a 1/8 coin and a 7/8 coin, to an address that Chia Network Inc controls. The purpose and future usage of the funds is described in the [business white paper](https://www.chia.net/whitepaper).
+The first block of the network pays out 21 million XCH, divided into a 1/8 coin and a 7/8 coin, to an address that Chia Network Inc controls. The purpose and future usage of the funds is described in the [business white paper](https://www.chia.net/white-paper/).
 
 ## Halvings
 
@@ -47,7 +47,7 @@ The second coin, with 7/8 of the value, is called the _pool coin_. This coin can
 
 ## Rewards schedule
 
-As detailed in the [Business white paper](https://www.chia.net/whitepaper), the network's emissions schedule is as follows (where `year 0` is the first year of mainnet's existence):
+As detailed in the [Business white paper](https://www.chia.net/white-paper/), the network's emissions schedule is as follows (where `year 0` is the first year of mainnet's existence):
 
 |   Years | Final<br/>Block | Final Month<br/>(Approx.) | Block Reward<br/>(total) | Pool<br/>Reward | Farmer<br/>Reward |
 | ------: | --------------: | ------------------------: | -----------------------: | --------------: | ----------------: |

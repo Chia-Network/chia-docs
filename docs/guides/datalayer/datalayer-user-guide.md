@@ -66,7 +66,7 @@ For additional technical resources, see the following:
 - [DataLayer RPC API](/reference-client/rpc-reference/datalayer-rpc/ "DataLayer RPC API")
 - [DataLayer CLI Reference](/reference-client/cli-reference/datalayer-cli/ "DataLayer CLI Reference")
 - [DataLayer Permission Guide](/guides/datalayer-permissions/) -- a new feature as of Chia 1.8.0
-- [DataLayer blog post](https://www.chia.net/2022/09/21/enabling-data-for-web3-announcing-chia-datalayer/)
+- [DataLayer blog post](https://www.chia.net/blog/enabling-data-for-web3-announcing-chia-datalayer/)
 
 :::note
 
@@ -90,7 +90,7 @@ If you have already installed Chia version 1.6 or greater and started the refere
 
 ### Install and Run Chia
 
-DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/reference-client/install-and-setup/installation#from-source) or [run the packaged installer](https://www.chia.net/downloads/).
+DataLayer can be activated or deactivated from Chia's reference wallet GUI. However, the commands to use it are only available from the CLI or RPC. You can choose whether to [install Chia from source](/reference-client/install-and-setup/installation#from-source) or [run the packaged installer](https://www.chia.net/farm/downloads/).
 
 1. **If you installed from source**, be sure you have activated a virtual environment (you should see `(venv)` on the left side of your Powershell/terminal window).
 
@@ -136,7 +136,7 @@ When you **cannot** run a full node on the same system as DataLayer, point this 
 
 :::tip Faster full-node sync
 
-Syncing from genesis can take a long time. Download an official [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) and follow [Using the Official Database Snapshot Torrent](/reference-client/troubleshooting/node-syncing#using-the-official-database-snapshot-torrent) for step-by-step setup—usually much faster than syncing from scratch.
+Syncing from genesis can take a long time. Download an official [database checkpoint](https://www.chia.net/farm/downloads/#database-checkpoint) and follow [Using the Official Database Snapshot Torrent](/reference-client/troubleshooting/node-syncing#using-the-official-database-snapshot-torrent) for step-by-step setup—usually much faster than syncing from scratch.
 
 :::
 

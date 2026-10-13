@@ -3,7 +3,7 @@ slug: /guides/custody-tool-description
 title: Custody Tool Description
 ---
 
-The majority of Chia Network Inc's prefarm is being held in a cold wallet, secured by a complex set of custodial rules. This document will describe the details of the custodial arrangement. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the custody wallet, see our [blog post](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/).
+The majority of Chia Network Inc's prefarm is being held in a cold wallet, secured by a complex set of custodial rules. This document will describe the details of the custodial arrangement. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the custody wallet, see our [blog post](https://www.chia.net/blog/a-new-home-for-the-prefarm/).
 
 Other relevant documents:
 

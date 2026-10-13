@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-The [Beginner's Guide to Farming](/reference-client/getting-started/farming-guide) will walk you through the steps required to install Chia and create your first plot. You are recommended to follow it prior to getting into the concepts introduced in this section, reviewing our [plotting basics](https://www.chia.net/2021/02/22/plotting-basics/) helps guide users from a high level perspective.
+The [Beginner's Guide to Farming](/reference-client/getting-started/farming-guide) will walk you through the steps required to install Chia and create your first plot. You are recommended to follow it prior to getting into the concepts introduced in this section, reviewing our [plotting basics](https://www.chia.net/blog/chia-plotting-basics/) helps guide users from a high level perspective.
 
 :::
 
