@@ -18,7 +18,7 @@ You can read about each of them and the architecture in the [Architecture Overvi
 
 ### What is a proof of space?
 
-A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](/reference-client/farming/farming-many-machines) to manage the whole "farm".
+A _proof of space_ is a proof that a farmer has allocated a portion of their storage in a way that is very difficult to create in real-time but efficient to pre-compute and store on a hard drive. The [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) goes deeply into the math and implementation considerations to mitigate [Hellman's Time - Memory tradeoff](https://pdfs.semanticscholar.org/f0ba/66072ac10d9898b8a79171ec726d45ec804b.pdf) problem. A plot is a large set of proofs of space. A harvester can harvest multiple plots on the same machine. A farmer can then control [multiple harvesters across many machines](/reference-client/farming/farming-many-machines) to manage the whole "farm".
 
 Farming uses substantially less electricity than Proof of Work for the same unit of security. You can learn more at [chiapower.org](https://chiapower.org).
 
@@ -75,7 +75,7 @@ We believe that Chia coins will be less volatile than other cryptocurrencies due
 
 ### Why does Chia run competitions?
 
-We believe that more eyes on our code will only make it better. For example, the [results](https://www.chia.net/2019/07/18/chia-vdf-competition-round-2-results-and-announcements/) of our [VDF Competition](https://github.com/Chia-Network/vdf-competition) produced a VDF implementation whose runtime was 80% faster than our original implementation.
+We believe that more eyes on our code will only make it better. For example, the [results](https://www.chia.net/blog/chia-vdf-competition-round-2-results-and-announcements/) of our [VDF Competition](https://github.com/Chia-Network/vdf-competition) produced a VDF implementation whose runtime was 80% faster than our original implementation.
 
 ### Where has Chia advanced the state of the art in applied cryptography?
 
@@ -121,7 +121,7 @@ Chia launched mainnet on March 19, 2021. You can follow along with code updates 
 
 Chia has a novel business model to both, lower volatility of the coin and increase adoption. By loaning Chia and managing the interest rates of those loans as well as other tools like buying our stock with chia coins, we hope to lower the quarter to quarter volatility of the coin. To drive adoption, we intend to loan Chia to Global 5000 companies who will use it to pay their international vendors quickly, less expensively, and more securely. We also intend to use the strategic reserve to aid development and adoption. We plan to do things like invest in promising startups in the Chia ecosystem, potentially increase farming rewards during limited periods of time to spur additional farming, and fund corporations paying 105% of the value of their international payables in Chia instead of fiat currency.
 
-Chia Network Inc created 21 million chia at mainnet launch. This is known as the Strategic Reserve. For details on the Company’s plans for the Strategic Reserve, see page 20 of the [Business Whitepaper](https://www.chia.net/whitepaper/).
+Chia Network Inc created 21 million chia at mainnet launch. This is known as the Strategic Reserve. For details on the Company’s plans for the Strategic Reserve, see page 20 of the [Business Whitepaper](https://www.chia.net/white-paper/).
 
 ### Did Chia have an ICO?
 
@@ -135,7 +135,7 @@ You can farm Chia on the unused storage of your laptop, desktop, or corporate ne
 
 It is our belief that the blockchain industry is still led by developers. We intend to be the superior chain for deploying new applications and services as well as being the only serious and secure choice for applications like sovereign backed stable coins. The Chia Network business will be the first for profit company that manages a pre-farm and we intend to be the first publicly tradable “near ETF” cryptocurrency. We believe that - as Redhat and MySQL AB were necessary to drive corporate adoption of linux and mysql - we will be the source for support and training as sovereigns, financial institutions, and corporations look to use cryptocurrency in daily commerce. Finally, we believe that we will be able to leverage the storage ecosystem to drive adoption at corporations and end users as hard drive manufacturers and storage server sellers are likely to bundle space farming into their offerings.
 
-Our [Business Whitepaper](https://www.chia.net/whitepaper/) is the definitive document on our strategy and approach.
+Our [Business Whitepaper](https://www.chia.net/white-paper/) is the definitive document on our strategy and approach.
 
 ### Where can I learn more about the technical details of your consensus algorithm?
 
@@ -147,7 +147,7 @@ Additionally, we maintain a list of academic papers and presentations about Chia
 
 Mining requires expensive single use hardware that consumes exorbitant amounts of electricity. We are mitigating this problem through a fair, eco-friendly, and better blockchain that uses farming to leverage existing empty hard disk space distributed on nodes around the globe. Farming remains decentralized because anyone that has installed our software and has plots can win the next block. Mining requires expensive custom single use hardware and access to electricity at wholesale or better prices which only purpose built corporations can afford to mine. Farming is more decentralized because it relies on empty hard disk space and anyone with a mobile phone, laptop, or corporate network tends to have extra space not currently being used. Unlike mining, once you’re done farming your storage you can repurpose it to, for example, store your family photos.
 
-For more information we have this [blog article](https://www.chia.net/2023/01/18/mining-vs-farming/), or you can refer to our [Farming](/reference-client/farming/farming-basics) and [Plotting](/reference-client/plotting/plotting-basics) docs.
+For more information we have this [blog article](https://www.chia.net/blog/mining-vs-farming-the-data-behind-being-green/), or you can refer to our [Farming](/reference-client/farming/farming-basics) and [Plotting](/reference-client/plotting/plotting-basics) docs.
 
 ### Where can I learn more about Chialisp?
 
@@ -177,7 +177,7 @@ More information can be found in the [Green Paper](https://docs.chia.net/chia-bl
 
 ### Where can I get answers to questions about running Chia?
 
-You should first read through the [Chia Introduction](https://docs.chia.net/chia-blockchain/introduction) and [docs FAQ](/chia-blockchain/resources/faq), check out the wealth of information on our [docs site](https://docs.chia.net/) and join us on [discord](https://discord.gg/chia) in the #support or #general channels. We have also created a good summary of the basics of [creating plots](https://www.chia.net/2021/02/22/plotting-basics/) for Chia.
+You should first read through the [Chia Introduction](https://docs.chia.net/chia-blockchain/introduction) and [docs FAQ](/chia-blockchain/resources/faq), check out the wealth of information on our [docs site](https://docs.chia.net/) and join us on [discord](https://discord.gg/chia) in the #support or #general channels. We have also created a good summary of the basics of [creating plots](https://www.chia.net/blog/chia-plotting-basics/) for Chia.
 
 ### What is Chia?
 
@@ -235,7 +235,7 @@ Some important changes went into the `transactions_generator` code with the 2.1.
 
 ### What is k?
 
-"k" is the space parameter that controls the size of plots. It is an integer for the following equation: `plot_size_bytes = C1 * 2^k(k + C2)` where C1 is constant 1 and C2 is constant 2. In practice this means that final size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005` though that constant is estimated. You can examine the [Space Required section](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf#page=15) of the [Chia Proof of Space Construction document](https://www.chia.net/wp-content/uploads/2022/09/Chia_Proof_of_Space_Construction_v1.1.pdf) for the calculation of how much space is required for a given k.
+"k" is the space parameter that controls the size of plots. It is an integer for the following equation: `plot_size_bytes = C1 * 2^k(k + C2)` where C1 is constant 1 and C2 is constant 2. In practice this means that final size is roughly `((2 * k) + 1) * (2 ** (k - 1)) * 0.78005` though that constant is estimated. You can examine the [Space Required section](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) of the [Chia Proof of Space Construction document](https://www.chia.net/assets/Chia_Proof_of_Space_Construction_v1.1.pdf) for the calculation of how much space is required for a given k.
 
 :::note
 
@@ -356,7 +356,7 @@ Version 2 of the database is still written in SQLite, but it has undergone a ser
 
 When you install a brand new full node, version 2 of the database will be created when you run `chia init`.
 
-If you are upgrading from Chia 1.x to 2.1 or later (which is required due to the [hard fork](/chia-blockchain/consensus/forks/)), you will no longer be able run with version 1 of the database. In this case, your options are to download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
+If you are upgrading from Chia 1.x to 2.1 or later (which is required due to the [hard fork](/chia-blockchain/consensus/forks/)), you will no longer be able run with version 1 of the database. In this case, your options are to download a [database checkpoint](https://www.chia.net/farm/downloads/#database-checkpoint) or to upgrade to version 2 manually, as described below.
 
 #### About the upgrade process
 
@@ -587,7 +587,7 @@ Please refer to the [upgrade instructions](/chia-blockchain/resources/faq#how-do
 
 ### How do I upgrade my version 1 blockchain database to version 2?
 
-Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. There are two method for updating the database to version 2, either using the upgrade cli command or downloading the [official database snapshot torrent](https://www.chia.net/downloads/#database-checkpoint).
+Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain database. There are two method for updating the database to version 2, either using the upgrade cli command or downloading the [official database snapshot torrent](https://www.chia.net/farm/downloads/#database-checkpoint).
 
 #### CLI command:
 
@@ -601,7 +601,7 @@ Chia versions 2.1.0 and newer no longer support the version 1 (v1) blockchain da
 
 #### Official torrent:
 
-1. Download the torrent file from the [official database snapshot torrent](https://www.chia.net/downloads/#database-checkpoint).
+1. Download the torrent file from the [official database snapshot torrent](https://www.chia.net/farm/downloads/#database-checkpoint).
 2. Use a torrent client to download the full db. [Bittorrent](https://www.bittorrent.com/) is recommended but any torrent client will work.
 3. Unpack/reassemble the torrent file that was downloaded (on windows one can use [7zip](https://7-zip.org/), Mac and linux have built in tools that work for this).
 4. Stop all chia processes if you have not already.
@@ -776,14 +776,14 @@ First wallet address: xch1kr3zf7dqw5q953ex6zt33lndj90q0zlh68404tsntnljthnwqs2qvj
 ```
 
 :::note
-For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/) blog article.
+For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/blog/securing-your-chia-how-to-be-a-hard-target/) blog article.
 :::
 
 ### How do I send or receive a transaction?
 
 The Wallets page in the GUI will display your receive address and provide an interface for you to spend your chia funds. You can also obtain a new wallet receive address any time you would like and those funds will all come to the same place as they are based on [HD Keys](https://www.investopedia.com/terms/h/hd-wallet-hierarchical-deterministic-wallet.asp).
 
-There is growing wallet functionality available on the command line. Try `chia wallet -h`. Wallet software also provides features related to [CAT's](https://www.chia.net/2021/11/15/the-CATs-out-of-the-bag.en.html), and trade offers. You can get a receive address on the cli with `chia keys show`.
+There is growing wallet functionality available on the command line. Try `chia wallet -h`. Wallet software also provides features related to [CAT's](https://www.chia.net/blog/the-cats-out-of-the-bag-chia-releases-the-cat1-standard/), and trade offers. You can get a receive address on the cli with `chia keys show`.
 
 ### What is the Coin model?
 
@@ -825,7 +825,7 @@ Known problem: After your wallet is resynced, any previous outgoing transaction 
 
 ### Where can I buy Chia?
 
-Visit [chia.net/buy-xch](https://www.chia.net/buy-xch) for instructions on buying Chia. Visit [offers](https://chialisp.com/offers) to learn more about peer-to-peer trading on Chia.
+Visit [chia.net/buy-xch](https://www.chia.net/buy-xch/) for instructions on buying Chia. Visit [offers](https://chialisp.com/offers) to learn more about peer-to-peer trading on Chia.
 
 There are several exchanges that offer XCH, you can see a list of exchanges supporting XCH on [chialinks](https://chialinks.com/exchanges/) a community created website. This list is for informational purposes only. It is up to the reader to do their own research on the best exchange for their needs.
 
@@ -1109,7 +1109,7 @@ Once you've created the offer, you'll need to find someone who will take the oth
 
 ### Why don't I see the offers option in my wallet?
 
-You are probably running a very old version before it was integrated into both the Full Node and Light Wallet options. You should download and install the [latest version](https://www.chia.net/downloads) of the reference software. Now you can farm and use all the new features of the wallet.
+You are probably running a very old version before it was integrated into both the Full Node and Light Wallet options. You should download and install the [latest version](https://www.chia.net/farm/downloads/) of the reference software. Now you can farm and use all the new features of the wallet.
 
 ### How do I know if I'm getting the right exchange value for an offer?
 
@@ -1129,7 +1129,7 @@ Version 1.7.0 of the reference wallet uses a slightly different Offer format tha
 
 ![Error 6](/img/error_6.png)
 
-To fix this, download and install the [latest version](https://www.chia.net/downloads) of the reference wallet and accept the same offer. You should no longer see the error.
+To fix this, download and install the [latest version](https://www.chia.net/farm/downloads/) of the reference wallet and accept the same offer. You should no longer see the error.
 
 ---
 
@@ -1362,7 +1362,7 @@ No, these are two completely different projects.
 
 Chia Friends was an airdrop of 10,000 NFTs. While Chia Network Inc gave these NFTs to 10,000 lucky recipients for free, they currently can be bought or sold just like any other NFT. All sales include a 3% royalty, which goes to the Marmot Recovery Foundation (here's their [wallet address](https://www.spacescan.io/xch/address/xch120ywvwahucfptkeuzzdpdz5v0nnarq5vgw94g247jd5vswkn7rls35y2gc)). For more information, see the [Chia Friends website](https://www.chiafriends.xyz/).
 
-The Holiday 21 tokens were an airdrop of CATs for farmers who farmed a block in 2021. These tokens are redeemable for a Holiday NFT until November 10th, 2023. For more information please refer to our blog article about the [Holiday NFTs](https://www.chia.net/2022/12/08/the-holiday-nfts-are-here/).
+The Holiday 21 tokens were an airdrop of CATs for farmers who farmed a block in 2021. These tokens are redeemable for a Holiday NFT until November 10th, 2023. For more information please refer to our blog article about the [Holiday NFTs](https://www.chia.net/blog/the-holiday-nfts-are-here/).
 
 ### Can I still redeem my CH21 token?
 
@@ -1372,7 +1372,7 @@ The CH21 token had two redemption options:
 
 2. **Chia Store discount (10% off)** - The Chia Store discount redemption at [ch21.chia.net](https://ch21.chia.net) will close on **April 30, 2026**.
 
-After April 30, 2026, CH21 tokens will no longer be redeemable for any goods or discounts from Chia Network. Unredeemed tokens will remain in your wallet and can be traded on the secondary market. For background on the original airdrop, see the [Happy Holidays from Chia!](https://www.chia.net/2021/12/21/happy-holidays-from-chia/) blog post.
+After April 30, 2026, CH21 tokens will no longer be redeemable for any goods or discounts from Chia Network. Unredeemed tokens will remain in your wallet and can be traded on the secondary market. For background on the original airdrop, see the [Happy Holidays from Chia!](https://www.chia.net/blog/happy-holidays-from-chia/) blog post.
 
 ### Can I donate directly to the Marmot Recovery Foundation?
 
@@ -1540,7 +1540,7 @@ Windows users can run `C:\Users\<user ID>\AppData\Local\Programs\Chia\Chia.exe` 
 
 For power users, it is possible to [install Chia from source](/reference-client/install-and-setup/installation#from-source). In this case, you will run Chia from a virtual environment on the command line.
 
-However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/downloads/).
+However, most users will prefer to download a packaged installer from Chia's official [download site](https://www.chia.net/farm/downloads/).
 
 After installing with the packaged installer, you can run Chia from the command line by invoking the executable file. The easiest way to set this up is by running the `alias` command. The exact command needed depends on your OS:
 
@@ -1694,7 +1694,7 @@ This issue only affects developers of Windows .NET applications. It does not aff
 
 ### What are the plans for the project and what are its tokenomics?
 
-This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/2021/02/10/chia-businesss-whitepaper.html) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Chia Blog](https://www.chia.net/blog/).
+This is the Repository FAQ which focuses on how to use the software. We have released our [Business Whitepaper](https://www.chia.net/white-paper/) that goes into details of both the tokenomics, the pre-farm, and our go to market strategy. Additionally you can review the [Chia Blog](https://www.chia.net/blog/).
 
 ### How can I contribute?
 

@@ -18,7 +18,7 @@ If you are a developer or a CLI user, see the following resources for more info:
 
 In order to use Chia clawbacks, you must have:
 
-- Version 1.8.2 or later of Chia's reference light wallet or full node. See our [downloads page](https://www.chia.net/downloads/) to obtain a copy.
+- Version 1.8.2 or later of Chia's reference light wallet or full node. See our [downloads page](https://www.chia.net/farm/downloads/) to obtain a copy.
 - A sufficient amount of XCH or TXCH to send a transaction and pay fees. If you do not have a sufficient amount, you can obtain some from our [mainnet](https://faucet.chia.net/) and [testnet](https://testnet10-faucet.chia.net/) faucets.
 
 ---

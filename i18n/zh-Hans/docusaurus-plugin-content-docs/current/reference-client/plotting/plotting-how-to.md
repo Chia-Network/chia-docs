@@ -123,7 +123,7 @@ Response:
 {'authentication_token_timeout': 5,
  'description': 'A pool you can trust. We embrace open source.',
  'fee': '0.01',
- 'logo_url': 'https://www.chia.net/img/chia_logo.svg',
+ 'logo_url': 'https://www.chia.net/brand/chia-logo.svg',
  'minimum_difficulty': 1,
  'name': 'OpenChia.io Pool',
  'protocol_version': 1,

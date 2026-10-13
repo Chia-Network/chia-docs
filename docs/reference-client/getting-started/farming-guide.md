@@ -75,7 +75,7 @@ Once you have the required hardware, it's time to install Chia.
 
 ## Install Chia
 
-Head to [the official download page](https://www.chia.net/downloads/); download and run the installer for your Operating System. The default settings are fine for most setups.
+Head to [the official download page](https://www.chia.net/farm/downloads/); download and run the installer for your Operating System. The default settings are fine for most setups.
 
 Two check boxes will be shown on the last screen after the install has completed. It's a good idea to check both of them. Doing so will allow you to type `chia` in a terminal window without requiring the full path, and it will automatically start the application.
 
@@ -189,7 +189,7 @@ First wallet address: xch1kr3zf7dqw5q953ex6zt33lndj90q0zlh68404tsntnljthnwqs2qvj
 ```
 
 :::note
-For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/) blog article.
+For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/blog/securing-your-chia-how-to-be-a-hard-target/) blog article.
 :::
 
 :::info
@@ -211,7 +211,7 @@ This screen shows your node's syncing status. In order to farm Chia, your node n
 
 1. Sync from genesis -- the above image shows this happening. Your node will connect with up to 80 peers and download information for each block. This is the most secure way to sync a node, and the only way to be sure that the information is accurate. However, it will take at least a few days, and possibly a week or more to sync from genesis, depending on your node's speed, your internet connection, and the quality of the peers to which you connect.
 2. Download a checkpoint database -- this option will allow you to sync much faster, but you have to trust that the information is accurate. For most users, this will be a worthwhile tradeoff.
-   - Head to our official [checkpoint download page](https://www.chia.net/downloads/#database-checkpoint) and click the `Torrent` link for the mainnet Database.
+   - Head to our official [checkpoint download page](https://www.chia.net/farm/downloads/#database-checkpoint) and click the `Torrent` link for the mainnet Database.
    - When your download has completed, use [BitTorrent](https://www.bittorrent.com/) to open it; be sure to verify it with the checksum listed on the download page.
    - Move the database to the appropriate destination (see below).
 

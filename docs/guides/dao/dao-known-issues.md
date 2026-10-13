@@ -6,7 +6,7 @@ title: DAO Known Issues
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-DAOs are currently under development. Be sure to update to the [latest Chia version](https://www.chia.net/downloads/) prior to using the DAO primitive.
+DAOs are currently under development. Be sure to update to the [latest Chia version](https://www.chia.net/farm/downloads/) prior to using the DAO primitive.
 
 As of Chia version 2.1.4, the following DAO issues are known to exist:
 

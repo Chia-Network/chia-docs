@@ -3,7 +3,7 @@ slug: /custody/prefarm-audit-tutorial
 title: Prefarm Audit Tutorial
 ---
 
-Chia Network Inc's prefarm is secured by a complex set of custodial rules. This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/).
+Chia Network Inc's prefarm is secured by a complex set of custodial rules. This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/blog/a-new-home-for-the-prefarm/).
 
 Other relevant documents:
 
@@ -124,5 +124,5 @@ NOTE: This is the address used when sending funds to the vault.
 
 ## Further reading
 
-- [A New Home for the Prefarm blog](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/)
-- [Cypherpunks in Sportcoats: Blockchain in the Real World](https://www.chia.net/2023/01/17/cypherpunks-in-sportcoats-chias-custody-is-a-killer-app/)
+- [A New Home for the Prefarm blog](https://www.chia.net/blog/a-new-home-for-the-prefarm/)
+- [Cypherpunks in Sportcoats: Blockchain in the Real World](https://www.chia.net/blog/cypherpunks-in-sportcoats-chias-custody-is-a-killer-app/)
