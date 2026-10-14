@@ -44,6 +44,12 @@ XCHandles are human-readable names that resolve to Chia addresses. Learn more at
   <img src="/img/cloud-wallet/xch-handles-01_send_to_dark.png" alt="Send to card showing an XCHandle resolved to a wallet address" width="100%" className="theme-image-dark"/>
 </div>
 
+:::tip
+
+To double-check a handle before sending, open `https://xchandles.com/handle/<name>` (for example [xchandles.com/handle/alice](https://xchandles.com/handle/alice)). The page shows the handle's resolved address and when it expires, or `Not Registered` if nobody owns it. The resolved address should match the one shown in the Cloud Wallet.
+
+:::
+
 5. Check that the resolved address is the one you expect, complete the amount, fee, and any other send options, then click `Send`. The `Confirm Transaction` dialog shows the handle above the recipient address. Click `Sign and Send` to sign.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
@@ -77,6 +83,7 @@ Address Book stores emails and Chia addresses for contacts. You can type an XCHa
 
 - Use `@` plus 3–63 lowercase letters or digits (no spaces, uppercase letters, or symbols)
 - If the lookup fails, check the spelling, try again, or paste the wallet address instead
+- To confirm a handle is registered, see where it points, or check when it expires, look it up on [xchandles.com](https://xchandles.com/)
 - Expired handles cannot be used for sending; use an address
 - If a send fails because the handle no longer resolves to the address, enter the handle again so it resolves to its current address
 - For additional support, use [In App Support](/cloud-wallet/in-app-support)
