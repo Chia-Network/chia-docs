@@ -3,7 +3,7 @@ title: XCHandles
 slug: /cloud-wallet/xch-handles
 ---
 
-This guide shows how to send XCH or tokens to an XCHandle (`@handle`) in the Chia Cloud Wallet, and how handles appear on outbound transactions.
+This guide shows how to send XCH, tokens, or NFTs to an XCHandle (`@handle`) in the Chia Cloud Wallet, and how handles appear on outbound transactions.
 
 :::info
 
@@ -23,49 +23,55 @@ XCHandles are human-readable names that resolve to Chia addresses. Learn more at
 
 1. Log in to your [Chia Cloud Wallet](https://vault.chia.net/) account.
 
-2. Open Send for XCH or a token from the vault that holds the asset.
+2. Open the send form for XCH, a token, or an NFT from the vault that holds the asset.
 
-3. In `Send to` / `Recipient`, enter an XCHandle starting with `@`, for example `@alice`.
+3. In the `Send to` card, enter an XCHandle starting with `@` in the `Recipient` field, for example `@alice`.
 
    - Handles use lowercase letters and digits only, 3–63 characters after `@`
    - You can still paste a normal address (`xch1...` on mainnet, `txch1...` on testnet)
-   - The field hint notes that wallet addresses start with the network prefix and XCHandles start with `@`
+   - Until you enter a recipient, the hint below the field reminds you that wallet addresses start with the network prefix and XCHandles start with `@`
 
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/xch-handles-01_send_to_light.png" alt="Send To field accepting an XCHandle" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/xch-handles-01_send_to_dark.png" alt="Send To field accepting an XCHandle" width="100%" className="theme-image-dark"/>
-</div>
+4. Wait for the lookup to finish. The Cloud Wallet resolves the handle and shows one of:
 
-4. Wait for lookup to finish. The Cloud Wallet resolves the handle and shows one of:
-
-   - `Looking up XCHandle...`
-   - `Resolved to` followed by the address
+   - `Looking up XCHandle...` while the lookup is in progress
+   - `Resolved to` followed by the address the handle points to
    - `We couldn't find this XCHandle. Check the spelling and try again.`
    - `This XCHandle has expired. Use a wallet address instead.`
    - `We couldn't look up this XCHandle. Try again or use a wallet address.`
 
-5. Complete amount, fee, and any other send options, then click `Send` and sign.
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/xch-handles-01_send_to_light.png" alt="Send to card showing an XCHandle resolved to a wallet address" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/xch-handles-01_send_to_dark.png" alt="Send to card showing an XCHandle resolved to a wallet address" width="100%" className="theme-image-dark"/>
+</div>
 
-`Send` stays disabled for an `@` recipient until the handle resolves successfully. QR scan still expects a wallet address, not a handle.
+5. Check that the resolved address is the one you expect, complete the amount, fee, and any other send options, then click `Send` and sign. The signature request shows the handle above the recipient address.
+
+`Send` stays disabled for an `@` recipient until the handle resolves successfully. The QR code scanner only accepts wallet addresses, not handles.
+
+When you send, the Cloud Wallet checks the handle again. If the handle now points to a different address, the send fails with `The XCHandle no longer resolves to this address. Resolve it again before sending.` Re-enter the handle to look it up again.
 
 ## How handles appear after you send
 
-On outbound transfers, when a handle was used:
+On outbound transfers sent to a handle:
 
-- Activity list rows can show `@{handle}` instead of only the address
-- Transaction detail can show `@{handle}` above the underlying address
-- The signature request can show the handle above the recipient address
+- Activity rows show `@handle` as the recipient
+- Transaction details show `@handle` above the underlying address
 
-Inbound transfers do not display an XCHandle for the counterparty in that same way; you still see the address.
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/xch-handles-02_transaction_light.png" alt="Transaction details showing the XCHandle above the recipient address" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/xch-handles-02_transaction_dark.png" alt="Transaction details showing the XCHandle above the recipient address" width="100%" className="theme-image-dark"/>
+</div>
+
+Inbound transfers do not show an XCHandle for the sender; you see the address.
 
 ## Address Book and handles
 
-Address Book stores emails and Chia addresses for contacts. You can still type an XCHandle directly in `Send To` without saving it as a contact. For contact-based sends, see [Address Book](/cloud-wallet/address-book).
+Address Book stores emails and Chia addresses for contacts. You can type an XCHandle directly in the `Recipient` field without saving it as a contact. For contact-based sends, see [Address Book](/cloud-wallet/address-book).
 
 ## Troubleshooting
 
-- Use `@` plus 3–63 lowercase letters or digits (no spaces or symbols)
-- If lookup fails, check spelling, try again, or paste the wallet address instead
-- Expired handles cannot be used for send; use an address
-- The resolved address must match your network (`xch` on mainnet, `txch` on testnet)
+- Use `@` plus 3–63 lowercase letters or digits (no spaces, uppercase letters, or symbols)
+- If the lookup fails, check the spelling, try again, or paste the wallet address instead
+- Expired handles cannot be used for sending; use an address
+- If a send fails because the handle no longer resolves to the address, enter the handle again so it resolves to its current address
 - For additional support, use [In App Support](/cloud-wallet/in-app-support)
