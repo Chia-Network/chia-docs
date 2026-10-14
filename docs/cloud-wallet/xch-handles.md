@@ -44,7 +44,12 @@ XCHandles are human-readable names that resolve to Chia addresses. Learn more at
   <img src="/img/cloud-wallet/xch-handles-01_send_to_dark.png" alt="Send to card showing an XCHandle resolved to a wallet address" width="100%" className="theme-image-dark"/>
 </div>
 
-5. Check that the resolved address is the one you expect, complete the amount, fee, and any other send options, then click `Send` and sign. The signature request shows the handle above the recipient address.
+5. Check that the resolved address is the one you expect, complete the amount, fee, and any other send options, then click `Send`. The `Confirm Transaction` dialog shows the handle above the recipient address. Click `Sign and Send` to sign.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/xch-handles-02_confirm_light.png" alt="Confirm Transaction dialog showing the XCHandle above the recipient address" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/xch-handles-02_confirm_dark.png" alt="Confirm Transaction dialog showing the XCHandle above the recipient address" width="100%" className="theme-image-dark"/>
+</div>
 
 `Send` stays disabled for an `@` recipient until the handle resolves successfully. The QR code scanner only accepts wallet addresses, not handles.
 
@@ -58,8 +63,8 @@ On outbound transfers sent to a handle:
 - Transaction details show `@handle` above the underlying address
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/xch-handles-02_transaction_light.png" alt="Transaction details showing the XCHandle above the recipient address" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/xch-handles-02_transaction_dark.png" alt="Transaction details showing the XCHandle above the recipient address" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/xch-handles-03_transaction_light.png" alt="Transaction details showing the XCHandle above the recipient address" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/xch-handles-03_transaction_dark.png" alt="Transaction details showing the XCHandle above the recipient address" width="100%" className="theme-image-dark"/>
 </div>
 
 Inbound transfers do not show an XCHandle for the sender; you see the address.
