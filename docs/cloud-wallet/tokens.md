@@ -68,6 +68,11 @@ Every CAT is backed by XCH. Each token you mint uses 1,000 mojos (0.000000001 XC
 
 2. Click `Create` if you have not created a token yet, or `Add Token` if you have.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-05_tokens_page_light.png" alt="Tokens page with Create Your First Token and the Create button" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-05_tokens_page_dark.png" alt="Tokens page with Create Your First Token and the Create button" width="100%" className="theme-image-dark"/>
+</div>
+
 3. Fill in the form:
    - `Vault`: the vault to mint the token from. This vault becomes the token's minting vault and receives the new tokens.
    - `Name`: 2 to 32 characters
@@ -77,9 +82,31 @@ Every CAT is backed by XCH. Each token you mint uses 1,000 mojos (0.000000001 XC
    - `Amount`: the number of tokens to mint
    - `Fee`: an optional network fee in XCH. `Spendable balance` shows the XCH available in the selected vault.
 
-4. Click `Issue Token`, then approve the transaction with your passkey or in the Chia Signer app.
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-06_create_form_light.png" alt="Create token form with vault, name, and symbol" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-06_create_form_dark.png" alt="Create token form with vault, name, and symbol" width="100%" className="theme-image-dark"/>
+</div>
 
-The new token appears on the `Tokens` page. After the transaction confirms, the tokens appear on the minting vault's `Tokens` tab and you can send them like any other CAT.
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-07_create_amount_light.png" alt="Create token form with Multi Issuance, Revocable, amount with XCH equivalent, and fee" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-07_create_amount_dark.png" alt="Create token form with Multi Issuance, Revocable, amount with XCH equivalent, and fee" width="100%" className="theme-image-dark"/>
+</div>
+
+4. Click `Issue Token`. The `Mint Token` dialog shows the amount, the `XCH Cost`, the fee, and the receiving vault.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-08_mint_confirm_light.png" alt="Mint Token dialog with amount, XCH cost, fee, recipient, and Sign button" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-08_mint_confirm_dark.png" alt="Mint Token dialog with amount, XCH cost, fee, recipient, and Sign button" width="100%" className="theme-image-dark"/>
+</div>
+
+5. Click `Sign` to approve with your passkey, or approve the request in the Chia Signer app.
+
+The new token appears on the `Tokens` page right away. Its `Total Supply` and `Balance` show 0 until the transaction confirms. After that, the tokens also appear on the minting vault's `Tokens` tab and you can send them like any other CAT. A mint with no fee can take longer to confirm.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-09_tokens_list_light.png" alt="Tokens page with a created token card showing vault, total supply, balance, and issuance type" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-09_tokens_list_dark.png" alt="Tokens page with a created token card showing vault, total supply, balance, and issuance type" width="100%" className="theme-image-dark"/>
+</div>
 
 ### Issuance types
 
@@ -94,6 +121,11 @@ You cannot change the type or the `Revocable` setting after the token is created
 
 Click a token on the `Tokens` page to open its details. The page shows the `Asset ID`, `Minting Vault`, `Symbol`, `Issuance Type`, `Revocable?`, `Total Issued`, `Total Melted`, `Total Supply`, and `Balance Held` (tokens the minting vault still holds).
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-10_token_page_light.png" alt="Token page with asset ID, token details, and Melt and Issue More buttons" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-10_token_page_dark.png" alt="Token page with asset ID, token details, and Melt and Issue More buttons" width="100%" className="theme-image-dark"/>
+</div>
+
 Share the `Asset ID` with anyone who wants to add your token to their wallet.
 
 ### Issue more tokens
@@ -104,15 +136,25 @@ For a `Multi Issuance` token, you can mint more at any time:
 
 2. `Minted From`, `Name`, `Symbol`, and `Type` are filled in and cannot be changed. Enter the `Amount` and an optional `Fee`.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-11_issue_more_light.png" alt="Issue More form with amount, XCH equivalent, and fee" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-11_issue_more_dark.png" alt="Issue More form with amount, XCH equivalent, and fee" width="100%" className="theme-image-dark"/>
+</div>
+
 3. Click `Issue More`, then approve the transaction.
 
 ### Melt tokens
 
-Melting destroys tokens and returns the XCH that backs them to the minting vault. You can melt tokens of a revocable token that the minting vault still holds.
+Melting destroys tokens and returns the XCH that backs them to the minting vault. Only `Multi Issuance` tokens created with `Revocable` on can be melted, and only from the tokens the minting vault still holds.
 
 1. Open the token from the `Tokens` page and click `Melt`.
 
 2. In the `Melt Tokens` dialog, enter the `Amount to melt` and an optional `Fee`. The XCH you get back shows under the amount.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/tokens-12_melt_light.png" alt="Melt Tokens dialog with amount to melt, XCH returned, and fee" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/tokens-12_melt_dark.png" alt="Melt Tokens dialog with amount to melt, XCH returned, and fee" width="100%" className="theme-image-dark"/>
+</div>
 
 3. Click `Melt Tokens`, then approve the transaction.
 
