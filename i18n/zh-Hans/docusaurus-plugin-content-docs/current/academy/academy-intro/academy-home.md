@@ -24,11 +24,11 @@ import NFTs from '@site/static/img/academy/nft.png';
 import CATs from '@site/static/img/academy/cat.png';
 import DIDs from '@site/static/img/academy/did.png';
 
-欢迎来到Chia学院，这里是深入研究Chia区块链技术的学术中心。 在这个以快速数字化转型为特征的时代，本学院提供对Chia区块链的全面探索，剖析其技术细节、现实应用以及其安全数据处理的细微差别。 作为Chia学院的学生，将深入了解Chia区块链的核心概念和功能。
+欢迎来到Chia学院，这里是深入研究Chia区块链技术的学术中心。在这个以快速数字化转型为特征的时代，本学院提供对Chia区块链的全面探索，剖析其技术细节、现实应用以及其安全数据处理的细微差别。作为Chia学院的学生，将深入了解Chia区块链的核心概念和功能。
 
 ## 课程
 
-以下是几门精选课程，涵盖从区块链技术基础到Chialisp和实现的具体内容。 课程可以按任意顺序学习，因此请随意探索。
+以下是几门精选课程，涵盖从区块链技术基础到Chialisp和实现的具体内容。课程可以按任意顺序学习，因此请随意探索。
 
 ---
 
