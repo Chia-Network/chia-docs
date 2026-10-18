@@ -113,7 +113,7 @@ username@chia-farmer:~/.chia/mainnet/log$ tree
 0 directories, 8 files
 ```
 
-Each log file contains log information about all the services ran by Chia. 如果运行的是一个全节点，这些日志可能会很复杂。 如果运行的是一个全节点，这些日志可能会很复杂。 We're only interested whether or not plots pass the plot filter. 可以通过运行以下命令来检查： 可以通过运行以下命令来检查：
+Each log file contains log information about all the services ran by Chia. 如果运行的是一个全节点，这些日志可能会很复杂。如果运行的是一个全节点，这些日志可能会很复杂。 We're only interested whether or not plots pass the plot filter. 可以通过运行以下命令来检查：可以通过运行以下命令来检查：
 
 ```bash
 cat debug.log | grep "[0-9] plots were eligible for farming"
@@ -155,9 +155,8 @@ If you do this for all your log files and get a result, **great!** This means yo
 
 ### Can a Double NAT scenario impact my farm's ability to send valid proofs to the network?
 
-是也不是。 Double NAT, while quirky, should work due to Chia's uPnP support. 然而，您可能无法通过这种方式将区块发送给其他节点。 然而，您可能无法通过这种方式将区块发送给其他节点。 "双重NAT"场景发生在客户端（收割机或节点）位于进行了两次NAT的网络内。
-通常涉及客户端位于两个路由器后面，而不是一个，如下图所示：
+是也不是。 Double NAT, while quirky, should work due to Chia's uPnP support. 然而，您可能无法通过这种方式将区块发送给其他节点。然而，您可能无法通过这种方式将区块发送给其他节点。"双重NAT"场景发生在客户端（收割机或节点）位于进行了两次NAT的网络内。通常涉及客户端位于两个路由器后面，而不是一个，如下图所示：
 
 Internet --> Router --> Router --> Client
 
-某些网络设置可能会影响全节点参与耕种（farming）的能力。 只要日志中没有明显的指示耕种（farming）无法正常工作的迹象（特别是与网络相关的ERROR、WARNING标签），这种情况不太可能发生。
+某些网络设置可能会影响全节点参与耕种（farming）的能力。只要日志中没有明显的指示耕种（farming）无法正常工作的迹象（特别是与网络相关的ERROR、WARNING标签），这种情况不太可能发生。

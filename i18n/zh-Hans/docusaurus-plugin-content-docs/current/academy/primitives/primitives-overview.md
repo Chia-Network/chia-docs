@@ -26,7 +26,7 @@ In this lesson, we talk about what a primitive is, and how it can be used.
 
 <summary> Expand for the full script </summary>
 
-0:00\
+0:00  
 Primitives are what we call commonly used structures in Chialisp. They are essentially features that are specifically supported with native methods in our various libraries, and have defined structures to ensure compatibility.
 
 0:20
