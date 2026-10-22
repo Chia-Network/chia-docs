@@ -102,7 +102,7 @@ After the Chia pre-farm, Chia offers farming rewards of 64 chia every 10 minutes
 The Chia Blockchain comes together from a few different repositories:
 
 | Repository                                                                 | Contents                                                                      |
-|----------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | [chia-blockchain](https://github.com/Chia-Network/chia-blockchain)         | Consensus code, networking, and reference Chialisp implementations.           |
 | [chia-blockchain-gui](https://github.com/Chia-Network/chia-blockchain-gui) | An Electron/React graphical user interface to the plotter, node, and wallets. |
 | [clvm](https://github.com/Chia-Network/clvm)                               | Chialisp Virtual Machine in Python                                            |
