@@ -39,7 +39,7 @@ If you have unsigned offer transactions waiting, a `Pending Signature` section a
 
 3. Under `Assets Offered`, select assets you currently hold in that vault (XCH, tokens, or NFTs). Enter amounts as needed, and use `Add Another` to offer more than one asset.
 
-4. Under `Assets Requested`, choose what you want in return (`XCH`, `Tokens`, or `NFTs`). You can request assets you do not already hold. For tokens, you can pick a known token or use `+ Add token details` with an asset id. Leaving requested assets empty creates a one-sided offer; the app asks you to confirm with `Nothing Requested` before continuing.
+4. Under `Assets Requested`, choose what you want in return (`XCH`, `Tokens`, or `NFTs`). You can request assets you do not already hold. For tokens, you can pick a known token or use `+ Add token details` with an asset id. Leaving requested assets empty creates a one-sided offer. The app asks you to confirm with `Nothing Requested` and `Yes, Continue` before continuing.
 
 5. Optionally adjust `Expiration` (`Days`, `Hours`, `Minutes`). Expiration is on by default.
 
@@ -52,7 +52,7 @@ If you have unsigned offer transactions waiting, a `Pending Signature` section a
   <img src="/img/cloud-wallet/offers-02_create_dark.png" alt="Create Offer form with vault, offered assets, and requested assets" width="100%" className="theme-image-dark"/>
 </div>
 
-8. Click `Create Offer`. Confirm and sign in the `Confirm Offer` flow (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
+8. Click `Create Offer`. Confirm the offer and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
 After signing, the offer appears under `Offers you created`. When its status is `Open`, you can share it with the counterparty.
 
@@ -62,7 +62,7 @@ From the created list or the offer details page, open the actions menu while the
 
 - `Copy Offer` copies the offer string to the clipboard
 - `Download Offer` saves the offer as a file
-- `Share on Dexie` posts the offer to Dexie (confirm with `Share`, then optionally `View on Dexie`)
+- `Share on Dexie` posts the offer to [Dexie](https://dexie.space) (confirm with `Share`, then optionally `View on Dexie`)
 
 Only share offers with people you intend to trade with. Anyone who has the offer string or file may be able to take it if they meet the terms.
 
@@ -86,28 +86,46 @@ Only share offers with people you intend to trade with. Anyone who has the offer
   <img src="/img/cloud-wallet/offers-03_accept_dark.png" alt="Accept Offer screen with vault selection and offer details" width="100%" className="theme-image-dark"/>
 </div>
 
-6. Click `Accept Offer`, then confirm and sign in the `Confirm Offer` flow.
+6. Click `Accept Offer`, then confirm and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
 You cannot accept an offer with the same vault that created it. Accepted offers appear under `Offers you accepted`.
 
 ## Manage created Offers
 
-On `Offers you created`, each open offer supports `View Details`, `Copy Offer`, `Download Offer`, `Share on Dexie`, and `Cancel Offer` when available.
+On `Offers you created`, each open offer supports `View Details`, `Copy Offer`, `Download Offer`, and `Share on Dexie` when available. Cancellation is either `Cancel Off-Chain` or `Cancel On-Chain`, depending on whether the offer can be cancelled on-chain yet.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/offers-04_created_list_light.png" alt="Offers you created list with status and actions" width="100%" className="theme-image-light"/>
   <img src="/img/cloud-wallet/offers-04_created_list_dark.png" alt="Offers you created list with status and actions" width="100%" className="theme-image-dark"/>
 </div>
 
+`Offers you accepted` supports `View Details` only.
+
 ### Cancel an Offer
 
-1. Choose `Cancel Offer` from the created list or details page.
+`Cancel On-Chain` appears when the offer is open, meaning it is valid on the blockchain. `Cancel Off-Chain` is always available while the offer is pending (for example, the create spend is still waiting in the mempool). For an open offer, `Cancel Off-Chain` appears only if it is enabled for your account, alongside `Cancel On-Chain`. Use the option that is shown.
 
-2. Review the cancellation options. Cancelling submits an on-chain cancellation transaction with a `Transaction Fee`.
+`Cancel Off-Chain` cancels the offer in the Cloud Wallet and makes reserved funds spendable again. It does not publish a cancellation on the blockchain. If you already shared the offer (for example on [Dexie](https://dexie.space) or as a file), someone who has a copy may still be able to accept it if the offer later becomes valid.
 
-3. Click `Confirm Cancellation` and sign if the app requests a signature.
+`Cancel On-Chain` submits a cancellation transaction to the blockchain so the offer cannot be accepted by anyone. It takes a `Transaction Fee` and requires a signature.
 
-On-chain cancellation permanently cancels the offer on the blockchain. See [Known Issues](/cloud-wallet/known-issues) for current cancellation limitations.
+After an off-chain cancel, if the offer becomes open (for example, a pending create spend later confirms), `Cancel On-Chain` appears so you can finish invalidating it. If an offer's status changes while a cancel dialog is open, the dialog closes and asks you to review the available options.
+
+#### Cancel Off-Chain
+
+1. From `Offers you created` or the offer details page, choose `Cancel Off-Chain` when it is shown.
+
+2. Review the `Cancel Offer Off-Chain` dialog, then click `Cancel Off-Chain`.
+
+#### Cancel On-Chain
+
+1. From `Offers you created` or the offer details page, choose `Cancel On-Chain`.
+
+2. Review the `Cancel Offer On-Chain` dialog and enter a `Transaction Fee` if you want to speed confirmation.
+
+3. Click `Cancel On-Chain` and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
+
+See [Known Issues](/cloud-wallet/known-issues) for related cancellation limitations.
 
 ## Tips
 
@@ -117,7 +135,7 @@ On-chain cancellation permanently cancels the offer on the blockchain. See [Know
 
 ## Troubleshooting
 
-- Verify the selected vault has finished minting and has an address
+- If the vault is still being minted, wait until this clears: `This vault is currently being minted. You cannot perform transactions until the minting process is complete.`
 - For create or accept failures, check balances, NFT ownership, and that the offer has not expired or already been taken
-- For signing problems, confirm your Signer app or passkey can approve the `Confirm Offer` request
+- For signing problems, confirm your Chia Signer app or passkey can approve the `Confirm Offer` request
 - For additional support, use [In App Support](/cloud-wallet/in-app-support)
