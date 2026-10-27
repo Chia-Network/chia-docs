@@ -17,11 +17,11 @@ This page will answer your most common questions. Expect it to grow with time.
 
 ### What will this break/change?
 
-When the hard fork activates at block `9'562'000` (November 2026), there will be changes to the blockchain consensus which will cause non-upgraded full nodes and wallets to break. The upgrades software vendors will need to make before then are small and will be included in the reference codebase. Farmers will have to replot during the transition period. The min spec hardware from farming will be increased to a Raspberry Pi 5 with 8 GB of RAM (currently, it's a Pi 4).
+When the hard fork activates (the activation height is still to be determined), there will be changes to the blockchain consensus which will cause non-upgraded full nodes and wallets to break. The upgrades software vendors will need to make before then are small and will be included in the reference codebase. Farmers will have to replot during the transition period. The min spec hardware from farming will be increased to a Raspberry Pi 5 with 8 GB of RAM (currently, it's a Pi 4).
 
 ### If I use the reference wallet, but I’m not a farmer, will I need to upgrade anything?
 
-Yes, you will need to upgrade your wallet to version 3.0 before block 9,562,000. If you fail to do so, then your wallet may fall out of sync until you perform the upgrade. However, the funds contained within your wallet will remain secure.
+Yes, you will need to upgrade your wallet to version 3.0 before the hard fork activates. If you fail to do so, then your wallet may fall out of sync until you perform the upgrade. However, the funds contained within your wallet will remain secure.
 
 ### If I use the Cloud Wallet, will I need to upgrade anything?
 
@@ -33,11 +33,11 @@ If you use any ecosystem wallet including Sage, you will need to make sure to st
 
 ### When will I be able to farm with new plots on mainnet?
 
-You will be able to farm with PoS2 plots when the 3.0 hard fork activates. This is currently scheduled for block `9'562'000`, expected to occur in November 2026. See our [timeline](/chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline) for more details.
+You will be able to farm with PoS2 plots when the 3.0 hard fork activates. The activation height is still to be determined. See our [timeline](/chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline) for more details.
 
 ### When will the old plot format be fully phased out?
 
-After the fork activates, there will be a transition period of 256 days, during which PoS1 plots will become less likely to win. The last block in which PoS1 plots are expected to be valid is `10'741'648`, which should occur in June or July 2027. See our [timeline](/chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline)) for more details.
+After the fork activates, there will be a transition period of 256 days, during which PoS1 plots will become less likely to win. The last block in which PoS1 plots are expected to be valid is 256 days of blocks after the activation height, which is still to be determined. See our [timeline](/chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline)) for more details.
 
 ### When should I replot?
 
@@ -141,7 +141,7 @@ The base filter indicates the lowest filter allowed for all plots across the net
 
 | Block height | Year | Base Filter Bits | Base Filter |
 | :----------- | :--- | :--------------- | :---------- |
-| ` 9'562'000` | 2026 | 9                | 512         |
+| Activation   | TBD  | 9                | 512         |
 | `19'663'000` | 2032 | 8                | 256         |
 | `24'708'000` | 2035 | 7                | 128         |
 | `29'759'000` | 2038 | 6                | 64          |
