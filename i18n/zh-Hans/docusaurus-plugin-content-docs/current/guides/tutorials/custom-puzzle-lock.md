@@ -32,9 +32,9 @@ If password is correct, the puzzle will create a new coin with 2 mojos and lock 
 
 There are multiple ways how you can get compiled version of your custom puzzle.
 
-### Using [chialisp](https://github.com/Chia-Network/chialisp) (official)
+### Using [clvm_tools](https://github.com/Chia-Network/clvm_tools) (official)
 
-You can compile your custom puzzle from the terminal using the chialisp repository (included in the official Chia repository). All you need to do is to use the `run` command with your puzzle provided as an argument.
+You can compile your custom puzzle from the terminal using the clvm_tools repository (included in the official Chia repository). All you need to do is to use the `run` command with your puzzle provided as an argument.
 
 ```bash
 run '(mod (password new_puzhash amount)
@@ -55,9 +55,9 @@ Paste your custom puzzle into the text area and hit **Compile**. The compiled ve
 
 ## Get puzzle hash from a puzzle
 
-### Using [chialisp](https://github.com/Chia-Network/chialsip)
+### Using [clvm_tools](https://github.com/Chia-Network/clvm_tools)
 
-You can get the hash of your Chialisp puzzle with the `opc -H <compiled_puzzle>` command included in the official chialisp repository.
+You can get the hash of your Chialisp puzzle with the `opc -H <compiled_puzzle>` command included in the official clvm_tools repository.
 
 ```bash
 opc -H '(a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824)) (q 4 (c 2 (c 11 (c 23 ()))) ()) (q 8)) 1) (c (q . 51) 1))'

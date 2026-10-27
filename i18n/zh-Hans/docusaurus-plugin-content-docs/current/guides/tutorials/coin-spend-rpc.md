@@ -37,7 +37,7 @@ To serialize the solution, you need to slightly modify the solution format to ma
 
 _WARNING: You have to change this solution and replace the target puzzle hash with your own to get your coins back_
 
-### Serialization using [chialisp](https://github.com/Chia-Network/chialisp)
+### Serialization using [clvm_tools](https://github.com/Chia-Network/clvm_tools)
 
 The `opc -H <CLVM>` command can be used for getting the serialized version of our puzzle and solution as well. The serialized version will be included in the response **on the second line**.
 

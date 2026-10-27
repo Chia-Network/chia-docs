@@ -32,7 +32,7 @@ If password is correct, the puzzle will create a new coin with 2 mojos and lock 
 
 There are multiple ways how you can get compiled version of your custom puzzle.
 
-### Using [chialisp](https://github.com/Chia-Network/chialisp) (official)
+### Using [chialisp](https://github.com/Chia-Network/chialisp) (official) {#using-clvm_tools-official}
 
 You can compile your custom puzzle from the terminal using the chialisp repository (included in the official Chia repository). All you need to do is to use the `run` command with your puzzle provided as an argument.
 
@@ -55,7 +55,7 @@ Paste your custom puzzle into the text area and hit **Compile**. The compiled ve
 
 ## Get puzzle hash from a puzzle
 
-### Using [chialisp](https://github.com/Chia-Network/chialisp)
+### Using [chialisp](https://github.com/Chia-Network/chialisp) {#using-clvm_tools}
 
 You can get the hash of your Chialisp puzzle with the `opc -H <compiled_puzzle>` command included in the official chialisp repository.
 
@@ -74,7 +74,7 @@ ff02ffff01ff02ffff03ffff09ffff0bff0580ffff01a02cf24dba5fb0a30e26e83b2ac5b9e29e1b
 
 As you can see from the first line of this response, puzzle hash for our custom puzzle is `0x4843c869bba5f65aa1e806cd372dae5668ca3b69640d067e86837ca96b324e71`
 
-### Using Chialisp
+### Using Chialisp {#using-chialisp}
 
 You can also use Chialisp itself to get the hash of the Chialisp puzzle. The puzzle to get a puzzle hash is following:
 
