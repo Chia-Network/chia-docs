@@ -110,7 +110,7 @@ The Chia Blockchain comes together from a few different repositories:
 | [chiapos](https://github.com/Chia-Network/chiapos)                         | Creating plots and verifying Proofs of Space.                                 |
 | [chiavdf](https://github.com/Chia-Network/chiavdf)                         | Proofs of time/VDFs and Timelords.                                            |
 | [bls-signatures](https://github.com/Chia-Network/bls-signatures)           | IETF standard BLS-12-381 signature scheme.                                    |
-| [clvm_tools](https://github.com/Chia-Network/clvm_tools)                   | Tools for Chialisp and CLVM.                                                  |
+| [chialisp](https://github.com/Chia-Network/chialisp)                       | Tools for Chialisp and CLVM. Chialisp Compiler.                               |
 | [Chia Network Organization](https://github.com/Chia-Network)               | Contains all of the public Chia repos released by Chia Network                |
 
 ### When did Chia launch mainnet?
