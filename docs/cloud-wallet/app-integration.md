@@ -5,7 +5,7 @@ slug: /cloud-wallet/app-integration
 
 This guide shows how to register an application with the Chia Cloud Wallet, how a user connects it to their account, and how the application signs in with OAuth 2.0. It also shows how users review and remove the applications they have connected.
 
-OAuth is for third-party web, desktop and mobile applications that act on a user's behalf with the user's consent. If you are writing a script or service that uses your own account, use an API key instead (`Settings` > `API Keys`).
+OAuth is for third-party web, desktop and mobile applications that act on a user's behalf with the user's consent. If you are writing a script or service that uses your own account, use an API key instead (`Settings` > `API Keys`). For the full API guide and reference, see the [Cloud Wallet API documentation](https://vault.chia.net/docs).
 
 :::info
 
@@ -162,6 +162,8 @@ curl https://api.vault.chiatest.net/graphql \
 ```
 
 Send only one authentication method per request. A request that combines a bearer token with a session cookie or an API-key signature is rejected.
+
+For the available operations, pagination and error handling, see the [Cloud Wallet API documentation](https://vault.chia.net/docs).
 
 ## Refresh and revoke tokens
 
