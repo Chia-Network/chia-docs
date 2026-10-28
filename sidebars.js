@@ -203,6 +203,7 @@ module.exports = {
         'cloud-wallet/tokens',
         'cloud-wallet/buy-xch',
         'cloud-wallet/send-clawback',
+        'cloud-wallet/airdrops',
         'cloud-wallet/xch-handles',
         'cloud-wallet/in-app-support',
         'cloud-wallet/recovery',
