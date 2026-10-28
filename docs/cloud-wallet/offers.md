@@ -14,13 +14,13 @@ You need a Cloud Wallet account and at least one vault. If you have not created 
 ## Prerequisites
 
 - An active [Chia Cloud Wallet](https://vault.chia.net/) account with at least one vault
-- Access to your vault spend key (Chia Signer app or passkey) to sign offer create, accept, and cancel transactions
+- Access to your vault spend key (Chia Signer app or passkey) to sign offer create, accept, and on-chain cancel transactions
 
 ## Open Offers
 
 1. Log in to your [Chia Cloud Wallet](https://vault.chia.net/) account.
 
-2. Open `Offers` from the left-hand menu:
+2. Open `Offers` from the left-hand menu.
 
 3. Use the tabs to switch between `Offers you accepted` and `Offers you created`. From the header you can also start `Accept Offer` or `Create Offer`.
 
