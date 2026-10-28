@@ -201,6 +201,7 @@ module.exports = {
         'cloud-wallet/coin-management',
         'cloud-wallet/address-book',
         'cloud-wallet/tokens',
+        'cloud-wallet/nfts',
         'cloud-wallet/offers',
         'cloud-wallet/buy-xch',
         'cloud-wallet/send-clawback',
