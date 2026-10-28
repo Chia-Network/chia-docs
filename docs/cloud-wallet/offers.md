@@ -22,11 +22,6 @@ You need a Cloud Wallet account and at least one vault. If you have not created 
 
 2. Open `Offers` from the left-hand menu:
 
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/offers-01_navigation_light.png" alt="Navigate to Offers from the left-hand menu" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/offers-01_navigation_dark.png" alt="Navigate to Offers from the left-hand menu" width="100%" className="theme-image-dark"/>
-</div>
-
 3. Use the tabs to switch between `Offers you accepted` and `Offers you created`. From the header you can also start `Accept Offer` or `Create Offer`.
 
 If you have unsigned offer transactions waiting, a `Pending Signature` section appears above the lists. Use `Sign & Submit` to finish signing, or `Cancel` to discard an unsigned offer.
@@ -35,22 +30,17 @@ If you have unsigned offer transactions waiting, a `Pending Signature` section a
 
 1. From Offers, click `Create Offer`.
 
-2. Under `Select Vault`, choose the vault that will fund the offer.
+2. Next to `You offer from`, choose the vault that will fund the offer.
 
-3. Under `Assets Offered`, select assets you currently hold in that vault (XCH, tokens, or NFTs). Enter amounts as needed, and use `Add Another` to offer more than one asset.
+3. Under `You offer`, click `Add Asset` and select assets you currently hold in that vault (XCH, tokens, or NFTs). Enter amounts as needed. Click `Add Asset` again to offer more than one asset.
 
-4. Under `Assets Requested`, choose what you want in return (`XCH`, `Tokens`, or `NFTs`). You can request assets you do not already hold. For tokens, you can pick a known token or use `+ Add token details` with an asset id. Leaving requested assets empty creates a one-sided offer. The app asks you to confirm with `Nothing Requested` and `Yes, Continue` before continuing.
+4. Under `You receive`, choose what you want in return with `+ XCH`, `+ Token`, or `+ NFT`. You can request assets you do not already hold. For a token, pick a known token or choose `+ Add token details` and enter its asset ID. For an NFT, enter its `nft1…` ID. Leaving this side empty creates a one-sided offer: whoever takes it pays nothing. When you create a one-sided offer, the app asks you to confirm with `Yes, Continue`.
 
-5. Optionally adjust `Expiration` (`Days`, `Hours`, `Minutes`). Expiration is on by default.
+5. Under `Offer Settings`, choose an `Expiration`: `Expires after` (set days, hours, and minutes) or `Never expires`. `Expires after` is selected by default.
 
-6. Enter a `Transaction Fee` if you want to speed confirmation when the network is busy.
+6. Under `Coin Splitting`, leave `Split coins first` selected unless you have a reason to change it. The wallet then runs a separate coin-split transaction (with an optional `Split Fee`) so the offer locks only the amount it needs. `Use coins as they are` skips that transaction, but the offer may lock up a large part of your spendable balance until it is taken or canceled.
 
-7. Leave `Auto-Split Coins` enabled unless you have a reason to turn it off. When it is on, the wallet may run a separate coin-split transaction before creating the offer so the offer does not lock more of your spendable balance than needed.
-
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/offers-02_create_light.png" alt="Create Offer form with vault, offered assets, and requested assets" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/offers-02_create_dark.png" alt="Create Offer form with vault, offered assets, and requested assets" width="100%" className="theme-image-dark"/>
-</div>
+7. Optionally check `Add a fee to the offer` and enter an `Offer Fee`. This is rarely needed. It is paid from this vault when someone takes the offer.
 
 8. Click `Create Offer`. Confirm the offer and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
@@ -72,19 +62,11 @@ Only share offers with people you intend to trade with. Anyone who has the offer
 
 2. Under `Select Vault`, choose the vault that will send the assets you are giving.
 
-3. Under `Offer Details`, paste or upload the offer:
-   - `Paste Offer` opens a field where you paste the offer string, then click `Use Offer`
-   - `Upload Offer File` (or `Upload Offer`) loads an offer file from disk
-   - You can also drag and drop an offer file onto the drop area
+3. Under `Offer Details`, paste the offer string (it starts with `offer1`) into the text area, click `Upload File` to load an offer file, or drop an offer file anywhere on the page.
 
-4. Review `Sending` and `Receiving` (including any NFT royalty lines). Confirm you have enough balance and any required NFTs.
+4. Review `You give` and `You receive` (including any NFT royalty lines). Confirm you have enough balance and any required NFTs.
 
 5. Review fees. If the maker included a fee, you may see `Included Fee`. You can also set an `Additional Fee (Optional)` or `Transaction Fee`.
-
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/offers-03_accept_light.png" alt="Accept Offer screen with vault selection and offer details" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/offers-03_accept_dark.png" alt="Accept Offer screen with vault selection and offer details" width="100%" className="theme-image-dark"/>
-</div>
 
 6. Click `Accept Offer`, then confirm and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
@@ -92,12 +74,7 @@ You cannot accept an offer with the same vault that created it. Accepted offers 
 
 ## Manage created Offers
 
-On `Offers you created`, each open offer supports `View Details`, `Copy Offer`, `Download Offer`, and `Share on Dexie` when available. Cancellation is either `Cancel Off-Chain` or `Cancel On-Chain`, depending on whether the offer can be cancelled on-chain yet.
-
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/offers-04_created_list_light.png" alt="Offers you created list with status and actions" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/offers-04_created_list_dark.png" alt="Offers you created list with status and actions" width="100%" className="theme-image-dark"/>
-</div>
+On `Offers you created`, each open offer supports `View Details`, `Copy Offer`, `Download Offer`, and `Share on Dexie` when available. To cancel an offer, use `Cancel Off-Chain` or `Cancel On-Chain` (see [Cancel an Offer](#cancel-an-offer)).
 
 `Offers you accepted` supports `View Details` only.
 
@@ -129,7 +106,7 @@ See [Known Issues](/cloud-wallet/known-issues) for related cancellation limitati
 
 ## Tips
 
-- Keep `Auto-Split Coins` enabled for most creates so less of your spendable balance stays reserved for the offer.
+- Keep `Split coins first` selected for most creates so less of your spendable balance stays reserved for the offer.
 - Coins reserved by an open offer can reduce your spendable balance until the offer settles or is cancelled.
 - If a brand-new vault cannot create an offer yet, send a small amount to yourself first, then try again. See [Known Issues](/cloud-wallet/known-issues).
 
