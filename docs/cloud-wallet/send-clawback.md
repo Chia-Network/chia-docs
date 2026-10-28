@@ -1,6 +1,7 @@
 ---
 title: Send Clawback
 slug: /cloud-wallet/send-clawback
+sidebar_label: Send with Clawback
 ---
 
 This guide shows how to add a clawback window when sending XCH from a Cloud Wallet vault, then claw back, finalize, or push through the transfer.

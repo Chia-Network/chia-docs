@@ -1,6 +1,7 @@
 ---
 title: Tooltips
 slug: /cloud-wallet/tooltips
+sidebar_label: Glossary
 ---
 
 import Tabs from '@theme/Tabs';
