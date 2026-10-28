@@ -127,6 +127,10 @@ No. When you initiate the recovery, you lock in the new keys. The only way to ch
 
 Instant Recovery lets you rekey your vault immediately using your current spend key: you can change your spend key, recovery key, recovery timelock, or any combination of those, in one confirmed transaction, without waiting for the recovery clawback timer. Common reasons include getting a new phone (Chia Signer keys cannot be copied off the old device), replacing a lost recovery phrase while you still can sign, or rotating a compromised recovery key after you cancel a malicious timelocked recovery. Details: [Recovery](/cloud-wallet/recovery).
 
+### Can I recover an upgraded vault without the Cloud Wallet?
+
+Yes, after the vault upgrade has confirmed. The upgrade keeps your keys and publishes an on-chain recovery hint. [Chia Vault Recover](https://github.com/Chia-Network/chia-vault-recover) or another compatible wallet can read that hint and recover the vault from your 24-word recovery phrase. Importing vaults into the Cloud Wallet is not supported at this time. Importing a vault into a different wallet, or using a different tool to perform wallet operations, can remove your access to that vault in the Cloud Wallet.
+
 ### When should I use Instant Recovery vs Timelocked Recovery?
 
 If you still have your spend key, use Instant Recovery. If you cannot use your spend key anymore but you do have your recovery phrase (recovery key), use Timelocked Recovery and wait for the clawback period before completing recovery. See [Recovery](/cloud-wallet/recovery).

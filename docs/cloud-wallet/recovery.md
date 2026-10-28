@@ -7,6 +7,8 @@ In the Cloud Wallet, recovery means rekeying your vault: you change one or more 
 
 There are two ways to recover a vault: Instant Recovery and Timelocked Recovery. They address different situations depending on whether you still have your spend key.
 
+After you [upgrade your vault](/cloud-wallet/vault-upgrade), the same recovery paths stay available in the Cloud Wallet. The upgrade also publishes an on-chain recovery hint, so you can run timelocked recovery without the Cloud Wallet. See [Recover without the Cloud Wallet](/cloud-wallet/vault-upgrade#recover-without-the-cloud-wallet).
+
 ## Instant Recovery
 
 Instant Recovery (also called Instant Rekey) lets you rotate your vault’s spend key, recovery key, and/or recovery timelock immediately, in a single transaction, with no waiting period. You prove you still control the vault by signing with your current spend key. The app asks you to confirm explicitly; nothing runs automatically.
@@ -51,11 +53,12 @@ If you lose both your spend key and your recovery key (with no usable backup), n
 
 ## Which should I use?
 
-| Situation                                  | Path                                                                                                                                          |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| You still have your spend key              | Instant Recovery: fast rekey, no clawback wait for the rekey itself.                                                                          |
-| You lost your spend key (or cannot use it) | Timelocked Recovery: use your recovery phrase and wait for the clawback period before completing recovery.                                    |
-| Your recovery key is compromised           | Cancel any pending timelocked recovery with your spend key during the clawback window, then Instant Recovery to rotate to a new recovery key. |
+| Situation                                                                          | Path                                                                                                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| You still have your spend key                                                      | Instant Recovery: fast rekey, no clawback wait for the rekey itself.                                                                                                                                                                                   |
+| You lost your spend key (or cannot use it)                                         | Timelocked Recovery: use your recovery phrase and wait for the clawback period before completing recovery.                                                                                                                                             |
+| Your recovery key is compromised                                                   | Cancel any pending timelocked recovery with your spend key during the clawback window, then Instant Recovery to rotate to a new recovery key.                                                                                                          |
+| You cannot or do not want to use the Cloud Wallet, and the vault has been upgraded | Recovery with [Chia Vault Recover](https://github.com/Chia-Network/chia-vault-recover) or another compatible wallet, using your recovery phrase. See [Recover without the Cloud Wallet](/cloud-wallet/vault-upgrade#recover-without-the-cloud-wallet). |
 
 ## Recovery clawback
 
