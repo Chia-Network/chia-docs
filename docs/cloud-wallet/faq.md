@@ -143,11 +143,25 @@ You receive an email alert. If you still have your spend key and the malicious a
 
 ### What is a watchtower?
 
-In a Web3 context, a watchtower is a program that monitors a blockchain for events, and takes action when they occur. The first Chia watchtower will look for attempted vault recoveries. When such a recovery is initiated, the watchtower will email the owner of the vault that is being recovered. If the recovery attempt is legitimate, the owner doesn't need to take any action. However, if the recovery is malicious, then the owner can cancel it.
+In a Web3 context, a watchtower is a program that monitors a blockchain for events, and takes action when they occur. The first Chia watchtower looks for attempted vault recoveries. When such a recovery is initiated, the watchtower emails the owner of the vault that is being recovered. If the recovery attempt is legitimate, the owner doesn't need to take any action. However, if the recovery is malicious, then the owner can cancel it.
 
-### What other types of watchtower will you develop?
+### Which events does the watchtower email me about? {#what-other-types-of-watchtower-will-you-develop}
 
-We plan to deploy watchtowers to notify users of incoming offers, incoming transactions, and transactions that were affected by a blockchain re-org. We may implement watchtowers for further events in the future.
+Recovery alerts (recovery initiated, completed, aborted or rolled back, and recovery clawback timelocks expiring) are always sent. In addition, the watchtower can email you about these events on your vault:
+
+- Transfers received
+- Farming rewards
+- Clawbacks received or finalized
+- Offers accepted, canceled or expired
+- Outgoing spends from the vault
+- NFT royalties received
+- Tokens revoked
+
+Except for tokens revoked, these alerts are off by default. You can turn each one on or off in your vault's notification settings. Most of them can be sent as they happen, or batched into a daily, weekly or monthly digest email. Recovery alerts and received clawbacks are always sent as they happen.
+
+A digest email lists the activity for each vault in the period. The vault's name appears in the email body, and in the subject when the digest covers a single vault, so you can tell which vault an alert is about if you have more than one.
+
+We plan to deploy watchtowers to notify users of transactions that were affected by a blockchain re-org. We may implement watchtowers for further events in the future.
 
 ### Can I develop my own watchtower?
 
