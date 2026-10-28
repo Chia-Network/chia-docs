@@ -206,6 +206,7 @@ module.exports = {
         'cloud-wallet/buy-xch',
         'cloud-wallet/send-clawback',
         'cloud-wallet/xch-handles',
+        'cloud-wallet/developer-api',
         'cloud-wallet/in-app-support',
         'cloud-wallet/recovery',
         'cloud-wallet/vault-upgrade',
