@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。 欢迎钱包开发者将其整合到开发的GUI钱包中。
+This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。欢迎钱包开发者将其整合到开发的GUI钱包中。
 
 有关其他技术资源，请参阅以下内容：
 
@@ -30,7 +30,7 @@ This document will show you how to use Chia's standalone clawback primitive. 欢
 
 ## 关于可撤回交易（clawback）
 
-可撤回交易原语的目的是防止将Chia资产发送到一个错误的地址。 可撤回交易的原理很简单：它是一种中间硬币，直到时间锁定过期之前，无法发送到目标地址。 与此同时，发送者可以"撤回"该硬币，将其以标准XCH的形式退回到他们的钱包中。
+可撤回交易原语的目的是防止将Chia资产发送到一个错误的地址。可撤回交易的原理很简单：它是一种中间硬币，直到时间锁定过期之前，无法发送到目标地址。与此同时，发送者可以"撤回"该硬币，将其以标准XCH的形式退回到他们的钱包中。
 
 下面使用A、B两人来进行演示：
 
@@ -102,20 +102,20 @@ python -m venv venv
   </TabItem>
   <TabItem value="linux">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   <TabItem value="macos">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   </Tabs>
