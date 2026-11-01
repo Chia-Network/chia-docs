@@ -3,7 +3,7 @@ slug: /custody/prefarm-audit-tutorial
 title: Prefarm Audit Tutorial
 ---
 
-Chia Network Inc's prefarm is secured by a complex set of custodial rules. This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/blog/a-new-home-for-the-prefarm/). This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/blog/a-new-home-for-the-prefarm/).
+Chia Network Inc's prefarm is secured by a complex set of custodial rules. This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/2022/10/29/a-new-home-for-the-prefarm/). This document describes how to use the custody tool to audit the prefarm configuration. A moderate level of technical proficiency is probably needed to understand the details. For a high-level overview of the prefarm custody wallets, see our [blog post](https://www.chia.net/blog/a-new-home-for-the-prefarm/).
 
 Other relevant documents:
 
@@ -91,7 +91,7 @@ NOTE: A high level of technical proficiency is needed to understand the details 
       4. `BASE_REKEY_TIMELOCK` = integer of the rekey timelock.
       5. `SLOW_REKEY_PENALTY` = integer of the slow rekey penalty.
 3. Curry the necessary parameters into singleton_top_layer_v1_1.clsp `(SINGLETON_STRUCT INNER_PUZZLE)`:
-   1. `SINGLETON_STRUCT` = a tree with the following elements in order `(MOD_HASH . (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))`:
+   1. `SINGLETON_STRUCT` = a tree with the following elements in order `(MOD_HASH . (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))`: (LAUNCHER_ID . LAUNCHER_PUZZLE_HASH))</code>:
       1. `MOD_HASH` = singleton_top_layer puzzle sha256 tree hash without its curried arguments.
       2. `LAUNCHER_ID` = the ID of the singleton we are committed to paying.
       3. `LAUNCHER_PUZZLE_HASH` = the puzzle hash of the launcher.
