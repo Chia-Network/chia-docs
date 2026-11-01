@@ -16,7 +16,7 @@ DataLayer Permissions give owners of data stores a method to gate participation,
 
 This guide will show you how to get started with DataLayer Permissions. Additional resources include:
 
-- [DataLayer user guide](/guides/datalayer-user-guide) -- You should already be familiar with using DataLayer before working with permissions. This guide will help you to get started
+- [DataLayer user guide](/guides/datalayer-user-guide) -- You should already be familiar with using DataLayer before working with permissions. This guide will help you to get started. Follow its full-node guidance (trusted node, synced to chain tip) for production. If the full node runs on another machine you operate, use [trusted peers](/chia-blockchain/resources/faq#what-are-trusted-peers-and-how-do-i-add-them)—never third-party or community nodes marked as trusted.
 - [S3 plugin](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/s3_plugin_service.py) -- This is the reference plugin for Amazon S3 integration. It is [discussed](#the-chia-s3-plugin) later in this guide
 - [Source API calls](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/data_layer/data_layer.py) -- In case you want to dig into the source code
 - [CLI documentation](/reference-client/cli-reference/datalayer-cli) for DataLayer
@@ -85,7 +85,7 @@ Functionality: Configure a store for uploading
 Request Parameters:
 
 | Parameter | Type   | Required | Description                 |
-| :-------- | :----- | :------- | :-------------------------- |
+|:--------- |:------ |:-------- |:--------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format |
 
 Response: `{"handle_upload": [true|false]}`
@@ -99,7 +99,7 @@ Functionality: Configure a store for downloading from a mirror
 Request Parameters:
 
 | Parameter | Type   | Required | Description                            |
-| :-------- | :----- | :------- | :------------------------------------- |
+|:--------- |:------ |:-------- |:-------------------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format            |
 | url       | STRING | True     | The URL of the mirror to download from |
 
@@ -117,11 +117,11 @@ Functionality: Upload data to a store
 
 Request Parameters:
 
-| Parameter          | Type   | Required | Description                 |
-| :----------------- | :----- | :------- | :-------------------------- |
-| store_id           | STRING | True     | The store ID, in hex format |
+| Parameter            | Type   | Required | Description                 |
+|:-------------------- |:------ |:-------- |:--------------------------- |
+| store_id             | STRING | True     | The store ID, in hex format |
 | full_tree_filename | STRING | True     | Name of full tree dat file  |
-| diff_filename      | STRING | True     | Name of delta dat file      |
+| diff_filename        | STRING | True     | Name of delta dat file      |
 
 Response: `{"uploaded": [true|false]}`
 
@@ -138,7 +138,7 @@ Functionality: Download a data file from a URI
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                        |
-| :-------- | :----- | :------- | :------------------------------------------------- |
+|:--------- |:------ |:-------- |:-------------------------------------------------- |
 | url       | STRING | True     | The URI for the download, eg `"server_info.url"`   |
 | filename  | STRING | True     | The name of the file to download, eg `"file1.dat"` |
 
@@ -157,7 +157,7 @@ Functionality: Add missing files to a store
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                                              |
-| :-------- | :----- | :------- | :----------------------------------------------------------------------- |
+|:--------- |:------ |:-------- |:------------------------------------------------------------------------ |
 | store_id  | STRING | True     | The store ID, in hex format                                              |
 | files     | LIST   | True     | The list of files to be added, for example: `["file1.dat", "file2.dat"]` |
 
@@ -232,10 +232,10 @@ Functionality: Add a new store
 Request Parameters:
 
 | Parameter | Type   | Required | Description                                                                                                 |
-| :-------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------- |
+|:--------- |:------ |:-------- |:----------------------------------------------------------------------------------------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format                                                                                 |
-| bucket    | STRING | True\*   | The name of the S3 bucket [* Either `bucket` or `urls` or both is required]                                 |
-| urls      | LIST   | True\*   | A list of s3 URLs, for example `["s3://one", "s3://two"]` [* Either `bucket` or `urls` or both is required] |
+| bucket    | STRING | True\* | The name of the S3 bucket [* Either `bucket` or `urls` or both is required]                                 |
+| urls      | LIST   | True\* | A list of s3 URLs, for example `["s3://one", "s3://two"]` [* Either `bucket` or `urls` or both is required] |
 
 Success Response: `{"success": true, "id": store id}`
 
@@ -254,7 +254,7 @@ Functionality: Remove a store
 Request Parameters:
 
 | Parameter | Type   | Required | Description                 |
-| :-------- | :----- | :------- | :-------------------------- |
+|:--------- |:------ |:-------- |:--------------------------- |
 | store_id  | STRING | True     | The store ID, in hex format |
 
 Response: `{"success": [true|false], "store_id":store id in hex if successful}`
