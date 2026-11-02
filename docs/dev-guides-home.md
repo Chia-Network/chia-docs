@@ -118,7 +118,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/crash-course/cats-offers-nfts/'>
+        <a href='/guides/crash-course/cats-offers-nfts/'>
           <div class="card">
             <div class="card__image">
               <img src={CatsOffersNfts} alt='Intro to Cats, Offers, and NFTs' loading="lazy" decoding="async" />
@@ -129,7 +129,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
     </c-li>
     <c-li class="carousel-item">
       <div class="card-demo">
-        <a href='/chialisp-and-typescript/'>
+        <a href='/guides/crash-course/chialisp-and-typescript/'>
           <div class="card">
             <div class="card__image">
               <img src={ChialispTypescript} alt='Chialisp and Typescript' loading="lazy" decoding="async" />
